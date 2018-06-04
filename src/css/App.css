@@ -57,6 +57,7 @@ ul.header li a {
     overflow: hidden;
     text-align: center;
     margin: 0 auto;
+    margin-bottom: 25px;
 }
 
 .thumb-circle img {
@@ -67,4 +68,26 @@ ul.header li a {
   font-size: 25px;
     font-weight: 400;
     line-height: 40px;
+}
+
+
+.container.caracteristicas-ma {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.texto-banner-header p {
+    margin: 40px;
+}
+
+
+.banner-header h1 {
+    padding-top: 40px;
+}
+
+
+/*LOGIN*/
+.contenedor-login {
+    padding-top: 40px;
+    padding-bottom: 40px;
 }

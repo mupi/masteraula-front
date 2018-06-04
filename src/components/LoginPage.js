@@ -11,14 +11,8 @@ class LoginPage extends Component {
 
   render() {
     return (
-            <div class="middle-box text-center loginscreen  animated fadeInDown">
-                <div class="contenedor-login">
-                    <div>
-                        <h1 class="logo-name">
-
-                        </h1>
-                        <div><img class="imgLogo" src=""/></div>
-                    </div>
+            <div className="middle-box text-center loginscreen  animated fadeInDown">
+                <div className="contenedor-login">
                     <h3>Entrar no MasterAula</h3>
                     <LoginForm />
                 </div>

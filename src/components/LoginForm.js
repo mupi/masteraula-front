@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-
+import {
+  Route,
+  NavLink,
+  HashRouter
+} from "react-router-dom";
+import ForgotPassword from "./ForgotPassword";
 
 class LoginForm extends Component {
 
@@ -32,7 +37,8 @@ class LoginForm extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <a href="#">Esqueci minha senha</a>
+                <NavLink  to="/esqueci-senha">Esqueci minha senha</NavLink>
+
             </FormGroup>
             <Button>Entrar</Button>
           </Form>

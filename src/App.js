@@ -8,9 +8,19 @@ import LoginPage from "./components/LoginPage";
 import RegisterForm from "./components/RegisterForm"
 import Home from "./components/Home.js";
 import './css/App.css';
+import ForgotPasswordPage from "./components/ForgotPasswordPage";
 
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state={
+      loginPage:[],
+      uploadScreen:[]
+    }
+  }
+
   render() {
     return (
         <HashRouter>
@@ -26,6 +36,7 @@ class App extends Component {
               <Route exact path="/" component={Home}/>
               <Route path="/login" component={LoginPage}/>
               <Route path="/register" component={RegisterForm}/>
+              <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
 
             </div>
           </div>
