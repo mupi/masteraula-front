@@ -1,0 +1,70 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+body{
+   font-family: 'Raleway',serif;
+}
+
+body {
+  background-color: #b3d4fc;
+  padding: 20px;
+  margin: 0;
+}
+h1, h2, p, ul, li {
+  font-family: 'Raleway';
+}
+ul.header li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+}
+ul.header {
+    background-color: rgb(33,150,243);
+    padding: 0;
+}
+
+ul.header li a {
+  color: #FFF;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 20px;
+  display: inline-block;
+}
+.content {
+  background-color: #FFF;
+  padding: 0px 15px;
+}
+.content h2 {
+  padding: 0;
+  margin: 0;
+}
+.content li {
+  margin-bottom: 10px;
+}
+
+/*Clases do Home*/
+.banner-header {
+    background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
+    background-size: 100% auto;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+.thumb-circle {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.thumb-circle img {
+    width: 100%;
+}
+
+.texto-banner-header{
+  font-size: 25px;
+    font-weight: 400;
+    line-height: 40px;
+}
