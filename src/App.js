@@ -7,8 +7,9 @@ import {
 import LoginPage from "./components/LoginPage";
 import RegisterForm from "./components/RegisterForm"
 import Home from "./components/Home.js";
-import './css/App.css';
+import UserHomePage from "./components/UserHomePage.js";
 import ForgotPasswordPage from "./components/ForgotPasswordPage";
+import './css/App.css';
 
 
 class App extends Component {
@@ -30,14 +31,14 @@ class App extends Component {
               <li><NavLink exact to="/">Home</NavLink></li>
               <li><NavLink to="/login">Login</NavLink></li>
               <li><NavLink to="/register">Cadastre-se</NavLink></li>
-
             </ul>
+
             <div className="content">
               <Route exact path="/" component={Home}/>
               <Route path="/login" component={LoginPage}/>
               <Route path="/register" component={RegisterForm}/>
               <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
-
+              <Route path="/home" component={UserHomePage}/>
             </div>
           </div>
         </HashRouter>
