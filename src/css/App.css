@@ -22,6 +22,10 @@ ul.header {
     padding: 0;
 }
 
+.bg-azul-ma{
+    background-color: rgb(33,150,243);
+}
+
 ul.header li a {
   color: #FFF;
   font-weight: bold;
@@ -91,3 +95,11 @@ ul.header li a {
     padding-top: 40px;
     padding-bottom: 40px;
 }
+
+.navbar-toggler{
+  background: red;
+}
+
+nav a {
+    color: white;
+  }

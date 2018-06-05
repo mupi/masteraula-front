@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
+
 
 class Register extends Component {
   constructor(props){
@@ -13,33 +15,45 @@ class Register extends Component {
   }
   render() {
     return (
-      <div>
-          <div>
-           <Input
-             placeholder="Enter your First Name"
-             onChange = {(event,newValue) => this.setState({first_name:newValue})}
-             />
-           <br/>
-           <Input
-             placeholder="Enter your Last Name"
-             onChange = {(event,newValue) => this.setState({last_name:newValue})}
-             />
-           <br/>
-           <Input
-             placeholder="Enter your Email"
-             type="email"
-             onChange = {(event,newValue) => this.setState({email:newValue})}
-             />
-           <br/>
-           <Input
-             type = "password"
-             placeholder="Enter your Password"
-             onChange = {(event,newValue) => this.setState({password:newValue})}
-             />
-           <br/>
-           <Button label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
-          </div>
-      </div>
+      <Container>
+          <Row>
+            <Col><Label>Nome Completo</Label></Col>
+            <Col><Input placeholder="Ingresse seu nome completo"/></Col>
+          </Row>
+
+            <div className="col-sm-12">
+                <div className="col-sm-6">
+                  <Label>Email</Label>
+                </div>
+                <div className="col-sm-6">
+                  <Input
+                    placeholder="Ingresse seu email"
+                    />
+                </div>
+            </div>
+            <div className="col-sm-12">
+                <div className="col-sm-6">
+                  <Label>Senha</Label>
+                </div>
+                <div className="col-sm-6">
+                  <Input
+                    placeholder="Uma senha muito forte"
+                    />
+                </div>
+            </div>
+            <div className="col-sm-12">
+                <div className="col-sm-6">
+                  <Input
+                    placeholder="Confirme sua senha"
+                    />
+                </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-12">
+                <Button color="primary">Enviar</Button>{' '}
+              </div>
+            </div>
+        </Container>
     );
   }
 }
