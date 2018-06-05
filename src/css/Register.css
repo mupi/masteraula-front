@@ -1,32 +1,13 @@
+/*
+CSS for RegisterPage
+*/
+
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 
 body{
   font-family: 'Raleway',serif;
   padding: 20px;
   margin: 0;
-}
-
-.has-wrapper .has-icon {
-    position: absolute;
-    right: 25px;
-    top: 13px;
-    font-size: 1.25rem;
-}
-
-[class^="ti-"], [class*=" ti-"] {
-    font-family: themify;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    text-transform: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    font-variant: normal;
-}
-
-
-.ti-user:before {
-    content: "\E602";
 }
 
 .contenedor-register .form-grouo{

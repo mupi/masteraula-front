@@ -3,6 +3,7 @@ import clockImg from "../img/home/clock.png";
 import searchImg from "../img/home/search.png";
 import moneyImg from "../img/home/money.png";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import '../css/Home.css';
 
 
 class Home extends Component {
