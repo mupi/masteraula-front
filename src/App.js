@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import {
   Route,
-  NavLink,
-  HashRouter
+  BrowserRouter,
+  Switch
 } from "react-router-dom";
-import LoginPage from "./components/LoginPage";
-import RegisterPage from "./components/RegisterPage"
-import Home from "./components/Home.js";
 import './css/App.css';
+import LoginPage from "./components/LoginPage";
+import RegisterForm from "./components/RegisterForm"
+import Home from "./components/Home.js";
+import UserHomePage from "./components/UserHomePage.js";
 import ForgotPasswordPage from "./components/ForgotPasswordPage";
-import 'bootstrap/dist/css/bootstrap.css';
-
+import Menu from "./components/Menu";
 
 class App extends Component {
 
@@ -24,29 +24,19 @@ class App extends Component {
 
   render() {
     return (
-        <HashRouter>
+        <BrowserRouter>
           <div>
-            <h1>Master Aula</h1>
-            <nav className="navbar navbar-expand-md bg-azul-ma">
-                <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
-                  <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                  <ul className="navbar-nav mr-auto header">
-                    <li className="nav-item"><NavLink className="nav-link" exact to="/">Home</NavLink></li>
-                    <li className="nav-item"><NavLink className="nav-link" to="/login">Login</NavLink></li>
-                    <li className="nav-item"><NavLink to="/register">Cadastre-se</NavLink></li>
-                  </ul>
-                </div>
-          </nav>
-            <div className="content">
+            <Menu logged={true} />
+
+            <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/login" component={LoginPage}/>
-              <Route path="/register" component={RegisterPage}/>
+              <Route path="/register" component={RegisterForm}/>
               <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
-            </div>
+              <Route path="/home" component={UserHomePage}/>
+            </Switch>
           </div>
-        </HashRouter>
+        </BrowserRouter>
     );
   }
 }
