@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import {
   Route,
-  NavLink,
-  HashRouter
+  BrowserRouter,
+  Switch
 } from "react-router-dom";
+import './css/App.css';
 import LoginPage from "./components/LoginPage";
 import RegisterForm from "./components/RegisterForm"
 import Home from "./components/Home.js";
 import UserHomePage from "./components/UserHomePage.js";
 import ForgotPasswordPage from "./components/ForgotPasswordPage";
-import './css/App.css';
-
+import Menu from "./components/Menu";
 
 class App extends Component {
 
@@ -24,24 +24,19 @@ class App extends Component {
 
   render() {
     return (
-        <HashRouter>
+        <BrowserRouter>
           <div>
-            <h1>Master Aula</h1>
-            <ul className="header">
-              <li><NavLink exact to="/">Home</NavLink></li>
-              <li><NavLink to="/login">Login</NavLink></li>
-              <li><NavLink to="/register">Cadastre-se</NavLink></li>
-            </ul>
+            <Menu logged={true} />
 
-            <div className="content">
+            <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/login" component={LoginPage}/>
               <Route path="/register" component={RegisterForm}/>
               <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
               <Route path="/home" component={UserHomePage}/>
-            </div>
+            </Switch>
           </div>
-        </HashRouter>
+        </BrowserRouter>
     );
   }
 }

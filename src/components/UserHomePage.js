@@ -6,7 +6,7 @@ class UserHomePage extends Component {
   render() {
     let border = {'border': 'black solid 2px'}
     return (
-        <Row>
+        <Row style={{'margin-top':'50px'}}>
           <Col xs="3">
             <ListGroup >
               <ListGroupItem style={border} tag="button" action>
