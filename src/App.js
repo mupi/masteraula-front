@@ -28,7 +28,6 @@ class App extends Component {
           <div>
             <h1>Master Aula</h1>
             <nav className="navbar navbar-expand-md bg-azul-ma">
-                <NavLink className="navbar-brand" exact to="/">MasterAula</NavLink>
                 <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
                   <span className="navbar-toggler-icon"></span>
                 </button>
