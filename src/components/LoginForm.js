@@ -19,7 +19,6 @@ class LoginForm extends Component {
         <div className="col-10 col-sm-7 col-md-5 col-lg-4">
           <Form>
             <FormGroup>
-              <Label for="exampleEmail">Email</Label>
               <Input
                 type="email"
                 name="email"
@@ -28,7 +27,6 @@ class LoginForm extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="examplePassword">Password</Label>
               <Input
                 type="password"
                 name="password"
@@ -38,7 +36,6 @@ class LoginForm extends Component {
             </FormGroup>
             <FormGroup>
                 <NavLink  to="/esqueci-senha">Esqueci minha senha</NavLink>
-
             </FormGroup>
             <Button>Entrar</Button>
           </Form>

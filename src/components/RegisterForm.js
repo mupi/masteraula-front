@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label} from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
+import { FontAwesome} from 'react-fontawesome';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 class Register extends Component {
+
+
   constructor(props){
     super(props);
     this.state={
@@ -15,45 +19,58 @@ class Register extends Component {
   }
   render() {
     return (
-      <Container>
-          <Row>
-            <Col><Label>Nome Completo</Label></Col>
-            <Col><Input placeholder="Ingresse seu nome completo"/></Col>
-          </Row>
+      <div className="row justify-content-center">
+        <div className="col-10 col-sm-7 col-md-5 col-lg-4">
+          <Form>
+            <FormGroup>
+              <Input
+                type="text"
+                name="nome-completo"
+                id="nome-completo"
+                placeholder="Ingrese seu nome completo"
+              />
+              <span className="has-icon">
 
-            <div className="col-sm-12">
-                <div className="col-sm-6">
-                  <Label>Email</Label>
-                </div>
-                <div className="col-sm-6">
-                  <Input
-                    placeholder="Ingresse seu email"
-                    />
-                </div>
-            </div>
-            <div className="col-sm-12">
-                <div className="col-sm-6">
-                  <Label>Senha</Label>
-                </div>
-                <div className="col-sm-6">
-                  <Input
-                    placeholder="Uma senha muito forte"
-                    />
-                </div>
-            </div>
-            <div className="col-sm-12">
-                <div className="col-sm-6">
-                  <Input
-                    placeholder="Confirme sua senha"
-                    />
-                </div>
-            </div>
-            <div className="row">
-              <div className="col-sm-12">
-                <Button color="primary">Enviar</Button>{' '}
-              </div>
-            </div>
-        </Container>
+
+              </span>
+            </FormGroup>
+            <FormGroup>
+              <Input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Ingrese seu email"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Ingrese sua senha"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
+                type="password"
+                name="confirm-password"
+                id="confirm-password"
+                placeholder="Confirme sua senha"
+              />
+            </FormGroup>
+            <FormGroup check>
+                <Label check>
+                  <Input type="checkbox" />{' '}
+                  Eu concordo com os termos de uso
+                </Label>
+            </FormGroup>
+            <FormGroup check>
+                
+            </FormGroup>
+            <Button>Entrar</Button>
+          </Form>
+        </div>
+    </div>
     );
   }
 }

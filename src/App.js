@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import './css/App.css';
 import LoginPage from "./components/LoginPage";
-import RegisterForm from "./components/RegisterForm"
+import RegisterPage from "./components/RegisterPage"
 import Home from "./components/Home.js";
 import UserHomePage from "./components/UserHomePage.js";
 import ForgotPasswordPage from "./components/ForgotPasswordPage";
@@ -26,12 +26,12 @@ class App extends Component {
     return (
         <BrowserRouter>
           <div>
-            <Menu logged={true} />
+            <Menu logged={false} />
 
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/login" component={LoginPage}/>
-              <Route path="/register" component={RegisterForm}/>
+              <Route path="/register" component={RegisterPage}/>
               <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
               <Route path="/home" component={UserHomePage}/>
             </Switch>

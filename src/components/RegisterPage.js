@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import RegisterForm from "./RegisterForm.js";
+import '../css/Register.css';
 
 class RegisterPage extends Component {
 
@@ -11,7 +12,7 @@ class RegisterPage extends Component {
   render() {
     return (
             <div className="middle-box loginscreen  animated fadeInDown">
-                <div className="contenedor-login">
+                <div className="contenedor-register">
                     <h3 className="text-center">Cadastre-se</h3>
                     <RegisterForm />
                 </div>

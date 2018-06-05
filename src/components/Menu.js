@@ -22,9 +22,9 @@ class Menu extends Component{
     if (!this.props.logged){
   		return(
   			<ul className="header">
-    			<li><NavLink exact to="/">Home</NavLink></li>
-    			<li><NavLink to="/login">Login</NavLink></li>
-    			<li><NavLink to="/register">Cadastre-se</NavLink></li>
+    			<li><NavLink exact="true" href="/">Home</NavLink></li>
+    			<li><NavLink href="/login">Login</NavLink></li>
+    			<li><NavLink href="/register">Cadastre-se</NavLink></li>
   			</ul>
   		);
     } else {
@@ -34,8 +34,8 @@ class Menu extends Component{
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem><NavLink to="/home">Home</NavLink></NavItem>
-              <NavItem><NavLink to="/login">Notificações</NavLink></NavItem>
+              <NavItem><NavLink href="/home">Home</NavLink></NavItem>
+              <NavItem><NavLink href="/login">Notificações</NavLink></NavItem>
             </Nav>
           </Collapse>
         </Navbar>
