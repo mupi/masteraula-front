@@ -11,6 +11,8 @@ import Home from "./components/Home.js";
 import UserHomePage from "./components/UserHomePage.js";
 import ForgotPasswordPage from "./components/ForgotPasswordPage";
 import UserProfilePage from "./components/UserProfilePage";
+import QuestionPage from "./components/QuestionPage";
+
 
 import Menu from "./components/Menu";
 
@@ -37,6 +39,7 @@ class App extends Component {
               <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
               <Route path="/home" component={UserHomePage}/>
               <Route path="/user-profile" component={UserProfilePage}/>
+              <Route path="/view-question" component={QuestionPage}/>
             </Switch>
           </div>
         </BrowserRouter>
