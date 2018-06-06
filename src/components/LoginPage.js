@@ -12,7 +12,7 @@ class LoginPage extends Component {
 
   render() {
     return (
-            <div className="middle-box text-center loginscreen  animated fadeInDown">
+            <div className="main-contenedor middle-box text-center loginscreen  animated fadeInDown">
                 <div className="contenedor-login">
                     <h3>Entrar no MasterAula</h3>
                     <LoginForm />

@@ -11,7 +11,7 @@ class UserProfilePage  extends Component {
 
   render() {
     return (
-            <div className="middle-box loginscreen  animated fadeInDown">
+            <div className="main-contenedor middle-box loginscreen  animated fadeInDown">
                 <div className="contenedor-profile">
                     <h3 className="text-center">Meu Profile</h3>
                     <h5 className="text-center">Permite que a comunidade do MasterAula te conheça</h5>

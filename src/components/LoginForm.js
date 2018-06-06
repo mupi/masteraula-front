@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 import {
-  Route,
-  NavLink,
-  HashRouter
+  NavLink
 } from "react-router-dom";
-import ForgotPassword from "./ForgotPassword";
 import { Container, Row, Col } from 'reactstrap';
 
 

@@ -11,7 +11,7 @@ class ForgotPasswordPage extends Component {
 
   render() {
     return (
-            <div className="middle-box text-center loginscreen  animated fadeInDown">
+            <div className="main-contenedor middle-box text-center loginscreen  animated fadeInDown">
                 <div className="contenedor-login">
                     <h3>Redefinição de senha</h3>
                     <p>Informe abaixo o endereço de email o qual a conta está registrada para receber uma mensagem para a redefinição de sua senha
