@@ -1,0 +1,15 @@
+/*
+CSS for UserProfile
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+body{
+  font-family: 'Raleway',serif;
+  padding: 20px;
+  margin: 0;
+}
+
+.contenedor-profile .form-grouo{
+   font-family: 'Raleway',serif;
+}

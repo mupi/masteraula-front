@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Row, Col, ListGroup, ListGroupItem, Input, InputGroup, InputGroupAddon, Button } from 'reactstrap';
+import { Row, Col, ListGroup, ListGroupItem, Input, InputGroup, InputGroupAddon, Button, NavLink } from 'reactstrap';
+import {
+  Route,
+  BrowserRouter,
+  Switch
+} from "react-router-dom";
+import BancoQuestoesPage from "./BancoQuestoesPage.js";
+import UserProfilePage from "./UserProfilePage.js";
 
 
 class UserHomePage extends Component {
@@ -18,14 +25,13 @@ class UserHomePage extends Component {
               <ListGroupItem style={border} tag="button" action>
                 Banco de questões
               </ListGroupItem>
+              <ListGroupItem style={border} tag="button" action>
+                <NavLink href="/user-profile">Meu profile</NavLink>
+              </ListGroupItem>
             </ListGroup>
           </Col>
           <Col>
-            Digite o termo e encontre soluções relacionadas
-            <InputGroup>
-              <Input />
-              <InputGroupAddon addonType="prepend"><Button>Pesquisar</Button></InputGroupAddon>
-            </InputGroup>
+              <BancoQuestoesPage />
           </Col>
         </Row>
       )
