@@ -21,7 +21,7 @@ class UserProfile extends Component {
   render() {
     return (
       <div className="row justify-content-center">
-        <div className="col-5 col-sm-5 col-md-5 col-lg-6">
+        <div className="col-sm-5 col-md-5 col-lg-6 col-xs-12">
           <Form>
             <Container>
                   <Row className="section-user-title">
