@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import QuestionView from "./QuestionView.js";
 
+
 class QuestionPage  extends Component {
+
 
   constructor(props) {
     super(props);
@@ -12,7 +14,6 @@ class QuestionPage  extends Component {
     return (
             <div className="main-contenedor middle-box animated fadeInDown">
                 <div className="contenedor-question">
-                    Página da Questão
                     <QuestionView />
                 </div>
             </div>

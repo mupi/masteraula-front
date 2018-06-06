@@ -1,0 +1,18 @@
+/*CSS for Question*/
+
+span.top-label-question {
+    padding: 5px 10px;
+    background: #fa7b70;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+span.source-name {
+    background: #fa7b70;
+}
+
+span.discipline-name {
+      background: #0ec54d;
+}
