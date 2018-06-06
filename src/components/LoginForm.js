@@ -6,6 +6,8 @@ import {
   HashRouter
 } from "react-router-dom";
 import ForgotPassword from "./ForgotPassword";
+import { Container, Row, Col } from 'reactstrap';
+
 
 class LoginForm extends Component {
 
@@ -15,8 +17,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="row justify-content-center">
-        <div className="col-10 col-sm-7 col-md-5 col-lg-4">
+        <Col sm="12" xs="12">
           <Form>
             <FormGroup>
               <Input
@@ -39,9 +40,7 @@ class LoginForm extends Component {
             </FormGroup>
             <Button>Entrar</Button>
           </Form>
-        </div>
-    </div>
-
+        </Col>
 
 
     );
