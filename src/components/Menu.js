@@ -36,6 +36,7 @@ class Menu extends Component{
             <Nav className="ml-auto" navbar>
               <NavItem><NavLink href="/home">Home</NavLink></NavItem>
               <NavItem><NavLink href="/login">Notificações</NavLink></NavItem>
+              <NavItem><NavLink href="/user-profile">Meu profile</NavLink></NavItem>
             </Nav>
           </Collapse>
         </Navbar>

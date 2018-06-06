@@ -9,12 +9,10 @@ import BancoQuestoesPage from "./BancoQuestoesPage.js";
 import UserProfilePage from "./UserProfilePage.js";
 
 
-class UserHomePage extends Component {
+class Sidebar extends Component {
   render() {
     let border = {'border': 'black solid 2px'}
     return (
-        <Row style={{'margin-top':'50px'}}>
-          <Col xs="3">
             <ListGroup >
               <ListGroupItem style={border} tag="button" action>
                 Novo Documento
@@ -25,17 +23,9 @@ class UserHomePage extends Component {
               <ListGroupItem style={border} tag="button" action>
                 Banco de questões
               </ListGroupItem>
-              <ListGroupItem style={border} tag="button" action>
-                <NavLink href="/user-profile">Meu profile</NavLink>
-              </ListGroupItem>
             </ListGroup>
-          </Col>
-          <Col>
-              <BancoQuestoesPage />
-          </Col>
-        </Row>
       )
   }
 }
 
-export default UserHomePage;
+export default Sidebar;
