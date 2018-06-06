@@ -20,7 +20,7 @@ class Register extends Component {
   render() {
     return (
       <div className="row justify-content-center">
-        <div className="col-10 col-sm-7 col-md-5 col-lg-4">
+        <Col sm="12" xs="12">
           <Form>
             <FormGroup>
               <Input
@@ -65,11 +65,11 @@ class Register extends Component {
                 </Label>
             </FormGroup>
             <FormGroup check>
-                
+
             </FormGroup>
             <Button>Entrar</Button>
           </Form>
-        </div>
+        </Col>
     </div>
     );
   }

@@ -2,11 +2,18 @@
 .contenedor-login {
     padding-top: 40px;
     padding-bottom: 40px;
-    max-width: 400px;
+    max-width: 500px;
     margin-right: auto !important;
     margin-left: auto !important;
     background: #add2ef;
     border-radius: 10px;
+}
+
+@media (min-width: 868px){
+  .contenedor-login {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 .navbar-toggler{

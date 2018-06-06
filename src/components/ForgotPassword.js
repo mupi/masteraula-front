@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 
 class ForgotPassword extends Component {
@@ -11,7 +12,7 @@ class ForgotPassword extends Component {
   render() {
     return (
       <div className="row justify-content-center">
-        <div className="col-10 col-sm-7 col-md-5 col-lg-4">
+        <Col sm="12" xs="12">
           <Form>
             <FormGroup>
               <Input
@@ -23,7 +24,7 @@ class ForgotPassword extends Component {
             </FormGroup>
             <Button>Enviar email</Button>
           </Form>
-        </div>
+        </Col>
     </div>
 
 

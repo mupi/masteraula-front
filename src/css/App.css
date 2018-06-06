@@ -7,7 +7,7 @@ CSS do Home sem login
 body{
   font-family: 'Raleway',serif;
   background-color: #b3d4fc;
-  padding: 20px;
+  padding: 0px;
   margin: 0;
 }
 h1, h2, p, ul, li {
@@ -21,6 +21,7 @@ ul.header li {
 ul.header {
     background-color: rgb(33,150,243);
     padding: 0;
+    margin-bottom: 0;
 }
 
 .bg-azul-ma{
