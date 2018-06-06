@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, ListGroup, ListGroupItem, Input, InputGroup, InputGroupAddon, Button, NavLink } from 'reactstrap';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 import {
   Route,
   BrowserRouter,
@@ -14,13 +14,13 @@ class Sidebar extends Component {
     let border = {'border': 'black solid 2px'}
     return (
             <ListGroup >
-              <ListGroupItem style={border} tag="button" action>
+              <ListGroupItem style={border} tag="a" action href='/new-document'>
                 Novo Documento
               </ListGroupItem>
-              <ListGroupItem style={border} tag="button" action>
+              <ListGroupItem style={border} tag="a" action href='/documents'>
                 Meus Documentos
               </ListGroupItem>
-              <ListGroupItem style={border} tag="button" action>
+              <ListGroupItem style={border} tag="a" action href='/home'>
                 Banco de questões
               </ListGroupItem>
             </ListGroup>
