@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import 'font-awesome/css/font-awesome.min.css';
-import '../css/Question.css';
 
-
-class RelatedQuestions  extends Component {
+class QuestionInfo  extends Component {
 
   constructor(props) {
     super(props);
@@ -14,16 +12,14 @@ class RelatedQuestions  extends Component {
     return (
 
             <Container>
-              <Container>
-                <Row>
-                  <Col sm="12" xs="12">
-                    QUESTÕES RELACIONADAS
-                  </Col>
-                </Row>
-              </Container>
+              <Row>
+                <Col sm="12" xs="12">
+                  LISTA DE INFORMAÇÃO
+                </Col>
+              </Row>
             </Container>
     );
   }
 }
 
-export default RelatedQuestions;
+export default QuestionInfo;

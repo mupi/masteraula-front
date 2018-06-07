@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import QuestionContent from "./QuestionContent.js";
-import QuestionHeader from "./QuestionHeader.js";
-import RelatedQuestions from "./RelatedQuestions.js";
-import QuestionComments from "./QuestionComments.js";
+import QuestionContent from "./question/QuestionContent.js";
+import QuestionHeader from "./question/QuestionHeader.js";
+import QuestionInfo from "./question/QuestionInfo.js";
+import RelatedQuestions from "./question/RelatedQuestions.js";
+import QuestionComments from "./question/QuestionComments.js";
 import 'font-awesome/css/font-awesome.min.css';
 import '../css/Question.css';
 
@@ -22,6 +23,7 @@ class QuestionPage  extends Component {
                       <div className="col-sm-5 col-md-5 col-lg-6 col-xs-12">
                       <QuestionHeader />
                       <QuestionContent />
+                      <QuestionInfo />
                       <RelatedQuestions />
                       <QuestionComments />
                     </div>
