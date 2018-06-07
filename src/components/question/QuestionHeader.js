@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import 'font-awesome/css/font-awesome.min.css';
-import learningObject from "../../img/home/question-objeto-aprendizagem.jpg";
 
 
 class QuestionHeader  extends Component {
@@ -32,18 +31,12 @@ class QuestionHeader  extends Component {
               </Row>
 
               <Row>
-                <span className="top-label-question source-name">ENEM</span>
+                <span className="top-label-question source-name">ENEM 2010</span>
               </Row>
-              <Row>
+              <Row className="title-section-question">
                 <h4><i className="fa fa-question-circle"></i> Questão</h4>
               </Row>
-              <Row className="text-center">
-                <Col sm="12" xs="12">
-                  <div className="img-learning-object">
-                    <img src={learningObject}/>
-                  </div>
-                </Col>
-              </Row>
+
             </Container>
     );
   }

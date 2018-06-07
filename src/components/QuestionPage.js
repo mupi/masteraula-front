@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import QuestionContent from "./question/QuestionContent.js";
 import QuestionHeader from "./question/QuestionHeader.js";
 import QuestionInfo from "./question/QuestionInfo.js";
-import RelatedQuestions from "./question/RelatedQuestions.js";
+import RelatedQuestions from "./question/RelatedQuestions";
 import QuestionComments from "./question/QuestionComments.js";
 import 'font-awesome/css/font-awesome.min.css';
 import '../css/Question.css';
 
 
 class QuestionPage  extends Component {
-
 
   constructor(props) {
     super(props);

@@ -11,13 +11,11 @@ class QuestionComments  extends Component {
   render() {
     return (
 
-            <Container>
-              <Row>
-                <Col sm="12" xs="12">
-                  COMENTÁRIOS DA QUESTÃO
-                </Col>
-              </Row>
-            </Container>
+      <Container>
+        <Row className="title-section-question">
+              <h4><i class="fa fa-comments"></i> Comentários</h4>
+        </Row>
+      </Container>
     );
   }
 }
