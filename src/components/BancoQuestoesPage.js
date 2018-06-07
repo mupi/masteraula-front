@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Row, Col, ListGroup, ListGroupItem, Input, InputGroup, InputGroupAddon, Button, NavLink } from 'reactstrap';
-import RegisterPage from "./RegisterPage.js";
+import { Row, Col, ListGroup, ListGroupItem, Input, InputGroup, InputGroupAddon, Button} from 'reactstrap';
+import QuestionCard from "./QuestionCard.js";
 
 class BancoQuestoesPage extends Component {
 
@@ -11,14 +11,26 @@ class BancoQuestoesPage extends Component {
 
   render() {
     return (
-            <div className="middle-box loginscreen  animated fadeInDown">
+            <Row>
+              <Col xs='6'>
               Digite o termo e encontre soluções relacionadas
               <InputGroup>
                 <Input />
                 <InputGroupAddon addonType="prepend"><Button>Pesquisar</Button></InputGroupAddon>
               </InputGroup>
-
-            </div>
+              <Row style={{'margin-top':'10px'}}>
+              <Col>
+                <QuestionCard />
+                </Col>
+                <Col>
+                <QuestionCard />
+                </Col>
+                <Col>
+                <QuestionCard />
+                </Col>
+              </Row>
+               </Col>
+            </Row>
     );
   }
 }
