@@ -43,14 +43,8 @@ const question = {
 
 
 
-class QuestionPage  extends Component {
+const QuestionPage =() =>
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
             <div className="main-contenedor middle-box animated fadeInDown">
                 <div className="contenedor-question">
                     <div className="row justify-content-center">
@@ -72,8 +66,6 @@ class QuestionPage  extends Component {
                         <button type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-plus"></i></button>
                 </div>
             </div>
-    );
-  }
-}
+
 
 export default QuestionPage;
