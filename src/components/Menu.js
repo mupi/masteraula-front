@@ -19,28 +19,27 @@ class Menu extends Component{
   }
 
 	render(){
-    if (!this.props.logged){
-  		return(
-  			<ul className="header">
-    			<li><NavLink exact="true" href="/">Home</NavLink></li>
-    			<li><NavLink href="/login">Login</NavLink></li>
-    			<li><NavLink href="/register">Cadastre-se</NavLink></li>
-  			</ul>
-  		);
-    } else {
+    let loggedOptions = <Nav className="ml-auto" navbar>
+              <NavItem><NavLink href="/home">Home</NavLink></NavItem>
+              <NavItem><NavLink href="/login">Notificações</NavLink></NavItem>
+              <NavItem><NavLink href="/user-profile">Meu profile</NavLink></NavItem>
+              </Nav>;
+
+    let notLoggedOptions = <Nav className="ml-auto" navbar>
+          <NavItem><NavLink exact="true" href="/">Home</NavLink></NavItem>
+          <NavItem><NavLink href="/login">Login</NavLink></NavItem>
+          <NavItem><NavLink href="/register">Cadastre-se</NavLink></NavItem>
+          </Nav>;
+
       return(
-        <Navbar color="primary" light expand="md">
+        <Navbar color="primary" dark expand="md">
           <NavbarBrand href="/">MasterAula</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem><NavLink href="/home">Home</NavLink></NavItem>
-              <NavItem><NavLink href="/login">Notificações</NavLink></NavItem>
-            </Nav>
+              {this.props.logged? loggedOptions : notLoggedOptions}
           </Collapse>
         </Navbar>
         );
-    }
 	}
 }
 
