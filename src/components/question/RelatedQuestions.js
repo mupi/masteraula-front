@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import 'font-awesome/css/font-awesome.min.css';
+import QuestionAvatar from './QuestionAvatar'
 
-const RelatedQuestions = ()=>  {
+const RelatedQuestions = (rquestions)=>  (
               <Container>
                 <Row className="title-section-question">
-                      <h4><i class="fa fa-clone"></i> Questões Relacionadas</h4>
+                      <h4><i className="fa fa-clone"></i> Questões Relacionadas</h4>
                 </Row>
-                <Row>
-
-                </Row>
+                
               </Container>
-
-  }
+  )
 
 export default RelatedQuestions

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 
-const Alternative = ({i, name, styleTag}) =>
-    <span key= {i} className={styleTag}>{name}</span>
+const Alternative = ({i, text}) =>
+    <p key= {i} className="text-alternative">{text}</p>
 
 export default Alternative;

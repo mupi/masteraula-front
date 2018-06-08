@@ -90,6 +90,10 @@ span.descriptor-name, span.author {
   margin-bottom: 10px;
 }
 
+.row .list-info {
+    margin-bottom: 10px;
+}
+
 @media (max-width: 867px){
   .img-learning-object img {
       width: 100%;

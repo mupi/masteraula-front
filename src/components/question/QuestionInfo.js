@@ -2,74 +2,48 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import 'font-awesome/css/font-awesome.min.css';
 import StarRating from './../stars/StarRating'
+import DisciplineList from "./../disciplines/DisciplineList"
+import TagList from "./../tags/TagList"
 
-class QuestionInfo  extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-            disciplines: [  {  name: "Química"},  {name: "Física"  }],
-            levels: [  {name: "Ensino Fundamental II"  },{name: "Ensino Médio"}],
-            tags: [  {name: "Mafalda"  },{name: "Feminismo"}],
-            descriptors: [  {name: "Localizar informações explícitas"  },{name: "Inferir o sentido de uma palavra"}]
-        }
-  }
-
-/*In discipline-name row, we need an array of disciplines that question belongs to*/
-  render() {
-    const { disciplines, levels, tags, descriptors } = this.state
-
-    return (
-
+const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficulty, author}) => (
             <Container className="question-information">
               <Row className="title-section-question">
                     <h4><i className="fa fa-info-circle"></i> Informação da Questão</h4>
               </Row>
-              <Row className="row-info">
+              <Row>
                  <Col className="info-label" sm="4" xs="4">Disciplinas</Col>
                  <Col sm="8" xs="8">
-                   {  disciplines.map((discipline, i) =>
-                          <span key= {i} className="label-info discipline-name">{discipline.name}</span>
-                      )
-                    }
+                     <DisciplineList list={disciplines} />
                  </Col>
               </Row>
               <Row className="row-info">
                  <Col className="info-label" sm="4" xs="4">Grau de difuldade</Col>
                  <Col sm="8" xs="8">
-                    <span className="label-info difficulty-level">Difícil</span>
+                    <span className="label-info difficulty-level">{difficulty}</span>
                  </Col>
               </Row>
               <Row className="row-info">
                  <Col  className="info-label" sm="4" xs="4">Nível de Ensino</Col>
                  <Col sm="8" xs="8">
-                   {  levels.map((level, i) =>
-                          <span key= {i} className="label-info teaching-level">{level.name}</span>
-                      )
-                    }
+                    <TagList list={teachingLevels} styleTag="label-info teaching-level"/>
                  </Col>
               </Row>
               <Row className="row-info">
                  <Col  className="info-label" sm="4" xs="4">Tags</Col>
                  <Col sm="8" xs="8">
-                   {  tags.map((tag, i) =>
-                          <span key= {i} className="label-info tag-name">{tag.name}</span>
-                      )
-                    }
+                    <TagList list={tags} styleTag="label-info tag-name"/>
                  </Col>
               </Row>
               <Row className="row-info">
                  <Col  className="info-label" sm="4" xs="4">Descritores</Col>
                  <Col sm="8" xs="12">
-                   {  descriptors.map((descriptor, i) =>
-                          <span key= {i} className="label-info descriptor-name">{descriptor.name}</span>
-                      )
-                    }
+                    <TagList list={descriptors} styleTag="label-info descriptor-name"/>
                  </Col>
               </Row>
               <Row className="row-info">
                  <Col  className="info-label" sm="4" xs="4">Autor</Col>
                  <Col sm="8" xs="8">
-                   <span className="label-info author">Thiago Oliveira dos Santos</span>
+                   <span className="label-info author">{author}</span>
                  </Col>
               </Row>
               <Row className="row-info">
@@ -79,8 +53,6 @@ class QuestionInfo  extends Component {
                  </Col>
               </Row>
             </Container>
-    );
-  }
-}
+    )
 
 export default QuestionInfo;
