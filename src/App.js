@@ -10,7 +10,7 @@ import './css/App.css';
 import LoginPage from "./components/Pages/LoginPage";
 import RegisterPage from "./components/Pages/RegisterPage"
 import ForgotPasswordPage from "./components/Pages/ForgotPasswordPage";
-import UserProfilePage from "./components/UserProfilePage.js";
+import UserProfilePage from "./components/UserProfilePage";
 
 import Home from "./components/Home.js";
 import QuestionPage from "./components/QuestionPage";

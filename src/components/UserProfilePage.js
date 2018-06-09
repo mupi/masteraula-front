@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import UserProfile from "./UserProfile.js";
+import UserProfile from "./userprofile/UserProfile.js";
+
 import '../css/UserProfile.css';
 
 class UserProfilePage  extends Component {

@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Input, Label} from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import { FontAwesome} from 'react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
-import userPhoto from "../img/home/person-female.png";
+import userPhoto from "../../img/home/person-female.png";
 
 
 const UserProfile = () =>
