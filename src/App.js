@@ -6,11 +6,13 @@ import {
 } from "react-router-dom";
 import { Row, Col } from 'reactstrap';
 import './css/App.css';
-import LoginPage from "./components/LoginPage";
-import RegisterPage from "./components/RegisterPage"
-import Home from "./components/Home.js";
+
+import LoginPage from "./components/Pages/LoginPage";
+import RegisterPage from "./components/Pages/RegisterPage"
+import ForgotPasswordPage from "./components/Pages/ForgotPasswordPage";
 import UserProfilePage from "./components/UserProfilePage.js";
-import ForgotPasswordPage from "./components/ForgotPasswordPage";
+
+import Home from "./components/Home.js";
 import QuestionPage from "./components/QuestionPage";
 import BancoQuestoesPage from "./components/BancoQuestoesPage";
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import ForgotPassword from "./ForgotPassword.js";
+import ForgotPassword from "./../forgotpassword/ForgotPassword.js";
 
 
 class ForgotPasswordPage extends Component {

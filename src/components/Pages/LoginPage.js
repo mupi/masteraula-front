@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import LoginForm from "./LoginForm.js";
-import '../css/Login.css';
+import LoginForm from "./../login/LoginForm.js";
+import '../../css/Login.css';
 
 
 class LoginPage extends Component {

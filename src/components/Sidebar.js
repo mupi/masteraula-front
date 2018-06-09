@@ -9,6 +9,8 @@ import BancoQuestoesPage from "./BancoQuestoesPage.js";
 import UserProfilePage from "./UserProfilePage.js";
 
 
+
+
 class Sidebar extends Component {
   render() {
     let border = {'border': 'white solid 1px'}
