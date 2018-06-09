@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Row, Col, ListGroup, ListGroupItem, Input, InputGroup, InputGroupAddon, Button} from 'reactstrap';
-import QuestionCard from "./QuestionCard.js";
-
+import QuestionCard from "./QuestionCard"
 class BancoQuestoesPage extends Component {
 
   constructor(props) {

@@ -3,14 +3,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 
 
-class ForgotPassword extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
+const ForgotPassword = () =>
       <div className="row justify-content-center">
         <Col sm="12" xs="12">
           <Form>
@@ -27,10 +20,5 @@ class ForgotPassword extends Component {
         </Col>
     </div>
 
-
-
-    );
-  }
-}
 
 export default ForgotPassword;

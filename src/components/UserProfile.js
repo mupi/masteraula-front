@@ -6,20 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from "../img/home/person-female.png";
 
 
-class UserProfile extends Component {
-
-
-  constructor(props){
-    super(props);
-    this.state={
-      first_name:'',
-      last_name:'',
-      email:'',
-      password:''
-    }
-  }
-  render() {
-    return (
+const UserProfile = () =>
       <div className="row justify-content-center">
         <div className="col-sm-5 col-md-5 col-lg-6 col-xs-12">
           <Form>
@@ -112,10 +99,4 @@ class UserProfile extends Component {
           </Form>
         </div>
     </div>
-    );
-  }
-}
-const style = {
-  margin: 15,
-};
 export default UserProfile;

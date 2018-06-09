@@ -5,20 +5,7 @@ import { FontAwesome} from 'react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
-class Register extends Component {
-
-
-  constructor(props){
-    super(props);
-    this.state={
-      first_name:'',
-      last_name:'',
-      email:'',
-      password:''
-    }
-  }
-  render() {
-    return (
+const Register = () =>
       <div className="row justify-content-center">
         <Col sm="12" xs="12">
           <Form>
@@ -71,10 +58,5 @@ class Register extends Component {
           </Form>
         </Col>
     </div>
-    );
-  }
-}
-const style = {
-  margin: 15,
-};
+
 export default Register;

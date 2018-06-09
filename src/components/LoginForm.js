@@ -6,14 +6,7 @@ import {
 import { Container, Row, Col } from 'reactstrap';
 
 
-class LoginForm extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
+const LoginForm = () =>
         <Col sm="12" xs="12">
           <Form>
             <FormGroup>
@@ -38,10 +31,5 @@ class LoginForm extends Component {
             <Button>Entrar</Button>
           </Form>
         </Col>
-
-
-    );
-  }
-}
 
 export default LoginForm;

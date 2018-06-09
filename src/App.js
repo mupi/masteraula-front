@@ -32,7 +32,7 @@ class App extends Component {
     return (
         <BrowserRouter>
           <div>
-            <Menu logged={true} />
+            <Menu logged={false} />
             <Row style={{'margin':'10px auto'}}>
               <Col xs='2'>
                 <Sidebar />
