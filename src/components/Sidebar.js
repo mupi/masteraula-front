@@ -13,7 +13,7 @@ class Sidebar extends Component {
   render() {
     let border = {'border': 'white solid 1px'}
     return (
-            <ListGroup >
+            <ListGroup>
               <ListGroupItem color='secondary' style={border} tag="a" action href='/new-document'>
                 Novo Documento
               </ListGroupItem>

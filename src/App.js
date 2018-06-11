@@ -31,14 +31,15 @@ class App extends Component {
   }
 
   render() {
+    let logged = true
     return (
         <BrowserRouter>
           <div>
-            <Menu logged={false} />
+            <Menu logged={logged} />
             <Row style={{'margin':'10px auto'}}>
-              <Col xs='2'>
+              {logged ? <Col xs='2'>
                 <Sidebar />
-              </Col>
+              </Col> : ''}
               <Col>
                 <Switch>
                   <Route exact path="/" component={Home}/>
