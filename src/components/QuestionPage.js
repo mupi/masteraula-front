@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import QuestionHeader from "./question/QuestionHeader.js";
 import QuestionContent from "./question/QuestionContent.js";
 import QuestionInfo from "./question/QuestionInfo.js";
@@ -38,7 +38,31 @@ const question = {
      {name: "Localizar informações explícitas"  },
      {name: "Inferir o sentido de uma palavra"}
    ],
-    "stars":"3"}
+    "stars":"3",
+    "rquestions": [
+      { "disciplines": [
+        { "name": "Química" },
+        { "name": "Física" }
+      ],
+      "source": "ENEM",
+      "year": "2010",
+      "author": "Thiago Oliveira dos Santos",
+      "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
+      "urlImage": ""
+      },
+      { "disciplines": [
+        { "name": "Matemática" },
+        { "name": "Geometria" }
+      ],
+      "source": "ENEM",
+      "year": "2018",
+      "author": "Diego Gonçalves Carvalho",
+      "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
+      "urlImage": ""
+      }
+    ]
+
+  }
 
 
 
@@ -48,7 +72,7 @@ const QuestionPage =() =>
             <div className="main-contenedor middle-box animated fadeInDown">
                 <div className="contenedor-question">
                     <div className="row justify-content-center">
-                      <div className="col-sm-5 col-md-5 col-lg-6 col-xs-12">
+                      <div className="col-sm-8 col-md-8 col-lg-8 col-xs-12">
                       <QuestionHeader disciplines={question.disciplines} source={question.source} year={question.year} />
                       <QuestionContent alternatives={question.alternatives} question={question.question} answer={question.answer}/>
                       <QuestionInfo disciplines={question.disciplines}
@@ -57,7 +81,7 @@ const QuestionPage =() =>
                                     tags={question.tags}
                                     difficulty={question.difficulty}
                                     author={question.author}/>
-                      <RelatedQuestions />
+                      <RelatedQuestions rquestions={question.rquestions} />
                       <QuestionComments />
                     </div>
                   </div>
