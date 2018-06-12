@@ -1,0 +1,132 @@
+/*CSS for Question*/
+
+span.top-label-question, span.label-info {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+span.source-name {
+    background: #fa7b70;
+}
+
+span.discipline-name {
+      background: #0ec54d;
+}
+
+span.level-name, span.difficulty-level, span.teaching-level, span.tag-name,
+span.descriptor-name, span.author {
+      background: #008ECF;
+}
+
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl  {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
+.btn-float{
+    position: fixed;
+    right: 37px;
+    top:100px;
+}
+
+.btn-lateral{
+    background-color: #008ECF;
+    color: white;
+    margin: 10px;
+}
+
+.btn-filter
+{
+    background-color: #283896;
+    color: #FFF;
+}
+
+.question-section-border {
+    border: 1px solid #008dcf;
+    margin: 10px 0px;
+    padding: 20px 10px;
+}
+
+.question-content p:last-child {
+    margin-bottom: 0px;
+}
+
+.section-text-question p{
+  font-weight: bold;
+}
+
+.title-section-question{
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.row-info{
+  margin-bottom: 10px;
+}
+
+.row .list-info {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 867px){
+  .img-learning-object img {
+      width: 100%;
+  }
+  span.level-name, span.difficulty-level, span.teaching-level, span.tag-name,
+  span.descriptor-name, span.author {
+    display: flex;
+  }
+
+  .question-information span, .question-information .info-label{
+    font-size: 14px;
+  }
+
+}
+
+.buttonCard{
+  margin-right: 10px;
+}
+
+.card-title .label-info, .card-subtitle .source-name {
+    font-size: 14px !important;
+}
+
+.card-title .list-info, card-subtitle {
+    margin-bottom: 15px;
+}
+
+p.card-text {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.btn {
+    font-size: 14px;
+    padding: 5px 10px;
+}

@@ -1,0 +1,32 @@
+/*
+CSS for UserProfile
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+body{
+  font-family: 'Raleway',serif;
+  margin: 0;
+}
+
+.contenedor-profile .form-grouo{
+   font-family: 'Raleway',serif;
+}
+
+.hidden {
+    display: none!important;
+}
+
+.thumbnail img {
+    max-width: 200px;
+}
+.small-text {
+    font-size: 14px;
+}
+
+.section-user-title {
+    margin-top: 25px;
+}
+.sub-section-user-title{
+  margin-top: 10px;
+}

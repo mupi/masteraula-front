@@ -3,9 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4"
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/react-fontawesome": "0.0.20",
+    "bootstrap": "^4.0.0",
+    "font-awesome": "^4.7.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-fontawesome": "^1.6.1",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "reactstrap": "^6.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
