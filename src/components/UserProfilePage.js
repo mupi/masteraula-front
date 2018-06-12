@@ -4,14 +4,8 @@ import UserProfile from "./userprofile/UserProfile.js";
 
 import '../css/UserProfile.css';
 
-class UserProfilePage  extends Component {
+const UserProfilePage = () =>
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
             <div className="main-contenedor middle-box loginscreen  animated fadeInDown">
                 <div className="contenedor-profile">
                     <h3 className="text-center">Meu Profile</h3>
@@ -19,8 +13,6 @@ class UserProfilePage  extends Component {
                     <UserProfile />
                 </div>
             </div>
-    );
-  }
-}
+
 
 export default UserProfilePage;

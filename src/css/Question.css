@@ -108,3 +108,25 @@ span.descriptor-name, span.author {
   }
 
 }
+
+.buttonCard{
+  margin-right: 10px;
+}
+
+.card-title .label-info, .card-subtitle .source-name {
+    font-size: 14px !important;
+}
+
+.card-title .list-info, card-subtitle {
+    margin-bottom: 15px;
+}
+
+p.card-text {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.btn {
+    font-size: 14px;
+    padding: 5px 10px;
+}

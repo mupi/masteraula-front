@@ -12,7 +12,8 @@ const QuestionCard = ({disciplines, source, year, extract, urlImage}) =>
 					</CardTitle>
 			    <CardSubtitle><span className="top-label-question source-name">{source} {year}</span></CardSubtitle>
 			    <CardText>{extract}</CardText>
-			    <Button>Ver mais</Button>
+			    <Button className="buttonCard">Ver mais</Button>
+					<Button className="buttonCard">Adicionar</Button>
 			  </CardBody>
 			</Card>
 
