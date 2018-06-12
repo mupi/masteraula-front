@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   render() {
-    let logged = true
+    let logged = false
     return (
         <BrowserRouter>
           <div>
