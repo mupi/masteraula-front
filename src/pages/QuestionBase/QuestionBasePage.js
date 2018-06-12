@@ -92,7 +92,7 @@ const  results = {
 
 
 
-const BancoQuestoesPage= () =>
+const QuestionBasePage= () =>
             <div>
               <Col sm='12' xs='6'>
               <Row className="text-search-question">Digite o termo e encontre soluções relacionadas
@@ -107,4 +107,4 @@ const BancoQuestoesPage= () =>
                </Col>
             </div>
 
-export default BancoQuestoesPage;
+export default QuestionBasePage;
