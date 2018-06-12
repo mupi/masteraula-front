@@ -4,7 +4,7 @@ import {
   BrowserRouter,
   Switch
 } from "react-router-dom";
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Container } from 'reactstrap';
 import './css/App.css';
 
 import LoginPage from "./components/Pages/LoginPage";
@@ -37,21 +37,26 @@ class App extends Component {
           <div>
             <Menu logged={logged} />
             <Row style={{'margin':'10px auto'}}>
-              {logged ? <Col xs='2'>
+              {logged ?
+                <Col xs='2'>
                 <Sidebar />
               </Col> : ''}
-              <Col>
-                <Switch>
-                  <Route exact path="/" component={Home}/>
-                  <Route path="/login" component={LoginPage}/>
-                  <Route path="/register" component={RegisterPage}/>
-                  <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
-                  <Route path="/home" component={BancoQuestoesPage}/>
-                  <Route path="/user-profile" component={UserProfilePage}/>
-                  <Route path="/view-question" component={QuestionPage}/>
-                </Switch>
-              </Col>
+              <Container>
+                  <Switch>
+                    <Route exact path="/" component={Home}/>
+
+                    <Route path="/login" component={LoginPage}/>
+                    <Route path="/register" component={RegisterPage}/>
+                    <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
+                    <Route path="/home" component={BancoQuestoesPage}/>
+                    <Route path="/user-profile" component={UserProfilePage}/>
+                    <Route path="/view-question" component={QuestionPage}/>
+
+                  </Switch>
+                  </Container>
+
             </Row>
+
           </div>
         </BrowserRouter>
     );

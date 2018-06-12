@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Row, Col, ListGroup, ListGroupItem, Input, InputGroup, InputGroupAddon, Button} from 'reactstrap';
+import { Row, Col, ListGroup, ListGroupItem, Input, InputGroup, InputGroupAddon, Button, Container} from 'reactstrap';
 import QuestionList from "./question/QuestionList"
+import '../css/QuestionBase.css';
 
 const  results = {
     "rquestions": [
@@ -24,7 +25,67 @@ const  results = {
       "author": "Diego Gonçalves Carvalho",
       "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
       "urlImage": ""
-      }
+      },
+      { "disciplines": [
+        { "name": "Química" },
+        { "name": "Física" }
+      ],
+      "source": "ENEM",
+      "year": "2010",
+      "author": "Thiago Oliveira dos Santos",
+      "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
+      "urlImage": ""
+      },
+      { "disciplines": [
+        { "name": "Química" },
+        { "name": "Física" }
+      ],
+      "source": "ENEM",
+      "year": "2010",
+      "author": "Thiago Oliveira dos Santos",
+      "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
+      "urlImage": ""
+    },
+    { "disciplines": [
+      { "name": "Química" },
+      { "name": "Física" }
+    ],
+    "source": "ENEM",
+    "year": "2010",
+    "author": "Thiago Oliveira dos Santos",
+    "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
+    "urlImage": ""
+    },
+    { "disciplines": [
+      { "name": "Matemática" },
+      { "name": "Geometria" }
+    ],
+    "source": "ENEM",
+    "year": "2018",
+    "author": "Diego Gonçalves Carvalho",
+    "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
+    "urlImage": ""
+    },
+    { "disciplines": [
+      { "name": "Química" },
+      { "name": "Física" }
+    ],
+    "source": "ENEM",
+    "year": "2010",
+    "author": "Thiago Oliveira dos Santos",
+    "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
+    "urlImage": ""
+    },
+    { "disciplines": [
+      { "name": "Química" },
+      { "name": "Física" }
+    ],
+    "source": "ENEM",
+    "year": "2010",
+    "author": "Thiago Oliveira dos Santos",
+    "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
+    "urlImage": ""
+    }
     ]
 
   }
@@ -32,17 +93,18 @@ const  results = {
 
 
 const BancoQuestoesPage= () =>
-            <Row>
-              <Col xs='6'>
-              Digite o termo e encontre soluções relacionadas
+            <div>
+              <Col sm='12' xs='6'>
+              <Row className="text-search-question">Digite o termo e encontre soluções relacionadas
               <InputGroup>
                 <Input />
                 <InputGroupAddon addonType="prepend"><Button>Pesquisar</Button></InputGroupAddon>
               </InputGroup>
-              <Row style={{'margin-top':'10px'}}>
-                  <QuestionList questions={results.rquestions} />
+            </Row>
+              <Row className="questions-result">
+                  <QuestionList questions={results.rquestions} numCols='3'/>
                 </Row>
                </Col>
-            </Row>
+            </div>
 
 export default BancoQuestoesPage;

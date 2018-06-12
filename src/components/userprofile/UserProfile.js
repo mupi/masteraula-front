@@ -5,10 +5,16 @@ import { FontAwesome} from 'react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from "../../img/home/person-female.png";
 
+const user = {
+    "id":"100",
+    "fullname": "Melissa Gonçalves de Oliveira",
+    "biography": "Sou professora de Ensino Médio, estou apaixonada pelo ensino de língua portuguesa.",
+    "email": "melissa@masteraula.com.br"
+  }
 
 const UserProfile = () =>
       <div className="row justify-content-center">
-        <div className="col-sm-5 col-md-5 col-lg-6 col-xs-12">
+        <div className="col-sm-8 col-md-8 col-lg-12 col-xs-12">
           <Form>
             <Container>
                   <Row className="section-user-title">
@@ -36,6 +42,7 @@ const UserProfile = () =>
                           name="nome-completo"
                           id="nome-completo"
                           placeholder="Ingrese seu nome completo"
+                          defaultValue={user.fullname}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -45,6 +52,7 @@ const UserProfile = () =>
                           name="sobre-mim"
                           id="sobre-mim"
                           placeholder=""
+                          defaultValue={user.biography}
                         />
                       </FormGroup>
 
@@ -62,7 +70,7 @@ const UserProfile = () =>
                         Email
                       </Col>
                       <Col sm="4">
-                        <Label>usuario@masteraula.com.br</Label>
+                        <Label>{user.email}</Label>
                       </Col>
                     </Row>
                     <Row className="sub-section-user-title">

@@ -9,7 +9,7 @@ import '../css/Home.css';
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="public-home">
         <div className="row">
           <div className="banner-header col-md-12">
             <h1>Biblioteca inteligente de questões</h1>
