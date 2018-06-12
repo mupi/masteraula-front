@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import {
-  Route,
-  BrowserRouter,
-  Switch
-} from "react-router-dom";
+import { connect } from 'react-redux'
+import { Route,BrowserRouter,Switch } from "react-router-dom";
 import { Row, Col, Container } from 'reactstrap';
 import './css/App.css';
 
@@ -16,7 +13,6 @@ import Home from "./components/Home.js";
 import QuestionPage from "./components/QuestionPage";
 import BancoQuestoesPage from "./components/BancoQuestoesPage";
 
-
 import Menu from "./components/Menu";
 import Sidebar from "./components/Sidebar";
 
@@ -24,6 +20,8 @@ class App extends Component {
 
   constructor(props){
     super(props);
+
+    const {dispatch} = this.props
     this.state={
       loginPage:[],
       uploadScreen:[]
@@ -31,13 +29,13 @@ class App extends Component {
   }
 
   render() {
-    let logged = true
+    const { user } = this.props;
     return (
         <BrowserRouter>
           <div>
-            <Menu logged={logged} />
+            <Menu user={user} />
             <Row style={{'margin':'10px auto'}}>
-              {logged ?
+              {user ?
                 <Col xs='2'>
                 <Sidebar />
               </Col> : ''}
@@ -63,4 +61,13 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  const { user } = state.login;
+  return {
+    user
+  };
+}
+
+const connectedApp = connect(mapStateToProps)(App);
+
+export default connectedApp

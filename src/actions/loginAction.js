@@ -5,7 +5,6 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 
 export function fetchLogin(username, password) {
-  // console.log(login)
   return dispatch => {
     dispatch(requestLogin(username))
     loginService.login(username, password)
