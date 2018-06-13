@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import clockImg from "../img/home/clock.png";
-import searchImg from "../img/home/search.png";
-import moneyImg from "../img/home/money.png";
+import clockImg from "../../assets/img/home/clock.png";
+import searchImg from "../../assets/img/home/search.png";
+import moneyImg from "../../assets/img/home/money.png";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import '../css/Home.css';
+import '../../assets/css/Home.css';
 
 
-class Home extends Component {
+class HomePage extends Component {
   render() {
     return (
       <div className="public-home">
@@ -49,4 +49,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default HomePage;

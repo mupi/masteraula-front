@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import Star from "./Star"
-import '../../css/Star.css';
+import '../../assets/css/Star.css';
 
 class StarRating extends Component {
       static propTypes = {

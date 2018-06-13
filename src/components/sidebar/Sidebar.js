@@ -5,9 +5,8 @@ import {
   BrowserRouter,
   Switch
 } from "react-router-dom";
-import BancoQuestoesPage from "./BancoQuestoesPage.js";
-import UserProfilePage from "./UserProfilePage.js";
-
+import QuestionBasePage from "../../pages/QuestionBase/QuestionBasePage";
+import UserProfilePage from "../../pages/UserProfile/UserProfilePage";
 
 class Sidebar extends Component {
   render() {
