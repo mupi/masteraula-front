@@ -14,7 +14,7 @@ import HomePage from "./pages/Home/HomePage.js";
 import QuestionPage from "./pages/Question/QuestionPage";
 import QuestionBasePage from "./pages/QuestionBase/QuestionBasePage";
 
-import Menu from "./components/Menu";
+import Menu from "./components/menu/Menu";
 import Sidebar from "./components/sidebar/Sidebar";
 import { history } from "./helpers/history"
 
