@@ -1,7 +1,7 @@
 import React  from 'react';
 import { Container, Row } from 'reactstrap';
 import 'font-awesome/css/font-awesome.min.css';
-import DisciplineList from "./../disciplines/DisciplineList"
+import DisciplineList from "../disciplines/DisciplineList"
 
 
 const QuestionHeader = ({ disciplines, source, year})  =>
