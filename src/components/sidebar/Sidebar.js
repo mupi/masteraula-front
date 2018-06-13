@@ -3,7 +3,8 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import {
   Route,
   BrowserRouter,
-  Switch
+  Switch,
+  Link
 } from "react-router-dom";
 import QuestionBasePage from "../../pages/QuestionBase/QuestionBasePage";
 import UserProfilePage from "../../pages/UserProfile/UserProfilePage";
@@ -27,6 +28,9 @@ const Sidebar = ({docName="Novo documento", docNumberQuestions="0"})=> {
               <ListGroupItem color='secondary' style={border} tag="a" action href='/home'>
                 Banco de questões
               </ListGroupItem>
+
+
+              <Link to="/home">  Banco de questões Router</Link>
             </ListGroup>
          </div>
       )
