@@ -42,11 +42,6 @@ class App extends Component {
           <div>
             <Menu user={user} />
             <Row style={{'margin':'10px auto'}}>
-              {user ?
-                <Col xs='2'>
-                <Sidebar />
-              </Col> : ''}
-              <Container>
                   <Switch>
                     <Route exact path="/" component={HomePage}/>
                     <Route path="/login" component={LoginPage}/>
@@ -55,9 +50,7 @@ class App extends Component {
                     <Route path="/home" component={QuestionBasePage}/>
                     <Route path="/user-profile" component={UserProfilePage}/>
                     <Route path="/view-question" component={QuestionPage}/>
-
                   </Switch>
-                  </Container>
 
             </Row>
 
