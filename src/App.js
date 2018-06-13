@@ -41,7 +41,7 @@ class App extends Component {
         <ConnectedRouter history = { history }>
           <div>
             <Menu user={user} />
-            <Row style={{'margin':'10px auto'}}>
+            <div style={{'margin':'10px auto'}}>
                   <Switch>
                     <Route exact path="/" component={HomePage}/>
                     <Route path="/login" component={LoginPage}/>
@@ -52,7 +52,7 @@ class App extends Component {
                     <Route path="/view-question" component={QuestionPage}/>
                   </Switch>
 
-            </Row>
+            </div>
 
           </div>
         </ConnectedRouter>

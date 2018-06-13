@@ -1,4 +1,5 @@
 import React from 'react';
+import HomeUserPage from "../HomeUser/HomeUserPage"
 import QuestionHeader from "../../components/question/QuestionHeader.js";
 import QuestionContent from "../../components/question/QuestionContent.js";
 import QuestionInfo from "../../components/question/QuestionInfo.js";
@@ -80,7 +81,7 @@ const question = {
 
 const QuestionPage =() =>
 
-            <div className="main-contenedor middle-box animated fadeInDown">
+            <HomeUserPage>
                 <div className="contenedor-question">
                     <div className="row justify-content-center">
                       <div className="col-sm-12 col-md-12 col-lg-12 col-xs-12">
@@ -100,7 +101,7 @@ const QuestionPage =() =>
                 <div className="btn-float">
                         <button type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-plus"></i></button>
                 </div>
-            </div>
+            </HomeUserPage>
 
 
 export default QuestionPage;

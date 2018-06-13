@@ -95,6 +95,7 @@ const  results = {
 
 const QuestionBasePage= () =>
             <HomeUserPage>
+              <div className="contenedor-question-base">
                   <Row className="text-search-question">Digite o termo e encontre soluções relacionadas
                     <InputGroup>
                       <Input />
@@ -104,6 +105,7 @@ const QuestionBasePage= () =>
                   <Row className="questions-result">
                     <QuestionList questions={results.rquestions} numCols='3'/>
                   </Row>
+              </div>
              </HomeUserPage>
 
 export default QuestionBasePage;
