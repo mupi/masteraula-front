@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import UserProfile from "./userprofile/UserProfile.js";
+import UserProfile from "../../components/userprofile/UserProfile.js";
 
-import '../css/UserProfile.css';
+import '../../assets/css/UserProfile.css';
 
 const UserProfilePage = () =>
-
             <div className="main-contenedor middle-box loginscreen  animated fadeInDown">
                 <div className="contenedor-profile">
                     <h3 className="text-center">Meu Profile</h3>

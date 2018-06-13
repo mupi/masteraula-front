@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Row, Col, ListGroup, ListGroupItem, Input, InputGroup, InputGroupAddon, Button, Container} from 'reactstrap';
-import QuestionList from "./question/QuestionList"
-import '../css/QuestionBase.css';
+import QuestionList from "../../components/question/QuestionList"
+import '../../assets/css/QuestionBase.css';
 
 const  results = {
     "rquestions": [

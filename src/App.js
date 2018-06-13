@@ -5,20 +5,19 @@ import {
   Switch
 } from "react-router-dom";
 import { Row, Col, Container } from 'reactstrap';
-import './css/App.css';
+import './assets/css/App.css';
 
-import LoginPage from "./components/Pages/LoginPage";
-import RegisterPage from "./components/Pages/RegisterPage"
-import ForgotPasswordPage from "./components/Pages/ForgotPasswordPage";
-import UserProfilePage from "./components/UserProfilePage";
+import LoginPage from "./pages/Login/LoginPage";
+import RegisterPage from "./pages/UserRegister/RegisterPage"
+import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage";
+import UserProfilePage from "./pages/UserProfile/UserProfilePage";
 
-import Home from "./components/Home.js";
-import QuestionPage from "./components/QuestionPage";
-import BancoQuestoesPage from "./components/BancoQuestoesPage";
+import HomePage from "./pages/Home/HomePage.js";
+import QuestionPage from "./pages/Question/QuestionPage";
+import QuestionBasePage from "./pages/QuestionBase/QuestionBasePage";
 
-
-import Menu from "./components/Menu";
-import Sidebar from "./components/Sidebar";
+import Menu from "./components/menu/Menu";
+import Sidebar from "./components/sidebar/Sidebar";
 
 class App extends Component {
 
@@ -31,7 +30,7 @@ class App extends Component {
   }
 
   render() {
-    let logged = false
+    let logged = true
     return (
         <BrowserRouter>
           <div>
@@ -43,12 +42,11 @@ class App extends Component {
               </Col> : ''}
               <Container>
                   <Switch>
-                    <Route exact path="/" component={Home}/>
-
+                    <Route exact path="/" component={HomePage}/>
                     <Route path="/login" component={LoginPage}/>
                     <Route path="/register" component={RegisterPage}/>
                     <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
-                    <Route path="/home" component={BancoQuestoesPage}/>
+                    <Route path="/home" component={QuestionBasePage}/>
                     <Route path="/user-profile" component={UserProfilePage}/>
                     <Route path="/view-question" component={QuestionPage}/>
 
