@@ -1,4 +1,5 @@
 import { loginService } from '../services/loginService';
+import { history } from '../helpers/history';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -9,8 +10,14 @@ export function fetchLogin(username, password) {
     dispatch(requestLogin(username))
     loginService.login(username, password)
       .then(
-        session => dispatch(success(session)),
-        error => dispatch(failure(error))
+        session => {
+          dispatch(success(session))
+          history.push('/home');
+          console.log(history)
+        },
+        error => {
+          dispatch(failure(error))
+        }
       )
   }
 

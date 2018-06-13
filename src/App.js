@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { Route,BrowserRouter,Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import { ConnectedRouter } from 'connected-react-router'
 import { Row, Col, Container } from 'reactstrap';
 import './css/App.css';
 
@@ -15,6 +16,7 @@ import BancoQuestoesPage from "./components/BancoQuestoesPage";
 
 import Menu from "./components/Menu";
 import Sidebar from "./components/Sidebar";
+import { history } from "./helpers/history"
 
 class App extends Component {
 
@@ -26,12 +28,17 @@ class App extends Component {
       loginPage:[],
       uploadScreen:[]
     }
+
+    history.listen((location, action) => {
+      // clear alert on location change
+      // dispatch(alertActions.clear());
+    });
   }
 
   render() {
     const { user } = this.props;
     return (
-        <BrowserRouter>
+        <ConnectedRouter history = { history }>
           <div>
             <Menu user={user} />
             <Row style={{'margin':'10px auto'}}>
@@ -56,7 +63,7 @@ class App extends Component {
             </Row>
 
           </div>
-        </BrowserRouter>
+        </ConnectedRouter>
     );
   }
 }

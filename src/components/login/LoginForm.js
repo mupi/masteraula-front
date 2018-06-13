@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { fetchLogin } from '../../actions/loginAction';
 
 
-let LoginForm = ({dispatch}) => {
+const LoginForm = ({dispatch}) => {
   let passwordInput
   let emailInput
 
@@ -43,6 +43,4 @@ let LoginForm = ({dispatch}) => {
   )
 }
 
-LoginForm = connect()(LoginForm)
-
-export default LoginForm;
+export default connect()(LoginForm);
