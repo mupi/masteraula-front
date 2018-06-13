@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import {
-  Route,
-  BrowserRouter,
-  Switch
-} from "react-router-dom";
+import { connect } from 'react-redux'
+import { Route, Switch } from "react-router-dom";
+import { ConnectedRouter } from 'connected-react-router'
 import { Row, Col, Container } from 'reactstrap';
 import './assets/css/App.css';
 
@@ -18,25 +16,33 @@ import QuestionBasePage from "./pages/QuestionBase/QuestionBasePage";
 
 import Menu from "./components/menu/Menu";
 import Sidebar from "./components/sidebar/Sidebar";
+import { history } from "./helpers/history"
 
 class App extends Component {
 
   constructor(props){
     super(props);
+
+    const {dispatch} = this.props
     this.state={
       loginPage:[],
       uploadScreen:[]
     }
+
+    history.listen((location, action) => {
+      // clear alert on location change
+      // dispatch(alertActions.clear());
+    });
   }
 
   render() {
-    let logged = true
+    const { user } = this.props;
     return (
-        <BrowserRouter>
+        <ConnectedRouter history = { history }>
           <div>
-            <Menu logged={logged} />
+            <Menu user={user} />
             <Row style={{'margin':'10px auto'}}>
-              {logged ?
+              {user ?
                 <Col xs='2'>
                 <Sidebar />
               </Col> : ''}
@@ -56,9 +62,18 @@ class App extends Component {
             </Row>
 
           </div>
-        </BrowserRouter>
+        </ConnectedRouter>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  const { user } = state.login;
+  return {
+    user
+  };
+}
+
+const connectedApp = connect(mapStateToProps)(App);
+
+export default connectedApp
