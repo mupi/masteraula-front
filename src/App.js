@@ -14,6 +14,7 @@ import HomePage from "./pages/Home/HomePage.js";
 import QuestionPage from "./pages/Question/QuestionPage";
 import QuestionBasePage from "./pages/QuestionBase/QuestionBasePage";
 import CreateDocumentPage from "./pages/CreateDocument/CreateDocumentPage";
+import PreviewDocumentPage from "./pages/CreateDocument/PreviewDocumentPage";
 
 import Menu from "./components/menu/Menu";
 import Sidebar from "./components/sidebar/Sidebar";
@@ -58,7 +59,7 @@ class App extends Component {
                     <Route path="/user-profile" component={UserProfilePage}/>
                     <Route path="/view-question" component={QuestionPage}/>
                     <Route path="/new-document" component={CreateDocumentPage}/>
-
+                    <Route path="/preview-document" component={PreviewDocumentPage}/>
                   </Switch>
                 </Col>
 
