@@ -19,6 +19,10 @@ div#navbar, div#navbar .col-12 {
     padding: 0px;
 }
 
+div#navbar {
+    min-height: 55px;
+}
+
 @media (min-width: 990px){
 html.default body #masteraula-nav-header {
     margin-left: 250px;
