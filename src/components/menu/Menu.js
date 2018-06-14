@@ -3,7 +3,7 @@ import { NavLink, Navbar, NavbarBrand, NavItem, Collapse, NavbarToggler, Nav } f
 import { Row, Col, Container } from 'reactstrap';
 
 import { Link, Route } from 'react-router-dom'
-import '../../assets/css/Navigation.css';
+import 'assets/css/Navigation.css';
 
 class Menu extends Component{
   constructor(props) {

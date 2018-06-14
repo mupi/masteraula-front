@@ -1,4 +1,4 @@
-import {apiUrl} from '../helpers/config';
+import {apiUrl} from 'helpers/config';
  
 export const loginService = {
     login,

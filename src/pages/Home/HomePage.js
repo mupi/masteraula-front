@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import clockImg from "../../assets/img/home/clock.png";
-import searchImg from "../../assets/img/home/search.png";
-import moneyImg from "../../assets/img/home/money.png";
+import clockImg from "assets/img/home/clock.png";
+import searchImg from "assets/img/home/search.png";
+import moneyImg from "assets/img/home/money.png";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import '../../assets/css/Home.css';
+import 'assets/css/Home.css';
 
 const HomePage = ()=>
       <div className="public-home">

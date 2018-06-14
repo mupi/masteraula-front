@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom'
-import Sidebar from '../../components/sidebar/Sidebar'
+import Sidebar from 'components/sidebar/Sidebar'
 import { Row, Col, Container } from 'reactstrap'
-import '../../assets/css/HomeUser.css';
+import 'assets/css/HomeUser.css';
 
 const HomeUserPage = ({children}) =>
     <div className="page">

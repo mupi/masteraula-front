@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from "../actions/loginAction";
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from "actions/loginAction";
 
 let session = JSON.parse(localStorage.getItem('session'));
 const initialState = session ? {user: session.user} : {}
