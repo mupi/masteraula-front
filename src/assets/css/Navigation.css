@@ -1,4 +1,10 @@
-/*sidebar masteraula*/
+/*MENU*/
+
+/*
+amarelo: #f3b232
+azul: #0980b2
+azul escuro: #27577f
+*/
 li.nav-item {
     margin-right: 15px;
 }
@@ -13,4 +19,45 @@ div#navbar, div#navbar .col-12 {
     padding: 0px;
 }
 
+@media (min-width: 990px){
+html.default body #masteraula-nav-header {
+    margin-left: 250px;
+}
+}
+
+html.default body #masteraula-nav-header {
+    border: none;
+    margin-left: 0;
+    display: block;
+    height: 75px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background: #273135;
+}
+.navbar-default {
+    background-color: #fff;
+    border-color: #eee;
+}
+.navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+}
+@media (min-width: 990px){
+.navbar-fixed-top, .navbar-fixed-bottom {
+    border-radius: 0;
+}
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+
+}
+
 /*SIDE BAR*/
+
+.page .col-sm-2 {
+    z-index: 9999;
+    background: #27577f;
+}
