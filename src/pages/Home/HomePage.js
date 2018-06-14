@@ -5,10 +5,7 @@ import moneyImg from "../../assets/img/home/money.png";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import '../../assets/css/Home.css';
 
-
-class HomePage extends Component {
-  render() {
-    return (
+const HomePage = ()=>
       <div className="public-home">
         <div className="row">
           <div className="banner-header col-md-12">
@@ -19,7 +16,7 @@ class HomePage extends Component {
               </p>
             </div>
           </div>
-      </div>
+        </div>
 
         <div className="container caracteristicas-ma">
           <div className="row">
@@ -45,8 +42,6 @@ class HomePage extends Component {
           </div>
         </div>
       </div>
-    );
-  }
-}
+
 
 export default HomePage;

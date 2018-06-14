@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { NavLink, Navbar, NavbarBrand, NavItem, Collapse, NavbarToggler, Nav } from "reactstrap";
+import { Link, Route } from 'react-router-dom'
+import '../../assets/css/Navigation.css';
 
 class Menu extends Component{
-
   constructor(props) {
     super(props);
 
@@ -20,14 +21,16 @@ class Menu extends Component{
 
 	render(){
     let loggedOptions = <Nav className="ml-auto" navbar>
-              <NavItem><NavLink href="/home">Home</NavLink></NavItem>
-              <NavItem><NavLink href="/user-profile">Meu profile</NavLink></NavItem>
+              <NavItem><Link to="/user-profile">Meu profile</Link></NavItem>
+              <NavItem><Link exact="true" to="/">Home</Link></NavItem>
+              <NavItem><Link to="/login">Login</Link></NavItem>
+              <NavItem><Link to="/register">Cadastre-se</Link></NavItem>
               </Nav>;
 
     let notLoggedOptions = <Nav className="ml-auto" navbar>
-          <NavItem><NavLink exact="true" href="/">Home</NavLink></NavItem>
-          <NavItem><NavLink href="/login">Login</NavLink></NavItem>
-          <NavItem><NavLink href="/register">Cadastre-se</NavLink></NavItem>
+          <NavItem><Link exact="true" to="/">Home</Link></NavItem>
+          <NavItem><Link to="/login">Login</Link></NavItem>
+          <NavItem><Link to="/register">Cadastre-se</Link></NavItem>
           </Nav>;
 
       return(
@@ -35,7 +38,7 @@ class Menu extends Component{
           <NavbarBrand href="/">MasterAula</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-              {this.props.logged? loggedOptions : notLoggedOptions}
+              {loggedOptions }
           </Collapse>
         </Navbar>
         );

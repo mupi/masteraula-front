@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Row, Col, ListGroup, ListGroupItem, Input, InputGroup, InputGroupAddon, Button, Container} from 'reactstrap';
+import HomeUserPage from "../HomeUser/HomeUserPage"
 import QuestionList from "../../components/question/QuestionList"
 import '../../assets/css/QuestionBase.css';
 
@@ -93,18 +94,18 @@ const  results = {
 
 
 const QuestionBasePage= () =>
-            <div>
-              <Col sm='12' xs='6'>
-              <Row className="text-search-question">Digite o termo e encontre soluções relacionadas
-              <InputGroup>
-                <Input />
-                <InputGroupAddon addonType="prepend"><Button>Pesquisar</Button></InputGroupAddon>
-              </InputGroup>
-            </Row>
-              <Row className="questions-result">
-                  <QuestionList questions={results.rquestions} numCols='3'/>
-                </Row>
-               </Col>
-            </div>
+            <HomeUserPage>
+              <div className="contenedor-question-base">
+                  <Row className="text-search-question">Digite o termo e encontre soluções relacionadas
+                    <InputGroup>
+                      <Input />
+                      <InputGroupAddon addonType="prepend"><Button>Pesquisar</Button></InputGroupAddon>
+                    </InputGroup>
+                  </Row>
+                  <Row className="questions-result">
+                    <QuestionList questions={results.rquestions} numCols='3'/>
+                  </Row>
+              </div>
+             </HomeUserPage>
 
 export default QuestionBasePage;
