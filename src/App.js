@@ -3,20 +3,20 @@ import { connect } from 'react-redux'
 import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter } from 'connected-react-router'
 import { Row, Col, Container } from 'reactstrap';
-import './assets/css/App.css';
+import 'assets/css/App.css';
 
-import LoginPage from "./pages/Login/LoginPage";
-import RegisterPage from "./pages/UserRegister/RegisterPage"
-import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage";
-import UserProfilePage from "./pages/UserProfile/UserProfilePage";
+import LoginPage from "pages/Login/LoginPage";
+import RegisterPage from "pages/UserRegister/RegisterPage"
+import ForgotPasswordPage from "pages/ForgotPassword/ForgotPasswordPage";
+import UserProfilePage from "pages/UserProfile/UserProfilePage";
 
-import HomePage from "./pages/Home/HomePage.js";
-import QuestionPage from "./pages/Question/QuestionPage";
-import QuestionBasePage from "./pages/QuestionBase/QuestionBasePage";
+import HomePage from "pages/Home/HomePage.js";
+import QuestionPage from "pages/Question/QuestionPage";
+import QuestionBasePage from "pages/QuestionBase/QuestionBasePage";
 
-import Menu from "./components/menu/Menu";
-import Sidebar from "./components/sidebar/Sidebar";
-import { history } from "./helpers/history"
+import Menu from "components/menu/Menu";
+import Sidebar from "components/sidebar/Sidebar";
+import { history } from "helpers/history"
 
 class App extends Component {
 

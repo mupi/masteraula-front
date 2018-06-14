@@ -1,12 +1,12 @@
 import React from 'react';
 import HomeUserPage from "../HomeUser/HomeUserPage"
-import QuestionHeader from "../../components/question/QuestionHeader.js";
-import QuestionContent from "../../components/question/QuestionContent.js";
-import QuestionInfo from "../../components/question/QuestionInfo.js";
-import RelatedQuestions from "../../components/question/RelatedQuestions";
-import QuestionComments from "../../components/question/QuestionComments.js";
+import QuestionHeader from "components/question/QuestionHeader.js";
+import QuestionContent from "components/question/QuestionContent.js";
+import QuestionInfo from "components/question/QuestionInfo.js";
+import RelatedQuestions from "components/question/RelatedQuestions";
+import QuestionComments from "components/question/QuestionComments.js";
 import 'font-awesome/css/font-awesome.min.css';
-import '../../assets/css/Question.css';
+import 'assets/css/Question.css';
 
 /* id, question, disiciplines, alternatives, answer, source, year, difficulty, author, teachingLevel, tags, descriptors, stars*/
 const question = {

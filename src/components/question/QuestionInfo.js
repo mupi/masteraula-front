@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import 'font-awesome/css/font-awesome.min.css';
-import StarRating from '../stars/StarRating'
-import DisciplineList from "../disciplines/DisciplineList"
-import TagList from "../tags/TagList"
+import StarRating from 'components/stars/StarRating'
+import DisciplineList from "components/disciplines/DisciplineList"
+import TagList from "components/tags/TagList"
 
 const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficulty, author}) => (
             <Container className="question-information">
