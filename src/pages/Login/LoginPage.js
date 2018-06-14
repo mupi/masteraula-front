@@ -4,22 +4,12 @@ import LoginForm from "../../components/login/LoginForm.js";
 import '../../assets/css/Login.css';
 
 
-class LoginPage extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
+const LoginPage = () =>
             <div className="main-contenedor middle-box text-center loginscreen  animated fadeInDown">
                 <div className="contenedor-login">
                     <h3>Entrar no MasterAula</h3>
                     <LoginForm />
                 </div>
             </div>
-    );
-  }
-}
 
 export default LoginPage;

@@ -5,7 +5,6 @@ import moneyImg from "../../assets/img/home/money.png";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import '../../assets/css/Home.css';
 
-
 class HomePage extends Component {
   render() {
     return (

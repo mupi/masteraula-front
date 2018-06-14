@@ -41,7 +41,7 @@ class App extends Component {
         <ConnectedRouter history = { history }>
           <div>
             <Menu user={user} />
-            <div style={{'margin':'10px auto'}}>
+            <div>
                   <Switch>
                     <Route exact path="/" component={HomePage}/>
                     <Route path="/login" component={LoginPage}/>

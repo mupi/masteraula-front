@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink, Navbar, NavbarBrand, NavItem, Collapse, NavbarToggler, Nav } from "reactstrap";
 import { Link, Route } from 'react-router-dom'
+import '../../assets/css/Navigation.css';
 
 class Menu extends Component{
   constructor(props) {
@@ -34,7 +35,7 @@ class Menu extends Component{
           <NavbarBrand href="/">MasterAula</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-              {false? loggedOptions : notLoggedOptions}
+              {loggedOptions }
           </Collapse>
         </Navbar>
         );
