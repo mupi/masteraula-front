@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Input, Container, Col, Label } from 'reactstrap';
+import { Row, Input, Container, Col, Label, Button } from 'reactstrap';
 
 const DocumentForm =() =>
              <Container> 
@@ -36,6 +36,11 @@ const DocumentForm =() =>
                   <Container>
                   Uma coluna
                   </Container>
+                </Col>
+              </Row>
+              <Row>
+                <Col sm={{ size: 'auto', offset: 10 }}>
+                  <Button> Visualizar</Button>
                 </Col>
               </Row>
               </Container>

@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { Row, Container } from 'reactstrap';
 import DocumentForm from '../../components/document/DocumentForm.js';
+import DocumentPreview from '../../components/document/DocumentPreview.js';
 
-const CreateDocumentPage =() =>
+const CreateDocumentPage =() =>{
+  let data = {'schoolName':'Escolinha', 'course':'Matemática','teacherName':"Profa Daniela",
+                'studentName':true, 'date':true, 'class':true, 'grade':true}
+    return(
           <Container>
             <Row><h2>Monte seu documento</h2></Row>
             <Row>
-            	<DocumentForm />
+            	<DocumentPreview data={data}/>
             </Row>
-          </Container>
+          </Container>);
+  
+  }
 
 
 export default CreateDocumentPage
