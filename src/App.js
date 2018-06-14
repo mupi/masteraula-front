@@ -18,6 +18,8 @@ import Menu from "./components/menu/Menu";
 import Sidebar from "./components/sidebar/Sidebar";
 import { history } from "./helpers/history"
 
+import Footer from "./components/footer/Footer";
+
 class App extends Component {
 
   constructor(props){
@@ -39,7 +41,7 @@ class App extends Component {
     const { user } = this.props;
     return (
         <ConnectedRouter history = { history }>
-          <div>
+          <div id="main-masteraula-container">
             <Menu user={user} />
                   <Switch>
                     <Route exact path="/" component={HomePage}/>
@@ -50,6 +52,7 @@ class App extends Component {
                     <Route path="/user-profile" component={UserProfilePage}/>
                     <Route path="/view-question" component={QuestionPage}/>
                   </Switch>
+            <Footer year="2018" version="1.0" />
           </div>
         </ConnectedRouter>
     );
