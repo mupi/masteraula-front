@@ -6,10 +6,10 @@ import {
   Switch,
   Link
 } from "react-router-dom";
-import QuestionBasePage from "../../pages/QuestionBase/QuestionBasePage";
-import UserProfilePage from "../../pages/UserProfile/UserProfilePage";
+import QuestionBasePage from "pages/QuestionBase/QuestionBasePage";
+import UserProfilePage from "pages/UserProfile/UserProfilePage";
 import { Row, Col, Container } from 'reactstrap';
-import '../../assets/css/Navigation.css';
+import 'assets/css/Navigation.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 

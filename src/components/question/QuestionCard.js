@@ -1,7 +1,7 @@
 import React  from 'react';
 import {Button, Card, CardBlock, CardTitle, CardImg, CardBody, CardText, CardSubtitle } from 'reactstrap';
-import imageCard from "../../assets/img/home/question-card.jpg";
-import DisciplineList from "../../components/disciplines/DisciplineList"
+import imageCard from "assets/img/home/question-card.jpg";
+import DisciplineList from "components/disciplines/DisciplineList"
 
 const QuestionCard = ({disciplines, source, year, extract, urlImage}) =>
 			<Card>

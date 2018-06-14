@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Input } from 'reactstrap';
 import { NavLink } from "react-router-dom";
 import { connect } from 'react-redux'
 import { Container, Row, Col } from 'reactstrap';
-import { fetchLogin } from '../../actions/loginAction';
+import { fetchLogin } from 'actions/loginAction';
 
 
 const LoginForm = ({dispatch}) => {

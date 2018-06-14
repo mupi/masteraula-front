@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import HomeUserPage from "../HomeUser/HomeUserPage"
-import UserProfile from "../../components/userprofile/UserProfile.js";
+import UserProfile from "components/userprofile/UserProfile.js";
 
-import '../../assets/css/UserProfile.css';
+import 'assets/css/UserProfile.css';
 
 const UserProfilePage = () =>
           <HomeUserPage>

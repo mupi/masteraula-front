@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import LoginForm from 'components/login/LoginForm';
 import 'bootstrap/dist/css/bootstrap.css';
-import LoginForm from "../../components/login/LoginForm.js";
-import '../../assets/css/Login.css';
+import 'assets/css/Login.css';
 
 
 const LoginPage = () =>
