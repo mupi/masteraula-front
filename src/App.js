@@ -54,6 +54,7 @@ class App extends Component {
                     <Route path="/home" component={QuestionBasePage}/>
                     <Route path="/user-profile" component={UserProfilePage}/>
                     <Route path="/view-question" component={QuestionPage}/>
+                    <Route path="/new-document" component={CreateDocumentPage}/>
                   </Switch>
             <Footer year="2018" version="1.0" />
           </div>
