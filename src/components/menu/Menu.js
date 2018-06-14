@@ -22,6 +22,9 @@ class Menu extends Component{
 	render(){
     let loggedOptions = <Nav className="ml-auto" navbar>
               <NavItem><Link to="/user-profile">Meu profile</Link></NavItem>
+              <NavItem><Link exact="true" to="/">Home</Link></NavItem>
+              <NavItem><Link to="/login">Login</Link></NavItem>
+              <NavItem><Link to="/register">Cadastre-se</Link></NavItem>
               </Nav>;
 
     let notLoggedOptions = <Nav className="ml-auto" navbar>
