@@ -1,0 +1,13 @@
+#footer-container {
+    background: #0980b2;
+    padding: 5px;
+    color: white;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+
+#footer-container #footer .row{
+  text-align: center;
+
+}

@@ -11,3 +11,11 @@
 .questions-result .col-12.col-sm-3 {
     margin-top: 15px !important;
 }
+
+.buttonCard a {
+    color: white;
+}
+
+.buttonCard a:hover {
+    text-decoration: none;
+}

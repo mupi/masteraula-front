@@ -1,4 +1,8 @@
 /*Clases do Home*/
+.bg-primary {
+    background-color: #0980b2 !important;
+}
+
 .banner-header {
     background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
     background-size: 100% auto;

@@ -1,0 +1,447 @@
+commit 107a6fc2f0ec9a5fcbd44cb8af6f96b16a645864
+Merge: 777c21f 1a8736e
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 14 17:08:31 2018 -0300
+
+    ..
+
+commit 777c21fdc04594a13a33d8ede2e6073197cc7c4b
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 14 16:41:02 2018 -0300
+
+    css navigation update
+
+commit 6daa5544a5003b2becf84b1fdfe67a7e199c1e7d
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 14 16:34:24 2018 -0300
+
+    link new document
+
+commit d7968dd5cb3fb622201e6e8804b133ab1015f845
+Merge: f7b78cd fa811be
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 14 16:22:13 2018 -0300
+
+    conflitos
+
+commit fa811be6f8c17301054c7c385d7c9ef695979858
+Author: Daniela Palumbo <d166301@dac.unicamp.br>
+Date:   Thu Jun 14 16:14:27 2018 -0300
+
+    Fixed pages
+
+commit 7a8961be5735f02bcfbe2e3aed9bcb2a622220d0
+Author: Daniela Palumbo <d166301@dac.unicamp.br>
+Date:   Thu Jun 14 16:05:51 2018 -0300
+
+    Dont show answer div if theres no data
+
+commit 044570af747e2c35701a361b8dd0671f67defaf7
+Author: Daniela Palumbo <d166301@dac.unicamp.br>
+Date:   Thu Jun 14 15:57:07 2018 -0300
+
+    Created Document Preview
+
+commit f7b78cdc763884dbe6bb5132b0a87974e69f4806
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 14 13:09:06 2018 -0300
+
+    new colors masteraula
+
+commit 1a8736e5766d3ff735d3565b8050ccd97b11f8e8
+Merge: 1bbca76 277ca1a
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 14 13:02:48 2018 -0300
+
+    Merge pull request #8 from mupi/feature/change-path
+    
+    Change path to src
+
+commit 277ca1a53e8cedd784cb01f13265ac21e059eb33
+Author: Allan Nozomu Fukasawa <allannozomu@gmail.com>
+Date:   Thu Jun 14 12:25:48 2018 -0300
+
+    Change path to src
+
+commit 720d3511cec5f5112bb7fe0a0b8b096d45938e8c
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 14 12:33:19 2018 -0300
+
+    footer was added
+
+commit 1bbca767b6cd9f4313b99d9705fe6d2f5ac14493
+Merge: 031a12c be7cd5a
+Author: Allan Nozomu Fukasawa <allannozomu@gmail.com>
+Date:   Thu Jun 14 11:54:22 2018 -0300
+
+    Merge pull request #7 from mupi/feature/new-const-functions
+    
+    Feature/new const functions
+
+commit be7cd5a4351c05a41e639378e5d771228ab36f36
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 14 10:50:34 2018 -0300
+
+    menu was updated, but it needs to be improved to change according to user status
+
+commit bfef4faaa45df05797f1bf9ca4ab8ed193365ba3
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 14 10:46:04 2018 -0300
+
+    last commit
+
+commit bfce8c8131384d3635a550be9421ad31c5867df9
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 14 10:33:20 2018 -0300
+
+    update class to const
+
+commit e7799a7ccaa1205d3d87843dee2e5cb5aef8d412
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 14 09:31:02 2018 -0300
+
+    update class to const
+
+commit 1971e386476eac7deda1983024f713257a0c5f0f
+Author: Daniela Palumbo <d166301@dac.unicamp.br>
+Date:   Wed Jun 13 17:43:28 2018 -0300
+
+    Created DocumentForm and create page
+
+commit 8c01be84cee01fba70d7bfb178be7ad2018588ff
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Wed Jun 13 17:40:45 2018 -0300
+
+    update pages with HomeUserPage template
+
+commit 0b4953069d7064826c556fd5e40a4c598ebde7cd
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Wed Jun 13 17:37:52 2018 -0300
+
+    update pages with HomeUserPage template
+
+commit 18de2e659db6570b1060f10c2cccd2143e9e5d74
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Wed Jun 13 17:22:52 2018 -0300
+
+    update sidebar and menu
+
+commit 031a12c85a8bbfe1ff01082489ec1aa7d464f30e
+Merge: 349b134 51f20d8
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Wed Jun 13 12:35:23 2018 -0300
+
+    Merge pull request #3 from mupi/feature/login-API
+    
+    Feature/login api
+
+commit 51f20d898a7124f4c773ef7b746f09b386c9ae07
+Author: Allan Nozomu Fukasawa <allannozomu@gmail.com>
+Date:   Wed Jun 13 12:33:46 2018 -0300
+
+    Chage menu reference
+
+commit 0ec415e38319ebc295d8ac625236b5e86530b9f1
+Merge: 09f36ef 349b134
+Author: Allan Nozomu Fukasawa <allannozomu@gmail.com>
+Date:   Wed Jun 13 12:30:22 2018 -0300
+
+    Merge branch 'develop' into feature/login-API
+
+commit 349b134a29b3c1170800bd57092661d592014ce8
+Merge: 6a4ce37 4e16caf
+Author: Allan Nozomu Fukasawa <allannozomu@gmail.com>
+Date:   Wed Jun 13 12:28:27 2018 -0300
+
+    Merge pull request #5 from mupi/feature/structure-files-creation
+    
+    Feature/structure files creation
+
+commit 4e16caf51677dd93e5d2482f9b651dc4d84bbb33
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Wed Jun 13 12:20:05 2018 -0300
+
+    nova organização de pastas front
+
+commit 09f36ef7e63c8135bbf48c40df8481d44fac55fd
+Author: Allan Nozomu Fukasawa <allannozomu@gmail.com>
+Date:   Wed Jun 13 12:08:44 2018 -0300
+
+    Redirect to home after login
+
+commit cd383f50c4edbbe8840b7bedeee2c99603a3d3b9
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Tue Jun 12 15:21:09 2018 -0300
+
+    atualizacao de pastas
+
+commit 918834c5f058a6391aa750ebcdc0b2c342862126
+Merge: 45b8aa1 6a4ce37
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Tue Jun 12 14:12:36 2018 -0300
+
+    Merge branch 'develop' into feature/structure-files-creation
+
+commit 45b8aa14c5aedf7e7f596780b974505334922564
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Tue Jun 12 14:11:40 2018 -0300
+
+    Files organization according to our agreements v2
+
+commit 5a7f37fdca61ee8791e1b7a5845ef1cfdf9e31f6
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Tue Jun 12 14:01:21 2018 -0300
+
+    Files organization according to our agreements
+
+commit 391e5531809cd320b301706297570ea206ad4937
+Merge: 2b30e47 6a4ce37
+Author: Allan Nozomu Fukasawa <allannozomu@gmail.com>
+Date:   Tue Jun 12 13:38:55 2018 -0300
+
+    Merge branch 'develop' into feature/login-API
+
+commit 6a4ce379c07ba711fdd1f70b55689a32845ce39c
+Merge: ecd5657 b99fe55
+Author: Allan Nozomu Fukasawa <allannozomu@gmail.com>
+Date:   Tue Jun 12 13:38:38 2018 -0300
+
+    Merge pull request #2 from mupi/feature/1st-develop
+    
+    Feature/1st develop
+
+commit 2b30e47843ee3cd4024aab948af6683ea365cef1
+Author: Allan Nozomu Fukasawa <allannozomu@gmail.com>
+Date:   Tue Jun 12 13:38:21 2018 -0300
+
+    Pass user information to home
+
+commit eb800f29da8e379adfe45a107cab15208b456fed
+Author: Allan Nozomu Fukasawa <allannozomu@gmail.com>
+Date:   Tue Jun 12 13:09:56 2018 -0300
+
+    Initial Login API, connect with backend
+
+commit b99fe552efa4c94603e44b8989fbb8b099e45d01
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Tue Jun 12 12:37:16 2018 -0300
+
+    First version of develop branch v2
+
+commit b2b6a6af3b67641cb11b4a1c2300077bc85d53e8
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Tue Jun 12 09:51:07 2018 -0300
+
+    First version of develop branch
+
+commit e25abc5e17c26a273a5da9913c663771cbc62bab
+Author: Daniela Palumbo <d166301@dac.unicamp.br>
+Date:   Mon Jun 11 17:43:42 2018 -0300
+
+    Fixed sidebar when not logged
+
+commit ec02562ef7e32b19aac81fdfcde07b1c2dc99a54
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Mon Jun 11 16:00:09 2018 -0300
+
+    ultima versao
+
+commit a6f197ea493f3944939fc9ec783c736131dfd5a2
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Mon Jun 11 11:14:14 2018 -0300
+
+    improve question card, 'Component' import was removed from all components
+
+commit 5849810c0d5f3ee078f8f7d7b025d4503e46dc72
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Mon Jun 11 09:03:51 2018 -0300
+
+    ultima versão do front, inclui os componentes da Pamela e da Dani
+
+commit 109c3574ed1e77e305b5e3d22eb6ae0836037749
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Fri Jun 8 22:37:50 2018 -0300
+
+    criaçao de pasta userprofile
+
+commit 0d74d01d450b7badfa06adfc834d13c4cd8815f9
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Fri Jun 8 22:26:49 2018 -0300
+
+    ultima atualização de const
+
+commit 17401ac01984886dacde3b3cf571b51d86314a37
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Fri Jun 8 21:34:03 2018 -0300
+
+    Login, Register, Password, UserProfile are const now
+
+commit 4ca5c34a1a2f320b13763c2995a507fb65404e54
+Merge: bba1fe6 28ee07d
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Fri Jun 8 16:32:38 2018 -0300
+
+    Merge branch 'feature/questionsearch' of https://github.com/mupi/masteraula-front into front/front-single-questao
+
+commit bba1fe6733ad0a5343048b2180f895998a4915ba
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Fri Jun 8 12:22:49 2018 -0300
+
+    corrigido questionpage.js para const
+
+commit 94ece7164b0aaf322951f3b0b1fb7e15d3e28bd6
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Fri Jun 8 11:41:40 2018 -0300
+
+    questao com componentes CONST
+
+commit 79fbcf07c96a9214d599abb2d9e032da6ad37306
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 7 20:00:09 2018 -0300
+
+    criação de componentes reacts que formam uma questão
+
+commit 28ee07da9e12a78c7aeec833c53abecdcc8eb69a
+Author: Daniela Palumbo <d166301@dac.unicamp.br>
+Date:   Thu Jun 7 15:44:28 2018 -0300
+
+    Add cards to search
+
+commit 03a1b71254364da340b8cc46980a35006d71856a
+Author: Daniela Palumbo <d166301@dac.unicamp.br>
+Date:   Thu Jun 7 14:37:34 2018 -0300
+
+    Chenged sidebar color
+
+commit 6a6583fa66f568b2e32b4a181c0602f88d7739d2
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 7 10:10:22 2018 -0300
+
+    criação de componentes reacts que formam uma questão
+
+commit 6f15ad64b3aa230302a776f38b9a0c1365cf82ff
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Thu Jun 7 10:02:40 2018 -0300
+
+    criação de componentes reacts que formam uma questão
+
+commit 4e9d5fa126891884aa64c9e6e09a23a8caf4272c
+Author: Daniela Palumbo <d166301@dac.unicamp.br>
+Date:   Wed Jun 6 16:43:53 2018 -0300
+
+    minor fixes/style changes on menus
+
+commit f4bc406d87204b78b1a2c7f0179ba211f3bc9ee6
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Wed Jun 6 16:03:48 2018 -0300
+
+    estilos tela de questao
+
+commit 855721e185875f212c1e1681df1955f7b015aeec
+Author: Daniela Palumbo <d166301@dac.unicamp.br>
+Date:   Wed Jun 6 15:33:12 2018 -0300
+
+    Sidebar refactor
+
+commit f73b4da0a05a8969d2d396d2d56a1be3836a7a68
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Wed Jun 6 12:30:01 2018 -0300
+
+    início telas de questao
+
+commit a1f55ca8476ec91817d859621ab4fe2e533612c3
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Wed Jun 6 12:03:15 2018 -0300
+
+    atualização responsive tela de user profile
+
+commit cd59a0f269e33b3fda9652c995df68bb6fe7a5ee
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Wed Jun 6 12:00:55 2018 -0300
+
+    atualização tela de user profile
+
+commit ae09b622c852f35718680f5e980831c91f8f94a0
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Wed Jun 6 10:04:29 2018 -0300
+
+    atualização de css de todas as telas
+
+commit ff7682249ad216fb671c8d170eeb5d400430fcf8
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Wed Jun 6 09:46:31 2018 -0300
+
+    atualização de css de Login
+
+commit 46bca2b9038b9ddf3bd5ada39258fe82245cbdab
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Wed Jun 6 09:20:17 2018 -0300
+
+    tela de perfil de usuário
+
+commit 452a061ad111d6de53d98ed3410b6e935b31a750
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Tue Jun 5 12:31:29 2018 -0300
+
+    atualização de css
+
+commit 1b7b90830529a6c50eec0f60335653957438e18e
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Tue Jun 5 12:19:45 2018 -0300
+
+    atualização das telas cadastro
+
+commit bb43c091a764d765d42fe519ddc15a294b59438b
+Merge: e2675be 8d7b89e
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Tue Jun 5 10:37:06 2018 -0300
+
+    added new App.js
+
+commit e2675be1822c22a45fc6840d2dabdf800e6c8e19
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Tue Jun 5 09:56:34 2018 -0300
+
+    atualizaçao da home sem login
+
+commit 0031f311edff6929aed02d3972d5e4af337f1af0
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Tue Jun 5 09:08:05 2018 -0300
+
+    criaçao de pagina userprofile
+
+commit 8d7b89e3dd396b8b8e2a190e209a2759e7c534a1
+Author: Daniela Palumbo <d166301@dac.unicamp.br>
+Date:   Mon Jun 4 23:19:48 2018 -0300
+
+    Added Menu component
+
+commit 2684d54a8c86f31c4540877354d4cf25059356d6
+Author: Daniela Palumbo <d166301@dac.unicamp.br>
+Date:   Mon Jun 4 20:33:44 2018 -0300
+
+    Homepage skeleton
+
+commit a8af95e36e80623bd9a654cab6f0a3b16678d459
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Mon Jun 4 15:20:35 2018 -0300
+
+    criação de esqueci senha
+
+commit fb558cfd610c020cc6b853cd15048dfcfa08d038
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Mon Jun 4 12:50:44 2018 -0300
+
+    criaçao de telas home sem login, login, register e senha
+
+commit 86bc87f3f77bfa559a9a337a19c288ea19b7888f
+Author: pamelars86 <pamela.rosales@pucp.pe>
+Date:   Tue May 29 14:45:31 2018 -0300
+
+    Criação da pasta de componentes
+
+commit ecd565700db50a5de984a7404595d4cf2c0a73e8
+Author: Allan Nozomu Fukasawa <allannozomu@gmail.com>
+Date:   Mon May 7 11:25:59 2018 -0300
+
+    Initial commit

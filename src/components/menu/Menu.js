@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { NavLink, Navbar, NavbarBrand, NavItem, Collapse, NavbarToggler, Nav } from "reactstrap";
+import { Row, Col, Container } from 'reactstrap';
+
 import { Link, Route } from 'react-router-dom'
 import 'assets/css/Navigation.css';
 
@@ -31,13 +33,19 @@ class Menu extends Component{
           </Nav>;
 
       return(
-        <Navbar color="primary" dark expand="md">
-          <NavbarBrand href="/">MasterAula</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-              {loggedOptions }
-          </Collapse>
-        </Navbar>
+        <div id="navbar" className="container-fluid">
+          <Row>
+              <Col xs="12">
+                <Navbar id="masteraula-nav-header" className="navbar navbar-default navbar-fixed-top" color="primary" dark expand="md">
+                  <NavbarBrand href="/">MasterAula</NavbarBrand>
+                  <NavbarToggler onClick={this.toggle} />
+                  <Collapse isOpen={this.state.isOpen} navbar>
+                      {loggedOptions }
+                  </Collapse>
+                </Navbar>
+              </Col>
+          </Row>
+        </div>
         );
 	}
 }

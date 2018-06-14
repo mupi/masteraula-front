@@ -13,10 +13,14 @@ import UserProfilePage from "pages/UserProfile/UserProfilePage";
 import HomePage from "pages/Home/HomePage.js";
 import QuestionPage from "pages/Question/QuestionPage";
 import QuestionBasePage from "pages/QuestionBase/QuestionBasePage";
+import CreateDocumentPage from "pages/CreateDocument/CreateDocumentPage";
+import PreviewDocumentPage from "pages/CreateDocument/PreviewDocumentPage";
 
 import Menu from "components/menu/Menu";
 import Sidebar from "components/sidebar/Sidebar";
 import { history } from "helpers/history"
+
+import Footer from "components/footer/Footer";
 
 class App extends Component {
 
@@ -36,10 +40,11 @@ class App extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    //const { user } = this.props;
+    let user = true;
     return (
         <ConnectedRouter history = { history }>
-          <div>
+          <div id="main-masteraula-container">
             <Menu user={user} />
                   <Switch>
                     <Route exact path="/" component={HomePage}/>
@@ -49,7 +54,9 @@ class App extends Component {
                     <Route path="/home" component={QuestionBasePage}/>
                     <Route path="/user-profile" component={UserProfilePage}/>
                     <Route path="/view-question" component={QuestionPage}/>
+                    <Route path="/new-document" component={CreateDocumentPage}/>
                   </Switch>
+            <Footer year="2018" version="1.0" />
           </div>
         </ConnectedRouter>
     );

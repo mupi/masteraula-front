@@ -25,8 +25,8 @@ const Sidebar = ({docName="Novo documento", docNumberQuestions="0"})=> {
             </Row>
             <Row>
               <ListGroup>
-                <ListGroupItem color='secondary' style={border} tag="a" action href='/new-document'>
-                  Novo Documento
+                <ListGroupItem color='secondary' >
+                  <Link to="/new-document">  Novo documento </Link>
                 </ListGroupItem>
                 <ListGroupItem color='secondary' style={border} tag="a" action href='/documents'>
                   Meus Documentos
