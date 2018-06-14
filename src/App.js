@@ -13,6 +13,8 @@ import UserProfilePage from "./pages/UserProfile/UserProfilePage";
 import HomePage from "./pages/Home/HomePage.js";
 import QuestionPage from "./pages/Question/QuestionPage";
 import QuestionBasePage from "./pages/QuestionBase/QuestionBasePage";
+import CreateDocumentPage from "./pages/CreateDocument/CreateDocumentPage";
+import PreviewDocumentPage from "./pages/CreateDocument/PreviewDocumentPage";
 
 import Menu from "./components/menu/Menu";
 import Sidebar from "./components/sidebar/Sidebar";
@@ -38,7 +40,8 @@ class App extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    //const { user } = this.props;
+    let user = true;
     return (
         <ConnectedRouter history = { history }>
           <div id="main-masteraula-container">
