@@ -438,3 +438,16 @@ body.fixed-sidebar.mini-navbar .navbar-default .nav li a span {
 .fixed-sidebar.mini-navbar .nav-second-level {
   left: 0px;
 }
+
+/*sidebar masteraula*/
+li.nav-item {
+    margin-right: 15px;
+}
+
+.nav-item a:hover {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/*SIDE BAR*/
