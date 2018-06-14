@@ -9,6 +9,7 @@
     color: #fff;
     padding: 1em;
     text-align: center;
+    margin-top:55px
 }
 
 .thumb-circle {
@@ -51,8 +52,7 @@
     margin-bottom: 30px;
 }
 
-
 .row {
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: -5px;
+    margin-right: -5px;
 }

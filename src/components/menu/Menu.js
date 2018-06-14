@@ -37,11 +37,20 @@ class Menu extends Component{
           <Row>
               <Col xs="12">
                 <Navbar id="masteraula-nav-header" className="navbar navbar-default navbar-fixed-top" color="primary" dark expand="md">
-                  <NavbarBrand href="/">MasterAula</NavbarBrand>
+                  <NavbarBrand><Link exact="true" to="/">MasterAula</Link></NavbarBrand>
                   <NavbarToggler onClick={this.toggle} />
                   <Collapse isOpen={this.state.isOpen} navbar>
                       {loggedOptions }
                   </Collapse>
+                  <div class="visible-xs col-xs-3" data-reactid="618">
+                    <ul class="pull-left visible-xs-inline-block nav navbar-nav" data-reactid="619">
+                      <li role="presentation" class="sidebar-btn" data-reactid="620">
+                        <a data-id="sidebar-btn" href="/" data-reactid="621">
+                          <span class="icon-fontello-th-list-5 rubix-icon" data-reactid="622"></span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </Navbar>
               </Col>
           </Row>
