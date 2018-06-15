@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink, Navbar, NavbarBrand, NavItem, Collapse, NavbarToggler, Nav } from "reactstrap";
+import { NavLink, Navbar, NavbarBrand, NavItem, Collapse, NavbarToggler, Nav, Button } from "reactstrap";
 import { Row, Col, Container } from 'reactstrap';
 
 import { Link, Route } from 'react-router-dom'
@@ -25,11 +25,6 @@ class Menu extends Component{
   }
 
 
-   handleClick(e) {
-     e.preventDefault();
-     console.log('The link was clicked.');
-   };
-
 	render(){
     let loggedOptions = <Nav className="ml-auto" navbar>
               <NavItem><Link to="/user-profile">Meu profile</Link></NavItem>
@@ -49,9 +44,9 @@ class Menu extends Component{
                   <div className="visible-xs col-xs-3">
                     <ul className="pull-left visible-xs-inline-block nav navbar-nav">
                       <li className="sidebar-btn">
-                        <a data-id="sidebar-btn" href="/" onClick={this.handleClick}>
+                        <Button href="/" onClick={this.props.openSidebar}>
                           <span><i className="fa fa-bars"></i></span>
-                        </a>
+                        </Button>
                       </li>
                     </ul>
                   </div>
