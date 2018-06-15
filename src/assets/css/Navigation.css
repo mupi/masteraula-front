@@ -78,3 +78,28 @@ html body #sidebar {
 #sidebar h5, #sidebar h6 {
     color: white;
 }
+
+
+html body #rubix-nav-header .navbar-nav:first-child {
+    margin-left: -25px;
+}
+
+html body #rubix-nav-header .navbar-nav {
+    margin: 0;
+    display: inline-block;
+}
+@media (max-width: 989px){
+.visible-xs-inline-block {
+    display: inline-block !important;
+}}
+
+
+.visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {
+    display: none !important;
+}
+.pull-left {
+    float: left !important;
+}
+.navbar-nav {
+    margin: 12.5px -25px;
+}
