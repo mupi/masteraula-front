@@ -17,26 +17,35 @@ const Sidebar = ({docName="Novo documento", docNumberQuestions="0"})=> {
     let border = {'border': 'white solid 1px'}
     return (
           <div id="sidebar">
-            <Row>
-              <h5>Documento Atual</h5>
-            </Row>
-            <Row>
-              <h6><i className="fa fa-file"></i> {docName} ({docNumberQuestions})</h6>
-            </Row>
-            <Row>
-              <ListGroup>
-                <ListGroupItem color='secondary' style={border} tag="a" action href='/new-document'>
-                  Novo Documento
-                </ListGroupItem>
-                <ListGroupItem color='secondary' style={border} tag="a" action href='/documents'>
-                  Meus Documentos
-                </ListGroupItem>
-                <ListGroupItem color='secondary'>
-                  <Link to="/home">  Banco de questões </Link>
-                </ListGroupItem>
-              </ListGroup>
-            </Row>
-         </div>
+            <div id="sidebar-container">
+              <div className="container-fluid">
+                <Row>
+                  <Col xs="12">
+                      <div className="sidebar-nav-container">
+                        <Row>
+                          <h5>Documento Atual</h5>
+                        </Row>
+                        <Row>
+                          <h6><i className="fa fa-file"></i> {docName} ({docNumberQuestions})</h6>
+                        </Row>
+                        <ListGroup>
+                          <ListGroupItem color='secondary' >
+                            <Link to="/new-document">  Novo documento </Link>
+                          </ListGroupItem>
+                          <ListGroupItem color='secondary'  >
+                            <Link to="/my-documents">  Meus documentos </Link>
+                          </ListGroupItem>
+                          <ListGroupItem color='secondary'>
+                            <Link to="/home">  Banco de questões </Link>
+                          </ListGroupItem>
+                        </ListGroup>
+                      </div>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+          </div>
+
       )
 }
 

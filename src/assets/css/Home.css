@@ -1,10 +1,15 @@
 /*Clases do Home*/
+.bg-primary {
+    background-color: #0980b2 !important;
+}
+
 .banner-header {
     background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
     background-size: 100% auto;
     color: #fff;
     padding: 1em;
     text-align: center;
+    margin-top:55px
 }
 
 .thumb-circle {
@@ -47,8 +52,7 @@
     margin-bottom: 30px;
 }
 
-
 .row {
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: -5px;
+    margin-right: -5px;
 }
