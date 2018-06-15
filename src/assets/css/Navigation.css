@@ -44,8 +44,6 @@ div#navbar, div#navbar .col-12 {
 }
 
 /*SIDE BAR*/
-
-
 html body #sidebar #sidebar-container {
     bottom: 0;
     width: 250px;
@@ -81,26 +79,97 @@ html body #sidebar {
 }
 
 
-html body #rubix-nav-header .navbar-nav:first-child {
+html body #masteraula-nav-header .navbar-nav:first-child {
     margin-left: -25px;
 }
 
-html body #rubix-nav-header .navbar-nav {
+html body #rmasteraula-nav-header .navbar-nav {
     margin: 0;
     display: inline-block;
 }
+
+
+/*botao para o sidebar*/
+.visible-xs {
+    display: none !important;
+}
+
 @media (max-width: 989px){
-.visible-xs-inline-block {
-    display: inline-block !important;
-}}
+  .visible-xs {
+      display: block !important;
+  }
+}
 
 
+html body #masteraula-nav-header .navbar-nav:first-child {
+    margin-left: -25px;
+}
+html body #masteraula-nav-header .navbar-nav {
+    margin: 0;
+    display: inline-block;
+}
 .visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {
     display: none !important;
 }
 .pull-left {
     float: left !important;
 }
+
+@media (min-width: 990px){
 .navbar-nav {
-    margin: 12.5px -25px;
+    float: left;
+    margin: 0;
+}
+}
+
+@media (max-width: 989px){
+.visible-xs-inline-block {
+    display: inline-block !important;
+}
+.navbar {
+    padding: 0px 1rem;
+}
+
+}
+
+html body #masteraula-nav-header .navbar-nav>li.sidebar-btn>a {
+    color: #fff;
+    background: #f3b232;
+}
+html body #masteraula-nav-header .navbar-nav>li.logout>a, html body #masteraula-nav-header .navbar-nav>li.sidebar-btn>a {
+    width: 75px;
+    font-size: 30px;
+    padding-left: 0;
+    padding-right: 0;
+}
+html body #masteraula-nav-header .navbar-nav>li.active>a, html body #masteraula-nav-header .navbar-nav>li>a {
+    background: none;
+    text-align: center;
+}
+html body #masteraula-nav-header .navbar-nav>li>a {
+    border: none;
+    padding: 10px;
+    display: block;
+}
+
+html body #main-masteraula-container.container-open #sidebar{
+    left: 0;
+}
+html body #main-masteraula-container.container-open #body,
+html body #main-masteraula-container.container-open #footer-container{
+    margin-left: 250px;
+    margin-right: -250px;
+}
+
+html body #main-masteraula-container.container-open #masteraula-nav-header {
+    margin-left: 250px;
+    margin-right: -250px;
+}
+
+html body #masteraula-nav-header {
+    border: none;
+    margin-left: 0;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background: #273135;
 }

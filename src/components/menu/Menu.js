@@ -5,6 +5,9 @@ import { Row, Col, Container } from 'reactstrap';
 import { Link, Route } from 'react-router-dom'
 import 'assets/css/Navigation.css';
 
+import 'font-awesome/css/font-awesome.min.css';
+
+
 class Menu extends Component{
   constructor(props) {
     super(props);
@@ -20,6 +23,12 @@ class Menu extends Component{
       isOpen: !this.state.isOpen
     });
   }
+
+
+   handleClick(e) {
+     e.preventDefault();
+     console.log('The link was clicked.');
+   };
 
 	render(){
     let loggedOptions = <Nav className="ml-auto" navbar>
@@ -37,6 +46,15 @@ class Menu extends Component{
           <Row>
               <Col xs="12">
                 <Navbar id="masteraula-nav-header" className="navbar navbar-default navbar-fixed-top" color="primary" dark expand="md">
+                  <div className="visible-xs col-xs-3">
+                    <ul className="pull-left visible-xs-inline-block nav navbar-nav">
+                      <li className="sidebar-btn">
+                        <a data-id="sidebar-btn" href="/" onClick={this.handleClick}>
+                          <span><i className="fa fa-bars"></i></span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                   <NavItem>
                     <Link exact="true" to="/">MasterAula</Link>
                   </NavItem>
@@ -44,15 +62,7 @@ class Menu extends Component{
                   <Collapse isOpen={this.state.isOpen} navbar>
                       {loggedOptions }
                   </Collapse>
-                  <div className="visible-xs col-xs-3">
-                    <ul className="pull-left visible-xs-inline-block nav navbar-nav">
-                      <li className="sidebar-btn">
-                        <a data-id="sidebar-btn" href="/">
-                          <span className="icon-fontello-th-list-5 rubix-icon"></span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+
                 </Navbar>
               </Col>
           </Row>
