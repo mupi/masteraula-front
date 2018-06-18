@@ -30,8 +30,12 @@ class App extends Component {
     const {dispatch} = this.props
     this.state={
       loginPage:[],
-      uploadScreen:[]
+      uploadScreen:[],
+      isOpenSidebar: false
     }
+
+    // Bind the this context to the handler function
+    this.handler = this.handler.bind(this);
 
     history.listen((location, action) => {
       // clear alert on location change
@@ -39,13 +43,23 @@ class App extends Component {
     });
   }
 
+
+    // This method will be sent to the child component
+     handler(e) {
+        e.preventDefault();
+         this.setState({
+             isOpenSidebar: !this.state.isOpenSidebar
+         });
+     }
+
+
   render() {
     //const { user } = this.props;
     let user = true;
     return (
         <ConnectedRouter history = { history }>
-          <div id="main-masteraula-container">
-            <Menu user={user} />
+          <div id="main-masteraula-container" className={this.state.isOpenSidebar ? 'container-open' : ''}>
+            <Menu user={user}  openSidebar={this.handler} />
                   <Switch>
                     <Route exact path="/" component={HomePage}/>
                     <Route path="/login" component={LoginPage}/>
