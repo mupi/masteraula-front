@@ -41,7 +41,7 @@ class Menu extends Component{
           <Row>
               <Col xs="12">
                 <Navbar id="masteraula-nav-header" className="navbar navbar-default navbar-fixed-top" color="primary" dark expand="md">
-                  <div className="visible-xs col-xs-3">
+                  <div id="buttonSideBar" className="visible-xs col-xs-3">
                     <ul className="pull-left visible-xs-inline-block nav navbar-nav">
                       <li className="sidebar-btn">
                         <Button href="/" onClick={this.props.openSidebar}>

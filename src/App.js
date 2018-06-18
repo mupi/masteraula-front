@@ -50,7 +50,6 @@ class App extends Component {
          this.setState({
              isOpenSidebar: !this.state.isOpenSidebar
          });
-         console.log("hola..pame");
      }
 
 
