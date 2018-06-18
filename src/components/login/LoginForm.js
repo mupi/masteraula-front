@@ -36,10 +36,12 @@ const LoginForm = ({dispatch}) => {
             ref ={ node => passwordInput = node}
           />
         </FormGroup>
-        <FormGroup>
-            <NavLink  to="/esqueci-senha">Esqueci minha senha</NavLink>
-        </FormGroup>
-        <Button type="submit">Entrar</Button>
+        <div className="text-center">
+            <FormGroup>
+                <NavLink  to="/esqueci-senha">Esqueci minha senha</NavLink>
+            </FormGroup>
+            <Button type="submit">Entrar</Button>
+        </div>
       </Form>
     </Col>
   )

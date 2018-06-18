@@ -1,11 +1,12 @@
 #footer-container {
     background: var(--color-ma-blue);
-    padding: 5px;
+    padding: 3px;
     color: white;
     bottom: 0;
     position: fixed;
     width: 100%;
     z-index: 1000;
+    font-size: 13px;
 }
 
 

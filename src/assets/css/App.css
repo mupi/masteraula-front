@@ -2,16 +2,16 @@
 CSS do Home sem login
 */
 
-@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Lato);
 
 body{
-  font-family: 'Raleway',serif;
+  font-family: 'Lato',sans-serif;
   padding: 0px;
   margin: 0;
 }
 
 h1, h2, p, ul, li {
-  font-family: 'Raleway';
+  font-family: 'Lato',sans-serif;
 }
 
 /*CSS header*/

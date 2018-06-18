@@ -2,15 +2,15 @@
 CSS for UserProfile
 */
 
-@import url(https://fonts.googleapis.com/css?family=Raleway);
+@import url(https://fonts.googleapis.com/css?family=Lato);
 
 body{
-  font-family: 'Raleway',serif;
+  font-family: 'Lato',sans-serif;
   margin: 0;
 }
 
-.contenedor-profile .form-grouo{
-   font-family: 'Raleway',serif;
+.contenedor-profile .form-group{
+   font-family: 'Lato',sans-serif;
 }
 
 .hidden {

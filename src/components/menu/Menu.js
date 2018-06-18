@@ -32,7 +32,7 @@ class Menu extends Component{
 
     let notLoggedOptions = <Nav className="ml-auto" navbar>
           <NavItem><Link exact="true" to="/">Home</Link></NavItem>
-          <NavItem><Link to="/login">Login</Link></NavItem>
+          <NavItem><Button onClick={this.toggle}>Login</Button></NavItem>
           <NavItem><Link to="/register">Cadastre-se</Link></NavItem>
           </Nav>;
 

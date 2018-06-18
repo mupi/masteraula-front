@@ -1,17 +1,37 @@
 /*LOGIN*/
 .contenedor-login {
-    padding-top: 40px;
-    padding-bottom: 40px;
+  /*  padding-top: 40px;
+    padding-bottom: 40px;*/
     max-width: 500px;
-    margin-right: auto !important;
-    margin-left: auto !important;
+  /*  margin-right: auto !important;
+    margin-left: auto !important;*/
     background: var(--color-ma-blue-sky);
     border-radius: 10px;
 }
 
 @media (min-width: 868px){
   .contenedor-login {
-    padding-left: 15px;
-    padding-right: 15px;
+  /*  padding-left: 15px;
+    padding-right: 15px;*/
   }
+}
+
+.zIndex{
+  z-index: 99999;
+}
+
+
+.contenedor-login h4{
+  text-align: center;
+}
+
+
+/*Modal*/
+.modal-content {
+      border-radius: 10px;
+}
+
+.modal-header{
+  padding: 0px 10px;
+  border-bottom: 0px;
 }

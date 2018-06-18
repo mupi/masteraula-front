@@ -204,3 +204,20 @@ html body #masteraula-nav-header {
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
+
+
+.sidebar-nav-container a {
+    text-decoration: none;
+    color: var(--color-ma-dark-blue);
+    font-weight: bold;
+}
+
+.sidebar-nav-container li.list-group-item:hover {
+    background: #c0e8f9;
+    color: white;
+}
+
+#sidebar-container .col-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
