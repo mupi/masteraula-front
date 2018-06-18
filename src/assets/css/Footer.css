@@ -1,5 +1,5 @@
 #footer-container {
-    background: #0980b2;
+    background: var(--color-ma-blue);
     padding: 5px;
     color: white;
     bottom: 0;
@@ -8,7 +8,15 @@
     z-index: 1000;
 }
 
-#footer-container #footer .row{
-  text-align: center;
 
+div#footer, div#footer .row {
+    background: var(--color-ma-blue);
+    text-align: center;
+}
+
+
+html body #footer-container{
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }

@@ -1,12 +1,12 @@
 /*Clases do Home*/
 .bg-primary {
-    background-color: #0980b2 !important;
+    background-color: var(--color-ma-blue) !important;
 }
 
 .banner-header {
     background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
     background-size: 100% auto;
-    color: #fff;
+    color: var(--color-ma-white);
     padding: 1em;
     text-align: center;
     margin-top:55px
@@ -26,20 +26,48 @@
     width: 100%;
 }
 
-.texto-banner-header{
-  font-size: 25px;
-    font-weight: 400;
-    line-height: 40px;
-}
-
-
 .container.caracteristicas-ma {
     padding-top: 60px;
     padding-bottom: 60px;
 }
 
-.texto-banner-header p {
-    margin: 40px;
+.banner-header {
+    padding: 50px 10px;
+}
+
+.banner-header h1 {
+  font-weight: bold;
+}
+
+@media (min-width: 990px){
+  .texto-banner-header p {
+      margin: 40px;
+  }
+
+  .texto-banner-header{
+      font-size: 25px;
+      font-weight: 400;
+      line-height: 40px;
+  }
+
+}
+
+@media (max-width: 989px){
+  .texto-banner-header p {
+      margin: 10px;
+  }
+
+  .texto-banner-header{
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.2;
+  }
+
+  .banner-header h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
 }
 
 .main-contenedor {

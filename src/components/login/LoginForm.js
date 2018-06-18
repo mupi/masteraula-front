@@ -22,6 +22,7 @@ const LoginForm = ({dispatch}) => {
             name="email"
             id="exampleEmail"
             placeholder="Ingrese seu email"
+            className="form-control"
             ref ={ node => emailInput = node}
           />
         </FormGroup>
@@ -31,6 +32,7 @@ const LoginForm = ({dispatch}) => {
             name="password"
             id="examplePassword"
             placeholder="Ingrese sua senha"
+            className="form-control"
             ref ={ node => passwordInput = node}
           />
         </FormGroup>

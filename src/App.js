@@ -4,6 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter } from 'connected-react-router'
 import { Row, Col, Container } from 'reactstrap';
 import 'assets/css/App.css';
+import 'assets/css/General.css';
+
 
 import LoginPage from "pages/Login/LoginPage";
 import RegisterPage from "pages/UserRegister/RegisterPage"

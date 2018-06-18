@@ -5,7 +5,7 @@
     max-width: 500px;
     margin-right: auto !important;
     margin-left: auto !important;
-    background: #add2ef;
+    background: var(--color-ma-blue-sky);
     border-radius: 10px;
 }
 
@@ -15,11 +15,3 @@
     padding-right: 15px;
   }
 }
-
-.navbar-toggler{
-  background: #4fc2f6;
-}
-
-nav a {
-    color: white;
-  }
