@@ -8,4 +8,6 @@
   --color-ma-white:#ffffff;
   --color-ma-gray:#eee;
   --color-ma-green:#a6d057;
+  --sidebar-size:280px;
+  --sidebar-size-neg:-280px;
 }

@@ -101,7 +101,7 @@ html body #masteraula-nav-header .navbar-nav:first-child {
 /******CSS for sidebar, used only with user logged******/
 html body #sidebar #sidebar-container {
     bottom: 0;
-    width: 250px;
+    width: var(--sidebar-size);
     position: absolute;
     top: 110px;
 }
@@ -113,7 +113,7 @@ html body #sidebar {
 
 @media (max-width: 990px){
 html body #sidebar {
-      left: -250px;
+      left:  var(--sidebar-size-neg);
 }}
 
 html body #sidebar {
@@ -124,7 +124,7 @@ html body #sidebar {
     overflow-x: hidden;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    width: 250px;
+    width:  var(--sidebar-size);
     background: var(--color-ma-dark-blue);
 }
 
@@ -188,13 +188,13 @@ html body #main-masteraula-container.container-open #sidebar{
 }
 html body #main-masteraula-container.container-open #body,
 html body #main-masteraula-container.container-open #footer-container{
-    margin-left: 250px;
-    margin-right: -250px;
+    margin-left:  var(--sidebar-size);
+    margin-right:  var(--sidebar-size-neg);
 }
 
 html body #main-masteraula-container.container-open #masteraula-nav-header {
-    margin-left: 250px;
-    margin-right: -250px;
+    margin-left:  var(--sidebar-size);
+    margin-right:  var(--sidebar-size-neg);
 }
 
 html body #masteraula-nav-header {

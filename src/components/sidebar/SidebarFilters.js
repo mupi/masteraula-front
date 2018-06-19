@@ -15,20 +15,40 @@ import 'font-awesome/css/font-awesome.min.css';
 
 const filters= {
   "disciplines": [
-    { "name": "Química" },
+    { "name": "Artes" },
+    { "name": "Biologia" },
+    { "name": "Ciências" },
+    { "name": "Educação Física" },
+    { "name": "Ensino Religioso" },
+    { "name": "Estudos Sociais" },
+    { "name": "Filosofia" },
     { "name": "Física" },
+    { "name": "Geografia" },
+    { "name": "História" },
+    { "name": "Informática" },
+    { "name": "Língua Estrangeira - Inglês" },
+    { "name": "Língua Estrangeira - Espanhol" },
+    { "name": "Língua Estrangeira - Outras" },
     { "name": "Matemática" },
-    { "name": "Português" }
+    { "name": "Polivalente" },
+    { "name": "Português / Língua Portuguesa" },
+    { "name": "Química" },
+    { "name": "Redação e Literatura" },
+    { "name": "Sociologia" },
+    { "name": "Outros" }
   ],
   "teachingLevels":[
-    { "name": "Ensino Fundamental"},
-    { "name": "Ensino Médio I"},
-    { "name": "Ensino Médio II"},
+    { "name": "Ensino Infantil"},
+    { "name": "Ensino Fundamental I"},
+    { "name": "Ensino Fundamental II"},
+    { "name": "Ensino Médio"},
+    { "name": "Ensino Superior"},
+    { "name": "Ensino para Jovens e Adultos (EJA)"}
   ],
   "difficultyLevels":[
     { "name": "Fácil"},
     { "name": "Médio"},
-    { "name": "Dificil"}
+    { "name": "Difícil"}
   ]
 }
 
