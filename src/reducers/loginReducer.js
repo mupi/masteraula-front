@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from "actions/loginAction";
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from "actions/loginAction";
 
 let session = JSON.parse(localStorage.getItem('session'));
 const initialState = session ? {user: session.user} : {}
@@ -15,13 +15,18 @@ export function login(state = initialState, action) {
         case LOGIN_SUCCESS:
             return Object.assign({}, state, {
                 isFetching: false,
-                user: action.user
+                session: action.session
             });
         break;
         case LOGIN_FAILURE:
             return Object.assign({}, state, {
                 isFetching: false,
                 error: action.error,
+                user: null
+            })
+        break;
+        case LOGOUT:
+            return Object.assign({}, state, {
                 user: null
             })
         default:
