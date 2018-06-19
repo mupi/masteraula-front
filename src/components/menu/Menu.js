@@ -56,7 +56,7 @@ class Menu extends Component{
                   </NavItem>
                   <NavbarToggler onClick={this.toggle} />
                   <Collapse isOpen={this.state.isOpen} navbar>
-                      {notLoggedOptions }
+                      {loggedOptions }
                   </Collapse>
 
                 </Navbar>

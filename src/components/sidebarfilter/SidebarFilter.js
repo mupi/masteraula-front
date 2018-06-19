@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup, ListGroupItem, Form } from 'reactstrap';
 import {
   Route,
   BrowserRouter,
@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import { Row, Col, Container } from 'reactstrap';
 import { UncontrolledCollapse, Button, Input } from 'reactstrap';
-import SidebarFilter from "components/sidebarfilter/SidebarFilter";
 
 import 'assets/css/Navigation.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -32,17 +31,19 @@ const filters= {
   ]
 }
 
-const SidebarFilters = ()=> {
+const SidebarFilter = ({name, list})=> {
     return (
-          <ListGroup className="question-all-filters">
-                <h6><i className="fa fa-filter"></i> Filtros</h6>
-                <SidebarFilter name="Disciplinas" list={filters.disciplines}/>
-                <SidebarFilter name="Nível de Ensino" list={filters.teachingLevels}/>
-                <SidebarFilter name="Dificuldade" list={filters.difficultyLevels}/>
-          </ListGroup>
+                <ListGroupItem className="question-category-filter"><a>{name}<i className="fa fa-angle-left"></i></a>
+                      <ListGroup className="question-single-filter">
+                        {list.map((filter, i) =>
+                            <ListGroupItem key={i}>  <Input type="checkbox" /> {filter.name}</ListGroupItem>
+                        )}
+                      </ListGroup>
+                </ListGroupItem>
+
 
 
       )
 }
 
-export default SidebarFilters;
+export default SidebarFilter;

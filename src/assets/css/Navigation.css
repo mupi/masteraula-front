@@ -250,6 +250,7 @@ li.question-category-filter.list-group-item:hover, .question-single-filter li.li
 
 .question-single-filter li.list-group-item {
     padding: 0px 15px;
+    font-size: 14px;
 }
 
 ul.question-single-filter.list-group {
@@ -263,7 +264,7 @@ li.question-category-filter.list-group-item {
 }
 
 li.question-category-filter a{
-    height: 45px;
+    height: 35px;
     border: none;
     outline: none;
     color: #89949B;
@@ -271,12 +272,12 @@ li.question-category-filter a{
     font-size: 14px;
     line-height: 14px;
     text-decoration: none;
-    padding: 15px 0px 15px 25px;
+    padding: 11px 0px 10px 15px;
     background: var(--color-ma-blue);
 }
 
 .question-category-filter i.fa.fa-angle-left {
-    top: 10px;
+    top: 7px;
     right: 25px;
     position: absolute;
     font-size: 20px;
