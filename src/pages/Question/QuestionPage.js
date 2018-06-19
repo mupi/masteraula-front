@@ -36,8 +36,8 @@ const question = {
       { "name": "Condensação" }
     ],
     "descriptors": [
-     {name: "Localizar informações explícitas"  },
-     {name: "Inferir o sentido de uma palavra"}
+     {name: "D1 - Localizar informações explícitas"  },
+     {name: "D2 - Inferir o sentido de uma palavra"}
    ],
     "stars":"3",
     "rquestions": [

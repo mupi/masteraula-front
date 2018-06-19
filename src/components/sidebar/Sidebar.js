@@ -9,8 +9,11 @@ import {
 import QuestionBasePage from "pages/QuestionBase/QuestionBasePage";
 import UserProfilePage from "pages/UserProfile/UserProfilePage";
 import { Row, Col, Container } from 'reactstrap';
+import { UncontrolledCollapse, Button } from 'reactstrap';
+
 import 'assets/css/Navigation.css';
 import 'font-awesome/css/font-awesome.min.css';
+import SidebarFilters from "./SidebarFilters"
 
 
 const Sidebar = ({docName="Novo documento", docNumberQuestions="0"})=> {
@@ -22,12 +25,12 @@ const Sidebar = ({docName="Novo documento", docNumberQuestions="0"})=> {
                 <Row>
                   <Col xs="12">
                       <div className="sidebar-nav-container">
-                        <Row>
+
                           <h5>Documento Atual</h5>
-                        </Row>
-                        <Row>
                           <h6><i className="fa fa-file"></i> {docName} ({docNumberQuestions})</h6>
-                        </Row>
+                          <div className="container-export-button">
+                            <Button color="secondary"><i className="fa fa-download"></i> Exportar</Button>
+                          </div>
                         <ListGroup>
                           <ListGroupItem color='secondary' >
                             <Link to="/new-document">  Novo documento </Link>
@@ -39,6 +42,7 @@ const Sidebar = ({docName="Novo documento", docNumberQuestions="0"})=> {
                             <Link to="/home">  Banco de questões </Link>
                           </ListGroupItem>
                         </ListGroup>
+                        <SidebarFilters/>
                       </div>
                   </Col>
                 </Row>

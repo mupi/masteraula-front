@@ -2,31 +2,28 @@
 CSS for RegisterPage
 */
 
-@import url(https://fonts.googleapis.com/css?family=Raleway);
+@import url(https://fonts.googleapis.com/css?family=Lato);
 
 body{
-  font-family: 'Raleway',serif;
+  font-family: 'Lato',sans-serif;
   margin: 0;
 }
 
-.contenedor-register .form-grouo{
-   font-family: 'Raleway',serif;
+.contenedor-register .form-group{
+   font-family: 'Lato',sans-serif;
+}
+
+.contenedor-register h4 {
+    text-align: center;
 }
 
 
 .contenedor-register {
-    padding-top: 40px;
-    padding-bottom: 40px;
+  /*  padding-top: 40px;
+    padding-bottom: 40px;*/
     max-width: 500px;
-    margin-right: auto !important;
-    margin-left: auto !important;
-    background: #add2ef;
+/*    margin-right: auto !important;
+    margin-left: auto !important;*/
+    background: var(--color-ma-blue-sky);
     border-radius: 10px;
-}
-
-@media (min-width: 868px){
-  .contenedor-register {
-  padding-left: 15px;
-  padding-right: 15px;
-  }
 }

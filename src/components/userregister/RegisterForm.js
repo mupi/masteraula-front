@@ -45,16 +45,18 @@ const Register = () =>
                 placeholder="Confirme sua senha"
               />
             </FormGroup>
-            <FormGroup check>
-                <Label check>
-                  <Input type="checkbox" />{' '}
-                  Eu concordo com os termos de uso
-                </Label>
-            </FormGroup>
-            <FormGroup check>
+            <div className="text-center">
+                <FormGroup check className="form-group">
+                    <Label check>
+                      <Input type="checkbox" />{' '}
+                      Eu concordo com os termos de uso
+                    </Label>
+                </FormGroup>
+                <FormGroup check>
 
-            </FormGroup>
-            <Button>Entrar</Button>
+                </FormGroup>
+                <Button>Entrar</Button>
+            </div>
           </Form>
         </Col>
     </div>

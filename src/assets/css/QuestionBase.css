@@ -13,7 +13,7 @@
 }
 
 .buttonCard a {
-    color: white;
+    color: var(--color-ma-white);
 }
 
 .buttonCard a:hover {

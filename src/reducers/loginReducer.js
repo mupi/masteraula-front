@@ -1,7 +1,7 @@
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from "actions/loginAction";
 
 let session = JSON.parse(localStorage.getItem('session'));
-const initialState = session ? {user: session.user} : {}
+const initialState = session ? { session: session.user} : {}
 
 export function login(state = initialState, action) {
     switch (action.type) {

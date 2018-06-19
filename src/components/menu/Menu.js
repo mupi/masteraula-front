@@ -6,6 +6,8 @@ import { Link, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from 'actions/loginAction'
 import { toggleMenu, openSidebar } from 'actions/menuAction';
+import LoginModal from 'components/login/LoginModal';
+import RegisterModal from 'components/userregister/RegisterModal';
 
 import 'assets/css/Navigation.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -25,8 +27,8 @@ const Menu = (props) => {
 
   const notLoggedOptions = <Nav className="ml-auto" navbar>
         <NavItem><Link exact="true" to="/">Home</Link></NavItem>
-        <NavItem><Link to="/login">Login</Link></NavItem>
-        <NavItem><Link to="/register">Cadastre-se</Link></NavItem>
+        <LoginModal />
+        <RegisterModal />
         </Nav>;
 
   const menu = <li className="sidebar-btn">
