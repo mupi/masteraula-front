@@ -3,6 +3,8 @@ import RegisterForm from 'components/userregister/RegisterForm';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import 'assets/css/General.css';
+import { Link, Route } from 'react-router-dom'
+import { NavItem } from "reactstrap";
 
 
 class RegisterModal extends React.Component {
@@ -23,8 +25,8 @@ class RegisterModal extends React.Component {
 
   render() {
     return (
-      <div className="zIndex">
-        <Button color="danger" onClick={this.toggle}>Cadastre-se</Button>
+      <NavItem>
+        <Link to="/" onClick={this.toggle}>Cadastre-se</Link>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <div className="contenedor-register">
             <ModalHeader toggle={this.toggle}></ModalHeader>
@@ -34,7 +36,7 @@ class RegisterModal extends React.Component {
             </ModalBody>
           </div>
         </Modal>
-      </div>
+      </NavItem>
     );
   }
 }

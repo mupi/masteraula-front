@@ -27,10 +27,3 @@ body{
     background: var(--color-ma-blue-sky);
     border-radius: 10px;
 }
-
-@media (min-width: 868px){
-  .contenedor-register {
-  padding-left: 15px;
-  padding-right: 15px;
-  }
-}

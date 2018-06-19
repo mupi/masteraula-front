@@ -1,23 +1,28 @@
 /*LOGIN*/
 .contenedor-login {
-  /*  padding-top: 40px;
-    padding-bottom: 40px;*/
     max-width: 500px;
-  /*  margin-right: auto !important;
-    margin-left: auto !important;*/
     background: var(--color-ma-blue-sky);
     border-radius: 10px;
 }
 
-@media (min-width: 868px){
-  .contenedor-login {
-  /*  padding-left: 15px;
-    padding-right: 15px;*/
-  }
+.contenedor-forgotpassword {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    max-width: 500px;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    border-radius: 10px;
+    background: var(--color-ma-blue-sky);
+
 }
 
-.zIndex{
-  z-index: 99999;
+@media (min-width: 868px){
+  .contenedor-forgotpassword {
+    top: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+  }
 }
 
 

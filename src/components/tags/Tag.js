@@ -1,7 +1,8 @@
 import React  from "react";
 import PropTypes from 'prop-types';
+import { UncontrolledTooltip } from 'reactstrap';
 
-const Alternative = ({i, name, styleTag}) =>
-    <span key= {i} className={styleTag}>{name}</span>
+const Tag = ({i, name, styleTag}) =>
+    <span id={i} key= {i} className={styleTag}>{name}</span>
 
-export default Alternative;
+export default Tag;
