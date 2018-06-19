@@ -37,7 +37,7 @@ const SidebarFilters = ()=> {
     return (
           <ListGroup className="question-all-filters">
                 <h6><i className="fa fa-filter"></i> Filtros</h6>
-                <ListGroupItem className="question-category-filter"><a>Disciplinas <i class="fa fa-angle-left"></i></a>
+                <ListGroupItem className="question-category-filter"><a>Disciplinas <i className="fa fa-angle-left"></i></a>
                       <ListGroup className="question-single-filter">
                         {filters.disciplines.map((discipline, i) =>
                             <ListGroupItem key={i}>  <Input type="checkbox" /> {discipline.name}</ListGroupItem>
@@ -45,7 +45,7 @@ const SidebarFilters = ()=> {
                       </ListGroup>
                 </ListGroupItem>
 
-                <ListGroupItem className="question-category-filter"><a>Grau de dificuldade  <i class="fa fa-angle-left"></i></a>
+                <ListGroupItem className="question-category-filter"><a>Grau de dificuldade  <i className="fa fa-angle-left"></i></a>
                       <ListGroup className="question-single-filter">
                         {filters.difficultyLevels.map((difficulty, i) =>
                             <ListGroupItem key={i}>  <Input type="checkbox" /> {difficulty.name}</ListGroupItem>
@@ -53,7 +53,7 @@ const SidebarFilters = ()=> {
                       </ListGroup>
                 </ListGroupItem>
 
-                <ListGroupItem className="question-category-filter"><a>Nível de ensino  <i class="fa fa-angle-left"></i></a>
+                <ListGroupItem className="question-category-filter"><a>Nível de ensino  <i className="fa fa-angle-left"></i></a>
                       <ListGroup className="question-single-filter">
                         {filters.teachingLevels.map((level, i) =>
                             <ListGroupItem key={i}>  <Input type="checkbox" /> {level.name}</ListGroupItem>

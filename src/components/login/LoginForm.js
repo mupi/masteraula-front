@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Button, Form, FormGroup, Input } from 'reactstrap';
+import React from 'react';
+import { Button, Form, FormGroup} from 'reactstrap';
 import { NavLink } from "react-router-dom";
 import { connect } from 'react-redux'
-import { Container, Row, Col } from 'reactstrap';
+import {  Col } from 'reactstrap';
 import { fetchLogin } from 'actions/loginAction';
 
 

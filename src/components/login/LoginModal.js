@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LoginForm from 'components/login/LoginForm';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 import 'assets/css/General.css';
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { NavItem } from "reactstrap";
 
 class LoginModal extends React.Component {
