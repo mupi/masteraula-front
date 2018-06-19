@@ -1,3 +1,8 @@
+.container{
+  padding-right: 0px;
+    padding-left: 0px;
+}
+
 .container.home-user-container{
     padding-top: 65px;
     padding-bottom: 65px;
@@ -44,4 +49,25 @@ div#main-masteraula-container {
 .row {
     margin-left: -5px;
     margin-right: -5px;
+}
+
+
+body .container-fluid {
+    background: #eee;
+}
+
+div#sidebar .container-fluid,
+div#sidebar .container-fluid .row {
+    background: #27567e;
+}
+
+body .container-fluid .row {
+    background: white;
+}
+
+.container.home-user-container {
+    background: white;
+    border-radius: 10px;
+    top: 0px;
+    position: relative;
 }

@@ -4,6 +4,8 @@ import { Row, Col, Container } from 'reactstrap';
 
 import { Link, Route } from 'react-router-dom'
 import 'assets/css/Navigation.css';
+import LoginModal from 'components/login/LoginModal';
+import RegisterModal from 'components/userregister/RegisterModal';
 
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -11,7 +13,6 @@ import 'font-awesome/css/font-awesome.min.css';
 class Menu extends Component{
   constructor(props) {
     super(props);
-
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false
@@ -32,8 +33,8 @@ class Menu extends Component{
 
     let notLoggedOptions = <Nav className="ml-auto" navbar>
           <NavItem><Link exact="true" to="/">Home</Link></NavItem>
-          <NavItem><Link to="/login">Login</Link></NavItem>
-          <NavItem><Link to="/register">Cadastre-se</Link></NavItem>
+          <LoginModal />
+          <RegisterModal />
           </Nav>;
 
       return(
@@ -55,7 +56,7 @@ class Menu extends Component{
                   </NavItem>
                   <NavbarToggler onClick={this.toggle} />
                   <Collapse isOpen={this.state.isOpen} navbar>
-                      {loggedOptions }
+                      {notLoggedOptions }
                   </Collapse>
 
                 </Navbar>

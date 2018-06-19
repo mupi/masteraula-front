@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter } from 'connected-react-router'
-import { Row, Col, Container } from 'reactstrap';
 import 'assets/css/App.css';
+import 'assets/css/General.css';
+
 
 import LoginPage from "pages/Login/LoginPage";
+import LoginModal from "components/login/LoginModal";
 import RegisterPage from "pages/UserRegister/RegisterPage"
+import RegisterModal from "components/userregister/RegisterModal";
+
 import ForgotPasswordPage from "pages/ForgotPassword/ForgotPasswordPage";
 import UserProfilePage from "pages/UserProfile/UserProfilePage";
 
@@ -17,7 +21,6 @@ import CreateDocumentPage from "pages/CreateDocument/CreateDocumentPage";
 import PreviewDocumentPage from "pages/CreateDocument/PreviewDocumentPage";
 
 import Menu from "components/menu/Menu";
-import Sidebar from "components/sidebar/Sidebar";
 import { history } from "helpers/history"
 
 import Footer from "components/footer/Footer";
@@ -62,8 +65,8 @@ class App extends Component {
             <Menu user={user}  openSidebar={this.handler} />
                   <Switch>
                     <Route exact path="/" component={HomePage}/>
-                    <Route path="/login" component={LoginPage}/>
-                    <Route path="/register" component={RegisterPage}/>
+                    <Route path="/login" component={LoginModal} />
+                    <Route path="/register" component={RegisterModal}/>
                     <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
                     <Route path="/home" component={QuestionBasePage}/>
                     <Route path="/user-profile" component={UserProfilePage}/>
