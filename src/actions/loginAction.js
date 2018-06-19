@@ -5,6 +5,7 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 export const LOGOUT = 'LOGOUT'
+export const TOGGLE_MODAL = 'TOGGLE_MODAL'
 
 export const fetchLogin = (username, password) => {
   return dispatch => {
@@ -34,4 +35,11 @@ export const logout = () => {
   }
 
   function requestLogout(){ return { type: LOGOUT } }
+}
+
+export const toggleModal = (modal) => {
+  return { 
+    type: TOGGLE_MODAL, 
+    modal : !modal 
+  }
 }
