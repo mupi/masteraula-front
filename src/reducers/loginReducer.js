@@ -8,7 +8,6 @@ export function login(state = initialState, action) {
         case LOGIN_REQUEST:
             return Object.assign({}, state, {
                 isFetching : true,
-                user : action.email,
                 error: null
             });
         break;
@@ -22,12 +21,12 @@ export function login(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 error: action.error,
-                user: null
+                session: null
             })
         break;
         case LOGOUT:
             return Object.assign({}, state, {
-                user: null
+                session: null
             })
         default:
         return state;

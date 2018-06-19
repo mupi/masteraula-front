@@ -24,7 +24,6 @@ import Menu from "components/menu/Menu";
 import { history } from "helpers/history"
 
 import Footer from "components/footer/Footer";
-// import { isLoggedIn } from "./helpers/session";
 
 class App extends Component {
 
@@ -45,12 +44,12 @@ class App extends Component {
         <ConnectedRouter history = { history }>
           <div id="main-masteraula-container" className={ this.props.isOpenSidebar ? 'container-open' : ''}>
             <Menu />
-                  <Switch>
-                    <Route exact path="/" component={HomePage}/>
-                    <Route path="/user-profile" component={UserProfilePage}/>
-                    <Route path="/view-question" component={QuestionPage}/>
-                    <Route path="/new-document" component={CreateDocumentPage}/>
-                  </Switch>
+              <Switch>
+                <Route path="/home" component={QuestionBasePage}/>
+                <Route path="/user-profile" component={UserProfilePage}/>
+                <Route path="/view-question" component={QuestionPage}/>
+                <Route path="/new-document" component={CreateDocumentPage}/>
+              </Switch>
             <Footer year="2018" version="1.0" />
           </div>
         </ConnectedRouter>
@@ -60,13 +59,12 @@ class App extends Component {
         <ConnectedRouter history = { history }>
           <div id="main-masteraula-container" className={ this.props.isOpenSidebar ? 'container-open' : ''}>
             <Menu />
-                  <Switch>
-                    <Route exact path="/" component={HomePage}/>
-                    <Route path="/login" component={LoginModal} />
-                    <Route path="/register" component={RegisterModal}/>
-                    <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
-                    <Route path="/home" component={QuestionBasePage}/>
-                  </Switch>
+              <Switch>
+                <Route exact path="/" component={HomePage}/>
+                <Route path="/login" component={LoginModal} />
+                <Route path="/register" component={RegisterModal}/>
+                <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
+              </Switch>
             <Footer year="2018" version="1.0" />
           </div>
         </ConnectedRouter>

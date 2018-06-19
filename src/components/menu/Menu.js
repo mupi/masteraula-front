@@ -22,14 +22,14 @@ const Menu = (props) => {
 
   const loggedOptions = <Nav className="ml-auto" navbar>
           <NavItem><Link to="/user-profile">Meu profile</Link></NavItem>
-          <NavItem><Link onClick={ () => logout() } to="/home">Logout</Link></NavItem>
+          <NavItem><Link onClick={ () => logout() }to="/">Logout</Link></NavItem>
           </Nav>;
 
   const notLoggedOptions = <Nav className="ml-auto" navbar>
-        <NavItem><Link exact="true" to="/">Home</Link></NavItem>
-        <LoginModal />
-        <RegisterModal />
-        </Nav>;
+          <NavItem><Link exact="true" to="/">Home</Link></NavItem>
+          <LoginModal />
+          <RegisterModal />
+          </Nav>;
 
   const menu = <li className="sidebar-btn">
                   <Button href="/" onClick={ (e) => {

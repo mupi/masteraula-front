@@ -27,8 +27,11 @@ export const fetchLogin = (username, password) => {
 }
 
 export const logout = () => {
+  return dispatch => {
     loginService.logout()
-    return ({
-      type: 'LOGOUT'
-    })
+    dispatch(requestLogout())
+    history.push('/');
+  }
+
+  function requestLogout(){ return { type: LOGOUT } }
 }
