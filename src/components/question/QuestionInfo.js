@@ -4,6 +4,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import StarRating from 'components/stars/StarRating'
 import DisciplineList from "components/disciplines/DisciplineList"
 import TagList from "components/tags/TagList"
+import QuestionAuthor from "./QuestionAuthor"
 
 const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficulty, author}) => (
             <Container className="question-information">
@@ -43,7 +44,7 @@ const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficult
               <Row className="row-info">
                  <Col  className="info-label" sm="4" xs="4">Autor</Col>
                  <Col sm="8" xs="8">
-                   <span className="label-info author">{author}</span>
+                   <QuestionAuthor author={author} styleTag="label-info author"/>
                  </Col>
               </Row>
               <Row className="row-info">

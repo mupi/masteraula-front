@@ -147,7 +147,7 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
     margin-bottom: 15px;
 }
 
-p.card-text {
+p.card-text, .card-text {
     margin-top: 15px;
     font-size: 14px;
 }
@@ -155,4 +155,8 @@ p.card-text {
 .btn {
     font-size: 14px;
     padding: 5px 10px;
+}
+
+.card-body {
+    padding: 15px;
 }
