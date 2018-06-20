@@ -49,12 +49,16 @@ const question = {
       "year": "2010",
       "author": "Thiago Oliveira dos Santos",
       "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
-      "urlImage": ""
+      "urlImage": "-"
       },
       { "disciplines": [
         { "name": "Matemática" },
         { "name": "Geometria" }
       ],
+      "descriptors": [
+       {name: "D1"  },
+       {name: "D2"}
+     ],
       "source": "ENEM",
       "year": "2018",
       "author": "Diego Gonçalves Carvalho",
@@ -65,6 +69,10 @@ const question = {
         { "name": "Química" },
         { "name": "Física" }
       ],
+      "descriptors": [
+       {name: "D1"  },
+       {name: "D2"}
+     ],
       "source": "ENEM",
       "year": "2010",
       "author": "Thiago Oliveira dos Santos",

@@ -2,7 +2,7 @@ import React from "react";
 import Descriptor from "./Descriptor"
 
 const DescriptorList = ({list, styleTag}) =>
-                  <div>
+                  <div class="descriptor-list">
                   {list.map((descriptor, i) =>
                       <Descriptor key={i}
                             name={descriptor.name}

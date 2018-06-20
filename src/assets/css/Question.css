@@ -126,13 +126,23 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
   }
   span.level-name, span.difficulty-level, span.teaching-level, span.tag-name,
   span.descriptor-name, span.author {
-    display: flex;
+    display: inline-flex;
   }
 
   .question-information span, .question-information .info-label{
     font-size: 14px;
   }
 
+  .related-question.container .card {
+    margin-bottom: 15px;
+}
+
+}
+
+@media (min-width: 867px){
+.h-100.card .card-text {
+    margin-top: 50px;
+}  
 }
 
 .buttonCard{
@@ -159,4 +169,21 @@ p.card-text, .card-text {
 
 .card-body {
     padding: 15px;
+}
+
+span.author-card {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.card-body span.label-info, .card-body .source-name {
+    font-size: 13px;
+}
+
+p.info-question-card {
+    margin-bottom: 10px;
+}
+
+.image-card.card .source-name {
+    margin-bottom: 0px;
 }

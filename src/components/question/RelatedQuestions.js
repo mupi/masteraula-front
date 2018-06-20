@@ -4,7 +4,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import QuestionList from './QuestionList'
 
 const RelatedQuestions = ({rquestions})=>  (
-              <Container>
+              <Container className="related-question">
                 <Row className="title-section-question">
                       <h4><i className="fa fa-clone"></i> Questões Relacionadas</h4>
                 </Row>
