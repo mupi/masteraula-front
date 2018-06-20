@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Row, Input, Container, Col, Label, Button } from 'reactstrap';
 
-const DocumentForm =() =>
-             <Container> 
+const DocumentForm =() => {
+      return(<Container> 
               Nome: <Input /><br/>
+              <Container >
               Cabeçalho (padrão):<p/>
-              <Container>
                 <Row>
                   <Col xs='2'>
                   Logo<br/>
@@ -28,21 +28,9 @@ const DocumentForm =() =>
                     </Row>
                   </Col>
                 </Row>
-              </Container><p/>
-
-              <Row>Selecione o formato do template como serão apresentadas as questões: </Row><p/>
-              <Row>
-                <Col sm="12" md={{ size: 8, offset: 2 }}>
-                  <Container>
-                  Uma coluna
-                  </Container>
-                </Col>
-              </Row>
-              <Row>
-                <Col sm={{ size: 'auto', offset: 10 }}>
-                  <Button> Visualizar</Button>
-                </Col>
-              </Row>
               </Container>
 
-export default DocumentForm;         
+              </Container>
+              )}
+
+export default DocumentForm;
