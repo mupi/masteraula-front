@@ -65,7 +65,7 @@ div#navbar, div#navbar .col-12 {
 
 
 html body #masteraula-nav-header .navbar-nav:first-child {
-    margin-left: -25px;
+    margin-left: 0px;
 }
 
 html body #rmasteraula-nav-header .navbar-nav {
@@ -76,10 +76,6 @@ html body #rmasteraula-nav-header .navbar-nav {
 html body #masteraula-nav-header .navbar-nav {
     margin: 0;
     display:flex;
-}
-
-html body #masteraula-nav-header .navbar-nav:first-child {
-    margin-left: -25px;
 }
 
 
