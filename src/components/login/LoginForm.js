@@ -1,46 +1,49 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Input } from 'reactstrap';
+import { Button, Form, FormGroup } from 'reactstrap';
 import { NavLink } from "react-router-dom";
-import { connect } from 'react-redux'
+
 import { Container, Row, Col } from 'reactstrap';
-import { fetchLogin } from 'actions/loginAction';
+import { Field, reduxForm } from 'redux-form'
 
 
-const LoginForm = ({dispatch}) => {
-  let passwordInput
-  let emailInput
+const LoginForm = props => {
+  const { handleSubmit, error } = props
 
   return(
     <Col sm="12" xs="12">
-      <Form onSubmit={e =>{
-        dispatch(fetchLogin(emailInput.value, passwordInput.value))
-        e.preventDefault()
-      }}>
+      <Form onSubmit={ handleSubmit }>
         <FormGroup>
-          <input
+          <Field
+            component="input"
             type="email"
             name="email"
             id="exampleEmail"
             placeholder="Ingrese seu email"
-            ref ={ node => emailInput = node}
+            className="form-control"
           />
         </FormGroup>
         <FormGroup>
-          <input
+          <Field
+            component="input"
             type="password"
             name="password"
             id="examplePassword"
             placeholder="Ingrese sua senha"
-            ref ={ node => passwordInput = node}
+            className="form-control"
           />
         </FormGroup>
-        <FormGroup>
-            <NavLink  to="/esqueci-senha">Esqueci minha senha</NavLink>
-        </FormGroup>
-        <Button type="submit">Entrar</Button>
+        {error && <strong>{error}</strong>}
+        <div className="text-center">
+            <FormGroup>
+                <NavLink  to="/esqueci-senha">Esqueci minha senha</NavLink>
+            </FormGroup>
+            <Button type="submit">Entrar</Button>
+        </div>
       </Form>
     </Col>
   )
 }
-
-export default connect()(LoginForm);
+ 
+export default reduxForm({
+  form: 'login'
+})(LoginForm)

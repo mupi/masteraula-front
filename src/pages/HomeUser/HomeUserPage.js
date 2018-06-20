@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom'
+import React from 'react';
 import Sidebar from 'components/sidebar/Sidebar'
 import { Row, Col, Container } from 'reactstrap'
 import 'assets/css/HomeUser.css';

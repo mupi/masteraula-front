@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import RegisterForm from "components/userregister/RegisterForm.js";
 import 'assets/css/Register.css';
