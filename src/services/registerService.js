@@ -1,8 +1,19 @@
-import {apiUrl, handleResponse} from 'helpers/config';
+import {apiUrl} from 'helpers/config';
  
 const registerService = {
     register
 };
+
+export const handleResponse = (response) => {
+    return response.json().then(data => {
+        if (!response.ok) {
+            const error = (data && data.email);
+            return Promise.reject(error);
+        }
+ 
+        return data;
+    });
+}
  
 function register(email, password, name) {
     const requestOptions = {
