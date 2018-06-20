@@ -25,8 +25,7 @@ const renderField = ({
 );
 
 const RegisterForm = props => {
-  const { handleSubmit } = props
-  const { syncErrors } = props
+  const { handleSubmit, error } = props
 
   return(
       <div className="row justify-content-center">
@@ -87,9 +86,9 @@ const RegisterForm = props => {
                     </Label>
                 </FormGroup>
                 <FormGroup check>
-
+                  {error && <strong>{error}</strong>}
                 </FormGroup>
-                <Button>Entrar</Button>
+                <Button>Enviar</Button>
             </div>
           </Form>
         </Col>
