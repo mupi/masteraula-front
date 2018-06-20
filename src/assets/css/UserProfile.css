@@ -33,7 +33,7 @@ body{
 
 .contenedor-profile {
     border: 1px solid var(--color-ma-blue);
-    padding: 25px;
+    padding: 25px 15px;
     border-radius: 7px;
 }
 

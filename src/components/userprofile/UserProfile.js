@@ -76,7 +76,7 @@ const UserProfile = () =>
                       <h5>Trocar senha</h5>
                     </Row>
                     <Row>
-                        <Col sm="4"><Input
+                        <Col sm="4" xs="12"><Input
                           type="password"
                           name="password"
                           id="senha-atual"
