@@ -31,7 +31,7 @@ const Sidebar = ({docName="Novo documento", docNumberQuestions="0"})=> {
                           <div className="container-export-button">
                             <Button color="secondary"><i className="fa fa-download"></i> Exportar</Button>
                           </div>
-                        <ListGroup>
+                        <ListGroup className="sidebar-main-options">
                           <ListGroupItem color='secondary' >
                             <Link to="/new-document">  Novo documento </Link>
                           </ListGroupItem>

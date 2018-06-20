@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import RegisterForm from 'components/userregister/RegisterForm';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import 'assets/css/General.css';
 import { Link, Route } from 'react-router-dom'
 import { NavItem } from "reactstrap";

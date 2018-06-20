@@ -101,8 +101,7 @@ html body #masteraula-nav-header .navbar-nav:first-child {
 /******CSS for sidebar, used only with user logged******/
 html body #sidebar #sidebar-container {
     bottom: 0;
-    width: 250px;
-    overflow: hidden;
+    width: var(--sidebar-size);
     position: absolute;
     top: 110px;
 }
@@ -114,7 +113,7 @@ html body #sidebar {
 
 @media (max-width: 990px){
 html body #sidebar {
-      left: -250px;
+      left:  var(--sidebar-size-neg);
 }}
 
 html body #sidebar {
@@ -122,10 +121,10 @@ html body #sidebar {
     bottom: 0;
     z-index: 9999;
     position: fixed;
-    overflow: hidden;
+    overflow-x: hidden;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    width: 250px;
+    width:  var(--sidebar-size);
     background: var(--color-ma-dark-blue);
 }
 
@@ -189,13 +188,13 @@ html body #main-masteraula-container.container-open #sidebar{
 }
 html body #main-masteraula-container.container-open #body,
 html body #main-masteraula-container.container-open #footer-container{
-    margin-left: 250px;
-    margin-right: -250px;
+    margin-left:  var(--sidebar-size);
+    margin-right:  var(--sidebar-size-neg);
 }
 
 html body #main-masteraula-container.container-open #masteraula-nav-header {
-    margin-left: 250px;
-    margin-right: -250px;
+    margin-left:  var(--sidebar-size);
+    margin-right:  var(--sidebar-size-neg);
 }
 
 html body #masteraula-nav-header {
@@ -225,8 +224,12 @@ html body #masteraula-nav-header {
 .container-export-button{
   text-align: right;
   margin-top: 10px;
+  margin-right: 15px;
 }
 
+ul.sidebar-main-options.list-group {
+    margin-right: 15px;
+}
 
 /*sidebar de filters*/
 li.question-filter.list-group-item:hover {
@@ -247,6 +250,7 @@ li.question-category-filter.list-group-item:hover, .question-single-filter li.li
 
 .question-single-filter li.list-group-item {
     padding: 0px 15px;
+    font-size: 14px;
 }
 
 ul.question-single-filter.list-group {
@@ -260,7 +264,7 @@ li.question-category-filter.list-group-item {
 }
 
 li.question-category-filter a{
-    height: 45px;
+    height: 35px;
     border: none;
     outline: none;
     color: #89949B;
@@ -268,12 +272,12 @@ li.question-category-filter a{
     font-size: 14px;
     line-height: 14px;
     text-decoration: none;
-    padding: 15px 0px 15px 25px;
+    padding: 11px 0px 10px 15px;
     background: var(--color-ma-blue);
 }
 
 .question-category-filter i.fa.fa-angle-left {
-    top: 10px;
+    top: 7px;
     right: 25px;
     position: absolute;
     font-size: 20px;
