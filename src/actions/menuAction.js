@@ -7,6 +7,6 @@ export const toggleMenu = isOpen => ({
 })
 
 export const openSidebar = isOpenSidebar => ({
-  type: 'OPEN_SIDEBAR',
+  type: OPEN_SIDEBAR,
   isOpenSidebar: !isOpenSidebar
 })
