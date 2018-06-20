@@ -2,22 +2,22 @@ import React  from 'react';
 import {Button, Card, CardBlock, CardTitle, CardImg, CardBody, CardText, CardSubtitle, Row } from 'reactstrap';
 import imageCard from "assets/img/home/question-card.jpg";
 import DisciplineList from "components/disciplines/DisciplineList"
-import DescriptorList from "components/descriptors/DescriptorList"
+import TagList from "components/tags/TagList"
 import QuestionAuthor from "./QuestionAuthor"
 import QuestionSourceYear from "./QuestionSourceYear"
 import { Link, Route } from 'react-router-dom'
 import 'font-awesome/css/font-awesome.min.css';
 
-const QuestionCard = ({disciplines, source, year, extract, urlImage, author, descriptors}) =>
-			<Card  className= { urlImage != "" ?"h-10 image-card": "h-100" } >
-				{ urlImage != "" ? <CardImg top width="100%" src={imageCard} alt="Card image cap" /> : null }
+const QuestionCard = ({disciplines, source, year, extract, urlImage, author, teachingLevels}) =>
+			<Card  className= { urlImage !=="" ?"h-10 image-card": "h-100" } >
+				{ urlImage !== "" ? <CardImg top width="100%" src={imageCard} alt="Card image cap" /> : null }
 			  <CardBody>
 			    <Row>
 						<DisciplineList list={disciplines} />
 					</Row>
 							<Row><QuestionSourceYear styleTag="top-label-question source-name" source={source} year={year}/></Row>
-							{ urlImage == "" ?
-									<Row><DescriptorList styleTag="label-info descriptor-name" list={descriptors} /></Row>
+							{ urlImage === "" ?
+									<Row><TagList list={teachingLevels} styleTag="label-info teaching-level"/></Row>
 							 : null
 						 	}
 

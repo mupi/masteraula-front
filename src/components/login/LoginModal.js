@@ -3,6 +3,7 @@ import LoginForm from 'components/login/LoginForm';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 import 'assets/css/General.css';
+import 'assets/css/Login.css';
 import { Link } from 'react-router-dom'
 import { NavItem } from "reactstrap";
 

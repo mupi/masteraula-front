@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Form, FormGroup, Input, Label} from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
-import { FontAwesome} from 'react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from "assets/img/home/person-female.png";
 

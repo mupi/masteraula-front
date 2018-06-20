@@ -1,35 +1,9 @@
 import React from "react";
 import { ListGroup, ListGroupItem, Form } from 'reactstrap';
-import {
-  Route,
-  BrowserRouter,
-  Switch,
-  Link
-} from "react-router-dom";
-import { Row, Col, Container } from 'reactstrap';
-import { UncontrolledCollapse, Button, Input } from 'reactstrap';
+import {  Input } from 'reactstrap';
 
 import 'assets/css/Navigation.css';
 import 'font-awesome/css/font-awesome.min.css';
-
-const filters= {
-  "disciplines": [
-    { "name": "Química" },
-    { "name": "Física" },
-    { "name": "Matemática" },
-    { "name": "Português" }
-  ],
-  "teachingLevels":[
-    { "name": "Ensino Fundamental"},
-    { "name": "Ensino Médio I"},
-    { "name": "Ensino Médio II"},
-  ],
-  "difficultyLevels":[
-    { "name": "Fácil"},
-    { "name": "Médio"},
-    { "name": "Dificil"}
-  ]
-}
 
 const SidebarFilter = ({name, list})=> {
     return (
@@ -40,9 +14,6 @@ const SidebarFilter = ({name, list})=> {
                         )}
                       </ListGroup>
                 </ListGroupItem>
-
-
-
       )
 }
 

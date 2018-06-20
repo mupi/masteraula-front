@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Row, Col, ListGroup, ListGroupItem, Input, InputGroup, InputGroupAddon, Button, Container} from 'reactstrap';
+import { Row, Input, InputGroup, InputGroupAddon, Button} from 'reactstrap';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import QuestionList from "components/question/QuestionList"
 import 'assets/css/QuestionBase.css';
