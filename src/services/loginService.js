@@ -1,11 +1,11 @@
-import {apiUrl} from 'helpers/config';
+import {apiUrl, handleResponse} from 'helpers/config';
  
-export const loginService = {
+const loginService = {
     login,
     logout
 };
  
-function login(email, password) {
+function login (email, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -27,16 +27,4 @@ function logout() {
     localStorage.removeItem('session');
 }
 
-function handleResponse(response) {
-    return response.json().then(data => {
-        if (!response.ok) {
-            if (response.status === 401) {
-                logout();
-            }
-            const error = (data && data.error) || response.statusText;
-            return Promise.reject(error);
-        }
- 
-        return data;
-    });
-}
+export default loginService

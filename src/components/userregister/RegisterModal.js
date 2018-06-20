@@ -1,44 +1,47 @@
 import React from 'react';
-import RegisterForm from 'components/userregister/RegisterForm';
-import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import 'assets/css/General.css';
+import { Button, Modal, ModalHeader, ModalBody, NavItem } from 'reactstrap';
 import { Link, Route } from 'react-router-dom'
-import { NavItem } from "reactstrap";
+import { connect} from 'react-redux'
 
+import RegisterForm from 'components/userregister/RegisterForm';
+import { fetchRegister, toggleModal } from 'actions/registerAction';
 
-class RegisterModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modal: false
-    };
+import 'bootstrap/dist/css/bootstrap.css';
+import 'assets/css/General.css';
 
-    this.toggle = this.toggle.bind(this);
-  }
+const RegisterModal = props => {
+  
+  const { modal, toggleModal, submit } = props
 
-  toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
-  }
-
-  render() {
-    return (
-      <NavItem>
-        <Link to="/" onClick={this.toggle}>Cadastre-se</Link>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <div className="contenedor-register">
-            <ModalHeader toggle={this.toggle}></ModalHeader>
-            <ModalBody>
-                <h4>Cadastre-se</h4>
-                <RegisterForm />
-            </ModalBody>
-          </div>
-        </Modal>
-      </NavItem>
-    );
-  }
+  return (
+    <NavItem>
+      <Link to="/" onClick={ () => toggleModal(modal) }>Cadastre-se</Link>
+      <Modal isOpen={ modal } toggle={ () =>  toggleModal(modal) }>
+        <div className="contenedor-register">
+          <ModalHeader toggle={ () =>  toggleModal(modal) }></ModalHeader>
+          <ModalBody>
+              <h4>Cadastre-se</h4>
+              <RegisterForm onSubmit={ submit }/>
+          </ModalBody>
+        </div>
+      </Modal>
+    </NavItem>
+  );
 }
 
-export default RegisterModal;
+const mapStateToProps = state => ({
+  modal : state.register.modal
+})
+
+const mapDispatchToProps = dispatch => ({
+  toggleModal : modal => dispatch(toggleModal(modal)),
+  submit : values => {
+    console.log(values)
+     return dispatch(fetchRegister(values.email, values.password, values.name))
+  } 
+})
+
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(RegisterModal);

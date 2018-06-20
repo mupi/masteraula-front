@@ -3,6 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { connect } from 'react-redux'
 import { Link, Route } from 'react-router-dom'
 import { NavItem } from "reactstrap";
+
 import LoginForm from 'components/login/LoginForm';
 import { fetchLogin, toggleModal } from 'actions/loginAction';
 
@@ -11,11 +12,9 @@ import 'assets/css/General.css';
 
 const LoginModal = props => {
 
-  const { modal, toggleModal, submit, formError } = props
+  const { modal, toggleModal, submit } = props
 
   return (
-    
-
     <NavItem>
       <Link to="/" onClick={ () => toggleModal(modal) }>Login</Link>
       <Modal isOpen={ modal } toggle={ () => toggleModal(modal) }>
@@ -23,7 +22,7 @@ const LoginModal = props => {
           <ModalHeader toggle={ () => toggleModal(modal) }></ModalHeader>
           <ModalBody>
               <h4>Entrar no MasterAula</h4>
-              <LoginForm onSubmit={ submit } error={ formError }/>
+              <LoginForm onSubmit={ submit }/>
           </ModalBody>
         </div>
       </Modal>
@@ -32,8 +31,7 @@ const LoginModal = props => {
 }
 
 const mapStateToProps = state => ({
-  modal : state.login.modal,
-  formError : state.login.error
+  modal : state.login.modal
 })
 
 const mapDispatchToProps = dispatch => ({

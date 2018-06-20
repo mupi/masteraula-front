@@ -10,4 +10,6 @@ const QuestionComments = ()=>  (
         </Container>
   )
 
+export const oi = "oi"
+
 export default QuestionComments;
