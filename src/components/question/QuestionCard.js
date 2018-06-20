@@ -20,8 +20,7 @@ const QuestionCard = ({disciplines, source, year, extract, urlImage, author, tea
 									<Row><TagList list={teachingLevels} styleTag="label-info teaching-level"/></Row>
 							 : null
 						 	}
-
-
+								
 			    <div className="card-text">
 						<p className="info-question-card">Autor: <QuestionAuthor author={author} styleTag="author-card"/></p>
 						<p className="info-question-card">	{extract}</p>

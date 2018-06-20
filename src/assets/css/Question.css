@@ -141,8 +141,8 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
 
 @media (min-width: 867px){
 .h-100.card .card-text {
-    margin-top: 50px;
-}  
+    margin-top: 30px;
+}
 }
 
 .buttonCard{
