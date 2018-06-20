@@ -21,8 +21,8 @@ const Menu = (props) => {
   const { logout } = props
 
   const loggedOptions = <Nav className="ml-auto" navbar>
-          <NavItem><Link to="/user-profile">Meu profile</Link></NavItem>
-          <NavItem><Link onClick={ () => logout() }to="/">Logout</Link></NavItem>
+          <NavItem><Link to="/user-profile"><i className="fa fa-user"></i> Meu profile</Link></NavItem>
+          <NavItem><Link onClick={ () => logout() }to="/"><i className="fa fa-sign-out"></i> Logout</Link></NavItem>
           </Nav>;
 
   const notLoggedOptions = <Nav className="ml-auto" navbar>
@@ -34,7 +34,7 @@ const Menu = (props) => {
   const menu = <li className="sidebar-btn">
                   <Button href="/" onClick={ (e) => {
                     e.preventDefault();
-                    openSidebar(isOpenSidebar)} 
+                    openSidebar(isOpenSidebar)}
                   }>
                     <span><i className="fa fa-bars"></i></span>
                   </Button>

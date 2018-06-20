@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LoginForm from 'components/login/LoginForm';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'assets/css/Login.css';

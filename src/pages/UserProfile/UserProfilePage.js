@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import UserProfile from "components/userprofile/UserProfile.js";

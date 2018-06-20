@@ -10,7 +10,7 @@
 
 @media (min-width: 990px){
 html body #sidebar ~ #body {
-    margin-left: 250px;
+    margin-left: var(--sidebar-size);
 }}
 
 html body #navbar ~ #body {
@@ -53,7 +53,7 @@ div#main-masteraula-container {
 
 
 body .container-fluid {
-    background: #eee;
+    background: var(--color-ma-white);
 }
 
 div#sidebar .container-fluid,
