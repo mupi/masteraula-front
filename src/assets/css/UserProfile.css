@@ -36,3 +36,12 @@ body{
     padding: 25px;
     border-radius: 7px;
 }
+
+input#senha-atual, input#nova-senha {
+    margin-bottom: 10px;
+}
+
+textarea#sobre-mim {
+    border-radius: 0px;
+    height: 100px;
+}
