@@ -5,12 +5,13 @@ import { NavLink } from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
 
+
 const LoginForm = props => {
-  const { handleSubmit } = props
+  const { handleSubmit, error } = props
 
   return(
     <Col sm="12" xs="12">
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={ handleSubmit }>
         <FormGroup>
           <Field
             component="input"
@@ -31,6 +32,7 @@ const LoginForm = props => {
             className="form-control"
           />
         </FormGroup>
+        {error && <strong>{error}</strong>}
         <div className="text-center">
             <FormGroup>
                 <NavLink  to="/esqueci-senha">Esqueci minha senha</NavLink>
@@ -42,7 +44,6 @@ const LoginForm = props => {
   )
 }
  
-
 export default reduxForm({
   form: 'login'
 })(LoginForm)

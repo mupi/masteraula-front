@@ -1,5 +1,6 @@
 import { loginService } from 'services/loginService';
 import { history } from 'helpers/history';
+import { SubmissionError } from 'redux-form'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -10,7 +11,7 @@ export const TOGGLE_MODAL = 'TOGGLE_MODAL'
 export const fetchLogin = (username, password) => {
   return dispatch => {
     dispatch(requestLogin(username))
-    loginService.login(username, password)
+    return loginService.login(username, password)
       .then(
         session => {
           dispatch(success(session))
@@ -18,6 +19,9 @@ export const fetchLogin = (username, password) => {
         },
         error => {
           dispatch(failure(error))
+          throw new SubmissionError({
+            _error: 'Usuário e/ou senha inválido(s)'
+          })
         }
       )
   }

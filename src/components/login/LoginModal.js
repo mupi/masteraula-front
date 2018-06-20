@@ -11,9 +11,7 @@ import 'assets/css/General.css';
 
 const LoginModal = props => {
 
-  const { modal } = props
-  const { toggleModal } = props
-  const { submit } = props
+  const { modal, toggleModal, submit, formError } = props
 
   return (
     
@@ -25,7 +23,7 @@ const LoginModal = props => {
           <ModalHeader toggle={ () => toggleModal(modal) }></ModalHeader>
           <ModalBody>
               <h4>Entrar no MasterAula</h4>
-              <LoginForm onSubmit={ submit }/>
+              <LoginForm onSubmit={ submit } error={ formError }/>
           </ModalBody>
         </div>
       </Modal>
@@ -34,13 +32,14 @@ const LoginModal = props => {
 }
 
 const mapStateToProps = state => ({
-  modal : state.login.modal
+  modal : state.login.modal,
+  formError : state.login.error
 })
 
 const mapDispatchToProps = dispatch => ({
   toggleModal : modal => dispatch(toggleModal(modal)),
   submit : values => {
-    dispatch(fetchLogin(values.email, values.password))
+    return dispatch(fetchLogin(values.email, values.password))
   } 
 })
 
