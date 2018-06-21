@@ -38,7 +38,7 @@ const RegisterForm = props => {
                 type="text"
                 name="name"
                 id="name"
-                label="Ingrese seu nome completo"
+                label="Insira seu nome completo"
               />
               <span className="has-icon">
 
@@ -51,7 +51,7 @@ const RegisterForm = props => {
                 type="email"
                 name="email"
                 id="email"
-                label="Ingrese seu email"
+                label="Insira seu email"
               />
             </FormGroup>
             <FormGroup>
@@ -60,7 +60,7 @@ const RegisterForm = props => {
                 type="password"
                 name="password"
                 id="password"
-                label="Ingrese sua senha"
+                label="Insira sua senha"
               />
             </FormGroup>
             <FormGroup>
@@ -76,17 +76,17 @@ const RegisterForm = props => {
                 <FormGroup check className="form-group">
                     <Label check>
                       <Field name="accept_terms" id="accept_terms" type="checkbox"
-                        component= { accept_terms => 
+                        component= { accept_terms =>
                           <div>
                             <input type={accept_terms.type} {...accept_terms.input}/>
-                            Eu concordo com os termos de uso 
+                            Eu concordo com os <a className="use-terms" href="#">Termos de Uso</a>
                             { accept_terms.meta.touched && accept_terms.meta.error && <span><br/>{accept_terms.meta.error}</span> }
                           </div>
                         }/>{' '}
                     </Label>
                 </FormGroup>
                 <FormGroup check>
-                  {error && <strong>{error}</strong>}
+                  {error && <div className="errorMessage">{error}</div>}
                 </FormGroup>
                 <Button>Enviar</Button>
             </div>
@@ -103,8 +103,8 @@ const validate = values => {
   }
   if (!values.email) {
     errors.email = 'Insira um email'
-  } 
-  
+  }
+
   if (!values.password) {
     errors.password = 'Insira uma senha'
   } else if (values.password.length < 8){
@@ -112,7 +112,7 @@ const validate = values => {
   } else if (!isNaN(values.password)){
     errors.password = 'A senha não deve conter apenas números'
   }
-  
+
   if (!values.confirm_password) {
     errors.confirm_password = 'Insira uma confirmação de senha'
   }
