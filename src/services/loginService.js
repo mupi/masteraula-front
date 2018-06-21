@@ -11,7 +11,14 @@ export const handleResponse = (response) => {
             if (response.status === 401) {
                 logout();
             }
-            const error = (data && data.error) || response.statusText;
+            if (data && data.non_field_errors){
+                if (data.non_field_errors[0] === "E-mail is not verified."){
+                    return Promise.reject("Email ainda não verificado");
+                } else if (data.non_field_errors[0] === "Unable to log in with provided credentials."){
+                    return Promise.reject("Usuário e/ou senha inválido(s)");
+                }
+            }
+            const error = (data && data.non_field_errors) || response.statusText;
             return Promise.reject(error);
         }
  

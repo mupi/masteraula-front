@@ -20,7 +20,7 @@ export const fetchLogin = (username, password) => {
         error => {
           dispatch(failure(error))
           throw new SubmissionError({
-            _error: 'Usuário e/ou senha inválido(s)'
+            _error: error
           })
         }
       )
