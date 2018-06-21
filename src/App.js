@@ -39,36 +39,31 @@ class App extends Component {
   }
 
   render() {
-    if (this.props.isLoggedIn){
       return (
         <ConnectedRouter history = { history }>
           <div id="main-masteraula-container" className={ this.props.isOpenSidebar ? 'container-open' : ''}>
             <Menu />
+          { this.props.isLoggedIn?
               <Switch>
                 <Route path="/home" component={QuestionBasePage}/>
                 <Route path="/user-profile" component={UserProfilePage}/>
                 <Route path="/view-question" component={QuestionPage}/>
                 <Route path="/new-document" component={CreateDocumentPage}/>
-              </Switch>
-            <Footer year="2018" version="1.0" />
-          </div>
-        </ConnectedRouter>
-    );
-    }
-    return (
-        <ConnectedRouter history = { history }>
-          <div id="main-masteraula-container" className={ this.props.isOpenSidebar ? 'container-open' : ''}>
-            <Menu />
+                <Route component={HomePage}/>
+               </Switch>
+        :
               <Switch>
-                <Route exact path="/" component={HomePage}/>
+                
                 <Route path="/login" component={LoginModal} />
                 <Route path="/register" component={RegisterModal}/>
                 <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
+                <Route component={HomePage}/>
               </Switch>
+          }
             <Footer year="2018" version="1.0" />
           </div>
         </ConnectedRouter>
-    );
+    )
   }
 }
 

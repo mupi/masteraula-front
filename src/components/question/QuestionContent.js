@@ -20,11 +20,12 @@ const QuestionContent = ({alternatives, question ,answer}) =>
                   <p className="text-question">{question}</p>
                 </Col>
               </Row>
+              {alternatives?
               <Row className="question-section-border">
                 <Col sm="12" xs="12">
                   <AlternativeList list={alternatives} />
                 </Col>
-              </Row>
+              </Row>:''}
               {answer?
               <Row className="question-section-border">
                 <Col sm="12" xs="12">
