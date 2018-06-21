@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
 import { toggleModal } from 'actions/loginAction';
+import { resetForgotPasswordForm } from 'actions/forgotPasswordAction';
 
 
 const LoginForm = props => {
@@ -51,7 +52,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal : modal => dispatch(toggleModal(modal))
+  toggleModal : modal => {
+    dispatch(toggleModal(modal))
+    dispatch(resetForgotPasswordForm())
+  }
 })
 
 export default connect(
