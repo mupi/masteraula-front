@@ -1,24 +1,36 @@
 import React from 'react';
 import { Row,  Container, Col, Label, Button } from 'reactstrap';
 import QuestionContent from "../../components/question/QuestionContent.js";
+import DisciplineList from "components/disciplines/DisciplineList"
+import QuestionSourceYear from "components/question/QuestionSourceYear"
 
 const DocumentPreview = (props) => {
     
   let questions = [];
   for(let i=0; i<props.data.questions.length;i++){
     let question = props.data.questions[i];
-     questions.push(
-       <div>
-         <b>Questão {i+1}:</b>
-         <QuestionContent question={question.question} />
-         <Row>
-           <Col sm={{ size: 'auto', offset: 8 }}>
-             <Button>Ver mais</Button>
-             <Button color='danger'>Remover</Button>
-           </Col>
-         </Row>
-       </div>
-       );
+      questions.push(
+      <div>
+        <Row>
+          <Col sm='2'>
+            <b>Questão {i+1}:</b>
+          </Col>
+          <Col sm='2'>
+            <DisciplineList list={question.disciplines} />
+          </Col>
+          <Col sm='2'>
+            <QuestionSourceYear styleTag="top-label-question source-name" source={question.source} year={question.year}/>
+          </Col>
+            <QuestionContent question={question.question} />
+        </Row>
+        <Row>
+          <Col sm={{ size: 'auto', offset: 8 }}>
+            <Button>Ver mais</Button>
+            <Button color='danger'>Remover</Button>
+          </Col>
+        </Row>
+      </div>
+    );
   }
 
   return(
