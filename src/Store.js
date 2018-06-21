@@ -3,7 +3,7 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { combineReducers } from 'redux'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
-import { login, menu } from 'reducers'
+import { login, menu, register } from 'reducers'
 import { history } from 'helpers/history'
 import { reducer as formReducer } from 'redux-form'
 
@@ -12,6 +12,7 @@ const loggerMiddleware = createLogger()
 const rootReducer = combineReducers({
     login, 
     menu,
+    register, 
     form: formReducer
 })
 
