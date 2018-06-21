@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, NavItem } from 'reactstrap';
 import { Link, Route } from 'react-router-dom'
 import { connect} from 'react-redux'
+import { SubmissionError } from 'redux-form'
 
 import RegisterForm from 'components/userregister/RegisterForm';
 import { fetchRegister, toggleModal } from 'actions/registerAction';
@@ -36,8 +37,14 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   toggleModal : modal => dispatch(toggleModal(modal)),
   submit : values => {
-    console.log(values)
-     return dispatch(fetchRegister(values.email, values.password, values.name))
+
+    if (!values.accept_terms) {
+      throw new SubmissionError({
+        _error: 'Termos de uso não aceito'
+      })
+    }
+
+    return dispatch(fetchRegister(values.email, values.password, values.name))
   } 
 })
 

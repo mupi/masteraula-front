@@ -97,10 +97,6 @@ const RegisterForm = props => {
 }
 
 const validate = values => {
-
-  console.log(values)
-  console.log("asdf")
-
   const errors = {}
   if (!values.name) {
     errors.name = 'Insira um nome'
@@ -108,22 +104,20 @@ const validate = values => {
   if (!values.email) {
     errors.email = 'Insira um email'
   } 
-  // else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-  //   errors.email = 'Invalid email address'
-  // }
-
+  
   if (!values.password) {
     errors.password = 'Insira uma senha'
+  } else if (values.password.length < 8){
+    errors.password = 'A senha deve conter no mínimo 8 dígitos'
+  } else if (!isNaN(values.password)){
+    errors.password = 'A senha não deve conter apenas números'
   }
+  
   if (!values.confirm_password) {
     errors.confirm_password = 'Insira uma confirmação de senha'
   }
   if (values.password && values.confirm_password && values.password !== values.confirm_password){
     errors.confirm_password = 'Senha e confirmação não coincidem'
-  }
-
-  if (!values.accept_terms) {
-    errors.accept_terms = 'Confirme os termos de uso'
   }
 
   return errors
