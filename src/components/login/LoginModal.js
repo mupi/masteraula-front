@@ -17,7 +17,7 @@ const LoginModal = props => {
 
   return (
     <NavItem>
-      <Link to="/" onClick={ () => toggleModal(modal) }>Login</Link>
+      <Link to="#" onClick={ () => toggleModal(modal) }>Login</Link>
       <Modal isOpen={ modal } toggle={ () => toggleModal(modal) }>
         <div className="contenedor-login">
           <ModalHeader toggle={ () => toggleModal(modal) }></ModalHeader>

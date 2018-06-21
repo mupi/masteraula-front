@@ -1,10 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import ForgotPassword from 'components/forgotpassword/ForgotPassword';
+import RedefinePassword from 'components/forgotpassword/RedefinePassword';
 
-const ForgotPasswordPage= () =>
+
+const RedefinePasswordPage= () =>
             <div className="main-contenedor middle-box text-center loginscreen  animated fadeInDown">
-                    <ForgotPassword />
+                    <RedefinePassword />
             </div>
 
-export default ForgotPasswordPage;
+export default RedefinePasswordPage;

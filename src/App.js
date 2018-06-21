@@ -10,6 +10,7 @@ import LoginModal from "components/login/LoginModal";
 import RegisterModal from "components/userregister/RegisterModal";
 
 import ForgotPasswordPage from "pages/ForgotPassword/ForgotPasswordPage";
+import RedefinePasswordPage from "pages/RedefinePassword/RedefinePasswordPage";
 import UserProfilePage from "pages/UserProfile/UserProfilePage";
 
 import HomePage from "pages/Home/HomePage.js";
@@ -62,6 +63,7 @@ class App extends Component {
                 <Route path="/login" component={LoginModal} />
                 <Route path="/register" component={RegisterModal}/>
                 <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
+                <Route path="/redefine-senha" component={RedefinePasswordPage}/>
               </Switch>
             <Footer year="2018" version="1.0" />
           </div>
