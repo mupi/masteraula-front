@@ -9,6 +9,7 @@ import { fetchLogin, toggleModal } from 'actions/loginAction';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'assets/css/General.css';
+import 'assets/css/Login.css';
 
 const LoginModal = props => {
 
@@ -38,11 +39,11 @@ const mapDispatchToProps = dispatch => ({
   toggleModal : modal => dispatch(toggleModal(modal)),
   submit : values => {
     return dispatch(fetchLogin(values.email, values.password))
-  } 
+  }
 })
 
 export default connect(
-  mapStateToProps, 
+  mapStateToProps,
   mapDispatchToProps
 )
 (LoginModal);

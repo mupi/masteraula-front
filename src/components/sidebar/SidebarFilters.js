@@ -1,13 +1,5 @@
 import React from "react";
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import {
-  Route,
-  BrowserRouter,
-  Switch,
-  Link
-} from "react-router-dom";
-import { Row, Col, Container } from 'reactstrap';
-import { UncontrolledCollapse, Button, Input } from 'reactstrap';
 import SidebarFilter from "components/sidebarfilter/SidebarFilter";
 
 import 'assets/css/Navigation.css';

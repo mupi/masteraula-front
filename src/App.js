@@ -6,9 +6,7 @@ import 'assets/css/App.css';
 import 'assets/css/General.css';
 
 
-import LoginPage from "pages/Login/LoginPage";
 import LoginModal from "components/login/LoginModal";
-import RegisterPage from "pages/UserRegister/RegisterPage"
 import RegisterModal from "components/userregister/RegisterModal";
 
 import ForgotPasswordPage from "pages/ForgotPassword/ForgotPasswordPage";

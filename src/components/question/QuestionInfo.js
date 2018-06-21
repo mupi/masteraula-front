@@ -3,7 +3,9 @@ import { Container, Row, Col } from 'reactstrap';
 import 'font-awesome/css/font-awesome.min.css';
 import StarRating from 'components/stars/StarRating'
 import DisciplineList from "components/disciplines/DisciplineList"
+import DescriptorList from "components/descriptors/DescriptorList"
 import TagList from "components/tags/TagList"
+import QuestionAuthor from "./QuestionAuthor"
 
 const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficulty, author}) => (
             <Container className="question-information">
@@ -37,13 +39,13 @@ const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficult
               <Row className="row-info">
                  <Col  className="info-label" sm="4" xs="4">Descritores</Col>
                  <Col sm="8" xs="12">
-                    <TagList list={descriptors} styleTag="label-info descriptor-name"/>
+                    <DescriptorList list={descriptors} styleTag="label-info descriptor-name"/>
                  </Col>
               </Row>
               <Row className="row-info">
                  <Col  className="info-label" sm="4" xs="4">Autor</Col>
                  <Col sm="8" xs="8">
-                   <span className="label-info author">{author}</span>
+                   <QuestionAuthor author={author} styleTag="label-info author"/>
                  </Col>
               </Row>
               <Row className="row-info">
