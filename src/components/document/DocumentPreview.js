@@ -23,7 +23,6 @@ const DocumentPreview = (props) => {
 
   return(
              <Container> 
-              Nome: <Label>{props.data.name}</Label><br/>
               <div className="question-section-border">
               <Container> 
                 <Row>
