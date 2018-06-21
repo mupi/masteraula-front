@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Form, FormGroup, Input, Label} from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
-import { FontAwesome} from 'react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from "assets/img/home/person-female.png";
 
@@ -77,7 +76,7 @@ const UserProfile = () =>
                       <h5>Trocar senha</h5>
                     </Row>
                     <Row>
-                        <Col sm="4"><Input
+                        <Col sm="4" xs="12"><Input
                           type="password"
                           name="password"
                           id="senha-atual"

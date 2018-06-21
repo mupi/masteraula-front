@@ -1,6 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import { Row, Col, Container } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 import '../../assets/css/Footer.css';
 

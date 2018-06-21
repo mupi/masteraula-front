@@ -30,3 +30,18 @@ body{
 .sub-section-user-title{
   margin-top: 10px;
 }
+
+.contenedor-profile {
+    border: 1px solid var(--color-ma-blue);
+    padding: 25px 15px;
+    border-radius: 7px;
+}
+
+input#senha-atual, input#nova-senha {
+    margin-bottom: 10px;
+}
+
+textarea#sobre-mim {
+    border-radius: 0px;
+    height: 100px;
+}

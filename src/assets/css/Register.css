@@ -11,6 +11,12 @@ body{
 
 .contenedor-register .form-group{
    font-family: 'Lato',sans-serif;
+/*   margin-bottom: 13px;*/
+}
+
+.contenedor-register .form-group span {
+    color: red;
+    font-size: 12px;
 }
 
 .contenedor-register h4 {

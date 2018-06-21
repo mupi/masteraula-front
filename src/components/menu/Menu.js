@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, NavItem, Collapse, NavbarToggler, Nav, Button } from "reactstrap";
 import { Row, Col } from 'reactstrap';
 
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from 'actions/loginAction'
 import { toggleMenu, openSidebar } from 'actions/menuAction';
@@ -22,7 +22,7 @@ const Menu = (props) => {
 
   const loggedOptions = <Nav className="ml-auto" navbar>
           <NavItem><Link to="/user-profile"><i className="fa fa-user"></i> Meu profile</Link></NavItem>
-          <NavItem><Link onClick={ () => logout() }to="/"><i className="fa fa-sign-out"></i> Logout</Link></NavItem>
+          <NavItem><Link onClick={ (e) => {e.preventDefault(); logout() } } to="/"><i className="fa fa-sign-out"></i> Logout</Link></NavItem>
           </Nav>;
 
   const notLoggedOptions = <Nav className="ml-auto" navbar>

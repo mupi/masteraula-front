@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Container, Nav, NavItem, NavLink, TabContent, TabPane, Col } from 'reactstrap';
+import { Row, Container, Nav, NavItem, NavLink, TabContent, TabPane, Col, Button, Card, CardTitle, CardText } from 'reactstrap';
 import DocumentForm from '../../components/document/DocumentForm.js';
 import DocumentPreview from '../../components/document/DocumentPreview.js';
 import HomeUserPage from "../HomeUser/HomeUserPage"
@@ -12,7 +12,7 @@ class CreateDocumentPage extends Component{
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      activeTab: '2'
+      activeTab: '1'
     };
   }
 
@@ -228,9 +228,8 @@ class CreateDocumentPage extends Component{
 
     return(
           <HomeUserPage>
-            <Container>
-              <Row>
-              	<Nav tabs>
+            <div>
+                <Nav tabs>
                 <NavItem>
                   <NavLink
                     className={classnames({ active: this.state.activeTab === '1' })}
@@ -256,8 +255,7 @@ class CreateDocumentPage extends Component{
                       <DocumentPreview data={data}/>
                 </TabPane>
                 </TabContent>
-              </Row>
-            </Container>
+            </div>
           </HomeUserPage>);
     }
 }

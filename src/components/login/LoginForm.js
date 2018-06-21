@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup } from 'reactstrap';
+import { connect } from 'react-redux'
 import { NavLink } from "react-router-dom";
 
 import { Container, Row, Col } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
+import { toggleModal } from 'actions/loginAction';
 
 
 const LoginForm = props => {
-  const { handleSubmit, error } = props
+  const { handleSubmit, error, modal, toggleModal } = props
 
   return(
     <Col sm="12" xs="12">
@@ -32,10 +34,10 @@ const LoginForm = props => {
             className="form-control"
           />
         </FormGroup>
-        {error && <strong>{error}</strong>}
+        {error && <div className="errorMessage">{error}</div>}
         <div className="text-center">
             <FormGroup>
-                <NavLink  to="/esqueci-senha">Esqueci minha senha</NavLink>
+                <NavLink  to="/esqueci-senha" onClick={ () => toggleModal(modal) }>Esqueci minha senha</NavLink>
             </FormGroup>
             <Button type="submit">Entrar</Button>
         </div>
@@ -43,7 +45,19 @@ const LoginForm = props => {
     </Col>
   )
 }
- 
-export default reduxForm({
+
+const mapStateToProps = state => ({
+  modal : state.login.modal
+})
+
+const mapDispatchToProps = dispatch => ({
+  toggleModal : modal => dispatch(toggleModal(modal))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
+(reduxForm({
   form: 'login'
-})(LoginForm)
+})(LoginForm))

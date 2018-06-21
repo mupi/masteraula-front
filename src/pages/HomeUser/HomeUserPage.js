@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from 'components/sidebar/Sidebar'
-import { Row, Col, Container } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import 'assets/css/HomeUser.css';
 
 const HomeUserPage = ({children}) =>

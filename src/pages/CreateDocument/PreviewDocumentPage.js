@@ -13,7 +13,7 @@ const PreviewDocumentPage =() =>{
             	<DocumentPreview data={data}/>
             </Row>
           </Container>);
-  
+
   }
 
 

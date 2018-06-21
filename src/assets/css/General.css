@@ -11,3 +11,9 @@
   --sidebar-size:280px;
   --sidebar-size-neg:-280px;
 }
+
+.errorMessage {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+}
