@@ -32,7 +32,7 @@ const LoginForm = props => {
             className="form-control"
           />
         </FormGroup>
-        {error && <strong>{error}</strong>}
+        {error && <div className="errorMessage">{error}</div>}
         <div className="text-center">
             <FormGroup>
                 <NavLink  to="/esqueci-senha">Esqueci minha senha</NavLink>
@@ -43,7 +43,7 @@ const LoginForm = props => {
     </Col>
   )
 }
- 
+
 export default reduxForm({
   form: 'login'
 })(LoginForm)

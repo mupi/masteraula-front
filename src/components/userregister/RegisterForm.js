@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Form, FormGroup, Input, Label} from 'reactstrap';
-import { Container, Row, Col } from 'reactstrap';
-import { FontAwesome} from 'react-fontawesome';
+import { Col } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
