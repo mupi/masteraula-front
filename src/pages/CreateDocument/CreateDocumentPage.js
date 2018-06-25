@@ -94,7 +94,7 @@ class CreateDocumentPage extends Component{
 
   },
   {"id":"100",
-    "question": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha:",
+    "question": "Assi",
     "disciplines": [
       { "name": "Química" },
       { "name": "Física" }
@@ -159,7 +159,7 @@ class CreateDocumentPage extends Component{
 
   },
   {"id":"100",
-    "question": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha:",
+    "question": "Assinale a alternativa que melhor expresse  contido na tirinha:",
     "disciplines": [
       { "name": "Química" },
       { "name": "Física" }
