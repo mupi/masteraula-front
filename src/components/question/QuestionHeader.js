@@ -14,7 +14,7 @@ const QuestionHeader = ({ disciplines, source, year})  =>
                 <QuestionSourceYear styleTag="top-label-question source-name" source={source} year={year}/>
               </Row>
               <Row className="title-section-question">
-                <h4><i className="fa fa-question-circle"></i> Questão</h4>
+                <h4><i className="fa fa-chevron-circle-right"></i> Questão</h4>
               </Row>
             </Container>
 
