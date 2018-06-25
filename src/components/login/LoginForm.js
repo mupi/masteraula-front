@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup } from 'reactstrap';
+import { Button, Form, FormGroup , Col} from 'reactstrap';
 import { connect } from 'react-redux'
 import { NavLink } from "react-router-dom";
-
-import { Container, Row, Col } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
+
 import { toggleModal } from 'actions/loginAction';
 import { resetForgotPasswordForm } from 'actions/forgotPasswordAction';
-
 
 const LoginForm = props => {
   const { handleSubmit, error, modal, toggleModal } = props

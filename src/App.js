@@ -63,7 +63,7 @@ class App extends Component {
                 <Route path="/login" component={LoginModal} />
                 <Route path="/register" component={RegisterModal}/>
                 <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
-                <Route path="/redefine-senha" component={RedefinePasswordPage}/>
+                <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPage}/>
               </Switch>
             <Footer year="2018" version="1.0" />
           </div>

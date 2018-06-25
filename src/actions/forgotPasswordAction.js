@@ -12,7 +12,7 @@ export const resetForgotPasswordForm = () => ({
 
 export const sendForgotPasswordEmail = (email) => {
   return dispatch => {
-    dispatch(requestForgotPassword(email))
+    dispatch(requestForgotPassword())
     return forgotPasswordService.sendForgotPasswordEmail(email)
       .then(
         () => {
@@ -28,6 +28,28 @@ export const sendForgotPasswordEmail = (email) => {
   }
 
   function requestForgotPassword(){ return { type: FORGOT_PASSWORD_REQUEST } }
+  function success(){ return { type: FORGOT_PASSWORD_SUCCESS } }
+  function failure(error){ return { type: FORGOT_PASSWORD_FAILURE, error } }
+}
+
+export const resetForgotPassword = (password, confirmation, uid, token) => {
+  return dispatch => {
+    dispatch(requestResetForgotPassword())
+    return forgotPasswordService.resetForgotPassword(password, confirmation, uid, token)
+      .then(
+        () => {
+          dispatch(success())
+        },
+        error => {
+          dispatch(failure(error))
+          throw new SubmissionError({
+            _error: 'Não existe conta associada com este email'
+          })
+        }
+      )
+  }
+
+  function requestResetForgotPassword(){ return { type: FORGOT_PASSWORD_REQUEST } }
   function success(){ return { type: FORGOT_PASSWORD_SUCCESS } }
   function failure(error){ return { type: FORGOT_PASSWORD_FAILURE, error } }
 }
