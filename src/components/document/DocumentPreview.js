@@ -83,7 +83,7 @@ class DocumentPreview extends React.Component{
                   <Col>
                     <Label>{props.data.schoolName ? props.data.schoolName: 'Nome da instituição'}</Label><br/>
                     <Label>{props.data.course ? props.data.course : "Curso/Disciplina"}</Label>{' | '}
-                    <Label>{props.data.teacherName ? props.data.teacherName : "Professor(a)"}</Label>
+                    <Label>{props.data.teacherName ? props.data.teacherName : "Professor(a)"}</Label><br/>
                    {props.data.studentName? <p>Nome: ________________________________________________________</p>:''}
                    {props.data.class? 'Turma: _________  ':''}
                    {props.data.date? 'Data: ___/___/___  ':''}
