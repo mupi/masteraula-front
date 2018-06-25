@@ -5,6 +5,8 @@ export const FORGOT_PASSWORD_RESET = 'FORGOT_PASSWORD_OPEN'
 export const FORGOT_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST'
 export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS'
 export const FORGOT_PASSWORD_FAILURE = 'FORGOT_PASSWORD_FAILURE'
+
+export const CHANGE_PASSWORD_RESET = 'CHANGE_PASSWORD_RESET'
 export const CHANGE_PASSWORD_REQUEST = 'CHANGE_PASSWORD_REQUEST'
 export const CHANGE_PASSWORD_SUCCESS = 'CHANGE_PASSWORD_SUCCESS'
 export const CHANGE_PASSWORD_FAILURE = 'CHANGE_PASSWORD_FAILURE'
@@ -34,6 +36,10 @@ export const sendForgotPasswordEmail = (email) => {
   function success(){ return { type: FORGOT_PASSWORD_SUCCESS } }
   function failure(error){ return { type: FORGOT_PASSWORD_FAILURE, error } }
 }
+
+export const resetChangePasswordForm = () => ({
+  type : CHANGE_PASSWORD_RESET
+})
 
 export const resetForgotPassword = (password, confirmation, uid, token) => {
   return dispatch => {

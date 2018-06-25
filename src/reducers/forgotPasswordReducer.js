@@ -33,6 +33,11 @@ export function forgotPassword(state = initialState, action) {
             success : false
         })
 
+    case FORGOT_PASSWORD_RESET:
+        return Object.assign({}, state, {
+            success: false
+        });
+    break;  
     case CHANGE_PASSWORD_REQUEST:
         return Object.assign({}, state, {
             isFetching: true,
