@@ -18,12 +18,12 @@ const RedefinePasswordPage = props =>{
 }
 
 const mapStateToProps = state => ({
-  success : state.forgotPassword.success
+  success : state.forgotPassword.success,
+  error : state.forgotPassword.error
 })
 
 const mapDispatchToProps = dispatch => ({
   submit : (values, d, props) => { 
-    console.log(values.newpassword + " " + values.repeatpassword + " " + props.uid + " " + props.token)
     return dispatch(resetForgotPassword(values.newpassword, values.repeatpassword, props.uid, props.token))
   }
 })

@@ -6,7 +6,6 @@ import { Field, reduxForm } from 'redux-form'
 
 const ForgotPassword = props => {
   const { handleSubmit, success } = props
-  console.log(success)
 
   return(
     <div className="contenedor-forgotpassword">

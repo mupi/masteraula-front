@@ -47,7 +47,7 @@ function resetForgotPassword(new_password1, new_password2, uid, token) {
         return response.json().then(data => {
             if (!response.ok) {
                 const error = (data && data.error) || response.statusText;
-                return Promise.reject(error);
+                return Promise.reject("Endereço para troca de e-mail inválido");
             }
         
             return data;

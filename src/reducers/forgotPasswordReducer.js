@@ -1,4 +1,5 @@
 import { FORGOT_PASSWORD_RESET, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_FAILURE } from "actions/forgotPasswordAction";
+import {  CHANGE_PASSWORD_REQUEST, CHANGE_PASSWORD_SUCCESS, CHANGE_PASSWORD_FAILURE } from "actions/forgotPasswordAction";
 
 const initialState = {
   success: false,
@@ -31,6 +32,25 @@ export function forgotPassword(state = initialState, action) {
             error: action.error,
             success : false
         })
+
+    case CHANGE_PASSWORD_REQUEST:
+        return Object.assign({}, state, {
+            isFetching: true,
+            error : null
+        });
+    break;
+    case CHANGE_PASSWORD_SUCCESS:
+        return Object.assign({}, state, {
+            isFetching: false,
+            success: true
+        });
+    break;
+    case CHANGE_PASSWORD_FAILURE:
+        return Object.assign({}, state, {
+            isFetching: false,
+            error: action.error,
+            success: false
+        });
     break;
     default:
     return state;

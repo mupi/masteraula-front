@@ -9,7 +9,7 @@ import { resetForgotPasswordForm } from 'actions/forgotPasswordAction';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const RedefinePassword = props => {
-  const { handleSubmit } = props 
+  const { handleSubmit, error } = props 
 
   return (
     <div className="contenedor-forgotpassword">
@@ -35,6 +35,7 @@ const RedefinePassword = props => {
                 placeholder="Nova senha (novamente)"
               />
             </FormGroup>
+            { error && <div className="errorMessage">{error}</div> }
             <Button>Salvar</Button>
           </Form>
         </Col>
