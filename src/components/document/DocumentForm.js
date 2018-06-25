@@ -81,9 +81,9 @@ const DocumentForm =(props) => {
               <img src="http://via.placeholder.com/100x100"/>
               </Col>
               <Col>
-                <Input placeholder="Nome da instituição"/>
-                <Input placeholder="Curso/Disciplina"/>
-                <Input placeholder="Professor(a)"/><br/>
+                <Input placeholder="Nome da instituição" className="form-group"/>
+                <Input placeholder="Curso/Disciplina" className="form-group"/>
+                <Input placeholder="Professor(a)" className="form-group"/><br/>
                 Mostrar os seguintes campos em branco:<br/>
                 <Row>
                   <Col>
