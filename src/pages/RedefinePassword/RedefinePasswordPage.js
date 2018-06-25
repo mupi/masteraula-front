@@ -6,20 +6,19 @@ import RedefinePassword from 'components/forgotpassword/RedefinePassword';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const RedefinePasswordPage = props =>{
-  const { submit, match } = props
+  const { submit, match, success } = props
   const uid = match.params.uid
   const token = match.params.token
 
   return (
     <div className="main-contenedor middle-box text-center loginscreen  animated fadeInDown">
-      <RedefinePassword onSubmit={ submit } uid={ uid } token={ token }/>
+      <RedefinePassword onSubmit={ submit } uid={ uid } token={ token } success={ success }/>
     </div>
   )
 }
 
 const mapStateToProps = state => ({
-  success : state.forgotPassword.success,
-  error : state.forgotPassword.error
+  success : state.forgotPassword.success
 })
 
 const mapDispatchToProps = dispatch => ({
