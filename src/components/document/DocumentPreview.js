@@ -69,7 +69,7 @@ class DocumentPreview extends React.Component{
 
   return(
              <Container> 
-              <div className="question-section-border">
+              <div >
               <Row>
                 <Col sm={{ size: 'auto', offset: 9 }}>
                   <Button color="success">Adicionar questões</Button>
