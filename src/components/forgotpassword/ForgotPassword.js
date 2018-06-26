@@ -23,13 +23,14 @@ const ForgotPassword = props => {
                     name="email"
                     id="exampleEmail"
                     placeholder="Ingrese seu email"
+                    className="form-control"
                   />
                 </FormGroup>
                 <Button>Enviar email</Button>
               </Form>
             </Col>
         </div>
-        { success  && 
+        { success  &&
           <div className="message-password-instructions">
             <h3><i className="fa fa-inbox"></i> Verifica sua caixa de entrada!</h3>
             <p>Nós enviamos um email com instruções para recuperar sua senha</p>
