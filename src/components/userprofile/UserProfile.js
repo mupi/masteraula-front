@@ -1,4 +1,6 @@
 import React from 'react';
+import { Component } from 'react';
+import { connect } from 'react-redux'
 import { Button, Form, FormGroup, Input, Label} from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
@@ -13,10 +15,9 @@ const user = {
   }
 
 const UserProfile = props => {
+  const { handleSubmit } = props
 
-  const { handleSubmit} = props
-
-  return (
+    return (
       <div className="row justify-content-center">
         <div className="col-sm-8 col-md-8 col-lg-12 col-xs-12">
           <Form onSubmit={ handleSubmit }>
@@ -128,9 +129,21 @@ const UserProfile = props => {
           </Form>
         </div>
     </div>
-  );
+  )
 }
 
-export default reduxForm({
+const mapStateToProps = state => {
+  const { session } = state.login
+  return ({
+    initialValues : {
+      name : session.name
+    }
+  })
+}
+
+export default connect(
+  mapStateToProps
+)
+  (reduxForm({
   form : "profile"
-})(UserProfile);
+})(UserProfile));

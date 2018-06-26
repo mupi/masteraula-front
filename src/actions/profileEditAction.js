@@ -6,7 +6,7 @@ export const PROFILE_EDIT_SUCCESS = 'PROFILE_EDIT_SUCCESS'
 export const PROFILE_EDIT_FAILURE = 'PROFILE_EDIT_FAILURE'
 
 
-export const sendForgotPasswordEmail = (profile) => {
+export const profileEdit = (profile) => {
   return dispatch => {
     dispatch(requestEditProfile(profile))
     return profileEditService.profileEdit(profile)
