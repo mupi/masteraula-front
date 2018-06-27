@@ -1,4 +1,4 @@
-import {apiUrl} from 'helpers/config';
+import { apiUrl } from 'helpers/config';
  
 const loginService = {
     login,
@@ -40,7 +40,7 @@ function login (email, password) {
                 localStorage.setItem('session', JSON.stringify(session));
             }
  
-            return session.user;
+            return session;
         });
 }
  

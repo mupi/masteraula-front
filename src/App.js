@@ -76,7 +76,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   isOpenSidebar : state.menu.isOpenSidebar,
-  isLoggedIn : state.login.session
+  isLoggedIn : state.session.session
 })
 
 const connectedApp = connect(mapStateToProps)(App);

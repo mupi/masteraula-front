@@ -1,6 +1,8 @@
 import { loginService } from 'services';
-import { history } from 'helpers/history';
 import { SubmissionError } from 'redux-form'
+
+import { history } from 'helpers/history';
+import { updateSession, deleteSession } from 'actions/sessionAction'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -14,7 +16,8 @@ export const fetchLogin = (username, password) => {
     return loginService.login(username, password)
       .then(
         session => {
-          dispatch(success(session))
+          dispatch(success())
+          dispatch(updateSession(session))
           history.push('/home');
         },
         error => {
@@ -27,18 +30,16 @@ export const fetchLogin = (username, password) => {
   }
 
   function requestLogin(){ return { type: LOGIN_REQUEST } }
-  function success(session){ return { type: LOGIN_SUCCESS, session } }
+  function success(){ return { type: LOGIN_SUCCESS } }
   function failure(error){ return { type: LOGIN_FAILURE, error } }
 }
 
 export const logout = () => {
   return dispatch => {
     loginService.logout()
-    dispatch(requestLogout())
+    dispatch(deleteSession())
     history.push('/');
   }
-
-  function requestLogout(){ return { type: LOGOUT } }
 }
 
 export const toggleModal = (modal) => {
