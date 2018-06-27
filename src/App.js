@@ -54,7 +54,7 @@ class App extends Component {
                </Switch>
         :
               <Switch>
-                <Route path="/" component={HomePage} />
+                <Route exact path="/" component={HomePage}/>
                 <Route path="/login" component={LoginModal} />
                 <Route path="/register" component={RegisterModal}/>
                 <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
