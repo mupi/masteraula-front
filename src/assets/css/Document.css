@@ -58,3 +58,13 @@ span.button-text {
     margin-bottom: 10px;
     margin-top: 10px;
 }
+
+.create-document-header{
+    padding: 15px;
+    border: 2px solid #FFFFFF;
+    padding: 25px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+    margin-top: 10px;
+}

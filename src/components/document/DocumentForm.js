@@ -10,7 +10,7 @@ class DocumentForm extends Component {
 
   render(){
     return(
-      <Container>
+      <Container className="create-document-header">
        Nome: <Input placeholder="Nome do documento" id='name' className="form-group" onChange={(event)=>this.props.setFields('name',event)}/><br/>
        <Container>
          <Row>
