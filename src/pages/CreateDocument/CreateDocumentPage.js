@@ -3,6 +3,8 @@ import { Row, Container, Nav, NavItem, NavLink, TabContent, TabPane, Col, Button
 import DocumentForm from '../../components/document/DocumentForm.js';
 import DocumentPreview from '../../components/document/DocumentPreview.js';
 import HomeUserPage from "../HomeUser/HomeUserPage"
+import 'assets/css/Document.css';
+
 import classnames from 'classnames';
 
 
@@ -195,7 +197,7 @@ class CreateDocumentPage extends Component{
   }]
     }
  }
-  
+
   setFields(field, event){
     console.log(event.target.value)
     console.log(this.state)

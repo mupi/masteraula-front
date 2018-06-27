@@ -18,8 +18,14 @@ class DocumentForm extends Component {
         </Row>
          <Row>
            <Col md="2" xs='12'>
-              Logo<br/>
-              <img src="http://via.placeholder.com/100x100"/>
+                 <Label for="upload-logo" className="upload-logo">
+                         <span><i className="fa fa-picture-o"></i>Enviar logo</span>
+                         <div className="thumbnail">
+                           <img src="http://via.placeholder.com/100x100"/>
+                         </div>
+                 </Label>
+                 <div className="small-text">Tamano máximo 1 MB. JPG, GIF ou PNG</div>
+                 <Input type="file" name="picture" id="upload-logo" className="hidden"/>
               </Col>
               <Col>
                 <Input placeholder="Nome da instituição" id='schoolName' className="form-group" onChange={(event)=>this.props.setFields('schoolName',event)}/>

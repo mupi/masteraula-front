@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row,  Container, Col, Label, Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import { Row,  Container, Col, Label, Button, Modal, ModalBody, ModalFooter, ModalHeader, Input } from 'reactstrap';
 import QuestionContent from "../../components/question/QuestionContent.js";
 import QuestionHeader from "../../components/question/QuestionHeader.js";
 import QuestionInfo from "../../components/question/QuestionInfo.js";
@@ -30,14 +30,17 @@ class DocumentPreview extends React.Component{
     }
   }
 
-    
+
   render(){
     let {props} = this;
     let questions = [];
     for(let i=0; i<props.data.questions.length;i++){
       let question = props.data.questions[i];
         questions.push(
-        <div className="question-section-border">
+        <div key={i} className="question-section-border question-in-doc">
+            <div className="btn-float-remove-question">
+                    <button type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-times-circle"></i></button>
+            </div>
           <Row>
             <Col sm='2'>
               <DisciplineList list={question.disciplines} />
@@ -45,40 +48,42 @@ class DocumentPreview extends React.Component{
             <Col sm='2'>
               <QuestionSourceYear styleTag="top-label-question source-name" source={question.source} year={question.year}/>
             </Col>
-            <Col sm={{ size: 'auto', offset: 6 }}>
-              <Button color='danger'><i className="fa fa-trash"></i></Button>
-            </Col>
           </Row>
           <Row>
-            <Col sm='0.5'>
-              <b>{i+1})</b>
-            </Col>
-            <Col>
-              <QuestionContent question={question.question} />
-            </Col>
+            <div className="question-content-in-doc">
+              <b>{i+1})</b> <QuestionContent question={question.question} />
+            </div>
           </Row>
           <Row>
-            <Col sm={{ size: 'auto', offset: 8 }}>
-              <Button onClick={()=>this.toggle(question)}>Ver mais</Button>
-            </Col>
+            <div className="auto-margin-left-element">
+              <Button onClick={()=>this.toggle(question)}><i className="fa fa-search"></i> <span className="button-text">Ver mais</span></Button>
+            </div>
           </Row>
-          
+
         </div>
       );
     }
 
   return(
-             <Container> 
+             <Container>
               <div >
-              <Row>
-                <Col sm={{ size: 'auto', offset: 9 }}>
-                  <Button color="success">Adicionar questões</Button>
-                </Col>
-              </Row>
-              <Container> 
-                <Row className="question-section-border">
+                <div className="btn-float">
+                        <button type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-plus"></i></button>
+                </div>
+                <Row className="btn-save-document">
+                  <div className="auto-margin-left-element">
+                    <Button className="btn-success"> <i className="fa fa-save"></i><span className="button-text">Salvar</span></Button>
+                  </div>
+                </Row>
+              <Container>
+                <Row className="question-section-border document-header">
                   <Col xs='2'>
-                  <img src={props.data.logo? props.data.logo : "http://via.placeholder.com/100x100"}/>
+                    <Label for="upload-avatar" className="upload-avatar">
+
+                            <div className="thumbnail">
+                              <img src={props.data.logo? props.data.logo : "http://via.placeholder.com/100x100"}/>
+                            </div>
+                    </Label>
                   </Col>
                   <Col>
                     <Label>{props.data.schoolName ? props.data.schoolName: 'Nome da instituição'}</Label><br/>
@@ -93,11 +98,13 @@ class DocumentPreview extends React.Component{
                   </Col>
                 </Row>
               </Container><p/>
+
+
                       {questions}
               {this.state.question?
               <Modal isOpen={this.state.question} toggle={()=>this.toggle()} size='lg'>
                 <ModalHeader toggle={()=>this.toggle()} />
-                <ModalBody >
+                <ModalBody className="question-modal">
                   <QuestionHeader disciplines={this.state.question.disciplines} source={this.state.question.source} year={this.state.question.year} />
                       <QuestionContent alternatives={this.state.question.alternatives} question={this.state.question.question} answer={this.state.question.answer}/>
                       <QuestionInfo disciplines={this.state.question.disciplines}
@@ -114,13 +121,9 @@ class DocumentPreview extends React.Component{
               </Modal>
                 :''}
               </div>
-              <Row>
-                <Col sm={{ size: 'auto', offset: 9 }}>
-                  <Button> Confirmar</Button>
-                </Col>
-              </Row>
+
               </Container>);
   }
 }
 
-export default DocumentPreview;         
+export default DocumentPreview;
