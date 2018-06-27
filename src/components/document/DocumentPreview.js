@@ -51,7 +51,7 @@ class DocumentPreview extends React.Component{
           </Row>
           <Row>
             <div className="question-content-in-doc">
-              <b>{i+1})</b> <QuestionContent question={question.question} />
+              <b className="question-position">{i+1})</b> <QuestionContent question={question.question} />
             </div>
           </Row>
           <Row>

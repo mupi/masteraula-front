@@ -53,3 +53,8 @@ span.button-text {
   display: inline-flex;
   width: 100%;
 }
+
+.question-content-in-doc .section-text-question, .question-content-in-doc .question-position {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
