@@ -1,6 +1,8 @@
 import { profileEditService } from 'services';
 import { SubmissionError } from 'redux-form'
 
+import { updateUser } from './sessionAction';
+
 export const PROFILE_EDIT_REQUEST = 'PROFILE_EDIT_REQUEST'
 export const PROFILE_EDIT_SUCCESS = 'PROFILE_EDIT_SUCCESS'
 export const PROFILE_EDIT_FAILURE = 'PROFILE_EDIT_FAILURE'
@@ -11,8 +13,9 @@ export const profileEdit = (profile) => {
     dispatch(requestEditProfile(profile))
     return profileEditService.profileEdit(profile)
       .then(
-        () => {
+        session => {
           dispatch(success())
+          dispatch(updateUser(session))
         },
         error => {
           dispatch(failure(error))

@@ -7,15 +7,8 @@ import { Field, reduxForm } from 'redux-form'
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from "assets/img/home/person-female.png";
 
-const user = {
-    "id":"100",
-    "fullname": "Melissa Gonçalves de Oliveira",
-    "biography": "Sou professora de Ensino Médio, estou apaixonada pelo ensino de língua portuguesa.",
-    "email": "melissa@masteraula.com.br"
-  }
-
 const UserProfile = props => {
-  const { handleSubmit } = props
+  const { handleSubmit, user } = props
 
     return (
       <div className="row justify-content-center">
@@ -133,11 +126,12 @@ const UserProfile = props => {
 }
 
 const mapStateToProps = state => {
-  const { session } = state.login
+  const { user } = state.session.session
   return ({
     initialValues : {
-      name : session.name
-    }
+      name : user.name
+    },
+    user
   })
 }
 
