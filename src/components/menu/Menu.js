@@ -40,9 +40,6 @@ const Menu = (props) => {
                   </Button>
                 </li>;
 
-  console.log(props)
-
-
   return(
         <div id="navbar" className="container-fluid">
           <Row>
