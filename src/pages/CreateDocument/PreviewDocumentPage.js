@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Container } from 'reactstrap';
 import DocumentForm from '../../components/document/DocumentForm.js';
 import DocumentPreview from '../../components/document/DocumentPreview.js';
+import 'assets/css/Document.css';
 
 const PreviewDocumentPage =() =>{
   let data = {'schoolName':'Escolinha', 'course':'Matemática','teacherName':"Profa Daniela",

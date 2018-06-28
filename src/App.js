@@ -6,6 +6,7 @@ import 'assets/css/App.css';
 import 'assets/css/General.css';
 
 
+
 import LoginModal from "components/login/LoginModal";
 import RegisterModal from "components/userregister/RegisterModal";
 
@@ -22,6 +23,8 @@ import PreviewDocumentPage from "pages/CreateDocument/PreviewDocumentPage";
 import Menu from "components/menu/Menu";
 import { history } from "helpers/history"
 
+import { resetChangePasswordForm } from "actions/forgotPasswordAction"
+
 import Footer from "components/footer/Footer";
 
 class App extends Component {
@@ -32,8 +35,7 @@ class App extends Component {
     const {dispatch} = this.props
 
     history.listen((location, action) => {
-      // clear alert on location change
-      // dispatch(alertActions.clear());
+      dispatch(resetChangePasswordForm());
     });
   }
 
@@ -52,12 +54,11 @@ class App extends Component {
                </Switch>
         :
               <Switch>
-                
+                <Route exact path="/" component={HomePage}/>
                 <Route path="/login" component={LoginModal} />
                 <Route path="/register" component={RegisterModal}/>
                 <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
-                <Route path="/redefine-senha" component={RedefinePasswordPage}/>
-                <Route component={HomePage}/>
+                <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPage}/>
               </Switch>
           }
             <Footer year="2018" version="1.0" />
