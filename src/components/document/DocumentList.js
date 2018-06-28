@@ -46,7 +46,7 @@ class DocumentList extends React.Component {
               <th scope="row" onClick={()=>this.toggle(document)}><center>{document.name}</center></th>
               <td><center>{document.createdAt}</center></td>
               <td><center>{document.questions.length}</center></td>
-              <td><center><i className="fa fa-trash"></i></center></td>
+              <td><center><Button color='danger'><i className="fa fa-trash"></i></Button></center></td>
             </tr>
           )}
         </tbody>
