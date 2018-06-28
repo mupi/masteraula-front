@@ -19,6 +19,7 @@ import QuestionPage from "pages/Question/QuestionPage";
 import QuestionBasePage from "pages/QuestionBase/QuestionBasePage";
 import CreateDocumentPage from "pages/CreateDocument/CreateDocumentPage";
 import PreviewDocumentPage from "pages/CreateDocument/PreviewDocumentPage";
+import ViewDocumentPage from "pages/ViewDocument/ViewDocumentPage"
 
 import Menu from "components/menu/Menu";
 import { history } from "helpers/history"
@@ -50,6 +51,7 @@ class App extends Component {
                 <Route path="/user-profile" component={UserProfilePage}/>
                 <Route path="/view-question" component={QuestionPage}/>
                 <Route path="/new-document" component={CreateDocumentPage}/>
+                <Route path="/documents" component={ViewDocumentPage}/>
                 <Route component={HomePage}/>
                </Switch>
         :
