@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.css';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import UserProfile from "components/userprofile/UserProfile.js";
+import { SubmissionError } from 'redux-form'
 
 import { profileEdit } from "actions/profileEditAction.js"
 
@@ -26,7 +27,35 @@ const mapDispatchToProps = dispatch => ({
         const profile = {
             name: values.name
         }
-        dispatch(profileEdit(profile))
+
+        if (values.new_password || values.old_password || values.password_confirmation){
+            const errors = {}
+            if (!values.old_password) {
+                errors.old_password = "Informe a senha atual"
+            }
+            if (!values.new_password) {
+                errors.new_password = 'Insira uma senha'
+              } else if (values.new_password.length < 8){
+                errors.new_password = 'A senha deve conter no mínimo 8 dígitos'
+              } else if (!isNaN(values.new_password)){
+                errors.new_password = 'A senha não deve conter apenas números'
+              }
+            
+              if (!values.password_confirmation) {
+                errors.password_confirmation = 'Insira uma confirmação de senha'
+              }
+              if (values.new_password && values.password_confirmation && values.new_password !== values.password_confirmation){
+                errors.password_confirmation = 'Senha e confirmação não coincidem'
+              }
+            
+            if (errors == {}) throw new SubmissionError(errors)
+
+            profile.new_password1 = values.password_confirmation;
+            profile.new_password2 = values.new_password;
+            profile.old_password = values.old_password;
+        }
+
+        return dispatch(profileEdit(profile))
     }
 })
 

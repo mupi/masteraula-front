@@ -1,14 +1,32 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux'
-import { Button, Form, FormGroup, Input, Label} from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label, UncontrolledAlert} from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from "assets/img/home/person-female.png";
 
+const renderField = ({
+  input,
+  placeholder,
+  type,
+  meta: { touched, error, warning }
+}) => (
+  <div>
+    <Input {...input}
+      placeholder={placeholder}
+      type={type}
+    />
+    { touched &&
+      ((error && <span>{error}</span>) ||
+      (warning && <span> {warning} </span>))
+    }
+  </div>
+);
+
 const UserProfile = props => {
-  const { handleSubmit, user } = props
+  const { handleSubmit, user, submitSucceeded } = props
 
     return (
       <div className="row justify-content-center">
@@ -84,7 +102,7 @@ const UserProfile = props => {
               <Row>
                 <Col sm="4" xs="12">
                   <Field
-                    component="input"
+                    component={renderField}
                     type="password"
                     name="old_password"
                     id="old_password"
@@ -94,7 +112,7 @@ const UserProfile = props => {
                 </Col>
                 <Col sm="4">
                   <Field
-                    component="input"
+                    component={renderField}
                     type="password"
                     name="new_password"
                     id="new_password"
@@ -104,7 +122,7 @@ const UserProfile = props => {
                 </Col>
                 <Col sm="4">
                   <Field
-                    component="input"
+                    component={renderField}
                     type="password"
                     name="password_confirmation"
                     id="password_confirmation"
@@ -118,11 +136,34 @@ const UserProfile = props => {
                   <Button>Salvar</Button>
                 </Col>
               </Row>
+              <div>
+                  { submitSucceeded && <UncontrolledAlert color="success">
+                    Usuário alterado com sucesso
+                    </UncontrolledAlert> }
+              </div>
             </Container>
           </Form>
         </div>
     </div>
   )
+}
+
+const validate = values => {
+  const errors = {}
+
+  if (values.new_password) {
+    if (values.new_password.length < 8){
+      errors.new_password = 'A nova senha deve conter no mínimo 8 dígitos'
+    } else if (!isNaN(values.new_password)){
+      errors.new_password = 'A nova senha não deve conter apenas números'
+    }
+  }
+
+  if (values.new_password && values.password_confirmation && values.new_password !== values.password_confirmation){
+    errors.password_confirmation = 'Senha e confirmação não coincidem'
+  }
+
+  return errors
 }
 
 const mapStateToProps = state => {
@@ -139,5 +180,6 @@ export default connect(
   mapStateToProps
 )
   (reduxForm({
-  form : "profile"
+  form : "profile",
+  validate
 })(UserProfile));

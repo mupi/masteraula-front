@@ -1,4 +1,5 @@
 import { profileEditService } from 'services';
+import { DIFFERENT_OLD_PASSWORD } from 'services/profileEditService';
 import { SubmissionError } from 'redux-form'
 
 import { updateUser } from './sessionAction';
@@ -19,6 +20,12 @@ export const profileEdit = (profile) => {
         },
         error => {
           dispatch(failure(error))
+          if (error == DIFFERENT_OLD_PASSWORD){
+            throw new SubmissionError({
+              old_password: 'Senha antiga não confere',
+              _error: 'Senha antiga não confere'
+            })
+          }
           throw new SubmissionError({
             _error: 'Não existe conta associada com este email'
           })
