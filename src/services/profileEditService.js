@@ -21,7 +21,6 @@ const handleResponse = (response) => {
 const handlePasswordResponse = (response) => {
     return response.json().then(data => {
         if (!response.ok) {
-            console.log(123421341324231423)
             return Promise.reject('DIFFERENT_OLD_PASSWORD');
         }
  
@@ -54,23 +53,23 @@ function profileEdit(profile) {
         })
     }
 
+    const fetchPassword =   fetch(`${apiUrl}/auth/password/change/`, requestPasswordOption)
+                            .then(handlePasswordResponse)
+                            .then(detail => {
+                                return detail
+                            });
+
+    const fetchProfile =   fetch(`${apiUrl}/auth/user/ `, requestOptions)
+                            .then(handleResponse)
+                            .then(detail => {
+                                return detail;
+                            });             
+
     if (profile.old_password){
-        return fetch(`${apiUrl}/auth/password/change/`, requestPasswordOption)
-        .then(handlePasswordResponse)
-        .then(() => {
-            return fetch(`${apiUrl}/auth/user/ `, requestOptions)
-            .then(handleResponse)
-            .then(detail => {
-                return detail;
-            });
-        });
+        return Promise.all([fetchProfile, fetchPassword])
     }
  
-    return fetch(`${apiUrl}/auth/user/ `, requestOptions)
-        .then(handleResponse)
-        .then(detail => {
-            return detail;
-        });
+    return Promise.all([fetchProfile])
 }
 
 export default profileEditService

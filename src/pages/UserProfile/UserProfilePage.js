@@ -27,7 +27,6 @@ const mapDispatchToProps = dispatch => ({
         const profile = {
             name: values.name
         }
-
         if (values.new_password || values.old_password || values.password_confirmation){
             const errors = {}
             if (!values.old_password) {
@@ -48,7 +47,9 @@ const mapDispatchToProps = dispatch => ({
                 errors.password_confirmation = 'Senha e confirmação não coincidem'
               }
             
-            if (errors == {}) throw new SubmissionError(errors)
+            if (Object.keys(errors).length !== 0) throw new SubmissionError(errors)
+
+            console.log(1487461327463214132)
 
             profile.new_password1 = values.password_confirmation;
             profile.new_password2 = values.new_password;
