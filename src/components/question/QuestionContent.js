@@ -7,6 +7,11 @@ import AlternativeList from "components/alternatives/AlternativeList"
 
 const QuestionContent = ({alternatives, question ,answer}) =>
             <Container className="question-content">
+              <Row className=" section-text-question">
+                <Col sm="12" xs="12">
+                  <p className="text-question">{question}</p>
+                </Col>
+              </Row>
               <Row className="text-center">
                   <Col sm="12" xs="12">
                     <div className="img-learning-object">
@@ -14,16 +19,12 @@ const QuestionContent = ({alternatives, question ,answer}) =>
                     </div>
                   </Col>
               </Row>
-              <Row className="question-section-border section-text-question">
-                <Col sm="12" xs="12">
-                  <p className="text-question">{question}</p>
-                </Col>
-              </Row>
+              {alternatives?
               <Row className="question-section-border">
                 <Col sm="12" xs="12">
                   <AlternativeList list={alternatives} />
                 </Col>
-              </Row>
+              </Row>:''}
               {answer?
               <Row className="question-section-border">
                 <Col sm="12" xs="12">
