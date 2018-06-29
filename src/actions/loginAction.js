@@ -22,11 +22,6 @@ export const fetchLogin = (username, password) => {
         },
         error => {
           dispatch(failure(error))
-          if (error instanceof TypeError){
-            throw new SubmissionError({
-              _error: "Problemas de conexão com o banco de dados"
-            })
-          }
           throw new SubmissionError({
             _error: error
           })

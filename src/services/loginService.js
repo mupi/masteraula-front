@@ -34,8 +34,14 @@ function login (email, password) {
     };
  
     return fetch(`${apiUrl}/auth/login/ `, requestOptions)
-        .then(handleResponse)
-        .then(session => {
+        .then(
+            handleResponse,
+            error => {
+                return Promise.reject("Problemas de conexão com o banco de dados");
+            }
+        )
+        .then(
+            session => {
             if (session.token) {
                 localStorage.setItem('session', JSON.stringify(session));
             }
