@@ -9,7 +9,7 @@ import { Container, Row, Col } from 'reactstrap';
 const TermsUsePage = ({date_update="29 de junho de 2018"}) =>
     <div className="main-contenedor middle-box">
       <Container>
-            <h3 className="text-center">Damos boas-vindas ao Portal MasterAula.</h3>
+            <h3><i className="fa fa-thumbs-up"></i> Damos boas-vindas ao Portal MasterAula.</h3>
             <p>O Portal MasterAula é mantido pela MUPI e nossa missão é apoiar o trabalho de educadores através da oferta de formação continuada online e de conteúdos que acreditamos serem válidos para esses fins.</p>
 
             <p>Ao usar nosso Portal, você está concordando com estes termos e com nossa política de privacidade. Leia-os com atenção. Este documento contém INFORMAÇÕES LEGAIS importantes e indispensáveis à utilização do Portal.</p>
