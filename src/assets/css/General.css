@@ -10,6 +10,8 @@
   --color-ma-green:#a6d057;
   --sidebar-size:280px;
   --sidebar-size-neg:-280px;
+  --max-width-mobile:869px;
+  --min-width-web:868px
 }
 
 .errorMessage {

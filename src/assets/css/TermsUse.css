@@ -1,0 +1,10 @@
+#main-masteraula-container .container {
+    padding-top: 50px;
+}
+
+@media (max-width: 868px){
+#main-masteraula-container .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+}

@@ -13,7 +13,7 @@ import RegisterModal from "components/userregister/RegisterModal";
 import ForgotPasswordPage from "pages/ForgotPassword/ForgotPasswordPage";
 import RedefinePasswordPage from "pages/RedefinePassword/RedefinePasswordPage";
 import UserProfilePage from "pages/UserProfile/UserProfilePage";
-import UserProfilePage from "pages/TermsUse/TermsUsePage";
+import TermsUsePage from "pages/TermsUse/TermsUsePage";
 
 import HomePage from "pages/Home/HomePage.js";
 import QuestionPage from "pages/Question/QuestionPage";

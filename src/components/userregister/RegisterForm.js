@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Input, Label, Col} from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
+import { NavLink } from "react-router-dom";
 
 import { FontAwesome} from 'react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -79,7 +80,7 @@ const RegisterForm = props => {
                         component= { accept_terms =>
                           <div>
                             <input type={accept_terms.type} {...accept_terms.input}/>
-                            Eu concordo com os <a className="use-terms" href="#">Termos de Uso</a>
+                            Eu concordo com os <NavLink className="use-terms" to="/terms-use">Termos de Uso</NavLink>
                             { accept_terms.meta.touched && accept_terms.meta.error && <span><br/>{accept_terms.meta.error}</span> }
                           </div>
                         }/>{' '}
