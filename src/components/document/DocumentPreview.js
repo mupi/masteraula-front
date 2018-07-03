@@ -72,10 +72,10 @@ class DocumentPreview extends React.Component{
                 </div>
                 <Row className="btn-preview-document">
                   <div className="auto-margin-left-element">
-                    <Button className="btn-success btn-margin-right"> <i className="fa fa-plus"></i><span className="button-text">Adicionar questões</span></Button>
+                    <Button title="Adicionar questões" className="btn-success btn-margin-right"> <i className="fa fa-plus"></i><span className="button-text">Adicionar questões</span></Button>
                   </div>
                   <div>
-                    <Button className="btn-success"> <i className="fa fa-save"></i><span className="button-text">Salvar</span></Button>
+                    <Button title="Salvar documento" className="btn-success"> <i className="fa fa-save"></i><span className="button-text">Salvar</span></Button>
                   </div>
                 </Row>
               <Container>

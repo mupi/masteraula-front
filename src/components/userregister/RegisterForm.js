@@ -3,6 +3,7 @@ import { Button, Form, FormGroup, Input, Label, Col} from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
 import { NavLink } from "react-router-dom";
 
+import { toggleModal } from 'actions/registerAction';
 import { FontAwesome} from 'react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -26,7 +27,7 @@ const renderField = ({
 );
 
 const RegisterForm = props => {
-  const { handleSubmit, error } = props
+  const { handleSubmit, error , modal, toggleModal } = props
 
   return(
       <div className="row justify-content-center">
@@ -80,7 +81,7 @@ const RegisterForm = props => {
                         component= { accept_terms =>
                           <div>
                             <input type={accept_terms.type} {...accept_terms.input}/>
-                            Eu concordo com os <NavLink className="use-terms" to="/terms-use" >Termos de Uso</NavLink>
+                            Eu concordo com os <NavLink className="use-terms" to="/terms-use" onClick={ () => toggleModal(modal) }>Termos de Uso</NavLink>
                             { accept_terms.meta.touched && accept_terms.meta.error && <span><br/>{accept_terms.meta.error}</span> }
                           </div>
                         }/>{' '}

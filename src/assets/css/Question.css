@@ -33,7 +33,7 @@ span.discipline-name {
 }
 
 span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span.descriptor-name, span.author {
-    background: var(--color-ma-yellow);
+    background: var(--color-ma-green);
 }
 
 .btn-circle {
