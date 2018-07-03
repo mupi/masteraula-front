@@ -10,7 +10,7 @@ import { resetForgotPasswordForm } from 'actions/forgotPasswordAction';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const RedefinePassword = props => {
-  const { handleSubmit, error, success } = props 
+  const { handleSubmit, error, success } = props
 
   return (
     <div className="contenedor-forgotpassword">
@@ -25,6 +25,7 @@ const RedefinePassword = props => {
                 name="newpassword"
                 id="newpassword"
                 placeholder="Nova senha"
+                className="form-control"
               />
             </FormGroup>
             <FormGroup>
@@ -34,10 +35,11 @@ const RedefinePassword = props => {
                 name="repeatpassword"
                 id="repeatpassword"
                 placeholder="Nova senha (novamente)"
+                className="form-control"
               />
             </FormGroup>
             { error && <div className="errorMessage">{error}</div> }
-            { success  && 
+            { success  &&
               <div className="message-password-instructions">
                 <h3><i className="fa fa-thumbs-up"></i> Sua senha foi alterada com sucesso</h3>
               </div>
