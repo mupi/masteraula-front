@@ -17,7 +17,7 @@ class DocumentForm extends Component {
          Cabeçalho:
         </Row>
          <Row>
-           <Col md="2" xs='12'>
+              <Col md="2" xs='12' className="text-center">
                  <Label for="upload-logo" className="upload-logo">
                          <span><i className="fa fa-picture-o"></i>Enviar logo</span>
                          <div className="thumbnail">

@@ -68,6 +68,7 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
     position: fixed;
     right: 37px;
     top:100px;
+    z-index: 9999;
 }
 
 @media (max-width: 867px){

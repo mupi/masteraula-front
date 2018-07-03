@@ -2,6 +2,10 @@
   position:relative
 }
 
+.question-in-doc p.text-question {
+    font-weight: normal;
+}
+
 .question-modal.modal-body {
     padding-top: 0px;
 }
@@ -14,16 +18,16 @@
 
 
 .btn-float-remove-question .btn-circle {
-    width: auto;
-    height: auto;
     padding: 0px;
     line-height: 0px;
-    color: red;
-    background: transparent;
-    font-size: 45px;
+    background: red;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 25px;
 }
 
-.btn-save-document.row {
+.btn-save-document {
     padding-top: 20px;
     padding-bottom: 10px;
 }
@@ -67,4 +71,13 @@ span.button-text {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background: #FFFFFF;
     margin-top: 10px;
+}
+
+.btn-margin-right{
+  margin-right: 15px;
+}
+
+.btn-preview-document.row {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
