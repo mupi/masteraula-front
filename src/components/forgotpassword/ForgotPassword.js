@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Alert } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
 
@@ -31,10 +32,9 @@ const ForgotPassword = props => {
             </Col>
         </div>
         { success  &&
-          <div className="message-password-instructions">
-            <h3><i className="fa fa-inbox"></i> Verifica sua caixa de entrada!</h3>
-            <p>Nós enviamos um email com instruções para recuperar sua senha</p>
-          </div>
+          <Alert color="success">
+            <p>Enviamos um email com instruções para recuperar sua senha</p>
+          </Alert>
         }
     </div>
   )
