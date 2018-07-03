@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Button, Form, FormGroup, Input, Label, Col} from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
 import { NavLink } from "react-router-dom";
@@ -125,7 +126,21 @@ const validate = values => {
   return errors
 }
 
-export default reduxForm({
+const mapStateToProps = state => ({
+  modal : state.register.modal
+})
+
+const mapDispatchToProps = dispatch => ({
+  toggleModal : modal => {
+    dispatch(toggleModal(modal))
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
+(reduxForm({
     form : 'register',
     validate
-})(RegisterForm);
+})(RegisterForm))
