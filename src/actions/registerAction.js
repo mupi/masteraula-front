@@ -1,6 +1,6 @@
 import { registerService } from 'services';
 import { history } from 'helpers/history';
-import { SubmissionError } from 'redux-form'
+import { SubmissionError, reset } from 'redux-form'
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST'
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
@@ -14,6 +14,7 @@ export const fetchRegister = (email, password, name) => {
       .then(
         session => {
           dispatch(success(session))
+          dispatch(reset('register'))
         },
         error => {
           dispatch(failure(error))

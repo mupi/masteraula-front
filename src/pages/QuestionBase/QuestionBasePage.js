@@ -126,7 +126,7 @@ const  results = {
 
 
 const QuestionBasePage= () =>
-            <HomeUserPage>
+            <HomeUserPage showFilters={true}>
               <div className="contenedor-question-base">
                   <Row className="text-search-question">Digite o termo e encontre soluções relacionadas
                     <InputGroup>
