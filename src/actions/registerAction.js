@@ -14,7 +14,6 @@ export const fetchRegister = (email, password, name) => {
       .then(
         session => {
           dispatch(success(session))
-          history.push('/home');
         },
         error => {
           dispatch(failure(error))

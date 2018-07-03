@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Button, Form, FormGroup, Input, Label, Col} from 'reactstrap';
+import { Alert } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
 import { NavLink } from "react-router-dom";
 
@@ -28,7 +29,7 @@ const renderField = ({
 );
 
 const RegisterForm = props => {
-  const { handleSubmit, error , modal, toggleModal } = props
+  const { handleSubmit, error , modal, toggleModal, submitSucceeded } = props
 
   return(
       <div className="row justify-content-center">
@@ -89,12 +90,18 @@ const RegisterForm = props => {
                     </Label>
                 </FormGroup>
                 <FormGroup check>
-                  {error && <div className="errorMessage">{error}</div>}
+                  {error && <Alert color="danger">{error}</Alert>}
+                  { submitSucceeded  &&
+                    <Alert color="success">
+                      <p>Enviamos um email com instruções para ativar seu cadastro</p>
+                    </Alert>
+                  }
                 </FormGroup>
                 <Button>Enviar</Button>
             </div>
           </Form>
         </Col>
+
     </div>
   );
 }
@@ -114,6 +121,13 @@ const validate = values => {
     errors.password = 'A senha deve conter no mínimo 8 dígitos'
   } else if (!isNaN(values.password)){
     errors.password = 'A senha não deve conter apenas números'
+  }
+
+  if (!values.confirm_password) {
+    errors.confirm_password = 'Insira uma confirmação de senha'
+  }
+  if (values.password && values.confirm_password && values.password !== values.confirm_password){
+    errors.confirm_password = 'Senha e confirmação não coincidem'
   }
 
   return errors
