@@ -29,7 +29,7 @@ const renderField = ({
 );
 
 const RegisterForm = props => {
-  const { handleSubmit, error , modal, toggleModal, success } = props
+  const { handleSubmit, error , modal, toggleModal, submitSucceeded } = props
 
   return(
       <div className="row justify-content-center">
@@ -91,7 +91,7 @@ const RegisterForm = props => {
                 </FormGroup>
                 <FormGroup check>
                   {error && <Alert color="danger">{error}</Alert>}
-                  { success  &&
+                  { submitSucceeded  &&
                     <Alert color="success">
                       <p>Enviamos um email com instruções para ativar seu cadastro</p>
                     </Alert>
