@@ -33,13 +33,17 @@ class DocumentForm extends Component {
                 <Input placeholder="Professor(a)" id='teacherName' className="form-group" onChange={(event)=>this.props.setFields('teacherName',event)}/><br/>
                 Mostrar os seguintes campos em branco:<br/>
                 <Row>
+                  <Col><Input addon type="checkbox"  id='allFields' onChange={(event)=>this.props.setFields('allFields',event)}/> Todos<br/></Col>
+                </Row>
+                <Row>
+
                   <Col>
-                    <Input addon type="checkbox" id='studentName' onChange={(event)=>this.props.setFields('studentName',event)}/> Aluno<br/>
-                    <Input addon type="checkbox" id='class' onChange={(event)=>this.props.setFields('class',event)}/> Turma<br/>
+                    <Input addon type="checkbox"  checked={this.props.allFields} id='studentName' onChange={(event)=>this.props.setFields('studentName',event)}/> Aluno<br/>
+                    <Input addon type="checkbox" checked={this.props.allFields} id='class' onChange={(event)=>this.props.setFields('class',event)}/> Turma<br/>
                   </Col>
                   <Col>
-                    <Input addon type="checkbox" id='grade' onChange={(event)=>this.props.setFields('grade',event)}/> Nota da avaliação<br/>
-                    <Input addon type="checkbox" id='date' onChange={(event)=>this.props.setFields('date',event)}/> Data
+                    <Input addon type="checkbox" checked={this.props.allFields} id='grade' onChange={(event)=>this.props.setFields('grade',event)}/> Nota da avaliação<br/>
+                    <Input addon type="checkbox" checked={this.props.allFields} id='date' onChange={(event)=>this.props.setFields('date',event)}/> Data
                   </Col>
                 </Row>
               </Col>
