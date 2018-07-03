@@ -60,6 +60,7 @@ const Menu = (props) => {
                   </NavItem>
                   <NavbarToggler onClick={ () => toggleMenu(isOpen) } />
                   <Collapse isOpen={ isOpen } navbar>
+
                       { isLoggedIn ? loggedOptions : notLoggedOptions }
                   </Collapse>
                 </Navbar>

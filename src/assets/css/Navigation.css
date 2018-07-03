@@ -100,7 +100,7 @@ html body #sidebar #sidebar-container {
     bottom: 0;
     width: var(--sidebar-size);
     position: absolute;
-    top: 50px;
+    top: 100px;
 }
 
 @media (min-width: 990px){
