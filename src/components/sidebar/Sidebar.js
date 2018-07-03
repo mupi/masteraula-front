@@ -7,6 +7,8 @@ import { Row, Col, Button} from 'reactstrap';
 
 import 'assets/css/Navigation.css';
 import 'font-awesome/css/font-awesome.min.css';
+import logoMasterAula from "assets/img/home/masteraula-300x60.png";
+
 import SidebarFilters from "./SidebarFilters"
 
 
@@ -16,6 +18,11 @@ const Sidebar = ({docName="Novo documento", docNumberQuestions="0"})=> {
             <div id="sidebar-container">
               <div className="container-fluid">
                 <Row>
+                  <Col xs="12">
+                    <div className="logo-sidebar">
+                      <img src={logoMasterAula}/>
+                    </div>
+                  </Col>
                   <Col xs="12">
                       <div className="sidebar-nav-container">
 

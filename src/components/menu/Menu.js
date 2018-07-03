@@ -8,6 +8,7 @@ import { logout } from 'actions/loginAction'
 import { toggleMenu, openSidebar } from 'actions/menuAction';
 import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
+import logoMasterAula from "assets/img/home/masteraula-300x60.png";
 
 import 'assets/css/Navigation.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -55,7 +56,7 @@ const Menu = (props) => {
                     </ul>
                   </div>
                   <NavItem>
-                    <Link exact="true" to="/">MasterAula</Link>
+                    <Link exact="true" to="/"><img className="logo-in-menu" src={logoMasterAula}/></Link>
                   </NavItem>
                   <NavbarToggler onClick={ () => toggleMenu(isOpen) } />
                   <Collapse isOpen={ isOpen } navbar>

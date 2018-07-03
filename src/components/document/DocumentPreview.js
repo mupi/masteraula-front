@@ -39,7 +39,7 @@ class DocumentPreview extends React.Component{
         questions.push(
         <div key={i} className="question-section-border question-in-doc">
             <div className="btn-float-remove-question">
-                    <button type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-times-circle"></i></button>
+                    <button title="Remover questão" type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-trash"></i></button>
             </div>
           <Row>
             <Col sm='2'>
@@ -51,7 +51,7 @@ class DocumentPreview extends React.Component{
           </Row>
           <Row>
             <div className="question-content-in-doc">
-              <b className="question-position">{i+1})</b> <QuestionContent question={question.question} />
+              <span className="question-position">{i+1})</span> <QuestionContent question={question.question} />
             </div>
           </Row>
           <Row>
@@ -68,11 +68,14 @@ class DocumentPreview extends React.Component{
              <Container>
               <div >
                 <div className="btn-float">
-                        <button type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-plus"></i></button>
+                        <button title="Adicionar questões" type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-plus"></i></button>
                 </div>
-                <Row className="btn-save-document">
+                <Row className="btn-preview-document">
                   <div className="auto-margin-left-element">
-                    <Button className="btn-success"> <i className="fa fa-save"></i><span className="button-text">Salvar</span></Button>
+                    <Button title="Adicionar questões" className="btn-success btn-margin-right"> <i className="fa fa-plus"></i><span className="button-text">Adicionar questões</span></Button>
+                  </div>
+                  <div>
+                    <Button title="Salvar documento" className="btn-success"> <i className="fa fa-save"></i><span className="button-text">Salvar</span></Button>
                   </div>
                 </Row>
               <Container>
@@ -87,8 +90,8 @@ class DocumentPreview extends React.Component{
                   </Col>
                   <Col>
                     <Label>{props.data.schoolName ? props.data.schoolName: 'Nome da instituição'}</Label><br/>
-                    <Label>{props.data.course ? props.data.course : "Curso/Disciplina"}</Label>{' | '}
-                    <Label>{props.data.teacherName ? props.data.teacherName : "Professor(a)"}</Label><br/>
+                    <Label>Curso/Disciplina: {props.data.course ? props.data.course : ""}</Label><br/>
+                    <Label>Professor(a): {props.data.teacherName ? props.data.teacherName : ""}</Label><br/>
                    {props.data.studentName? <p>Nome: ________________________________________________________</p>:''}
                    {props.data.class? 'Turma: _________  ':''}
                    {props.data.date? 'Data: ___/___/___  ':''}
