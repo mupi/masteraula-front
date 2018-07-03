@@ -123,6 +123,13 @@ const validate = values => {
     errors.password = 'A senha não deve conter apenas números'
   }
 
+  if (!values.confirm_password) {
+    errors.confirm_password = 'Insira uma confirmação de senha'
+  }
+  if (values.password && values.confirm_password && values.password !== values.confirm_password){
+    errors.confirm_password = 'Senha e confirmação não coincidem'
+  }
+
   return errors
 }
 
