@@ -1,7 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Button, Form, FormGroup, Input, Label, Col} from 'reactstrap';
+import { Alert } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
+import { NavLink } from "react-router-dom";
 
+import { toggleModal } from 'actions/registerAction';
 import { FontAwesome} from 'react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -25,7 +29,7 @@ const renderField = ({
 );
 
 const RegisterForm = props => {
-  const { handleSubmit, error } = props
+  const { handleSubmit, error , modal, toggleModal, submitSucceeded } = props
 
   return(
       <div className="row justify-content-center">
@@ -79,19 +83,25 @@ const RegisterForm = props => {
                         component= { accept_terms =>
                           <div>
                             <input type={accept_terms.type} {...accept_terms.input}/>
-                            Eu concordo com os <a className="use-terms" href="#">Termos de Uso</a>
+                            Eu concordo com os <NavLink className="use-terms" to="/terms-use" onClick={ () => toggleModal(modal) }>Termos de Uso</NavLink>
                             { accept_terms.meta.touched && accept_terms.meta.error && <span><br/>{accept_terms.meta.error}</span> }
                           </div>
                         }/>{' '}
                     </Label>
                 </FormGroup>
                 <FormGroup check>
-                  {error && <div className="errorMessage">{error}</div>}
+                  {error && <Alert color="danger">{error}</Alert>}
+                  { submitSucceeded  &&
+                    <Alert color="success">
+                      <p>Enviamos um email com instruções para ativar seu cadastro</p>
+                    </Alert>
+                  }
                 </FormGroup>
                 <Button>Enviar</Button>
             </div>
           </Form>
         </Col>
+
     </div>
   );
 }
@@ -123,7 +133,21 @@ const validate = values => {
   return errors
 }
 
-export default reduxForm({
+const mapStateToProps = state => ({
+  modal : state.register.modal
+})
+
+const mapDispatchToProps = dispatch => ({
+  toggleModal : modal => {
+    dispatch(toggleModal(modal))
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
+(reduxForm({
     form : 'register',
     validate
-})(RegisterForm);
+})(RegisterForm))

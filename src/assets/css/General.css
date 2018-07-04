@@ -1,19 +1,32 @@
 :root{
-  --color-ma-pink: #ed508f;
+  --color-ma-pink: #FF007A;
   --color-ma-purple:#4d3570;
   --color-ma-yellow:#f3b232;
   --color-ma-blue-sky:#add2ef;
-  --color-ma-blue:#0980b2;
+  --color-ma-blue:#1E5078;
   --color-ma-dark-blue:#27577f;
   --color-ma-white:#ffffff;
   --color-ma-gray:#eee;
-  --color-ma-green:#a6d057;
+  --color-ma-green:#52CF60;
   --sidebar-size:280px;
   --sidebar-size-neg:-280px;
+  --max-width-mobile:869px;
+  --min-width-web:868px
 }
 
 .errorMessage {
     color: red;
     text-align: center;
     margin-bottom: 10px;
+}
+
+/*alerts*/
+.alert p {
+    margin-bottom: 0px;
+}
+
+.alert {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding: 10px;
 }

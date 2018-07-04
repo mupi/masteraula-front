@@ -13,6 +13,7 @@ import RegisterModal from "components/userregister/RegisterModal";
 import ForgotPasswordPage from "pages/ForgotPassword/ForgotPasswordPage";
 import RedefinePasswordPage from "pages/RedefinePassword/RedefinePasswordPage";
 import UserProfilePage from "pages/UserProfile/UserProfilePage";
+import TermsUsePage from "pages/TermsUse/TermsUsePage";
 
 import HomePage from "pages/Home/HomePage.js";
 import QuestionPage from "pages/Question/QuestionPage";
@@ -61,6 +62,7 @@ class App extends Component {
                 <Route path="/register" component={RegisterModal}/>
                 <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
                 <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPage}/>
+                <Route path="/terms-use" component={TermsUsePage}/>
               </Switch>
           }
             <Footer year="2018" version="1.0" />
@@ -72,7 +74,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   isOpenSidebar : state.menu.isOpenSidebar,
-  isLoggedIn : state.login.session
+  isLoggedIn : state.session.session
 })
 
 const connectedApp = connect(mapStateToProps)(App);

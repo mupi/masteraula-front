@@ -17,7 +17,7 @@ const RegisterModal = props => {
 
   return (
     <NavItem>
-      <Link to="/" onClick={ () => toggleModal(modal) }>Cadastre-se</Link>
+      <Link to="#" onClick={ () => toggleModal(modal) }>Cadastre-se</Link>
       <Modal isOpen={ modal } toggle={ () =>  toggleModal(modal) }>
         <div className="contenedor-register">
           <ModalHeader toggle={ () =>  toggleModal(modal) }></ModalHeader>
