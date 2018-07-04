@@ -2,7 +2,10 @@ import React from 'react';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import QuestionHeader from "components/question/QuestionHeader.js";
 import QuestionContent from "components/question/QuestionContent.js";
+
 import QuestionInfo from "components/question/QuestionInfo.js";
+import { QuestionInfoContainer } from 'containers/questionContainer'
+
 import RelatedQuestions from "components/question/RelatedQuestions";
 import QuestionComments from "components/question/QuestionComments.js";
 import 'font-awesome/css/font-awesome.min.css';
@@ -107,13 +110,13 @@ const QuestionPage = (onRate=f=>f) =>
                       <div className="col-sm-12 col-md-12 col-lg-12 col-xs-12">
                       <QuestionHeader disciplines={question.disciplines} source={question.source} year={question.year} />
                       <QuestionContent alternatives={question.alternatives} question={question.question} answer={question.answer}/>
-                      <QuestionInfo disciplines={question.disciplines}
+                      <QuestionInfoContainer disciplines={question.disciplines}
                                     teachingLevels={question.teachingLevels}
                                     descriptors={question.descriptors}
                                     tags={question.tags}
                                     difficulty={question.difficulty}
                                     author={question.author}
-                                    onRate={(rating) => onRate(question.id, rating)}
+                                    
                                   />
                       <RelatedQuestions rquestions={question.rquestions} />
                       <QuestionComments />

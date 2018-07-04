@@ -1,5 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import PropTypes from 'prop-types'
+
 import 'font-awesome/css/font-awesome.min.css';
 import StarRating from 'components/stars/StarRating'
 import DisciplineList from "components/disciplines/DisciplineList"
@@ -7,9 +9,8 @@ import DescriptorList from "components/descriptors/DescriptorList"
 import TagList from "components/tags/TagList"
 import QuestionAuthor from "./QuestionAuthor"
 
-const { rating , onRate} = this.props
-
-const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficulty, author}) => (
+const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficulty, author, rating , onRate=f=>f}) => {
+            return(
             <Container className="question-information">
               <Row className="title-section-question">
                     <h4><i className="fa fa-info-circle"></i> Informação da Questão</h4>
@@ -57,6 +58,20 @@ const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficult
                  </Col>
               </Row>
             </Container>
-    )
+          )
+
+    }
+
+
+    QuestionInfo.propTypes = {
+        rating: PropTypes.number,
+        onRate: PropTypes.func
+    }
+
+    QuestionInfo.defaultProps = {
+        rating: 0,
+        onRate: f=>f
+    }
+
 
 export default QuestionInfo;

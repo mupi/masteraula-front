@@ -7,10 +7,10 @@ import { Container, Row, Col,Alert, Button, Form } from 'reactstrap';
 const VerifyRegisterPage = () =>
     <div className="page main-contenedor middle-box">
       <Container>
-        <Alert color="success">
-          <p><i className="fa fa-sign-in"></i>Parabéns!, seu cadastro foi ativado com sucesso.</p>
+        <Alert color="success" className="text-center">
+          <p><i className="fa fa-sign-in"></i> Parabéns!, seu cadastro foi ativado com sucesso.</p>
         </Alert>
-        <div className="row justify-content-center">
+        <div className="row justify-content-center text-center">
           <Col sm="12" xs="12">
             <Form>
                 <Button>Entrar</Button>
