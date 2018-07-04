@@ -1,6 +1,6 @@
 import { profileEditService } from 'services';
 import { DIFFERENT_OLD_PASSWORD } from 'services/profileEditService';
-import { SubmissionError, change } from 'redux-form'
+import { SubmissionError, clearFields } from 'redux-form'
 
 import { updateUser } from './sessionAction';
 
@@ -19,9 +19,7 @@ export const profileEdit = (profile) => {
           
           dispatch(success())
           dispatch(updateUser(session))
-          dispatch(change('profile', 'new_password', ''))
-          dispatch(change('profile', 'old_password', ''))
-          dispatch(change('profile', 'password_confirmation', ''))
+          dispatch(clearFields('profile', true, true, 'new_password', 'old_password', 'password_confirmation'))
         },
         error => {
           dispatch(failure(error))

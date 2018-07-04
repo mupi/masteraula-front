@@ -12,7 +12,11 @@ import logoMasterAula from "assets/img/home/masteraula-300x60.png";
 import SidebarFilters from "./SidebarFilters"
 
 
-const Sidebar = ({docName="Novo documento", docNumberQuestions="0"})=> {
+const Sidebar = props => {
+  const { showFilters } = props
+  const docName = props.docName ? props.docName : "Novo Documento"
+  const docNumberQuestions = props.docNumberQuestions ? props.docName : 0
+  
     return (
           <div id="sidebar">
             <div id="sidebar-container">
@@ -37,7 +41,7 @@ const Sidebar = ({docName="Novo documento", docNumberQuestions="0"})=> {
                             <Link to="/home">  Banco de questões </Link>
                           </ListGroupItem>
                         </ListGroup>
-                        <SidebarFilters/>
+                        { showFilters &&  <SidebarFilters/>}
                       </div>
                   </Col>
                 </Row>

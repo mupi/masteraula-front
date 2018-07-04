@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import { NavLink } from "react-router-dom";
 import { Field, reduxForm } from 'redux-form'
@@ -38,11 +38,11 @@ const RedefinePassword = props => {
                 className="form-control"
               />
             </FormGroup>
-            { error && <div className="errorMessage">{error}</div> }
+            {error && <Alert color="danger">{error}</Alert>}
             { submitSucceeded  &&
-              <div className="message-password-instructions">
-                <h3><i className="fa fa-thumbs-up"></i> Sua senha foi alterada com sucesso</h3>
-              </div>
+              <Alert color="success">
+                <p><i className="fa fa-thumbs-up"></i> Sua senha foi alterada com sucesso</p>
+              </Alert>
             }
             <Button>Salvar</Button>
           </Form>

@@ -99,7 +99,7 @@ const question = {
 
 
 
-const QuestionPage =() =>
+const QuestionPage = () =>
 
             <HomeUserPage>
                 <div className="contenedor-question">
