@@ -7,7 +7,7 @@ import DescriptorList from "components/descriptors/DescriptorList"
 import TagList from "components/tags/TagList"
 import QuestionAuthor from "./QuestionAuthor"
 
-const { rating, onRate} = this.props
+const { rating , onRate} = this.props
 
 const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficulty, author}) => (
             <Container className="question-information">
