@@ -7,6 +7,8 @@ import DescriptorList from "components/descriptors/DescriptorList"
 import TagList from "components/tags/TagList"
 import QuestionAuthor from "./QuestionAuthor"
 
+const { rating, onRate} = this.props
+
 const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficulty, author}) => (
             <Container className="question-information">
               <Row className="title-section-question">
@@ -51,7 +53,7 @@ const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficult
               <Row className="row-info">
                  <Col  className="info-label" sm="4" xs="4">Avaliação</Col>
                  <Col sm="8" xs="8">
-                     <StarRating />
+                     <StarRating starsSelected={rating} onRate={onRate}/>
                  </Col>
               </Row>
             </Container>

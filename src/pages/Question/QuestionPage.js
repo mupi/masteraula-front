@@ -99,7 +99,7 @@ const question = {
 
 
 
-const QuestionPage = () =>
+const QuestionPage = (onRate=f=>f) =>
 
             <HomeUserPage>
                 <div className="contenedor-question">
@@ -112,7 +112,9 @@ const QuestionPage = () =>
                                     descriptors={question.descriptors}
                                     tags={question.tags}
                                     difficulty={question.difficulty}
-                                    author={question.author}/>
+                                    author={question.author}
+                                    onRate={(rating) => onRate(question.id, rating)}
+                                  />
                       <RelatedQuestions rquestions={question.rquestions} />
                       <QuestionComments />
                     </div>
