@@ -14,6 +14,7 @@ import ForgotPasswordPage from "pages/ForgotPassword/ForgotPasswordPage";
 import RedefinePasswordPage from "pages/RedefinePassword/RedefinePasswordPage";
 import UserProfilePage from "pages/UserProfile/UserProfilePage";
 import TermsUsePage from "pages/TermsUse/TermsUsePage";
+import VerifyRegisterPage from "pages/UserRegister/VerifyRegisterPage";
 
 import HomePage from "pages/Home/HomePage.js";
 import QuestionPage from "pages/Question/QuestionPage";
@@ -61,6 +62,7 @@ class App extends Component {
                 <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
                 <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPage}/>
                 <Route path="/terms-use" component={TermsUsePage}/>
+                <Route path="/verify-userregister" component={VerifyRegisterPage}/>
               </Switch>
           }
             <Footer year="2018" version="1.0" />
