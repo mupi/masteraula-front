@@ -2,7 +2,7 @@ import { RATE_QUESTION , ADD_QUESTION} from 'actions/questionAction';
 
 const initialState = {}
 
-export function question (state = initialState, action)  {
+export const question = (state = initialState, action) => {
     switch (action.type) {
         case ADD_QUESTION:
             return {
