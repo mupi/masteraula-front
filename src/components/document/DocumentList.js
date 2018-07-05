@@ -7,13 +7,11 @@ import QuestionContent from "../../components/question/QuestionContent.js";
 import 'font-awesome/css/font-awesome.min.css';
 
 class DocumentList extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       document: ''
     };
-
     this.toggle = this.toggle.bind(this);
   }
 
