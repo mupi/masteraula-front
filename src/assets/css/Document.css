@@ -81,3 +81,7 @@ span.button-text {
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
+.modal-title {
+    width: 100%;
+}

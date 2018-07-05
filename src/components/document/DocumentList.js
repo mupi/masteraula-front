@@ -53,13 +53,11 @@ class DocumentList extends React.Component {
         {this.state.document?
         <Modal isOpen={this.state.document?true:false} toggle={()=>this.toggle()} size='lg'>
                 <ModalHeader toggle={()=>this.toggle()}>
-                  <Row>
-                    <Col xl={{ size: 'auto'}}>{this.state.document.name}</Col>
-                    <Col xl={{ size: 'auto'}}>
-                      <Button color='success'><i className="fa fa-share-square"></i> Exportar</Button>
-                      <Button color='success' style={{'marginLeft':'1px'}}><i className="fa fa-pencil"></i> Editar</Button>
-                    </Col>
-                  </Row>
+                    <div>{this.state.document.name}</div>
+                    <div style={{'display':'inline','marginLeft':'auto', 'float':'right'}}>
+                      <Button color='success' ><i className="fa fa-share-square"></i> Exportar</Button>
+                      <Button color='success' ><i className="fa fa-pencil"></i> Editar</Button>
+                    </div>
                 </ModalHeader>
                 <ModalBody className="question-modal">
                   <Container>
