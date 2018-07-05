@@ -56,13 +56,23 @@ class DocumentList extends React.Component {
       <Modal isOpen={this.state.document?true:false} toggle={()=>this.toggle()} size='lg'>
               <ModalHeader toggle={()=>this.toggle()}>
                   <div>{this.state.document.name}</div>
-                  <div style={{'display':'inline','marginLeft':'auto', 'float':'right'}}>
-                    <Button color='success' ><i className="fa fa-share-square"></i> Exportar</Button>
-                    <Button color='success' ><i className="fa fa-pencil"></i> Editar</Button>
-                  </div>
               </ModalHeader>
               <ModalBody className="question-modal">
+                  <Row>
+                    <div className="auto-margin-left-element">
+                      <Button title="Exportar documento" className="btn-success btn-margin-right btn btn-secondary">
+                        <i className="fa fa-share-square"></i><span className="button-text">Exportar</span>
+                      </Button>
+                    </div>
+                    <div>
+                      <Button title="Editar documento" className="btn-success btn btn-secondary">
+                        <i className="fa fa-pencil"></i><span className="button-text">Editar</span>
+                      </Button>
+                    </div>
+                  </Row>
                 <Container>
+
+
                 <Row className="question-section-border document-header">
                   <Col xs='2'>
                     <Label for="upload-avatar" className="upload-avatar">
