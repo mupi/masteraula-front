@@ -1,13 +1,21 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import PropTypes from 'prop-types'
+
 import 'font-awesome/css/font-awesome.min.css';
 import StarRating from 'components/stars/StarRating'
 import DisciplineList from "components/disciplines/DisciplineList"
 import DescriptorList from "components/descriptors/DescriptorList"
 import TagList from "components/tags/TagList"
+import { Component } from 'react'
+
 import QuestionAuthor from "./QuestionAuthor"
 
-const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficulty, author}) => (
+class QuestionInfo extends Component {
+
+    render() {
+        const {disciplines, teachingLevels, descriptors, tags, difficulty, author , rating, onRate=f=>f} = this.props
+            return(
             <Container className="question-information">
               <Row className="title-section-question">
                     <h4><i className="fa fa-info-circle"></i> Informação da Questão</h4>
@@ -51,10 +59,24 @@ const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficult
               <Row className="row-info">
                  <Col  className="info-label" sm="4" xs="4">Avaliação</Col>
                  <Col sm="8" xs="8">
-                     <StarRating />
+                     <StarRating onRate={(rating) => onRate(rating)} starsSelected={rating} />
                  </Col>
               </Row>
             </Container>
-    )
+          )
+          }
+      }
+
+
+    QuestionInfo.propTypes = {
+        rating: PropTypes.number,
+        onRate: PropTypes.func
+    }
+
+    QuestionInfo.defaultProps = {
+        rating: 0,
+        onRate: f=>f
+    }
+
 
 export default QuestionInfo;

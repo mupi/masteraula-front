@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup , Col} from 'reactstrap';
+import { Alert} from 'reactstrap';
 import { connect } from 'react-redux'
 import { NavLink } from "react-router-dom";
 import { Field, reduxForm } from 'redux-form'
@@ -33,7 +34,7 @@ const LoginForm = props => {
             className="form-control"
           />
         </FormGroup>
-        {error && <div className="errorMessage">{error}</div>}
+        {error && <Alert color="danger">{error}</Alert>}
         <div className="text-center">
             <FormGroup>
                 <NavLink  to="/esqueci-senha" onClick={ () => toggleModal(modal) }>Esqueci minha senha</NavLink>

@@ -23,11 +23,6 @@ const Sidebar = props => {
               <div className="container-fluid">
                 <Row>
                   <Col xs="12">
-                    <div className="logo-sidebar">
-                      <img src={logoMasterAula}/>
-                    </div>
-                  </Col>
-                  <Col xs="12">
                       <div className="sidebar-nav-container">
 
                           <h5>Documento Atual</h5>

@@ -3,11 +3,11 @@ import { Row, Col } from 'reactstrap';
 import 'font-awesome/css/font-awesome.min.css';
 import QuestionCard from './QuestionCard'
 
-const QuestionList = ({questions, numCols=4})=>  (
+const QuestionList = ({questions=[], numCols=4 , onRate=f=>f, onRemove=f=>f})=>  (
     <Row>
         {questions.map((question, i) =>
           <Col sm={numCols} xs="12" key={i}>
-            <QuestionCard key={i} disciplines={question.disciplines} source={question.source}
+            <QuestionCard key={question.id} disciplines={question.disciplines} source={question.source}
                           year={question.year} extract={question.extract}
                           urlImage={question.urlImage} author={question.author} teachingLevels={question.teachingLevels}
             />

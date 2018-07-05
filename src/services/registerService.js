@@ -1,7 +1,8 @@
 import {apiUrl} from 'helpers/config';
  
 const registerService = {
-    register
+    register,
+    verifyEmail
 };
 
 export const handleResponse = (response) => {
@@ -10,7 +11,7 @@ export const handleResponse = (response) => {
             const error = (data && data.email);
             return Promise.reject(error);
         }
- 
+
         return data;
     });
 }
@@ -28,7 +29,23 @@ function register(email, password, name) {
         })
     };
  
-    return fetch(`${apiUrl}/auth/registration/ `, requestOptions)
+    return fetch(`${apiUrl}/auth/registration/`, requestOptions)
+        .then(handleResponse)
+        .then(detail => {
+            return detail;
+        });
+}
+
+function verifyEmail(key) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            key
+        })
+    };
+ 
+    return fetch(`${apiUrl}/auth/registration/verify-email/`, requestOptions)
         .then(handleResponse)
         .then(detail => {
             return detail;
