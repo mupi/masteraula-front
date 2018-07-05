@@ -69,3 +69,18 @@ body .container-fluid .row {
     margin-top: 25px;
     padding-bottom: 65px;
 }
+
+@media (min-width: 989px){
+#main-masteraula-container img.logo-in-menu {
+    margin-left: 280px;
+}
+}
+
+
+@media (max-width: 989px){
+  img.logo-in-menu {
+    max-width: 150px;
+    margin: 5px;
+}
+
+}
