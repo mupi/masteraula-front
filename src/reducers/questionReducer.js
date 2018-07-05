@@ -1,6 +1,5 @@
-import { RATE_QUESTION , ADD_QUESTION} from "actions/questionAction";
+import { RATE_QUESTION , ADD_QUESTION} from 'actions/questionAction';
 
-let session = JSON.parse(localStorage.getItem('session'));
 const initialState = {}
 
 export function question (state = initialState, action)  {
@@ -23,3 +22,5 @@ export function question (state = initialState, action)  {
             return state
     }
 }
+
+export default question
