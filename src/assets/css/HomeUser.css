@@ -54,7 +54,7 @@ body .container-fluid {
 
 div#sidebar .container-fluid,
 div#sidebar .container-fluid .row {
-    background: #27567e;
+    background: var(--color-ma-blue);
 }
 
 body .container-fluid .row {

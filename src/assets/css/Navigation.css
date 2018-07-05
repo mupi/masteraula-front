@@ -122,7 +122,7 @@ html body #sidebar {
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     width:  var(--sidebar-size);
-    background: var(--color-ma-dark-blue);
+    background: var(--color-ma-blue);
 }
 
 #sidebar h5, #sidebar h6 {
@@ -203,7 +203,7 @@ html body #masteraula-nav-header {
 
 .sidebar-nav-container a {
     text-decoration: none;
-    color: var(--color-ma-dark-blue);
+    color: var(--color-ma-blue);
     font-weight: bold;
 }
 
@@ -233,13 +233,13 @@ li.question-filter.list-group-item:hover {
 }
 
 li.question-category-filter.list-group-item, .question-single-filter li.list-group-item {
-    background:var(--color-ma-dark-blue);
+    background:var(--color-ma-blue);
     color: var(--color-ma-white);
     border: none;
 }
 
 li.question-category-filter.list-group-item:hover, .question-single-filter li.list-group-item:hover{
-  background:var(--color-ma-dark-blue);
+  background:var(--color-ma-blue);
   color: var(--color-ma-white);
   border: none;
 }
