@@ -56,7 +56,7 @@ const Menu = (props) => {
                     </ul>
                   </div>
                   <NavItem>
-                    <Link exact="true" to="/"><img className="logo-in-menu" src={logoMasterAula}/></Link>
+                    <Link exact="true" to="/"><img className={ isLoggedIn ? "logo-in-menu with-login" : "logo-in-menu no-login" }  src={logoMasterAula}/></Link>
                   </NavItem>
                   <NavbarToggler onClick={ () => toggleMenu(isOpen) } />
                   <Collapse isOpen={ isOpen } navbar>

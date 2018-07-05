@@ -78,9 +78,14 @@ body .container-fluid .row {
 
 
 @media (max-width: 989px){
-  img.logo-in-menu {
+  img.logo-in-menu.with-login {
     max-width: 150px;
     margin: 5px;
-}
+  }
+
+  img.logo-in-menu.no-login {
+    max-width: 150px;
+    margin: 15px;
+  }
 
 }

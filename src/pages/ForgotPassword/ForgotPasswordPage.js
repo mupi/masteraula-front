@@ -9,8 +9,10 @@ const ForgotPasswordPage = props => {
   const { success, submit } = props
 
   return (
+    <div className="public-home">
     <div className="main-contenedor middle-box text-center loginscreen  animated fadeInDown">
       <ForgotPassword onSubmit={ submit } success = { success } />
+    </div>
     </div>
   )
 }
