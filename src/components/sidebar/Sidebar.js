@@ -24,7 +24,7 @@ const Sidebar = props => {
                 <Row>
                   <Col xs="12">
                       <div className="sidebar-nav-container">
-
+                        <img className="logo-sidebar" src={logoMasterAula}/>
                           <h5>Documento Atual</h5>
                           <h6><i className="fa fa-file"></i> {docName} ({docNumberQuestions})</h6>
                           <div className="container-export-button">
