@@ -5,7 +5,9 @@ import { rateQuestion } from 'actions/questionAction.js'
 
 
 export const QuestionInfoContainer = connect(
-    null,
+    state=> ({
+        rating:state.question.rating
+    }),
     dispatch =>
         ({
             onRate(rating) {
