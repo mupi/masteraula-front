@@ -1,3 +1,5 @@
+/*Global variables used in MasterAula*/
+
 :root{
   --color-ma-pink: #FF007A;
   --color-ma-purple:#4d3570;
@@ -36,4 +38,14 @@
     margin-top: 10px;
     margin-bottom: 0px;
     padding: 10px;
+}
+
+.site-masteraula{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.site-masteraula .page {
+    flex: 1;
 }
