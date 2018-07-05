@@ -7,7 +7,7 @@ import classnames from 'classnames';
 
 
 const ViewDocumentPage = () =>{
-   
+
     let data = [{'schoolName':'Escolinha', 'course':'Matemática','teacherName':"Profa Daniela",
                 'studentName':true, 'date':true, 'class':true, 'grade':true, 'name': 'Prova de português', 'createdAt':'28/06/2018',
                 questions: [
@@ -346,8 +346,8 @@ const ViewDocumentPage = () =>{
 
     return(
           <HomeUserPage>
-          <div className="contenedor-question-base">
-                  <Row className="text-search-question">
+          <Container>
+                  <Row>
                     <InputGroup>
                       <Input placeholder="Pesquisar em Meus Documentos" />
                       <InputGroupAddon addonType="prepend"><Button>Pesquisar</Button></InputGroupAddon>
@@ -355,12 +355,12 @@ const ViewDocumentPage = () =>{
                   </Row>
                   {data?
                   <Row style={{'marginTop':'1em'}}>
+                    <Col sm="12">
                     {data.length} documentos encontrados
+                    </Col>
                   </Row>:''}
-                  <Row>
                     <DocumentList documents={data}/>
-                  </Row>
-            </div>
+            </Container>
           </HomeUserPage>);
     }
 
