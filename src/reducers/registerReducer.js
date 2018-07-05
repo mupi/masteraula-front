@@ -10,8 +10,7 @@ export function register(state = {}, action) {
         break;
         case REGISTER_SUCCESS:
             return Object.assign({}, state, {
-                isFetching: false,
-                modal: false
+                isFetching: false
             });
         break;
         case REGISTER_FAILURE:

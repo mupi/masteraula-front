@@ -42,7 +42,7 @@ class DocumentList extends React.Component {
         </thead>
         <tbody>
           {this.props.documents.map((document, i) =>
-            <tr>
+            <tr key={i}>
               <th scope="row" onClick={()=>this.toggle(document)}><center>{document.name}</center></th>
               <td><center>{document.createdAt}</center></td>
               <td><center>{document.questions.length}</center></td>
@@ -50,16 +50,20 @@ class DocumentList extends React.Component {
             </tr>
           )}
         </tbody>
-
         {this.state.document?
-        <Modal isOpen={this.state.document} toggle={()=>this.toggle()} size='lg'>
-                <ModalHeader toggle={()=>this.toggle()} />
+        <Modal isOpen={this.state.document?true:false} toggle={()=>this.toggle()} size='lg'>
+                <ModalHeader toggle={()=>this.toggle()}>
+                    <div>{this.state.document.name}</div>
+                    <div style={{'display':'inline','marginLeft':'auto', 'float':'right'}}>
+                      <Button color='success' ><i className="fa fa-share-square"></i> Exportar</Button>
+                      <Button color='success' ><i className="fa fa-pencil"></i> Editar</Button>
+                    </div>
+                </ModalHeader>
                 <ModalBody className="question-modal">
                   <Container>
                   <Row className="question-section-border document-header">
                     <Col xs='2'>
                       <Label for="upload-avatar" className="upload-avatar">
-
                               <div className="thumbnail">
                                 <img src={this.state.document.logo? this.state.document.logo : "http://via.placeholder.com/100x100"}/>
                               </div>
@@ -77,7 +81,7 @@ class DocumentList extends React.Component {
                   </Row>
                 </Container>
                  {this.state.document.questions.map((question, i) =>
-                    <div key={i} className="question-section-border question-in-doc">
+                    <div key={i} className="question-section-border question-in-doc" >
                       <Row>
                         <Col sm='4'>
                           <DisciplineList list={question.disciplines} />
@@ -94,7 +98,7 @@ class DocumentList extends React.Component {
                     </div>)}
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="primary" onClick={()=>this.toggle()}>Fechar</Button>{' '}
+                  <Button color="primary" onClick={()=>this.toggle()}>Fechar</Button>
                   <Button color="danger" onClick={()=>this.toggle()}>Apagar</Button>
                 </ModalFooter>
               </Modal>:''}

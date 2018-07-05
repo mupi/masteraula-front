@@ -1,8 +1,7 @@
 export const authHeader = () => {
     let session = JSON.parse(localStorage.getItem('session'));
-
     if (session && session.token) {
-        return { 'Authorization': 'Bearer ' + session.token };
+        return 'Bearer ' + session.token;
     } else {
         return {};
     }

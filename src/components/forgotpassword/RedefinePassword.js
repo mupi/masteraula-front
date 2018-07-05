@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import { NavLink } from "react-router-dom";
 import { Field, reduxForm } from 'redux-form'
@@ -10,7 +10,7 @@ import { resetForgotPasswordForm } from 'actions/forgotPasswordAction';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const RedefinePassword = props => {
-  const { handleSubmit, error, success } = props 
+  const { handleSubmit, error, submitSucceeded } = props
 
   return (
     <div className="contenedor-forgotpassword">
@@ -25,6 +25,7 @@ const RedefinePassword = props => {
                 name="newpassword"
                 id="newpassword"
                 placeholder="Nova senha"
+                className="form-control"
               />
             </FormGroup>
             <FormGroup>
@@ -34,13 +35,14 @@ const RedefinePassword = props => {
                 name="repeatpassword"
                 id="repeatpassword"
                 placeholder="Nova senha (novamente)"
+                className="form-control"
               />
             </FormGroup>
-            { error && <div className="errorMessage">{error}</div> }
-            { success  && 
-              <div className="message-password-instructions">
-                <h3><i className="fa fa-thumbs-up"></i> Sua senha foi alterada com sucesso</h3>
-              </div>
+            {error && <Alert color="danger">{error}</Alert>}
+            { submitSucceeded  &&
+              <Alert color="success">
+                <p><i className="fa fa-thumbs-up"></i> Sua senha foi alterada com sucesso</p>
+              </Alert>
             }
             <Button>Salvar</Button>
           </Form>

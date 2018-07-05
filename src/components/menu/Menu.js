@@ -8,6 +8,7 @@ import { logout } from 'actions/loginAction'
 import { toggleMenu, openSidebar } from 'actions/menuAction';
 import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
+import logoMasterAula from "assets/img/home/masteraula-300x60.png";
 
 import 'assets/css/Navigation.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -20,25 +21,29 @@ const Menu = (props) => {
   const { openSidebar } = props
   const { logout } = props
 
-  const loggedOptions = <Nav className="ml-auto" navbar>
-          <NavItem><Link to="/user-profile"><i className="fa fa-user"></i> Meu profile</Link></NavItem>
-          <NavItem><Link onClick={ (e) => {e.preventDefault(); logout() } } to="/"><i className="fa fa-sign-out"></i> Logout</Link></NavItem>
-          </Nav>;
+  const loggedOptions = 
+    <Nav className="ml-auto" navbar>
+      <NavItem><Link to="/Home"><i className="fa fa-check"></i> Home</Link></NavItem>
+      <NavItem><Link to="/user-profile"><i className="fa fa-user"></i> Meu profile</Link></NavItem>
+      <NavItem><Link onClick={ (e) => {e.preventDefault(); logout() } } to="/"><i className="fa fa-sign-out"></i> Logout</Link></NavItem>
+    </Nav>;
 
-  const notLoggedOptions = <Nav className="ml-auto" navbar>
-          <NavItem><Link exact="true" to="/">Home</Link></NavItem>
-          <LoginModal />
-          <RegisterModal />
-          </Nav>;
+  const notLoggedOptions = 
+    <Nav className="ml-auto" navbar>
+      <NavItem><Link exact="true" to="/">Home</Link></NavItem>
+      <LoginModal />
+      <RegisterModal />
+    </Nav>;
 
-  const menu = <li className="sidebar-btn">
-                  <Button href="/" onClick={ (e) => {
-                    e.preventDefault();
-                    openSidebar(isOpenSidebar)}
-                  }>
-                    <span><i className="fa fa-bars"></i></span>
-                  </Button>
-                </li>;
+  const menu = 
+    <li className="sidebar-btn">
+      <Button href="/" onClick={ (e) => {
+        e.preventDefault();
+        openSidebar(isOpenSidebar)}
+      }>
+        <span><i className="fa fa-bars"></i></span>
+      </Button>
+    </li>;
 
   return(
         <div id="navbar" className="container-fluid">
@@ -51,7 +56,7 @@ const Menu = (props) => {
                     </ul>
                   </div>
                   <NavItem>
-                    <Link exact="true" to="/">MasterAula</Link>
+                    <Link exact="true" to="/"><img className="logo-in-menu" src={logoMasterAula}/></Link>
                   </NavItem>
                   <NavbarToggler onClick={ () => toggleMenu(isOpen) } />
                   <Collapse isOpen={ isOpen } navbar>
@@ -69,7 +74,7 @@ const Menu = (props) => {
 const mapStateToProps = state => ({
   isOpen: state.menu.isOpen,
   isOpenSidebar : state.menu.isOpenSidebar,
-  isLoggedIn : state.login.session
+  isLoggedIn : state.session.session
 })
 
 const mapDispatchToProps = dispatch => ({

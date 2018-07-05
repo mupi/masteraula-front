@@ -7,15 +7,26 @@ import { Row, Col, Button} from 'reactstrap';
 
 import 'assets/css/Navigation.css';
 import 'font-awesome/css/font-awesome.min.css';
+import logoMasterAula from "assets/img/home/masteraula-300x60.png";
+
 import SidebarFilters from "./SidebarFilters"
 
 
-const Sidebar = ({docName="Novo documento", docNumberQuestions="0"})=> {
+const Sidebar = props => {
+  const { showFilters } = props
+  const docName = props.docName ? props.docName : "Novo Documento"
+  const docNumberQuestions = props.docNumberQuestions ? props.docName : 0
+  
     return (
           <div id="sidebar">
             <div id="sidebar-container">
               <div className="container-fluid">
                 <Row>
+                  <Col xs="12">
+                    <div className="logo-sidebar">
+                      <img src={logoMasterAula}/>
+                    </div>
+                  </Col>
                   <Col xs="12">
                       <div className="sidebar-nav-container">
 
@@ -35,7 +46,7 @@ const Sidebar = ({docName="Novo documento", docNumberQuestions="0"})=> {
                             <Link to="/home">  Banco de questões </Link>
                           </ListGroupItem>
                         </ListGroup>
-                        <SidebarFilters/>
+                        { showFilters &&  <SidebarFilters/>}
                       </div>
                   </Col>
                 </Row>

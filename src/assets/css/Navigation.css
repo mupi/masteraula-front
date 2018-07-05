@@ -32,7 +32,7 @@ li.nav-item {
 }
 
 .navbar-toggler{
-  background: var(--color-ma-purple);
+  background: var(--color-ma-pink);
 }
 
 
@@ -100,7 +100,7 @@ html body #sidebar #sidebar-container {
     bottom: 0;
     width: var(--sidebar-size);
     position: absolute;
-    top: 110px;
+    top: 50px;
 }
 
 @media (min-width: 990px){
@@ -162,11 +162,11 @@ ul.list-group {
 
 html body #masteraula-nav-header .navbar-nav>li.sidebar-btn>a {
     color: var(--color-ma-white);
-    background: var(--color-ma-yellow);
+    background: var(--color-ma-green);
 }
 html body #masteraula-nav-header .navbar-nav>li.logout>a, html body #masteraula-nav-header .navbar-nav>li.sidebar-btn>a {
-    width: 75px;
-    font-size: 30px;
+    width: 65px;
+    font-size: 25px;
     padding-left: 0;
     padding-right: 0;
 }
@@ -279,4 +279,33 @@ li.question-category-filter a{
     position: absolute;
     font-size: 20px;
     font-weight: bold;
+}
+
+/*SCROLl-Y in sidebar*/
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background:var(--color-ma-blue);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--color-ma-green);
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ma-green);
+}
+
+.logo-sidebar {
+    margin: 25px 10px;
+}
+
+.logo-sidebar img {
+    width: 95%;
+}
+
+img.logo-in-menu {
+    max-width: 180px;
+    margin: 5px;
 }

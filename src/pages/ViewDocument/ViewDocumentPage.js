@@ -354,9 +354,9 @@ const ViewDocumentPage = () =>{
                     </InputGroup>
                   </Row>
                   {data?
-                  <p><Row>
+                  <Row style={{'marginTop':'1em'}}>
                     {data.length} documentos encontrados
-                  </Row></p>:''}
+                  </Row>:''}
                   <Row>
                     <DocumentList documents={data}/>
                   </Row>
