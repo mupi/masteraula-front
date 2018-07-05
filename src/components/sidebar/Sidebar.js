@@ -35,7 +35,7 @@ const Sidebar = props => {
                             <Link to="/new-document">  Novo documento </Link>
                           </ListGroupItem>
                           <ListGroupItem color='secondary'  >
-                            <Link to="/my-documents">  Meus documentos </Link>
+                            <Link to="/documents">  Meus documentos </Link>
                           </ListGroupItem>
                           <ListGroupItem color='secondary'>
                             <Link to="/home">  Banco de questões </Link>
