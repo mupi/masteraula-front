@@ -11,8 +11,10 @@ const RedefinePasswordPage = props =>{
   const token = match.params.token
 
   return (
+    <div className="public-home">
     <div className="main-contenedor middle-box text-center loginscreen  animated fadeInDown">
       <RedefinePassword onSubmit={ submit } uid={ uid } token={ token } success={ success }/>
+    </div>
     </div>
   )
 }
@@ -22,7 +24,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  submit : (values, d, props) => { 
+  submit : (values, d, props) => {
     return dispatch(resetForgotPassword(values.newpassword, values.repeatpassword, props.uid, props.token))
   }
 })
@@ -31,4 +33,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(RedefinePasswordPage);
-      

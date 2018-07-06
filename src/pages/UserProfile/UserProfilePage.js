@@ -39,14 +39,14 @@ const mapDispatchToProps = dispatch => ({
               } else if (!isNaN(values.new_password)){
                 errors.new_password = 'A senha não deve conter apenas números'
               }
-            
+
               if (!values.password_confirmation) {
                 errors.password_confirmation = 'Insira uma confirmação de senha'
               }
               if (values.new_password && values.password_confirmation && values.new_password !== values.password_confirmation){
                 errors.password_confirmation = 'Senha e confirmação não coincidem'
               }
-            
+
             if (Object.keys(errors).length !== 0) throw new SubmissionError(errors)
 
 

@@ -1,4 +1,5 @@
 /*Clases do Home*/
+
 .bg-primary {
     background-color: var(--color-ma-blue) !important;
 }
@@ -32,7 +33,7 @@
 }
 
 .banner-header {
-    padding: 60px 10px;
+    padding: 55px 10px;
 }
 
 .banner-header h1 {
@@ -67,6 +68,16 @@
     font-size: 20px;
     font-weight: bold;
   }
+
+  .container.caracteristicas-ma {
+      padding-top: 30px;
+      padding-bottom: 30px;
+  }
+
+  .public-home .main-contenedor {
+    padding: 15px;
+    margin-top: 60px;
+}
 
 }
 

@@ -7,13 +7,11 @@ import QuestionContent from "../../components/question/QuestionContent.js";
 import 'font-awesome/css/font-awesome.min.css';
 
 class DocumentList extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       document: ''
     };
-
     this.toggle = this.toggle.bind(this);
   }
 
@@ -31,6 +29,7 @@ class DocumentList extends React.Component {
 
   render(){
     return(
+    <div>
     <Table responsive>
         <thead>
           <tr>
@@ -50,59 +49,70 @@ class DocumentList extends React.Component {
             </tr>
           )}
         </tbody>
-        {this.state.document?
-        <Modal isOpen={this.state.document?true:false} toggle={()=>this.toggle()} size='lg'>
-                <ModalHeader toggle={()=>this.toggle()}>
-                    <div>{this.state.document.name}</div>
-                    <div style={{'display':'inline','marginLeft':'auto', 'float':'right'}}>
-                      <Button color='success' ><i className="fa fa-share-square"></i> Exportar</Button>
-                      <Button color='success' ><i className="fa fa-pencil"></i> Editar</Button>
-                    </div>
-                </ModalHeader>
-                <ModalBody className="question-modal">
-                  <Container>
-                  <Row className="question-section-border document-header">
-                    <Col xs='2'>
-                      <Label for="upload-avatar" className="upload-avatar">
-                              <div className="thumbnail">
-                                <img src={this.state.document.logo? this.state.document.logo : "http://via.placeholder.com/100x100"}/>
-                              </div>
-                      </Label>
-                    </Col>
-                    <Col>
-                      <Label>{this.state.document.schoolName ? this.state.document.schoolName: 'Nome da instituição'}</Label><br/>
-                      <Label>{this.state.document.course ? this.state.document.course : "Curso/Disciplina"}</Label>{' | '}
-                      <Label>{this.state.document.teacherName ? this.state.document.teacherName : "Professor(a)"}</Label><br/>
-                     {this.state.document.studentName? <p>Nome: ________________________________________________________</p>:''}
-                     {this.state.document.class? 'Turma: _________  ':''}
-                     {this.state.document.date? 'Data: ___/___/___  ':''}
-                     {this.state.document.grade? 'Nota: _______  ':''}
-                    </Col>
-                  </Row>
-                </Container>
-                 {this.state.document.questions.map((question, i) =>
-                    <div key={i} className="question-section-border question-in-doc" >
-                      <Row>
-                        <Col sm='4'>
-                          <DisciplineList list={question.disciplines} />
-                        </Col>
-                        <Col sm='4'>
-                          <QuestionSourceYear styleTag="top-label-question source-name" source={question.source} year={question.year}/>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <div className="question-content-in-doc">
-                          <b className="question-position">{i+1})</b> <QuestionContent question={question.question} />
-                        </div>
-                      </Row>
-                    </div>)}
-                </ModalBody>
-                <ModalFooter>
-                  <Button color="primary" onClick={()=>this.toggle()}>Fechar</Button>
-                  <Button color="danger" onClick={()=>this.toggle()}>Apagar</Button>
-                </ModalFooter>
-              </Modal>:''}
       </Table>
+      {this.state.document?
+      <Modal isOpen={this.state.document?true:false} toggle={()=>this.toggle()} size='lg'>
+              <ModalHeader toggle={()=>this.toggle()}>
+                  <div>{this.state.document.name}</div>
+              </ModalHeader>
+              <ModalBody className="question-modal">
+                  <Row>
+                    <div className="auto-margin-left-element">
+                      <Button title="Exportar documento" className="btn-success btn-margin-right btn btn-secondary">
+                        <i className="fa fa-share-square"></i><span className="button-text">Exportar</span>
+                      </Button>
+                    </div>
+                    <div>
+                      <Button title="Editar documento" className="btn-success btn btn-secondary">
+                        <i className="fa fa-pencil"></i><span className="button-text">Editar</span>
+                      </Button>
+                    </div>
+                  </Row>
+                <Container>
+
+
+                <Row className="question-section-border document-header">
+                  <Col xs='2'>
+                    <Label for="upload-avatar" className="upload-avatar">
+                            <div className="thumbnail">
+                              <img src={this.state.document.logo? this.state.document.logo : "http://via.placeholder.com/100x100"}/>
+                            </div>
+                    </Label>
+                  </Col>
+                  <Col>
+                    <Label>{this.state.document.schoolName ? this.state.document.schoolName: 'Nome da instituição'}</Label><br/>
+                    <Label>{this.state.document.course ? this.state.document.course : "Curso/Disciplina"}</Label>{' | '}
+                    <Label>{this.state.document.teacherName ? this.state.document.teacherName : "Professor(a)"}</Label><br/>
+                   {this.state.document.studentName? <p>Nome: ________________________________________________________</p>:''}
+                   {this.state.document.class? 'Turma: _________  ':''}
+                   {this.state.document.date? 'Data: ___/___/___  ':''}
+                   {this.state.document.grade? 'Nota: _______  ':''}
+                  </Col>
+                </Row>
+              </Container>
+               {this.state.document.questions.map((question, i) =>
+                  <div key={i} className="question-section-border question-in-doc" >
+                    <Row>
+                      <Col sm='4'>
+                        <DisciplineList list={question.disciplines} />
+                      </Col>
+                      <Col sm='4'>
+                        <QuestionSourceYear styleTag="top-label-question source-name" source={question.source} year={question.year}/>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <div className="question-content-in-doc">
+                        <b className="question-position">{i+1})</b> <QuestionContent question={question.question} />
+                      </div>
+                    </Row>
+                  </div>)}
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" onClick={()=>this.toggle()}>Fechar</Button>
+                <Button color="danger" onClick={()=>this.toggle()}>Apagar</Button>
+              </ModalFooter>
+            </Modal>:''}
+          </div>
     )
   }
 }

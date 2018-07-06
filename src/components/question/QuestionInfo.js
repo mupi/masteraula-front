@@ -11,11 +11,7 @@ import { Component } from 'react'
 
 import QuestionAuthor from "./QuestionAuthor"
 
-class QuestionInfo extends Component {
-
-    render() {
-        const {disciplines, teachingLevels, descriptors, tags, difficulty, author , rating, onRate=f=>f} = this.props
-            return(
+const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficulty, author , rating, onRate=f=>f}) =>
             <Container className="question-information">
               <Row className="title-section-question">
                     <h4><i className="fa fa-info-circle"></i> Informação da Questão</h4>
@@ -63,10 +59,6 @@ class QuestionInfo extends Component {
                  </Col>
               </Row>
             </Container>
-          )
-          }
-      }
-
 
     QuestionInfo.propTypes = {
         rating: PropTypes.number,

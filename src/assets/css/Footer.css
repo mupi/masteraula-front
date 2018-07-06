@@ -3,7 +3,6 @@
     padding: 3px;
     color: white;
     bottom: 0;
-    position: fixed;
     width: 100%;
     z-index: 1000;
     font-size: 13px;
@@ -11,7 +10,7 @@
 
 
 div#footer, div#footer .row {
-    background: var(--color-ma-blue);
+    background: var(--color-ma-dark-blue);
     text-align: center;
 }
 

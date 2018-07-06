@@ -1,3 +1,5 @@
+/*Global variables used in MasterAula*/
+
 :root{
   --color-ma-pink: #FF007A;
   --color-ma-purple:#4d3570;
@@ -14,6 +16,13 @@
   --min-width-web:868px
 }
 
+@custom-media --break-sm (min-width: 384px);
+@custom-media --break-md (min-width: 576px);
+@custom-media --break-lg (min-width: 768px);
+
+@custom-media --high-dppx (-webkit-min-device-pixel-ratio: 1.5),
+    (min-resolution: 144dpi), (min-resolution: 1.5dppx);
+
 .errorMessage {
     color: red;
     text-align: center;
@@ -29,4 +38,26 @@
     margin-top: 10px;
     margin-bottom: 0px;
     padding: 10px;
+}
+
+.site-masteraula{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.site-masteraula .page, .site-masteraula .public-home {
+    flex: 1;
+}
+
+
+@font-face {
+    font-family: 'Lato',sans-serif;
+    src: url("../fonts/AccordAlt_Regular.otf");
+}
+
+@font-face {
+    font-family: 'Lato',sans-serif;
+    src: url("../fonts/AccordAlt_Bold.otf");
+    font-weight: bold;
 }
