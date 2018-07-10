@@ -7,7 +7,7 @@ import { REGISTER_SUCCESS, verifyEmail} from 'actions/registerAction.js'
 const mapStateToProps = state => ({
     success : state.register.success,
     error : state.register.error,
-      modal : state.login.modal
+    modal : state.login.modal
   })
 
   const mapDispatchToProps = dispatch => ({
