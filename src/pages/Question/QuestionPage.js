@@ -102,8 +102,15 @@ const question = {
 
 
 
-const QuestionPage = (onRate=f=>f) =>
+const QuestionPage = props => {
 
+  const { id, question, rating } = props
+
+  if(question){
+      return  <HomeUserPage><div>Loading ... </div></HomeUserPage>;
+  }
+
+  return (
             <HomeUserPage>
                 <div className="contenedor-question">
                     <div className="row justify-content-center">
@@ -116,7 +123,7 @@ const QuestionPage = (onRate=f=>f) =>
                                     tags={question.tags}
                                     difficulty={question.difficulty}
                                     author={question.author}
-                                    
+
                                   />
                       <RelatedQuestions rquestions={question.rquestions} />
                       <QuestionComments />
@@ -127,6 +134,7 @@ const QuestionPage = (onRate=f=>f) =>
                         <button type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-plus"></i></button>
                 </div>
             </HomeUserPage>
-
+          );
+        }
 
 export default QuestionPage;

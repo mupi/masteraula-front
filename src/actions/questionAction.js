@@ -5,6 +5,13 @@ import { history } from 'helpers/history';
 import { updateSession, deleteSession } from 'actions/sessionAction'
 import { v4 } from 'uuid'
 
+//Load question
+export const QUESTION_FETCH = 'QUESTION_FETCH'
+export const QUESTION_FETCH_SUCCESS = 'QUESTION_FETCH'
+export const QUESTION_FETCH_FAILURE = 'QUESTION_FETCH'
+
+
+
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const REMOVE_QUESTION = 'REMOVE_QUESTION'
 export const UPDATE_QUESTION = 'UPDATE_QUESTION'
