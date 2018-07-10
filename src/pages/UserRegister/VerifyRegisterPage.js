@@ -3,9 +3,8 @@ import { Field, reduxForm } from 'redux-form'
 import { Container, Row, Col,Alert, Button, Form } from 'reactstrap';
 import LoginModal from 'components/login/LoginModal';
 import { connect } from 'react-redux'
-import {  toggleModal } from 'actions/loginAction';
+import {   toggleModal } from 'actions/loginAction';
 import { Link } from 'react-router-dom'
-
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'assets/css/General.css';
@@ -31,7 +30,7 @@ class VerifyRegisterPage extends React.Component {
           }
           <div className="row justify-content-center text-center">
             <Col sm="12" xs="12">
-                  <Button><Link to="#" onClick={ () => toggleModal(this.props.modal) }>Login</Link></Button>
+                  <Button onClick={ () => this.props.toggleModal(this.props.modal) }>Login</Button>
             </Col>
           </div>
         </Container>
@@ -39,17 +38,4 @@ class VerifyRegisterPage extends React.Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  modal : state.login.modal
-})
-
-const mapDispatchToProps = dispatch => ({
-  toggleModal : modal => dispatch(toggleModal(modal))
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)
-(VerifyRegisterPage);
+export default VerifyRegisterPage
