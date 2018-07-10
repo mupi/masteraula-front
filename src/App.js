@@ -58,13 +58,13 @@ class App extends Component {
                </Switch>
         :
               <Switch>
-                <Route exact path="/" component={HomePage}/>
                 <Route path="/login" component={LoginModal} />
                 <Route path="/register" component={RegisterModal}/>
                 <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
                 <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPage}/>
                 <Route path="/terms-use" component={TermsUsePage}/>
                 <Route path="/verify-userregister/:key" component={VerifyRegisterPageContainer}/>
+                <Route component={HomePage}/>
               </Switch>
           }
             <Footer year="2018" version="1.0" />
