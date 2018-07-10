@@ -27,7 +27,7 @@ class VerifyRegisterPage extends React.Component {
           }
           <div className="row justify-content-center text-center">
             <Col sm="12" xs="12">
-                  <LoginModal />
+                  <Button><LoginModal /></Button>
             </Col>
           </div>
         </Container>
