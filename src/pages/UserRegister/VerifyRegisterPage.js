@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { Container, Row, Col,Alert, Button, Form } from 'reactstrap';
+import LoginModal from 'components/login/LoginModal';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'assets/css/General.css';
@@ -26,9 +27,7 @@ class VerifyRegisterPage extends React.Component {
           }
           <div className="row justify-content-center text-center">
             <Col sm="12" xs="12">
-              <Form>
-                  <Button>Login</Button>
-              </Form>
+                  <LoginModal />
             </Col>
           </div>
         </Container>

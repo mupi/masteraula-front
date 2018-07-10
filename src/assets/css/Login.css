@@ -40,3 +40,9 @@
   padding: 0px 10px;
   border-bottom: 0px;
 }
+
+.position-login{
+  border: none;
+  padding: 10px;
+  display: block;
+}

@@ -16,7 +16,7 @@ const LoginModal = props => {
   const { modal, toggleModal, submit } = props
 
   return (
-    <NavItem>
+    <div className="position-login">
       <Link to="#" onClick={ () => toggleModal(modal) }>Login</Link>
       <Modal isOpen={ modal } toggle={ () => toggleModal(modal) }>
         <div className="contenedor-login">
@@ -27,7 +27,7 @@ const LoginModal = props => {
           </ModalBody>
         </div>
       </Modal>
-    </NavItem>
+    </div>
   );
 }
 
