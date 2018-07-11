@@ -1,3 +1,3 @@
-export const apiUrl = 'http://18.220.201.255/'
+export const apiUrl = 'http://masteraula.com.br'
 
 export default apiUrl

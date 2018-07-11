@@ -2,17 +2,14 @@ import React from 'react';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import QuestionHeader from "components/question/QuestionHeader.js";
 import QuestionContent from "components/question/QuestionContent.js";
-
 import QuestionInfo from "components/question/QuestionInfo.js";
-import { QuestionInfoContainer } from 'containers/questionContainer'
-
 import RelatedQuestions from "components/question/RelatedQuestions";
 import QuestionComments from "components/question/QuestionComments.js";
 import 'font-awesome/css/font-awesome.min.css';
 import 'assets/css/Question.css';
 
 /* id, question, disiciplines, alternatives, answer, source, year, difficulty, author, teachingLevel, tags, descriptors, stars*/
-const question = {
+const questionTest = {
     "id":"100",
     "question": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha:",
     "disciplines": [
@@ -100,12 +97,11 @@ const question = {
   }
 
 
-
 const QuestionPage = props => {
 
-  const { id, question2, rating } = props
+  const { id, question, rating } = props
 
-  if(question2){
+  if(question){
       return  <HomeUserPage><div>Loading ... </div></HomeUserPage>;
   }
 
@@ -114,16 +110,17 @@ const QuestionPage = props => {
                 <div className="contenedor-question">
                     <div className="row justify-content-center">
                       <div className="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                      <QuestionHeader disciplines={question.disciplines} source={question.source} year={question.year} />
-                      <QuestionContent alternatives={question.alternatives} question={question.question} answer={question.answer}/>
-                      <QuestionInfoContainer disciplines={question.disciplines}
-                                    teachingLevels={question.teachingLevels}
-                                    descriptors={question.descriptors}
-                                    tags={question.tags}
-                                    difficulty={question.difficulty}
-                                    author={question.author}
+                      <QuestionHeader disciplines={questionTest.disciplines} source={questionTest.source} year={questionTest.year} />
+                      <QuestionContent alternatives={questionTest.alternatives} question={questionTest.question} answer={questionTest.answer}/>
+                      <QuestionInfo disciplines={questionTest.disciplines}
+                                    teachingLevels={questionTest.teachingLevels}
+                                    descriptors={questionTest.descriptors}
+                                    tags={questionTest.tags}
+                                    difficulty={questionTest.difficulty}
+                                    author={questionTest.author}
+                                    rating={rating}
                                   />
-                      <RelatedQuestions rquestions={question.rquestions} />
+                      <RelatedQuestions rquestions={questionTest.rquestions} />
                       <QuestionComments />
                     </div>
                   </div>
