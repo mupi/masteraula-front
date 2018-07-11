@@ -101,12 +101,11 @@ const question = {
 
 
 
-
 const QuestionPage = props => {
 
-  const { id, question, rating } = props
+  const { id, question2, rating } = props
 
-  if(question){
+  if(question2){
       return  <HomeUserPage><div>Loading ... </div></HomeUserPage>;
   }
 
@@ -123,7 +122,6 @@ const QuestionPage = props => {
                                     tags={question.tags}
                                     difficulty={question.difficulty}
                                     author={question.author}
-
                                   />
                       <RelatedQuestions rquestions={question.rquestions} />
                       <QuestionComments />

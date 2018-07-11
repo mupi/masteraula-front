@@ -7,7 +7,7 @@ import { rateQuestion } from 'actions/questionAction.js'
 export const QuestionInfoContainer = connect(
     state=> ({
         id:state.question.id,
-        question: state.question.activeQuestion,
+        activeQuestion: state.question.activeQuestion,
         rating:state.question.rating
     }),
     dispatch =>
@@ -17,3 +17,27 @@ export const QuestionInfoContainer = connect(
             }
         })
 )(QuestionInfo)
+/*
+
+const mapStateToProps = state => ({
+    success : state.register.success,
+    error : state.register.error,
+      modal : state.login.modal
+  })
+
+  const mapDispatchToProps = dispatch => ({
+    verifyEmail : key => {
+      return dispatch(verifyEmail(key))
+    },
+    resetVerifyEmail : () => {
+      return dispatch(() => {
+        return { type: REGISTER_SUCCESS }
+      })
+    },
+    toggleModal : modal =>  dispatch(toggleModal(modal))
+  })
+
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(QuestionInfo);*/

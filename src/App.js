@@ -51,7 +51,7 @@ class App extends Component {
               <Switch>
                 <Route path="/home" component={QuestionBasePage}/>
                 <Route path="/user-profile" component={UserProfilePage}/>
-                <Route path="/view-question" component={QuestionPage}/>
+                <Route path="/view-question/:id" component={QuestionPage}/>
                 <Route path="/new-document" component={CreateDocumentPage}/>
                 <Route path="/documents" component={ViewDocumentPage}/>
                 <Route component={QuestionBasePage}/>

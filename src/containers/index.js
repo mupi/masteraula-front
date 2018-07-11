@@ -1,1 +1,1 @@
-export {default as QuestionInfoContainer } from './QuestionContainer.js';
+export {default as QuestionPageContainer } from './QuestionContainer.js';
