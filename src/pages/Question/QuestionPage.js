@@ -118,7 +118,7 @@ const QuestionPage = props => {
                                     tags={questionTest.tags}
                                     difficulty={questionTest.difficulty}
                                     author={questionTest.author}
-                                    rating={rating}
+                                    {...props}
                                   />
                       <RelatedQuestions rquestions={questionTest.rquestions} />
                       <QuestionComments />

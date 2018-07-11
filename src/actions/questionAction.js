@@ -22,7 +22,6 @@ export const RESET_DELETE_QUESTION= 'RESET_DELETE_QUESTION';
 export const RATE_QUESTION = 'RATE_QUESTION';
 
 
-
 export const fetchQuestion = (id) => {
   return dispatch => {
     dispatch(requestQuestion(id))
@@ -39,12 +38,13 @@ export const fetchQuestion = (id) => {
 
   function requestQuestion(){ return { type: FETCH_QUESTION } }
   function fetchQuestionSuccess(activeQuestion){ return { type: FETCH_QUESTION_SUCCESS, activeQuestion } }
-  function fetchQuestionFailure(error)  { return { type: FETCH_QUESTION_FAILURE, error } }
+  function fetchQuestionFailure(error){ return { type: FETCH_QUESTION_FAILURE, error } }
 }
 
 
-export const rateQuestion = (rating) =>
-    ({
+export const rateQuestion = (rating) => {
+      return {
         type: RATE_QUESTION,
-        rating
-    })
+        rating : rating
+      }
+    }

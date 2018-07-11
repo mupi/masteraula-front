@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import QuestionPage from 'pages/Question/QuestionPage'
-import { rateQuestion } from 'actions/questionAction.js'
-
+import { fetchQuestion, rateQuestion } from 'actions/questionAction.js'
 
   const mapStateToProps = state => ({
         id:state.question.id,
