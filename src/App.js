@@ -22,6 +22,7 @@ import QuestionBasePage from "pages/QuestionBase/QuestionBasePage";
 import CreateDocumentPage from "pages/CreateDocument/CreateDocumentPage";
 import PreviewDocumentPage from "pages/CreateDocument/PreviewDocumentPage";
 import ViewDocumentPage from "pages/ViewDocument/ViewDocumentPage"
+import NotFoundPage from "pages/NotFoundPage/NotFoundPage"
 
 import Menu from "components/menu/Menu";
 import { history } from "helpers/history"
@@ -58,13 +59,14 @@ class App extends Component {
                </Switch>
         :
               <Switch>
+                <Route exact path="/" component={HomePage}/>
                 <Route path="/login" component={LoginModal} />
                 <Route path="/register" component={RegisterModal}/>
                 <Route path="/esqueci-senha" component={ForgotPasswordPage}/>
                 <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPage}/>
                 <Route path="/terms-use" component={TermsUsePage}/>
                 <Route path="/verify-userregister/:key" component={VerifyRegisterPageContainer}/>
-                <Route component={HomePage}/>
+                <Route component={NotFoundPage}/>
               </Switch>
           }
             <Footer year="2018" version="1.0" />
