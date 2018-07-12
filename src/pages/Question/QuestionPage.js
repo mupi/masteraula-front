@@ -33,7 +33,7 @@ class QuestionPage extends Component {
                   <div className="row justify-content-center">
                     <div className="col-sm-12 col-md-12 col-lg-12 col-xs-12">
                     <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
-                    <QuestionContent alternatives={activeQuestion.alternatives} question={activeQuestion.question} answer={activeQuestion.resolution}/>
+                    <QuestionContent alternatives={activeQuestion.alternatives} statement={activeQuestion.statement} answer={activeQuestion.resolution}/>
                     <QuestionInfo {...activeQuestion}
                                 />
                     <QuestionComments />
