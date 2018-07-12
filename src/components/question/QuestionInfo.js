@@ -7,7 +7,6 @@ import StarRating from 'components/stars/StarRating'
 import DisciplineList from "components/disciplines/DisciplineList"
 import DescriptorList from "components/descriptors/DescriptorList"
 import TagList from "components/tags/TagList"
-import { Component } from 'react'
 
 import QuestionAuthor from "./QuestionAuthor"
 

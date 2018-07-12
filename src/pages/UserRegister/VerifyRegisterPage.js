@@ -1,6 +1,10 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { Container, Row, Col,Alert, Button, Form } from 'reactstrap';
+import LoginModal from 'components/login/LoginModal';
+import { connect } from 'react-redux'
+import {   toggleModal } from 'actions/loginAction';
+import { Link } from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'assets/css/General.css';
@@ -8,7 +12,7 @@ import 'assets/css/General.css';
 class VerifyRegisterPage extends React.Component {
 
   componentDidMount(){
-    const { match } = this.props
+    const {  match } = this.props
     this.props.verifyEmail(match.params.key)
   }
 
@@ -26,9 +30,7 @@ class VerifyRegisterPage extends React.Component {
           }
           <div className="row justify-content-center text-center">
             <Col sm="12" xs="12">
-              <Form>
-                  <Button>Login</Button>
-              </Form>
+                  <Button onClick={ () => this.props.toggleModal(this.props.modal) }>Login</Button>
             </Col>
           </div>
         </Container>
@@ -36,5 +38,4 @@ class VerifyRegisterPage extends React.Component {
     )
   }
 }
-
-export default VerifyRegisterPage;
+export default VerifyRegisterPage
