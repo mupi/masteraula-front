@@ -9,7 +9,7 @@ import { fetchQuestion, rateQuestion } from 'actions/questionAction.js'
   })
 
   const mapDispatchToProps = dispatch => ({
-      fetch : id => {
+      fetchQuestion : id => {
         return dispatch(fetchQuestion(id))
       },
       onRate : rating => {

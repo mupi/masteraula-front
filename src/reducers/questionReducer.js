@@ -4,7 +4,7 @@ import {
 } from 'actions/questionAction';
 
 const initialState = {
-  activeQuestion:{post:null, error:null, loading: false},
+  activeQuestion:{question:null, error:null},
 }
 
 export const question = (state = initialState, action) => {

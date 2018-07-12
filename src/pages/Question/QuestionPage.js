@@ -99,7 +99,8 @@ const questionTest = {
 
 const QuestionPage = props => {
 
-  const { id, question, rating } = props
+  const { id, question, rating, match } = props
+  const uid = match.params.id
 
   if(question){
       return  <HomeUserPage><div>Loading ... </div></HomeUserPage>;

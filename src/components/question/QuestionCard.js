@@ -20,13 +20,12 @@ const QuestionCard = ({disciplines, source, year, extract, urlImage, author, tea
 									<Row><TagList list={teachingLevels} styleTag="label-info teaching-level"/></Row>
 							 : null
 						 	}
-								
+
 			    <div className="card-text">
 						<p className="info-question-card">Autor: <QuestionAuthor author={author} styleTag="author-card"/></p>
 						<p className="info-question-card">	{extract}</p>
 					</div>
-
-			    <Button className="buttonCard"><Link to="/view-question">Ver mais</Link></Button>
+			    <Button className="buttonCard"><Link to={"/view-question/" + "1"}>Ver mais</Link></Button>
 					<Button className="buttonCard"><i className="fa fa-plus-circle"></i> Adicionar</Button>
 			  </CardBody>
 			</Card>

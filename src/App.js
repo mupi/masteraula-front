@@ -49,9 +49,10 @@ class App extends Component {
           { this.props.isLoggedIn?
               <Switch>
                 <Route path="/home" component={QuestionBasePage}/>
+                <Route path="/view-question/:id" component={QuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePage}/>
                 <Route path="/view-question/" component={QuestionPageContainer}/>
-                <Route path="/new-document" component={CreateDocumentPage}/> 
+                <Route path="/new-document" component={CreateDocumentPage}/>
                 <Route path="/documents" component={ViewDocumentPage}/>
                 <Route component={QuestionBasePage}/>
                </Switch>
