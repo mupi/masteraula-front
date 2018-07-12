@@ -4,7 +4,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import DisciplineList from "components/disciplines/DisciplineList"
 import QuestionSourceYear from "./QuestionSourceYear"
 
-const QuestionHeader = ({ disciplines, source, year})  =>
+const QuestionHeader = ({id, disciplines, source, year} ) =>
             <Container>
               <Row>
                 <DisciplineList list={disciplines} />

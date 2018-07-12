@@ -48,7 +48,7 @@ const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficult
               <Row className="row-info">
                  <Col  className="info-label" sm="4" xs="4">Autor</Col>
                  <Col sm="8" xs="8">
-                   <QuestionAuthor author={author} styleTag="label-info author"/>
+                   <QuestionAuthor author="PAULA FURTADO" styleTag="label-info author"/>
                  </Col>
               </Row>
               <Row className="row-info">

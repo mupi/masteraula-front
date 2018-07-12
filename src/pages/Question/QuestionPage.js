@@ -29,10 +29,21 @@ class QuestionPage extends Component {
 
     return (
             <HomeUserPage>
-              <p>{activeQuestion.source}</p>
+              <div className="contenedor-question">
+                  <div className="row justify-content-center">
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
+                    <QuestionContent alternatives={activeQuestion.alternatives} question={activeQuestion.question} answer={activeQuestion.resolution}/>
+                    <QuestionInfo {...activeQuestion}
+                                />
+                    <QuestionComments />
+                  </div>
+                </div>
+              </div>
               <div className="btn-float">
                       <button type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-plus"></i></button>
               </div>
+
             </HomeUserPage>
           );
         }
