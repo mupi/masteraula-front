@@ -5,7 +5,7 @@ const TagList = ({list, styleTag}) =>
                   <div>
                   {list && list.map((tag, i) =>
                       <Tag key={i}
-                            name={tag}
+                            name={tag.name}
                             styleTag= {styleTag}
                       />
                   )}

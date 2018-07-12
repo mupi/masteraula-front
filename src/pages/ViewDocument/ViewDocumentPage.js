@@ -33,8 +33,8 @@ const ViewDocumentPage = () =>{
       { "name": "Ensino Superior" }
     ],
     "tags": [
-      { "name": "Temperatura" },
-      { "name": "Condensação" }
+       "Temperatura" ,
+      "Condensação"
     ],
     "descriptors": [
      {name: "Localizar informações explícitas"  },
@@ -98,8 +98,8 @@ const ViewDocumentPage = () =>{
       { "name": "Ensino Superior" }
     ],
     "tags": [
-      { "name": "Temperatura" },
-      { "name": "Condensação" }
+       "Temperatura" ,
+      "Condensação"
     ],
     "descriptors": [
      {name: "Localizar informações explícitas"  },
@@ -163,8 +163,8 @@ const ViewDocumentPage = () =>{
       { "name": "Ensino Superior" }
     ],
     "tags": [
-      { "name": "Temperatura" },
-      { "name": "Condensação" }
+       "Temperatura" ,
+      "Condensação"
     ],
     "descriptors": [
      {name: "Localizar informações explícitas"  },
@@ -233,8 +233,8 @@ const ViewDocumentPage = () =>{
       { "name": "Ensino Superior" }
     ],
     "tags": [
-      { "name": "Temperatura" },
-      { "name": "Condensação" }
+       "Temperatura" ,
+      "Condensação"
     ],
     "descriptors": [
      {name: "Localizar informações explícitas"  },
@@ -298,8 +298,8 @@ const ViewDocumentPage = () =>{
       { "name": "Ensino Superior" }
     ],
     "tags": [
-      { "name": "Temperatura" },
-      { "name": "Condensação" }
+       "Temperatura" ,
+      "Condensação"
     ],
     "descriptors": [
      {name: "Localizar informações explícitas"  },
