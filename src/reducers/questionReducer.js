@@ -4,7 +4,7 @@ import {
 } from 'actions/questionAction';
 
 const initialState = {
-  activeQuestion:{question:null, error:null},
+  activeQuestion:{},
 }
 
 export const question = (state = initialState, action) => {
@@ -18,7 +18,7 @@ export const question = (state = initialState, action) => {
         break;
         case FETCH_QUESTION_SUCCESS:
             return Object.assign({}, state, {
-                activeQuestion: action.question,
+                activeQuestion: action.activeQuestion,
                 isFetching: false
             });
         break;

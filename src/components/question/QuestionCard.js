@@ -8,7 +8,7 @@ import QuestionSourceYear from "./QuestionSourceYear"
 import { Link, Route } from 'react-router-dom'
 import 'font-awesome/css/font-awesome.min.css';
 
-const QuestionCard = ({disciplines, source, year, extract, urlImage, author, teachingLevels}) =>
+const QuestionCard = ({id, disciplines, source, year, extract, urlImage, author, teachingLevels}) =>
 			<Card  className= { urlImage !=="" ?"h-10 image-card": "h-100" } >
 				{ urlImage !== "" ? <CardImg top width="100%" src={imageCard} alt="Card image cap" /> : null }
 			  <CardBody>
@@ -25,7 +25,7 @@ const QuestionCard = ({disciplines, source, year, extract, urlImage, author, tea
 						<p className="info-question-card">Autor: <QuestionAuthor author={author} styleTag="author-card"/></p>
 						<p className="info-question-card">	{extract}</p>
 					</div>
-			    <Button className="buttonCard"><Link to={"/view-question/" + "1"}>Ver mais</Link></Button>
+			    <Button className="buttonCard"><Link to={"/view-question/" + id}>Ver mais</Link></Button>
 					<Button className="buttonCard"><i className="fa fa-plus-circle"></i> Adicionar</Button>
 			  </CardBody>
 			</Card>

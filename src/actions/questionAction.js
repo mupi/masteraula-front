@@ -2,9 +2,9 @@ import { questionService } from 'services';
 import { history } from 'helpers/history';
 
 //Load single question
-export const FETCH_QUESTION = 'QUESTION_FETCH'
-export const FETCH_QUESTION_SUCCESS = 'QUESTION_FETCH_SUCCESS'
-export const FETCH_QUESTION_FAILURE = 'QUESTION_FETCH_FAILURE'
+export const FETCH_QUESTION = 'FETCH_QUESTION'
+export const FETCH_QUESTION_SUCCESS = 'FETCH_QUESTION_SUCCESS'
+export const FETCH_QUESTION_FAILURE = 'FETCH_QUESTION_FAILURE'
 
 //Create new question
 export const CREATE_QUESTION = 'CREATE_QUESTION';
@@ -28,6 +28,8 @@ export const fetchQuestion = (id) => {
     return questionService.fetchQuestion(id)
       .then(
         activeQuestion => {
+          console.log(46564564)
+          console.log(activeQuestion)
           dispatch(fetchQuestionSuccess(activeQuestion))
         },
         error => {

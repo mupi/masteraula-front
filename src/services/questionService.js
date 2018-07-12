@@ -19,14 +19,11 @@ export const handleResponse = (response) => {
 
 function fetchQuestion(id) {
     const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            id : id
-        })
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
     };
 
-    return fetch(`${apiUrl}/questions/${id}`, requestOptions)
+    return fetch(`${apiUrl}/questions/${id}/`, requestOptions)
         .then(handleResponse)
         .then(activeQuestion => {
             return activeQuestion;
@@ -36,3 +33,5 @@ function fetchQuestion(id) {
 function rateQuestion() {
 
 }
+
+export default questionService
