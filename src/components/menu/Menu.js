@@ -31,7 +31,7 @@ const Menu = (props) => {
   const notLoggedOptions =
     <Nav className="ml-auto" navbar>
       <NavItem><Link exact="true" to="/">Home</Link></NavItem>
-      <LoginModal />
+      <NavItem><LoginModal /></NavItem>
       <RegisterModal />
     </Nav>;
 

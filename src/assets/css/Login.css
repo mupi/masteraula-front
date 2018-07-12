@@ -40,3 +40,18 @@
   padding: 0px 10px;
   border-bottom: 0px;
 }
+
+.nav-item .position-login{
+  border: none;
+  padding: 10px;
+  display: block;
+}
+
+/*login button in VerifyRegisterPage*/
+.page .btn-secondary a {
+    color: white;
+}
+
+.page .btn-secondary a:hover {
+    text-decoration: none;
+}
