@@ -10,7 +10,7 @@ import TagList from "components/tags/TagList"
 
 import QuestionAuthor from "./QuestionAuthor"
 
-const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficulty, author , rating, onRate=f=>f}) =>
+const QuestionInfo = ({disciplines, teaching_levels, descriptors, tags, difficulty, author , rating, onRate=f=>f}) =>
             <Container className="question-information">
               <Row className="title-section-question">
                     <h4><i className="fa fa-info-circle"></i> Informação da Questão</h4>
@@ -30,7 +30,7 @@ const QuestionInfo = ({disciplines, teachingLevels, descriptors, tags, difficult
               <Row className="row-info">
                  <Col  className="info-label" sm="4" xs="4">Nível de Ensino</Col>
                  <Col sm="8" xs="8">
-                    <TagList list={teachingLevels} styleTag="label-info teaching-level"/>
+                    <TagList list={teaching_levels} styleTag="label-info teaching-level"/>
                  </Col>
               </Row>
               <Row className="row-info">

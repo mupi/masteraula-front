@@ -1,25 +1,40 @@
-import { RATE_QUESTION , ADD_QUESTION} from 'actions/questionAction';
+import {
+    FETCH_QUESTION, FETCH_QUESTION_SUCCESS, FETCH_QUESTION_FAILURE,
+    RATE_QUESTION
+} from 'actions/questionAction';
 
-const initialState = {}
+const initialState = {
+  activeQuestion:{},
+}
 
 export const question = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_QUESTION:
-            return {
-                id: action.id,
-                timestamp: action.timestamp,
-                rating: 0
-            }
 
+        case FETCH_QUESTION:
+            return Object.assign({}, state, {
+                isFetching : true,
+                error: null
+            });
+        break;
+        case FETCH_QUESTION_SUCCESS:
+            return Object.assign({}, state, {
+                activeQuestion: action.activeQuestion,
+                isFetching: false
+            });
+        break;
+        case FETCH_QUESTION_FAILURE:
+            return Object.assign({}, state, {
+                isFetching: false,
+                error: action.error
+            })
+        break;
         case RATE_QUESTION:
-            return (state.id !== action.id) ?
-                state :
-                {
-                    ...state,
-                    rating: action.rating
-                }
-        default :
-            return state
+            return Object.assign({}, state, {
+                rating: action.rating
+        })
+        break;
+        default:
+            return state;
     }
 }
 

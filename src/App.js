@@ -5,8 +5,6 @@ import { ConnectedRouter } from 'connected-react-router'
 import 'assets/css/App.css';
 import 'assets/css/General.css';
 
-
-
 import LoginModal from "components/login/LoginModal";
 import RegisterModal from "components/userregister/RegisterModal";
 
@@ -17,7 +15,8 @@ import TermsUsePage from "pages/TermsUse/TermsUsePage";
 import VerifyRegisterPageContainer from "pages/UserRegister/VerifyRegisterPageContainer";
 
 import HomePage from "pages/Home/HomePage.js";
-import QuestionPage from "pages/Question/QuestionPage";
+import { QuestionPageContainer } from 'containers/questionContainer'
+
 import QuestionBasePage from "pages/QuestionBase/QuestionBasePage";
 import CreateDocumentPage from "pages/CreateDocument/CreateDocumentPage";
 import PreviewDocumentPage from "pages/CreateDocument/PreviewDocumentPage";
@@ -51,8 +50,9 @@ class App extends Component {
           { this.props.isLoggedIn?
               <Switch>
                 <Route path="/home" component={QuestionBasePage}/>
+                <Route path="/view-question/:id" component={QuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePage}/>
-                <Route path="/view-question" component={QuestionPage}/>
+                <Route path="/view-question/" component={QuestionPageContainer}/>
                 <Route path="/new-document" component={CreateDocumentPage}/>
                 <Route path="/documents" component={ViewDocumentPage}/>
                 <Route component={QuestionBasePage}/>

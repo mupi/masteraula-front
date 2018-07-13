@@ -1,36 +1,52 @@
 import { questionService } from 'services';
-import { SubmissionError } from 'redux-form'
-
 import { history } from 'helpers/history';
-import { updateSession, deleteSession } from 'actions/sessionAction'
-import { v4 } from 'uuid'
 
-export const ADD_QUESTION = 'ADD_QUESTION'
-export const REMOVE_QUESTION = 'REMOVE_QUESTION'
-export const UPDATE_QUESTION = 'UPDATE_QUESTION'
-export const RATE_QUESTION = 'RATE_QUESTION'
+//Load single question
+export const FETCH_QUESTION = 'FETCH_QUESTION'
+export const FETCH_QUESTION_SUCCESS = 'FETCH_QUESTION_SUCCESS'
+export const FETCH_QUESTION_FAILURE = 'FETCH_QUESTION_FAILURE'
 
-export const addQuestion = (title, color) =>
-    ({
-        type: ADD_QUESTION,
-        id: v4(),
-        create_date: new Date().toString()
-    })
+//Create new question
+export const CREATE_QUESTION = 'CREATE_QUESTION';
+export const CREATE_QUESTION_SUCCESS = 'CREATE_QUESTION_SUCCESS';
+export const CREATE_QUESTION_FAILURE = 'CREATE_QUESTION_FAILURE';
+export const RESET_NEW_QUESTION = 'RESET_NEW_QUESTION';
 
-export const removeQuestion = id =>
-        ({
-            type: REMOVE_QUESTION,
-            id
-        })
+//Delete question
+export const DELETE_QUESTION = 'DELETE_QUESTION';
+export const DELETE_QUESTION_SUCCESS = 'DELETE_QUESTION_SUCCESS';
+export const DELETE_QUESTION_FAILURE = 'DELETE_QUESTION_FAILURE';
+export const RESET_DELETE_QUESTION= 'RESET_DELETE_QUESTION';
 
-export const updateQuestion = id =>
-        ({
-            type: REMOVE_QUESTION,
-            id
-        })
+//Star rating question
+export const RATE_QUESTION = 'RATE_QUESTION';
 
-export const rateQuestion = (rating) =>
-    ({
+
+export const fetchQuestion = (id) => {
+  return dispatch => {
+    dispatch(requestQuestion(id))
+    return questionService.fetchQuestion(id)
+      .then(
+        activeQuestion => {
+          console.log(46564564)
+          console.log(activeQuestion)
+          dispatch(fetchQuestionSuccess(activeQuestion))
+        },
+        error => {
+          dispatch(fetchQuestionFailure(error))
+        }
+      )
+  }
+
+  function requestQuestion(){ return { type: FETCH_QUESTION } }
+  function fetchQuestionSuccess(activeQuestion){ return { type: FETCH_QUESTION_SUCCESS, activeQuestion } }
+  function fetchQuestionFailure(error){ return { type: FETCH_QUESTION_FAILURE, error } }
+}
+
+
+export const rateQuestion = (rating) => {
+      return {
         type: RATE_QUESTION,
-        rating
-    })
+        rating : rating
+      }
+    }

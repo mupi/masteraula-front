@@ -3,7 +3,7 @@ import Tag from "./Tag"
 
 const TagList = ({list, styleTag}) =>
                   <div>
-                  {list.map((tag, i) =>
+                  {list && list.map((tag, i) =>
                       <Tag key={i}
                             name={tag.name}
                             styleTag= {styleTag}

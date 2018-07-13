@@ -5,6 +5,12 @@
     border-radius: 10px;
 }
 
+
+.contenedor-login h4{
+  text-align: center;
+}
+
+
 .contenedor-forgotpassword {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -26,10 +32,6 @@
 }
 
 
-.contenedor-login h4{
-  text-align: center;
-}
-
 
 /*Modal*/
 .modal-content {
@@ -45,6 +47,7 @@
   border: none;
   padding: 10px;
   display: block;
+  text-align: center;
 }
 
 /*login button in VerifyRegisterPage*/

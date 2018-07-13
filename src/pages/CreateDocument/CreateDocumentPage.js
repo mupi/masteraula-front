@@ -47,8 +47,8 @@ class CreateDocumentPage extends Component{
       { "name": "Ensino Superior" }
     ],
     "tags": [
-      { "name": "Temperatura" },
-      { "name": "Condensação" }
+     "Temperatura" ,
+      "Condensação"
     ],
     "descriptors": [
      {name: "D1 - Localizar informações explícitas"  },
@@ -132,8 +132,8 @@ class CreateDocumentPage extends Component{
       { "name": "Ensino Superior" }
     ],
     "tags": [
-      { "name": "Temperatura" },
-      { "name": "Condensação" }
+     "Temperatura" ,
+      "Condensação" 
     ],
     "descriptors": [
      {name: "D1 - Localizar informações explícitas"  },

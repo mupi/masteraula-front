@@ -3,7 +3,7 @@ import Discipline from "./Discipline"
 
 const DisciplineList = ({list}) =>
               <div className="list-info">
-                  {list.map((discipline, i) =>
+                  {list && list.map((discipline, i) =>
                       <Discipline key={i}
                             name={discipline.name}
                       />

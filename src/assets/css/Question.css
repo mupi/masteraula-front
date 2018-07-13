@@ -105,8 +105,8 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
     margin-bottom: 0px;
 }
 
-.section-text-question p{
-  font-weight: bold;
+.section-text-question p.text-question{
+  margin-bottom:10px;
 }
 
 .title-section-question{

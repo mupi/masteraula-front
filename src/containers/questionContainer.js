@@ -1,17 +1,22 @@
 import { connect } from 'react-redux'
-import QuestionInfo from 'components/question/QuestionInfo'
+import QuestionPage from 'pages/Question/QuestionPage'
+import { fetchQuestion, rateQuestion } from 'actions/questionAction.js'
 
-import { rateQuestion } from 'actions/questionAction.js'
-
-
-export const QuestionInfoContainer = connect(
-    state=> ({
+  const mapStateToProps = state => ({
+        activeQuestion: state.question.activeQuestion,
         rating:state.question.rating
-    }),
-    dispatch =>
-        ({
-            onRate(rating) {
-                dispatch(rateQuestion(rating))
-            }
-        })
-)(QuestionInfo)
+  })
+
+  const mapDispatchToProps = dispatch => ({
+      fetchQuestion : id => {
+        return dispatch(fetchQuestion(id))
+      },
+      onRate : rating => {
+        return dispatch(rateQuestion(rating))
+      }
+  })
+
+  export const QuestionPageContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(QuestionPage);

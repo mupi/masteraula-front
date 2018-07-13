@@ -9,7 +9,7 @@ import { history } from 'helpers/history'
 import { reducer as formReducer } from 'redux-form'
 
 const loggerMiddleware = createLogger()
-
+/*List of reducers*/
 const rootReducer = combineReducers({
     login,
     menu,
