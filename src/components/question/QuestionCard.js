@@ -25,7 +25,7 @@ const QuestionCard = ({id, disciplines, source, year, extract, urlImage, author,
 						<p className="info-question-card">Autor: <QuestionAuthor author={author} styleTag="author-card"/></p>
 						<p className="info-question-card">	{extract}</p>
 					</div>
-			    <Button className="buttonCard"><Link to={"/view-question/" + id}>Ver mais</Link></Button>
+			    <Link to={"/view-question/" + id}><Button className="buttonCard">Ver mais</Button></Link>
 					<Button className="buttonCard"><i className="fa fa-plus-circle"></i> Adicionar</Button>
 			  </CardBody>
 			</Card>
