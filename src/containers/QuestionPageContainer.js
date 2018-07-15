@@ -16,7 +16,9 @@ import { fetchQuestion, rateQuestion } from 'actions/questionAction.js'
       }
   })
 
-  export const QuestionPageContainer = connect(
+  const QuestionPageContainer = connect(
     mapStateToProps,
     mapDispatchToProps
   )(QuestionPage);
+
+  export default QuestionPageContainer
