@@ -6,6 +6,7 @@ import {
 
 const initialState = {
   activeQuestion:{},
+  questionPage:{},
 }
 
 export const question = (state = initialState, action) => {
