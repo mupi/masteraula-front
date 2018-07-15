@@ -19,13 +19,12 @@ class QuestionPage extends Component {
     const { activeQuestion, rating, error, onRate } = this.props
 
     if(error) {
-      return  (
+      return (
         <HomeUserPage>
           <div className="alert alert-danger">{error.message}</div>
         </HomeUserPage>
       )
     }
-
 
     return (
             <HomeUserPage>
@@ -34,7 +33,7 @@ class QuestionPage extends Component {
                     <div className="col-sm-12 col-md-12 col-lg-12 col-xs-12">
                     <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
                     <QuestionContent alternatives={activeQuestion.alternatives} statement={activeQuestion.statement} answer={activeQuestion.resolution}/>
-                    <QuestionInfo {...activeQuestion} onRate={onRate} rating={rating} author={activeQuestion.author ? activeQuestion.author.name : "anônimo"}  />
+                    <QuestionInfo {...activeQuestion} onRate={onRate} rating={rating} />
                     <QuestionComments />
                   </div>
                 </div>
