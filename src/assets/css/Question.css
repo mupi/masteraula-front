@@ -64,17 +64,23 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
   border-radius: 35px;
 }
 
-.btn-float{
-    position: fixed;
-    right: 37px;
-    top:100px;
-    z-index: 9999;
-    color:white;
+@media (min-width: 868px){
+  .btn-float{
+      position: fixed;
+      right: 37px;
+      top:100px;
+      z-index: 9999;
+      color:white;
+  }
 }
 
 @media (max-width: 867px){
   .btn-float{
-      right: 5px;
+      position: fixed;
+      right: 0px;
+      bottom:0px;
+      z-index: 9999;
+      color:white;
   }
 
   .btn-circle.btn-xl  {
