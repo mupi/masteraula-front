@@ -10,6 +10,15 @@ import TagList from "components/tags/TagList"
 
 import QuestionAuthor from "./QuestionAuthor"
 
+const getTeachingLevel = (difficulty ) => {
+    switch(difficulty){
+      case "E": return "Fácil"
+      case "M": return "Médio"
+      case "H": return "Difícil"
+      default: return difficulty
+    }
+}
+
 const QuestionInfo = ({disciplines, teaching_levels, descriptors, tags, difficulty, author , rating, onRate=f=>f}) =>
             <Container className="question-information">
               <Row className="title-section-question">
@@ -24,7 +33,7 @@ const QuestionInfo = ({disciplines, teaching_levels, descriptors, tags, difficul
               <Row className="row-info">
                  <Col className="info-label" sm="4" xs="4">Grau de difuldade</Col>
                  <Col sm="8" xs="8">
-                    <span className="label-info difficulty-level">{difficulty}</span>
+                    <span className="label-info difficulty-level">{getTeachingLevel(difficulty)}</span>
                  </Col>
               </Row>
               <Row className="row-info">
