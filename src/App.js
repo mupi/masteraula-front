@@ -37,7 +37,6 @@ class App extends Component {
     const {dispatch} = this.props
 
     history.listen((location, action) => {
-      dispatch(resetChangePasswordForm());
     });
   }
 
@@ -48,7 +47,7 @@ class App extends Component {
             <Menu />
           { this.props.isLoggedIn?
               <Switch>
-                <Route path="/question-base/:page" component={QuestionBasePageContainer}/>
+                <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer}/>
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePage}/>
                 <Route path="/new-document" component={CreateDocumentPage}/>
