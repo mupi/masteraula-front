@@ -96,7 +96,7 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
 }
 
 .question-section-border {
-    border: 1px solid #008dcf;
+    border: 1px solid rgba(0, 0, 0, 0.125);
     margin: 10px 0px;
     padding: 20px 10px;
 }
