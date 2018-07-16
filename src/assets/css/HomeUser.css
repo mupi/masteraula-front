@@ -67,7 +67,7 @@ body .container-fluid .row {
     top: 0px;
     position: relative;
     margin-top: 25px;
-    padding-bottom: 65px;
+    padding-bottom: 25px;
 }
 
 @media (min-width: 989px){

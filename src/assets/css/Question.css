@@ -141,7 +141,7 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
     font-size: 14px;
   }
 
-  .related-question.container .col-12 {
+  .related-question.container .col-12, .related-question.container card {
     margin-bottom: 15px;
 }
 
