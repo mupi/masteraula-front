@@ -60,7 +60,7 @@ export const listQuestions = (page) => {
       )
   }
 
-  function requestQuestionPage(){ return { type: LIST_QUESTION_PAGE } }
+  function requestQuestionPage(page){ return { type: LIST_QUESTION_PAGE, page } }
   function fetchQuestionPageSuccess(questionPage){ return { type: LIST_QUESTION_PAGE_SUCCESS, questionPage } }
   function fetchQuestionPageFailure(error){ return { type: LIST_QUESTION_PAGE_FAILURE, error } }
 }
