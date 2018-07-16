@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import { Button } from 'reactstrap';
 
 
-const AddQuestionButton = ({questionId}) =>
+const ExportDocumentButton = ({documentId}) =>
 <div className="btn-float">
-        <Button title="Adicionar questões" className="btn btn-default btn-circle btn-xl btn-lateral">
+        <Button title="Exportar documento">
           <i className="fa fa-plus"></i>
         </Button>
 </div>
 
-export default AddQuestionButton
+export default ExportDocumentButton
