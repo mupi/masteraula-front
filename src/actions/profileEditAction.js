@@ -19,7 +19,7 @@ export const profileEdit = (profile) => {
 
           dispatch(success())
           dispatch(updateUser(session))
-          dispatch(clearFields('profile', true, true, 'new_password', 'old_password', 'password_confirmation'))
+          dispatch(clearFields('profile', true, true))
         },
         error => {
           dispatch(failure(error))
