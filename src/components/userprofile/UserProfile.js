@@ -47,10 +47,10 @@ const UserProfile = props => {
                     </div>
                   </Label>
                   <div className="small-text">Tamano máximo 1 MB. JPG, GIF ou PNG</div>
-                  <Field 
+                  <Field
                     component="input"
-                    type="file" 
-                    name="picture" 
+                    type="file"
+                    name="picture"
                     id="upload-avatar"
                     className="hidden"
                   />
@@ -81,12 +81,18 @@ const UserProfile = props => {
 
                 </Col>
               </Row>
+              <Row className="section-user-title">
+                <Col className="text-center">
+                  <Button>Salvar</Button>
+                </Col>
+              </Row>
             </Container>
-            <Container>
+          </Form>
+
+          <Form>
+          <Container>
               <Row  className="section-user-title">
-                <FormGroup>
-                  <h4>Minha Conta</h4>
-                </FormGroup>
+                <h4>Minha Conta</h4>
               </Row>
               <Row>
                 <Col sm="4">
@@ -133,7 +139,7 @@ const UserProfile = props => {
               </Row>
               <Row className="section-user-title">
                 <Col className="text-center">
-                  <Button>Salvar</Button>
+                  <Button>Redefinir senha</Button>
                 </Col>
               </Row>
               <div>
