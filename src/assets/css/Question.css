@@ -141,7 +141,7 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
     font-size: 14px;
   }
 
-  .related-question.container .card {
+  .related-question.container .col-12 {
     margin-bottom: 15px;
 }
 
@@ -194,4 +194,11 @@ p.info-question-card {
 
 .image-card.card .source-name {
     margin-bottom: 0px;
+}
+
+p.list-stars {
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-top: 3px;
+    margin-left: 5px;
 }
