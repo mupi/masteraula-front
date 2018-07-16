@@ -18,6 +18,16 @@ const questionTest = {
     ],
     "source": "ENEM",
     "year": "2010",
+    "teaching_levels": [
+               {
+                   "id": 1,
+                   "name": "Ensino Médio"
+               },
+               {
+                   "id": 2,
+                   "name": "Ensino Fundamental"
+               }
+           ],
     "author": {
                  "id": 8,
                  "username": "cp.rosaless@gmail.com",
@@ -33,6 +43,16 @@ const questionTest = {
     ],
     "source": "ENEM",
     "year": "2018",
+    "teaching_levels": [
+               {
+                   "id": 1,
+                   "name": "Ensino Médio"
+               },
+               {
+                   "id": 2,
+                   "name": "Ensino Fundamental"
+               }
+           ],
     "author": {
                "id": 8,
                "username": "cp.rosaless@gmail.com",
@@ -47,6 +67,16 @@ const questionTest = {
     ],
     "source": "ENEM",
     "year": "2010",
+    "teaching_levels": [
+               {
+                   "id": 1,
+                   "name": "Ensino Médio"
+               },
+               {
+                   "id": 2,
+                   "name": "Ensino Fundamental"
+               }
+           ],
     "author": {
                "id": 8,
                "username": "cp.rosaless@gmail.com",
