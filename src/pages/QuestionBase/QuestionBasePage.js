@@ -3,11 +3,18 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Row, Input, InputGroup, InputGroupAddon, Button} from 'reactstrap';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import QuestionList from "components/question/QuestionList"
+import  QuestionPagination from "components/QuestionPagination/QuestionPagination"
 import 'assets/css/QuestionBase.css';
 
 class QuestionBasePage extends React.Component {
     componentDidMount() {
-      this.props.listQuestions(this.props.match.params.page);
+      this.props.listQuestions(parseInt(this.props.match.params.page));
+    }
+
+    componentDidUpdate(prevProps) {
+      if (this.props.match.params.page !== prevProps.match.params.page) {
+        this.props.listQuestions(parseInt(this.props.match.params.page));
+      }
     }
     
     render(){
@@ -20,6 +27,7 @@ class QuestionBasePage extends React.Component {
           </HomeUserPage>
         )
       }
+      
       return (
         <HomeUserPage showFilters={true}>
           <div className="contenedor-question-base">
@@ -30,7 +38,13 @@ class QuestionBasePage extends React.Component {
                 </InputGroup>
               </Row>
               <Row className="questions-result">
+                <QuestionPagination {...this.props} {...questionPage}/>
+              </Row>
+              <Row className="questions-result">
                 <QuestionList questions={questionPage.results} numCols='3'/>
+              </Row>
+              <Row className="questions-result">
+                <QuestionPagination {...this.props} {...questionPage}/>
               </Row>
           </div>
           </HomeUserPage>

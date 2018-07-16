@@ -33,6 +33,7 @@ export const question = (state = initialState, action) => {
 
         case LIST_QUESTION_PAGE:
             return Object.assign({}, state, {
+                currentPage : action.page,
                 isFetching : true,
                 error: null
             });
