@@ -23,7 +23,7 @@ const Menu = (props) => {
 
   const loggedOptions =
     <Nav className="ml-auto" navbar>
-      <NavItem><Link to="/Home"><i className="fa fa-home"></i> Home</Link></NavItem>
+      <NavItem><Link to="/question-base/1"><i className="fa fa-home"></i> Home</Link></NavItem>
       <NavItem><Link to="/user-profile"><i className="fa fa-user"></i> Meu profile</Link></NavItem>
       <NavItem><Link onClick={ (e) => {e.preventDefault(); logout() } } to="/"><i className="fa fa-sign-out"></i> Logout</Link></NavItem>
     </Nav>;

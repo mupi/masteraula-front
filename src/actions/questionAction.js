@@ -21,6 +21,11 @@ export const RESET_DELETE_QUESTION= 'RESET_DELETE_QUESTION';
 //Star rating question
 export const RATE_QUESTION = 'RATE_QUESTION';
 
+//List questions
+export const LIST_QUESTION_PAGE = 'LIST_QUESTION_PAGE'
+export const LIST_QUESTION_PAGE_SUCCESS = 'LIST_QUESTION_PAGE_SUCCESS'
+export const LIST_QUESTION_PAGE_FAILURE = 'LIST_QUESTION_PAGE_FAILURE'
+
 
 export const fetchQuestion = (id) => {
   return dispatch => {
@@ -28,8 +33,6 @@ export const fetchQuestion = (id) => {
     return questionService.fetchQuestion(id)
       .then(
         activeQuestion => {
-          console.log(46564564)
-          console.log(activeQuestion)
           dispatch(fetchQuestionSuccess(activeQuestion))
         },
         error => {
@@ -41,6 +44,25 @@ export const fetchQuestion = (id) => {
   function requestQuestion(){ return { type: FETCH_QUESTION } }
   function fetchQuestionSuccess(activeQuestion){ return { type: FETCH_QUESTION_SUCCESS, activeQuestion } }
   function fetchQuestionFailure(error){ return { type: FETCH_QUESTION_FAILURE, error } }
+}
+
+export const listQuestions = (page) => {
+  return dispatch => {
+    dispatch(requestQuestionPage(page))
+    return questionService.listQuestions(page)
+      .then(
+        questionPage => {
+          dispatch(fetchQuestionPageSuccess(questionPage))
+        },
+        error => {
+          dispatch(fetchQuestionPageFailure(error))
+        }
+      )
+  }
+
+  function requestQuestionPage(){ return { type: LIST_QUESTION_PAGE } }
+  function fetchQuestionPageSuccess(questionPage){ return { type: LIST_QUESTION_PAGE_SUCCESS, questionPage } }
+  function fetchQuestionPageFailure(error){ return { type: LIST_QUESTION_PAGE_FAILURE, error } }
 }
 
 

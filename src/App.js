@@ -15,9 +15,8 @@ import TermsUsePage from "pages/TermsUse/TermsUsePage";
 import VerifyRegisterPageContainer from "pages/UserRegister/VerifyRegisterPageContainer";
 
 import HomePage from "pages/Home/HomePage.js";
-import { QuestionPageContainer } from 'containers/questionContainer'
+import { QuestionPageContainer, QuestionBasePageContainer } from 'containers'
 
-import QuestionBasePage from "pages/QuestionBase/QuestionBasePage";
 import CreateDocumentPage from "pages/CreateDocument/CreateDocumentPage";
 import PreviewDocumentPage from "pages/CreateDocument/PreviewDocumentPage";
 import ViewDocumentPage from "pages/ViewDocument/ViewDocumentPage"
@@ -49,13 +48,12 @@ class App extends Component {
             <Menu />
           { this.props.isLoggedIn?
               <Switch>
-                <Route path="/home" component={QuestionBasePage}/>
+                <Route path="/question-base/:page" component={QuestionBasePageContainer}/>
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePage}/>
-                <Route path="/view-question/" component={QuestionPageContainer}/>
                 <Route path="/new-document" component={CreateDocumentPage}/>
                 <Route path="/documents" component={ViewDocumentPage}/>
-                <Route component={QuestionBasePage}/>
+                <Route component={NotFoundPage}/>
                </Switch>
         :
               <Switch>
