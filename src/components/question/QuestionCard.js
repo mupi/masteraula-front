@@ -8,12 +8,12 @@ import QuestionSourceYear from "./QuestionSourceYear"
 import { Link, Route } from 'react-router-dom'
 import 'font-awesome/css/font-awesome.min.css';
 
-const QuestionCard = ({id, disciplines, source, year, statement, urlImage, author, teaching_levels}) => 
+const QuestionCard = ({id, disciplines, source, year, statement, urlImage="", author, teaching_levels}) =>
 			<Card className= { urlImage !=="" ?"h-10 image-card": "h-100" } >
 				{ urlImage !== "" ? <CardImg top width="100%" src={imageCard} alt="Card image cap" /> : null }
 			  <CardBody>
 			    <Row>
-						<DisciplineList list={disciplines} />
+						<DisciplineList list={disciplines} /> 
 					</Row>
 							<Row><QuestionSourceYear styleTag="top-label-question source-name" source={source} year={year}/></Row>
 							{ !urlImage ?

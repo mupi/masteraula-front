@@ -64,17 +64,23 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
   border-radius: 35px;
 }
 
-.btn-float{
-    position: fixed;
-    right: 37px;
-    top:100px;
-    z-index: 9999;
-    color:white;
+@media (min-width: 868px){
+  .btn-float{
+      position: fixed;
+      right: 37px;
+      top:100px;
+      z-index: 9999;
+      color:white;
+  }
 }
 
 @media (max-width: 867px){
   .btn-float{
-      right: 5px;
+      position: fixed;
+      right: 0px;
+      bottom:0px;
+      z-index: 9999;
+      color:white;
   }
 
   .btn-circle.btn-xl  {
@@ -87,6 +93,7 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
     background-color: var(--color-ma-green);
     color: white;
     margin: 10px;
+    border:transparent;
 }
 
 .btn-filter
@@ -96,7 +103,7 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
 }
 
 .question-section-border {
-    border: 1px solid #008dcf;
+    border: 1px solid rgba(0, 0, 0, 0.125);
     margin: 10px 0px;
     padding: 20px 10px;
 }
@@ -135,16 +142,16 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
     font-size: 14px;
   }
 
-  .related-question.container .card {
+  .related-question.container .col-12, .related-question.container card {
     margin-bottom: 15px;
-}
+    }
 
 }
 
 @media (min-width: 867px){
-.h-100.card .card-text {
-    margin-top: 30px;
-}
+  .h-100.card .card-text {
+      margin-top: 30px;
+  }
 }
 
 .buttonCard{
@@ -188,4 +195,11 @@ p.info-question-card {
 
 .image-card.card .source-name {
     margin-bottom: 0px;
+}
+
+p.list-stars {
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-top: 3px;
+    margin-left: 5px;
 }

@@ -16,15 +16,18 @@ const Sidebar = props => {
   const { showFilters } = props
   const docName = props.docName ? props.docName : "Novo Documento"
   const docNumberQuestions = props.docNumberQuestions ? props.docName : 0
-  
+
     return (
           <div id="sidebar">
+            <div className="logo-top-sidebar">
+              <img className="logo-sidebar" src={logoMasterAula}/>
+            </div>
             <div id="sidebar-container">
               <div className="container-fluid">
                 <Row>
                   <Col xs="12">
                       <div className="sidebar-nav-container">
-                        <img className="logo-sidebar" src={logoMasterAula}/>
+
                           <h5>Documento Atual</h5>
                           <h6><i className="fa fa-file"></i> {docName} ({docNumberQuestions})</h6>
                           <div className="container-export-button">

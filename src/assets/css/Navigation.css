@@ -100,7 +100,10 @@ html body #sidebar #sidebar-container {
     bottom: 0;
     width: var(--sidebar-size);
     position: absolute;
-    top: 10px;
+    top: 75px;
+    padding-top: 25px;
+    overflow-x: hidden;
+
 }
 
 @media (min-width: 990px){
@@ -118,7 +121,6 @@ html body #sidebar {
     bottom: 0;
     z-index: 9999;
     position: fixed;
-    overflow-x: hidden;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     width:  var(--sidebar-size);
@@ -281,24 +283,29 @@ li.question-category-filter a{
 }
 
 /*SCROLl-Y in sidebar*/
-#sidebar::-webkit-scrollbar {
+#sidebar-container::-webkit-scrollbar {
     width: 5px;
 }
-#sidebar::-webkit-scrollbar-track {
+#sidebar-container::-webkit-scrollbar-track {
     background:var(--color-ma-blue);
 }
 /* Handle */
-#sidebar::-webkit-scrollbar-thumb {
+#sidebar-container::-webkit-scrollbar-thumb {
     background: var(--color-ma-green);
 }
 /* Handle on hover */
-#sidebar::-webkit-scrollbar-thumb:hover {
+#sidebar-container::-webkit-scrollbar-thumb:hover {
     background: var(--color-ma-green);
 }
 
 .logo-sidebar {
-    margin: 5px 10px 100px 0px;
-    width: 95%;
+    width: 90%;
+}
+
+.logo-top-sidebar {
+    text-align: center;
+    padding: 15px;
+    background: #27567e;
 }
 
 img.logo-in-menu {
