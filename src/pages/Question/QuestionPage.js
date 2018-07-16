@@ -5,6 +5,7 @@ import QuestionInfo from "components/question/QuestionInfo.js";
 import RelatedQuestions from "components/question/RelatedQuestions";
 import QuestionComments from "components/question/QuestionComments.js";
 import AddQuestionButton from "components/buttons/AddQuestionButton.js";
+import { Alert } from 'reactstrap';
 
 import React, { Component, PropTypes } from 'react';
 
@@ -92,17 +93,20 @@ const questionTest = {
 }
 
 class QuestionPage extends Component {
+
   componentDidMount() {
     this.props.fetchQuestion(this.props.match.params.id);
   }
 
   render(){
-    const { activeQuestion, rating, error, onRate } = this.props
+    const { activeQuestion, isFetching, rating, error, onRate } = this.props
 
-    if(error) {
+    if(isFetching) {
       return (
         <HomeUserPage>
-          <div className="alert alert-danger">{error.message}</div>
+          <Alert color="warning">
+              Carregando ...
+          </Alert>
         </HomeUserPage>
       )
     }
