@@ -4,6 +4,8 @@ import QuestionContent from "components/question/QuestionContent.js";
 import QuestionInfo from "components/question/QuestionInfo.js";
 import RelatedQuestions from "components/question/RelatedQuestions";
 import QuestionComments from "components/question/QuestionComments.js";
+import AddQuestionButton from "components/buttons/AddQuestionButton.js";
+
 import React, { Component, PropTypes } from 'react';
 
 import 'font-awesome/css/font-awesome.min.css';
@@ -119,9 +121,7 @@ class QuestionPage extends Component {
                   </div>
                 </div>
               </div>
-              <div className="btn-float">
-                      <button type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-plus"></i></button>
-              </div>
+              <AddQuestionButton/>
 
             </HomeUserPage>
           );

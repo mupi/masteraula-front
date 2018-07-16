@@ -93,6 +93,7 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
     background-color: var(--color-ma-green);
     color: white;
     margin: 10px;
+    border:transparent;
 }
 
 .btn-filter
@@ -143,14 +144,14 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
 
   .related-question.container .col-12, .related-question.container card {
     margin-bottom: 15px;
-}
+    }
 
 }
 
 @media (min-width: 867px){
-.h-100.card .card-text {
-    margin-top: 30px;
-}
+  .h-100.card .card-text {
+      margin-top: 30px;
+  }
 }
 
 .buttonCard{

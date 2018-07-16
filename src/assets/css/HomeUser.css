@@ -71,9 +71,9 @@ body .container-fluid .row {
 }
 
 @media (min-width: 989px){
-#main-masteraula-container img.logo-in-menu {
-    margin-left: 280px;
-}
+  #main-masteraula-container img.logo-in-menu {
+      margin-left: 280px;
+  }
 }
 
 
