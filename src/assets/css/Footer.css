@@ -8,6 +8,11 @@
     font-size: 13px;
 }
 
+html body #footer-container{
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
 
 div#footer, div#footer .row {
     background: var(--color-ma-dark-blue);
@@ -15,8 +20,3 @@ div#footer, div#footer .row {
 }
 
 
-html body #footer-container{
-    -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}

@@ -6,6 +6,15 @@
     font-weight: normal;
 }
 
+.question-in-doc, .document-header {
+    position: relative;
+    border: 2px solid #FFFFFF;
+    padding: 25px 25px 25px 25px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+}
+
 .question-modal.modal-body {
     padding-top: 0px;
 }
@@ -42,15 +51,6 @@
 
 span.button-text {
     margin-left: 7px;
-}
-
-.question-in-doc, .document-header {
-    position: relative;
-    border: 2px solid #FFFFFF;
-    padding: 25px 25px 25px 25px;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    background: #FFFFFF;
 }
 
 .question-content-in-doc{

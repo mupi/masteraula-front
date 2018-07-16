@@ -15,17 +15,16 @@ h1, h2, p, ul, li {
 }
 
 /*CSS header*/
-ul.header li {
-  display: inline;
-  list-style-type: none;
-  margin: 0;
-}
-
 ul.header {
     padding: 0;
     margin-bottom: 0;
 }
 
+ul.header li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+}
 
 ul.header li a {
   color: var(--color-ma-white);
