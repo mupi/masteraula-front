@@ -8,15 +8,15 @@ import PropTypes from 'prop-types'
 const QuestionPagination = ({ currentPage, previous, next, count, itens_per_page}) =>{
 
   const QuestionPaginationItem = params => {
-    const { page, label, disabled } = params
+    const { page, label, disabled, next, previous } = params
 
     return(
-      <PaginationItem {...params} active={ page == currentPage } >
+      <PaginationItem key={page} {...params} active={ page == currentPage } next="true" previous="true" >
         { disabled &&
-          <PaginationLink {...params} >{ label }</PaginationLink>
+          <PaginationLink  {...params} >{ label }</PaginationLink>
         }
         { !disabled &&
-            <PaginationLink  tag={Link} to={`${page}`} style={{ textDecoration: 'none' }} {...params} >
+            <PaginationLink  tag={Link} to={`${page}`}  {...params} >
               { label }
             </PaginationLink>
         }
@@ -38,7 +38,7 @@ const QuestionPagination = ({ currentPage, previous, next, count, itens_per_page
 
         {rows.map(QuestionPaginationItem)}
 
-        <QuestionPaginationItem disabled={!next} page={currentPage + 1} next />
+        <QuestionPaginationItem disabled={!next} page={currentPage + 1}  next/>
 
       </Pagination>
     );
@@ -46,7 +46,7 @@ const QuestionPagination = ({ currentPage, previous, next, count, itens_per_page
 
 QuestionPagination.propTypes = {
   currentPage: PropTypes.number,
-  itens_per_page: PropTypes.number,
+  itens_per_page: PropTypes.number
 }
 
 QuestionPagination.defaultProps = {

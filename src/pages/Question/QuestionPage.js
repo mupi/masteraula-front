@@ -7,7 +7,7 @@ import QuestionComments from "components/question/QuestionComments.js";
 import AddQuestionButton from "components/buttons/AddQuestionButton.js";
 import { Alert } from 'reactstrap';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 import 'font-awesome/css/font-awesome.min.css';
 import 'assets/css/Question.css';
@@ -106,6 +106,16 @@ class QuestionPage extends Component {
         <HomeUserPage>
           <Alert color="warning">
               Carregando ...
+          </Alert>
+        </HomeUserPage>
+      )
+    }
+
+    if(error) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+              Erro na questão
           </Alert>
         </HomeUserPage>
       )
