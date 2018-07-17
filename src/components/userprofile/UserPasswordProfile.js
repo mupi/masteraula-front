@@ -123,6 +123,6 @@ export default connect(
   mapStateToProps
 )
 (reduxForm({
-  form: 'profile',
+  form: 'profile_password',
   validate
 })(UserPasswordProfile));

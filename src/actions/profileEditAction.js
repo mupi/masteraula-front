@@ -50,7 +50,7 @@ export const redefineUserPassword = (profile) => {
 
           dispatch(success())
           dispatch(updateUser(session))
-          dispatch(clearFields('profile', true, true, 'new_password', 'old_password', 'password_confirmation'))
+          dispatch(clearFields('profile_password', 'new_password', 'old_password', 'password_confirmation'))
         },
         error => {
           dispatch(failure(error))
