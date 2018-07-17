@@ -52,7 +52,7 @@ class App extends Component {
                 <Route path="/user-profile" component={UserProfilePage}/>
                 <Route path="/new-document" component={CreateDocumentPage}/>
                 <Route path="/documents" component={ViewDocumentPage}/>
-                <Route component={NotFoundPage}/>
+                <Route component={QuestionBasePageContainer}/>
                </Switch>
         :
               <Switch>
