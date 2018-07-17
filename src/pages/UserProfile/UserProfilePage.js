@@ -18,12 +18,8 @@ const UserProfilePage = props =>{
             <div className="contenedor-profile">
                 <h3 className="text-center">Meu Profile</h3>
                 <h5 className="text-center">Permite que a comunidade do MasterAula te conheça</h5>
-                <div className="row justify-content-center">
-                  <div className="col-sm-8 col-md-8 col-lg-12 col-xs-12">
-                    <UserProfile onSubmit={ submit }/>
-                    <UserPasswordProfile onSubmit={ submit }/>
-                  </div>
-                </div>
+                <UserProfile onSubmit={ submit }/>
+                <UserPasswordProfile onSubmit={ submit }/>
             </div>
         </HomeUserPage>
     )
@@ -67,7 +63,5 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(
-    () => {},
     mapDispatchToProps
-)
-(UserProfilePage);
+)(UserProfilePage);
