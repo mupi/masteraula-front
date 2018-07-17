@@ -4,10 +4,6 @@ import { Button } from 'reactstrap';
 
 
 const ExportDocumentButton = ({documentId}) =>
-<div className="btn-float">
-        <Button title="Exportar documento">
-          <i className="fa fa-plus"></i>
-        </Button>
-</div>
+  <Button color="secondary"><i className="fa fa-download"></i> Exportar</Button>
 
 export default ExportDocumentButton

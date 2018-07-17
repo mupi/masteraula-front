@@ -3,6 +3,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import { Link } from "react-router-dom";
 import QuestionBasePage from "pages/QuestionBase/QuestionBasePage";
 import UserProfilePage from "pages/UserProfile/UserProfilePage";
+import ExportDocumentButton from "components/buttons/ExportDocumentButton"
 import { Row, Col, Button} from 'reactstrap';
 
 import 'assets/css/Navigation.css';
@@ -31,7 +32,7 @@ const Sidebar = props => {
                           <h5>Documento Atual</h5>
                           <h6><i className="fa fa-file"></i> {docName} ({docNumberQuestions})</h6>
                           <div className="container-export-button">
-                            <Button color="secondary"><i className="fa fa-download"></i> Exportar</Button>
+                            <ExportDocumentButton />
                           </div>
                         <ListGroup className="sidebar-main-options">
                           <ListGroupItem color='secondary' >

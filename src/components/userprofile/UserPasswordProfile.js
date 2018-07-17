@@ -95,7 +95,7 @@ const validate = values => {
 
   if (values.new_password) {
     if (values.new_password.length < 8){
-      errors.new_password = 'A nova senha deve conter no mínimo 8 dígitos'
+      errors.new_password = 'A nova senha deve conter no mínimo 8 caracteres'
     } else if (!isNaN(values.new_password)){
       errors.new_password = 'A nova senha não deve conter apenas números'
     }
