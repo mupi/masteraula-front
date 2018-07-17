@@ -83,6 +83,11 @@ const UserProfile = props => {
                   <Button  type="submit">Salvar</Button>
                 </Col>
               </Row>
+              <div>
+                  { submitSucceeded && <UncontrolledAlert color="success">
+                    Usuário alterado com sucesso
+                    </UncontrolledAlert> }
+              </div>
             </Container>
           </Form>
   )
