@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.css';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import UserProfile from "components/userprofile/UserProfile.js";
+import UserPasswordProfile from "components/userprofile/UserPasswordProfile.js";
+
 import { SubmissionError } from 'redux-form'
 
 import { profileEdit } from "actions/profileEditAction.js"
@@ -16,7 +18,12 @@ const UserProfilePage = props =>{
             <div className="contenedor-profile">
                 <h3 className="text-center">Meu Profile</h3>
                 <h5 className="text-center">Permite que a comunidade do MasterAula te conheça</h5>
-                <UserProfile onSubmit={ submit }/>
+                <div className="row justify-content-center">
+                  <div className="col-sm-8 col-md-8 col-lg-12 col-xs-12">
+                    <UserProfile onSubmit={ submit }/>
+                    <UserPasswordProfile onSubmit={ submit }/>
+                  </div>
+                </div>
             </div>
         </HomeUserPage>
     )
