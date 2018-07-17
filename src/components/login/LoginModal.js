@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import React from 'react';
+import {  Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux'
-import { Link, Route } from 'react-router-dom'
-import { NavItem } from "reactstrap";
+import { Link } from 'react-router-dom'
 
 import LoginForm from 'components/login/LoginForm';
 import { fetchLogin, toggleModal } from 'actions/loginAction';

@@ -15,7 +15,7 @@ const QuestionContent = ({alternatives, statement ,answer}) =>
               <Row className="text-center">
                   <Col sm="12" xs="12">
                     <div className="img-learning-object">
-                      <img src={learningObject2}/>
+                      <img src={learningObject2} alt="objeto-aprendizagem"/>
                     </div>
                   </Col>
               </Row>

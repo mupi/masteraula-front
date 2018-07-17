@@ -1,10 +1,7 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
-import { Container, Row, Col } from 'reactstrap';
-import { NavLink } from "react-router-dom";
+import { Button, Form, FormGroup, Alert } from 'reactstrap';
+import { Col } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
-import { connect } from 'react-redux'
-
 import { resetForgotPasswordForm } from 'actions/forgotPasswordAction';
 
 import 'bootstrap/dist/css/bootstrap.css';

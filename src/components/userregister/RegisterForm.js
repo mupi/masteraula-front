@@ -6,7 +6,6 @@ import { Field, reduxForm } from 'redux-form'
 import { NavLink } from "react-router-dom";
 
 import { toggleModal } from 'actions/registerAction';
-import { FontAwesome} from 'react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
 
 

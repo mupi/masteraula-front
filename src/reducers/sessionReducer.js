@@ -9,19 +9,16 @@ export function session(state = initialState, action) {
         return Object.assign({}, state, {
             session: action.session
         });
-    break;
     case UPDATE_USER:
         return Object.assign({}, state, {
             session : Object.assign({}, state.session, {
                 user : action.user
             })
         });
-    break;
     case DELETE_SESSION:
         return Object.assign({}, state, {
             session : null
         });
-    break;
 
     default:
     return state;

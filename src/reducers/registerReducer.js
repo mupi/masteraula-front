@@ -7,43 +7,34 @@ export function register(state = {}, action) {
                 isFetching : true,
                 error: null
             });
-        break;
         case REGISTER_SUCCESS:
             return Object.assign({}, state, {
                 isFetching: false
             });
-        break;
         case REGISTER_FAILURE:
             return Object.assign({}, state, {
                 isFetching: false,
                 error: action.error
             })
-        break;
-
         case VERIFY_EMAIL_RESET:
             return Object.assign({}, state, {
                 success: null,
                 error: null
             })
-        break;
         case VERIFY_EMAIL_SUCCESS:
             return Object.assign({}, state, {
                 success: true,
                 error: false
             })
-        break;
         case VERIFY_EMAIL_FAILURE:
             return Object.assign({}, state, {
-                success: false, 
+                success: false,
                 error: true
             })
-        break;
-
         case REGISTER_TOGGLE_MODAL:
             return Object.assign({}, state, {
                 modal: action.modal
             })
-        break;
         default:
         return state;
     }

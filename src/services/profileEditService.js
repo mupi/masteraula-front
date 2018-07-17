@@ -1,6 +1,6 @@
 import { authHeader } from 'helpers';
 import { apiUrl  } from 'helpers/config';
- 
+
 const profileEditService = {
     profileEdit
 };
@@ -13,40 +13,40 @@ const handleResponse = (response) => {
             const error = (data && data.email);
             return Promise.reject(error);
         }
- 
+
         return data;
     });
 }
- 
+
 const handlePasswordResponse = (response) => {
     return response.json().then(data => {
         if (!response.ok) {
             return Promise.reject('DIFFERENT_OLD_PASSWORD');
         }
- 
+
         return data;
     });
 }
- 
-function profileEdit(profile) {
+
+function profilePasswordEdit(profile) {
     const requestOptions = {
         method: 'PATCH',
-        headers: { 
-            'Content-Type': 'application/json', 
-            'Authorization': authHeader() 
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': authHeader()
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
             name : profile.name,
         })
     };
 
     const requestPasswordOption = {
         method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json', 
+        headers: {
+            'Content-Type': 'application/json',
             'Authorization': authHeader()
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
             old_password : profile.old_password,
             new_password1 : profile.new_password1,
             new_password2 : profile.new_password2
@@ -59,17 +59,34 @@ function profileEdit(profile) {
                                 return detail
                             });
 
+    if (profile.old_password){
+        return Promise.all([fetchPassword])
+    }
+}
+
+
+function profileEdit(profile) {
+    const requestOptions = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': authHeader()
+        },
+        body: JSON.stringify({
+            name : profile.name,
+        })
+    };
+
+
     const fetchProfile =   fetch(`${apiUrl}/auth/user/ `, requestOptions)
                             .then(handleResponse)
                             .then(detail => {
                                 return detail;
-                            });             
+                            });
 
-    if (profile.old_password){
-        return Promise.all([fetchProfile, fetchPassword])
-    }
- 
+
     return Promise.all([fetchProfile])
 }
+
 
 export default profileEditService

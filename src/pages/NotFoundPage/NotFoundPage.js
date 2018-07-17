@@ -14,7 +14,7 @@ const NotFoundPage = ()=>
                 <h4>Caso acredite que isto é um erro, entre contato com a administração em contato@mupi.me</h4>
               </div>
               <div style={{'padding':'100px 0'}}>
-                <img src={logo} style={{  'display': 'block', 'marginLeft': 'auto', 'marginRight': 'auto', 'width':'40%'}}/>
+                <img src={logo} style={{  'display': 'block', 'marginLeft': 'auto', 'marginRight': 'auto', 'width':'40%'}} alt="masteraula"/>
               </div>
         </div>
       </div>

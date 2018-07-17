@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup } from 'reactstrap';
 import SidebarFilter from "components/sidebarfilter/SidebarFilter";
 
 import 'assets/css/Navigation.css';

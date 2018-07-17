@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Form, FormGroup , Col} from 'reactstrap';
 import { Alert} from 'reactstrap';
 import { connect } from 'react-redux'

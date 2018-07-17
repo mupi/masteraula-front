@@ -1,4 +1,7 @@
-import { PROFILE_EDIT_REQUEST, PROFILE_EDIT_SUCCESS, PROFILE_EDIT_FAILURE } from "actions/profileEditAction";
+import {
+  PROFILE_EDIT_REQUEST, PROFILE_EDIT_SUCCESS, PROFILE_EDIT_FAILURE,
+  PROFILE_PASSWORD_EDIT_REQUEST, PROFILE_PASSWORD_EDIT_SUCCESS, PROFILE_PASSWORD_EDIT_FAILURE
+} from "actions/profileEditAction";
 
 let session = JSON.parse(localStorage.getItem('session'));
 const initialState = {}
