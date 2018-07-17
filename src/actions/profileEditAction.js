@@ -2,7 +2,7 @@ import { profileEditService } from 'services';
 import { DIFFERENT_OLD_PASSWORD } from 'services/profileEditService';
 import { SubmissionError, clearFields } from 'redux-form'
 
-import { updateUser } from './sessionAction';
+import { updateSessionUser } from './sessionAction';
 
 export const PROFILE_EDIT_REQUEST = 'PROFILE_EDIT_REQUEST'
 export const PROFILE_EDIT_SUCCESS = 'PROFILE_EDIT_SUCCESS'
@@ -15,10 +15,10 @@ export const profileEdit = (profile) => {
     return profileEditService.profileEdit(profile)
       .then(
         data => {
-          let session = data[0]
+          let user = data[0]
           
           dispatch(success())
-          dispatch(updateUser(session))
+          dispatch(updateSessionUser(user))
           dispatch(clearFields('profile', true, true, 'new_password', 'old_password', 'password_confirmation'))
         },
         error => {
