@@ -112,9 +112,6 @@ const validate = values => {
 const mapStateToProps = state => {
   const { user } = state.session.session
   return ({
-    initialValues : {
-      name : user.name
-    },
     user
   })
 }

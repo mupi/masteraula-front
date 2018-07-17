@@ -2,7 +2,8 @@ import { authHeader } from 'helpers';
 import { apiUrl  } from 'helpers/config';
 
 const profileEditService = {
-    profileEdit
+    profileEdit,
+    profilePasswordEdit
 };
 
 export const DIFFERENT_OLD_PASSWORD = "DIFFERENT_OLD_PASSWORD"
@@ -29,18 +30,6 @@ const handlePasswordResponse = (response) => {
 }
 
 function profilePasswordEdit(profile) {
-    const requestOptions = {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': authHeader()
-        },
-        body: JSON.stringify({
-            name : profile.name,
-            about : profile.about
-        })
-    };
-
     const requestPasswordOption = {
         method: 'POST',
         headers: {
@@ -75,6 +64,7 @@ function profileEdit(profile) {
         },
         body: JSON.stringify({
             name : profile.name,
+            about : profile.about
         })
     };
 

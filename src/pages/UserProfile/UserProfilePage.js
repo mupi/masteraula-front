@@ -36,7 +36,7 @@ const mapDispatchToProps = dispatch => ({
             name: values.name,
             about: values.about
         }
-          return dispatch(profileEdit(profile))
+        return dispatch(profileEdit(profile))
     },
 
     submit_profile_password : values => {

@@ -23,7 +23,6 @@ export const profileEdit = (profile) => {
           
           dispatch(success())
           dispatch(updateSessionUser(user))
-          dispatch(clearFields('profile', true, true))
         },
         error => {
           dispatch(failure(error))
@@ -40,17 +39,16 @@ export const profileEdit = (profile) => {
 }
 
 //Redefine password_confirmation
-export const redefineUserPassword = (profile) => {
+export const redefineUserPassword = (password_data) => {
   return dispatch => {
-    dispatch(requestRedefineUserPassword(profile))
-    return profileEditService.profileEdit(profile)
+    dispatch(requestRedefineUserPassword(password_data))
+    return profileEditService.profilePasswordEdit(password_data)
       .then(
         data => {
           let session = data[0]
 
           dispatch(success())
-          dispatch(updateUser(session))
-          dispatch(clearFields('profile_password', 'new_password', 'old_password', 'password_confirmation'))
+          dispatch(clearFields('profile_password', true, true, 'new_password', 'old_password', 'password_confirmation'))
         },
         error => {
           dispatch(failure(error))
