@@ -11,7 +11,7 @@ const QuestionPagination = ({ currentPage, previous, next, count, itens_per_page
     const { page, label, disabled, next, previous } = params
 
     return(
-      <PaginationItem key={page} {...params} active={ page == currentPage } next="true" previous="true" >
+      <PaginationItem key={page} {...params} active={ page === currentPage } next="true" previous="true" >
         { disabled &&
           <PaginationLink  {...params} >{ label }</PaginationLink>
         }

@@ -43,8 +43,8 @@ export const logout = () => {
 }
 
 export const toggleModal = (modal) => {
-  return { 
-    type: LOGIN_TOGGLE_MODAL, 
-    modal : !modal 
+  return {
+    type: LOGIN_TOGGLE_MODAL,
+    modal : !modal
   }
 }
