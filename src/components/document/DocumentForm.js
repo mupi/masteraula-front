@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Input, Container, Col, Label, Button } from 'reactstrap';
-import QuestionContent from "../../components/question/QuestionContent.js";
+import { Row, Input, Container, Col, Label } from 'reactstrap';
 
 class DocumentForm extends Component {
-
-  constructor(props) {
-    super(props);
-   }
 
   render(){
     return(
@@ -21,7 +16,7 @@ class DocumentForm extends Component {
                  <Label for="upload-logo" className="upload-logo">
                          <span><i className="fa fa-picture-o"></i>Enviar logo</span>
                          <div className="thumbnail">
-                           <img src="http://via.placeholder.com/100x100"/>
+                           <img src="http://via.placeholder.com/100x100" alt="logo-prova" />
                          </div>
                  </Label>
                  <div className="small-text">Tamano máximo 1 MB. JPG, GIF ou PNG</div>
@@ -32,7 +27,7 @@ class DocumentForm extends Component {
                 <Input placeholder="Curso/Disciplina" id='course' className="form-group" onChange={(event)=>this.props.setFields('course',event)}/>
                 <Input placeholder="Professor(a)" id='teacherName' className="form-group" onChange={(event)=>this.props.setFields('teacherName',event)}/><br/>
                 Mostrar os seguintes campos em branco:<br/>
-                
+
                 <Row>
                   <Col>
                     <Input addon type="checkbox"  id='studentName' onChange={(event)=>this.props.setFields('studentName',event)}/> Aluno<br/>

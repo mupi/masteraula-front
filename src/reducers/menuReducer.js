@@ -8,12 +8,10 @@ export function menu(state = initialState, action) {
             return Object.assign({}, state, {
                 isOpen : action.isOpen,
             });
-        break;
         case OPEN_SIDEBAR:
             return Object.assign({}, state, {
                 isOpenSidebar : action.isOpenSidebar,
             });
-        break;
         default:
         return state;
     }

@@ -1,5 +1,4 @@
 import { questionService } from 'services';
-import { history } from 'helpers/history';
 
 //Load single question
 export const FETCH_QUESTION = 'FETCH_QUESTION'

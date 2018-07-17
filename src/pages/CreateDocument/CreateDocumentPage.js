@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Container, Nav, NavItem, NavLink, TabContent, TabPane, Col, Button, Card, CardTitle, CardText } from 'reactstrap';
+import {  Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import DocumentForm from '../../components/document/DocumentForm.js';
 import DocumentPreview from '../../components/document/DocumentPreview.js';
 import HomeUserPage from "../HomeUser/HomeUserPage"
@@ -133,7 +133,7 @@ class CreateDocumentPage extends Component{
     ],
     "tags": [
      "Temperatura" ,
-      "Condensação" 
+      "Condensação"
     ],
     "descriptors": [
      {name: "D1 - Localizar informações explícitas"  },

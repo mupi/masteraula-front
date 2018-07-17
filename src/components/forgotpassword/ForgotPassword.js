@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup} from 'reactstrap';
 import { Alert } from 'reactstrap';
-import { Container, Row, Col } from 'reactstrap';
+import {  Col } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
 
 

@@ -18,7 +18,7 @@ export const fetchLogin = (username, password) => {
         session => {
           dispatch(success())
           dispatch(updateSession(session))
-          history.push('/home');
+          history.push('/question-base/1');
         },
         error => {
           dispatch(failure(error))
@@ -43,8 +43,8 @@ export const logout = () => {
 }
 
 export const toggleModal = (modal) => {
-  return { 
-    type: LOGIN_TOGGLE_MODAL, 
-    modal : !modal 
+  return {
+    type: LOGIN_TOGGLE_MODAL,
+    modal : !modal
   }
 }

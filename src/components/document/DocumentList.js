@@ -1,6 +1,5 @@
 import React from 'react';
 import { Row, Col, Table, Modal, ModalHeader, ModalBody, Container, Label, Button, ModalFooter } from 'reactstrap';
-import QuestionInfo from "../../components/question/QuestionInfo.js";
 import DisciplineList from "components/disciplines/DisciplineList"
 import QuestionSourceYear from "components/question/QuestionSourceYear"
 import QuestionContent from "../../components/question/QuestionContent.js";
@@ -75,7 +74,7 @@ class DocumentList extends React.Component {
                   <Col xs='2'>
                     <Label for="upload-avatar" className="upload-avatar">
                             <div className="thumbnail">
-                              <img src={this.state.document.logo? this.state.document.logo : "http://via.placeholder.com/100x100"}/>
+                              <img src={this.state.document.logo? this.state.document.logo : "http://via.placeholder.com/100x100"} alt="logo-documento"/>
                             </div>
                     </Label>
                   </Col>

@@ -3,6 +3,7 @@ import QuestionPage from 'pages/Question/QuestionPage'
 import { fetchQuestion, rateQuestion } from 'actions/questionAction.js'
 
   const mapStateToProps = state => ({
+        isFetching: state.question.isFetching,
         activeQuestion: state.question.activeQuestion,
         rating:state.question.rating
   })
