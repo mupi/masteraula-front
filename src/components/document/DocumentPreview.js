@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row,  Container, Col, Label, Button, Modal, ModalBody, ModalFooter, ModalHeader, Input } from 'reactstrap';
+import { Row,  Container, Col, Label, Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import QuestionContent from "../../components/question/QuestionContent.js";
 import QuestionHeader from "../../components/question/QuestionHeader.js";
 import QuestionInfo from "../../components/question/QuestionInfo.js";
@@ -84,7 +84,7 @@ class DocumentPreview extends React.Component{
                     <Label for="upload-avatar" className="upload-avatar">
 
                             <div className="thumbnail">
-                              <img src={props.data.logo? props.data.logo : "http://via.placeholder.com/100x100"}/>
+                              <img src={props.data.logo? props.data.logo : "http://via.placeholder.com/100x100"} alt="logo-prova"/>
                             </div>
                     </Label>
                   </Col>

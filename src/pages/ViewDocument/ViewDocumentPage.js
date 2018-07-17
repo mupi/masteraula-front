@@ -1,7 +1,6 @@
 import React from 'react';
-import { Row, Container, NavLink, TabContent, TabPane, Col, Button, Card, CardTitle, CardText, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Row, Container, Col, Button, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import DocumentList from '../../components/document/DocumentList.js';
-import DocumentPreview from '../../components/document/DocumentPreview.js';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import classnames from 'classnames';
 

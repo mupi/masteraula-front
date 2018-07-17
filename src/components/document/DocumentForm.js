@@ -16,7 +16,7 @@ class DocumentForm extends Component {
                  <Label for="upload-logo" className="upload-logo">
                          <span><i className="fa fa-picture-o"></i>Enviar logo</span>
                          <div className="thumbnail">
-                           <img src="http://via.placeholder.com/100x100"/>
+                           <img src="http://via.placeholder.com/100x100" alt="logo-prova" />
                          </div>
                  </Label>
                  <div className="small-text">Tamano máximo 1 MB. JPG, GIF ou PNG</div>

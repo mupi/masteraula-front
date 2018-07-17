@@ -1,5 +1,4 @@
 import { registerService } from 'services';
-import { history } from 'helpers/history';
 import { SubmissionError, reset } from 'redux-form'
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST'
@@ -51,8 +50,8 @@ export const verifyEmail = key => {
 }
 
 export const toggleModal = (modal) => {
-  return { 
-    type: REGISTER_TOGGLE_MODAL, 
-    modal : !modal 
+  return {
+    type: REGISTER_TOGGLE_MODAL,
+    modal : !modal
   }
 }

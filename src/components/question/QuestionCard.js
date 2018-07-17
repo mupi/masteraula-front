@@ -1,11 +1,11 @@
 import React  from 'react';
-import {Button, Card, CardBlock, CardTitle, CardImg, CardBody, CardText, CardSubtitle, Row } from 'reactstrap';
+import {Button, Card, CardImg, CardBody, Row } from 'reactstrap';
 import imageCard from "assets/img/home/question-card.jpg";
 import DisciplineList from "components/disciplines/DisciplineList"
 import TagList from "components/tags/TagList"
 import QuestionAuthor from "./QuestionAuthor"
 import QuestionSourceYear from "./QuestionSourceYear"
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import 'font-awesome/css/font-awesome.min.css';
 
 const QuestionCard = ({id, disciplines, source, year, statement, urlImage="", author, teaching_levels}) =>
@@ -13,7 +13,7 @@ const QuestionCard = ({id, disciplines, source, year, statement, urlImage="", au
 				{ urlImage !== "" ? <CardImg top width="100%" src={imageCard} alt="Card image cap" /> : null }
 			  <CardBody>
 			    <Row>
-						<DisciplineList list={disciplines} /> 
+						<DisciplineList list={disciplines} />
 					</Row>
 							<Row><QuestionSourceYear styleTag="top-label-question source-name" source={source} year={year}/></Row>
 							{ !urlImage ?

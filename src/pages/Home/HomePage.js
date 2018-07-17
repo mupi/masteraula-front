@@ -29,12 +29,12 @@ const HomePage = ()=>
             </div>
 
             <div className="col-md-4 text-center">
-              <div className="thumb-circle"><img src={clockImg}/></div>
+              <div className="thumb-circle"><img src={clockImg} alt="monte-questoes"/></div>
               <h4>Monte provas e testes em 5 minutos!</h4>
               <p>Otimize seu tempo de preparar aulas encontrando materiais curados por educadores de todo o Brasil.</p>
             </div>
             <div className="col-md-4 text-center">
-              <div className="thumb-circle"><img src={searchImg}/></div>
+              <div className="thumb-circle"><img src={searchImg} alt="encontre-materiais"/></div>
                 <h4>Encontre materiais online</h4>
                 <p>Busque por disciplina, assunto ou tipo de material para você adaptar e utilizar com seus alunos.</p>
               </div>
