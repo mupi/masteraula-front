@@ -31,11 +31,12 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-      submit_profile : values => {
-          const profile = {
-              name: values.name
-          }
-          return dispatch(profileEdit(profile))
+    submit_profile : values => {
+        const profile = {
+            name: values.name,
+            about: values.about
+        }
+        return dispatch(profileEdit(profile))
     },
 
     submit_profile_password : values => {

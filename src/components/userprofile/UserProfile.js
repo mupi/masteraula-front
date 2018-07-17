@@ -69,8 +69,8 @@ const UserProfile = props => {
                     <Label>Sobre mim</Label>
                     <Field
                       component="textarea"
-                      name="about_me"
-                      id="about_me"
+                      name="about"
+                      id="about"
                       placeholder=""
                       className="form-control"
                     />
@@ -99,7 +99,8 @@ const mapStateToProps = state => {
   const { user } = state.session.session
   return ({
     initialValues : {
-      name : user.name
+      name : user.name,
+      about: user.about
     },
     user
   })
