@@ -18,12 +18,12 @@ const getResults = (isFetching, results ) => {
 
 class QuestionBasePage extends React.Component {
     componentDidMount() {
-      this.props.listQuestions(parseInt(this.props.match.params.page));
+      this.props.listQuestions(parseInt(this.props.match.params.page, 10));
     }
 
     componentDidUpdate(prevProps) {
       if (this.props.match.params.page !== prevProps.match.params.page) {
-        this.props.listQuestions(parseInt(this.props.match.params.page));
+        this.props.listQuestions(parseInt(this.props.match.params.page, 10));
       }
     }
 
