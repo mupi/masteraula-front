@@ -1,5 +1,4 @@
 import React from 'react';
-import { Component } from 'react';
 import { connect } from 'react-redux'
 import { Button, Form, FormGroup, Input, Label, UncontrolledAlert} from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
@@ -43,7 +42,7 @@ const UserProfile = props => {
                   <Label for="upload-avatar" className="upload-avatar">
                     <span><i className="fa fa-picture-o"></i>Enviar foto</span>
                     <div className="thumbnail">
-                      <img src={ userPhoto }/>
+                      <img src={ userPhoto } alt="foto-usuario"/>
                     </div>
                   </Label>
                   <div className="small-text">Tamano máximo 1 MB. JPG, GIF ou PNG</div>

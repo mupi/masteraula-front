@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Row, Container, Nav, NavItem, NavLink, TabContent, TabPane, Col, Button, Card, CardTitle, CardText, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import React from 'react';
+import { Row, Container, NavLink, TabContent, TabPane, Col, Button, Card, CardTitle, CardText, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import DocumentList from '../../components/document/DocumentList.js';
 import DocumentPreview from '../../components/document/DocumentPreview.js';
 import HomeUserPage from "../HomeUser/HomeUserPage"

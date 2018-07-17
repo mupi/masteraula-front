@@ -22,7 +22,7 @@ const HomePage = ()=>
 
             <div className="col-md-4 text-center">
               <div className="thumb-circle">
-                <img src={moneyImg}/>
+                <img src={moneyImg} alt="venda-questoes"/>
                 </div>
               <h4>Venda suas questões</h4>
               <p>Ganhe uma renda extra vendendo os materiais que você já criou para outros educadores da comunidade.</p>

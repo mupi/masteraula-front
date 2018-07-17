@@ -1,4 +1,4 @@
-import { profileEditService } from 'services';
+  import { profileEditService } from 'services';
 import { DIFFERENT_OLD_PASSWORD } from 'services/profileEditService';
 import { SubmissionError, clearFields } from 'redux-form'
 
@@ -23,7 +23,7 @@ export const profileEdit = (profile) => {
         },
         error => {
           dispatch(failure(error))
-          if (error == DIFFERENT_OLD_PASSWORD){
+          if (error === DIFFERENT_OLD_PASSWORD){
             throw new SubmissionError({
               old_password: 'Senha antiga não confere',
               _error: 'Senha antiga não confere'
@@ -56,7 +56,7 @@ export const redefineUserPassword = (profile) => {
         },
         error => {
           dispatch(failure(error))
-          if (error == DIFFERENT_OLD_PASSWORD){
+          if (error === DIFFERENT_OLD_PASSWORD){
             throw new SubmissionError({
               old_password: 'Senha antiga não confere',
               _error: 'Senha antiga não confere'
