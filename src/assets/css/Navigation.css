@@ -265,13 +265,13 @@ li.question-category-filter a{
     height: 35px;
     border: none;
     outline: none;
-    color: #89949B;
+    color: var(--color-ma-blue) !important;
     display: block;
     font-size: 14px;
     line-height: 14px;
     text-decoration: none;
     padding: 11px 0px 10px 15px;
-    background: var(--color-ma-blue);
+    background: #d6d8db;
 }
 
 .question-category-filter i.fa.fa-angle-left {
