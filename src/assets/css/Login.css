@@ -2,7 +2,7 @@
 .contenedor-login {
     max-width: 500px;
     background: var(--color-ma-blue-sky);
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 
@@ -17,7 +17,7 @@
     max-width: 500px;
     margin-right: auto !important;
     margin-left: auto !important;
-    border-radius: 10px;
+    border-radius: 6px;
     background: var(--color-ma-blue-sky);
 
 }
@@ -35,7 +35,7 @@
 
 /*Modal*/
 .modal-content {
-      border-radius: 10px;
+      border-radius: 6px;
 }
 
 .modal-header{
