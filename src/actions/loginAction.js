@@ -18,7 +18,7 @@ export const fetchLogin = (username, password) => {
         session => {
           dispatch(success())
           dispatch(updateSession(session))
-          history.push('/home');
+          history.push('/question-base/1');
         },
         error => {
           dispatch(failure(error))
