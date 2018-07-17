@@ -25,7 +25,8 @@ const UserProfilePage = props =>{
 const mapDispatchToProps = dispatch => ({
     submit : values => {
         const profile = {
-            name: values.name
+            name: values.name,
+            about: values.about
         }
         if (values.new_password || values.old_password || values.password_confirmation){
             const errors = {}

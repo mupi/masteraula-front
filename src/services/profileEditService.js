@@ -37,6 +37,7 @@ function profileEdit(profile) {
         },
         body: JSON.stringify({ 
             name : profile.name,
+            about : profile.about
         })
     };
 
