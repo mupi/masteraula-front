@@ -11,16 +11,14 @@ const QuestionPagination = ({ currentPage, previous, next, count, itens_per_page
     const { page, label, disabled } = params
 
     return(
-      <PaginationItem {...params} active={ page == currentPage }>
-        { disabled && 
+      <PaginationItem {...params} active={ page == currentPage } >
+        { disabled &&
           <PaginationLink {...params} >{ label }</PaginationLink>
         }
-        { !disabled && 
-          <Link to={`${page}`} style={{ textDecoration: 'none' }}>
-            <PaginationLink {...params} >
+        { !disabled &&
+            <PaginationLink  tag={Link} to={`${page}`} style={{ textDecoration: 'none' }} {...params} >
               { label }
             </PaginationLink>
-          </Link> 
         }
       </PaginationItem>
     )
@@ -34,7 +32,7 @@ const QuestionPagination = ({ currentPage, previous, next, count, itens_per_page
   }
 
     return (
-      
+
       <Pagination aria-label="Question Base navigation">
         <QuestionPaginationItem disabled={!previous} page={currentPage - 1} previous />
 

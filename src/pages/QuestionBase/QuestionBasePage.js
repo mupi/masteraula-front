@@ -12,7 +12,7 @@ const getResults = (isFetching, results ) => {
         return <QuestionList questions={results} numCols='3'/>
       }
       else{
-        return <Alert color="warning">Carregando ...</Alert>
+        return <Alert className="alert-padding" color="warning">Carregando ...</Alert>
       }
 }
 
@@ -33,7 +33,7 @@ class QuestionBasePage extends React.Component {
       if(error) {
         return  (
           <HomeUserPage>
-            <div className="alert alert-danger">{error.message}</div>
+             <Alert color="danger">{error.message}</Alert>
           </HomeUserPage>
         )
       }
@@ -48,13 +48,13 @@ class QuestionBasePage extends React.Component {
                   <InputGroupAddon addonType="prepend"><Button>Pesquisar</Button></InputGroupAddon>
                 </InputGroup>
               </Row>
-              <Row className="questions-result">
+              <Row className="pagination-questions">
                 <QuestionPagination {...this.props} {...questionPage}/>
               </Row>
               <Row className="questions-result">
                 {getResults(isFetching,questionPage.results)}
               </Row>
-              <Row className="questions-result">
+              <Row className="pagination-questions">
                 <QuestionPagination {...this.props} {...questionPage}/>
               </Row>
           </div>

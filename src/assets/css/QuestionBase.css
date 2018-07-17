@@ -1,6 +1,6 @@
 
 
-.questions-result.row {
+.questions-result {
     margin-top: 20px;
 }
 
@@ -8,9 +8,6 @@
     padding: 15px;
 }
 
-.questions-result .col-12.col-sm-3 {
-    margin-top: 15px !important;
-}
 
 .buttonCard a {
     color: var(--color-ma-white);
@@ -18,4 +15,35 @@
 
 .buttonCard a:hover {
     text-decoration: none;
+}
+
+/*Pagination in QuestionBase*/
+.page-item.active .page-link{
+  background-color: var(--color-ma-blue);
+  border-color  : var(--color-ma-blue);
+}
+
+.pagination-questions{
+  padding: 0px 15px;
+}
+
+.pagination-questions.row a {
+    color: var(--color-ma-blue);
+}
+
+.pagination-questions ul.pagination {
+    margin-bottom: 0px;
+}
+
+.page-item.active .page-link:hover {
+    color: white;
+    font-weight: bold;
+}
+
+.question-card {
+    margin-bottom: 20px;
+}
+
+.alert-padding{
+  margin:0px 15px 15px 15px;
 }
