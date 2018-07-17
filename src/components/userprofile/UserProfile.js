@@ -80,7 +80,7 @@ const UserProfile = props => {
               </Row>
               <Row className="section-user-title">
                 <Col className="text-center">
-                  <Button>Salvar</Button>
+                  <Button  type="submit">Salvar</Button>
                 </Col>
               </Row>
             </Container>

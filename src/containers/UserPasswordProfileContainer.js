@@ -19,12 +19,10 @@ const validate = values => {
   return errors
 }
 
+
 const mapStateToProps = state => {
   const { user } = state.session.session
   return ({
-    initialValues : {
-      name : user.name
-    },
     user
   })
 }
@@ -33,7 +31,7 @@ export default connect(
   mapStateToProps
 )
 (reduxForm({
-  form: 'profile',
+  form: 'profile_password',
   validate
 })(UserPasswordProfile))
 

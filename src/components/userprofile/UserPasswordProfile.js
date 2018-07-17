@@ -27,7 +27,7 @@ const UserPasswordProfile = props => {
   const { handleSubmit, user, submitSucceeded } = props
 
     return (
-          <Form>
+          <Form onSubmit={ handleSubmit }>
           <Container>
               <Row  className="section-user-title">
                 <h4>Minha Conta</h4>
@@ -77,7 +77,7 @@ const UserPasswordProfile = props => {
               </Row>
               <Row className="section-user-title">
                 <Col className="text-center">
-                  <Button>Redefinir senha</Button>
+                  <Button type="submit">Redefinir senha</Button>
                 </Col>
               </Row>
               <div>
