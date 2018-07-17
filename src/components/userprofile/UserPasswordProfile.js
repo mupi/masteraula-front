@@ -17,7 +17,7 @@ const renderField = ({
       type={type}
     />
     { touched &&
-      ((error && <span>{error}</span>) ||
+      ((error && <span className="error-message-text">{error}</span>) ||
       (warning && <span> {warning} </span>))
     }
   </div>
@@ -82,7 +82,7 @@ const UserPasswordProfile = props => {
               </Row>
               <div>
                   { submitSucceeded && <UncontrolledAlert color="success">
-                    Usuário alterado com sucesso
+                    Senha alterada com sucesso
                     </UncontrolledAlert> }
               </div>
             </Container>
