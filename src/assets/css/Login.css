@@ -5,11 +5,9 @@
     border-radius: 6px;
 }
 
-
 .contenedor-login h4{
   text-align: center;
 }
-
 
 .contenedor-forgotpassword {
     padding-top: 40px;
@@ -30,8 +28,6 @@
     position: relative;
   }
 }
-
-
 
 /*Modal*/
 .modal-content {

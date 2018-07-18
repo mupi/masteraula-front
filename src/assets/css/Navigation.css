@@ -100,8 +100,8 @@ html body #sidebar #sidebar-container {
     bottom: 0;
     width: var(--sidebar-size);
     position: absolute;
-    top: 75px;
-    padding-top: 25px;
+    top: 58px;
+    padding-top: 30px;
     overflow-x: hidden;
 
 }
@@ -147,7 +147,7 @@ ul.list-group {
   }
 }
 
-
+/* Why so many classes for 1 property*/
 .visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {
     display: none !important;
 }
@@ -299,13 +299,14 @@ li.question-category-filter a{
 }
 
 .logo-sidebar {
-    width: 90%;
+    width: 80%;
 }
 
 .logo-top-sidebar {
     text-align: center;
-    padding: 15px;
-    background: #27567e;
+    padding: 5px;
+    background: var(--color-ma-green);
+    height: 58px;
 }
 
 img.logo-in-menu {
