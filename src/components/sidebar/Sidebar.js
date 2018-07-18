@@ -9,6 +9,7 @@ import { Row, Col, Button} from 'reactstrap';
 import 'assets/css/Navigation.css';
 import 'font-awesome/css/font-awesome.min.css';
 import logoMasterAula from "assets/img/home/masteraula-300x60.png";
+import logoMasterAulaVerde from "assets/img/home/logo_masteraula-fd-verde.png";
 
 import SidebarFilters from "./SidebarFilters"
 
@@ -21,7 +22,7 @@ const Sidebar = props => {
     return (
           <div id="sidebar">
             <div className="logo-top-sidebar">
-              <img className="logo-sidebar" src={logoMasterAula}/>
+              <img className="logo-sidebar" src={logoMasterAulaVerde}/>
             </div>
             <div id="sidebar-container">
               <div className="container-fluid">
