@@ -32,8 +32,14 @@ span.discipline-name {
     background:var(--color-ma-pink);
 }
 
+/* Why so many classes for 1 property*/
 span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span.descriptor-name, span.author {
     background: var(--color-ma-green);
+}
+
+.btn {
+    font-size: 14px;
+    padding: 5px 10px;
 }
 
 .btn-circle {
@@ -171,22 +177,17 @@ p.card-text, .card-text {
     font-size: 14px;
 }
 
-.btn {
-    font-size: 14px;
-    padding: 5px 10px;
-}
-
 .card-body {
     padding: 15px;
+}
+
+.card-body span.label-info, .card-body .source-name {
+    font-size: 13px;
 }
 
 span.author-card {
     font-weight: bold;
     font-style: italic;
-}
-
-.card-body span.label-info, .card-body .source-name {
-    font-size: 13px;
 }
 
 p.info-question-card {

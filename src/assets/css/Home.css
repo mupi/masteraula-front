@@ -4,15 +4,6 @@
     background-color: var(--color-ma-blue) !important;
 }
 
-.banner-header {
-    background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
-    background-size: 100% auto;
-    color: var(--color-ma-white);
-    padding: 1em;
-    text-align: center;
-    margin-top:55px
-}
-
 .thumb-circle {
     border-radius: 50%;
     width: 150px;
@@ -30,6 +21,15 @@
 .container.caracteristicas-ma {
     padding-top: 60px;
     padding-bottom: 60px;
+}
+
+.banner-header {
+    background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
+    background-size: 100% auto;
+    color: var(--color-ma-white);
+    padding: 1em;
+    text-align: center;
+    margin-top:55px
 }
 
 .banner-header {
@@ -77,14 +77,9 @@
   .public-home .main-contenedor {
     padding: 15px;
     margin-top: 60px;
-}
+  }
 
 }
-
-.main-contenedor {
-    padding-top: 25px;
-}
-
 
 .main-contenedor {
     padding-top: 30px;
