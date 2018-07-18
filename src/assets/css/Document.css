@@ -19,6 +19,15 @@
     padding-top: 0px;
 }
 
+.btn-margin-right{
+  margin-right: 15px;
+}
+
+.btn-preview-document.row {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 .btn-float-remove-question {
     position: absolute;
     top: -20px;
@@ -71,15 +80,6 @@ span.button-text {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background: #FFFFFF;
     margin-top: 10px;
-}
-
-.btn-margin-right{
-  margin-right: 15px;
-}
-
-.btn-preview-document.row {
-    margin-top: 15px;
-    margin-bottom: 15px;
 }
 
 .modal-title {
