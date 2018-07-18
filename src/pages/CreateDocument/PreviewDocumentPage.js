@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Row, Container } from 'reactstrap';
-import DocumentForm from '../../components/document/DocumentForm.js';
 import DocumentPreview from '../../components/document/DocumentPreview.js';
 import 'assets/css/Document.css';
 

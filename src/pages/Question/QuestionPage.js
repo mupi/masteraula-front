@@ -1,132 +1,144 @@
-import React from 'react';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import QuestionHeader from "components/question/QuestionHeader.js";
 import QuestionContent from "components/question/QuestionContent.js";
-
 import QuestionInfo from "components/question/QuestionInfo.js";
-import { QuestionInfoContainer } from 'containers/questionContainer'
-
 import RelatedQuestions from "components/question/RelatedQuestions";
 import QuestionComments from "components/question/QuestionComments.js";
+import AddQuestionButton from "components/buttons/AddQuestionButton.js";
+import { Alert } from 'reactstrap';
+
+import React, { Component } from 'react';
+
 import 'font-awesome/css/font-awesome.min.css';
 import 'assets/css/Question.css';
 
-/* id, question, disiciplines, alternatives, answer, source, year, difficulty, author, teachingLevel, tags, descriptors, stars*/
-const question = {
-    "id":"100",
-    "question": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha:",
-    "disciplines": [
+/*Questoes Relacionadas - test*/
+const questionTest = {
+  "rquestions": [
+    { "disciplines": [
       { "name": "Química" },
       { "name": "Física" }
     ],
-    "alternatives": [
-      {"text": "a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo por parte do autor da tirinha."},
-      {"text": "b) Mafalda opõe-se ao discurso da amiga Susanita e, por meio de suas feições em todos os quadrinhos, percebe-se nitidamente seu descontentamento."},
-      {"text": "c) A linguagem verbal não contribui para o melhor entendimento da tirinha, pois todo efeito de humor está contido na linguagem não verbal por meio da expressão exibida por Mafalda no último quadrinho."},
-      {"text": "d) Susanita apresenta um discurso de acordo com as teorias feministas que pregam a libertação das práticas tradicionalmente atribuídas à mulher. Contudo, no último quadrinho, a personagem defende o uso de uma tecnologia que apenas reforça os padrões tradicionais."}
-    ],
-    "answer": "Alternativa “d”. Há uma quebra de expectativa, o que ocasionou o efeito de humor da tirinha. Susanita apresentou, até o terceiro quadrinho, um discurso condizente com as teorias feministas em voga nos anos 70. Todavia, no último quadrinho, ela demonstrou ter um conhecimento limitado sobre o assunto, elogiando o uso de uma tecnologia, a máquina de tricô, que apenas reforça os padrões tradicionais do comportamento feminino.",
     "source": "ENEM",
     "year": "2010",
-    "difficulty": "Fácil",
-    "author": "Thiago Oliveira dos Santos",
-    "teachingLevels": [
-      { "name": "Ensino Médio" },
-      { "name": "Ensino Superior" }
+    "teaching_levels": [
+               {
+                   "id": 1,
+                   "name": "Ensino Médio"
+               },
+               {
+                   "id": 2,
+                   "name": "Ensino Fundamental"
+               }
+           ],
+    "author": {
+                 "id": 8,
+                 "username": "cp.rosaless@gmail.com",
+                 "name": "Carmen Pamela Rosales Sedano",
+                 "email": "cp.rosaless@gmail.com"
+             },
+    "statement": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
+    "urlImage": ""
+    },
+    { "disciplines": [
+      { "name": "Matemática" },
+      { "name": "Geometria" }
     ],
-    "tags": [
-      { "name": "Temperatura" },
-      { "name": "Condensação" }
+    "source": "ENEM",
+    "year": "2018",
+    "teaching_levels": [
+               {
+                   "id": 1,
+                   "name": "Ensino Médio"
+               },
+               {
+                   "id": 2,
+                   "name": "Ensino Fundamental"
+               }
+           ],
+    "author": {
+               "id": 8,
+               "username": "cp.rosaless@gmail.com",
+               "name": "Carmen Pamela Rosales Sedano",
+               "email": "cp.rosaless@gmail.com"
+           },
+    "statement": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
+    },
+    { "disciplines": [
+      { "name": "Química" },
+      { "name": "Física" }
     ],
-    "descriptors": [
-     {name: "D1 - Localizar informações explícitas"  },
-     {name: "D2 - Inferir o sentido de uma palavra"}
-   ],
-    "stars":"3",
-    "rquestions": [
-      { "disciplines": [
-        { "name": "Química" },
-        { "name": "Física" }
-      ],
-      "source": "ENEM",
-      "year": "2010",
-      "author": "Thiago Oliveira dos Santos",
-      "teachingLevels": [
-        { "name": "Ensino Médio" },
-        { "name": "Ensino Superior" }
-      ],
-      "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
-      "urlImage": "-"
-      },
-      { "disciplines": [
-        { "name": "Matemática" },
-        { "name": "Geometria" }
-      ],
-      "descriptors": [
-       {name: "D1"  },
-       {name: "D2"}
-     ],
-      "source": "ENEM",
-      "year": "2018",
-      "author": "Diego Gonçalves Carvalho",
-      "teachingLevels": [
-        { "name": "Ensino Médio" },
-        { "name": "Ensino Superior" }
-      ],
-      "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
-      "urlImage": ""
-      },
-      { "disciplines": [
-        { "name": "Química" },
-        { "name": "Física" }
-      ],
-      "descriptors": [
-       {name: "D1"  },
-       {name: "D2"}
-     ],
-      "source": "ENEM",
-      "year": "2010",
-      "author": "Thiago Oliveira dos Santos",
-      "teachingLevels": [
-        { "name": "Ensino Médio" },
-        { "name": "Ensino Superior" }
-      ],
-      "extract": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
-      "urlImage": ""
-      }
+    "source": "ENEM",
+    "year": "2010",
+    "teaching_levels": [
+               {
+                   "id": 1,
+                   "name": "Ensino Médio"
+               },
+               {
+                   "id": 2,
+                   "name": "Ensino Fundamental"
+               }
+           ],
+    "author": {
+               "id": 8,
+               "username": "cp.rosaless@gmail.com",
+               "name": "Carmen Pamela Rosales Sedano",
+               "email": "cp.rosaless@gmail.com"
+           },
+    "statement": "Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...",
+    }
 
-    ]
+  ]
+}
 
+class QuestionPage extends Component {
+
+  componentDidMount() {
+    this.props.fetchQuestion(this.props.match.params.id);
   }
 
+  render(){
+    const { activeQuestion, isFetching, rating, error, onRate } = this.props
 
+    if(isFetching) {
+      return (
+        <HomeUserPage>
+          <Alert color="warning">
+              Carregando ...
+          </Alert>
+        </HomeUserPage>
+      )
+    }
 
+    if(error) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+              Erro na questão
+          </Alert>
+        </HomeUserPage>
+      )
+    }
 
-const QuestionPage = (onRate=f=>f) =>
-
+    return (
             <HomeUserPage>
-                <div className="contenedor-question">
-                    <div className="row justify-content-center">
-                      <div className="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                      <QuestionHeader disciplines={question.disciplines} source={question.source} year={question.year} />
-                      <QuestionContent alternatives={question.alternatives} question={question.question} answer={question.answer}/>
-                      <QuestionInfoContainer disciplines={question.disciplines}
-                                    teachingLevels={question.teachingLevels}
-                                    descriptors={question.descriptors}
-                                    tags={question.tags}
-                                    difficulty={question.difficulty}
-                                    author={question.author}
-                                    
-                                  />
-                      <RelatedQuestions rquestions={question.rquestions} />
-                      <QuestionComments />
-                    </div>
+              <div className="contenedor-question">
+                  <div className="row justify-content-center">
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
+                    <QuestionContent alternatives={activeQuestion.alternatives} statement={activeQuestion.statement} answer={activeQuestion.resolution}/>
+                    <QuestionInfo {...activeQuestion} onRate={onRate} rating={rating} />
+                    <QuestionComments />
+                    <RelatedQuestions rquestions={questionTest.rquestions} />
+
                   </div>
                 </div>
-                <div className="btn-float">
-                        <button type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-plus"></i></button>
-                </div>
+              </div>
+              <AddQuestionButton/>
+
             </HomeUserPage>
-
-
+          );
+        }
+}
 export default QuestionPage;

@@ -3,30 +3,44 @@ import { connect } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.css';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import UserProfile from "components/userprofile/UserProfile.js";
+import UserPasswordProfile from "components/userprofile/UserPasswordProfile.js";
+
 import { SubmissionError } from 'redux-form'
 
-import { profileEdit } from "actions/profileEditAction.js"
+import { profileEdit, redefineUserPassword } from "actions/profileEditAction.js"
 
 import 'assets/css/UserProfile.css';
 
 const UserProfilePage = props =>{
-    const { submit } = props
+    const { submit_profile, submit_profile_password } = props
     return(
         <HomeUserPage>
             <div className="contenedor-profile">
                 <h3 className="text-center">Meu Profile</h3>
                 <h5 className="text-center">Permite que a comunidade do MasterAula te conheça</h5>
-                <UserProfile onSubmit={ submit }/>
+                <UserProfile onSubmit={ submit_profile }/>
+                <UserPasswordProfile onSubmit={ submit_profile_password }/>
             </div>
         </HomeUserPage>
     )
 }
 
+
+const mapStateToProps = state => ({
+
+})
+
 const mapDispatchToProps = dispatch => ({
-    submit : values => {
+    submit_profile : values => {
         const profile = {
-            name: values.name
+            name: values.name,
+            about: values.about
         }
+        return dispatch(profileEdit(profile))
+    },
+
+    submit_profile_password : values => {
+        const profile = {  }
         if (values.new_password || values.old_password || values.password_confirmation){
             const errors = {}
             if (!values.old_password) {
@@ -55,12 +69,11 @@ const mapDispatchToProps = dispatch => ({
             profile.old_password = values.old_password;
         }
 
-        return dispatch(profileEdit(profile))
+        return dispatch(redefineUserPassword(profile))
     }
 })
 
 export default connect(
-    () => {},
+    mapStateToProps,
     mapDispatchToProps
-)
-(UserProfilePage);
+)(UserProfilePage);

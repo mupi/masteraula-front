@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, NavItem } from 'reactstrap';
-import { Link, Route } from 'react-router-dom'
+import {  Modal, ModalHeader, ModalBody, NavItem } from 'reactstrap';
+import { Link } from 'react-router-dom'
 import { connect} from 'react-redux'
 import { SubmissionError } from 'redux-form'
 
@@ -12,7 +12,7 @@ import 'assets/css/General.css';
 import 'assets/css/Register.css';
 
 const RegisterModal = props => {
-  
+
   const { modal, toggleModal, submit } = props
 
   return (
@@ -46,10 +46,10 @@ const mapDispatchToProps = dispatch => ({
     }
 
     return dispatch(fetchRegister(values.email, values.password, values.name))
-  } 
+  }
 })
 
 export default connect(
-  mapStateToProps, 
+  mapStateToProps,
   mapDispatchToProps
 )(RegisterModal);

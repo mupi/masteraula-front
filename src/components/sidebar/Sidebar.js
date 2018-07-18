@@ -3,6 +3,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import { Link } from "react-router-dom";
 import QuestionBasePage from "pages/QuestionBase/QuestionBasePage";
 import UserProfilePage from "pages/UserProfile/UserProfilePage";
+import ExportDocumentButton from "components/buttons/ExportDocumentButton"
 import { Row, Col, Button} from 'reactstrap';
 
 import 'assets/css/Navigation.css';
@@ -16,19 +17,22 @@ const Sidebar = props => {
   const { showFilters } = props
   const docName = props.docName ? props.docName : "Novo Documento"
   const docNumberQuestions = props.docNumberQuestions ? props.docName : 0
-  
+
     return (
           <div id="sidebar">
+            <div className="logo-top-sidebar">
+              <img className="logo-sidebar" src={logoMasterAula}/>
+            </div>
             <div id="sidebar-container">
               <div className="container-fluid">
                 <Row>
                   <Col xs="12">
                       <div className="sidebar-nav-container">
-                        <img className="logo-sidebar" src={logoMasterAula}/>
+
                           <h5>Documento Atual</h5>
                           <h6><i className="fa fa-file"></i> {docName} ({docNumberQuestions})</h6>
                           <div className="container-export-button">
-                            <Button color="secondary"><i className="fa fa-download"></i> Exportar</Button>
+                            <ExportDocumentButton />
                           </div>
                         <ListGroup className="sidebar-main-options">
                           <ListGroupItem color='secondary' >
@@ -38,7 +42,7 @@ const Sidebar = props => {
                             <Link to="/documents">  Meus documentos </Link>
                           </ListGroupItem>
                           <ListGroupItem color='secondary'>
-                            <Link to="/home">  Banco de questões </Link>
+                            <Link to="/question-base/1">  Banco de questões </Link>
                           </ListGroupItem>
                         </ListGroup>
                         { showFilters &&  <SidebarFilters/>}

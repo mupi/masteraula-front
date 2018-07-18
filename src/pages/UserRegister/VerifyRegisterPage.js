@@ -1,8 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form'
-import { Container, Row, Col,Alert, Button, Form } from 'reactstrap';
-import LoginModal from 'components/login/LoginModal';
-import { connect } from 'react-redux'
+import { Container, Col,Alert, Button } from 'reactstrap';
 import {   toggleModal } from 'actions/loginAction';
 import { Link } from 'react-router-dom'
 

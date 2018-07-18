@@ -29,6 +29,11 @@
     margin-bottom: 10px;
 }
 
+.error-message-text{
+  font-size: 11px;
+  color: red;
+}
+
 /*alerts*/
 .alert p {
     margin-bottom: 0px;

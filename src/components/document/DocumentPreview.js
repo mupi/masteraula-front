@@ -1,10 +1,12 @@
 import React from 'react';
-import { Row,  Container, Col, Label, Button, Modal, ModalBody, ModalFooter, ModalHeader, Input } from 'reactstrap';
+import { Row,  Container, Col, Label, Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import QuestionContent from "../../components/question/QuestionContent.js";
 import QuestionHeader from "../../components/question/QuestionHeader.js";
 import QuestionInfo from "../../components/question/QuestionInfo.js";
 import DisciplineList from "components/disciplines/DisciplineList"
 import QuestionSourceYear from "components/question/QuestionSourceYear"
+import AddQuestionButton from "components/buttons/AddQuestionButton.js";
+
 import 'font-awesome/css/font-awesome.min.css';
 
 class DocumentPreview extends React.Component{
@@ -67,9 +69,7 @@ class DocumentPreview extends React.Component{
   return(
              <Container>
               <div >
-                <div className="btn-float">
-                        <button title="Adicionar questões" type="button" className="btn btn-default btn-circle btn-xl btn-lateral"><i className="fa fa-plus"></i></button>
-                </div>
+                <AddQuestionButton/>
                 <Row className="btn-preview-document">
                   <div className="auto-margin-left-element">
                     <Button title="Adicionar questões" className="btn-success btn-margin-right"> <i className="fa fa-plus"></i><span className="button-text">Adicionar questões</span></Button>
@@ -84,7 +84,7 @@ class DocumentPreview extends React.Component{
                     <Label for="upload-avatar" className="upload-avatar">
 
                             <div className="thumbnail">
-                              <img src={props.data.logo? props.data.logo : "http://via.placeholder.com/100x100"}/>
+                              <img src={props.data.logo? props.data.logo : "http://via.placeholder.com/100x100"} alt="logo-prova"/>
                             </div>
                     </Label>
                   </Col>

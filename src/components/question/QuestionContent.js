@@ -5,17 +5,17 @@ import learningObject2 from "assets/img/home/question-objeto-aprendizagem2.jpg";
 import AlternativeList from "components/alternatives/AlternativeList"
 
 
-const QuestionContent = ({alternatives, question ,answer}) =>
+const QuestionContent = ({alternatives, statement ,answer}) =>
             <Container className="question-content">
               <Row className=" section-text-question">
                 <Col sm="12" xs="12">
-                  <p className="text-question">{question}</p>
+                  <p className="text-question">{statement}</p>
                 </Col>
               </Row>
               <Row className="text-center">
                   <Col sm="12" xs="12">
                     <div className="img-learning-object">
-                      <img src={learningObject2}/>
+                      <img src={learningObject2} alt="objeto-aprendizagem"/>
                     </div>
                   </Col>
               </Row>
