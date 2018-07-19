@@ -54,15 +54,3 @@
 .site-masteraula .page, .site-masteraula .public-home {
     flex: 1;
 }
-
-
-@font-face {
-    font-family: 'Lato',sans-serif;
-    src: url("../fonts/AccordAlt_Regular.otf");
-}
-
-@font-face {
-    font-family: 'Lato',sans-serif;
-    src: url("../fonts/AccordAlt_Bold.otf");
-    font-weight: bold;
-}
