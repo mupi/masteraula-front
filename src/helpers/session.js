@@ -1,18 +1,16 @@
 export const authHeader = () => {
-    let session = JSON.parse(localStorage.getItem('session'));
-    if (session && session.token) {
-        return 'Bearer ' + session.token;
-    } else {
-        return {};
-    }
-}
+  const session = JSON.parse(localStorage.getItem('session'));
+  if (session && session.token) {
+    return `Bearer ${session.token}`;
+  }
+  return {};
+};
 
 export const isLoggedIn = () => {
-    let session = JSON.parse(localStorage.getItem('session'));
+  const session = JSON.parse(localStorage.getItem('session'));
 
-    if (session && session.token) {
-        return true
-    } else {
-       return false
-    }
-}
+  if (session && session.token) {
+    return true;
+  }
+  return false;
+};

@@ -1,34 +1,32 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { sendForgotPasswordEmail } from 'actions/forgotPasswordAction'
+import { connect } from 'react-redux';
+import { sendForgotPasswordEmail } from 'actions/forgotPasswordAction';
 import ForgotPassword from 'components/forgotpassword/ForgotPassword';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-const ForgotPasswordPage = props => {
-  const { success, submit } = props
+const ForgotPasswordPage = (props) => {
+  const { success, submit } = props;
 
   return (
     <div className="public-home">
-    <div className="main-contenedor middle-box text-center loginscreen  animated fadeInDown">
-      <ForgotPassword onSubmit={ submit } success = { success } />
+      <div className="main-contenedor middle-box text-center loginscreen  animated fadeInDown">
+        <ForgotPassword onSubmit={submit} success={success} />
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = state => ({
-  success : state.forgotPassword.success
-})
+  success: state.forgotPassword.success,
+});
 
 
 const mapDispatchToProps = dispatch => ({
-  submit : values => {
-    return dispatch(sendForgotPasswordEmail(values.email))
-  }
-})
+  submit: values => dispatch(sendForgotPasswordEmail(values.email)),
+});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ForgotPasswordPage);
