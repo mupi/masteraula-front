@@ -28,7 +28,7 @@ html body #body {
     padding-bottom: 25px;
 }
 
-div#main-masteraula-container {
+#main-masteraula-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -52,8 +52,8 @@ body .container-fluid {
     background: var(--color-ma-white);
 }
 
-div#sidebar .container-fluid,
-div#sidebar .container-fluid .row {
+#sidebar .container-fluid,
+#sidebar .container-fluid .row {
     background: var(--color-ma-blue);
 }
 

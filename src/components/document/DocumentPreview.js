@@ -1,8 +1,8 @@
 import React from 'react';
 import { Row,  Container, Col, Label, Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-import QuestionContent from "../../components/question/QuestionContent.js";
-import QuestionHeader from "../../components/question/QuestionHeader.js";
-import QuestionInfo from "../../components/question/QuestionInfo.js";
+import QuestionContent from "components/question/QuestionContent.js";
+import QuestionHeader from "components/question/QuestionHeader.js";
+import QuestionInfo from "components/question/QuestionInfo.js";
 import DisciplineList from "components/disciplines/DisciplineList"
 import QuestionSourceYear from "components/question/QuestionSourceYear"
 import AddQuestionButton from "components/buttons/AddQuestionButton.js";

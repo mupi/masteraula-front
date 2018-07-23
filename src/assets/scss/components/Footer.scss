@@ -1,0 +1,20 @@
+@import '../variables/variables.scss';
+
+
+#footer-container {
+    transition: all 0.3s ease;
+    background: $color-ma-blue;
+    padding: 3px;
+    color: white;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+    font-size: 13px;
+}
+
+
+
+#footer, #footer .row {
+    background: $color-ma-dark-blue;
+    text-align: center;
+}
