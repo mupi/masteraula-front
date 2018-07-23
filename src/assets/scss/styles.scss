@@ -8,27 +8,16 @@
 @import 'variables/typography';
 @import 'variables/breakpoints';
 
-// Reset and base files
-// --------------------
-/*@import 'base/base';*/
 
 // Layouts
 // -------
-/*@import 'layouts/layouts';*/
+@import 'layouts/layouts';
 
-// Objects
-// -------
-/*
-@import 'objects/buttons';
-@import 'objects/input';
-@import 'objects/typography';*/
-// Other objects as necessary
 
 // Components
 // ----------
-//@import 'components/component-name-1';
-// Other components as necessary
+@import 'components/App';
 
 // Utilities
 // ----------
-//@import 'utilities';
+@import 'utilities';
