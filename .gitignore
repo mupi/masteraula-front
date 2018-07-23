@@ -21,4 +21,4 @@ yarn-debug.log*
 yarn-error.log*
 
 #exclude compiled css files
-src/**/*.css
+#src/**/*.css

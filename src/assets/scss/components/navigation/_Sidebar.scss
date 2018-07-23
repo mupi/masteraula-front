@@ -1,0 +1,319 @@
+/*MENU*/
+
+
+/*
+MasterAula - Color list
+-------
+pink		    : #ed508f
+purple		    : #4d3570
+yellow		  : #f3b232
+blue		    : #0980b2
+dark blue	: #27577f
+white      : #ffffff
+grey       : #eee
+green:      : #a6d057
+*/
+
+
+/******CSS for navbar - top header******/
+nav a {
+    color: var(--color-ma-white);
+  }
+
+li.nav-item {
+    margin-right: 15px;
+    list-style: none;
+}
+
+.nav-item a:hover {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-toggler{
+  background: var(--color-ma-pink);
+}
+
+
+div#navbar, div#navbar .col-12 {
+    padding: 0px;
+}
+
+.navbar-default {
+    background-color: var(--color-ma-white);
+    border-color: var(--color-ma-gray);
+}
+
+.navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+}
+
+@media (min-width: 990px){
+  .navbar-fixed-top, .navbar-fixed-bottom {
+      border-radius: 0;
+  }
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+
+}
+
+
+html body #masteraula-nav-header .navbar-nav:first-child {
+    margin-left: 0px;
+}
+
+html body #rmasteraula-nav-header .navbar-nav {
+    margin: 0;
+    display: inline-block;
+}
+
+html body #masteraula-nav-header .navbar-nav {
+    margin: 0;
+    display:flex;
+}
+
+
+@media (min-width: 990px){
+  .navbar-nav {
+      float: left;
+      margin: 0;
+  }
+}
+
+
+@media (max-width: 989px){
+  .navbar {
+    /*  padding: 0px 1rem;*/
+    padding:0px;
+  }
+}
+
+
+/******CSS for sidebar, used only with user logged******/
+html body #sidebar #sidebar-container {
+    bottom: 0;
+    width: var(--sidebar-size);
+    position: absolute;
+    top: 58px;
+    padding-top: 30px;
+    overflow-x: hidden;
+
+}
+
+@media (min-width: 990px){
+html body #sidebar {
+    left: 0;
+}}
+
+@media (max-width: 990px){
+html body #sidebar {
+      left:  var(--sidebar-size-neg);
+}}
+
+html body #sidebar {
+    top: 0;
+    bottom: 0;
+    z-index: 9999;
+    position: fixed;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    width:  var(--sidebar-size);
+    background: var(--color-ma-blue);
+}
+
+#sidebar h5, #sidebar h6 {
+    color: white;
+}
+
+/*list of options in sidebar*/
+ul.list-group {
+    margin-top: 25px;
+}
+
+/*yellow button to collapse sidebar*/
+.visible-xs {
+    display: none !important;
+}
+
+@media (max-width: 989px){
+  .visible-xs {
+      display: block !important;
+  }
+}
+
+/* Why so many classes for 1 property*/
+.visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {
+    display: none !important;
+}
+.pull-left {
+    float: left !important;
+}
+
+
+@media (max-width: 989px){
+.visible-xs-inline-block {
+    display: inline-block !important;
+}
+}
+
+html body #masteraula-nav-header .navbar-nav>li.sidebar-btn>a {
+    color: var(--color-ma-white);
+    background: var(--color-ma-green);
+}
+html body #masteraula-nav-header .navbar-nav>li.logout>a, html body #masteraula-nav-header .navbar-nav>li.sidebar-btn>a {
+    width: 65px;
+    font-size: 25px;
+    padding-left: 0;
+    padding-right: 0;
+}
+html body #masteraula-nav-header .navbar-nav>li.active>a, html body #masteraula-nav-header .navbar-nav>li>a {
+    background: none;
+    text-align: center;
+}
+html body #masteraula-nav-header .navbar-nav>li>a {
+    border: none;
+    padding: 10px;
+    display: block;
+}
+
+html body #main-masteraula-container.container-open #sidebar{
+    left: 0;
+}
+html body #main-masteraula-container.container-open #body,
+html body #main-masteraula-container.container-open #footer-container{
+    margin-left:  var(--sidebar-size);
+    margin-right:  var(--sidebar-size-neg);
+}
+
+html body #main-masteraula-container.container-open #masteraula-nav-header {
+    margin-left:  var(--sidebar-size);
+    margin-right:  var(--sidebar-size-neg);
+}
+
+html body #masteraula-nav-header {
+    border: none;
+    margin-left: 0;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.sidebar-nav-container a {
+    text-decoration: none;
+    color: var(--color-ma-blue);
+    font-weight: bold;
+}
+
+.sidebar-nav-container li.list-group-item:hover {
+    background: #c0e8f9;
+    color: white;
+}
+
+#sidebar-container .col-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.container-export-button{
+  text-align: right;
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+ul.sidebar-main-options.list-group {
+    margin-right: 15px;
+}
+
+/*sidebar de filters*/
+li.question-filter.list-group-item:hover {
+    background: none;
+}
+
+li.question-category-filter.list-group-item, .question-single-filter li.list-group-item {
+    background:var(--color-ma-blue);
+    color: var(--color-ma-white);
+    border: none;
+}
+
+li.question-category-filter.list-group-item:hover, .question-single-filter li.list-group-item:hover{
+  background:var(--color-ma-blue);
+  color: var(--color-ma-white);
+  border: none;
+}
+
+.question-single-filter li.list-group-item {
+    padding: 0px 15px;
+    font-size: 14px;
+}
+
+ul.question-single-filter.list-group {
+    margin: 10px;
+}
+
+li.question-category-filter.list-group-item {
+    padding: 0px 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+li.question-category-filter a{
+    height: 35px;
+    border: none;
+    outline: none;
+    color: var(--color-ma-blue) !important;
+    display: block;
+    font-size: 14px;
+    line-height: 14px;
+    text-decoration: none;
+    padding: 11px 0px 10px 15px;
+    background: #d6d8db;
+}
+
+.question-category-filter i.fa.fa-angle-left {
+    top: 7px;
+    right: 25px;
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*SCROLl-Y in sidebar*/
+#sidebar-container::-webkit-scrollbar {
+    width: 5px;
+}
+#sidebar-container::-webkit-scrollbar-track {
+    background:var(--color-ma-blue);
+}
+/* Handle */
+#sidebar-container::-webkit-scrollbar-thumb {
+    background: var(--color-ma-green);
+}
+/* Handle on hover */
+#sidebar-container::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ma-green);
+}
+
+.logo-sidebar {
+    width: 80%;
+}
+
+.logo-top-sidebar {
+    text-align: center;
+    padding: 5px;
+    background: var(--color-ma-green);
+    height: 58px;
+}
+
+img.logo-in-menu {
+    max-width: 180px;
+    margin: 5px;
+}
+
+img.logo-in-menu.no-login {
+    margin-left: 10px !important;
+}

@@ -1,0 +1,9 @@
+.l-site-masteraula{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+
+    &_user-home, &_public-home{
+      flex:1;
+    }
+}

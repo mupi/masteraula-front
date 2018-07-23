@@ -9,7 +9,7 @@ const HomeUserPage = props => {
     const { children } = props
 
     return (
-        <div className="page">
+        <div className="user-home">
             <Sidebar showFilters={showFilters}/>
             <div id="body">
                 <div className="container-fluid">

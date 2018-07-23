@@ -1,0 +1,45 @@
+/*
+CSS for UserProfile
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+.contenedor-profile .form-group{
+   font-family: 'Lato',sans-serif;
+}
+
+.hidden {
+    display: none!important;
+}
+
+.thumbnail img {
+    max-width: 200px;
+}
+.small-text {
+    font-size: 14px;
+}
+
+.section-user-title {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.sub-section-user-title{
+  margin-top: 10px;
+}
+
+.contenedor-profile {
+  border: 2px solid #FFFFFF;
+  padding: 25px 25px 25px 25px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: #FFFFFF;
+}
+
+#senha-atual, #nova-senha {
+    margin-bottom: 10px;
+}
+
+#sobre-mim {
+    border-radius: 0px;
+    height: 100px;
+}

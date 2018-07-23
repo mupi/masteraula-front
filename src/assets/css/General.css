@@ -51,6 +51,6 @@
     flex-direction: column;
 }
 
-.site-masteraula .page, .site-masteraula .public-home {
+.site-masteraula .user-home, .site-masteraula .public-home {
     flex: 1;
 }

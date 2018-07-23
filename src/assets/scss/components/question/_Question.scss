@@ -1,0 +1,206 @@
+/*CSS for Question*/
+
+
+/*
+MasterAula - Color list
+-------
+pink		    : #ed508f
+purple		    : #4d3570
+yellow		  : #f3b232
+blue		    : #0980b2
+dark blue	: #27577f
+white      : #ffffff
+grey       : #eee
+green:      : #a6d057
+*/
+
+
+span.top-label-question, span.label-info {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: var(--color-ma-white);
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+span.source-name {
+    background: var(--color-ma-purple);
+}
+
+span.discipline-name {
+    background:var(--color-ma-pink);
+}
+
+/* Why so many classes for 1 property*/
+span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span.descriptor-name, span.author {
+    background: var(--color-ma-green);
+}
+
+.btn {
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+
+.btn-circle.btn-xl  {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
+@media (min-width: 868px){
+  .btn-float{
+      position: fixed;
+      right: 37px;
+      top:100px;
+      z-index: 9999;
+      color:white;
+  }
+}
+
+@media (max-width: 867px){
+  .btn-float{
+      position: fixed;
+      right: 0px;
+      bottom:0px;
+      z-index: 9999;
+      color:white;
+  }
+
+  .btn-circle.btn-xl  {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.btn-lateral{
+    background-color: var(--color-ma-green);
+    color: white;
+    margin: 10px;
+    border:transparent;
+}
+
+.btn-filter
+{
+    background-color: #283896;
+    color: #FFF;
+}
+
+.question-section-border {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin: 10px 0px;
+    padding: 20px 10px;
+}
+
+.question-content p:last-child {
+    margin-bottom: 0px;
+}
+
+.section-text-question p.text-question{
+  margin-bottom:10px;
+}
+
+.title-section-question{
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.row-info{
+  margin-bottom: 10px;
+}
+
+.row .list-info {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 867px){
+  .img-learning-object img {
+      width: 100%;
+  }
+  span.level-name, span.difficulty-level, span.teaching-level, span.tag-name,
+  span.descriptor-name, span.author {
+    display: inline-flex;
+  }
+
+  .question-information span, .question-information .info-label{
+    font-size: 14px;
+  }
+
+  .related-question.container .col-12, .related-question.container card {
+    margin-bottom: 15px;
+    }
+
+}
+
+@media (min-width: 867px){
+  .h-100.card .card-text {
+      margin-top: 30px;
+  }
+}
+
+.buttonCard{
+  margin-right: 10px;
+}
+
+.card-title .label-info, .card-subtitle .source-name {
+    font-size: 14px !important;
+}
+
+.card-title .list-info, card-subtitle {
+    margin-bottom: 15px;
+}
+
+p.card-text, .card-text {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-body span.label-info, .card-body .source-name {
+    font-size: 13px;
+}
+
+span.author-card {
+    font-weight: bold;
+    font-style: italic;
+}
+
+p.info-question-card {
+    margin-bottom: 10px;
+}
+
+.image-card.card .source-name {
+    margin-bottom: 0px;
+}
+
+p.list-stars {
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-top: 3px;
+    margin-left: 5px;
+}

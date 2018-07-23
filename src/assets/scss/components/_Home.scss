@@ -1,0 +1,92 @@
+/*Clases do Home*/
+
+.bg-primary {
+    background-color: var(--color-ma-blue) !important;
+}
+
+.thumb-circle {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 25px;
+}
+
+.thumb-circle img {
+    width: 100%;
+}
+
+.container.caracteristicas-ma {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.banner-header {
+    background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
+    background-size: 100% auto;
+    color: var(--color-ma-white);
+    padding: 1em;
+    text-align: center;
+    margin-top:55px
+}
+
+.banner-header {
+    padding: 55px 10px;
+}
+
+.banner-header h1 {
+  font-weight: bold;
+}
+
+@media (min-width: 990px){
+  .texto-banner-header p {
+      margin: 40px;
+  }
+
+  .texto-banner-header{
+      font-size: 25px;
+      font-weight: 400;
+      line-height: 40px;
+  }
+
+}
+
+@media (max-width: 989px){
+  .texto-banner-header p {
+      margin: 10px;
+  }
+
+  .texto-banner-header{
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.2;
+  }
+
+  .banner-header h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .container.caracteristicas-ma {
+      padding-top: 30px;
+      padding-bottom: 30px;
+  }
+
+  .public-home .main-contenedor {
+    padding: 15px;
+    margin-top: 60px;
+  }
+
+}
+
+.main-contenedor {
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+
+.row {
+    margin-left: -5px;
+    margin-right: -5px;
+}

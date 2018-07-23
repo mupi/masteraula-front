@@ -1,0 +1,87 @@
+.question-in-doc{
+  position:relative
+}
+
+.question-in-doc p.text-question {
+    font-weight: normal;
+}
+
+.question-in-doc, .document-header {
+    position: relative;
+    border: 2px solid #FFFFFF;
+    padding: 25px 25px 25px 25px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+}
+
+.question-modal.modal-body {
+    padding-top: 0px;
+}
+
+.btn-margin-right{
+  margin-right: 15px;
+}
+
+.btn-preview-document.row {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.btn-float-remove-question {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+}
+
+
+.btn-float-remove-question .btn-circle {
+    padding: 0px;
+    line-height: 0px;
+    background: red;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 25px;
+}
+
+.btn-save-document {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.btn-save-document .btn {
+    font-size: 20px;
+}
+
+.auto-margin-left-element{
+      margin-left: auto;
+}
+
+span.button-text {
+    margin-left: 7px;
+}
+
+.question-content-in-doc{
+  display: inline-flex;
+  width: 100%;
+}
+
+.question-content-in-doc .section-text-question, .question-content-in-doc .question-position {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.create-document-header{
+    padding: 15px;
+    border: 2px solid #FFFFFF;
+    padding: 25px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+    margin-top: 10px;
+}
+
+.modal-title {
+    width: 100%;
+}

@@ -18,7 +18,22 @@
 // ----------
 @import 'components/App';
 @import 'components/Footer';
-@import 'components/Star';
+
+//Components related to Navigation
+@import 'components/navigation/Sidebar';
+@import 'components/navigation/Menu';
+
+//Components related to Star Rating
+@import 'components/stars/Star';
+//Components related to Question
+@import 'components/question/Question';
+@import 'components/question/QuestionBase';
+//Components related to User
+@import 'components/usuario/Login';
+@import 'components/usuario/Register';
+@import 'components/usuario/UserProfile';
+
+
 
 
 
