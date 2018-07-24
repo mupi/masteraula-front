@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import 'bootstrap/dist/css/bootstrap.css';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import UserProfile from "components/userprofile/UserProfile.js";
 import UserPasswordProfile from "components/userprofile/UserPasswordProfile.js";
@@ -9,7 +8,6 @@ import { SubmissionError } from 'redux-form'
 
 import { profileEdit, redefineUserPassword } from "actions/profileEditAction.js"
 
-import 'assets/css/UserProfile.css';
 
 const UserProfilePage = props =>{
     const { submit_profile, submit_profile_password } = props

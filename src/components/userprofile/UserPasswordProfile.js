@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Button, Form, FormGroup, Input, Label, UncontrolledAlert} from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form'
-import 'bootstrap/dist/css/bootstrap.css';
 
 const renderField = ({
   input,

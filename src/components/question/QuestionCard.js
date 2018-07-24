@@ -6,7 +6,6 @@ import TagList from "components/tags/TagList"
 import QuestionAuthor from "./QuestionAuthor"
 import QuestionSourceYear from "./QuestionSourceYear"
 import { Link } from 'react-router-dom'
-import 'font-awesome/css/font-awesome.min.css';
 
 const QuestionCard = ({id, disciplines, source, year, statement, urlImage="", author, teaching_levels}) =>
 			<Card className= { urlImage !=="" ?"h-10 image-card": "h-100" } >

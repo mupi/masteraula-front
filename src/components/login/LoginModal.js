@@ -6,9 +6,6 @@ import { Link } from 'react-router-dom'
 import LoginForm from 'components/login/LoginForm';
 import { fetchLogin, toggleModal } from 'actions/loginAction';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'assets/css/General.css';
-import 'assets/css/Login.css';
 
 const LoginModal = props => {
 

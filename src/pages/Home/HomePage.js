@@ -2,7 +2,7 @@ import React from "react";
 import clockImg from "assets/img/home/clock.png";
 import searchImg from "assets/img/home/search.png";
 import moneyImg from "assets/img/home/money.png";
-import { Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 const HomePage = ()=>
       <div className="c-public-home l-site-masteraula__public-home">
@@ -19,7 +19,7 @@ const HomePage = ()=>
           </Row>
         </div>
 
-        <div className="c-public-home__features">
+        <Container className="c-public-home__features">
             <Row>
               <Col md="4" className="text-center">
                 <div className="o-thumb-circle">
@@ -45,7 +45,7 @@ const HomePage = ()=>
                 <p>Busque por disciplina, assunto ou tipo de material para você adaptar e utilizar com seus alunos.</p>
               </Col>
           </Row>
-        </div>
+        </Container>
       </div>
 
 

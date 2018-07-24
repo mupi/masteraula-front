@@ -6,7 +6,7 @@
 
 @media (min-width: 990px){
 html body #sidebar ~ #body {
-    margin-left: var(--sidebar-size);
+    margin-left: $sidebar-size;
 }}
 
 html body #navbar ~ #body {
@@ -49,12 +49,12 @@ html body #body {
 
 
 body .container-fluid {
-    background: var(--color-ma-white);
+    background: $color-ma-white;
 }
 
 #sidebar .container-fluid,
 #sidebar .container-fluid .row {
-    background: var(--color-ma-blue);
+    background:$color-ma-blue;
 }
 
 body .container-fluid .row {

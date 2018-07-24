@@ -2,9 +2,6 @@ import React from "react";
 import { ListGroup } from 'reactstrap';
 import SidebarFilter from "components/sidebarfilter/SidebarFilter";
 
-import 'assets/css/Navigation.css';
-import 'font-awesome/css/font-awesome.min.css';
-
 const filters= {
   "disciplines": [
     { "name": "Artes" },

@@ -3,8 +3,6 @@ import { Container, Row, Col,Alert, Button } from 'reactstrap';
 import {   toggleModal } from 'actions/loginAction';
 import { Link } from 'react-router-dom'
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'assets/css/General.css';
 
 class VerifyRegisterPage extends React.Component {
 

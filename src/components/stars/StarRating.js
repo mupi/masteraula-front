@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Star from './Star'
-import 'assets/css/Star.css';
 
 const StarRating = ({starsSelected=0, totalStars=5, onRate=f=>f}) =>
     <div className="star-rating">

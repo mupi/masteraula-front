@@ -6,7 +6,6 @@ import UserProfilePage from "pages/UserProfile/UserProfilePage";
 import ExportDocumentButton from "components/buttons/ExportDocumentButton"
 import { Row, Col, Button} from 'reactstrap';
 
-import 'font-awesome/css/font-awesome.min.css';
 import logoMasterAula from "assets/img/home/masteraula-300x60.png";
 import logoMasterAulaVerde from "assets/img/home/logo_masteraula-fd-verde.png";
 

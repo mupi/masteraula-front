@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { resetForgotPassword } from 'actions/forgotPasswordAction'
 import RedefinePassword from 'components/forgotpassword/RedefinePassword';
 
-import 'bootstrap/dist/css/bootstrap.css';
-
 const RedefinePasswordPage = props =>{
   const { submit, match, success } = props
   const uid = match.params.uid

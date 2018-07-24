@@ -1,7 +1,6 @@
 import React from 'react';
 import { Row, Container } from 'reactstrap';
-import DocumentPreview from '../../components/document/DocumentPreview.js';
-import 'assets/css/Document.css';
+import DocumentPreview from 'components/document/DocumentPreview.js';
 
 const PreviewDocumentPage =() =>{
   let data = {'schoolName':'Escolinha', 'course':'Matemática','teacherName':"Profa Daniela",

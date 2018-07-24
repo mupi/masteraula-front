@@ -1,9 +1,8 @@
 import React from "react";
 import logo from "assets/img/home/logo_masteraula.png";
-import 'assets/css/Home.css';
 
 const NotFoundPage = ()=>
-      <div className="public-home">
+      <div className="l-site-masteraula__public-home">
         <div className="row">
           <div className="banner-header col-md-12">
             <h2>A página que você tentou acessar não existe ou está indisponível</h2>

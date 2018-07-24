@@ -10,7 +10,6 @@
 }
 ************/
 @import url(https://fonts.googleapis.com/css?family=Lato);
-@import url(https://fonts.googleapis.com/css?family=Lato);
 .l-site-masteraula {
   display: flex;
   min-height: 100vh;
@@ -86,11 +85,11 @@ grey       : #eee
 green:      : #a6d057
 */
 .bg-primary {
-  background-color: var(--color-ma-blue) !important; }
+  background-color: #1E5078 !important; }
 
 /******CSS for navbar - top header******/
 nav a {
-  color: var(--color-ma-white); }
+  color: #FFFFFF; }
 
 li.nav-item {
   margin-right: 15px;
@@ -102,14 +101,14 @@ li.nav-item {
   text-decoration: none; }
 
 .navbar-toggler {
-  background: var(--color-ma-pink); }
+  background: #FF007A; }
 
 div#navbar, div#navbar .col-12 {
   padding: 0px; }
 
 .navbar-default {
-  background-color: var(--color-ma-white);
-  border-color: var(--color-ma-gray); }
+  background-color: #FFFFFF;
+  border-color: #EEE; }
 
 .navbar-fixed-top {
   top: 0;
@@ -149,7 +148,7 @@ html body #masteraula-nav-header .navbar-nav {
 /******CSS for sidebar, used only with user logged******/
 html body #sidebar #sidebar-container {
   bottom: 0;
-  width: var(--sidebar-size);
+  width: 280px;
   position: absolute;
   top: 58px;
   padding-top: 30px;
@@ -161,7 +160,7 @@ html body #sidebar #sidebar-container {
 
 @media (max-width: 990px) {
   html body #sidebar {
-    left: var(--sidebar-size-neg); } }
+    left: -280px; } }
 
 html body #sidebar {
   top: 0;
@@ -170,8 +169,8 @@ html body #sidebar {
   position: fixed;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  width: var(--sidebar-size);
-  background: var(--color-ma-blue); }
+  width: 280px;
+  background: #1E5078; }
 
 #sidebar h5, #sidebar h6 {
   color: white; }
@@ -200,8 +199,8 @@ ul.list-group {
     display: inline-block !important; } }
 
 html body #masteraula-nav-header .navbar-nav > li.sidebar-btn > a {
-  color: var(--color-ma-white);
-  background: var(--color-ma-green); }
+  color: #FFFFFF;
+  background: #53BA65; }
 
 html body #masteraula-nav-header .navbar-nav > li.logout > a, html body #masteraula-nav-header .navbar-nav > li.sidebar-btn > a {
   width: 65px;
@@ -223,12 +222,12 @@ html body #main-masteraula-container.container-open #sidebar {
 
 html body #main-masteraula-container.container-open #body,
 html body #main-masteraula-container.container-open #footer-container {
-  margin-left: var(--sidebar-size);
-  margin-right: var(--sidebar-size-neg); }
+  margin-left: 280px;
+  margin-right: -280px; }
 
 html body #main-masteraula-container.container-open #masteraula-nav-header {
-  margin-left: var(--sidebar-size);
-  margin-right: var(--sidebar-size-neg); }
+  margin-left: 280px;
+  margin-right: -280px; }
 
 html body #masteraula-nav-header {
   border: none;
@@ -238,7 +237,7 @@ html body #masteraula-nav-header {
 
 .sidebar-nav-container a {
   text-decoration: none;
-  color: var(--color-ma-blue);
+  color: #1E5078;
   font-weight: bold; }
 
 .sidebar-nav-container li.list-group-item:hover {
@@ -262,13 +261,13 @@ li.question-filter.list-group-item:hover {
   background: none; }
 
 li.question-category-filter.list-group-item, .question-single-filter li.list-group-item {
-  background: var(--color-ma-blue);
-  color: var(--color-ma-white);
+  background: #1E5078;
+  color: #FFFFFF;
   border: none; }
 
 li.question-category-filter.list-group-item:hover, .question-single-filter li.list-group-item:hover {
-  background: var(--color-ma-blue);
-  color: var(--color-ma-white);
+  background: #1E5078;
+  color: #FFFFFF;
   border: none; }
 
 .question-single-filter li.list-group-item {
@@ -287,7 +286,7 @@ li.question-category-filter a {
   height: 35px;
   border: none;
   outline: none;
-  color: var(--color-ma-blue) !important;
+  color: #1E5078 !important;
   display: block;
   font-size: 14px;
   line-height: 14px;
@@ -307,15 +306,15 @@ li.question-category-filter a {
   width: 5px; }
 
 #sidebar-container::-webkit-scrollbar-track {
-  background: var(--color-ma-blue); }
+  background: #1E5078; }
 
 /* Handle */
 #sidebar-container::-webkit-scrollbar-thumb {
-  background: var(--color-ma-green); }
+  background: #53BA65; }
 
 /* Handle on hover */
 #sidebar-container::-webkit-scrollbar-thumb:hover {
-  background: var(--color-ma-green); }
+  background: #53BA65; }
 
 .logo-sidebar {
   width: 80%; }
@@ -323,7 +322,7 @@ li.question-category-filter a {
 .logo-top-sidebar {
   text-align: center;
   padding: 5px;
-  background: var(--color-ma-green);
+  background: #53BA65;
   height: 58px; }
 
 img.logo-in-menu {
@@ -438,22 +437,19 @@ p.list-stars {
 .text-search-question.row {
   padding: 15px; }
 
-.buttonCard a {
-  color: var(--color-ma-white); }
-
-.buttonCard a:hover {
-  text-decoration: none; }
+.question-card {
+  margin-bottom: 20px; }
 
 /*Pagination in QuestionBase*/
 .page-item.active .page-link {
-  background-color: var(--color-ma-blue);
-  border-color: var(--color-ma-blue); }
+  background-color: #1E5078;
+  border-color: #1E5078; }
 
 .pagination-questions {
   padding: 0px 15px; }
 
 .pagination-questions.row a {
-  color: var(--color-ma-blue); }
+  color: #1E5078; }
 
 .pagination-questions ul.pagination {
   margin-bottom: 0px; }
@@ -461,12 +457,6 @@ p.list-stars {
 .page-item.active .page-link:hover {
   color: white;
   font-weight: bold; }
-
-.question-card {
-  margin-bottom: 20px; }
-
-.alert-padding {
-  margin: 0px 15px 15px 15px; }
 
 .l-button-add-question {
   position: fixed;
@@ -565,17 +555,14 @@ body {
   max-width: 500px;
   /*    margin-right: auto !important;
     margin-left: auto !important;*/
-  background: var(--color-ma-blue-sky);
+  background: #ADD2EF;
   border-radius: 6px; }
 
 /*
 CSS for UserProfile
 */
 .contenedor-profile .form-group {
-  font-family: 'Lato',sans-serif; }
-
-.hidden {
-  display: none !important; }
+  font-family: "Lato", serif; }
 
 .thumbnail img {
   max-width: 200px; }
@@ -636,6 +623,17 @@ CSS for UserProfile
     padding-right: 15px;
     position: relative; } }
 
+.page.main-contenedor .container {
+  padding-top: 50px; }
+
+@media (max-width: 868px) {
+  .page.main-contenedor .container {
+    padding-right: 15px;
+    padding-left: 15px; } }
+
+.section-term-use {
+  margin-bottom: 25px; }
+
 /*Clases do Home*/
 .o-thumb-circle {
   border-radius: 50%;
@@ -690,7 +688,7 @@ CSS for UserProfile
 
 @media (min-width: 990px) {
   html body #sidebar ~ #body {
-    margin-left: var(--sidebar-size); } }
+    margin-left: 280px; } }
 
 html body #navbar ~ #body {
   margin-top: 74px;
@@ -727,11 +725,11 @@ html body #body {
   margin-right: -5px; }
 
 body .container-fluid {
-  background: var(--color-ma-white); }
+  background: #FFFFFF; }
 
 #sidebar .container-fluid,
 #sidebar .container-fluid .row {
-  background: var(--color-ma-blue); }
+  background: #1E5078; }
 
 body .container-fluid .row {
   background: white; }
@@ -780,3 +778,15 @@ body .container-fluid .row {
 
 .u-text-right {
   text-align: right !important; }
+
+.hidden {
+  display: none !important; }
+
+.errorMessage {
+  color: red;
+  text-align: center;
+  margin-bottom: 10px; }
+
+.error-message-text {
+  font-size: 11px;
+  color: red; }

@@ -7,8 +7,6 @@ import DisciplineList from "components/disciplines/DisciplineList"
 import QuestionSourceYear from "components/question/QuestionSourceYear"
 import AddQuestionButton from "components/buttons/AddQuestionButton.js";
 
-import 'font-awesome/css/font-awesome.min.css';
-
 class DocumentPreview extends React.Component{
 
   constructor(props) {

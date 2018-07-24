@@ -1,10 +1,9 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
 import { Row, Input, InputGroup, InputGroupAddon, Button, Alert} from 'reactstrap';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import QuestionList from "components/question/QuestionList"
 import  QuestionPagination from "components/QuestionPagination/QuestionPagination"
-import 'assets/css/QuestionBase.css';
+
 
 
 const getResults = (isFetching, results ) => {

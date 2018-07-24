@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types'
 
-import 'font-awesome/css/font-awesome.min.css';
 import StarRating from 'components/stars/StarRating'
 import DisciplineList from "components/disciplines/DisciplineList"
 import DescriptorList from "components/descriptors/DescriptorList"

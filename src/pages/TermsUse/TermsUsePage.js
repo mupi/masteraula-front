@@ -1,7 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'assets/css/TermsUse.css';
-import 'assets/css/General.css';
 
 import { Container } from 'reactstrap';
 

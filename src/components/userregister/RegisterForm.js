@@ -6,7 +6,6 @@ import { Field, reduxForm } from 'redux-form'
 import { NavLink } from "react-router-dom";
 
 import { toggleModal } from 'actions/registerAction';
-import 'bootstrap/dist/css/bootstrap.css';
 
 
 const renderField = ({

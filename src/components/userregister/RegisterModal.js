@@ -7,9 +7,6 @@ import { SubmissionError } from 'redux-form'
 import RegisterForm from 'components/userregister/RegisterForm';
 import { fetchRegister, toggleModal } from 'actions/registerAction';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'assets/css/General.css';
-import 'assets/css/Register.css';
 
 const RegisterModal = props => {
 
