@@ -25,8 +25,11 @@ import { history } from "helpers/history"
 import { resetChangePasswordForm } from "actions/forgotPasswordAction"
 
 import Footer from "components/footer/Footer";
+//CSS imported in a single place (here)
 import 'assets/scss/styles.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.min.css';
+
 
 
 class App extends Component {

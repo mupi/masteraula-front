@@ -36,7 +36,7 @@ const RedefinePassword = props => {
             {error && <Alert color="danger">{error}</Alert>}
             { submitSucceeded  &&
               <Alert color="success">
-                <p><i className="fa fa-thumbs-up"></i> Sua senha foi alterada com sucesso</p>
+                <p className="alert__message"><i className="fa fa-thumbs-up"></i>Sua senha foi alterada com sucesso</p>
               </Alert>
             }
             <Button>Salvar</Button>

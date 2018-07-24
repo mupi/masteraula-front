@@ -33,7 +33,7 @@ const ForgotPassword = props => {
         </Row>
         { success  &&
           <Alert color="success">
-            <p>Enviamos um email com instruções para recuperar sua senha</p>
+            <p className="alert__message">Enviamos um email com instruções para recuperar sua senha</p>
           </Alert>
         }
     </div>
