@@ -748,11 +748,6 @@ body .container-fluid .row {
     max-width: 150px;
     margin: 15px; } }
 
-.errorMessage {
-  color: red;
-  text-align: center;
-  margin-bottom: 10px; }
-
 .error-message-text {
   font-size: 11px;
   color: red; }
@@ -775,12 +770,3 @@ body .container-fluid .row {
 
 .hidden {
   display: none !important; }
-
-.errorMessage {
-  color: red;
-  text-align: center;
-  margin-bottom: 10px; }
-
-.error-message-text {
-  font-size: 11px;
-  color: red; }
