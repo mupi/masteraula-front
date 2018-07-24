@@ -1,4 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
+/************
+// Use of breakpoint mixins
+.my-box {
+  padding: 10px;
+  
+  @include for-desktop-up {
+    padding: 20px;
+  }
+}
+************/
 @import url(https://fonts.googleapis.com/css?family=Lato);
 @import url(https://fonts.googleapis.com/css?family=Lato);
 .l-site-masteraula {
@@ -48,6 +58,10 @@ ul.header {
   .content li {
     margin-bottom: 10px; }
 
+.btn {
+  font-size: 14px;
+  padding: 5px 10px; }
+
 .c-footer {
   transition: all 0.3s ease;
   background: #1E5078;
@@ -71,6 +85,9 @@ white      : #ffffff
 grey       : #eee
 green:      : #a6d057
 */
+.bg-primary {
+  background-color: var(--color-ma-blue) !important; }
+
 /******CSS for navbar - top header******/
 nav a {
   color: var(--color-ma-white); }
@@ -316,6 +333,12 @@ img.logo-in-menu {
 img.logo-in-menu.no-login {
   margin-left: 10px !important; }
 
+.nav-item .position-login {
+  border: none;
+  padding: 10px;
+  display: block;
+  text-align: center; }
+
 .star {
   cursor: pointer;
   height: 25px;
@@ -324,7 +347,7 @@ img.logo-in-menu.no-login {
   float: left;
   background-color: grey;
   clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%); }
-  .star__selected {
+  .star.selected {
     background-color: yellow; }
 
 /*CSS for Question*/
@@ -357,60 +380,6 @@ span.discipline-name {
 /* Why so many classes for 1 property*/
 span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span.descriptor-name, span.author {
   background: var(--color-ma-green); }
-
-.btn {
-  font-size: 14px;
-  padding: 5px 10px; }
-
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px; }
-
-.btn-circle.btn-lg {
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 25px; }
-
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 35px; }
-
-@media (min-width: 868px) {
-  .btn-float {
-    position: fixed;
-    right: 37px;
-    top: 100px;
-    z-index: 9999;
-    color: white; } }
-
-@media (max-width: 867px) {
-  .btn-float {
-    position: fixed;
-    right: 0px;
-    bottom: 0px;
-    z-index: 9999;
-    color: white; }
-  .btn-circle.btn-xl {
-    width: 60px;
-    height: 60px; } }
-
-.btn-lateral {
-  background-color: var(--color-ma-green);
-  color: white;
-  margin: 10px;
-  border: transparent; }
 
 .btn-filter {
   background-color: #283896;
@@ -523,35 +492,67 @@ p.list-stars {
 .alert-padding {
   margin: 0px 15px 15px 15px; }
 
-/*LOGIN*/
-.contenedor-login {
-  max-width: 500px;
-  background: var(--color-ma-blue-sky);
-  border-radius: 6px; }
+.l-button-add-question {
+  position: fixed;
+  z-index: 9999;
+  color: white; }
+  @media (min-width: 600px) {
+    .l-button-add-question {
+      right: 37px;
+      top: 100px; } }
+  @media (max-width: 599px) {
+    .l-button-add-question {
+      right: 0px;
+      bottom: 0px; } }
 
-.contenedor-login h4 {
-  text-align: center; }
+.o-button-add-question-doc {
+  font-size: 14px;
+  text-align: center;
+  background-color: #53BA65;
+  color: white;
+  margin: 10px;
+  border: transparent; }
+  .o-button-add-question-doc--sm {
+    padding: 5px 10px;
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px; }
+  .o-button-add-question-doc--lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px; }
+  .o-button-add-question-doc--xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px; }
+    @media (max-width: 599px) {
+      .o-button-add-question-doc--xl {
+        width: 60px;
+        height: 60px; } }
 
-/*Modal*/
-.modal-content {
-  border-radius: 6px; }
-
-.modal-header {
-  padding: 0px 10px;
-  border-bottom: 0px; }
-
-.nav-item .position-login {
+.l-login {
   border: none;
   padding: 10px;
   display: block;
   text-align: center; }
 
-/*login button in VerifyRegisterPage*/
-.page .btn-secondary a {
-  color: white; }
-
-.page .btn-secondary a:hover {
-  text-decoration: none; }
+.c-login {
+  border-radius: 6px; }
+  .c-login__modal-content {
+    max-width: 500px;
+    background: #ADD2EF;
+    border-radius: 6px; }
+  .c-login__modal-header {
+    padding: 0px 10px;
+    border-bottom: 0px; }
 
 /*
 CSS for RegisterPage
@@ -625,7 +626,7 @@ CSS for UserProfile
   border-radius: 6px;
   background: #ADD2EF; }
 
-@media (min-width: 1100px) {
+@media (min-width: 1000px) {
   .c-forgot-password {
     top: 50px;
     padding-left: 15px;
@@ -641,7 +642,7 @@ CSS for UserProfile
   border-radius: 6px;
   background: #ADD2EF; }
 
-@media (min-width: 1100px) {
+@media (min-width: 1000px) {
   .c-redefine-password {
     top: 50px;
     padding-left: 15px;
@@ -676,14 +677,14 @@ CSS for UserProfile
 .c-public-home__main-title {
   font-weight: bold; }
 
-@media (min-width: 1100px) {
+@media (min-width: 1000px) {
   .c-public-home__title-description {
     margin: 40px;
     font-size: 25px;
     font-weight: 400;
     line-height: 40px; } }
 
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
   .c-public-home__banner {
     font-size: 18px;
     font-weight: 400;
@@ -767,6 +768,22 @@ body .container-fluid .row {
   img.logo-in-menu.no-login {
     max-width: 150px;
     margin: 15px; } }
+
+.errorMessage {
+  color: red;
+  text-align: center;
+  margin-bottom: 10px; }
+
+.error-message-text {
+  font-size: 11px;
+  color: red; }
+
+.alert {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  padding: 10px; }
+  .alert__text {
+    margin-bottom: 0px; }
 
 .u-text-left {
   text-align: left !important; }

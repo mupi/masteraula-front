@@ -9,13 +9,14 @@
   color: red;
 }
 
-/*alerts*/
-.alert p {
-    margin-bottom: 0px;
-}
+
 
 .alert {
     margin-top: 10px;
     margin-bottom: 0px;
     padding: 10px;
+
+    &__text{
+        margin-bottom: 0px;
+    }
 }

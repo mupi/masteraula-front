@@ -26,8 +26,11 @@
 //Components related to Star Rating
 @import 'components/stars/Star';
 //Components related to Question
+@import 'components/question/Alternative';
 @import 'components/question/Question';
 @import 'components/question/QuestionBase';
+@import 'components/buttons/AddQuestionButton';
+
 //Components related to User
 @import 'components/usuario/Login';
 @import 'components/usuario/Register';
@@ -40,6 +43,8 @@
 @import 'components/Home';
 @import 'components/HomeUser';
 
+//Components related to alert and error messages
+@import 'components/alerts/Alert';
 
 // Utilities
 // ----------

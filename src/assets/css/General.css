@@ -16,10 +16,6 @@
   --min-width-web:868px
 }
 
-@custom-media --break-sm (min-width: 384px);
-@custom-media --break-md (min-width: 576px);
-@custom-media --break-lg (min-width: 768px);
-
 
 .errorMessage {
     color: red;
@@ -30,25 +26,4 @@
 .error-message-text{
   font-size: 11px;
   color: red;
-}
-
-/*alerts*/
-.alert p {
-    margin-bottom: 0px;
-}
-
-.alert {
-    margin-top: 10px;
-    margin-bottom: 0px;
-    padding: 10px;
-}
-
-.site-masteraula{
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-.site-masteraula .user-home, .site-masteraula .public-home {
-    flex: 1;
 }

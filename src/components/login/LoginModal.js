@@ -15,13 +15,13 @@ const LoginModal = props => {
   const { modal, toggleModal, submit } = props
 
   return (
-    <div className="position-login">
+    <div className="l-login">
       <Link to="#" onClick={ () => toggleModal(modal) }>Login</Link>
-      <Modal isOpen={ modal } toggle={ () => toggleModal(modal) }>
-        <div className="contenedor-login">
-          <ModalHeader toggle={ () => toggleModal(modal) }></ModalHeader>
-          <ModalBody>
-              <h4>Entrar no MasterAula</h4>
+      <Modal className="c-login" isOpen={ modal } toggle={ () => toggleModal(modal) }>
+        <div className="c-login__modal-content">
+          <ModalHeader className="c-login__modal-header" toggle={ () => toggleModal(modal) }></ModalHeader>
+          <ModalBody >
+              <h4 className="text-center">Entrar no MasterAula</h4>
               <LoginForm onSubmit={ submit }/>
           </ModalBody>
         </div>

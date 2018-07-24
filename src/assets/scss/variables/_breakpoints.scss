@@ -1,5 +1,40 @@
 $break-sm: 700px;
-$break-md: 1100px;
+$break-md: 1000px;
 $break-lg: 1600px;
 $break-xl: 2000px;
+
+$break-phone-only:599px;
+$break-tablet-portrait-up:600px;
+$break-tablet-landscape-up:900px;
+$break-desktop-up:1200px;
+$break-big-desktop-up:1800px;
+
 $sidebar-size:280px;
+$sidebar-size-neg:-280px;
+
+/************
+// Use of breakpoint mixins
+.my-box {
+  padding: 10px;
+  
+  @include for-desktop-up {
+    padding: 20px;
+  }
+}
+************/
+
+@mixin for-phone-only {
+  @media (max-width: $break-phone-only) { @content; }
+}
+@mixin for-tablet-portrait-up {
+  @media (min-width: $break-tablet-portrait-up) { @content; }
+}
+@mixin for-tablet-landscape-up {
+  @media (min-width: $break-tablet-landscape-up) { @content; }
+}
+@mixin for-desktop-up {
+  @media (min-width: $break-desktop-up) { @content; }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: $break-big-desktop-up) { @content; }
+}

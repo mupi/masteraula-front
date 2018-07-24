@@ -1,38 +1,22 @@
-/*LOGIN*/
-.contenedor-login {
-    max-width: 500px;
-    background: var(--color-ma-blue-sky);
-    border-radius: 6px;
-}
-
-.contenedor-login h4{
-  text-align: center;
-}
-
-
-
-/*Modal*/
-.modal-content {
-      border-radius: 6px;
-}
-
-.modal-header{
-  padding: 0px 10px;
-  border-bottom: 0px;
-}
-
-.nav-item .position-login{
+.l-login{
   border: none;
   padding: 10px;
   display: block;
   text-align: center;
 }
 
-/*login button in VerifyRegisterPage*/
-.page .btn-secondary a {
-    color: white;
-}
+.c-login {
+        border-radius: 6px;
 
-.page .btn-secondary a:hover {
-    text-decoration: none;
+    &__modal-content {
+        max-width: 500px;
+        background: $color-ma-blue-sky;
+        border-radius: 6px;
+    }
+
+    &__modal-header{
+      padding: 0px 10px;
+      border-bottom: 0px;
+    }
+
 }
