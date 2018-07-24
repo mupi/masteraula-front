@@ -1,7 +1,6 @@
 .l-button-add-question{
   position: fixed;
   z-index: 9999;
-  color:white;
 
   @include for-tablet-portrait-up{
     right: 37px;
@@ -9,8 +8,8 @@
   }
 
   @include for-phone-only {
-        right: 0px;
-        bottom:0px;
+    right: 0px;
+    bottom:0px;
   }
 }
 

@@ -494,8 +494,7 @@ p.list-stars {
 
 .l-button-add-question {
   position: fixed;
-  z-index: 9999;
-  color: white; }
+  z-index: 9999; }
   @media (min-width: 600px) {
     .l-button-add-question {
       right: 37px;
