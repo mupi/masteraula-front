@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Col,Alert, Button } from 'reactstrap';
+import { Container, Row, Col,Alert, Button } from 'reactstrap';
 import {   toggleModal } from 'actions/loginAction';
 import { Link } from 'react-router-dom'
 
@@ -15,8 +15,8 @@ class VerifyRegisterPage extends React.Component {
 
   render() {
     return(
-      <div className="page main-contenedor middle-box">
-        <Container>
+      <div className="l-site-masteraula__public-home middle-box">
+        <Container className="l-user-operations">
           {this.props.success && <Alert color="success" className="text-center">
             <p><i className="fa fa-sign-in"></i> Parabéns!, seu cadastro foi ativado com sucesso.</p>
           </Alert>
@@ -25,11 +25,11 @@ class VerifyRegisterPage extends React.Component {
             <p><i className="fa fa-exclamation-circle "></i> Link inválido! </p>
           </Alert>
           }
-          <div className="row justify-content-center text-center">
+          <Row className="justify-content-center text-center">
             <Col sm="12" xs="12">
                   <Button onClick={ () => this.props.toggleModal(this.props.modal) }>Login</Button>
             </Col>
-          </div>
+          </Row>
         </Container>
       </div>
     )

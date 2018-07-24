@@ -11,8 +11,8 @@ const RedefinePasswordPage = props =>{
   const token = match.params.token
 
   return (
-    <div className="public-home">
-    <div className="main-contenedor middle-box text-center loginscreen  animated fadeInDown">
+    <div className="l-site-masteraula__public-home">
+    <div className="l-user-operations middle-box text-center loginscreen  animated fadeInDown">
       <RedefinePassword onSubmit={ submit } uid={ uid } token={ token } success={ success }/>
     </div>
     </div>

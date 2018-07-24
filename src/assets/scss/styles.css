@@ -8,6 +8,10 @@
   .l-site-masteraula__user-home, .l-site-masteraula__public-home {
     flex: 1; }
 
+.l-user-operations {
+  padding-top: 30px;
+  margin-bottom: 30px; }
+
 /*
 Author: MasterAula - Pamela Rosales
 */
@@ -528,22 +532,6 @@ p.list-stars {
 .contenedor-login h4 {
   text-align: center; }
 
-.contenedor-forgotpassword {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  max-width: 500px;
-  margin-right: auto !important;
-  margin-left: auto !important;
-  border-radius: 6px;
-  background: var(--color-ma-blue-sky); }
-
-@media (min-width: 868px) {
-  .contenedor-forgotpassword {
-    top: 50px;
-    padding-left: 15px;
-    padding-right: 15px;
-    position: relative; } }
-
 /*Modal*/
 .modal-content {
   border-radius: 6px; }
@@ -628,9 +616,37 @@ CSS for UserProfile
   border-radius: 0px;
   height: 100px; }
 
-.l-forgot-password {
-  padding-top: 30px;
-  margin-bottom: 30px; }
+.c-forgot-password {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  max-width: 500px;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  border-radius: 6px;
+  background: #ADD2EF; }
+
+@media (min-width: 1100px) {
+  .c-forgot-password {
+    top: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative; } }
+
+.c-redefine-password {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  max-width: 500px;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  border-radius: 6px;
+  background: #ADD2EF; }
+
+@media (min-width: 1100px) {
+  .c-redefine-password {
+    top: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative; } }
 
 /*Clases do Home*/
 .o-thumb-circle {

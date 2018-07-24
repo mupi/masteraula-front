@@ -9,25 +9,7 @@
   text-align: center;
 }
 
-.contenedor-forgotpassword {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    max-width: 500px;
-    margin-right: auto !important;
-    margin-left: auto !important;
-    border-radius: 6px;
-    background: var(--color-ma-blue-sky);
 
-}
-
-@media (min-width: 868px){
-  .contenedor-forgotpassword {
-    top: 50px;
-    padding-left: 15px;
-    padding-right: 15px;
-    position: relative;
-  }
-}
 
 /*Modal*/
 .modal-content {
