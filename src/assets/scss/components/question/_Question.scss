@@ -1,41 +1,36 @@
 /*CSS for Question*/
 
+/*main class for any question's label-info that is shown in QuestionCard and QuestionPage*/
+.question-info{
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: $color-ma-white;
+  background: $color-ma-green;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  font-size:13px;
 
-/*
-MasterAula - Color list
--------
-pink		    : #ed508f
-purple		    : #4d3570
-yellow		  : #f3b232
-blue		    : #0980b2
-dark blue	: #27577f
-white      : #ffffff
-grey       : #eee
-green:      : #a6d057
-*/
+  &--source-year{
+    background: $color-ma-purple;
+  }
 
-
-span.top-label-question, span.label-info {
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: var(--color-ma-white);
-    font-weight: bold;
+  &__more-info{
     margin-bottom: 10px;
-    margin-right: 10px;
+  }
+
+  &__author{
+        font-weight: bold;
+        font-style: italic;
+  }
 }
 
-span.source-name {
-    background: var(--color-ma-purple);
+
+p.card-text, .card-text {
+    margin-top: 15px;
+    font-size: 14px;
 }
 
-span.discipline-name {
-    background:var(--color-ma-pink);
-}
-
-/* Why so many classes for 1 property*/
-span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span.descriptor-name, span.author {
-    background: var(--color-ma-green);
-}
 
 
 .btn-filter
@@ -108,11 +103,6 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
     margin-bottom: 15px;
 }
 
-p.card-text, .card-text {
-    margin-top: 15px;
-    font-size: 14px;
-}
-
 .card-body {
     padding: 15px;
 }
@@ -121,14 +111,6 @@ p.card-text, .card-text {
     font-size: 13px;
 }
 
-span.author-card {
-    font-weight: bold;
-    font-style: italic;
-}
-
-p.info-question-card {
-    margin-bottom: 10px;
-}
 
 .image-card.card .source-name {
     margin-bottom: 0px;

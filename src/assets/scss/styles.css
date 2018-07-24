@@ -339,47 +339,44 @@ img.logo-in-menu.no-login {
   display: block;
   text-align: center; }
 
-.star {
-  cursor: pointer;
-  height: 25px;
-  width: 25px;
-  margin: 2px;
-  float: left;
-  background-color: grey;
-  clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%); }
-  .star.selected {
-    background-color: yellow; }
+.stars {
+  display: inline-block;
+  margin-bottom: 0px;
+  margin-top: 3px;
+  margin-left: 5px; }
+  .stars__item {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    margin: 2px;
+    float: left;
+    background-color: grey;
+    clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%); }
+    .stars__item--selected {
+      background-color: yellow; }
 
 /*CSS for Question*/
-/*
-MasterAula - Color list
--------
-pink		    : #ed508f
-purple		    : #4d3570
-yellow		  : #f3b232
-blue		    : #0980b2
-dark blue	: #27577f
-white      : #ffffff
-grey       : #eee
-green:      : #a6d057
-*/
-span.top-label-question, span.label-info {
+/*main class for any question's label-info that is shown in QuestionCard and QuestionPage*/
+.question-info {
   padding: 5px 10px;
   border-radius: 5px;
-  color: var(--color-ma-white);
+  color: #FFFFFF;
+  background: #53BA65;
   font-weight: bold;
   margin-bottom: 10px;
-  margin-right: 10px; }
+  margin-right: 10px;
+  font-size: 13px; }
+  .question-info--source-year {
+    background: #4D3570; }
+  .question-info__more-info {
+    margin-bottom: 10px; }
+  .question-info__author {
+    font-weight: bold;
+    font-style: italic; }
 
-span.source-name {
-  background: var(--color-ma-purple); }
-
-span.discipline-name {
-  background: var(--color-ma-pink); }
-
-/* Why so many classes for 1 property*/
-span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span.descriptor-name, span.author {
-  background: var(--color-ma-green); }
+p.card-text, .card-text {
+  margin-top: 15px;
+  font-size: 14px; }
 
 .btn-filter {
   background-color: #283896;
@@ -430,22 +427,11 @@ span.level-name, span.difficulty-level, span.teaching-level, span.tag-name, span
 .card-title .list-info, card-subtitle {
   margin-bottom: 15px; }
 
-p.card-text, .card-text {
-  margin-top: 15px;
-  font-size: 14px; }
-
 .card-body {
   padding: 15px; }
 
 .card-body span.label-info, .card-body .source-name {
   font-size: 13px; }
-
-span.author-card {
-  font-weight: bold;
-  font-style: italic; }
-
-p.info-question-card {
-  margin-bottom: 10px; }
 
 .image-card.card .source-name {
   margin-bottom: 0px; }
@@ -536,6 +522,18 @@ p.list-stars {
       .o-button-add-question-doc--xl {
         width: 60px;
         height: 60px; } }
+
+.disciplines {
+  margin-bottom: 10px; }
+  .disciplines__item {
+    background: #FF007A;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    font-size: 13px; }
 
 .l-login {
   border: none;
