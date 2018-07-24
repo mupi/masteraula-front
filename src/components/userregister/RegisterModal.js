@@ -15,11 +15,11 @@ const RegisterModal = props => {
   return (
     <NavItem>
       <Link to="#" onClick={ () => toggleModal(modal) }>Cadastre-se</Link>
-      <Modal isOpen={ modal } toggle={ () =>  toggleModal(modal) }>
-        <div className="contenedor-register">
-          <ModalHeader toggle={ () =>  toggleModal(modal) }></ModalHeader>
+      <Modal className="c-register" isOpen={ modal } toggle={ () =>  toggleModal(modal) }>
+        <div className="c-register__modal-content">
+          <ModalHeader className="c-register__modal-header" toggle={ () =>  toggleModal(modal) }></ModalHeader>
           <ModalBody>
-              <h4>Cadastre-se</h4>
+              <h4 className="text-center">Cadastre-se</h4>
               <RegisterForm onSubmit={ submit }/>
           </ModalBody>
         </div>

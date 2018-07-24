@@ -1,35 +1,29 @@
 /*
 CSS for RegisterPage
 */
-
-@import url(https://fonts.googleapis.com/css?family=Lato);
-
-body{
-  font-family: 'Lato',sans-serif;
-  margin: 0;
+.l-register{
+  border: none;
+  padding: 10px;
+  display: block;
+  text-align: center;
 }
 
-.contenedor-register .form-group{
-   font-family:'Lato',sans-serif;
-/*   margin-bottom: 13px;*/
-}
+.c-register {
+        border-radius: 6px;
 
-.contenedor-register .form-group span {
-    color: red;
-    font-size: 12px;
-}
+    &__modal-content {
+        max-width: 500px;
+        background: $color-ma-blue-sky;
+        border-radius: 6px;
+    }
 
-.contenedor-register h4 {
-    text-align: center;
-}
+    &__modal-header{
+      padding: 0px 10px;
+      border-bottom: 0px;
+    }
 
-
-.contenedor-register {
-  /*  padding-top: 40px;
-    padding-bottom: 40px;*/
-    max-width: 500px;
-/*    margin-right: auto !important;
-    margin-left: auto !important;*/
-    background: $color-ma-blue-sky;
-    border-radius: 6px;
+    .form-group span {
+        color: red;
+        font-size: 12px;
+    }
 }
