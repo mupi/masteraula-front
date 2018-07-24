@@ -1,7 +1,7 @@
-@import '../variables/colors';
 
 
-#footer-container {
+
+.c-footer {
     transition: all 0.3s ease;
     background: $color-ma-blue;
     padding: 3px;
@@ -10,11 +10,4 @@
     width: 100%;
     z-index: -1;
     font-size: 13px;
-}
-
-
-
-#footer, #footer .row {
-    background: $color-ma-dark-blue;
-    text-align: center;
 }

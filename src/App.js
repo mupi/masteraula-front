@@ -2,19 +2,16 @@ import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter } from 'connected-react-router'
-import 'assets/css/App.css';
-import 'assets/css/General.css';
 
 import LoginModal from "components/login/LoginModal";
 import RegisterModal from "components/userregister/RegisterModal";
-
 import ForgotPasswordPage from "pages/ForgotPassword/ForgotPasswordPage";
 import RedefinePasswordPage from "pages/RedefinePassword/RedefinePasswordPage";
 import UserProfilePage from "pages/UserProfile/UserProfilePage";
 import TermsUsePage from "pages/TermsUse/TermsUsePage";
 import VerifyRegisterPageContainer from "pages/UserRegister/VerifyRegisterPageContainer";
-
 import HomePage from "pages/Home/HomePage.js";
+
 import { QuestionPageContainer, QuestionBasePageContainer } from 'containers'
 
 import CreateDocumentPage from "pages/CreateDocument/CreateDocumentPage";
@@ -28,6 +25,8 @@ import { history } from "helpers/history"
 import { resetChangePasswordForm } from "actions/forgotPasswordAction"
 
 import Footer from "components/footer/Footer";
+import 'assets/scss/styles.css';
+
 
 class App extends Component {
 

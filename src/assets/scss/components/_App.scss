@@ -1,16 +1,15 @@
 /*
 Author: MasterAula - Pamela Rosales
 */
-@import '../variables/colors';
 
 body{
-  font-family: 'Lato',sans-serif;
+  font-family: $lato;
   padding: 0px;
   margin: 0;
 }
 
 h1, h2, p, ul, li {
-  font-family: 'Lato',sans-serif;
+  font-family: $lato;
 }
 
 /*CSS header*/

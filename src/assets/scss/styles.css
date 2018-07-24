@@ -1,4 +1,3 @@
-@import url(normalize.css);
 @import url(https://fonts.googleapis.com/css?family=Lato);
 @import url(https://fonts.googleapis.com/css?family=Lato);
 @import url(https://fonts.googleapis.com/css?family=Lato);
@@ -6,19 +5,19 @@
   display: flex;
   min-height: 100vh;
   flex-direction: column; }
-  .l-site-masteraula_user-home, .l-site-masteraula_public-home {
+  .l-site-masteraula__user-home, .l-site-masteraula__public-home {
     flex: 1; }
 
 /*
 Author: MasterAula - Pamela Rosales
 */
 body {
-  font-family: 'Lato',sans-serif;
+  font-family: "Lato", serif;
   padding: 0px;
   margin: 0; }
 
 h1, h2, p, ul, li {
-  font-family: 'Lato',sans-serif; }
+  font-family: "Lato", serif; }
 
 /*CSS header*/
 ul.header {
@@ -45,7 +44,7 @@ ul.header {
   .content li {
     margin-bottom: 10px; }
 
-#footer-container {
+.c-footer {
   transition: all 0.3s ease;
   background: #1E5078;
   padding: 3px;
@@ -54,10 +53,6 @@ ul.header {
   width: 100%;
   z-index: -1;
   font-size: 13px; }
-
-#footer, #footer .row {
-  background: #27577f;
-  text-align: center; }
 
 /*MENU*/
 /*
@@ -632,6 +627,126 @@ CSS for UserProfile
 #sobre-mim {
   border-radius: 0px;
   height: 100px; }
+
+/*Clases do Home*/
+.o-thumb-circle {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 25px; }
+  .o-thumb-circle__img {
+    width: 100%; }
+
+.c-public-home__features {
+  padding-top: 60px;
+  padding-bottom: 60px; }
+
+.c-public-home__banner {
+  background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
+  background-size: 100% auto;
+  color: #FFFFFF;
+  padding: 1em;
+  text-align: center;
+  margin-top: 55px;
+  padding: 55px 10px; }
+
+.c-public-home__main-title {
+  font-weight: bold; }
+
+@media (min-width: 1100px) {
+  .c-public-home__title-description {
+    margin: 40px;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 40px; } }
+
+@media (max-width: 1100px) {
+  .c-public-home__banner {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.2; }
+  .c-public-home__main-title {
+    font-size: 25px; }
+  .c-public-home__title-description {
+    margin: 10px; }
+  .c-public-home__features {
+    padding-top: 30px;
+    padding-bottom: 30px; } }
+
+.container {
+  padding-right: 0px;
+  padding-left: 0px; }
+
+@media (min-width: 990px) {
+  html body #sidebar ~ #body {
+    margin-left: var(--sidebar-size); } }
+
+html body #navbar ~ #body {
+  margin-top: 74px;
+  padding-top: 25px; }
+
+html body #body {
+  left: 0;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  z-index: 100;
+  margin-left: 0;
+  position: relative;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  margin-top: 75px;
+  padding-bottom: 25px; }
+
+#main-masteraula-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  min-height: 100vh; }
+
+.row {
+  margin-left: -5px;
+  margin-right: -5px; }
+
+body .container-fluid {
+  background: var(--color-ma-white); }
+
+#sidebar .container-fluid,
+#sidebar .container-fluid .row {
+  background: var(--color-ma-blue); }
+
+body .container-fluid .row {
+  background: white; }
+
+.container.home-user-container {
+  background: white;
+  border-radius: 10px;
+  top: 0px;
+  position: relative;
+  margin-top: 25px;
+  padding-bottom: 25px; }
+
+@media (min-width: 989px) {
+  #main-masteraula-container img.logo-in-menu {
+    margin-left: 280px; } }
+
+@media (max-width: 989px) {
+  img.logo-in-menu.with-login {
+    max-width: 150px;
+    margin: 5px; }
+  img.logo-in-menu.no-login {
+    max-width: 150px;
+    margin: 15px; } }
 
 .u-text-left {
   text-align: left !important; }

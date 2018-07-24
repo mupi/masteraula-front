@@ -1,6 +1,6 @@
 // Libraries and helpers
 // ---------
-@import 'lib/lib';
+//@import 'lib/lib';
 
 // Variables
 // ---------
@@ -33,8 +33,9 @@
 @import 'components/usuario/Register';
 @import 'components/usuario/UserProfile';
 
-
-
+//Components related to Home
+@import 'components/Home';
+@import 'components/HomeUser';
 
 
 // Utilities
