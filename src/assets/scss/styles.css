@@ -628,6 +628,10 @@ CSS for UserProfile
   border-radius: 0px;
   height: 100px; }
 
+.l-forgot-password {
+  padding-top: 30px;
+  margin-bottom: 30px; }
+
 /*Clases do Home*/
 .o-thumb-circle {
   border-radius: 50%;

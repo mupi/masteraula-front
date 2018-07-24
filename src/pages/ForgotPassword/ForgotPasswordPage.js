@@ -3,14 +3,13 @@ import { connect } from 'react-redux'
 import { sendForgotPasswordEmail } from 'actions/forgotPasswordAction'
 import ForgotPassword from 'components/forgotpassword/ForgotPassword';
 
-import 'bootstrap/dist/css/bootstrap.css';
 
 const ForgotPasswordPage = props => {
   const { success, submit } = props
 
   return (
-    <div className="public-home">
-    <div className="main-contenedor middle-box text-center loginscreen  animated fadeInDown">
+    <div className="l-site-masteraula__public-home">
+    <div className="l-forgot-password middle-box text-center loginscreen  animated fadeInDown">
       <ForgotPassword onSubmit={ submit } success = { success } />
     </div>
     </div>

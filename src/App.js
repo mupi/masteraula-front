@@ -26,6 +26,7 @@ import { resetChangePasswordForm } from "actions/forgotPasswordAction"
 
 import Footer from "components/footer/Footer";
 import 'assets/scss/styles.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 class App extends Component {
