@@ -16,6 +16,7 @@
   }
 
   &__more-info{
+    font-size: 14px;
     margin-bottom: 10px;
   }
 
@@ -25,19 +26,17 @@
   }
 }
 
-
-p.card-text, .card-text {
+//Classes for question in Card
+.l-question-card-text{
     margin-top: 15px;
-    font-size: 14px;
+}
+
+.question-card__btn{
+  margin-right: 10px;
 }
 
 
 
-.btn-filter
-{
-    background-color: #283896;
-    color: #FFF;
-}
 
 .question-section-border {
     border: 1px solid rgba(0, 0, 0, 0.125);
@@ -58,13 +57,6 @@ p.card-text, .card-text {
   margin-bottom: 10px;
 }
 
-.row-info{
-  margin-bottom: 10px;
-}
-
-.row .list-info {
-    margin-bottom: 10px;
-}
 
 @media (max-width: 867px){
   .img-learning-object img {
@@ -89,10 +81,6 @@ p.card-text, .card-text {
   .h-100.card .card-text {
       margin-top: 30px;
   }
-}
-
-.buttonCard{
-  margin-right: 10px;
 }
 
 .card-title .label-info, .card-subtitle .source-name {

@@ -9,18 +9,14 @@
 }
 
 
-.buttonCard a {
-    color: var(--color-ma-white);
-}
-
-.buttonCard a:hover {
-    text-decoration: none;
+.question-card {
+    margin-bottom: 20px;
 }
 
 /*Pagination in QuestionBase*/
 .page-item.active .page-link{
-  background-color: var(--color-ma-blue);
-  border-color  : var(--color-ma-blue);
+  background-color: $color-ma-blue;
+  border-color:   $color-ma-blue;
 }
 
 .pagination-questions{
@@ -28,22 +24,14 @@
 }
 
 .pagination-questions.row a {
-    color: var(--color-ma-blue);
+    color: $color-ma-blue);
 }
 
 .pagination-questions ul.pagination {
     margin-bottom: 0px;
-}
+
 
 .page-item.active .page-link:hover {
     color: white;
     font-weight: bold;
-}
-
-.question-card {
-    margin-bottom: 20px;
-}
-
-.alert-padding{
-  margin:0px 15px 15px 15px;
 }

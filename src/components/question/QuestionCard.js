@@ -23,12 +23,12 @@ const QuestionCard = ({id, disciplines, source, year, statement, urlImage="", au
 							 : null
 						 	}
 
-			    <div className="card-text">
+			    <div className="l-question-card-text">
 						<p className="question-info__more-info">Autor: <QuestionAuthor author={author} styleTag="question-info__author"/></p>
 						<p className="question-info__more-info"> { statement.substring(0, 150) } {statement.length >=150 && <span>...</span>}</p>
 					</div>
-			    <Link to={"/view-question/" + id}><Button className="buttonCard">Ver mais</Button></Link>
-					<Button className="buttonCard"><i className="fa fa-plus-circle"></i> Adicionar</Button>
+			    <Link to={"/view-question/" + id}><Button className="question-card__btn">Ver mais</Button></Link>
+					<Button className="question-card__btn"><i className="fa fa-plus-circle"></i> Adicionar</Button>
 			  </CardBody>
 			</Card>
 

@@ -369,18 +369,17 @@ img.logo-in-menu.no-login {
   .question-info--source-year {
     background: #4D3570; }
   .question-info__more-info {
+    font-size: 14px;
     margin-bottom: 10px; }
   .question-info__author {
     font-weight: bold;
     font-style: italic; }
 
-p.card-text, .card-text {
-  margin-top: 15px;
-  font-size: 14px; }
+.l-question-card-text {
+  margin-top: 15px; }
 
-.btn-filter {
-  background-color: #283896;
-  color: #FFF; }
+.question-card__btn {
+  margin-right: 10px; }
 
 .question-section-border {
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -397,12 +396,6 @@ p.card-text, .card-text {
   margin-top: 25px;
   margin-bottom: 10px; }
 
-.row-info {
-  margin-bottom: 10px; }
-
-.row .list-info {
-  margin-bottom: 10px; }
-
 @media (max-width: 867px) {
   .img-learning-object img {
     width: 100%; }
@@ -417,9 +410,6 @@ p.card-text, .card-text {
 @media (min-width: 867px) {
   .h-100.card .card-text {
     margin-top: 30px; } }
-
-.buttonCard {
-  margin-right: 10px; }
 
 .card-title .label-info, .card-subtitle .source-name {
   font-size: 14px !important; }
