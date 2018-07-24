@@ -36,12 +36,14 @@
 
 
 //Components related to User
-@import 'components/usuario/Login';
-@import 'components/usuario/Register';
-@import 'components/usuario/UserProfile';
-@import 'components/usuario/ForgotPassword';
-@import 'components/usuario/RedefinePassword';
-@import 'components/usuario/TermsUse';
+@import 'components/user/Login';
+@import 'components/user/Register';
+@import 'components/user/UserProfile';
+@import 'components/user/ForgotPassword';
+@import 'components/user/RedefinePassword';
+@import 'components/user/TermsUse';
+@import 'components/user/VerifyRegister';
+
 
 
 //Components related to Home

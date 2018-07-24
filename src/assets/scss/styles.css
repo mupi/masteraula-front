@@ -609,24 +609,39 @@ CSS for UserProfile
   margin-left: auto !important;
   border-radius: 6px;
   background: #ADD2EF; }
-
-@media (min-width: 1000px) {
-  .c-redefine-password {
-    top: 50px;
-    padding-left: 15px;
-    padding-right: 15px;
-    position: relative; } }
-
-.page.main-contenedor .container {
-  padding-top: 50px; }
-
-@media (max-width: 868px) {
-  .page.main-contenedor .container {
-    padding-right: 15px;
-    padding-left: 15px; } }
+  @media (min-width: 1000px) {
+    .c-redefine-password {
+      top: 50px;
+      padding-left: 15px;
+      padding-right: 15px;
+      position: relative; } }
 
 .section-term-use {
   margin-bottom: 25px; }
+
+.c-terms-use {
+  padding-top: 50px; }
+  .c-terms-use__section {
+    margin-bottom: 25px; }
+
+/*login button in VerifyRegisterPage*/
+.page .btn-secondary a {
+  color: white; }
+
+.page .btn-secondary a:hover {
+  text-decoration: none; }
+
+.c-verify-register {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-right: auto !important;
+  margin-left: auto !important; }
+  @media (min-width: 1000px) {
+    .c-verify-register {
+      top: 50px;
+      padding-left: 15px;
+      padding-right: 15px;
+      position: relative; } }
 
 /*Clases do Home*/
 .o-thumb-circle {
@@ -754,9 +769,10 @@ body .container-fluid .row {
 
 .alert {
   margin-top: 10px;
-  margin-bottom: 0px;
-  padding: 10px; }
-  .alert__text {
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: center; }
+  .alert__message {
     margin-bottom: 0px; }
 
 .u-text-left {

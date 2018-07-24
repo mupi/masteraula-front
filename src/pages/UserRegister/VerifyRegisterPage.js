@@ -14,9 +14,9 @@ class VerifyRegisterPage extends React.Component {
   render() {
     return(
       <div className="l-site-masteraula__public-home middle-box">
-        <Container className="l-user-operations">
+        <Container className="l-user-operations c-verify-register">
           {this.props.success && <Alert color="success" className="text-center">
-            <p><i className="fa fa-sign-in"></i> Parabéns!, seu cadastro foi ativado com sucesso.</p>
+            <p className="alert__message"><i className="fa fa-sign-in"></i> Parabéns!, seu cadastro foi ativado com sucesso.</p>
           </Alert>
           }
           {this.props.error && <Alert color="danger" className="text-center">

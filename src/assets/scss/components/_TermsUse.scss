@@ -1,14 +1,6 @@
-.page.main-contenedor .container {
-    padding-top: 50px;
-}
+.c-terms-use{
 
-@media (max-width: 868px){
-.page.main-contenedor .container {
-    padding-right: 15px;
-    padding-left: 15px;
-}
-}
-
-.section-term-use {
-    margin-bottom: 25px;
+  &__section{
+      margin-bottom: 25px;
+  }
 }

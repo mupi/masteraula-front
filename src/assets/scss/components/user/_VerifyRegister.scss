@@ -1,0 +1,25 @@
+/*login button in VerifyRegisterPage*/
+.page .btn-secondary a {
+    color: white;
+}
+
+.page .btn-secondary a:hover {
+    text-decoration: none;
+}
+
+
+.c-verify-register {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-right: auto !important;
+    margin-left: auto !important;
+
+    @media (min-width: $break-md){
+        top: 50px;
+        padding-left: 15px;
+        padding-right: 15px;
+        position: relative;
+    }
+
+
+}

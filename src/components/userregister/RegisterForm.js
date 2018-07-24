@@ -91,7 +91,7 @@ const RegisterForm = props => {
                   {error && <Alert color="danger">{error}</Alert>}
                   { submitSucceeded  &&
                     <Alert color="success">
-                      <p>Enviamos um email com instruções para ativar seu cadastro</p>
+                      <p className="alert__message">Enviamos um email com instruções para ativar seu cadastro</p>
                     </Alert>
                   }
                 </FormGroup>
