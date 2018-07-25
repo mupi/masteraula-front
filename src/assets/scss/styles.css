@@ -377,12 +377,6 @@ img.logo-in-menu.no-login {
     font-weight: bold;
     font-style: italic; }
 
-.l-question-card-text {
-  margin-top: 15px; }
-
-.question-card__btn {
-  margin-right: 10px; }
-
 .c-question__row-info {
   margin-bottom: 10px; }
 
@@ -431,14 +425,19 @@ img.logo-in-menu.no-login {
 .image-card.card .source-name {
   margin-bottom: 0px; }
 
-.questions-result {
+.c-question-base__search-text {
+  padding: 15px; }
+
+.c-question-base__results {
   margin-top: 20px; }
 
-.text-search-question.row {
-  padding: 15px; }
+.l-question-card-text {
+  margin-top: 15px; }
 
 .question-card {
   margin-bottom: 20px; }
+  .question-card__btn {
+    margin-right: 10px; }
 
 /*Pagination in QuestionBase*/
 .page-item.active .page-link {
@@ -763,9 +762,13 @@ span.button-text {
     padding-top: 30px;
     padding-bottom: 30px; } }
 
-.container {
-  padding-right: 0px;
-  padding-left: 0px; }
+.c-home-user {
+  background: white;
+  border-radius: 10px;
+  top: 0px;
+  position: relative;
+  margin-top: 25px;
+  padding-bottom: 25px; }
 
 @media (min-width: 990px) {
   html body #sidebar ~ #body {
@@ -814,14 +817,6 @@ body .container-fluid {
 
 body .container-fluid .row {
   background: white; }
-
-.container.home-user-container {
-  background: white;
-  border-radius: 10px;
-  top: 0px;
-  position: relative;
-  margin-top: 25px;
-  padding-bottom: 25px; }
 
 @media (min-width: 989px) {
   #main-masteraula-container img.logo-in-menu {

@@ -40,8 +40,8 @@ class QuestionBasePage extends React.Component {
 
       return (
         <HomeUserPage showFilters={true}>
-          <div className="contenedor-question-base">
-              <Row className="text-search-question">Digite o termo e encontre soluções relacionadas
+          <div className="c-question-base">
+              <Row className="c-question-base__search-text">Digite o termo e encontre soluções relacionadas
                 <InputGroup>
                   <Input />
                   <InputGroupAddon addonType="prepend"><Button>Pesquisar</Button></InputGroupAddon>
@@ -50,7 +50,7 @@ class QuestionBasePage extends React.Component {
               <Row className="pagination-questions">
                 <QuestionPagination {...this.props} {...questionPage}/>
               </Row>
-              <Row className="questions-result">
+              <Row className="c-question-base__results">
                 {getResults(isFetching,questionPage.results)}
               </Row>
               <Row className="pagination-questions">

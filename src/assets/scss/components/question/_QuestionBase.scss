@@ -1,17 +1,29 @@
+//Classes for Question Base that holds all question cards results.
+.c-question-base{
 
-
-.questions-result {
-    margin-top: 20px;
+    &__search-text{
+      padding: 15px;
+    }
+    &__results{
+      margin-top: 20px;
+    }
 }
 
-.text-search-question.row {
-    padding: 15px;
-}
 
+//Classes for question in Card
+.l-question-card-text{
+    margin-top: 15px;
+}
 
 .question-card {
     margin-bottom: 20px;
+
+    &__btn{
+      margin-right: 10px;
+    }
 }
+
+
 
 /*Pagination in QuestionBase*/
 .page-item.active .page-link{

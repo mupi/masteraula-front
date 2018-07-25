@@ -14,7 +14,7 @@ const HomeUserPage = props => {
                 <div className="container-fluid">
                     <Row>
                     <Col xs="12">
-                        <div className="container home-user-container">
+                        <div className="container c-home-user">
                             {children}
                         </div>
                     </Col>
