@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { UncontrolledCollapse, Button, Input } from 'reactstrap';
 
 const SidebarFilter = ({name, list})=> {
     return (
-      
+
                 <ListGroupItem className="question-category-filter"><a>{name}<i className="fa fa-angle-left"></i></a>
                       <ListGroup className="question-single-filter">
                         {list.map((filter, i) =>
@@ -12,10 +12,10 @@ const SidebarFilter = ({name, list})=> {
                         )}
                       </ListGroup>
                 </ListGroupItem>
-
-
-
       )
 }
+
+
+
 
 export default SidebarFilter;
