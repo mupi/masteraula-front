@@ -6,7 +6,6 @@ import TagList from "components/tags/TagList"
 import QuestionAuthor from "./QuestionAuthor"
 import QuestionSourceYear from "./QuestionSourceYear"
 import { Link } from 'react-router-dom'
-import 'font-awesome/css/font-awesome.min.css';
 
 const QuestionCard = ({id, disciplines, source, year, statement, urlImage="", author, teaching_levels}) =>
 			<Card className= { urlImage !=="" ?"h-10 image-card": "h-100" } >
@@ -15,18 +14,20 @@ const QuestionCard = ({id, disciplines, source, year, statement, urlImage="", au
 			    <Row>
 						<DisciplineList list={disciplines} />
 					</Row>
-							<Row><QuestionSourceYear styleTag="top-label-question source-name" source={source} year={year}/></Row>
+					<Row>
+						<QuestionSourceYear source={source} year={year}/>
+					</Row>
 							{ !urlImage ?
-									<Row><TagList list={teaching_levels} styleTag="label-info teaching-level"/></Row>
+									<Row><TagList list={teaching_levels} styleTag="question-info teaching-level"/></Row>
 							 : null
 						 	}
 
-			    <div className="card-text">
-						<p className="info-question-card">Autor: <QuestionAuthor author={author} styleTag="author-card"/></p>
-						<p className="info-question-card"> { statement.substring(0, 150) } {statement.length >=150 && <span>...</span>}</p>
+			    <div className="l-question-card-text">
+						<p className="question-info__more-info">Autor: <QuestionAuthor author={author} styleTag="question-info__author"/></p>
+						<p className="question-info__more-info"> { statement.substring(0, 150) } {statement.length >=150 && <span>...</span>}</p>
 					</div>
-			    <Link to={"/view-question/" + id}><Button className="buttonCard">Ver mais</Button></Link>
-					<Button className="buttonCard"><i className="fa fa-plus-circle"></i> Adicionar</Button>
+			    <Link to={"/view-question/" + id}><Button className="question-card__btn">Ver mais</Button></Link>
+					<Button className="question-card__btn"><i className="fa fa-plus-circle"></i> Adicionar</Button>
 			  </CardBody>
 			</Card>
 

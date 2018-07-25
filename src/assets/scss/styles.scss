@@ -1,0 +1,59 @@
+// Libraries and helpers
+// ---------
+//@import 'lib/lib';
+
+// Variables
+// ---------
+@import 'variables/colors';
+@import 'variables/typography';
+@import 'variables/breakpoints';
+
+
+// Layouts
+// -------
+@import 'layouts/layouts';
+
+
+// Components
+// ----------
+@import 'components/App';
+@import 'components/Footer';
+
+//Components related to Navigation
+@import 'components/navigation/Sidebar';
+@import 'components/navigation/Menu';
+
+//Components related to Star Rating
+@import 'components/stars/Star';
+//Components related to Question
+@import 'components/question/Alternative';
+@import 'components/question/Question';
+@import 'components/question/QuestionBase';
+@import 'components/buttons/AddQuestionButton';
+
+//DisciplineList
+@import 'components/discipline/Discipline';
+
+
+//Components related to User
+@import 'components/user/Login';
+@import 'components/user/Register';
+@import 'components/user/UserProfile';
+@import 'components/user/ForgotPassword';
+@import 'components/user/RedefinePassword';
+@import 'components/user/TermsUse';
+@import 'components/user/VerifyRegister';
+
+//Components related to document
+@import 'components/document/Document';
+
+//Components related to Home
+@import 'components/Home';
+@import 'components/HomeUser';
+
+//Components related to alert and error messages
+@import 'components/alerts/Alert';
+
+// Utilities
+// ----------
+@import 'utilities';

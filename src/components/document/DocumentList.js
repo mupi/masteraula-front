@@ -3,7 +3,7 @@ import { Row, Col, Table, Modal, ModalHeader, ModalBody, Container, Label, Butto
 import DisciplineList from "components/disciplines/DisciplineList"
 import QuestionSourceYear from "components/question/QuestionSourceYear"
 import QuestionContent from "../../components/question/QuestionContent.js";
-import 'font-awesome/css/font-awesome.min.css';
+import ExportDocumentButton from "components/buttons/ExportDocumentButton"
 
 class DocumentList extends React.Component {
   constructor(props) {
@@ -57,9 +57,7 @@ class DocumentList extends React.Component {
               <ModalBody className="question-modal">
                   <Row>
                     <div className="auto-margin-left-element">
-                      <Button title="Exportar documento" className="btn-success btn-margin-right btn btn-secondary">
-                        <i className="fa fa-share-square"></i><span className="button-text">Exportar</span>
-                      </Button>
+                      <ExportDocumentButton color="success"/>
                     </div>
                     <div>
                       <Button title="Editar documento" className="btn-success btn btn-secondary">

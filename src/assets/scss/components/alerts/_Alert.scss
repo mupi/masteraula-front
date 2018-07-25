@@ -1,0 +1,28 @@
+
+.error-message-text{
+  font-size: 11px;
+  color: red;
+}
+
+.alert {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: center;
+
+    &__message{
+        margin-bottom: 0px;
+    }
+
+    &--warning{
+
+    }
+
+    &--error{
+
+    }
+
+    &--success{
+      
+    }
+}

@@ -2,14 +2,8 @@
 CSS for UserProfile
 */
 
-@import url(https://fonts.googleapis.com/css?family=Lato);
-
 .contenedor-profile .form-group{
-   font-family: 'Lato',sans-serif;
-}
-
-.hidden {
-    display: none!important;
+   font-family: $lato;
 }
 
 .thumbnail img {
@@ -35,11 +29,11 @@ CSS for UserProfile
   background: #FFFFFF;
 }
 
-input#senha-atual, input#nova-senha {
+#senha-atual, #nova-senha {
     margin-bottom: 10px;
 }
 
-textarea#sobre-mim {
+#sobre-mim {
     border-radius: 0px;
     height: 100px;
 }

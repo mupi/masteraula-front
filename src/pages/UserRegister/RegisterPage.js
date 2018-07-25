@@ -1,7 +1,6 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
 import RegisterForm from "components/userregister/RegisterForm.js";
-import 'assets/css/Register.css';
+
 
 const RegisterPage = () =>
             <div className="main-contenedor middle-box text-center loginscreen  animated fadeInDown">

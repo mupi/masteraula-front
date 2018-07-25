@@ -1,0 +1,70 @@
+/*
+Author: MasterAula - Pamela Rosales
+*/
+
+body{
+  font-family: $lato;
+  padding: 0px;
+  margin: 0;
+}
+
+h1, h2, p, ul, li {
+  font-family: $lato;
+}
+
+/*CSS header*/
+ul.header {
+    padding: 0;
+    margin-bottom: 0;
+
+    li {
+      display: inline;
+      list-style-type: none;
+      margin: 0;
+    }
+
+    li a {
+    color: $color-ma-white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 20px;
+    display: inline-block;
+    }
+}
+
+/*CSS content*/
+.content {
+  color: blue;
+  padding: 0px 15px;
+
+  h2 {
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+}
+
+//Customize some Bootstrap classes according MasterAula design
+.btn {
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.modal-content {
+    background: transparent;
+    border: transparent;
+}
+
+
+.row {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.bg-primary {
+    background-color: $color-ma-blue !important;
+}

@@ -1,10 +1,9 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
 import { Row, Input, InputGroup, InputGroupAddon, Button, Alert} from 'reactstrap';
 import HomeUserPage from "../HomeUser/HomeUserPage"
 import QuestionList from "components/question/QuestionList"
 import  QuestionPagination from "components/QuestionPagination/QuestionPagination"
-import 'assets/css/QuestionBase.css';
+
 
 
 const getResults = (isFetching, results ) => {
@@ -12,7 +11,7 @@ const getResults = (isFetching, results ) => {
         return <QuestionList questions={results} numCols='3'/>
       }
       else{
-        return <Alert className="alert-padding" color="warning">Carregando ...</Alert>
+        return <Alert className="c-question-base__alert--warning" color="warning">Carregando ...</Alert>
       }
 }
 
@@ -41,8 +40,8 @@ class QuestionBasePage extends React.Component {
 
       return (
         <HomeUserPage showFilters={true}>
-          <div className="contenedor-question-base">
-              <Row className="text-search-question">Digite o termo e encontre soluções relacionadas
+          <div className="c-question-base">
+              <Row className="c-question-base__search-text">Digite o termo e encontre soluções relacionadas
                 <InputGroup>
                   <Input />
                   <InputGroupAddon addonType="prepend"><Button>Pesquisar</Button></InputGroupAddon>
@@ -51,7 +50,7 @@ class QuestionBasePage extends React.Component {
               <Row className="pagination-questions">
                 <QuestionPagination {...this.props} {...questionPage}/>
               </Row>
-              <Row className="questions-result">
+              <Row className="c-question-base__results">
                 {getResults(isFetching,questionPage.results)}
               </Row>
               <Row className="pagination-questions">

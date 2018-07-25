@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Star from './Star'
-import 'assets/css/Star.css';
 
 const StarRating = ({starsSelected=0, totalStars=5, onRate=f=>f}) =>
     <div className="star-rating">
@@ -10,7 +9,7 @@ const StarRating = ({starsSelected=0, totalStars=5, onRate=f=>f}) =>
                   selected={i<starsSelected}
                   onClick={() => onRate(i+1)}/>
         )}
-        <p className="list-stars">{starsSelected} de {totalStars} estrelas</p>
+        <p className="stars">{starsSelected} de {totalStars} estrelas</p>
     </div>
 
 StarRating.propTypes = {

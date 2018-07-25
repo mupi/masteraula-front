@@ -1,0 +1,100 @@
+/*CSS for Question*/
+
+/*main class for any question's label-info that is shown in QuestionCard and QuestionPage*/
+.question-info{
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: $color-ma-white;
+  background: $color-ma-green;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  font-size:13px;
+
+  &--source-year{
+    background: $color-ma-purple;
+  }
+
+  &__more-info{
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  &__author{
+        font-weight: bold;
+        font-style: italic;
+  }
+
+  @include for-phone-only {
+        display: inline-flex;
+    }
+
+}
+
+
+
+//Question Page where c-question is a the main container
+.c-question__row-info {
+    margin-bottom: 10px;
+
+    .info-label{
+      font-size: 14px;
+    }
+}
+
+//INI: Pending revision
+.question-section-border {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin: 10px 0px;
+    padding: 20px 10px;
+}
+
+.question-content p:last-child {
+    margin-bottom: 0px;
+}
+
+.section-text-question p.text-question{
+  margin-bottom:10px;
+}
+
+.title-section-question{
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+//Learning Object section in QuestionPage
+  .img-learning-object img {
+    @include for-phone-only {
+          width: 100%;
+      }
+  }
+
+
+
+.h-100.card .card-text {
+      @include  for-tablet-portrait-up{
+        margin-top: 30px;
+      }
+  }
+
+.card-title .label-info, .card-subtitle .source-name {
+    font-size: 14px !important;
+}
+
+.card-title .list-info, card-subtitle {
+    margin-bottom: 15px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-body span.label-info, .card-body .source-name {
+    font-size: 13px;
+}
+
+.image-card.card .source-name {
+    margin-bottom: 0px;
+}
+
+//END: Pending revision

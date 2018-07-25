@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Row } from 'reactstrap';
-import 'font-awesome/css/font-awesome.min.css';
 
 const QuestionComments = ()=>  (
         <Container>

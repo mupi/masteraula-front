@@ -1,6 +1,5 @@
 import React  from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import 'font-awesome/css/font-awesome.min.css';
 import learningObject2 from "assets/img/home/question-objeto-aprendizagem2.jpg";
 import AlternativeList from "components/alternatives/AlternativeList"
 

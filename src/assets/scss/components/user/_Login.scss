@@ -1,0 +1,22 @@
+.l-login{
+  border: none;
+  padding: 10px;
+  display: block;
+  text-align: center;
+}
+
+.c-login {
+        border-radius: 6px;
+
+    &__modal-content {
+        max-width: 500px;
+        background: $color-ma-blue-sky;
+        border-radius: 6px;
+    }
+
+    &__modal-header{
+      padding: 0px 10px;
+      border-bottom: 0px;
+    }
+
+}

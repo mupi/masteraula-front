@@ -14,11 +14,26 @@ grey       : #eee
 green:      : #a6d057
 */
 
-
 /******CSS for navbar - top header******/
 nav a {
-    color: var(--color-ma-white);
+    color: $color-ma-white;
   }
+
+
+.navbar {
+      @include for-tablet-landscape-bottom{
+          padding:0px;
+      }
+}
+
+
+.navbar-nav {
+      @include for-tablet-landscape-up{
+        float: left;
+        margin: 0;
+
+      }
+}
 
 li.nav-item {
     margin-right: 15px;
@@ -32,7 +47,7 @@ li.nav-item {
 }
 
 .navbar-toggler{
-  background: var(--color-ma-pink);
+  background: $color-ma-pink;
 }
 
 
@@ -41,8 +56,8 @@ div#navbar, div#navbar .col-12 {
 }
 
 .navbar-default {
-    background-color: var(--color-ma-white);
-    border-color: var(--color-ma-gray);
+    background-color: $color-ma-white;
+    border-color: $color-ma-gray;
 }
 
 .navbar-fixed-top {
@@ -50,17 +65,16 @@ div#navbar, div#navbar .col-12 {
     border-width: 0 0 1px;
 }
 
-@media (min-width: 990px){
-  .navbar-fixed-top, .navbar-fixed-bottom {
-      border-radius: 0;
-  }
-}
+
 .navbar-fixed-top, .navbar-fixed-bottom {
     position: fixed;
     right: 0;
     left: 0;
     z-index: 1030;
 
+    @include for-tablet-landscape-up{
+      border-radius: 0;
+    }
 }
 
 
@@ -79,42 +93,18 @@ html body #masteraula-nav-header .navbar-nav {
 }
 
 
-@media (min-width: 990px){
-  .navbar-nav {
-      float: left;
-      margin: 0;
-  }
-}
-
-
-@media (max-width: 989px){
-  .navbar {
-    /*  padding: 0px 1rem;*/
-    padding:0px;
-  }
-}
 
 
 /******CSS for sidebar, used only with user logged******/
 html body #sidebar #sidebar-container {
     bottom: 0;
-    width: var(--sidebar-size);
+    width: $sidebar-size;
     position: absolute;
     top: 58px;
     padding-top: 30px;
     overflow-x: hidden;
 
 }
-
-@media (min-width: 990px){
-html body #sidebar {
-    left: 0;
-}}
-
-@media (max-width: 990px){
-html body #sidebar {
-      left:  var(--sidebar-size-neg);
-}}
 
 html body #sidebar {
     top: 0;
@@ -123,13 +113,22 @@ html body #sidebar {
     position: fixed;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    width:  var(--sidebar-size);
-    background: var(--color-ma-blue);
+    width:  $sidebar-size;
+    background: $color-ma-blue;
+
+    @include for-tablet-landscape-up{
+      left: 0;
+    }
+
+    @include for-tablet-landscape-bottom{
+      left:  $sidebar-size-neg;
+    }
+
+    h5{color:$color-ma-white}
+    h6{color:$color-ma-white}
 }
 
-#sidebar h5, #sidebar h6 {
-    color: white;
-}
+
 
 /*list of options in sidebar*/
 ul.list-group {
@@ -139,32 +138,33 @@ ul.list-group {
 /*yellow button to collapse sidebar*/
 .visible-xs {
     display: none !important;
+
+    @include for-tablet-landscape-bottom{
+          display: block !important;
+    }
 }
 
-@media (max-width: 989px){
-  .visible-xs {
-      display: block !important;
-  }
-}
 
 /* Why so many classes for 1 property*/
 .visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {
     display: none !important;
 }
+
+.visible-xs-inline-block {
+    @include for-tablet-landscape-bottom{
+      display: inline-block !important;
+    }
+}
+
+
 .pull-left {
     float: left !important;
 }
 
 
-@media (max-width: 989px){
-.visible-xs-inline-block {
-    display: inline-block !important;
-}
-}
-
 html body #masteraula-nav-header .navbar-nav>li.sidebar-btn>a {
-    color: var(--color-ma-white);
-    background: var(--color-ma-green);
+    color: $color-ma-white;
+    background: $color-ma-green;
 }
 html body #masteraula-nav-header .navbar-nav>li.logout>a, html body #masteraula-nav-header .navbar-nav>li.sidebar-btn>a {
     width: 65px;
@@ -187,13 +187,13 @@ html body #main-masteraula-container.container-open #sidebar{
 }
 html body #main-masteraula-container.container-open #body,
 html body #main-masteraula-container.container-open #footer-container{
-    margin-left:  var(--sidebar-size);
-    margin-right:  var(--sidebar-size-neg);
+    margin-left:  $sidebar-size;
+    margin-right:  $sidebar-size-neg;
 }
 
 html body #main-masteraula-container.container-open #masteraula-nav-header {
-    margin-left:  var(--sidebar-size);
-    margin-right:  var(--sidebar-size-neg);
+    margin-left:  $sidebar-size;
+    margin-right:  $sidebar-size-neg;
 }
 
 html body #masteraula-nav-header {
@@ -205,7 +205,7 @@ html body #masteraula-nav-header {
 
 .sidebar-nav-container a {
     text-decoration: none;
-    color: var(--color-ma-blue);
+    color: $color-ma-blue;
     font-weight: bold;
 }
 
@@ -235,14 +235,14 @@ li.question-filter.list-group-item:hover {
 }
 
 li.question-category-filter.list-group-item, .question-single-filter li.list-group-item {
-    background:var(--color-ma-blue);
-    color: var(--color-ma-white);
+    background:$color-ma-blue;
+    color: $color-ma-white;
     border: none;
 }
 
 li.question-category-filter.list-group-item:hover, .question-single-filter li.list-group-item:hover{
-  background:var(--color-ma-blue);
-  color: var(--color-ma-white);
+  background:$color-ma-blue;
+  color: $color-ma-white;
   border: none;
 }
 
@@ -265,7 +265,7 @@ li.question-category-filter a{
     height: 35px;
     border: none;
     outline: none;
-    color: var(--color-ma-blue) !important;
+    color: $color-ma-blue !important;
     display: block;
     font-size: 14px;
     line-height: 14px;
@@ -287,15 +287,15 @@ li.question-category-filter a{
     width: 5px;
 }
 #sidebar-container::-webkit-scrollbar-track {
-    background:var(--color-ma-blue);
+    background:$color-ma-blue;
 }
 /* Handle */
 #sidebar-container::-webkit-scrollbar-thumb {
-    background: var(--color-ma-green);
+    background: $color-ma-green;
 }
 /* Handle on hover */
 #sidebar-container::-webkit-scrollbar-thumb:hover {
-    background: var(--color-ma-green);
+    background: $color-ma-green;
 }
 
 .logo-sidebar {
@@ -305,7 +305,7 @@ li.question-category-filter a{
 .logo-top-sidebar {
     text-align: center;
     padding: 5px;
-    background: var(--color-ma-green);
+    background: $color-ma-green;
     height: 58px;
 }
 
