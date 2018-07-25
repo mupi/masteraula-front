@@ -11,7 +11,7 @@ const getResults = (isFetching, results ) => {
         return <QuestionList questions={results} numCols='3'/>
       }
       else{
-        return <Alert className="alert-padding" color="warning">Carregando ...</Alert>
+        return <Alert className="c-question-base__alert--warning" color="warning">Carregando ...</Alert>
       }
 }
 

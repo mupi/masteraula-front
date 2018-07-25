@@ -431,6 +431,10 @@ img.logo-in-menu.no-login {
 .c-question-base__results {
   margin-top: 20px; }
 
+.c-question-base__alert--warning {
+  margin-left: 15px;
+  margin-bottom: 10px; }
+
 .l-question-card-text {
   margin-top: 15px; }
 
