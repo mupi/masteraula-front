@@ -774,8 +774,23 @@ span.button-text {
   margin-top: 25px;
   padding: 0px; }
 
+#main-masteraula-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  min-height: 100vh; }
+
 @media (min-width: 990px) {
   html body #sidebar ~ #body {
+    margin-left: 280px; }
+  #main-masteraula-container img.logo-in-menu {
     margin-left: 280px; } }
 
 html body #navbar ~ #body {
@@ -795,19 +810,6 @@ html body #body {
   margin-top: 75px;
   padding-bottom: 25px; }
 
-#main-masteraula-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  height: 100%;
-  overflow: auto;
-  overflow-x: hidden;
-  min-height: 100vh; }
-
 .row {
   margin-left: -5px;
   margin-right: -5px; }
@@ -821,10 +823,6 @@ body .container-fluid {
 
 body .container-fluid .row {
   background: white; }
-
-@media (min-width: 989px) {
-  #main-masteraula-container img.logo-in-menu {
-    margin-left: 280px; } }
 
 @media (max-width: 989px) {
   img.logo-in-menu.with-login {
@@ -845,6 +843,8 @@ body .container-fluid .row {
   text-align: center; }
   .alert__message {
     margin-bottom: 0px; }
+  .alert--warning {
+    margin-left: 15px; }
 
 .u-text-left {
   text-align: left !important; }

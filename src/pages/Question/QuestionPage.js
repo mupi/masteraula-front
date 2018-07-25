@@ -101,7 +101,7 @@ class QuestionPage extends Component {
     if(isFetching) {
       return (
         <HomeUserPage>
-          <Alert color="warning">
+          <Alert className="alert--warning" color="warning">
               Carregando ...
           </Alert>
         </HomeUserPage>
