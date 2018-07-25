@@ -3,7 +3,7 @@
 // Use of breakpoint mixins
 .my-box {
   padding: 10px;
-  
+
   @include for-desktop-up {
     padding: 20px;
   }
@@ -64,6 +64,13 @@ ul.header {
   background: transparent;
   border: transparent; }
 
+.row {
+  margin-left: -5px;
+  margin-right: -5px; }
+
+.bg-primary {
+  background-color: #1E5078 !important; }
+
 .c-footer {
   transition: all 0.3s ease;
   background: #1E5078;
@@ -87,12 +94,18 @@ white      : #ffffff
 grey       : #eee
 green:      : #a6d057
 */
-.bg-primary {
-  background-color: #1E5078 !important; }
-
 /******CSS for navbar - top header******/
 nav a {
   color: #FFFFFF; }
+
+@media (max-width: 989px) {
+  .navbar {
+    padding: 0px; } }
+
+@media (min-width: 990px) {
+  .navbar-nav {
+    float: left;
+    margin: 0; } }
 
 li.nav-item {
   margin-right: 15px;
@@ -117,15 +130,14 @@ div#navbar, div#navbar .col-12 {
   top: 0;
   border-width: 0 0 1px; }
 
-@media (min-width: 990px) {
-  .navbar-fixed-top, .navbar-fixed-bottom {
-    border-radius: 0; } }
-
 .navbar-fixed-top, .navbar-fixed-bottom {
   position: fixed;
   right: 0;
   left: 0;
   z-index: 1030; }
+  @media (min-width: 990px) {
+    .navbar-fixed-top, .navbar-fixed-bottom {
+      border-radius: 0; } }
 
 html body #masteraula-nav-header .navbar-nav:first-child {
   margin-left: 0px; }
@@ -138,16 +150,6 @@ html body #masteraula-nav-header .navbar-nav {
   margin: 0;
   display: flex; }
 
-@media (min-width: 990px) {
-  .navbar-nav {
-    float: left;
-    margin: 0; } }
-
-@media (max-width: 989px) {
-  .navbar {
-    /*  padding: 0px 1rem;*/
-    padding: 0px; } }
-
 /******CSS for sidebar, used only with user logged******/
 html body #sidebar #sidebar-container {
   bottom: 0;
@@ -156,14 +158,6 @@ html body #sidebar #sidebar-container {
   top: 58px;
   padding-top: 30px;
   overflow-x: hidden; }
-
-@media (min-width: 990px) {
-  html body #sidebar {
-    left: 0; } }
-
-@media (max-width: 990px) {
-  html body #sidebar {
-    left: -280px; } }
 
 html body #sidebar {
   top: 0;
@@ -174,9 +168,16 @@ html body #sidebar {
   transition: all 0.3s ease;
   width: 280px;
   background: #1E5078; }
-
-#sidebar h5, #sidebar h6 {
-  color: white; }
+  @media (min-width: 990px) {
+    html body #sidebar {
+      left: 0; } }
+  @media (max-width: 989px) {
+    html body #sidebar {
+      left: -280px; } }
+  html body #sidebar h5 {
+    color: #FFFFFF; }
+  html body #sidebar h6 {
+    color: #FFFFFF; }
 
 /*list of options in sidebar*/
 ul.list-group {
@@ -185,21 +186,20 @@ ul.list-group {
 /*yellow button to collapse sidebar*/
 .visible-xs {
   display: none !important; }
-
-@media (max-width: 989px) {
-  .visible-xs {
-    display: block !important; } }
+  @media (max-width: 989px) {
+    .visible-xs {
+      display: block !important; } }
 
 /* Why so many classes for 1 property*/
 .visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {
   display: none !important; }
 
-.pull-left {
-  float: left !important; }
-
 @media (max-width: 989px) {
   .visible-xs-inline-block {
     display: inline-block !important; } }
+
+.pull-left {
+  float: left !important; }
 
 html body #masteraula-nav-header .navbar-nav > li.sidebar-btn > a {
   color: #FFFFFF;
@@ -376,9 +376,14 @@ img.logo-in-menu.no-login {
   .question-info__author {
     font-weight: bold;
     font-style: italic; }
+  @media (max-width: 599px) {
+    .question-info {
+      display: inline-flex; } }
 
 .c-question__row-info {
   margin-bottom: 10px; }
+  .c-question__row-info .info-label {
+    font-size: 14px; }
 
 .question-section-border {
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -395,18 +400,11 @@ img.logo-in-menu.no-login {
   margin-top: 25px;
   margin-bottom: 10px; }
 
-@media (max-width: 867px) {
+@media (max-width: 599px) {
   .img-learning-object img {
-    width: 100%; }
-  span.level-name, span.difficulty-level, span.teaching-level, span.tag-name,
-  span.descriptor-name, span.author {
-    display: inline-flex; }
-  .question-information span, .question-information .info-label {
-    font-size: 14px; }
-  .related-question.container .col-12, .related-question.container card {
-    margin-bottom: 15px; } }
+    width: 100%; } }
 
-@media (min-width: 867px) {
+@media (min-width: 600px) {
   .h-100.card .card-text {
     margin-top: 30px; } }
 
@@ -432,8 +430,7 @@ img.logo-in-menu.no-login {
   margin-top: 20px; }
 
 .c-question-base__alert--warning {
-  margin-left: 15px;
-  margin-bottom: 10px; }
+  margin-left: 15px; }
 
 .l-question-card-text {
   margin-top: 15px; }
@@ -814,10 +811,6 @@ html body #body {
   margin-top: 75px;
   padding-bottom: 25px; }
 
-.row {
-  margin-left: -5px;
-  margin-right: -5px; }
-
 body .container-fluid {
   background: #FFFFFF; }
 
@@ -831,7 +824,9 @@ body .container-fluid .row {
 @media (max-width: 989px) {
   img.logo-in-menu.with-login {
     max-width: 150px;
-    margin: 5px; }
+    margin: 5px; } }
+
+@media (max-width: 989px) {
   img.logo-in-menu.no-login {
     max-width: 150px;
     margin: 15px; } }
@@ -847,8 +842,6 @@ body .container-fluid .row {
   text-align: center; }
   .alert__message {
     margin-bottom: 0px; }
-  .alert--warning {
-    margin-left: 15px; }
 
 .u-text-left {
   text-align: left !important; }

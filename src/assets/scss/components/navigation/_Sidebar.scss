@@ -13,15 +13,27 @@ white      : #ffffff
 grey       : #eee
 green:      : #a6d057
 */
-.bg-primary {
-    background-color: $color-ma-blue !important;
-}
-
 
 /******CSS for navbar - top header******/
 nav a {
     color: $color-ma-white;
   }
+
+
+.navbar {
+      @include for-tablet-landscape-bottom{
+          padding:0px;
+      }
+}
+
+
+.navbar-nav {
+      @include for-tablet-landscape-up{
+        float: left;
+        margin: 0;
+
+      }
+}
 
 li.nav-item {
     margin-right: 15px;
@@ -53,17 +65,16 @@ div#navbar, div#navbar .col-12 {
     border-width: 0 0 1px;
 }
 
-@media (min-width: 990px){
-  .navbar-fixed-top, .navbar-fixed-bottom {
-      border-radius: 0;
-  }
-}
+
 .navbar-fixed-top, .navbar-fixed-bottom {
     position: fixed;
     right: 0;
     left: 0;
     z-index: 1030;
 
+    @include for-tablet-landscape-up{
+      border-radius: 0;
+    }
 }
 
 
@@ -82,20 +93,6 @@ html body #masteraula-nav-header .navbar-nav {
 }
 
 
-@media (min-width: 990px){
-  .navbar-nav {
-      float: left;
-      margin: 0;
-  }
-}
-
-
-@media (max-width: 989px){
-  .navbar {
-    /*  padding: 0px 1rem;*/
-    padding:0px;
-  }
-}
 
 
 /******CSS for sidebar, used only with user logged******/
@@ -109,16 +106,6 @@ html body #sidebar #sidebar-container {
 
 }
 
-@media (min-width: 990px){
-html body #sidebar {
-    left: 0;
-}}
-
-@media (max-width: 990px){
-html body #sidebar {
-      left:  $sidebar-size-neg;
-}}
-
 html body #sidebar {
     top: 0;
     bottom: 0;
@@ -128,11 +115,20 @@ html body #sidebar {
     transition: all 0.3s ease;
     width:  $sidebar-size;
     background: $color-ma-blue;
+
+    @include for-tablet-landscape-up{
+      left: 0;
+    }
+
+    @include for-tablet-landscape-bottom{
+      left:  $sidebar-size-neg;
+    }
+
+    h5{color:$color-ma-white}
+    h6{color:$color-ma-white}
 }
 
-#sidebar h5, #sidebar h6 {
-    color: white;
-}
+
 
 /*list of options in sidebar*/
 ul.list-group {
@@ -142,28 +138,29 @@ ul.list-group {
 /*yellow button to collapse sidebar*/
 .visible-xs {
     display: none !important;
+
+    @include for-tablet-landscape-bottom{
+          display: block !important;
+    }
 }
 
-@media (max-width: 989px){
-  .visible-xs {
-      display: block !important;
-  }
-}
 
 /* Why so many classes for 1 property*/
 .visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {
     display: none !important;
 }
+
+.visible-xs-inline-block {
+    @include for-tablet-landscape-bottom{
+      display: inline-block !important;
+    }
+}
+
+
 .pull-left {
     float: left !important;
 }
 
-
-@media (max-width: 989px){
-.visible-xs-inline-block {
-    display: inline-block !important;
-}
-}
 
 html body #masteraula-nav-header .navbar-nav>li.sidebar-btn>a {
     color: $color-ma-white;

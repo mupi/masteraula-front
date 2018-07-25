@@ -24,6 +24,11 @@
         font-weight: bold;
         font-style: italic;
   }
+
+  @include for-phone-only {
+        display: inline-flex;
+    }
+
 }
 
 
@@ -31,11 +36,13 @@
 //Question Page where c-question is a the main container
 .c-question__row-info {
     margin-bottom: 10px;
+
+    .info-label{
+      font-size: 14px;
+    }
 }
 
-
-
-
+//INI: Pending revision
 .question-section-border {
     border: 1px solid rgba(0, 0, 0, 0.125);
     margin: 10px 0px;
@@ -55,31 +62,20 @@
   margin-bottom: 10px;
 }
 
-
-@media (max-width: 867px){
+//Learning Object section in QuestionPage
   .img-learning-object img {
-      width: 100%;
-  }
-  span.level-name, span.difficulty-level, span.teaching-level, span.tag-name,
-  span.descriptor-name, span.author {
-    display: inline-flex;
+    @include for-phone-only {
+          width: 100%;
+      }
   }
 
-  .question-information span, .question-information .info-label{
-    font-size: 14px;
+
+
+.h-100.card .card-text {
+      @include  for-tablet-portrait-up{
+        margin-top: 30px;
+      }
   }
-
-  .related-question.container .col-12, .related-question.container card {
-    margin-bottom: 15px;
-    }
-
-}
-
-@media (min-width: 867px){
-  .h-100.card .card-text {
-      margin-top: 30px;
-  }
-}
 
 .card-title .label-info, .card-subtitle .source-name {
     font-size: 14px !important;
@@ -97,7 +93,8 @@
     font-size: 13px;
 }
 
-
 .image-card.card .source-name {
     margin-bottom: 0px;
 }
+
+//END: Pending revision

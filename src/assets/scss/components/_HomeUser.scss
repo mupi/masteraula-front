@@ -22,7 +22,7 @@
     min-height: 100vh;
 }
 
-@media (min-width: 990px){
+@media (min-width: $break-tablet-landscape-up){
   html body #sidebar ~ #body {
       margin-left: $sidebar-size;
   }
@@ -53,12 +53,6 @@ html body #body {
 }
 
 
-.row {
-    margin-left: -5px;
-    margin-right: -5px;
-}
-
-
 body .container-fluid {
     background: $color-ma-white;
 }
@@ -73,17 +67,18 @@ body .container-fluid .row {
 }
 
 
-
-
-@media (max-width: 989px){
-  img.logo-in-menu.with-login {
-    max-width: 150px;
-    margin: 5px;
+img.logo-in-menu {
+  &.with-login{
+    @include for-tablet-landscape-bottom{
+      max-width: 150px;
+      margin: 5px;
+    }
   }
-
-  img.logo-in-menu.no-login {
-    max-width: 150px;
-    margin: 15px;
+  &.no-login{
+    @include for-tablet-landscape-bottom{
+      max-width: 150px;
+      margin: 15px;
+    }
   }
 
 }

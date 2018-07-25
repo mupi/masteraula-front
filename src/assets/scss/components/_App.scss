@@ -48,6 +48,7 @@ ul.header {
 
 }
 
+//Customize some Bootstrap classes according MasterAula design
 .btn {
     font-size: 14px;
     padding: 5px 10px;
@@ -56,4 +57,14 @@ ul.header {
 .modal-content {
     background: transparent;
     border: transparent;
+}
+
+
+.row {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.bg-primary {
+    background-color: $color-ma-blue !important;
 }
