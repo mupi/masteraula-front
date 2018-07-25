@@ -1,14 +1,15 @@
 import React from "react";
 import logo from "assets/img/home/logo_masteraula.png";
+import { Container, Row, Col } from 'reactstrap';
 
 const NotFoundPage = ()=>
       <div className="l-site-masteraula__public-home">
-        <div className="row">
-          <div className="banner-header col-md-12">
+        <Row>
+          <Col md="12" className="c-public-home__banner">
             <h2>A página que você tentou acessar não existe ou está indisponível</h2>
-          </div>
-        </div>
-        <div className="container caracteristicas-ma">
+          </Col>
+        </Row>
+        <div className="c-public-home__features">
               <div style={{'textAlign':'center', 'fontWeight':'bold'}}>
                 <h4>Caso acredite que isto é um erro, entre contato com a administração em contato@mupi.me</h4>
               </div>
