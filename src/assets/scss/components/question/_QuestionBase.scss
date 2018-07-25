@@ -1,0 +1,49 @@
+//Classes for Question Base that holds all question cards results.
+.c-question-base{
+
+    &__search-text{
+      padding: 15px;
+    }
+    &__results{
+      margin-top: 20px;
+    }
+}
+
+
+//Classes for question in Card
+.l-question-card-text{
+    margin-top: 15px;
+}
+
+.question-card {
+    margin-bottom: 20px;
+
+    &__btn{
+      margin-right: 10px;
+    }
+}
+
+
+
+/*Pagination in QuestionBase*/
+.page-item.active .page-link{
+  background-color: $color-ma-blue;
+  border-color:   $color-ma-blue;
+}
+
+.pagination-questions{
+  padding: 0px 15px;
+}
+
+.pagination-questions.row a {
+    color: $color-ma-blue;
+}
+
+.pagination-questions ul.pagination {
+    margin-bottom: 0px;
+}
+
+.page-item.active .page-link:hover {
+    color: white;
+    font-weight: bold;
+}

@@ -1,12 +1,17 @@
-.container{
-  padding-right: 0px;
-    padding-left: 0px;
+.c-home-user {
+    background: $color-ma-white;
+    border-radius: 10px;
+    top: 0px;
+    position: relative;
+    margin-top: 25px;
+    padding: 0px;
 }
+
 
 
 @media (min-width: 990px){
 html body #sidebar ~ #body {
-    margin-left: var(--sidebar-size);
+    margin-left: $sidebar-size;
 }}
 
 html body #navbar ~ #body {
@@ -28,7 +33,7 @@ html body #body {
     padding-bottom: 25px;
 }
 
-div#main-masteraula-container {
+#main-masteraula-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -49,26 +54,18 @@ div#main-masteraula-container {
 
 
 body .container-fluid {
-    background: var(--color-ma-white);
+    background: $color-ma-white;
 }
 
-div#sidebar .container-fluid,
-div#sidebar .container-fluid .row {
-    background: var(--color-ma-blue);
+#sidebar .container-fluid,
+#sidebar .container-fluid .row {
+    background:$color-ma-blue;
 }
 
 body .container-fluid .row {
     background: white;
 }
 
-.container.home-user-container {
-    background: white;
-    border-radius: 10px;
-    top: 0px;
-    position: relative;
-    margin-top: 25px;
-    padding-bottom: 25px;
-}
 
 @media (min-width: 989px){
   #main-masteraula-container img.logo-in-menu {

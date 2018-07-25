@@ -1,0 +1,29 @@
+/*
+CSS for RegisterPage
+*/
+.l-register{
+  border: none;
+  padding: 10px;
+  display: block;
+  text-align: center;
+}
+
+.c-register {
+        border-radius: 6px;
+
+    &__modal-content {
+        max-width: 500px;
+        background: $color-ma-blue-sky;
+        border-radius: 6px;
+    }
+
+    &__modal-header{
+      padding: 0px 10px;
+      border-bottom: 0px;
+    }
+
+    .form-group span {
+        color: red;
+        font-size: 12px;
+    }
+}

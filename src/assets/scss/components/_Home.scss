@@ -1,0 +1,75 @@
+/*Clases do Home*/
+
+.o-thumb-circle {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 25px;
+
+
+    &__img {
+        width: 100%;
+    }
+}
+
+.c-public-home{
+   &__features{
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+   &__banner {
+      background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
+      background-size: 100% auto;
+      color: $color-ma-white;
+      padding: 1em;
+      text-align: center;
+      margin-top:55px;
+      padding: 55px 10px;
+    }
+
+   &__main-title{
+       font-weight: bold;
+   }
+
+}
+
+
+//Web mode only
+@media (min-width: $break-md){
+  .c-public-home{
+    &__title-description{
+      margin: 40px;
+      font-size: 25px;
+      font-weight: 400;
+      line-height: 40px;
+    }
+  }
+}
+
+//Responsive mode only
+@media (max-width:  $break-md){
+    .c-public-home{
+      &__banner{
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 1.2;
+      }
+
+      &__main-title{
+          font-size: 25px;
+      }
+
+      &__title-description{
+            margin: 10px;
+      }
+
+      &__features{
+          padding-top: 30px;
+          padding-bottom: 30px;
+      }
+   }
+}

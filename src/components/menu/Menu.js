@@ -10,9 +10,6 @@ import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from "assets/img/home/masteraula-300x60.png";
 
-import 'assets/css/Navigation.css';
-import 'font-awesome/css/font-awesome.min.css';
-
 const Menu = (props) => {
   const { isOpen } = props
   const { isOpenSidebar } = props

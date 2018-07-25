@@ -5,12 +5,9 @@ import QuestionInfo from "components/question/QuestionInfo.js";
 import RelatedQuestions from "components/question/RelatedQuestions";
 import QuestionComments from "components/question/QuestionComments.js";
 import AddQuestionButton from "components/buttons/AddQuestionButton.js";
-import { Alert } from 'reactstrap';
+import { Alert, Row, Col } from 'reactstrap';
 
 import React, { Component } from 'react';
-
-import 'font-awesome/css/font-awesome.min.css';
-import 'assets/css/Question.css';
 
 /*Questoes Relacionadas - test*/
 const questionTest = {
@@ -123,17 +120,16 @@ class QuestionPage extends Component {
 
     return (
             <HomeUserPage>
-              <div className="contenedor-question">
-                  <div className="row justify-content-center">
-                    <div className="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                    <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
-                    <QuestionContent alternatives={activeQuestion.alternatives} statement={activeQuestion.statement} answer={activeQuestion.resolution}/>
-                    <QuestionInfo {...activeQuestion} onRate={onRate} rating={rating} />
-                    <QuestionComments />
-                    <RelatedQuestions rquestions={questionTest.rquestions} />
-
-                  </div>
-                </div>
+              <div className="c-question">
+                  <Row className="justify-content-center">
+                    <Col sm="12" md="12" xs="12">
+                      <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
+                      <QuestionContent alternatives={activeQuestion.alternatives} statement={activeQuestion.statement} answer={activeQuestion.resolution}/>
+                      <QuestionInfo {...activeQuestion} onRate={onRate} rating={rating} />
+                      <QuestionComments />
+                      <RelatedQuestions rquestions={questionTest.rquestions} />
+                    </Col>
+                 </Row>
               </div>
               <AddQuestionButton/>
 

@@ -1,0 +1,16 @@
+.l-site-masteraula{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+
+    &__user-home, &__public-home{
+      flex:1;
+    }
+}
+
+
+
+.l-user-operations  {
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
