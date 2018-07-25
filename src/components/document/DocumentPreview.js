@@ -103,9 +103,9 @@ class DocumentPreview extends React.Component{
 
                       {questions}
               {this.state.question?
-              <Modal isOpen={this.state.question} toggle={()=>this.toggle()} size='lg'>
+              <Modal className="document-modal" isOpen={this.state.question} toggle={()=>this.toggle()} size='lg'>
                 <ModalHeader toggle={()=>this.toggle()} />
-                <ModalBody className="question-modal">
+                <ModalBody>
                   <QuestionHeader disciplines={this.state.question.disciplines} source={this.state.question.source} year={this.state.question.year} />
                       <QuestionContent alternatives={this.state.question.alternatives} question={this.state.question.question} answer={this.state.question.answer}/>
                       <QuestionInfo disciplines={this.state.question.disciplines}

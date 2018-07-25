@@ -660,6 +660,10 @@ CSS for UserProfile
 .question-modal.modal-body {
   padding-top: 0px; }
 
+.document-modal {
+  padding-top: 0px;
+  background: #FFFFFF; }
+
 .btn-margin-right {
   margin-right: 15px; }
 
@@ -763,12 +767,12 @@ span.button-text {
     padding-bottom: 30px; } }
 
 .c-home-user {
-  background: white;
+  background: #FFFFFF;
   border-radius: 10px;
   top: 0px;
   position: relative;
   margin-top: 25px;
-  padding-bottom: 25px; }
+  padding: 0px; }
 
 @media (min-width: 990px) {
   html body #sidebar ~ #body {
