@@ -2,7 +2,7 @@ import React from 'react';
 import { ListGroup } from 'reactstrap';
 import SidebarFilter from "components/sidebarfilter/SidebarFilter";
 
-const filters= {
+const filters= { 
   "disciplines": [
     { "name": "Lista Disciplinas" }
   ],
