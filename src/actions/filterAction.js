@@ -1,26 +1,53 @@
 import { filterService } from 'services';
 
-//List all filters
-export const LIST_FILTER= 'LIST_QUESTION_PAGE'
-export const LIST_FILTERS_SUCCESS = 'LIST_QUESTION_PAGE_SUCCESS'
-export const LIST_FILTERS_FAILURE = 'LIST_QUESTION_PAGE_FAILURE'
+//List Discipline Filters
+export const LIST_DISCIPLINE_FILTERS= 'LIST_DISCIPLINE_FILTERS'
+export const LIST_DISCIPLINE_FILTERS_SUCCESS = 'LIST_DISCIPLINE_FILTERS_SUCCESS'
+export const LIST_DISCIPLINE_FILTERS_FAILURE = 'LIST_DISCIPLINE_FILTERS_FAILURE'
 
+//List TeachingLevel Filters
+export const LIST_TEACHINGLEVEL_FILTERS= 'LIST_TEACHINGLEVEL_FILTERS'
+export const LIST_TEACHINGLEVEL_FILTERS_SUCCESS = 'LIST_TEACHINGLEVEL_FILTERS_SUCCESS'
+export const LIST_TEACHINGLEVEL_FILTERS_FAILURE = 'LIST_TEACHINGLEVEL_FILTERS_FAILURE'
 
-export const listFilters = (filterType, id) => {
+//Discipline List
+export const listDisciplineFilters = (filterType, id) => {
   return dispatch => {
-    dispatch(requestQuestion(id))
-    return questionService.fetchQuestion(id)
+    dispatch(requestListDisciplineFilters(id))
+    return filterService.listDisciplineFilters()
       .then(
-        activeQuestion => {
-          dispatch(fetchQuestionSuccess(activeQuestion))
+        disciplinesFilters => {
+          dispatch(fetchtListDisciplineFiltersSuccess(disciplinesFilters))
         },
         error => {
-          dispatch(fetchQuestionFailure(error))
+          dispatch(fetchtListDisciplineFiltersFailure(error))
         }
       )
   }
 
-  function requestQuestion(){ return { type: FETCH_QUESTION } }
-  function fetchQuestionSuccess(activeQuestion){ return { type: FETCH_QUESTION_SUCCESS, activeQuestion } }
-  function fetchQuestionFailure(error){ return { type: FETCH_QUESTION_FAILURE, error } }
+  function requestListDisciplineFilters(){ return { type: LIST_DISCIPLINE_FILTERS } }
+  function fetchtListDisciplineFiltersSuccess(disciplinesFilters){ return { type: LIST_DISCIPLINE_FILTERS_SUCCESS, disciplinesFilters } }
+  function fetchtListDisciplineFiltersFailure(error){ return { type: LIST_DISCIPLINE_FILTERS_FAILURE, error } }
+}
+
+
+
+//TeachingLevel List
+export const listTeachingLevelFilters = () => {
+  return dispatch => {
+    dispatch(requestListTeachingLevelFilters())
+    return filterService.listTeachingLevelFilters()
+      .then(
+        teachingLevelFilters => {
+          dispatch(fetchListTeachingLevelSuccess(teachingLevelFilters))
+        },
+        error => {
+          dispatch(fetchListTeachingLevelFailure(error))
+        }
+      )
+  }
+
+  function requestListTeachingLevelFilters(){ return { type: LIST_TEACHINGLEVEL_FILTERS } }
+  function fetchListTeachingLevelFiltersSuccess(teachingLevelFilters){ return { type: LIST_TEACHINGLEVEL_FILTERS_SUCCESS, teachingLevelFilters } }
+  function fetchListTeachingLevelFiltersFailure(error){ return { type: LIST_TEACHINGLEVEL_FILTERS_FAILURE, error } }
 }

@@ -50,7 +50,7 @@ function listTeachingLevelFilters() {
 
     return fetch(`${apiUrl}/teaching_levels`, requestOptions)
         .then(handleResponse)
-        .then(disciplineFilters => {
+        .then(teachingLevelFilters => {
             return teachingLevelFilters;
         });
 }

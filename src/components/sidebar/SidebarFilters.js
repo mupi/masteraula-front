@@ -1,14 +1,8 @@
-import React from 'react';
-import { ListGroup } from 'reactstrap';
+import React, { Component } from 'react';
+import { ListGroup, Alert } from 'reactstrap';
 import SidebarFilter from "components/sidebarfilter/SidebarFilter";
 
-const filters= { 
-  "disciplines": [
-    { "name": "Lista Disciplinas" }
-  ],
-  "teachingLevels":[
-    { "name": "Lista de Níveis de Ensino"}
-  ],
+const filters= {
   "difficultyLevels":[
     { "name": "Fácil"},
     { "name": "Médio"},
@@ -17,17 +11,45 @@ const filters= {
 }
 
 
-const SidebarFilters = ()=> {
-    return (
-          <ListGroup className="question-all-filters">
+class SidebarFilters extends Component {
+
+  componentDidMount() {
+    this.props.listDisciplineFilters();
+    this.props.listTeachingLevelFilters();
+  }
+
+  render(){
+    const { disciplines, teachingLevels, isFetchingDisciplines, isFetchingTeachingLevels, error } = this.props
+
+    if(isFetchingDisciplines || isFetchingTeachingLevels ) {
+      return (
+        <ListGroup className="question-all-filters">
                 <h6><i className="fa fa-filter"></i> Filtros</h6>
-                <SidebarFilter name="Disciplinas" list={filters.disciplines}/>
-                <SidebarFilter name="Nível de Ensino" list={filters.teachingLevels}/>
-                <SidebarFilter name="Dificuldade" list={filters.difficultyLevels}/>
-          </ListGroup>
-
-
+          <Alert className="alert--warning" color="warning">
+              Carregando ...
+          </Alert>
+        </ListGroup>
       )
-}
+    }
 
+    if(error) {
+      return (
+        <ListGroup className="question-all-filters">
+          <Alert color="danger">
+              Erro nos filtros
+          </Alert>
+        </ListGroup>
+      )
+    }
+
+    return (
+            <ListGroup className="question-all-filters">
+                    <h6><i className="fa fa-filter"></i> Filtros</h6>
+                    <SidebarFilter name="Disciplinas" list={disciplines}/>
+                    <SidebarFilter name="Nível de Ensino" list={teachingLevels}/>
+                    <SidebarFilter name="Dificuldade" list={filters.difficultyLevels}/>
+            </ListGroup>
+          );
+    }
+}
 export default SidebarFilters;
