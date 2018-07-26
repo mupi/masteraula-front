@@ -43,6 +43,7 @@ class SidebarFilters extends Component {
     }
 
     return (
+
             <ListGroup className="question-all-filters">
                     <h6><i className="fa fa-filter"></i> Filtros</h6>
                     <SidebarFilter name="Disciplinas" list={disciplineFilters}/>

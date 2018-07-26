@@ -11,23 +11,23 @@ export const LIST_TEACHINGLEVEL_FILTERS_SUCCESS = 'LIST_TEACHINGLEVEL_FILTERS_SU
 export const LIST_TEACHINGLEVEL_FILTERS_FAILURE = 'LIST_TEACHINGLEVEL_FILTERS_FAILURE'
 
 //Discipline List
-export const listDisciplineFilters = () => {
+export const listDisciplineFilters = (param) => {
   return dispatch => {
-    dispatch(requestListDisciplineFilters())
-    return filterService.listDisciplineFilters()
+    dispatch(requestListDisciplineFilters(param))
+    return filterService.listDisciplineFilters(param)
       .then(
         disciplineFilters => {
-          dispatch(fetchtListDisciplineFiltersSuccess(disciplineFilters))
+          dispatch(fetchListDisciplineFiltersSuccess(disciplineFilters))
         },
         error => {
-          dispatch(fetchtListDisciplineFiltersFailure(error))
+          dispatch(fetchListDisciplineFiltersFailure(error))
         }
       )
   }
 
   function requestListDisciplineFilters(){ return { type: LIST_DISCIPLINE_FILTERS } }
-  function fetchtListDisciplineFiltersSuccess(disciplineFilters){ return { type: LIST_DISCIPLINE_FILTERS_SUCCESS, disciplineFilters } }
-  function fetchtListDisciplineFiltersFailure(error){ return { type: LIST_DISCIPLINE_FILTERS_FAILURE, error } }
+  function fetchListDisciplineFiltersSuccess(disciplineFilters){ return { type: LIST_DISCIPLINE_FILTERS_SUCCESS, disciplineFilters } }
+  function fetchListDisciplineFiltersFailure(error){ return { type: LIST_DISCIPLINE_FILTERS_FAILURE, error } }
 }
 
 

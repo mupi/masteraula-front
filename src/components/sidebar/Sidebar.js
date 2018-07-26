@@ -10,7 +10,7 @@ import logoMasterAula from "assets/img/home/masteraula-300x60.png";
 import logoMasterAulaVerde from "assets/img/home/logo_masteraula-fd-verde.png";
 
 import SidebarFilters from "./SidebarFilters"
-
+import FilterContainer from "containers/FilterContainer"
 
 const Sidebar = props => {
   const { showFilters } = props
@@ -44,7 +44,7 @@ const Sidebar = props => {
                             <Link to="/question-base/1">  Banco de questões </Link>
                           </ListGroupItem>
                         </ListGroup>
-                        { showFilters &&  <SidebarFilters/>}
+                        { showFilters &&  <FilterContainer/>}
                       </div>
                   </Col>
                 </Row>

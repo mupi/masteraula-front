@@ -1,11 +1,12 @@
 import { apiUrl } from 'helpers/config';
 
 const filterService = {
-    listFilters 
+    listDisciplineFilters,
+    listTeachingLevelFilters
 };
 
-
-function listFilters(filterName) {
+//Get all disciplines that will be used in SideBar
+function listDisciplineFilters(param) {
     const requestOptions = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
@@ -22,12 +23,36 @@ function listFilters(filterName) {
         });
     }
 
-    return fetch(`${apiUrl}/${filterName}`, requestOptions)
+    return fetch(`${apiUrl}/disciplines`, requestOptions)
         .then(handleResponse)
-        .then(filters => {
-            return filters;
+        .then(disciplineFilters => {
+            return disciplineFilters;
         });
 }
 
+//Get all TeachingLevels that will be used in SideBar
+function listTeachingLevelFilters(param) {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+
+    const handleResponse = (response) => {
+        return response.json().then(data => {
+            if (!response.ok) {
+                const error = (data && data.email);
+                return Promise.reject(error);
+            }
+
+            return data;
+        });
+    }
+
+    return fetch(`${apiUrl}/teaching_levels`, requestOptions)
+        .then(handleResponse)
+        .then(teachingLevelFilters => {
+            return teachingLevelFilters;
+        });
+}
 
 export default filterService
