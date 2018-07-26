@@ -4,8 +4,8 @@ import {
 } from 'actions/filterAction';
 
 const initialState = {
-  disciplineFilters:{},
-  teachingLevelFilters:{},
+  disciplineFilters:[],
+  teachingLevelFilters:[],
 }
 
 export const filter = (state = initialState, action) => {
