@@ -46,8 +46,6 @@ class SidebarFilters extends Component {
 
             <ListGroup className="question-all-filters">
                     <h6><i className="fa fa-filter"></i> Filtros</h6>
-                    <SidebarFilter name="Disciplinas" list={disciplineFilters}/>
-                    <SidebarFilter name="Nível de Ensino" list={teachingLevelFilters}/>
                     <SidebarFilter name="Dificuldade" list={filters.difficultyLevels}/>
             </ListGroup>
           );

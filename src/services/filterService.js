@@ -23,7 +23,7 @@ function listDisciplineFilters(param) {
         });
     }
 
-    return fetch(`${apiUrl}/disciplines`, requestOptions)
+    return fetch(`${apiUrl}/disciplines/`, requestOptions)
         .then(handleResponse)
         .then(disciplineFilters => {
             return disciplineFilters;
@@ -48,7 +48,7 @@ function listTeachingLevelFilters(param) {
         });
     }
 
-    return fetch(`${apiUrl}/teaching_levels`, requestOptions)
+    return fetch(`${apiUrl}/teaching_levels/`, requestOptions)
         .then(handleResponse)
         .then(teachingLevelFilters => {
             return teachingLevelFilters;
