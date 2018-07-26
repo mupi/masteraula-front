@@ -1,12 +1,11 @@
 import { apiUrl } from 'helpers/config';
 
 const filterService = {
-    listFilters /*,
-    listTeachingLevel*/
+    listFilters 
 };
 
 
-function listFilters(page) {
+function listFilters(filterName) {
     const requestOptions = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
@@ -23,10 +22,10 @@ function listFilters(page) {
         });
     }
 
-    return fetch(`${apiUrl}/questions/?page=${page}`, requestOptions)
+    return fetch(`${apiUrl}/${filterName}`, requestOptions)
         .then(handleResponse)
-        .then(questionPage => {
-            return questionPage;
+        .then(filters => {
+            return filters;
         });
 }
 
