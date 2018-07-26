@@ -1,10 +1,12 @@
-import React  from 'react';
+import React from 'react';
 
-const QuestionAuthor = ({author, styleTag }) => {
-    const name = author ? author.name : "Anônimo"
+const QuestionAuthor = ({ author, styleTag }) => {
+  const name = author ? author.name : 'Anônimo';
 
-    return (
-        <span className={styleTag} >{ name }</span>
-    )
-}
+  return (
+    <span className={styleTag}>
+      { name }
+    </span>
+  );
+};
 export default QuestionAuthor;

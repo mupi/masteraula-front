@@ -1,26 +1,28 @@
-import { createStore, applyMiddleware } from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import { createLogger } from 'redux-logger'
-import { combineReducers } from 'redux'
-import { connectRouter, routerMiddleware } from 'connected-react-router'
-import { login, menu, register, forgotPassword, profileEdit,  question, filter, session} from 'reducers'
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import { combineReducers } from 'redux';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
+import {
+  login, menu, register, forgotPassword, profileEdit, question, filter, session,
+} from 'reducers';
 
-import { history } from 'helpers/history'
-import { reducer as formReducer } from 'redux-form'
+import { history } from 'helpers/history';
+import { reducer as formReducer } from 'redux-form';
 
-const loggerMiddleware = createLogger()
-/*List of reducers*/
+const loggerMiddleware = createLogger();
+/* List of reducers */
 const rootReducer = combineReducers({
-    login,
-    menu,
-    register,
-    forgotPassword,
-    profileEdit,
-    question,
-    filter,
-    session,
-    form: formReducer
-})
+  login,
+  menu,
+  register,
+  forgotPassword,
+  profileEdit,
+  question,
+  filter,
+  session,
+  form: formReducer,
+});
 
 export default function configureStore(preloadedState) {
   return createStore(
@@ -29,7 +31,7 @@ export default function configureStore(preloadedState) {
     applyMiddleware(
       thunkMiddleware,
       loggerMiddleware,
-      routerMiddleware(history)
-    )
-  )
+      routerMiddleware(history),
+    ),
+  );
 }
