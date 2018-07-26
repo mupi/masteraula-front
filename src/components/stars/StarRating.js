@@ -1,9 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Star from './Star'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Star from './Star';
 
-const StarRating = ({starsSelected=0, totalStars=5, onRate=f=>f}) =>
-    <div className="star-rating">
+const StarRating = ({ starsSelected = 0, totalStars = 5, onRate = f => f }) => (
+<div className="star-rating">
         {[...Array(totalStars)].map((n, i) =>
             <Star key={i}
                   selected={i<starsSelected}
@@ -11,11 +11,10 @@ const StarRating = ({starsSelected=0, totalStars=5, onRate=f=>f}) =>
         )}
         <p className="stars">{starsSelected} de {totalStars} estrelas</p>
     </div>
+)StarRating.propTypes = {
+  starsSelected: PropTypes.number,
+  totalStars: PropTypes.number,
+  onRate: PropTypes.func,
+};
 
-StarRating.propTypes = {
-    starsSelected: PropTypes.number,
-    totalStars: PropTypes.number,
-    onRate: PropTypes.func
-}
-
-export default StarRating
+export default StarRating;

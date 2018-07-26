@@ -1,14 +1,18 @@
-import React  from 'react';
-import {Button, Card, CardImg, CardBody, Row } from 'reactstrap';
-import imageCard from "assets/img/home/question-card.jpg";
-import DisciplineList from "components/disciplines/DisciplineList"
-import TagList from "components/tags/TagList"
+import React from 'react';
+import {
+Button, Card, CardImg, CardBody, Row 
+} from 'reactstrap';
+import imageCard from 'assets/img/home/question-card.jpg';
+import DisciplineList from 'components/disciplines/DisciplineList'
+import TagList from 'components/tags/TagList'
+import { Link } from 'react-router-dom'
 import QuestionAuthor from "./QuestionAuthor"
 import QuestionSourceYear from "./QuestionSourceYear"
-import { Link } from 'react-router-dom'
 
-const QuestionCard = ({id, disciplines, source, year, statement, urlImage="", author, teaching_levels}) =>
-			<Card className= { urlImage !=="" ?"h-10 image-card": "h-100" } >
+const QuestionCard = ({
+id, disciplines, source, year, statement, urlImage = "", author, teaching_levels
+}) => (
+<Card className= { urlImage !=="" ?"h-10 image-card": "h-100" } >
 				{ urlImage !== "" ? <CardImg top width="100%" src={imageCard} alt="Card image cap" /> : null }
 			  <CardBody>
 			    <Row>
@@ -30,5 +34,4 @@ const QuestionCard = ({id, disciplines, source, year, statement, urlImage="", au
 					<Button className="question-card__btn"><i className="fa fa-plus-circle"></i> Adicionar</Button>
 			  </CardBody>
 			</Card>
-
-export default QuestionCard;
+)export default QuestionCard;

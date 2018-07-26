@@ -1,8 +1,8 @@
-import React from "react";
-import Tag from "./Tag"
+import React from 'react';
+import Tag from './Tag'
 
-const TagList = ({list, styleTag}) =>
-                  <div className="tags">
+const TagList = ({ list, styleTag }) => (
+<div className="tags">
                   {list && list.map((tag, i) =>
                       <Tag key={i}
                             name={tag.name}
@@ -10,4 +10,4 @@ const TagList = ({list, styleTag}) =>
                       />
                   )}
                   </div>
-  export default TagList;
+)export default TagList;

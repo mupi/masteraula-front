@@ -1,28 +1,22 @@
-import { connect } from 'react-redux'
-import VerifyRegisterPage from './VerifyRegisterPage'
-import {  toggleModal } from 'actions/loginAction';
+import { connect } from 'react-redux';
+import { toggleModal } from 'actions/loginAction';
 
-import { REGISTER_SUCCESS, verifyEmail} from 'actions/registerAction.js'
+import { REGISTER_SUCCESS, verifyEmail } from 'actions/registerAction.js';
+import VerifyRegisterPage from './VerifyRegisterPage';
 
 const mapStateToProps = state => ({
-    success : state.register.success,
-    error : state.register.error,
-    modal : state.login.modal
-  })
+  success: state.register.success,
+  error: state.register.error,
+  modal: state.login.modal,
+});
 
-  const mapDispatchToProps = dispatch => ({
-    verifyEmail : key => {
-      return dispatch(verifyEmail(key))
-    },
-    resetVerifyEmail : () => {
-      return dispatch(() => {
-        return { type: REGISTER_SUCCESS }
-      })
-    },
-    toggleModal : modal =>  dispatch(toggleModal(modal))
-  })
+const mapDispatchToProps = dispatch => ({
+  verifyEmail: key => dispatch(verifyEmail(key)),
+  resetVerifyEmail: () => dispatch(() => ({ type: REGISTER_SUCCESS })),
+  toggleModal: modal => dispatch(toggleModal(modal)),
+});
 
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(VerifyRegisterPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(VerifyRegisterPage);

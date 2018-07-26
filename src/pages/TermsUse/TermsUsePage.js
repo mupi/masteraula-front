@@ -3,8 +3,8 @@ import React from 'react';
 import { Container } from 'reactstrap';
 
 
-const TermsUsePage = ({date_update="29 de junho de 2018"}) =>
-    <div className="l-site-masteraula__public-home c-terms-use middle-box">
+const TermsUsePage = ({ date_update = "29 de junho de 2018" }) => (
+<div className="l-site-masteraula__public-home c-terms-use middle-box">
       <Container>
             <h3><i className="fa fa-thumbs-up"></i> Damos boas-vindas ao Portal MasterAula.</h3>
 
@@ -52,5 +52,4 @@ const TermsUsePage = ({date_update="29 de junho de 2018"}) =>
             <p className="date-update-terms">Atualizado em: {date_update}</p>
         </Container>
     </div>
-
-export default TermsUsePage;
+)export default TermsUsePage;

@@ -1,11 +1,11 @@
-import React  from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import learningObject2 from "assets/img/home/question-objeto-aprendizagem2.jpg";
-import AlternativeList from "components/alternatives/AlternativeList"
+import learningObject2 from 'assets/img/home/question-objeto-aprendizagem2.jpg';
+import AlternativeList from 'components/alternatives/AlternativeList'
 
 
-const QuestionContent = ({alternatives, statement ,answer}) =>
-            <Container className="question-content">
+const QuestionContent = ({ alternatives, statement, answer }) => (
+<Container className="question-content">
               <Row className=" section-text-question">
                 <Col sm="12" xs="12">
                   <p className="text-question">{statement}</p>
@@ -33,6 +33,4 @@ const QuestionContent = ({alternatives, statement ,answer}) =>
                 </Col>
               </Row>:''}
             </Container>
-
-
-export default QuestionContent;
+)export default QuestionContent;

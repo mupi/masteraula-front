@@ -1,25 +1,26 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-import StarRating from 'components/stars/StarRating'
-import DisciplineList from "components/disciplines/DisciplineList"
-import DescriptorList from "components/descriptors/DescriptorList"
-import TagList from "components/tags/TagList"
+import StarRating from 'components/stars/StarRating';
+import DisciplineList from 'components/disciplines/DisciplineList'
+import DescriptorList from 'components/descriptors/DescriptorList'
+import TagList from 'components/tags/TagList'
 
-import QuestionAuthor from "./QuestionAuthor"
+import QuestionAuthor from './QuestionAuthor'
 
-const getTeachingLevel = (difficulty ) => {
-    switch(difficulty){
-      case "E": return "Fácil"
-      case "M": return "Médio"
-      case "H": return "Difícil"
-      default: return difficulty
-    }
-}
+const getTeachingLevel = (difficulty) => {
+  switch (difficulty) {
+    case 'E': return 'Fácil'
+    case 'M': return 'Médio'
+    case 'H': return 'Difícil'
+    default: return difficulty;
+  }
+};
 
-const QuestionInfo = ({disciplines, teaching_levels, descriptors, tags, difficulty, author , rating, onRate=f=>f}) =>
-            <Container className="question-information">
+const QuestionInfo = ({ disciplines, teaching_levels, descriptors, tags, difficulty, author, rating, onRate = f => f
+}) => (
+<Container className="question-information">
               <Row className="title-section-question">
                     <h4><i className="fa fa-info-circle"></i> Informação da Questão</h4>
               </Row>
@@ -66,16 +67,15 @@ const QuestionInfo = ({disciplines, teaching_levels, descriptors, tags, difficul
                  </Col>
               </Row>
             </Container>
+)QuestionInfo.propTypes = {
+  rating: PropTypes.number,
+  onRate: PropTypes.func,
+};
 
-    QuestionInfo.propTypes = {
-        rating: PropTypes.number,
-        onRate: PropTypes.func
-    }
-
-    QuestionInfo.defaultProps = {
-        rating: 0,
-        onRate: f=>f
-    }
+QuestionInfo.defaultProps = {
+  rating: 0,
+  onRate: f => f,
+};
 
 
 export default QuestionInfo;

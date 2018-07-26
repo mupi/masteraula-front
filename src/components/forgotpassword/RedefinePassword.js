@@ -1,18 +1,24 @@
 import React from 'react';
-import { Button, Form, FormGroup, Alert } from 'reactstrap';
+import {
+  Button, Form, FormGroup, Alert,
+} from 'reactstrap';
 import { Row, Col } from 'reactstrap';
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm } from 'redux-form';
 import { resetForgotPasswordForm } from 'actions/forgotPasswordAction';
 
-const RedefinePassword = props => {
-  const { handleSubmit, error, submitSucceeded } = props
+const RedefinePassword = (props) => {
+  const { handleSubmit, error, submitSucceeded } = props;
 
   return (
     <div className="c-redefine-password">
-      <h3><i className="fa fa-lock"></i> Mudar sua senha</h3>
+      <h3>
+        <i className="fa fa-lock" />
+        {' '}
+Mudar sua senha
+      </h3>
       <Row className="justify-content-center">
         <Col sm="12" xs="12">
-          <Form onSubmit={ handleSubmit }>
+          <Form onSubmit={handleSubmit}>
             <FormGroup>
               <Field
                 component="input"
@@ -33,21 +39,32 @@ const RedefinePassword = props => {
                 className="form-control"
               />
             </FormGroup>
-            {error && <Alert color="danger">{error}</Alert>}
-            { submitSucceeded  &&
+            {error && (
+            <Alert color="danger">
+              {error}
+            </Alert>
+            )}
+            { submitSucceeded
+              && (
               <Alert color="success">
-                <p className="alert__message"><i className="fa fa-thumbs-up"></i>Sua senha foi alterada com sucesso</p>
+                <p className="alert__message">
+                  <i className="fa fa-thumbs-up" />
+Sua senha foi alterada com sucesso
+                </p>
               </Alert>
+              )
             }
-            <Button>Salvar</Button>
+            <Button>
+Salvar
+            </Button>
           </Form>
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
 
 export default reduxForm({
-  form: 'redefine_password'
-})(RedefinePassword)
+  form: 'redefine_password',
+})(RedefinePassword);
