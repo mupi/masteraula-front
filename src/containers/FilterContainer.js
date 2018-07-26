@@ -22,6 +22,6 @@ import { listDisciplineFilters, listTeachingLevelFilters } from 'actions/filterA
   const FilterContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-  )(SidebarFilter);
+  )(SidebarFilters);
 
   export default FilterContainer
