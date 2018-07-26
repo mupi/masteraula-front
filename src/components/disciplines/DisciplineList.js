@@ -9,4 +9,5 @@ const DisciplineList = ({ list }) => (
                       />
                   )}
               </div>
-)export default DisciplineList;
+);
+export default DisciplineList;

@@ -18,4 +18,5 @@ id, disciplines, source, year
                 <h4><i className="fa fa-chevron-circle-right"></i> Questão</h4>
               </Row>
             </Container>
-)export default QuestionHeader;
+);
+export default QuestionHeader;

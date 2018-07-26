@@ -52,4 +52,5 @@ const TermsUsePage = ({ date_update = "29 de junho de 2018" }) => (
             <p className="date-update-terms">Atualizado em: {date_update}</p>
         </Container>
     </div>
-)export default TermsUsePage;
+);
+export default TermsUsePage;

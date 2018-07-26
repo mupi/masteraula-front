@@ -11,7 +11,8 @@ const StarRating = ({ starsSelected = 0, totalStars = 5, onRate = f => f }) => (
         )}
         <p className="stars">{starsSelected} de {totalStars} estrelas</p>
     </div>
-)StarRating.propTypes = {
+);
+StarRating.propTypes = {
   starsSelected: PropTypes.number,
   totalStars: PropTypes.number,
   onRate: PropTypes.func,

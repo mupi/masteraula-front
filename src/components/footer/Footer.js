@@ -9,4 +9,5 @@ const Footer = ({ year, version }) => (
           </Col>
         </Row>
     </div>
-)export default Footer;
+);
+export default Footer;

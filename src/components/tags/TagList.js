@@ -10,4 +10,5 @@ const TagList = ({ list, styleTag }) => (
                       />
                   )}
                   </div>
-)export default TagList;
+);
+export default TagList;

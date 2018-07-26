@@ -10,4 +10,5 @@ const DescriptorList = ({ list, styleTag }) => (
                       />
                   )}
                   </div>
-)export default DescriptorList;
+);
+export default DescriptorList;

@@ -34,4 +34,5 @@ id, disciplines, source, year, statement, urlImage = "", author, teaching_levels
 					<Button className="question-card__btn"><i className="fa fa-plus-circle"></i> Adicionar</Button>
 			  </CardBody>
 			</Card>
-)export default QuestionCard;
+);
+export default QuestionCard;

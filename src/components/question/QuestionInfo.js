@@ -67,7 +67,8 @@ const QuestionInfo = ({ disciplines, teaching_levels, descriptors, tags, difficu
                  </Col>
               </Row>
             </Container>
-)QuestionInfo.propTypes = {
+);
+QuestionInfo.propTypes = {
   rating: PropTypes.number,
   onRate: PropTypes.func,
 };

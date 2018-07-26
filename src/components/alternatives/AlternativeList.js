@@ -9,4 +9,5 @@ const AlternativeList = ({ list }) => (
                       />
                   )}
                   </div>
-)export default AlternativeList;
+);
+export default AlternativeList;

@@ -33,4 +33,5 @@ const QuestionContent = ({ alternatives, statement, answer }) => (
                 </Col>
               </Row>:''}
             </Container>
-)export default QuestionContent;
+);
+export default QuestionContent;

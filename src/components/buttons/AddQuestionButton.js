@@ -9,4 +9,5 @@ const AddQuestionButton = ({ questionId = "-1" }) => (
           <i className="fa fa-plus"></i>
         </Button>
 </div>
-)export default AddQuestionButton;
+);
+export default AddQuestionButton;
