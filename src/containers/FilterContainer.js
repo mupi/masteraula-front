@@ -1,25 +1,25 @@
 import { connect } from 'react-redux'
-import QuestionPage from 'pages/Question/QuestionPage'
-import { fetchQuestion, rateQuestion } from 'actions/questionAction.js'
+import SidebarFilter from 'components/sidebar/sidebarFilters'
+import { listDisciplineFilters, listTeachingLevelFilters } from 'actions/filterAction.js'
 
+//state.<reducer's name>.<property>
   const mapStateToProps = state => ({
-        isFetching: state.question.isFetching,
-        activeQuestion: state.question.activeQuestion,
-        rating:state.question.rating
+        disciplineFilters: state.filter.disciplineFilters,
+        teachingLevelFilters: state.filter.teachingLevelFilters,
   })
 
   const mapDispatchToProps = dispatch => ({
-      fetchQuestion : id => {
-        return dispatch(fetchQuestion(id))
+      listDisciplineFilters : () => {
+        return dispatch(listDisciplineFilters())
       },
-      onRate : rating => {
-        return dispatch(rateQuestion(rating))
+      listTeachingLevelFilters : () => {
+        return dispatch(listTeachingLevelFilters())
       }
   })
 
-  const QuestionPageContainer = connect(
+  const FilterContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-  )(QuestionPage);
+  )(SidebarFilter);
 
   export default FilterContainer

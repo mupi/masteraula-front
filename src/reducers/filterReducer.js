@@ -1,30 +1,16 @@
 import {
-    LIST_QUESTION_PAGE, LIST_QUESTION_PAGE_SUCCESS, LIST_QUESTION_PAGE_FAILURE
-} from 'actions/questionAction';
+    LIST_DISCIPLINE_FILTERS, LIST_DISCIPLINE_FILTERS_SUCCESS, LIST_DISCIPLINE_FILTERS_FAILURE,
+    LIST_TEACHINGLEVEL_FILTERS, LIST_TEACHINGLEVEL_FILTERS_SUCCESS, LIST_TEACHINGLEVEL_FILTERS_FAILURE
+} from 'actions/filterAction';
 
 const initialState = {
-  activeQuestion:{},
-  questionPage:{},
+  disciplineFilters:{},
+  teachingLevelFilters:{},
 }
 
-export const question = (state = initialState, action) => {
+export const filter = (state = initialState, action) => {
     switch (action.type) {
 
-        case FETCH_QUESTION:
-            return Object.assign({}, state, {
-                isFetching : true,
-                error: null
-            });
-        case FETCH_QUESTION_SUCCESS:
-            return Object.assign({}, state, {
-                activeQuestion: action.activeQuestion,
-                isFetching: false
-            });
-        case FETCH_QUESTION_FAILURE:
-            return Object.assign({}, state, {
-                isFetching: false,
-                error: action.error
-            })
         case LIST_QUESTION_PAGE:
             return Object.assign({}, state, {
                 currentPage : action.page,

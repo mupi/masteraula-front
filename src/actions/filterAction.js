@@ -16,8 +16,8 @@ export const listDisciplineFilters = () => {
     dispatch(requestListDisciplineFilters())
     return filterService.listDisciplineFilters()
       .then(
-        disciplinesFilters => {
-          dispatch(fetchtListDisciplineFiltersSuccess(disciplinesFilters))
+        disciplineFilters => {
+          dispatch(fetchtListDisciplineFiltersSuccess(disciplineFilters))
         },
         error => {
           dispatch(fetchtListDisciplineFiltersFailure(error))
@@ -26,7 +26,7 @@ export const listDisciplineFilters = () => {
   }
 
   function requestListDisciplineFilters(){ return { type: LIST_DISCIPLINE_FILTERS } }
-  function fetchtListDisciplineFiltersSuccess(disciplinesFilters){ return { type: LIST_DISCIPLINE_FILTERS_SUCCESS, disciplinesFilters } }
+  function fetchtListDisciplineFiltersSuccess(disciplineFilters){ return { type: LIST_DISCIPLINE_FILTERS_SUCCESS, disciplineFilters } }
   function fetchtListDisciplineFiltersFailure(error){ return { type: LIST_DISCIPLINE_FILTERS_FAILURE, error } }
 }
 
