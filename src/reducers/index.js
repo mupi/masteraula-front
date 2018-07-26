@@ -5,3 +5,4 @@ export { default as forgotPassword } from './forgotPasswordReducer';
 export { default as profileEdit } from './profileEditReducer';
 export { default as session } from './sessionReducer';
 export { default as question } from './questionReducer';
+export { default as filter } from './filterReducer';

@@ -1,39 +1,8 @@
-import React from "react";
-import { ListGroup } from 'reactstrap';
+import React, { Component } from 'react';
+import { ListGroup, Alert } from 'reactstrap';
 import SidebarFilter from "components/sidebarfilter/SidebarFilter";
 
 const filters= {
-  "disciplines": [
-    { "name": "Artes" },
-    { "name": "Biologia" },
-    { "name": "Ciências" },
-    { "name": "Educação Física" },
-    { "name": "Ensino Religioso" },
-    { "name": "Estudos Sociais" },
-    { "name": "Filosofia" },
-    { "name": "Física" },
-    { "name": "Geografia" },
-    { "name": "História" },
-    { "name": "Informática" },
-    { "name": "Língua Estrangeira - Inglês" },
-    { "name": "Língua Estrangeira - Espanhol" },
-    { "name": "Língua Estrangeira - Outras" },
-    { "name": "Matemática" },
-    { "name": "Polivalente" },
-    { "name": "Português / Língua Portuguesa" },
-    { "name": "Química" },
-    { "name": "Redação e Literatura" },
-    { "name": "Sociologia" },
-    { "name": "Outros" }
-  ],
-  "teachingLevels":[
-    { "name": "Ensino Infantil"},
-    { "name": "Ensino Fundamental I"},
-    { "name": "Ensino Fundamental II"},
-    { "name": "Ensino Médio"},
-    { "name": "Ensino Superior"},
-    { "name": "Ensino para Jovens e Adultos (EJA)"}
-  ],
   "difficultyLevels":[
     { "name": "Fácil"},
     { "name": "Médio"},
@@ -41,17 +10,47 @@ const filters= {
   ]
 }
 
-const SidebarFilters = ()=> {
-    return (
-          <ListGroup className="question-all-filters">
+
+class SidebarFilters extends Component {
+
+  componentDidMount() {
+    this.props.listDisciplineFilters();
+    this.props.listTeachingLevelFilters();
+  }
+
+  render(){
+    const { disciplineFilters, teachingLevelFilters, isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, error } = this.props
+
+    if(isFetchingDisciplineFilters || isFetchingTeachingLevelFilters ) {
+      return (
+        <ListGroup className="question-all-filters">
                 <h6><i className="fa fa-filter"></i> Filtros</h6>
-                <SidebarFilter name="Disciplinas" list={filters.disciplines}/>
-                <SidebarFilter name="Nível de Ensino" list={filters.teachingLevels}/>
-                <SidebarFilter name="Dificuldade" list={filters.difficultyLevels}/>
-          </ListGroup>
-
-
+          <Alert className="alert--warning" color="warning">
+              Carregando ...
+          </Alert>
+        </ListGroup>
       )
-}
+    }
 
+    if(error) {
+      return (
+        <ListGroup className="question-all-filters">
+          <Alert color="danger">
+              Erro nos filtros
+          </Alert>
+        </ListGroup>
+      )
+    }
+
+    return (
+
+            <ListGroup className="question-all-filters">
+                    <h6><i className="fa fa-filter"></i> Filtros</h6>
+                    <SidebarFilter name="Disciplinas" list={disciplineFilters}/>
+                    <SidebarFilter name="Nível de Ensino" list={teachingLevelFilters}/>
+                    <SidebarFilter name="Dificuldade" list={filters.difficultyLevels}/>
+            </ListGroup>
+          );
+    }
+}
 export default SidebarFilters;
