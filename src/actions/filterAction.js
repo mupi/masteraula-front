@@ -11,9 +11,9 @@ export const LIST_TEACHINGLEVEL_FILTERS_SUCCESS = 'LIST_TEACHINGLEVEL_FILTERS_SU
 export const LIST_TEACHINGLEVEL_FILTERS_FAILURE = 'LIST_TEACHINGLEVEL_FILTERS_FAILURE'
 
 //Discipline List
-export const listDisciplineFilters = (filterType, id) => {
+export const listDisciplineFilters = () => {
   return dispatch => {
-    dispatch(requestListDisciplineFilters(id))
+    dispatch(requestListDisciplineFilters())
     return filterService.listDisciplineFilters()
       .then(
         disciplinesFilters => {
