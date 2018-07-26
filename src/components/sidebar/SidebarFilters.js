@@ -19,9 +19,9 @@ class SidebarFilters extends Component {
   }
 
   render(){
-    const { disciplineFilters, teachingLevelFilters, isFetchingDisciplines, isFetchingTeachingLevels, error } = this.props
+    const { disciplineFilters, teachingLevelFilters, isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, error } = this.props
 
-    if(isFetchingDisciplines || isFetchingTeachingLevels ) {
+    if(isFetchingDisciplineFilters || isFetchingTeachingLevelFilters ) {
       return (
         <ListGroup className="question-all-filters">
                 <h6><i className="fa fa-filter"></i> Filtros</h6>

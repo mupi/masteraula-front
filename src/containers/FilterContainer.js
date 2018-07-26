@@ -6,6 +6,8 @@ import { listDisciplineFilters, listTeachingLevelFilters } from 'actions/filterA
   const mapStateToProps = state => ({
         disciplineFilters: state.filter.disciplineFilters,
         teachingLevelFilters: state.filter.teachingLevelFilters,
+        isFetchingDisciplineFilters: state.question.isFetchingDisciplineFilters,
+        isFetchingTeachingLevelFilters: state.question.isFetchingTeachingLevelFilters
   })
 
   const mapDispatchToProps = dispatch => ({

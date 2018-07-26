@@ -11,29 +11,41 @@ const initialState = {
 export const filter = (state = initialState, action) => {
     switch (action.type) {
 
-        case LIST_QUESTION_PAGE:
+        case LIST_DISCIPLINE_FILTERS:
             return Object.assign({}, state, {
-                currentPage : action.page,
-                isFetching : true,
+                disciplineFilters : action.disciplineFilters,
+                isFetchingDisciplineFilters : true,
                 error: null
             });
-        case LIST_QUESTION_PAGE_SUCCESS:
+        case LIST_DISCIPLINE_FILTERS_SUCCESS:
             return Object.assign({}, state, {
-                questionPage: action.questionPage,
-                isFetching: false
+                disciplineFilters: action.disciplineFilters,
+                isFetchingDisciplineFilters: false
             });
-        case LIST_QUESTION_PAGE_FAILURE:
+        case LIST_DISCIPLINE_FILTERS_FAILURE:
             return Object.assign({}, state, {
-                isFetching: false,
+                isFetchingDisciplineFilters: false,
                 error: action.error
             })
-        case RATE_QUESTION:
-            return Object.assign({}, state, {
-                rating: action.rating
-        })
+        case LIST_TEACHINGLEVEL_FILTERS:
+                return Object.assign({}, state, {
+                    teachingLevelFilters : action.teachingLevelFilters,
+                    isFetchingTeachingLevelFilters : true,
+                    error: null
+            });
+        case LIST_TEACHINGLEVEL_FILTERS_SUCCESS:
+                return Object.assign({}, state, {
+                    teachingLevelFilters: action.teachingLevelFilters,
+                    isFetchingTeachingLevelFilters: false
+            });
+        case LIST_TEACHINGLEVEL_FILTERS_FAILURE:
+                return Object.assign({}, state, {
+                    isFetchingTeachingLevelFilters: false,
+                    error: action.error
+            })
         default:
             return state;
     }
 }
 
-export default question
+export default filter

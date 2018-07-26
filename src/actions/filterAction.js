@@ -39,10 +39,10 @@ export const listTeachingLevelFilters = () => {
     return filterService.listTeachingLevelFilters()
       .then(
         teachingLevelFilters => {
-          dispatch(fetchListTeachingLevelSuccess(teachingLevelFilters))
+          dispatch(fetchListTeachingLevelFiltersSuccess(teachingLevelFilters))
         },
         error => {
-          dispatch(fetchListTeachingLevelFailure(error))
+          dispatch(fetchListTeachingLevelFiltersFailure(error))
         }
       )
   }
