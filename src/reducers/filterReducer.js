@@ -88,7 +88,7 @@ export const filter = (state = initialState, action) => {
         difficultiesSelected: [...state.difficultiesSelected, action.difficultyType],
       });
     case REMOVE_SELECTED_DIFFICULTY_FILTER: {
-      const newDifficulties = state.disciplinesSelected.filter(item => item !== action.difficultyType)
+      const newDifficulties = state.difficultiesSelected.filter(item => item !== action.difficultyType)
       return {
         disciplinesSelected: [...state.disciplinesSelected],
         teachingLevelsSelected: [...state.teachingLevelsSelected],
