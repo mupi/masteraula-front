@@ -26,11 +26,18 @@ function fetchQuestion(id) {
     .then(activeQuestion => activeQuestion);
 }
 
-function listQuestions(page) {
+function listQuestions(page, filters) {
   const requestOptions = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   };
+
+const queryString = require('query-string');
+const disciplinesParams = queryString.stringify({disciplines: filters.disciplinesSelected });
+const teachingLevelParams = queryString.stringify({teaching_levels: filters.teachingLevelsSelected });
+const difficultiesParams = queryString.stringify({difficulties: filters.difficultiesSelected });
+const url=`${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`
+console.log(url);
 
   const handleResponse = response => response.json().then((data) => {
     if (!response.ok) {
@@ -41,11 +48,13 @@ function listQuestions(page) {
     return data;
   });
 
-  return fetch(`${apiUrl}/questions/?page=${page}`, requestOptions)
+  return fetch(url, requestOptions)
     .then(handleResponse)
     .then(questionPage => questionPage);
 }
 
+
+//Question rating
 function rateQuestion() {
 
 }

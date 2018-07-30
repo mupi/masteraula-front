@@ -45,10 +45,11 @@ export const fetchQuestion = (id) => {
   function fetchQuestionFailure(error) { return { type: FETCH_QUESTION_FAILURE, error }; }
 };
 
-export const listQuestions = (page) => {
+// listQuestion using filters
+export const listQuestions = (page, filters) => {
   return (dispatch) => {
     dispatch(requestQuestionPage(page));
-    return questionService.listQuestions(page)
+    return questionService.listQuestions(page,filters)
       .then(
         (questionPage) => {
           dispatch(fetchQuestionPageSuccess(questionPage));

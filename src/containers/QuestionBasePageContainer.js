@@ -6,10 +6,11 @@ const mapStateToProps = state => ({
   isFetching: state.question.isFetching,
   questionPage: state.question.questionPage,
   currentPage: state.question.currentPage,
+  filter: state.filter,
 });
 
 const mapDispatchToProps = dispatch => ({
-  listQuestions: page => dispatch(listQuestions(page)),
+  listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
 });
 
 const QuestionBasePageContainer = connect(

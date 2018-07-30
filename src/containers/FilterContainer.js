@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
   teachingLevelFilters: state.filter.teachingLevelFilters,
   isFetchingDisciplineFilters: state.filter.isFetchingDisciplineFilters,
   isFetchingTeachingLevelFilters: state.filter.isFetchingTeachingLevelFilters,
-  questionFilters: state.questionFilters,
+  questionFilters: state.question,
 });
 
 const mapDispatchToProps = dispatch => ({

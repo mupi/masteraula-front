@@ -4,9 +4,9 @@ import SidebarFilter from 'components/sidebarfilter/SidebarFilter';
 
 const filters = {
   difficultyLevels: [
-    { name: 'Fácil' },
-    { name: 'Médio' },
-    { name: 'Difícil' },
+    { id: 'E', name: 'Fácil' },
+    { id: 'M', name: 'Médio' },
+    { id: 'H', name: 'Difícil' },
   ],
 };
 
@@ -22,7 +22,8 @@ class SidebarFilters extends Component {
       disciplineFilters, teachingLevelFilters, isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, error,
       addSelectedDisciplineFilter,removeSelectedDisciplineFilter,
       addSelectedTeachingLevelFilter, removeSelectedTeachingLevelFilter,
-      addSelectedDifficultyFilter, removeSelectedDifficultyFilter
+      addSelectedDifficultyFilter, removeSelectedDifficultyFilter,
+      question
     } = this.props;
 
     if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters) {
@@ -65,18 +66,21 @@ Filtros
           list={disciplineFilters}
           addFilter={addSelectedDisciplineFilter}
           removeFilter={removeSelectedDisciplineFilter}
+          questionFilter={question}
         />
         <SidebarFilter
           name="Nível de Ensino"
           list={teachingLevelFilters}
           addFilter={addSelectedTeachingLevelFilter}
           removeFilter={removeSelectedTeachingLevelFilter}
+          questionFilter={question}
         />
         <SidebarFilter
           name="Dificuldade"
           list={filters.difficultyLevels}
           addFilter={addSelectedDifficultyFilter}
           removeFilter={removeSelectedDifficultyFilter}
+          questionFilter={question}
         />
       </ListGroup>
     );

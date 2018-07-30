@@ -87,6 +87,8 @@ export const filter = (state = initialState, action) => {
     }
     case ADD_SELECTED_DIFFICULTY_FILTER:
       return Object.assign({}, state, {
+        disciplineFilters: state.disciplineFilters,
+        teachingLevelFilters: state.teachingLevelFilters,
         disciplinesSelected: [...state.disciplinesSelected],
         teachingLevelsSelected: [...state.teachingLevelsSelected],
         difficultiesSelected: [...state.difficultiesSelected, action.difficultyType],
@@ -94,7 +96,8 @@ export const filter = (state = initialState, action) => {
     case REMOVE_SELECTED_DIFFICULTY_FILTER: {
       const newDifficulties = state.difficultiesSelected.filter(item => item !== action.difficultyType)
       return {
-
+        disciplineFilters: state.disciplineFilters,
+        teachingLevelFilters: state.teachingLevelFilters,
         disciplinesSelected: [...state.disciplinesSelected],
         teachingLevelsSelected: [...state.teachingLevelsSelected],
         difficultiesSelected: newDifficulties,

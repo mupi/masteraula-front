@@ -21,18 +21,18 @@ Carregando ...
 
 class QuestionBasePage extends React.Component {
   componentDidMount() {
-    this.props.listQuestions(parseInt(this.props.match.params.page, 10));
+    this.props.listQuestions(parseInt(this.props.match.params.page, 10), this.props.filter);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.page !== prevProps.match.params.page) {
-      this.props.listQuestions(parseInt(this.props.match.params.page, 10));
+      this.props.listQuestions(parseInt(this.props.match.params.page, 10), this.props.filter);
     }
   }
 
   render() {
     const { questionPage, isFetching, error } = this.props;
-
+    
     if (error) {
       return (
         <HomeUserPage>
