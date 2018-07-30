@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SidebarFilters from 'components/sidebar/SidebarFilters';
-import { listDisciplineFilters, listTeachingLevelFilters } from 'actions/filterAction.js';
+import { listDisciplineFilters, listTeachingLevelFilters } from 'actions/filterAction';
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({

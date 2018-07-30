@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "eslint": "^5.2.0",
+    "prop-types": "^15.6.2",
     "redux-form": "^7.4.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"

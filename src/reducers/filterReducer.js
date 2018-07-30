@@ -1,11 +1,20 @@
 import {
-  LIST_DISCIPLINE_FILTERS, LIST_DISCIPLINE_FILTERS_SUCCESS, LIST_DISCIPLINE_FILTERS_FAILURE,
-  LIST_TEACHINGLEVEL_FILTERS, LIST_TEACHINGLEVEL_FILTERS_SUCCESS, LIST_TEACHINGLEVEL_FILTERS_FAILURE,
+  LIST_DISCIPLINE_FILTERS,
+  LIST_DISCIPLINE_FILTERS_SUCCESS, LIST_DISCIPLINE_FILTERS_FAILURE,
+  LIST_TEACHINGLEVEL_FILTERS,
+  LIST_TEACHINGLEVEL_FILTERS_SUCCESS, LIST_TEACHINGLEVEL_FILTERS_FAILURE,
+  ADD_SELECTED_DISCIPLINE_FILTER,
+  ADD_SELECTED_DISCIPLINE_FILTER_SUCCESS, ADD_SELECTED_DISCIPLINE_FILTER_FAILURE,
+  REMOVE_SELECTED_DISCIPLINE_FILTER,
+  REMOVE_SELECTED_DISCIPLINE_FILTER_SUCCESS, REMOVE_SELECTED_DISCIPLINE_FILTER_FAILURE
 } from 'actions/filterAction';
 
 const initialState = {
   disciplineFilters: [],
   teachingLevelFilters: [],
+  disciplineFiltersSelected: [],
+  teachingLevelFiltersSelected: [],
+  difficultyFiltersSelected: [],
 };
 
 export const filter = (state = initialState, action) => {
@@ -42,6 +51,20 @@ export const filter = (state = initialState, action) => {
         isFetchingTeachingLevelFilters: false,
         error: action.error,
       });
+    case ADD_SELECTED_DISCIPLINE_FILTER:
+      return Object.assign({}, state, {
+        disciplineFiltersSelected: [...state.disciplineFiltersSelected,
+          action.idDiscipline],
+        teachingLevelFiltersSelected: [...state.teachingLevelFiltersSelected],
+        difficultyFiltersSelected: [...state.difficultyFiltersSelected],
+      });
+    case REMOVE_SELECTED_DISCIPLINE_FILTER:
+      const newDisciplineFilters = state.disciplineFiltersSelected.filter((item) => item !== action.idDiscipline)
+      return {
+        disciplineFiltersSelected: newDisciplineFilters,
+        teachingLevelFiltersSelected: [...state.teachingLevelFiltersSelected],
+        difficultyFiltersSelected: [...state.difficultyFiltersSelected],
+      };
     default:
       return state;
   }
