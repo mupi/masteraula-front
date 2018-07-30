@@ -8,7 +8,7 @@ import {
   ADD_SELECTED_TEACHINGLEVEL_FILTER,
   REMOVE_SELECTED_TEACHINGLEVEL_FILTER,
   ADD_SELECTED_DIFFICULTY_FILTER,
-  REMOVE_SELECTED_DIFFICULTY_FILTER
+  REMOVE_SELECTED_DIFFICULTY_FILTER,
 } from 'actions/filterAction';
 
 const initialState = {
@@ -62,6 +62,8 @@ export const filter = (state = initialState, action) => {
     case REMOVE_SELECTED_DISCIPLINE_FILTER: {
       const newDisciplines = state.disciplinesSelected.filter(item => item !== action.idDiscipline);
       return {
+        disciplineFilters: state.disciplineFilters,
+        teachingLevelFilters: state.teachingLevelFilters,
         disciplinesSelected: newDisciplines,
         teachingLevelsSelected: [...state.teachingLevelsSelected],
         difficultiesSelected: [...state.difficultiesSelected],
@@ -76,6 +78,8 @@ export const filter = (state = initialState, action) => {
     case REMOVE_SELECTED_TEACHINGLEVEL_FILTER: {
       const newTeachingLevels = state.teachingLevelsSelected.filter(item => item !== action.idTeachingLevel);
       return {
+        disciplineFilters: state.disciplineFilters,
+        teachingLevelFilters: state.teachingLevelFilters,
         disciplinesSelected: [...state.disciplinesSelected],
         teachingLevelsSelected: newTeachingLevels,
         difficultiesSelected: [...state.difficultiesSelected],
@@ -90,6 +94,7 @@ export const filter = (state = initialState, action) => {
     case REMOVE_SELECTED_DIFFICULTY_FILTER: {
       const newDifficulties = state.difficultiesSelected.filter(item => item !== action.difficultyType)
       return {
+
         disciplinesSelected: [...state.disciplinesSelected],
         teachingLevelsSelected: [...state.teachingLevelsSelected],
         difficultiesSelected: newDifficulties,
