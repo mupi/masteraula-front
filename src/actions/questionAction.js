@@ -46,10 +46,10 @@ export const fetchQuestion = (id) => {
 };
 
 // listQuestion using filters
-export const listQuestions = (page, filters) => {
+export const listQuestions = (page, filter) => {
   return (dispatch) => {
     dispatch(requestQuestionPage(page));
-    return questionService.listQuestions(page,filters)
+    return questionService.listQuestions(page, filter)
       .then(
         (questionPage) => {
           dispatch(fetchQuestionPageSuccess(questionPage));

@@ -3,7 +3,8 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import { UncontrolledCollapse, Button, Input } from 'reactstrap';
 
 
-const SidebarFilter = ({name, list, addFilter, removeFilter }) => {
+const SidebarFilter = ({name, list, addFilter, removeFilter , listQuestions}) => {
+
   const handleFilter = (e) => {
     const valueFilter = e.target.value;
     if (e.target.checked) {

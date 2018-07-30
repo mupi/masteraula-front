@@ -23,7 +23,7 @@ class SidebarFilters extends Component {
       addSelectedDisciplineFilter,removeSelectedDisciplineFilter,
       addSelectedTeachingLevelFilter, removeSelectedTeachingLevelFilter,
       addSelectedDifficultyFilter, removeSelectedDifficultyFilter,
-      question
+      listQuestions
     } = this.props;
 
     if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters) {
@@ -66,21 +66,21 @@ Filtros
           list={disciplineFilters}
           addFilter={addSelectedDisciplineFilter}
           removeFilter={removeSelectedDisciplineFilter}
-          questionFilter={question}
+          question={listQuestions}
         />
         <SidebarFilter
           name="Nível de Ensino"
           list={teachingLevelFilters}
           addFilter={addSelectedTeachingLevelFilter}
           removeFilter={removeSelectedTeachingLevelFilter}
-          questionFilter={question}
+          question={listQuestions}
         />
         <SidebarFilter
           name="Dificuldade"
           list={filters.difficultyLevels}
           addFilter={addSelectedDifficultyFilter}
           removeFilter={removeSelectedDifficultyFilter}
-          questionFilter={question}
+          question={listQuestions}
         />
       </ListGroup>
     );
