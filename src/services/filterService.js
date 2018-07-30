@@ -26,6 +26,9 @@ function listDisciplineFilters(param) {
     .then(disciplineFilters => disciplineFilters);
 }
 
+
+
+
 // Get all TeachingLevels that will be used in SideBar
 function listTeachingLevelFilters(param) {
   const requestOptions = {

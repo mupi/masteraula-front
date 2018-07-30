@@ -13,13 +13,21 @@ export const LIST_TEACHINGLEVEL_FILTERS_FAILURE = 'LIST_TEACHINGLEVEL_FILTERS_FA
 
 // Add selected discipline filter
 export const ADD_SELECTED_DISCIPLINE_FILTER = 'ADD_SELECTED_DISCIPLINE_FILTER';
-export const ADD_SELECTED_DISCIPLINE_FILTER_SUCCESS = 'ADD_SELECTED_DISCIPLINE_FILTER_SUCCESS';
-export const ADD_SELECTED_DISCIPLINE_FILTER_FAILURE = 'ADD_SELECTED_DISCIPLINE_FILTER_FAILURE';
 
 // Remove selected discipline filter
 export const REMOVE_SELECTED_DISCIPLINE_FILTER = 'REMOVE_SELECTED_DISCIPLINE_FILTER';
-export const REMOVE_SELECTED_DISCIPLINE_FILTER_SUCCESS = 'REMOVE_SELECTED_DISCIPLINE_FILTER_SUCCESS';
-export const REMOVE_SELECTED_DISCIPLINE_FILTER_FAILURE = 'REMOVE_SELECTED_DISCIPLINE_FILTER_FAILURE';
+
+// Add selected teachingLevel filter
+export const ADD_SELECTED_TEACHINGLEVEL_FILTER = 'ADD_SELECTED_TEACHINGLEVEL_FILTER';
+
+// Remove selected teachingLevel filter
+export const REMOVE_SELECTED_TEACHINGLEVEL_FILTER = 'REMOVE_SELECTED_TEACHINGLEVEL_FILTER';
+
+// Add selected teachingLevel filter
+export const ADD_SELECTED_DIFFICULTY_FILTER = 'ADD_SELECTED_DIFFICULTY_FILTER';
+
+// Remove selected teachingLevel filter
+export const REMOVE_SELECTED_DIFFICULTY_FILTER = 'REMOVE_SELECTED_DIFFICULTY_FILTER';
 
 
 // Discipline List
@@ -71,3 +79,33 @@ export const listTeachingLevelFilters = () => {
       );
   };
 };
+
+// Add Selected Discipline filter
+export const addSelectedDisciplineFilter = idDiscipline => ({
+  type: ADD_SELECTED_DISCIPLINE_FILTER, idDiscipline,
+});
+
+// Remove Selected Discipline filter
+export const removeSelectedDisciplineFilter = idDiscipline => ({
+  type: REMOVE_SELECTED_DISCIPLINE_FILTER, idDiscipline,
+});
+
+// Add Selected TeachingLevel filter
+export const addSelectedTeachingLevelFilter = idTeachingLevel => ({
+  type: ADD_SELECTED_TEACHINGLEVEL_FILTER, idTeachingLevel,
+});
+
+// Remove Selected TeachingLevel filter
+export const removeSelectedTeachingLevelFilter = idTeachingLevel => ({
+  type: REMOVE_SELECTED_TEACHINGLEVEL_FILTER, idTeachingLevel,
+});
+
+// Add Selected Difficulty filter
+export const addSelectedDifficultyFilter = difficultyType => ({
+  type: ADD_SELECTED_DIFFICULTY_FILTER, difficultyType,
+});
+
+// Remove Selected Difficulty filter
+export const removeSelectedDifficultyFilter = difficultyType => ({
+  type: REMOVE_SELECTED_DIFFICULTY_FILTER, difficultyType,
+});

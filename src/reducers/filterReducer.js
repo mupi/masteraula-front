@@ -58,13 +58,14 @@ export const filter = (state = initialState, action) => {
         teachingLevelFiltersSelected: [...state.teachingLevelFiltersSelected],
         difficultyFiltersSelected: [...state.difficultyFiltersSelected],
       });
-    case REMOVE_SELECTED_DISCIPLINE_FILTER:
-      const newDisciplineFilters = state.disciplineFiltersSelected.filter((item) => item !== action.idDiscipline)
+    case REMOVE_SELECTED_DISCIPLINE_FILTER: {
+      const newDisciplineFilters = state.disciplineFiltersSelected.filter(item => item !== action.idDiscipline)
       return {
         disciplineFiltersSelected: newDisciplineFilters,
         teachingLevelFiltersSelected: [...state.teachingLevelFiltersSelected],
         difficultyFiltersSelected: [...state.difficultyFiltersSelected],
       };
+    }
     default:
       return state;
   }
