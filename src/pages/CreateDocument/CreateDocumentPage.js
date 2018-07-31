@@ -3,8 +3,8 @@ import {
   Nav, NavItem, NavLink, TabContent, TabPane,
 } from 'reactstrap';
 import classnames from 'classnames';
-import DocumentForm from '../../components/document/DocumentForm.js';
-import DocumentPreview from '../../components/document/DocumentPreview.js';
+import DocumentForm from 'components/document/DocumentForm.js';
+import DocumentPreview from 'components/document/DocumentPreview.js';
 import HomeUserPage from '../HomeUser/HomeUserPage';
 
 

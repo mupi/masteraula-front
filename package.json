@@ -6,6 +6,7 @@
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/react-fontawesome": "0.0.20",
     "bootstrap": "^4.1.2",
+    "classnames": "^2.2.6",
     "connected-react-router": "^4.3.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.13.0",

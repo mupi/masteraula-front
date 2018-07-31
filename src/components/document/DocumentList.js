@@ -149,7 +149,7 @@ Nome: ________________________________________________________
                         <DisciplineList list={question.disciplines} />
                       </Col>
                       <Col sm="4">
-                        <QuestionSourceYear styleTag="top-label-question source-name" source={question.source} year={question.year} />
+                        <QuestionSourceYear source={question.source} year={question.year} />
                       </Col>
                     </Row>
                     <Row>
