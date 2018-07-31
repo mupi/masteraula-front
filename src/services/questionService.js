@@ -37,6 +37,12 @@ function listQuestions(page, filter) {
   const teachingLevelParams = queryString.stringify({teaching_levels: filter.teachingLevelsSelected });
   const difficultiesParams = queryString.stringify({difficulties: filter.difficultiesSelected });
   const url=`${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`
+
+  console.log( `DISCIPLINAS: ${disciplinesParams}`);
+  console.log( `TEACHINGLEVELS: ${teachingLevelParams}`);
+  console.log( `DIFFICULTIES: ${difficultiesParams}`);
+
+
   console.log(`pame: ${url}`);
 
   const handleResponse = response => response.json().then((data) => {

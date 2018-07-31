@@ -3,7 +3,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import { UncontrolledCollapse, Button, Input } from 'reactstrap';
 
 
-const SidebarFilter = ({name, list, addFilter, removeFilter , listQuestions}) => {
+const SidebarFilter = ({name, list, addFilter, removeFilter, filter}) => {
 
   const handleFilter = (e) => {
     const valueFilter = e.target.value;

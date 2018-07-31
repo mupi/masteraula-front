@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { listQuestions } from 'actions/questionAction';
+
 import SidebarFilters from 'components/sidebar/SidebarFilters';
 import {
   listDisciplineFilters, listTeachingLevelFilters,
@@ -14,7 +16,10 @@ const mapStateToProps = state => ({
   teachingLevelFilters: state.filter.teachingLevelFilters,
   isFetchingDisciplineFilters: state.filter.isFetchingDisciplineFilters,
   isFetchingTeachingLevelFilters: state.filter.isFetchingTeachingLevelFilters,
-  listQuestions: state.question.listQuestions,
+  filter: state.filter,
+  questionPage: state.question.questionPage,
+  currentPage: state.question.currentPage,
+
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -26,6 +31,7 @@ const mapDispatchToProps = dispatch => ({
   removeSelectedTeachingLevelFilter: idTeachingLevel => dispatch(removeSelectedTeachingLevelFilter(idTeachingLevel)),
   addSelectedDifficultyFilter: difficultyType => dispatch(addSelectedDifficultyFilter(difficultyType)),
   removeSelectedDifficultyFilter: difficultyType => dispatch(removeSelectedDifficultyFilter(difficultyType)),
+  listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
 });
 
 const FilterContainer = connect(

@@ -32,7 +32,7 @@ class QuestionBasePage extends React.Component {
 
   render() {
     const { questionPage, isFetching, error } = this.props;
-    
+
     if (error) {
       return (
         <HomeUserPage>
@@ -61,9 +61,9 @@ Pesquisar
           <Row className="pagination-questions">
             <QuestionPagination {...this.props} {...questionPage} />
           </Row>
-          <Row className="c-question-base__results">
+          <div className="c-question-base__results">
             {getResults(isFetching, questionPage.results)}
-          </Row>
+          </div>
           <Row className="pagination-questions">
             <QuestionPagination {...this.props} {...questionPage} />
           </Row>
