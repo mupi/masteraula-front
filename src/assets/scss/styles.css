@@ -392,6 +392,8 @@ img.logo-in-menu.no-login {
   font-size: 13px;
   text-align: center; }
   .question-info--source-year {
+    margin-bottom: 10px; }
+  .question-info--purple {
     background: #4D3570; }
   .question-info__more-info {
     font-size: 14px;
@@ -711,7 +713,7 @@ CSS for UserProfile
   top: -20px;
   right: -20px; }
 
-/*Question Modal in DocumentPage*/
+/*QuestionModal in DocumentPage*/
 .c-document__question-modal {
   padding-top: 0px;
   background: #FFFFFF; }
