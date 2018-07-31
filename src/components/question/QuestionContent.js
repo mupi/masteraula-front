@@ -6,9 +6,9 @@ import AlternativeList from 'components/alternatives/AlternativeList';
 
 const QuestionContent = ({ alternatives, statement, answer }) => (
   <Container className="c-question__full-statement">
-    <Row className=" section-text-question">
+    <Row>
       <Col sm="12" xs="12">
-        <p className="text-question">
+        <p className="">
           {statement}
         </p>
       </Col>

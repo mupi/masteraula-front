@@ -94,7 +94,7 @@ Adicionar questões
               </Button>
             </div>
           </Row>
-            <Row className="c-document__questions-header row">
+            <Row className="c-document__questions-header">
               <Col xs="2">
                 <Label for="upload-avatar" className="upload-avatar">
 

@@ -3,9 +3,9 @@ import {
   Nav, NavItem, NavLink, TabContent, TabPane,
 } from 'reactstrap';
 import classnames from 'classnames';
-import DocumentForm from 'components/document/DocumentForm.js';
-import DocumentPreview from 'components/document/DocumentPreview.js';
-import HomeUserPage from '../HomeUser/HomeUserPage';
+import DocumentForm from 'components/document/DocumentForm';
+import DocumentPreview from 'components/document/DocumentPreview';
+import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
 
 class CreateDocumentPage extends Component {
