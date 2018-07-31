@@ -81,7 +81,7 @@ class CreateDocumentPage extends Component {
   render() {
     return (
       <HomeUserPage>
-        <div className="c-create-document">
+        <div className="c-document">
           <Nav tabs>
             <NavItem>
               <NavLink
@@ -100,7 +100,7 @@ class CreateDocumentPage extends Component {
               </NavLink>
             </NavItem>
           </Nav>
-          <TabContent className="c-create-document__tab-content" activeTab={this.state.activeTab} style={{ display: 'block' }}>
+          <TabContent className="c-document__tab-content" activeTab={this.state.activeTab} style={{ display: 'block' }}>
             <TabPane tabId="1">
               <DocumentForm setFields={this.setFields} />
             </TabPane>

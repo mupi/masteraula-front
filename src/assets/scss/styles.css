@@ -74,6 +74,9 @@ ul.header {
 .small-text {
   font-size: 12px; }
 
+.auto-margin-left-element {
+  margin-left: auto; }
+
 @media (max-width: 599px) {
   .container {
     padding-right: 0px;
@@ -643,7 +646,7 @@ CSS for UserProfile
       position: relative; } }
 
 /** New Document and ViewDocument in "My Documents" options*/
-.c-create-document__header {
+.c-document__header {
   padding: 15px;
   border: 2px solid #FFFFFF;
   padding: 25px;
@@ -651,6 +654,10 @@ CSS for UserProfile
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background: #FFFFFF;
   margin-top: 10px; }
+
+.c-document__main-buttons {
+  margin-top: 15px;
+  margin-bottom: 15px; }
 
 .question-in-doc {
   position: relative; }
@@ -676,10 +683,6 @@ CSS for UserProfile
 .btn-margin-right {
   margin-right: 15px; }
 
-.btn-preview-document.row {
-  margin-top: 15px;
-  margin-bottom: 15px; }
-
 .btn-float-remove-question {
   position: absolute;
   top: -20px;
@@ -700,9 +703,6 @@ CSS for UserProfile
 
 .btn-save-document .btn {
   font-size: 20px; }
-
-.auto-margin-left-element {
-  margin-left: auto; }
 
 span.button-text {
   margin-left: 7px; }

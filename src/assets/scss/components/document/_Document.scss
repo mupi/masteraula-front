@@ -1,5 +1,5 @@
 /** New Document and ViewDocument in "My Documents" options*/
-.c-create-document{
+.c-document{
     &__tab-content{
 
     }
@@ -12,6 +12,11 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       background: #FFFFFF;
       margin-top: 10px;
+    }
+
+    &__main-buttons{
+      margin-top: 15px;
+      margin-bottom: 15px;
     }
 }
 
@@ -48,10 +53,7 @@
   margin-right: 15px;
 }
 
-.btn-preview-document.row {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
+
 
 .btn-float-remove-question {
     position: absolute;
@@ -79,9 +81,7 @@
     font-size: 20px;
 }
 
-.auto-margin-left-element{
-      margin-left: auto;
-}
+
 
 span.button-text {
     margin-left: 7px;

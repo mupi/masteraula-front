@@ -73,6 +73,11 @@ ul.header {
     font-size: 12px;
 }
 
+.auto-margin-left-element{
+      margin-left: auto;
+}
+
+
 .container {
   @include for-phone-only {
     padding-right: 0px;

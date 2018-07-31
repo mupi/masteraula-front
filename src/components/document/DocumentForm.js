@@ -6,7 +6,7 @@ import {
 class DocumentForm extends Component {
   render() {
     return (
-      <Container className="c-create-document__header">
+      <Container className="c-document__header">
 
        Nome:
         <Input placeholder="Nome do documento" id="name" className="form-group" onChange={event => this.props.setFields('name', event)} />

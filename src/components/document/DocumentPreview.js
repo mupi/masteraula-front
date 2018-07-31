@@ -82,7 +82,7 @@ Ver mais
       <Container>
         <div>
           <AddQuestionButton />
-          <Row className="btn-preview-document">
+          <Row className="c-document__main-buttons">
             <div className="auto-margin-left-element">
               <Button title="Adicionar questões" className="btn-success btn-margin-right">
                 {' '}
@@ -102,7 +102,6 @@ Salvar
               </Button>
             </div>
           </Row>
-          <Container>
             <Row className="question-section-border document-header">
               <Col xs="2">
                 <Label for="upload-avatar" className="upload-avatar">
@@ -129,7 +128,7 @@ Professor(a):
                 <br />
                 {props.data.studentName ? (
                   <p>
-Nome: ________________________________________________________
+                    Nome
                   </p>
                 ) : ''}
                 {props.data.class ? 'Turma: _________  ' : ''}
@@ -138,9 +137,6 @@ Nome: ________________________________________________________
               </Col>
               <Col sm={{ size: 'auto', offset: 3 }} />
             </Row>
-          </Container>
-          <p />
-
 
           {questions}
           {this.state.question
