@@ -13,8 +13,8 @@ const QuestionCard = ({
   id, disciplines, source, year, statement, urlImage = '', author, teaching_levels,
 }) => (
   <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100'}>
-    { urlImage !== '' ? <CardImg top width="100%" src={imageCard} alt="Card image cap" /> : null }
-    <CardBody>
+    { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
+    <CardBody className="question-card__body">
       <Row>
         <DisciplineList list={disciplines} />
       </Row>

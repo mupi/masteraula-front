@@ -69,32 +69,4 @@
       }
   }
 
-
-
-.h-100.card .card-text {
-      @include  for-tablet-portrait-up{
-        margin-top: 30px;
-      }
-  }
-
-.card-title .label-info, .card-subtitle .source-name {
-    font-size: 14px !important;
-}
-
-.card-title .list-info, card-subtitle {
-    margin-bottom: 15px;
-}
-
-.card-body {
-    padding: 15px;
-}
-
-.card-body span.label-info, .card-body .source-name {
-    font-size: 13px;
-}
-
-.image-card.card .source-name {
-    margin-bottom: 0px;
-}
-
 //END: Pending revision

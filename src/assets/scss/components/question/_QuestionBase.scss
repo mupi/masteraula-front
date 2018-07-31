@@ -22,13 +22,7 @@
     }
 }
 
-
-//Alerts in c-question-base
-
-
-
-
-//Classes for question in Card
+//Classes for QuestionCard
 .l-question-card-text{
     margin-top: 15px;
 }
@@ -39,7 +33,16 @@
     &__btn{
       margin-right: 10px;
     }
+
+    &__body{
+      padding: 15px;
+    }
+
+    &__image{
+
+    }
 }
+
 
 
 
