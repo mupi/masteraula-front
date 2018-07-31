@@ -29,6 +29,9 @@ export const filter = (state = initialState, action) => {
       });
     case LIST_DISCIPLINE_FILTERS_SUCCESS:
       return Object.assign({}, state, {
+        disciplinesSelected: [],
+        teachingLevelsSelected: [],
+        difficultiesSelected: [],
         disciplineFilters: action.disciplineFilters,
         isFetchingDisciplineFilters: false,
       });
@@ -45,6 +48,9 @@ export const filter = (state = initialState, action) => {
       });
     case LIST_TEACHINGLEVEL_FILTERS_SUCCESS:
       return Object.assign({}, state, {
+        disciplinesSelected: [],
+        teachingLevelsSelected: [],
+        difficultiesSelected: [],
         teachingLevelFilters: action.teachingLevelFilters,
         isFetchingTeachingLevelFilters: false,
       });
