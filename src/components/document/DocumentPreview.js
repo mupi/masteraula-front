@@ -38,7 +38,7 @@ class DocumentPreview extends React.Component {
     for (let i = 0; i < props.data.questions.length; i++) {
       const question = props.data.questions[i];
       questions.push(
-        <div key={i} className="question-section-border question-in-doc">
+        <div key={i} className="c-question--section-border question-in-doc">
           <div className="btn-float-remove-question">
             <button title="Remover questão" type="button" className="btn btn-default btn-circle btn-xl btn-lateral">
               <i className="fa fa-trash" />

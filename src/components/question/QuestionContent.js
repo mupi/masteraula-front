@@ -5,7 +5,7 @@ import AlternativeList from 'components/alternatives/AlternativeList';
 
 
 const QuestionContent = ({ alternatives, statement, answer }) => (
-  <Container className="question-content">
+  <Container className="c-question__full-statement">
     <Row className=" section-text-question">
       <Col sm="12" xs="12">
         <p className="text-question">
@@ -15,24 +15,24 @@ const QuestionContent = ({ alternatives, statement, answer }) => (
     </Row>
     <Row className="text-center">
       <Col sm="12" xs="12">
-        <div className="img-learning-object">
-          <img src={learningObject2} alt="objeto-aprendizagem" />
+        <div className="c-question__learning-object">
+          <img className="c-question__img" src={learningObject2} alt="objeto-aprendizagem" />
         </div>
       </Col>
     </Row>
     {alternatives
       ? (
-        <Row className="question-section-border">
-          <Col sm="12" xs="12">
+        <Row className="c-question--section-border">
+          <Col sm="12" xs="12" className="c-question__alternatives">
             <AlternativeList list={alternatives} />
           </Col>
         </Row>
       ) : ''}
     {answer
       ? (
-        <Row className="question-section-border">
+        <Row className="c-question--section-border">
           <Col sm="12" xs="12">
-            <p className="text-answer">
+            <p className="c-question__answer">
               {answer}
             </p>
           </Col>
