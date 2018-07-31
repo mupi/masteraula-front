@@ -11,12 +11,12 @@ const getResults = (isFetching, results) => {
   if (!isFetching) {
     return <QuestionList questions={results} numCols="3" />;
   }
-
+/*
   return (
     <Alert className="c-question-base__alert--warning" color="warning">
 Carregando ...
     </Alert>
-  );
+  );*/
 };
 
 class QuestionBasePage extends React.Component {
@@ -25,7 +25,8 @@ class QuestionBasePage extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.match.params.page !== prevProps.match.params.page) {
+    if ((this.props.match.params.page !== prevProps.match.params.page) ||
+      (this.props.filter !== prevProps.filter))  {
       this.props.listQuestions(parseInt(this.props.match.params.page, 10), this.props.filter);
     }
   }
