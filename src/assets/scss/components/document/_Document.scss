@@ -35,6 +35,10 @@
       width: 100%;
     }
 
+    &__question-view-more{
+      text-align: right;
+    }
+
     &__questions-header{
       position: relative;
       border-radius: 4px;
@@ -67,6 +71,7 @@
   right: -20px;
 
 }
+
 
 /*QuestionModal in DocumentPage*/
 .c-document__question-modal{

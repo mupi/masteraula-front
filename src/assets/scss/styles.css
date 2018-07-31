@@ -687,6 +687,9 @@ CSS for UserProfile
   display: inline-flex;
   width: 100%; }
 
+.c-document__question-view-more {
+  text-align: right; }
+
 .c-document__questions-header {
   position: relative;
   border-radius: 4px;

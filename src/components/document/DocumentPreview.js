@@ -2,12 +2,12 @@ import React from 'react';
 import {
   Row, Container, Col, Label, Button, Modal, ModalBody, ModalFooter, ModalHeader,
 } from 'reactstrap';
-import QuestionContent from 'components/question/QuestionContent.js';
-import QuestionHeader from 'components/question/QuestionHeader.js';
-import QuestionInfo from 'components/question/QuestionInfo.js';
+import QuestionContent from 'components/question/QuestionContent';
+import QuestionHeader from 'components/question/QuestionHeader';
+import QuestionInfo from 'components/question/QuestionInfo';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import QuestionSourceYear from 'components/question/QuestionSourceYear';
-import AddQuestionButton from 'components/buttons/AddQuestionButton.js';
+import AddQuestionButton from 'components/buttons/AddQuestionButton';
 
 class DocumentPreview extends React.Component {
   constructor(props) {
@@ -58,7 +58,7 @@ class DocumentPreview extends React.Component {
             </div>
           </Row>
           <Row>
-            <div className="auto-margin-left-element">
+            <div className="c-document__question-view-more col-md-3 offset-md-9">
               <Button onClick={() => this.toggle(question)}>
                 <i className="fa fa-search" />
                 {' '}
