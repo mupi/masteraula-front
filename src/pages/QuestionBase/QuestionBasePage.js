@@ -7,9 +7,9 @@ import QuestionPagination from 'components/QuestionPagination/QuestionPagination
 import HomeUserPage from '../HomeUser/HomeUserPage';
 
 
-const getResults = (isFetching, results) => {
+const getResults = (isFetching, results, count) => {
   if (!isFetching) {
-    return <QuestionList questions={results} sm="3" />;
+    return <QuestionList questions={results}  sm="3" count={count} />;
   }
 
   return (
@@ -63,7 +63,7 @@ Pesquisar
             <QuestionPagination {...this.props} {...questionPage} />
           </Row>
           <div className="c-question-base__results">
-            {getResults(isFetching, questionPage.results)}
+            {getResults(isFetching, questionPage.results, questionPage.count)}
           </div>
           <Row className="pagination-questions">
             <QuestionPagination {...this.props} {...questionPage} />
