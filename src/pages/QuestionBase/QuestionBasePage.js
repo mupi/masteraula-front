@@ -11,12 +11,12 @@ const getResults = (isFetching, results) => {
   if (!isFetching) {
     return <QuestionList questions={results} numCols="3" />;
   }
-/*
+
   return (
     <Alert className="c-question-base__alert--warning" color="warning">
 Carregando ...
     </Alert>
-  );*/
+  );
 };
 
 class QuestionBasePage extends React.Component {
