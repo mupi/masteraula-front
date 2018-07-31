@@ -7,26 +7,27 @@ import QuestionPagination from 'components/QuestionPagination/QuestionPagination
 import HomeUserPage from '../HomeUser/HomeUserPage';
 
 
-const getResults = (isFetching, results) => {
+const getResults = (isFetching, results, count) => {
   if (!isFetching) {
-    return <QuestionList questions={results} numCols="3" />;
+    return <QuestionList questions={results}  sm="3" count={count} />;
   }
 
   return (
     <Alert className="c-question-base__alert--warning" color="warning">
-Carregando ...
+        Carregando ...
     </Alert>
   );
 };
 
 class QuestionBasePage extends React.Component {
   componentDidMount() {
-    this.props.listQuestions(parseInt(this.props.match.params.page, 10));
+    this.props.listQuestions(parseInt(this.props.match.params.page, 10), this.props.filter);
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.match.params.page !== prevProps.match.params.page) {
-      this.props.listQuestions(parseInt(this.props.match.params.page, 10));
+    if ((this.props.match.params.page !== prevProps.match.params.page) ||
+      (this.props.filter !== prevProps.filter))  {
+      this.props.listQuestions(parseInt(this.props.match.params.page, 10), this.props.filter);
     }
   }
 
@@ -61,9 +62,9 @@ Pesquisar
           <Row className="pagination-questions">
             <QuestionPagination {...this.props} {...questionPage} />
           </Row>
-          <Row className="c-question-base__results">
-            {getResults(isFetching, questionPage.results)}
-          </Row>
+          <div className="c-question-base__results">
+            {getResults(isFetching, questionPage.results, questionPage.count)}
+          </div>
           <Row className="pagination-questions">
             <QuestionPagination {...this.props} {...questionPage} />
           </Row>

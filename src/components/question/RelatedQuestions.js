@@ -3,8 +3,8 @@ import { Container, Row } from 'reactstrap';
 import QuestionList from './QuestionList';
 
 const RelatedQuestions = ({ rquestions }) => (
-  <Container className="related-question">
-    <Row className="title-section-question">
+  <Container className="c-question__related-question">
+    <Row className="c-question__tittle-section">
       <h4>
         <i className="fa fa-clone" />
         {' '}

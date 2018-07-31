@@ -3,7 +3,7 @@ import { Container, Row } from 'reactstrap';
 
 const QuestionComments = () => (
   <Container>
-    <Row className="title-section-question">
+    <Row className="c-question__tittle-section">
       <h4>
         <i className="fa fa-comments" />
         {' '}

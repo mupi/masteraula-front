@@ -22,7 +22,7 @@ const QuestionInfo = ({
   disciplines, teaching_levels, descriptors, tags, difficulty, author, rating, onRate = f => f,
 }) => (
   <Container className="question-information">
-    <Row className="title-section-question">
+    <Row className="c-question__tittle-section">
       <h4>
         <i className="fa fa-info-circle" />
         {' '}
