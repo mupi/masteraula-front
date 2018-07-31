@@ -71,6 +71,9 @@ ul.header {
 .bg-primary {
   background-color: #1E5078 !important; }
 
+.small-text {
+  font-size: 12px; }
+
 @media (max-width: 599px) {
   .container {
     padding-right: 0px;
@@ -640,6 +643,15 @@ CSS for UserProfile
       position: relative; } }
 
 /** New Document and ViewDocument in "My Documents" options*/
+.c-create-document__header {
+  padding: 15px;
+  border: 2px solid #FFFFFF;
+  padding: 25px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: #FFFFFF;
+  margin-top: 10px; }
+
 .question-in-doc {
   position: relative; }
 
@@ -701,15 +713,6 @@ span.button-text {
 
 .question-content-in-doc .section-text-question, .question-content-in-doc .question-position {
   margin-bottom: 10px;
-  margin-top: 10px; }
-
-.create-document-header {
-  padding: 15px;
-  border: 2px solid #FFFFFF;
-  padding: 25px;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background: #FFFFFF;
   margin-top: 10px; }
 
 .modal-title {
