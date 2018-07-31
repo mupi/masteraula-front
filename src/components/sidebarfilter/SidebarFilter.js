@@ -2,8 +2,19 @@ import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { UncontrolledCollapse, Button, Input } from 'reactstrap';
 
-const SidebarFilter = ({ name, list }) => (
 
+const SidebarFilter = ({name, list, addFilter, removeFilter, filter}) => {
+
+  const handleFilter = (e) => {
+    const valueFilter = e.target.value;
+    if (e.target.checked) {
+      addFilter(valueFilter);
+    } else {
+      removeFilter(valueFilter);
+    }
+  };
+
+  return(
   <ListGroupItem className="question-category-filter">
     <a>
       {name}
@@ -13,14 +24,15 @@ const SidebarFilter = ({ name, list }) => (
       {list && list.map((filter, i) => (
         <ListGroupItem key={i}>
           {' '}
-          <Input type="checkbox" />
+          <Input type="checkbox" value={filter.id} onClick={e => handleFilter(e)} />
           {' '}
           {filter.name}
         </ListGroupItem>
       ))}
     </ListGroup>
   </ListGroupItem>
-);
+  );
+};
 
 
 export default SidebarFilter;
