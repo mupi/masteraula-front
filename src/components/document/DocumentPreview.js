@@ -45,10 +45,8 @@ class DocumentPreview extends React.Component {
             </Button>
           </div>
           <Row>
-            <Col sm="2">
+            <Col sm="12">
               <DisciplineList list={question.disciplines} />
-            </Col>
-            <Col sm="2">
               <QuestionSourceYear  source={question.source} year={question.year} />
             </Col>
           </Row>
