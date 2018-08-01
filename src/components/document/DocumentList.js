@@ -100,26 +100,26 @@ Apagar
                   </div>
                   <div>
                     <Button title="Editar documento" className="btn-success">
-                      <i className="fa fa-pencil" />
+                      <i className="fa fa-pencil btn__icon" />
                       <span className="button-text">
-Editar
+                          Editar
                       </span>
                     </Button>
                   </div>
                 </Row>
-                  <Row className="c-document-modal__header-info">
-                    <Col xs="2">
-                      <Label for="upload-avatar" className="upload-avatar">
-                        <div className="thumbnail">
+                <Row className="c-document-modal__header-info">
+                  <Col xs="2">
+                    <Label for="upload-avatar" className="upload-avatar">
+                      <div className="thumbnail">
                           <img src={this.state.document.logo ? this.state.document.logo : 'http://via.placeholder.com/100x100'} alt="logo-documento" />
-                        </div>
-                      </Label>
-                    </Col>
-                    <Col>
-                      <Label>
+                      </div>
+                    </Label>
+                  </Col>
+                  <Col>
+                    <Label>
                         {this.state.document.schoolName ? this.state.document.schoolName : 'Nome da instituição'}
-                      </Label>
-                      <br />
+                    </Label>
+                    <br />
                       <Label>
                         {this.state.document.course ? this.state.document.course : 'Curso/Disciplina'}
                       </Label>
@@ -129,9 +129,7 @@ Editar
                       </Label>
                       <br />
                       {this.state.document.studentName ? (
-                        <p>
-Nome: ________________________________________________________
-                        </p>
+                        <p>Nome:</p>
                       ) : ''}
                       {this.state.document.class ? 'Turma: _________  ' : ''}
                       {this.state.document.date ? 'Data: ___/___/___  ' : ''}
@@ -150,9 +148,9 @@ Nome: ________________________________________________________
                     </Row>
                     <Row>
                       <div className="c-document-modal__question-content">
-                        <b className="question-position">
+                        <b className="c-document-modal__question-number">
                           {i + 1}
-)
+                          {')'}
                         </b>
                         {' '}
                         <QuestionContent statement={question.question} />
@@ -163,10 +161,12 @@ Nome: ________________________________________________________
               </ModalBody>
               <ModalFooter>
                 <Button color="primary" onClick={() => this.toggle()}>
-Fechar
+                  <i className="fa fa-sign-out btn__icon" />
+                  Fechar
                 </Button>
                 <Button color="danger" onClick={() => this.toggle()}>
-Apagar
+                  <i className="fa fa-trash btn__icon" />
+                  Apagar
                 </Button>
               </ModalFooter>
             </Modal>
