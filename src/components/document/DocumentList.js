@@ -87,19 +87,19 @@ Apagar
         </Table>
         {this.state.document
           ? (
-            <Modal isOpen={!!this.state.document} toggle={() => this.toggle()} size="lg">
+            <Modal className="c-document-modal" isOpen={!!this.state.document} toggle={() => this.toggle()} size="lg">
               <ModalHeader toggle={() => this.toggle()}>
                 <div>
                   {this.state.document.name}
                 </div>
               </ModalHeader>
-              <ModalBody className="question-modal">
+              <ModalBody className="c-document-modal__body">
                 <Row>
-                  <div className="auto-margin-left-element">
+                  <div className="auto-margin-left-element btn-margin-right">
                     <ExportDocumentButton color="success" />
                   </div>
                   <div>
-                    <Button title="Editar documento" className="btn-success btn btn-secondary">
+                    <Button title="Editar documento" className="btn-success">
                       <i className="fa fa-pencil" />
                       <span className="button-text">
 Editar
@@ -107,10 +107,7 @@ Editar
                     </Button>
                   </div>
                 </Row>
-                <Container>
-
-
-                  <Row className="question-section-border document-header">
+                  <Row className="c-document-modal__header-info">
                     <Col xs="2">
                       <Label for="upload-avatar" className="upload-avatar">
                         <div className="thumbnail">
@@ -141,9 +138,8 @@ Nome: ________________________________________________________
                       {this.state.document.grade ? 'Nota: _______  ' : ''}
                     </Col>
                   </Row>
-                </Container>
                 {this.state.document.questions.map((question, i) => (
-                  <div key={i} className="question-section-border question-in-doc">
+                  <div key={i} className="c-document-modal__question">
                     <Row>
                       <Col sm="4">
                         <DisciplineList list={question.disciplines} />
@@ -153,13 +149,13 @@ Nome: ________________________________________________________
                       </Col>
                     </Row>
                     <Row>
-                      <div className="question-content-in-doc">
+                      <div className="c-document-modal__question-content">
                         <b className="question-position">
                           {i + 1}
 )
                         </b>
                         {' '}
-                        <QuestionContent question={question.question} />
+                        <QuestionContent statement={question.question} />
                       </div>
                     </Row>
                   </div>

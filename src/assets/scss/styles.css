@@ -719,10 +719,38 @@ CSS for UserProfile
 /*QuestionModal in DocumentPage*/
 .c-document__question-modal {
   padding-top: 0px;
-  background: #FFFFFF; }
+  background: #FFFFFF;
+  border-radius: 5px; }
 
 .c-document__question-modal-body {
   padding-top: 0px; }
+
+/*DocumentModal in DocumentListPage - ViewDocumentPage*/
+.c-document-modal {
+  padding-top: 0px;
+  background: #FFFFFF;
+  border-radius: 5px; }
+  .c-document-modal__header-info {
+    position: relative;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin: 10px 0px;
+    padding: 20px 10px; }
+  .c-document-modal__question {
+    position: relative;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin: 10px 0px;
+    padding: 20px 10px; }
+  .c-document-modal__question-content {
+    display: inline-flex;
+    width: 100%; }
 
 /*Clases do Home*/
 .o-thumb-circle {
