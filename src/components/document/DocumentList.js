@@ -5,7 +5,7 @@ import {
 import DisciplineList from 'components/disciplines/DisciplineList';
 import QuestionSourceYear from 'components/question/QuestionSourceYear';
 import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
-import QuestionContent from '../question/QuestionContent.js';
+import QuestionContent from 'components/question/QuestionContent';
 
 class DocumentList extends React.Component {
   constructor(props) {
@@ -139,10 +139,8 @@ Apagar
                 {this.state.document.questions.map((question, i) => (
                   <div key={i} className="c-document-modal__question">
                     <Row>
-                      <Col sm="4">
+                      <Col sm="12">
                         <DisciplineList list={question.disciplines} />
-                      </Col>
-                      <Col sm="4">
                         <QuestionSourceYear source={question.source} year={question.year} />
                       </Col>
                     </Row>
@@ -159,7 +157,7 @@ Apagar
                   </div>
                 ))}
               </ModalBody>
-              <ModalFooter>
+              <ModalFooter className="c-document-modal__footer">
                 <Button color="primary" onClick={() => this.toggle()}>
                   <i className="fa fa-sign-out btn__icon" />
                   Fechar

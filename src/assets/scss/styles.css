@@ -751,6 +751,9 @@ CSS for UserProfile
   .c-document-modal__question-content {
     display: inline-flex;
     width: 100%; }
+  .c-document-modal__footer {
+    border: 0px;
+    padding-top: 0px; }
 
 /*Clases do Home*/
 .o-thumb-circle {
