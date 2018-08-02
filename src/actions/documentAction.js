@@ -41,5 +41,26 @@ export const fetchDocument = (id) => {
 };
 
 
-export const createDocument = () => {
+export const createDocument = (props) => {
+  function createNewDocument() { return { type: CREATE_DOCUMENT }; }
+  function createDocumentSuccess(newDocument) { return { type: FETCH_DOCUMENT_SUCCESS, newDocument }; }
+  function createDocumentFailure(error) { return { type: FETCH_DOCUMENT_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(createNewDocument(props));
+    return documentService.createDocument(props)
+      .then(
+        (newDocument) => {
+          dispatch(createDocumentSuccess(newDocument));
+        },
+        (error) => {
+          dispatch(createDocumentFailure(error));
+        },
+      );
+  };
 };
+
+export function resetNewDocument() {
+  return {
+    type: RESET_NEW_DOCUMENT,
+  };
+}

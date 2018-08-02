@@ -7,7 +7,6 @@ import DocumentForm from 'components/document/DocumentForm';
 import DocumentPreview from 'components/document/DocumentPreview';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
-
 class CreateDocumentPage extends Component {
   constructor(props) {
     super(props);
@@ -38,8 +37,9 @@ class CreateDocumentPage extends Component {
         teachingLevels: [
           { name: 'Ensino Médio' },
           { name: 'Ensino Superior' },
-        ]
-      }, ],
+        ],
+      },
+      ],
     };
   }
 

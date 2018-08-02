@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Container } from 'reactstrap';
-import DocumentPreview from 'components/document/DocumentPreview.js';
+import DocumentPreview from 'components/document/DocumentPreview';
 
 const PreviewDocumentPage = () => {
   const data = {
@@ -16,7 +16,7 @@ const PreviewDocumentPage = () => {
     <Container>
       <Row>
         <h2>
-Monte seu documento
+          Monte seu documento
         </h2>
       </Row>
       <Row>

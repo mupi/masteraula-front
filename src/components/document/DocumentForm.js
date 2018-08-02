@@ -4,6 +4,10 @@ import {
 } from 'reactstrap';
 
 class DocumentForm extends Component {
+  componentWillMount() {
+
+
+  }
 
   render() {
     return (

@@ -27,6 +27,9 @@ export const LIST_QUESTION_PAGE_FAILURE = 'LIST_QUESTION_PAGE_FAILURE';
 
 
 export const fetchQuestion = (id) => {
+  function requestQuestion() { return { type: FETCH_QUESTION }; }
+  function fetchQuestionSuccess(activeQuestion) { return { type: FETCH_QUESTION_SUCCESS, activeQuestion }; }
+  function fetchQuestionFailure(error) { return { type: FETCH_QUESTION_FAILURE, error }; }
   return (dispatch) => {
     dispatch(requestQuestion(id));
     return questionService.fetchQuestion(id)
@@ -39,16 +42,15 @@ export const fetchQuestion = (id) => {
         },
       );
   };
-
-  function requestQuestion() { return { type: FETCH_QUESTION }; }
-  function fetchQuestionSuccess(activeQuestion) { return { type: FETCH_QUESTION_SUCCESS, activeQuestion }; }
-  function fetchQuestionFailure(error) { return { type: FETCH_QUESTION_FAILURE, error }; }
 };
 
 // listQuestion using filters
 export const listQuestions = (page, filter) => {
+  function requestQuestionPage() { return { type: LIST_QUESTION_PAGE, page }; }
+  function fetchQuestionPageSuccess(questionPage) { return { type: LIST_QUESTION_PAGE_SUCCESS, questionPage }; }
+  function fetchQuestionPageFailure(error) { return { type: LIST_QUESTION_PAGE_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(requestQuestionPage(page));
+    dispatch(requestQuestionPage());
     return questionService.listQuestions(page, filter)
       .then(
         (questionPage) => {
@@ -59,10 +61,6 @@ export const listQuestions = (page, filter) => {
         },
       );
   };
-
-  function requestQuestionPage(page) { return { type: LIST_QUESTION_PAGE, page }; }
-  function fetchQuestionPageSuccess(questionPage) { return { type: LIST_QUESTION_PAGE_SUCCESS, questionPage }; }
-  function fetchQuestionPageFailure(error) { return { type: LIST_QUESTION_PAGE_FAILURE, error }; }
 };
 
 
