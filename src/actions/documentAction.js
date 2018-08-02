@@ -17,6 +17,12 @@ export const UPDATE_DOCUMENT_SUCCESS = 'UPDATE_DOCUMENT_SUCCESS';
 export const UPDATE_DOCUMENT_FAILURE = 'UPDATE_DOCUMENT_FAILURE';
 export const RESET_UPDATE_DOCUMENT = 'RESET_UPDATE_DOCUMENT';
 
+// Add selected question to Document
+export const ADD_SELECTED_QUESTION = 'ADD_SELECTED_QUESTION';
+
+// Remove selected question from Document
+export const REMOVE_SELECTED_QUESTION = 'REMOVE_SELECTED_QUESTION';
+
 // Delete document
 export const DELETE_DOCUMENT = 'DELETE_DOCUMENT';
 export const DELETE_DOCUMENT_SUCCESS = 'DELETE_DOCUMENT_SUCCESS';
@@ -27,6 +33,7 @@ export const RESET_DELETE_DOCUMENT = 'RESET_DELETE_DOCUMENT';
 export const LIST_DOCUMENTS = 'LIST_DOCUMENTS';
 export const LIST_DOCUMENTS_SUCCESS = 'LIST_DOCUMENTS_SUCCESS';
 export const LIST_DOCUMENTS_FAILURE = 'LIST_DOCUMENTS_FAILURE';
+
 
 export const fetchDocument = (id) => {
   function requestDocument() { return { type: FETCH_DOCUMENT }; }
@@ -83,6 +90,16 @@ export const updateDocument = (activeNewDocument) => {
       );
   };
 };
+
+// Add Selected Question to Document
+export const addSelectedDisciplineFilter = idQuestion => ({
+  type: REMOVE_SELECTED_QUESTION, idQuestion,
+});
+
+// Remove Selected Question from Document
+export const removeSelectedDisciplineFilter = idQuestion => ({
+  type: ADD_SELECTED_QUESTION, idQuestion,
+});
 
 export function resetNewDocument() {
   return {

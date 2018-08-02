@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // Pass the newDocument from Redux's global state ("state")
 // to preesentational container
 const mapStateToProps = state => ({
-  newDocument: state.document.newDocument,
+  activeDocument: state.document.activeDocument,
 });
 
 const mapDispatchToProps = dispatch => ({
