@@ -1,2 +1,2 @@
-export { default as QuestionPageContainer } from './QuestionPageContainer.js';
-export { default as QuestionBasePageContainer } from './QuestionBasePageContainer.js';
+export { default as QuestionPageContainer } from './QuestionPageContainer';
+export { default as QuestionBasePageContainer } from './QuestionBasePageContainer';

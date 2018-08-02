@@ -4,6 +4,7 @@ import {
 } from 'reactstrap';
 
 class DocumentForm extends Component {
+
   render() {
     return (
       <Container className="c-document__header">
@@ -44,8 +45,7 @@ Tamano máximo 1 MB. JPG, GIF ou PNG
               <Row>
                 <Col>
                   <Input addon type="checkbox" id="studentName" onChange={event => this.props.setFields('studentName', event)} />
-                  {' '}
-Aluno
+                  {' '}Aluno
                   <br />
                   <Input addon type="checkbox" id="class" onChange={event => this.props.setFields('class', event)} />
                   {' '}

@@ -101,9 +101,7 @@ Apagar
                   <div>
                     <Button title="Editar documento" className="btn-success">
                       <i className="fa fa-pencil btn__icon" />
-                      <span className="button-text">
-                          Editar
-                      </span>
+                      <span className="button-text">Editar</span>
                     </Button>
                   </div>
                 </Row>
@@ -111,29 +109,30 @@ Apagar
                   <Col xs="2">
                     <Label for="upload-avatar" className="upload-avatar">
                       <div className="thumbnail">
-                          <img src={this.state.document.logo ? this.state.document.logo : 'http://via.placeholder.com/100x100'} alt="logo-documento" />
+                        <img src={this.state.document.logo ? this.state.document.logo : 'http://via.placeholder.com/100x100'} alt="logo-documento" />
                       </div>
                     </Label>
                   </Col>
                   <Col>
                     <Label>
-                        {this.state.document.schoolName ? this.state.document.schoolName : 'Nome da instituição'}
+                      {this.state.document.schoolName ? this.state.document.schoolName : 'Nome da instituição'}
                     </Label>
                     <br />
-                      <Label>
+                    <Label>
                         {this.state.document.course ? this.state.document.course : 'Curso/Disciplina'}
-                      </Label>
-                      {' | '}
-                      <Label>
-                        {this.state.document.teacherName ? this.state.document.teacherName : 'Professor(a)'}
-                      </Label>
+                    </Label>
+                    {' | '}
+                    <Label>
+                      {this.state.document.teacherName ?
+                          this.state.document.teacherName : 'Professor(a)'}
+                    </Label>
                       <br />
-                      {this.state.document.studentName ? (
+                    {this.state.document.studentName ? (
                         <p>Nome:</p>
-                      ) : ''}
-                      {this.state.document.class ? 'Turma: _________  ' : ''}
-                      {this.state.document.date ? 'Data: ___/___/___  ' : ''}
-                      {this.state.document.grade ? 'Nota: _______  ' : ''}
+                    ) : ''}
+                    {this.state.document.class ? 'Turma: _________  ' : ''}
+                    {this.state.document.date ? 'Data: ___/___/___  ' : ''}
+                    {this.state.document.grade ? 'Nota: _______  ' : ''}
                     </Col>
                   </Row>
                 {this.state.document.questions.map((question, i) => (

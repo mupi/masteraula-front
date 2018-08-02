@@ -39,3 +39,7 @@ export const fetchDocument = (id) => {
       );
   };
 };
+
+
+export const createDocument = () => {
+};

@@ -39,22 +39,7 @@ class CreateDocumentPage extends Component {
           { name: 'Ensino Médio' },
           { name: 'Ensino Superior' },
         ]
-      }, {
-        id: '100',
-        question: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha:',
-        disciplines: [
-          { name: 'Química' },
-          { name: 'Física' },
-        ],
-        source: 'ENEM',
-        year: '2010',
-        difficulty: 'Fácil',
-        author: 'Thiago Oliveira dos Santos',
-        teachingLevels: [
-          { name: 'Ensino Médio' },
-          { name: 'Ensino Superior' },
-        ],
-      }],
+      }, ],
     };
   }
 
