@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Row, Input, Container, Col, Label,
+  Row, Input, Container, Col, Label, Button
 } from 'reactstrap';
 
 class DocumentForm extends Component {
@@ -11,17 +11,26 @@ class DocumentForm extends Component {
 
   render() {
     return (
-      <Container className="c-document__header">
-
+      <Container>
+        <Row className="c-document__main-buttons">
+                  <div className="auto-margin-left-element">
+                    <Button title="Salvar documento" className="btn-success">
+                      {' '}
+                      <i className="fa fa-save btn__icon" /><span>Salvar</span>
+                    </Button>
+                  </div>
+        </Row>
+      <Container  className="c-document__header">
        Nome:
         <Input placeholder="Nome do documento" id="name" className="form-group" onChange={event => this.props.setFields('name', event)} />
         <br />
-        <Container>
-          <Row>
+
+
+        <Row>
 
          Cabeçalho:
-          </Row>
-          <Row>
+        </Row>
+        <Row>
             <Col md="2" xs="12" className="text-center">
               <Label for="upload-logo" className="upload-logo">
                 <span>

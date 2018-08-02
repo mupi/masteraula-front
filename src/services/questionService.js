@@ -33,12 +33,10 @@ function listQuestions(page, filter) {
   };
 
   const queryString = require('query-string');
-  const disciplinesParams = queryString.stringify({disciplines: filter.disciplinesSelected });
-  const teachingLevelParams = queryString.stringify({teaching_levels: filter.teachingLevelsSelected });
-  const difficultiesParams = queryString.stringify({difficulties: filter.difficultiesSelected });
-  const url=`${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`
-
-  console.log(`pame: ${url}`);
+  const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected });
+  const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected });
+  const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected });
+  const url = `${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`;
 
   const handleResponse = response => response.json().then((data) => {
     if (!response.ok) {
@@ -55,7 +53,7 @@ function listQuestions(page, filter) {
 }
 
 
-//Question rating
+// Question rating
 function rateQuestion() {
 
 }

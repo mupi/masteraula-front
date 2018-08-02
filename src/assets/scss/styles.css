@@ -479,7 +479,7 @@ img.logo-in-menu.no-login {
   @media (min-width: 600px) {
     .l-button-add-question {
       right: 37px;
-      top: 100px; } }
+      top: 70px; } }
   @media (max-width: 599px) {
     .l-button-add-question {
       right: 0px;
@@ -670,8 +670,7 @@ CSS for UserProfile
   margin-top: 10px; }
 
 .c-document__main-buttons {
-  margin-top: 15px;
-  margin-bottom: 15px; }
+  margin: 15px 0px; }
 
 .c-document__question {
   position: relative;

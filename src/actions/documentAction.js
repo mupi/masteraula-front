@@ -11,6 +11,12 @@ export const CREATE_DOCUMENT_SUCCESS = 'CREATE_DOCUMENT_SUCCESS';
 export const CREATE_DOCUMENT_FAILURE = 'CREATE_DOCUMENT_FAILURE';
 export const RESET_NEW_DOCUMENT = 'RESET_NEW_DOCUMENT';
 
+// Update document
+export const UPDATE_DOCUMENT = 'UPDATE_DOCUMENT';
+export const UPDATE_DOCUMENT_SUCCESS = 'UPDATE_DOCUMENT_SUCCESS';
+export const UPDATE_DOCUMENT_FAILURE = 'UPDATE_DOCUMENT_FAILURE';
+export const RESET_UPDATE_DOCUMENT = 'RESET_UPDATE_DOCUMENT';
+
 // Delete document
 export const DELETE_DOCUMENT = 'DELETE_DOCUMENT';
 export const DELETE_DOCUMENT_SUCCESS = 'DELETE_DOCUMENT_SUCCESS';
@@ -40,7 +46,7 @@ export const fetchDocument = (id) => {
   };
 };
 
-
+// Create a new document  (?)
 export const createDocument = (props) => {
   function createNewDocument() { return { type: CREATE_DOCUMENT }; }
   function createDocumentSuccess(newDocument) { return { type: FETCH_DOCUMENT_SUCCESS, newDocument }; }
@@ -54,6 +60,25 @@ export const createDocument = (props) => {
         },
         (error) => {
           dispatch(createDocumentFailure(error));
+        },
+      );
+  };
+};
+
+// Update an active Document
+export const updateDocument = (activeNewDocument) => {
+  function updateActiveDocument() { return { type: UPDATE_DOCUMENT }; }
+  function updateDocumentSuccess(activeDocument) { return { type: UPDATE_DOCUMENT_SUCCESS, activeDocument }; }
+  function updateDocumentFailure(error) { return { type: UPDATE_DOCUMENT_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(updateActiveDocument());
+    return documentService.updateDocument(activeNewDocument)
+      .then(
+        (activeDocument) => {
+          dispatch(updateDocumentSuccess(activeDocument));
+        },
+        (error) => {
+          dispatch(updateDocumentFailure(error));
         },
       );
   };
