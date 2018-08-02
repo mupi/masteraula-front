@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
-import UserPasswordProfile from 'componentes/userprofile/UserPasswordProfile'
+import { reduxForm } from 'redux-form';
+import UserPasswordProfile from 'components/userprofile/UserPasswordProfile.js'
 
 const validate = values => {
   const errors = {}
@@ -27,7 +28,7 @@ const mapStateToProps = state => {
   })
 }
 
-export default connect(
+const UserPasswordProfileContainer = connect(
   mapStateToProps
 )
 (reduxForm({
@@ -36,4 +37,4 @@ export default connect(
 })(UserPasswordProfile))
 
 
-export default UserProfileContainer
+export default UserPasswordProfileContainer;

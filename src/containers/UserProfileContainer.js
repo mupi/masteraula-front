@@ -12,7 +12,7 @@ const mapStateToProps = state => {
   })
 }
 
-export default connect(
+const UserProfileContainer = connect(
   mapStateToProps
 )
 (reduxForm({
@@ -20,4 +20,4 @@ export default connect(
 })(UserProfile))
 
 
-export default UserProfileContainer
+export default UserProfileContainer;

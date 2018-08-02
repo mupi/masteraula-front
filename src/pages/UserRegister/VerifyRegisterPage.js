@@ -21,7 +21,7 @@ class VerifyRegisterPage extends React.Component {
             <p className="alert__message">
               <i className="fa fa-sign-in" />
               {' '}
-Parabéns!, seu cadastro foi ativado com sucesso.
+Parabéns! Seu cadastro foi ativado com sucesso.
             </p>
           </Alert>
           )
