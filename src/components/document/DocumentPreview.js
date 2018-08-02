@@ -2,12 +2,12 @@ import React from 'react';
 import {
   Row, Container, Col, Label, Button, Modal, ModalBody, ModalFooter, ModalHeader,
 } from 'reactstrap';
-import QuestionContent from 'components/question/QuestionContent.js';
-import QuestionHeader from 'components/question/QuestionHeader.js';
-import QuestionInfo from 'components/question/QuestionInfo.js';
+import QuestionContent from 'components/question/QuestionContent';
+import QuestionHeader from 'components/question/QuestionHeader';
+import QuestionInfo from 'components/question/QuestionInfo';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import QuestionSourceYear from 'components/question/QuestionSourceYear';
-import AddQuestionButton from 'components/buttons/AddQuestionButton.js';
+import AddQuestionButton from 'components/buttons/AddQuestionButton';
 
 class DocumentPreview extends React.Component {
   constructor(props) {
@@ -38,32 +38,25 @@ class DocumentPreview extends React.Component {
     for (let i = 0; i < props.data.questions.length; i++) {
       const question = props.data.questions[i];
       questions.push(
-        <div key={i} className="c-question--section-border question-in-doc">
-          <div className="btn-float-remove-question">
-            <button title="Remover questão" type="button" className="btn btn-default btn-circle btn-xl btn-lateral">
+        <div key={i} className="c-document__question">
+          <div className="l-btn-remove-question">
+            <Button title="Remover questão" type="button" className="c-document__btn-remove-question">
               <i className="fa fa-trash" />
-            </button>
+            </Button>
           </div>
           <Row>
-            <Col sm="2">
+            <Col sm="12">
               <DisciplineList list={question.disciplines} />
-            </Col>
-            <Col sm="2">
-              <QuestionSourceYear styleTag="top-label-question source-name" source={question.source} year={question.year} />
+              <QuestionSourceYear  source={question.source} year={question.year} />
             </Col>
           </Row>
           <Row>
-            <div className="question-content-in-doc">
-              <span className="question-position">
-                {i + 1}
-)
-              </span>
-              {' '}
-              <QuestionContent question={question.question} />
+            <div className="c-document__question-content">
+              <QuestionContent statement={question.question} />
             </div>
           </Row>
           <Row>
-            <div className="auto-margin-left-element">
+            <div className="c-document__question-view-more col-md-3 offset-md-9">
               <Button onClick={() => this.toggle(question)}>
                 <i className="fa fa-search" />
                 {' '}
@@ -82,12 +75,12 @@ Ver mais
       <Container>
         <div>
           <AddQuestionButton />
-          <Row className="btn-preview-document">
+          <Row className="c-document__main-buttons">
             <div className="auto-margin-left-element">
               <Button title="Adicionar questões" className="btn-success btn-margin-right">
                 {' '}
-                <i className="fa fa-plus" />
-                <span className="button-text">
+                <i className="fa fa-plus btn__icon" />
+                <span>
 Adicionar questões
                 </span>
               </Button>
@@ -95,15 +88,11 @@ Adicionar questões
             <div>
               <Button title="Salvar documento" className="btn-success">
                 {' '}
-                <i className="fa fa-save" />
-                <span className="button-text">
-Salvar
-                </span>
+                <i className="fa fa-save btn__icon" /><span>Salvar</span>
               </Button>
             </div>
           </Row>
-          <Container>
-            <Row className="question-section-border document-header">
+            <Row className="c-document__questions-header">
               <Col xs="2">
                 <Label for="upload-avatar" className="upload-avatar">
 
@@ -129,7 +118,7 @@ Professor(a):
                 <br />
                 {props.data.studentName ? (
                   <p>
-Nome: ________________________________________________________
+                    Nome
                   </p>
                 ) : ''}
                 {props.data.class ? 'Turma: _________  ' : ''}
@@ -138,14 +127,11 @@ Nome: ________________________________________________________
               </Col>
               <Col sm={{ size: 'auto', offset: 3 }} />
             </Row>
-          </Container>
-          <p />
-
 
           {questions}
           {this.state.question
             ? (
-              <Modal className="document-modal" isOpen={this.state.question} toggle={() => this.toggle()} size="lg">
+              <Modal className="c-document__question-modal" isOpen={this.state.question} toggle={() => this.toggle()} size="lg">
                 <ModalHeader toggle={() => this.toggle()} />
                 <ModalBody>
                   <QuestionHeader disciplines={this.state.question.disciplines} source={this.state.question.source} year={this.state.question.year} />

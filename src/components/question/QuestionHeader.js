@@ -12,7 +12,7 @@ const QuestionHeader = ({
     </Row>
 
     <Row>
-      <QuestionSourceYear styleTag="top-label-question source-name" source={source} year={year} />
+      <QuestionSourceYear source={source} year={year} />
     </Row>
     <Row className="c-question__tittle-section">
       <h4>

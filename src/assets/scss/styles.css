@@ -26,7 +26,8 @@ Author: MasterAula - Pamela Rosales
 body {
   font-family: "Lato", serif;
   padding: 0px;
-  margin: 0; }
+  margin: 0;
+  font-size: 14px; }
 
 h1, h2, p, ul, li {
   font-family: "Lato", serif; }
@@ -60,9 +61,11 @@ ul.header {
   font-size: 14px;
   padding: 5px 10px; }
 
-.modal-content {
-  background: transparent;
-  border: transparent; }
+.btn-margin-right {
+  margin-right: 15px; }
+
+.btn__icon {
+  margin-right: 7px; }
 
 .row {
   margin-left: -5px;
@@ -71,10 +74,24 @@ ul.header {
 .bg-primary {
   background-color: #1E5078 !important; }
 
+.small-text {
+  font-size: 12px; }
+
+.auto-margin-left-element {
+  margin-left: auto; }
+
 @media (max-width: 599px) {
   .container {
     padding-right: 0px;
     padding-left: 0px; } }
+
+/*Modal CSS General**/
+.modal-content {
+  background: transparent;
+  border: transparent; }
+
+.modal-title {
+  width: 100%; }
 
 .c-footer {
   transition: all 0.3s ease;
@@ -372,8 +389,11 @@ img.logo-in-menu.no-login {
   font-weight: bold;
   margin-bottom: 10px;
   margin-right: 10px;
-  font-size: 13px; }
+  font-size: 13px;
+  text-align: center; }
   .question-info--source-year {
+    margin-bottom: 10px; }
+  .question-info--purple {
     background: #4D3570; }
   .question-info__more-info {
     font-size: 14px;
@@ -640,70 +660,7 @@ CSS for UserProfile
       position: relative; } }
 
 /** New Document and ViewDocument in "My Documents" options*/
-.question-in-doc {
-  position: relative; }
-
-.question-in-doc p.text-question {
-  font-weight: normal; }
-
-.question-in-doc, .document-header {
-  position: relative;
-  border: 2px solid #FFFFFF;
-  padding: 25px 25px 25px 25px;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background: #FFFFFF; }
-
-.question-modal.modal-body {
-  padding-top: 0px; }
-
-.document-modal {
-  padding-top: 0px;
-  background: #FFFFFF; }
-
-.btn-margin-right {
-  margin-right: 15px; }
-
-.btn-preview-document.row {
-  margin-top: 15px;
-  margin-bottom: 15px; }
-
-.btn-float-remove-question {
-  position: absolute;
-  top: -20px;
-  right: -20px; }
-
-.btn-float-remove-question .btn-circle {
-  padding: 0px;
-  line-height: 0px;
-  background: red;
-  width: 40px;
-  height: 40px;
-  color: white;
-  font-size: 25px; }
-
-.btn-save-document {
-  padding-top: 20px;
-  padding-bottom: 10px; }
-
-.btn-save-document .btn {
-  font-size: 20px; }
-
-.auto-margin-left-element {
-  margin-left: auto; }
-
-span.button-text {
-  margin-left: 7px; }
-
-.question-content-in-doc {
-  display: inline-flex;
-  width: 100%; }
-
-.question-content-in-doc .section-text-question, .question-content-in-doc .question-position {
-  margin-bottom: 10px;
-  margin-top: 10px; }
-
-.create-document-header {
+.c-document__header {
   padding: 15px;
   border: 2px solid #FFFFFF;
   padding: 25px;
@@ -712,8 +669,91 @@ span.button-text {
   background: #FFFFFF;
   margin-top: 10px; }
 
-.modal-title {
+.c-document__main-buttons {
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+.c-document__question {
+  position: relative;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  margin: 10px 0px;
+  padding: 20px 10px; }
+
+.c-document__question-content {
+  display: inline-flex;
   width: 100%; }
+
+.c-document__question-view-more {
+  text-align: right; }
+
+.c-document__questions-header {
+  position: relative;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  margin: 10px 0px;
+  padding: 20px 10px; }
+
+.c-document__btn-remove-question {
+  padding: 0px;
+  line-height: 0px;
+  background: red;
+  width: 40px;
+  height: 40px;
+  color: white;
+  font-size: 25px;
+  border-radius: 25px;
+  border: 1px solid red; }
+
+.l-btn-remove-question {
+  position: absolute;
+  top: -20px;
+  right: -20px; }
+
+/*QuestionModal in DocumentPage*/
+.c-document__question-modal {
+  padding-top: 0px;
+  background: #FFFFFF;
+  border-radius: 5px; }
+
+.c-document__question-modal-body {
+  padding-top: 0px; }
+
+/*DocumentModal in DocumentListPage - ViewDocumentPage*/
+.c-document-modal {
+  padding-top: 0px;
+  background: #FFFFFF;
+  border-radius: 5px; }
+  .c-document-modal__header-info {
+    position: relative;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin: 10px 0px;
+    padding: 20px 10px; }
+  .c-document-modal__question {
+    position: relative;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin: 10px 0px;
+    padding: 20px 10px; }
+  .c-document-modal__question-content {
+    display: inline-flex;
+    width: 100%; }
+  .c-document-modal__footer {
+    border: 0px;
+    padding-top: 0px; }
 
 /*Clases do Home*/
 .o-thumb-circle {

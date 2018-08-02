@@ -6,6 +6,7 @@ body{
   font-family: $lato;
   padding: 0px;
   margin: 0;
+  font-size: 14px;
 }
 
 h1, h2, p, ul, li {
@@ -54,11 +55,13 @@ ul.header {
     padding: 5px 10px;
 }
 
-.modal-content {
-    background: transparent;
-    border: transparent;
+.btn-margin-right{
+  margin-right: 15px;
 }
 
+.btn__icon{
+  margin-right: 7px;
+}
 
 .row {
     margin-left: -5px;
@@ -69,9 +72,28 @@ ul.header {
     background-color: $color-ma-blue !important;
 }
 
+.small-text {
+    font-size: 12px;
+}
+
+.auto-margin-left-element{
+      margin-left: auto;
+}
+
+
 .container {
   @include for-phone-only {
     padding-right: 0px;
     padding-left: 0px;
   }
+}
+
+
+/*Modal CSS General**/
+.modal-content {
+    background: transparent;
+    border: transparent;
+}
+.modal-title {
+    width: 100%;
 }

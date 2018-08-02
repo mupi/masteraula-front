@@ -5,7 +5,7 @@ import {
 import DisciplineList from 'components/disciplines/DisciplineList';
 import QuestionSourceYear from 'components/question/QuestionSourceYear';
 import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
-import QuestionContent from '../question/QuestionContent.js';
+import QuestionContent from 'components/question/QuestionContent';
 
 class DocumentList extends React.Component {
   constructor(props) {
@@ -87,42 +87,39 @@ Apagar
         </Table>
         {this.state.document
           ? (
-            <Modal isOpen={!!this.state.document} toggle={() => this.toggle()} size="lg">
+            <Modal className="c-document-modal" isOpen={!!this.state.document} toggle={() => this.toggle()} size="lg">
               <ModalHeader toggle={() => this.toggle()}>
                 <div>
                   {this.state.document.name}
                 </div>
               </ModalHeader>
-              <ModalBody className="question-modal">
+              <ModalBody className="c-document-modal__body">
                 <Row>
-                  <div className="auto-margin-left-element">
+                  <div className="auto-margin-left-element btn-margin-right">
                     <ExportDocumentButton color="success" />
                   </div>
                   <div>
-                    <Button title="Editar documento" className="btn-success btn btn-secondary">
-                      <i className="fa fa-pencil" />
+                    <Button title="Editar documento" className="btn-success">
+                      <i className="fa fa-pencil btn__icon" />
                       <span className="button-text">
-Editar
+                          Editar
                       </span>
                     </Button>
                   </div>
                 </Row>
-                <Container>
-
-
-                  <Row className="question-section-border document-header">
-                    <Col xs="2">
-                      <Label for="upload-avatar" className="upload-avatar">
-                        <div className="thumbnail">
+                <Row className="c-document-modal__header-info">
+                  <Col xs="2">
+                    <Label for="upload-avatar" className="upload-avatar">
+                      <div className="thumbnail">
                           <img src={this.state.document.logo ? this.state.document.logo : 'http://via.placeholder.com/100x100'} alt="logo-documento" />
-                        </div>
-                      </Label>
-                    </Col>
-                    <Col>
-                      <Label>
+                      </div>
+                    </Label>
+                  </Col>
+                  <Col>
+                    <Label>
                         {this.state.document.schoolName ? this.state.document.schoolName : 'Nome da instituição'}
-                      </Label>
-                      <br />
+                    </Label>
+                    <br />
                       <Label>
                         {this.state.document.course ? this.state.document.course : 'Curso/Disciplina'}
                       </Label>
@@ -132,45 +129,42 @@ Editar
                       </Label>
                       <br />
                       {this.state.document.studentName ? (
-                        <p>
-Nome: ________________________________________________________
-                        </p>
+                        <p>Nome:</p>
                       ) : ''}
                       {this.state.document.class ? 'Turma: _________  ' : ''}
                       {this.state.document.date ? 'Data: ___/___/___  ' : ''}
                       {this.state.document.grade ? 'Nota: _______  ' : ''}
                     </Col>
                   </Row>
-                </Container>
                 {this.state.document.questions.map((question, i) => (
-                  <div key={i} className="question-section-border question-in-doc">
+                  <div key={i} className="c-document-modal__question">
                     <Row>
-                      <Col sm="4">
+                      <Col sm="12">
                         <DisciplineList list={question.disciplines} />
-                      </Col>
-                      <Col sm="4">
-                        <QuestionSourceYear styleTag="top-label-question source-name" source={question.source} year={question.year} />
+                        <QuestionSourceYear source={question.source} year={question.year} />
                       </Col>
                     </Row>
                     <Row>
-                      <div className="question-content-in-doc">
-                        <b className="question-position">
+                      <div className="c-document-modal__question-content">
+                        <b className="c-document-modal__question-number">
                           {i + 1}
-)
+                          {')'}
                         </b>
                         {' '}
-                        <QuestionContent question={question.question} />
+                        <QuestionContent statement={question.question} />
                       </div>
                     </Row>
                   </div>
                 ))}
               </ModalBody>
-              <ModalFooter>
+              <ModalFooter className="c-document-modal__footer">
                 <Button color="primary" onClick={() => this.toggle()}>
-Fechar
+                  <i className="fa fa-sign-out btn__icon" />
+                  Fechar
                 </Button>
                 <Button color="danger" onClick={() => this.toggle()}>
-Apagar
+                  <i className="fa fa-trash btn__icon" />
+                  Apagar
                 </Button>
               </ModalFooter>
             </Modal>
