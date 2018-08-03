@@ -92,13 +92,13 @@ export const updateDocument = (activeNewDocument) => {
 };
 
 // Add Selected Question to Document
-export const addSelectedDisciplineFilter = idQuestion => ({
-  type: REMOVE_SELECTED_QUESTION, idQuestion,
+export const addSelectedQuestion = (idDocument, idQuestion) => ({
+  type: REMOVE_SELECTED_QUESTION, idDocument, idQuestion,
 });
 
 // Remove Selected Question from Document
-export const removeSelectedDisciplineFilter = idQuestion => ({
-  type: ADD_SELECTED_QUESTION, idQuestion,
+export const removeSelectedQuestion = (idDocument, idQuestion) => ({
+  type: ADD_SELECTED_QUESTION, idDocument, idQuestion,
 });
 
 export function resetNewDocument() {
