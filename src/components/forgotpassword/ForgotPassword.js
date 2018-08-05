@@ -26,7 +26,7 @@ Redefinição de senha
                 type="email"
                 name="email"
                 id="exampleEmail"
-                placeholder="Ingrese seu email"
+                placeholder="Digite seu email"
                 className="form-control"
               />
             </FormGroup>

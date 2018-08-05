@@ -5,14 +5,12 @@ import { ConnectedRouter } from 'connected-react-router';
 
 import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
-import ForgotPasswordPage from 'pages/ForgotPassword/ForgotPasswordPage';
-import RedefinePasswordPage from 'pages/RedefinePassword/RedefinePasswordPage';
 import UserProfilePage from 'pages/UserProfile/UserProfilePage';
 import TermsUsePage from 'pages/TermsUse/TermsUsePage';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 import HomePage from 'pages/Home/HomePage.js';
 
-import { QuestionPageContainer, QuestionBasePageContainer } from 'containers';
+import { ForgotPasswordPageContainer, UserProfilePageContainer, RedefinePasswordPageContainer, QuestionPageContainer, QuestionBasePageContainer } from 'containers';
 
 import CreateDocumentPage from 'pages/CreateDocument/CreateDocumentPage';
 import PreviewDocumentPage from 'pages/CreateDocument/PreviewDocumentPage';
@@ -51,7 +49,7 @@ class App extends Component {
               <Switch>
                 <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
-                <Route path="/user-profile" component={UserProfilePage} />
+                <Route path="/user-profile" component={UserProfilePageContainer} />
                 <Route path="/new-document" component={CreateDocumentPage} />
                 <Route path="/documents" component={ViewDocumentPage} />
                 <Route component={NotFoundPage} />
@@ -62,8 +60,8 @@ class App extends Component {
                 <Route exact path="/" component={HomePage} />
                 <Route path="/login" component={LoginModal} />
                 <Route path="/register" component={RegisterModal} />
-                <Route path="/esqueci-senha" component={ForgotPasswordPage} />
-                <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPage} />
+                <Route path="/esqueci-senha" component={ForgotPasswordPageContainer} />
+                <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
                 <Route path="/terms-use" component={TermsUsePage} />
                 <Route path="/verify-userregister/:key" component={VerifyRegisterPageContainer} />
                 <Route component={NotFoundPage} />

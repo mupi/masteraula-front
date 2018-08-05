@@ -1,8 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { sendForgotPasswordEmail } from 'actions/forgotPasswordAction';
 import ForgotPassword from 'components/forgotpassword/ForgotPassword';
-
 
 const ForgotPasswordPage = (props) => {
   const { success, submit } = props;
@@ -16,16 +13,4 @@ const ForgotPasswordPage = (props) => {
   );
 };
 
-const mapStateToProps = state => ({
-  success: state.forgotPassword.success,
-});
-
-
-const mapDispatchToProps = dispatch => ({
-  submit: values => dispatch(sendForgotPasswordEmail(values.email)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ForgotPasswordPage);
+export default ForgotPasswordPage;
