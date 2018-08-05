@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { resetForgotPassword } from 'actions/forgotPasswordAction';
 import RedefinePassword from 'components/forgotpassword/RedefinePassword';
 
 const RedefinePasswordPage = (props) => {
@@ -17,15 +15,4 @@ const RedefinePasswordPage = (props) => {
   );
 };
 
-const mapStateToProps = state => ({
-  success: state.forgotPassword.success,
-});
-
-const mapDispatchToProps = dispatch => ({
-  submit: (values, d, props) => dispatch(resetForgotPassword(values.newpassword, values.repeatpassword, props.uid, props.token)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(RedefinePasswordPage);
+export default RedefinePasswordPage;

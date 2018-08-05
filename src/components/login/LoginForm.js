@@ -24,7 +24,7 @@ const LoginForm = (props) => {
             type="email"
             name="email"
             id="exampleEmail"
-            placeholder="Ingrese seu email"
+            placeholder="Digite seu email"
             className="form-control"
           />
         </FormGroup>
@@ -34,7 +34,7 @@ const LoginForm = (props) => {
             type="password"
             name="password"
             id="examplePassword"
-            placeholder="Ingrese sua senha"
+            placeholder="Digite sua senha"
             className="form-control"
           />
         </FormGroup>
