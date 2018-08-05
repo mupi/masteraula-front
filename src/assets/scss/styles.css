@@ -357,6 +357,15 @@ img.logo-in-menu {
 img.logo-in-menu.no-login {
   margin-left: 10px !important; }
 
+/*New SCSS with BEM style*/
+a.c_sidebar__document-link {
+  font-weight: normal;
+  color: #53BA65; }
+
+a.c_sidebar__document-link:hover {
+  font-weight: bold;
+  color: #53BA65; }
+
 .nav-item .position-login {
   border: none;
   padding: 10px;

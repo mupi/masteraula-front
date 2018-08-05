@@ -317,3 +317,16 @@ img.logo-in-menu {
 img.logo-in-menu.no-login {
     margin-left: 10px !important;
 }
+
+
+/*New SCSS with BEM style*/
+
+a.c_sidebar__document-link {
+    font-weight: normal;
+    color: $color-ma-green
+}
+
+a.c_sidebar__document-link:hover{
+    font-weight: bold;
+    color: $color-ma-green
+}

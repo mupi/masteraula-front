@@ -29,16 +29,16 @@ const Sidebar = (props) => {
               <div className="sidebar-nav-container">
 
                 <h5>
-Documento Atual
+                  Documento Atual
                 </h5>
                 <h6>
-                  <i className="fa fa-file" />
+                  <i className="fa fa-file" /><a href="" className="c_sidebar__document-link">
                   {' '}
                   {docName}
                   {' '}
 (
                   {docNumberQuestions}
-)
+)</a>
                 </h6>
                 <div className="container-export-button">
                   <ExportDocumentButton />
@@ -46,23 +46,20 @@ Documento Atual
                 <ListGroup className="sidebar-main-options">
                   <ListGroupItem color="secondary">
                     <Link to="/new-document">
-                      {' '}
-Novo documento
-                      {' '}
+                      <i className="fa fa-plus-circle btn__icon" />
+                      Novo documento
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="secondary">
                     <Link to="/documents">
-                      {' '}
-Meus documentos
-                      {' '}
+                      <i className="fa fa-folder-open btn__icon" />
+                      Meus documentos
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="secondary">
                     <Link to="/question-base/1">
-                      {' '}
-Banco de questões
-                      {' '}
+                      <i className="fa fa-search btn__icon" />
+                      Banco de questões
                     </Link>
                   </ListGroupItem>
                 </ListGroup>
