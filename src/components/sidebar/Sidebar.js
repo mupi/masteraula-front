@@ -3,7 +3,6 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import QuestionBasePage from 'pages/QuestionBase/QuestionBasePage';
 import UserProfilePage from 'pages/UserProfile/UserProfilePage';
-import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
 import { Row, Col, Button } from 'reactstrap';
 
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
@@ -11,6 +10,8 @@ import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
 
 import FilterContainer from 'containers/FilterContainer';
 import SidebarFilters from './SidebarFilters';
+import DocumentInfoSidebar from './DocumentInfoSidebar';
+
 
 const Sidebar = (props) => {
   const { showFilters } = props;
@@ -27,26 +28,8 @@ const Sidebar = (props) => {
           <Row>
             <Col xs="12">
               <div className="sidebar-nav-container">
+                <DocumentInfoSidebar />
 
-                <h5>
-                  Documento Atual
-                </h5>
-                <h6>
-                  <i className="fa fa-file btn__icon" />
-                  <a href="/" className="c_sidebar__document-link">
-                    {docName}
-                    (
-                    {docNumberQuestions}
-                    )
-                  </a>
-                </h6>
-                <div className="container-export-button">
-                  <Button className="btn-margin-right">
-                    <i className="fa fa-pencil btn__icon" />
-                      Editar
-                  </Button>
-                  <ExportDocumentButton />
-                </div>
                 <ListGroup className="sidebar-main-options">
                   <ListGroupItem color="secondary">
                     <Link to="/new-document">

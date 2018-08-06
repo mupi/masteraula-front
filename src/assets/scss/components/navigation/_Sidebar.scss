@@ -320,6 +320,11 @@ img.logo-in-menu.no-login {
 
 
 /*New SCSS with BEM style*/
+.c-sidebar{
+  &__document-info{
+
+  }
+}
 
 a.c_sidebar__document-link {
     font-weight: normal;
