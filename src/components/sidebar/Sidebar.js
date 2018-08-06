@@ -32,15 +32,19 @@ const Sidebar = (props) => {
                   Documento Atual
                 </h5>
                 <h6>
-                  <i className="fa fa-file" /><a href="" className="c_sidebar__document-link">
-                  {' '}
-                  {docName}
-                  {' '}
-(
-                  {docNumberQuestions}
-)</a>
+                  <i className="fa fa-file btn__icon" />
+                  <a href="/" className="c_sidebar__document-link">
+                    {docName}
+                    (
+                    {docNumberQuestions}
+                    )
+                  </a>
                 </h6>
                 <div className="container-export-button">
+                  <Button className="btn-margin-right">
+                    <i className="fa fa-pencil btn__icon" />
+                      Editar
+                  </Button>
                   <ExportDocumentButton />
                 </div>
                 <ListGroup className="sidebar-main-options">
