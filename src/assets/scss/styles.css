@@ -273,11 +273,6 @@ html body #masteraula-nav-header {
   padding-left: 0px;
   padding-right: 0px; }
 
-.container-export-button {
-  text-align: right;
-  margin-top: 10px;
-  margin-right: 15px; }
-
 ul.sidebar-main-options.list-group {
   margin-right: 15px; }
 
@@ -358,6 +353,11 @@ img.logo-in-menu.no-login {
   margin-left: 10px !important; }
 
 /*New SCSS with BEM style*/
+.c-sidebar__document-buttons {
+  text-align: right;
+  margin-top: 10px;
+  margin-right: 15px; }
+
 a.c_sidebar__document-link {
   font-weight: normal;
   color: #53BA65; }

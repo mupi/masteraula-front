@@ -219,11 +219,7 @@ html body #masteraula-nav-header {
     padding-right: 0px;
 }
 
-.container-export-button{
-  text-align: right;
-  margin-top: 10px;
-  margin-right: 15px;
-}
+
 
 ul.sidebar-main-options.list-group {
     margin-right: 15px;
@@ -324,11 +320,22 @@ img.logo-in-menu.no-login {
   &__document-info{
 
   }
+
+  &__document-buttons {
+      text-align: right;
+      margin-top: 10px;
+      margin-right: 15px;
+  }
+
+  &__document-button-item{
+
+  }
 }
 
 a.c_sidebar__document-link {
     font-weight: normal;
     color: $color-ma-green
+    
 }
 
 a.c_sidebar__document-link:hover{

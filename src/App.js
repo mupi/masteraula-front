@@ -50,7 +50,7 @@ class App extends Component {
                 <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePageContainer} />
-                <Route path="/new-document" component={CreateDocumentPage} />
+                <Route path="/edit-document" component={CreateDocumentPage} />
                 <Route path="/documents" component={ViewDocumentPage} />
                 <Route component={NotFoundPage} />
               </Switch>
