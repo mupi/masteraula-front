@@ -790,6 +790,11 @@ CSS for UserProfile
   font-weight: bold;
   cursor: pointer; }
 
+.document__new-document-modal-header {
+  background: #53BA65;
+  color: white;
+  text-align: center; }
+
 .document__new-document-modal-content {
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -800,6 +805,10 @@ CSS for UserProfile
   @media (min-width: 990px) {
     .document__new-document-modal-content {
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); } }
+
+.document__new-document-modal-footer {
+  border-top: transparent;
+  padding: 0rem 1rem 1rem 1rem; }
 
 /*Clases do Home*/
 .o-thumb-circle {

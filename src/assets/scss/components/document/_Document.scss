@@ -138,6 +138,12 @@
     cursor: pointer;
   }
 
+  &__new-document-modal-header{
+    background: $color-ma-green;
+    color: white;
+    text-align: center;
+  }
+
   &__new-document-modal-content{
     @include for-tablet-landscape-up{
         box-shadow: 0 5px 15px rgba(0,0,0,0.5);
@@ -149,5 +155,10 @@
     box-shadow: 0 3px 9px rgba(0,0,0,0.5);
     background-clip: padding-box;
     outline: 0;
+  }
+
+  &__new-document-modal-footer{
+    border-top: transparent;
+    padding: 0rem 1rem 1rem 1rem;
   }
 }

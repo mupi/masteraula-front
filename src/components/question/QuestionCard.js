@@ -2,6 +2,8 @@ import React from 'react';
 import {
   Button, Card, CardImg, CardBody, Row,
 } from 'reactstrap';
+import AddQuestionButton from 'components/buttons/AddQuestionButton';
+
 import imageCard from 'assets/img/home/question-card.jpg';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import TagList from 'components/tags/TagList';
@@ -56,10 +58,14 @@ id, disciplines, source, year, statement, urlImage = '', author, teaching_levels
           Ver mais
         </Button>
       </Link>
-      <Button value={id} className="question-card__btn" onClick={e => handleAddQuestionButton(e)}>
-        <i className="fa fa-plus-circle btn__icon" />
-          Adicionar
-      </Button>
+
+      <AddQuestionButton
+        questionId={id}
+        customClass="question-card__btn"
+        nameButton="Adicionar"
+        onClick={e => handleAddQuestionButton(e)}
+      />
+      
     </CardBody>
   </Card>
   );

@@ -32,21 +32,21 @@ class ModalEnterNameCreateDocument extends React.Component {
         </div>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className="document__new-document-modal-content">
 
-          <ModalHeader toggle={this.toggle}>Criar novo documento</ModalHeader>
+          <ModalHeader className="document__new-document-modal-header" toggle={this.toggle}>Criar novo documento</ModalHeader>
           <ModalBody>
-            <p>Por favor, insira um nome para o novo documento a ser criado</p>
+            <p className="text-center">Por favor, insira um nome para o novo documento a ser criado</p>
             <FormGroup>
               <Input
                 component="input"
                 type="text"
                 name="email"
                 id="exampleEmail"
-                placeholder="Digite seu email"
+                placeholder="Digite o nome do documento"
                 className="form-control"
               />
             </FormGroup>
           </ModalBody>
-          <ModalFooter>
+          <ModalFooter className="document__new-document-modal-footer">
             <Button color="" className="btn--confirm" onClick={this.toggle}>Criar</Button>{' '}
             <Button color="secondary" onClick={this.toggle}>Cancelar</Button>
           </ModalFooter>

@@ -74,7 +74,9 @@ Ver mais
     return (
       <Container>
         <div>
-          <AddQuestionButton />
+          <div className="l-button-add-question">
+            <AddQuestionButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
+          </div>
           <Row className="c-document__main-buttons">
             <div className="auto-margin-left-element">
               <Button title="Adicionar questões" className="btn-success btn-margin-right">

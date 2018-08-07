@@ -8,4 +8,4 @@ const RemoveQuestionButton = ({ questionId }) => (
     </Button>
   </div>
 );
-export default AddQuestionButton;
+export default RemoveQuestionButton;

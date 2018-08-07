@@ -138,7 +138,9 @@ class QuestionPage extends Component {
             </Col>
           </Row>
         </div>
-        <AddQuestionButton />
+        <div className="l-button-add-question">
+          <AddQuestionButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
+        </div>
 
       </HomeUserPage>
     );
