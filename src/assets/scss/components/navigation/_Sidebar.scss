@@ -203,7 +203,7 @@ html body #masteraula-nav-header {
     transition: all 0.3s ease;
 }
 
-.sidebar-nav-container a {
+.sidebar-nav-container .list-group-item a {
     text-decoration: none;
     color: $color-ma-blue;
     font-weight: bold;
@@ -316,29 +316,33 @@ img.logo-in-menu.no-login {
 
 
 /*New SCSS with BEM style*/
-.c-sidebar{
-  &__document-info{
-
-  }
-
-  &__document-buttons {
-      text-align: right;
-      margin-top: 10px;
-      margin-right: 15px;
-  }
-
-  &__document-button-item{
-
-  }
-}
-
 a.c_sidebar__document-link {
     font-weight: normal;
     color: $color-ma-green
-    
 }
 
 a.c_sidebar__document-link:hover{
     font-weight: bold;
     color: $color-ma-green
+}
+
+.c-sidebar{
+  &__document-info{
+
+  }
+
+  &__document-l-buttons {
+      text-align: right;
+      margin-top: 10px;
+      margin-right: 15px;
+  }
+
+  &__document-btn-item{
+    color: $color-ma-white;
+  }
+
+  &__document-btn-item:hover{
+    color: $color-ma-white;
+    text-decoration: none;
+  }
 }

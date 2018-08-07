@@ -18,16 +18,13 @@ const DocumentInfoSidebar = ({ docName="Prova de Matemáticas", docNumberQuestio
         )
       </a>
     </h6>
-    <div className="c_sidebar__document-buttons">
-      <Button className="c_sidebar__button-item btn-margin-right">
-        <Link to="/edit-document">
-        <i className="fa fa-pencil btn__icon" />
+    <div className="c-sidebar__document-l-buttons">
+      <Button className="btn-margin-right">
+        <Link className="c-sidebar__document-btn-item" to="/edit-document">
+          <i className="fa fa-pencil btn__icon" />
           Editar
         </Link>
       </Button>
-
-
-
       <ExportDocumentButton />
     </div>
   </div>

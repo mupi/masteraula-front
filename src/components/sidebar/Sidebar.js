@@ -10,6 +10,7 @@ import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
 
 import FilterContainer from 'containers/FilterContainer';
 import DocumentInfoSidebar from './DocumentInfoSidebar';
+import ModalEnterNameCreateDocument from 'components/document/ModalEnterNameCreateDocument';
 
 
 const Sidebar = (props) => {
@@ -32,10 +33,7 @@ const Sidebar = (props) => {
 
                 <ListGroup className="sidebar-main-options">
                   <ListGroupItem color="secondary">
-                    <Link to="">
-                      <i className="fa fa-plus-circle btn__icon" />
-                      Novo documento
-                    </Link>
+                      <ModalEnterNameCreateDocument />
                   </ListGroupItem>
                   <ListGroupItem color="secondary">
                     <Link to="/documents">

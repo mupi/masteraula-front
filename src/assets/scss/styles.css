@@ -260,7 +260,7 @@ html body #masteraula-nav-header {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease; }
 
-.sidebar-nav-container a {
+.sidebar-nav-container .list-group-item a {
   text-decoration: none;
   color: #1E5078;
   font-weight: bold; }
@@ -353,11 +353,6 @@ img.logo-in-menu.no-login {
   margin-left: 10px !important; }
 
 /*New SCSS with BEM style*/
-.c-sidebar__document-buttons {
-  text-align: right;
-  margin-top: 10px;
-  margin-right: 15px; }
-
 a.c_sidebar__document-link {
   font-weight: normal;
   color: #53BA65; }
@@ -365,6 +360,18 @@ a.c_sidebar__document-link {
 a.c_sidebar__document-link:hover {
   font-weight: bold;
   color: #53BA65; }
+
+.c-sidebar__document-l-buttons {
+  text-align: right;
+  margin-top: 10px;
+  margin-right: 15px; }
+
+.c-sidebar__document-btn-item {
+  color: #FFFFFF; }
+
+.c-sidebar__document-btn-item:hover {
+  color: #FFFFFF;
+  text-decoration: none; }
 
 .nav-item .position-login {
   border: none;
@@ -762,6 +769,25 @@ CSS for UserProfile
   .c-document-modal__footer {
     border: 0px;
     padding-top: 0px; }
+
+/*New document button in Sidebar*/
+.document__new-document-btn {
+  background: transparent;
+  border-color: transparent;
+  color: #1E5078;
+  font-weight: bold;
+  cursor: pointer; }
+
+.document__new-document-modal-content {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: 0; }
+  @media (min-width: 990px) {
+    .document__new-document-modal-content {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); } }
 
 /*Clases do Home*/
 .o-thumb-circle {
