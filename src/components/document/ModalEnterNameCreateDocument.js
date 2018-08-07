@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { connect } from 'react-redux';
+
+import { Button,Form, FormGroup,  Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Field, reduxForm } from 'redux-form';
 
 
 
@@ -28,13 +31,24 @@ class ModalEnterNameCreateDocument extends React.Component {
           Novo documento
         </div>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className="document__new-document-modal-content">
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+
+          <ModalHeader toggle={this.toggle}>Criar novo documento</ModalHeader>
           <ModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <p>Por favor, insira um nome para o novo documento a ser criado</p>
+            <FormGroup>
+              <Input
+                component="input"
+                type="text"
+                name="email"
+                id="exampleEmail"
+                placeholder="Digite seu email"
+                className="form-control"
+              />
+            </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            <Button color="" className="btn--confirm" onClick={this.toggle}>Criar</Button>{' '}
+            <Button color="secondary" onClick={this.toggle}>Cancelar</Button>
           </ModalFooter>
         </Modal>
       </div>
@@ -42,4 +56,16 @@ class ModalEnterNameCreateDocument extends React.Component {
   }
 }
 
-export default ModalEnterNameCreateDocument;
+
+const mapStateToProps = state => ({
+
+});
+
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(reduxForm({
+  form: 'new-document-modal',
+})(ModalEnterNameCreateDocument));

@@ -53,7 +53,25 @@ ul.header {
 .btn {
     font-size: 14px;
     padding: 5px 10px;
+
+  &--confirm {
+      color: $color-ma-white;
+      background-color: $color-ma-green;
+      border-color: $color-ma-green;
+  }
+  &--confirm:hover {
+      color: $color-ma-white;
+      background-color: $color-ma-green;
+      border-color: $color-ma-green;
+  }
+
+  &--confirm:focus {
+      color: $color-ma-white;
+      background-color: $color-ma-green;
+      border-color: $color-ma-green;
+  }
 }
+
 
 .btn-margin-right{
   margin-right: 15px;

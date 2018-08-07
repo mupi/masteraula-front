@@ -60,6 +60,18 @@ ul.header {
 .btn {
   font-size: 14px;
   padding: 5px 10px; }
+  .btn--confirm {
+    color: #FFFFFF;
+    background-color: #53BA65;
+    border-color: #53BA65; }
+  .btn--confirm:hover {
+    color: #FFFFFF;
+    background-color: #53BA65;
+    border-color: #53BA65; }
+  .btn--confirm:focus {
+    color: #FFFFFF;
+    background-color: #53BA65;
+    border-color: #53BA65; }
 
 .btn-margin-right {
   margin-right: 15px; }
