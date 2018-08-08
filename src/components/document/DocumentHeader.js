@@ -83,14 +83,14 @@ class DocumentHeader extends Component {
                   <br />
                   <Input addon type="checkbox" id="date" onChange={event => this.props.setFields('date', event)} />
                   {' '}
-Data
+                  Data
                 </Col>
               </Row>
             </Col>
           </Row>
           <Row className="c-document__main-buttons text-center">
             <Col>
-              <Button title="Adicionar questões" className="btn-success btn-margin-right">
+              <Button title="Salvar cabeçalho" className="btn-success btn-margin-right">
                 <i className="fa fa-save btn__icon" />
                 <span>
                   Salvar

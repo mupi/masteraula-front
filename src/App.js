@@ -12,8 +12,8 @@ import HomePage from 'pages/Home/HomePage.js';
 
 import { ForgotPasswordPageContainer, UserProfilePageContainer, RedefinePasswordPageContainer, QuestionPageContainer, QuestionBasePageContainer } from 'containers';
 
-import CreateDocumentPage from 'pages/CreateDocument/CreateDocumentPage';
-import PreviewDocumentPage from 'pages/CreateDocument/PreviewDocumentPage';
+import EditDocumentPage from 'pages/EditDocument/EditDocumentPage';
+import PreviewDocumentPage from 'pages/EditDocument/EditDocumentPage';
 import ViewDocumentPage from 'pages/ViewDocument/ViewDocumentPage';
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
@@ -50,7 +50,7 @@ class App extends Component {
                 <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePageContainer} />
-                <Route path="/edit-document" component={CreateDocumentPage} />
+                <Route path="/edit-document" component={EditDocumentPage} />
                 <Route path="/documents" component={ViewDocumentPage} />
                 <Route component={NotFoundPage} />
               </Switch>

@@ -6,14 +6,13 @@ import DocumentHeader from 'components/document/DocumentHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
-class CreateDocumentPage extends Component {
+class EditDocumentPage extends Component {
   constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
     this.setFields = this.setFields.bind(this);
     this.state = {
-      activeTab: '1',
       name: '',
       schoolName: '',
       course: '',
@@ -40,6 +39,10 @@ class CreateDocumentPage extends Component {
       },
       ],
     };
+  }
+
+  componentDidMount(){
+    this.props.fetchDocument(this.state.actveDocument.id);
   }
 
   setFields(field, event) {
@@ -73,4 +76,4 @@ class CreateDocumentPage extends Component {
   }
 }
 
-export default CreateDocumentPage;
+export default EditDocumentPage;
