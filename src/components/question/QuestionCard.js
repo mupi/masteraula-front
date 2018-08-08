@@ -65,7 +65,6 @@ id, disciplines, source, year, statement, urlImage = '', author, teaching_levels
         nameButton="Adicionar"
         onClick={e => handleAddQuestionButton(e)}
       />
-      
     </CardBody>
   </Card>
   );

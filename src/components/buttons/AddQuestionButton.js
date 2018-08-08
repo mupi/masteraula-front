@@ -1,8 +1,13 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
-const AddQuestionButton = ({ customClass, questionId, nameButton }) => (
-  <Button value={questionId} title="Adicionar questões" className={customClass}>
+const AddQuestionButton = ({ customClass, questionId, nameButton, onClick }) => (
+  <Button
+    value={questionId}
+    title="Adicionar questões"
+    className={customClass}
+    onClick={onClick}
+  >
     <i className="fa fa-plus" />
     {' '}
     {nameButton}
