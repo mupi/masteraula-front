@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { connect } from 'react-redux';
+import React from 'react';
+import {
+  Modal, ModalHeader, ModalBody,
+}
+  from 'reactstrap';
 
 import CreateDocumentForm from 'components/document/CreateDocumentForm';
-import { toggleModal } from 'actions/documentAction';
-
 
 const CreateDocumentModal = (props) => {
   const { modal, toggleModal } = props;
