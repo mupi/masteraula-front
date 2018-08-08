@@ -1,13 +1,14 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
-const handleAddQuestionButton = (e,questionId) => {
-  console.log("hola");
-  console.log(questionId);
-//  addQuestion(id);
+const handleAddQuestionButton = (e, questionId, activeDocument = null) => {
+
+  if (activeDocument != null) {
+    // addQuestion(id);
+  } else {
+    console.log(questionId);
+  }
 };
-
-
 
 const AddQuestionButton = ({ customClass, questionId, nameButton }) => (
   <Button

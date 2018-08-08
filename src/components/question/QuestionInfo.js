@@ -92,10 +92,12 @@ Avaliação
 QuestionInfo.propTypes = {
   rating: PropTypes.number,
   onRate: PropTypes.func,
+  difficulty: PropTypes.string,
 };
 
 QuestionInfo.defaultProps = {
   rating: 0,
+  difficulty: '',
   onRate: f => f,
 };
 

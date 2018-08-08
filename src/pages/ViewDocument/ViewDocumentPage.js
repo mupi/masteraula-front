@@ -2,8 +2,7 @@ import React from 'react';
 import {
   Row, Container, Col, Button, Input, InputGroup, InputGroupAddon,
 } from 'reactstrap';
-import classnames from 'classnames';
-import DocumentList from '../../components/document/DocumentList.js';
+import DocumentList from 'components/document/DocumentList';
 import HomeUserPage from '../HomeUser/HomeUserPage';
 
 
