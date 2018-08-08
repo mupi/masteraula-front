@@ -6,3 +6,4 @@ export { default as profileEdit } from './profileEditReducer';
 export { default as session } from './sessionReducer';
 export { default as question } from './questionReducer';
 export { default as filter } from './filterReducer';
+export { default as document } from './documentReducer';

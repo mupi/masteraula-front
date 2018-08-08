@@ -4,7 +4,7 @@ import { createLogger } from 'redux-logger';
 import { combineReducers } from 'redux';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import {
-  login, menu, register, forgotPassword, profileEdit, question, filter, session,
+  login, menu, register, forgotPassword, profileEdit, question, filter, session,document
 } from 'reducers';
 
 import { history } from 'helpers/history';
@@ -21,6 +21,7 @@ const rootReducer = combineReducers({
   question,
   filter,
   session,
+  document,
   form: formReducer,
 });
 

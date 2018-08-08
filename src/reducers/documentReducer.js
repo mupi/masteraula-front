@@ -17,10 +17,6 @@ const initialState = {
 
 export const document = (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_DOCUMENT_TOGGLE_MODAL:
-      return Object.assign({}, state, {
-        modal: action.modal,
-      });
     case FETCH_DOCUMENT:
       return Object.assign({}, state, {
         isFetching: true,
@@ -59,6 +55,11 @@ export const document = (state = initialState, action) => {
     case REMOVE_SELECTED_QUESTION: {
       return Object.assign({}, state, {
 
+      });
+    }
+    case CREATE_DOCUMENT_TOGGLE_MODAL: {
+      return Object.assign({}, state, {
+        modal: action.modal,
       });
     }
     default:
