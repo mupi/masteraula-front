@@ -3,7 +3,7 @@ import {
   Row, Input, Container, Col, Label, Button
 } from 'reactstrap';
 
-class DocumentForm extends Component {
+class DocumentHeader extends Component {
   componentWillMount() {
 
 
@@ -14,12 +14,18 @@ class DocumentForm extends Component {
       <Container>
         <Row className="c-document__main-buttons">
           <div className="auto-margin-left-element">
+            <Button title="Adicionar questões" className="btn-success btn-margin-right">
+              {' '}
+              <i className="fa fa-plus btn__icon" />
+              <span>
+Adicionar questões
+              </span>
+            </Button>
+          </div>
+          <div>
             <Button title="Salvar documento" className="btn-success">
               {' '}
-              <i className="fa fa-save btn__icon" />
-              <span>
-                Salvar
-              </span>
+              <i className="fa fa-save btn__icon" /><span>Salvar</span>
             </Button>
           </div>
         </Row>
@@ -94,4 +100,4 @@ Data
   }
 }
 
-export default DocumentForm;
+export default DocumentHeader;

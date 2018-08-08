@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Container } from 'reactstrap';
-import DocumentPreview from 'components/document/DocumentPreview';
+import DocumentHeader from 'components/document/DocumentHeader';
+import DocumentQuestions from 'components/document/DocumentQuestions';
 
 const PreviewDocumentPage = () => {
   const data = {
@@ -20,7 +21,8 @@ const PreviewDocumentPage = () => {
         </h2>
       </Row>
       <Row>
-        <DocumentPreview data={data} />
+        <DocumentHeader setFields={this.setFields} />
+        <DocumentQuestions data={this.state} />
       </Row>
     </Container>);
 };
