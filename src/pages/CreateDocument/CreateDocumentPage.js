@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import {
   Nav, NavItem, NavLink, TabContent, TabPane,
 } from 'reactstrap';
-import classnames from 'classnames';
-import DocumentForm from 'components/document/DocumentForm';
-import DocumentPreview from 'components/document/DocumentPreview';
+import DocumentHeader from 'components/document/DocumentHeader';
+import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-
 
 class CreateDocumentPage extends Component {
   constructor(props) {
@@ -38,23 +36,9 @@ class CreateDocumentPage extends Component {
         teachingLevels: [
           { name: 'Ensino Médio' },
           { name: 'Ensino Superior' },
-        ]
-      }, {
-        id: '100',
-        question: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha:',
-        disciplines: [
-          { name: 'Química' },
-          { name: 'Física' },
         ],
-        source: 'ENEM',
-        year: '2010',
-        difficulty: 'Fácil',
-        author: 'Thiago Oliveira dos Santos',
-        teachingLevels: [
-          { name: 'Ensino Médio' },
-          { name: 'Ensino Superior' },
-        ],
-      }],
+      },
+      ],
     };
   }
 
@@ -82,32 +66,8 @@ class CreateDocumentPage extends Component {
     return (
       <HomeUserPage>
         <div className="c-document">
-          <Nav tabs>
-            <NavItem>
-              <NavLink
-                className={classnames({ active: this.state.activeTab === '1' })}
-                onClick={() => { this.toggle('1'); }}
-              >
-                Monte seu documento
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={classnames({ active: this.state.activeTab === '2' })}
-                onClick={() => { this.toggle('2'); }}
-              >
-                    Escolha as questões
-              </NavLink>
-            </NavItem>
-          </Nav>
-          <TabContent className="c-document__tab-content" activeTab={this.state.activeTab} style={{ display: 'block' }}>
-            <TabPane tabId="1">
-              <DocumentForm setFields={this.setFields} />
-            </TabPane>
-            <TabPane tabId="2">
-              <DocumentPreview data={this.state} />
-            </TabPane>
-          </TabContent>
+          <DocumentHeader setFields={this.setFields} />
+          <DocumentQuestions data={this.state} />
         </div>
       </HomeUserPage>);
   }

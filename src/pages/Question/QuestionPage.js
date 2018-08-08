@@ -1,13 +1,14 @@
-import QuestionHeader from 'components/question/QuestionHeader.js';
-import QuestionContent from 'components/question/QuestionContent.js';
-import QuestionInfo from 'components/question/QuestionInfo.js';
+import QuestionHeader from 'components/question/QuestionHeader';
+import QuestionContent from 'components/question/QuestionContent';
+import QuestionInfo from 'components/question/QuestionInfo';
 import RelatedQuestions from 'components/question/RelatedQuestions';
-import QuestionComments from 'components/question/QuestionComments.js';
-import AddQuestionButton from 'components/buttons/AddQuestionButton.js';
+import QuestionComments from 'components/question/QuestionComments';
+import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import { Alert, Row, Col } from 'reactstrap';
 
 import React, { Component } from 'react';
-import HomeUserPage from '../HomeUser/HomeUserPage';
+import HomeUserPage from 'pages/HomeUser/HomeUserPage';
+
 
 /* Questoes Relacionadas - test */
 const questionTest = {
@@ -137,7 +138,9 @@ class QuestionPage extends Component {
             </Col>
           </Row>
         </div>
-        <AddQuestionButton />
+        <div className="l-button-add-question">
+          <AddQuestionButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
+        </div>
 
       </HomeUserPage>
     );

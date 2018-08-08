@@ -60,6 +60,18 @@ ul.header {
 .btn {
   font-size: 14px;
   padding: 5px 10px; }
+  .btn--confirm {
+    color: #FFFFFF;
+    background-color: #53BA65;
+    border-color: #53BA65; }
+  .btn--confirm:hover {
+    color: #FFFFFF;
+    background-color: #53BA65;
+    border-color: #53BA65; }
+  .btn--confirm:focus {
+    color: #FFFFFF;
+    background-color: #53BA65;
+    border-color: #53BA65; }
 
 .btn-margin-right {
   margin-right: 15px; }
@@ -260,7 +272,7 @@ html body #masteraula-nav-header {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease; }
 
-.sidebar-nav-container a {
+.sidebar-nav-container .list-group-item a {
   text-decoration: none;
   color: #1E5078;
   font-weight: bold; }
@@ -272,11 +284,6 @@ html body #masteraula-nav-header {
 #sidebar-container .col-12 {
   padding-left: 0px;
   padding-right: 0px; }
-
-.container-export-button {
-  text-align: right;
-  margin-top: 10px;
-  margin-right: 15px; }
 
 ul.sidebar-main-options.list-group {
   margin-right: 15px; }
@@ -356,6 +363,27 @@ img.logo-in-menu {
 
 img.logo-in-menu.no-login {
   margin-left: 10px !important; }
+
+/*New SCSS with BEM style*/
+a.c_sidebar__document-link {
+  font-weight: normal;
+  color: #53BA65; }
+
+a.c_sidebar__document-link:hover {
+  font-weight: bold;
+  color: #53BA65; }
+
+.c-sidebar__document-l-buttons {
+  text-align: right;
+  margin-top: 10px;
+  margin-right: 15px; }
+
+.c-sidebar__document-btn-item {
+  color: #FFFFFF; }
+
+.c-sidebar__document-btn-item:hover {
+  color: #FFFFFF;
+  text-decoration: none; }
 
 .nav-item .position-login {
   border: none;
@@ -479,7 +507,7 @@ img.logo-in-menu.no-login {
   @media (min-width: 600px) {
     .l-button-add-question {
       right: 37px;
-      top: 100px; } }
+      top: 70px; } }
   @media (max-width: 599px) {
     .l-button-add-question {
       right: 0px;
@@ -670,8 +698,7 @@ CSS for UserProfile
   margin-top: 10px; }
 
 .c-document__main-buttons {
-  margin-top: 15px;
-  margin-bottom: 15px; }
+  margin: 15px 0px; }
 
 .c-document__question {
   position: relative;
@@ -754,6 +781,34 @@ CSS for UserProfile
   .c-document-modal__footer {
     border: 0px;
     padding-top: 0px; }
+
+/*New document button in Sidebar*/
+.document__new-document-btn {
+  background: transparent;
+  border-color: transparent;
+  color: #1E5078;
+  font-weight: bold;
+  cursor: pointer; }
+
+.document__new-document-modal-header {
+  background: #53BA65;
+  color: white;
+  text-align: center; }
+
+.document__new-document-modal-content {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: 0; }
+  @media (min-width: 990px) {
+    .document__new-document-modal-content {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); } }
+
+.document__new-document-modal-footer {
+  border-top: transparent;
+  padding: 0rem 0rem 0rem 0rem; }
 
 /*Clases do Home*/
 .o-thumb-circle {

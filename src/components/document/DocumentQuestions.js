@@ -74,59 +74,9 @@ Ver mais
     return (
       <Container>
         <div>
-          <AddQuestionButton />
-          <Row className="c-document__main-buttons">
-            <div className="auto-margin-left-element">
-              <Button title="Adicionar questões" className="btn-success btn-margin-right">
-                {' '}
-                <i className="fa fa-plus btn__icon" />
-                <span>
-Adicionar questões
-                </span>
-              </Button>
-            </div>
-            <div>
-              <Button title="Salvar documento" className="btn-success">
-                {' '}
-                <i className="fa fa-save btn__icon" /><span>Salvar</span>
-              </Button>
-            </div>
-          </Row>
-            <Row className="c-document__questions-header">
-              <Col xs="2">
-                <Label for="upload-avatar" className="upload-avatar">
-
-                  <div className="thumbnail">
-                    <img src={props.data.logo ? props.data.logo : 'http://via.placeholder.com/100x100'} alt="logo-prova" />
-                  </div>
-                </Label>
-              </Col>
-              <Col>
-                <Label>
-                  {props.data.schoolName ? props.data.schoolName : 'Nome da instituição'}
-                </Label>
-                <br />
-                <Label>
-Curso/Disciplina:
-                  {props.data.course ? props.data.course : ''}
-                </Label>
-                <br />
-                <Label>
-Professor(a):
-                  {props.data.teacherName ? props.data.teacherName : ''}
-                </Label>
-                <br />
-                {props.data.studentName ? (
-                  <p>
-                    Nome
-                  </p>
-                ) : ''}
-                {props.data.class ? 'Turma: _________  ' : ''}
-                {props.data.date ? 'Data: ___/___/___  ' : ''}
-                {props.data.grade ? 'Nota: _______  ' : ''}
-              </Col>
-              <Col sm={{ size: 'auto', offset: 3 }} />
-            </Row>
+          <div className="l-button-add-question">
+            <AddQuestionButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
+          </div>
 
           {questions}
           {this.state.question

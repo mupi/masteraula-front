@@ -8,10 +8,6 @@
     "bootstrap": "^4.1.2",
     "classnames": "^2.2.6",
     "connected-react-router": "^4.3.0",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.10.0",
     "font-awesome": "^4.7.0",
     "gh-pages": "^1.2.0",
     "history": "^4.7.2",
@@ -46,7 +42,11 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "eslint": "^5.2.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
     "prop-types": "^15.6.2",
     "redux-form": "^7.4.2",
     "redux-logger": "^3.0.6",

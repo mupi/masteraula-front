@@ -15,8 +15,7 @@
     }
 
     &__main-buttons{
-      margin-top: 15px;
-      margin-bottom: 15px;
+      margin: 15px 0px;
     }
 
     &__question{
@@ -127,4 +126,39 @@
     padding-top: 0px;
   }
 
+}
+
+/*New document button in Sidebar*/
+.document{
+  &__new-document-btn{
+    background: transparent;
+    border-color: transparent;
+    color: $color-ma-blue;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  &__new-document-modal-header{
+    background: $color-ma-green;
+    color: white;
+    text-align: center;
+  }
+
+  &__new-document-modal-content{
+    @include for-tablet-landscape-up{
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 6px;
+    box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+    background-clip: padding-box;
+    outline: 0;
+  }
+
+  &__new-document-modal-footer{
+    border-top: transparent;
+    padding: 0rem 0rem 0rem 0rem;
+  }
 }

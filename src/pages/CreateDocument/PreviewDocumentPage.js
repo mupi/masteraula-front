@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Container } from 'reactstrap';
-import DocumentPreview from 'components/document/DocumentPreview.js';
+import DocumentHeader from 'components/document/DocumentHeader';
+import DocumentQuestions from 'components/document/DocumentQuestions';
 
 const PreviewDocumentPage = () => {
   const data = {
@@ -16,11 +17,12 @@ const PreviewDocumentPage = () => {
     <Container>
       <Row>
         <h2>
-Monte seu documento
+          Monte seu documento
         </h2>
       </Row>
       <Row>
-        <DocumentPreview data={data} />
+        <DocumentHeader setFields={this.setFields} />
+        <DocumentQuestions data={this.state} />
       </Row>
     </Container>);
 };

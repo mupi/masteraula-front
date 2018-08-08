@@ -6,9 +6,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const ExportDocumentButton = ({ documentId, color }) => (
   <Button color={color}>
-    <i className="fa fa-download" />
-    {' '}
-Exportar
+    <i className="fa fa-download btn__icon" />
+      Exportar
   </Button>
 );
 
