@@ -34,14 +34,8 @@ export const LIST_DOCUMENTS = 'LIST_DOCUMENTS';
 export const LIST_DOCUMENTS_SUCCESS = 'LIST_DOCUMENTS_SUCCESS';
 export const LIST_DOCUMENTS_FAILURE = 'LIST_DOCUMENTS_FAILURE';
 
-// Document Create Toggle Modal - 
+// Document Create Toggle Modal
 export const CREATE_DOCUMENT_TOGGLE_MODAL = 'TOGGLE_MODAL';
-
-export const toggleModal = modal => ({
-  type: CREATE_DOCUMENT_TOGGLE_MODAL,
-  modal: !modal,
-});
-
 
 export const fetchDocument = (id) => {
   function requestDocument() { return { type: FETCH_DOCUMENT }; }
@@ -114,3 +108,9 @@ export function resetNewDocument() {
     type: RESET_NEW_DOCUMENT,
   };
 }
+
+// Create Document Toggle Modal
+export const toggleModal = modal => ({
+  type: CREATE_DOCUMENT_TOGGLE_MODAL,
+  modal: !modal,
+});

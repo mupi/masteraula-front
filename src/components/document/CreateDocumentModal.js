@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import {
-  Button, FormGroup, Input, Modal, ModalHeader, ModalBody, ModalFooter,
+  Modal, ModalHeader, ModalBody,
 }
   from 'reactstrap';
 import { reduxForm } from 'redux-form';
-import CreateDocumentForm from 'components/document/CreateDocumentForm'
+import CreateDocumentForm from 'components/document/CreateDocumentForm';
 
 
 class CreateDocumentModal extends Component {
