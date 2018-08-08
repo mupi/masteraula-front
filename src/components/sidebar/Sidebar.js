@@ -1,16 +1,13 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import QuestionBasePage from 'pages/QuestionBase/QuestionBasePage';
-import UserProfilePage from 'pages/UserProfile/UserProfilePage';
 import { Row, Col, Button } from 'reactstrap';
 
-import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
 
 import FilterContainer from 'containers/FilterContainer';
 import DocumentInfoSidebar from './DocumentInfoSidebar';
-import ModalEnterNameCreateDocument from 'components/document/ModalEnterNameCreateDocument';
+import CreateDocumentModal from 'components/document/CreateDocumentModal';
 
 
 const Sidebar = (props) => {
@@ -33,7 +30,7 @@ const Sidebar = (props) => {
 
                 <ListGroup className="sidebar-main-options">
                   <ListGroupItem color="secondary">
-                      <ModalEnterNameCreateDocument />
+                    <CreateDocumentModal />
                   </ListGroupItem>
                   <ListGroupItem color="secondary">
                     <Link to="/documents">

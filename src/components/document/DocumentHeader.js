@@ -14,18 +14,12 @@ class DocumentHeader extends Component {
       <Container>
         <Row className="c-document__main-buttons">
           <div className="auto-margin-left-element">
-            <Button title="Adicionar questões" className="btn-success btn-margin-right">
+            <Button title="Adicionar questões" className="btn-success">
               {' '}
               <i className="fa fa-plus btn__icon" />
               <span>
-Adicionar questões
+                Adicionar questões
               </span>
-            </Button>
-          </div>
-          <div>
-            <Button title="Salvar documento" className="btn-success">
-              {' '}
-              <i className="fa fa-save btn__icon" /><span>Salvar</span>
             </Button>
           </div>
         </Row>
@@ -92,6 +86,16 @@ Adicionar questões
 Data
                 </Col>
               </Row>
+            </Col>
+          </Row>
+          <Row className="c-document__main-buttons text-center">
+            <Col>
+              <Button title="Adicionar questões" className="btn-success btn-margin-right">
+                <i className="fa fa-save btn__icon" />
+                <span>
+                  Salvar
+                </span>
+              </Button>
             </Col>
           </Row>
         </Container>
