@@ -35,7 +35,7 @@ export const LIST_DOCUMENTS_SUCCESS = 'LIST_DOCUMENTS_SUCCESS';
 export const LIST_DOCUMENTS_FAILURE = 'LIST_DOCUMENTS_FAILURE';
 
 // Document Create Toggle Modal
-export const CREATE_DOCUMENT_TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const CREATE_DOCUMENT_TOGGLE_MODAL = 'CREATE_DOCUMENT_TOGGLE_MODAL';
 
 export const fetchDocument = (id) => {
   function requestDocument() { return { type: FETCH_DOCUMENT }; }

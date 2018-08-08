@@ -5,9 +5,9 @@ import { Row, Col, Button } from 'reactstrap';
 
 import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
 
+import CreateDocumentModalContainer from 'containers/CreateDocumentModalContainer';
 import FilterContainer from 'containers/FilterContainer';
 import DocumentInfoSidebar from './DocumentInfoSidebar';
-import CreateDocumentModal from 'components/document/CreateDocumentModal';
 
 
 const Sidebar = (props) => {
@@ -30,7 +30,7 @@ const Sidebar = (props) => {
 
                 <ListGroup className="sidebar-main-options">
                   <ListGroupItem color="secondary">
-                    <CreateDocumentModal />
+                    <CreateDocumentModalContainer />
                   </ListGroupItem>
                   <ListGroupItem color="secondary">
                     <Link to="/documents">
