@@ -4,6 +4,7 @@ import {
   UPDATE_DOCUMENT, UPDATE_DOCUMENT_SUCCESS, UPDATE_DOCUMENT_FAILURE,
   ADD_SELECTED_QUESTION,
   REMOVE_SELECTED_QUESTION,
+  CREATE_DOCUMENT_TOGGLE_MODAL,
 
 } from 'actions/documentAction';
 
@@ -16,6 +17,10 @@ const initialState = {
 
 export const document = (state = initialState, action) => {
   switch (action.type) {
+    case CREATE_DOCUMENT_TOGGLE_MODAL:
+      return Object.assign({}, state, {
+        modal: action.modal,
+      });
     case FETCH_DOCUMENT:
       return Object.assign({}, state, {
         isFetching: true,
