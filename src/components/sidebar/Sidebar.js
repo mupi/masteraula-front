@@ -12,7 +12,7 @@ import DocumentInfoSidebar from './DocumentInfoSidebar';
 
 const Sidebar = (props) => {
   const { showFilters } = props;
-  const showDocumentInfoSidebar= true;
+  const activeDocument= true;
   const docName = props.docName ? props.docName : 'Novo Documento';
   const docNumberQuestions = props.docNumberQuestions ? props.docName : 0;
 
@@ -26,7 +26,7 @@ const Sidebar = (props) => {
           <Row>
             <Col xs="12">
               <div className="sidebar-nav-container">
-                { showDocumentInfoSidebar && <DocumentInfoSidebar />}
+                { activeDocument && <DocumentInfoSidebar />}
 
                 <ListGroup className="sidebar-main-options">
                   <ListGroupItem color="secondary">

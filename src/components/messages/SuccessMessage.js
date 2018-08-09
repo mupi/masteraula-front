@@ -6,7 +6,7 @@ from 'reactstrap';
 const SuccessMessage = ({ message }) => (
   <Row>
     <Col sm="12">
-      <Alert color="success" className="text-center">
+      <Alert color="success" className="text-center" fade={true}>
         <p className="alert__message">
           <i className="fa fa-check-circle btn__icon" />
           {message}
