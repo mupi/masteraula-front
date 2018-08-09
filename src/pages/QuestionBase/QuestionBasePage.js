@@ -4,12 +4,12 @@ import {
 } from 'reactstrap';
 import QuestionList from 'components/question/QuestionList';
 import QuestionPagination from 'components/QuestionPagination/QuestionPagination';
-import HomeUserPage from '../HomeUser/HomeUserPage';
+import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
 
-const getResults = (isFetching, results, count) => {
+const getResults = (isFetching, results, count, toggleModal, modal) => {
   if (!isFetching) {
-    return <QuestionList questions={results}  sm="3" count={count} />;
+    return <QuestionList questions={results}  sm="3" count={count} toggleModal={toggleModal} modal={modal} />;
   }
 
   return (
@@ -32,7 +32,7 @@ class QuestionBasePage extends React.Component {
   }
 
   render() {
-    const { questionPage, isFetching, error } = this.props;
+    const { questionPage, isFetching, error, toggleModal, modal } = this.props;
 
     if (error) {
       return (
@@ -49,12 +49,12 @@ class QuestionBasePage extends React.Component {
       <HomeUserPage showFilters>
         <div className="c-question-base">
           <Row className="c-question-base__search-text">
-Digite o termo e encontre soluções relacionadas
+            Digite o termo e encontre soluções relacionadas
             <InputGroup>
               <Input />
               <InputGroupAddon addonType="prepend">
                 <Button>
-Pesquisar
+                  Pesquisar
                 </Button>
               </InputGroupAddon>
             </InputGroup>
@@ -63,7 +63,7 @@ Pesquisar
             <QuestionPagination {...this.props} {...questionPage} />
           </Row>
           <div className="c-question-base__results">
-            {getResults(isFetching, questionPage.results, questionPage.count)}
+            {getResults(isFetching, questionPage.results, questionPage.count, toggleModal, modal)}
           </div>
           <Row className="pagination-questions">
             <QuestionPagination {...this.props} {...questionPage} />

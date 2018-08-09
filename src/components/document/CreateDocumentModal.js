@@ -3,7 +3,6 @@ import {
   Modal, ModalHeader, ModalBody,
 }
   from 'reactstrap';
-
 import CreateDocumentForm from 'components/document/CreateDocumentForm';
 
 const CreateDocumentModal = (props) => {

@@ -12,7 +12,8 @@ import QuestionAuthor from './QuestionAuthor';
 import QuestionSourceYear from './QuestionSourceYear';
 
 const QuestionCard = ({
-id, disciplines, source, year, statement, urlImage = '', author, teaching_levels, addQuestion, removeQuestion}) => {
+id, disciplines, source, year, statement, urlImage = '', author, teaching_levels,
+addQuestion, removeQuestion, toggleModal, modal}) => {
 
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100'}>
@@ -57,6 +58,8 @@ id, disciplines, source, year, statement, urlImage = '', author, teaching_levels
           questionId={id}
           customClass="question-card__btn"
           nameButton="Adicionar"
+          toggleModal={toggleModal}
+          modal={modal}
         />
       </CardBody>
     </Card>

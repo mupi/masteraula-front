@@ -2,8 +2,6 @@ import React from 'react';
 import {
   Container, Row, Col, Alert, Button,
 } from 'reactstrap';
-import { toggleModal } from 'actions/loginAction';
-import { Link } from 'react-router-dom';
 
 
 class VerifyRegisterPage extends React.Component {
