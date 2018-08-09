@@ -10,40 +10,18 @@ import QuestionPagination from 'components/QuestionPagination/QuestionPagination
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
 
-const addQuestionMessages = (addQuestionResult = true) => {
-  if (addQuestionResult) {
+const addQuestionMessages = (addQuestionResult) => {
+  if (true) {
     return <SuccessMessage message="A questão foi adicionada ao documento" />
   }
   return <FailureMessage message="A questão não foi adicionada ao documento" />
-}
-
-const removeQuestionMessages = (removeQuestionResult) => {
-  if (removeQuestionResult) {
-    return <SuccessMessage message="A questão foi adicionada ao documento" />
-  }
-  return <FailureMessage message="A questão não foi adicionada ao documento" />
-}
-
-const createDocumentMessages = (creationDocumentResult) => {
-  if (creationDocumentResult) {
-    return <SuccessMessage message="A questão foi adicionada ao documento" />
-  }
-  return <FailureMessage message="A questão não foi adicionada ao documento" />
-}
-
-
-const updateDocumentMessages = (updateDocumentResult) => {
-  if (updateDocumentResult) {
-    return <SuccessMessage message="A questão foi adicionada ao documento" />
-  }
-  return <FailureMessage message="A questão não foi adicionada ao documento" />
-}
+};
 
 
 
-const getResults = (isFetching, results, count, toggleModal, modal) => {
+const getResults = (isFetching, results, count, toggleModal, modal, activeDocument) => {
   if (!isFetching) {
-    return <QuestionList questions={results}  sm="3" count={count} toggleModal={toggleModal} modal={modal} />;
+    return <QuestionList questions={results}  sm="3" count={count} toggleModal={toggleModal} modal={modal} activeDocument={activeDocument} />;
   }
 
   return (
@@ -66,8 +44,8 @@ class QuestionBasePage extends React.Component {
   }
 
   render() {
-    const { questionPage, isFetching, error, toggleModal, modal } = this.props;
-
+    const { questionPage, isFetching, error, toggleModal, modal, activeDocument } = this.props;
+    let addQuestionWorking= false; /*addQuestionFetching...*/
     if (error) {
       return (
         <HomeUserPage>
@@ -82,7 +60,7 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters>
         <div className="c-question-base">
-          {addQuestionMessages()}
+          {(addQuestionWorking) ? addQuestionMessages() : ' '}
 
           <Row className="c-question-base__search-text">
             Digite o termo e encontre soluções relacionadas
@@ -99,7 +77,7 @@ class QuestionBasePage extends React.Component {
             <QuestionPagination {...this.props} {...questionPage} />
           </Row>
           <div className="c-question-base__results">
-            {getResults(isFetching, questionPage.results, questionPage.count, toggleModal, modal)}
+            {getResults(isFetching, questionPage.results, questionPage.count, toggleModal, modal, activeDocument)}
           </div>
           <Row className="pagination-questions">
             <QuestionPagination {...this.props} {...questionPage} />

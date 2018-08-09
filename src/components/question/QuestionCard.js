@@ -13,7 +13,7 @@ import QuestionSourceYear from './QuestionSourceYear';
 
 const QuestionCard = ({
 id, disciplines, source, year, statement, urlImage = '', author, teaching_levels,
-addQuestion, removeQuestion, toggleModal, modal}) => {
+addQuestion, removeQuestion, toggleModal, modal, activeDocument}) => {
 
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100'}>
@@ -60,8 +60,9 @@ addQuestion, removeQuestion, toggleModal, modal}) => {
           nameButton="Adicionar"
           toggleModal={toggleModal}
           modal={modal}
+          activeDocument={activeDocument}
         />
-        
+
       </CardBody>
     </Card>
   );

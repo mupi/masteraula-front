@@ -11,7 +11,24 @@ import {
 
 const initialState = {
   newDocument: { document: null, error: null, loading: false },
-  activeDocument: { document: null, error: null, loading: false },
+  activeDocument: {
+    document: [
+      {
+        id: 1,
+        name: 'My first document',
+        owner: 8,
+        questions: [],
+        create_date: '2018/08/02',
+        secret: true,
+        document_header: null,
+      },
+    ],
+    questionsNumber:15,
+    name: 'My first document',
+    error: null,
+    loading: false,
+  },
+/*  activeDocument: null,*/
   deletedDocument: { document: null, error: null, loading: false },
 };
 

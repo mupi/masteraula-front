@@ -14,8 +14,8 @@ const getAlertMessageDocumentExist = (activeDocument) => {
 
 
 const CreateDocumentModal = (props) => {
-  const { modal, toggleModal } = props;
-  const activeDocument = { name : "Prova de Matemáticas"};
+  const { modal, toggleModal, activeDocument } = props;
+
   return (
     <div className="document__new-document-option">
       <div className="document__new-document-btn" onClick={() => toggleModal(modal)}>

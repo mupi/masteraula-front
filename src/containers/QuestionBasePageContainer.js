@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   currentPage: state.question.currentPage,
   filter: state.filter,
   modal: state.document.modal,
+  activeDocument: state.document.activeDocument,
 });
 
 const mapDispatchToProps = dispatch => ({

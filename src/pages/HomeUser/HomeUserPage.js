@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from 'components/sidebar/Sidebar';
+import SidebarContainer from 'containers/SidebarContainer';
 import { Row, Col } from 'reactstrap';
 
 const HomeUserPage = (props) => {
@@ -8,7 +8,7 @@ const HomeUserPage = (props) => {
 
   return (
     <div className="l-site-masteraula__user-home">
-      <Sidebar showFilters={showFilters} />
+      <SidebarContainer showFilters={showFilters} />
       <div id="body">
         <div className="container-fluid">
           <Row>
