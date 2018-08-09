@@ -1,15 +1,27 @@
 import React from 'react';
 import {
-  Row, Input, InputGroup, InputGroupAddon, Button, Alert,
+  Row, Col, Input, InputGroup, InputGroupAddon, Button, Alert,
 } from 'reactstrap';
 import QuestionList from 'components/question/QuestionList';
+import SuccessMessage from 'components/messages/SuccessMessage';
+import FailureMessage from 'components/messages/FailureMessage';
+
 import QuestionPagination from 'components/QuestionPagination/QuestionPagination';
-import HomeUserPage from '../HomeUser/HomeUserPage';
+import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
 
-const getResults = (isFetching, results, count) => {
+const addQuestionMessages = (addQuestionResult) => {
+  if (true) {
+    return <SuccessMessage message="A questão foi adicionada ao documento" />
+  }
+  return <FailureMessage message="A questão não foi adicionada ao documento" />
+};
+
+
+
+const getResults = (isFetching, results, count, toggleModal, modal, activeDocument) => {
   if (!isFetching) {
-    return <QuestionList questions={results}  sm="3" count={count} />;
+    return <QuestionList questions={results}  sm="3" count={count} toggleModal={toggleModal} modal={modal} activeDocument={activeDocument} />;
   }
 
   return (
@@ -32,8 +44,8 @@ class QuestionBasePage extends React.Component {
   }
 
   render() {
-    const { questionPage, isFetching, error } = this.props;
-
+    const { questionPage, isFetching, error, toggleModal, modal, activeDocument } = this.props;
+    let addQuestionWorking= false; /*addQuestionFetching...*/
     if (error) {
       return (
         <HomeUserPage>
@@ -48,13 +60,15 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters>
         <div className="c-question-base">
+          {(addQuestionWorking) ? addQuestionMessages() : ' '}
+
           <Row className="c-question-base__search-text">
-Digite o termo e encontre soluções relacionadas
+            Digite o termo e encontre soluções relacionadas
             <InputGroup>
               <Input />
               <InputGroupAddon addonType="prepend">
                 <Button>
-Pesquisar
+                  Pesquisar
                 </Button>
               </InputGroupAddon>
             </InputGroup>
@@ -63,7 +77,7 @@ Pesquisar
             <QuestionPagination {...this.props} {...questionPage} />
           </Row>
           <div className="c-question-base__results">
-            {getResults(isFetching, questionPage.results, questionPage.count)}
+            {getResults(isFetching, questionPage.results, questionPage.count, toggleModal, modal, activeDocument)}
           </div>
           <Row className="pagination-questions">
             <QuestionPagination {...this.props} {...questionPage} />
