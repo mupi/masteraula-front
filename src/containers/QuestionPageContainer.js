@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
   activeQuestion: state.question.activeQuestion,
   rating: state.question.rating,
   modal: state.document.modal,
+  activeDocument: state.document.activeDocument,
 
 });
 
