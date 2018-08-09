@@ -7,7 +7,7 @@ import {
 import CreateDocumentForm from 'components/document/CreateDocumentForm';
 
 const CreateDocumentModal = (props) => {
-  const { modal, toggleModal } = props;
+  const { modal, toggleModal, submit } = props;
 
   return (
     <div className="document__new-document-option">
@@ -20,7 +20,7 @@ const CreateDocumentModal = (props) => {
             Criar novo documento
         </ModalHeader>
         <ModalBody>
-          <CreateDocumentForm />
+          <CreateDocumentForm onSubmit={submit}/>
         </ModalBody>
       </Modal>
     </div>

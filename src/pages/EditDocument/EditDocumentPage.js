@@ -42,7 +42,6 @@ class EditDocumentPage extends Component {
   }
 
   componentDidMount(){
-    this.props.fetchDocument(this.state.actveDocument.id);
   }
 
   setFields(field, event) {

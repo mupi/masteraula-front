@@ -62,6 +62,8 @@ export const createDocument = (props) => {
   function createDocumentFailure(error) { return { type: FETCH_DOCUMENT_FAILURE, error }; }
   return (dispatch) => {
     dispatch(createNewDocument(props));
+    console.log(props);
+    console.log("PROPZZ")
     return documentService.createDocument(props)
       .then(
         (newDocument) => {
@@ -110,7 +112,7 @@ export function resetNewDocument() {
 }
 
 // Create Document Toggle Modal
-export const toggleModal = modal => ({
+export const toggleModal = (modal) => ({
   type: CREATE_DOCUMENT_TOGGLE_MODAL,
   modal: !modal,
 });
