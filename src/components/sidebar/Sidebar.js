@@ -1,7 +1,8 @@
 import React from 'react';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import {
+  Row, Col, ListGroup, ListGroupItem,
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Row, Col, Button } from 'reactstrap';
 
 import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
 
@@ -11,10 +12,7 @@ import DocumentInfoSidebar from './DocumentInfoSidebar';
 
 
 const Sidebar = (props) => {
-  const { showFilters } = props;
-  const showDocumentInfoSidebar= true;
-  const docName = props.docName ? props.docName : 'Novo Documento';
-  const docNumberQuestions = props.docNumberQuestions ? props.docName : 0;
+  const { showFilters, activeDocument } = props;
 
   return (
     <div id="sidebar">
@@ -26,11 +24,16 @@ const Sidebar = (props) => {
           <Row>
             <Col xs="12">
               <div className="sidebar-nav-container">
-                { showDocumentInfoSidebar && <DocumentInfoSidebar />}
+                {activeDocument && (
+                <DocumentInfoSidebar
+                  documentName={activeDocument.name}
+                  documentTotalQuestions={activeDocument.questionsNumber}
+                />
+                )}
 
                 <ListGroup className="sidebar-main-options">
                   <ListGroupItem color="secondary">
-                    <CreateDocumentModalContainer />
+                    <CreateDocumentModalContainer activeDocument={activeDocument} />
                   </ListGroupItem>
                   <ListGroupItem color="secondary">
                     <Link to="/documents">
