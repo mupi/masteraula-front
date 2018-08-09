@@ -5,8 +5,8 @@ import {
 
 const CreateDocumentForm = ({messageWhenDocumentExist=null}) => (
   <div>
+    {messageWhenDocumentExist}
     <p className="text-center">
-      {messageWhenDocumentExist}
       Por favor, insira um nome para o novo documento a ser criado
     </p>
     <FormGroup>

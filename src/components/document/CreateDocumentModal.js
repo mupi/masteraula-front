@@ -7,8 +7,13 @@ import CreateDocumentForm from 'components/document/CreateDocumentForm';
 
 const getAlertMessageDocumentExist = (activeDocument) => {
   if (activeDocument !== null) {
-    return `Atualmente você está editando o documento ${activeDocument.name}. Tem certeza de criar um novo documento? Se for sim,`
-  }
+    return (
+      <p  className="text-center">
+        Atualmente você está editando o documento <strong>{activeDocument.name}</strong><br/>
+        Tem certeza de criar um novo documento? Se for sim, <br/>
+      </p>
+    )
+}
   return '';
 }
 

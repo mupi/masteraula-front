@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   newDocument: { document: null, error: null, loading: false },
-  activeDocument: {
+  /*activeDocument: {
     document: [
       {
         id: 1,
@@ -27,8 +27,8 @@ const initialState = {
     name: 'My first document',
     error: null,
     loading: false,
-  },
-/*  activeDocument: null,*/
+  },*/
+  activeDocument: null,
   deletedDocument: { document: null, error: null, loading: false },
 };
 
