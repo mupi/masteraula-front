@@ -16,7 +16,7 @@ const AddQuestionButton = ({ customClass, questionId, nameButton, toggleModal, m
     value={questionId}
     title="Adicionar questões"
     className={customClass}
-    onClick={ (activeDocument===null ) ? (() => toggleModal(modal)) : (e => handleAddQuestionButton(e, questionId))}
+    onClick={(activeDocument===null ) ? (() => toggleModal(modal)) : (e => handleAddQuestionButton(e, questionId))}
   >
     <i className="fa fa-plus" />
     {' '}

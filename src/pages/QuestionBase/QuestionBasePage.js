@@ -1,10 +1,44 @@
 import React from 'react';
 import {
-  Row, Input, InputGroup, InputGroupAddon, Button, Alert,
+  Row, Col, Input, InputGroup, InputGroupAddon, Button, Alert,
 } from 'reactstrap';
 import QuestionList from 'components/question/QuestionList';
+import SuccessMessage from 'components/messages/SuccessMessage';
+import FailureMessage from 'components/messages/FailureMessage';
+
 import QuestionPagination from 'components/QuestionPagination/QuestionPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
+
+
+const addQuestionMessages = (addQuestionResult = true) => {
+  if (addQuestionResult) {
+    return <SuccessMessage message="A questão foi adicionada ao documento" />
+  }
+  return <FailureMessage message="A questão não foi adicionada ao documento" />
+}
+
+const removeQuestionMessages = (removeQuestionResult) => {
+  if (removeQuestionResult) {
+    return <SuccessMessage message="A questão foi adicionada ao documento" />
+  }
+  return <FailureMessage message="A questão não foi adicionada ao documento" />
+}
+
+const createDocumentMessages = (creationDocumentResult) => {
+  if (creationDocumentResult) {
+    return <SuccessMessage message="A questão foi adicionada ao documento" />
+  }
+  return <FailureMessage message="A questão não foi adicionada ao documento" />
+}
+
+
+const updateDocumentMessages = (updateDocumentResult) => {
+  if (updateDocumentResult) {
+    return <SuccessMessage message="A questão foi adicionada ao documento" />
+  }
+  return <FailureMessage message="A questão não foi adicionada ao documento" />
+}
+
 
 
 const getResults = (isFetching, results, count, toggleModal, modal) => {
@@ -48,6 +82,8 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters>
         <div className="c-question-base">
+          {addQuestionMessages()}
+
           <Row className="c-question-base__search-text">
             Digite o termo e encontre soluções relacionadas
             <InputGroup>

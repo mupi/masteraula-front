@@ -5,9 +5,17 @@ import {
   from 'reactstrap';
 import CreateDocumentForm from 'components/document/CreateDocumentForm';
 
+const getAlertMessageDocumentExist = (activeDocument) => {
+  if (activeDocument !== null) {
+    return `Atualmente você está editando o documento ${activeDocument.name}. Tem certeza de criar um novo documento? Se for sim,`
+  }
+  return '';
+}
+
+
 const CreateDocumentModal = (props) => {
   const { modal, toggleModal } = props;
-
+  const activeDocument = { name : "Prova de Matemáticas"};
   return (
     <div className="document__new-document-option">
       <div className="document__new-document-btn" onClick={() => toggleModal(modal)}>
@@ -19,7 +27,7 @@ const CreateDocumentModal = (props) => {
             Criar novo documento
         </ModalHeader>
         <ModalBody>
-          <CreateDocumentForm />
+          <CreateDocumentForm messageWhenDocumentExist={getAlertMessageDocumentExist(activeDocument)} />
         </ModalBody>
       </Modal>
     </div>

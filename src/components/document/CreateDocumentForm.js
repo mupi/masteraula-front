@@ -3,9 +3,12 @@ import {
   Button, FormGroup, Input,
 } from 'reactstrap';
 
-const CreateDocumentForm = () => (
+const CreateDocumentForm = ({messageWhenDocumentExist=null}) => (
   <div>
-    <p className="text-center">Por favor, insira um nome para o novo documento a ser criado</p>
+    <p className="text-center">
+      {messageWhenDocumentExist}
+      Por favor, insira um nome para o novo documento a ser criado
+    </p>
     <FormGroup>
       <Input
         component="input"
