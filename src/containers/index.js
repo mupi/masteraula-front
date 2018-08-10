@@ -5,3 +5,4 @@ export { default as UserPasswordProfileContainer } from './UserPasswordProfileCo
 export { default as UserProfilePageContainer } from './UserProfilePageContainer';
 export { default as ForgotPasswordPageContainer } from './ForgotPasswordPageContainer';
 export { default as CreateDocumentPageContainer } from './CreateDocumentPageContainer';
+export { default as ViewDocumentPageContainer } from './ViewDocumentPageContainer';

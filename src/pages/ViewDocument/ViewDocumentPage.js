@@ -1,213 +1,58 @@
 import React from 'react';
 import {
-  Row, Container, Col, Button, Input, InputGroup, InputGroupAddon,
+  Row, Container, Col, Button, Input, InputGroup, InputGroupAddon, Alert,
 } from 'reactstrap';
 import DocumentList from 'components/document/DocumentList';
 import HomeUserPage from '../HomeUser/HomeUserPage';
 
+class ViewDocumentPage extends React.Component {
+  componentDidMount() {
+    const { match, listMyDocuments } = this.props;
+    listMyDocuments(parseInt(match.params.page, 10));
+  }
 
-const ViewDocumentPage = () => {
-  const data = [{
-    schoolName: 'Escolinha',
-    course: 'Matemática',
-    teacherName: 'Profa Daniela',
-    studentName: true,
-    date: true,
-    class: true,
-    grade: true,
-    name: 'Prova de português',
-    createdAt: '28/06/2018',
-    questions: [
-      {
-        id: '100',
-        question: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha:',
-        disciplines: [
-          { name: 'Química' },
-          { name: 'Física' },
-        ],
-        alternatives: [
-          { text: 'a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo por parte do autor da tirinha.' },
-          { text: 'b) Mafalda opõe-se ao discurso da amiga Susanita e, por meio de suas feições em todos os quadrinhos, percebe-se nitidamente seu descontentamento.' },
-          { text: 'c) A linguagem verbal não contribui para o melhor entendimento da tirinha, pois todo efeito de humor está contido na linguagem não verbal por meio da expressão exibida por Mafalda no último quadrinho.' },
-          { text: 'd) Susanita apresenta um discurso de acordo com as teorias feministas que pregam a libertação das práticas tradicionalmente atribuídas à mulher. Contudo, no último quadrinho, a personagem defende o uso de uma tecnologia que apenas reforça os padrões tradicionais.' },
-        ],
-        answer: 'Alternativa “d”. Há uma quebra de expectativa, o que ocasionou o efeito de humor da tirinha. Susanita apresentou, até o terceiro quadrinho, um discurso condizente com as teorias feministas em voga nos anos 70. Todavia, no último quadrinho, ela demonstrou ter um conhecimento limitado sobre o assunto, elogiando o uso de uma tecnologia, a máquina de tricô, que apenas reforça os padrões tradicionais do comportamento feminino.',
-        source: 'ENEM',
-        year: '2010',
-        difficulty: 'Fácil',
-        author: 'Thiago Oliveira dos Santos',
-        teachingLevels: [
-          { name: 'Ensino Médio' },
-          { name: 'Ensino Superior' },
-        ],
-        tags: [
-          'Temperatura',
-          'Condensação',
-        ],
-        descriptors: [
-          { name: 'Localizar informações explícitas' },
-          { name: 'Inferir o sentido de uma palavra' },
-        ],
-        stars: '3',
-        rquestions: [
-          {
-            disciplines: [
-              { name: 'Química' },
-              { name: 'Física' },
-            ],
-            source: 'ENEM',
-            year: '2010',
-            author: 'Thiago Oliveira dos Santos',
-            extract: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...',
-            urlImage: '',
-          },
-          {
-            disciplines: [
-              { name: 'Matemática' },
-              { name: 'Geometria' },
-            ],
-            source: 'ENEM',
-            year: '2018',
-            author: 'Diego Gonçalves Carvalho',
-            extract: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...',
-            urlImage: '',
-          },
-          {
-            disciplines: [
-              { name: 'Química' },
-              { name: 'Física' },
-            ],
-            source: 'ENEM',
-            year: '2010',
-            author: 'Thiago Oliveira dos Santos',
-            extract: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...',
-            urlImage: '',
-          },
+  componentDidUpdate(prevProps) {
+    const { match, listMyDocuments } = this.props;
+    if ((match.params.page !== prevProps.match.params.page)) {
+      listMyDocuments(parseInt(match.params.page, 10));
+    }
+  }
 
-        ],
-
-      },
-      {
-        id: '100',
-        question: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha:',
-        disciplines: [
-          { name: 'Química' },
-          { name: 'Física' },
-        ],
-        alternatives: [
-          { text: 'a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo por parte do autor da tirinha.' },
-          { text: 'b) Mafalda opõe-se ao discurso da amiga Susanita e, por meio de suas feições em todos os quadrinhos, percebe-se nitidamente seu descontentamento.' },
-          { text: 'c) A linguagem verbal não contribui para o melhor entendimento da tirinha, pois todo efeito de humor está contido na linguagem não verbal por meio da expressão exibida por Mafalda no último quadrinho.' },
-          { text: 'd) Susanita apresenta um discurso de acordo com as teorias feministas que pregam a libertação das práticas tradicionalmente atribuídas à mulher. Contudo, no último quadrinho, a personagem defende o uso de uma tecnologia que apenas reforça os padrões tradicionais.' },
-        ],
-        answer: 'Alternativa “d”. Há uma quebra de expectativa, o que ocasionou o efeito de humor da tirinha. Susanita apresentou, até o terceiro quadrinho, um discurso condizente com as teorias feministas em voga nos anos 70. Todavia, no último quadrinho, ela demonstrou ter um conhecimento limitado sobre o assunto, elogiando o uso de uma tecnologia, a máquina de tricô, que apenas reforça os padrões tradicionais do comportamento feminino.',
-        source: 'ENEM',
-        year: '2010',
-        difficulty: 'Fácil',
-        author: 'Thiago Oliveira dos Santos',
-        teachingLevels: [
-          { name: 'Ensino Médio' },
-          { name: 'Ensino Superior' },
-        ],
-
-      },
-      {
-        id: '100',
-        question: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha:',
-        disciplines: [
-          { name: 'Química' },
-          { name: 'Física' },
-        ],
-        alternatives: [
-          { text: 'a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo por parte do autor da tirinha.' },
-          { text: 'b) Mafalda opõe-se ao discurso da amiga Susanita e, por meio de suas feições em todos os quadrinhos, percebe-se nitidamente seu descontentamento.' },
-          { text: 'c) A linguagem verbal não contribui para o melhor entendimento da tirinha, pois todo efeito de humor está contido na linguagem não verbal por meio da expressão exibida por Mafalda no último quadrinho.' },
-          { text: 'd) Susanita apresenta um discurso de acordo com as teorias feministas que pregam a libertação das práticas tradicionalmente atribuídas à mulher. Contudo, no último quadrinho, a personagem defende o uso de uma tecnologia que apenas reforça os padrões tradicionais.' },
-        ],
-        answer: 'Alternativa “d”. Há uma quebra de expectativa, o que ocasionou o efeito de humor da tirinha. Susanita apresentou, até o terceiro quadrinho, um discurso condizente com as teorias feministas em voga nos anos 70. Todavia, no último quadrinho, ela demonstrou ter um conhecimento limitado sobre o assunto, elogiando o uso de uma tecnologia, a máquina de tricô, que apenas reforça os padrões tradicionais do comportamento feminino.',
-        source: 'ENEM',
-        year: '2010',
-        difficulty: 'Fácil',
-        author: 'Thiago Oliveira dos Santos',
-        teachingLevels: [
-          { name: 'Ensino Médio' },
-          { name: 'Ensino Superior' },
-        ]
-      },
-    ],
-  },
-  {
-    schoolName: 'Escolinha',
-    course: 'Matemática',
-    teacherName: 'Profa Daniela',
-    studentName: true,
-    date: true,
-    class: true,
-    grade: true,
-    name: 'Documento 1',
-    questions: [
-      {
-        id: '100',
-        question: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha:',
-        disciplines: [
-          { name: 'Química' },
-          { name: 'Física' },
-        ],
-        source: 'ENEM',
-        year: '2010',
-        difficulty: 'Fácil',
-        author: 'Thiago Oliveira dos Santos',
-        teachingLevels: [
-          { name: 'Ensino Médio' },
-          { name: 'Ensino Superior' },
-        ],
-      },
-      {
-        id: '100',
-        question: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha:',
-        disciplines: [
-          { name: 'Química' },
-          { name: 'Física' },
-        ],
-        source: 'ENEM',
-        year: '2010',
-        difficulty: 'Fácil',
-        author: 'Thiago Oliveira dos Santos',
-        teachingLevels: [
-          { name: 'Ensino Médio' },
-          { name: 'Ensino Superior' },
-        ],
-      },
-    ],
-  }];
-
-  return (
-    <HomeUserPage>
-      <Container>
-        <Row>
-          <InputGroup>
-            <Input placeholder="Pesquisar em Meus Documentos" />
-            <InputGroupAddon addonType="prepend">
-              <Button>
-Pesquisar
-              </Button>
-            </InputGroupAddon>
-          </InputGroup>
-        </Row>
-        {data
-          ? (
-            <Row style={{ marginTop: '1em' }}>
-              <Col sm="12">
-                {data.length}
-                {' '}
-documentos encontrados
-              </Col>
-            </Row>
-          ) : ''}
-        <DocumentList documents={data} />
-      </Container>
-    </HomeUserPage>);
-};
-
+  render() {
+    const { myDocumentsList, isFetching } = this.props;
+    return (
+      <HomeUserPage>
+        <Container>
+          <Row>
+            <InputGroup>
+              <Input placeholder="Pesquisar em Meus Documentos" />
+              <InputGroupAddon addonType="prepend">
+                <Button>
+                  Pesquisar
+                </Button>
+              </InputGroupAddon>
+            </InputGroup>
+          </Row>
+          {isFetching
+            ? (
+              <Alert className="c-question-base__alert--warning" color="warning">
+                Carregando ...
+              </Alert>
+            ) : (
+              <Row style={{ marginTop: '1em' }}>
+                <Col sm="12">
+                  {myDocumentsList ? (myDocumentsList.count) : 0}
+                  {' '}
+                  documentos encontrados
+                </Col>
+                {myDocumentsList
+                  && <DocumentList documents={myDocumentsList.results} />
+                }
+              </Row>
+            )}
+        </Container>
+      </HomeUserPage>);
+  }
+}
 
 export default ViewDocumentPage;

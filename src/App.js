@@ -10,7 +10,10 @@ import TermsUsePage from 'pages/TermsUse/TermsUsePage';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 import HomePage from 'pages/Home/HomePage.js';
 
-import { ForgotPasswordPageContainer, UserProfilePageContainer, RedefinePasswordPageContainer, QuestionPageContainer, QuestionBasePageContainer } from 'containers';
+import {
+  ViewDocumentPageContainer, ForgotPasswordPageContainer, UserProfilePageContainer, RedefinePasswordPageContainer, QuestionPageContainer,
+  QuestionBasePageContainer,
+} from 'containers';
 
 import CreateDocumentPage from 'pages/CreateDocument/CreateDocumentPage';
 import PreviewDocumentPage from 'pages/CreateDocument/PreviewDocumentPage';
@@ -44,14 +47,14 @@ class App extends Component {
       <ConnectedRouter history={history}>
         <div id="main-masteraula-container" className={this.props.isOpenSidebar ? 'container-open' : ''}>
           <Menu />
-          { this.props.isLoggedIn
+          {this.props.isLoggedIn
             ? (
               <Switch>
                 <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePageContainer} />
                 <Route path="/edit-document" component={CreateDocumentPage} />
-                <Route path="/documents" component={ViewDocumentPage} />
+                <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
                 <Route component={NotFoundPage} />
               </Switch>
             )
