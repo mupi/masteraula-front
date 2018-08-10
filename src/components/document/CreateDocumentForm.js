@@ -20,7 +20,7 @@ const CreateDocumentForm = (props, {messageWhenDocumentExist=null}) => {
         <Field
           component="input"
           type="text"
-          name="documentName"
+          name="name"
           id="documentName"
           placeholder="Digite o nome do documento"
           className="form-control"
@@ -32,7 +32,7 @@ const CreateDocumentForm = (props, {messageWhenDocumentExist=null}) => {
           </Alert>
           )}
       <div className="document__new-document-modal-footer modal-footer">
-        <Button type="submit" color="" className="btn--confirm">Criar</Button>{' '}
+        <Button type="submit" color="" className="btn--confirm" onClick={() => toggleModal(modal)}>Criar</Button>{' '}
         <Button color="secondary" onClick={() => toggleModal(modal)}>Cancelar</Button>
       </div>
       </Form>
