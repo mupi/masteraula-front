@@ -2,6 +2,7 @@ import {
   FETCH_DOCUMENT, FETCH_DOCUMENT_SUCCESS, FETCH_DOCUMENT_FAILURE,
   CREATE_DOCUMENT, CREATE_DOCUMENT_SUCCESS, CREATE_DOCUMENT_FAILURE,
   UPDATE_DOCUMENT, UPDATE_DOCUMENT_SUCCESS, UPDATE_DOCUMENT_FAILURE,
+  LIST_MY_DOCUMENTS, LIST_MY_DOCUMENTS_SUCCESS, LIST_MY_DOCUMENTS_FAILURE,
   ADD_SELECTED_QUESTION,
   REMOVE_SELECTED_QUESTION,
   CREATE_DOCUMENT_TOGGLE_MODAL,
@@ -65,6 +66,23 @@ export const document = (state = initialState, action) => {
         activeDocument: action.activeDocument,
         isFetching: false,
       });
+
+    case LIST_MY_DOCUMENTS:
+      return Object.assign({}, state, {
+        myDocumentsList: null,
+        isFetching: true,
+      });
+    case LIST_MY_DOCUMENTS_SUCCESS:
+      return Object.assign({}, state, {
+        myDocumentsList: action.myDocumentsList,
+        isFetching: false,
+      });
+    case LIST_MY_DOCUMENTS_FAILURE:
+      return Object.assign({}, state, {
+        myDocumentsList: null,
+        isFetching: false,
+      });
+
     case ADD_SELECTED_QUESTION:
       return Object.assign({}, state, {
 
