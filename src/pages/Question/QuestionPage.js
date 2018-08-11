@@ -100,7 +100,7 @@ class QuestionPage extends Component {
 
   render() {
     const {
-      activeQuestion, isFetching, rating, error, onRate, toggleModal, modal
+      activeQuestion, isFetching, rating, error, onRate, toggleModal, modal, activeDocument
     } = this.props;
 
     if (isFetching) {
@@ -145,6 +145,7 @@ class QuestionPage extends Component {
             customClass="o-button-add-question-doc o-button-add-question-doc--xl"
             toggleModal={toggleModal}
             modal={modal}
+            activeDocument={activeDocument}
           />
         </div>
 
