@@ -1,10 +1,5 @@
 import { apiUrl } from 'helpers/config';
 
-const filterService = {
-  listDisciplineFilters,
-  listTeachingLevelFilters,
-};
-
 // Get all disciplines that will be used in SideBar
 function listDisciplineFilters(param) {
   const requestOptions = {
@@ -26,9 +21,6 @@ function listDisciplineFilters(param) {
     .then(disciplineFilters => disciplineFilters);
 }
 
-
-
-
 // Get all TeachingLevels that will be used in SideBar
 function listTeachingLevelFilters(param) {
   const requestOptions = {
@@ -49,5 +41,11 @@ function listTeachingLevelFilters(param) {
     .then(handleResponse)
     .then(teachingLevelFilters => teachingLevelFilters);
 }
+
+const filterService = {
+  listDisciplineFilters,
+  listTeachingLevelFilters,
+};
+
 
 export default filterService;

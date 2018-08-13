@@ -90,7 +90,7 @@ function addSelectedQuestion(idDocument, idQuestion, order) {
   });
   return fetch(`${apiUrl}/documents/${idDocument}/removeQuestion`, requestOptions)
     .then(handleResponse)
-    .then(disciplineFilters => disciplineFilters);
+    .then(questionAdded => questionAdded);
 }
 
 // Remove a question to document
@@ -113,7 +113,7 @@ function removeSelectedQuestion(idDocument, idQuestion) {
   });
   return fetch(`${apiUrl}/documents/${idDocument}/removeQuestion`, requestOptions)
     .then(handleResponse)
-    .then(disciplineFilters => disciplineFilters);
+    .then(questionRemoved => questionRemoved);
 }
 
 const documentService = {

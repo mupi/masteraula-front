@@ -55,7 +55,7 @@ export const fetchDocument = (id) => {
   };
 };
 
-// Create a new document  (?)
+// Create a new document
 export const createDocument = (props) => {
   function createNewDocument() { return { type: CREATE_DOCUMENT }; }
   function createDocumentSuccess(newDocument) { return { type: CREATE_DOCUMENT_SUCCESS, newDocument }; }
@@ -94,13 +94,27 @@ export const updateDocument = (activeNewDocument) => {
 };
 
 // Add Selected Question to Document
-export const addSelectedQuestion = (idDocument, idQuestion) => ({
-  type: REMOVE_SELECTED_QUESTION, idDocument, idQuestion,
+export const addSelectedQuestion = (idDocument, idQuestion, order) => ({
+  function updateActiveDocument() { return { type: UPDATE_DOCUMENT }; }
+  function updateDocumentSuccess(activeDocument) { return { type: UPDATE_DOCUMENT_SUCCESS, activeDocument }; }
+  function updateDocumentFailure(error) { return { type: UPDATE_DOCUMENT_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(updateActiveDocument());
+    return documentService.updateDocument(activeNewDocument)
+      .then(
+        (activeDocument) => {
+          dispatch(updateDocumentSuccess(activeDocument));
+        },
+        (error) => {
+          dispatch(updateDocumentFailure(error));
+        },
+      );
+  };
 });
 
 // Remove Selected Question from Document
 export const removeSelectedQuestion = (idDocument, idQuestion) => ({
-  type: ADD_SELECTED_QUESTION, idDocument, idQuestion,
+
 });
 
 export function resetNewDocument() {
