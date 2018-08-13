@@ -69,10 +69,59 @@ function updateDocument(activeNewDocument) {
 }
 
 
+// Add a question to document
+function addSelectedQuestion(idDocument, idQuestion, order) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      id: idQuestion,
+      order,
+    }),
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+  return fetch(`${apiUrl}/documents/${idDocument}/removeQuestion`, requestOptions)
+    .then(handleResponse)
+    .then(disciplineFilters => disciplineFilters);
+}
+
+// Remove a question to document
+function removeSelectedQuestion(idDocument, idQuestion) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      id: idQuestion,
+    }),
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+  return fetch(`${apiUrl}/documents/${idDocument}/removeQuestion`, requestOptions)
+    .then(handleResponse)
+    .then(disciplineFilters => disciplineFilters);
+}
+
 const documentService = {
   fetchDocument,
   createDocument,
   updateDocument,
+  addSelectedQuestion,
+  removeSelectedQuestion,
 };
 
 export default documentService;
