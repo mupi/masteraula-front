@@ -52,17 +52,18 @@ export const document = (state = initialState, action) => {
 
     case CREATE_DOCUMENT:
       return Object.assign({}, state, {
-        activeDocument: action.activeDocument,
+        activeDocument: action.newDocument,
         isFetching: false,
       });
     case CREATE_DOCUMENT_SUCCESS:
       return Object.assign({}, state, {
-        activeDocument: action.activeDocument,
+        activeDocument: action.newDocument,
         isFetching: false,
       });
     case CREATE_DOCUMENT_FAILURE:
       return Object.assign({}, state, {
-        activeDocument: action.activeDocument,
+        //TODO: check this
+        activeDocument: action.newDocument,
         isFetching: false,
       });
     case ADD_SELECTED_QUESTION:

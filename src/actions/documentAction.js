@@ -58,8 +58,8 @@ export const fetchDocument = (id) => {
 // Create a new document  (?)
 export const createDocument = (props) => {
   function createNewDocument() { return { type: CREATE_DOCUMENT }; }
-  function createDocumentSuccess(newDocument) { return { type: FETCH_DOCUMENT_SUCCESS, newDocument }; }
-  function createDocumentFailure(error) { return { type: FETCH_DOCUMENT_FAILURE, error }; }
+  function createDocumentSuccess(newDocument) { return { type: CREATE_DOCUMENT_SUCCESS, newDocument }; }
+  function createDocumentFailure(error) { return { type: CREATE_DOCUMENT_FAILURE, error }; }
   return (dispatch) => {
     dispatch(createNewDocument(props));
     return documentService.createDocument(props)

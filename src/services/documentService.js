@@ -1,4 +1,5 @@
 import { apiUrl } from 'helpers/config';
+import { authHeader } from 'helpers';
 
 // Fetch a Document using ID
 function fetchDocument(id) {
@@ -23,9 +24,12 @@ function fetchDocument(id) {
 
 // Create a New Document
 function createDocument(newDocumentData) {
+  //TODO: Fix this hardcoded questions
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json',
+                Authorization:authHeader() },
+    body: JSON.stringify({...newDocumentData,"questions":[], "secret":true}),
   };
 
   const handleResponse = response => response.json().then((data) => {
@@ -37,7 +41,7 @@ function createDocument(newDocumentData) {
     return data;
   });
 
-  return fetch(`${apiUrl}/documents/${newDocumentData}`, requestOptions)
+  return fetch(`${apiUrl}/documents/`, requestOptions)
     .then(handleResponse)
     .then(activeDocument => activeDocument);
 }

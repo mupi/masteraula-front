@@ -4,4 +4,4 @@ export { default as RedefinePasswordPageContainer } from './RedefinePasswordPage
 export { default as UserPasswordProfileContainer } from './UserPasswordProfileContainer';
 export { default as UserProfilePageContainer } from './UserProfilePageContainer';
 export { default as ForgotPasswordPageContainer } from './ForgotPasswordPageContainer';
-export { default as CreateDocumentPageContainer } from './CreateDocumentPageContainer';
+export { default as EditDocumentPageContainer } from './EditDocumentPageContainer';
