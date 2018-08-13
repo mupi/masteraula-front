@@ -25,10 +25,10 @@ const Sidebar = (props) => {
             <Col xs="12">
               <div className="sidebar-nav-container">
                 {activeDocument && (
-                <DocumentInfoSidebar
-                  documentName={activeDocument.name}
-                  documentTotalQuestions={activeDocument.questionsNumber}
-                />
+                  <DocumentInfoSidebar
+                    documentName={activeDocument.name}
+                    documentTotalQuestions={activeDocument.questionsNumber}
+                  />
                 )}
 
                 <ListGroup className="sidebar-main-options">
@@ -36,7 +36,7 @@ const Sidebar = (props) => {
                     <CreateDocumentModalContainer activeDocument={activeDocument} />
                   </ListGroupItem>
                   <ListGroupItem color="secondary">
-                    <Link to="/documents">
+                    <Link to="/documents/1">
                       <i className="fa fa-folder-open btn__icon" />
                       Meus documentos
                     </Link>
@@ -48,7 +48,7 @@ const Sidebar = (props) => {
                     </Link>
                   </ListGroupItem>
                 </ListGroup>
-                { showFilters && <FilterContainer />}
+                {showFilters && <FilterContainer />}
               </div>
             </Col>
           </Row>
