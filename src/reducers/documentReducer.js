@@ -2,8 +2,8 @@ import {
   FETCH_DOCUMENT, FETCH_DOCUMENT_SUCCESS, FETCH_DOCUMENT_FAILURE,
   CREATE_DOCUMENT, CREATE_DOCUMENT_SUCCESS, CREATE_DOCUMENT_FAILURE,
   UPDATE_DOCUMENT, UPDATE_DOCUMENT_SUCCESS, UPDATE_DOCUMENT_FAILURE,
-  ADD_SELECTED_QUESTION,
-  REMOVE_SELECTED_QUESTION,
+  ADD_SELECTED_QUESTION, ADD_SELECTED_QUESTION_SUCCESS, ADD_SELECTED_QUESTION_FAILURE,
+  REMOVE_SELECTED_QUESTION, REMOVE_SELECTED_QUESTION_SUCCESS, REMOVE_SELECTED_QUESTION_FAILURE,
   CREATE_DOCUMENT_TOGGLE_MODAL,
 
 } from 'actions/documentAction';
@@ -70,9 +70,27 @@ export const document = (state = initialState, action) => {
       return Object.assign({}, state, {
 
       });
+    case ADD_SELECTED_QUESTION_SUCCESS:
+      return Object.assign({}, state, {
+
+      });
+    case ADD_SELECTED_QUESTION_FAILURE:
+      return Object.assign({}, state, {
+        error: action.error,
+      });
     case REMOVE_SELECTED_QUESTION: {
       return Object.assign({}, state, {
 
+      });
+    }
+    case REMOVE_SELECTED_QUESTION_SUCCESS: {
+      return Object.assign({}, state, {
+
+      });
+    }
+    case REMOVE_SELECTED_QUESTION_FAILURE: {
+      return Object.assign({}, state, {
+        error: action.error,
       });
     }
     case CREATE_DOCUMENT_TOGGLE_MODAL: {
