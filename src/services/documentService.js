@@ -68,12 +68,14 @@ function updateDocument(activeNewDocument) {
     .then(activeDocument => activeDocument);
 }
 
-
-// Add a question to document
+// Add a question to Active Document
 function addSelectedQuestion(idDocument, idQuestion, order) {
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    },
     body: JSON.stringify({
       id: idQuestion,
       order,
@@ -88,18 +90,24 @@ function addSelectedQuestion(idDocument, idQuestion, order) {
 
     return data;
   });
-  return fetch(`${apiUrl}/documents/${idDocument}/removeQuestion`, requestOptions)
+
+  return fetch(`${apiUrl}/documents/${idDocument}/addQuestion`, requestOptions)
     .then(handleResponse)
-    .then(questionAdded => questionAdded);
+    .then(addedQuestion => addedQuestion);
 }
 
-// Remove a question to document
+
+
+// Remove a question from Active Document
 function removeSelectedQuestion(idDocument, idQuestion) {
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    },
     body: JSON.stringify({
-      id: idQuestion,
+      id: idQuestion
     }),
   };
 
@@ -111,10 +119,12 @@ function removeSelectedQuestion(idDocument, idQuestion) {
 
     return data;
   });
+
   return fetch(`${apiUrl}/documents/${idDocument}/removeQuestion`, requestOptions)
     .then(handleResponse)
-    .then(questionRemoved => questionRemoved);
+    .then(removedQuestion => removedQuestion);
 }
+
 
 const documentService = {
   fetchDocument,

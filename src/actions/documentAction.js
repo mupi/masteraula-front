@@ -94,19 +94,19 @@ export const updateDocument = (activeNewDocument) => {
 };
 
 // Add Selected Question to Document
-export const addSelectedQuestion = (idDocument, idQuestion) => {
+export const addSelectedQuestion = (idDocument, idQuestion, order) => {
   function addQuestionToDocument() { return { type: CREATE_DOCUMENT }; }
   function addQuestionToDocumentSuccess(newDocument) { return { type: CREATE_DOCUMENT_SUCCESS, newDocument }; }
   function addQuestionToDocumentFailure(error) { return { type: CREATE_DOCUMENT_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(createNewDocument(props));
-    return documentService.createDocument(props)
+    dispatch(addQuestionToDocument(idDocument, idQuestion, order));
+    return documentService.addSelectedQuestion(idDocument, idQuestion, order)
       .then(
-        (newDocument) => {
-          dispatch(createDocumentSuccess(newDocument));
+        (addedQuestion) => {
+          dispatch(addQuestionToDocumentSuccess(addedQuestion));
         },
         (error) => {
-          dispatch(createDocumentFailure(error));
+          dispatch(addQuestionToDocumentFailure(error));
         },
       );
   };
@@ -114,18 +114,18 @@ export const addSelectedQuestion = (idDocument, idQuestion) => {
 
 // Remove Selected Question from Document
 export const removeSelectedQuestion = (idDocument, idQuestion)=> {
-  function createNewDocument() { return { type: CREATE_DOCUMENT }; }
-  function createDocumentSuccess(newDocument) { return { type: CREATE_DOCUMENT_SUCCESS, newDocument }; }
-  function createDocumentFailure(error) { return { type: CREATE_DOCUMENT_FAILURE, error }; }
+  function removeQuestionFromDocument() { return { type: CREATE_DOCUMENT }; }
+  function removeQuestionFromDocumentSuccess(newDocument) { return { type: CREATE_DOCUMENT_SUCCESS, newDocument }; }
+  function removeQuestionFromDocumentFailure(error) { return { type: CREATE_DOCUMENT_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(createNewDocument(idDocument, idQuestion));
-    return documentService.createDocument(idDocument, idQuestion)
+    dispatch(removeQuestionFromDocument(idDocument, idQuestion));
+    return documentService.removeSelectedQuestion(idDocument, idQuestion)
       .then(
-        (newDocument) => {
-          dispatch(createDocumentSuccess(newDocument));
+        (removedQuestion) => {
+          dispatch(removeQuestionFromDocumentSuccess(removedQuestion));
         },
         (error) => {
-          dispatch(createDocumentFailure(error));
+          dispatch(removeQuestionFromDocumentFailure(error));
         },
       );
   };
