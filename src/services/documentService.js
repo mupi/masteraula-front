@@ -74,7 +74,7 @@ function addSelectedQuestion(idDocument, idQuestion, order) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: authHeader()
+      Authorization: authHeader(),
     },
     body: JSON.stringify({
       id: idQuestion,
@@ -97,17 +97,16 @@ function addSelectedQuestion(idDocument, idQuestion, order) {
 }
 
 
-
 // Remove a question from Active Document
 function removeSelectedQuestion(idDocument, idQuestion) {
   const requestOptions = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: authHeader()
+      Authorization: authHeader(),
     },
     body: JSON.stringify({
-      id: idQuestion
+      id: idQuestion,
     }),
   };
 
