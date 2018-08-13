@@ -23,7 +23,7 @@ class DocumentHeader extends Component {
         </Row>
         <Container className="c-document__header">
           Nome:
-        <Input placeholder="Nome do documento" id="name" className="form-group" onChange={event => this.props.setFields('name', event)} />
+        <Input value={this.props.data ? this.props.data.name:''} placeholder="Nome do documento" id="name" className="form-group" onChange={event => this.props.setFields('name', event)} />
         <br />
 
 

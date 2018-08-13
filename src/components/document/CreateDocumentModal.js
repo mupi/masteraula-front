@@ -6,9 +6,7 @@ import {
 import CreateDocumentForm from 'components/document/CreateDocumentForm';
 
 const getAlertMessageDocumentExist = (activeDocument) => {
-  console.log('en alert...');
   if (activeDocument) {
-    console.log('dentro del if');
     return (
       <p className="text-center">
         Atualmente você está editando o documento <strong>{activeDocument.name}</strong><br/>

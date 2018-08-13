@@ -10,7 +10,9 @@ import TermsUsePage from 'pages/TermsUse/TermsUsePage';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 import HomePage from 'pages/Home/HomePage.js';
 
-import { ForgotPasswordPageContainer, UserProfilePageContainer, RedefinePasswordPageContainer, QuestionPageContainer, QuestionBasePageContainer } from 'containers';
+import { ForgotPasswordPageContainer, UserProfilePageContainer, 
+        RedefinePasswordPageContainer, QuestionPageContainer, 
+        QuestionBasePageContainer, EditDocumentPageContainer } from 'containers';
 
 import EditDocumentPage from 'pages/EditDocument/EditDocumentPage';
 import PreviewDocumentPage from 'pages/EditDocument/EditDocumentPage';
@@ -50,7 +52,7 @@ class App extends Component {
                 <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePageContainer} />
-                <Route path="/edit-document" component={EditDocumentPage} />
+                <Route path="/edit-document" component={EditDocumentPageContainer} />
                 <Route path="/documents" component={ViewDocumentPage} />
                 <Route component={NotFoundPage} />
               </Switch>

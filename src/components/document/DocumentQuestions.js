@@ -35,40 +35,42 @@ class DocumentPreview extends React.Component {
   render() {
     const { props } = this;
     const questions = [];
-    for (let i = 0; i < props.data.questions.length; i++) {
-      const question = props.data.questions[i];
-      questions.push(
-        <div key={i} className="c-document__question">
-          <div className="l-btn-remove-question">
-            <Button title="Remover questão" type="button" className="c-document__btn-remove-question">
-              <i className="fa fa-trash" />
-            </Button>
-          </div>
-          <Row>
-            <Col sm="12">
-              <DisciplineList list={question.disciplines} />
-              <QuestionSourceYear  source={question.source} year={question.year} />
-            </Col>
-          </Row>
-          <Row>
-            <div className="c-document__question-content">
-              <QuestionContent statement={question.question} />
-            </div>
-          </Row>
-          <Row>
-            <div className="c-document__question-view-more col-md-3 offset-md-9">
-              <Button onClick={() => this.toggle(question)}>
-                <i className="fa fa-search" />
-                {' '}
-                <span className="button-text">
-Ver mais
-                </span>
+    if(props.data && props.data.questions){
+      for (let i = 0; i < props.data.questions.length; i++) {
+        const question = props.data.questions[i];
+        questions.push(
+          <div key={i} className="c-document__question">
+            <div className="l-btn-remove-question">
+              <Button title="Remover questão" type="button" className="c-document__btn-remove-question">
+                <i className="fa fa-trash" />
               </Button>
             </div>
-          </Row>
+            <Row>
+              <Col sm="12">
+                <DisciplineList list={question.disciplines} />
+                <QuestionSourceYear  source={question.source} year={question.year} />
+              </Col>
+            </Row>
+            <Row>
+              <div className="c-document__question-content">
+                <QuestionContent statement={question.question} />
+              </div>
+            </Row>
+            <Row>
+              <div className="c-document__question-view-more col-md-3 offset-md-9">
+                <Button onClick={() => this.toggle(question)}>
+                  <i className="fa fa-search" />
+                  {' '}
+                  <span className="button-text">
+                    Ver mais
+                  </span>
+                </Button>
+              </div>
+            </Row>
 
-        </div>,
-      );
+          </div>
+        );
+      }
     }
 
     return (

@@ -1,5 +1,5 @@
 import EditDocumentPage from 'pages/EditDocument/EditDocumentPage';
-import { updateDocument, resetNewDocument } from 'actions/documentAction';
+import { updateDocument, resetNewDocument, fetchDocument } from 'actions/documentAction';
 import { connect } from 'react-redux';
 
 // Pass the newDocument from Redux's global state ("state")
@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   updateDocument: props => dispatch(updateDocument(props)),
   resetNewDocument: () => dispatch(resetNewDocument()),
+  fetchDocument: (props) => dispatch(fetchDocument(props)),
 });
 
 const EditDocumentPageContainer = connect(

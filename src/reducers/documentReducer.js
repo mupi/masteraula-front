@@ -10,7 +10,6 @@ import {
 
 
 const initialState = {
-  newDocument: { document: null, error: null, loading: false },
   /*activeDocument: {
     document: [
       {

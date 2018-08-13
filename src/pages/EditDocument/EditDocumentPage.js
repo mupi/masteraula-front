@@ -10,35 +10,7 @@ class EditDocumentPage extends Component {
   constructor(props) {
     super(props);
 
-    this.toggle = this.toggle.bind(this);
     this.setFields = this.setFields.bind(this);
-    this.state = {
-      name: '',
-      schoolName: '',
-      course: '',
-      teacherName: '',
-      studentName: '',
-      class: '',
-      grade: '',
-      date: '',
-      questions: [{
-        id: '100',
-        question: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha:',
-        disciplines: [
-          { name: 'Química' },
-          { name: 'Física' },
-        ],
-        source: 'ENEM',
-        year: '2010',
-        difficulty: 'Fácil',
-        author: 'Thiago Oliveira dos Santos',
-        teachingLevels: [
-          { name: 'Ensino Médio' },
-          { name: 'Ensino Superior' },
-        ],
-      },
-      ],
-    };
   }
 
   componentDidMount(){
@@ -54,22 +26,12 @@ class EditDocumentPage extends Component {
     this.setState(prevState);
   }
 
-  toggle(tab) {
-    if (this.state.activeTab !== tab) {
-      const prevState = this.state;
-      prevState.activeTab = tab;
-      this.setState({
-        prevState,
-      });
-    }
-  }
-
   render() {
     return (
       <HomeUserPage>
         <div className="c-document">
-          <DocumentHeader setFields={this.setFields} />
-          <DocumentQuestions data={this.state} />
+          <DocumentHeader data={this.props.activeDocument} setFields={this.setFields} />
+          <DocumentQuestions data={this.props.activeDocument} />
         </div>
       </HomeUserPage>);
   }
