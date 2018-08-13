@@ -94,28 +94,42 @@ export const updateDocument = (activeNewDocument) => {
 };
 
 // Add Selected Question to Document
-export const addSelectedQuestion = (idDocument, idQuestion, order) => ({
-  function updateActiveDocument() { return { type: UPDATE_DOCUMENT }; }
-  function updateDocumentSuccess(activeDocument) { return { type: UPDATE_DOCUMENT_SUCCESS, activeDocument }; }
-  function updateDocumentFailure(error) { return { type: UPDATE_DOCUMENT_FAILURE, error }; }
+export const addSelectedQuestion = (idDocument, idQuestion) => {
+  function addQuestionToDocument() { return { type: CREATE_DOCUMENT }; }
+  function addQuestionToDocumentSuccess(newDocument) { return { type: CREATE_DOCUMENT_SUCCESS, newDocument }; }
+  function addQuestionToDocumentFailure(error) { return { type: CREATE_DOCUMENT_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(updateActiveDocument());
-    return documentService.updateDocument(activeNewDocument)
+    dispatch(createNewDocument(props));
+    return documentService.createDocument(props)
       .then(
-        (activeDocument) => {
-          dispatch(updateDocumentSuccess(activeDocument));
+        (newDocument) => {
+          dispatch(createDocumentSuccess(newDocument));
         },
         (error) => {
-          dispatch(updateDocumentFailure(error));
+          dispatch(createDocumentFailure(error));
         },
       );
   };
-});
+};
 
 // Remove Selected Question from Document
-export const removeSelectedQuestion = (idDocument, idQuestion) => ({
-
-});
+export const removeSelectedQuestion = (idDocument, idQuestion)=> {
+  function createNewDocument() { return { type: CREATE_DOCUMENT }; }
+  function createDocumentSuccess(newDocument) { return { type: CREATE_DOCUMENT_SUCCESS, newDocument }; }
+  function createDocumentFailure(error) { return { type: CREATE_DOCUMENT_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(createNewDocument(idDocument, idQuestion));
+    return documentService.createDocument(idDocument, idQuestion)
+      .then(
+        (newDocument) => {
+          dispatch(createDocumentSuccess(newDocument));
+        },
+        (error) => {
+          dispatch(createDocumentFailure(error));
+        },
+      );
+  };
+};
 
 export function resetNewDocument() {
   return {
