@@ -6,14 +6,14 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { toggleModal, createDocument } from 'actions/documentAction';
 
-const CreateDocumentForm = (props, {messageWhenDocumentExist=null}) => {
+const CreateDocumentForm = (props) => {
   const {
-    handleSubmit, error, modal, toggleModal,
+    handleSubmit, error, modal, toggleModal, messageWhenDocumentExist
   } = props;
-  
+
   return(
     <div>
-    {messageWhenDocumentExist}
+      {messageWhenDocumentExist}
       <p className="text-center">Por favor, insira um nome para o novo documento a ser criado</p>
       <Form onSubmit={handleSubmit}>
       <FormGroup>

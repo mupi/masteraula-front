@@ -7,7 +7,7 @@ import QuestionHeader from 'components/question/QuestionHeader';
 import QuestionInfo from 'components/question/QuestionInfo';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import QuestionSourceYear from 'components/question/QuestionSourceYear';
-import AddQuestionButton from 'components/buttons/AddQuestionButton';
+import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 
 class DocumentPreview extends React.Component {
   constructor(props) {
@@ -75,7 +75,7 @@ Ver mais
       <Container>
         <div>
           <div className="l-button-add-question">
-            <AddQuestionButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
+            <GoToQuestionBaseButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
           </div>
 
           {questions}

@@ -110,7 +110,7 @@ export function resetNewDocument() {
 }
 
 // Create Document Toggle Modal
-export const toggleModal = (modal) => ({
+export const toggleModal = modal => ({
   type: CREATE_DOCUMENT_TOGGLE_MODAL,
   modal: !modal,
 });

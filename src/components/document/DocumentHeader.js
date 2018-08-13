@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Row, Input, Container, Col, Label, Button
 } from 'reactstrap';
+import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 
 class DocumentHeader extends Component {
   componentWillMount() {
@@ -14,13 +15,10 @@ class DocumentHeader extends Component {
       <Container>
         <Row className="c-document__main-buttons">
           <div className="auto-margin-left-element">
-            <Button title="Adicionar questões" className="btn-success">
-              {' '}
-              <i className="fa fa-plus btn__icon" />
-              <span>
-                Adicionar questões
-              </span>
-            </Button>
+            <GoToQuestionBaseButton
+              customClass="btn-success"
+              nameButton="Adicionar questões"
+            />
           </div>
         </Row>
         <Container className="c-document__header">
