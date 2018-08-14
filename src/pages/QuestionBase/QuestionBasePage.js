@@ -42,7 +42,7 @@ class QuestionBasePage extends React.Component {
   }
 
   render() {
-    const { questionPage, isFetching, error, toggleModal, modal, activeDocument, addSelectedQuestion, addedQuestion } = this.props;
+    const { questionPage, isFetching, error, toggleModal, modal, activeDocument, addSelectedQuestion } = this.props;
     if (error) {
       return (
         <HomeUserPage>

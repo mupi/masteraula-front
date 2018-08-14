@@ -5,7 +5,7 @@ import RelatedQuestions from 'components/question/RelatedQuestions';
 import QuestionComments from 'components/question/QuestionComments';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import { Alert, Row, Col } from 'reactstrap';
-
+import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
@@ -48,7 +48,7 @@ class QuestionPage extends Component {
 
   render() {
     const {
-      activeQuestion, isFetching, rating, error, onRate, toggleModal, modal, activeDocument
+      activeQuestion, isFetching, rating, error, onRate, toggleModal, modal, activeDocument, addSelectedQuestion, addedQuestion
     } = this.props;
 
     if (isFetching) {
@@ -88,15 +88,22 @@ class QuestionPage extends Component {
         </div>
         <div className="l-button-add-question">
 
-          <AddQuestionButton
-            questionId={activeQuestion.id}
-            customClass="o-button-add-question-doc o-button-add-question-doc--xl"
-            toggleModal={toggleModal}
-            modal={modal}
-            activeDocument={activeDocument}
-          />
+          {!isQuestionAdded(activeDocument, activeQuestion.id) ? (
+            <AddQuestionButton
+              questionId={activeQuestion.id}
+              customClass="o-button-add-question-doc o-button-add-question-doc--xl"
+              toggleModal={toggleModal}
+              modal={modal}
+              activeDocument={activeDocument}
+              addSelectedQuestion={addSelectedQuestion}
+            />
+          ) : (
+            <span className="btn question-card__added">
+              <i className="fa fa-check-circle btn__icon" />
+              Adicionada
+            </span>
+          )}
         </div>
-
       </HomeUserPage>
     );
   }

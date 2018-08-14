@@ -8,16 +8,11 @@ import imageCard from 'assets/img/home/question-card.jpg';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import TagList from 'components/tags/TagList';
 import { Link } from 'react-router-dom';
+import { isQuestionAdded } from 'helpers/question';
+
 import QuestionAuthor from './QuestionAuthor';
 import QuestionSourceYear from './QuestionSourceYear';
 
-const isQuestionAdded = (activeDocument, id) => {
-  if (activeDocument) {
-    const questionAdded = activeDocument.questions.filter(question => question.question === id)
-    return (questionAdded.length > 0)
-  }
-  return false;
-}
 
 const QuestionCard = ({
   id, disciplines, source, year, statement, urlImage = '', author, teaching_levels,
