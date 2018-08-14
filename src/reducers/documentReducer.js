@@ -50,30 +50,33 @@ export const document = (state = initialState, action) => {
       });
     case ADD_SELECTED_QUESTION:
       return Object.assign({}, state, {
-        isFetching: true,
+        isFetchingAddQuestion: true,
         error: null,
       });
     case ADD_SELECTED_QUESTION_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: false,
+        isFetchingAddQuestion: false,
         addedQuestion: action.addedQuestion,
-        activeDocument: {...state.activeDocument, 'questions':[...state.activeDocument.questions, action.addedQuestion] },
+        activeDocument: { ...state.activeDocument, questions: [...state.activeDocument.questions, action.addedQuestion] },
       });
     case ADD_SELECTED_QUESTION_FAILURE:
       return Object.assign({}, state, {
-        isFetching: false,
+        isFetchingAddQuestion: false,
         error: action.error,
       });
     case REMOVE_SELECTED_QUESTION:
       return Object.assign({}, state, {
-        isFetching: true,
+        isFetchingRemoveQuestion: true,
         error: null,
       });
-    case REMOVE_SELECTED_QUESTION_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: false,
-        addedQuestion: action.removedQuestion,
-      });
+    case REMOVE_SELECTED_QUESTION_SUCCESS: {
+      const newQuestionsInDocument = state.activeDocument.questions.filter(question => question.question !== action.idRemovedQuestion);
+      return {
+        isFetchingRemoveQuestion: false,
+        removedQuestion: action.removedQuestion,
+        activeDocument: { ...state.activeDocument, questions: newQuestionsInDocument }
+      };
+    }
     case REMOVE_SELECTED_QUESTION_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
