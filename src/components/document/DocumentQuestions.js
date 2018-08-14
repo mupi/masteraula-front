@@ -8,6 +8,8 @@ import QuestionInfo from 'components/question/QuestionInfo';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import QuestionSourceYear from 'components/question/QuestionSourceYear';
 import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
+import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
+
 
 class DocumentPreview extends React.Component {
   constructor(props) {
@@ -39,11 +41,7 @@ class DocumentPreview extends React.Component {
       const question = props.data.questions[i];
       questions.push(
         <div key={i} className="c-document__question">
-          <div className="l-btn-remove-question">
-            <Button title="Remover questão" type="button" className="c-document__btn-remove-question">
-              <i className="fa fa-trash" />
-            </Button>
-          </div>
+          <RemoveQuestionButton />
           <Row>
             <Col sm="12">
               <DisciplineList list={question.disciplines} />
@@ -61,7 +59,7 @@ class DocumentPreview extends React.Component {
                 <i className="fa fa-search" />
                 {' '}
                 <span className="button-text">
-Ver mais
+                  Ver mais
                 </span>
               </Button>
             </div>
