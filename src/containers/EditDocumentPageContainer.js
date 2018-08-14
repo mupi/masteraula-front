@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   updateDocument: props => dispatch(updateDocument(props)),
   resetNewDocument: () => dispatch(resetNewDocument()),
-  removeSelectedQuestion: (idDocument, idQuestion, order) => dispatch(removeSelectedQuestion(idDocument, idQuestion, order)),
+  removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
 
 });
 

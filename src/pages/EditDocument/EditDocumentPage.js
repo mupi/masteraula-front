@@ -65,11 +65,16 @@ class EditDocumentPage extends Component {
   }
 
   render() {
+    const { activeDocument, removeSelectedQuestion } = this.props;
+
     return (
       <HomeUserPage>
         <div className="c-document">
           <DocumentHeader setFields={this.setFields} />
-          <DocumentQuestions data={this.state} />
+          <DocumentQuestions
+            activeDocument={activeDocument}
+            removeSelectedQuestion={removeSelectedQuestion}
+          />
         </div>
       </HomeUserPage>);
   }
