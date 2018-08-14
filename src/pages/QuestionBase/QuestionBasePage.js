@@ -6,7 +6,7 @@ import QuestionList from 'components/question/QuestionList';
 import SuccessMessage from 'components/messages/SuccessMessage';
 import FailureMessage from 'components/messages/FailureMessage';
 
-import QuestionPagination from 'components/QuestionPagination/QuestionPagination';
+import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
 
@@ -16,8 +16,6 @@ const addQuestionMessages = (addQuestionResult) => {
   }
   return <FailureMessage message="A questão não foi adicionada ao documento" />
 };
-
-
 
 const getResults = (isFetching, results, count, toggleModal, modal, activeDocument) => {
   if (!isFetching) {
@@ -74,13 +72,13 @@ class QuestionBasePage extends React.Component {
             </InputGroup>
           </Row>
           <Row className="pagination-questions">
-            <QuestionPagination {...this.props} {...questionPage} />
+            <CustomPagination {...this.props} {...questionPage} />
           </Row>
           <div className="c-question-base__results">
             {getResults(isFetching, questionPage.results, questionPage.count, toggleModal, modal, activeDocument)}
           </div>
           <Row className="pagination-questions">
-            <QuestionPagination {...this.props} {...questionPage} />
+            <CustomPagination {...this.props} {...questionPage} />
           </Row>
         </div>
       </HomeUserPage>
