@@ -57,6 +57,7 @@ export const document = (state = initialState, action) => {
       return Object.assign({}, state, {
         isFetching: false,
         addedQuestion: action.addedQuestion,
+        activeDocument: {...state.activeDocument, 'questions':[...state.activeDocument.questions, action.addedQuestion] },
       });
     case ADD_SELECTED_QUESTION_FAILURE:
       return Object.assign({}, state, {
