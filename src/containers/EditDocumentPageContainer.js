@@ -1,9 +1,8 @@
 import EditDocumentPage from 'pages/EditDocument/EditDocumentPage';
-import { updateDocument, resetNewDocument } from 'actions/documentAction';
+import { updateDocument, resetNewDocument, removeSelectedQuestion } from 'actions/documentAction';
 import { connect } from 'react-redux';
-
 // Pass the newDocument from Redux's global state ("state")
-// to preesentational container
+// to presentational container
 const mapStateToProps = state => ({
   activeDocument: state.document.activeDocument,
 });
@@ -11,6 +10,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   updateDocument: props => dispatch(updateDocument(props)),
   resetNewDocument: () => dispatch(resetNewDocument()),
+  removeSelectedQuestion: (idDocument, idQuestion, order) => dispatch(removeSelectedQuestion(idDocument, idQuestion, order)),
+
 });
 
 const EditDocumentPageContainer = connect(
