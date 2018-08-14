@@ -19,9 +19,19 @@ const addQuestionMessages = (addQuestionResult) => {
 
 
 
-const getResults = (isFetching, results, count, toggleModal, modal, activeDocument) => {
+const getResults = (isFetching, results, count, toggleModal, modal, activeDocument, addSelectedQuestion) => {
   if (!isFetching) {
-    return <QuestionList questions={results}  sm="3" count={count} toggleModal={toggleModal} modal={modal} activeDocument={activeDocument} />;
+    return (
+      <QuestionList
+        questions={results}
+        sm="3"
+        count={count}
+        toggleModal={toggleModal}
+        modal={modal}
+        activeDocument={activeDocument}
+        addSelectedQuestion={addSelectedQuestion}
+      />
+    );
   }
 
   return (
@@ -44,8 +54,7 @@ class QuestionBasePage extends React.Component {
   }
 
   render() {
-    const { questionPage, isFetching, error, toggleModal, modal, activeDocument } = this.props;
-    let addQuestionWorking= false; /*addQuestionFetching...*/
+    const { questionPage, isFetching, error, toggleModal, modal, activeDocument, addSelectedQuestion } = this.props;
     if (error) {
       return (
         <HomeUserPage>
@@ -60,7 +69,7 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters>
         <div className="c-question-base">
-          {(addQuestionWorking) ? addQuestionMessages() : ' '}
+          {(addSelectedQuestion) && addQuestionMessages() }
 
           <Row className="c-question-base__search-text">
             Digite o termo e encontre soluções relacionadas
@@ -77,7 +86,7 @@ class QuestionBasePage extends React.Component {
             <QuestionPagination {...this.props} {...questionPage} />
           </Row>
           <div className="c-question-base__results">
-            {getResults(isFetching, questionPage.results, questionPage.count, toggleModal, modal, activeDocument)}
+            {getResults(isFetching, questionPage.results, questionPage.count, toggleModal, modal, activeDocument, addSelectedQuestion)}
           </div>
           <Row className="pagination-questions">
             <QuestionPagination {...this.props} {...questionPage} />
