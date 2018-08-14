@@ -54,7 +54,7 @@ class QuestionBasePage extends React.Component {
   }
 
   render() {
-    const { questionPage, isFetching, error, toggleModal, modal, activeDocument, addSelectedQuestion } = this.props;
+    const { questionPage, isFetching, error, toggleModal, modal, activeDocument, addSelectedQuestion, addedQuestion } = this.props;
     if (error) {
       return (
         <HomeUserPage>
@@ -69,7 +69,7 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters>
         <div className="c-question-base">
-          {(addSelectedQuestion) && addQuestionMessages() }
+          {(addedQuestion) && addQuestionMessages() }
 
           <Row className="c-question-base__search-text">
             Digite o termo e encontre soluções relacionadas
