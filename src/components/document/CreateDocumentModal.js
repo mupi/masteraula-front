@@ -14,11 +14,11 @@ const getAlertMessageDocumentExist = (activeDocument) => {
         <br />
       </p>
     );
-}
+  }
   return '';
 }
 
-
+;
 const CreateDocumentModal = (props) => {
   const { modal, toggleModal, activeDocument, submit } = props;
 

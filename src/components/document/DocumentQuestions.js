@@ -8,6 +8,8 @@ import QuestionInfo from 'components/question/QuestionInfo';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import QuestionSourceYear from 'components/question/QuestionSourceYear';
 import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
+import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
+
 
 class DocumentPreview extends React.Component {
   constructor(props) {

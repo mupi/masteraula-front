@@ -19,10 +19,13 @@ export const RESET_UPDATE_DOCUMENT = 'RESET_UPDATE_DOCUMENT';
 
 // Add selected question to Document
 export const ADD_SELECTED_QUESTION = 'ADD_SELECTED_QUESTION';
+export const ADD_SELECTED_QUESTION_SUCCESS = 'ADD_SELECTED_QUESTION_SUCCESS';
+export const ADD_SELECTED_QUESTION_FAILURE = 'ADD_SELECTED_QUESTION_FAILURE';
 
 // Remove selected question from Document
 export const REMOVE_SELECTED_QUESTION = 'REMOVE_SELECTED_QUESTION';
-
+export const REMOVE_SELECTED_QUESTION_SUCCESS = 'REMOVE_SELECTED_QUESTION_SUCCESS';
+export const REMOVE_SELECTED_QUESTION_FAILURE = 'REMOVE_SELECTED_QUESTION_FAILURE';
 // Delete document
 export const DELETE_DOCUMENT = 'DELETE_DOCUMENT';
 export const DELETE_DOCUMENT_SUCCESS = 'DELETE_DOCUMENT_SUCCESS';
@@ -55,7 +58,7 @@ export const fetchDocument = (id) => {
   };
 };
 
-// Create a new document  (?)
+// Create a new document
 export const createDocument = (props) => {
   function createNewDocument() { return { type: CREATE_DOCUMENT }; }
   function createDocumentSuccess(newDocument) { return { type: CREATE_DOCUMENT_SUCCESS, newDocument }; }
@@ -94,14 +97,43 @@ export const updateDocument = (activeNewDocument) => {
 };
 
 // Add Selected Question to Document
-export const addSelectedQuestion = (idDocument, idQuestion) => ({
-  type: REMOVE_SELECTED_QUESTION, idDocument, idQuestion,
-});
+export const addSelectedQuestion = (idDocument, idQuestion, order) => {
+  function addQuestionToDocument() { return { type: ADD_SELECTED_QUESTION }; }
+  function addQuestionToDocumentSuccess(addedQuestion) { return { type: ADD_SELECTED_QUESTION_SUCCESS, addedQuestion }; }
+  function addQuestionToDocumentFailure(error) { return { type: ADD_SELECTED_QUESTION_FAILURE, error }; }
+
+  return (dispatch) => {
+    dispatch(addQuestionToDocument(idDocument, idQuestion, order));
+    return documentService.addSelectedQuestion(idDocument, idQuestion, order)
+      .then(
+        (addedQuestion) => {
+          dispatch(addQuestionToDocumentSuccess(addedQuestion));
+        },
+        (error) => {
+          dispatch(addQuestionToDocumentFailure(error));
+        },
+      );
+  };
+};
 
 // Remove Selected Question from Document
-export const removeSelectedQuestion = (idDocument, idQuestion) => ({
-  type: ADD_SELECTED_QUESTION, idDocument, idQuestion,
-});
+export const removeSelectedQuestion = (idDocument, idQuestion) => {
+  function removeQuestionFromDocument() { return { type: REMOVE_SELECTED_QUESTION }; }
+  function removeQuestionFromDocumentSuccess(newDocument) { return { type: REMOVE_SELECTED_QUESTION_SUCCESS, newDocument }; }
+  function removeQuestionFromDocumentFailure(error) { return { type: REMOVE_SELECTED_QUESTION_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(removeQuestionFromDocument(idDocument, idQuestion));
+    return documentService.removeSelectedQuestion(idDocument, idQuestion)
+      .then(
+        (removedQuestion) => {
+          dispatch(removeQuestionFromDocumentSuccess(removedQuestion));
+        },
+        (error) => {
+          dispatch(removeQuestionFromDocumentFailure(error));
+        },
+      );
+  };
+};
 
 export function resetNewDocument() {
   return {
