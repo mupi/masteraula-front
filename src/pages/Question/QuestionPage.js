@@ -87,7 +87,7 @@ const questionTest = {
         name: 'Carmen Pamela Rosales Sedano',
         email: 'cp.rosaless@gmail.com',
       },
-      statement: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...',
+      statement: 'Assinale a alternativa : a) O discurso feminista de Susanitar denota certo machismo ...',
     },
 
   ],

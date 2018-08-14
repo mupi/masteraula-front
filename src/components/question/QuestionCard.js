@@ -11,10 +11,17 @@ import { Link } from 'react-router-dom';
 import QuestionAuthor from './QuestionAuthor';
 import QuestionSourceYear from './QuestionSourceYear';
 
-const QuestionCard = ({
-id, disciplines, source, year, statement, urlImage = '', author, teaching_levels,
-addQuestion, removeQuestion, toggleModal, modal, activeDocument}) => {
+const isQuestionAdded = (activeDocument, id) => {
+  if (activeDocument) {
+    const questionAdded = activeDocument.questions.filter(question => question.id === id)
+    return (questionAdded.length > 0)
+  }
+  return false;
+}
 
+const QuestionCard = ({
+  id, disciplines, source, year, statement, urlImage = '', author, teaching_levels,
+  toggleModal, modal, activeDocument, addSelectedQuestion}) => {
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
@@ -54,14 +61,17 @@ addQuestion, removeQuestion, toggleModal, modal, activeDocument}) => {
           </Button>
         </Link>
 
-        <AddQuestionButton
-          questionId={id}
-          customClass="question-card__btn"
-          nameButton="Adicionar"
-          toggleModal={toggleModal}
-          modal={modal}
-          activeDocument={activeDocument}
-        />
+        {!isQuestionAdded(activeDocument, id) ? (
+          <AddQuestionButton
+              questionId={id}
+              customClass="question-card__btn"
+              nameButton="Adicionar"
+              toggleModal={toggleModal}
+              modal={modal}
+              activeDocument={activeDocument}
+              addSelectedQuestion={addSelectedQuestion}
+          />
+        ) : <span>Adicionada</span>}
 
       </CardBody>
     </Card>

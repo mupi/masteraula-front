@@ -3,25 +3,23 @@ import {
   Row, Col, Input, InputGroup, InputGroupAddon, Button, Alert,
 } from 'reactstrap';
 import QuestionList from 'components/question/QuestionList';
-import SuccessMessage from 'components/messages/SuccessMessage';
-import FailureMessage from 'components/messages/FailureMessage';
 
 import QuestionPagination from 'components/QuestionPagination/QuestionPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
-
-const addQuestionMessages = (addQuestionResult) => {
-  if (true) {
-    return <SuccessMessage message="A questão foi adicionada ao documento" />
-  }
-  return <FailureMessage message="A questão não foi adicionada ao documento" />
-};
-
-
-
-const getResults = (isFetching, results, count, toggleModal, modal, activeDocument) => {
+const getResults = (isFetching, results, count, toggleModal, modal, activeDocument, addSelectedQuestion) => {
   if (!isFetching) {
-    return <QuestionList questions={results}  sm="3" count={count} toggleModal={toggleModal} modal={modal} activeDocument={activeDocument} />;
+    return (
+      <QuestionList
+        questions={results}
+        sm="3"
+        count={count}
+        toggleModal={toggleModal}
+        modal={modal}
+        activeDocument={activeDocument}
+        addSelectedQuestion={addSelectedQuestion}
+      />
+    );
   }
 
   return (
@@ -44,8 +42,7 @@ class QuestionBasePage extends React.Component {
   }
 
   render() {
-    const { questionPage, isFetching, error, toggleModal, modal, activeDocument } = this.props;
-    let addQuestionWorking= false; /*addQuestionFetching...*/
+    const { questionPage, isFetching, error, toggleModal, modal, activeDocument, addSelectedQuestion, addedQuestion } = this.props;
     if (error) {
       return (
         <HomeUserPage>
@@ -60,8 +57,6 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters>
         <div className="c-question-base">
-          {(addQuestionWorking) ? addQuestionMessages() : ' '}
-
           <Row className="c-question-base__search-text">
             Digite o termo e encontre soluções relacionadas
             <InputGroup>
@@ -77,7 +72,7 @@ class QuestionBasePage extends React.Component {
             <QuestionPagination {...this.props} {...questionPage} />
           </Row>
           <div className="c-question-base__results">
-            {getResults(isFetching, questionPage.results, questionPage.count, toggleModal, modal, activeDocument)}
+            {getResults(isFetching, questionPage.results, questionPage.count, toggleModal, modal, activeDocument, addSelectedQuestion)}
           </div>
           <Row className="pagination-questions">
             <QuestionPagination {...this.props} {...questionPage} />
