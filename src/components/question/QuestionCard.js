@@ -12,16 +12,16 @@ import QuestionAuthor from './QuestionAuthor';
 import QuestionSourceYear from './QuestionSourceYear';
 
 const isQuestionAdded = (activeDocument, id) => {
-   if (activeDocument){
-     const questionAdded = activeDocument.questions.filter(question => question.id === id)
-     return (questionAdded.length >0)
-   }
-   return false;
+  if (activeDocument) {
+    const questionAdded = activeDocument.questions.filter(question => question.id === id)
+    return (questionAdded.length > 0)
+  }
+  return false;
 }
 
 const QuestionCard = ({
-id, disciplines, source, year, statement, urlImage = '', author, teaching_levels,
-addQuestion, toggleModal, modal, activeDocument, addSelectedQuestion}) => {
+  id, disciplines, source, year, statement, urlImage = '', author, teaching_levels,
+  toggleModal, modal, activeDocument, addSelectedQuestion}) => {
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }

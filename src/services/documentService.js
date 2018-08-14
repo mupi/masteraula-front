@@ -24,12 +24,13 @@ function fetchDocument(id) {
 
 // Create a New Document
 function createDocument(newDocumentData) {
-  //TODO: Fix this hardcoded questions
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json',
-                Authorization:authHeader() },
-    body: JSON.stringify({...newDocumentData,"questions":[], "secret":true}),
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+    body: JSON.stringify({ ...newDocumentData, questions: [], secret: true }),
   };
 
   const handleResponse = response => response.json().then((data) => {
@@ -37,7 +38,6 @@ function createDocument(newDocumentData) {
       const error = (data && data.email);
       return Promise.reject(error);
     }
-
     return data;
   });
 
@@ -45,7 +45,6 @@ function createDocument(newDocumentData) {
     .then(handleResponse)
     .then(activeDocument => activeDocument);
 }
-
 
 // Update an Active Document
 function updateDocument(activeNewDocument) {
@@ -87,7 +86,6 @@ function addSelectedQuestion(idDocument, idQuestion, order) {
       const error = (data && data.email);
       return Promise.reject(error);
     }
-
     return data;
   });
 
