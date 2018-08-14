@@ -77,7 +77,7 @@ function addSelectedQuestion(idDocument, idQuestion, order) {
       Authorization: authHeader(),
     },
     body: JSON.stringify({
-      id: idQuestion,
+      question: idQuestion,
       order,
     }),
   };
@@ -91,7 +91,7 @@ function addSelectedQuestion(idDocument, idQuestion, order) {
     return data;
   });
 
-  return fetch(`${apiUrl}/documents/${idDocument}/addQuestion`, requestOptions)
+  return fetch(`${apiUrl}/documents/${idDocument}/addQuestion/`, requestOptions)
     .then(handleResponse)
     .then(addedQuestion => addedQuestion);
 }
