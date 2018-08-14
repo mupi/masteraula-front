@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-
 const GoToQuestionBaseButton = ({ customClass, nameButton}) => (
   <Link to="/question-base/1">
     <Button
