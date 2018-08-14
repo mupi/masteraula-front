@@ -104,7 +104,7 @@ function removeSelectedQuestion(idDocument, idQuestion) {
       Authorization: authHeader(),
     },
     body: JSON.stringify({
-      id: idQuestion,
+      question: idQuestion,
     }),
   };
 

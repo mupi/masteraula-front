@@ -70,7 +70,7 @@ export const document = (state = initialState, action) => {
         error: null,
       });
     case REMOVE_SELECTED_QUESTION_SUCCESS: {
-      const newQuestionsInDocument = state.activeDocument.questions.filter(question => question.question !== action.idRemovedQuestion);
+      const newQuestionsInDocument = state.activeDocument.questions.filter(question => question.question !== action.idQuestion);
       return {
         isFetchingRemoveQuestion: false,
         removedQuestion: action.removedQuestion,
