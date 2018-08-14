@@ -14,7 +14,7 @@ import QuestionSourceYear from './QuestionSourceYear';
 const QuestionCard = ({
 id, disciplines, source, year, statement, urlImage = '', author, teaching_levels,
 addQuestion, toggleModal, modal, activeDocument, addSelectedQuestion}) => {
-
+  const questionWasAdded = (activeDocument ? activeDocument.questions.filter(question => question.id === id) : null);
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
@@ -54,15 +54,20 @@ addQuestion, toggleModal, modal, activeDocument, addSelectedQuestion}) => {
           </Button>
         </Link>
 
-        <AddQuestionButton
-          questionId={id}
-          customClass="question-card__btn"
-          nameButton="Adicionar"
-          toggleModal={toggleModal}
-          modal={modal}
-          activeDocument={activeDocument}
-          addSelectedQuestion={addSelectedQuestion}
-        />
+
+
+        { !questionWasAdded
+          ? (
+            <AddQuestionButton
+              questionId={id}
+              customClass="question-card__btn"
+              nameButton="Adicionar"
+              toggleModal={toggleModal}
+              modal={modal}
+              activeDocument={activeDocument}
+              addSelectedQuestion={addSelectedQuestion}
+            />
+          ) : <span>Adicionada</span>}
 
       </CardBody>
     </Card>
