@@ -17,7 +17,7 @@
     &__total-results{
       margin-bottom: 15px;
       font-size: 14px;
-      color: #1e4f78;
+      color:$color-ma-blue;
       font-weight: bold;
     }
 }
@@ -40,6 +40,11 @@
 
     &__image{
 
+    }
+
+    &__added{
+      background: $color-ma-yellow;
+      color: $color-ma-white;
     }
 }
 
