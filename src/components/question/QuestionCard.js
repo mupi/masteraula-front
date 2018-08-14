@@ -13,7 +13,7 @@ import QuestionSourceYear from './QuestionSourceYear';
 
 const isQuestionAdded = (activeDocument, id) => {
   if (activeDocument) {
-    const questionAdded = activeDocument.questions.filter(question => question.id === id)
+    const questionAdded = activeDocument.questions.filter(question => question.question === id)
     return (questionAdded.length > 0)
   }
   return false;
@@ -63,15 +63,20 @@ const QuestionCard = ({
 
         {!isQuestionAdded(activeDocument, id) ? (
           <AddQuestionButton
-              questionId={id}
-              customClass="question-card__btn"
-              nameButton="Adicionar"
-              toggleModal={toggleModal}
-              modal={modal}
-              activeDocument={activeDocument}
-              addSelectedQuestion={addSelectedQuestion}
+            questionId={id}
+            customClass="question-card__btn"
+            nameButton="Adicionar"
+            toggleModal={toggleModal}
+            modal={modal}
+            activeDocument={activeDocument}
+            addSelectedQuestion={addSelectedQuestion}
           />
-        ) : <span>Adicionada</span>}
+        ) : (
+          <span className="btn question-card__added">
+            <i className="fa fa-check-circle btn__icon" />
+            Adicionada
+          </span>
+        )}
 
       </CardBody>
     </Card>

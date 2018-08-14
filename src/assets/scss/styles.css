@@ -470,7 +470,7 @@ a.c_sidebar__document-link:hover {
 .c-question-base__total-results {
   margin-bottom: 15px;
   font-size: 14px;
-  color: #1e4f78;
+  color: #1E5078;
   font-weight: bold; }
 
 .l-question-card-text {
@@ -482,6 +482,10 @@ a.c_sidebar__document-link:hover {
     margin-right: 10px; }
   .question-card__body {
     padding: 15px; }
+  .question-card__added {
+    background: #F3B232;
+    color: #FFFFFF;
+    cursor: default !important; }
 
 /*Pagination in QuestionBase*/
 .page-item.active .page-link {
