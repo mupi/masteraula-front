@@ -485,7 +485,7 @@ a.c_sidebar__document-link:hover {
   .question-card__added {
     background: #F3B232;
     color: #FFFFFF;
-    cursor: default; }
+    cursor: default !important; }
 
 /*Pagination in QuestionBase*/
 .page-item.active .page-link {
