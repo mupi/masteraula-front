@@ -4,10 +4,8 @@ import { Button } from 'reactstrap';
 const handleRemoveQuestionButton = (e, questionId, activeDocument, removeSelectedQuestion) => {
   e.preventDefault();
   if (activeDocument) {
+    console.log("remove question:" + questionId);
     removeSelectedQuestion(activeDocument.id, questionId, 0);
-    console.log('Throws add '+ questionId);
-  } else {
-    console.log(questionId);
   }
 };
 
