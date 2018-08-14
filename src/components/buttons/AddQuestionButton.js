@@ -5,9 +5,6 @@ const handleAddQuestionButton = (e, questionId, activeDocument, addSelectedQuest
   e.preventDefault();
   if (activeDocument) {
     addSelectedQuestion(activeDocument.id, questionId, 0);
-    console.log('Throws add '+ questionId);
-  } else {
-    console.log(questionId);
   }
 };
 

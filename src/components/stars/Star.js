@@ -12,4 +12,9 @@ Star.propTypes = {
   onClick: PropTypes.func,
 };
 
+Star.defaultProps = {
+  selected: false,
+  onClick: f => f,
+};
+
 export default Star;
