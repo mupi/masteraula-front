@@ -70,16 +70,15 @@ export const document = (state = initialState, action) => {
         error: null,
       });
     case REMOVE_SELECTED_QUESTION_SUCCESS: {
-      const newQuestionsInDocument = state.activeDocument.questions.filter(question => question.question !== action.idQuestion);
+      const newQuestionsInDocument = state.activeDocument.questions.filter(question => question.question !== action.idRemovedQuestion);
       return {
         isFetchingRemoveQuestion: false,
-        removedQuestion: action.removedQuestion,
         activeDocument: { ...state.activeDocument, questions: newQuestionsInDocument }
       };
     }
     case REMOVE_SELECTED_QUESTION_FAILURE:
       return Object.assign({}, state, {
-        isFetching: false,
+        isFetchingRemoveQuestion: false,
         error: action.error,
       });
     case CREATE_DOCUMENT_TOGGLE_MODAL: {

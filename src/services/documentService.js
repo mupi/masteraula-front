@@ -113,12 +113,12 @@ function removeSelectedQuestion(idDocument, idQuestion) {
       return Promise.reject();
     }
 
-    return Promise.resolve();
+    return idQuestion;
   };
 
   return fetch(`${apiUrl}/documents/${idDocument}/removeQuestion/`, requestOptions)
     .then(handleResponse)
-    .then(removedQuestion => removedQuestion);
+    .then(idRemovedQuestion => idRemovedQuestion);
 }
 
 

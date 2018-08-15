@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
   Row, Container, Col, Label, Button, Modal, ModalBody, ModalFooter, ModalHeader,
 } from 'reactstrap';
@@ -77,7 +79,6 @@ class DocumentQuestions extends React.Component {
     const { activeDocument, removeSelectedQuestion } = this.props;
     const questions = getListQuestions(activeDocument, removeSelectedQuestion);
 
-
     return (
       <Container>
         <div>
@@ -91,5 +92,13 @@ class DocumentQuestions extends React.Component {
       </Container>);
   }
 }
+
+DocumentQuestions.propTypes = {
+  removeSelectedQuestion: PropTypes.func,
+};
+
+DocumentQuestions.defaultProps = {
+  removeSelectedQuestion: f => f,
+};
 
 export default DocumentQuestions;
