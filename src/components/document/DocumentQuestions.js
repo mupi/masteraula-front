@@ -3,8 +3,7 @@ import {
   Row, Container, Col, Label, Button, Modal, ModalBody, ModalFooter, ModalHeader,
 } from 'reactstrap';
 import QuestionContent from 'components/question/QuestionContent';
-import QuestionHeader from 'components/question/QuestionHeader';
-import QuestionInfo from 'components/question/QuestionInfo';
+import ViewQuestionModal from 'components/question/ViewQuestionModal';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import QuestionSourceYear from 'components/question/QuestionSourceYear';
 import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
@@ -19,7 +18,7 @@ const getListQuestions = (activeDocument, removeSelectedQuestion) => {
         <div key={i} className="c-document__question">
           <RemoveQuestionButton
             questionId={question.question}
-            activeDocument={activeDocument}
+            activeDocumentId={activeDocument.id}
             removeSelectedQuestion={removeSelectedQuestion}
           />
           <Row>
@@ -86,6 +85,7 @@ class DocumentQuestions extends React.Component {
             <GoToQuestionBaseButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
           </div>
           {questions}
+          <ViewQuestionModal />
         </div>
 
       </Container>);

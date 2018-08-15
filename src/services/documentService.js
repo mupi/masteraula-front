@@ -108,16 +108,15 @@ function removeSelectedQuestion(idDocument, idQuestion) {
     }),
   };
 
-  const handleResponse = response => response.json().then((data) => {
+  const handleResponse = (response) => {
     if (!response.ok) {
-      const error = (data && data.email);
-      return Promise.reject(error);
+      return Promise.reject();
     }
 
-    return data;
-  });
+    return Promise.resolve();
+  };
 
-  return fetch(`${apiUrl}/documents/${idDocument}/removeQuestion`, requestOptions)
+  return fetch(`${apiUrl}/documents/${idDocument}/removeQuestion/`, requestOptions)
     .then(handleResponse)
     .then(removedQuestion => removedQuestion);
 }
