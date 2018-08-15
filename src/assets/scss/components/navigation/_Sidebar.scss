@@ -323,7 +323,8 @@ a.c_sidebar__document-link {
 
 a.c_sidebar__document-link:hover{
     font-weight: bold;
-    color: $color-ma-green
+    color: $color-ma-green;
+    text-decoration:none;
 }
 
 .c-sidebar{

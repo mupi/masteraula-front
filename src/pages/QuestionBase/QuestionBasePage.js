@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Row, Col, Input, InputGroup, InputGroupAddon, Button, Alert,
+  Row, Input, InputGroup, InputGroupAddon, Button, Alert,
 } from 'reactstrap';
 import QuestionList from 'components/question/QuestionList';
 
