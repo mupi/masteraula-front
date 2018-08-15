@@ -45,6 +45,9 @@ export const LIST_MY_DOCUMENTS_FAILURE = 'LIST_MY_DOCUMENTS_FAILURE';
 // Document Create Toggle Modal
 export const CREATE_DOCUMENT_TOGGLE_MODAL = 'CREATE_DOCUMENT_TOGGLE_MODAL';
 
+// Switch active document
+export const SWITCH_ACTIVE_DOCUMENT = 'SWITCH_ACTIVE_DOCUMENT';
+
 export const fetchDocument = (id) => {
   function requestDocument() { return { type: FETCH_DOCUMENT }; }
   function fetchDocumentSuccess(activeDocument) { return { type: FETCH_DOCUMENT_SUCCESS, activeDocument }; }
@@ -159,4 +162,10 @@ export function resetNewDocument() {
 export const toggleModal = modal => ({
   type: CREATE_DOCUMENT_TOGGLE_MODAL,
   modal: !modal,
+});
+
+// Switch active document
+export const switchActiveDocument = doc => ({
+  type: SWITCH_ACTIVE_DOCUMENT,
+  activeDocument: doc,
 });

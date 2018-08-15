@@ -29,6 +29,11 @@ class DocumentList extends React.Component {
     }
   }
 
+  editDocument(document){
+    this.props.switchActiveDocument(document)
+    history.push('/edit-document')
+  }
+
   render() {
     return (
       <div>
@@ -100,7 +105,7 @@ class DocumentList extends React.Component {
                     <ExportDocumentButton color="success" />
                   </div>
                   <div>
-                    <Button title="Editar documento" className="btn-success" onClick={()=>history.push(/edit-document/ + this.state.document.id)}>
+                    <Button title="Editar documento" className="btn-success" onClick={()=>this.editDocument(this.state.document)}>
                       <i className="fa fa-pencil btn__icon" />
                       <span className="button-text">Editar</span>
                     </Button>
