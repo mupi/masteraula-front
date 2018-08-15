@@ -7,7 +7,7 @@ import { listMyDocuments } from 'actions/documentAction';
 const mapStateToProps = state => ({
   isFetching: state.document.isFetching,
   myDocumentsList: state.document.myDocumentsList,
-  currentPage: state.question.currentPage,
+  currentPage: state.document.currentPage,
   modal: state.document.modal,
   activeDocument: state.document.activeDocument,
 });

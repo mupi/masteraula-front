@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Row, Container, Col, Button, Input, InputGroup, InputGroupAddon, Alert,
 } from 'reactstrap';
 import DocumentList from 'components/document/DocumentList';
 import HomeUserPage from '../HomeUser/HomeUserPage';
+import CustomPagination from 'components/pagination/CustomPagination';
 
 class ViewDocumentPage extends React.Component {
   componentDidMount() {
@@ -40,6 +42,7 @@ class ViewDocumentPage extends React.Component {
               </Alert>
             ) : (
               <Row style={{ marginTop: '1em' }}>
+                <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
                 <Col sm="12">
                   {myDocumentsList ? (myDocumentsList.count) : 0}
                   {' '}
@@ -54,5 +57,16 @@ class ViewDocumentPage extends React.Component {
       </HomeUserPage>);
   }
 }
+
+ViewDocumentPage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      page: PropTypes.number.isRequired,
+    }),
+  }).isRequired,
+  listMyDocuments: PropTypes.func.isRequired,
+  myDocumentsList: PropTypes.shape().isRequired,
+  isFetching: PropTypes.bool.isRequired,
+};
 
 export default ViewDocumentPage;
