@@ -36,22 +36,22 @@ class DocumentList extends React.Component {
             <tr>
               <th>
                 <center>
-Nome
+                  Nome
                 </center>
               </th>
               <th>
                 <center>
-Data de criação
+                  Data de criação
                 </center>
               </th>
               <th>
                 <center>
-Nº de questões
+                  Nº de questões
                 </center>
               </th>
               <th>
                 <center>
-Apagar
+                  Apagar
                 </center>
               </th>
             </tr>
@@ -66,7 +66,7 @@ Apagar
                 </th>
                 <td>
                   <center>
-                    {document.createdAt}
+                    {document.create_date}
                   </center>
                 </td>
                 <td>

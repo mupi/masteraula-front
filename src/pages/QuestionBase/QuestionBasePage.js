@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import QuestionList from 'components/question/QuestionList';
 
-import QuestionPagination from 'components/QuestionPagination/QuestionPagination';
+import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
 const getResults = (isFetching, results, count, toggleModal, modal, activeDocument, addSelectedQuestion) => {
@@ -69,13 +69,13 @@ class QuestionBasePage extends React.Component {
             </InputGroup>
           </Row>
           <Row className="pagination-questions">
-            <QuestionPagination {...this.props} {...questionPage} />
+            <CustomPagination {...this.props} {...questionPage} itensPerPage={8} />
           </Row>
           <div className="c-question-base__results">
             {getResults(isFetching, questionPage.results, questionPage.count, toggleModal, modal, activeDocument, addSelectedQuestion)}
           </div>
           <Row className="pagination-questions">
-            <QuestionPagination {...this.props} {...questionPage} />
+            <CustomPagination {...this.props} {...questionPage} itensPerPage={8} />
           </Row>
         </div>
       </HomeUserPage>

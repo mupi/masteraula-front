@@ -67,6 +67,28 @@ function updateDocument(activeNewDocument) {
     .then(activeDocument => activeDocument);
 }
 
+function listMyDocuments(page) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  return fetch(`${apiUrl}/documents/my_documents/?page=${page}`, requestOptions)
+  .then(handleResponse)
+  .then(activeDocument => activeDocument);
+}
+
 // Add a question to Active Document
 function addSelectedQuestion(idDocument, idQuestion, order) {
   const requestOptions = {
@@ -126,6 +148,7 @@ const documentService = {
   fetchDocument,
   createDocument,
   updateDocument,
+  listMyDocuments,
   addSelectedQuestion,
   removeSelectedQuestion,
 };

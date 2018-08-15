@@ -37,6 +37,11 @@ export const LIST_DOCUMENTS = 'LIST_DOCUMENTS';
 export const LIST_DOCUMENTS_SUCCESS = 'LIST_DOCUMENTS_SUCCESS';
 export const LIST_DOCUMENTS_FAILURE = 'LIST_DOCUMENTS_FAILURE';
 
+// List my Documents
+export const LIST_MY_DOCUMENTS = 'LIST_MY_DOCUMENTS';
+export const LIST_MY_DOCUMENTS_SUCCESS = 'LIST_MY_DOCUMENTS_SUCCESS';
+export const LIST_MY_DOCUMENTS_FAILURE = 'LIST_MY_DOCUMENTS_FAILURE';
+
 // Document Create Toggle Modal
 export const CREATE_DOCUMENT_TOGGLE_MODAL = 'CREATE_DOCUMENT_TOGGLE_MODAL';
 
@@ -46,15 +51,13 @@ export const fetchDocument = (id) => {
   function fetchDocumentFailure(error) { return { type: FETCH_DOCUMENT_FAILURE, error }; }
   return (dispatch) => {
     dispatch(requestDocument(id));
-    return documentService.fetchDocument(id)
-      .then(
-        (activeDocument) => {
-          dispatch(fetchDocumentSuccess(activeDocument));
-        },
-        (error) => {
-          dispatch(fetchDocumentFailure(error));
-        },
-      );
+    return documentService.fetchDocument(id).then(
+      (activeDocument) => {
+        dispatch(fetchDocumentSuccess(activeDocument));
+      }, (error) => {
+        dispatch(fetchDocumentFailure(error));
+      },
+    );
   };
 };
 
@@ -65,15 +68,14 @@ export const createDocument = (props) => {
   function createDocumentFailure(error) { return { type: CREATE_DOCUMENT_FAILURE, error }; }
   return (dispatch) => {
     dispatch(createNewDocument(props));
-    return documentService.createDocument(props)
-      .then(
-        (newDocument) => {
-          dispatch(createDocumentSuccess(newDocument));
-        },
-        (error) => {
-          dispatch(createDocumentFailure(error));
-        },
-      );
+    return documentService.createDocument(props).then(
+      (newDocument) => {
+        dispatch(createDocumentSuccess(newDocument));
+      },
+      (error) => {
+        dispatch(createDocumentFailure(error));
+      },
+    );
   };
 };
 
@@ -84,16 +86,28 @@ export const updateDocument = (activeNewDocument) => {
   function updateDocumentFailure(error) { return { type: UPDATE_DOCUMENT_FAILURE, error }; }
   return (dispatch) => {
     dispatch(updateActiveDocument());
-    return documentService.updateDocument(activeNewDocument)
-      .then(
-        (activeDocument) => {
-          dispatch(updateDocumentSuccess(activeDocument));
-        },
-        (error) => {
-          dispatch(updateDocumentFailure(error));
-        },
-      );
+    return documentService.updateDocument(activeNewDocument).then(
+      (activeDocument) => {
+        dispatch(updateDocumentSuccess(activeDocument));
+      },
+      (error) => {
+        dispatch(updateDocumentFailure(error));
+      },
+    );
   };
+};
+
+export const listMyDocuments = page => (dispatch) => {
+  const success = myDocumentsList => (
+    dispatch({ type: LIST_MY_DOCUMENTS_SUCCESS, myDocumentsList }));
+
+  const error = errorMessage => (
+    dispatch({ type: LIST_MY_DOCUMENTS_FAILURE, errorMessage }));
+
+  dispatch({ type: LIST_MY_DOCUMENTS, page });
+  return documentService.listMyDocuments(page)
+    .then(success)
+    .catch(error);
 };
 
 // Add Selected Question to Document

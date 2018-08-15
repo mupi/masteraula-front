@@ -2,6 +2,7 @@ import {
   FETCH_DOCUMENT, FETCH_DOCUMENT_SUCCESS, FETCH_DOCUMENT_FAILURE,
   CREATE_DOCUMENT, CREATE_DOCUMENT_SUCCESS, CREATE_DOCUMENT_FAILURE,
   UPDATE_DOCUMENT, UPDATE_DOCUMENT_SUCCESS, UPDATE_DOCUMENT_FAILURE,
+  LIST_MY_DOCUMENTS, LIST_MY_DOCUMENTS_SUCCESS, LIST_MY_DOCUMENTS_FAILURE,
   ADD_SELECTED_QUESTION, ADD_SELECTED_QUESTION_SUCCESS, ADD_SELECTED_QUESTION_FAILURE,
   REMOVE_SELECTED_QUESTION, REMOVE_SELECTED_QUESTION_SUCCESS, REMOVE_SELECTED_QUESTION_FAILURE,
   CREATE_DOCUMENT_TOGGLE_MODAL,
@@ -13,6 +14,7 @@ const initialState = {
   newDocument: { document: null, error: null, loading: false },
   activeDocument: null,
   deletedDocument: { document: null, error: null, loading: false },
+  isFetching: false,
 };
 
 export const document = (state = initialState, action) => {
@@ -48,6 +50,24 @@ export const document = (state = initialState, action) => {
         isFetching: false,
         error: action.error,
       });
+
+    case LIST_MY_DOCUMENTS:
+      return Object.assign({}, state, {
+        myDocumentsList: null,
+        isFetching: true,
+        currentPage: action.page,
+      });
+    case LIST_MY_DOCUMENTS_SUCCESS:
+      return Object.assign({}, state, {
+        myDocumentsList: action.myDocumentsList,
+        isFetching: false,
+      });
+    case LIST_MY_DOCUMENTS_FAILURE:
+      return Object.assign({}, state, {
+        myDocumentsList: null,
+        isFetching: false,
+      });
+
     case ADD_SELECTED_QUESTION:
       return Object.assign({}, state, {
         isFetchingAddQuestion: true,

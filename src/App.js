@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
@@ -10,6 +11,7 @@ import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageCo
 import HomePage from 'pages/Home/HomePage';
 
 import {
+  ViewDocumentPageContainer,
   ForgotPasswordPageContainer,
   UserProfilePageContainer,
   RedefinePasswordPageContainer,
@@ -19,7 +21,6 @@ import {
 }
   from 'containers';
 
-import ViewDocumentPage from 'pages/ViewDocument/ViewDocumentPage';
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
 import Menu from 'components/menu/Menu';
@@ -35,26 +36,28 @@ import 'font-awesome/css/font-awesome.min.css';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.props = props;
+    // const { dispatch } = this.props;
 
-    const { dispatch } = this.props;
-
-    history.listen((location, action) => {
-    });
+    // history.listen((location, action) => {
+    // });
   }
 
   render() {
+    const { isOpenSidebar, isLoggedIn } = this.props;
+
     return (
       <ConnectedRouter history={history}>
-        <div id="main-masteraula-container" className={this.props.isOpenSidebar ? 'container-open' : ''}>
+        <div id="main-masteraula-container" className={isOpenSidebar ? 'container-open' : ''}>
           <Menu />
-          { this.props.isLoggedIn
+          {isLoggedIn
             ? (
               <Switch>
                 <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePageContainer} />
+                <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
                 <Route path="/edit-document" component={EditDocumentPageContainer} />
-                <Route path="/documents" component={ViewDocumentPage} />
                 <Route component={NotFoundPage} />
               </Switch>
             )
@@ -77,6 +80,16 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  isOpenSidebar: PropTypes.bool,
+  isLoggedIn: PropTypes.bool,
+};
+
+App.defaultProps = {
+  isOpenSidebar: false,
+  isLoggedIn: false,
+};
 
 const mapStateToProps = state => ({
   isOpenSidebar: state.menu.isOpenSidebar,
