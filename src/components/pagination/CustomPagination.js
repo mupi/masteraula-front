@@ -5,17 +5,17 @@ import { Link } from 'react-router-dom';
 
 const CustomPaginationItem = (props) => {
   const {
-    page, label, disabled, currentPage,
+    page, label, disabled, currentPage, next, previous
   } = props;
 
   return (
-    <PaginationItem key={page} {...props} active={page === currentPage} next="true" previous="true">
+    <PaginationItem key={page} active={page === currentPage} disabled={disabled}>
       { disabled ? (
-        <PaginationLink {...props}>
+        <PaginationLink next={next} previous={previous}>
           { label }
         </PaginationLink>
       ) : (
-        <PaginationLink tag={Link} to={`${page}`} {...props}>
+        <PaginationLink tag={Link} to={`${page}`} next={next} previous={previous}>
           { label }
         </PaginationLink>
       )}
