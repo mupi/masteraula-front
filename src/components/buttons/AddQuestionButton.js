@@ -9,7 +9,7 @@ const handleAddQuestionButton = (e, questionId, activeDocument, addSelectedQuest
 };
 
 
-const AddQuestionButton = ({ customClass, questionId, nameButton, toggleModal, modal, addQuestion, activeDocument, addSelectedQuestion}) => (
+const AddQuestionButton = ({ customClass, questionId, nameButton, toggleModal, modal, activeDocument, addSelectedQuestion}) => (
   <Button
     value={questionId}
     title="Adicionar questões"

@@ -133,14 +133,14 @@ export const addSelectedQuestion = (idDocument, idQuestion, order) => {
 // Remove Selected Question from Document
 export const removeSelectedQuestion = (idDocument, idQuestion) => {
   function removeQuestionFromDocument() { return { type: REMOVE_SELECTED_QUESTION }; }
-  function removeQuestionFromDocumentSuccess(newDocument) { return { type: REMOVE_SELECTED_QUESTION_SUCCESS, newDocument }; }
+  function removeQuestionFromDocumentSuccess(idRemovedQuestion) { return { type: REMOVE_SELECTED_QUESTION_SUCCESS, idRemovedQuestion }; }
   function removeQuestionFromDocumentFailure(error) { return { type: REMOVE_SELECTED_QUESTION_FAILURE, error }; }
   return (dispatch) => {
     dispatch(removeQuestionFromDocument(idDocument, idQuestion));
     return documentService.removeSelectedQuestion(idDocument, idQuestion)
       .then(
-        (removedQuestion) => {
-          dispatch(removeQuestionFromDocumentSuccess(removedQuestion));
+        (idRemovedQuestion) => {
+          dispatch(removeQuestionFromDocumentSuccess(idRemovedQuestion));
         },
         (error) => {
           dispatch(removeQuestionFromDocumentFailure(error));

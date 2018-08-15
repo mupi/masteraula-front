@@ -111,7 +111,7 @@ function addSelectedQuestion(idDocument, idQuestion, order) {
     return data;
   });
 
-  return fetch(`${apiUrl}/documents/${idDocument}/addQuestion/`, requestOptions)
+  return fetch(`${apiUrl}/documents/${idDocument}/add_question/`, requestOptions)
     .then(handleResponse)
     .then(addedQuestion => addedQuestion);
 }
@@ -126,22 +126,21 @@ function removeSelectedQuestion(idDocument, idQuestion) {
       Authorization: authHeader(),
     },
     body: JSON.stringify({
-      id: idQuestion,
+      question: idQuestion,
     }),
   };
 
-  const handleResponse = response => response.json().then((data) => {
+  const handleResponse = (response) => {
     if (!response.ok) {
-      const error = (data && data.email);
-      return Promise.reject(error);
+      return Promise.reject();
     }
 
-    return data;
-  });
+    return idQuestion;
+  };
 
-  return fetch(`${apiUrl}/documents/${idDocument}/removeQuestion`, requestOptions)
+  return fetch(`${apiUrl}/documents/${idDocument}/remove_question/`, requestOptions)
     .then(handleResponse)
-    .then(removedQuestion => removedQuestion);
+    .then(idRemovedQuestion => idRemovedQuestion);
 }
 
 

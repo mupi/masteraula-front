@@ -4,4 +4,4 @@ export const isQuestionAdded = (activeDocument, id) => {
     return (questionAdded.length > 0)
   }
   return false;
-}
+} 

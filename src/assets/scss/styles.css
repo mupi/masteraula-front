@@ -371,7 +371,8 @@ a.c_sidebar__document-link {
 
 a.c_sidebar__document-link:hover {
   font-weight: bold;
-  color: #53BA65; }
+  color: #53BA65;
+  text-decoration: none; }
 
 .c-sidebar__document-l-buttons {
   text-align: right;
