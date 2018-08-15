@@ -80,13 +80,13 @@ export const createDocument = (props) => {
 };
 
 // Update an active Document
-export const updateDocument = (activeNewDocument) => {
+export const updateDocument = (props) => {
   function updateActiveDocument() { return { type: UPDATE_DOCUMENT }; }
   function updateDocumentSuccess(activeDocument) { return { type: UPDATE_DOCUMENT_SUCCESS, activeDocument }; }
   function updateDocumentFailure(error) { return { type: UPDATE_DOCUMENT_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(updateActiveDocument());
-    return documentService.updateDocument(activeNewDocument).then(
+    dispatch(updateActiveDocument(props));
+    return documentService.updateDocument(props).then(
       (activeDocument) => {
         dispatch(updateDocumentSuccess(activeDocument));
       },

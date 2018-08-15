@@ -8,12 +8,12 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 class EditDocumentPage extends Component {
 
   render() {
-    const { activeDocument, removeSelectedQuestion } = this.props;
+    const { activeDocument, removeSelectedQuestion, submit } = this.props;
 
     return (
       <HomeUserPage>
         <div className="c-document">
-          <DocumentHeader data={this.props.activeDocument} setFields={this.setFields} />
+          <DocumentHeader data={activeDocument} onSubmit={submit}/>
           <DocumentQuestions
             activeDocument={activeDocument}
             removeSelectedQuestion={removeSelectedQuestion}
@@ -31,6 +31,7 @@ EditDocumentPage.propTypes = {
 EditDocumentPage.defaultProps = {
   activeDocument: null,
   removeSelectedQuestion: f => f,
+  submit: f => f,
 };
 
 export default EditDocumentPage;

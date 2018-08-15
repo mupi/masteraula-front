@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import {
-  Row, Input, Container, Col, Label, Button
+  Row, Container, Col, Label, Button
 } from 'reactstrap';
+import { connect } from 'react-redux';
+
+import { Field, reduxForm, Form } from 'redux-form';
 import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 
 class DocumentHeader extends Component {
-  componentWillMount() {
-
-
-  }
 
   render() {
     return (
@@ -23,10 +22,9 @@ class DocumentHeader extends Component {
         </Row>
         <Container className="c-document__header">
           Nome:
-        <Input value={this.props.data ? this.props.data.name:''} placeholder="Nome do documento" id="name" className="form-group" onChange={event => this.props.setFields('name', event)} />
+        <Form onSubmit={this.props.handleSubmit}>
+        <Field placeholder="Nome do documento" className="form-control" name="name" component="input" type="text"/>
         <br />
-
-
           <Row>
          Cabeçalho:
           </Row>
@@ -44,21 +42,24 @@ class DocumentHeader extends Component {
               <div className="small-text">
                 Tamano máximo 1 MB. JPG, GIF ou PNG
               </div>
-              <Input type="file" name="picture" id="upload-logo" className="hidden" />
+              <Field type="file" name="picture" id="upload-logo" className="hidden" component="input"/>
             </Col>
             <Col>
-              <Input
+              <Field
                 placeholder ="Nome da instituição"
                 id="schoolName"
-                className="form-group"
-                onChange={event => this.props.setFields('schoolName', event)}
+                name="institution_name"
+                className="form-control"
+                component="input"
               />
-              <Input placeholder="Curso/Disciplina" id="course" className="form-group" onChange={event => this.props.setFields('course', event)} />
-              <Input
+              <Field placeholder="Curso/Disciplina" id="course" className="form-control" component="input" type="text" name="discipline_name"/>
+              <Field
                 placeholder="Professor(a)"
                 id="teacherName"
-                className="form-group"
-                onChange={event => this.props.setFields('teacherName', event)}
+                name="professor_name"
+                className="form-control"
+                component="input"
+                type="text"
               />
               <br />
                 Mostrar os seguintes campos em branco:
@@ -66,20 +67,20 @@ class DocumentHeader extends Component {
 
               <Row>
                 <Col>
-                  <Input addon type="checkbox" id="studentName" onChange={event => this.props.setFields('studentName', event)} />
+                  <Field addon="true" type="checkbox" id="studentName" name="student_indicator" component="input"/>
                   {' '}Aluno
                   <br />
-                  <Input addon type="checkbox" id="class" onChange={event => this.props.setFields('class', event)} />
+                  <Field addon="true" type="checkbox" id="class" name="class_indicator" component="input"/>
                   {' '}
                     Turma
                   <br />
                 </Col>
                 <Col>
-                  <Input addon type="checkbox" id="grade" onChange={event => this.props.setFields('grade', event)} />
+                  <Field addon="true" type="checkbox" id="grade" name="score_indicator" component="input"/>
                   {' '}
                   Nota da avaliação
                   <br />
-                  <Input addon type="checkbox" id="date" onChange={event => this.props.setFields('date', event)} />
+                  <Field addon="true" type="checkbox" id="date" name="date_indicator" component="input"/>
                   {' '}
                   Data
                 </Col>
@@ -88,7 +89,7 @@ class DocumentHeader extends Component {
           </Row>
           <Row className="c-document__main-buttons text-center">
             <Col>
-              <Button title="Salvar cabeçalho" className="btn-success btn-margin-right">
+              <Button type="submit" title="Salvar cabeçalho" className="btn-success btn-margin-right">
                 <i className="fa fa-save btn__icon" />
                 <span>
                   Salvar
@@ -96,10 +97,21 @@ class DocumentHeader extends Component {
               </Button>
             </Col>
           </Row>
+          </Form>
         </Container>
       </Container>
     );
   }
 }
 
-export default DocumentHeader;
+function mapStateToProps(state, ownProps) {
+  return {
+    initialValues: ownProps.data  
+  }
+}
+
+export default connect(mapStateToProps)
+(reduxForm({
+  form: 'update_document',
+})(DocumentHeader));
+

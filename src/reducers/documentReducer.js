@@ -105,6 +105,23 @@ export const document = (state = initialState, action) => {
         modal: action.modal,
       });
     }
+    case UPDATE_DOCUMENT: {
+      return Object.assign({}, state, {
+        isFetching: true,
+        error: null,
+      });
+    }
+    case UPDATE_DOCUMENT_SUCCESS: {
+      return Object.assign({}, state, {
+        activeDocument: action.activeDocument,
+        isFetching: false,
+      });
+    }
+    case UPDATE_DOCUMENT_FAILURE: {
+      return Object.assign({}, state, {
+        error: action.error,
+      });
+    }
     default:
       return state;
   }
