@@ -4,8 +4,8 @@ import {
   Row, Container, Col, Button, Input, InputGroup, InputGroupAddon, Alert,
 } from 'reactstrap';
 import DocumentList from 'components/document/DocumentList';
-import HomeUserPage from '../HomeUser/HomeUserPage';
 import CustomPagination from 'components/pagination/CustomPagination';
+import HomeUserPage from '../HomeUser/HomeUserPage';
 
 class ViewDocumentPage extends React.Component {
   componentDidMount() {
@@ -61,12 +61,16 @@ class ViewDocumentPage extends React.Component {
 ViewDocumentPage.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      page: PropTypes.number.isRequired,
+      page: PropTypes.string.isRequired,
     }),
   }).isRequired,
   listMyDocuments: PropTypes.func.isRequired,
-  myDocumentsList: PropTypes.shape().isRequired,
+  myDocumentsList: PropTypes.shape(),
   isFetching: PropTypes.bool.isRequired,
+};
+
+ViewDocumentPage.defaultProps = {
+  myDocumentsList: null,
 };
 
 export default ViewDocumentPage;
