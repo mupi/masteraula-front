@@ -10,42 +10,46 @@ import QuestionSourceYear from 'components/question/QuestionSourceYear';
 import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 
-const getListQuestions = ( activeDocument, removeSelectedQuestion) => {
-const questions = [];
-console.log("activeDocument"  + activeDocument);
-if (activeDocument ) {
-for (let i = 0; i < activeDocument.questions.length; i++) {
-  const question = activeDocument.questions[i];
-  questions.push(
-    <div key={i} className="c-document__question">
-      <RemoveQuestionButton />
-      <Row>
-        <Col sm="12">
-          <DisciplineList list={question.disciplines} />
-          <QuestionSourceYear source={question.source} year={question.year} />
-        </Col>
-      </Row>
-      <Row>
-        <div className="c-document__question-content">
-          <QuestionContent statement={question.question} />
-        </div>
-      </Row>
-      <Row>
-        <div className="c-document__question-view-more col-md-3 offset-md-9">
-          <Button onClick={() => this.toggle(question)}>
-            <i className="fa fa-search" />
-            {' '}
-            <span className="button-text">
-              Ver mais
-            </span>
-          </Button>
-        </div>
-      </Row>
-    </div>,
-  );
-}}
-return questions;
-}
+const getListQuestions = (activeDocument, removeSelectedQuestion) => {
+  const questions = [];
+  if (activeDocument) {
+    for (let i = 0; i < activeDocument.questions.length; i += 1) {
+      const question = activeDocument.questions[i];
+      questions.push(
+        <div key={i} className="c-document__question">
+          <RemoveQuestionButton
+            questionId={question.question}
+            activeDocument={activeDocument}
+            removeSelectedQuestion={removeSelectedQuestion}
+          />
+          <Row>
+            <Col sm="12">
+              <DisciplineList list={question.disciplines} />
+              <QuestionSourceYear source={question.source} year={question.year} />
+            </Col>
+          </Row>
+          <Row>
+            <div className="c-document__question-content">
+              <QuestionContent statement={question.question} />
+            </div>
+          </Row>
+          <Row>
+            <div className="c-document__question-view-more col-md-3 offset-md-9">
+              <Button onClick={() => this.toggle(question)}>
+                <i className="fa fa-search" />
+                {' '}
+                <span className="button-text">
+                  Ver mais
+                </span>
+              </Button>
+            </div>
+          </Row>
+        </div>,
+      );
+    }
+  }
+  return questions;
+};
 
 class DocumentQuestions extends React.Component {
   constructor(props) {
@@ -57,7 +61,7 @@ class DocumentQuestions extends React.Component {
     this.toggle = this.toggle.bind(this);
   }
 
-  toggle(question) {
+   toggle(question) {
     if (question) {
       this.setState({
         question,

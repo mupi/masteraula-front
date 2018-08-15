@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import {
-  Nav, NavItem, NavLink, TabContent, TabPane,
-} from 'reactstrap';
+import PropTypes from 'prop-types';
+
 import DocumentHeader from 'components/document/DocumentHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
 class EditDocumentPage extends Component {
-
   render() {
     const { activeDocument, removeSelectedQuestion } = this.props;
 
@@ -23,5 +21,15 @@ class EditDocumentPage extends Component {
       </HomeUserPage>);
   }
 }
+
+EditDocumentPage.propTypes = {
+  activeDocument: PropTypes.object,
+  removeSelectedQuestion: PropTypes.func,
+};
+
+EditDocumentPage.defaultProps = {
+  activeDocument: null,
+  removeSelectedQuestion: f => f,
+};
 
 export default EditDocumentPage;

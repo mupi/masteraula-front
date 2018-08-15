@@ -9,7 +9,7 @@ const handleRemoveQuestionButton = (e, questionId, activeDocument, removeSelecte
   }
 };
 
-const RemoveQuestionButton = ({ customClass, questionId, activeDocument, removeSelectedQuestion }) => (
+const RemoveQuestionButton = ({ questionId, activeDocument, removeSelectedQuestion }) => (
   <div className="l-btn-remove-question">
     <Button
       value={questionId}
