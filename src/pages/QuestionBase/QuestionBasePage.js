@@ -72,13 +72,13 @@ class QuestionBasePage extends React.Component {
             </InputGroup>
           </Row>
           <Row className="pagination-questions">
-            <CustomPagination {...this.props} {...questionPage} />
+            <CustomPagination {...this.props} {...questionPage} itensPerPage={8} />
           </Row>
           <div className="c-question-base__results">
             {getResults(isFetching, questionPage.results, questionPage.count, toggleModal, modal, activeDocument)}
           </div>
           <Row className="pagination-questions">
-            <CustomPagination {...this.props} {...questionPage} />
+            <CustomPagination {...this.props} {...questionPage} itensPerPage={8} />
           </Row>
         </div>
       </HomeUserPage>
