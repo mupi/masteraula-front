@@ -89,7 +89,7 @@ function addSelectedQuestion(idDocument, idQuestion, order) {
     return data;
   });
 
-  return fetch(`${apiUrl}/documents/${idDocument}/addQuestion/`, requestOptions)
+  return fetch(`${apiUrl}/documents/${idDocument}/add_question/`, requestOptions)
     .then(handleResponse)
     .then(addedQuestion => addedQuestion);
 }
@@ -116,7 +116,7 @@ function removeSelectedQuestion(idDocument, idQuestion) {
     return idQuestion;
   };
 
-  return fetch(`${apiUrl}/documents/${idDocument}/removeQuestion/`, requestOptions)
+  return fetch(`${apiUrl}/documents/${idDocument}/remove_question/`, requestOptions)
     .then(handleResponse)
     .then(idRemovedQuestion => idRemovedQuestion);
 }
