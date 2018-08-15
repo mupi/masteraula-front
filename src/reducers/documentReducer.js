@@ -71,6 +71,7 @@ export const document = (state = initialState, action) => {
       return Object.assign({}, state, {
         myDocumentsList: null,
         isFetching: true,
+        currentPage: action.page,
       });
     case LIST_MY_DOCUMENTS_SUCCESS:
       return Object.assign({}, state, {

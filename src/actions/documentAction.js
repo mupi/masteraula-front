@@ -101,8 +101,7 @@ export const listMyDocuments = page => (dispatch) => {
   const error = errorMessage => (
     dispatch({ type: LIST_MY_DOCUMENTS_FAILURE, errorMessage }));
 
-  dispatch({ type: LIST_MY_DOCUMENTS });
-
+  dispatch({ type: LIST_MY_DOCUMENTS, page });
   return documentService.listMyDocuments(page)
     .then(success)
     .catch(error);
