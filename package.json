@@ -14,7 +14,7 @@
     "node-sass-chokidar": "^1.3.3",
     "normalize.css": "^8.0.0",
     "npm-run-all": "^4.1.3",
-    "query-string": "^6.1.0",
+    "query-string": "^5.1.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-fontawesome": "^1.6.1",
@@ -52,5 +52,5 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
-  "homepage": "http://masteraula.com.br"
+  "homepage": "https://masteraula.com.br"
 }

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import QuestionBasePage from 'pages/QuestionBase/QuestionBasePage';
 import { listQuestions } from 'actions/questionAction';
-import { toggleModal } from 'actions/documentAction';
+import { toggleModal, addSelectedQuestion } from 'actions/documentAction';
 
 // state.<reducer's name>.<property>
 
@@ -17,6 +17,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
   toggleModal: modal => dispatch(toggleModal(modal)),
+  addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
+
 });
 
 const QuestionBasePageContainer = connect(

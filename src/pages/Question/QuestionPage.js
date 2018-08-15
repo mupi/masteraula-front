@@ -5,7 +5,7 @@ import RelatedQuestions from 'components/question/RelatedQuestions';
 import QuestionComments from 'components/question/QuestionComments';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import { Alert, Row, Col } from 'reactstrap';
-
+import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
@@ -36,60 +36,8 @@ const questionTest = {
         name: 'Carmen Pamela Rosales Sedano',
         email: 'cp.rosaless@gmail.com',
       },
-      statement: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...',
-      urlImage: '',
+      statement: 'Assinale a alternativa : a) O discurso feminista de Susanitar denota certo machismo ...',
     },
-    {
-      disciplines: [
-        { name: 'Matemática' },
-        { name: 'Geometria' },
-      ],
-      source: 'ENEM',
-      year: '2018',
-      teaching_levels: [
-        {
-          id: 1,
-          name: 'Ensino Médio',
-        },
-        {
-          id: 2,
-          name: 'Ensino Fundamental',
-        },
-      ],
-      author: {
-        id: 8,
-        username: 'cp.rosaless@gmail.com',
-        name: 'Carmen Pamela Rosales Sedano',
-        email: 'cp.rosaless@gmail.com',
-      },
-      statement: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...',
-    },
-    {
-      disciplines: [
-        { name: 'Química' },
-        { name: 'Física' },
-      ],
-      source: 'ENEM',
-      year: '2010',
-      teaching_levels: [
-        {
-          id: 1,
-          name: 'Ensino Médio',
-        },
-        {
-          id: 2,
-          name: 'Ensino Fundamental',
-        },
-      ],
-      author: {
-        id: 8,
-        username: 'cp.rosaless@gmail.com',
-        name: 'Carmen Pamela Rosales Sedano',
-        email: 'cp.rosaless@gmail.com',
-      },
-      statement: 'Assinale a alternativa que melhor expresse o efeito de humor contido na tirinha: a) O discurso feminista de Susanita é responsável pelo efeito de humor, já que o tema é tratado de forma irônica, denotando certo machismo ...',
-    },
-
   ],
 };
 
@@ -100,7 +48,7 @@ class QuestionPage extends Component {
 
   render() {
     const {
-      activeQuestion, isFetching, rating, error, onRate, toggleModal, modal
+      activeQuestion, isFetching, rating, error, onRate, toggleModal, modal, activeDocument, addSelectedQuestion, addedQuestion
     } = this.props;
 
     if (isFetching) {
@@ -140,14 +88,22 @@ class QuestionPage extends Component {
         </div>
         <div className="l-button-add-question">
 
-          <AddQuestionButton
-            questionId={activeQuestion.id}
-            customClass="o-button-add-question-doc o-button-add-question-doc--xl"
-            toggleModal={toggleModal}
-            modal={modal}
-          />
+          {!isQuestionAdded(activeDocument, activeQuestion.id) ? (
+            <AddQuestionButton
+              questionId={activeQuestion.id}
+              customClass="o-button-add-question-doc o-button-add-question-doc--xl"
+              toggleModal={toggleModal}
+              modal={modal}
+              activeDocument={activeDocument}
+              addSelectedQuestion={addSelectedQuestion}
+            />
+          ) : (
+            <span className="btn question-card__added">
+              <i className="fa fa-check-circle btn__icon" />
+              Adicionada
+            </span>
+          )}
         </div>
-
       </HomeUserPage>
     );
   }

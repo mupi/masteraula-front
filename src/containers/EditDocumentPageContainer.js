@@ -1,5 +1,5 @@
-import CreateDocumentPage from 'pages/CreateDocument/CreateDocumentPage';
-import { createDocument, resetNewDocument } from 'actions/documentAction';
+import EditDocumentPage from 'pages/EditDocument/EditDocumentPage';
+import { updateDocument, resetNewDocument } from 'actions/documentAction';
 import { connect } from 'react-redux';
 
 // Pass the newDocument from Redux's global state ("state")
@@ -9,13 +9,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createDocument: props => dispatch(createDocument(props)),
+  updateDocument: props => dispatch(updateDocument(props)),
   resetNewDocument: () => dispatch(resetNewDocument()),
 });
 
-const CreateDocumentPageContainer = connect(
+const EditDocumentPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CreateDocumentPage);
+)(EditDocumentPage);
 
-export default CreateDocumentPageContainer;
+export default EditDocumentPageContainer;

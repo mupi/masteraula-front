@@ -25,10 +25,10 @@ const Sidebar = (props) => {
             <Col xs="12">
               <div className="sidebar-nav-container">
                 {activeDocument && (
-                  <DocumentInfoSidebar
-                    documentName={activeDocument.name}
-                    documentTotalQuestions={activeDocument.questionsNumber}
-                  />
+                <DocumentInfoSidebar
+                  documentName={activeDocument.name}
+                  documentTotalQuestions={activeDocument.questions.length}
+                />
                 )}
 
                 <ListGroup className="sidebar-main-options">

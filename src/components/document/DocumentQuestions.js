@@ -7,7 +7,9 @@ import QuestionHeader from 'components/question/QuestionHeader';
 import QuestionInfo from 'components/question/QuestionInfo';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import QuestionSourceYear from 'components/question/QuestionSourceYear';
-import AddQuestionButton from 'components/buttons/AddQuestionButton';
+import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
+import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
+
 
 class DocumentPreview extends React.Component {
   constructor(props) {
@@ -39,11 +41,7 @@ class DocumentPreview extends React.Component {
       const question = props.data.questions[i];
       questions.push(
         <div key={i} className="c-document__question">
-          <div className="l-btn-remove-question">
-            <Button title="Remover questão" type="button" className="c-document__btn-remove-question">
-              <i className="fa fa-trash" />
-            </Button>
-          </div>
+          <RemoveQuestionButton />
           <Row>
             <Col sm="12">
               <DisciplineList list={question.disciplines} />
@@ -61,7 +59,7 @@ class DocumentPreview extends React.Component {
                 <i className="fa fa-search" />
                 {' '}
                 <span className="button-text">
-Ver mais
+                  Ver mais
                 </span>
               </Button>
             </div>
@@ -75,7 +73,7 @@ Ver mais
       <Container>
         <div>
           <div className="l-button-add-question">
-            <AddQuestionButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
+            <GoToQuestionBaseButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
           </div>
 
           {questions}

@@ -1,10 +1,25 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
-const RemoveQuestionButton = ({ questionId }) => (
-  <div className="l-button-add-question">
-    <Button title="Adicionar questões" className="o-button-add-question-doc o-button-add-question-doc--xl">
-      <i className="fa fa-plus" />
+const handleRemoveQuestionButton = (e, questionId, activeDocument, removeSelectedQuestion) => {
+  e.preventDefault();
+  if (activeDocument) {
+    removeSelectedQuestion(activeDocument.id, questionId, 0);
+    console.log('Throws add '+ questionId);
+  } else {
+    console.log(questionId);
+  }
+};
+
+const RemoveQuestionButton = ({ customClass, questionId, activeDocument, removeSelectedQuestion }) => (
+  <div className="l-btn-remove-question">
+    <Button
+      value={questionId}
+      title="Remover questão"
+      className="c-document__btn-remove-question"
+      onClick={(e => handleRemoveQuestionButton(e, questionId, activeDocument, removeSelectedQuestion))}
+    >
+      <i className="fa fa-trash" />
     </Button>
   </div>
 );

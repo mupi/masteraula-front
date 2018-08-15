@@ -1,4 +1,6 @@
 import { apiUrl } from 'helpers/config';
+import { authHeader } from 'helpers';
+import queryString from 'query-string';
 
 const questionService = {
   rateQuestion,
@@ -9,7 +11,10 @@ const questionService = {
 function fetchQuestion(id) {
   const requestOptions = {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
   };
 
   const handleResponse = response => response.json().then((data) => {
@@ -29,10 +34,12 @@ function fetchQuestion(id) {
 function listQuestions(page, filter) {
   const requestOptions = {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
   };
 
-  const queryString = require('query-string');
   const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected });
   const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected });
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected });
