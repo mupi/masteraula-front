@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 const CustomPaginationItem = (props) => {
   const {
@@ -24,16 +24,15 @@ const CustomPaginationItem = (props) => {
 };
 
 CustomPaginationItem.propTypes = {
-  page: PropTypes.number,
+  page: PropTypes.number.isRequired,
   label: PropTypes.string,
   disabled: PropTypes.bool,
   currentPage: PropTypes.number,
 };
 
 CustomPaginationItem.defaultProps = {
-  page: -1,
   label: '',
-  disabled: true,
+  disabled: false,
   currentPage: -1,
 };
 
@@ -66,19 +65,18 @@ const CustomPagination = (props) => {
 CustomPagination.propTypes = {
   ariaLabel: PropTypes.string,
   currentPage: PropTypes.number,
-  previous: PropTypes.bool,
-  next: PropTypes.bool,
+  previous: PropTypes.string,
+  next: PropTypes.string,
   count: PropTypes.number,
-  itensPerPage: PropTypes.number,
+  itensPerPage: PropTypes.number.isRequired,
 };
 
 CustomPagination.defaultProps = {
   ariaLabel: '',
   currentPage: 1,
-  previous: false,
-  next: false,
+  previous: null,
+  next: null,
   count: 0,
-  itensPerPage: 8,
 };
 
 export default CustomPagination;
