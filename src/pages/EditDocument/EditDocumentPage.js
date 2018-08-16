@@ -26,6 +26,7 @@ class EditDocumentPage extends Component {
 EditDocumentPage.propTypes = {
   activeDocument: PropTypes.object,
   removeSelectedQuestion: PropTypes.func,
+  submit: PropTypes.func,
 };
 
 EditDocumentPage.defaultProps = {

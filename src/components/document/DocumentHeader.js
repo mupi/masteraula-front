@@ -106,12 +106,10 @@ class DocumentHeader extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    initialValues: ownProps.data  
-  }
+    initialValues: ownProps.data,
+  };
 }
 
-export default connect(mapStateToProps)
-(reduxForm({
+export default connect(mapStateToProps)(reduxForm({
   form: 'update_document',
 })(DocumentHeader));
-

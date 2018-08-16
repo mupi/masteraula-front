@@ -5,7 +5,7 @@ import {
   LIST_MY_DOCUMENTS, LIST_MY_DOCUMENTS_SUCCESS, LIST_MY_DOCUMENTS_FAILURE,
   ADD_SELECTED_QUESTION, ADD_SELECTED_QUESTION_SUCCESS, ADD_SELECTED_QUESTION_FAILURE,
   REMOVE_SELECTED_QUESTION, REMOVE_SELECTED_QUESTION_SUCCESS, REMOVE_SELECTED_QUESTION_FAILURE,
-  CREATE_DOCUMENT_TOGGLE_MODAL, SWITCH_ACTIVE_DOCUMENT
+  CREATE_DOCUMENT_TOGGLE_MODAL, SWITCH_ACTIVE_DOCUMENT,
 
 } from 'actions/documentAction';
 
@@ -113,7 +113,7 @@ export const document = (state = initialState, action) => {
     }
     case UPDATE_DOCUMENT_SUCCESS: {
       return Object.assign({}, state, {
-        activeDocument: action.activeDocument,
+        activeDocument: { ...action.activeDocument, questions: state.activeDocument.questions },
         isFetching: false,
       });
     }
@@ -122,7 +122,7 @@ export const document = (state = initialState, action) => {
         error: action.error,
       });
     }
-     case SWITCH_ACTIVE_DOCUMENT: {
+    case SWITCH_ACTIVE_DOCUMENT: {
       return Object.assign({}, state, {
         activeDocument: action.activeDocument,
       });
