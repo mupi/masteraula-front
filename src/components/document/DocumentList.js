@@ -29,6 +29,7 @@ class DocumentList extends React.Component {
   }
 
   render() {
+    const { documents } = this.props;
     return (
       <div>
         <Table responsive>
@@ -57,7 +58,7 @@ class DocumentList extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.documents.map((document, i) => (
+            {documents.map((document, i) => (
               <tr key={i}>
                 <th scope="row" onClick={() => this.toggle(document)}>
                   <center>
