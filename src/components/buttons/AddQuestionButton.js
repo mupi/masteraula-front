@@ -31,7 +31,7 @@ AddQuestionButton.propTypes = {
   nameButton: PropTypes.string.isRequired,
   modal: PropTypes.bool.isRequired,
   activeDocument: PropTypes.shape({}).isRequired,
-  addSelectedQuestion: PropTypes.func().isRequired,
+  addSelectedQuestion: PropTypes.func.isRequired,
 };
 
 export default AddQuestionButton;
