@@ -9,7 +9,7 @@ const QuestionContent = ({ alternatives, statement, answer }) => (
     <Row>
       <Col sm="12" xs="12">
         <p className="">
-          {statement}
+          {statement?statement:''}
         </p>
       </Col>
     </Row>
