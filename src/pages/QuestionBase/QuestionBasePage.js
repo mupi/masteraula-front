@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Row, Input, InputGroup, InputGroupAddon, Button, Alert,
 } from 'reactstrap';
@@ -7,42 +8,22 @@ import QuestionList from 'components/question/QuestionList';
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
-const getResults = (isFetching, results, count, toggleModal, modal, activeDocument, addSelectedQuestion) => {
-  if (!isFetching) {
-    return (
-      <QuestionList
-        questions={results}
-        sm="3"
-        count={count}
-        toggleModal={toggleModal}
-        modal={modal}
-        activeDocument={activeDocument}
-        addSelectedQuestion={addSelectedQuestion}
-      />
-    );
-  }
-
-  return (
-    <Alert className="c-question-base__alert--warning" color="warning">
-        Carregando ...
-    </Alert>
-  );
-};
-
 class QuestionBasePage extends React.Component {
   componentDidMount() {
-    this.props.listQuestions(parseInt(this.props.match.params.page, 10), this.props.filter);
+    const { match, filter, listQuestions } = this.props;
+    listQuestions(parseInt(match.params.page, 10), filter);
   }
 
   componentDidUpdate(prevProps) {
-    if ((this.props.match.params.page !== prevProps.match.params.page) ||
-      (this.props.filter !== prevProps.filter))  {
-      this.props.listQuestions(parseInt(this.props.match.params.page, 10), this.props.filter);
+    const { match, filter, listQuestions } = this.props;
+    if ((match.params.page !== prevProps.match.params.page)
+    || (filter !== prevProps.filter)) {
+      listQuestions(parseInt(match.params.page, 10), filter);
     }
   }
 
   render() {
-    const { questionPage, isFetching, error, toggleModal, modal, activeDocument, addSelectedQuestion } = this.props;
+    const { questionPage, isFetching, error } = this.props;
     if (error) {
       return (
         <HomeUserPage>
@@ -52,7 +33,6 @@ class QuestionBasePage extends React.Component {
         </HomeUserPage>
       );
     }
-
 
     return (
       <HomeUserPage showFilters>
@@ -72,7 +52,14 @@ class QuestionBasePage extends React.Component {
             <CustomPagination {...this.props} {...questionPage} itensPerPage={8} />
           </Row>
           <div className="c-question-base__results">
-            {getResults(isFetching, questionPage.results, questionPage.count, toggleModal, modal, activeDocument, addSelectedQuestion)}
+            { isFetching ? (
+              <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
+                Carregando ...
+              </Alert>
+            ) : (
+              <QuestionList sm="3" {...this.props} questions={questionPage.results} count={questionPage.count} />
+            )
+            }
           </div>
           <Row className="pagination-questions">
             <CustomPagination {...this.props} {...questionPage} itensPerPage={8} />
@@ -82,5 +69,23 @@ class QuestionBasePage extends React.Component {
     );
   }
 }
+
+QuestionBasePage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+  filter: PropTypes.shape({}).isRequired,
+  listQuestions: PropTypes.func.isRequired,
+  questionPage: PropTypes.shape({}),
+  isFetching: PropTypes.bool,
+  error: PropTypes.string,
+};
+QuestionBasePage.defaultProps = {
+  questionPage: null,
+  isFetching: false,
+  error: null,
+};
 
 export default QuestionBasePage;
