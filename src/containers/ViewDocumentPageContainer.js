@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ViewDocumentPage from 'pages/ViewDocument/ViewDocumentPage';
-import { listMyDocuments } from 'actions/documentAction';
+import { listMyDocuments, switchActiveDocument } from 'actions/documentAction';
 
 // state.<reducer's name>.<property>
 
@@ -14,6 +14,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   listMyDocuments: page => dispatch(listMyDocuments(page)),
+  switchActiveDocument: doc => dispatch(switchActiveDocument(doc)),
 });
 
 const ViewDocumentPagePageContainer = connect(

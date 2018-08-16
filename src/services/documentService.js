@@ -49,8 +49,12 @@ function createDocument(newDocumentData) {
 // Update an Active Document
 function updateDocument(activeNewDocument) {
   const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+    body: JSON.stringify({ ...activeNewDocument, secret: true }),
   };
 
   const handleResponse = response => response.json().then((data) => {
@@ -62,7 +66,9 @@ function updateDocument(activeNewDocument) {
     return data;
   });
 
-  return fetch(`${apiUrl}/documents/${activeNewDocument}`, requestOptions)
+  const idDocument = activeNewDocument.id;
+
+  return fetch(`${apiUrl}/documents/${idDocument}/`, requestOptions)
     .then(handleResponse)
     .then(activeDocument => activeDocument);
 }

@@ -6,6 +6,7 @@ import DisciplineList from 'components/disciplines/DisciplineList';
 import QuestionSourceYear from 'components/question/QuestionSourceYear';
 import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
 import QuestionContent from 'components/question/QuestionContent';
+import { history } from 'helpers/history';
 
 class DocumentList extends React.Component {
   constructor(props) {
@@ -26,6 +27,11 @@ class DocumentList extends React.Component {
         document: '',
       });
     }
+  }
+
+  editDocument(document){
+    this.props.switchActiveDocument(document)
+    history.push('/edit-document')
   }
 
   render() {
@@ -100,7 +106,7 @@ class DocumentList extends React.Component {
                     <ExportDocumentButton color="success" />
                   </div>
                   <div>
-                    <Button title="Editar documento" className="btn-success">
+                    <Button title="Editar documento" className="btn-success" onClick={()=>this.editDocument(this.state.document)}>
                       <i className="fa fa-pencil btn__icon" />
                       <span className="button-text">Editar</span>
                     </Button>
@@ -116,24 +122,24 @@ class DocumentList extends React.Component {
                   </Col>
                   <Col>
                     <Label>
-                      {this.state.document.schoolName ? this.state.document.schoolName : 'Nome da instituição'}
+                      {this.state.document.institution_name ? this.state.document.institution_name : 'Nome da instituição'}
                     </Label>
                     <br />
                     <Label>
-                        {this.state.document.course ? this.state.document.course : 'Curso/Disciplina'}
+                        {this.state.document.discipline_name ? this.state.document.discipline_name : 'Curso/Disciplina'}
                     </Label>
                     {' | '}
                     <Label>
-                      {this.state.document.teacherName ?
-                          this.state.document.teacherName : 'Professor(a)'}
+                      {this.state.document.professor_name ?
+                          this.state.document.professor_name : 'Professor(a)'}
                     </Label>
                       <br />
-                    {this.state.document.studentName ? (
+                    {this.state.document.student_indicator ? (
                         <p>Nome:</p>
                     ) : ''}
-                    {this.state.document.class ? 'Turma: _________  ' : ''}
-                    {this.state.document.date ? 'Data: ___/___/___  ' : ''}
-                    {this.state.document.grade ? 'Nota: _______  ' : ''}
+                    {this.state.document.class_indicator ? 'Turma: _________  ' : ''}
+                    {this.state.document.date_indicator ? 'Data: ___/___/___  ' : ''}
+                    {this.state.document.score_indicator ? 'Nota: _______  ' : ''}
                     </Col>
                   </Row>
                 {this.state.document.questions.map((question, i) => (

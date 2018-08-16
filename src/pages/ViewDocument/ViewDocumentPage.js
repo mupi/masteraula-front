@@ -21,7 +21,7 @@ class ViewDocumentPage extends React.Component {
   }
 
   render() {
-    const { myDocumentsList, isFetching } = this.props;
+    const { myDocumentsList, isFetching, switchActiveDocument } = this.props;
     return (
       <HomeUserPage>
         <Container>
@@ -49,7 +49,7 @@ class ViewDocumentPage extends React.Component {
                   documentos encontrados
                 </Col>
                 {myDocumentsList
-                  && <DocumentList documents={myDocumentsList.results} />
+                  && <DocumentList documents={myDocumentsList.results} switchActiveDocument={switchActiveDocument}/>
                 }
               </Row>
             )}
