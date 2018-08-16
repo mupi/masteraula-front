@@ -12,7 +12,7 @@ import { reducer as formReducer } from 'redux-form';
 
 const loggerMiddleware = createLogger();
 /* List of reducers */
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   login,
   menu,
   register,
@@ -24,6 +24,14 @@ const rootReducer = combineReducers({
   document,
   form: formReducer,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === 'DELETE_SESSION') {
+    state = undefined
+  }
+
+  return appReducer(state, action)
+}
 
 export default function configureStore(preloadedState) {
   return createStore(
