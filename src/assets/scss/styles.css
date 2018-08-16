@@ -939,6 +939,26 @@ body .container-fluid .row {
   .alert__message {
     margin-bottom: 0px; }
 
+.modal__header {
+  background: #53BA65;
+  color: white;
+  text-align: center; }
+
+.modal__content {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: 0; }
+  @media (min-width: 990px) {
+    .modal__content {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); } }
+
+.modal__footer {
+  border-top: transparent;
+  padding: 0rem 0rem 0rem 0rem; }
+
 .u-text-left {
   text-align: left !important; }
 

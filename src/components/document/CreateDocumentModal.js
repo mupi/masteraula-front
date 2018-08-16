@@ -9,18 +9,23 @@ const getAlertMessageDocumentExist = (activeDocument) => {
   if (activeDocument) {
     return (
       <p className="text-center">
-        Atualmente você está editando o documento <strong>{activeDocument.name}</strong><br/>
+        Atualmente você está editando o documento
+        <strong>
+          {activeDocument.name}
+        </strong>
+        <br />
         Tem certeza de criar um novo documento? Se for sim,
         <br />
       </p>
     );
   }
   return '';
-}
+};
 
-;
 const CreateDocumentModal = (props) => {
-  const { modal, toggleModal, activeDocument, submit } = props;
+  const {
+    modal, toggleModal, activeDocument, submit
+  } = props;
 
   return (
     <div className="document__new-document-option">
