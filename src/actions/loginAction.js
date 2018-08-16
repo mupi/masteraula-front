@@ -35,7 +35,6 @@ export const fetchLogin = (username, password) => {
 };
 
 export const logout = () => (dispatch) => {
-  loginService.logout();
   dispatch(deleteSession());
   history.push('/');
 };

@@ -9,11 +9,14 @@ import {
 
 } from 'actions/documentAction';
 
-
-const initialState = {
-  activeDocument: null,
-  isFetching: false,
-};
+const session_data = JSON.parse(localStorage.getItem('activeDocument'));
+const initialState = session_data ? {
+                      activeDocument: session_data,
+                      isFetching: false,
+                    } : {
+                      activeDocument: null,
+                      isFetching: false,
+                  };
 
 export const document = (state = initialState, action) => {
   switch (action.type) {
@@ -72,10 +75,11 @@ export const document = (state = initialState, action) => {
         error: null,
       });
     case ADD_SELECTED_QUESTION_SUCCESS:
+      const activeDocument = { ...state.activeDocument, questions: [...state.activeDocument.questions, action.addedQuestion] };
+      localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
       return Object.assign({}, state, {
         isFetchingAddQuestion: false,
-        addedQuestion: action.addedQuestion,
-        activeDocument: { ...state.activeDocument, questions: [...state.activeDocument.questions, action.addedQuestion] },
+        activeDocument: activeDocument,
       });
     case ADD_SELECTED_QUESTION_FAILURE:
       return Object.assign({}, state, {
@@ -89,9 +93,11 @@ export const document = (state = initialState, action) => {
       });
     case REMOVE_SELECTED_QUESTION_SUCCESS: {
       const newQuestionsInDocument = state.activeDocument.questions.filter(question => question.question !== action.idRemovedQuestion);
+      const activeDocument = { ...state.activeDocument, questions: newQuestionsInDocument };
+      localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
       return {
         isFetchingRemoveQuestion: false,
-        activeDocument: { ...state.activeDocument, questions: newQuestionsInDocument }
+        activeDocument: activeDocument,
       };
     }
     case REMOVE_SELECTED_QUESTION_FAILURE:
@@ -122,6 +128,7 @@ export const document = (state = initialState, action) => {
       });
     }
     case SWITCH_ACTIVE_DOCUMENT: {
+      localStorage.setItem('activeDocument', JSON.stringify(action.activeDocument));
       return Object.assign({}, state, {
         activeDocument: action.activeDocument,
       });

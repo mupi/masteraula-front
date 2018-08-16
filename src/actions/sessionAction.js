@@ -9,6 +9,7 @@ export const updateSession = (session) => {
 
 export const deleteSession = (session) => {
   localStorage.removeItem('session');
+  localStorage.removeItem('activeDocument');
   return { type: DELETE_SESSION, session };
 };
 
