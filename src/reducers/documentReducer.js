@@ -14,6 +14,7 @@ const initialState = {
   activeDocument: null,
   deletedDocument: { document: null, error: null, loading: false },
   isFetching: false,
+  isFetchingAddQuestion: false,
 };
 
 export const document = (state = initialState, action) => {
