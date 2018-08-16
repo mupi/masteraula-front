@@ -35,24 +35,24 @@ class ViewDocumentPage extends React.Component {
               </InputGroupAddon>
             </InputGroup>
           </Row>
-          {isFetching
-            ? (
-              <Alert className="c-question-base__alert--warning" color="warning">
-                Carregando ...
-              </Alert>
-            ) : (
-              <Row style={{ marginTop: '1em' }}>
-                <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
+          <Row style={{ marginTop: '1em' }}>
+            <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
+            {isFetching
+              ? (
                 <Col sm="12">
-                  {myDocumentsList ? (myDocumentsList.count) : 0}
-                  {' '}
-                  documentos encontrados
+                  <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
+                    Carregando ...
+                  </Alert>
                 </Col>
-                {myDocumentsList
-                  && <DocumentList documents={myDocumentsList.results} switchActiveDocument={switchActiveDocument}/>
-                }
-              </Row>
-            )}
+              ) : (
+                <Col sm="12">
+                  {`${myDocumentsList ? (myDocumentsList.count) : 0} documentos encontrados`}
+                  {myDocumentsList
+                    && <DocumentList documents={myDocumentsList.results} switchActiveDocument={switchActiveDocument} />
+                  }
+                </Col>
+              )}
+          </Row>
         </Container>
       </HomeUserPage>);
   }
@@ -66,11 +66,13 @@ ViewDocumentPage.propTypes = {
   }).isRequired,
   listMyDocuments: PropTypes.func.isRequired,
   myDocumentsList: PropTypes.shape(),
+  switchActiveDocument: PropTypes.shape(),
   isFetching: PropTypes.bool.isRequired,
 };
 
 ViewDocumentPage.defaultProps = {
   myDocumentsList: null,
+  switchActiveDocument: null,
 };
 
 export default ViewDocumentPage;
