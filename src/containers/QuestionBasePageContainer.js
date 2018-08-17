@@ -18,7 +18,6 @@ const mapDispatchToProps = dispatch => ({
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
   toggleModal: modal => dispatch(toggleModal(modal)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
-
 });
 
 const QuestionBasePageContainer = connect(

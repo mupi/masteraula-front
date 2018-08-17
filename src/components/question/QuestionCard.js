@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Button, Card, CardImg, CardBody, Row,
 } from 'reactstrap';
@@ -14,57 +15,45 @@ import QuestionAuthor from './QuestionAuthor';
 import QuestionSourceYear from './QuestionSourceYear';
 
 
-const QuestionCard = ({
-  id, disciplines, source, year, statement, urlImage = '', author, teaching_levels,
-  toggleModal, modal, activeDocument, addSelectedQuestion}) => {
+const QuestionCard = (props) => {
+  const { question, urlImage, activeDocument } = props;
+
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
       <CardBody className="question-card__body">
         <Row>
-          <DisciplineList list={disciplines} />
+          <DisciplineList list={question.disciplines} />
         </Row>
         <Row>
-          <QuestionSourceYear source={source} year={year} />
+          <QuestionSourceYear source={question.source} year={question.year} />
         </Row>
-        { !urlImage
-          ? (
-            <Row>
-              <TagList list={teaching_levels} styleTag="question-info teaching-level" />
-            </Row>
-          ) : null}
+        <Row>
+          <TagList list={question.teaching_levels} styleTag="question-info teaching-level" />
+        </Row>
 
         <div className="l-question-card-text">
           <p className="question-info__more-info">
-          Autor:
-            <QuestionAuthor author={author} styleTag="question-info__author" />
+            Autor:
+            <QuestionAuthor author={question.author} styleTag="question-info__author" />
           </p>
           <p className="question-info__more-info">
-            {' '}
-            { statement.substring(0, 150) }
-            {' '}
-            {statement.length >= 150 && (
-              <span>
-                ...
-              </span>
-            )}
+            {` ${question.statement.substring(0, 150)}${question.statement.length >= 150 && ' ...'}`}
           </p>
         </div>
-        <Link to={`/view-question/${id}`}>
+        <Link to={`/view-question/${question.id}`}>
           <Button className="question-card__btn">
             Ver mais
           </Button>
         </Link>
 
-        {!isQuestionAdded(activeDocument, id) ? (
+        {!isQuestionAdded(activeDocument, question.id) ? (
           <AddQuestionButton
-            questionId={id}
+            questionId={question.id}
             customClass="question-card__btn"
             nameButton="Adicionar"
-            toggleModal={toggleModal}
-            modal={modal}
             activeDocument={activeDocument}
-            addSelectedQuestion={addSelectedQuestion}
+            {...props}
           />
         ) : (
           <span className="btn question-card__added">
@@ -72,9 +61,21 @@ const QuestionCard = ({
             Adicionada
           </span>
         )}
-
       </CardBody>
     </Card>
   );
 };
+
+QuestionCard.propTypes = {
+  question: PropTypes.shape({}).isRequired,
+  activeDocument: PropTypes.shape({}),
+  urlImage: PropTypes.string,
+};
+
+QuestionCard.defaultProps = {
+  activeDocument: null,
+  urlImage: '',
+};
+
+
 export default QuestionCard;
