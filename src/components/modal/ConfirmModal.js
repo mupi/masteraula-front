@@ -9,7 +9,7 @@ import {
 const ConfirmModal = ({
   modal, toggleModal, confirmAction, title, message,
 }) => (
-  <Modal isOpen={modal} toggle={() => toggleModal(modal)} className="modal__content">
+  <div>
     <ModalHeader className="modal__header" toggle={() => toggleModal(modal)}>
       {title}
     </ModalHeader>
@@ -28,7 +28,7 @@ const ConfirmModal = ({
         Continuar
       </Button>
     </ModalFooter>
-  </Modal>
+  </div>
 );
 
 ConfirmModal.propTypes = {

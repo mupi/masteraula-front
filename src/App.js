@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
+import ModalRoot from './ModalRoot';
 
 import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
@@ -20,6 +21,8 @@ import {
   EditDocumentPageContainer,
 }
   from 'containers';
+import { showModal, hideModal } from 'actions/modalAction';
+
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
@@ -37,10 +40,70 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    // const { dispatch } = this.props;
+    this.closeModal = this.closeModal.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
+    this.openAlertModal = this.openAlertModal.bind(this);
+    this.openConfirmModal = this.openConfirmModal.bind(this);
+    this.openDeleteModal = this.openDeleteModal.bind(this);
+    this.openPromptModal = this.openPromptModal.bind(this);
+    this.showInput = this.showInput.bind(this);
+  }
 
-    // history.listen((location, action) => {
-    // });
+  closeModal(event) {
+    this.props.hideModal();
+  }
+
+  onInputChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  showInput(event) {
+    console.log(this.state);
+  }
+
+  openAlertModal(event) {
+    this.props.showModal({
+      open: true,
+      title: 'Alert Modal',
+      message: 'Alert modal masteraula',
+      closeModal: this.closeModal
+    }, 'alert')
+  }
+
+  openConfirmModal(event) {
+    this.props.showModal({
+      open: true,
+      title: 'Confirm Modal',
+      message: 'Confirm modal masteraula',
+      confirmAction: this.closeModal,
+      closeModal: this.closeModal
+    }, 'confirm')
+  }
+
+  openDeleteModal(event) {
+    this.props.showModal({
+      open: true,
+      title: 'Delete Modal',
+      message: 'Delete modal masteraula',
+      deleteAction: this.closeModal,
+      closeModal: this.closeModal,
+    }, 'delete')
+  }
+
+  openPromptModal(event) {
+    this.props.showModal({
+      open: true,
+      title: 'Prompt Modal',
+      fields: [{
+        label: 'Address name',
+        name: 'addressName',
+        placeholder: 'Enter address name',
+      }],
+      onInputChange: this.onInputChange,
+      confirmAction: this.showInput
+    }, 'prompt')
   }
 
   render() {
@@ -74,6 +137,12 @@ class App extends Component {
               </Switch>
             )
           }
+          <button
+              className="btn btn-outline-primary btn-block"
+              onClick={this.openAlertModal}
+            >alert</button>
+            <ModalRoot />
+
           <Footer year="2018" version="1.0" />
         </div>
       </ConnectedRouter>
@@ -96,6 +165,13 @@ const mapStateToProps = state => ({
   isLoggedIn: state.session.session,
 });
 
-const connectedApp = connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  hideModal: () => dispatch(hideModal()),
+  showModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType }))
+  }
+})
+
+const connectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default connectedApp;
