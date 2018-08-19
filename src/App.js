@@ -137,10 +137,34 @@ class App extends Component {
               </Switch>
             )
           }
-          <button
-              className="btn btn-outline-primary btn-block"
-              onClick={this.openAlertModal}
-            >alert</button>
+          <div className="container">
+            <div className="modal-types row d-flex justify-content-center align-items-center">
+              <div className="col">
+                <button
+                  className="btn btn-outline-primary btn-block"
+                  onClick={this.openAlertModal}
+                >alert</button>
+              </div>
+              <div className="col">
+                <button
+                  className="btn btn-outline-primary btn-block"
+                  onClick={this.openConfirmModal}
+                >confirm</button>
+              </div>
+              <div className="col">
+                <button
+                  className="btn btn-outline-primary btn-block"
+                  onClick={this.openDeleteModal}
+                >delete</button>
+              </div>
+              <div className="col">
+                <button
+                  className="btn btn-outline-primary btn-block"
+                  onClick={this.openPromptModal}
+                >prompt</button>
+              </div>
+            </div>
+          </div>
             <ModalRoot />
 
           <Footer year="2018" version="1.0" />

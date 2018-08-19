@@ -7,27 +7,28 @@ import {
   from 'reactstrap';
 
 const ConfirmModal = ({
-  modal, toggleModal, confirmAction, title, message,
+   closeModal, confirmAction, title, message,
 }) => (
-  <div>
-    <ModalHeader className="modal__header" toggle={() => toggleModal(modal)}>
-      {title}
-    </ModalHeader>
-    <ModalBody>
-      <p>
-        {message}
-      </p>
-    </ModalBody>
-    <ModalFooter className="modal__footer">
-      <Button color="danger" onClick={() => toggleModal(modal)}>
-        <i className="fa fa-sign-out-alt btn__icon" />
-        Fechar
-      </Button>
-      <Button color="primary" onClick={confirmAction}>
+  <div className="modal__content">
+    <div className="modal__header">
+      <h5
+        className="modal-title"
+      >{title}</h5>
+      <button type="button" className="close" aria-label="Close" onClick={closeModal}>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div className="modal-body">
+      <p>{message}</p>
+    </div>
+    <div className="modal__footer">
+      <button type="button" className="btn btn-secondary" onClick={closeModal}><i className="fa fa-sign-out-alt btn__icon" />
+      Fechar</button>
+      <button color="primary" onClick={confirmAction}>
         <i className="fa fa-check-circle btn__icon" />
         Continuar
-      </Button>
-    </ModalFooter>
+      </button>
+    </div>
   </div>
 );
 
