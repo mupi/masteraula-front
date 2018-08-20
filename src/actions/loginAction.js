@@ -3,6 +3,7 @@ import { SubmissionError } from 'redux-form';
 
 import { history } from 'helpers/history';
 import { updateSession, deleteSession } from 'actions/sessionAction';
+import { deleteDocumentSession } from './documentAction';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -11,6 +12,10 @@ export const LOGOUT = 'LOGOUT';
 export const LOGIN_TOGGLE_MODAL = 'LOGIN_TOGGLE_MODAL';
 
 export const fetchLogin = (username, password) => {
+  function requestLogin() { return { type: LOGIN_REQUEST }; }
+  function success() { return { type: LOGIN_SUCCESS }; }
+  function failure(error) { return { type: LOGIN_FAILURE, error }; }
+
   return (dispatch) => {
     dispatch(requestLogin(username));
     return loginService.login(username, password)
@@ -28,15 +33,11 @@ export const fetchLogin = (username, password) => {
         },
       );
   };
-
-  function requestLogin() { return { type: LOGIN_REQUEST }; }
-  function success() { return { type: LOGIN_SUCCESS }; }
-  function failure(error) { return { type: LOGIN_FAILURE, error }; }
 };
 
 export const logout = () => (dispatch) => {
-  loginService.logout();
   dispatch(deleteSession());
+  dispatch(deleteDocumentSession());
   history.push('/');
 };
 
