@@ -41,12 +41,12 @@ class ViewDocumentPage extends React.Component {
                 Carregando ...
               </Alert>
             ) : (
-              <Row style={{ marginTop: '1em' }}>
+              <Row className="pagination-my-documents" style={{ marginTop: '1em' }}>
                 <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
-                <Col sm="12">
-                  {myDocumentsList ? (myDocumentsList.count) : 0}
-                  {' '}
-                  documentos encontrados
+                <Col sm="12" className="my-documents__total-results">
+                  
+                  
+                  Documentos encontrados : {myDocumentsList ? (myDocumentsList.count) : 0}
                 </Col>
                 {myDocumentsList
                   && <DocumentList documents={myDocumentsList.results} switchActiveDocument={switchActiveDocument}/>
