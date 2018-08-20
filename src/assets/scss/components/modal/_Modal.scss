@@ -43,6 +43,28 @@
 
 .modal.show{
 	display: block !important;
-  background-color: rgba(black, 0.8);
+  background-color: rgba(0, 0, 0, 0.4);
       z-index: 9999;
 }
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 0.15s linear;
+}
+
+.ReactModal__Overlay--after-open{
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+  opacity: 0;
+}
+
+.ReactModal__Overlay .modal-dialog{
+-webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
+    transform: translate(0, -25%);
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    transition: -webkit-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;}

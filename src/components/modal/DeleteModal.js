@@ -1,25 +1,24 @@
 import React from 'react';
+import {Button}  from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import {
-  Modal, ModalHeader, ModalBody, ModalFooter, Button,
-}
-  from 'reactstrap';
 
-const DeleteModal = ({
-  modal, toggleModal, deleteAction, title, message,
-}) => (
-  <Modal isOpen={modal} toggle={() => toggleModal(modal)} className="modal__content">
-    <ModalHeader className="modal__header" toggle={() => toggleModal(modal)}>
-      {title}
-    </ModalHeader>
-    <ModalBody>
-      <p>
-        {message}
-      </p>
-    </ModalBody>
-    <ModalFooter className="modal__footer">
-      <Button color="danger" onClick={() => toggleModal(modal)}>
+const DeleteModal = ({ closeModal, deleteAction, title, message, cancelText, deleteText }) => {
+  return (
+    <div className="modal-content modal__content">
+      <div className="modal-header modal__header">
+        <h5
+          className="modal-title"
+        >{title}</h5>
+        <button type="button" className="close" aria-label="Close" onClick={closeModal}>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div className="modal-body">
+        <p>{message}</p>
+      </div>
+      <div className="modal-footer modal__footer">
+      <Button color="danger" onClick={closeModal}>
         <i className="fa fa-sign-out-alt btn__icon" />
         Fechar
       </Button>
@@ -27,9 +26,10 @@ const DeleteModal = ({
         <i className="fa fa-check-circle btn__icon" />
         Continuar
       </Button>
-    </ModalFooter>
-  </Modal>
-);
+      </div>
+    </div>
+  )
+}
 
 DeleteModal.propTypes = {
   toggleModal: PropTypes.func,

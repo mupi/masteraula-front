@@ -162,3 +162,32 @@
     padding: 0rem 0rem 0rem 0rem;
   }
 }
+
+
+/*My documents option*/
+
+.l-my-documents-list{
+  width:100%;
+}
+
+.my-documents{ 
+  &__total-results {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: $color-ma-blue;
+    font-weight: bold;
+    margin-left: -10px;
+  }
+}
+
+.pagination-my-documents.row a {
+  color:$color-ma-blue;
+}
+
+tbody tr {
+  background-color: white;
+}
+
+tbody tr.odd {
+  background-color: #f9f9f9;
+}

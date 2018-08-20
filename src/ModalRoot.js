@@ -51,6 +51,7 @@ class ModalContainer extends React.Component {
           overlayClassName="modal fade show"
           bodyOpenClassName="modal-open"
           className="modal-dialog"
+          closeTimeoutMS={350}
         >
           <SpecifiedModal
             closeModal={this.closeModal}

@@ -9,8 +9,8 @@ import {
 const ConfirmModal = ({
    closeModal, confirmAction, title, message,
 }) => (
-  <div className="modal__content">
-    <div className="modal__header">
+  <div className="modal__content modal-content">
+    <div className="modal__header modal-header">
       <h5
         className="modal-title"
       >{title}</h5>
@@ -20,15 +20,16 @@ const ConfirmModal = ({
     </div>
     <div className="modal-body">
       <p>{message}</p>
-    </div>
-    <div className="modal__footer">
-      <button type="button" className="btn btn-secondary" onClick={closeModal}><i className="fa fa-sign-out-alt btn__icon" />
+      <div className="modal__footer modal-footer">
+      <button type="button" className="btn btn-secondary" onClick={closeModal}><i className="fa fa-sign-out btn__icon" />
       Fechar</button>
-      <button color="primary" onClick={confirmAction}>
+      <button color="primary" className="btn--confirm btn btn-secondary" onClick={confirmAction}>
         <i className="fa fa-check-circle btn__icon" />
         Continuar
       </button>
     </div>
+    </div>
+    
   </div>
 );
 
