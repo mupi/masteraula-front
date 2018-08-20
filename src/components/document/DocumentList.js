@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Row, Col, Table, Modal, ModalHeader, ModalBody, Container, Label, Button, ModalFooter,
+  Row, Col, Table, Modal, ModalHeader, ModalBody, Label, Button, ModalFooter,
 } from 'reactstrap';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import QuestionSourceYear from 'components/question/QuestionSourceYear';
@@ -29,63 +29,49 @@ class DocumentList extends React.Component {
     }
   }
 
-  editDocument(document){
-    this.props.switchActiveDocument(document)
-    history.push('/edit-document')
+  editDocument(document) {
+    const { switchActiveDocument } = this.props;
+    switchActiveDocument(document);
+    history.push('/edit-document');
   }
 
   render() {
+    const { documents } = this.props;
     return (
       <div>
-        <Table responsive>
-          <thead>
+        <Table resopnsive>
+          <thead align="center">
             <tr>
               <th>
-                <center>
-                  Nome
-                </center>
+                Nome
               </th>
               <th>
-                <center>
                   Data de criação
-                </center>
               </th>
               <th>
-                <center>
                   Nº de questões
-                </center>
               </th>
               <th>
-                <center>
                   Apagar
-                </center>
               </th>
             </tr>
           </thead>
-          <tbody>
-            {this.props.documents.map((document, i) => (
+          <tbody align="center">
+            {documents.map((document, i) => (
               <tr key={i}>
                 <th scope="row" onClick={() => this.toggle(document)}>
-                  <center>
-                    {document.name}
-                  </center>
+                  {document.name}
                 </th>
                 <td>
-                  <center>
-                    {document.create_date}
-                  </center>
+                  {document.create_date}
                 </td>
                 <td>
-                  <center>
-                    {document.questions.length}
-                  </center>
+                  {document.questions.length}
                 </td>
                 <td>
-                  <center>
-                    <Button color="danger">
-                      <i className="fa fa-trash" />
-                    </Button>
-                  </center>
+                  <Button color="danger">
+                    <i className="fa fa-trash" />
+                  </Button>
                 </td>
               </tr>
             ))}
@@ -107,7 +93,9 @@ class DocumentList extends React.Component {
                   <div>
                     <Button title="Editar documento" className="btn-success" onClick={()=>this.editDocument(this.state.document)}>
                       <i className="fa fa-pencil btn__icon" />
-                      <span className="button-text">Editar</span>
+                      <span className="button-text">
+                        Editar
+                      </span>
                     </Button>
                   </div>
                 </Row>
