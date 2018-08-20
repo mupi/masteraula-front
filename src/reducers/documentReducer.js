@@ -5,12 +5,15 @@ import {
   LIST_MY_DOCUMENTS, LIST_MY_DOCUMENTS_SUCCESS, LIST_MY_DOCUMENTS_FAILURE,
   ADD_SELECTED_QUESTION, ADD_SELECTED_QUESTION_SUCCESS, ADD_SELECTED_QUESTION_FAILURE,
   REMOVE_SELECTED_QUESTION, REMOVE_SELECTED_QUESTION_SUCCESS, REMOVE_SELECTED_QUESTION_FAILURE,
-  CREATE_DOCUMENT_TOGGLE_MODAL, SWITCH_ACTIVE_DOCUMENT,
+  CREATE_DOCUMENT_TOGGLE_MODAL, SWITCH_ACTIVE_DOCUMENT, DELETE_DOCUMENT_SESSION,
 
 } from 'actions/documentAction';
 
-
-const initialState = {
+const sessionData = JSON.parse(localStorage.getItem('activeDocument'));
+const initialState = sessionData ? {
+  activeDocument: sessionData,
+  isFetching: false,
+} : {
   activeDocument: null,
   isFetching: false,
   isFetchingAddQuestion: false,
@@ -72,12 +75,14 @@ export const document = (state = initialState, action) => {
         isFetchingAddQuestion: true,
         error: null,
       });
-    case ADD_SELECTED_QUESTION_SUCCESS:
+    case ADD_SELECTED_QUESTION_SUCCESS: {
+      const activeDocument = { ...state.activeDocument, questions: [...state.activeDocument.questions, action.addedQuestion] };
+      localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
       return Object.assign({}, state, {
         isFetchingAddQuestion: false,
-        addedQuestion: action.addedQuestion,
-        activeDocument: { ...state.activeDocument, questions: [...state.activeDocument.questions, action.addedQuestion] },
+        activeDocument,
       });
+    }
     case ADD_SELECTED_QUESTION_FAILURE:
       return Object.assign({}, state, {
         isFetchingAddQuestion: false,
@@ -90,9 +95,11 @@ export const document = (state = initialState, action) => {
       });
     case REMOVE_SELECTED_QUESTION_SUCCESS: {
       const newQuestionsInDocument = state.activeDocument.questions.filter(question => question.question !== action.idRemovedQuestion);
+      const activeDocument = { ...state.activeDocument, questions: newQuestionsInDocument };
+      localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
       return {
         isFetchingRemoveQuestion: false,
-        activeDocument: { ...state.activeDocument, questions: newQuestionsInDocument }
+        activeDocument,
       };
     }
     case REMOVE_SELECTED_QUESTION_FAILURE:
@@ -125,6 +132,11 @@ export const document = (state = initialState, action) => {
     case SWITCH_ACTIVE_DOCUMENT: {
       return Object.assign({}, state, {
         activeDocument: action.activeDocument,
+      });
+    }
+    case DELETE_DOCUMENT_SESSION: {
+      return Object.assign({}, state, {
+        activeDocument: null,
       });
     }
     default:

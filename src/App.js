@@ -93,7 +93,7 @@ App.defaultProps = {
 
 const mapStateToProps = state => ({
   isOpenSidebar: state.menu.isOpenSidebar,
-  isLoggedIn: state.session.session,
+  isLoggedIn: state.session.session?true:false,
 });
 
 const connectedApp = connect(mapStateToProps)(App);

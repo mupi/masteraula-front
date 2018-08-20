@@ -19,7 +19,10 @@ function fetchDocument(id) {
 
   return fetch(`${apiUrl}/documents/${id}/`, requestOptions)
     .then(handleResponse)
-    .then(activeDocument => activeDocument);
+    .then(activeDocument => {
+      localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+      return activeDocument
+    });
 }
 
 // Create a New Document
@@ -43,7 +46,10 @@ function createDocument(newDocumentData) {
 
   return fetch(`${apiUrl}/documents/`, requestOptions)
     .then(handleResponse)
-    .then(activeDocument => activeDocument);
+    .then(activeDocument => {
+          localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+          return activeDocument;
+        });
 }
 
 // Update an Active Document
@@ -70,7 +76,10 @@ function updateDocument(activeNewDocument) {
 
   return fetch(`${apiUrl}/documents/${idDocument}/`, requestOptions)
     .then(handleResponse)
-    .then(activeDocument => activeDocument);
+    .then(activeDocument => {
+        localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+        return activeDocument
+      });
 }
 
 function listMyDocuments(page) {
