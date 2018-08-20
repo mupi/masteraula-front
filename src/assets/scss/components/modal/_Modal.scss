@@ -1,0 +1,70 @@
+.modal{
+  &__header{
+    background: $color-ma-green;
+    color: white;
+    text-align: center;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+  }
+
+  &__content{
+    @include for-tablet-landscape-up{
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+
+
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 6px;
+    outline: 0;
+  }
+
+  &__footer{
+    border-top: transparent;
+    padding: 0rem 0rem 0rem 0rem;
+  }
+}
+
+.modal.show{
+	display: block !important;
+  background-color: rgba(0, 0, 0, 0.4);
+      z-index: 9999;
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 0.15s linear;
+}
+
+.ReactModal__Overlay--after-open{
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+  opacity: 0;
+}
+
+.ReactModal__Overlay .modal-dialog{
+-webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
+    transform: translate(0, -25%);
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    transition: -webkit-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;}
