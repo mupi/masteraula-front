@@ -137,25 +137,7 @@ class App extends Component {
               </Switch>
             )
           }
-          <div className="container">
-            <div className="modal-types row d-flex justify-content-center align-items-center">
-              
-              <div className="col">
-                <button
-                  className="btn btn-outline-primary btn-block"
-                  onClick={this.openConfirmModal}
-                >confirm</button>
-              </div>
-             
-              <div className="col">
-                <button
-                  className="btn btn-outline-primary btn-block"
-                  onClick={this.openPromptModal}
-                >prompt</button>
-              </div>
-            </div>
-          </div>
-            <ModalRoot />
+         <ModalRoot />
 
           <Footer year="2018" version="1.0" />
         </div>
