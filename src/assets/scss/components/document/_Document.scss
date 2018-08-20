@@ -181,6 +181,10 @@
 
 
 /*My documents option*/
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 .l-my-documents-list{
   width:100%;
 }
@@ -200,6 +204,7 @@
 }
 
 tbody tr {
+<<<<<<< HEAD
   background-color:$color-ma-white;
 }
 
@@ -207,3 +212,11 @@ tbody tr.odd {
   background-color: $color-ma-gray-tables
 }
 
+=======
+  background-color: white;
+}
+
+tbody tr.odd {
+  background-color: #f9f9f9;
+}
+>>>>>>> develop
