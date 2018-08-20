@@ -48,6 +48,10 @@ export const CREATE_DOCUMENT_TOGGLE_MODAL = 'CREATE_DOCUMENT_TOGGLE_MODAL';
 // Switch active document
 export const SWITCH_ACTIVE_DOCUMENT = 'SWITCH_ACTIVE_DOCUMENT';
 
+// Delete active document in session
+export const DELETE_DOCUMENT_SESSION = 'DELETE_DOCUMENT_SESSION';
+
+
 export const fetchDocument = (id) => {
   function requestDocument() { return { type: FETCH_DOCUMENT }; }
   function fetchDocumentSuccess(activeDocument) { return { type: FETCH_DOCUMENT_SUCCESS, activeDocument }; }
@@ -165,7 +169,13 @@ export const toggleModal = modal => ({
 });
 
 // Switch active document
-export const switchActiveDocument = doc => ({
-  type: SWITCH_ACTIVE_DOCUMENT,
-  activeDocument: doc,
-});
+export const switchActiveDocument = (doc) => {
+  localStorage.setItem('activeDocument', JSON.stringify(doc));
+  return { type: SWITCH_ACTIVE_DOCUMENT, activeDocument: doc };
+};
+
+// Switch active document
+export const deleteDocumentSession = () => {
+  localStorage.removeItem('activeDocument');
+  return { type: DELETE_DOCUMENT_SESSION };
+};
