@@ -123,7 +123,10 @@ export const addSelectedQuestion = (idDocument, idQuestion, order) => {
   function addQuestionToDocumentSuccess(addedQuestion) { return { type: ADD_SELECTED_QUESTION_SUCCESS, addedQuestion }; }
   function addQuestionToDocumentFailure(error) { return { type: ADD_SELECTED_QUESTION_FAILURE, error }; }
 
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    if (getState().document.isFetchingAddQuestion) {
+      return 1;
+    }
     dispatch(addQuestionToDocument(idDocument, idQuestion, order));
     return documentService.addSelectedQuestion(idDocument, idQuestion, order)
       .then(

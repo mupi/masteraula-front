@@ -16,6 +16,7 @@ const initialState = sessionData ? {
 } : {
   activeDocument: null,
   isFetching: false,
+  isFetchingAddQuestion: false,
 };
 
 export const document = (state = initialState, action) => {
