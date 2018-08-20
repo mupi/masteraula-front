@@ -92,6 +92,9 @@ ul.header {
 .auto-margin-left-element {
   margin-left: auto; }
 
+.margin-bottom--10px {
+  margin-bottom: 10px; }
+
 @media (max-width: 599px) {
   .container {
     padding-right: 0px;
@@ -693,6 +696,7 @@ CSS for UserProfile
       position: relative; } }
 
 /** New Document and ViewDocument in "My Documents" options*/
+/*Questions in EditDocument*/
 .c-document__header {
   padding: 15px;
   border: 2px solid #FFFFFF;
@@ -715,9 +719,16 @@ CSS for UserProfile
   margin: 10px 0px;
   padding: 20px 10px; }
 
+@media (min-width: 990px) {
+  .c-document__question-info-header {
+    margin-bottom: 10px; } }
+
 .c-document__question-content {
   display: inline-flex;
-  width: 100%; }
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: justify; }
 
 .c-document__question-view-more {
   text-align: right; }
@@ -735,13 +746,13 @@ CSS for UserProfile
 .c-document__btn-remove-question {
   padding: 0px;
   line-height: 0px;
-  background: red;
+  background: #d9534f;
   width: 40px;
   height: 40px;
-  color: white;
+  color: #FFFFFF;
   font-size: 25px;
   border-radius: 25px;
-  border: 1px solid red; }
+  border: 1px solid #d9534f; }
 
 .l-btn-remove-question {
   position: absolute;
@@ -801,7 +812,7 @@ CSS for UserProfile
   text-align: center; }
 
 .document__new-document-modal-content {
-  background-color: #fff;
+  background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
@@ -830,7 +841,7 @@ CSS for UserProfile
   color: #1E5078; }
 
 tbody tr {
-  background-color: white; }
+  background-color: #FFFFFF; }
 
 tbody tr.odd {
   background-color: #f9f9f9; }

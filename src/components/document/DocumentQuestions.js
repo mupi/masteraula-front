@@ -5,13 +5,12 @@ import {
   Row, Container, Col, Label, Button, Modal, ModalBody, ModalFooter, ModalHeader,
 } from 'reactstrap';
 import QuestionContent from 'components/question/QuestionContent';
-import QuestionHeader from 'components/question/QuestionHeader';
-import QuestionInfo from 'components/question/QuestionInfo';
-import ViewQuestionModal from 'components/question/ViewQuestionModal';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import QuestionSourceYear from 'components/question/QuestionSourceYear';
 import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
+import { getTeachingLevel } from 'helpers/question';
+import  DocumentQuestionItem  from './DocumentQuestionItem';
 
 class DocumentQuestions extends React.Component {
   constructor(props) {
@@ -19,10 +18,9 @@ class DocumentQuestions extends React.Component {
     this.state = {
       question: '',
     };
-
   }
 
-   toggle(question) {
+  toggle(question) {
     if (question) {
       this.setState({
         question,
@@ -36,6 +34,13 @@ class DocumentQuestions extends React.Component {
 
   getListQuestions(activeDocument, removeSelectedQuestion) {
     const questions = [];
+    const disciplines = [
+      { name: 'Química' },
+      { name: 'Física' },
+    ];
+    const statement="Evitar o desperdício de água e energia é essencial para garantir a sustentabilidade do planeta Terra. Educar a criança para que evite o desperdício dentro da sua própria casa é tarefa dos pais. Apagar as luzes ao sair do quarto ou banheiro, desligar a TV quando não há ninguém assistindo, manter a porta da geladeira fechada ou tirar da tomada os aparelhos que não estão em uso, são hábitos simples que representam grande economia e que as crianças devem aprender. Fechar as torneiras para escovar os dentes ou ensaboar a louça, não brincar no chuveiro e não lavar o chão ou o carro com mangueiras também são ações que fazem diferença no consumo da água e estão ao alcance de todas as crianças. Poupar e usar, de forma consciente, é educação ambiental."
+ 
+
     if (activeDocument) {
       for (let i = 0; i < activeDocument.questions.length; i += 1) {
         const question = activeDocument.questions[i];
@@ -46,15 +51,20 @@ class DocumentQuestions extends React.Component {
               activeDocumentId={activeDocument.id}
               removeSelectedQuestion={removeSelectedQuestion}
             />
-            <Row>
+            <Row className="c-document__question-header">
+              <Col sm="8" xs="8" className="c-document__question-info-header"> 
+                <span className="question-info  difficulty-level">
+                  {getTeachingLevel('E')}
+                </span>
+              </Col>
               <Col sm="12">
-                <DisciplineList list={question.disciplines} />
-                <QuestionSourceYear source={question.source} year={question.year} />
+                <DisciplineList list={disciplines} />
+                <QuestionSourceYear source="ENEM" year="2018" />
               </Col>
             </Row>
             <Row>
               <div className="c-document__question-content">
-                <QuestionContent statement={question.question} />
+              {` ${statement.substring(0, 150)}${statement.length >= 150 && ' ...'}`}
               </div>
             </Row>
             <Row>
@@ -73,9 +83,9 @@ class DocumentQuestions extends React.Component {
       }
     }
     return questions;
-  };
+  }
 
-  clickRemove(removeFunction, documentId, questionIdToRemove){
+  clickRemove(removeFunction, documentId, questionIdToRemove) {
     removeFunction(documentId, questionIdToRemove);
     this.toggle();
   }
@@ -90,25 +100,8 @@ class DocumentQuestions extends React.Component {
           <div className="l-button-add-question">
             <GoToQuestionBaseButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
           </div>
+          <DocumentQuestionItem activeDocument={activeDocument} removeSelectedQuestion={removeSelectedQuestion}/>
           {questions}
-          <Modal className="c-document__question-modal" isOpen={this.state.question?true:false} toggle={() => this.toggle()}  size="lg">
-            <ModalHeader toggle={() => this.toggle()} />
-            <ModalBody>
-              <p>Detalhe da questão</p>
-              <QuestionHeader disciplines={this.state.question.disciplines} source={this.state.question.source} year={this.state.question.year} />
-              <QuestionContent alternatives={this.state.question.alternatives} statement={this.state.question.statement} answer={this.state.question.resolution} />
-              <QuestionInfo {...this.state.question} />
-            </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={() => this.clickRemove(removeSelectedQuestion, activeDocument.id, this.state.question)}>
-                Remover
-              </Button>
-              {' '}
-              <Button color="danger" onClick={() => this.toggle()}>
-                Fechar
-              </Button>
-            </ModalFooter>
-          </Modal>
         </div>
 
       </Container>);

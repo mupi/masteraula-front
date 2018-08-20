@@ -84,7 +84,7 @@ class QuestionPage extends Component {
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
               <QuestionComments />
               <RelatedQuestions rquestions={questionTest.rquestions} />
-            </Col>
+            </Col> 
           </Row>
         </div>
         <div className="l-button-add-question">
