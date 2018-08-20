@@ -977,7 +977,8 @@ body .container-fluid .row {
 
 .modal.show {
   display: block !important;
-  background-color: rgba(0, 0, 0, 0.8); }
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999; }
 
 .u-text-left {
   text-align: left !important; }

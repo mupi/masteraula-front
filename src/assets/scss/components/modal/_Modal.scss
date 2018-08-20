@@ -43,5 +43,6 @@
 
 .modal.show{
 	display: block !important;
-	background-color: rgba(black, 0.8);
+  background-color: rgba(black, 0.8);
+      z-index: 9999;
 }
