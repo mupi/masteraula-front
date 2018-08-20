@@ -140,7 +140,7 @@ class App extends Component {
           <div className="container">
             <div className="modal-types row d-flex justify-content-center align-items-center">
               <div className="col">
-                <button
+                <button type="button"
                   className="btn btn-outline-primary btn-block"
                   onClick={this.openAlertModal}
                 >alert</button>
