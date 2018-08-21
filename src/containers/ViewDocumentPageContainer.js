@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
   currentPage: state.document.currentPage,
   modal: state.document.modal,
   activeDocument: state.document.activeDocument,
+  error: state.document.error,
 });
 
 const mapDispatchToProps = dispatch => ({
