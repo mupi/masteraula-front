@@ -4,8 +4,11 @@ import { authHeader } from 'helpers';
 // Fetch a Document using ID
 function fetchDocument(id) {
   const requestOptions = {
-    method: 'GET,',
-    headers: { 'Content-Type': 'application/json' },
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
   };
 
   const handleResponse = response => response.json().then((data) => {
@@ -19,9 +22,9 @@ function fetchDocument(id) {
 
   return fetch(`${apiUrl}/documents/${id}/`, requestOptions)
     .then(handleResponse)
-    .then(activeDocument => {
+    .then((activeDocument) => {
       localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
-      return activeDocument
+      return activeDocument;
     });
 }
 

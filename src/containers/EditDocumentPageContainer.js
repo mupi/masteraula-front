@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   submit: props => dispatch(updateDocument(props)),
   resetNewDocument: () => dispatch(resetNewDocument()),
-  fetchDocument: (props) => dispatch(fetchDocument(props)),
+  fetchDocument: props => dispatch(fetchDocument(props)),
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
 });
 
