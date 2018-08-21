@@ -22,7 +22,7 @@ const QuestionList = (props) => {
 QuestionList.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.shape({})),
   count: PropTypes.number,
-  sm: PropTypes.number,
+  sm: PropTypes.string,
 };
 
 QuestionList.defaultProps = {

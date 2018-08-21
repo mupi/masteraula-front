@@ -38,7 +38,7 @@ const QuestionCard = (props) => {
             <QuestionAuthor author={question.author} styleTag="question-info__author" />
           </p>
           <p className="question-info__more-info">
-            {` ${question.statement.substring(0, 150)}${question.statement.length >= 150 && ' ...'}`}
+            { (question.statement.length >= 150) ? ` ${question.statement.substring(0, 150)}${' ...'}` : question.statement }
           </p>
         </div>
         <Link to={`/view-question/${question.id}`}>

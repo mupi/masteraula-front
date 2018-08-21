@@ -104,7 +104,7 @@ export const document = (state = initialState, action) => {
         error: null,
       });
     case REMOVE_SELECTED_QUESTION_SUCCESS: {
-      const newQuestionsInDocument = state.activeDocument.questions.filter(question => question.question !== action.idRemovedQuestion);
+      const newQuestionsInDocument = state.activeDocument.questions.filter(item => item.question.id !== action.idRemovedQuestion);
       const activeDocument = { ...state.activeDocument, questions: newQuestionsInDocument };
       localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
       return {
