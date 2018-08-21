@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
-import ModalRoot from './ModalRoot';
 
 import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
@@ -30,6 +29,7 @@ import Menu from 'components/menu/Menu';
 import { history } from 'helpers/history';
 
 import Footer from 'components/footer/Footer';
+import ModalRoot from './ModalRoot';
 // CSS imported in a single place (here)
 import 'assets/scss/styles.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -55,7 +55,7 @@ class App extends Component {
 
   onInputChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -68,8 +68,8 @@ class App extends Component {
       open: true,
       title: 'Alert Modal',
       message: 'Alert modal masteraula',
-      closeModal: this.closeModal
-    }, 'alert')
+      closeModal: this.closeModal,
+    }, 'alert');
   }
 
   openConfirmModal(event) {
@@ -78,8 +78,8 @@ class App extends Component {
       title: 'Confirm Modal',
       message: 'Confirm modal masteraula',
       confirmAction: this.closeModal,
-      closeModal: this.closeModal
-    }, 'confirm')
+      closeModal: this.closeModal,
+    }, 'confirm');
   }
 
   openDeleteModal(event) {
@@ -89,7 +89,7 @@ class App extends Component {
       message: 'Delete modal masteraula',
       deleteAction: this.closeModal,
       closeModal: this.closeModal,
-    }, 'delete')
+    }, 'delete');
   }
 
   openPromptModal(event) {
@@ -102,8 +102,8 @@ class App extends Component {
         placeholder: 'Enter address name',
       }],
       onInputChange: this.onInputChange,
-      confirmAction: this.showInput
-    }, 'prompt')
+      confirmAction: this.showInput,
+    }, 'prompt');
   }
 
   render() {
@@ -137,7 +137,7 @@ class App extends Component {
               </Switch>
             )
           }
-            <ModalRoot />
+          <ModalRoot />
 
           <Footer year="2018" version="1.0" />
         </div>
@@ -158,15 +158,15 @@ App.defaultProps = {
 
 const mapStateToProps = state => ({
   isOpenSidebar: state.menu.isOpenSidebar,
-  isLoggedIn: state.session.session?true:false,
+  isLoggedIn: !!state.session.session,
 });
 
 const mapDispatchToProps = dispatch => ({
   hideModal: () => dispatch(hideModal()),
   showModal: (modalProps, modalType) => {
-    dispatch(showModal({ modalProps, modalType }))
-  }
-})
+    dispatch(showModal({ modalProps, modalType }));
+  },
+});
 
 const connectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
