@@ -41,24 +41,24 @@ class ViewDocumentPage extends React.Component {
               </InputGroupAddon>
             </InputGroup>
           </Row>
-          {isFetching
-            ? (
-              <Alert className="c-question-base__alert--warning" color="warning">
-                Carregando ...
-              </Alert>
-            ) : (
-              <Row className="pagination-my-documents" style={{ marginTop: '1em' }}>
-                <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
-                <Col sm="12" className="my-documents__total-results">
-                  
-                  
-                  Documentos encontrados : {myDocumentsList ? (myDocumentsList.count) : 0}
+          <Row className="pagination-my-documents" style={{ marginTop: '1em' }}>
+            <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
+            {isFetching
+              ? (
+                <Col sm="12">
+                  <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
+                    Carregando ...
+                  </Alert>
                 </Col>
-                {myDocumentsList
-                  && <DocumentList documents={myDocumentsList.results} switchActiveDocument={switchActiveDocument}/>
-                }
-              </Row>
-            )}
+              ) : (
+                <Col sm="12">
+                  <p  className="my-documents__total-results">{`${myDocumentsList ? (myDocumentsList.count) : 0} documentos encontrados`} </p>
+                  {myDocumentsList
+                    && <DocumentList documents={myDocumentsList.results} switchActiveDocument={switchActiveDocument} />
+                  }
+                </Col>
+              )}
+          </Row>
         </Container>
       </HomeUserPage>);
   }
@@ -72,11 +72,13 @@ ViewDocumentPage.propTypes = {
   }).isRequired,
   listMyDocuments: PropTypes.func.isRequired,
   myDocumentsList: PropTypes.shape(),
+  switchActiveDocument: PropTypes.shape(),
   isFetching: PropTypes.bool.isRequired,
 };
 
 ViewDocumentPage.defaultProps = {
   myDocumentsList: null,
+  switchActiveDocument: null,
 };
 
 export default ViewDocumentPage;

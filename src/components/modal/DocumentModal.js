@@ -1,87 +1,41 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
-  Row, Col, Table, Modal, ModalHeader, ModalBody, Label, Button, ModalFooter,
-} from 'reactstrap';
-import DisciplineList from 'components/disciplines/DisciplineList';
-import QuestionSourceYear from 'components/question/QuestionSourceYear';
-import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
-import QuestionContent from 'components/question/QuestionContent';
-import { history } from 'helpers/history';
+  Modal, ModalHeader, ModalBody, ModalFooter, Button,
+}
+  from 'reactstrap';
 
-class DocumentList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      document: '',
-    };
-    this.toggle = this.toggle.bind(this);
-  }
+const DocumentModal = ({
+  closeModal, confirmAction, title, message,
+}) => (
+  <div className="modal__content modal-content">
+    <div className="modal__header modal-header">
+      <h5
+        className="modal-title"
+      >
+        {title}
+      </h5>
+      <button type="button" className="close" aria-label="Close" onClick={closeModal}>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div className="modal-body">
+      <p>{message}</p>
+      <div className="modal__footer modal-footer">
+      <button type="button" className="btn btn-secondary" onClick={closeModal}><i className="fa fa-sign-out btn__icon" />
+      Fechar</button>
+      <button color="primary" className="btn--confirm btn btn-secondary" onClick={confirmAction}>
+        <i className="fa fa-check-circle btn__icon" />
+        Continuar
+      </button>
+    </div>
+    </div>
+    
+  </div>
+);
 
-  toggle(document) {
-    if (document) {
-      this.setState({
-        document,
-      });
-    } else {
-      this.setState({
-        document: '',
-      });
-    }
-  }
-
-  editDocument(document) {
-    const { switchActiveDocument } = this.props;
-    switchActiveDocument(document);
-    history.push('/edit-document');
-  }
-
-  render() {
-    const { documents } = this.props;
-    return (
-      <Row className="l-my-documents-list">
-      <Col xs="12">
-      <div>
-        <Table resopnsive>
-          <thead align="center">
-            <tr>
-              <th>
-                Nome
-              </th>
-              <th>
-                  Data de criação
-              </th>
-              <th>
-                  Nº de questões
-              </th>
-              <th>
-                  Apagar
-              </th>
-            </tr>
-          </thead>
-          <tbody align="center">
-            {documents.map((document, i) => (
-              <tr key={i} role={i} className={ ((i%2)=== 0)? 'even' : 'odd' }>
-                <th scope="row" onClick={() => this.toggle(document)}>
-                  {document.name}
-                </th>
-                <td>
-                  {document.create_date}
-                </td>
-                <td>
-                  {document.questions.length}
-                </td>
-                <td>
-                  <Button color="danger">
-                    <i className="fa fa-trash" />
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-        {this.state.document
-          ? (
-            <Modal className="c-document-modal" isOpen={!!this.state.document} toggle={() => this.toggle()} size="lg">
+<Modal className="c-document-modal" isOpen={!!this.state.document} toggle={() => this.toggle()} size="lg">
               <ModalHeader toggle={() => this.toggle()}>
                 <div>
                   {this.state.document.name}
@@ -95,9 +49,7 @@ class DocumentList extends React.Component {
                   <div>
                     <Button title="Editar documento" className="btn-success" onClick={()=>this.editDocument(this.state.document)}>
                       <i className="fa fa-pencil btn__icon" />
-                      <span className="button-text">
-                        Editar
-                      </span>
+                      <span className="button-text">Editar</span>
                     </Button>
                   </div>
                 </Row>
@@ -131,12 +83,12 @@ class DocumentList extends React.Component {
                     {this.state.document.score_indicator ? 'Nota: _______  ' : ''}
                     </Col>
                   </Row>
-                {this.state.document.questions.map((questionOrder, i) => (
+                {this.state.document.questions.map((question, i) => (
                   <div key={i} className="c-document-modal__question">
                     <Row>
                       <Col sm="12">
-                        <DisciplineList list={questionOrder.disciplines} />
-                        <QuestionSourceYear source={questionOrder.source} year={questionOrder.year} />
+                        <DisciplineList list={question.disciplines} />
+                        <QuestionSourceYear source={question.source} year={question.year} />
                       </Col>
                     </Row>
                     <Row>
@@ -146,7 +98,7 @@ class DocumentList extends React.Component {
                           {')'}
                         </b>
                         {' '}
-                        <QuestionContent question={questionOrder.question} />
+                        <QuestionContent statement={question.question} />
                       </div>
                     </Row>
                   </div>
@@ -164,12 +116,19 @@ class DocumentList extends React.Component {
                 </Button>
               </ModalFooter>
             </Modal>
-          ) : ''}
-      </div>
-      </Col>
-      </Row>
-    );
-  }
-}
+ 
+DocumentModal.propTypes = {
+  closeModal: PropTypes.func,
+  confirmAction: PropTypes.func,
+  title: PropTypes.string,
+  message: PropTypes.string,
+};
 
-export default DocumentList;
+DocumentModal.defaultProps = {
+  closeModal: f => f,
+  confirmAction: f => f,
+  title: '',
+  message: '',
+};
+
+export default DocumentModal;
