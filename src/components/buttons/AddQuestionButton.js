@@ -20,7 +20,7 @@ const AddQuestionButton = ({
   >
     <i className="fa fa-plus" />
     {' '}
-    {nameButton}
+    {nameButton}1
   </Button>
 );
 
