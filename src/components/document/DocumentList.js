@@ -2,10 +2,8 @@ import React from 'react';
 import {
   Row, Col, Table, Modal, ModalHeader, ModalBody, Label, Button, ModalFooter,
 } from 'reactstrap';
-import DisciplineList from 'components/disciplines/DisciplineList';
-import QuestionSourceYear from 'components/question/QuestionSourceYear';
 import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
-import QuestionContent from 'components/question/QuestionContent';
+import DocumentQuestionItem from 'components/document/DocumentQuestionItem';
 import { history } from 'helpers/history';
 
 class DocumentList extends React.Component {
@@ -41,7 +39,7 @@ class DocumentList extends React.Component {
       <Row className="l-my-documents-list">
       <Col xs="12">
       <div>
-        <Table resopnsive>
+        <Table responsive>
           <thead align="center">
             <tr>
               <th>
@@ -132,25 +130,7 @@ class DocumentList extends React.Component {
                     </Col>
                   </Row>
                 {this.state.document.questions.map((questionOrder, i) => (
-                  <div key={i} className="c-document-modal__question">
-                    <Row>
-                      <Col sm="12">
-                        <DisciplineList list={questionOrder.disciplines} />
-                        <QuestionSourceYear source={questionOrder.source} year={questionOrder.year} />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <div className="c-document-modal__question-content">
-                        <b className="c-document-modal__question-number">
-                          {i + 1}
-                          {')'}
-                        </b>
-                        {' '}
-                        <QuestionContent question={questionOrder.question} />
-                      </div>
-                    </Row>
-                  </div>
-
+                  <div key={i}>{questionOrder.question}</div>
                 ))}
               </ModalBody>
               <ModalFooter className="c-document-modal__footer">

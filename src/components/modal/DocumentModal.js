@@ -76,7 +76,7 @@ const DocumentModal = ({
                     </Label>
                       <br />
                     {this.state.document.student_indicator ? (
-                        <p>Nome:</p>
+                        <p>Nome:</p> 
                     ) : ''}
                     {this.state.document.class_indicator ? 'Turma: _________  ' : ''}
                     {this.state.document.date_indicator ? 'Data: ___/___/___  ' : ''}

@@ -8,15 +8,15 @@ import { getTeachingLevel } from 'helpers/question';
 import Discipline from 'components/disciplines/Discipline';
 
 const DocumentQuestionItem = (props) => { 
-  const { question, activeDocument, removeSelectedQuestion } = props;
+  const { question, activeDocument, removeSelectedQuestion, readOnly=false } = props;
 
   return (
     <div className="c-document__question">
-      <RemoveQuestionButton
+        { (!readOnly ) ? (<RemoveQuestionButton
         questionId={question.id}
         activeDocumentId={activeDocument.id}
         removeSelectedQuestion={removeSelectedQuestion}
-      />
+      />) : ' ' }
       <Row>
               <Col sm="12">
 
@@ -52,6 +52,7 @@ const DocumentQuestionItem = (props) => {
 
               </Col>
             </Row>
+            { (!readOnly ) ? (
             <Row>
               <div className="c-document__question-view-more col-md-3 offset-md-9">
                 <Button>
@@ -62,7 +63,7 @@ const DocumentQuestionItem = (props) => {
                   </span>
                 </Button>
               </div>
-            </Row>
+            </Row>) : ' ' }
         </Col>
       </Row>
     </div>
