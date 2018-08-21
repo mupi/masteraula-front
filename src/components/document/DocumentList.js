@@ -60,7 +60,7 @@ class DocumentList extends React.Component {
               </th>
               <th>
                 <center>
-                  Apagar
+                  Apagar 
                 </center>
               </th>
             </tr>
@@ -163,6 +163,7 @@ class DocumentList extends React.Component {
                       </div>
                     </Row>
                   </div>
+
                 ))}
               </ModalBody>
               <ModalFooter className="c-document-modal__footer">

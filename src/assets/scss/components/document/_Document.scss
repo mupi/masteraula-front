@@ -1,4 +1,7 @@
 /** New Document and ViewDocument in "My Documents" options*/
+/*Questions in EditDocument*/
+
+
 .c-document{
     &__tab-content{
 
@@ -23,27 +26,92 @@
       border-radius: 4px;
       -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      background: #FFFFFF;
+      background: $color-ma-white;
       border: 1px solid rgba(0, 0, 0, 0.125);
-      margin: 10px 0px;
+      margin: 20px 0px;      
       padding: 20px 10px;
     }
 
+    &__question-image{
+   
+    }
+
+    &__question-info {
+      background: $color-ma-white;
+    }
+
+    &__question-info-title {
+      color: $color-ma-blue;
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 15px;
+    }
+
+    &__question-info-subtitle {
+      color: $color-ma-black;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    &__question-info-row {
+      font-size: 13px;
+      margin-bottom: 5px;
+      font-style:italic;
+
+    }
+
+    &__question-info-detail {
+      padding: 3px 5px;
+      border-radius: 5px;
+      color: $color-ma-white;
+      font-weight: bold;
+      margin-bottom: 10px;
+      margin-right: 5px;
+      text-align: center;
+      font-style:normal;
+    }
+
+    &__question-info-detail--green {
+      background: $color-ma-green;
+    }
+
+    &__question-info-detail--pink {
+      background: $color-ma-pink;
+    }
+
+    &__question-info-statement {
+      color: $color-ma-black;
+      margin-bottom: 5px;
+    }
+
+    &__question-info-author {
+      color: $color-ma-dark-gray;
+      font-style:italic;
+      margin-bottom: 5px;
+    }
+
+
+
+    //TODO: Review
     &__question-content{
       display: inline-flex;
       width: 100%;
+      padding-left: 15px;
+      padding-right: 15px;
+      text-align:justify;
     }
 
     &__question-view-more{
       text-align: right;
     }
 
+    //TODO: Review
     &__questions-header{
       position: relative;
       border-radius: 4px;
       -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      background: #FFFFFF;
+      background: $color-ma-white;
       border: 1px solid rgba(0, 0, 0, 0.125);
       margin: 10px 0px;
       padding: 20px 10px;
@@ -52,13 +120,13 @@
     &__btn-remove-question{
       padding: 0px;
       line-height: 0px;
-      background: red;
+      background: $color-ma-red;
       width: 40px;
       height: 40px;
-      color: white;
+      color: $color-ma-white;
       font-size: 25px;
       border-radius: 25px;
-      border: 1px solid red;
+      border: 1px solid  $color-ma-red;
     }
 
 }
@@ -95,7 +163,7 @@
     border-radius: 4px;
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    background: #FFFFFF;
+    background:$color-ma-white;
     border: 1px solid rgba(0, 0, 0, 0.125);
     margin: 10px 0px;
     padding: 20px 10px;
@@ -106,7 +174,7 @@
     border-radius: 4px;
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    background: #FFFFFF;
+    background:$color-ma-white;
     border: 1px solid rgba(0, 0, 0, 0.125);
     margin: 10px 0px;
     padding: 20px 10px;
@@ -149,7 +217,7 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
 
-    background-color: #fff;
+    background:$color-ma-white;
     border: 1px solid rgba(0,0,0,0.2);
     border-radius: 6px;
     box-shadow: 0 3px 9px rgba(0,0,0,0.5);
@@ -165,7 +233,6 @@
 
 
 /*My documents option*/
-
 .l-my-documents-list{
   width:100%;
 }
@@ -185,9 +252,10 @@
 }
 
 tbody tr {
-  background-color: white;
+  background-color:$color-ma-white;
 }
 
 tbody tr.odd {
-  background-color: #f9f9f9;
+  background-color: $color-ma-gray-tables
 }
+

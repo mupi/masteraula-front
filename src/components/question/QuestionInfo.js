@@ -6,17 +6,9 @@ import StarRating from 'components/stars/StarRating';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import DescriptorList from 'components/descriptors/DescriptorList';
 import TagList from 'components/tags/TagList';
+import { getTeachingLevel } from 'helpers/question';
 
 import QuestionAuthor from './QuestionAuthor';
-
-const getTeachingLevel = (difficulty) => {
-  switch (difficulty) {
-    case 'E': return 'Fácil';
-    case 'M': return 'Médio';
-    case 'H': return 'Difícil';
-    default: return difficulty;
-  }
-};
 
 const QuestionInfo = ({ question, rating, onRate = f => f,
 }) => (
