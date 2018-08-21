@@ -1,6 +1,6 @@
 export const isQuestionAdded = (activeDocument, id) => {
   if (activeDocument) {
-    const questionAdded = activeDocument.questions.filter(question => question.question === id)
+    const questionAdded = activeDocument.questions.filter(question => question.id === id)
     return (questionAdded.length > 0)
   }
   return false;

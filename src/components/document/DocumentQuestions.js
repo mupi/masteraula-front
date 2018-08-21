@@ -16,32 +16,10 @@ class DocumentQuestions extends React.Component {
 
   getListQuestions(activeDocument, removeSelectedQuestion) {
     const questions = [];
-    const question = {
-      disciplines: [
-        { name: 'Química' },
-        { name: 'Física' },
-      ],
-      source: 'ENEM',
-      year: '2010',
-      difficulty: 'M',
-      teaching_levels: [
-        {
-          id: 1,
-          name: 'Ensino Médio',
-        },
-      ],
-      author: {
-        id: 8,
-        username: 'cp.rosaless@gmail.com',
-        name: 'Carmen Pamela Rosales Sedano',
-        email: 'cp.rosaless@gmail.com',
-      },
-      statement: 'Assinale a alternativa : a) O discurso feminista de Susanitar denota certo machismo ...',
-    };
-
     if (activeDocument) {
       for (let i = 0; i < activeDocument.questions.length; i += 1) {
-       // const question = activeDocument.questions[i];
+        const question = activeDocument.questions[i];
+        console.log(question.id);
         questions.push(
           <DocumentQuestionItem key={i} question={question} activeDocument={activeDocument} removeSelectedQuestion={removeSelectedQuestion} />
         );

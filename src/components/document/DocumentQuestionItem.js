@@ -13,15 +13,15 @@ const DocumentQuestionItem = (props) => {
   return (
     <div className="c-document__question">
       <RemoveQuestionButton
-        questionId={1}
+        questionId={question.id}
         activeDocumentId={activeDocument.id}
         removeSelectedQuestion={removeSelectedQuestion}
       />
       <Row>
               <Col sm="12">
+
             <p className="c-document__question-info-title">Questão:</p>
-            <p className="c-document__question-info-statement">Evitar o desperdício de água e energia é essencial para garantir a sustentabilidade do planeta Terra. Educar a criança para que evite o desperdício de ...
-            </p>
+            <p className="c-document__question-info-statement">{` ${question.statement.substring(0, 150)}${question.statement.length >= 150 && ' ...'}`}</p>
             <p className="c-document__question-info-author">por: {' '} {question.author.name}</p>
               </Col>
         <Col sm="4" className="c-document__question-image">
