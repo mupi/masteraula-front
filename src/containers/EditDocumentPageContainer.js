@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 // to presentational container
 const mapStateToProps = state => ({
   activeDocument: state.document.activeDocument,
+  isUpdated : state.document.isUpdated,
+  error: state.document.error,
+  isRemoved: state.document.isRemoved,
 });
 
 const mapDispatchToProps = dispatch => ({
