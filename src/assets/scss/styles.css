@@ -719,9 +719,49 @@ CSS for UserProfile
   margin: 10px 0px;
   padding: 20px 10px; }
 
-@media (min-width: 990px) {
-  .c-document__question-info-header {
-    margin-bottom: 10px; } }
+.c-document__question-info {
+  background: #FFFFFF; }
+
+.c-document__question-info-title {
+  color: #1E5078;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 15px; }
+
+.c-document__question-info-subtitle {
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 5px; }
+
+.c-document__question-info-row {
+  font-size: 13px;
+  margin-bottom: 5px;
+  font-style: italic; }
+
+.c-document__question-info-detail {
+  padding: 3px 5px;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  text-align: center;
+  font-style: normal; }
+
+.c-document__question-info-detail--green {
+  background: #53BA65; }
+
+.c-document__question-info-detail--pink {
+  background: #FF007A; }
+
+.c-document__question-info-statement {
+  color: #000;
+  margin-bottom: 5px; }
+
+.c-document__question-info-author {
+  color: #999a9a;
+  font-style: italic;
+  margin-bottom: 5px; }
 
 .c-document__question-content {
   display: inline-flex;
