@@ -45,8 +45,8 @@ class ViewDocumentPage extends React.Component {
                   </Alert>
                 </Col>
               ) : (
-                <Col sm="12" className="my-documents__total-results">
-                  {`${myDocumentsList ? (myDocumentsList.count) : 0} documentos encontrados`}
+                <Col sm="12">
+                  <p  className="my-documents__total-results">{`${myDocumentsList ? (myDocumentsList.count) : 0} documentos encontrados`} </p>
                   {myDocumentsList
                     && <DocumentList documents={myDocumentsList.results} switchActiveDocument={switchActiveDocument} />
                   }
