@@ -19,7 +19,6 @@ class DocumentQuestions extends React.Component {
     if (activeDocument) {
       for (let i = 0; i < activeDocument.questions.length; i += 1) {
         const question = activeDocument.questions[i];
-        console.log(question.id);
         questions.push(
           <DocumentQuestionItem key={i} question={question} activeDocument={activeDocument} removeSelectedQuestion={removeSelectedQuestion} />
         );
