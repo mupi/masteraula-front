@@ -131,12 +131,12 @@ class DocumentList extends React.Component {
                     {this.state.document.score_indicator ? 'Nota: _______  ' : ''}
                     </Col>
                   </Row>
-                {this.state.document.questions.map((question, i) => (
+                {this.state.document.questions.map((questionOrder, i) => (
                   <div key={i} className="c-document-modal__question">
                     <Row>
                       <Col sm="12">
-                        <DisciplineList list={question.disciplines} />
-                        <QuestionSourceYear source={question.source} year={question.year} />
+                        <DisciplineList list={questionOrder.disciplines} />
+                        <QuestionSourceYear source={questionOrder.source} year={questionOrder.year} />
                       </Col>
                     </Row>
                     <Row>
@@ -146,7 +146,7 @@ class DocumentList extends React.Component {
                           {')'}
                         </b>
                         {' '}
-                        <QuestionContent statement={question.question} />
+                        <QuestionContent question={questionOrder.question} />
                       </div>
                     </Row>
                   </div>
