@@ -23,6 +23,8 @@ export const document = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_DOCUMENT:
       return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
         isFetching: true,
         error: null,
       });
@@ -39,6 +41,8 @@ export const document = (state = initialState, action) => {
 
     case CREATE_DOCUMENT:
       return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
         activeDocument: action.newDocument,
         isFetching: false,
       });
@@ -55,8 +59,12 @@ export const document = (state = initialState, action) => {
 
     case LIST_MY_DOCUMENTS:
       return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        myDocumentsList: null,
         isFetching: true,
         currentPage: action.page,
+        error: null,
       });
     case LIST_MY_DOCUMENTS_SUCCESS:
       return Object.assign({}, state, {
@@ -67,11 +75,14 @@ export const document = (state = initialState, action) => {
       return Object.assign({}, state, {
         myDocumentsList: null,
         isFetching: false,
+        error: action.errorMessage,
       });
 
     case ADD_SELECTED_QUESTION:
       return Object.assign({}, state, {
         isFetchingAddQuestion: true,
+        isRemoved: null,
+        isUpdated: null,
         error: null,
       });
     case ADD_SELECTED_QUESTION_SUCCESS: {
@@ -90,6 +101,8 @@ export const document = (state = initialState, action) => {
     case REMOVE_SELECTED_QUESTION:
       return Object.assign({}, state, {
         isFetchingRemoveQuestion: true,
+        isRemoved: null,
+        isUpdated: null,
         error: null,
       });
     case REMOVE_SELECTED_QUESTION_SUCCESS: {
@@ -98,6 +111,7 @@ export const document = (state = initialState, action) => {
       localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
       return {
         isFetchingRemoveQuestion: false,
+        isRemoved: true,
         activeDocument,
       };
     }
@@ -113,14 +127,15 @@ export const document = (state = initialState, action) => {
     }
     case UPDATE_DOCUMENT: {
       return Object.assign({}, state, {
-        isFetching: true,
+        isRemoved: null,
         error: null,
+        isUpdated: null,
       });
     }
     case UPDATE_DOCUMENT_SUCCESS: {
       return Object.assign({}, state, {
         activeDocument: { ...action.activeDocument, questions: state.activeDocument.questions },
-        isFetching: false,
+        isUpdated: true,
       });
     }
     case UPDATE_DOCUMENT_FAILURE: {

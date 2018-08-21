@@ -21,9 +21,15 @@ class ViewDocumentPage extends React.Component {
   }
 
   render() {
-    const { myDocumentsList, isFetching, switchActiveDocument } = this.props;
+    const { myDocumentsList, isFetching, switchActiveDocument, error } = this.props;
     return (
       <HomeUserPage>
+      {error ? (  
+              <Alert className="alert--danger" color="danger" >
+                  Ocorreu algum erro com sua solicitação, tente novamente.
+              </Alert>
+          ):''
+        }
         <Container>
           <Row>
             <InputGroup>
