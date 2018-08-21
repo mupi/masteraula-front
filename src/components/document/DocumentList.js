@@ -60,7 +60,7 @@ class DocumentList extends React.Component {
               </th>
               <th>
                 <center>
-                  Apagar
+                  Apagar 
                 </center>
               </th>
             </tr>
