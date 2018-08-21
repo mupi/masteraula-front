@@ -1,11 +1,10 @@
 export const isQuestionAdded = (activeDocument, id) => {
   if (activeDocument) {
-    const questionAdded = activeDocument.questions.filter(item => item.question.id === id)
-    return (questionAdded.length > 0)
+    const questionAdded = activeDocument.questions.filter(item => item.question.id === id);
+    return (questionAdded.length > 0);
   }
   return false;
-} 
-
+};
 
 export const getTeachingLevel = (difficulty) => {
   switch (difficulty) {
