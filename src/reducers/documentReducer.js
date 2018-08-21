@@ -64,6 +64,7 @@ export const document = (state = initialState, action) => {
         myDocumentsList: null,
         isFetching: true,
         currentPage: action.page,
+        error: null,
       });
     case LIST_MY_DOCUMENTS_SUCCESS:
       return Object.assign({}, state, {
@@ -74,6 +75,7 @@ export const document = (state = initialState, action) => {
       return Object.assign({}, state, {
         myDocumentsList: null,
         isFetching: false,
+        error: action.errorMessage,
       });
 
     case ADD_SELECTED_QUESTION:
