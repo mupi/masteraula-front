@@ -17,6 +17,7 @@ const DocumentQuestionItem = (props) => {
         activeDocumentId={activeDocument.id}
         removeSelectedQuestion={removeSelectedQuestion}
       />
+      { question.statement &&
       <Row>
               <Col sm="12">
 
@@ -64,7 +65,7 @@ const DocumentQuestionItem = (props) => {
               </div>
             </Row>
         </Col>
-      </Row>
+      </Row>}
     </div>
   );
 };

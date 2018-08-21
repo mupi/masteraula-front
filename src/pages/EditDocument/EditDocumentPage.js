@@ -7,6 +7,11 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
 class EditDocumentPage extends Component {
 
+  componentDidMount() {
+    const { fetchDocument, activeDocument } = this.props;
+    fetchDocument(parseInt(activeDocument.id, 10));
+  }
+
   render() {
     const { activeDocument, removeSelectedQuestion, submit } = this.props;
 
