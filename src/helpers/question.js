@@ -5,3 +5,13 @@ export const isQuestionAdded = (activeDocument, id) => {
   }
   return false;
 } 
+
+
+export const getTeachingLevel = (difficulty) => {
+  switch (difficulty) {
+    case 'E': return 'Fácil';
+    case 'M': return 'Médio';
+    case 'H': return 'Difícil';
+    default: return difficulty;
+  }
+};
