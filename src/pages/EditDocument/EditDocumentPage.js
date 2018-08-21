@@ -1,24 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
- import { Alert } from 'reactstrap';
+import { UncontrolledAlert } from 'reactstrap';
 import DocumentHeader from 'components/document/DocumentHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
 class EditDocumentPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      visible: true
-    };
-
-    this.onDismiss = this.onDismiss.bind(this);
-  }
-
-  onDismiss() {
-    this.setState({ visible: false });
-  }
 
   render() {
     const { activeDocument, removeSelectedQuestion, submit, isUpdated, error, isRemoved } = this.props;
@@ -28,21 +15,21 @@ class EditDocumentPage extends Component {
       <HomeUserPage>
         <div className="c-document">
         {isUpdated ? (  
-              <Alert className="alert--success" color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
+              <UncontrolledAlert className="alert--success" color="success">
                   Documento editado com sucesso
-              </Alert>
+              </UncontrolledAlert>
           ):''
         }
         {error ? (  
-              <Alert className="alert--danger" color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
+              <UncontrolledAlert className="alert--danger" color="danger">
                   Ocorreu algum erro com sua solicitação, tente novamente.
-              </Alert>
+              </UncontrolledAlert>
           ):''
         }
         {isRemoved ? (  
-              <Alert className="alert--success" color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
+              <UncontrolledAlert className="alert--success" color="success">
                   Questão removida com sucesso
-              </Alert>
+              </UncontrolledAlert>
           ):''
         }
           <DocumentHeader data={activeDocument} onSubmit={submit}/>
