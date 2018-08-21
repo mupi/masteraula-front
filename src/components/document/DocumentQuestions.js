@@ -14,8 +14,8 @@ const DocumentQuestions = (props) => {
         <div className="l-button-add-question">
           <GoToQuestionBaseButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
         </div>
-        {activeDocument && activeDocument.questions.map(questionOrder => (
-          <DocumentQuestionItem question={questionOrder.question} activeDocument={activeDocument} removeSelectedQuestion={removeSelectedQuestion} />
+        {activeDocument && activeDocument.questions.map( (questionOrder, i) => (
+          <DocumentQuestionItem key={i} question={questionOrder.question} activeDocument={activeDocument} removeSelectedQuestion={removeSelectedQuestion} />
         ))}
         {/* <ViewQuestionModal /> */}
       </div>
