@@ -6,6 +6,19 @@ import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
 class EditDocumentPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      visible: true
+    };
+
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  onDismiss() {
+    this.setState({ visible: false });
+  }
 
   render() {
     const { activeDocument, removeSelectedQuestion, submit, isUpdated, error, isRemoved } = this.props;
@@ -15,19 +28,19 @@ class EditDocumentPage extends Component {
       <HomeUserPage>
         <div className="c-document">
         {isUpdated ? (  
-              <Alert className="alert--success" color="success">
+              <Alert className="alert--success" color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
                   Documento editado com sucesso
               </Alert>
           ):''
         }
         {error ? (  
-              <Alert className="alert--danger" color="danger">
+              <Alert className="alert--danger" color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
                   Ocorreu algum erro com sua solicitação, tente novamente.
               </Alert>
           ):''
         }
         {isRemoved ? (  
-              <Alert className="alert--success" color="success">
+              <Alert className="alert--success" color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
                   Questão removida com sucesso
               </Alert>
           ):''

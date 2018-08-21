@@ -65,7 +65,7 @@ function updateDocument(activeNewDocument) {
 
   const handleResponse = response => response.json().then((data) => {
     if (!response.ok) {
-      const error = (data && data.email);
+      const error = (data || 'Something went wrong');
       return Promise.reject(error);
     }
 
