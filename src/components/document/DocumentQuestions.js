@@ -1,16 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  Row, Container, Col, Button,
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
-import QuestionContent from 'components/question/QuestionContent';
-import ViewQuestionModal from 'components/question/ViewQuestionModal';
-import DisciplineList from 'components/disciplines/DisciplineList';
-import QuestionSourceYear from 'components/question/QuestionSourceYear';
+import { Container } from 'reactstrap';
 import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
-import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
+import DocumentQuestionItem from './DocumentQuestionItem';
 
 const DocumentQuestions = (props) => {
   const { activeDocument, removeSelectedQuestion } = props;
@@ -22,35 +15,9 @@ const DocumentQuestions = (props) => {
           <GoToQuestionBaseButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
         </div>
         {activeDocument && activeDocument.questions.map(question => (
-          <div className="c-document__question">
-            <RemoveQuestionButton
-              questionId={question.question}
-              activeDocumentId={activeDocument.id}
-              removeSelectedQuestion={removeSelectedQuestion}
-            />
-            <Row>
-              <Col sm="12">
-                <DisciplineList list={question.disciplines} />
-                <QuestionSourceYear source={question.source} year={question.year} />
-              </Col>
-            </Row>
-            <Row>
-              <div className="c-document__question-content">
-                <QuestionContent statement={question.question} />
-              </div>
-            </Row>
-            <Row>
-              <div className="c-document__question-view-more col-md-3 offset-md-9">
-                <Link to={`/view-question/${question.id}`}>
-                  <Button className="question-card__btn">
-                    Ver mais
-                  </Button>
-                </Link>
-              </div>
-            </Row>
-          </div>
+          <DocumentQuestionItem question={question} activeDocument={activeDocument} removeSelectedQuestion={removeSelectedQuestion} />
         ))}
-        <ViewQuestionModal />
+        {/* <ViewQuestionModal /> */}
       </div>
 
     </Container>);

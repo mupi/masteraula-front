@@ -4,7 +4,7 @@ import { createLogger } from 'redux-logger';
 import { combineReducers } from 'redux';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import {
-  login, menu, register, forgotPassword, profileEdit, question, filter, session,document
+  login, menu, register, forgotPassword, profileEdit, question, filter, session,document, modal
 } from 'reducers';
 
 import { history } from 'helpers/history';
@@ -12,7 +12,7 @@ import { reducer as formReducer } from 'redux-form';
 
 const loggerMiddleware = createLogger();
 /* List of reducers */
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   login,
   menu,
   register,
@@ -22,8 +22,17 @@ const rootReducer = combineReducers({
   filter,
   session,
   document,
+  modal,
   form: formReducer,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === 'DELETE_SESSION') {
+    state = undefined
+  }
+
+  return appReducer(state, action)
+}
 
 export default function configureStore(preloadedState) {
   return createStore(

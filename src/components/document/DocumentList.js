@@ -38,6 +38,8 @@ class DocumentList extends React.Component {
   render() {
     const { documents } = this.props;
     return (
+      <Row className="l-my-documents-list">
+      <Col xs="12">
       <div>
         <Table resopnsive>
           <thead align="center">
@@ -58,7 +60,7 @@ class DocumentList extends React.Component {
           </thead>
           <tbody align="center">
             {documents.map((document, i) => (
-              <tr key={i}>
+              <tr key={i} role={i} className={ ((i%2)=== 0)? 'even' : 'odd' }>
                 <th scope="row" onClick={() => this.toggle(document)}>
                   {document.name}
                 </th>
@@ -148,6 +150,7 @@ class DocumentList extends React.Component {
                       </div>
                     </Row>
                   </div>
+
                 ))}
               </ModalBody>
               <ModalFooter className="c-document-modal__footer">
@@ -163,6 +166,8 @@ class DocumentList extends React.Component {
             </Modal>
           ) : ''}
       </div>
+      </Col>
+      </Row>
     );
   }
 }

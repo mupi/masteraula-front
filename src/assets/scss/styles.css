@@ -92,6 +92,9 @@ ul.header {
 .auto-margin-left-element {
   margin-left: auto; }
 
+.margin-bottom--10px {
+  margin-bottom: 10px; }
+
 @media (max-width: 599px) {
   .container {
     padding-right: 0px;
@@ -196,7 +199,7 @@ html body #sidebar #sidebar-container {
 html body #sidebar {
   top: 0;
   bottom: 0;
-  z-index: 9999;
+  z-index: 1040;
   position: fixed;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -693,6 +696,7 @@ CSS for UserProfile
       position: relative; } }
 
 /** New Document and ViewDocument in "My Documents" options*/
+/*Questions in EditDocument*/
 .c-document__header {
   padding: 15px;
   border: 2px solid #FFFFFF;
@@ -712,12 +716,59 @@ CSS for UserProfile
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  margin: 10px 0px;
+  margin: 20px 0px;
   padding: 20px 10px; }
+
+.c-document__question-info {
+  background: #FFFFFF; }
+
+.c-document__question-info-title {
+  color: #1E5078;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 15px; }
+
+.c-document__question-info-subtitle {
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 5px; }
+
+.c-document__question-info-row {
+  font-size: 13px;
+  margin-bottom: 5px;
+  font-style: italic; }
+
+.c-document__question-info-detail {
+  padding: 3px 5px;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  text-align: center;
+  font-style: normal; }
+
+.c-document__question-info-detail--green {
+  background: #53BA65; }
+
+.c-document__question-info-detail--pink {
+  background: #FF007A; }
+
+.c-document__question-info-statement {
+  color: #000;
+  margin-bottom: 5px; }
+
+.c-document__question-info-author {
+  color: #999a9a;
+  font-style: italic;
+  margin-bottom: 5px; }
 
 .c-document__question-content {
   display: inline-flex;
-  width: 100%; }
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: justify; }
 
 .c-document__question-view-more {
   text-align: right; }
@@ -735,13 +786,13 @@ CSS for UserProfile
 .c-document__btn-remove-question {
   padding: 0px;
   line-height: 0px;
-  background: red;
+  background: #d9534f;
   width: 40px;
   height: 40px;
-  color: white;
+  color: #FFFFFF;
   font-size: 25px;
   border-radius: 25px;
-  border: 1px solid red; }
+  border: 1px solid #d9534f; }
 
 .l-btn-remove-question {
   position: absolute;
@@ -801,7 +852,7 @@ CSS for UserProfile
   text-align: center; }
 
 .document__new-document-modal-content {
-  background-color: #fff;
+  background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
@@ -814,6 +865,26 @@ CSS for UserProfile
 .document__new-document-modal-footer {
   border-top: transparent;
   padding: 0rem 0rem 0rem 0rem; }
+
+/*My documents option*/
+.l-my-documents-list {
+  width: 100%; }
+
+.my-documents__total-results {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #1E5078;
+  font-weight: bold;
+  margin-left: -10px; }
+
+.pagination-my-documents.row a {
+  color: #1E5078; }
+
+tbody tr {
+  background-color: #FFFFFF; }
+
+tbody tr.odd {
+  background-color: #f9f9f9; }
 
 /*Clases do Home*/
 .o-thumb-circle {
@@ -938,6 +1009,66 @@ body .container-fluid .row {
   text-align: center; }
   .alert__message {
     margin-bottom: 0px; }
+
+.modal__header {
+  background: #53BA65;
+  color: white;
+  text-align: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem; }
+
+.modal__content {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  outline: 0; }
+  @media (min-width: 990px) {
+    .modal__content {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); } }
+
+.modal__footer {
+  border-top: transparent;
+  padding: 0rem 0rem 0rem 0rem; }
+
+.modal.show {
+  display: block !important;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999; }
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 0.15s linear; }
+
+.ReactModal__Overlay--after-open {
+  opacity: 1; }
+
+.ReactModal__Overlay--before-close {
+  opacity: 0; }
+
+.ReactModal__Overlay .modal-dialog {
+  -webkit-transform: translate(0, -25%);
+  -ms-transform: translate(0, -25%);
+  transform: translate(0, -25%);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out; }
 
 .u-text-left {
   text-align: left !important; }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
 const handleAddQuestionButton = (e, questionId, activeDocument, addSelectedQuestion) => {
@@ -8,8 +9,9 @@ const handleAddQuestionButton = (e, questionId, activeDocument, addSelectedQuest
   }
 };
 
-
-const AddQuestionButton = ({ customClass, questionId, nameButton, toggleModal, modal, activeDocument, addSelectedQuestion}) => (
+const AddQuestionButton = ({
+  customClass, questionId, nameButton, toggleModal, modal, activeDocument, addSelectedQuestion,
+}) => (
   <Button
     value={questionId}
     title="Adicionar questões"
@@ -21,4 +23,15 @@ const AddQuestionButton = ({ customClass, questionId, nameButton, toggleModal, m
     {nameButton}
   </Button>
 );
+
+AddQuestionButton.propTypes = {
+  customClass: PropTypes.string.isRequired,
+  questionId: PropTypes.number.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+  nameButton: PropTypes.string.isRequired,
+//  modal: PropTypes.bool.isRequired,
+//  activeDocument: PropTypes.shape({}).isRequired,
+  addSelectedQuestion: PropTypes.func.isRequired,
+};
+
 export default AddQuestionButton;

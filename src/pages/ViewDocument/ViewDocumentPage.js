@@ -35,7 +35,7 @@ class ViewDocumentPage extends React.Component {
               </InputGroupAddon>
             </InputGroup>
           </Row>
-          <Row style={{ marginTop: '1em' }}>
+          <Row className="pagination-my-documents" style={{ marginTop: '1em' }}>
             <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
             {isFetching
               ? (
@@ -45,7 +45,7 @@ class ViewDocumentPage extends React.Component {
                   </Alert>
                 </Col>
               ) : (
-                <Col sm="12">
+                <Col sm="12" className="my-documents__total-results">
                   {`${myDocumentsList ? (myDocumentsList.count) : 0} documentos encontrados`}
                   {myDocumentsList
                     && <DocumentList documents={myDocumentsList.results} switchActiveDocument={switchActiveDocument} />

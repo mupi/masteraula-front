@@ -3,11 +3,13 @@ import {
   Row, Container, Col, Label, Button
 } from 'reactstrap';
 import { connect } from 'react-redux';
-
 import { Field, reduxForm, Form } from 'redux-form';
 import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 
 class DocumentHeader extends Component {
+  fileSelectedHandler= event =>{
+    console.log(event);
+  }
 
   render() {
     return (
@@ -49,10 +51,10 @@ class DocumentHeader extends Component {
                 placeholder ="Nome da instituição"
                 id="schoolName"
                 name="institution_name"
-                className="form-control"
+                className="form-control form-group"
                 component="input"
               />
-              <Field placeholder="Curso/Disciplina" id="course" className="form-control" component="input" type="text" name="discipline_name"/>
+              <Field placeholder="Curso/Disciplina" id="course" className="form-control form-group" component="input" type="text" name="discipline_name"/>
               <Field
                 placeholder="Professor(a)"
                 id="teacherName"

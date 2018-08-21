@@ -43,7 +43,8 @@ const questionTest = {
 
 class QuestionPage extends Component {
   componentDidMount() {
-    this.props.fetchQuestion(this.props.match.params.id);
+    const { fetchQuestion, match } = this.props;
+    fetchQuestion(match.params.id);
   }
 
   render() {
@@ -80,10 +81,10 @@ class QuestionPage extends Component {
             <Col sm="12" md="12" xs="12">
               <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
               <QuestionContent alternatives={activeQuestion.alternatives} statement={activeQuestion.statement} answer={activeQuestion.resolution} />
-              <QuestionInfo {...activeQuestion} onRate={onRate} rating={rating} />
+              <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
               <QuestionComments />
               <RelatedQuestions rquestions={questionTest.rquestions} />
-            </Col>
+            </Col> 
           </Row>
         </div>
         <div className="l-button-add-question">

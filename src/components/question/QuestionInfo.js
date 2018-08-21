@@ -6,20 +6,11 @@ import StarRating from 'components/stars/StarRating';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import DescriptorList from 'components/descriptors/DescriptorList';
 import TagList from 'components/tags/TagList';
+import { getTeachingLevel } from 'helpers/question';
 
 import QuestionAuthor from './QuestionAuthor';
 
-const getTeachingLevel = (difficulty) => {
-  switch (difficulty) {
-    case 'E': return 'Fácil';
-    case 'M': return 'Médio';
-    case 'H': return 'Difícil';
-    default: return difficulty;
-  }
-};
-
-const QuestionInfo = ({
-  disciplines, teaching_levels, descriptors, tags, difficulty, author, rating, onRate = f => f,
+const QuestionInfo = ({ question, rating, onRate = f => f,
 }) => (
   <Container className="question-information">
     <Row className="c-question__tittle-section">
@@ -34,7 +25,7 @@ Informação da Questão
 Disciplinas
       </Col>
       <Col sm="8" xs="8">
-        <DisciplineList list={disciplines} />
+        <DisciplineList list={question.disciplines} />
       </Col>
     </Row>
     <Row className="c-question__row-info">
@@ -43,7 +34,7 @@ Grau de difuldade
       </Col>
       <Col sm="8" xs="8">
         <span className="question-info  difficulty-level">
-          {getTeachingLevel(difficulty)}
+          {getTeachingLevel(question.difficulty)}
         </span>
       </Col>
     </Row>
@@ -52,7 +43,7 @@ Grau de difuldade
 Nível de Ensino
       </Col>
       <Col sm="8" xs="8">
-        <TagList list={teaching_levels} styleTag="question-info  teaching-level" />
+        <TagList list={question.teaching_levels} styleTag="question-info  teaching-level" />
       </Col>
     </Row>
     <Row className="c-question__row-info">
@@ -60,7 +51,7 @@ Nível de Ensino
 Tags
       </Col>
       <Col sm="8" xs="8">
-        <TagList list={tags} styleTag="question-info  tag-name" />
+        <TagList list={question.tags} styleTag="question-info  tag-name" />
       </Col>
     </Row>
     <Row className="c-question__row-info">
@@ -68,7 +59,7 @@ Tags
 Descritores
       </Col>
       <Col sm="8" xs="12">
-        <DescriptorList list={descriptors} styleTag="question-info  descriptor-name" />
+        <DescriptorList list={question.descriptors} styleTag="question-info  descriptor-name" />
       </Col>
     </Row>
     <Row className="c-question__row-info">
@@ -76,7 +67,7 @@ Descritores
 Autor
       </Col>
       <Col sm="8" xs="8">
-        <QuestionAuthor author={author} styleTag="question-info author" />
+        <QuestionAuthor author={question.author} styleTag="question-info author" />
       </Col>
     </Row>
     <Row className="c-question__row-info">
@@ -84,20 +75,19 @@ Autor
 Avaliação
       </Col>
       <Col sm="8" xs="8">
-        <StarRating onRate={rating => onRate(rating)} starsSelected={rating} />
+        <StarRating onRate={rt => onRate(rt)} starsSelected={rating} />
       </Col>
     </Row>
   </Container>
 );
 QuestionInfo.propTypes = {
+  question: PropTypes.shape({}).isRequired,
   rating: PropTypes.number,
   onRate: PropTypes.func,
-  difficulty: PropTypes.string,
 };
 
 QuestionInfo.defaultProps = {
   rating: 0,
-  difficulty: '',
   onRate: f => f,
 };
 
