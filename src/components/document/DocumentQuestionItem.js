@@ -21,7 +21,7 @@ const DocumentQuestionItem = (props) => {
               <Col sm="12">
 
             <p className="c-document__question-info-title">Questão:</p>
-            <p className="c-document__question-info-statement">{` ${question.statement.substring(0, 150)}${question.statement.length >= 150 && ' ...'}`}</p>
+            <p className="c-document__question-info-statement">{ (question.statement.length>=350)? ` ${question.statement.substring(0, 350)}${' ...'}`  :  question.statement }</p>
             <p className="c-document__question-info-author">por: {' '} {question.author.name}</p>
               </Col>
         <Col sm="4" className="c-document__question-image">
