@@ -8,18 +8,19 @@ const MODAL_TYPES = {
   'alert': modalTypes.alertModal,
   'confirm': modalTypes.confirmModal,
   'delete': modalTypes.deleteModal,
-  'prompt': modalTypes.promptModal
+  'prompt': modalTypes.promptModal,
+  'document': modalTypes.documentModal,
 }
 
 const mapStateToProps = state => ({
-  ...state.modal
-})
+  ...state.modal,
+});
 
 class ModalContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
     };
     this.closeModal = this.closeModal.bind(this)
   }
@@ -50,7 +51,7 @@ class ModalContainer extends React.Component {
           ariaHideApp={false}
           overlayClassName="modal fade show"
           bodyOpenClassName="modal-open"
-          className="modal-dialog"
+          className="modal-dialog modal-lg"
           closeTimeoutMS={350}
         >
           <SpecifiedModal

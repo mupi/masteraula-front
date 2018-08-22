@@ -5,6 +5,11 @@ export const FETCH_DOCUMENT = 'FETCH_DOCUMENT';
 export const FETCH_DOCUMENT_SUCCESS = 'FETCH_DOCUMENT_SUCCESS';
 export const FETCH_DOCUMENT_FAILURE = 'FETCH_DOCUMENT_FAILURE';
 
+//Load preview document
+export const FETCH_PREVIEW_DOCUMENT = 'FETCH_PREVIEW_DOCUMENT';
+export const FETCH_PREVIEW_DOCUMENT_SUCCESS = 'FETCH_PREVIEW_DOCUMENT_SUCCESS';
+export const FETCH_PREVIEW_DOCUMENT_FAILURE = 'FETCH_PREVIEW_DOCUMENT_FAILURE';
+
 // Create new document
 export const CREATE_DOCUMENT = 'CREATE_DOCUMENT';
 export const CREATE_DOCUMENT_SUCCESS = 'CREATE_DOCUMENT_SUCCESS';
@@ -61,6 +66,22 @@ export const fetchDocument = (id) => {
     return documentService.fetchDocument(id).then(
       (activeDocument) => {
         dispatch(fetchDocumentSuccess(activeDocument));
+      }, (error) => {
+        dispatch(fetchDocumentFailure(error));
+      },
+    );
+  };
+};
+
+export const fetchPreviewDocument = (id) => {
+  function requestDocument() { return { type: FETCH_PREVIEW_DOCUMENT }; }
+  function fetchDocumentSuccess(previewDocument) { return { type: FETCH_PREVIEW_DOCUMENT_SUCCESS, previewDocument }; }
+  function fetchDocumentFailure(error) { return { type: FETCH_PREVIEW_DOCUMENT_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(requestDocument(id));
+    return documentService.fetchDocument(id).then(
+      (previewDocument) => {
+        dispatch(fetchDocumentSuccess(previewDocument));
       }, (error) => {
         dispatch(fetchDocumentFailure(error));
       },
@@ -177,7 +198,7 @@ export const switchActiveDocument = (doc) => {
   return { type: SWITCH_ACTIVE_DOCUMENT, activeDocument: doc };
 };
 
-// Switch active document
+// delete document document
 export const deleteDocumentSession = () => {
   localStorage.removeItem('activeDocument');
   return { type: DELETE_DOCUMENT_SESSION };

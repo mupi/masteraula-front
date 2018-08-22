@@ -43,7 +43,7 @@ class App extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.openAlertModal = this.openAlertModal.bind(this);
-    this.openConfirmModal = this.openConfirmModal.bind(this);
+    //this.openConfirmModal = this.openConfirmModal.bind(this);
     this.openDeleteModal = this.openDeleteModal.bind(this);
     this.openPromptModal = this.openPromptModal.bind(this);
     this.showInput = this.showInput.bind(this);
@@ -64,7 +64,7 @@ class App extends Component {
   }
 
   openAlertModal(event) {
-    this.props.showModal({
+    this.props.showModal({ 
       open: true,
       title: 'Alert Modal',
       message: 'Alert modal masteraula',
@@ -72,16 +72,7 @@ class App extends Component {
     }, 'alert');
   }
 
-  openConfirmModal(event) {
-    this.props.showModal({
-      open: true,
-      title: 'Confirm Modal',
-      message: 'Confirm modal masteraula',
-      confirmAction: this.closeModal,
-      closeModal: this.closeModal,
-    }, 'confirm');
-  }
-
+ 
   openDeleteModal(event) {
     this.props.showModal({
       open: true,

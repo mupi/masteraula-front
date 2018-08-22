@@ -4,6 +4,7 @@ import {
   Row, Container, Col, Button, Input, InputGroup, InputGroupAddon, Alert,
 } from 'reactstrap';
 import DocumentList from 'components/document/DocumentList';
+
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from '../HomeUser/HomeUserPage';
 
@@ -20,8 +21,10 @@ class ViewDocumentPage extends React.Component {
     }
   }
 
+  
+
   render() {
-    const { myDocumentsList, isFetching, switchActiveDocument, error } = this.props;
+    const { myDocumentsList, isFetching, error,  } = this.props;
     return (
       <HomeUserPage>
       {error ? (  
@@ -54,11 +57,12 @@ class ViewDocumentPage extends React.Component {
                 <Col sm="12">
                   <p  className="my-documents__total-results">{`${myDocumentsList ? (myDocumentsList.count) : 0} documentos encontrados`} </p>
                   {myDocumentsList
-                    && <DocumentList documents={myDocumentsList.results} switchActiveDocument={switchActiveDocument} />
+                    && <DocumentList  documents={myDocumentsList.results} {...this.props} />
                   }
                 </Col>
               )}
           </Row>
+          
         </Container>
       </HomeUserPage>);
   }
@@ -72,7 +76,7 @@ ViewDocumentPage.propTypes = {
   }).isRequired,
   listMyDocuments: PropTypes.func.isRequired,
   myDocumentsList: PropTypes.shape(),
-  switchActiveDocument: PropTypes.shape(),
+  switchActiveDocument: PropTypes.func,
   isFetching: PropTypes.bool.isRequired,
 };
 
