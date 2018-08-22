@@ -20,52 +20,14 @@ class DocumentList extends React.Component {
   }
 
   openDocumentModal(event, id) {
-    const { showModal, fetchPreviewDocument, isFetchingPreviewDocument } = this.props;
+    event.preventDefault();
+    const { showModal, fetchPreviewDocument, previewDocument, isFetchingPreviewDocument } = this.props;
     fetchPreviewDocument(parseInt(id, 10));
 
+    if(previewDocument && !isFetchingPreviewDocument )
       showModal({
         open: true,
-        document: { 
-          id:308,
-          name:'PROVA DE BIOLOGIA',
-          questions :[
-            {id:648,
-            question: {
-              disciplines: [
-                { name: 'Química' },
-                { name: 'Física' },
-              ],
-              source: 'ENEM',
-              year: '2010',
-              teaching_levels: [
-                {
-                  id: 1,
-                  name: 'Ensino Médio',
-                },
-                {
-                  id: 2,
-                  name: 'Ensino Fundamental',
-                },
-              ],
-              author: {
-                id: 8,
-                username: 'cp.rosaless@gmail.com',
-                name: 'Carmen Pamela Rosales Sedano',
-                email: 'cp.rosaless@gmail.com',
-              },
-              statement: 'Assinale a alternativa : a) O discurso feminista de Susanitar denota certo machismo ...',
-            },}
-          ],
-           create_date:"2018/08/21",
-           secret:true,
-           institution_name:null,
-           discipline_name:null,
-           professor_name:null,
-           student_indicator:false,
-           class_indicator:false,
-           score_indicator:false,
-           date_indicator:false
-          },
+        document: this.props.previewDocument,
         closeModal: this.closeModal,
         editDocument: this.editDocument,
       }, 'document');

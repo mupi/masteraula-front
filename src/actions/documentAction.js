@@ -77,7 +77,10 @@ export const fetchPreviewDocument = (id) => {
   function requestDocument() { return { type: FETCH_PREVIEW_DOCUMENT }; }
   function fetchDocumentSuccess(previewDocument) { return { type: FETCH_PREVIEW_DOCUMENT_SUCCESS, previewDocument }; }
   function fetchDocumentFailure(error) { return { type: FETCH_PREVIEW_DOCUMENT_FAILURE, error }; }
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    if (getState().document.isFetchingPreviewDocument) {
+      return 1;
+    }
     dispatch(requestDocument(id));
     return documentService.fetchDocument(id).then(
       (previewDocument) => {

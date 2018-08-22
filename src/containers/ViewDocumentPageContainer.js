@@ -5,7 +5,7 @@ import { showModal, hideModal } from 'actions/modalAction';
 
 // state.<reducer's name>.<property>
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => ({ 
   isFetching: state.document.isFetching,
   myDocumentsList: state.document.myDocumentsList,
   currentPage: state.document.currentPage,

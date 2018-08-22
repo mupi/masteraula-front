@@ -24,7 +24,7 @@ class ViewDocumentPage extends React.Component {
   
 
   render() {
-    const { myDocumentsList, isFetching, error,  } = this.props;
+    const { myDocumentsList, isFetching, error, switchActiveDocument } = this.props;
     return (
       <HomeUserPage>
       {error ? (  
