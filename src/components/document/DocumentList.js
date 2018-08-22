@@ -12,9 +12,9 @@ const OpenDocumentModalHeader = (props) => {
   };
 
   return (
-    <th onClick={onClickHandler}>
+    <td onClick={onClickHandler}>
       { children }
-    </th>
+    </td>
   );
 }
 

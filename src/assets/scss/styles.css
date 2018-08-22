@@ -822,6 +822,17 @@ CSS for UserProfile
     border: 1px solid rgba(0, 0, 0, 0.125);
     margin: 10px 0px;
     padding: 20px 10px; }
+  .c-document-modal__header-label {
+    font-style: italic;
+    margin-bottom: 0px; }
+  .c-document-modal__header-label--info {
+    font-style: normal; }
+  .c-document-modal__header-label--check {
+    font-style: normal;
+    font-size: 13px;
+    color: #1E5078; }
+  .c-document-modal__header-logo {
+    text-align: center; }
   .c-document-modal__question {
     position: relative;
     border-radius: 4px;
