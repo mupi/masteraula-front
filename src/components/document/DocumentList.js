@@ -4,6 +4,19 @@ import {
 } from 'reactstrap';
 import { history } from 'helpers/history';
 
+const OpenDocumentModalHeader = (props) => {
+  const { document, openDocumentModal, children } = props;
+
+  const onClickHandler = () => {
+    openDocumentModal(document.id);
+  };
+
+  return (
+    <th onClick={onClickHandler}>
+      { children }
+    </th>
+  );
+}
 
 class DocumentList extends React.Component {
   constructor(props) {
@@ -19,14 +32,14 @@ class DocumentList extends React.Component {
     hideModal();
   }
 
-  openDocumentModal(event, id) {
-    event.preventDefault();
+  openDocumentModal(id) {
+    // event.preventDefault();
     const { showModal, fetchPreviewDocument, previewDocument, isFetchingPreviewDocument } = this.props;
-    fetchPreviewDocument(parseInt(id, 10));
 
+    fetchPreviewDocument(parseInt(id, 10));
       showModal({
         open: true,
-        document: this.props.previewDocument,
+        document: previewDocument,
         closeModal: this.closeModal,
         editDocument: this.editDocument,
       }, 'document');
@@ -68,9 +81,9 @@ class DocumentList extends React.Component {
           <tbody align="center">
             {documents.map((document, i) => (
               <tr key={i} role={i} className={ ((i%2)=== 0)? 'even' : 'odd' }>
-                <th scope="row"  onClick={e => this.openDocumentModal(e, document.id)}>
+                <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
                   {document.name}
-                </th>
+                </OpenDocumentModalHeader>
                 <td>
                   {document.create_date}
                 </td>
