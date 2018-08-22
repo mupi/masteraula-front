@@ -5,13 +5,25 @@ import DocumentQuestionItem from 'components/document/DocumentQuestionItem';
 import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
 
 import {
-  Row, Col, Button, Label,
+  Row, Col, Button, Label, Alert
 }
   from 'reactstrap';
 
 const DocumentModal = ({
-  document, closeModal, editDocument,
-}) => (
+  document, closeModal, editDocument, isFetchingPreviewDocument
+}) => {
+  if (isFetchingPreviewDocument) {
+    return (
+      <div className="modal__content modal-content">
+      <Alert className="alert--warning" color="warning">
+            Carregando ...
+        </Alert>
+      </div>
+    );
+  }
+
+  
+  return (
   <div className="modal__content modal-content">
     <div className="modal__header modal-header">
       <h5
@@ -80,6 +92,7 @@ const DocumentModal = ({
     </div>
   </div>
 );
+};
 
 const mapStateToProps = state => ({
   document: state.document.previewDocument,
