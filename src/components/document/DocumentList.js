@@ -1,38 +1,57 @@
 import React from 'react';
 import {
-  Row, Col, Table, Modal, ModalHeader, ModalBody, Label, Button, ModalFooter,
+  Row, Col, Table, Button,
 } from 'reactstrap';
-import DisciplineList from 'components/disciplines/DisciplineList';
-import QuestionSourceYear from 'components/question/QuestionSourceYear';
-import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
-import QuestionContent from 'components/question/QuestionContent';
 import { history } from 'helpers/history';
+
+const OpenDocumentModalHeader = (props) => {
+  const { document, openDocumentModal, children } = props;
+
+  const onClickHandler = () => {
+    openDocumentModal(document.id);
+  };
+
+  return (
+    <th onClick={onClickHandler}>
+      { children }
+    </th>
+  );
+}
 
 class DocumentList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      document: '',
-    };
-    this.toggle = this.toggle.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.openDocumentModal = this.openDocumentModal.bind(this);
+    this.editDocument = this.editDocument.bind(this);
+
   }
 
-  toggle(document) {
-    if (document) {
-      this.setState({
-        document,
-      });
-    } else {
-      this.setState({
-        document: '',
-      });
-    }
+  closeModal() {
+    const { hideModal } = this.props;
+    hideModal();
   }
+
+  openDocumentModal(id) {
+    // event.preventDefault();
+    const { showModal, fetchPreviewDocument, previewDocument, isFetchingPreviewDocument } = this.props;
+
+    fetchPreviewDocument(parseInt(id, 10));
+      showModal({
+        open: true,
+        document: previewDocument,
+        closeModal: this.closeModal,
+        editDocument: this.editDocument,
+      }, 'document');
+  }
+  
 
   editDocument(document) {
     const { switchActiveDocument } = this.props;
+    console.log(document);
     switchActiveDocument(document);
     history.push('/edit-document');
+    this.closeModal();
   }
 
   render() {
@@ -41,7 +60,8 @@ class DocumentList extends React.Component {
       <Row className="l-my-documents-list">
       <Col xs="12">
       <div>
-        <Table resopnsive>
+        
+        <Table responsive>
           <thead align="center">
             <tr>
               <th>
@@ -61,9 +81,9 @@ class DocumentList extends React.Component {
           <tbody align="center">
             {documents.map((document, i) => (
               <tr key={i} role={i} className={ ((i%2)=== 0)? 'even' : 'odd' }>
-                <th scope="row" onClick={() => this.toggle(document)}>
+                <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
                   {document.name}
-                </th>
+                </OpenDocumentModalHeader>
                 <td>
                   {document.create_date}
                 </td>
@@ -79,92 +99,6 @@ class DocumentList extends React.Component {
             ))}
           </tbody>
         </Table>
-        {this.state.document
-          ? (
-            <Modal className="c-document-modal" isOpen={!!this.state.document} toggle={() => this.toggle()} size="lg">
-              <ModalHeader toggle={() => this.toggle()}>
-                <div>
-                  {this.state.document.name}
-                </div>
-              </ModalHeader>
-              <ModalBody className="c-document-modal__body">
-                <Row>
-                  <div className="auto-margin-left-element btn-margin-right">
-                    <ExportDocumentButton color="success" />
-                  </div>
-                  <div>
-                    <Button title="Editar documento" className="btn-success" onClick={()=>this.editDocument(this.state.document)}>
-                      <i className="fa fa-pencil btn__icon" />
-                      <span className="button-text">
-                        Editar
-                      </span>
-                    </Button>
-                  </div>
-                </Row>
-                <Row className="c-document-modal__header-info">
-                  <Col xs="2">
-                    <Label for="upload-avatar" className="upload-avatar">
-                      <div className="thumbnail">
-                        <img src={this.state.document.logo ? this.state.document.logo : 'http://via.placeholder.com/100x100'} alt="logo-documento" />
-                      </div>
-                    </Label>
-                  </Col>
-                  <Col>
-                    <Label>
-                      {this.state.document.institution_name ? this.state.document.institution_name : 'Nome da instituição'}
-                    </Label>
-                    <br />
-                    <Label>
-                        {this.state.document.discipline_name ? this.state.document.discipline_name : 'Curso/Disciplina'}
-                    </Label>
-                    {' | '}
-                    <Label>
-                      {this.state.document.professor_name ?
-                          this.state.document.professor_name : 'Professor(a)'}
-                    </Label>
-                      <br />
-                    {this.state.document.student_indicator ? (
-                        <p>Nome:</p>
-                    ) : ''}
-                    {this.state.document.class_indicator ? 'Turma: _________  ' : ''}
-                    {this.state.document.date_indicator ? 'Data: ___/___/___  ' : ''}
-                    {this.state.document.score_indicator ? 'Nota: _______  ' : ''}
-                    </Col>
-                  </Row>
-                {this.state.document.questions.map((questionOrder, i) => (
-                  <div key={i} className="c-document-modal__question">
-                    <Row>
-                      <Col sm="12">
-                        <DisciplineList list={questionOrder.disciplines} />
-                        <QuestionSourceYear source={questionOrder.source} year={questionOrder.year} />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <div className="c-document-modal__question-content">
-                        <b className="c-document-modal__question-number">
-                          {i + 1}
-                          {')'}
-                        </b>
-                        {' '}
-                        <QuestionContent question={questionOrder.question} />
-                      </div>
-                    </Row>
-                  </div>
-
-                ))}
-              </ModalBody>
-              <ModalFooter className="c-document-modal__footer">
-                <Button color="primary" onClick={() => this.toggle()}>
-                  <i className="fa fa-sign-out btn__icon" />
-                  Fechar
-                </Button>
-                <Button color="danger" onClick={() => this.toggle()}>
-                  <i className="fa fa-trash btn__icon" />
-                  Apagar
-                </Button>
-              </ModalFooter>
-            </Modal>
-          ) : ''}
       </div>
       </Col>
       </Row>

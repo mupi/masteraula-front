@@ -28,6 +28,33 @@ function fetchDocument(id) {
     });
 }
 
+
+// Fetch a Document using ID for preview
+function fetchPreviewDocument(id) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  return fetch(`${apiUrl}/documents/${id}/`, requestOptions)
+    .then(handleResponse)
+    .then((previewDocument) => {
+      return previewDocument;
+    });
+}
+
 // Create a New Document
 function createDocument(newDocumentData) {
   const requestOptions = {
@@ -164,6 +191,7 @@ function removeSelectedQuestion(idDocument, idQuestion) {
 
 const documentService = {
   fetchDocument,
+  fetchPreviewDocument,
   createDocument,
   updateDocument,
   listMyDocuments,

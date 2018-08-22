@@ -1,5 +1,6 @@
 import {
   FETCH_DOCUMENT, FETCH_DOCUMENT_SUCCESS, FETCH_DOCUMENT_FAILURE,
+  FETCH_PREVIEW_DOCUMENT, FETCH_PREVIEW_DOCUMENT_SUCCESS, FETCH_PREVIEW_DOCUMENT_FAILURE,
   CREATE_DOCUMENT, CREATE_DOCUMENT_SUCCESS, CREATE_DOCUMENT_FAILURE,
   UPDATE_DOCUMENT, UPDATE_DOCUMENT_SUCCESS, UPDATE_DOCUMENT_FAILURE,
   LIST_MY_DOCUMENTS, LIST_MY_DOCUMENTS_SUCCESS, LIST_MY_DOCUMENTS_FAILURE,
@@ -36,6 +37,22 @@ export const document = (state = initialState, action) => {
     case FETCH_DOCUMENT_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
+        error: action.error,
+      });
+
+    case FETCH_PREVIEW_DOCUMENT:
+      return Object.assign({}, state, {
+        isFetchingPreviewDocument: true,
+        error: null,
+      });
+    case FETCH_PREVIEW_DOCUMENT_SUCCESS:
+      return Object.assign({}, state, {
+        previewDocument: action.previewDocument,
+        isFetchingPreviewDocument: false,
+      });
+    case FETCH_PREVIEW_DOCUMENT_FAILURE:
+      return Object.assign({}, state, {
+        isFetchingPreviewDocument: false,
         error: action.error,
       });
 

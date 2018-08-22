@@ -8,27 +8,26 @@ import { getTeachingLevel } from 'helpers/question';
 import Discipline from 'components/disciplines/Discipline';
 
 const DocumentQuestionItem = (props) => { 
-  const { question, activeDocument, removeSelectedQuestion } = props;
-
+  const { question, activeDocument, removeSelectedQuestion, readOnly=false } = props;
   return (
     <div className="c-document__question">
+     { (!readOnly ) ? (
       <RemoveQuestionButton
         questionId={question.id}
         activeDocumentId={activeDocument.id}
         removeSelectedQuestion={removeSelectedQuestion}
-      />
-      { question.statement &&
-      <Row>
-              <Col sm="12">
-
+      /> ) : ' ' }
+      { question.statement && (
+        <Row>
+          <Col sm="12">
             <p className="c-document__question-info-title">Questão:</p>
             <p className="c-document__question-info-statement">{ (question.statement.length>=350)? ` ${question.statement.substring(0, 350)}${' ...'}`  :  question.statement }</p>
             <p className="c-document__question-info-author">por: {' '} {question.author.name}</p>
-              </Col>
-        <Col sm="4" className="c-document__question-image">
-          <img className="c-question__img" src="https://www.asomadetodosafetos.com/content/uploads/2016/05/Tirinha-Mafalda5.jpg" alt="objeto-aprendizagem" />
-        </Col>
-        <Col sm="8" className="c-document__question-info">
+          </Col>
+          <Col sm="4" className="c-document__question-image">
+            <img className="c-question__img" src="https://www.asomadetodosafetos.com/content/uploads/2016/05/Tirinha-Mafalda5.jpg" alt="objeto-aprendizagem" />
+          </Col>
+          <Col sm="8" className="c-document__question-info">
             <Row>
               <Col sm="12">
                 <p className="c-document__question-info-subtitle">Informações:</p>
@@ -39,33 +38,36 @@ const DocumentQuestionItem = (props) => {
                 <p className="c-document__question-info-row">Dificuldade: {' '} <span className="c-document__question-info-detail c-document__question-info-detail--green"> {getTeachingLevel(question.difficulty)}</span> </p>
                 <p className="c-document__question-info-row">Níveis de Ensino: {' '}  {question.teaching_levels && question.teaching_levels.map((level, i) => (
                   <span key={i} className="c-document__question-info-detail c-document__question-info-detail--green">
-                  {level.name}
-                </span>
+                    {level.name}
+                  </span>
                 ))}
                 </p>
                 <p className="c-document__question-info-row">Disciplinas: {' '}  {question.disciplines && question.disciplines.map((discipline, i) => (
                   <span key={i} className="c-document__question-info-detail c-document__question-info-detail--pink">
-                  {discipline.name}
-                </span>
+                    {discipline.name}
+                  </span>
                 ))}
                 </p>
                
 
               </Col>
             </Row>
-            <Row>
-              <div className="c-document__question-view-more col-md-3 offset-md-9">
-                <Button>
-                  <i className="fa fa-search" />
-                  {' '}
-                  <span className="button-text">
-                    Ver mais
-                  </span>
-                </Button>
-              </div>
-            </Row>
-        </Col>
-      </Row>}
+            
+            { (!readOnly ) ? (
+              <Row>
+                <div className="c-document__question-view-more col-md-3 offset-md-9">
+                  <Button>
+                    <i className="fa fa-search" />
+                    {' '}
+                    <span className="button-text">
+                      Ver mais
+                    </span>
+                  </Button>
+                </div>
+              </Row>) : ' ' }
+          </Col>
+        </Row>
+      )}
     </div>
   );
 };
