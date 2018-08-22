@@ -50,35 +50,33 @@ const DocumentModal = ({
         </div>
       </Row>
       <Row className="c-document-modal__header-info">
-        <Col xs="2">
+        <Col xs="12" sm="2" className="c-document-modal__header-logo">
           <Label for="upload-avatar" className="upload-avatar">
             <div className="thumbnail">
               <img src={document && document.logo ? document.logo : 'http://via.placeholder.com/100x100'} alt="logo-documento" />
             </div>
           </Label>
         </Col>
-        <Col>
+        <Col xs="12"  sm="10">
           <Label>
-            {document && document.institution_name ? document.institution_name : 'Nome da instituição'}
+            {document && document.institution_name ? ( <span className="c-document-modal__header-label">Nome da instituição:{' '}<span  className="c-document-modal__header-label--info">{document.institution_name}</span></span>) : <span className="c-document-modal__header-label">Nome da instituição</span>}
           </Label>
           <br />
           <Label>
-            {document && document.discipline_name ? document.discipline_name : 'Curso/Disciplina'}
-          </Label>
-          {' | '}
-          <Label>
-            {document && document.professor_name
-              ? document.professor_name : 'Professor(a)'}
+            {document && document.discipline_name ?  ( <span className="c-document-modal__header-label">Curso/Disciplina:{' '}<span  className="c-document-modal__header-label--info">{document.discipline_name}</span></span>) : <span className="c-document-modal__header-label">Curso/Disciplina</span>}
           </Label>
           <br />
-          {document && document.student_indicator ? (
-            <p>
-              Nome:
-            </p>
-          ) : ''}
-          {document && document.class_indicator ? 'Turma: _________  ' : ''}
-          {document && document.date_indicator ? 'Data: ___/___/___  ' : ''}
-          {document && document.score_indicator ? 'Nota: _______  ' : ''}
+          <Label>
+            {document && document.professor_name ?  ( <span className="c-document-modal__header-label">Professor(a):{' '}<span  className="c-document-modal__header-label--info">{document.professor_name}</span></span>) : <span className="c-document-modal__header-label">Professor(a)</span>}
+          </Label>
+          <p className="c-document-modal__header-label">
+                Mostrar os seguintes campos em branco:
+          </p>
+          {document && document.student_indicator ? <span className="c-document-modal__header-label--check"><i className="fa fa-check"></i> Nome Aluno </span> : ''}
+          {document && document.class_indicator ? <span className="c-document-modal__header-label--check"><i className="fa fa-check"></i> Turma </span> : ''}
+          {document && document.date_indicator ? <span className="c-document-modal__header-label--check"><i className="fa fa-check"></i> Data </span> : ''}
+          {document && document.score_indicator ? <span className="c-document-modal__header-label--check"><i className="fa fa-check"></i> Nota </span> : ''}
+
         </Col>
       </Row>
       {document && document.questions.map((questionOrder, i) => (

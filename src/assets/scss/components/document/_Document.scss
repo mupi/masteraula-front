@@ -158,6 +158,8 @@
   background: $color-ma-white;
   border-radius: 5px;
 
+  
+
   &__header-info{
     position: relative;
     border-radius: 4px;
@@ -167,6 +169,25 @@
     border: 1px solid rgba(0, 0, 0, 0.125);
     margin: 10px 0px;
     padding: 20px 10px;
+  }
+
+  &__header-label{
+    font-style: italic;
+    margin-bottom: 0px;
+  }
+
+  &__header-label--info{
+    font-style: normal;
+  }
+
+  &__header-label--check{
+    font-style: normal;
+    font-size:13px;
+    color: $color-ma-blue;
+  }
+
+  &__header-logo{
+    text-align: center;
   }
 
   &__question{
