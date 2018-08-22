@@ -317,7 +317,7 @@ li.question-category-filter.list-group-item {
   margin-top: 0px;
   margin-bottom: 0px; }
 
-li.question-category-filter a {
+li.question-category-filter div {
   height: 35px;
   border: none;
   outline: none;

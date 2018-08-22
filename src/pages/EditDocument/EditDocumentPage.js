@@ -12,7 +12,7 @@ class EditDocumentPage extends Component {
   componentDidMount() {
     const { fetchDocument, activeDocument } = this.props;
     if (!activeDocument) {
-      history.push('/documents/1');
+      history.replace('/documents/1');
     } else {
       fetchDocument(parseInt(activeDocument.id, 10));
     }
