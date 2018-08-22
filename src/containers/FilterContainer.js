@@ -24,16 +24,19 @@ const mapStateToProps = state => ({
 });
 
 const toogleSelectedDisciplineFilter = (idDiscipline, value) => {
+  history.replace('/question-base/1');
   return value
     ? addSelectedDisciplineFilter(idDiscipline) : removeSelectedDisciplineFilter(idDiscipline);
 };
 
 const toogleSelectedTeachingLevelFilter = (idTeachingLevel, value) => {
+  history.replace('/question-base/1');
   return value
     ? addSelectedTeachingLevelFilter(idTeachingLevel) : removeSelectedTeachingLevelFilter(idTeachingLevel);
 };
 
 const toogleSelectedDifficultyFilter = (difficultyType, value) => {
+  history.replace('/question-base/1');
   return value
     ? addSelectedDifficultyFilter(difficultyType) : removeSelectedDifficultyFilter(difficultyType);
 };
