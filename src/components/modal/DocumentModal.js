@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import DocumentQuestionItem from 'components/document/DocumentQuestionItem';
 import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
@@ -16,7 +17,7 @@ const DocumentModal = ({
       <h5
         className="modal-title"
       >
-        {document.name}
+        {document && document.name} 
       </h5>
       <button type="button" className="close" aria-label="Close" onClick={closeModal}>
         <span aria-hidden="true">&times;</span>
@@ -40,32 +41,32 @@ const DocumentModal = ({
         <Col xs="2">
           <Label for="upload-avatar" className="upload-avatar">
             <div className="thumbnail">
-              <img src={document.logo ? document.logo : 'http://via.placeholder.com/100x100'} alt="logo-documento" />
+              <img src={document && document.logo ? document.logo : 'http://via.placeholder.com/100x100'} alt="logo-documento" />
             </div>
           </Label>
         </Col>
         <Col>
           <Label>
-            {document.institution_name ? document.institution_name : 'Nome da instituição'}
+            {document && document.institution_name ? document.institution_name : 'Nome da instituição'}
           </Label>
           <br />
           <Label>
-            {document.discipline_name ? document.discipline_name : 'Curso/Disciplina'}
+            {document && document.discipline_name ? document.discipline_name : 'Curso/Disciplina'}
           </Label>
           {' | '}
           <Label>
-            {document.professor_name
+            {document && document.professor_name
               ? document.professor_name : 'Professor(a)'}
           </Label>
           <br />
-          {document.student_indicator ? (
+          {document && document.student_indicator ? (
             <p>
               Nome:
             </p>
           ) : ''}
-          {document.class_indicator ? 'Turma: _________  ' : ''}
-          {document.date_indicator ? 'Data: ___/___/___  ' : ''}
-          {document.score_indicator ? 'Nota: _______  ' : ''}
+          {document && document.class_indicator ? 'Turma: _________  ' : ''}
+          {document && document.date_indicator ? 'Data: ___/___/___  ' : ''}
+          {document && document.score_indicator ? 'Nota: _______  ' : ''}
         </Col>
       </Row>
       {document && document.questions.map((questionOrder, i) => (
@@ -80,6 +81,11 @@ const DocumentModal = ({
   </div>
 );
 
+const mapStateToProps = state => ({
+  document: state.document.previewDocument,
+  isFetchingPreviewDocument: state.document.isFetchingPreviewDocument,
+});
+
 DocumentModal.propTypes = {
   closeModal: PropTypes.func,
 };
@@ -88,4 +94,4 @@ DocumentModal.defaultProps = {
   closeModal: f => f,
 };
 
-export default DocumentModal;
+export default connect(mapStateToProps, null)(DocumentModal);

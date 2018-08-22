@@ -14,7 +14,7 @@ class DocumentList extends React.Component {
 
   }
 
-  closeModal(event) {
+  closeModal() {
     const { hideModal } = this.props;
     hideModal();
   }
@@ -24,7 +24,6 @@ class DocumentList extends React.Component {
     const { showModal, fetchPreviewDocument, previewDocument, isFetchingPreviewDocument } = this.props;
     fetchPreviewDocument(parseInt(id, 10));
 
-    if(previewDocument && !isFetchingPreviewDocument )
       showModal({
         open: true,
         document: this.props.previewDocument,
@@ -34,10 +33,12 @@ class DocumentList extends React.Component {
   }
   
 
-  editDocument(e, document) {
+  editDocument(document) {
     const { switchActiveDocument } = this.props;
+    console.log(document);
     switchActiveDocument(document);
     history.push('/edit-document');
+    this.closeModal();
   }
 
   render() {
