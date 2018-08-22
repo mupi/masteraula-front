@@ -10,7 +10,6 @@ const filters = {
   ],
 };
 
-
 class SidebarFilters extends Component {
   componentDidMount() {
     this.props.listDisciplineFilters();
@@ -20,9 +19,7 @@ class SidebarFilters extends Component {
   render() {
     const {
       disciplineFilters, teachingLevelFilters, isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, error,
-      addSelectedDisciplineFilter,removeSelectedDisciplineFilter,
-      addSelectedTeachingLevelFilter, removeSelectedTeachingLevelFilter,
-      addSelectedDifficultyFilter, removeSelectedDifficultyFilter,
+      toogleSelectedDisciplineFilter, toogleSelectedTeachingLevelFilter, toogleSelectedDifficultyFilter,
     } = this.props;
 
     if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters) {
@@ -30,11 +27,9 @@ class SidebarFilters extends Component {
         <ListGroup className="question-all-filters">
           <h6>
             <i className="fa fa-filter" />
-            {' '}
-Filtros
+            {' Filtros'}
           </h6>
           <Alert className="alert--warning" color="warning">
-
               Carregando ...
           </Alert>
         </ListGroup>
@@ -57,26 +52,22 @@ Filtros
       <ListGroup className="question-all-filters">
         <h6>
           <i className="fa fa-filter" />
-          {' '}
-Filtros
+          {' Filtros'}
         </h6>
         <SidebarFilter
           name="Disciplinas"
-          list={disciplineFilters}
-          addFilter={addSelectedDisciplineFilter}
-          removeFilter={removeSelectedDisciplineFilter}
+          filterList={disciplineFilters}
+          toogleFilter={toogleSelectedDisciplineFilter}
         />
         <SidebarFilter
           name="Nível de Ensino"
-          list={teachingLevelFilters}
-          addFilter={addSelectedTeachingLevelFilter}
-          removeFilter={removeSelectedTeachingLevelFilter}
+          filterList={teachingLevelFilters}
+          toogleFilter={toogleSelectedTeachingLevelFilter}
         />
         <SidebarFilter
           name="Dificuldade"
-          list={filters.difficultyLevels}
-          addFilter={addSelectedDifficultyFilter}
-          removeFilter={removeSelectedDifficultyFilter}
+          filterList={filters.difficultyLevels}
+          toogleFilter={toogleSelectedDifficultyFilter}
         />
       </ListGroup>
     );

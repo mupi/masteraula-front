@@ -3,34 +3,28 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import { UncontrolledCollapse, Button, Input } from 'reactstrap';
 
 
-const SidebarFilter = ({name, list, addFilter, removeFilter, filter}) => {
+const SidebarFilter = ({name, filterList, toogleFilter}) => {
 
-  const handleFilter = (e) => {
-    const valueFilter = e.target.value;
-    if (e.target.checked) {
-      addFilter(valueFilter);
-    } else {
-      removeFilter(valueFilter);
-    }
+  const handleFilter = (event) => {
+    const valueFilter = event.target.value;
+    toogleFilter(valueFilter, event.target.checked);
   };
 
-  return(
-  <ListGroupItem className="question-category-filter">
-    <a>
-      {name}
-      <i className="fa fa-angle-left" />
-    </a>
-    <ListGroup className="question-single-filter">
-      {list && list.map((filter, i) => (
-        <ListGroupItem key={i}>
-          {' '}
-          <Input type="checkbox" value={filter.id} onClick={e => handleFilter(e)} />
-          {' '}
-          {filter.name}
-        </ListGroupItem>
-      ))}
-    </ListGroup>
-  </ListGroupItem>
+  return (
+    <ListGroupItem className="question-category-filter">
+      <div>
+        {name}
+        <i className="fa fa-angle-left" />
+      </div>
+      <ListGroup className="question-single-filter">
+        {filterList && filterList.map((filter, i) => (
+          <ListGroupItem key={i}>
+            <Input type="checkbox" value={filter.id} onClick={handleFilter} />
+            {filter.name}
+          </ListGroupItem>
+        ))}
+      </ListGroup>
+    </ListGroupItem>
   );
 };
 

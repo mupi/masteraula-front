@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { listQuestions } from 'actions/questionAction';
+import { history } from 'helpers/history';
 
 import SidebarFilters from 'components/sidebar/SidebarFilters';
 import {
@@ -22,15 +23,28 @@ const mapStateToProps = state => ({
 
 });
 
+const toogleSelectedDisciplineFilter = (idDiscipline, value) => {
+  return value
+    ? addSelectedDisciplineFilter(idDiscipline) : removeSelectedDisciplineFilter(idDiscipline);
+};
+
+const toogleSelectedTeachingLevelFilter = (idTeachingLevel, value) => {
+  return value
+    ? addSelectedTeachingLevelFilter(idTeachingLevel) : removeSelectedTeachingLevelFilter(idTeachingLevel);
+};
+
+const toogleSelectedDifficultyFilter = (difficultyType, value) => {
+  return value
+    ? addSelectedDifficultyFilter(difficultyType) : removeSelectedDifficultyFilter(difficultyType);
+};
+
+
 const mapDispatchToProps = dispatch => ({
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
   listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
-  addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
-  removeSelectedDisciplineFilter: idDiscipline => dispatch(removeSelectedDisciplineFilter(idDiscipline)),
-  addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(addSelectedTeachingLevelFilter(idTeachingLevel)),
-  removeSelectedTeachingLevelFilter: idTeachingLevel => dispatch(removeSelectedTeachingLevelFilter(idTeachingLevel)),
-  addSelectedDifficultyFilter: difficultyType => dispatch(addSelectedDifficultyFilter(difficultyType)),
-  removeSelectedDifficultyFilter: difficultyType => dispatch(removeSelectedDifficultyFilter(difficultyType)),
+  toogleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toogleSelectedDisciplineFilter(idDiscipline, value)),
+  toogleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toogleSelectedTeachingLevelFilter(idTeachingLevel, value)),
+  toogleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toogleSelectedDifficultyFilter(difficultyType, value)),
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
 });
 
