@@ -26,21 +26,21 @@ const Menu = (props) => {
         <Link to="/question-base/1">
           <i className="fa fa-home" />
           {' '}
-Home
+          Home
         </Link>
       </NavItem>
       <NavItem>
         <Link to="/user-profile">
           <i className="fa fa-user" />
           {' '}
-Meu profile
+          Meu profile
         </Link>
       </NavItem>
       <NavItem>
         <Link onClick={(e) => { e.preventDefault(); logout(); }} to="/">
           <i className="fa fa-sign-out" />
           {' '}
-Logout
+          Logout
         </Link>
       </NavItem>
     </Nav>
@@ -50,7 +50,7 @@ Logout
     <Nav className="ml-auto" navbar>
       <NavItem>
         <Link exact="true" to="/">
-Home
+          Home
         </Link>
       </NavItem>
       <NavItem>

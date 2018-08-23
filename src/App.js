@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 
 import LoginModal from 'components/login/LoginModal';
@@ -112,7 +112,7 @@ class App extends Component {
                 <Route path="/user-profile" component={UserProfilePageContainer} />
                 <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
                 <Route path="/edit-document" component={EditDocumentPageContainer} />
-                <Route component={NotFoundPage} />
+                <Redirect from="/" to="/question-base/1" />
               </Switch>
             )
             : (
