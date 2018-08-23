@@ -43,16 +43,6 @@ const CreateDocumentForm = (props) => {
     );
 }
 
-
-const validate = (values) => {
-  const errors = {};
-  if (!values.name) {
-    errors.name = 'Insira um nome de documento ';
-  }
-  return errors;
-};
-
-
 const mapStateToProps = state => ({
   modal: state.document.modal,
 });
@@ -68,5 +58,4 @@ export default connect(
   mapDispatchToProps,
 )(reduxForm({
   form: 'create_document',
-  validate,
 })(CreateDocumentForm));

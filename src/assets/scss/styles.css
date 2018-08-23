@@ -486,6 +486,13 @@ a.c_sidebar__document-link:hover {
     margin-right: 10px; }
   .question-card__body {
     padding: 15px; }
+    .question-card__body .question-info {
+      font-size: 12px;
+      margin-bottom: 0px;
+      padding: 5px; }
+    .question-card__body .disciplines__item {
+      font-size: 12px;
+      padding: 5px; }
   .question-card__added {
     background: #F3B232;
     color: #FFFFFF;
