@@ -1071,6 +1071,11 @@ body .container-fluid .row {
   border-top: transparent;
   padding: 0rem 0rem 0rem 0rem; }
 
+.modal-body .form-group span {
+  font-size: 12px;
+  color: #d9534f;
+  margin-left: 2px; }
+
 .modal.show {
   display: block !important;
   background-color: rgba(0, 0, 0, 0.4);
