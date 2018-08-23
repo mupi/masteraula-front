@@ -1,4 +1,5 @@
 import { documentService } from 'services';
+import { history } from 'helpers/history';
 
 // Load single document
 export const FETCH_DOCUMENT = 'FETCH_DOCUMENT';
@@ -101,7 +102,8 @@ export const createDocument = (props) => {
     dispatch(createNewDocument(props));
     return documentService.createDocument(props).then(
       (newDocument) => {
-        dispatch(createDocumentSuccess(newDocument));
+        dispatch(createDocumentSuccess(newDocument)); 
+        history.push('/question-base/1');
       },
       (error) => {
         dispatch(createDocumentFailure(error));

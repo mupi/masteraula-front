@@ -489,10 +489,12 @@ a.c_sidebar__document-link:hover {
     .question-card__body .question-info {
       font-size: 12px;
       margin-bottom: 0px;
-      padding: 5px; }
+      padding: 5px;
+      margin-right: 5px; }
     .question-card__body .disciplines__item {
       font-size: 12px;
-      padding: 5px; }
+      padding: 5px;
+      margin-right: 5px; }
   .question-card__added {
     background: #F3B232;
     color: #FFFFFF;
