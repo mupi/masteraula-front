@@ -51,7 +51,7 @@ const CreateDocumentForm = (props) => {
           type="text"
           name="name"
           id="name"
-          placeholder="Digite o nome do documento"
+          label="Digite o nome do documento"
         />
       </FormGroup>
       <FormGroup check>
