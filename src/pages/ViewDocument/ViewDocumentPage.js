@@ -24,7 +24,7 @@ class ViewDocumentPage extends React.Component {
   
 
   render() {
-    const { myDocumentsList, isFetching, error, switchActiveDocument } = this.props;
+    const { myDocumentsList, isFetching, error } = this.props;
     return (
       <HomeUserPage>
       {error ? (  
@@ -76,13 +76,11 @@ ViewDocumentPage.propTypes = {
   }).isRequired,
   listMyDocuments: PropTypes.func.isRequired,
   myDocumentsList: PropTypes.shape(),
-  switchActiveDocument: PropTypes.func,
   isFetching: PropTypes.bool.isRequired,
 };
 
 ViewDocumentPage.defaultProps = {
   myDocumentsList: null,
-  switchActiveDocument: null,
 };
 
 export default ViewDocumentPage;

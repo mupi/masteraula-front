@@ -28,7 +28,7 @@ QuestionList.propTypes = {
 QuestionList.defaultProps = {
   questions: [],
   count: 0,
-  sm: 4,
+  sm: "4",
 };
 
 export default QuestionList;
