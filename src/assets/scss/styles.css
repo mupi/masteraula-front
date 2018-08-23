@@ -591,6 +591,11 @@ a.c_sidebar__document-link:hover {
     padding: 0px 10px;
     border-bottom: 0px; }
 
+.c-login__modal-content .form-group span {
+  font-size: 12px;
+  color: red;
+  margin-left: 2px; }
+
 /*
 CSS for RegisterPage
 */

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Button, Form, FormGroup, Col,
+  Button, Form, FormGroup, Col, Input
 } from 'reactstrap';
 import { Alert } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -9,6 +9,36 @@ import { Field, reduxForm } from 'redux-form';
 
 import { toggleModal } from 'actions/loginAction';
 import { resetForgotPasswordForm } from 'actions/forgotPasswordAction';
+
+
+const renderField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error, warning },
+}) => (
+  <div>
+    <Input
+      {...input}
+      placeholder={label}
+      type={type}
+    />
+    { touched
+      && ((error && (
+      <span>
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
+  </div>
+);
 
 const LoginForm = (props) => {
   const {
@@ -24,8 +54,10 @@ const LoginForm = (props) => {
             type="email"
             name="email"
             id="exampleEmail"
-            placeholder="Digite seu email"
-            className="form-control"
+            label="Digite seu email"
+            className="form-control login-field"
+            component={renderField}
+
           />
         </FormGroup>
         <FormGroup>
@@ -34,8 +66,10 @@ const LoginForm = (props) => {
             type="password"
             name="password"
             id="examplePassword"
-            placeholder="Digite sua senha"
-            className="form-control"
+            label="Digite sua senha"
+            className="form-control login-field"
+            component={renderField}
+
           />
         </FormGroup>
         {error && (
@@ -46,17 +80,31 @@ const LoginForm = (props) => {
         <div className="text-center">
           <FormGroup>
             <NavLink to="/esqueci-senha" onClick={() => toggleModal(modal)}>
-Esqueci minha senha
+              Esqueci minha senha
             </NavLink>
           </FormGroup>
           <Button type="submit">
-Entrar
+              Entrar
           </Button>
         </div>
       </Form>
     </Col>
   );
 };
+
+const validate = values => {
+  const errors = {};
+  if (!values.email) {
+    errors.email = 'Insira seu email'
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = ' email sem formato correto'
+  }
+
+  if (!values.password) {
+    errors.password = ' Insira sua senha';
+  }
+  return errors;
+}
 
 const mapStateToProps = state => ({
   modal: state.login.modal,
@@ -74,4 +122,5 @@ export default connect(
   mapDispatchToProps,
 )(reduxForm({
   form: 'login',
+  validate,
 })(LoginForm));
