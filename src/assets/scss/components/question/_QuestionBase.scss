@@ -36,6 +36,19 @@
 
     &__body{
       padding: 15px;
+
+      .question-info {
+        font-size: 12px;
+        margin-bottom: 0px;
+        padding:5px;
+        margin-right: 5px;
+      }
+
+      .disciplines__item {
+        font-size: 12px;
+        padding: 5px;
+        margin-right: 5px;
+    }
     }
 
     &__image{
@@ -48,7 +61,6 @@
       cursor: default !important;
     }
 }
-
 
 
 

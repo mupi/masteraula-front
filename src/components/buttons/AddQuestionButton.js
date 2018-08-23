@@ -26,12 +26,12 @@ const AddQuestionButton = ({
 
 AddQuestionButton.propTypes = {
   customClass: PropTypes.string.isRequired,
-  questionId: PropTypes.number.isRequired,
-  toggleModal: PropTypes.func.isRequired,
-  nameButton: PropTypes.string.isRequired,
-//  modal: PropTypes.bool.isRequired,
-//  activeDocument: PropTypes.shape({}).isRequired,
-  addSelectedQuestion: PropTypes.func.isRequired,
+  questionId: PropTypes.number,
+  toggleModal: PropTypes.func,
+  nameButton: PropTypes.string,
+  modal: PropTypes.bool,
+  activeDocument: PropTypes.shape({}),
+  addSelectedQuestion: PropTypes.func,
 };
 
 export default AddQuestionButton;

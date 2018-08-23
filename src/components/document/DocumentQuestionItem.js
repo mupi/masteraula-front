@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import { getTeachingLevel } from 'helpers/question';
-import Discipline from 'components/disciplines/Discipline';
+import { Link } from 'react-router-dom';
 
 const DocumentQuestionItem = (props) => { 
   const { question, activeDocument, removeSelectedQuestion, readOnly=false } = props;
@@ -56,13 +56,15 @@ const DocumentQuestionItem = (props) => {
             { (!readOnly ) ? (
               <Row>
                 <div className="c-document__question-view-more col-md-3 offset-md-9">
-                  <Button>
-                    <i className="fa fa-search" />
-                    {' '}
-                    <span className="button-text">
-                      Ver mais
-                    </span>
-                  </Button>
+                  <Link to={`/view-question/${question.id}`}>
+                    <Button>
+                      <i className="fa fa-search" />
+                      {' '}
+                      <span className="button-text">
+                        Ver mais 
+                      </span>
+                    </Button>
+                  </Link>
                 </div>
               </Row>) : ' ' }
           </Col>
