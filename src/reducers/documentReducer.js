@@ -65,6 +65,8 @@ export const document = (state = initialState, action) => {
       });
     case CREATE_DOCUMENT_SUCCESS:
       return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
         activeDocument: action.newDocument,
         isFetching: false,
       });

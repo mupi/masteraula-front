@@ -26,19 +26,32 @@ const CreateDocumentForm = (props) => {
           className="form-control"
         />
       </FormGroup>
+      <FormGroup check>
       {error && (
           <Alert color="danger">
             {error}
           </Alert>
           )}
+      </FormGroup>
       <div className="document__new-document-modal-footer modal-footer">
         <Button type="submit" color="" className="btn--confirm" onClick={() => toggleModal(modal)}>Criar</Button>{' '}
         <Button color="secondary" onClick={() => toggleModal(modal)}>Cancelar</Button>
       </div>
+      
       </Form>
     </div>
     );
 }
+
+
+const validate = (values) => {
+  const errors = {};
+  if (!values.name) {
+    errors.name = 'Insira um nome de documento ';
+  }
+  return errors;
+};
+
 
 const mapStateToProps = state => ({
   modal: state.document.modal,
@@ -55,4 +68,5 @@ export default connect(
   mapDispatchToProps,
 )(reduxForm({
   form: 'create_document',
+  validate,
 })(CreateDocumentForm));
