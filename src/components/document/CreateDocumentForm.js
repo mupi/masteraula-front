@@ -6,6 +6,35 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { toggleModal, createDocument } from 'actions/documentAction';
 
+const renderField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error, warning },
+}) => (
+  <div>
+    <Input
+      {...input}
+      placeholder={label}
+      type={type}
+    />
+    { touched
+      && ((error && (
+      <span>
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
+  </div>
+);
+
 const CreateDocumentForm = (props) => {
   const {
     handleSubmit, error, modal, toggleModal, messageWhenDocumentExist
@@ -18,12 +47,11 @@ const CreateDocumentForm = (props) => {
       <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Field
-          component="input"
+          component={renderField}
           type="text"
           name="name"
-          id="documentName"
+          id="name"
           placeholder="Digite o nome do documento"
-          className="form-control"
         />
       </FormGroup>
       <FormGroup check>
@@ -34,7 +62,7 @@ const CreateDocumentForm = (props) => {
           )}
       </FormGroup>
       <div className="document__new-document-modal-footer modal-footer">
-        <Button type="submit" color="" className="btn--confirm" onClick={() => toggleModal(modal)}>Criar</Button>{' '}
+        <Button type="submit" color="" className="btn--confirm">Criar</Button>{' '}
         <Button color="secondary" onClick={() => toggleModal(modal)}>Cancelar</Button>
       </div>
       
@@ -53,9 +81,24 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
+const validate = (values) =>{
+  const errors = {};
+  if(!values.name){
+    errors.name = 'Por favor, digite um nome para o novo documento';
+  } else {
+    let trueName = values.name.trim(); 
+    if(trueName.length < 3){
+      errors.name = 'Seu nome precisa ter no mínimo 3 caracteres válidos.'
+    }
+  }
+
+  return errors;
+}
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(reduxForm({
   form: 'create_document',
+  validate,
 })(CreateDocumentForm));
