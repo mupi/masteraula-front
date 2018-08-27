@@ -57,7 +57,6 @@ const RegisterForm = (props) => {
               id="name"
               label="Insira seu nome completo"
             />
-            <span className="has-icon" />
           </FormGroup>
           <FormGroup>
             <Field
