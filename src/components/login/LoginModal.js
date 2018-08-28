@@ -13,14 +13,14 @@ const LoginModal = (props) => {
   return (
     <div className="l-login">
       <Link to="#" onClick={() => toggleModal(modal)}>
-Login
+        Entrar
       </Link>
       <Modal className="c-login" isOpen={modal} toggle={() => toggleModal(modal)}>
         <div className="c-login__modal-content">
           <ModalHeader className="c-login__modal-header" toggle={() => toggleModal(modal)} />
           <ModalBody>
             <h4 className="text-center">
-Entrar no MasterAula
+              Entrar no MasterAula
             </h4>
             <LoginForm onSubmit={submit} />
           </ModalBody>

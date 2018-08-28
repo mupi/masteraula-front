@@ -19,7 +19,7 @@ class VerifyRegisterPage extends React.Component {
             <p className="alert__message">
               <i className="fa fa-sign-in" />
               {' '}
-Parabéns! Seu cadastro foi ativado com sucesso.
+              Parabéns! Seu cadastro foi ativado com sucesso.
             </p>
           </Alert>
           )
@@ -29,7 +29,7 @@ Parabéns! Seu cadastro foi ativado com sucesso.
             <p>
               <i className="fa fa-exclamation-circle " />
               {' '}
-Link inválido!
+              Link inválido!
             </p>
           </Alert>
           )
@@ -37,7 +37,7 @@ Link inválido!
           <Row className="justify-content-center text-center">
             <Col sm="12" xs="12">
               <Button onClick={() => this.props.toggleModal(this.props.modal)}>
-Login
+                Entrar
               </Button>
             </Col>
           </Row>
