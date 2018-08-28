@@ -10,7 +10,7 @@ const UserProfilePage = (props) => {
     <HomeUserPage>
       <div className="contenedor-profile">
         <h3 className="text-center">
-Meu Profile
+Meu Perfil
         </h3>
         <h5 className="text-center">
 Permite que a comunidade do MasterAula te conheça
