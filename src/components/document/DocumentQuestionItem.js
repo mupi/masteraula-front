@@ -63,7 +63,7 @@ const DocumentQuestionItem = (props) => {
                       <i className="fa fa-search" />
                       {' '}
                       <span className="button-text">
-                        Ver mais 
+                        Ver questão 
                       </span>
                     </Button>
                   </Link>
