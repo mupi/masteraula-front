@@ -790,6 +790,9 @@ CSS for UserProfile
 
 .c-document__question-view-more {
   text-align: right; }
+  @media (max-width: 989px) {
+    .c-document__question-view-more {
+      text-align: center; } }
 
 .c-document__questions-header {
   position: relative;

@@ -43,7 +43,7 @@ const QuestionCard = (props) => {
         </div>
         <Link to={`/view-question/${question.id}`}>
           <Button className="question-card__btn">
-            Ver mais
+            Ver questão
           </Button>
         </Link>
 

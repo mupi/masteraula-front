@@ -103,6 +103,10 @@
 
     &__question-view-more{
       text-align: right;
+
+      @include for-tablet-landscape-bottom{
+        text-align: center;
+      }
     }
 
     //TODO: Review
