@@ -659,6 +659,10 @@ CSS for UserProfile
   margin-left: auto !important;
   border-radius: 6px;
   background: #ADD2EF; }
+  .c-forgot-password .form-group span {
+    color: #d9534f;
+    font-size: 12px;
+    margin-left: 2px; }
 
 @media (min-width: 1000px) {
   .c-forgot-password {
