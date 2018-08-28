@@ -12,7 +12,7 @@ const OpenDocumentModalHeader = (props) => {
   };
 
   return (
-    <td onClick={onClickHandler}>
+    <td onClick={onClickHandler} style={{ cursor: 'pointer' }}>
       { children }
     </td>
   );
@@ -60,8 +60,7 @@ class DocumentList extends React.Component {
       <Row className="l-my-documents-list">
       <Col xs="12">
       <div>
-        
-        <Table responsive>
+        <Table responsive hover>
           <thead align="center">
             <tr>
               <th>
@@ -80,16 +79,16 @@ class DocumentList extends React.Component {
           </thead>
           <tbody align="center">
             {documents.map((document, i) => (
-              <tr key={i} role={i} className={ ((i%2)=== 0)? 'even' : 'odd' }>
+              <tr key={i}>
                 <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
                   {document.name}
                 </OpenDocumentModalHeader>
-                <td>
+                <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
                   {document.create_date}
-                </td>
-                <td>
+                </OpenDocumentModalHeader>
+                <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
                   {document.questions.length}
-                </td>
+                </OpenDocumentModalHeader>
                 <td>
                   <Button color="danger">
                     <i className="fa fa-trash" />
