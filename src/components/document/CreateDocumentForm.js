@@ -42,8 +42,7 @@ const CreateDocumentForm = (props) => {
 
   return(
     <div>
-      {messageWhenDocumentExist}
-      <p className="text-center">Por favor, insira um nome para o novo documento a ser criado</p>
+      {messageWhenDocumentExist ? messageWhenDocumentExist :  <p className="text-center">Por favor, insira um nome para o novo documento a ser criado</p>}
       <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Field
