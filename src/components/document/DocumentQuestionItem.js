@@ -50,7 +50,7 @@ const DocumentQuestionItem = (props) => {
             
             { (!readOnly ) ? (
               <Row>
-                 <div className="c-document__question-view-more col-md-3 offset-md-9">
+                 <div className="c-document__question-view-more col-md-4 offset-md-8">
                 { (!readOnly ) ? (
       <RemoveQuestionButton
         questionId={question.id}
