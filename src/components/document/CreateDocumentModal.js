@@ -14,7 +14,7 @@ const getAlertMessageDocumentExist = (activeDocument) => {
           {activeDocument.name}
         </strong>
         <br />
-        Você tem certeza que deseja criar um novo documento? Se sim, insira o nome para ele
+        Você tem certeza que deseja criar um novo documento? Se sim, insira um nome para ele
         <br />
       </p>
     );
