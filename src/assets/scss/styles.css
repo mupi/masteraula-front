@@ -805,15 +805,16 @@ CSS for UserProfile
   padding: 20px 10px; }
 
 .c-document__btn-remove-question {
-  padding: 0px;
   line-height: 0px;
   background: #d9534f;
-  width: 40px;
-  height: 40px;
   color: #FFFFFF;
-  font-size: 25px;
-  border-radius: 25px;
-  border: 1px solid #d9534f; }
+  font-size: 21px;
+  border: 1px solid #d9534f;
+  margin-right: 5px; }
+
+.c-document__btn-remove-question:hover {
+  background: #d9534f;
+  border-color: #d9534f; }
 
 .l-btn-remove-question {
   position: absolute;

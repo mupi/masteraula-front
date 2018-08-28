@@ -11,12 +11,7 @@ const DocumentQuestionItem = (props) => {
   const { question, activeDocument, removeSelectedQuestion, readOnly=false } = props;
   return (
     <div className="c-document__question">
-     { (!readOnly ) ? (
-      <RemoveQuestionButton
-        questionId={question.id}
-        activeDocumentId={activeDocument.id}
-        removeSelectedQuestion={removeSelectedQuestion}
-      /> ) : ' ' }
+     
       { question.statement && (
         <Row>
           <Col sm="12">
@@ -55,7 +50,14 @@ const DocumentQuestionItem = (props) => {
             
             { (!readOnly ) ? (
               <Row>
-                <div className="c-document__question-view-more col-md-3 offset-md-9">
+                 <div className="c-document__question-view-more col-md-3 offset-md-9">
+                { (!readOnly ) ? (
+      <RemoveQuestionButton
+        questionId={question.id}
+        activeDocumentId={activeDocument.id}
+        removeSelectedQuestion={removeSelectedQuestion}
+      /> ) : ' ' }
+               
                   <Link to={`/view-question/${question.id}`}>
                     <Button>
                       <i className="fa fa-search" />
