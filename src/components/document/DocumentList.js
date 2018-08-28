@@ -60,8 +60,7 @@ class DocumentList extends React.Component {
       <Row className="l-my-documents-list">
       <Col xs="12">
       <div>
-        
-        <Table responsive hover striped>
+        <Table responsive hover>
           <thead align="center">
             <tr>
               <th>
