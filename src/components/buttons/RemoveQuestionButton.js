@@ -10,9 +10,8 @@ const handleRemoveQuestionButton = (e, questionId, activeDocumentId, removeSelec
     removeSelectedQuestion(activeDocumentId, questionId);
   }
 };
-
+ 
 const RemoveQuestionButton = ({ questionId, activeDocumentId, removeSelectedQuestion }) => (
-  <div className="l-btn-remove-question">
     <Button
       value={questionId}
       title="Remover questão"
@@ -21,7 +20,6 @@ const RemoveQuestionButton = ({ questionId, activeDocumentId, removeSelectedQues
     >
       <i className="fa fa-trash" />
     </Button>
-  </div>
 );
 
 RemoveQuestionButton.propTypes = {

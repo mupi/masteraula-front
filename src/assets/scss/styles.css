@@ -690,7 +690,8 @@ CSS for UserProfile
   margin-bottom: 25px; }
 
 .c-terms-use {
-  padding-top: 50px; }
+  padding: 100px 15px;
+  text-align: justify; }
   .c-terms-use__section {
     margin-bottom: 25px; }
 
@@ -790,6 +791,9 @@ CSS for UserProfile
 
 .c-document__question-view-more {
   text-align: right; }
+  @media (max-width: 989px) {
+    .c-document__question-view-more {
+      text-align: center; } }
 
 .c-document__questions-header {
   position: relative;
@@ -802,15 +806,16 @@ CSS for UserProfile
   padding: 20px 10px; }
 
 .c-document__btn-remove-question {
-  padding: 0px;
   line-height: 0px;
   background: #d9534f;
-  width: 40px;
-  height: 40px;
   color: #FFFFFF;
-  font-size: 25px;
-  border-radius: 25px;
-  border: 1px solid #d9534f; }
+  font-size: 21px;
+  border: 1px solid #d9534f;
+  margin-right: 5px; }
+
+.c-document__btn-remove-question:hover {
+  background: #d9534f;
+  border-color: #d9534f; }
 
 .l-btn-remove-question {
   position: absolute;
