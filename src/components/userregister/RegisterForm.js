@@ -97,7 +97,7 @@ const RegisterForm = (props) => {
                       <input type={accept_terms.type} {...accept_terms.input} />
 
                             Eu concordo com os
-                      <NavLink className="use-terms" to="/terms-use" onClick={() => toggleModal(modal)}>
+                      <NavLink  target="_blank" className="use-terms" to="/terms-use" onClick={() => toggleModal(modal)}>
 Termos de Uso
                       </NavLink>
                       { accept_terms.meta.touched && accept_terms.meta.error && (
