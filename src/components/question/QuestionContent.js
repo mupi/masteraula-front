@@ -11,9 +11,10 @@ const QuestionContent = (question) => {
     <Container className="c-question__full-statement">
       <Row>
         <Col sm="12" xs="12">
-          <p className="">
-            {statement && statement}
-          </p>
+          <div className="">
+            <div dangerouslySetInnerHTML={ {__html: statement} } />
+
+          </div>
         </Col>
       </Row>
       <Row className="text-center">

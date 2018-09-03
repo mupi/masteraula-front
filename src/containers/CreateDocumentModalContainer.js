@@ -12,9 +12,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   toggleModal: modal => dispatch(toggleModal(modal)),
   submit: (name, modal) => {
-  				dispatch(createDocument(name)),
-  				dispatch(toggleModal(modal))
-  			}
+    dispatch(createDocument(name)),
+  	dispatch(toggleModal(modal));
+  },
 });
 
 const CreateDocumentModalContainer = connect(
@@ -22,4 +22,4 @@ const CreateDocumentModalContainer = connect(
   mapDispatchToProps,
 )(CreateDocumentModal);
 
-export default CreateDocumentModalContainer;
+export default CreateDocumentModalContainer; 

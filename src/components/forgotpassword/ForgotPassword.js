@@ -57,21 +57,22 @@ const ForgotPassword = (props) => {
                 className="form-control"
               />
             </FormGroup>
+            { success
+              && (
+              <Alert color="success">
+                <p className="alert__message">
+                  Enviamos um email com instruções para recuperar sua senha
+                </p>
+              </Alert>
+              )
+            }
             <Button>
               Enviar email
             </Button>
           </Form>
         </Col>
       </Row>
-      { success
-          && (
-          <Alert color="success">
-            <p className="alert__message">
-              Enviamos um email com instruções para recuperar sua senha
-            </p>
-          </Alert>
-          )
-        }
+     
     </div>
   );
 };
