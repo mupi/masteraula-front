@@ -1,7 +1,9 @@
 import React from 'react';
 import {
-  Button, FormGroup, Input, Alert, Form
+  Button, FormGroup, Input, Alert, Form,
 } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { toggleModal } from 'actions/documentAction';

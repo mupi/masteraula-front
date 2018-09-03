@@ -35,7 +35,7 @@ const renderField = ({
         {' '}
       </span>
       )))
-    }
+    } 
   </div>
 );
 
@@ -95,10 +95,9 @@ const RegisterForm = (props) => {
                   component={accept_terms => (
                     <div>
                       <input type={accept_terms.type} {...accept_terms.input} />
-
-                            Eu concordo com os
-                      <NavLink  target="_blank" className="use-terms" to="/terms-use" onClick={() => toggleModal(modal)}>
-Termos de Uso
+                          Eu concordo com os {' '}
+                      <NavLink target="_blank" className="use-terms" to="/terms-use">
+                        Termos de Uso
                       </NavLink>
                       { accept_terms.meta.touched && accept_terms.meta.error && (
                         <span>
