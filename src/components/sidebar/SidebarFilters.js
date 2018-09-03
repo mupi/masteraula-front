@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListGroup, Alert } from 'reactstrap';
+import { ListGroup, Alert, Button } from 'reactstrap';
 import SidebarFilter from 'components/sidebarfilter/SidebarFilter';
 
 const filters = {
@@ -19,7 +19,8 @@ class SidebarFilters extends Component {
   render() {
     const {
       disciplineFilters, teachingLevelFilters, isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, error,
-      toogleSelectedDisciplineFilter, toogleSelectedTeachingLevelFilter, toogleSelectedDifficultyFilter,
+      toggleSelectedDisciplineFilter, toggleSelectedTeachingLevelFilter, toggleSelectedDifficultyFilter, filter,
+      clearFilters
     } = this.props;
 
     if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters) {
@@ -54,20 +55,28 @@ class SidebarFilters extends Component {
           <i className="fa fa-filter" />
           {' Filtros'}
         </h6>
+        {filter.disciplinesSelected.length > 0 || filter.teachingLevelsSelected.length > 0
+          || filter.difficultiesSelected.length > 0 ? 
+          <Button color='secondary' onClick={clearFilters}> Limpar filtros </Button>
+          : ''
+        }
         <SidebarFilter
           name="Disciplinas"
           filterList={disciplineFilters}
-          toogleFilter={toogleSelectedDisciplineFilter}
+          toggleFilter={toggleSelectedDisciplineFilter}
+          selected={filter.disciplinesSelected}
         />
         <SidebarFilter
           name="Nível de Ensino"
           filterList={teachingLevelFilters}
-          toogleFilter={toogleSelectedTeachingLevelFilter}
+          toggleFilter={toggleSelectedTeachingLevelFilter}
+          selected={filter.teachingLevelsSelected}
         />
         <SidebarFilter
           name="Dificuldade"
           filterList={filters.difficultyLevels}
-          toogleFilter={toogleSelectedDifficultyFilter}
+          toggleFilter={toggleSelectedDifficultyFilter}
+          selected={filter.difficultiesSelected}
         />
       </ListGroup>
     );
