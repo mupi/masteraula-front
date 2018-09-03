@@ -82,8 +82,8 @@ class QuestionPage extends Component {
               <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
               <QuestionContent alternatives={activeQuestion.alternatives} statement={activeQuestion.statement} answer={activeQuestion.resolution} />
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
-              <QuestionComments />
               <RelatedQuestions rquestions={questionTest.rquestions} />
+              <QuestionComments />
             </Col> 
           </Row>
         </div>

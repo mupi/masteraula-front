@@ -15,8 +15,8 @@ const QuestionHeader = ({
       <QuestionSourceYear source={source} year={year} />
     </Row>
     <Row className="c-question__tittle-section">
-      <h4>
-        <i className="fa fa-chevron-circle-right" />
+      <h4> 
+        <i className="fa fa-book" />
         {' '}
 Questão
       </h4>
