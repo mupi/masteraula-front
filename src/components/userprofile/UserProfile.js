@@ -38,7 +38,7 @@ const renderField = ({
 );
 
 const UserProfile = (props) => {
-  const { handleSubmit, user, submitSucceeded, submitFailed } = props;
+  const { handleSubmit, user, submitSucceeded, error } = props;
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -116,7 +116,7 @@ const UserProfile = (props) => {
                     Usuário alterado com sucesso
             </UncontrolledAlert>
           ) }
-          { submitFailed ? 
+          { error ? 
             <Alert color="danger">
 
                     Ocorreu um erro com sua solicitação, tente novamente mais tarde.
