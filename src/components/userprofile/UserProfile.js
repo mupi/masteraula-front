@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   Button, Form, FormGroup, Input, Label, UncontrolledAlert, Alert,
+  Container, Row, Col,
 } from 'reactstrap';
-import { Container, Row, Col } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from 'assets/img/home/person-female.png';
@@ -39,7 +39,7 @@ const renderField = ({
 
 const UserProfile = (props) => {
   const {
-    handleSubmit, user, submitSucceeded, error,
+    handleSubmit, submitSucceeded, error,
   } = props;
 
   return (
@@ -64,7 +64,7 @@ const UserProfile = (props) => {
               </div>
             </Label>
             <div className="small-text">
-              Tamanho máximo 1 MB. JPG, GIF ou PNG
+              Tamanho máximo 1 MB. (JPG, GIF ou PNG)
             </div>
             <Field
               component="input"
