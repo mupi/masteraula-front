@@ -9,6 +9,7 @@ import {
   REMOVE_SELECTED_TEACHINGLEVEL_FILTER,
   ADD_SELECTED_DIFFICULTY_FILTER,
   REMOVE_SELECTED_DIFFICULTY_FILTER,
+  CLEAR_SELECTED_FILTERS
 } from 'actions/filterAction';
 
 const initialState = {
@@ -29,9 +30,6 @@ export const filter = (state = initialState, action) => {
       });
     case LIST_DISCIPLINE_FILTERS_SUCCESS:
       return Object.assign({}, state, {
-        disciplinesSelected: [],
-        teachingLevelsSelected: [],
-        difficultiesSelected: [],
         disciplineFilters: action.disciplineFilters,
         isFetchingDisciplineFilters: false,
       });
@@ -48,9 +46,6 @@ export const filter = (state = initialState, action) => {
       });
     case LIST_TEACHINGLEVEL_FILTERS_SUCCESS:
       return Object.assign({}, state, {
-        disciplinesSelected: [],
-        teachingLevelsSelected: [],
-        difficultiesSelected: [],
         teachingLevelFilters: action.teachingLevelFilters,
         isFetchingTeachingLevelFilters: false,
       });
@@ -108,6 +103,13 @@ export const filter = (state = initialState, action) => {
         teachingLevelsSelected: [...state.teachingLevelsSelected],
         difficultiesSelected: newDifficulties,
       };
+    }
+    case CLEAR_SELECTED_FILTERS:{
+      return Object.assign({}, state, {
+        disciplinesSelected: [],
+        teachingLevelsSelected: [],
+        difficultiesSelected: [],
+      });
     }
     default:
       return state;

@@ -3,12 +3,16 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import { UncontrolledCollapse, Button, Input } from 'reactstrap';
 
 
-const SidebarFilter = ({name, filterList, toogleFilter}) => {
+const SidebarFilter = ({name, filterList, toggleFilter, selected}) => {
 
   const handleFilter = (event) => {
     const valueFilter = event.target.value;
-    toogleFilter(valueFilter, event.target.checked);
+    toggleFilter(valueFilter, event.target.checked);
   };
+
+  const isChecked = (id)=>{
+    return (selected && selected.includes(id+''));
+  }
 
   return (
     <ListGroupItem className="question-category-filter">
@@ -19,7 +23,7 @@ const SidebarFilter = ({name, filterList, toogleFilter}) => {
       <ListGroup className="question-single-filter">
         {filterList && filterList.map((filter, i) => (
           <ListGroupItem key={i}>
-            <Input type="checkbox" value={filter.id} onClick={handleFilter} />
+            <Input type="checkbox" value={filter.id} onClick={handleFilter} checked={isChecked(filter.id)}/>
             {filter.name}
           </ListGroupItem>
         ))}

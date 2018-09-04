@@ -12,7 +12,7 @@ export const handleResponse = response => response.json().then((data) => {
     }
     if (data && data.non_field_errors) {
       if (data.non_field_errors[0] === 'E-mail is not verified.') {
-        return Promise.reject('Seu cadastro ainda não foi verificado. Revise o email de verificação na sua caixa de entrada');
+        return Promise.reject('Seu cadastro ainda não foi confirmado. Acesse a mensagem que enviamos para sua caixa de email');
       } if (data.non_field_errors[0] === 'Unable to log in with provided credentials.') {
         return Promise.reject('Usuário e/ou senha inválido(s)');
       }

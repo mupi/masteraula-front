@@ -563,6 +563,14 @@ a.c_sidebar__document-link:hover {
         width: 60px;
         height: 60px; } }
 
+.l-question-all-filters__clear-button {
+  text-align: center;
+  padding: 5px 15px; }
+  .l-question-all-filters__clear-button--btn {
+    width: 100%;
+    font-size: 12px;
+    padding: 3px; }
+
 .disciplines {
   margin-bottom: 10px; }
   .disciplines__item {
