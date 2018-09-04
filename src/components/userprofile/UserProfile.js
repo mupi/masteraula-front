@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  Button, Form, FormGroup, Input, Label, UncontrolledAlert, Alert
+  Button, Form, FormGroup, Input, Label, UncontrolledAlert, Alert,
 } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
@@ -38,7 +38,9 @@ const renderField = ({
 );
 
 const UserProfile = (props) => {
-  const { handleSubmit, user, submitSucceeded, error } = props;
+  const {
+    handleSubmit, user, submitSucceeded, error,
+  } = props;
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -116,12 +118,14 @@ const UserProfile = (props) => {
                     Usuário alterado com sucesso
             </UncontrolledAlert>
           ) }
-          { error ? 
-            <Alert color="danger">
+          { error
+            ? (
+              <Alert color="danger">
 
                     Ocorreu um erro com sua solicitação, tente novamente mais tarde.
-            </Alert>
-          :'' }
+              </Alert>
+            )
+            : '' }
         </div>
       </Container>
     </Form>
@@ -134,7 +138,7 @@ const validate = (values) => {
     errors.name = 'Insira um nome';
   }
   return errors;
-}
+};
 
 const mapStateToProps = (state) => {
   const { user } = state.session.session;
