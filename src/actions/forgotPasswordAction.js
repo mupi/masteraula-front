@@ -1,5 +1,5 @@
 import { forgotPasswordService } from 'services/forgotPasswordService';
-import { SubmissionError, clearFields } from 'redux-form';
+import { SubmissionError, clearFields, reset } from 'redux-form';
 
 export const FORGOT_PASSWORD_RESET = 'FORGOT_PASSWORD_OPEN';
 export const FORGOT_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST';
@@ -48,7 +48,9 @@ export const resetForgotPassword = (password, confirmation, uid, token) => {
       .then(
         () => {
           dispatch(success()),
-          dispatch(clearFields('redefine_password', true, true, 'repeatpassword', 'newpassword'));
+         // dispatch(clearFields('redefine_password', true, true, 'repeatpassword', 'newpassword'));
+         dispatch(reset('redefine_password'));
+
         },
         (error) => {
           dispatch(failure(error));

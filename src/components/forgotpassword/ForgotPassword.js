@@ -18,7 +18,7 @@ const renderField = ({
     />
     { touched
       && ((error && (
-      <span>
+      <span className="error-message-text">
         {error}
       </span>
       ))
