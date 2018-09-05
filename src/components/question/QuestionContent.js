@@ -19,8 +19,8 @@ const QuestionContent = (question) => {
       </Row>
       <Row className="text-center">
         <Col sm="12" xs="12">
-          <div className="c-question__learning-object">
-            <img className="c-question__img" src={learningObject2} alt="objeto-aprendizagem" />
+          <div className="c-question__learning-object" style={{display:'none'}}>
+            <img className="c-question__img" alt="objeto-aprendizagem" />
           </div>
         </Col>
       </Row>
