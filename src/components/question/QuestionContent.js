@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import learningObject2 from 'assets/img/home/question-objeto-aprendizagem2.jpg';
 import AlternativeList from 'components/alternatives/AlternativeList';
 
 
@@ -12,14 +11,14 @@ const QuestionContent = (question) => {
       <Row>
         <Col sm="12" xs="12">
           <div className="">
-            <div dangerouslySetInnerHTML={ {__html: statement} } />
+            { statement && statement }
 
           </div>
         </Col>
       </Row>
       <Row className="text-center">
         <Col sm="12" xs="12">
-          <div className="c-question__learning-object" style={{display:'none'}}>
+          <div className="c-question__learning-object" style={{ display: 'none' }}>
             <img className="c-question__img" alt="objeto-aprendizagem" />
           </div>
         </Col>
