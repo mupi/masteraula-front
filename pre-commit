@@ -20,14 +20,18 @@ if [[ ! -x "$ESLINT" ]]; then
   exit 1
 fi
 
-echo "ESLint'ing ${#STAGED_FILES[@]} files"
-
 if [[ "$STAGED_FILES" = "" ]]; then
   exit 0
 fi
 
 for FILE in $STAGED_FILES do
 	$ESLINT "$FILE" --fix
+	if [[ "$?" == 0 ]]; then
+    echo "\t\033[32mESLint Passed: $FILE\033[0m"
+  else
+    echo "\t\033[41mESLint Failed: $FILE\033[0m"
+    PASS=false
+  fi
 done
 
 ESLINT_EXIT="$?"
