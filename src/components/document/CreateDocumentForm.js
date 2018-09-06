@@ -39,20 +39,31 @@ const renderField = ({
 
 const CreateDocumentForm = (props) => {
   const {
-    handleSubmit, error, modal, toggleModal, messageWhenDocumentExist
+    handleSubmit, error, modal, toggleModal, messageWhenDocumentExist, initialValues
   } = props;
  
   return(
     <div>
+      {initialValues.idQuestion ? <p className="text-center">Você está adicionando uma questão a um documento sem nome.</p>:''}
       {messageWhenDocumentExist ? messageWhenDocumentExist :  <p className="text-center">Por favor, insira um nome para o novo documento a ser criado</p>}
       <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Field
           component={renderField}
           type="text"
-          name="name"
-          id="name"
+          name="seilaname"
+          id="seilaname"
           label="Digite o nome do documento"
+        />
+        </FormGroup>
+        <FormGroup>
+         <Field
+          component="input"
+          type="text"
+          name="idQuestion"
+          id="idQuestion"
+          label="Digite o nome do documento"
+          style = {{'display':'none'}}
         />
       </FormGroup>
       <FormGroup check>
@@ -74,6 +85,9 @@ const CreateDocumentForm = (props) => {
 
 const mapStateToProps = state => ({
   modal: state.document.modal,
+  initialValues:{
+    idQuestion: state.document.willAddQuestion,  
+  }
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -24,7 +24,7 @@ const getAlertMessageDocumentExist = (activeDocument) => {
 
 const CreateDocumentModal = (props) => {
   const {
-    modal, toggleModal, activeDocument, submit
+    modal, toggleModal, activeDocument, submit, willAddQuestion,
   } = props;
 
   return (

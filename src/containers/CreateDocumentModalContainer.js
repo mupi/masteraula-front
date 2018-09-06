@@ -7,12 +7,13 @@ import {
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
   modal: state.document.modal,
+  willAddQuestion: state.document.willAddQuestion,
 });
 
 const mapDispatchToProps = dispatch => ({
   toggleModal: modal => dispatch(toggleModal(modal)),
-  submit: (name, modal) => {
-    dispatch(createDocument(name)),
+  submit: (formData, modal) => {
+    dispatch(createDocument(formData)),
   	dispatch(toggleModal(modal));
   },
 });

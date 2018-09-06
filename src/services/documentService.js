@@ -63,7 +63,7 @@ function createDocument(newDocumentData) {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    body: JSON.stringify({ ...newDocumentData, questions: [], secret: true }),
+    body: JSON.stringify({...newDocumentData, secret: true }),
   };
 
   const handleResponse = response => response.json().then((data) => {

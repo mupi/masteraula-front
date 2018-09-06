@@ -192,10 +192,13 @@ export function resetNewDocument() {
 }
 
 // Create Document Toggle Modal
-export const toggleModal = (modal) => ({
-  type: CREATE_DOCUMENT_TOGGLE_MODAL,
-  modal: !modal,
-});
+export const toggleModal = (modal, question) => {
+  return({
+    type: CREATE_DOCUMENT_TOGGLE_MODAL,
+    modal: !modal,
+    willAddQuestion: question ? question : null,
+  });
+}
 
 // Switch active document
 export const switchActiveDocument = (doc) => {
