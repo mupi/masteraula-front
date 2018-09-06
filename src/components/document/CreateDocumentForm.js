@@ -62,16 +62,6 @@ Por favor, insira um nome para o novo documento a ser criado
             label="Digite o nome do documento"
           />
         </FormGroup>
-        <FormGroup>
-          <Field
-            component="input"
-            type="text"
-            name="idQuestion"
-            id="idQuestion"
-            label="Digite o nome do documento"
-            style={{ display: 'none' }}
-          />
-        </FormGroup>
         <FormGroup check>
           {error && (
           <Alert color="danger">
