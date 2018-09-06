@@ -57,8 +57,8 @@ Por favor, insira um nome para o novo documento a ser criado
           <Field
             component={renderField}
             type="text"
-            name="seilaname"
-            id="seilaname"
+            name="name"
+            id="name"
             label="Digite o nome do documento"
           />
         </FormGroup>
