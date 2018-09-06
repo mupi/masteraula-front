@@ -4,6 +4,7 @@ import AlternativeList from 'components/alternatives/AlternativeList';
 
 
 const QuestionContent = (question) => {
+  /* eslint-disable react/no-danger */
   const { statement, alternatives, answer } = question;
 
   return (
@@ -11,8 +12,7 @@ const QuestionContent = (question) => {
       <Row>
         <Col sm="12" xs="12">
           <div className="">
-            { statement && statement }
-
+            <div dangerouslySetInnerHTML={{__html:statement}} ></div>
           </div>
         </Col>
       </Row>
