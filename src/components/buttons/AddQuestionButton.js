@@ -5,29 +5,28 @@ import { Button } from 'reactstrap';
 const AddQuestionButton = ({
   customClass, questionId, nameButton, toggleModal, modal, activeDocument, addSelectedQuestion,
 }) => {
-
-  function handleAddQuestionButton(e, questionId, activeDocument){
+  function handleAddQuestionButton(e) {
     e.preventDefault();
     if (activeDocument) {
       addSelectedQuestion(activeDocument.id, questionId, 0);
     } else {
       toggleModal(modal, questionId);
     }
-  };
+  }
 
-  return(
+  return (
     <Button
       value={questionId}
       title="Adicionar questões"
       className={customClass}
-      onClick={(e) => handleAddQuestionButton(e, questionId, activeDocument)}
+      onClick={e => handleAddQuestionButton(e)}
     >
       <i className="fa fa-plus" />
       {' '}
       {nameButton}
     </Button>
   );
-}
+};
 
 AddQuestionButton.propTypes = {
   customClass: PropTypes.string.isRequired,

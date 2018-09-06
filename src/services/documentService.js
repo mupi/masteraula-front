@@ -50,9 +50,7 @@ function fetchPreviewDocument(id) {
 
   return fetch(`${apiUrl}/documents/${id}/`, requestOptions)
     .then(handleResponse)
-    .then((previewDocument) => {
-      return previewDocument;
-    });
+    .then(previewDocument => previewDocument);
 }
 
 // Create a New Document
@@ -63,7 +61,7 @@ function createDocument(newDocumentData) {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    body: JSON.stringify({...newDocumentData, secret: true }),
+    body: JSON.stringify({ ...newDocumentData, secret: true }),
   };
 
   const handleResponse = response => response.json().then((data) => {
@@ -76,10 +74,10 @@ function createDocument(newDocumentData) {
 
   return fetch(`${apiUrl}/documents/`, requestOptions)
     .then(handleResponse)
-    .then(activeDocument => {
-          localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
-          return activeDocument;
-        });
+    .then((activeDocument) => {
+      localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+      return activeDocument;
+    });
 }
 
 // Update an Active Document
@@ -106,10 +104,10 @@ function updateDocument(activeNewDocument) {
 
   return fetch(`${apiUrl}/documents/${idDocument}/`, requestOptions)
     .then(handleResponse)
-    .then(activeDocument => {
-        localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
-        return activeDocument
-      });
+    .then((activeDocument) => {
+      localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+      return activeDocument;
+    });
 }
 
 function listMyDocuments(page) {
@@ -130,8 +128,8 @@ function listMyDocuments(page) {
   });
 
   return fetch(`${apiUrl}/documents/my_documents/?page=${page}`, requestOptions)
-  .then(handleResponse)
-  .then(activeDocument => activeDocument);
+    .then(handleResponse)
+    .then(activeDocument => activeDocument);
 }
 
 // Add a question to Active Document

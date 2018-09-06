@@ -6,7 +6,7 @@ export const FETCH_DOCUMENT = 'FETCH_DOCUMENT';
 export const FETCH_DOCUMENT_SUCCESS = 'FETCH_DOCUMENT_SUCCESS';
 export const FETCH_DOCUMENT_FAILURE = 'FETCH_DOCUMENT_FAILURE';
 
-//Load preview document
+// Load preview document
 export const FETCH_PREVIEW_DOCUMENT = 'FETCH_PREVIEW_DOCUMENT';
 export const FETCH_PREVIEW_DOCUMENT_SUCCESS = 'FETCH_PREVIEW_DOCUMENT_SUCCESS';
 export const FETCH_PREVIEW_DOCUMENT_FAILURE = 'FETCH_PREVIEW_DOCUMENT_FAILURE';
@@ -102,12 +102,12 @@ export const createDocument = (props) => {
     dispatch(createNewDocument(props));
     return documentService.createDocument(props).then(
       (newDocument) => {
-        dispatch(createDocumentSuccess(newDocument)); 
+        dispatch(createDocumentSuccess(newDocument));
         history.push('/question-base/1');
       },
       (error) => {
         dispatch(createDocumentFailure(error));
-      }, 
+      },
     );
   };
 };
@@ -192,13 +192,11 @@ export function resetNewDocument() {
 }
 
 // Create Document Toggle Modal
-export const toggleModal = (modal, question) => {
-  return({
-    type: CREATE_DOCUMENT_TOGGLE_MODAL,
-    modal: !modal,
-    willAddQuestion: question ? question : null,
-  });
-}
+export const toggleModal = (modal, question) => ({
+  type: CREATE_DOCUMENT_TOGGLE_MODAL,
+  modal: !modal,
+  willAddQuestion: question || null,
+});
 
 // Switch active document
 export const switchActiveDocument = (doc) => {
