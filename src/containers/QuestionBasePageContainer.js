@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
   questionPage: state.question.questionPage,
   currentPage: state.question.currentPage,
   filter: state.filter,
-  modal: state.document.modal,
+  modal: state.document.modal, 
   activeDocument: state.document.activeDocument,
 });
 

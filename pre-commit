@@ -26,7 +26,9 @@ if [[ "$STAGED_FILES" = "" ]]; then
   exit 0
 fi
 
-$ESLINT "${STAGED_FILES[@]}" --fix
+for FILE in $STAGED_FILES do
+	$ESLINT "$FILE" --fix
+done
 
 ESLINT_EXIT="$?"
 

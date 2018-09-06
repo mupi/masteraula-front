@@ -3,7 +3,7 @@ import CreateDocumentModal from 'components/document/CreateDocumentModal';
 import {
   toggleModal, createDocument,
 } from 'actions/documentAction';
-
+ 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
   modal: state.document.modal,
