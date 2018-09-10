@@ -20,7 +20,9 @@ const DocumentQuestionItem = (props) => {
         <Row>
           <Col sm="12">
             <p className="c-document__question-info-title">Questão:</p>
-            <p className="c-document__question-info-statement">{ (extractStatement.length>=350)? ` ${extractStatement.substring(0, 350)}${' ...'}`  :  extractStatement }</p>
+            <p className="c-document__question-info-statement">
+              { (extractStatement.length >= 350) ? ` ${extractStatement.substring(0, 350)}${' ...'}` : extractStatement }
+            </p>
             <p className="c-document__question-info-author">por: {' '} {question.author.name}</p>
           </Col>
           <Col sm="4" className="c-document__question-image">
@@ -51,23 +53,21 @@ const DocumentQuestionItem = (props) => {
 
               </Col>
             </Row>
-            
-            { (!readOnly ) ? (
+            { (!readOnly) ? (
               <Row>
-                 <div className="c-document__question-view-more col-md-4 offset-md-8">
-                { (!readOnly ) ? (
-      <RemoveQuestionButton
-        questionId={question.id}
-        activeDocumentId={activeDocument.id}
-        removeSelectedQuestion={removeSelectedQuestion}
-      /> ) : ' ' }
-               
+                <div className="c-document__question-view-more col-md-4 offset-md-8">
+                  { (!readOnly) ? (
+                    <RemoveQuestionButton
+                      questionId={question.id}
+                      activeDocumentId={activeDocument.id}
+                      removeSelectedQuestion={removeSelectedQuestion}
+                    />) : ' ' }             
                   <Link to={`/view-question/${question.id}`}>
                     <Button>
                       <i className="fa fa-search" />
                       {' '}
                       <span className="button-text">
-                        Ver questão 
+                        Ver questão
                       </span>
                     </Button>
                   </Link>

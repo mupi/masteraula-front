@@ -18,13 +18,13 @@ export const getTeachingLevel = (difficulty) => {
 };
 
 export const getCleanExtractStatement = (html) => {
-  const clean = sanitizeHtml(html, {
+  const extractStatement = sanitizeHtml(html, {
     allowedTags: [],
     allowedAttributes: {
       a: [],
     },
   });
-  return clean;
+  return extractStatement;
 };
 
 export const getCleanAlternativeText = (alternative) => {
