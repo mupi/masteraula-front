@@ -49,7 +49,7 @@ class QuestionPage extends Component {
 
   render() {
     const {
-      activeQuestion, isFetching, rating, error, onRate, toggleModal, modal, activeDocument, addSelectedQuestion
+      activeQuestion, isFetching, rating, error, onRate, toggleModal, modal, activeDocument, addSelectedQuestion,
     } = this.props;
 
     if (isFetching) {
@@ -84,7 +84,7 @@ class QuestionPage extends Component {
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
               <RelatedQuestions rquestions={questionTest.rquestions} />
               <QuestionComments />
-            </Col> 
+            </Col>
           </Row>
         </div>
         <div className="l-button-add-question">

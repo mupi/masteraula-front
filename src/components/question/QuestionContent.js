@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import AlternativeList from 'components/alternatives/AlternativeList';
+import { getCleanCompleteStatement } from 'helpers/question';
 
 
 const QuestionContent = (question) => {
@@ -12,7 +13,7 @@ const QuestionContent = (question) => {
       <Row>
         <Col sm="12" xs="12">
           <div className="">
-            <div dangerouslySetInnerHTML={{ __html: statement }} />
+            <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(statement) }} />
           </div>
         </Col>
       </Row>
