@@ -9,7 +9,7 @@ import imageCard from 'assets/img/home/question-card.jpg';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import TagList from 'components/tags/TagList';
 import { Link } from 'react-router-dom';
-import { isQuestionAdded } from 'helpers/question';
+import { isQuestionAdded, getCleanExtractStatement } from 'helpers/question';
 
 import QuestionAuthor from './QuestionAuthor';
 import QuestionSourceYear from './QuestionSourceYear';
@@ -17,7 +17,7 @@ import QuestionSourceYear from './QuestionSourceYear';
 
 const QuestionCard = (props) => {
   const { question, urlImage, activeDocument } = props;
-
+  const extractStatement = getCleanExtractStatement(question.statement);
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
@@ -38,7 +38,7 @@ const QuestionCard = (props) => {
             <QuestionAuthor author={question.author} styleTag="question-info__author" />
           </p>
           <p className="question-info__more-info">
-            { (question.statement.length >= 150) ? ` ${question.statement.substring(0, 150)}${' ...'}` : question.statement }
+            { (extractStatement.length >= 150) ? ` ${extractStatement.substring(0, 150)}${' ...'}` : extractStatement }
           </p>
         </div>
         <Link to={`/view-question/${question.id}`}>

@@ -1,8 +1,11 @@
 import React from 'react';
+import { getOrderAlternative, getCleanAlternativeText } from 'helpers/question';
 
-const Alternative = ({ i, text }) => (
-  <p key={i} className="alternative">
-    {text}
+const Alternative = ({ option, text }) => (
+  <p className="alternative">
+    { getOrderAlternative(option)}
+    {') '}
+    {getCleanAlternativeText(text)}
   </p>
 );
 

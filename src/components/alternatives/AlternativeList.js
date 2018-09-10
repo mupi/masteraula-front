@@ -5,7 +5,8 @@ const AlternativeList = ({ list }) => (
   <div>
     {list.map((alternative, i) => (
       <Alternative
-        key={i}
+        key={alternative.id}
+        option={i}
         text={alternative.text}
       />
     ))}
