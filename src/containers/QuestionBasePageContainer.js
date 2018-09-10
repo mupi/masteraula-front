@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
-  toggleModal: modal => dispatch(toggleModal(modal)),
+  toggleModal: (modal, idQuestion) => dispatch(toggleModal(modal, idQuestion)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 });
 
