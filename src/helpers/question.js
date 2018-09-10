@@ -26,3 +26,19 @@ export const getCleanExtractStatement = (html) => {
   });
   return clean;
 }
+
+export const getCleanAlternativeText = (alternative) => {
+  const clean = sanitizeHtml(alternative, {
+    allowedTags: [],
+    allowedAttributes: {
+      a: [],
+    },
+  });
+  return clean;
+}
+
+export const getOrderAlternative = (order) => {
+  const letters = 'abcdef';
+  const letterOrder = letters.charAt(order);
+  return letterOrder;
+};

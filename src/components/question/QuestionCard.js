@@ -9,8 +9,7 @@ import imageCard from 'assets/img/home/question-card.jpg';
 import DisciplineList from 'components/disciplines/DisciplineList';
 import TagList from 'components/tags/TagList';
 import { Link } from 'react-router-dom';
-import { isQuestionAdded } from 'helpers/question';
-import { getCleanExtractStatement } from 'helpers/question';
+import { isQuestionAdded, getCleanExtractStatement } from 'helpers/question';
 
 import QuestionAuthor from './QuestionAuthor';
 import QuestionSourceYear from './QuestionSourceYear';
