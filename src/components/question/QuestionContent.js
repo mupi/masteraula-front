@@ -6,7 +6,7 @@ import { getCleanCompleteStatement } from 'helpers/question';
 
 const QuestionContent = (question) => {
   /* eslint-disable react/no-danger */
-  const { statement, alternatives, answer } = question;
+  const { statement, alternatives, resolution } = question;
 
   return (
     <Container className="c-question__full-statement">
@@ -32,12 +32,12 @@ const QuestionContent = (question) => {
             </Col>
           </Row>
         ) : ''}
-      {answer
+      {resolution
         ? (
           <Row className="c-question--section-border">
             <Col sm="12" xs="12">
               <p className="c-question__answer">
-                {answer}
+                {resolution}
               </p>
             </Col>
           </Row>
