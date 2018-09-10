@@ -54,13 +54,17 @@ class DocumentList extends React.Component {
     this.closeModal();
   }
 
-  handleDelete(id) {
-    const { deleteDocument } = this.props;
+  handleDelete(id, name) {
+    const { deleteDocument, showModal } = this.props;
     // open modal
-    if (id) {
-      deleteDocument(id);
-    }
-    // close modal
+    showModal({
+      open: true,
+      closeModal: this.closeModal,
+      title: 'Apagar documento',
+      message: `Você tem certeza que deseja apagar o documento ${name}?`,
+      idDocument: id,
+      deleteAction: deleteDocument,
+    }, 'delete');
   }
 
   render() {
@@ -99,7 +103,7 @@ class DocumentList extends React.Component {
                       {document.questions.length}
                     </OpenDocumentModalHeader>
                     <td>
-                      <Button color="danger" onClick={() => this.handleDelete(document.id)}>
+                      <Button color="danger" onClick={() => this.handleDelete(document.id, document.name)}>
                         <i className="fa fa-trash" />
                       </Button>
                     </td>
