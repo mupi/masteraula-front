@@ -59,13 +59,13 @@
       margin-bottom: 10px;
     }
 
-    &__full-statement{
+  /*  &__full-statement{
 
     }
 
     &__learning-object{
 
-    }
+    }*/
 
     //Learning Object section in QuestionPage
     &__img{
@@ -84,4 +84,9 @@
 
 
 
+}
+
+
+.texto_associado_questao {
+  text-align: center;
 }

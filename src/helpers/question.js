@@ -1,3 +1,5 @@
+import sanitizeHtml from 'sanitize-html';
+
 export const isQuestionAdded = (activeDocument, id) => {
   if (activeDocument) {
     const questionAdded = activeDocument.questions.filter(item => item.question.id === id);
@@ -14,3 +16,13 @@ export const getTeachingLevel = (difficulty) => {
     default: return difficulty;
   }
 };
+
+export const getCleanExtractStatement = (html) => {
+  const clean = sanitizeHtml(html, {
+    allowedTags: [],
+    allowedAttributes: {
+      a: [],
+    },
+  });
+  return clean;
+}

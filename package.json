@@ -27,6 +27,7 @@
     "redux-form": "^7.4.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "sanitize-html": "^1.18.5",
     "sass": "^1.9.1",
     "uuid": "^3.3.2",
     "yarn": "^1.9.4"

@@ -12,7 +12,7 @@ const QuestionContent = (question) => {
       <Row>
         <Col sm="12" xs="12">
           <div className="">
-            <div dangerouslySetInnerHTML={{__html:statement}} ></div>
+            <div dangerouslySetInnerHTML={{ __html: statement }} />
           </div>
         </Col>
       </Row>
