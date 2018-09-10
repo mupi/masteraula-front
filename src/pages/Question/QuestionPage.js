@@ -80,7 +80,11 @@ class QuestionPage extends Component {
           <Row className="justify-content-center">
             <Col sm="12" md="12" xs="12">
               <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
-              <QuestionContent alternatives={activeQuestion.alternatives} statement={activeQuestion.statement} answer={activeQuestion.resolution} />
+              <QuestionContent
+                alternatives={activeQuestion.alternatives}
+                statement={activeQuestion.statement}
+                resolution={activeQuestion.resolution}
+              />
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
               <RelatedQuestions rquestions={questionTest.rquestions} />
               <QuestionComments />

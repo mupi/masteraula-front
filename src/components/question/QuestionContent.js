@@ -1,7 +1,8 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import AlternativeList from 'components/alternatives/AlternativeList';
-import { getCleanCompleteStatement } from 'helpers/question';
+import Alternative from 'components/alternatives/Alternative';
+import { getCleanCompleteStatement, getCleanAlternativeText } from 'helpers/question';
 
 
 const QuestionContent = (question) => {
@@ -32,13 +33,41 @@ const QuestionContent = (question) => {
             </Col>
           </Row>
         ) : ''}
-      {resolution
+      {(resolution && alternatives.length === 0)
         ? (
           <Row className="c-question--section-border">
             <Col sm="12" xs="12">
-              <p className="c-question__answer">
-                {resolution}
+              <div className="c-question__answer">
+                <p className="c-question__answer-title">
+                  Resposta:
+                </p>
+                <div dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(resolution) }} />
+              </div>
+            </Col>
+          </Row>
+        ) : ''}
+
+      {(alternatives && alternatives.length > 0)
+        ? (
+          <Row className="c-question--section-border">
+            <Col sm="12" xs="12" className="c-question__alternatives">
+              <p className="c-question__answer-title">
+                Resposta:
               </p>
+              <div>
+                {alternatives.map((alternative, i) => (
+                  alternative.is_correct ? (
+                    <Alternative
+                      key={alternative.id}
+                      option={i}
+                      text={alternative.text}
+                    />
+                  ) : ''
+                ))}
+                {resolution
+                  ? (<div dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(resolution) }} />) : ''
+                }
+              </div>
             </Col>
           </Row>
         ) : ''}
