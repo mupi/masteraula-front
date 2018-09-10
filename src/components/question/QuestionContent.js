@@ -24,7 +24,7 @@ const QuestionContent = (question) => {
           </div>
         </Col>
       </Row>
-      {alternatives
+      {(alternatives && alternatives.length > 0)
         ? (
           <Row className="c-question--section-border">
             <Col sm="12" xs="12" className="c-question__alternatives">
