@@ -6,9 +6,13 @@ import {
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import { getTeachingLevel } from 'helpers/question';
 import { Link } from 'react-router-dom';
+import { getCleanExtractStatement } from 'helpers/question';
+
 
 const DocumentQuestionItem = (props) => { 
   const { question, activeDocument, removeSelectedQuestion, readOnly=false } = props;
+  const extractStatement = getCleanExtractStatement(question.statement);
+
   return (
     <div className="c-document__question">
      
@@ -16,7 +20,7 @@ const DocumentQuestionItem = (props) => {
         <Row>
           <Col sm="12">
             <p className="c-document__question-info-title">Questão:</p>
-            <p className="c-document__question-info-statement">{ (question.statement.length>=350)? ` ${question.statement.substring(0, 350)}${' ...'}`  :  question.statement }</p>
+            <p className="c-document__question-info-statement">{ (extractStatement.length>=350)? ` ${extractStatement.substring(0, 350)}${' ...'}`  :  extractStatement }</p>
             <p className="c-document__question-info-author">por: {' '} {question.author.name}</p>
           </Col>
           <Col sm="4" className="c-document__question-image">

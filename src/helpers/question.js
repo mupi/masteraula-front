@@ -25,7 +25,7 @@ export const getCleanExtractStatement = (html) => {
     },
   });
   return clean;
-}
+};
 
 export const getCleanAlternativeText = (alternative) => {
   const clean = sanitizeHtml(alternative, {
@@ -35,7 +35,7 @@ export const getCleanAlternativeText = (alternative) => {
     },
   });
   return clean;
-}
+};
 
 export const getOrderAlternative = (order) => {
   const letters = 'abcdef';
