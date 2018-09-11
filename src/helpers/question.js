@@ -28,6 +28,7 @@ export const getCleanCompleteStatement = (html) => {
     allowedAttributes: {
       a: ['href', 'name', 'target'],
       img: ['src'],
+      p: ['style'],
     },
   });
   return extractStatement;
@@ -49,6 +50,7 @@ export const getCleanAlternativeText = (alternative) => {
     allowedAttributes: {
       a: [],
       img: ['src'],
+      p: ['style'],
     },
   });
   return clean;
