@@ -65,7 +65,7 @@ const QuestionContent = (question) => {
                   ) : ''
                 ))}
                 {resolution
-                  ? (<div dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(resolution) }} />) : ''
+                  ? (<div className="c-question__resolution-text" dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(resolution) }} />) : ''
                 }
               </div>
             </Col>

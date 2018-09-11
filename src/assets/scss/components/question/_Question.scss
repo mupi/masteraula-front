@@ -85,9 +85,22 @@
     &__answer-title{
       font-weight: bold;
     }
+
+    &__l-alternative{
+      display: flex;
+    }
+
+    &__resolution-text{
+      font-style: italic;
+      margin-top: 5px;
+    }
 }
 
 
 .texto_associado_questao {
   text-align: center;
+}
+
+.texto_associado_questao img {
+  max-width: 100%;
 }
