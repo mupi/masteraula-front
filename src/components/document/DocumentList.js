@@ -12,11 +12,11 @@ const OpenDocumentModalHeader = (props) => {
   };
 
   return (
-    <td onClick={onClickHandler} style={{ cursor: 'pointer' }}>
+    <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }}>
       { children }
     </td>
   );
-}
+};
 
 class DocumentList extends React.Component {
   constructor(props) {
@@ -24,7 +24,6 @@ class DocumentList extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.openDocumentModal = this.openDocumentModal.bind(this);
     this.editDocument = this.editDocument.bind(this);
-
   }
 
   closeModal() {
@@ -34,72 +33,86 @@ class DocumentList extends React.Component {
 
   openDocumentModal(id) {
     // event.preventDefault();
-    const { showModal, fetchPreviewDocument, previewDocument, isFetchingPreviewDocument } = this.props;
+    const {
+      showModal, fetchPreviewDocument, previewDocument,
+    } = this.props;
 
     fetchPreviewDocument(parseInt(id, 10));
-      showModal({
-        open: true,
-        document: previewDocument,
-        closeModal: this.closeModal,
-        editDocument: this.editDocument,
-      }, 'document');
+    showModal({
+      open: true,
+      document: previewDocument,
+      closeModal: this.closeModal,
+      editDocument: this.editDocument,
+    }, 'document');
   }
-  
+
 
   editDocument(document) {
     const { switchActiveDocument } = this.props;
-    console.log(document);
     switchActiveDocument(document);
     history.push('/edit-document');
     this.closeModal();
+  }
+
+  handleDelete(id, name) {
+    const { deleteDocument, showModal } = this.props;
+    // open modal
+    showModal({
+      open: true,
+      closeModal: this.closeModal,
+      title: 'Apagar documento',
+      message: `Você tem certeza que deseja apagar o documento ${name}?`,
+      idDocument: id,
+      deleteAction: deleteDocument,
+    }, 'delete');
   }
 
   render() {
     const { documents } = this.props;
     return (
       <Row className="l-my-documents-list">
-      <Col xs="12">
-      <div>
-        <Table responsive hover>
-          <thead align="center">
-            <tr>
-              <th>
+        <Col xs="12">
+          <div>
+            <Table responsive hover>
+              <thead align="center">
+                <tr>
+                  <th>
                 Nome
-              </th>
-              <th>
+                  </th>
+                  <th>
                   Data de criação
-              </th>
-              <th>
+                  </th>
+                  <th>
                   Nº de questões
-              </th>
-              <th>
+                  </th>
+                  <th>
                   Apagar
-              </th>
-            </tr>
-          </thead>
-          <tbody align="center">
-            {documents.map((document, i) => (
-              <tr key={i}>
-                <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
-                  {document.name}
-                </OpenDocumentModalHeader>
-                <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
-                  {document.create_date}
-                </OpenDocumentModalHeader>
-                <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
-                  {document.questions.length}
-                </OpenDocumentModalHeader>
-                <td>
-                  <Button color="danger">
-                    <i className="fa fa-trash" />
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </div>
-      </Col>
+                  </th>
+                </tr>
+              </thead>
+              <tbody align="center">
+                {documents.map((document, i) => (
+                  <tr key={document.id}>
+                    <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
+                      {document.name}
+                    </OpenDocumentModalHeader>
+                    <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
+                      {document.create_date}
+                    </OpenDocumentModalHeader>
+                    <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
+                      {document.questions.length}
+                    </OpenDocumentModalHeader>
+                    <td>
+                      <Button color="danger" onClick={() => this.handleDelete(document.id, document.name)}>
+                        <i className="fa fa-trash" />
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+        </Col>
       </Row>
     );
   }

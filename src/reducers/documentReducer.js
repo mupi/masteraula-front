@@ -7,6 +7,7 @@ import {
   ADD_SELECTED_QUESTION, ADD_SELECTED_QUESTION_SUCCESS, ADD_SELECTED_QUESTION_FAILURE,
   REMOVE_SELECTED_QUESTION, REMOVE_SELECTED_QUESTION_SUCCESS, REMOVE_SELECTED_QUESTION_FAILURE,
   CREATE_DOCUMENT_TOGGLE_MODAL, SWITCH_ACTIVE_DOCUMENT, DELETE_DOCUMENT_SESSION,
+  DELETE_DOCUMENT, DELETE_DOCUMENT_SUCCESS, DELETE_DOCUMENT_FAILURE,
 
 } from 'actions/documentAction';
 
@@ -28,6 +29,7 @@ export const document = (state = initialState, action) => {
         isUpdated: null,
         isFetching: true,
         error: null,
+        isDeleted: false,
       });
     case FETCH_DOCUMENT_SUCCESS:
       return Object.assign({}, state, {
@@ -84,6 +86,7 @@ export const document = (state = initialState, action) => {
         isFetching: true,
         currentPage: action.page,
         error: null,
+        isDeleted: false,
       });
     case LIST_MY_DOCUMENTS_SUCCESS:
       return Object.assign({}, state, {
@@ -171,6 +174,31 @@ export const document = (state = initialState, action) => {
     case DELETE_DOCUMENT_SESSION: {
       return Object.assign({}, state, {
         activeDocument: null,
+      });
+    }
+    case DELETE_DOCUMENT: {
+      return Object.assign({}, state, {
+        isDeletingDocument: true,
+        isDeleted: false,
+      });
+    }
+    case DELETE_DOCUMENT_SUCCESS: {
+      const newList = state.myDocumentsList.results.filter(item => item.id !== action.idDocumentRemoved);
+      let newActive = state.activeDocument;
+      if (state.activeDocument.id === action.idDocumentRemoved) {
+        newActive = null;
+        localStorage.setItem('activeDocument', null);
+      }
+      return Object.assign({}, state, {
+        activeDocument: newActive,
+        isDeleted: true,
+        myDocumentsList: { ...state.myDocumentsList, count: state.myDocumentsList.count - 1, results: newList },
+      });
+    }
+    case DELETE_DOCUMENT_FAILURE: {
+      return Object.assign({}, state, {
+        error: action.error,
+        isDeleted: false,
       });
     }
     default:

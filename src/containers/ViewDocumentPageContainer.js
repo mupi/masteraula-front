@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
 import ViewDocumentPage from 'pages/ViewDocument/ViewDocumentPage';
-import { listMyDocuments, switchActiveDocument, fetchPreviewDocument } from 'actions/documentAction';
+import {
+  listMyDocuments, switchActiveDocument, fetchPreviewDocument, deleteDocument,
+} from 'actions/documentAction';
 import { showModal, hideModal } from 'actions/modalAction';
 
 // state.<reducer's name>.<property>
 
-const mapStateToProps = state => ({ 
+const mapStateToProps = state => ({
   isFetching: state.document.isFetching,
   myDocumentsList: state.document.myDocumentsList,
   currentPage: state.document.currentPage,
@@ -14,16 +16,18 @@ const mapStateToProps = state => ({
   previewDocument: state.document.previewDocument,
   isFetchingPreviewDocument: state.document.isFetchingPreviewDocument,
   error: state.document.error,
+  isDeleted: state.document.isDeleted,
 });
 
 const mapDispatchToProps = dispatch => ({
   listMyDocuments: page => dispatch(listMyDocuments(page)),
-  switchActiveDocument: doc => dispatch(switchActiveDocument(doc)),  
+  switchActiveDocument: doc => dispatch(switchActiveDocument(doc)),
   fetchPreviewDocument: props => dispatch(fetchPreviewDocument(props)),
   hideModal: () => dispatch(hideModal()),
   showModal: (modalProps, modalType) => {
     dispatch(showModal({ modalProps, modalType }));
   },
+  deleteDocument: idDocument => dispatch(deleteDocument(idDocument)),
 });
 
 const ViewDocumentPagePageContainer = connect(
