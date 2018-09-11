@@ -438,11 +438,7 @@ a.c_sidebar__document-link:hover {
       display: inline-flex; } }
 
 .c-question {
-  /*  &__full-statement{
-
-    }
-
-    &__learning-object{
+  /*  &__learning-object{
 
     }*/ }
   .c-question__row-info {
@@ -456,6 +452,8 @@ a.c_sidebar__document-link:hover {
   .c-question__tittle-section {
     margin-top: 25px;
     margin-bottom: 10px; }
+  .c-question__full-statement img {
+    max-width: 100%; }
   @media (max-width: 599px) {
     .c-question__img {
       width: 100%; } }
