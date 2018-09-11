@@ -30,6 +30,7 @@ export const getCleanCompleteStatement = (html) => {
       img: ['src', 'style'],
       p: ['style'],
       span: ['style'],
+      div: ['style'],
     },
   });
   return statement;
