@@ -40,48 +40,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    this.closeModal = this.closeModal.bind(this);
-    this.onInputChange = this.onInputChange.bind(this);
-    this.openAlertModal = this.openAlertModal.bind(this);
-    this.openPromptModal = this.openPromptModal.bind(this);
-    this.showInput = this.showInput.bind(this);
-  }
-
-  closeModal(event) {
-    this.props.hideModal();
-  }
-
-  onInputChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
-  showInput(event) {
-    console.log(this.state);
-  }
-
-  openAlertModal(event) {
-    this.props.showModal({ 
-      open: true,
-      title: 'Alert Modal',
-      message: 'Alert modal masteraula',
-      closeModal: this.closeModal,
-    }, 'alert');
-  }
-
-  openPromptModal(event) {
-    this.props.showModal({
-      open: true,
-      title: 'Prompt Modal',
-      fields: [{
-        label: 'Address name',
-        name: 'addressName',
-        placeholder: 'Enter address name',
-      }],
-      onInputChange: this.onInputChange,
-      confirmAction: this.showInput,
-    }, 'prompt');
   }
 
   render() {

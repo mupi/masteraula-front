@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 
- 
 const DeleteModal = ({
   closeModal, deleteAction, title, message, idDocument,
 }) => {

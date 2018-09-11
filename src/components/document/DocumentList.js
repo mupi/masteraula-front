@@ -12,7 +12,7 @@ const OpenDocumentModalHeader = (props) => {
   };
 
   return (
-    <td onClick={onClickHandler} style={{ cursor: 'pointer' }}>
+    <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }}>
       { children }
     </td>
   );
@@ -92,7 +92,7 @@ class DocumentList extends React.Component {
               </thead>
               <tbody align="center">
                 {documents.map((document, i) => (
-                  <tr key={i}>
+                  <tr key={document.id}>
                     <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
                       {document.name}
                     </OpenDocumentModalHeader>
