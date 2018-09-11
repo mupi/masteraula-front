@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-
+ 
 const DeleteModal = ({
   closeModal, deleteAction, title, message, idDocument,
 }) => {
@@ -25,20 +25,21 @@ const DeleteModal = ({
           </span>
         </button>
       </div>
-      <div className="modal-body">
+      <div className="modal-basic-operation__body modal-body">
         <p>
           {message}
         </p>
-      </div>
-      <div className="modal-footer modal__footer">
-        <Button color="danger" onClick={closeModal}>
-          <i className="fa fa-sign-out-alt btn__icon" />
-        Fechar
-        </Button>
-        <Button color="primary" onClick={() => handleConfirm()}>
-          <i className="fa fa-check-circle btn__icon" />
-        Apagar
-        </Button>
+
+        <div className="modal-footer modal__footer">
+          <Button color="secondary" onClick={closeModal}>
+            <i className="fa fa-sign-out-alt btn__icon" />
+          Fechar
+          </Button>
+          <Button className="btn--confirm" onClick={() => handleConfirm()}>
+            <i className="fa fa-check-circle btn__icon" />
+          Apagar
+          </Button>
+        </div>
       </div>
     </div>
   );

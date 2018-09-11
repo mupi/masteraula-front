@@ -40,11 +40,15 @@ class ModalContainer extends React.Component {
   render() {
     const { modalType, modalProps } = this.props;
     const { modalIsOpen } = this.state;
-
+    var modalClassName = 'modal-dialog';
     if (!modalType) {
       return null;
     }
+
+    if (modalType==='document') modalClassName='modal-dialog modal-lg';
+
     const SpecifiedModal = MODAL_TYPES[modalType];
+
     return (
       <div>
         <ReactModal
@@ -54,7 +58,7 @@ class ModalContainer extends React.Component {
           ariaHideApp={false}
           overlayClassName="modal fade show"
           bodyOpenClassName="modal-open"
-          className="modal-dialog modal-lg"
+          className={modalClassName}
           closeTimeoutMS={350}
         >
           <SpecifiedModal

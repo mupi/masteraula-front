@@ -43,8 +43,6 @@ class App extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.openAlertModal = this.openAlertModal.bind(this);
-    //this.openConfirmModal = this.openConfirmModal.bind(this);
-    this.openDeleteModal = this.openDeleteModal.bind(this);
     this.openPromptModal = this.openPromptModal.bind(this);
     this.showInput = this.showInput.bind(this);
   }
@@ -70,17 +68,6 @@ class App extends Component {
       message: 'Alert modal masteraula',
       closeModal: this.closeModal,
     }, 'alert');
-  }
-
- 
-  openDeleteModal(event) {
-    this.props.showModal({
-      open: true,
-      title: 'Delete Modal',
-      message: 'Delete modal masteraula',
-      deleteAction: this.closeModal,
-      closeModal: this.closeModal,
-    }, 'delete');
   }
 
   openPromptModal(event) {
