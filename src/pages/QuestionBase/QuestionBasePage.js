@@ -62,7 +62,7 @@ class QuestionBasePage extends React.Component {
             }
           </div>
           <Row className="pagination-questions">
-            <CustomPagination {...this.props} {...questionPage} itensPerPage={8} />
+            <CustomPagination {...this.props} {...questionPage} itensPerPage={16} />
           </Row>
         </div>
       </HomeUserPage>
