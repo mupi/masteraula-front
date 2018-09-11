@@ -21,17 +21,23 @@ class ViewDocumentPage extends React.Component {
     }
   }
 
-  
 
   render() {
-    const { myDocumentsList, isFetching, error } = this.props;
+    const {
+      myDocumentsList, isFetching, error, isDeleted, match, listMyDocuments,
+    } = this.props;
+
+    if (isDeleted) {
+      listMyDocuments(parseInt(match.params.page, 10));
+    }
+
     return (
       <HomeUserPage>
-      {error ? (  
-              <Alert className="alert--danger" color="danger" >
+        {error ? (
+          <Alert className="alert--danger" color="danger">
                   Ocorreu algum erro com sua solicitação, tente novamente.
-              </Alert>
-          ):''
+          </Alert>
+        ) : ''
         }
         <Container>
           <Row>
@@ -55,14 +61,17 @@ class ViewDocumentPage extends React.Component {
                 </Col>
               ) : (
                 <Col sm="12">
-                  <p  className="my-documents__total-results">{`${myDocumentsList ? (myDocumentsList.count) : 0} documentos encontrados`} </p>
+                  <p className="my-documents__total-results">
+                    {`${myDocumentsList ? (myDocumentsList.count) : 0} documentos encontrados`}
+                    {' '}
+                  </p>
                   {myDocumentsList
-                    && <DocumentList  documents={myDocumentsList.results} {...this.props} />
+                    && <DocumentList documents={myDocumentsList.results} {...this.props} />
                   }
                 </Col>
               )}
           </Row>
-          
+
         </Container>
       </HomeUserPage>);
   }

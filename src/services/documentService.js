@@ -186,6 +186,28 @@ function removeSelectedQuestion(idDocument, idQuestion) {
     .then(idRemovedQuestion => idRemovedQuestion);
 }
 
+// Delete a document given its ID
+function deleteDocument(idDocument) {
+  const requestOptions = {
+    method: 'DELETE',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = (response) => {
+    if (!response.ok) {
+      return Promise.reject();
+    }
+
+    return idDocument;
+  };
+
+  return fetch(`${apiUrl}/documents/${idDocument}/`, requestOptions)
+    .then(handleResponse)
+    .then(idRemovedDocument => idRemovedDocument);
+}
+
 
 const documentService = {
   fetchDocument,
@@ -195,6 +217,7 @@ const documentService = {
   listMyDocuments,
   addSelectedQuestion,
   removeSelectedQuestion,
+  deleteDocument,
 };
 
 export default documentService;

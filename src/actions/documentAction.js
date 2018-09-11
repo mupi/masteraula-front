@@ -204,8 +204,26 @@ export const switchActiveDocument = (doc) => {
   return { type: SWITCH_ACTIVE_DOCUMENT, activeDocument: doc };
 };
 
-// delete document document
+// delete document from session
 export const deleteDocumentSession = () => {
   localStorage.removeItem('activeDocument');
   return { type: DELETE_DOCUMENT_SESSION };
+};
+
+export const deleteDocument = (idDocument) => {
+  function deleteSelectedDocument() { return { type: DELETE_DOCUMENT }; }
+  function deleteSelectedDocumentSuccess(idDocumentRemoved) { return { type: DELETE_DOCUMENT_SUCCESS, idDocumentRemoved }; }
+  function deleteSelectedDocumentFailure(error) { return { type: DELETE_DOCUMENT_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(deleteSelectedDocument(idDocument));
+    return documentService.deleteDocument(idDocument)
+      .then(
+        (idDocumentRemoved) => {
+          dispatch(deleteSelectedDocumentSuccess(idDocumentRemoved));
+        },
+        (error) => {
+          dispatch(deleteSelectedDocumentFailure(error));
+        },
+      );
+  };
 };

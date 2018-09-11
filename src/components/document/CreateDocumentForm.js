@@ -37,7 +37,7 @@ const renderField = ({
 
 const CreateDocumentForm = (props) => {
   const {
-    handleSubmit, error, modal, messageWhenDocumentExist, initialValues,
+    handleSubmit, error, modal, messageWhenDocumentExist, initialValues, toggleModal,
   } = props;
 
   return (
