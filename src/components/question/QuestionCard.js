@@ -22,15 +22,24 @@ const QuestionCard = (props) => {
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
       <CardBody className="question-card__body">
-        <Row>
-          <DisciplineList list={question.disciplines} />
-        </Row>
-        <Row>
-          <QuestionSourceYear source={question.source} year={question.year} />
-        </Row>
-        <Row>
-          <TagList list={question.teaching_levels} styleTag="question-info teaching-level" />
-        </Row>
+
+        <div className="question-card__info-section">
+          {question.disciplines && question.disciplines.map(discipline => (
+            <span key={discipline.id} className="question-card__info-section-item question-card__info-section-item--pink">
+              {discipline.name} 
+            </span>
+          ))}
+          <span className="question-card__info-section-item question-card__info-section-item--purple ">
+            {question.source}
+            {' '}
+            {question.year}
+          </span>
+          {question.teaching_levels && question.teaching_levels.map(teachingLevel => (
+            <span id={teachingLevel.id} className="question-card__info-section-item question-card__info-section-item--green">
+              {teachingLevel.name}
+            </span>
+          ))}
+        </div>
 
         <div className="l-question-card-text">
           <p className="question-info__more-info">
@@ -41,6 +50,7 @@ const QuestionCard = (props) => {
             { (extractStatement.length >= 150) ? ` ${extractStatement.substring(0, 150)}${' ...'}` : extractStatement }
           </p>
         </div>
+
         <Link to={`/view-question/${question.id}`}>
           <Button className="question-card__btn">
             Ver questão

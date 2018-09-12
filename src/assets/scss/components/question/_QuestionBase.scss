@@ -24,42 +24,76 @@
 
 //Classes for QuestionCard
 .l-question-card-text{
-    margin-top: 15px;
+    margin-top: 10px;
+    @include for-phone-only {
+      margin-top: 5px;
+    }
 }
 
 .question-card {
     margin-bottom: 20px;
 
+    //ini: buttons
     &__btn{
+      font-size:13px;
       margin-right: 10px;
-    }
-
-    &__body{
-      padding: 15px;
-
-      .question-info {
-        font-size: 12px;
-        margin-bottom: 0px;
-        padding:5px;
-        margin-right: 5px;
+      @include for-phone-only {
+        padding: 2px 5px;
       }
-
-      .disciplines__item {
-        font-size: 12px;
-        padding: 5px;
-        margin-right: 5px;
-    }
-    }
-
-    &__image{
-
     }
 
     &__added{
+      font-size:13px;
       background: $color-ma-yellow;
       color: $color-ma-white;
       cursor: default !important;
+      @include for-phone-only {
+        padding: 2px 5px;
+      }
     }
+    //end: buttons
+
+    //ini: section with discipline, source-year and teaching level
+    &__info-section{
+     
+    }
+    //end
+
+    &__info-section-item{
+      padding: 3px 7px;
+      border-radius: 5px;
+      color: $color-ma-white;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      display: inline-block;
+      background: $color-ma-dark-gray;
+      margin: 0px 5px 5px 0px;
+    }
+
+    &__info-section-item--pink{ 
+      background: $color-ma-pink;
+    }
+
+    &__info-section-item--green{ 
+      background: $color-ma-green;
+    }
+
+    &__info-section-item--purple{ 
+      background: $color-ma-purple;
+    }
+
+
+    &__body{
+      padding: 15px; 
+    }
+
+
+    /*&__image{
+
+    }*/
+
+    
 }
 
 
