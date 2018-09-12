@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Row, Container, Col, Button, Input, InputGroup, InputGroupAddon, Alert,
+  Row, Col, Button, Input, InputGroup, InputGroupAddon, Alert,
   UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 import DocumentList from 'components/document/DocumentList';
@@ -44,19 +44,23 @@ class ViewDocumentPage extends React.Component {
           </Alert>
         ) : ''
         }
-        <Container>
+        <div className="c-my-documents">
           <Row>
-            <InputGroup>
-              <Input placeholder="Pesquisar em Meus Documentos" />
-              <InputGroupAddon addonType="prepend">
-                <Button>
-                  Pesquisar
-                </Button>
-              </InputGroupAddon>
-            </InputGroup>
+            <Col sm="12">
+              <p className="c-my-documents__search-info">
+                Pesquisar em meus documentos
+              </p>
+              <InputGroup>
+                <Input placeholder="Insira termos para pesquisar" />
+                <InputGroupAddon addonType="prepend">
+                  <Button>
+                    Pesquisar
+                  </Button>
+                </InputGroupAddon>
+              </InputGroup>
+            </Col>
           </Row>
           <Row className="pagination-my-documents" style={{ marginTop: '1em' }}>
-            <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
             {isFetching
               ? (
                 <Col sm="12">
@@ -66,11 +70,12 @@ class ViewDocumentPage extends React.Component {
                 </Col>
               ) : (
                 <Col sm="12">
-                  <p className="my-documents__total-results">
+                  <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
+                  <p className="c-my-documents__total-results">
                     {`${myDocumentsList ? (myDocumentsList.count) : 0} documentos encontrados`}
                     {' '}
                   </p>
-                  <UncontrolledDropdown>
+                  <UncontrolledDropdown className="c-my-documents__dropdown">
                     <DropdownToggle caret size="sm">
                       Ordenar por:
                       {' '}
@@ -82,25 +87,25 @@ class ViewDocumentPage extends React.Component {
                       {order || ''}
                     </DropdownToggle>
                     <DropdownMenu>
-                      <DropdownItem onClick={() => listMyDocuments(1, 'name', 'asc')}>
-Nome - Ascendente
+                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'name', 'asc')}>
+                        Nome - Ascendente
                       </DropdownItem>
-                      <DropdownItem onClick={() => listMyDocuments(1, 'name', 'desc')}>
-Nome - Descendente
-                      </DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem onClick={() => listMyDocuments(1, 'creation_date', 'asc')}>
-Data - Ascendente
-                      </DropdownItem>
-                      <DropdownItem onClick={() => listMyDocuments(1, 'creation_date', 'asc')}>
-Data - Descendente
+                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'name', 'desc')}>
+                        Nome - Descendente
                       </DropdownItem>
                       <DropdownItem divider />
-                      <DropdownItem onClick={() => listMyDocuments(1, 'question_number', 'asc')}>
-Questões - Ascendente
+                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'creation_date', 'asc')}>
+                        Data - Ascendente
                       </DropdownItem>
-                      <DropdownItem onClick={() => listMyDocuments(1, 'question_number', 'desc')}>
-Questões - Descendente
+                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'creation_date', 'asc')}>
+                        Data - Descendente
+                      </DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'asc')}>
+                        Questões - Ascendente
+                      </DropdownItem>
+                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'desc')}>
+                        Questões - Descendente
                       </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
@@ -111,7 +116,7 @@ Questões - Descendente
               )}
           </Row>
 
-        </Container>
+        </div>
       </HomeUserPage>);
   }
 }

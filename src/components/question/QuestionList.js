@@ -10,8 +10,8 @@ const QuestionList = (props) => {
       <Col sm="12" className="c-question-base__total-results">
         {`Questões encontradas: ${count}`}
       </Col>
-      {questions.map((question, key) => (
-        <Col sm={sm} xs="12" key={key} className="question-card">
+      {questions.map(question => (
+        <Col sm={sm} xs="12" key={question.id} className="question-card">
           <QuestionCard question={question} {...props} />
         </Col>
       ))}
@@ -28,7 +28,7 @@ QuestionList.propTypes = {
 QuestionList.defaultProps = {
   questions: [],
   count: 0,
-  sm: "4",
+  sm: '4',
 };
 
 export default QuestionList;
