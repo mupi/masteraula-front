@@ -472,7 +472,7 @@ a.c_sidebar__document-link:hover {
   max-width: 100%; }
 
 .c-question-base__search-text {
-  padding: 15px; }
+  padding: 0px 15px 15px 15px; }
 
 .c-question-base__results {
   margin-top: 20px; }
@@ -932,9 +932,20 @@ CSS for UserProfile
   color: #1E5078;
   font-weight: bold; }
 
-.c-my-documents__dropdown {
+.c-my-documents__dropdown-section {
   float: right;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  display: inline-flex;
+  font-size: 12px; }
+
+.c-my-documents__dropdown-toogle {
+  font-size: 12px; }
+
+.c-my-documents__dropdown-item {
+  font-size: 11px; }
+
+.c-my-documents__order-label {
+  margin: 5px; }
 
 .pagination-my-documents.row a {
   color: #1E5078; }
@@ -1069,7 +1080,6 @@ body .container-fluid .row {
 .alert {
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 10px;
   text-align: center; }
   .alert__message {
     margin-bottom: 0px; }

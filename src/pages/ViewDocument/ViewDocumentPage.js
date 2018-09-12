@@ -9,6 +9,19 @@ import DocumentList from 'components/document/DocumentList';
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from '../HomeUser/HomeUserPage';
 
+
+const getOrderNameField= (text) => {
+  switch (text){
+    case 'asc': return 'Ascendente';
+    case 'desc': return 'Descendente';
+    case 'name': return 'Nome';
+    case 'creation_date': return 'Data de criação';
+    case 'question_number': return 'Nº questões';
+    default: return text;
+  }
+}
+
+
 class ViewDocumentPage extends React.Component {
   componentDidMount() {
     const {
@@ -72,43 +85,45 @@ class ViewDocumentPage extends React.Component {
                 <Col sm="12">
                   <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
                   <p className="c-my-documents__total-results">
-                    {`${myDocumentsList ? (myDocumentsList.count) : 0} documentos encontrados`}
+                    {`Documentos encontrados: ${myDocumentsList ? (myDocumentsList.count) : 0}`}
                     {' '}
                   </p>
-                  <UncontrolledDropdown className="c-my-documents__dropdown">
-                    <DropdownToggle caret size="sm">
-                      Ordenar por:
-                      {' '}
-                      {' '}
-                      {orderField || ''}
-                      {' '}
-                      {' - '}
-                      {' '}
-                      {order || ''}
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'name', 'asc')}>
-                        Nome - Ascendente
-                      </DropdownItem>
-                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'name', 'desc')}>
-                        Nome - Descendente
-                      </DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'creation_date', 'asc')}>
-                        Data - Ascendente
-                      </DropdownItem>
-                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'creation_date', 'asc')}>
-                        Data - Descendente
-                      </DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'asc')}>
-                        Questões - Ascendente
-                      </DropdownItem>
-                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'desc')}>
-                        Questões - Descendente
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
+                  <div className="c-my-documents__dropdown-section">
+                    <span className="c-my-documents__order-label">Ordenar por:</span>
+                    <UncontrolledDropdown>
+                      <DropdownToggle className="c-my-documents__dropdown-toogle" caret size="sm">
+                        {' '}
+                        {' '}
+                        {getOrderNameField(orderField)}
+                        {' '}
+                        {' - '}
+                        {' '}
+                        {getOrderNameField(order)}
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'name', 'asc')}>
+                          Nome - Ascendente
+                        </DropdownItem>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'name', 'desc')}>
+                          Nome - Descendente
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'creation_date', 'asc')}>
+                          Data - Ascendente
+                        </DropdownItem>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'creation_date', 'asc')}>
+                          Data - Descendente
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'asc')}>
+                          Nº Questões - Ascendente
+                        </DropdownItem>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'desc')}>
+                          Nº Questões - Descendente
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                  </div>
                   {myDocumentsList
                     && <DocumentList documents={myDocumentsList.results} {...this.props} />
                   }
@@ -134,6 +149,8 @@ ViewDocumentPage.propTypes = {
 
 ViewDocumentPage.defaultProps = {
   myDocumentsList: null,
+  orderField:'name',
+  order:'asc',
 };
 
 export default ViewDocumentPage;
