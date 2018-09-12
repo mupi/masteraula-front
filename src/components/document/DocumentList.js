@@ -71,6 +71,7 @@ class DocumentList extends React.Component {
     const { documents } = this.props;
     return (
       <Row className="l-my-documents-list">
+
         <Col xs="12">
           <div>
             <Table responsive hover>

@@ -17,10 +17,12 @@ const mapStateToProps = state => ({
   isFetchingPreviewDocument: state.document.isFetchingPreviewDocument,
   error: state.document.error,
   isDeleted: state.document.isDeleted,
+  orderField: state.document.orderField,
+  order: state.document.order,
 });
 
 const mapDispatchToProps = dispatch => ({
-  listMyDocuments: page => dispatch(listMyDocuments(page)),
+  listMyDocuments: (page, orderField, order) => dispatch(listMyDocuments(page, orderField, order)),
   switchActiveDocument: doc => dispatch(switchActiveDocument(doc)),
   fetchPreviewDocument: props => dispatch(fetchPreviewDocument(props)),
   hideModal: () => dispatch(hideModal()),

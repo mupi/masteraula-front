@@ -110,7 +110,7 @@ function updateDocument(activeNewDocument) {
     });
 }
 
-function listMyDocuments(page) {
+function listMyDocuments(page, orderField, order) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -127,7 +127,7 @@ function listMyDocuments(page) {
     return data;
   });
 
-  return fetch(`${apiUrl}/documents/my_documents/?page=${page}`, requestOptions)
+  return fetch(`${apiUrl}/documents/my_documents/?page=${page}&order_field=${orderField}&order=${order}`, requestOptions)
     .then(handleResponse)
     .then(activeDocument => activeDocument);
 }

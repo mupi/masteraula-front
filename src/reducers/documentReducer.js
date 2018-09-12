@@ -87,6 +87,8 @@ export const document = (state = initialState, action) => {
         currentPage: action.page,
         error: null,
         isDeleted: false,
+        orderField: action.orderField,
+        order: action.order,
       });
     case LIST_MY_DOCUMENTS_SUCCESS:
       return Object.assign({}, state, {

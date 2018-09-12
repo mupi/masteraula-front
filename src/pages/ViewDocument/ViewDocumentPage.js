@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Row, Container, Col, Button, Input, InputGroup, InputGroupAddon, Alert,
+  Row, Col, Button, Input, InputGroup, InputGroupAddon, Alert,
+  UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 import DocumentList from 'components/document/DocumentList';
 
@@ -10,25 +11,29 @@ import HomeUserPage from '../HomeUser/HomeUserPage';
 
 class ViewDocumentPage extends React.Component {
   componentDidMount() {
-    const { match, listMyDocuments } = this.props;
-    listMyDocuments(parseInt(match.params.page, 10));
+    const {
+      match, listMyDocuments, orderField, order,
+    } = this.props;
+    listMyDocuments(parseInt(match.params.page, 10), orderField, order);
   }
 
   componentDidUpdate(prevProps) {
-    const { match, listMyDocuments } = this.props;
+    const {
+      match, listMyDocuments, orderField, order,
+    } = this.props;
     if ((match.params.page !== prevProps.match.params.page)) {
-      listMyDocuments(parseInt(match.params.page, 10));
+      listMyDocuments(parseInt(match.params.page, 10), orderField, order);
     }
   }
 
 
   render() {
     const {
-      myDocumentsList, isFetching, error, isDeleted, match, listMyDocuments,
+      myDocumentsList, isFetching, error, isDeleted, match, listMyDocuments, orderField, order,
     } = this.props;
 
     if (isDeleted) {
-      listMyDocuments(parseInt(match.params.page, 10));
+      listMyDocuments(parseInt(match.params.page, 10), orderField, order);
     }
 
     return (
@@ -39,19 +44,23 @@ class ViewDocumentPage extends React.Component {
           </Alert>
         ) : ''
         }
-        <Container>
+        <div className="c-my-documents">
           <Row>
-            <InputGroup>
-              <Input placeholder="Pesquisar em Meus Documentos" />
-              <InputGroupAddon addonType="prepend">
-                <Button>
-                  Pesquisar
-                </Button>
-              </InputGroupAddon>
-            </InputGroup>
+            <Col sm="12">
+              <p className="c-my-documents__search-info">
+                Pesquisar em meus documentos
+              </p>
+              <InputGroup>
+                <Input placeholder="Insira termos para pesquisar" />
+                <InputGroupAddon addonType="prepend">
+                  <Button>
+                    Pesquisar
+                  </Button>
+                </InputGroupAddon>
+              </InputGroup>
+            </Col>
           </Row>
           <Row className="pagination-my-documents" style={{ marginTop: '1em' }}>
-            <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
             {isFetching
               ? (
                 <Col sm="12">
@@ -61,10 +70,45 @@ class ViewDocumentPage extends React.Component {
                 </Col>
               ) : (
                 <Col sm="12">
-                  <p className="my-documents__total-results">
+                  <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
+                  <p className="c-my-documents__total-results">
                     {`${myDocumentsList ? (myDocumentsList.count) : 0} documentos encontrados`}
                     {' '}
                   </p>
+                  <UncontrolledDropdown className="c-my-documents__dropdown">
+                    <DropdownToggle caret size="sm">
+                      Ordenar por:
+                      {' '}
+                      {' '}
+                      {orderField || ''}
+                      {' '}
+                      {' - '}
+                      {' '}
+                      {order || ''}
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'name', 'asc')}>
+                        Nome - Ascendente
+                      </DropdownItem>
+                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'name', 'desc')}>
+                        Nome - Descendente
+                      </DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'creation_date', 'asc')}>
+                        Data - Ascendente
+                      </DropdownItem>
+                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'creation_date', 'asc')}>
+                        Data - Descendente
+                      </DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'asc')}>
+                        Questões - Ascendente
+                      </DropdownItem>
+                      <DropdownItem className="my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'desc')}>
+                        Questões - Descendente
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
                   {myDocumentsList
                     && <DocumentList documents={myDocumentsList.results} {...this.props} />
                   }
@@ -72,7 +116,7 @@ class ViewDocumentPage extends React.Component {
               )}
           </Row>
 
-        </Container>
+        </div>
       </HomeUserPage>);
   }
 }

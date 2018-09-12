@@ -10,7 +10,7 @@
 
     &__alert{
       &--warning{
-        margin-left: 15px;
+        margin-left: 10px;
       }
     }
 
@@ -76,6 +76,9 @@
     &__info-section-item--purple{ 
       background: $color-ma-purple;
     }
+  /*  &__image{
+
+    }*/
 
 
     &__body{

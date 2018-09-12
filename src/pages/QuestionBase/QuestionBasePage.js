@@ -38,9 +38,11 @@ class QuestionBasePage extends React.Component {
       <HomeUserPage showFilters>
         <div className="c-question-base">
           <Row className="c-question-base__search-text">
-            Digite o termo e encontre soluções relacionadas
+            <p className="c-question-base__search-info">
+              Digite o termo e encontre questões relacionadas
+            </p>
             <InputGroup>
-              <Input />
+              <Input placeholder="Insira termos para pesquisar" />
               <InputGroupAddon addonType="prepend">
                 <Button>
                   Pesquisar
@@ -54,7 +56,7 @@ class QuestionBasePage extends React.Component {
           <div className="c-question-base__results">
             { isFetching ? (
               <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
-                Carregando ...
+                  Carregando ...
               </Alert>
             ) : (
               <QuestionList sm="3" {...this.props} questions={questionPage.results} count={questionPage.count} />
