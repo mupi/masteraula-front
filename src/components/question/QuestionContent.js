@@ -11,7 +11,7 @@ const QuestionContent = (question) => {
 
   return (
     <Container className="c-question__full-statement">
-      <Row>
+      <Row className="c-question--section-border">
         <Col sm="12" xs="12">
           <div className="">
             <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(statement) }} />

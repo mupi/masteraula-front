@@ -273,9 +273,22 @@
     font-weight: bold;
   }
 
-  &__dropdown{
+  &__dropdown-section{
     float: right;
     margin-bottom: 10px;
+    display: inline-flex;
+    font-size:12px;
+  }
+
+  &__dropdown-toogle{
+    font-size:12px;
+  }
+  &__dropdown-item{
+    font-size:11px;
+  }
+
+  &__order-label{
+    margin: 5px;
   }
 }
 

@@ -12,6 +12,11 @@
   font-size:13px;
   text-align:center;
 
+  @include for-phone-only {
+    display: inline-flex;
+    margin-bottom: 0px;
+  }
+
   &--source-year{
     margin-bottom: 10px;
   }
@@ -30,15 +35,14 @@
         font-style: italic;
   }
 
-  @include for-phone-only {
-        display: inline-flex;
-    }
+  
 
-}
+} 
 
 
 //Question Page where c-question is the main container
 .c-question {
+
     &__row-info {
         margin-bottom: 10px;
     }
@@ -55,15 +59,15 @@
     }
 
     &__tittle-section{
-      margin-top: 25px;
+      margin-top: 22px;
       margin-bottom: 10px;
     }
 
-  /*  &__full-statement{
-
+    &__full-statement img{
+      max-width: 100%;
     }
 
-    &__learning-object{
+  /*  &__learning-object{
 
     }*/
 

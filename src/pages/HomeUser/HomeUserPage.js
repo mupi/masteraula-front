@@ -12,7 +12,7 @@ const HomeUserPage = (props) => {
       <div id="body">
         <div className="container-fluid">
           <Row>
-            <Col xs="12">
+            <Col xs="12" className="l-home-user">
               <div className="container c-home-user">
                 {children}
               </div>

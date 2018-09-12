@@ -95,11 +95,6 @@ ul.header {
 .margin-bottom--10px {
   margin-bottom: 10px; }
 
-@media (max-width: 599px) {
-  .container {
-    padding-right: 0px;
-    padding-left: 0px; } }
-
 /*Modal CSS General**/
 .modal-content {
   background: transparent;
@@ -423,6 +418,10 @@ a.c_sidebar__document-link:hover {
   margin-right: 10px;
   font-size: 13px;
   text-align: center; }
+  @media (max-width: 599px) {
+    .question-info {
+      display: inline-flex;
+      margin-bottom: 0px; } }
   .question-info--source-year {
     margin-bottom: 10px; }
   .question-info--purple {
@@ -433,16 +432,9 @@ a.c_sidebar__document-link:hover {
   .question-info__author {
     font-weight: bold;
     font-style: italic; }
-  @media (max-width: 599px) {
-    .question-info {
-      display: inline-flex; } }
 
 .c-question {
-  /*  &__full-statement{
-
-    }
-
-    &__learning-object{
+  /*  &__learning-object{
 
     }*/ }
   .c-question__row-info {
@@ -454,8 +446,10 @@ a.c_sidebar__document-link:hover {
     margin: 10px 0px;
     padding: 20px 10px; }
   .c-question__tittle-section {
-    margin-top: 25px;
+    margin-top: 22px;
     margin-bottom: 10px; }
+  .c-question__full-statement img {
+    max-width: 100%; }
   @media (max-width: 599px) {
     .c-question__img {
       width: 100%; } }
@@ -478,7 +472,7 @@ a.c_sidebar__document-link:hover {
   max-width: 100%; }
 
 .c-question-base__search-text {
-  padding: 15px; }
+  padding: 0px 15px 15px 15px; }
 
 .c-question-base__results {
   margin-top: 20px; }
@@ -493,7 +487,10 @@ a.c_sidebar__document-link:hover {
   font-weight: bold; }
 
 .l-question-card-text {
-  margin-top: 15px; }
+  margin-top: 10px; }
+  @media (max-width: 599px) {
+    .l-question-card-text {
+      margin-top: 5px; } }
 
 .question-card {
   margin-bottom: 20px;
@@ -501,22 +498,42 @@ a.c_sidebar__document-link:hover {
 
     }*/ }
   .question-card__btn {
+    font-size: 13px;
     margin-right: 10px; }
-  .question-card__body {
-    padding: 15px; }
-    .question-card__body .question-info {
-      font-size: 12px;
-      margin-bottom: 0px;
-      padding: 5px;
-      margin-right: 5px; }
-    .question-card__body .disciplines__item {
-      font-size: 12px;
-      padding: 5px;
-      margin-right: 5px; }
+    @media (max-width: 599px) {
+      .question-card__btn {
+        padding: 5px 8px; } }
   .question-card__added {
+    font-size: 13px;
     background: #F3B232;
     color: #FFFFFF;
     cursor: default !important; }
+    @media (max-width: 599px) {
+      .question-card__added {
+        padding: 5px 8px; } }
+  .question-card__info-section-item {
+    padding: 3px 7px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 11px;
+    text-align: center;
+    display: inline-block;
+    background: #999a9a;
+    margin: 0px 5px 5px 0px; }
+  .question-card__info-section-item--pink {
+    background: #FF007A; }
+  .question-card__info-section-item--green {
+    background: #53BA65; }
+  .question-card__info-section-item--purple {
+    background: #4D3570; }
+  .question-card__body {
+    padding: 15px; }
+    .question-card__body:hover {
+      border: 0px solid transparent;
+      -webkit-box-shadow: 0 3px 7px 0;
+      -moz-box-shadow: 0 3px 7px 0 #999a9a;
+      box-shadow: 0 3px 7px 0 #999a9a; }
 
 /*Pagination in QuestionBase*/
 .page-item.active .page-link {
@@ -915,9 +932,20 @@ CSS for UserProfile
   color: #1E5078;
   font-weight: bold; }
 
-.c-my-documents__dropdown {
+.c-my-documents__dropdown-section {
   float: right;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  display: inline-flex;
+  font-size: 12px; }
+
+.c-my-documents__dropdown-toogle {
+  font-size: 12px; }
+
+.c-my-documents__dropdown-item {
+  font-size: 11px; }
+
+.c-my-documents__order-label {
+  margin: 5px; }
 
 .pagination-my-documents.row a {
   color: #1E5078; }
@@ -984,6 +1012,10 @@ tbody tr.odd {
   margin-top: 25px;
   padding: 0px; }
 
+@media (max-width: 599px) {
+  .l-home-user {
+    padding: 0px !important; } }
+
 #main-masteraula-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1048,7 +1080,6 @@ body .container-fluid .row {
 .alert {
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 10px;
   text-align: center; }
   .alert__message {
     margin-bottom: 0px; }
