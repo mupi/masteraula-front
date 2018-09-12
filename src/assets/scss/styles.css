@@ -501,10 +501,7 @@ a.c_sidebar__document-link:hover {
       margin-top: 5px; } }
 
 .question-card {
-  margin-bottom: 20px;
-  /*&__image{
-
-    }*/ }
+  margin-bottom: 20px; }
   .question-card__btn {
     font-size: 13px;
     margin-right: 10px; }
@@ -524,7 +521,7 @@ a.c_sidebar__document-link:hover {
     border-radius: 5px;
     color: #FFFFFF;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
     display: inline-block;
     background: #999a9a;
@@ -537,6 +534,11 @@ a.c_sidebar__document-link:hover {
     background: #4D3570; }
   .question-card__body {
     padding: 15px; }
+    .question-card__body:hover {
+      border: 0px solid transparent;
+      -webkit-box-shadow: 0 3px 7px 0;
+      -moz-box-shadow: 0 3px 7px 0 #999a9a;
+      box-shadow: 0 3px 7px 0 #999a9a; }
 
 /*Pagination in QuestionBase*/
 .page-item.active .page-link {

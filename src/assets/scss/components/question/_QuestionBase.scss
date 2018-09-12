@@ -53,18 +53,12 @@
     }
     //end: buttons
 
-    //ini: section with discipline, source-year and teaching level
-    &__info-section{
-     
-    }
-    //end
-
     &__info-section-item{
       padding: 3px 7px;
       border-radius: 5px;
       color: $color-ma-white;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 11px;
       text-align: center;
       display: inline-block;
       background: $color-ma-dark-gray;
@@ -85,14 +79,17 @@
 
 
     &__body{
-      padding: 15px; 
+      padding: 15px;
+      &:hover {
+        border: 0px solid transparent;
+        -webkit-box-shadow: 0 3px 7px 0 ;
+        -moz-box-shadow: 0 3px 7px 0  $color-ma-dark-gray;
+        box-shadow: 0 3px 7px 0 $color-ma-dark-gray;
+      } 
     }
 
 
-    /*&__image{
-
-    }*/
-
+    
     
 }
 
