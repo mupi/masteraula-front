@@ -29,7 +29,7 @@ const QuestionCard = (props) => {
             {question.year}
           </span>
           {question.teaching_levels && question.teaching_levels.map(teachingLevel => (
-            <span id={teachingLevel.id} className="question-card__info-section-item question-card__info-section-item--green">
+            <span key={teachingLevel.id} className="question-card__info-section-item question-card__info-section-item--green">
               {teachingLevel.name}
             </span>
           ))}

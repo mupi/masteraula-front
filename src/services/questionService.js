@@ -2,12 +2,6 @@ import { apiUrl } from 'helpers/config';
 import { authHeader } from 'helpers';
 import queryString from 'query-string';
 
-const questionService = {
-  rateQuestion,
-  fetchQuestion,
-  listQuestions,
-};
-
 function fetchQuestion(id) {
   const requestOptions = {
     method: 'GET',
@@ -64,5 +58,11 @@ function listQuestions(page, filter) {
 function rateQuestion() {
 
 }
+
+const questionService = {
+  rateQuestion,
+  fetchQuestion,
+  listQuestions,
+};
 
 export default questionService;

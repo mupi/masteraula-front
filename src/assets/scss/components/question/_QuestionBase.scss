@@ -38,7 +38,7 @@
       font-size:13px;
       margin-right: 10px;
       @include for-phone-only {
-        padding: 2px 5px;
+        padding: 5px 8px;
       }
     }
 
@@ -48,7 +48,7 @@
       color: $color-ma-white;
       cursor: default !important;
       @include for-phone-only {
-        padding: 2px 5px;
+        padding: 5px 8px;
       }
     }
     //end: buttons

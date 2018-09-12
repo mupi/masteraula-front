@@ -1,4 +1,5 @@
 import { questionService } from 'services';
+import { history } from 'helpers/history';
 
 // Load single question
 export const FETCH_QUESTION = 'FETCH_QUESTION';
@@ -39,6 +40,7 @@ export const fetchQuestion = (id) => {
         },
         (error) => {
           dispatch(fetchQuestionFailure(error));
+          history.push('/question-base/1');
         },
       );
   };

@@ -499,7 +499,7 @@ a.c_sidebar__document-link:hover {
     margin-right: 10px; }
     @media (max-width: 599px) {
       .question-card__btn {
-        padding: 2px 5px; } }
+        padding: 5px 8px; } }
   .question-card__added {
     font-size: 13px;
     background: #F3B232;
@@ -507,7 +507,7 @@ a.c_sidebar__document-link:hover {
     cursor: default !important; }
     @media (max-width: 599px) {
       .question-card__added {
-        padding: 2px 5px; } }
+        padding: 5px 8px; } }
   .question-card__info-section-item {
     padding: 3px 7px;
     border-radius: 5px;
