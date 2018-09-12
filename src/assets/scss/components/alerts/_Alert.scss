@@ -8,18 +8,9 @@
 .alert {
     margin-top: 10px;
     margin-bottom: 10px;
- //   padding: 10px;
     text-align: center;
 
     &__message{
         margin-bottom: 0px;
-    }
-
-    &--error{
-
-    }
-
-    &--success{
-    //  padding:0px;
     }
 }

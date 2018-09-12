@@ -10,8 +10,8 @@ import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from '../HomeUser/HomeUserPage';
 
 
-const getOrderNameField= (text) => {
-  switch (text){
+const getOrderNameField = (text) => {
+  switch (text) {
     case 'asc': return 'Ascendente';
     case 'desc': return 'Descendente';
     case 'name': return 'Nome';
@@ -19,7 +19,7 @@ const getOrderNameField= (text) => {
     case 'question_number': return 'Nº questões';
     default: return text;
   }
-}
+};
 
 
 class ViewDocumentPage extends React.Component {
@@ -89,7 +89,9 @@ class ViewDocumentPage extends React.Component {
                     {' '}
                   </p>
                   <div className="c-my-documents__dropdown-section">
-                    <span className="c-my-documents__order-label">Ordenar por:</span>
+                    <span className="c-my-documents__order-label">
+                      Ordenar por:
+                    </span>
                     <UncontrolledDropdown>
                       <DropdownToggle className="c-my-documents__dropdown-toogle" caret size="sm">
                         {' '}
@@ -145,12 +147,14 @@ ViewDocumentPage.propTypes = {
   listMyDocuments: PropTypes.func.isRequired,
   myDocumentsList: PropTypes.shape(),
   isFetching: PropTypes.bool.isRequired,
+  orderField: PropTypes.string,
+  order: PropTypes.string,
 };
 
 ViewDocumentPage.defaultProps = {
   myDocumentsList: null,
-  orderField:'name',
-  order:'asc',
+  orderField: 'name',
+  order: 'asc',
 };
 
 export default ViewDocumentPage;
