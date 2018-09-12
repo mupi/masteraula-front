@@ -64,7 +64,7 @@ class ViewDocumentPage extends React.Component {
             {isFetching
               ? (
                 <Col sm="12">
-                  <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
+                  <Alert className="alert--warning" color="warning" fade={false}>
                     Carregando ...
                   </Alert>
                 </Col>

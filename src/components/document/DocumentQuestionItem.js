@@ -63,7 +63,7 @@ const DocumentQuestionItem = (props) => {
                   Níveis de Ensino:
                   {' '}
                   {question.teaching_levels && question.teaching_levels.map((level, i) => (
-                    <span id={i} className="c-document__question-info-detail c-document__question-info-detail--green">
+                    <span key={i} className="c-document__question-info-detail c-document__question-info-detail--green">
                       {level.name}
                     </span>
                   ))}
@@ -72,7 +72,7 @@ const DocumentQuestionItem = (props) => {
                   Disciplinas:
                   {' '}
                   {question.disciplines && question.disciplines.map((discipline, i) => (
-                    <span id={i} className="c-document__question-info-detail c-document__question-info-detail--pink">
+                    <span key={i} className="c-document__question-info-detail c-document__question-info-detail--pink">
                       {discipline.name}
                     </span>
                   ))}
