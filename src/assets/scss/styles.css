@@ -484,7 +484,7 @@ a.c_sidebar__document-link:hover {
   margin-top: 20px; }
 
 .c-question-base__alert--warning {
-  margin-left: 15px; }
+  margin-left: 10px; }
 
 .c-question-base__total-results {
   margin-bottom: 15px;
@@ -496,7 +496,10 @@ a.c_sidebar__document-link:hover {
   margin-top: 15px; }
 
 .question-card {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  /*  &__image{
+
+    }*/ }
   .question-card__btn {
     margin-right: 10px; }
   .question-card__body {
@@ -727,106 +730,94 @@ CSS for UserProfile
 
 /** New Document and ViewDocument in "My Documents" options*/
 /*Questions in EditDocument*/
-.c-document__header {
-  padding: 15px;
-  border: 2px solid #FFFFFF;
-  padding: 25px;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background: #FFFFFF;
-  margin-top: 10px; }
-
-.c-document__main-buttons {
-  margin: 15px 0px; }
-
-.c-document__question {
-  position: relative;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  margin: 20px 0px;
-  padding: 20px 10px; }
-
-.c-document__question-info {
-  background: #FFFFFF; }
-
-.c-document__question-info-title {
-  color: #1E5078;
-  font-weight: bold;
-  margin-bottom: 5px;
-  font-size: 15px; }
-
-.c-document__question-info-subtitle {
-  color: #000;
-  font-weight: bold;
-  margin-bottom: 5px; }
-
-.c-document__question-info-row {
-  font-size: 13px;
-  margin-bottom: 5px;
-  font-style: italic; }
-
-.c-document__question-info-detail {
-  padding: 3px 5px;
-  border-radius: 5px;
-  color: #FFFFFF;
-  font-weight: bold;
-  margin-bottom: 10px;
-  margin-right: 5px;
-  text-align: center;
-  font-style: normal; }
-
-.c-document__question-info-detail--green {
-  background: #53BA65; }
-
-.c-document__question-info-detail--pink {
-  background: #FF007A; }
-
-.c-document__question-info-statement {
-  color: #000;
-  margin-bottom: 5px; }
-
-.c-document__question-info-author {
-  color: #999a9a;
-  font-style: italic;
-  margin-bottom: 5px; }
-
-.c-document__question-content {
-  display: inline-flex;
-  width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
-  text-align: justify; }
-
-.c-document__question-view-more {
-  text-align: right; }
-  @media (max-width: 989px) {
-    .c-document__question-view-more {
-      text-align: center; } }
-
-.c-document__questions-header {
-  position: relative;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  margin: 10px 0px;
-  padding: 20px 10px; }
-
-.c-document__btn-remove-question {
-  line-height: 0px;
-  background: #d9534f;
-  color: #FFFFFF;
-  font-size: 21px;
-  border: 1px solid #d9534f;
-  margin-right: 5px; }
-
-.c-document__btn-remove-question:hover {
-  background: #d9534f;
-  border-color: #d9534f; }
+.c-document {
+  /* &__question-image{
+   
+    }*/ }
+  .c-document__header {
+    padding: 15px;
+    border: 2px solid #FFFFFF;
+    padding: 25px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+    margin-top: 10px; }
+  .c-document__main-buttons {
+    margin: 15px 0px; }
+  .c-document__question {
+    position: relative;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin: 20px 0px;
+    padding: 20px 10px; }
+  .c-document__question-info {
+    background: #FFFFFF; }
+  .c-document__question-info-title {
+    color: #1E5078;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 15px; }
+  .c-document__question-info-subtitle {
+    color: #000;
+    font-weight: bold;
+    margin-bottom: 5px; }
+  .c-document__question-info-row {
+    font-size: 13px;
+    margin-bottom: 5px;
+    font-style: italic; }
+  .c-document__question-info-detail {
+    padding: 3px 5px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    text-align: center;
+    font-style: normal; }
+  .c-document__question-info-detail--green {
+    background: #53BA65; }
+  .c-document__question-info-detail--pink {
+    background: #FF007A; }
+  .c-document__question-info-statement {
+    color: #000;
+    margin-bottom: 5px; }
+  .c-document__question-info-author {
+    color: #999a9a;
+    font-style: italic;
+    margin-bottom: 5px; }
+  .c-document__question-content {
+    display: inline-flex;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: justify; }
+  .c-document__question-view-more {
+    text-align: right; }
+    @media (max-width: 989px) {
+      .c-document__question-view-more {
+        text-align: center; } }
+  .c-document__questions-header {
+    position: relative;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin: 10px 0px;
+    padding: 20px 10px; }
+  .c-document__btn-remove-question {
+    line-height: 0px;
+    background: #d9534f;
+    color: #FFFFFF;
+    font-size: 21px;
+    border: 1px solid #d9534f;
+    margin-right: 5px; }
+  .c-document__btn-remove-question:hover {
+    background: #d9534f;
+    border-color: #d9534f; }
 
 .l-btn-remove-question {
   position: absolute;
@@ -846,7 +837,10 @@ CSS for UserProfile
 .c-document-modal {
   padding-top: 0px;
   background: #FFFFFF;
-  border-radius: 5px; }
+  border-radius: 5px;
+  /*  &__question-number{
+
+  }*/ }
   .c-document-modal__header-info {
     position: relative;
     border-radius: 4px;
@@ -915,12 +909,15 @@ CSS for UserProfile
 .l-my-documents-list {
   width: 100%; }
 
-.my-documents__total-results {
+.c-my-documents__total-results {
   margin-bottom: 15px;
   font-size: 14px;
   color: #1E5078;
-  font-weight: bold;
-  margin-left: -10px; }
+  font-weight: bold; }
+
+.c-my-documents__dropdown {
+  float: right;
+  margin-bottom: 10px; }
 
 .pagination-my-documents.row a {
   color: #1E5078; }

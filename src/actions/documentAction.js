@@ -130,15 +130,17 @@ export const updateDocument = (props) => {
   };
 };
 
-export const listMyDocuments = page => (dispatch) => {
+export const listMyDocuments = (page, orderField, order) => (dispatch) => {
   const success = myDocumentsList => (
     dispatch({ type: LIST_MY_DOCUMENTS_SUCCESS, myDocumentsList }));
 
   const error = errorMessage => (
     dispatch({ type: LIST_MY_DOCUMENTS_FAILURE, errorMessage }));
 
-  dispatch({ type: LIST_MY_DOCUMENTS, page });
-  return documentService.listMyDocuments(page)
+  dispatch({
+    type: LIST_MY_DOCUMENTS, page, orderField, order,
+  });
+  return documentService.listMyDocuments(page, orderField, order)
     .then(success)
     .catch(error);
 };
