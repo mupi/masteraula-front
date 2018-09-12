@@ -95,11 +95,6 @@ ul.header {
 .margin-bottom--10px {
   margin-bottom: 10px; }
 
-@media (max-width: 599px) {
-  .container {
-    padding-right: 0px;
-    padding-left: 0px; } }
-
 /*Modal CSS General**/
 .modal-content {
   background: transparent;
@@ -442,9 +437,6 @@ a.c_sidebar__document-link:hover {
   /*  &__learning-object{
 
     }*/ }
-  @media (max-width: 599px) {
-    .c-question .col-12 {
-      padding: 0px !important; } }
   .c-question__row-info {
     margin-bottom: 10px; }
   .c-question .c-question-base__total-results {
@@ -1011,6 +1003,10 @@ tbody tr.odd {
   position: relative;
   margin-top: 25px;
   padding: 0px; }
+
+@media (max-width: 599px) {
+  .l-home-user {
+    padding: 0px !important; } }
 
 #main-masteraula-container {
   display: -webkit-box;

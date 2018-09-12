@@ -1,19 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Card, CardImg, CardBody, Row,
+  Button, Card, CardImg, CardBody,
 } from 'reactstrap';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
-
 import imageCard from 'assets/img/home/question-card.jpg';
-import DisciplineList from 'components/disciplines/DisciplineList';
-import TagList from 'components/tags/TagList';
 import { Link } from 'react-router-dom';
 import { isQuestionAdded, getCleanExtractStatement } from 'helpers/question';
-
 import QuestionAuthor from './QuestionAuthor';
-import QuestionSourceYear from './QuestionSourceYear';
-
 
 const QuestionCard = (props) => {
   const { question, urlImage, activeDocument } = props;
@@ -26,7 +20,7 @@ const QuestionCard = (props) => {
         <div className="question-card__info-section">
           {question.disciplines && question.disciplines.map(discipline => (
             <span key={discipline.id} className="question-card__info-section-item question-card__info-section-item--pink">
-              {discipline.name} 
+              {discipline.name}
             </span>
           ))}
           <span className="question-card__info-section-item question-card__info-section-item--purple ">

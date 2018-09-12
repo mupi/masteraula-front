@@ -43,12 +43,6 @@
 //Question Page where c-question is the main container
 .c-question {
 
-    .col-12 {
-          @include for-phone-only {
-            padding: 0px !important;
-        }
-    }
-
     &__row-info {
         margin-bottom: 10px;
     }
