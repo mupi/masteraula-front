@@ -49,7 +49,7 @@ const UserPasswordProfile = (props) => {
           <Col sm="4" xs="12">
             Email
           </Col>
-          <Col sm="4" xs="12">
+          <Col sm="4" xs="12" className="text-center">
             <Label>
               {user.email}
             </Label>

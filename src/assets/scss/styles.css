@@ -665,10 +665,11 @@ CSS for UserProfile
 .c-user-profile__button-section {
   margin-top: 0px; }
 
-.contenedor-profile .form-group {
-  font-family: "Lato", serif; }
+@media (max-width: 599px) {
+  .c-user-profile__avatar {
+    padding: 0px 0px 15px 0px; } }
 
-.thumbnail img {
+.c-user-profile__avatar img {
   max-width: 200px; }
 
 .small-text {

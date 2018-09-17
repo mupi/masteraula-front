@@ -5,15 +5,18 @@ CSS for UserProfile
     &__button-section{
         margin-top: 0px;
     }
+
+    &__avatar{
+        @include for-phone-only {
+          padding: 0px 0px 15px 0px;
+      }
+
+      img {
+        max-width: 200px;
+      }
+    }
 }
 
-.contenedor-profile .form-group{
-   font-family: $lato;
-}
-
-.thumbnail img {
-    max-width: 200px;
-}
 .small-text {
     font-size: 14px;
 }

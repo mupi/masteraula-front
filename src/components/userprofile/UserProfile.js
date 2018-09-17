@@ -51,7 +51,7 @@ const UserProfile = (props) => {
           </h4>
         </Row>
         <Row>
-          <Col sm="4" xs="12" className="text-center">
+          <Col sm="4" xs="12" className="text-center c-user-profile__avatar">
             <Label for="upload-avatar" className="upload-avatar">
               <span>
                 <i className="fa fa-picture-o" />
