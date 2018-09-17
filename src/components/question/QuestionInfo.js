@@ -10,19 +10,18 @@ import { getTeachingLevel } from 'helpers/question';
 
 import QuestionAuthor from './QuestionAuthor';
 
-const QuestionInfo = ({ question, rating, onRate = f => f,
-}) => (
+const QuestionInfo = ({ question, rating, onRate = f => f }) => (
   <Container className="question-information">
     <Row className="c-question__tittle-section">
       <h4>
         <i className="fa fa-info-circle" />
         {' '}
-Informação da Questão
+          Informação da Questão
       </h4>
     </Row>
     <Row>
       <Col className="info-label" sm="4" xs="4">
-Disciplinas
+          Disciplinas
       </Col>
       <Col sm="8" xs="8">
         <DisciplineList list={question.disciplines} />
@@ -30,7 +29,7 @@ Disciplinas
     </Row>
     <Row className="c-question__row-info">
       <Col className="info-label" sm="4" xs="4">
-Grau de difuldade
+          Grau de difuldade
       </Col>
       <Col sm="8" xs="8">
         <span className="question-info  difficulty-level">
@@ -40,7 +39,7 @@ Grau de difuldade
     </Row>
     <Row className="c-question__row-info">
       <Col className="info-label" sm="4" xs="4">
-Nível de Ensino
+        Nível de Ensino
       </Col>
       <Col sm="8" xs="8">
         <TagList list={question.teaching_levels} styleTag="question-info  teaching-level" />
@@ -48,7 +47,7 @@ Nível de Ensino
     </Row>
     <Row className="c-question__row-info">
       <Col className="info-label" sm="4" xs="4">
-Tags
+        Tags
       </Col>
       <Col sm="8" xs="8">
         <TagList list={question.tags} styleTag="question-info  tag-name" />
@@ -56,7 +55,7 @@ Tags
     </Row>
     <Row className="c-question__row-info">
       <Col className="info-label" sm="4" xs="4">
-Descritores
+        Descritores
       </Col>
       <Col sm="8" xs="12">
         <DescriptorList list={question.descriptors} styleTag="question-info  descriptor-name" />
@@ -64,7 +63,7 @@ Descritores
     </Row>
     <Row className="c-question__row-info">
       <Col className="info-label" sm="4" xs="4">
-Autor
+      Autor
       </Col>
       <Col sm="8" xs="8">
         <QuestionAuthor author={question.author} styleTag="question-info author" />
@@ -72,7 +71,7 @@ Autor
     </Row>
     <Row className="c-question__row-info">
       <Col className="info-label" sm="4" xs="4">
-Avaliação
+        Avaliação
       </Col>
       <Col sm="8" xs="8">
         <StarRating onRate={rt => onRate(rt)} starsSelected={rating} />

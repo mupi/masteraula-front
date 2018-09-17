@@ -14,6 +14,17 @@
       margin-top: 10px;
     }
 
+    &__logo{
+      padding: 10px;
+      @include for-phone-only {
+        padding: 0px 0px 15px 0px;
+      }
+
+      img {
+        max-width: 200px;
+      }
+    }
+
     &__main-buttons{
       margin: 15px 0px;
     }

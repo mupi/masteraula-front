@@ -1,45 +1,13 @@
 import QuestionHeader from 'components/question/QuestionHeader';
 import QuestionContent from 'components/question/QuestionContent';
 import QuestionInfo from 'components/question/QuestionInfo';
-import RelatedQuestions from 'components/question/RelatedQuestions';
-import QuestionComments from 'components/question/QuestionComments';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
-import { Alert, Row, Col } from 'reactstrap';
+import {
+  Alert, Container, Row, Col,
+} from 'reactstrap';
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-
-
-/* Questoes Relacionadas - test */
-const questionTest = {
-  rquestions: [
-    {
-      disciplines: [
-        { name: 'Química' },
-        { name: 'Física' },
-      ],
-      source: 'ENEM',
-      year: '2010',
-      teaching_levels: [
-        {
-          id: 1,
-          name: 'Ensino Médio',
-        },
-        {
-          id: 2,
-          name: 'Ensino Fundamental',
-        },
-      ],
-      author: {
-        id: 8,
-        username: 'cp.rosaless@gmail.com',
-        name: 'Carmen Pamela Rosales Sedano',
-        email: 'cp.rosaless@gmail.com',
-      },
-      statement: 'Assinale a alternativa : a) O discurso feminista de Susanitar denota certo machismo ...',
-    },
-  ],
-};
 
 class QuestionPage extends Component {
   componentDidMount() {
@@ -85,9 +53,44 @@ class QuestionPage extends Component {
                 statement={activeQuestion.statement}
                 resolution={activeQuestion.resolution}
               />
+              <Container className="c-question__section-add-question">
+                <Row>
+                  {!isQuestionAdded(activeDocument, activeQuestion.id) ? (
+                    <Col className="c-question__add-question-rectangle">
+                      <h6 className="c-question__add-question-title">
+                        Gostou da questão? Adicione a seu documento
+                      </h6>
+                      <AddQuestionButton
+                        questionId={activeQuestion.id}
+                        customClass="question-card__btn"
+                        nameButton="Adicionar"
+                        toggleModal={toggleModal}
+                        modal={modal}
+                        activeDocument={activeDocument}
+                        addSelectedQuestion={addSelectedQuestion}
+                      />
+                    </Col>
+                  ) : (
+                    <Col className="c-question__add-question-rectangle">
+                      <h6 className="c-question__add-question-title">
+                        Esta questão foi adicionada ao documento
+                        {' '}
+                        <strong>
+                          {activeDocument.name}
+                        </strong>
+                      </h6>
+                      <span className="btn question-card__added">
+                        <i className="fa fa-check-circle btn__icon" />
+                          Adicionada
+                      </span>
+                    </Col>
+                  )}
+                </Row>
+              </Container>
+              
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
-              <RelatedQuestions rquestions={questionTest.rquestions} />
-              <QuestionComments />
+
+              
             </Col>
           </Row>
         </div>
