@@ -53,8 +53,6 @@ class QuestionPage extends Component {
                 statement={activeQuestion.statement}
                 resolution={activeQuestion.resolution}
               />
-              <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
-
               <Container className="c-question__section-add-question">
                 <Row>
                   {!isQuestionAdded(activeDocument, activeQuestion.id) ? (
@@ -89,6 +87,10 @@ class QuestionPage extends Component {
                   )}
                 </Row>
               </Container>
+              
+              <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
+
+              
             </Col>
           </Row>
         </div>
