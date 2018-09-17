@@ -53,7 +53,7 @@ const UserProfile = (props) => {
         <Row>
           <Col sm="4" xs="12" className="text-center c-user-profile__avatar">
             <Label for="upload-avatar" className="upload-avatar">
-              <span>
+              <span className="hidden">
                 <i className="fa fa-picture-o" />
                 Enviar foto
               </span>
@@ -61,7 +61,7 @@ const UserProfile = (props) => {
                 <img src={userPhoto} alt="foto-usuario" />
               </div>
             </Label>
-            <div className="small-text">
+            <div className="small-text hidden">
               Tamanho máximo 1 MB. (JPG, GIF ou PNG)
             </div>
           </Col>
