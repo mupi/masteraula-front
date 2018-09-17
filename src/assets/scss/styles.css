@@ -662,6 +662,9 @@ CSS for RegisterPage
 /*
 CSS for UserProfile
 */
+.c-user-profile__button-section {
+  margin-top: 0px; }
+
 .contenedor-profile .form-group {
   font-family: "Lato", serif; }
 
@@ -672,8 +675,8 @@ CSS for UserProfile
   font-size: 14px; }
 
 .section-user-title {
-  margin-top: 25px;
-  margin-bottom: 25px; }
+  margin-top: 15px;
+  margin-bottom: 15px; }
 
 .sub-section-user-title {
   margin-top: 10px; }

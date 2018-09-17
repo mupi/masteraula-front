@@ -46,11 +46,9 @@ const UserProfile = (props) => {
     <Form onSubmit={handleSubmit}>
       <Container>
         <Row className="section-user-title">
-          <FormGroup>
-            <h4>
+          <h4>
               Dados básicos
-            </h4>
-          </FormGroup>
+          </h4>
         </Row>
         <Row>
           <Col sm="4" xs="12" className="text-center">
@@ -66,7 +64,6 @@ const UserProfile = (props) => {
             <div className="small-text">
               Tamanho máximo 1 MB. (JPG, GIF ou PNG)
             </div>
-
           </Col>
           <Col sm="8" xs="12">
             <FormGroup>
@@ -97,7 +94,7 @@ const UserProfile = (props) => {
 
           </Col>
         </Row>
-        <Row className="section-user-title">
+        <Row className="c-user-profile__button-section">
           <Col className="text-center">
             <Button type="submit">
               Salvar
