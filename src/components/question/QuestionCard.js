@@ -44,27 +44,28 @@ const QuestionCard = (props) => {
             { (extractStatement.length >= 150) ? ` ${extractStatement.substring(0, 150)}${' ...'}` : extractStatement }
           </p>
         </div>
+        <div className="question-card__footer">
+          <Link to={`/view-question/${question.id}`}>
+            <Button className="question-card__btn">
+              Ver questão
+            </Button>
+          </Link>
 
-        <Link to={`/view-question/${question.id}`}>
-          <Button className="question-card__btn">
-            Ver questão
-          </Button>
-        </Link>
-
-        {!isQuestionAdded(activeDocument, question.id) ? (
-          <AddQuestionButton
-            questionId={question.id}
-            customClass="question-card__btn"
-            nameButton="Adicionar"
-            activeDocument={activeDocument}
-            {...props}
-          />
-        ) : (
-          <span className="btn question-card__added">
-            <i className="fa fa-check-circle btn__icon" />
-            Adicionada
-          </span>
-        )}
+          {!isQuestionAdded(activeDocument, question.id) ? (
+            <AddQuestionButton
+              questionId={question.id}
+              customClass="question-card__btn"
+              nameButton="Adicionar"
+              activeDocument={activeDocument}
+              {...props}
+            />
+          ) : (
+            <span className="btn question-card__added">
+              <i className="fa fa-check-circle btn__icon" />
+              Adicionada
+            </span>
+          )}
+        </div>
       </CardBody>
     </Card>
   );
