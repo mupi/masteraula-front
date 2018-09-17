@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   Button, Form, FormGroup, Input, Label, UncontrolledAlert, Alert,
-  Container, Row, Col,
+  Container, Row, Col, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -91,7 +91,18 @@ const UserProfile = (props) => {
                 className="form-control"
               />
             </FormGroup>
-
+            <FormGroup>
+              <UncontrolledDropdown>
+                <DropdownToggle className="c-user-profile__state-city-toogle" caret size="sm">
+                  Estado
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem className="c-user-profile__state-city-dropdown">
+                    SP
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </FormGroup>
           </Col>
         </Row>
         <Row className="c-user-profile__button-section">
