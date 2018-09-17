@@ -33,7 +33,7 @@ class DocumentHeader extends Component {
             <Row>
               <Col md="2" xs="12" className="text-center c-document__logo">
                 <Label for="upload-logo" className="upload-logo">
-                  <span>
+                  <span className="hidden">
                     <i className="fa fa-picture-o" />
                       Enviar logo
                   </span>
@@ -41,7 +41,7 @@ class DocumentHeader extends Component {
                     <img src={documentLogo} alt="logo-prova" />
                   </div>
                 </Label>
-                <div className="small-text">
+                <div className="small-text hidden">
                   Tamanho máximo 1 MB. JPG, GIF ou PNG
                 </div>
               </Col>
