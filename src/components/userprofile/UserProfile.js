@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
-import userPhoto from 'assets/img/home/person-female.png';
+import userPhoto from 'assets/img/home/coruja-avatar.png';
 
 const renderField = ({
   input,
@@ -66,13 +66,6 @@ const UserProfile = (props) => {
             <div className="small-text">
               Tamanho máximo 1 MB. (JPG, GIF ou PNG)
             </div>
-            <Field
-              component="input"
-              type="file"
-              name="picture"
-              id="upload-avatar"
-              className="hidden"
-            />
 
           </Col>
           <Col sm="8" xs="12">
