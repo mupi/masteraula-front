@@ -769,6 +769,13 @@ CSS for UserProfile
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background: #FFFFFF;
     margin-top: 10px; }
+  .c-document__logo {
+    padding: 10px; }
+    @media (max-width: 599px) {
+      .c-document__logo {
+        padding: 0px 0px 15px 0px; } }
+    .c-document__logo img {
+      max-width: 200px; }
   .c-document__main-buttons {
     margin: 15px 0px; }
   .c-document__question {
