@@ -128,6 +128,11 @@ const UserProfile = (props) => {
             </Row>
 
             <Row>
+              <Col sm="12">
+                <Label>
+                  Lugar de residência
+                </Label>
+              </Col>
               <Col sm="2">
                 <FormGroup>
                   <UncontrolledDropdown>
