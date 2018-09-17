@@ -133,35 +133,29 @@ const UserProfile = (props) => {
                   Lugar de residência
                 </Label>
               </Col>
-              <Col sm="2">
+              <Col sm="4">
+
                 <FormGroup>
-                  <UncontrolledDropdown>
-                    <DropdownToggle className="c-user-profile__state-city-toogle" caret size="sm">
-                      Estado
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      { states.map(state => (
-                        <DropdownItem key={state.id} className="c-user-profile__state-city-dropdown-item">
-                          {state.name}
-                        </DropdownItem>
-                      ))}
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
+                  <select className="form-control">
+                    {states.map(state => (
+                      <option key={state.id} className="c-user-profile__state-city-dropdown-item">
+                        {state.name}
+                      </option>
+                    ))}
+                  </select>
                 </FormGroup>
               </Col>
               <Col sm="8">
-                <UncontrolledDropdown>
-                  <DropdownToggle className="c-user-profile__state-city-toogle" caret size="sm">
-                    Cidade
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    { cities.map(city => (
-                      <DropdownItem key={city.id} className="c-user-profile__state-city-dropdown-item">
+
+                <FormGroup>
+                  <select className="form-control">
+                    {cities.map(city => (
+                      <option key={city.id} className="c-user-profile__state-city-dropdown-item">
                         {city.name}
-                      </DropdownItem>
+                      </option>
                     ))}
-                  </DropdownMenu>
-                </UncontrolledDropdown>
+                  </select>
+                </FormGroup>
               </Col>
             </Row>
           </Col>

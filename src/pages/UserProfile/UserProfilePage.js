@@ -8,12 +8,12 @@ const UserProfilePage = (props) => {
   const { submit_profile, submit_profile_password } = props;
   return (
     <HomeUserPage>
-      <div className="contenedor-profile">
+      <div className="l-user-profile">
         <h3 className="text-center">
-Meu Perfil
+          Meu Perfil
         </h3>
         <h5 className="text-center">
-Permite que a comunidade do MasterAula te conheça
+          Permite que a comunidade do MasterAula te conheça
         </h5>
         <UserProfile onSubmit={submit_profile} />
         <UserPasswordProfile onSubmit={submit_profile_password} />
