@@ -2,11 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   Button, Form, FormGroup, Input, Label, UncontrolledAlert, Alert,
-  Container, Row, Col, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
+  Container, Row, Col,
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from 'assets/img/home/coruja-avatar.png';
+
+const imprimir = (e) => {
+  e.preventDefault();
+  console.log('hola pamelita');
+};
 
 const renderField = ({
   input,
@@ -43,30 +48,34 @@ const UserProfile = (props) => {
   } = props;
 
   const states = [
-    {id: 1,
-     name: 'SP',
-    }
-    ,
-    {id: 2,
+    {
+      id: 1,
       name: 'MG',
-     }, 
-     {id: 3,
+    },
+    {
+      id: 2,
+      name: 'SP',
+    },
+    {
+      id: 3,
       name: 'RJ',
-     }
-    ];
-  
-    const cities = [
-      {id: 1,
-       name: 'Limeira',
-      }
-      ,
-      {id: 2,
-        name: 'Campinas',
-       }, 
-       {id: 3,
-        name: 'RJ',
-       }
-      ];
+    },
+  ];
+
+  const cities = [
+    {
+      id: 1,
+      name: 'Campinas',
+    },
+    {
+      id: 2,
+      name: 'Limeira',
+    },
+    {
+      id: 3,
+      name: 'Piracicaba',
+    },
+  ];
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -136,25 +145,31 @@ const UserProfile = (props) => {
               <Col sm="4">
 
                 <FormGroup>
-                  <select className="form-control">
+                  <Field component="select" className="form-control" onChange={e => imprimir(e)} name="user_state">
+                    <option>
+                      Selecione o estado
+                    </option>
                     {states.map(state => (
                       <option key={state.id} className="c-user-profile__state-city-dropdown-item">
                         {state.name}
                       </option>
                     ))}
-                  </select>
+                  </Field>
                 </FormGroup>
               </Col>
               <Col sm="8">
 
                 <FormGroup>
-                  <select className="form-control">
+                  <Field component="select" className="form-control" name="user_city">
+                    <option>
+                      Selecione a cidade
+                    </option>
                     {cities.map(city => (
                       <option key={city.id} className="c-user-profile__state-city-dropdown-item">
                         {city.name}
                       </option>
                     ))}
-                  </select>
+                  </Field>
                 </FormGroup>
               </Col>
             </Row>
