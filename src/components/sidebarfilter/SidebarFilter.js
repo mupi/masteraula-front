@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import { UncontrolledCollapse, Button, Input } from 'reactstrap';
+import { Input } from 'reactstrap';
 
 
 const SidebarFilter = ({name, filterList, toggleFilter, selected}) => {

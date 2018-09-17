@@ -17,7 +17,7 @@ const Sidebar = (props) => {
   return (
     <div id="sidebar">
       <div className="logo-top-sidebar">
-        <img className="logo-sidebar" src={logoMasterAulaVerde} />
+        <img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" />
       </div>
       <div id="sidebar-container">
         <div className="container-fluid">

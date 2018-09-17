@@ -464,6 +464,12 @@ a.c_sidebar__document-link:hover {
   .c-question__resolution-text {
     font-style: italic;
     margin-top: 5px; }
+  .c-question__section-add-question {
+    margin-top: 20px; }
+  .c-question__add-question-rectangle {
+    text-align: right; }
+  .c-question__add-question-title {
+    margin-bottom: 15px; }
 
 .texto_associado_questao {
   text-align: center; }
@@ -656,18 +662,22 @@ CSS for RegisterPage
 /*
 CSS for UserProfile
 */
-.contenedor-profile .form-group {
-  font-family: "Lato", serif; }
+.c-user-profile__button-section {
+  margin-top: 0px; }
 
-.thumbnail img {
+@media (max-width: 599px) {
+  .c-user-profile__avatar {
+    padding: 0px 0px 15px 0px; } }
+
+.c-user-profile__avatar img {
   max-width: 200px; }
 
 .small-text {
   font-size: 14px; }
 
 .section-user-title {
-  margin-top: 25px;
-  margin-bottom: 25px; }
+  margin-top: 15px;
+  margin-bottom: 15px; }
 
 .sub-section-user-title {
   margin-top: 10px; }
@@ -759,6 +769,13 @@ CSS for UserProfile
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background: #FFFFFF;
     margin-top: 10px; }
+  .c-document__logo {
+    padding: 10px; }
+    @media (max-width: 599px) {
+      .c-document__logo {
+        padding: 0px 0px 15px 0px; } }
+    .c-document__logo img {
+      max-width: 200px; }
   .c-document__main-buttons {
     margin: 15px 0px; }
   .c-document__question {

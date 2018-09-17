@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
-import userPhoto from 'assets/img/home/person-female.png';
+import userPhoto from 'assets/img/home/coruja-avatar.png';
 
 const renderField = ({
   input,
@@ -46,16 +46,14 @@ const UserProfile = (props) => {
     <Form onSubmit={handleSubmit}>
       <Container>
         <Row className="section-user-title">
-          <FormGroup>
-            <h4>
+          <h4>
               Dados básicos
-            </h4>
-          </FormGroup>
+          </h4>
         </Row>
         <Row>
-          <Col sm="4" xs="12" className="text-center">
+          <Col sm="4" xs="12" className="text-center c-user-profile__avatar">
             <Label for="upload-avatar" className="upload-avatar">
-              <span>
+              <span className="hidden">
                 <i className="fa fa-picture-o" />
                 Enviar foto
               </span>
@@ -63,17 +61,9 @@ const UserProfile = (props) => {
                 <img src={userPhoto} alt="foto-usuario" />
               </div>
             </Label>
-            <div className="small-text">
+            <div className="small-text hidden">
               Tamanho máximo 1 MB. (JPG, GIF ou PNG)
             </div>
-            <Field
-              component="input"
-              type="file"
-              name="picture"
-              id="upload-avatar"
-              className="hidden"
-            />
-
           </Col>
           <Col sm="8" xs="12">
             <FormGroup>
@@ -104,7 +94,7 @@ const UserProfile = (props) => {
 
           </Col>
         </Row>
-        <Row className="section-user-title">
+        <Row className="c-user-profile__button-section">
           <Col className="text-center">
             <Button type="submit">
               Salvar
