@@ -701,6 +701,9 @@ CSS for UserProfile
 .c-user-profile__state-city-dropdown-item {
   font-size: 14px; }
 
+.c-user-profile__basic-info .col-12 {
+  padding: 0px; }
+
 .small-text {
   font-size: 14px; }
 

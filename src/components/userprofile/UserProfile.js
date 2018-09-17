@@ -76,7 +76,7 @@ const UserProfile = (props) => {
               Dados básicos
           </h4>
         </Row>
-        <Row>
+        <Row className="c-user-profile__basic-info">
           <Col sm="4" xs="12" className="text-center c-user-profile__avatar">
             <Label for="upload-avatar" className="upload-avatar">
               <span>
