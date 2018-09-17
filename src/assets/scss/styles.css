@@ -464,6 +464,12 @@ a.c_sidebar__document-link:hover {
   .c-question__resolution-text {
     font-style: italic;
     margin-top: 5px; }
+  .c-question__section-add-question {
+    margin-top: 20px; }
+  .c-question__add-question-rectangle {
+    text-align: center; }
+  .c-question__add-question-title {
+    margin-bottom: 15px; }
 
 .texto_associado_questao {
   text-align: center; }
