@@ -42,6 +42,32 @@ const UserProfile = (props) => {
     handleSubmit, submitSucceeded, error,
   } = props;
 
+  const states = [
+    {id: 1,
+     name: 'SP',
+    }
+    ,
+    {id: 2,
+      name: 'MG',
+     }, 
+     {id: 3,
+      name: 'RJ',
+     }
+    ];
+  
+    const cities = [
+      {id: 1,
+       name: 'Limeira',
+      }
+      ,
+      {id: 2,
+        name: 'Campinas',
+       }, 
+       {id: 3,
+        name: 'RJ',
+       }
+      ];
+
   return (
     <Form onSubmit={handleSubmit}>
       <Container>
@@ -66,43 +92,73 @@ const UserProfile = (props) => {
             </div>
           </Col>
           <Col sm="8" xs="12">
-            <FormGroup>
-              <Label>
-                Nome completo
-              </Label>
-              <Field
-                component={renderField}
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Insira seu nome completo"
-                className="form-control"
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>
-                Sobre mim
-              </Label>
-              <Field
-                component="textarea"
-                name="about"
-                id="about"
-                placeholder="Conte um pouco sobre o que gosta de fazer"
-                className="form-control"
-              />
-            </FormGroup>
-            <FormGroup>
-              <UncontrolledDropdown>
-                <DropdownToggle className="c-user-profile__state-city-toogle" caret size="sm">
-                  Estado
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem className="c-user-profile__state-city-dropdown">
-                    SP
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </FormGroup>
+            <Row>
+              <Col>
+                <FormGroup>
+                  <Label>
+                    Nome completo
+                  </Label>
+                  <Field
+                    component={renderField}
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Insira seu nome completo"
+                    className="form-control"
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <FormGroup>
+                  <Label>
+                    Sobre mim
+                  </Label>
+                  <Field
+                    component="textarea"
+                    name="about"
+                    id="about"
+                    placeholder="Conte um pouco sobre o que gosta de fazer"
+                    className="form-control"
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col sm="2">
+                <FormGroup>
+                  <UncontrolledDropdown>
+                    <DropdownToggle className="c-user-profile__state-city-toogle" caret size="sm">
+                      Estado
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      { states.map(state => (
+                        <DropdownItem key={state.id} className="c-user-profile__state-city-dropdown-item">
+                          {state.name}
+                        </DropdownItem>
+                      ))}
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                </FormGroup>
+              </Col>
+              <Col sm="8">
+                <UncontrolledDropdown>
+                  <DropdownToggle className="c-user-profile__state-city-toogle" caret size="sm">
+                    Cidade
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    { cities.map(city => (
+                      <DropdownItem key={city.id} className="c-user-profile__state-city-dropdown-item">
+                        {city.name}
+                      </DropdownItem>
+                    ))}
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              </Col>
+            </Row>
           </Col>
         </Row>
         <Row className="c-user-profile__button-section">
