@@ -10,7 +10,6 @@ import userPhoto from 'assets/img/home/coruja-avatar.png';
 
 const imprimir = (e) => {
   e.preventDefault();
-  console.log('hola pamelita');
 };
 
 const renderField = ({
