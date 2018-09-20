@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Card, CardImg, CardBody,
+  Button, Card, CardFooter, CardImg, CardBody,
 } from 'reactstrap';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import imageCard from 'assets/img/home/question-card.jpg';
@@ -15,7 +15,7 @@ const QuestionCard = (props) => {
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
   return (
-    <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100'}>
+    <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100 question-card__full'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
       <CardBody className="question-card__body">
         <div className="question-card__info-section">
@@ -51,29 +51,29 @@ const QuestionCard = (props) => {
             { (extractStatement.length >= 150) ? ` ${extractStatement.substring(0, 150)}${' ...'}` : extractStatement }
           </p>
         </div>
-        <div className="question-card__footer">
-          <Link to={`/view-question/${question.id}`}>
-            <Button className="question-card__btn">
-              Ver questão
-            </Button>
-          </Link>
-
-          {!isQuestionAdded(activeDocument, question.id) ? (
-            <AddQuestionButton
-              questionId={question.id}
-              customClass="question-card__btn"
-              nameButton="Adicionar"
-              activeDocument={activeDocument}
-              {...props}
-            />
-          ) : (
-            <span className="btn question-card__added">
-              <i className="fa fa-check-circle btn__icon" />
-              Adicionada
-            </span>
-          )}
-        </div>
       </CardBody>
+      <CardFooter className="question-card__footer">
+          <Link to={`/view-question/${question.id}`}>
+              <Button className="question-card__btn">
+                Ver questão
+              </Button>
+            </Link>
+
+            {!isQuestionAdded(activeDocument, question.id) ? (
+              <AddQuestionButton
+                questionId={question.id}
+                customClass="question-card__btn "
+                nameButton="Adicionar"
+                activeDocument={activeDocument}
+                {...props}
+              />
+            ) : (
+              <span className="btn question-card__added">
+                <i className="fa fa-check-circle btn__icon" />
+                Adicionada
+              </span>
+            )}
+        </CardFooter>
     </Card>
   );
 };
