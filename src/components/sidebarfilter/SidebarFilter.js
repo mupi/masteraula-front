@@ -1,18 +1,16 @@
 import React from 'react';
-import { ListGroup, ListGroupItem } from 'reactstrap';
-import { Input } from 'reactstrap';
+import { ListGroup, ListGroupItem, Input } from 'reactstrap';
 
 
-const SidebarFilter = ({name, filterList, toggleFilter, selected}) => {
-
+const SidebarFilter = ({
+  name, filterList, toggleFilter, selected,
+}) => {
   const handleFilter = (event) => {
     const valueFilter = event.target.value;
     toggleFilter(valueFilter, event.target.checked);
   };
 
-  const isChecked = (id)=>{
-    return (selected && selected.includes(id+''));
-  }
+  const isChecked = id => (selected && (selected.includes(id) || selected.includes(`${id}`)));
 
   return (
     <ListGroupItem className="question-category-filter">
@@ -21,9 +19,9 @@ const SidebarFilter = ({name, filterList, toggleFilter, selected}) => {
         <i className="fa fa-angle-left" />
       </div>
       <ListGroup className="question-single-filter">
-        {filterList && filterList.map((filter, i) => (
-          <ListGroupItem key={i}>
-            <Input type="checkbox" value={filter.id} onClick={handleFilter} checked={isChecked(filter.id)}/>
+        {filterList && filterList.map(filter => (
+          <ListGroupItem key={filter.id}>
+            <Input type="checkbox" value={filter.id} onClick={handleFilter} checked={isChecked(filter.id)} />
             {filter.name}
           </ListGroupItem>
         ))}

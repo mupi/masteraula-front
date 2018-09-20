@@ -10,28 +10,30 @@ import { isQuestionAdded, getCleanExtractStatement } from 'helpers/question';
 import QuestionAuthor from './QuestionAuthor';
 
 const QuestionCard = (props) => {
-  const { question, urlImage, activeDocument } = props;
+  const {
+    question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter,
+  } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
       <CardBody className="question-card__body">
-
-        <div className="question-card__info-section">
+        <div className="question-card__info-section-item">
+        Disciplinas:
           {question.disciplines && question.disciplines.map(discipline => (
-            <span key={discipline.id} className="question-card__info-section-item question-card__info-section-item--pink">
+            <Button className="link" key={discipline.id} onClick={() => addSelectedDisciplineFilter(discipline.id)}>
               {discipline.name}
-            </span>
+            </Button>
           ))}
-          <span className="question-card__info-section-item question-card__info-section-item--purple ">
-            {question.source}
-            {' '}
-            {question.year}
-          </span>
+          | Fonte:
+          {question.source}
+          {' '}
+          {question.year}
+          | Dificuldade:
           {question.teaching_levels && question.teaching_levels.map(teachingLevel => (
-            <span key={teachingLevel.id} className="question-card__info-section-item question-card__info-section-item--green">
+            <Button className="link" key={teachingLevel.id} onClick={() => addSelectedTeachingLevelFilter(teachingLevel.id)}>
               {teachingLevel.name}
-            </span>
+            </Button>
           ))}
         </div>
 
