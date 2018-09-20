@@ -8,6 +8,10 @@ import { Field, reduxForm } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from 'assets/img/home/coruja-avatar.png';
 
+const imprimir = (e) => {
+  e.preventDefault();
+};
+
 const renderField = ({
   input,
   placeholder,
@@ -42,6 +46,36 @@ const UserProfile = (props) => {
     handleSubmit, submitSucceeded, error,
   } = props;
 
+  const states = [
+    {
+      id: 1,
+      name: 'MG',
+    },
+    {
+      id: 2,
+      name: 'SP',
+    },
+    {
+      id: 3,
+      name: 'RJ',
+    },
+  ];
+
+  const cities = [
+    {
+      id: 1,
+      name: 'Campinas',
+    },
+    {
+      id: 2,
+      name: 'Limeira',
+    },
+    {
+      id: 3,
+      name: 'Piracicaba',
+    },
+  ];
+
   return (
     <Form onSubmit={handleSubmit}>
       <Container>
@@ -50,7 +84,7 @@ const UserProfile = (props) => {
               Dados básicos
           </h4>
         </Row>
-        <Row>
+        <Row className="c-user-profile__basic-info">
           <Col sm="4" xs="12" className="text-center c-user-profile__avatar">
             <Label for="upload-avatar" className="upload-avatar">
               <span className="hidden">
@@ -66,32 +100,78 @@ const UserProfile = (props) => {
             </div>
           </Col>
           <Col sm="8" xs="12">
-            <FormGroup>
-              <Label>
-                Nome completo
-              </Label>
-              <Field
-                component={renderField}
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Insira seu nome completo"
-                className="form-control"
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>
-                Sobre mim
-              </Label>
-              <Field
-                component="textarea"
-                name="about"
-                id="about"
-                placeholder="Conte um pouco sobre o que gosta de fazer"
-                className="form-control"
-              />
-            </FormGroup>
+            <Row>
+              <Col>
+                <FormGroup>
+                  <Label>
+                    Nome completo
+                  </Label>
+                  <Field
+                    component={renderField}
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Insira seu nome completo"
+                    className="form-control"
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
 
+            <Row>
+              <Col>
+                <FormGroup>
+                  <Label>
+                    Sobre mim
+                  </Label>
+                  <Field
+                    component="textarea"
+                    name="about"
+                    id="about"
+                    placeholder="Conte um pouco sobre o que gosta de fazer"
+                    className="form-control"
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col sm="12">
+                <Label>
+                  Lugar de residência
+                </Label>
+              </Col>
+              <Col sm="4">
+
+                <FormGroup>
+                  <Field component="select" className="form-control" onChange={e => imprimir(e)} name="user_state">
+                    <option>
+                      Selecione o estado
+                    </option>
+                    {states.map(state => (
+                      <option key={state.id} className="c-user-profile__state-city-dropdown-item">
+                        {state.name}
+                      </option>
+                    ))}
+                  </Field>
+                </FormGroup>
+              </Col>
+              <Col sm="8">
+
+                <FormGroup>
+                  <Field component="select" className="form-control" name="user_city">
+                    <option>
+                      Selecione a cidade
+                    </option>
+                    {cities.map(city => (
+                      <option key={city.id} className="c-user-profile__state-city-dropdown-item">
+                        {city.name}
+                      </option>
+                    ))}
+                  </Field>
+                </FormGroup>
+              </Col>
+            </Row>
           </Col>
         </Row>
         <Row className="c-user-profile__button-section">

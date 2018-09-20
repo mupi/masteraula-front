@@ -102,6 +102,11 @@ ul.header {
   margin-bottom: 10px;
 }
 
+.dropdown-item.active, .dropdown-item:active {
+  color: $color-ma-white;
+  text-decoration: none;
+  background-color: $color-ma-dark-gray;
+}
 
 /*Modal CSS General**/
 .modal-content {
