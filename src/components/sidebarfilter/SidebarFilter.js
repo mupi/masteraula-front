@@ -7,10 +7,10 @@ const SidebarFilter = ({
 }) => {
   const handleFilter = (event) => {
     const valueFilter = event.target.value;
-    toggleFilter(parseInt(valueFilter, 10), event.target.checked);
+    toggleFilter(valueFilter, event.target.checked);
   };
 
-  const isChecked = id => (selected && selected.includes(id));
+  const isChecked = id => (selected && selected.includes(id.toString()));
 
   return (
     <ListGroupItem className="question-category-filter">

@@ -23,7 +23,7 @@ const QuestionCard = (props) => {
             <Button
               key={discipline.id}
               className="question-card__info-section-item question-card__info-section-item--pink"
-              onClick={() => addSelectedDisciplineFilter(discipline.id)}
+              onClick={() => addSelectedDisciplineFilter(discipline.id.toString())}
             >
               {discipline.name}
             </Button>
@@ -32,7 +32,7 @@ const QuestionCard = (props) => {
             <Button
               key={teachingLevel.id}
               className="question-card__info-section-item question-card__info-section-item--green"
-              onClick={() => addSelectedTeachingLevelFilter(teachingLevel.id)}
+              onClick={() => addSelectedTeachingLevelFilter(teachingLevel.id.toString())}
             >
               {teachingLevel.name}
             </Button>
