@@ -49,7 +49,7 @@ const mapDispatchToProps = dispatch => ({
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
   toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
-  clearFilters: ()=> dispatch(clearSelectedFilters()),
+  clearFilters: () => dispatch(clearSelectedFilters()),
 });
 
 const FilterContainer = connect(
