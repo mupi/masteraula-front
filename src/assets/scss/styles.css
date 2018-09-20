@@ -540,7 +540,8 @@ a.c_sidebar__document-link:hover {
     margin-bottom: 5px; }
   .question-card__extract {
     font-size: 14px;
-    margin-bottom: 5px; }
+    margin-bottom: 5px;
+    text-align: justify; }
   .question-card__author {
     font-weight: bold;
     font-style: italic; }
