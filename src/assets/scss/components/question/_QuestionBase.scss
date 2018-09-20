@@ -24,10 +24,7 @@
 
 //Classes for QuestionCard
 .l-question-card-text{
-    margin-top: 10px;
-    @include for-phone-only {
-      margin-top: 5px;
-    }
+    margin-top: 5px;
 }
 
 .question-card {
@@ -51,7 +48,7 @@
         padding: 5px 8px;
       }
     }
-    //end: buttons
+    //end: buttons 
 
     &__info-section-item{
       padding: 3px 7px;
@@ -67,18 +64,34 @@
 
     &__info-section-item--pink{ 
       background: $color-ma-pink;
+      border-color:  $color-ma-pink
     }
 
     &__info-section-item--green{ 
       background: $color-ma-green;
+      border-color:  $color-ma-green;
     }
 
     &__info-section-item--purple{ 
       background: $color-ma-purple;
+      border-color:  $color-ma-purple;
     }
-  /*  &__image{
+  
+    &__more-info{
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
 
-    }*/
+    &__extract{
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+  
+    &__author{
+          font-weight: bold;
+          font-style: italic;
+    }
+  
 
 
     &__body{
@@ -89,6 +102,10 @@
         -moz-box-shadow: 0 3px 7px 0  $color-ma-dark-gray;
         box-shadow: 0 3px 7px 0 $color-ma-dark-gray;
       } 
+    }
+
+    &__footer{
+      text-align: center;
     }
 
 

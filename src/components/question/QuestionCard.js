@@ -18,31 +18,36 @@ const QuestionCard = (props) => {
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
       <CardBody className="question-card__body">
-        <div className="question-card__info-section-item">
-        Disciplinas:
+        <div className="question-card__info-section">
           {question.disciplines && question.disciplines.map(discipline => (
-            <Button className="link" key={discipline.id} onClick={() => addSelectedDisciplineFilter(discipline.id)}>
+            <Button
+              key={discipline.id}
+              className="question-card__info-section-item question-card__info-section-item--pink"
+              onClick={() => addSelectedDisciplineFilter(discipline.id)}
+            >
               {discipline.name}
             </Button>
           ))}
-          | Fonte:
-          {question.source}
-          {' '}
-          {question.year}
-          | Dificuldade:
           {question.teaching_levels && question.teaching_levels.map(teachingLevel => (
-            <Button className="link" key={teachingLevel.id} onClick={() => addSelectedTeachingLevelFilter(teachingLevel.id)}>
+            <Button
+              key={teachingLevel.id}
+              className="question-card__info-section-item question-card__info-section-item--green"
+              onClick={() => addSelectedTeachingLevelFilter(teachingLevel.id)}
+            >
               {teachingLevel.name}
             </Button>
           ))}
         </div>
-
         <div className="l-question-card-text">
-          <p className="question-info__more-info">
+          <p className="question-card__more-info">
+            {question.source}
+            {' '}
+            {question.year}
+            {' | '}
             Autor:
-            <QuestionAuthor author={question.author} styleTag="question-info__author" />
+            <QuestionAuthor author={question.author} styleTag="question-card__author" />
           </p>
-          <p className="question-info__more-info">
+          <p className="question-card__extract">
             { (extractStatement.length >= 150) ? ` ${extractStatement.substring(0, 150)}${' ...'}` : extractStatement }
           </p>
         </div>
