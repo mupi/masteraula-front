@@ -41,8 +41,7 @@ class SidebarFilters extends Component {
       return (
         <ListGroup className="question-all-filters">
           <Alert color="danger">
-
-              Erro nos filtros
+              Erro nos filtros 
           </Alert>
         </ListGroup>
       );
