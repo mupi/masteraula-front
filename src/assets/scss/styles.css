@@ -557,8 +557,6 @@ a.c_sidebar__document-link:hover {
   .question-card__author {
     font-weight: bold;
     font-style: italic; }
-  .question-card__body {
-    padding: 14px; }
   .question-card__footer {
     background-color: #FFFFFF;
     text-align: center;
