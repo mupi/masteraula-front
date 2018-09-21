@@ -8,10 +8,6 @@ import { Field, reduxForm } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from 'assets/img/home/coruja-avatar.png';
 
-const imprimir = (e) => {
-  e.preventDefault();
-};
-
 const renderField = ({
   input,
   placeholder,
@@ -129,7 +125,7 @@ const UserProfile = (props) => {
               <Col sm="4">
 
                 <FormGroup>
-                  <Field component="select" className="form-control" onChange={e => imprimir(e)} name="user_state">
+                  <Field component="select" className="form-control" name="user_state">
                     <option>
                       Selecione o estado
                     </option>

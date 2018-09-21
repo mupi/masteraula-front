@@ -8,11 +8,12 @@ class UserProfilePage extends React.Component {
   componentDidMount() {
     const { getStatesList } = this.props;
     getStatesList();
-    console.log("hola");
   }
 
   render() {
-    const { submit_profile, submit_profile_password, stateList, isFetchingStatesList, error } = this.props;
+    const {
+      submit_profile, submit_profile_password, stateList, isFetchingStatesList,
+    } = this.props;
 
     if (isFetchingStatesList) {
       return (
