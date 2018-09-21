@@ -45,6 +45,29 @@ export const getStatesList = (param) => {
   };
 };
 
+// State cities of a state id
+export const getCitiesList = (param) => {
+  function fetchCitiesList() { return { type: PROFILE_GET_CITIES_REQUEST }; }
+  function fetchCitiesListSuccess(stateList) {
+    return { type: PROFILE_GET_CITIES_SUCCESS, stateList };
+  }
+  function fetchCitiesListFailure(error) {
+    return { type: PROFILE_GET_CITIES_FAILURE, error };
+  }
+  return (dispatch) => {
+    dispatch(fetchCitiesList(param));
+    return profileEditService.getCitiesList(param)
+      .then(
+        (cityList) => {
+          dispatch(fetchCitiesListSuccess(cityList));
+        },
+        (error) => {
+          dispatch(fetchCitiesListFailure(error));
+        },
+      );
+  };
+};
+
 // Edit user's fields
 export const profileEdit = (profile) => {
   function requestEditProfile() { return { type: PROFILE_EDIT_REQUEST }; }
