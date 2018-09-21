@@ -1,6 +1,7 @@
 import {
   PROFILE_EDIT_REQUEST, PROFILE_EDIT_SUCCESS, PROFILE_EDIT_FAILURE,
   PROFILE_GET_STATES_REQUEST, PROFILE_GET_STATES_SUCCESS, PROFILE_GET_STATES_FAILURE,
+  PROFILE_GET_CITIES_REQUEST, PROFILE_GET_CITIES_SUCCESS, PROFILE_GET_CITIES_FAILURE,
 } from 'actions/profileEditAction';
 
 const initialState = {};
@@ -21,6 +22,22 @@ export function profileEdit(state = initialState, action) {
     case PROFILE_GET_STATES_FAILURE:
       return Object.assign({}, state, {
         isFetchingStatesList: false,
+        error: action.error,
+      });
+    case PROFILE_GET_CITIES_REQUEST:
+      return Object.assign({}, state, {
+        cityList: action.cityList,
+        isFetchingCitiesList: true,
+        error: null,
+      });
+    case PROFILE_GET_CITIES_SUCCESS:
+      return Object.assign({}, state, {
+        cityList: action.cityList,
+        isFetchingCitiesList: false,
+      });
+    case PROFILE_GET_CITIES_FAILURE:
+      return Object.assign({}, state, {
+        isFetchingCitiesList: false,
         error: action.error,
       });
     case PROFILE_EDIT_REQUEST:
