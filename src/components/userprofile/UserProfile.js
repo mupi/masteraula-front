@@ -43,23 +43,8 @@ const renderField = ({
 
 const UserProfile = (props) => {
   const {
-    handleSubmit, submitSucceeded, error,
+    handleSubmit, submitSucceeded, error, stateList,
   } = props;
-
-  const states = [
-    {
-      id: 1,
-      name: 'MG',
-    },
-    {
-      id: 2,
-      name: 'SP',
-    },
-    {
-      id: 3,
-      name: 'RJ',
-    },
-  ];
 
   const cities = [
     {
@@ -148,7 +133,7 @@ const UserProfile = (props) => {
                     <option>
                       Selecione o estado
                     </option>
-                    {states.map(state => (
+                    {stateList && stateList.map(state => (
                       <option key={state.id} className="c-user-profile__state-city-dropdown-item">
                         {state.name}
                       </option>

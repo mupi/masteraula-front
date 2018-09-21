@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, Form, FormGroup, Input } from 'reactstrap';
-import { Alert } from 'reactstrap';
-import { Row, Col } from 'reactstrap';
+import { Alert, Row, Col, Button, Form, FormGroup, Input 
+} from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 
 const renderField = ({

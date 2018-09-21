@@ -5,6 +5,7 @@ import UserProfilePage from 'pages/UserProfile/UserProfilePage';
 
 const mapStateToProps = state => ({
   stateList: state.profileEdit.stateList,
+  isFetchingStatesList: state.profileEdit.isFetchingStatesList,
 });
 
 const mapDispatchToProps = dispatch => ({
