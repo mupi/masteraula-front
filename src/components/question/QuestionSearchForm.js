@@ -20,8 +20,8 @@ const QuestionSearchForm = (props) => {
           <Field
             component="input"
             type="text"
-            name="search"
-            id="search"
+            name="searchText"
+            id="searchText"
             placeholder="Insira termos para pesquisar"
             className="form-control"
           />

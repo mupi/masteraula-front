@@ -7,7 +7,7 @@ import QuestionList from 'components/question/QuestionList';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import QuestionSearchForm from '../../components/question/QuestionSearchForm';
+import QuestionSearchFormContainer from 'containers/QuestionSearchFormContainer';
 
 class QuestionBasePage extends React.Component {
   componentDidMount() {
@@ -25,7 +25,7 @@ class QuestionBasePage extends React.Component {
 
   render() {
     const {
-      questionPage, isFetching, error, handleSubmitQuestionSearch,
+      questionPage, isFetching, error,
     } = this.props;
     if (error) {
       return (
@@ -40,7 +40,7 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters>
         <div className="c-question-base">
-          <QuestionSearchForm onSubmit={handleSubmitQuestionSearch} />
+          <QuestionSearchFormContainer />
           <Row className="pagination-questions">
             <CustomPagination {...this.props} {...questionPage} itensPerPage={16} />
           </Row>
