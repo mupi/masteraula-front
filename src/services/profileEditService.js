@@ -32,6 +32,17 @@ function getStatesList(param) {
     .then(stateList => stateList);
 }
 
+// Get cities of state id
+function getCitiesList(idState) {
+  const requestOptions = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  };
+
+  return fetch(`${apiUrl}/cities?uf=${idState}`, requestOptions)
+    .then(handleResponse)
+    .then(cityList => cityList);
+}
 
 function profilePasswordEdit(profile) {
   const requestPasswordOption = {
@@ -83,6 +94,7 @@ const profileEditService = {
   profileEdit,
   profilePasswordEdit,
   getStatesList,
+  getCitiesList,
 };
 
 export default profileEditService;
