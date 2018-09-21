@@ -24,13 +24,14 @@
 
 //Classes for QuestionCard
 .l-question-card-text{
-    margin-top: 5px;
+    //margin-top: 5px;
     
 }
 
 .question-card {
     margin-bottom: 20px;
     padding: 0px 10px;
+
 
     &__full{ 
 
@@ -62,6 +63,17 @@
     }
     //end: buttons 
 
+    &__header{
+      padding: 15px 15px 5px;
+      margin-bottom: 0;
+      background-color: rgba(0, 0, 0, 0.03);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    &__info-section-item--italic{
+      font-style: italic;
+    }
+
     &__info-section-item{
       padding: 3px 7px;
       border-radius: 5px;
@@ -92,6 +104,10 @@
     &__more-info{
       font-size: 12px;
       margin-bottom: 5px;
+
+      &--lightgray{
+        color:$color-ma-lightgray;
+      }
     }
 
     &__extract{
@@ -108,7 +124,7 @@
 
 
     &__body{
-      padding: 15px;
+      padding: 14px;
     }
 
     &__footer{
