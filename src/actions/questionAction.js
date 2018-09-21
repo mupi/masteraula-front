@@ -51,7 +51,10 @@ export const listQuestions = (page, filter) => {
   function requestQuestionPage() { return { type: LIST_QUESTION_PAGE, page }; }
   function fetchQuestionPageSuccess(questionPage) { return { type: LIST_QUESTION_PAGE_SUCCESS, questionPage }; }
   function fetchQuestionPageFailure(error) { return { type: LIST_QUESTION_PAGE_FAILURE, error }; }
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    if (getState().question.isFetching) {
+      return 1;
+    }
     dispatch(requestQuestionPage());
     return questionService.listQuestions(page, filter)
       .then(
