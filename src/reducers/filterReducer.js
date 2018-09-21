@@ -9,7 +9,7 @@ import {
   REMOVE_SELECTED_TEACHINGLEVEL_FILTER,
   ADD_SELECTED_DIFFICULTY_FILTER,
   REMOVE_SELECTED_DIFFICULTY_FILTER,
-  CLEAR_SELECTED_FILTERS
+  CLEAR_SELECTED_FILTERS,
 } from 'actions/filterAction';
 
 const initialState = {
@@ -104,7 +104,7 @@ export const filter = (state = initialState, action) => {
         difficultiesSelected: newDifficulties,
       };
     }
-    case CLEAR_SELECTED_FILTERS:{
+    case CLEAR_SELECTED_FILTERS: {
       return Object.assign({}, state, {
         disciplinesSelected: [],
         teachingLevelsSelected: [],

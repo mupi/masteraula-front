@@ -1,11 +1,6 @@
 import { authHeader } from 'helpers';
 import { apiUrl } from 'helpers/config';
 
-const profileEditService = {
-  profileEdit,
-  profilePasswordEdit,
-};
-
 export const DIFFERENT_OLD_PASSWORD = 'DIFFERENT_OLD_PASSWORD';
 
 const handleResponse = response => response.json().then((data) => {
@@ -24,6 +19,19 @@ const handlePasswordResponse = response => response.json().then((data) => {
 
   return data;
 });
+
+// Get all states
+function getStatesList(param) {
+  const requestOptions = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  };
+
+  return fetch(`${apiUrl}/states/`, requestOptions)
+    .then(handleResponse)
+    .then(stateList => stateList);
+}
+
 
 function profilePasswordEdit(profile) {
   const requestPasswordOption = {
@@ -71,5 +79,10 @@ function profileEdit(profile) {
   return Promise.all([fetchProfile]);
 }
 
+const profileEditService = {
+  profileEdit,
+  profilePasswordEdit,
+  getStatesList,
+};
 
 export default profileEditService;
