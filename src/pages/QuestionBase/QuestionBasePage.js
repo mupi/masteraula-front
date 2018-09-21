@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Row, Input, InputGroup, InputGroupAddon, Button, Alert,
+  Row, Alert,
 } from 'reactstrap';
 import QuestionList from 'components/question/QuestionList';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
+import QuestionSearchForm from '../../components/question/QuestionSearchForm';
 
 class QuestionBasePage extends React.Component {
   componentDidMount() {
@@ -23,7 +24,9 @@ class QuestionBasePage extends React.Component {
   }
 
   render() {
-    const { questionPage, isFetching, error } = this.props;
+    const {
+      questionPage, isFetching, error, handleSubmitQuestionSearch,
+    } = this.props;
     if (error) {
       return (
         <HomeUserPage>
@@ -37,19 +40,7 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters>
         <div className="c-question-base">
-          <Row className="c-question-base__search-text">
-            <p className="c-question-base__search-info">
-              Digite o termo e encontre questões relacionadas
-            </p>
-            <InputGroup>
-              <Input placeholder="Insira termos para pesquisar" />
-              <InputGroupAddon addonType="prepend">
-                <Button>
-                  Pesquisar
-                </Button>
-              </InputGroupAddon>
-            </InputGroup>
-          </Row>
+          <QuestionSearchForm onSubmit={handleSubmitQuestionSearch} />
           <Row className="pagination-questions">
             <CustomPagination {...this.props} {...questionPage} itensPerPage={16} />
           </Row>
@@ -84,6 +75,7 @@ QuestionBasePage.propTypes = {
   isFetching: PropTypes.bool,
   error: PropTypes.string,
 };
+
 QuestionBasePage.defaultProps = {
   questionPage: null,
   isFetching: false,

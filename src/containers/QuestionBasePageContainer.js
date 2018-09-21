@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
+import { reduxForm } from 'redux-form';
 import QuestionBasePage from 'pages/QuestionBase/QuestionBasePage';
 import { listQuestions } from 'actions/questionAction';
 import { toggleModal, addSelectedQuestion } from 'actions/documentAction';
 import { addSelectedDisciplineFilter, addSelectedTeachingLevelFilter } from 'actions/filterAction';
-
+import { setSearchText, } from 'actions/filterAction';
 // state.<reducer's name>.<property>
 
 const mapStateToProps = state => ({
@@ -21,11 +22,15 @@ const mapDispatchToProps = dispatch => ({
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(addSelectedTeachingLevelFilter(idTeachingLevel)),
+  handleSubmitQuestionSearch: values => dispatch(setSearchText(values.search)),
 });
 
 const QuestionBasePageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(QuestionBasePage);
+)(reduxForm({
+  form: 'questionSearch',
+})(QuestionBasePage));
+
 
 export default QuestionBasePageContainer;
