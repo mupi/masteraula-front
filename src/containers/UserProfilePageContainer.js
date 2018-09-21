@@ -4,7 +4,7 @@ import { profileEdit, redefineUserPassword, getStatesList } from 'actions/profil
 import UserProfilePage from 'pages/UserProfile/UserProfilePage';
 
 const mapStateToProps = state => ({
-
+  stateList: state.profileEdit.stateList,
 });
 
 const mapDispatchToProps = dispatch => ({

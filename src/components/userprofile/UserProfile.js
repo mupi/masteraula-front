@@ -17,7 +17,7 @@ const renderField = ({
   placeholder,
   type,
   meta: { touched, error, warning },
-}) => ( 
+}) => (
   <div>
     <Input
       {...input}

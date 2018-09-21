@@ -9,13 +9,13 @@ export function profileEdit(state = initialState, action) {
   switch (action.type) {
     case PROFILE_GET_STATES_REQUEST:
       return Object.assign({}, state, {
-        statesList: action.statesList,
+        stateList: action.stateList,
         isFetchingStatesList: true,
         error: null,
       });
     case PROFILE_GET_STATES_SUCCESS:
       return Object.assign({}, state, {
-        statesList: action.statesList,
+        stateList: action.stateList,
         isFetchingStatesList: false,
       });
     case PROFILE_GET_STATES_FAILURE:
