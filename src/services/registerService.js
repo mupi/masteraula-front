@@ -1,9 +1,5 @@
 import { apiUrl } from 'helpers/config';
 
-const registerService = {
-  register,
-  verifyEmail,
-};
 
 export const handleResponse = response => response.json().then((data) => {
   if (!response.ok) {
@@ -46,4 +42,25 @@ function verifyEmail(key) {
     .then(detail => detail);
 }
 
+function resendEmail(email, password) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      username: email,
+      email,
+      password,
+    }),
+  };
+
+  return fetch(`${apiUrl}/resend_confirmation_email`, requestOptions)
+    .then(handleResponse)
+    .then(detail => detail);
+}
+
+const registerService = {
+  register,
+  verifyEmail,
+  resendEmail,
+};
 export default registerService;
