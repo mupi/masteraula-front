@@ -4,7 +4,7 @@ import {
   Button, Form, FormGroup, Input, Label, UncontrolledAlert, Alert,
   Container, Row, Col,
 } from 'reactstrap';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from 'assets/img/home/coruja-avatar.png';
 
@@ -125,7 +125,7 @@ const UserProfile = (props) => {
               <Col sm="4">
 
                 <FormGroup>
-                  <Field component="select" className="form-control" name="user_state" >
+                  <Field component="select" className="form-control" name="userState">
                     <option>
                       Selecione o estado
                     </option>
@@ -139,12 +139,12 @@ const UserProfile = (props) => {
               </Col>
               <Col sm="8">
                 <FormGroup>
-                  <Field component="select" className="form-control" name="user_city">
+                  <Field component="select" className="form-control" name="userCity">
                     <option>
                       Selecione a cidade
                     </option>
                     {cities.map(city => (
-                      <option key={city.id} className="c-user-profile__state-city-dropdown-item">
+                      <option key={city.id} value={city.id} className="c-user-profile__state-city-dropdown-item">
                         {city.name}
                       </option>
                     ))}
@@ -164,7 +164,6 @@ const UserProfile = (props) => {
         <div>
           { submitSucceeded && (
             <UncontrolledAlert color="success">
-
                     Usuário alterado com sucesso
             </UncontrolledAlert>
           ) }
@@ -190,12 +189,18 @@ const validate = (values) => {
   return errors;
 };
 
+const selector = formValueSelector('profile');// <-- same as form name
+
 const mapStateToProps = (state) => {
   const { user } = state.session.session;
+  const stateSelected = selector(state, 'userState');
+  const citySelected = selector(state, 'userCity');
   return ({
     initialValues: {
       name: user.name,
       about: user.about,
+      userState: "SP",
+      userCity: user.city,
     },
     user,
   });
