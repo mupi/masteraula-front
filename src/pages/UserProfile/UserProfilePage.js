@@ -20,7 +20,7 @@ class UserProfilePage extends React.Component {
       return (
         <HomeUserPage>
           <Alert className="alert--warning" color="warning">
-              Carregando ... 
+              Carregando ...
           </Alert>
         </HomeUserPage>
       );

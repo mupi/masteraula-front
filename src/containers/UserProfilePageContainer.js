@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { SubmissionError } from 'redux-form';
-import { profileEdit, redefineUserPassword, getStatesList, getCitiesList } from 'actions/profileEditAction';
+import {
+  profileEdit, redefineUserPassword, getStatesList, getCitiesList,
+} from 'actions/profileEditAction';
 import UserProfilePage from 'pages/UserProfile/UserProfilePage';
 
 const mapStateToProps = state => ({
