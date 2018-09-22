@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { SubmissionError } from 'redux-form';
-import { profileEdit, redefineUserPassword, getStatesList } from 'actions/profileEditAction';
+import { profileEdit, redefineUserPassword, getStatesList, getCitiesList } from 'actions/profileEditAction';
 import UserProfilePage from 'pages/UserProfile/UserProfilePage';
 
 const mapStateToProps = state => ({
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getStatesList: param => dispatch(getStatesList(param)),
-  getCitiesList: idState => dispatch(getStatesList(idState)),
+  getCitiesList: idState => dispatch(getCitiesList(idState)),
 
   submit_profile: (values) => {
     const profile = {

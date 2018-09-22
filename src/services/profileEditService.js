@@ -39,7 +39,7 @@ function getCitiesList(idState) {
     headers: { 'Content-Type': 'application/json' },
   };
 
-  return fetch(`${apiUrl}/cities?uf=${idState}`, requestOptions)
+  return fetch(`${apiUrl}/cities/?uf=${idState}`, requestOptions)
     .then(handleResponse)
     .then(cityList => cityList);
 }

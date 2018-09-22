@@ -6,8 +6,9 @@ import HomeUserPage from '../HomeUser/HomeUserPage';
 
 class UserProfilePage extends React.Component {
   componentDidMount() {
-    const { getStatesList } = this.props;
+    const { getStatesList, getCitiesList } = this.props;
     getStatesList();
+    getCitiesList('RJ');
   }
 
   render() {
@@ -19,7 +20,7 @@ class UserProfilePage extends React.Component {
       return (
         <HomeUserPage>
           <Alert className="alert--warning" color="warning">
-              Carregando ...
+              Carregando ... 
           </Alert>
         </HomeUserPage>
       );

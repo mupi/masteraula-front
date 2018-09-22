@@ -48,8 +48,8 @@ export const getStatesList = (param) => {
 // State cities of a state id
 export const getCitiesList = (idState) => {
   function fetchCitiesList() { return { type: PROFILE_GET_CITIES_REQUEST }; }
-  function fetchCitiesListSuccess(stateList) {
-    return { type: PROFILE_GET_CITIES_SUCCESS, stateList };
+  function fetchCitiesListSuccess(cityList) {
+    return { type: PROFILE_GET_CITIES_SUCCESS, cityList };
   }
   function fetchCitiesListFailure(error) {
     return { type: PROFILE_GET_CITIES_FAILURE, error };
