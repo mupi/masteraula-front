@@ -39,7 +39,7 @@ const renderField = ({
 
 const UserProfile = (props) => {
   const {
-    handleSubmit, submitSucceeded, error, stateList,
+    handleSubmit, submitSucceeded, error, stateList, getCitiesList,
   } = props;
 
   const cities = [
@@ -125,12 +125,12 @@ const UserProfile = (props) => {
               <Col sm="4">
 
                 <FormGroup>
-                  <Field component="select" className="form-control" name="user_state" onChange="">
+                  <Field component="select" className="form-control" name="user_state" >
                     <option>
                       Selecione o estado
                     </option>
                     {stateList && stateList.map(state => (
-                      <option key={state.id} className="c-user-profile__state-city-dropdown-item">
+                      <option key={state.uf} value={state.uf} className="c-user-profile__state-city-dropdown-item">
                         {state.name}
                       </option>
                     ))}
@@ -144,7 +144,7 @@ const UserProfile = (props) => {
                       Selecione a cidade
                     </option>
                     {cities.map(city => (
-                      <option key={city.id} className="c-user-profile__state-city-dropdown-item"> 
+                      <option key={city.id} className="c-user-profile__state-city-dropdown-item">
                         {city.name}
                       </option>
                     ))}

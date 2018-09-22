@@ -12,7 +12,7 @@ class UserProfilePage extends React.Component {
 
   render() {
     const {
-      submit_profile, submit_profile_password, stateList, isFetchingStatesList,
+      submit_profile, submit_profile_password, stateList, isFetchingStatesList, getCitiesList,
     } = this.props;
 
     if (isFetchingStatesList) {
@@ -34,7 +34,7 @@ class UserProfilePage extends React.Component {
           <h5 className="text-center">
               Permite que a comunidade do MasterAula te conheça
           </h5>
-          <UserProfile onSubmit={submit_profile} stateList={stateList} />
+          <UserProfile onSubmit={submit_profile} stateList={stateList} getCitiesList={getCitiesList} />
           <UserPasswordProfile onSubmit={submit_profile_password} />
         </div>
       </HomeUserPage>

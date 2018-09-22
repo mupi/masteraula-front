@@ -46,7 +46,7 @@ export const getStatesList = (param) => {
 };
 
 // State cities of a state id
-export const getCitiesList = (param) => {
+export const getCitiesList = (idState) => {
   function fetchCitiesList() { return { type: PROFILE_GET_CITIES_REQUEST }; }
   function fetchCitiesListSuccess(stateList) {
     return { type: PROFILE_GET_CITIES_SUCCESS, stateList };
@@ -55,8 +55,8 @@ export const getCitiesList = (param) => {
     return { type: PROFILE_GET_CITIES_FAILURE, error };
   }
   return (dispatch) => {
-    dispatch(fetchCitiesList(param));
-    return profileEditService.getCitiesList(param)
+    dispatch(fetchCitiesList(idState));
+    return profileEditService.getCitiesList(idState)
       .then(
         (cityList) => {
           dispatch(fetchCitiesListSuccess(cityList));
@@ -96,6 +96,10 @@ export const profileEdit = (profile) => {
 
 // Redefine password_confirmation
 export const redefineUserPassword = (password_data) => {
+  function requestRedefineUserPassword() { return { type: PROFILE_EDIT_REQUEST }; }
+  function success() { return { type: PROFILE_EDIT_SUCCESS }; }
+  function failure(error) { return { type: PROFILE_EDIT_FAILURE, error }; }
+
   return (dispatch) => {
     dispatch(requestRedefineUserPassword(password_data));
     return profileEditService.profilePasswordEdit(password_data)
@@ -120,8 +124,4 @@ export const redefineUserPassword = (password_data) => {
         },
       );
   };
-
-  function requestRedefineUserPassword() { return { type: PROFILE_EDIT_REQUEST }; }
-  function success() { return { type: PROFILE_EDIT_SUCCESS }; }
-  function failure(error) { return { type: PROFILE_EDIT_FAILURE, error }; }
 };

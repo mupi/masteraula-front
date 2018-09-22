@@ -6,10 +6,12 @@ import UserProfilePage from 'pages/UserProfile/UserProfilePage';
 const mapStateToProps = state => ({
   stateList: state.profileEdit.stateList,
   isFetchingStatesList: state.profileEdit.isFetchingStatesList,
+  cityList: state.profileEdit.cityList,
 });
 
 const mapDispatchToProps = dispatch => ({
   getStatesList: param => dispatch(getStatesList(param)),
+  getCitiesList: idState => dispatch(getStatesList(idState)),
 
   submit_profile: (values) => {
     const profile = {
