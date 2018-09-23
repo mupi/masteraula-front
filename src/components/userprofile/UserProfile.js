@@ -8,7 +8,9 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from 'assets/img/home/coruja-avatar.png';
 
-const callGetCities = (getCitiesList, stateSelected) => {
+const callGetCities = (e, getCitiesList, stateSelected, stateSelectedOwn ) => {
+  e.preventDefault()
+  console.log("Llamando a callGetCities");
   getCitiesList(stateSelected);
 };
 
@@ -44,7 +46,7 @@ const renderField = ({
 
 const UserProfile = (props) => {
   const {
-    handleSubmit, submitSucceeded, error, stateList, getCitiesList, stateSelected, cityList,
+    handleSubmit, submitSucceeded, error, stateList, getCitiesList, cityList, stateSelected,
   } = props;
 
   return (
@@ -115,8 +117,9 @@ const UserProfile = (props) => {
               <Col sm="4">
 
                 <FormGroup>
-                  <Field component="select" className="form-control" name="userState">
-                    <option value="NaN">
+
+                  <Field component="select" className="form-control" name="userState" onBlur={(e, stateSelectedOwn) => callGetCities(e, getCitiesList, stateSelected, stateSelectedOwn )}>
+                    <option>
                       Selecione o estado
                     </option>
                     {stateList && stateList.map(state => (
@@ -126,9 +129,6 @@ const UserProfile = (props) => {
                     ))}
                   </Field>
                 </FormGroup>
-                { stateSelected !== 'NaN'
-                    && (callGetCities(getCitiesList, stateSelected))
-                }
               </Col>
               <Col sm="8">
                 <FormGroup>
@@ -187,6 +187,7 @@ const mapStateToProps = (state) => {
   const { user } = state.session.session;
   const stateSelected = selector(state, 'userState');
   const citySelected = selector(state, 'userCity');
+  const cityList = state.profileEdit.cityList;
 
   return ({
     initialValues: {
@@ -195,9 +196,10 @@ const mapStateToProps = (state) => {
       userState: user.city,
       userCity: user.city,
     },
-    stateSelected,
     citySelected,
     user,
+    cityList,
+    stateSelected,
   });
 };
 
