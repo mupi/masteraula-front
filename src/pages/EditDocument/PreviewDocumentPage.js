@@ -4,15 +4,6 @@ import DocumentHeader from 'components/document/DocumentHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 
 const PreviewDocumentPage = () => {
-  const data = {
-    schoolName: 'Escolinha',
-    course: 'Matemática',
-    teacherName: 'Profa Daniela',
-    studentName: true,
-    date: true,
-    class: true,
-    grade: true,
-  };
   return (
     <Container>
       <Row>

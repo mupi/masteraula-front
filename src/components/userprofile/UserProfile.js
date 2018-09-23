@@ -8,6 +8,11 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from 'assets/img/home/coruja-avatar.png';
 
+const callGetCities = ( getCitiesList, stateSelected ) =>{
+  getCitiesList(stateSelected);
+}
+
+
 const renderField = ({
   input,
   placeholder,
@@ -39,22 +44,18 @@ const renderField = ({
 
 const UserProfile = (props) => {
   const {
-    handleSubmit, submitSucceeded, error, stateList, getCitiesList,
+    handleSubmit, submitSucceeded, error, stateList, getCitiesList, stateSelected,
   } = props;
 
   const cities = [
     {
       id: 1,
-      name: 'Campinas',
+      name: 'Campinas 2',
     },
     {
       id: 2,
       name: 'Limeira',
-    },
-    {
-      id: 3,
-      name: 'Piracicaba',
-    },
+    }
   ];
 
   return (
@@ -126,7 +127,7 @@ const UserProfile = (props) => {
 
                 <FormGroup>
                   <Field component="select" className="form-control" name="userState">
-                    <option>
+                    <option value="NaN">
                       Selecione o estado
                     </option>
                     {stateList && stateList.map(state => (
@@ -136,6 +137,12 @@ const UserProfile = (props) => {
                     ))}
                   </Field>
                 </FormGroup>
+                { stateSelected!=="NaN" &&
+      (  callGetCities( getCitiesList, stateSelected))
+      }
+
+
+                 
               </Col>
               <Col sm="8">
                 <FormGroup>
@@ -170,7 +177,6 @@ const UserProfile = (props) => {
           { error
             ? (
               <Alert color="danger">
-
                     Ocorreu um erro com sua solicitação, tente novamente mais tarde.
               </Alert>
             )
@@ -199,9 +205,11 @@ const mapStateToProps = (state) => {
     initialValues: {
       name: user.name,
       about: user.about,
-      userState: "SP",
+      userState: user.city,
       userCity: user.city,
     },
+    stateSelected,
+    citySelected,
     user,
   });
 };
