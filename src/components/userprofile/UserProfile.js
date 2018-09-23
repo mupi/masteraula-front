@@ -4,15 +4,9 @@ import {
   Button, Form, FormGroup, Input, Label, UncontrolledAlert, Alert,
   Container, Row, Col,
 } from 'reactstrap';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from 'assets/img/home/coruja-avatar.png';
-
-const callGetCities = (e, getCitiesList, stateSelected, stateSelectedOwn ) => {
-  e.preventDefault()
-  console.log("Llamando a callGetCities");
-  getCitiesList(stateSelected);
-};
 
 
 const renderField = ({
@@ -46,8 +40,15 @@ const renderField = ({
 
 const UserProfile = (props) => {
   const {
-    handleSubmit, submitSucceeded, error, stateList, getCitiesList, cityList, stateSelected,
+    handleSubmit, submitSucceeded, error, stateList, cityList,
   } = props;
+
+  const callGetCities = (e, newValue, previousValue, name) => {
+    const {
+      getCitiesList,
+    } = props;
+    getCitiesList(newValue);
+  };
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -118,7 +119,7 @@ const UserProfile = (props) => {
 
                 <FormGroup>
 
-                  <Field component="select" className="form-control" name="userState" onBlur={(e, stateSelectedOwn) => callGetCities(e, getCitiesList, stateSelected, stateSelectedOwn )}>
+                  <Field component="select" className="form-control" name="userState" onChange={callGetCities}>
                     <option>
                       Selecione o estado
                     </option>
@@ -174,19 +175,16 @@ const UserProfile = (props) => {
 };
 
 const validate = (values) => {
-  const errors = {}; 
+  const errors = {};
   if (!values.name || values.name.length < 2) {
     errors.name = 'Insira um nome';
   }
   return errors;
 };
 
-const selector = formValueSelector('profile');// <-- same as form name
 
 const mapStateToProps = (state) => {
   const { user } = state.session.session;
-  const stateSelected = selector(state, 'userState');
-  const citySelected = selector(state, 'userCity');
   const cityList = state.profileEdit.cityList;
 
   return ({
@@ -196,10 +194,8 @@ const mapStateToProps = (state) => {
       userState: user.city,
       userCity: user.city,
     },
-    citySelected,
     user,
     cityList,
-    stateSelected,
   });
 };
 
