@@ -6,9 +6,8 @@ import HomeUserPage from '../HomeUser/HomeUserPage';
 
 class UserProfilePage extends React.Component {
   componentDidMount() {
-    const { getStatesList, getCitiesList } = this.props;
+    const { getStatesList } = this.props;
     getStatesList();
-    getCitiesList('RJ');
   }
 
   render() {

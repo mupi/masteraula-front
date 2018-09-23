@@ -8,7 +8,7 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from 'assets/img/home/coruja-avatar.png';
 
-const callGetCities = ( getCitiesList, stateSelected ) =>{
+const callGetCities = (getCitiesList, stateSelected) => {
   getCitiesList(stateSelected);
 }
 
@@ -126,12 +126,9 @@ const UserProfile = (props) => {
                     ))}
                   </Field>
                 </FormGroup>
-                { stateSelected!=="NaN" &&
-      (  callGetCities( getCitiesList, stateSelected))
-      }
-
-
-                 
+                { stateSelected !== 'NaN'
+                    && (callGetCities(getCitiesList, stateSelected))
+                }
               </Col>
               <Col sm="8">
                 <FormGroup>
@@ -190,7 +187,6 @@ const mapStateToProps = (state) => {
   const { user } = state.session.session;
   const stateSelected = selector(state, 'userState');
   const citySelected = selector(state, 'userCity');
-  //const { cityList } = state.profileEdit.cityList;
 
   return ({
     initialValues: {
@@ -202,7 +198,6 @@ const mapStateToProps = (state) => {
     stateSelected,
     citySelected,
     user,
-  //  cityList,
   });
 };
 
