@@ -44,19 +44,8 @@ const renderField = ({
 
 const UserProfile = (props) => {
   const {
-    handleSubmit, submitSucceeded, error, stateList, getCitiesList, stateSelected,
+    handleSubmit, submitSucceeded, error, stateList, getCitiesList, stateSelected, cityList,
   } = props;
-
-  const cities = [
-    {
-      id: 1,
-      name: 'Campinas 2',
-    },
-    {
-      id: 2,
-      name: 'Limeira',
-    }
-  ];
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -150,7 +139,7 @@ const UserProfile = (props) => {
                     <option>
                       Selecione a cidade
                     </option>
-                    {cities.map(city => (
+                    {cityList && cityList.map(city => (
                       <option key={city.id} value={city.id} className="c-user-profile__state-city-dropdown-item">
                         {city.name}
                       </option>
@@ -188,7 +177,7 @@ const UserProfile = (props) => {
 };
 
 const validate = (values) => {
-  const errors = {};
+  const errors = {}; 
   if (!values.name || values.name.length < 2) {
     errors.name = 'Insira um nome';
   }
@@ -201,6 +190,8 @@ const mapStateToProps = (state) => {
   const { user } = state.session.session;
   const stateSelected = selector(state, 'userState');
   const citySelected = selector(state, 'userCity');
+  //const { cityList } = state.profileEdit.cityList;
+
   return ({
     initialValues: {
       name: user.name,
@@ -211,6 +202,7 @@ const mapStateToProps = (state) => {
     stateSelected,
     citySelected,
     user,
+  //  cityList,
   });
 };
 
