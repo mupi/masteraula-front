@@ -10,7 +10,7 @@ import userPhoto from 'assets/img/home/coruja-avatar.png';
 
 const callGetCities = (getCitiesList, stateSelected) => {
   getCitiesList(stateSelected);
-}
+};
 
 
 const renderField = ({
