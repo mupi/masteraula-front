@@ -75,7 +75,11 @@ const LoginForm = (props) => {
           />
         </FormGroup>
         {error && !resendSuccess && (
-          <Alert color="danger" onClick={() => handleResend(error, formValues.values)}>
+          <Alert
+            color="danger"
+            onClick={() => handleResend(error, formValues.values)}
+            style={error.includes('confirmado') ? { cursor: 'pointer' } : {}}
+          >
             {resendError || error}
           </Alert>
         )}
