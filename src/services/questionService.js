@@ -37,7 +37,10 @@ function listQuestions(page, filter) {
   const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected });
   const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected });
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected });
-  const url = `${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`;
+  const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
+
+  const url = (search) ? `${apiUrl}/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`
+    : `${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`;
 
   const handleResponse = response => response.json().then((data) => {
     if (!response.ok) {
