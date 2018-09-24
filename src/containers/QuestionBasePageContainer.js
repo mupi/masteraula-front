@@ -4,8 +4,6 @@ import { listQuestions } from 'actions/questionAction';
 import { toggleModal, addSelectedQuestion } from 'actions/documentAction';
 import { addSelectedDisciplineFilter, addSelectedTeachingLevelFilter } from 'actions/filterAction';
 
-// state.<reducer's name>.<property>
-
 const mapStateToProps = state => ({
   isFetching: state.question.isFetching,
   questionPage: state.question.questionPage,
@@ -27,5 +25,6 @@ const QuestionBasePageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(QuestionBasePage);
+
 
 export default QuestionBasePageContainer;

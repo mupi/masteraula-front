@@ -1,6 +1,6 @@
 import { profileEditService } from 'services';
 import { DIFFERENT_OLD_PASSWORD } from 'services/profileEditService';
-import { SubmissionError, clearFields } from 'redux-form';
+import { SubmissionError, clearFields, reset } from 'redux-form';
 
 import { updateSessionUser } from './sessionAction';
 
@@ -108,7 +108,8 @@ export const redefineUserPassword = (password_data) => {
           const session = data[0];
 
           dispatch(success());
-          dispatch(clearFields('profile_password', true, true, 'new_password', 'old_password', 'password_confirmation'));
+         // dispatch(clearFields('profile_password', true, true, 'new_password', 'old_password', 'password_confirmation'));
+         dispatch(reset('profile_password'));
         },
         (error) => {
           dispatch(failure(error));

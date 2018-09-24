@@ -120,6 +120,13 @@ const UserPasswordProfile = (props) => {
 
 const validate = (values) => {
   const errors = {};
+
+  if (!values.new_password && !values.password_confirmation && !values.old_password) {
+    errors.new_password = ' Campo obrigatório';
+    errors.password_confirmation = ' Campo obrigatório';
+    errors.old_password = ' Campo obrigatório';
+  }
+
   if (values.new_password) {
     if (values.new_password.length < 8) {
       errors.new_password = 'A nova senha deve conter no mínimo 8 caracteres';
