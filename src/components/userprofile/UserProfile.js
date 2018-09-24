@@ -191,7 +191,7 @@ const mapStateToProps = (state) => {
     initialValues: {
       name: user.name,
       about: user.about,
-      userState: user.city,
+      userState: user.city.uf,
       userCity: user.city,
     },
     user,
