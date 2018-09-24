@@ -67,7 +67,7 @@ function profilePasswordEdit(profile) {
   }
 }
 
-function profileEdit(profile) {
+function profileEdit(profile) { 
   const requestOptions = {
     method: 'PATCH',
     headers: {
@@ -80,6 +80,10 @@ function profileEdit(profile) {
       city: profile.city,
     }),
   };
+
+  // test new values
+  console.log(profile.name);
+  console.log(profile.about);
 
   const fetchProfile = fetch(`${apiUrl}/auth/user/ `, requestOptions)
     .then(handleResponse)
