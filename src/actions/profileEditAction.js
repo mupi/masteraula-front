@@ -1,13 +1,15 @@
 import { profileEditService } from 'services';
 import { DIFFERENT_OLD_PASSWORD } from 'services/profileEditService';
-import { SubmissionError, clearFields } from 'redux-form';
+import { SubmissionError, clearFields, reset } from 'redux-form';
 
 import { updateSessionUser } from './sessionAction';
 
+// Get states list in UserProfile
 export const PROFILE_GET_STATES_REQUEST = 'PROFILE_GET_STATES_REQUEST';
 export const PROFILE_GET_STATES_SUCCESS = 'PROFILE_GET_STATES_SUCCESS';
 export const PROFILE_GET_STATES_FAILURE = 'PROFILE_GET_STATES_FAILURE';
 
+// Get cities of the chosen state
 export const PROFILE_GET_CITIES_REQUEST = 'PROFILE_GET_CITIES_REQUEST';
 export const PROFILE_GET_CITIES_SUCCESS = 'PROFILE_GET_CITIES_SUCCESS';
 export const PROFILE_GET_CITIES_FAILURE = 'PROFILE_GET_CITIES_FAILURE';
@@ -20,8 +22,58 @@ export const PROFILE_PASSWORD_EDIT_REQUEST = 'PROFILE_PASSWORD_EDIT_REQUEST';
 export const PROFILE_PASSWORD_EDIT_SUCCESS = 'PROFILE_PASSWORD_EDIT_SUCCESS';
 export const PROFILE_PASSWORD_EDIT_FAILURE = 'PROFILE_PASSWORD_EDIT_FAILURE';
 
+// State List
+export const getStatesList = (param) => {
+  function fetchStatesList() { return { type: PROFILE_GET_STATES_REQUEST }; }
+  function fetchStatesListSuccess(stateList) {
+    return { type: PROFILE_GET_STATES_SUCCESS, stateList };
+  }
+  function fetchStatesListFailure(error) {
+    return { type: PROFILE_GET_STATES_FAILURE, error };
+  }
+  return (dispatch) => {
+    dispatch(fetchStatesList(param));
+    return profileEditService.getStatesList(param)
+      .then(
+        (stateList) => {
+          dispatch(fetchStatesListSuccess(stateList));
+        },
+        (error) => {
+          dispatch(fetchStatesListFailure(error));
+        },
+      );
+  };
+};
+
+// State cities of a state id
+export const getCitiesList = (idState) => {
+  function fetchCitiesList() { return { type: PROFILE_GET_CITIES_REQUEST }; }
+  function fetchCitiesListSuccess(cityList) {
+    return { type: PROFILE_GET_CITIES_SUCCESS, cityList };
+  }
+  function fetchCitiesListFailure(error) {
+    return { type: PROFILE_GET_CITIES_FAILURE, error };
+  }
+  return (dispatch) => {
+    dispatch(fetchCitiesList(idState));
+    return profileEditService.getCitiesList(idState)
+      .then(
+        (cityList) => {
+          dispatch(fetchCitiesListSuccess(cityList));
+        },
+        (error) => {
+          dispatch(fetchCitiesListFailure(error));
+        },
+      );
+  };
+};
+
 // Edit user's fields
 export const profileEdit = (profile) => {
+  function requestEditProfile() { return { type: PROFILE_EDIT_REQUEST }; }
+  function success() { return { type: PROFILE_EDIT_SUCCESS }; }
+  function failure(error) { return { type: PROFILE_EDIT_FAILURE, error }; }
+
   return (dispatch) => {
     dispatch(requestEditProfile(profile));
     return profileEditService.profileEdit(profile)
@@ -40,14 +92,14 @@ export const profileEdit = (profile) => {
         },
       );
   };
-
-  function requestEditProfile() { return { type: PROFILE_EDIT_REQUEST }; }
-  function success() { return { type: PROFILE_EDIT_SUCCESS }; }
-  function failure(error) { return { type: PROFILE_EDIT_FAILURE, error }; }
 };
 
 // Redefine password_confirmation
 export const redefineUserPassword = (password_data) => {
+  function requestRedefineUserPassword() { return { type: PROFILE_EDIT_REQUEST }; }
+  function success() { return { type: PROFILE_EDIT_SUCCESS }; }
+  function failure(error) { return { type: PROFILE_EDIT_FAILURE, error }; }
+
   return (dispatch) => {
     dispatch(requestRedefineUserPassword(password_data));
     return profileEditService.profilePasswordEdit(password_data)
@@ -56,7 +108,8 @@ export const redefineUserPassword = (password_data) => {
           const session = data[0];
 
           dispatch(success());
-          dispatch(clearFields('profile_password', true, true, 'new_password', 'old_password', 'password_confirmation'));
+         // dispatch(clearFields('profile_password', true, true, 'new_password', 'old_password', 'password_confirmation'));
+         dispatch(reset('profile_password'));
         },
         (error) => {
           dispatch(failure(error));
@@ -72,8 +125,4 @@ export const redefineUserPassword = (password_data) => {
         },
       );
   };
-
-  function requestRedefineUserPassword() { return { type: PROFILE_EDIT_REQUEST }; }
-  function success() { return { type: PROFILE_EDIT_SUCCESS }; }
-  function failure(error) { return { type: PROFILE_EDIT_FAILURE, error }; }
 };

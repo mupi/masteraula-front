@@ -1,17 +1,25 @@
 import { connect } from 'react-redux';
 import { SubmissionError } from 'redux-form';
-import { profileEdit, redefineUserPassword } from 'actions/profileEditAction.js';
+import {
+  profileEdit, redefineUserPassword, getStatesList, getCitiesList,
+} from 'actions/profileEditAction';
 import UserProfilePage from 'pages/UserProfile/UserProfilePage';
 
 const mapStateToProps = state => ({
-
+  stateList: state.profileEdit.stateList,
+  isFetchingStatesList: state.profileEdit.isFetchingStatesList,
+  cityList: state.profileEdit.cityList,
 });
 
 const mapDispatchToProps = dispatch => ({
+  getStatesList: param => dispatch(getStatesList(param)),
+  getCitiesList: idState => dispatch(getCitiesList(idState)),
+
   submit_profile: (values) => {
     const profile = {
       name: values.name,
       about: values.about,
+      city: values.userCity !== '0' ? values.userCity : null,
     };
     return dispatch(profileEdit(profile));
   },
