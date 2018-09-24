@@ -19,10 +19,10 @@ const mapDispatchToProps = dispatch => ({
     const profile = {
       name: values.name,
       about: values.about,
-      city: values.userCity,
+      city: values.userCity !== '0' ? values.userCity : null,
     };
     return dispatch(profileEdit(profile));
-  }, 
+  },
 
   submit_profile_password: (values) => {
     const profile = { };
