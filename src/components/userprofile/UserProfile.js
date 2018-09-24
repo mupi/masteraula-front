@@ -185,7 +185,7 @@ const validate = (values) => {
 
 const mapStateToProps = (state) => {
   const { user } = state.session.session;
-  const cityList = state.profileEdit.cityList;
+  const { cityList } = state.profileEdit;
 
   return ({
     initialValues: {
