@@ -41,7 +41,7 @@ const renderField = ({
 
 const LoginForm = (props) => {
   const {
-    handleSubmit, error, modal, toggleModal, resendEmail, formValues,
+    handleSubmit, error, resendEmail, formValues,
     resendError, resendSuccess,
   } = props;
 
@@ -90,7 +90,7 @@ const LoginForm = (props) => {
         )}
         <div className="text-center">
           <FormGroup>
-            <NavLink to="/esqueci-senha" onClick={() => toggleModal(modal)}>
+            <NavLink to="/esqueci-senha" onClick={() => props.toggle()}>
               Esqueci minha senha
             </NavLink>
           </FormGroup>

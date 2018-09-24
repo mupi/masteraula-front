@@ -23,7 +23,7 @@ const LoginModal = (props) => {
             <h4 className="text-center">
               Entrar no MasterAula
             </h4>
-            <LoginForm onSubmit={submit} />
+            <LoginForm onSubmit={submit} toggle={() => toggleModal(modal)} />
           </ModalBody>
         </div>
       </Modal>
