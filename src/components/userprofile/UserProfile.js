@@ -158,13 +158,13 @@ const UserProfile = (props) => {
         <div>
           { submitSucceeded && (
             <UncontrolledAlert color="success">
-                    Usuário alterado com sucesso
+              Usuário alterado com sucesso
             </UncontrolledAlert>
           ) }
           { error
             ? (
               <Alert color="danger">
-                    Ocorreu um erro com sua solicitação, tente novamente mais tarde.
+                Ocorreu um erro com sua solicitação, tente novamente mais tarde.
               </Alert>
             )
             : '' }

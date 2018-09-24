@@ -19,9 +19,10 @@ const mapDispatchToProps = dispatch => ({
     const profile = {
       name: values.name,
       about: values.about,
+      city: values.userCity,
     };
     return dispatch(profileEdit(profile));
-  },
+  }, 
 
   submit_profile_password: (values) => {
     const profile = { };
