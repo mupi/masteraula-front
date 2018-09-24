@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import LoginForm from 'components/login/LoginForm';
 import { fetchLogin, toggleModal } from 'actions/loginAction';
+import { resetState } from 'actions/registerAction';
 
 
 const LoginModal = (props) => {
@@ -35,7 +36,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal: modal => dispatch(toggleModal(modal)),
+  toggleModal: (modal) => { dispatch(toggleModal(modal)); dispatch(resetState()); },
   submit: values => dispatch(fetchLogin(values.email, values.password)),
 });
 

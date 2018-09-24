@@ -6,8 +6,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
-import { toggleModal } from 'actions/loginAction';
-import { resendEmail, resetState } from 'actions/registerAction';
+import { resendEmail } from 'actions/registerAction';
 
 
 const renderField = ({
@@ -122,10 +121,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal: (modal) => {
+/*  toggleModal: (modal) => {
     dispatch(resetState());
     dispatch(toggleModal(modal));
-  },
+  }, */
   resendEmail: (email, password) => dispatch(resendEmail(email, password)),
 });
 
