@@ -67,7 +67,7 @@ function profilePasswordEdit(profile) {
   }
 }
 
-function profileEdit(profile) { 
+function profileEdit(profile) {
   const requestOptions = {
     method: 'PATCH',
     headers: {
