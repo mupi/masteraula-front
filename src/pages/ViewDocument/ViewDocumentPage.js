@@ -15,7 +15,7 @@ const getOrderNameField = (text) => {
     case 'asc': return 'Ascendente';
     case 'desc': return 'Descendente';
     case 'name': return 'Nome';
-    case 'creation_date': return 'Data de criação';
+    case 'date': return 'Data de criação';
     case 'question_number': return 'Nº questões';
     default: return text;
   }
@@ -110,10 +110,10 @@ class ViewDocumentPage extends React.Component {
                           Nome - Descendente
                         </DropdownItem>
                         <DropdownItem divider />
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'creation_date', 'asc')}>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'date', 'asc')}>
                           Data - Ascendente
                         </DropdownItem>
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'creation_date', 'asc')}>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'date', 'asc')}>
                           Data - Descendente
                         </DropdownItem>
                         <DropdownItem divider />
