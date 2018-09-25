@@ -81,10 +81,6 @@ function profileEdit(profile) {
     }),
   };
 
-  // test new values
-  console.log(profile.name);
-  console.log(profile.about);
-
   const fetchProfile = fetch(`${apiUrl}/auth/user/ `, requestOptions)
     .then(handleResponse)
     .then(detail => detail);
