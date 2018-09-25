@@ -187,7 +187,7 @@ export const document = (state = initialState, action) => {
     case DELETE_DOCUMENT_SUCCESS: {
       const newList = state.myDocumentsList.results.filter(item => item.id !== action.idDocumentRemoved);
       let newActive = state.activeDocument;
-      if (state.activeDocument.id === action.idDocumentRemoved) {
+      if (state.activeDocument && state.activeDocument.id === action.idDocumentRemoved) {
         newActive = null;
         localStorage.setItem('activeDocument', null);
       }
