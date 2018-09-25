@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  Button, Form, FormGroup, Input, Label, Col,
+  Alert, Button, Form, FormGroup, Input, Label, Col,
 } from 'reactstrap';
-import { Alert } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import { NavLink } from 'react-router-dom';
+import { userNameValidator, emailValidator } from 'helpers/validators';
+
 
 import { toggleModal } from 'actions/registerAction';
 
@@ -56,6 +57,7 @@ const RegisterForm = (props) => {
               name="name"
               id="name"
               label="Insira seu nome completo"
+              validate={userNameValidator}
             />
           </FormGroup>
           <FormGroup>
@@ -65,6 +67,7 @@ const RegisterForm = (props) => {
               name="email"
               id="email"
               label="Insira seu email"
+              validate={emailValidator}
             />
           </FormGroup>
           <FormGroup>
@@ -145,7 +148,7 @@ const validate = (values) => {
   }
   if (!values.email) {
     errors.email = 'Insira um email';
-  }
+  } 
 
   if (!values.password) {
     errors.password = 'Insira uma senha';
