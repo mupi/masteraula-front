@@ -499,9 +499,8 @@ a.c_sidebar__document-link:hover {
 
 .question-card {
   margin-bottom: 20px;
-  padding: 0px 10px; }
+  padding: 12px 12px; }
   .question-card__full:hover {
-    border: 0px solid transparent;
     -webkit-box-shadow: 0 3px 7px 0;
     -moz-box-shadow: 0 3px 7px 0 #999a9a;
     box-shadow: 0 3px 7px 0 #999a9a; }
@@ -557,6 +556,8 @@ a.c_sidebar__document-link:hover {
   .question-card__author {
     font-weight: bold;
     font-style: italic; }
+  .question-card__body {
+    padding: 12px 12px; }
   .question-card__footer {
     background-color: #FFFFFF;
     text-align: center;
