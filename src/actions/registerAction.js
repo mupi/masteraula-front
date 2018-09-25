@@ -11,6 +11,7 @@ export const REGISTER_TOGGLE_MODAL = 'REGISTER_TOGGLE_MODAL';
 export const RESEND_EMAIL_FAILURE = 'RESEND_EMAIL_FAILURE';
 export const RESEND_EMAIL_SUCCESS = 'RESEND_EMAIL_SUCCESS';
 export const RESEND_EMAIL_RESET = 'RESEND_EMAIL_RESET';
+export const RESEND_EMAIL = 'RESEND_EMAIL';
 
 export const fetchRegister = (email, password, name) => {
   function requestRegister() { return { type: REGISTER_REQUEST }; }
@@ -50,10 +51,12 @@ export const verifyEmail = (key) => {
 
 export const resendEmail = (email, password) => {
   function resetResend() { return { type: RESEND_EMAIL_RESET }; }
+  function resend() { return { type: RESEND_EMAIL }; }
   function success(session) { return { type: RESEND_EMAIL_SUCCESS, session }; }
   function failure(error) { return { type: RESEND_EMAIL_FAILURE, error }; }
   return (dispatch) => {
     dispatch(resetResend(email));
+    dispatch(resend(email));
     return registerService.resendEmail(email, password)
       .then(
         (session) => {

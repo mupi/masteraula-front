@@ -42,7 +42,7 @@ const renderField = ({
 const LoginForm = (props) => {
   const {
     handleSubmit, error, resendEmail, formValues,
-    resendError, resendSuccess,
+    resendError, resendSuccess, isSending,
   } = props;
 
   function handleResend(message, values) {
@@ -74,13 +74,18 @@ const LoginForm = (props) => {
             component={renderField}
           />
         </FormGroup>
-        {error && !resendSuccess && (
+        {error && !resendSuccess && !isSending && (
           <Alert
             color="danger"
             onClick={() => handleResend(error, formValues.values)}
             style={error.includes('confirmado') ? { cursor: 'pointer' } : {}}
           >
             {resendError || error}
+          </Alert>
+        )}
+        {isSending && (
+          <Alert color="warning">
+          Enviando...
           </Alert>
         )}
         {resendSuccess && (
@@ -122,6 +127,7 @@ const mapStateToProps = state => ({
   formValues: state.form.login,
   resendError: state.register.error,
   resendSuccess: state.register.success,
+  isSending: state.register.isSending,
 });
 
 const mapDispatchToProps = dispatch => ({
