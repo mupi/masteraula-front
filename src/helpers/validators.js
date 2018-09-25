@@ -2,7 +2,7 @@ export const alphaNumericValidator = value => (value && /[^a-zA-Z0-9 ]/i.test(va
   ? 'Only alphanumeric characters'
   : undefined);
 
-export const userNameValidator = value => (value && !/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/i.test(value)
+export const userNameValidator = value => (value && !/^[A-Za-zÀ-ÿ-´' ]+$/i.test(value)
   ? 'Informe um nome com caracteres válidos'
   : undefined);
 
