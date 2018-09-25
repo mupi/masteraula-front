@@ -7,6 +7,7 @@ import {
 import { Field, reduxForm } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from 'assets/img/home/coruja-avatar.png';
+import { userNameValidator } from 'helpers/validators';
 
 
 const renderField = ({
@@ -95,6 +96,7 @@ class UserProfile extends React.Component {
                       id="name"
                       placeholder="Insira seu nome completo"
                       className="form-control"
+                      validate={userNameValidator}
                     />
                   </FormGroup>
                 </Col>
