@@ -80,7 +80,7 @@ function profileEdit(profile) {
       city: profile.city,
     }),
   };
-
+  
   const fetchProfile = fetch(`${apiUrl}/auth/user/ `, requestOptions)
     .then(handleResponse)
     .then(detail => detail);

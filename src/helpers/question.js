@@ -43,7 +43,9 @@ export const getCleanExtractStatement = (html) => {
       a: [],
     },
   });
-  return extractStatement;
+ // return extractStatement;
+  return extractStatement.replace(/&quot;/g, '\'');
+
 };
 
 export const getCleanAlternativeText = (alternative) => {
