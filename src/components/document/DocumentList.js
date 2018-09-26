@@ -3,6 +3,7 @@ import {
   Row, Col, Table, Button,
 } from 'reactstrap';
 import { history } from 'helpers/history';
+import { formatDate } from 'helpers/question';
 
 const OpenDocumentModalHeader = (props) => {
   const { document, openDocumentModal, children } = props;
@@ -98,7 +99,7 @@ class DocumentList extends React.Component {
                       {document.name}
                     </OpenDocumentModalHeader>
                     <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
-                      {document.create_date}
+                      { formatDate(document.create_date) }
                     </OpenDocumentModalHeader>
                     <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
                       {document.questions.length}
