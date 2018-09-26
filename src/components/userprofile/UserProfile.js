@@ -130,7 +130,7 @@ class UserProfile extends React.Component {
                   <FormGroup>
 
                     <Field component="select" className="form-control" name="userState" onChange={this.callGetCities}>
-                      <option>
+                      <option value="NaN">
                         Selecione o estado
                       </option>
                       {stateList && stateList.map(state => (
@@ -190,6 +190,14 @@ const validate = (values) => {
   if (!values.name || values.name.length < 2) {
     errors.name = 'Insira um nome';
   }
+
+  console.log(values.userState);
+  console.log(values.userCity);
+
+  if (values.userState !== 'NaN') {
+    errors.name = 'Selecione a cidade';
+  }
+
   return errors;
 };
 
