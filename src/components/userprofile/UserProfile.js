@@ -208,7 +208,7 @@ const mapStateToProps = (state) => {
     user,
     cityList,
   });
-};
+};   
 
 export default connect(
   mapStateToProps,
