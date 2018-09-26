@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
 import QuestionSearchForm from 'components/question/QuestionSearchForm';
 import { setSearchText } from 'actions/filterAction';
+import { history } from 'helpers/history';
 
 const mapStateToProps = state => ({
   initialValues: {
@@ -9,8 +9,13 @@ const mapStateToProps = state => ({
   },
 });
 
+const setDispatchSearchText = (searchText) => {
+  history.replace('/question-base/1');
+  return setSearchText(searchText);
+};
+
 const mapDispatchToProps = dispatch => ({
-  onSubmit: values => dispatch(setSearchText(values.searchText)),
+  onSubmit: values => dispatch(setDispatchSearchText(values.searchText)),
 });
 
 const QuestionSearchFormContainer = connect(
