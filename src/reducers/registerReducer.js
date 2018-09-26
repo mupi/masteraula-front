@@ -21,17 +21,17 @@ export function register(state = {}, action) {
       });
     case VERIFY_EMAIL_RESET:
       return Object.assign({}, state, {
-        success: null,
+        verifySuccess: null,
         error: null,
       });
     case VERIFY_EMAIL_SUCCESS:
       return Object.assign({}, state, {
-        success: true,
+        verifySuccess: true,
         error: false,
       });
     case VERIFY_EMAIL_FAILURE:
       return Object.assign({}, state, {
-        success: false,
+        verifySuccess: false,
         error: true,
       });
     case REGISTER_TOGGLE_MODAL:
