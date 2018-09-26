@@ -111,10 +111,10 @@ class ViewDocumentPage extends React.Component {
                         </DropdownItem>
                         <DropdownItem divider />
                         <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'date', 'asc')}>
-                          Data - Ascendente
+                          Data de criação - Ascendente
                         </DropdownItem>
                         <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'date', 'desc')}>
-                          Data - Descendente
+                          Data de criação - Descendente
                         </DropdownItem>
                         <DropdownItem divider />
                         <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'asc')}>

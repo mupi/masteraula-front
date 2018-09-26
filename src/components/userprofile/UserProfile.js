@@ -39,19 +39,40 @@ const renderField = ({
   </div>
 );
 
+const renderSelectField = ({
+  input, label, meta: { touched, error }, children, optionDefault,
+}) => (
+  <div>
+    <div>
+      <select {...input} className="form-control">
+        <option value={optionDefault}>
+          {label}
+        </option>
+        {children}
+      </select>
+      {touched && error && (
+        <span className="error-message-text">
+          {error}
+        </span>
+      )}
+    </div>
+  </div>
+);
+
 class UserProfile extends React.Component {
   componentDidMount() {
     const { getCitiesList, user } = this.props;
     if (user.city) {
-      getCitiesList(user.city.uf);
+      getCitiesList(user.city.uf, true);
     }
   }
 
-  callGetCities = (e, newValue, previousValue, name) => {
+  callGetCities = (e, newValue) => {
     const {
       getCitiesList,
     } = this.props;
-    getCitiesList(newValue);
+
+    getCitiesList(newValue, false);
   }
 
   render() {
@@ -126,32 +147,40 @@ class UserProfile extends React.Component {
                   </Label>
                 </Col>
                 <Col sm="4">
-
                   <FormGroup>
-
-                    <Field component="select" className="form-control" name="userState" onChange={this.callGetCities}>
-                      <option>
-                        Selecione o estado
-                      </option>
-                      {stateList && stateList.map(state => (
-                        <option key={state.uf} value={state.uf} className="c-user-profile__state-city-dropdown-item">
+                    <Field
+                      name="userState"
+                      type="text"
+                      component={renderSelectField}
+                      className="form-control"
+                      onChange={this.callGetCities}
+                      label="Selecione o estado"
+                      optionDefault="NaN"
+                    >
+                      { stateList && stateList.map(state => (
+                        <option className="c-user-profile__state-city-dropdown-item" key={state.uf} value={state.uf}>
                           {state.name}
                         </option>
-                      ))}
+                      )) }
                     </Field>
                   </FormGroup>
+
                 </Col>
                 <Col sm="8">
                   <FormGroup>
-                    <Field component="select" className="form-control" name="userCity">
-                      <option value="0">
-                        Selecione a cidade
-                      </option>
-                      {cityList && cityList.map(city => (
-                        <option key={city.id} value={city.id} className="c-user-profile__state-city-dropdown-item">
+                    <Field
+                      name="userCity"
+                      type="text"
+                      component={renderSelectField}
+                      className="form-control"
+                      label="Selecione a cidade"
+                      optionDefault="0"
+                    >
+                      { cityList && cityList.map(city => (
+                        <option className="c-user-profile__state-city-dropdown-item" key={city.id} value={city.id}>
                           {city.name}
                         </option>
-                      ))}
+                      )) }
                     </Field>
                   </FormGroup>
                 </Col>
@@ -190,6 +219,11 @@ const validate = (values) => {
   if (!values.name || values.name.length < 2) {
     errors.name = 'Insira um nome';
   }
+
+  // if (values.userState !== 'NaN' && values.userCity === '0') {
+  //   errors.userCity = 'Selecione a cidade';
+  // }
+
   return errors;
 };
 

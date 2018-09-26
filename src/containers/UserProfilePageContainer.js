@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getStatesList: param => dispatch(getStatesList(param)),
-  getCitiesList: idState => dispatch(getCitiesList(idState)),
+  getCitiesList: (idState, autoLoad) => dispatch(getCitiesList(idState, autoLoad)),
 
   submit_profile: (values) => {
     const profile = {
@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => ({
         errors.new_password = 'Insira uma senha';
       } else if (values.new_password.length < 8) {
         errors.new_password = 'A senha deve conter no mínimo 8 dígitos';
-      } else if (!isNaN(values.new_password)) {
+      } else if (!Number.isNaN(values.new_password)) {
         errors.new_password = 'A senha não deve conter apenas números';
       }
 
