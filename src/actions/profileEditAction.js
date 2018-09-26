@@ -1,6 +1,6 @@
 import { profileEditService } from 'services';
 import { DIFFERENT_OLD_PASSWORD } from 'services/profileEditService';
-import { SubmissionError, clearFields, reset } from 'redux-form';
+import { SubmissionError, change, reset } from 'redux-form';
 
 import { updateSessionUser } from './sessionAction';
 
@@ -46,7 +46,7 @@ export const getStatesList = (param) => {
 };
 
 // State cities of a state id
-export const getCitiesList = (idState) => {
+export const getCitiesList = (idState, autoLoad) => {
   function fetchCitiesList() { return { type: PROFILE_GET_CITIES_REQUEST }; }
   function fetchCitiesListSuccess(cityList) {
     return { type: PROFILE_GET_CITIES_SUCCESS, cityList };
@@ -55,6 +55,9 @@ export const getCitiesList = (idState) => {
     return { type: PROFILE_GET_CITIES_FAILURE, error };
   }
   return (dispatch) => {
+    if (!autoLoad) {
+      dispatch(change('profile', 'userCity', '0'));
+    }
     dispatch(fetchCitiesList(idState));
     return profileEditService.getCitiesList(idState)
       .then(
@@ -95,21 +98,19 @@ export const profileEdit = (profile) => {
 };
 
 // Redefine password_confirmation
-export const redefineUserPassword = (password_data) => {
+export const redefineUserPassword = (passwordData) => {
   function requestRedefineUserPassword() { return { type: PROFILE_EDIT_REQUEST }; }
   function success() { return { type: PROFILE_EDIT_SUCCESS }; }
   function failure(error) { return { type: PROFILE_EDIT_FAILURE, error }; }
 
   return (dispatch) => {
-    dispatch(requestRedefineUserPassword(password_data));
-    return profileEditService.profilePasswordEdit(password_data)
+    dispatch(requestRedefineUserPassword(passwordData));
+    return profileEditService.profilePasswordEdit(passwordData)
       .then(
-        (data) => {
-          const session = data[0];
-
+        () => {
           dispatch(success());
-         // dispatch(clearFields('profile_password', true, true, 'new_password', 'old_password', 'password_confirmation'));
-         dispatch(reset('profile_password'));
+          // dispatch(clearFields('profile_password', true, true, 'new_password', 'old_password', 'password_confirmation'));
+          dispatch(reset('profile_password'));
         },
         (error) => {
           dispatch(failure(error));

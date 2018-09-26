@@ -63,15 +63,16 @@ class UserProfile extends React.Component {
   componentDidMount() {
     const { getCitiesList, user } = this.props;
     if (user.city) {
-      getCitiesList(user.city.uf);
+      getCitiesList(user.city.uf, true);
     }
   }
 
-  callGetCities = (e, newValue, previousValue, name) => {
+  callGetCities = (e, newValue) => {
     const {
       getCitiesList,
     } = this.props;
-    getCitiesList(newValue);
+
+    getCitiesList(newValue, false);
   }
 
   render() {
@@ -219,9 +220,9 @@ const validate = (values) => {
     errors.name = 'Insira um nome';
   }
 
-  if (values.userState !== 'NaN' && values.userCity === '0') {
-    errors.userCity = 'Selecione a cidade';
-  }
+  // if (values.userState !== 'NaN' && values.userCity === '0') {
+  //   errors.userCity = 'Selecione a cidade';
+  // }
 
   return errors;
 };
