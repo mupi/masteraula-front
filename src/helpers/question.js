@@ -63,3 +63,12 @@ export const getOrderAlternative = (order) => {
   const letterOrder = letters.charAt(order);
   return letterOrder;
 };
+
+export const formatDate = (date) => {
+  const d = new Date(date);
+  const month = `${d.getMonth() + 1}`;
+  const day = `${d.getDate()}`;
+  const year = d.getFullYear();
+
+  return [day.length < 2 ? `0${day}` : day, month.length < 2 ? `0${month}` : month, year].join('/');
+};
