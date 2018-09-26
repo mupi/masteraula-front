@@ -39,21 +39,25 @@ const renderField = ({
   </div>
 );
 
-const renderSelectField = ({ input, label, type, meta: { touched, error }, children, optionDefault }) => (
+const renderSelectField = ({
+  input, label, meta: { touched, error }, children, optionDefault,
+}) => (
   <div>
     <div>
       <select {...input} className="form-control">
-      <option value={optionDefault}>
-      {label}
-                      </option>
+        <option value={optionDefault}>
+          {label}
+        </option>
         {children}
       </select>
-      {touched && error && <span className="error-message-text">
-        {error}
-      </span>}
+      {touched && error && (
+        <span className="error-message-text">
+          {error}
+        </span>
+      )}
     </div>
   </div>
-)
+);
 
 class UserProfile extends React.Component {
   componentDidMount() {
@@ -67,8 +71,6 @@ class UserProfile extends React.Component {
     const {
       getCitiesList,
     } = this.props;
-    console.log("valor anterior");
-    console.log(previousValue);
     getCitiesList(newValue);
   }
 
@@ -145,16 +147,39 @@ class UserProfile extends React.Component {
                 </Col>
                 <Col sm="4">
                   <FormGroup>
-                    <Field name="userState" type="text" component={renderSelectField} className="form-control"  onChange={this.callGetCities} label="Selecione o estado" optionDefault="NaN">
-                      { stateList && stateList.map(state => <option className="c-user-profile__state-city-dropdown-item" key={state.uf} value={state.uf}>{state.name}</option>) }
+                    <Field
+                      name="userState"
+                      type="text"
+                      component={renderSelectField}
+                      className="form-control"
+                      onChange={this.callGetCities}
+                      label="Selecione o estado"
+                      optionDefault="NaN"
+                    >
+                      { stateList && stateList.map(state => (
+                        <option className="c-user-profile__state-city-dropdown-item" key={state.uf} value={state.uf}>
+                          {state.name}
+                        </option>
+                      )) }
                     </Field>
                   </FormGroup>
 
                 </Col>
                 <Col sm="8">
                   <FormGroup>
-                    <Field name="userCity" type="text" component={renderSelectField} className="form-control" label="Selecione a cidade" optionDefault="0">
-                      { cityList && cityList.map(city => <option className="c-user-profile__state-city-dropdown-item" key={city.id} value={city.id}>{city.name}</option>) }
+                    <Field
+                      name="userCity"
+                      type="text"
+                      component={renderSelectField}
+                      className="form-control"
+                      label="Selecione a cidade"
+                      optionDefault="0"
+                    >
+                      { cityList && cityList.map(city => (
+                        <option className="c-user-profile__state-city-dropdown-item" key={city.id} value={city.id}>
+                          {city.name}
+                        </option>
+                      )) }
                     </Field>
                   </FormGroup>
                 </Col>
@@ -216,7 +241,7 @@ const mapStateToProps = (state) => {
     user,
     cityList,
   });
-};   
+};
 
 export default connect(
   mapStateToProps,
