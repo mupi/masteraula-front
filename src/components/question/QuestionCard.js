@@ -51,9 +51,11 @@ const QuestionCard = (props) => {
           {question.source}
           {' '}
           {question.year}
-          {' | '}
           <span className="question-card__more-info--lightgray">
-            autor:
+            {' | '}
+          </span>
+          <span className="question-card__more-info--lightgray">
+            {'autor: '}
           </span>
           <QuestionAuthor author={question.author} styleTag="question-card__info-section-item--italic" />
           {
