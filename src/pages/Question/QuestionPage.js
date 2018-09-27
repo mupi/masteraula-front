@@ -58,7 +58,7 @@ class QuestionPage extends Component {
                   {!isQuestionAdded(activeDocument, activeQuestion.id) ? (
                     <Col className="c-question__add-question-rectangle">
                       <h6 className="c-question__add-question-title">
-                        Gostou da questão? Adicione a seu documento
+                        Gostou da questão? Adicione ao seu documento
                       </h6>
                       <AddQuestionButton
                         questionId={activeQuestion.id}
