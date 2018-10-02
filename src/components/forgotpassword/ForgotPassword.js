@@ -54,13 +54,13 @@ const ForgotPassword = (props) => {
                 id="email"
                 label="Insira seu email"
                 className="form-control"
-              />
+              /> 
             </FormGroup>
             { success
               && (
               <Alert color="success">
                 <p className="alert__message">
-                  Enviamos um email com instruções para recuperar sua senha
+                  Caso este e-mail estiver cadastrado, enviamos um email com instruções para recuperar sua senha
                 </p>
               </Alert>
               )
