@@ -15,6 +15,14 @@
   flex-direction: column; }
   .l-site-masteraula__user-home, .l-site-masteraula__public-home {
     flex: 1; }
+  .l-site-masteraula__public-home {
+    background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
+    background-size: 100% auto;
+    color: #FFFFFF;
+    padding: 1em;
+    text-align: center;
+    margin-top: 55px;
+    padding: 55px 10px; }
 
 .l-user-operations {
   padding-top: 30px;
