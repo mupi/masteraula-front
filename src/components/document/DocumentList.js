@@ -4,6 +4,8 @@ import {
 } from 'reactstrap';
 import { history } from 'helpers/history';
 import { formatDate } from 'helpers/question';
+import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
+
 
 const OpenDocumentModalHeader = (props) => {
   const { document, openDocumentModal, children } = props;
@@ -88,6 +90,9 @@ class DocumentList extends React.Component {
                   Nº de questões
                   </th>
                   <th>
+                  Exportar
+                  </th>
+                  <th>
                   Apagar
                   </th>
                 </tr>
@@ -104,6 +109,9 @@ class DocumentList extends React.Component {
                     <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
                       {document.questions.length}
                     </OpenDocumentModalHeader>
+                    <td>
+                      <ExportDocumentButton color="success" />
+                    </td>
                     <td>
                       <Button color="danger" onClick={() => this.handleDelete(document.id, document.name)}>
                         <i className="fa fa-trash" />
