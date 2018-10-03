@@ -7,12 +7,10 @@ const QuestionComments = () => (
       <h4>
         <i className="fa fa-comments" />
         {' '}
-Comentários
+        Comentários
       </h4>
     </Row>
   </Container>
 );
-
-export const oi = 'oi';
 
 export default QuestionComments;

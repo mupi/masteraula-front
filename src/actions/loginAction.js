@@ -41,7 +41,15 @@ export const logout = () => (dispatch) => {
   history.push('/');
 };
 
-export const toggleModal = modal => ({
-  type: LOGIN_TOGGLE_MODAL,
-  modal: !modal,
-});
+export const toggleModal = (modal) => {
+  function requestToggleModal(modal) { return {  
+    type: LOGIN_TOGGLE_MODAL,
+    modal: !modal,
+  }; 
+}
+
+  return (dispatch) => {
+    dispatch(deleteSession());
+    dispatch(requestToggleModal(modal));
+  };
+};
