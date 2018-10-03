@@ -40,7 +40,7 @@ const DocumentModal = ({
       <div className="c-document-modal__body modal-body">
         <Row>
           <div className="auto-margin-left-element btn-margin-right">
-            <ExportDocumentButton color="success" />
+            <ExportDocumentButton color="success" text="Exportar" />
           </div>
           <div>
             <Button title="Editar documento" className="btn-success" onClick={() => editDocument(document)}>

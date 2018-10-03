@@ -23,7 +23,7 @@ const DocumentInfoSidebar = ({ documentName, documentTotalQuestions }) => (
           Editar
         </Button>
       </Link>
-      <ExportDocumentButton />
+      <ExportDocumentButton text="Exportar" />
     </div>
   </div>
 );

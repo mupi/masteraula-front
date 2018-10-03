@@ -4,10 +4,10 @@ import { Button } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
-const ExportDocumentButton = ({ documentId, color }) => (
+const ExportDocumentButton = ({ documentId, color, text }) => (  
   <Button color={color}>
-    <i className="fa fa-download btn__icon" />
-      Exportar
+    <i className={text ? 'fa fa-download btn__icon' : 'fa fa-download'} />
+    {text}
   </Button>
 );
 
