@@ -57,6 +57,11 @@ export const SWITCH_ACTIVE_DOCUMENT = 'SWITCH_ACTIVE_DOCUMENT';
 // Delete active document in session
 export const DELETE_DOCUMENT_SESSION = 'DELETE_DOCUMENT_SESSION';
 
+// Download the document
+export const DOWNLOAD_DOCUMENT = 'DOWNLOAD_DOCUMENT';
+export const DOWNLOAD_DOCUMENT_SUCCESS = 'DOWNLOAD_DOCUMENT_SUCCESS';
+export const DOWNLOAD_DOCUMENT_FAILURE = 'DOWNLOAD_DOCUMENT_FAILURE';
+
 
 export const fetchDocument = (id) => {
   function requestDocument() { return { type: FETCH_DOCUMENT }; }
@@ -225,6 +230,28 @@ export const deleteDocument = (idDocument) => {
         },
         (error) => {
           dispatch(deleteSelectedDocumentFailure(error));
+        },
+      );
+  };
+};
+
+export const downloadDocument = (idDocument) => {
+  const downloadSelectedDocument = () => ({ type: DOWNLOAD_DOCUMENT });
+  const downloadSelectedDocumentSuccess = () => ({ type: DOWNLOAD_DOCUMENT_SUCCESS });
+  const downloadSelectedDocumentFailure = error => ({ type: DOWNLOAD_DOCUMENT_FAILURE, error });
+
+  return (dispatch, getState) => {
+    if (getState().document.isDownloadingDocument) {
+      return 1;
+    }
+    dispatch(downloadSelectedDocument(idDocument));
+    return documentService.downloadDocument(idDocument)
+      .then(
+        () => {
+          dispatch(downloadSelectedDocumentSuccess());
+        },
+        (error) => {
+          dispatch(downloadSelectedDocumentFailure(error));
         },
       );
   };
