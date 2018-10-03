@@ -10,19 +10,19 @@ const HomePage = () => (
       <Row>
         <Col md="12">
           <h1 className="c-public-home__main-title">
-Biblioteca inteligente de questões
+Masteraula
           </h1>
           <Col md="6" className="offset-md-3">
             <p className="c-public-home__title-description">
 
-                MasterAula é uma ferramenta feita por educadores para educadores onde você encontra milhares de questões para montar provas e testes.
+                Prepare suas provas em poucos minutos
             </p>
           </Col>
         </Col>
       </Row>
     </div>
 
-    <Container className="c-public-home__features">
+    <Container className="c-public-home__features hidden">
       <Row>
         <Col md="4" className="text-center">
           <div className="o-thumb-circle">
