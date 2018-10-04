@@ -224,7 +224,7 @@ function downloadDocument(idDocument) {
     return idDocument;
   };
 
-  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/`, requestOptions)
+  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=True`, requestOptions)
     .then(handleResponse)
     .then(error => error);
 }

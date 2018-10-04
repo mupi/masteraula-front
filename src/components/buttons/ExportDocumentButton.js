@@ -7,8 +7,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 const ExportDocumentButton = ({
   documentId, color, text,
 }) => (
-  <Button color={color} href={`${apiUrl}/documents/${documentId}/generate_list/`}>
-    <i className={text ? 'fa fa-download btn__icon' : 'fa fa-download'} />
+  <Button color={color} href={`${apiUrl}/documents/${documentId}/generate_list/?answers=True`}>
+    <i className={text ? 'fa fa-download o-button-export btn__icon' : 'o-button-export fa fa-download'} />
     {text}
   </Button>
 );
