@@ -8,6 +8,7 @@ import {
   REMOVE_SELECTED_QUESTION, REMOVE_SELECTED_QUESTION_SUCCESS, REMOVE_SELECTED_QUESTION_FAILURE,
   CREATE_DOCUMENT_TOGGLE_MODAL, SWITCH_ACTIVE_DOCUMENT, DELETE_DOCUMENT_SESSION,
   DELETE_DOCUMENT, DELETE_DOCUMENT_SUCCESS, DELETE_DOCUMENT_FAILURE,
+  DOWNLOAD_DOCUMENT, DOWNLOAD_DOCUMENT_SUCCESS, DOWNLOAD_DOCUMENT_FAILURE,
 
 } from 'actions/documentAction';
 
@@ -201,6 +202,24 @@ export const document = (state = initialState, action) => {
       return Object.assign({}, state, {
         error: action.error,
         isDeleted: false,
+      });
+    }
+    case DOWNLOAD_DOCUMENT: {
+      return Object.assign({}, state, {
+        isDownloadingDocument: true,
+        isDowloaded: false,
+      });
+    }
+    case DOWNLOAD_DOCUMENT_SUCCESS: {
+      return Object.assign({}, state, {
+        isDownloadingDocument: false,
+        isDowloaded: true,
+      });
+    }
+    case DOWNLOAD_DOCUMENT_FAILURE: {
+      return Object.assign({}, state, {
+        isDownloadingDocument: false,
+        error: action.error,
       });
     }
     default:
