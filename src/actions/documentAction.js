@@ -1,5 +1,6 @@
 import { documentService } from 'services';
 import { history } from 'helpers/history';
+import FileSaver from 'file-saver';
 
 // Load single document
 export const FETCH_DOCUMENT = 'FETCH_DOCUMENT';
@@ -235,8 +236,8 @@ export const deleteDocument = (idDocument) => {
   };
 };
 
-export const downloadDocument = (idDocument) => {
-  const downloadSelectedDocument = () => ({ type: DOWNLOAD_DOCUMENT });
+export const downloadDocument = (documentId, docName) => {
+  const downloadSelectedDocument = documentName => ({ type: DOWNLOAD_DOCUMENT, documentName });
   const downloadSelectedDocumentSuccess = () => ({ type: DOWNLOAD_DOCUMENT_SUCCESS });
   const downloadSelectedDocumentFailure = error => ({ type: DOWNLOAD_DOCUMENT_FAILURE, error });
 
@@ -244,15 +245,14 @@ export const downloadDocument = (idDocument) => {
     if (getState().document.isDownloadingDocument) {
       return 1;
     }
-    dispatch(downloadSelectedDocument(idDocument));
-    return documentService.downloadDocument(idDocument)
-      .then(
-        () => {
-          dispatch(downloadSelectedDocumentSuccess());
-        },
-        (error) => {
-          dispatch(downloadSelectedDocumentFailure(error));
-        },
-      );
+    dispatch(downloadSelectedDocument(documentId));
+    return documentService.downloadDocument(documentId)
+      .then(response => response.blob()).then((blob) => {
+        FileSaver.saveAs(blob, `${docName}`);
+        dispatch(downloadSelectedDocumentSuccess());
+      },
+      (error) => {
+        dispatch(downloadSelectedDocumentFailure(error));
+      });
   };
 };

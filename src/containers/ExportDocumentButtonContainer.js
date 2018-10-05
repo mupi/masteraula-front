@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  downloadDocument: idDocument => dispatch(downloadDocument(idDocument)),
+  downloadDocument: (idDocument, documentName) => dispatch(downloadDocument(idDocument, documentName)),
 });
 
 const ExportDocumentButtonContainer = connect(

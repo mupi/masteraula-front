@@ -216,17 +216,8 @@ function downloadDocument(idDocument) {
       Authorization: authHeader(),
     },
   };
-  const handleResponse = (response) => {
-    if (!response.ok) {
-      return Promise.reject();
-    }
 
-    return idDocument;
-  };
-
-  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/`, requestOptions)
-    .then(handleResponse)
-    .then(error => error);
+  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/`, requestOptions);
 }
 
 const documentService = {

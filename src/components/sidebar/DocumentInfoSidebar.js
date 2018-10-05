@@ -23,7 +23,7 @@ const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId 
           Editar
         </Button>
       </Link>
-      <ExportDocumentButtonContainer text="Exportar" documentId={documentId} />
+      <ExportDocumentButtonContainer text="Exportar" documentId={documentId} documentName={documentName} />
     </div>
   </div>
 );

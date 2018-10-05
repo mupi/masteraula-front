@@ -1,8 +1,7 @@
 import React from 'react';
 import {
-  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button,
+  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col,
 } from 'reactstrap';
-import { Row, Col } from 'reactstrap';
 
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -13,34 +12,28 @@ import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 
 const Menu = (props) => {
-  const { isOpen } = props;
-  const { isOpenSidebar } = props;
-  const { isLoggedIn } = props;
-  const { toggleMenu } = props;
-  const { openSidebar } = props;
-  const { logout } = props;
+  const {
+    isOpen, isOpenSidebar, isLoggedIn,
+  } = props;
 
   const loggedOptions = (
     <Nav className="ml-auto" navbar>
       <NavItem>
         <Link to="/question-base/1">
           <i className="fa fa-home" />
-          {' '}
-          Página Inicial
+          {' Página Inicial'}
         </Link>
       </NavItem>
       <NavItem>
         <Link to="/user-profile">
           <i className="fa fa-user" />
-          {' '}
-          Meu Perfil
+          {' Meu Perfil'}
         </Link>
       </NavItem>
       <NavItem>
         <Link onClick={(e) => { e.preventDefault(); logout(); }} to="/">
           <i className="fa fa-sign-out" />
-          {' '}
-          Sair
+          {' Sair'}
         </Link>
       </NavItem>
     </Nav>
@@ -67,8 +60,7 @@ const Menu = (props) => {
         onClick={(e) => {
           e.preventDefault();
           openSidebar(isOpenSidebar);
-        }
-      }
+        }}
       >
         <span>
           <i className="fa fa-bars" />
@@ -89,7 +81,7 @@ const Menu = (props) => {
             </div>
             <NavItem>
               <Link exact="true" to="/">
-                {isLoggedIn ? '' : <img className="logo-in-menu no-login" src={logoMasterAula} />}
+                {isLoggedIn ? '' : <img className="logo-in-menu no-login" src={logoMasterAula} alt="logo" />}
               </Link>
             </NavItem>
             <NavbarToggler onClick={() => toggleMenu(isOpen)} />
