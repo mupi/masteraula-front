@@ -13,7 +13,7 @@ import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 
 const Menu = (props) => {
   const {
-    isOpen, isOpenSidebar, isLoggedIn,
+    isOpen, isOpenSidebar, isLoggedIn, toggleMenuContainer, openSidebarContainer, logoutContainer,
   } = props;
 
   const loggedOptions = (
@@ -31,7 +31,7 @@ const Menu = (props) => {
         </Link>
       </NavItem>
       <NavItem>
-        <Link onClick={(e) => { e.preventDefault(); logout(); }} to="/">
+        <Link onClick={(e) => { e.preventDefault(); logoutContainer(); }} to="/">
           <i className="fa fa-sign-out" />
           {' Sair'}
         </Link>
@@ -59,7 +59,7 @@ const Menu = (props) => {
         href="/"
         onClick={(e) => {
           e.preventDefault();
-          openSidebar(isOpenSidebar);
+          openSidebarContainer(isOpenSidebar);
         }}
       >
         <span>
@@ -84,7 +84,7 @@ const Menu = (props) => {
                 {isLoggedIn ? '' : <img className="logo-in-menu no-login" src={logoMasterAula} alt="logo" />}
               </Link>
             </NavItem>
-            <NavbarToggler onClick={() => toggleMenu(isOpen)} />
+            <NavbarToggler onClick={() => toggleMenuContainer(isOpen)} />
             <Collapse isOpen={isOpen} navbar>
 
               { isLoggedIn ? loggedOptions : notLoggedOptions }
@@ -105,9 +105,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
-  openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
-  logout: () => dispatch(logout()),
+  toggleMenuContainer: isOpen => dispatch(toggleMenu(isOpen)),
+  openSidebarContainer: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
+  logoutContainer: () => dispatch(logout()),
 });
 
 export default connect(
