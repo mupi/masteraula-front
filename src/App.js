@@ -18,6 +18,7 @@ import {
   QuestionPageContainer,
   QuestionBasePageContainer,
   EditDocumentPageContainer,
+  MenuContainer,
 }
   from 'containers';
 import { showModal, hideModal } from 'actions/modalAction';
@@ -25,7 +26,6 @@ import { showModal, hideModal } from 'actions/modalAction';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
-import Menu from 'components/menu/Menu';
 import { history } from 'helpers/history';
 
 import Footer from 'components/footer/Footer';
@@ -48,7 +48,7 @@ class App extends Component {
     return (
       <ConnectedRouter history={history}>
         <div id="main-masteraula-container" className={isOpenSidebar ? 'container-open' : ''}>
-          <Menu />
+          <MenuContainer />
           {isLoggedIn
             ? (
               <Switch>

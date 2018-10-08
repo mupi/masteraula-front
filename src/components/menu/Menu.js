@@ -1,24 +1,17 @@
 import React from 'react';
 import {
-  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button,
+  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col,
 } from 'reactstrap';
-import { Row, Col } from 'reactstrap';
 
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { logout } from 'actions/loginAction';
-import { toggleMenu, openSidebar } from 'actions/menuAction';
 import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 
 const Menu = (props) => {
-  const { isOpen } = props;
-  const { isOpenSidebar } = props;
-  const { isLoggedIn } = props;
-  const { toggleMenu } = props;
-  const { openSidebar } = props;
-  const { logout } = props;
+  const {
+    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout,
+  } = props;
 
   const loggedOptions = (
     <Nav className="ml-auto" navbar>
@@ -89,7 +82,7 @@ const Menu = (props) => {
             </div>
             <NavItem>
               <Link exact="true" to="/">
-                {isLoggedIn ? '' : <img className="logo-in-menu no-login" src={logoMasterAula} />}
+                {isLoggedIn ? '' : <img className="logo-in-menu no-login" src={logoMasterAula} alt="logo" />}
               </Link>
             </NavItem>
             <NavbarToggler onClick={() => toggleMenu(isOpen)} />
@@ -104,21 +97,4 @@ const Menu = (props) => {
   );
 };
 
-// ///////////////////////////////////////////// Container
-
-const mapStateToProps = state => ({
-  isOpen: state.menu.isOpen,
-  isOpenSidebar: state.menu.isOpenSidebar,
-  isLoggedIn: state.session.session,
-});
-
-const mapDispatchToProps = dispatch => ({
-  toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
-  openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
-  logout: () => dispatch(logout()),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Menu);
+export default Menu;

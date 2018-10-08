@@ -6,3 +6,4 @@ export { default as UserProfilePageContainer } from './UserProfilePageContainer'
 export { default as ForgotPasswordPageContainer } from './ForgotPasswordPageContainer';
 export { default as ViewDocumentPageContainer } from './ViewDocumentPageContainer';
 export { default as EditDocumentPageContainer } from './EditDocumentPageContainer';
+export { default as MenuContainer } from './MenuContainer';
