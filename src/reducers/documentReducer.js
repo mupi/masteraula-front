@@ -10,6 +10,7 @@ import {
   DELETE_DOCUMENT, DELETE_DOCUMENT_SUCCESS, DELETE_DOCUMENT_FAILURE,
 
 } from 'actions/documentAction';
+import { toast } from 'react-toastify';
 
 const sessionData = JSON.parse(localStorage.getItem('activeDocument'));
 const initialState = sessionData ? {
@@ -133,6 +134,7 @@ export const document = (state = initialState, action) => {
       const newQuestionsInDocument = state.activeDocument.questions.filter(item => item.question.id !== action.idRemovedQuestion);
       const activeDocument = { ...state.activeDocument, questions: newQuestionsInDocument };
       localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+      toast.success('Questão removida com sucesso');
       return {
         isFetchingRemoveQuestion: false,
         isRemoved: true,
