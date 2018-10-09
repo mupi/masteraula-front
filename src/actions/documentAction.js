@@ -248,7 +248,7 @@ export const downloadDocument = (documentId, docName) => {
     dispatch(downloadSelectedDocument(documentId));
     return documentService.downloadDocument(documentId)
       .then(response => response.blob()).then((blob) => {
-        FileSaver.saveAs(blob, `${docName}`);
+        FileSaver.saveAs(blob, `${docName}.docx`);
         dispatch(downloadSelectedDocumentSuccess());
       },
       (error) => {
