@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  Button, Form, FormGroup, Input, Label, UncontrolledAlert, Container, Row, Col,
+  Button, Form, FormGroup, Input, Label, Container, Row, Col,
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 
@@ -35,7 +35,7 @@ const renderField = ({
 );
 
 const UserPasswordProfile = (props) => {
-  const { handleSubmit, user, submitSucceeded } = props;
+  const { handleSubmit, user } = props;
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -105,14 +105,7 @@ const UserPasswordProfile = (props) => {
             </Button>
           </Col>
         </Row>
-        <div>
-          { submitSucceeded && (
-            <UncontrolledAlert color="success">
-
-                    Senha alterada com sucesso
-            </UncontrolledAlert>
-          ) }
-        </div>
+        <div />
       </Container>
     </Form>
   );

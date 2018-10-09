@@ -1,9 +1,8 @@
 import {
   FORGOT_PASSWORD_RESET, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_FAILURE,
-} from 'actions/forgotPasswordAction';
-import {
   CHANGE_PASSWORD_REQUEST, CHANGE_PASSWORD_SUCCESS, CHANGE_PASSWORD_FAILURE, CHANGE_PASSWORD_RESET,
 } from 'actions/forgotPasswordAction';
+import { toast } from 'react-toastify';
 
 const initialState = {
   success: false,
@@ -33,10 +32,6 @@ export function forgotPassword(state = initialState, action) {
         error: action.error,
         success: false,
       });
-    case FORGOT_PASSWORD_RESET:
-      return Object.assign({}, state, {
-        success: false,
-      });
     case CHANGE_PASSWORD_RESET:
       return Object.assign({}, state, {
         success: false,
@@ -46,12 +41,19 @@ export function forgotPassword(state = initialState, action) {
         isFetching: true,
         error: null,
       });
-    case CHANGE_PASSWORD_SUCCESS:
+    case CHANGE_PASSWORD_SUCCESS: {
+      const options = {
+        className: 'alert__ma-toast--success',
+        type: 'success',
+      };
+      toast.success('Senha alterada com sucesso', options);
       return Object.assign({}, state, {
         isFetching: false,
         success: true,
       });
+    }
     case CHANGE_PASSWORD_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação');
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,

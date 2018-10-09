@@ -3,6 +3,7 @@ import {
   PROFILE_GET_STATES_REQUEST, PROFILE_GET_STATES_SUCCESS, PROFILE_GET_STATES_FAILURE,
   PROFILE_GET_CITIES_REQUEST, PROFILE_GET_CITIES_SUCCESS, PROFILE_GET_CITIES_FAILURE,
 } from 'actions/profileEditAction';
+import { toast } from 'react-toastify';
 
 const initialState = {};
 
@@ -45,11 +46,18 @@ export function profileEdit(state = initialState, action) {
         isFetching: true,
         error: null,
       });
-    case PROFILE_EDIT_SUCCESS:
+    case PROFILE_EDIT_SUCCESS: {
+      const options = {
+        className: 'alert__ma-toast--success',
+        type: 'success',
+      };
+      toast.success('Perfil editado com sucesso', options);
       return Object.assign({}, state, {
         isFetching: false,
       });
+    }
     case PROFILE_EDIT_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação');
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,

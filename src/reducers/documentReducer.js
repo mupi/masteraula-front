@@ -98,6 +98,7 @@ export const document = (state = initialState, action) => {
         isFetching: false,
       });
     case LIST_MY_DOCUMENTS_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação');
       return Object.assign({}, state, {
         myDocumentsList: null,
         isFetching: false,
@@ -138,7 +139,7 @@ export const document = (state = initialState, action) => {
       const options = {
         className: 'alert__ma-toast--success',
         type: 'success',
-      }
+      };
       toast.success('Questão removida com sucesso', options);
       return {
         isFetchingRemoveQuestion: false,
@@ -147,6 +148,7 @@ export const document = (state = initialState, action) => {
       };
     }
     case REMOVE_SELECTED_QUESTION_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação');
       return Object.assign({}, state, {
         isFetchingRemoveQuestion: false,
         error: action.error,
@@ -165,12 +167,18 @@ export const document = (state = initialState, action) => {
       });
     }
     case UPDATE_DOCUMENT_SUCCESS: {
+      const options = {
+        className: 'alert__ma-toast--success',
+        type: 'success',
+      };
+      toast.success('Cabeçalho atualizado com sucesso', options);
       return Object.assign({}, state, {
         activeDocument: { ...action.activeDocument, questions: state.activeDocument.questions },
         isUpdated: true,
       });
     }
     case UPDATE_DOCUMENT_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação');
       return Object.assign({}, state, {
         error: action.error,
       });
@@ -198,6 +206,11 @@ export const document = (state = initialState, action) => {
         newActive = null;
         localStorage.setItem('activeDocument', null);
       }
+      const options = {
+        className: 'alert__ma-toast--success',
+        type: 'success',
+      };
+      toast.success('Documento removido com sucesso', options);
       return Object.assign({}, state, {
         activeDocument: newActive,
         isDeleted: true,
@@ -205,6 +218,7 @@ export const document = (state = initialState, action) => {
       });
     }
     case DELETE_DOCUMENT_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação');
       return Object.assign({}, state, {
         error: action.error,
         isDeleted: false,
@@ -217,12 +231,18 @@ export const document = (state = initialState, action) => {
       });
     }
     case DOWNLOAD_DOCUMENT_SUCCESS: {
+      const options = {
+        className: 'alert__ma-toast--success',
+        type: 'success',
+      };
+      toast.success('Seu download foi iniciado', options);
       return Object.assign({}, state, {
         isDownloadingDocument: false,
         isDowloaded: true,
       });
     }
     case DOWNLOAD_DOCUMENT_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação');
       return Object.assign({}, state, {
         isDownloadingDocument: false,
         error: action.error,
