@@ -4,16 +4,13 @@ import {
 } from 'reactstrap';
 
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { logout } from 'actions/loginAction';
-import { toggleMenu, openSidebar } from 'actions/menuAction';
 import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 
 const Menu = (props) => {
   const {
-    isOpen, isOpenSidebar, isLoggedIn, toggleMenuContainer, openSidebarContainer, logoutContainer,
+    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout,
   } = props;
 
   const loggedOptions = (
@@ -21,19 +18,22 @@ const Menu = (props) => {
       <NavItem>
         <Link to="/question-base/1">
           <i className="fa fa-home" />
-          {' Página Inicial'}
+          {' '}
+          Página Inicial
         </Link>
       </NavItem>
       <NavItem>
         <Link to="/user-profile">
           <i className="fa fa-user" />
-          {' Meu Perfil'}
+          {' '}
+          Meu Perfil
         </Link>
       </NavItem>
       <NavItem>
-        <Link onClick={(e) => { e.preventDefault(); logoutContainer(); }} to="/">
+        <Link onClick={(e) => { e.preventDefault(); logout(); }} to="/">
           <i className="fa fa-sign-out" />
-          {' Sair'}
+          {' '}
+          Sair
         </Link>
       </NavItem>
     </Nav>
@@ -59,8 +59,9 @@ const Menu = (props) => {
         href="/"
         onClick={(e) => {
           e.preventDefault();
-          openSidebarContainer(isOpenSidebar);
-        }}
+          openSidebar(isOpenSidebar);
+        }
+      }
       >
         <span>
           <i className="fa fa-bars" />
@@ -84,7 +85,7 @@ const Menu = (props) => {
                 {isLoggedIn ? '' : <img className="logo-in-menu no-login" src={logoMasterAula} alt="logo" />}
               </Link>
             </NavItem>
-            <NavbarToggler onClick={() => toggleMenuContainer(isOpen)} />
+            <NavbarToggler onClick={() => toggleMenu(isOpen)} />
             <Collapse isOpen={isOpen} navbar>
 
               { isLoggedIn ? loggedOptions : notLoggedOptions }
@@ -96,21 +97,4 @@ const Menu = (props) => {
   );
 };
 
-// ///////////////////////////////////////////// Container
-
-const mapStateToProps = state => ({
-  isOpen: state.menu.isOpen,
-  isOpenSidebar: state.menu.isOpenSidebar,
-  isLoggedIn: state.session.session,
-});
-
-const mapDispatchToProps = dispatch => ({
-  toggleMenuContainer: isOpen => dispatch(toggleMenu(isOpen)),
-  openSidebarContainer: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
-  logoutContainer: () => dispatch(logout()),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Menu);
+export default Menu;
