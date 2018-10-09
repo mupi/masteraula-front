@@ -6,20 +6,19 @@ import { Button } from 'reactstrap';
 const handleRemoveQuestionButton = (e, questionId, activeDocumentId, removeSelectedQuestion) => {
   e.preventDefault();
   if (activeDocumentId !== 0) {
-    console.log("remove question:" + questionId);
     removeSelectedQuestion(activeDocumentId, questionId);
   }
 };
- 
+
 const RemoveQuestionButton = ({ questionId, activeDocumentId, removeSelectedQuestion }) => (
-    <Button
-      value={questionId}
-      title="Remover questão"
-      className="c-document__btn-remove-question"
-      onClick={(e => handleRemoveQuestionButton(e, questionId, activeDocumentId, removeSelectedQuestion))}
-    >
-      <i className="fa fa-trash" />
-    </Button>
+  <Button
+    value={questionId}
+    title="Remover questão"
+    className="c-document__btn-remove-question"
+    onClick={(e => handleRemoveQuestionButton(e, questionId, activeDocumentId, removeSelectedQuestion))}
+  >
+    <i className="fa fa-trash" />
+  </Button>
 );
 
 RemoveQuestionButton.propTypes = {

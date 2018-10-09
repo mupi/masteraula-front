@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import { history } from 'helpers/history';
 import { formatDate } from 'helpers/question';
-import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
+import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
 
 
 const OpenDocumentModalHeader = (props) => {
@@ -110,7 +110,7 @@ class DocumentList extends React.Component {
                       {document.questions.length}
                     </OpenDocumentModalHeader>
                     <td>
-                      <ExportDocumentButton />
+                      <ExportDocumentButtonContainer documentId={document.id} documentName={document.name} />
                     </td>
                     <td>
                       <Button color="danger" onClick={() => this.handleDelete(document.id, document.name)}>

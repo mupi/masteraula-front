@@ -28,6 +28,7 @@ const Sidebar = (props) => {
                 <DocumentInfoSidebar
                   documentName={activeDocument.name}
                   documentTotalQuestions={activeDocument.questions.length}
+                  documentId={activeDocument.id}
                 />
                 )}
 

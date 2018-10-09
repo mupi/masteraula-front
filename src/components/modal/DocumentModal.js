@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import DocumentQuestionItem from 'components/document/DocumentQuestionItem';
-import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
+import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
 import documentLogo from 'assets/img/home/coruja-avatar.png';
 
 import {
@@ -40,7 +40,7 @@ const DocumentModal = ({
       <div className="c-document-modal__body modal-body">
         <Row>
           <div className="auto-margin-left-element btn-margin-right">
-            <ExportDocumentButton color="success" text="Exportar" />
+            <ExportDocumentButtonContainer color="success" text="Exportar" documentId={document.id} documentName={document.name} />
           </div>
           <div>
             <Button title="Editar documento" className="btn-success" onClick={() => editDocument(document)}>

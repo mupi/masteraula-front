@@ -627,6 +627,9 @@ a.c_sidebar__document-link:hover {
         width: 60px;
         height: 60px; } }
 
+.o-button-export {
+  color: #FFFFFF; }
+
 .l-question-all-filters__clear-button {
   text-align: center;
   padding: 5px 15px; }

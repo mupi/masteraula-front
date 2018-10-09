@@ -1,8 +1,7 @@
 import React from 'react';
 import {
-  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button,
+  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col,
 } from 'reactstrap';
-import { Row, Col } from 'reactstrap';
 
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -13,34 +12,28 @@ import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 
 const Menu = (props) => {
-  const { isOpen } = props;
-  const { isOpenSidebar } = props;
-  const { isLoggedIn } = props;
-  const { toggleMenu } = props;
-  const { openSidebar } = props;
-  const { logout } = props;
+  const {
+    isOpen, isOpenSidebar, isLoggedIn, toggleMenuContainer, openSidebarContainer, logoutContainer,
+  } = props;
 
   const loggedOptions = (
     <Nav className="ml-auto" navbar>
       <NavItem>
         <Link to="/question-base/1">
           <i className="fa fa-home" />
-          {' '}
-          Página Inicial
+          {' Página Inicial'}
         </Link>
       </NavItem>
       <NavItem>
         <Link to="/user-profile">
           <i className="fa fa-user" />
-          {' '}
-          Meu Perfil
+          {' Meu Perfil'}
         </Link>
       </NavItem>
       <NavItem>
-        <Link onClick={(e) => { e.preventDefault(); logout(); }} to="/">
+        <Link onClick={(e) => { e.preventDefault(); logoutContainer(); }} to="/">
           <i className="fa fa-sign-out" />
-          {' '}
-          Sair
+          {' Sair'}
         </Link>
       </NavItem>
     </Nav>
@@ -66,9 +59,8 @@ const Menu = (props) => {
         href="/"
         onClick={(e) => {
           e.preventDefault();
-          openSidebar(isOpenSidebar);
-        }
-      }
+          openSidebarContainer(isOpenSidebar);
+        }}
       >
         <span>
           <i className="fa fa-bars" />
@@ -89,10 +81,10 @@ const Menu = (props) => {
             </div>
             <NavItem>
               <Link exact="true" to="/">
-                {isLoggedIn ? '' : <img className="logo-in-menu no-login" src={logoMasterAula} />}
+                {isLoggedIn ? '' : <img className="logo-in-menu no-login" src={logoMasterAula} alt="logo" />}
               </Link>
             </NavItem>
-            <NavbarToggler onClick={() => toggleMenu(isOpen)} />
+            <NavbarToggler onClick={() => toggleMenuContainer(isOpen)} />
             <Collapse isOpen={isOpen} navbar>
 
               { isLoggedIn ? loggedOptions : notLoggedOptions }
@@ -113,9 +105,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
-  openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
-  logout: () => dispatch(logout()),
+  toggleMenuContainer: isOpen => dispatch(toggleMenu(isOpen)),
+  openSidebarContainer: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
+  logoutContainer: () => dispatch(logout()),
 });
 
 export default connect(
