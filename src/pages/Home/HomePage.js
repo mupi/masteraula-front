@@ -3,6 +3,7 @@ import clockImg from 'assets/img/home/clock.png';
 import searchImg from 'assets/img/home/search.png';
 import moneyImg from 'assets/img/home/money.png';
 import { Container, Row, Col } from 'reactstrap';
+import corujaAvatar from 'assets/img/home/coruja-avatar.png';
 
 const HomePage = () => (
   <div className="c-public-home l-site-masteraula__public-home">
