@@ -32,7 +32,7 @@ const HomePage = () => (
             Venda suas questões
           </h4>
           <p className="c-public-home__feature-description">
-            Experimente! Gere até 5 provas gratuitamente (em formato .doc para você poder editar)
+            Experimente! Gere até 5 provas gratuitamente (em formato .docx para você poder editar)
           </p>
         </Col>
 
@@ -44,7 +44,7 @@ const HomePage = () => (
             Monte provas e testes em 5 minutos!
           </h4>
           <p className="c-public-home__feature-description">
-          Ganhe tempo! Elaborar provas e listas de atividades será mais rápido.
+          Ganhe tempo! Elaborar provas e listas de atividades será mais rápido
           </p>
         </Col>
 
