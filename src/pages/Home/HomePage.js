@@ -9,7 +9,7 @@ const HomePage = () => (
     <div className="c-public-home__banner">
       <Row>
         <Col md="12">
-          <h1 className="c-public-home__main-title">
+          <h1 className="c-public-home__main-title hidden">
             Biblioteca inteligente de questões
           </h1>
           <Col md="6" className="offset-md-3">
@@ -30,7 +30,7 @@ const HomePage = () => (
           <h4 className="hidden">
             Venda suas questões
           </h4>
-          <p>
+          <p className="c-public-home__feature-description">
             Experimente! Gere até 5 provas gratuitamente (em formato .doc para você poder editar)
           </p>
         </Col>
@@ -42,7 +42,7 @@ const HomePage = () => (
           <h4 className="hidden">
             Monte provas e testes em 5 minutos!
           </h4>
-          <p>
+          <p className="c-public-home__feature-description">
           Ganhe tempo! Elaborar provas e listas de atividades será mais rápido.
           </p>
         </Col>
@@ -54,7 +54,7 @@ const HomePage = () => (
           <h4 className="hidden">
             Encontre materiais online
           </h4>
-          <p>
+          <p className="c-public-home__feature-description">
             Encontre questões de exames de todo Brasil e das diferentes áreas do conhecimento
           </p>
         </Col>

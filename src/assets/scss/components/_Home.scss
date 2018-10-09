@@ -21,6 +21,11 @@
     padding-bottom: 60px;
   }
 
+    &__feature-description{
+    font-size:18px;
+    margin-bottom: 30px;
+    }
+
    &__banner {
       background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
       background-size: 100% auto;
