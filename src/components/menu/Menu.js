@@ -4,16 +4,13 @@ import {
 } from 'reactstrap';
 
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { logout } from 'actions/loginAction';
-import { toggleMenu, openSidebar } from 'actions/menuAction';
 import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 
 const Menu = (props) => {
   const {
-    isOpen, isOpenSidebar, isLoggedIn, toggleMenuContainer, openSidebarContainer, logoutContainer,
+    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout,
   } = props;
 
   const loggedOptions = (
@@ -96,21 +93,4 @@ const Menu = (props) => {
   );
 };
 
-// ///////////////////////////////////////////// Container
-
-const mapStateToProps = state => ({
-  isOpen: state.menu.isOpen,
-  isOpenSidebar: state.menu.isOpenSidebar,
-  isLoggedIn: state.session.session,
-});
-
-const mapDispatchToProps = dispatch => ({
-  toggleMenuContainer: isOpen => dispatch(toggleMenu(isOpen)),
-  openSidebarContainer: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
-  logoutContainer: () => dispatch(logout()),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Menu);
+export default Menu;
