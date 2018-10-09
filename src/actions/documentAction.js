@@ -1,5 +1,6 @@
 import { documentService } from 'services';
 import { history } from 'helpers/history';
+import FileSaver from 'file-saver';
 
 // Load single document
 export const FETCH_DOCUMENT = 'FETCH_DOCUMENT';
@@ -56,6 +57,11 @@ export const SWITCH_ACTIVE_DOCUMENT = 'SWITCH_ACTIVE_DOCUMENT';
 
 // Delete active document in session
 export const DELETE_DOCUMENT_SESSION = 'DELETE_DOCUMENT_SESSION';
+
+// Download the document
+export const DOWNLOAD_DOCUMENT = 'DOWNLOAD_DOCUMENT';
+export const DOWNLOAD_DOCUMENT_SUCCESS = 'DOWNLOAD_DOCUMENT_SUCCESS';
+export const DOWNLOAD_DOCUMENT_FAILURE = 'DOWNLOAD_DOCUMENT_FAILURE';
 
 
 export const fetchDocument = (id) => {
@@ -227,5 +233,26 @@ export const deleteDocument = (idDocument) => {
           dispatch(deleteSelectedDocumentFailure(error));
         },
       );
+  };
+};
+
+export const downloadDocument = (documentId, docName) => {
+  const downloadSelectedDocument = documentName => ({ type: DOWNLOAD_DOCUMENT, documentName });
+  const downloadSelectedDocumentSuccess = () => ({ type: DOWNLOAD_DOCUMENT_SUCCESS });
+  const downloadSelectedDocumentFailure = error => ({ type: DOWNLOAD_DOCUMENT_FAILURE, error });
+
+  return (dispatch, getState) => {
+    if (getState().document.isDownloadingDocument) {
+      return 1;
+    }
+    dispatch(downloadSelectedDocument(documentId));
+    return documentService.downloadDocument(documentId)
+      .then(response => response.blob()).then((blob) => {
+        FileSaver.saveAs(blob, `${docName}.docx`);
+        dispatch(downloadSelectedDocumentSuccess());
+      },
+      (error) => {
+        dispatch(downloadSelectedDocumentFailure(error));
+      });
   };
 };

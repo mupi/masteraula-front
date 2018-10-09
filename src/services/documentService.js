@@ -208,6 +208,17 @@ function deleteDocument(idDocument) {
     .then(idRemovedDocument => idRemovedDocument);
 }
 
+// Dowload a document docx file given its ID
+function downloadDocument(idDocument) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/`, requestOptions);
+}
 
 const documentService = {
   fetchDocument,
@@ -218,6 +229,7 @@ const documentService = {
   addSelectedQuestion,
   removeSelectedQuestion,
   deleteDocument,
+  downloadDocument,
 };
 
 export default documentService;

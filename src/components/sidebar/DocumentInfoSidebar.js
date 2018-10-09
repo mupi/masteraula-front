@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
+import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
 
-const DocumentInfoSidebar = ({ documentName, documentTotalQuestions }) => (
+const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId }) => (
   <div className="c-sidebar__document-info">
     <h5>
       Documento Atual
@@ -23,7 +23,7 @@ const DocumentInfoSidebar = ({ documentName, documentTotalQuestions }) => (
           Editar
         </Button>
       </Link>
-      <ExportDocumentButton text="Exportar" />
+      <ExportDocumentButtonContainer text="Exportar" documentId={documentId} documentName={documentName} />
     </div>
   </div>
 );
