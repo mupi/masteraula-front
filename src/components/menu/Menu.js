@@ -18,19 +18,22 @@ const Menu = (props) => {
       <NavItem>
         <Link to="/question-base/1">
           <i className="fa fa-home" />
-          {' Página Inicial'}
+          {' '}
+          Página Inicial
         </Link>
       </NavItem>
       <NavItem>
         <Link to="/user-profile">
           <i className="fa fa-user" />
-          {' Meu Perfil'}
+          {' '}
+          Meu Perfil
         </Link>
       </NavItem>
       <NavItem>
-        <Link onClick={(e) => { e.preventDefault(); logoutContainer(); }} to="/">
+        <Link onClick={(e) => { e.preventDefault(); logout(); }} to="/">
           <i className="fa fa-sign-out" />
-          {' Sair'}
+          {' '}
+          Sair
         </Link>
       </NavItem>
     </Nav>
@@ -56,8 +59,9 @@ const Menu = (props) => {
         href="/"
         onClick={(e) => {
           e.preventDefault();
-          openSidebarContainer(isOpenSidebar);
-        }}
+          openSidebar(isOpenSidebar);
+        }
+      }
       >
         <span>
           <i className="fa fa-bars" />
@@ -81,7 +85,7 @@ const Menu = (props) => {
                 {isLoggedIn ? '' : <img className="logo-in-menu no-login" src={logoMasterAula} alt="logo" />}
               </Link>
             </NavItem>
-            <NavbarToggler onClick={() => toggleMenuContainer(isOpen)} />
+            <NavbarToggler onClick={() => toggleMenu(isOpen)} />
             <Collapse isOpen={isOpen} navbar>
 
               { isLoggedIn ? loggedOptions : notLoggedOptions }
