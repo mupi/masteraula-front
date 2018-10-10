@@ -110,7 +110,7 @@ class DocumentList extends React.Component {
                       {document.questions.length}
                     </OpenDocumentModalHeader>
                     <td>
-                      <ExportDocumentButtonContainer documentId={document.id} documentName={document.name} />
+                      <ExportDocumentButtonContainer documentId={document.id} documentName={document.name} documentTotalQuestions={document.questions.length} />
                     </td>
                     <td>
                       <Button color="danger" onClick={() => this.handleDelete(document.id, document.name)}>
