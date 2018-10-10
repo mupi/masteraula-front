@@ -845,7 +845,8 @@ CSS for UserProfile
     margin-bottom: 10px;
     margin-right: 5px;
     text-align: center;
-    font-style: normal; }
+    font-style: normal;
+    white-space: nowrap; }
   .c-document__question-info-detail--green {
     background: #53BA65; }
   .c-document__question-info-detail--pink {
@@ -867,7 +868,8 @@ CSS for UserProfile
     text-align: right; }
     @media (max-width: 989px) {
       .c-document__question-view-more {
-        text-align: center; } }
+        text-align: center;
+        margin-top: 10px; } }
   .c-document__questions-header {
     position: relative;
     border-radius: 4px;
@@ -1023,6 +1025,10 @@ tbody tr.odd {
 .c-public-home__features {
   padding-top: 60px;
   padding-bottom: 60px; }
+
+.c-public-home__feature-description {
+  font-size: 18px;
+  margin-bottom: 30px; }
 
 .c-public-home__banner {
   background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
