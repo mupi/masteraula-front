@@ -867,7 +867,8 @@ CSS for UserProfile
     text-align: right; }
     @media (max-width: 989px) {
       .c-document__question-view-more {
-        text-align: center; } }
+        text-align: center;
+        margin-top: 10px; } }
   .c-document__questions-header {
     position: relative;
     border-radius: 4px;

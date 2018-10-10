@@ -31,7 +31,7 @@ const DocumentQuestionItem = (props) => {
               {question.author.name}
             </p>
           </Col>
-          <Col sm="6" className="c-document__question-image">
+          <Col sm="8" className="c-document__question-image">
             <p className="c-document__question-info-title">
               Questão:
             </p>
@@ -44,7 +44,7 @@ const DocumentQuestionItem = (props) => {
               {question.author.name}
             </p>
           </Col>
-          <Col sm="6" className="c-document__question-info">
+          <Col sm="4" className="c-document__question-info">
             <Row>
               <Col sm="12">
                 <p className="c-document__question-info-subtitle">
@@ -91,7 +91,7 @@ const DocumentQuestionItem = (props) => {
             </Row>
             { (!readOnly) ? (
               <Row>
-                <div className="c-document__question-view-more col-md-6 offset-md-6">
+                <div className="c-document__question-view-more col-md-12">
                   { (!readOnly) ? (
                     <RemoveQuestionButton
                       questionId={question.id}
