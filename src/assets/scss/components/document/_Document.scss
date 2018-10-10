@@ -77,6 +77,7 @@
       margin-right: 5px;
       text-align: center;
       font-style:normal;
+      white-space: nowrap;
     }
 
     &__question-info-detail--green {
@@ -114,6 +115,7 @@
 
       @include for-tablet-landscape-bottom{
         text-align: center;
+        margin-top: 10px;
       }
     }
 

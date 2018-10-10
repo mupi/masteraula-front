@@ -217,7 +217,7 @@ function downloadDocument(idDocument) {
     },
   };
 
-  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/`, requestOptions);
+  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=True`, requestOptions);
 }
 
 const documentService = {
