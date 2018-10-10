@@ -58,7 +58,7 @@ class ViewDocumentPage extends React.Component {
         ) : ''
         }
         <div className="c-my-documents">
-          <Row>
+          <Row className="hidden">
             <Col sm="12">
               <p className="c-my-documents__search-info">
                 Pesquisar em meus documentos
@@ -71,6 +71,11 @@ class ViewDocumentPage extends React.Component {
                   </Button>
                 </InputGroupAddon>
               </InputGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm="12">
+              <h4>Meus Documentos</h4>
             </Col>
           </Row>
           <Row className="pagination-my-documents" style={{ marginTop: '1em' }}>
