@@ -1024,6 +1024,10 @@ tbody tr.odd {
   padding-top: 60px;
   padding-bottom: 60px; }
 
+.c-public-home__feature-description {
+  font-size: 18px;
+  margin-bottom: 30px; }
+
 .c-public-home__banner {
   background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
   background-size: 100% auto;
