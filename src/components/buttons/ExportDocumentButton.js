@@ -4,10 +4,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 const ExportDocumentButton = ({
-  documentId, color, text, downloadDocument, documentName,
+  documentId, color, text, downloadDocument, documentName, documentTotalQuestions,
 }) => {
   const handleClick = () => {
-    downloadDocument(documentId, documentName);
+    if (documentTotalQuestions>0)
+      downloadDocument(documentId, documentName);
+    else console.log("DOCUMENTO VAZIO");
   };
 
   return (
