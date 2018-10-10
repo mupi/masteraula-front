@@ -4,17 +4,20 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 const ExportDocumentButton = ({
-  documentId, color, text, downloadDocument, documentName, documentTotalQuestions, closeModal, showModal,
+  documentId, color, text, downloadDocument, documentName, documentTotalQuestions, hideModal, showModal,
 }) => {
   const handleClick = () => {
     if (documentTotalQuestions>0)
       downloadDocument(documentId, documentName);
     else{
       //open modal
-      console.log("nao exportar");
       handleExport(documentName);
     }
   };
+
+  const closeModal = ( ) => {
+    hideModal();
+  }
 
   const handleExport = (name) => {
     // open modal
@@ -22,7 +25,7 @@ const ExportDocumentButton = ({
       open: true,
       closeModal,
       title: 'Exportar documento',
-      message: `Não é possível exportar porque o documento "${name}"? não tem questões`,
+      message: `Não é possível exportar porque o documento "${name}" não tem questões`,
     }, 'alert');
   };
  
