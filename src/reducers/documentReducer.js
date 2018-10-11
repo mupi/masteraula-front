@@ -231,18 +231,12 @@ export const document = (state = initialState, action) => {
       });
     }
     case DOWNLOAD_DOCUMENT_SUCCESS: {
-      const options = {
-        className: 'alert__ma-toast--success',
-        type: 'success',
-      };
-      toast.success('Seu download foi iniciado', options);
       return Object.assign({}, state, {
         isDownloadingDocument: false,
         isDowloaded: true,
       });
     }
     case DOWNLOAD_DOCUMENT_FAILURE: {
-      toast.error('Ocorreu um erro com sua solicitação');
       return Object.assign({}, state, {
         isDownloadingDocument: false,
         error: action.error,
