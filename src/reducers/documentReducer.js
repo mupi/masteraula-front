@@ -23,6 +23,16 @@ const initialState = sessionData ? {
   isFetchingAddQuestion: false,
 };
 
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
+
+const optionsError = {
+  className: 'alert__ma-toast--error',
+  type: 'error',
+};
+
 export const document = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_DOCUMENT:
@@ -98,13 +108,12 @@ export const document = (state = initialState, action) => {
         isFetching: false,
       });
     case LIST_MY_DOCUMENTS_FAILURE:
-      toast.error('Ocorreu um erro com sua solicitação');
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         myDocumentsList: null,
         isFetching: false,
         error: action.errorMessage,
       });
-
     case ADD_SELECTED_QUESTION:
       return Object.assign({}, state, {
         isFetchingAddQuestion: true,
@@ -136,11 +145,7 @@ export const document = (state = initialState, action) => {
       const newQuestionsInDocument = state.activeDocument.questions.filter(item => item.question.id !== action.idRemovedQuestion);
       const activeDocument = { ...state.activeDocument, questions: newQuestionsInDocument };
       localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
-      const options = {
-        className: 'alert__ma-toast--success',
-        type: 'success',
-      };
-      toast.success('Questão removida com sucesso', options);
+      toast.success('Questão removida com sucesso', optionsSuccess);
       return {
         isFetchingRemoveQuestion: false,
         isRemoved: true,
@@ -148,7 +153,7 @@ export const document = (state = initialState, action) => {
       };
     }
     case REMOVE_SELECTED_QUESTION_FAILURE:
-      toast.error('Ocorreu um erro com sua solicitação');
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isFetchingRemoveQuestion: false,
         error: action.error,
@@ -167,18 +172,14 @@ export const document = (state = initialState, action) => {
       });
     }
     case UPDATE_DOCUMENT_SUCCESS: {
-      const options = {
-        className: 'alert__ma-toast--success',
-        type: 'success',
-      };
-      toast.success('Cabeçalho atualizado com sucesso', options);
+      toast.success('Cabeçalho atualizado com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeDocument: { ...action.activeDocument, questions: state.activeDocument.questions },
         isUpdated: true,
       });
     }
     case UPDATE_DOCUMENT_FAILURE: {
-      toast.error('Ocorreu um erro com sua solicitação');
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         error: action.error,
       });
@@ -206,11 +207,7 @@ export const document = (state = initialState, action) => {
         newActive = null;
         localStorage.setItem('activeDocument', null);
       }
-      const options = {
-        className: 'alert__ma-toast--success',
-        type: 'success',
-      };
-      toast.success('Documento removido com sucesso', options);
+      toast.success('Documento removido com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeDocument: newActive,
         isDeleted: true,
@@ -218,7 +215,7 @@ export const document = (state = initialState, action) => {
       });
     }
     case DELETE_DOCUMENT_FAILURE: {
-      toast.error('Ocorreu um erro com sua solicitação');
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         error: action.error,
         isDeleted: false,

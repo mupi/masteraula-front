@@ -10,6 +10,17 @@ const initialState = {
   error: null,
 };
 
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
+
+const optionsError = {
+  className: 'alert__ma-toast--error',
+  type: 'error',
+};
+
+
 export function forgotPassword(state = initialState, action) {
   switch (action.type) {
     case FORGOT_PASSWORD_RESET:
@@ -42,18 +53,14 @@ export function forgotPassword(state = initialState, action) {
         error: null,
       });
     case CHANGE_PASSWORD_SUCCESS: {
-      const options = {
-        className: 'alert__ma-toast--success',
-        type: 'success',
-      };
-      toast.success('Senha alterada com sucesso', options);
+      toast.success('Senha alterada com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         isFetching: false,
         success: true,
       });
     }
     case CHANGE_PASSWORD_FAILURE:
-      toast.error('Ocorreu um erro com sua solicitação');
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,

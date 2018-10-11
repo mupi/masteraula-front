@@ -6,6 +6,15 @@ import {
 import { toast } from 'react-toastify';
 
 const initialState = {};
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
+
+const optionsError = {
+  className: 'alert__ma-toast--error',
+  type: 'error',
+};
 
 export function profileEdit(state = initialState, action) {
   switch (action.type) {
@@ -46,22 +55,14 @@ export function profileEdit(state = initialState, action) {
         isFetching: true,
         error: null,
       });
-    case PROFILE_EDIT_SUCCESS: { 
-      const options = {
-        className: 'alert__ma-toast--success',
-        type: 'success',
-      };
-      toast.success('Perfil editado com sucesso', options);
+    case PROFILE_EDIT_SUCCESS: {
+      toast.success('Perfil editado com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         isFetching: false,
       });
     }
     case PROFILE_EDIT_FAILURE:
-      const options = {
-        className: 'alert__ma-toast--error',
-        type: 'error',
-      };
-      toast.error('Ocorreu um erro com sua solicitação', options);
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,
