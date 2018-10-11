@@ -15,7 +15,7 @@ const HomePage = () => (
           </h1>
           <Col md="6" className="offset-md-3">
             <p className="c-public-home__title-description">
-               Ganhe tempo na preparação de provas e atividades para o cotidiano escola do Ensino Básico. Masteraula é uma plataforma para professores e escolas!
+               Ganhe tempo na preparação de provas e atividades para o cotidiano escolar do Ensino Básico. Masteraula é uma plataforma para professores e escolas!
             </p>
           </Col>
         </Col>
