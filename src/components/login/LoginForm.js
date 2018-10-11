@@ -136,7 +136,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(toggleModal(modal));
   }, */
   resendEmail: (email, password) => dispatch(resendEmail(email, password)),
-});
+}); 
 
 export default connect(
   mapStateToProps,
