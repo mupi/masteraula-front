@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  Button, Form, FormGroup, Row, Col, Input,
+  Button, Form, FormGroup, Alert,
 } from 'reactstrap';
+import { Row, Col, Input } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { resetForgotPasswordForm } from 'actions/forgotPasswordAction';
 
 const renderField = ({
   input,
@@ -31,7 +31,7 @@ const renderField = ({
         {' '}
       </span>
       )))
-    }
+    } 
   </div>
 );
 
@@ -58,7 +58,7 @@ const validate = (values) => {
 
 
 const RedefinePassword = (props) => {
-  const { handleSubmit } = props;
+  const { handleSubmit, error, submitSucceeded } = props;
 
   return (
     <div className="c-redefine-password">
@@ -90,13 +90,26 @@ Mudar sua senha
                 className="form-control"
               />
             </FormGroup>
+            {error && (
+            <Alert color="danger">
+              {error}
+            </Alert>
+            )} 
+            { submitSucceeded
+              && (
+              <Alert color="success">
+                <p className="alert__message">
+                  Sua senha foi alterada com sucesso
+                </p>
+              </Alert>
+              )
+            }
             <Button>
               Salvar
             </Button>
           </Form>
         </Col>
       </Row>
-      <ToastContainer hideProgressBar position="bottom-right" />
     </div>
   );
 };
