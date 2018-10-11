@@ -46,7 +46,7 @@ export function profileEdit(state = initialState, action) {
         isFetching: true,
         error: null,
       });
-    case PROFILE_EDIT_SUCCESS: {
+    case PROFILE_EDIT_SUCCESS: { 
       const options = {
         className: 'alert__ma-toast--success',
         type: 'success',
@@ -57,7 +57,11 @@ export function profileEdit(state = initialState, action) {
       });
     }
     case PROFILE_EDIT_FAILURE:
-      toast.error('Ocorreu um erro com sua solicitação');
+      const options = {
+        className: 'alert__ma-toast--error',
+        type: 'error',
+      };
+      toast.error('Ocorreu um erro com sua solicitação', options);
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,
