@@ -48,14 +48,13 @@ export const resetForgotPassword = (password, confirmation, uid, token) => {
       .then(
         () => {
           dispatch(success()),
-         // dispatch(clearFields('redefine_password', true, true, 'repeatpassword', 'newpassword'));
-         dispatch(reset('redefine_password'));
-
+          // dispatch(clearFields('redefine_password', true, true, 'repeatpassword', 'newpassword'));
+          dispatch(reset('redefine_password'));
         },
         (error) => {
           dispatch(failure(error));
           throw new SubmissionError({
-            _error: 'Endereço para troca de e-mail inválido',
+            _error: 'A URL para redefinição de senha é inválida ou expirou',
           });
         },
       );

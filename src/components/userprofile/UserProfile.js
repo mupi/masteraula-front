@@ -1,10 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import {
-  Button, Form, FormGroup, Input, Label, UncontrolledAlert, Alert,
-  Container, Row, Col,
+  Button, Form, FormGroup, Input, Label, Container, Row, Col,
 } from 'reactstrap';
-import { Field, reduxForm } from 'redux-form';
+import { Field } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import userPhoto from 'assets/img/home/coruja-avatar.png';
 import { userNameValidator } from 'helpers/validators';
@@ -77,7 +75,7 @@ class UserProfile extends React.Component {
 
   render() {
     const {
-      handleSubmit, submitSucceeded, error, stateList, cityList,
+      handleSubmit, stateList, cityList,
     } = this.props;
 
     return (
@@ -194,59 +192,10 @@ class UserProfile extends React.Component {
               </Button>
             </Col>
           </Row>
-          <div>
-            { submitSucceeded && (
-              <UncontrolledAlert color="success">
-                Usuário alterado com sucesso
-              </UncontrolledAlert>
-            ) }
-            { error
-              ? (
-                <Alert color="danger">
-                  Ocorreu um erro com sua solicitação, tente novamente mais tarde.
-                </Alert>
-              )
-              : '' }
-          </div>
         </Container>
       </Form>
     );
   }
 }
 
-const validate = (values) => {
-  const errors = {};
-  if (!values.name || values.name.length < 2) {
-    errors.name = 'Insira um nome';
-  }
-
-  // if (values.userState !== 'NaN' && values.userCity === '0') {
-  //   errors.userCity = 'Selecione a cidade';
-  // }
-
-  return errors;
-};
-
-
-const mapStateToProps = (state) => {
-  const { user } = state.session.session;
-  const { cityList } = state.profileEdit;
-
-  return ({
-    initialValues: {
-      name: user.name,
-      about: user.about,
-      userState: user.city ? user.city.uf : null,
-      userCity: user.city ? user.city.id : null,
-    },
-    user,
-    cityList,
-  });
-};
-
-export default connect(
-  mapStateToProps,
-)(reduxForm({
-  form: 'profile',
-  validate,
-})(UserProfile));
+export default UserProfile;

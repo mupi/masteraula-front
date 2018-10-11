@@ -1,8 +1,10 @@
 import React from 'react';
 import { Alert } from 'reactstrap';
-import UserProfile from 'components/userprofile/UserProfile';
-import UserPasswordProfile from 'components/userprofile/UserPasswordProfile';
+import UserProfileContainer from 'containers/UserProfileContainer';
+import UserPasswordProfileContainer from 'containers/UserPasswordProfileContainer';
+import { ToastContainer } from 'react-toastify';
 import HomeUserPage from '../HomeUser/HomeUserPage';
+import 'react-toastify/dist/ReactToastify.css';
 
 class UserProfilePage extends React.Component {
   componentDidMount() {
@@ -12,7 +14,7 @@ class UserProfilePage extends React.Component {
 
   render() {
     const {
-      submit_profile, submit_profile_password, stateList, isFetchingStatesList, getCitiesList,
+      stateList, isFetchingStatesList,
     } = this.props;
 
     if (isFetchingStatesList) {
@@ -34,9 +36,10 @@ class UserProfilePage extends React.Component {
           <h5 className="text-center">
               Permite que a comunidade do MasterAula te conheça
           </h5>
-          <UserProfile onSubmit={submit_profile} stateList={stateList} getCitiesList={getCitiesList} />
-          <UserPasswordProfile onSubmit={submit_profile_password} />
+          <UserProfileContainer stateList={stateList} />
+          <UserPasswordProfileContainer />
         </div>
+        <ToastContainer hideProgressBar position="bottom-right" />
       </HomeUserPage>
     );
   }
