@@ -13,7 +13,7 @@ import { fetchRegister, toggleModal } from 'actions/registerAction';
 const RegisterModal = (props) => {
   const { modal, toggleModal, submit } = props;
 
-  return ( 
+  return (
     <NavItem>
       <Link to="#" onClick={() => toggleModal(modal)}>
 Cadastre-se

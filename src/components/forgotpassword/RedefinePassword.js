@@ -90,7 +90,7 @@ Mudar sua senha
             </FormGroup>
             {error && (
             <Alert color="danger">
-              {error}
+              {error}. Solicite uma nova redefinição de senha <a href="/#/esqueci-senha">aqui</a>
             </Alert>
             )}
             { submitSucceeded
