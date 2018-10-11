@@ -46,7 +46,7 @@ const mapDispatchToProps = dispatch => ({
       if (!values.new_password) {
         errors.new_password = 'Insira uma senha';
       } else if (values.new_password.length < 8) {
-        errors.new_password = 'A senha deve conter no mínimo 8 dígitos';
+        errors.new_password = 'A senha deve conter no mínimo 8 caracteres';
       } else if (!isNaN(values.new_password)) {
         errors.new_password = 'A senha não deve conter apenas números';
       }
