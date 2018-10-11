@@ -7,8 +7,9 @@ import {
 import DocumentList from 'components/document/DocumentList';
 
 import CustomPagination from 'components/pagination/CustomPagination';
+import { ToastContainer } from 'react-toastify';
 import HomeUserPage from '../HomeUser/HomeUserPage';
-
+import 'react-toastify/dist/ReactToastify.css';
 
 const getOrderNameField = (text) => {
   switch (text) {
@@ -42,7 +43,7 @@ class ViewDocumentPage extends React.Component {
 
   render() {
     const {
-      myDocumentsList, isFetching, error, isDeleted, match, listMyDocuments, orderField, order,
+      myDocumentsList, isFetching, isDeleted, match, listMyDocuments, orderField, order,
     } = this.props;
 
     if (isDeleted) {
@@ -51,12 +52,7 @@ class ViewDocumentPage extends React.Component {
 
     return (
       <HomeUserPage>
-        {error ? (
-          <Alert className="alert--danger" color="danger">
-                  Ocorreu algum erro com sua solicitação, tente novamente.
-          </Alert>
-        ) : ''
-        }
+        <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-my-documents">
           <Row className="hidden">
             <Col sm="12">

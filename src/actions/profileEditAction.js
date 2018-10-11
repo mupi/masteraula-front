@@ -99,9 +99,9 @@ export const profileEdit = (profile) => {
 
 // Redefine password_confirmation
 export const redefineUserPassword = (passwordData) => {
-  function requestRedefineUserPassword() { return { type: PROFILE_EDIT_REQUEST }; }
-  function success() { return { type: PROFILE_EDIT_SUCCESS }; }
-  function failure(error) { return { type: PROFILE_EDIT_FAILURE, error }; }
+  function requestRedefineUserPassword() { return { type: PROFILE_PASSWORD_EDIT_REQUEST }; }
+  function success() { return { type: PROFILE_PASSWORD_EDIT_SUCCESS }; }
+  function failure(error) { return { type: PROFILE_PASSWORD_EDIT_FAILURE, error }; }
 
   return (dispatch) => {
     dispatch(requestRedefineUserPassword(passwordData));

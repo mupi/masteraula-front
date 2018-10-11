@@ -1,10 +1,8 @@
 import React from 'react';
 import {
-  Button, Form, FormGroup, Alert,
+  Button, Form, FormGroup, Alert, Row, Col, Input,
 } from 'reactstrap';
-import { Row, Col, Input } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
-import { resetForgotPasswordForm } from 'actions/forgotPasswordAction';
 
 const renderField = ({
   input,
@@ -31,7 +29,7 @@ const renderField = ({
         {' '}
       </span>
       )))
-    } 
+    }
   </div>
 );
 
@@ -94,12 +92,11 @@ Mudar sua senha
             <Alert color="danger">
               {error}
             </Alert>
-            )} 
+            )}
             { submitSucceeded
               && (
               <Alert color="success">
                 <p className="alert__message">
-                  <i className="fa fa-thumbs-up" />
                   Sua senha foi alterada com sucesso
                 </p>
               </Alert>
