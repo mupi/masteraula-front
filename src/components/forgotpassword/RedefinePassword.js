@@ -103,7 +103,7 @@ Mudar sua senha
               )
             }
             <Button>
-              Salvar
+              Enviar
             </Button>
           </Form>
         </Col>
