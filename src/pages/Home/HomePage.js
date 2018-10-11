@@ -3,7 +3,6 @@ import clockImg from 'assets/img/home/clock.png';
 import searchImg from 'assets/img/home/search.png';
 import moneyImg from 'assets/img/home/money.png';
 import { Container, Row, Col } from 'reactstrap';
-import corujaAvatar from 'assets/img/home/coruja-avatar.png';
 
 const HomePage = () => (
   <div className="c-public-home l-site-masteraula__public-home">
@@ -15,7 +14,8 @@ const HomePage = () => (
           </h1>
           <Col md="6" className="offset-md-3">
             <p className="c-public-home__title-description">
-               Ganhe tempo na preparação de provas e atividades para o cotidiano escolar do Ensino Básico. Masteraula é uma plataforma para professores e escolas!
+               Ganhe tempo na preparação de provas e atividades para o cotidiano escolar do Ensino Básico.
+               Masteraula é uma plataforma para professores e escolas!
             </p>
           </Col>
         </Col>
