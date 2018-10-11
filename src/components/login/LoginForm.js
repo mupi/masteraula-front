@@ -113,7 +113,7 @@ const validate = (values) => {
   if (!values.email) {
     errors.email = 'Insira seu email';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = ' email sem formato correto';
+    errors.email = 'O email deve conter um @';
   }
 
   if (!values.password) {
