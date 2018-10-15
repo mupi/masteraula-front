@@ -7,7 +7,7 @@ export const userNameValidator = value => (value && !/^[A-Za-zÀ-ÿ-´' ]+$/i.te
   : undefined);
 
 export const emailValidator = value => (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-  ? 'Informe um endereço de email válido'
+  ? 'O e-mail deve conter um @'
   : undefined);
 
-export const requiredValidator = value => (value ? undefined : 'Required');
+export const requiredValidator = value => (value ? undefined : 'Campo obrigatório');

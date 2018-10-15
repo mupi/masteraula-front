@@ -153,7 +153,7 @@ const validate = (values) => {
   if (!values.password) {
     errors.password = 'Insira uma senha';
   } else if (values.password.length < 8) {
-    errors.password = 'A senha deve conter no mínimo 8 dígitos';
+    errors.password = 'A senha deve conter no mínimo 8 caracteres';
   } else if (!isNaN(values.password)) {
     errors.password = 'A senha não deve conter apenas números';
   }
