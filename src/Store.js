@@ -34,7 +34,7 @@ const rootReducer = (state, action) => {
 
 const middlewares = [];
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.REACT_APP_ENV === 'dev') {
   const loggerMiddleware = createLogger();
 
 
