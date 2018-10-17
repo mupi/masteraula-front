@@ -39,7 +39,7 @@ const validate = (values) => {
   if (!values.newpassword) {
     errors.newpassword = 'Insira uma senha';
   } else if (values.newpassword.length < 8) {
-    errors.newpassword = 'A senha deve conter no mínimo 8 dígitos';
+    errors.newpassword = 'A senha deve conter no mínimo 8 caracteres';
   } else if (!isNaN(values.newpassword)) {
     errors.newpassword = 'A senha não deve conter apenas números';
   }
@@ -90,7 +90,7 @@ Mudar sua senha
             </FormGroup>
             {error && (
             <Alert color="danger">
-              {error}
+              {error}. Solicite uma nova redefinição de senha <a href="/#/esqueci-senha">aqui</a>
             </Alert>
             )}
             { submitSucceeded
@@ -103,7 +103,7 @@ Mudar sua senha
               )
             }
             <Button>
-              Salvar
+              Enviar
             </Button>
           </Form>
         </Col>
