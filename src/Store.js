@@ -24,14 +24,6 @@ const appReducer = combineReducers({
   form: formReducer,
 });
 
-const rootReducer = (state, action) => {
-  if (action.type === 'DELETE_SESSION') {
-    state = undefined;
-  }
-
-  return appReducer(state, action);
-};
-
 const middlewares = [];
 
 if (process.env.REACT_APP_ENV === 'dev') {
@@ -44,7 +36,7 @@ if (process.env.REACT_APP_ENV === 'dev') {
 
 export default function configureStore(preloadedState) {
   return createStore(
-    connectRouter(history)(rootReducer),
+    connectRouter(history)(appReducer),
     preloadedState,
     applyMiddleware(
       ...middlewares,
