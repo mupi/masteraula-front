@@ -20,7 +20,7 @@ const SidebarFilter = ({
       </div>
       <ListGroup className="question-single-filter">
         {filterList && filterList.map(filter => (
-          <ListGroupItem key={filter.id} color="light">
+          <ListGroupItem key={filter.id} color="light" style={isChecked(filter.id)?{'background-color':'grey'}:{}}>
             <Input type="checkbox" value={filter.id} onClick={handleFilter} checked={isChecked(filter.id)} />
             {filter.name}
           </ListGroupItem>

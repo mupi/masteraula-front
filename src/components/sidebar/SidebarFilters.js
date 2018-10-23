@@ -15,7 +15,6 @@ class SidebarFilters extends Component {
     this.props.listDisciplineFilters();
     this.props.listTeachingLevelFilters();
   }
-
   render() {
     const {
       disciplineFilters, teachingLevelFilters, isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, error,
@@ -23,6 +22,10 @@ class SidebarFilters extends Component {
       clearFilters,
     } = this.props;
 
+  function  clear(event){
+    console.log(event.target)
+    toggleSelectedDisciplineFilter(event.target.id,false);
+  }
     if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters) {
       return (
         <ListGroup className="question-all-filters">
@@ -60,21 +63,21 @@ class SidebarFilters extends Component {
           ? (
             <div className="l-question-all-filters__clear-button">
               <Button className="l-question-all-filters__clear-button--btn" color="danger" onClick={clearFilters}>
-              Limpar filtros
+              Limpar todos os filtros
               </Button>
               {filter.disciplinesSelected.map(item => (
-                <Button onClick={toggleSelectedDisciplineFilter}>
-                  {item}
+                <Button id={item} onClick={clear}>
+                  {item} X
                 </Button>
               )).concat(
                 filter.difficultiesSelected.map(item => (
                   <Button>
-                    {item}
+                    {item} X
                   </Button>
                 )),
                 filter.teachingLevelsSelected.map(item => (
                   <Button>
-                    {item}
+                    {item} X
                   </Button>
                 )),
               )}

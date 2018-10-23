@@ -3,7 +3,7 @@ import QuestionContent from 'components/question/QuestionContent';
 import QuestionInfo from 'components/question/QuestionInfo';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import {
-  Alert, Container, Row, Col,
+  Alert, Container, Row, Col, Button
 } from 'reactstrap';
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
@@ -45,9 +45,12 @@ class QuestionPage extends Component {
     return (
       <HomeUserPage>
         <div className="c-question">
+        <Row>
+          <Button>Voltar</Button>
+              <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
+        </Row>
           <Row className="justify-content-center">
             <Col sm="12" md="12" xs="12">
-              <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
               <QuestionContent
                 alternatives={activeQuestion.alternatives}
                 statement={activeQuestion.statement}

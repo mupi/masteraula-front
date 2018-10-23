@@ -42,15 +42,21 @@ const Sidebar = (props) => {
                     <CreateDocumentModalContainer activeDocument={activeDocument} />
                   </ListGroupItem> */}
                   <ListGroupItem color="light">
+                    <Link to="/question-base/1">
+                      <i className="fa fa-search btn__icon" />
+                      Banco de questões
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem color="light">
                     <Link to="/documents/1">
                       <i className="fa fa-folder-open btn__icon" />
                       Minhas provas
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">
-                    <Link to="/question-base/1">
-                      <i className="fa fa-search btn__icon" />
-                      Banco de questões
+                    <Link to="#">
+                      <i className="fa fa-folder-open btn__icon" />
+                      Meu cabeçalhos
                     </Link>
                   </ListGroupItem>
                 </ListGroup>

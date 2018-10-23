@@ -43,6 +43,16 @@ const DocumentInfoSidebar = ({ documentName, documentTotalQuestions }) => (
           <DropdownItem>
           Prova 3
           </DropdownItem>
+           <DropdownItem>
+          Prova 3
+          </DropdownItem>
+           <DropdownItem>
+          Prova 3
+          </DropdownItem>
+           <DropdownItem divider />
+           <DropdownItem>
+          Ver mais 
+          </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
       {/* <ExportDocumentButtonContainer

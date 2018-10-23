@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   initialValues: {
     searchText: state.filter.searchText,
   },
+  search: state.form.questionSearch,
 });
 
 const setDispatchSearchText = (searchText) => {
