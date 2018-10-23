@@ -14,7 +14,7 @@ const QuestionSearchForm = (props) => {
     <Form onSubmit={handleSubmit}>
       <Row className="c-question-base__search-text">
         <p className="c-question-base__search-info">
-          Digite o termo e encontre questões relacionadas
+          Pesquisar por palavras-chave no banco de questões
         </p>
         <InputGroup>
           <Field
@@ -22,7 +22,7 @@ const QuestionSearchForm = (props) => {
             type="text"
             name="searchText"
             id="searchText"
-            placeholder="Insira termos para pesquisar"
+            placeholder="Separe os termos por vírgula. Ex: Nazismo, segunda guerra"
             className="form-control"
           />
           <InputGroupAddon addonType="prepend">

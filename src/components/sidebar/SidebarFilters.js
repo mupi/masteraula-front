@@ -20,7 +20,7 @@ class SidebarFilters extends Component {
     const {
       disciplineFilters, teachingLevelFilters, isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, error,
       toggleSelectedDisciplineFilter, toggleSelectedTeachingLevelFilter, toggleSelectedDifficultyFilter, filter,
-      clearFilters
+      clearFilters,
     } = this.props;
 
     if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters) {
@@ -37,11 +37,12 @@ class SidebarFilters extends Component {
       );
     }
 
+
     if (error) {
       return (
         <ListGroup className="question-all-filters">
           <Alert color="danger">
-              Erro nos filtros 
+              Erro nos filtros
           </Alert>
         </ListGroup>
       );
@@ -55,8 +56,30 @@ class SidebarFilters extends Component {
           {' Filtros'}
         </h6>
         {filter.disciplinesSelected.length > 0 || filter.teachingLevelsSelected.length > 0
-          || filter.difficultiesSelected.length > 0 ? 
-          <div className="l-question-all-filters__clear-button"><Button  className="l-question-all-filters__clear-button--btn" color='secondary' onClick={clearFilters}> Limpar filtros </Button></div>
+          || filter.difficultiesSelected.length > 0
+          ? (
+            <div className="l-question-all-filters__clear-button">
+              <Button className="l-question-all-filters__clear-button--btn" color="danger" onClick={clearFilters}>
+              Limpar filtros
+              </Button>
+              {filter.disciplinesSelected.map(item => (
+                <Button onClick={toggleSelectedDisciplineFilter}>
+                  {item}
+                </Button>
+              )).concat(
+                filter.difficultiesSelected.map(item => (
+                  <Button>
+                    {item}
+                  </Button>
+                )),
+                filter.teachingLevelsSelected.map(item => (
+                  <Button>
+                    {item}
+                  </Button>
+                )),
+              )}
+            </div>
+          )
           : ''
         }
         <SidebarFilter

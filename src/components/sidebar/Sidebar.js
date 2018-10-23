@@ -23,6 +23,12 @@ const Sidebar = (props) => {
         <div className="container-fluid">
           <Row>
             <Col xs="12">
+              <div style={{
+                backgroundColor: 'white', 'border-radius': '30px', width: '100px', marginLeft: '70px', marginBottom: '10px',
+              }}
+              >
+                <CreateDocumentModalContainer activeDocument={activeDocument} />
+              </div>
               <div className="sidebar-nav-container">
                 {activeDocument && (
                 <DocumentInfoSidebar
@@ -31,18 +37,17 @@ const Sidebar = (props) => {
                   documentId={activeDocument.id}
                 />
                 )}
-
                 <ListGroup className="sidebar-main-options">
-                  <ListGroupItem color="secondary">
+                  {/* <ListGroupItem color="secondary">
                     <CreateDocumentModalContainer activeDocument={activeDocument} />
-                  </ListGroupItem>
-                  <ListGroupItem color="secondary">
+                  </ListGroupItem> */}
+                  <ListGroupItem color="light">
                     <Link to="/documents/1">
                       <i className="fa fa-folder-open btn__icon" />
-                      Meus documentos
+                      Minhas provas
                     </Link>
                   </ListGroupItem>
-                  <ListGroupItem color="secondary">
+                  <ListGroupItem color="light">
                     <Link to="/question-base/1">
                       <i className="fa fa-search btn__icon" />
                       Banco de questões

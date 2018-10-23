@@ -87,14 +87,14 @@ class QuestionPage extends Component {
                   )}
                 </Row>
               </Container>
-              
+
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
 
-              
+
             </Col>
           </Row>
         </div>
-        <div className="l-button-add-question">
+        {/* <div className="l-button-add-question">
 
           {!isQuestionAdded(activeDocument, activeQuestion.id) ? (
             <AddQuestionButton
@@ -111,7 +111,7 @@ class QuestionPage extends Component {
               Adicionada
             </span>
           )}
-        </div>
+        </div> */}
       </HomeUserPage>
     );
   }
