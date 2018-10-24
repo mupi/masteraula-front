@@ -8,6 +8,7 @@ import {
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
+import { history } from 'helpers/history';
 
 class QuestionPage extends Component {
   componentDidMount() {
@@ -46,8 +47,8 @@ class QuestionPage extends Component {
       <HomeUserPage>
         <div className="c-question">
           <Row>
-            <Button>
-Voltar
+            <Button onClick={history.goBack}>
+              Voltar
             </Button>
             <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
           </Row>
