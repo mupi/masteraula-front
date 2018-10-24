@@ -24,8 +24,8 @@ const ExportDocumentButton = ({
     showModal({
       open: true,
       closeModal,
-      title: 'Exportar documento',
-      message: `Não é possível exportar porque o documento "${name}" não tem questões`,
+      title: 'Exportar prova',
+      message: `Não é possível exportar porque a prova "${name}" não tem questões`,
     }, 'alert');
   };
  
