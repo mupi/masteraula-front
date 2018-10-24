@@ -15,6 +15,7 @@ class SidebarFilters extends Component {
     this.props.listDisciplineFilters();
     this.props.listTeachingLevelFilters();
   }
+
   render() {
     const {
       disciplineFilters, teachingLevelFilters, isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, error,
@@ -22,10 +23,10 @@ class SidebarFilters extends Component {
       clearFilters,
     } = this.props;
 
-  function  clear(event){
-    console.log(event.target)
-    toggleSelectedDisciplineFilter(event.target.id,false);
-  }
+    // function clear(event) {
+    //   console.log(event.target);
+    //   toggleSelectedDisciplineFilter(event.target.id, false);
+    // }
     if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters) {
       return (
         <ListGroup className="question-all-filters">
@@ -65,7 +66,7 @@ class SidebarFilters extends Component {
               <Button className="l-question-all-filters__clear-button--btn" color="danger" onClick={clearFilters}>
               Limpar todos os filtros
               </Button>
-              {filter.disciplinesSelected.map(item => (
+              {/* filter.disciplinesSelected.map(item => (
                 <Button id={item} onClick={clear}>
                   {item} X
                 </Button>
@@ -80,7 +81,7 @@ class SidebarFilters extends Component {
                     {item} X
                   </Button>
                 )),
-              )}
+              ) */}
             </div>
           )
           : ''

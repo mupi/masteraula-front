@@ -8,7 +8,7 @@ import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
 
 import CreateDocumentModalContainer from 'containers/CreateDocumentModalContainer';
 import FilterContainer from 'containers/FilterContainer';
-import DocumentInfoSidebar from './DocumentInfoSidebar';
+// import DocumentInfoSidebar from './DocumentInfoSidebar';
 
 
 const Sidebar = (props) => {
@@ -30,13 +30,13 @@ const Sidebar = (props) => {
                 <CreateDocumentModalContainer activeDocument={activeDocument} />
               </div>
               <div className="sidebar-nav-container">
-                {activeDocument && (
+                {/* activeDocument && (
                 <DocumentInfoSidebar
                   documentName={activeDocument.name}
                   documentTotalQuestions={activeDocument.questions.length}
                   documentId={activeDocument.id}
                 />
-                )}
+                ) */}
                 <ListGroup className="sidebar-main-options">
                   {/* <ListGroupItem color="secondary">
                     <CreateDocumentModalContainer activeDocument={activeDocument} />
@@ -50,13 +50,13 @@ const Sidebar = (props) => {
                   <ListGroupItem color="light">
                     <Link to="/documents/1">
                       <i className="fa fa-folder-open btn__icon" />
-                      Minhas provas
+                      Gerenciar minhas provas
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">
                     <Link to="#">
                       <i className="fa fa-folder-open btn__icon" />
-                      Meu cabeçalhos
+                      Gerenciar meus cabeçalhos
                     </Link>
                   </ListGroupItem>
                 </ListGroup>
