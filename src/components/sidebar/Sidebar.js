@@ -24,14 +24,6 @@ const Sidebar = (props) => {
           <Row>
             <Col xs="12">
               <div className="sidebar-nav-container">
-                {activeDocument && (
-                <DocumentInfoSidebar
-                  documentName={activeDocument.name}
-                  documentTotalQuestions={activeDocument.questions.length}
-                  documentId={activeDocument.id}
-                />
-                )}
-
                 <ListGroup className="sidebar-main-options">
                   <ListGroupItem color="secondary">
                     <CreateDocumentModalContainer activeDocument={activeDocument} />

@@ -7,15 +7,21 @@ import { Link } from 'react-router-dom';
 import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
+import DocumentInfoSidebar from 'components/sidebar/DocumentInfoSidebar';
 
 const Menu = (props) => {
   const {
-    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout,
+    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument,
   } = props;
+
+
 
   const loggedOptions = (
     <Nav className="ml-auto" navbar>
-      <NavItem>
+
+   
+
+      <NavItem> 
         <Link to="/question-base/1">
           <i className="fa fa-home" />
           {' '}
@@ -69,12 +75,14 @@ const Menu = (props) => {
       </Button>
     </li>
   ); 
+  const navBarUserHome = ( isLoggedIn ? 'masteraula-nav-header__user navbar navbar-default navbar-fixed-top': 'navbar navbar-default navbar-fixed-top');
 
   return (
+
     <div id="navbar" className="container-fluid">
       <Row>
         <Col xs="12">
-          <Navbar id="masteraula-nav-header" className="navbar navbar-default navbar-fixed-top" color="primary" dark expand="md">
+          <Navbar id="masteraula-nav-header" className={navBarUserHome} color="primary" dark expand="md">
             <div id="buttonSideBar" className="visible-xs col-xs-3">
               <ul className="pull-left visible-xs-inline-block nav navbar-nav">
                 { isLoggedIn ? menu : null }
@@ -86,6 +94,15 @@ const Menu = (props) => {
               </Link>
             </NavItem>
             <NavbarToggler onClick={() => toggleMenu(isOpen)} />
+
+
+    {isLoggedIn && activeDocument && (
+      <DocumentInfoSidebar
+        documentName={activeDocument.name}
+        documentTotalQuestions={activeDocument.questions.length}
+        documentId={activeDocument.id}
+      />
+      )}
             <Collapse isOpen={isOpen} navbar>
 
               { isLoggedIn ? loggedOptions : notLoggedOptions }

@@ -7,6 +7,8 @@ const mapStateToProps = state => ({
   isOpen: state.menu.isOpen,
   isOpenSidebar: state.menu.isOpenSidebar,
   isLoggedIn: state.session.session,
+  activeDocument: state.document.activeDocument,
+
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -18,6 +20,6 @@ const mapDispatchToProps = dispatch => ({
 const MenuContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Menu);
+)(Menu); 
 
 export default MenuContainer;
