@@ -68,7 +68,7 @@ const Menu = (props) => {
         </span>
       </Button>
     </li>
-  );
+  ); 
 
   return (
     <div id="navbar" className="container-fluid">
