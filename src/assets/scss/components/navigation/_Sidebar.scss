@@ -78,6 +78,8 @@ div#navbar, div#navbar .col-12 {
 }
 
 
+
+
 html body #masteraula-nav-header .navbar-nav:first-child {
     margin-left: 0px;
 }
@@ -163,6 +165,19 @@ ul.list-group {
 }
 
 
+html body #masteraula-nav-header {
+    border: none;
+    margin-left: 0;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+    @include for-tablet-landscape-up {
+        margin-left: 280px;
+    }
+}
+    
+
+
 html body #masteraula-nav-header .navbar-nav>li.sidebar-btn>a {
     color: $color-ma-white;
     background: $color-ma-green;
@@ -197,12 +212,7 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
     margin-right:  $sidebar-size-neg;
 }
 
-html body #masteraula-nav-header {
-    border: none;
-    margin-left: 0;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
+
 
 .sidebar-nav-container .list-group-item a {
     text-decoration: none;
