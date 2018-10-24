@@ -1,13 +1,13 @@
 import React from 'react';
 import { Field, reduxForm, Form } from 'redux-form';
 import {
-  InputGroup, InputGroupAddon, Button, Row, Badge
+  InputGroup, InputGroupAddon, Button, Row,
 } from 'reactstrap';
 
 
 const QuestionSearchForm = (props) => {
   const {
-    handleSubmit, search
+    handleSubmit, search,
   } = props;
 
   return (
@@ -26,13 +26,13 @@ const QuestionSearchForm = (props) => {
             className="form-control"
           />
           <InputGroupAddon addonType="prepend">
-            <Button type="submit" style={{'background-color':'#0e2538'}}>
+            <Button type="submit" style={{ 'background-color': '#0e2538' }}>
               Pesquisar
             </Button>
           </InputGroupAddon>
         </InputGroup>
       </Row>
-        {search? search.values.searchText? "Você pesquisou: ".concat(search.values.searchText):'' :''
+      {search ? 'Você pesquisou: '.concat(search) : ''
       }
     </Form>
   );
