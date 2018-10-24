@@ -207,7 +207,7 @@ export const document = (state = initialState, action) => {
         newActive = null;
         localStorage.setItem('activeDocument', null);
       }
-      toast.success('Documento removido com sucesso', optionsSuccess);
+      toast.success('Prova removida com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeDocument: newActive,
         isDeleted: true,
