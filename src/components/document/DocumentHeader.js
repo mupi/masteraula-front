@@ -27,7 +27,7 @@ class DocumentHeader extends Component {
         <Container className="c-document__header">
           Nome:
           <Form onSubmit={handleSubmit}>
-            <Field placeholder="Nome do documento" className="form-control" name="name" component="input" type="text" />
+            <Field placeholder="Nome da prova" className="form-control" name="name" component="input" type="text" />
             <br />
             Cabeçalho:
             <Row>
