@@ -9,13 +9,13 @@ const getAlertMessageDocumentExist = (activeDocument) => {
   if (activeDocument) {
     return (
       <p className="text-center">
-        Atualmente você está editando o documento
+        Atualmente você está editando a prova
         {' '}
         <strong>
           {activeDocument.name}
         </strong>
         <br />
-        Você tem certeza que deseja criar um novo documento? Se sim, insira um nome para ele
+        Você tem certeza que deseja criar uma nova prova? Se sim, insira um nome para ela
         <br />
       </p>
     );

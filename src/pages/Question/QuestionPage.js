@@ -63,7 +63,7 @@ Voltar
                   {!isQuestionAdded(activeDocument, activeQuestion.id) ? (
                     <Col className="c-question__add-question-rectangle">
                       <h6 className="c-question__add-question-title">
-                        Gostou da questão? Adicione ao seu documento
+                        Gostou da questão? Adicione a sua prova
                       </h6>
                       <AddQuestionButton
                         questionId={activeQuestion.id}
@@ -78,7 +78,7 @@ Voltar
                   ) : (
                     <Col className="c-question__add-question-rectangle">
                       <h6 className="c-question__add-question-title">
-                        Esta questão foi adicionada ao documento
+                        Esta questão foi adicionada à prova
                         {' '}
                         <strong>
                           {activeDocument.name}

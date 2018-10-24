@@ -63,8 +63,8 @@ class DocumentList extends React.Component {
     showModal({
       open: true,
       closeModal: this.closeModal,
-      title: 'Apagar documento',
-      message: `Você tem certeza que deseja apagar o documento ${name}?`,
+      title: 'Apagar prova',
+      message: `Você tem certeza que deseja apagar a prova ${name}?`,
       idDocument: id,
       deleteAction: deleteDocument,
     }, 'delete');
