@@ -8,7 +8,7 @@ import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContai
 const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId }) => (
   <div className="c-sidebar__document-info">
     <h5>
-      Documento Atual
+      Prova Atual
     </h5>
     <h6>
       <i className="fa fa-file btn__icon" />

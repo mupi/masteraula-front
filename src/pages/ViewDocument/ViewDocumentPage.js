@@ -57,7 +57,7 @@ class ViewDocumentPage extends React.Component {
           <Row className="hidden">
             <Col sm="12">
               <p className="c-my-documents__search-info">
-                Pesquisar em meus documentos
+                Pesquisar em minhas provas
               </p>
               <InputGroup>
                 <Input placeholder="Insira termos para pesquisar" />
@@ -71,7 +71,7 @@ class ViewDocumentPage extends React.Component {
           </Row>
           <Row>
             <Col sm="12">
-              <h4>Meus Documentos</h4>
+              <h4>Minhas Provas</h4>
             </Col>
           </Row>
           <Row className="pagination-my-documents" style={{ marginTop: '1em' }}>
@@ -86,7 +86,7 @@ class ViewDocumentPage extends React.Component {
                 <Col sm="12">
                   <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
                   <p className="c-my-documents__total-results">
-                    {`Documentos encontrados: ${myDocumentsList ? (myDocumentsList.count) : 0}`}
+                    {`Provas encontradas: ${myDocumentsList ? (myDocumentsList.count) : 0}`}
                     {' '}
                   </p>
                   <div className="c-my-documents__dropdown-section">

@@ -39,7 +39,7 @@ const Sidebar = (props) => {
                   <ListGroupItem color="secondary">
                     <Link to="/documents/1">
                       <i className="fa fa-folder-open btn__icon" />
-                      Meus documentos
+                      Minhas provas
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="secondary">
