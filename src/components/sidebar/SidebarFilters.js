@@ -63,7 +63,7 @@ class SidebarFilters extends Component {
           || filter.difficultiesSelected.length > 0
           ? (
             <div className="l-question-all-filters__clear-button">
-              <Button className="l-question-all-filters__clear-button--btn" color="danger" onClick={clearFilters}>
+              <Button className="l-question-all-filters__clear-button--btn" onClick={clearFilters}>
               Limpar todos os filtros
               </Button>
               {/* filter.disciplinesSelected.map(item => (

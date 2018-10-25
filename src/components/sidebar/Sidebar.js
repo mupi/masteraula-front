@@ -23,20 +23,12 @@ const Sidebar = (props) => {
         <div className="container-fluid">
           <Row>
             <Col xs="12">
-              <div style={{
-                backgroundColor: 'white', 'border-radius': '30px', width: '100px', marginLeft: '70px', marginBottom: '10px',
-              }}
-              >
-                <CreateDocumentModalContainer activeDocument={activeDocument} />
-              </div>
+              <ListGroup className="sidebar-main-options">
+                <ListGroupItem color="light">
+                  <CreateDocumentModalContainer activeDocument={activeDocument} />
+                </ListGroupItem>
+              </ListGroup>
               <div className="sidebar-nav-container">
-                {/* activeDocument && (
-                <DocumentInfoSidebar
-                  documentName={activeDocument.name}
-                  documentTotalQuestions={activeDocument.questions.length}
-                  documentId={activeDocument.id}
-                />
-                ) */}
                 <ListGroup className="sidebar-main-options">
                   {/* <ListGroupItem color="secondary">
                     <CreateDocumentModalContainer activeDocument={activeDocument} />

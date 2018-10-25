@@ -22,12 +22,12 @@ const QuestionSearchForm = (props) => {
             type="text"
             name="searchText"
             id="searchText"
-            placeholder="Ex: Nazismo, segunda guerra"
+            placeholder="Ex: fenômenos químicos, temperatura, química"
             className="form-control"
           />
           <InputGroupAddon addonType="prepend">
-            <Button type="submit" style={{ 'background-color': '#0e2538' }}>
-              Pesquisar
+            <Button type="submit">
+            <i class="fa fa-search btn__icon"/>Pesquisar
             </Button>
           </InputGroupAddon>
         </InputGroup>

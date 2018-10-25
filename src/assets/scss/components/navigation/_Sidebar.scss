@@ -210,8 +210,8 @@ html body #masteraula-nav-header {
     font-weight: bold;
 }
 
-.sidebar-nav-container li.list-group-item:hover {
-    background: #c0e8f9;
+.sidebar-main-options li.list-group-item:hover {
+    background: $color-ma-skyblue-light !important;
     color: white;
 }
 
@@ -281,7 +281,7 @@ li.question-category-filter div{
 
 /*SCROLl-Y in sidebar*/
 #sidebar-container::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
 }
 #sidebar-container::-webkit-scrollbar-track {
     background:$color-ma-blue;
