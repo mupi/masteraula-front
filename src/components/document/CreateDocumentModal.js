@@ -31,7 +31,7 @@ const CreateDocumentModal = (props) => {
   return (
     <div className="document__new-document-option">
       <div className="document__new-document-btn text-center" onClick={() => toggleModal(modal)}>
-          Criar prova
+        <i class="fa fa-file btn__icon"/>Criar prova
       </div>
       <Modal isOpen={modal} toggle={() => toggleModal(modal)} className="document__new-document-modal-content">
         <ModalHeader className="document__new-document-modal-header" toggle={() => toggleModal(modal)}>
