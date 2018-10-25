@@ -351,4 +351,10 @@ a.c_sidebar__document-link:hover{
     color: $color-ma-white;
     text-decoration: none;
   }
+
+  &__filter-selected{
+      background: $color-ma-dark-gray !important;
+      border-radius: 3px;
+      margin-top:3px;
+  }
 }
