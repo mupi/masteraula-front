@@ -8,6 +8,19 @@
      // margin-top: 20px;
     }
 
+    &__keywords-title{
+      font-size: 14px;
+      color: $color-ma-blue;
+      font-weight: bold;
+    }
+
+    &__keywords{
+      font-size: 14px;
+      font-style: italic;
+      font-weight: normal;
+      color:$color-ma-black;
+    }
+
     &__alert{
       &--warning{
         margin-left: 10px;
@@ -141,7 +154,7 @@
 }
 
 .pagination-questions{
-  padding: 0px 15px;
+  padding: 0px 10px;
   display: flex;
   flex-direction: row-reverse;
 }

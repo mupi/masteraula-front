@@ -27,12 +27,21 @@ const QuestionSearchForm = (props) => {
           />
           <InputGroupAddon addonType="prepend">
             <Button type="submit">
-            <i class="fa fa-search btn__icon"/>Pesquisar
+              <i className="fa fa-search btn__icon"/>
+              Pesquisar
             </Button>
           </InputGroupAddon>
         </InputGroup>
       </Row>
-      {search ? (<Row><Col sm="12">{'Você pesquisou: '.concat(search)}</Col></Row>) : ''
+      {search ? (
+        <Row>
+          <Col sm="12">
+            <p className="c-question-base__keywords-title">
+              <span>Termos pesquisados:</span>
+              <span className="c-question-base__keywords"> {search}</span>
+            </p>
+          </Col>
+        </Row>) : ''
       }
     </Form>
   );
