@@ -236,7 +236,7 @@ export const deleteDocument = (idDocument) => {
   };
 };
 
-export const downloadDocument = (documentId, docName) => {
+export const downloadDocument = (documentId, answer) => {
   const downloadSelectedDocument = documentName => ({ type: DOWNLOAD_DOCUMENT, documentName });
   const downloadSelectedDocumentSuccess = () => ({ type: DOWNLOAD_DOCUMENT_SUCCESS });
   const downloadSelectedDocumentFailure = error => ({ type: DOWNLOAD_DOCUMENT_FAILURE, error });

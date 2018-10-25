@@ -10,6 +10,8 @@ const MODAL_TYPES = {
   delete: modalTypes.deleteModal,
   prompt: modalTypes.promptModal,
   document: modalTypes.documentModal,
+  exportDocument: modalTypes.exportDocumentModal,
+
 };
 
 const mapStateToProps = state => ({

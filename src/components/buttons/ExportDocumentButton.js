@@ -8,7 +8,8 @@ const ExportDocumentButton = ({
 }) => {
   const handleClick = () => {
     if (documentTotalQuestions>0)
-      downloadDocument(documentId, documentName);
+      // downloadDocument(documentId, documentName);
+       handleExportAnswer(downloadDocument);
     else{
       //open modal
       handleExport(documentName);
@@ -29,6 +30,18 @@ const ExportDocumentButton = ({
     }, 'alert');
   };
  
+  const handleExportAnswer = (name) => {
+    // open modal
+    showModal({
+      open: true,
+      closeModal,
+      downloadDocument,
+      documentId,
+      title: 'Exportar Gabarito',
+      message: `Você gostaria de exportar o gabarito da prova: "${name}"?`,
+    }, 'exportDocument');
+  };
+
   return (
     <Button color={color} onClick={handleClick}>
       <i className={text ? 'fa fa-download btn__icon' : 'fa fa-download'} />
