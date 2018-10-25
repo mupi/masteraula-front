@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Row, Alert,
-} from 'reactstrap';
+import {  Row, Alert, Col, Button} from 'reactstrap';
 import QuestionList from 'components/question/QuestionList';
 
 import CustomPagination from 'components/pagination/CustomPagination';
@@ -25,7 +23,7 @@ class QuestionBasePage extends React.Component {
 
   render() {
     const {
-      questionPage, isFetching, error,
+      questionPage, isFetching, error, filter, toggleSelectedDisciplineFilter
     } = this.props;
     if (error) {
       return (
@@ -36,13 +34,36 @@ class QuestionBasePage extends React.Component {
         </HomeUserPage>
       );
     }
-
+    function  clear(event){
+    console.log(event.target)
+    toggleSelectedDisciplineFilter(event.target.id,false);
+  }
     return (
       <HomeUserPage showFilters>
         <div className="c-question-base">
           <QuestionSearchFormContainer />
-          <Row className="pagination-questions">
-            <CustomPagination {...this.props} {...questionPage} itensPerPage={16} />
+          <Row className="pagination-questions" >
+          <Col> {filter.disciplinesSelected.length > 0 ? "Filtros:":""}
+            {filter.disciplinesSelected.map(item => (
+                <Button id={item} onClick={clear}>
+                  {item} X
+                </Button>
+              )).concat(
+                filter.difficultiesSelected.map(item => (
+                  <Button>
+                    {item} X
+                  </Button>
+                )),
+                filter.teachingLevelsSelected.map(item => (
+                  <Button>
+                    {item} X
+                  </Button>
+                )),
+              )}
+          </Col>
+          <Col style={{'float':'right', 'marginLeft':'400px', 'text-align':'right'}}>
+            <CustomPagination {...this.props} {...questionPage} itensPerPage={16}/>
+          </Col>
           </Row>
           <div className="c-question-base__results">
             { isFetching ? (
@@ -54,7 +75,7 @@ class QuestionBasePage extends React.Component {
             )
             }
           </div>
-          <Row className="pagination-questions">
+          <Row className="pagination-questions" style={{'marginLeft':'80%'}}>
             <CustomPagination {...this.props} {...questionPage} itensPerPage={16} />
           </Row>
         </div>

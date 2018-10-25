@@ -20,9 +20,13 @@ class SidebarFilters extends Component {
     const {
       disciplineFilters, teachingLevelFilters, isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, error,
       toggleSelectedDisciplineFilter, toggleSelectedTeachingLevelFilter, toggleSelectedDifficultyFilter, filter,
-      clearFilters
+      clearFilters,
     } = this.props;
 
+    // function clear(event) {
+    //   console.log(event.target);
+    //   toggleSelectedDisciplineFilter(event.target.id, false);
+    // }
     if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters) {
       return (
         <ListGroup className="question-all-filters">
@@ -37,11 +41,12 @@ class SidebarFilters extends Component {
       );
     }
 
+
     if (error) {
       return (
         <ListGroup className="question-all-filters">
           <Alert color="danger">
-              Erro nos filtros 
+              Erro nos filtros
           </Alert>
         </ListGroup>
       );
@@ -55,8 +60,30 @@ class SidebarFilters extends Component {
           {' Filtros'}
         </h6>
         {filter.disciplinesSelected.length > 0 || filter.teachingLevelsSelected.length > 0
-          || filter.difficultiesSelected.length > 0 ? 
-          <div className="l-question-all-filters__clear-button"><Button  className="l-question-all-filters__clear-button--btn" color='secondary' onClick={clearFilters}> Limpar filtros </Button></div>
+          || filter.difficultiesSelected.length > 0
+          ? (
+            <div className="l-question-all-filters__clear-button">
+              <Button className="l-question-all-filters__clear-button--btn" onClick={clearFilters}>
+              Limpar todos os filtros
+              </Button>
+              {/* filter.disciplinesSelected.map(item => (
+                <Button id={item} onClick={clear}>
+                  {item} X
+                </Button>
+              )).concat(
+                filter.difficultiesSelected.map(item => (
+                  <Button>
+                    {item} X
+                  </Button>
+                )),
+                filter.teachingLevelsSelected.map(item => (
+                  <Button>
+                    {item} X
+                  </Button>
+                )),
+              ) */}
+            </div>
+          )
           : ''
         }
         <SidebarFilter

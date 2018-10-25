@@ -13,14 +13,14 @@ const SidebarFilter = ({
   const isChecked = id => (selected && selected.includes(id.toString()));
 
   return (
-    <ListGroupItem className="question-category-filter">
+    <ListGroupItem className="question-category-filter" color="light">
       <div>
         {name}
         <i className="fa fa-angle-left" />
       </div>
       <ListGroup className="question-single-filter">
         {filterList && filterList.map(filter => (
-          <ListGroupItem key={filter.id}>
+          <ListGroupItem key={filter.id} color="light" className={isChecked(filter.id) ? 'c-sidebar__filter-selected': {}}>
             <Input type="checkbox" value={filter.id} onClick={handleFilter} checked={isChecked(filter.id)} />
             {filter.name}
           </ListGroupItem>

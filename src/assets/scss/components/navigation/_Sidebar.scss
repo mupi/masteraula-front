@@ -210,8 +210,8 @@ html body #masteraula-nav-header {
     font-weight: bold;
 }
 
-.sidebar-nav-container li.list-group-item:hover {
-    background: #c0e8f9;
+.sidebar-main-options li.list-group-item:hover {
+    background: $color-ma-skyblue-light !important;
     color: white;
 }
 
@@ -268,7 +268,7 @@ li.question-category-filter div{
     line-height: 14px;
     text-decoration: none;
     padding: 11px 0px 10px 15px;
-    background: #d6d8db;
+    background: white;
 }
 
 .question-category-filter i.fa.fa-angle-left {
@@ -319,32 +319,42 @@ img.logo-in-menu.no-login {
 /*New SCSS with BEM style*/
 a.c_sidebar__document-link {
     font-weight: normal;
-    color: $color-ma-green
+    color: white;
+    background-color: #53BA65;
+    border-radius:10px;
+    padding:5px;
 }
 
 a.c_sidebar__document-link:hover{
     font-weight: bold;
-    color: $color-ma-green;
+    color: $color-ma-blue;
     text-decoration:none;
 }
 
 .c-sidebar{
   &__document-info{
-
+    background-color: #0E2538;
+    border-radius:10px;
+    padding:15px;
   }
 
   &__document-l-buttons {
-      text-align: right;
       margin-top: 10px;
-      margin-right: 15px;
+      display: inline-block;
   }
 
   &__document-btn-item{
-    color: $color-ma-white;
+    color: $color-ma-green;
   }
 
   &__document-btn-item:hover{
     color: $color-ma-white;
     text-decoration: none;
+  }
+
+  &__filter-selected{
+      background: $color-ma-dark-gray !important;
+      border-radius: 3px;
+      margin-top:3px;
   }
 }

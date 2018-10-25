@@ -7,10 +7,19 @@
 
     text-align:center;
     padding:5px 15px;
+    
 
     &--btn{
         width:100%;
         font-size:12px;
         padding:3px;
+        background: $color-ma-green;
+        border-color: $color-ma-green;
+        font-weight:bold;;
+    }
+
+    &--btn:hover{
+        background: $color-ma-green-hover;
+        border-color: $color-ma-green-hover;
     }
 }

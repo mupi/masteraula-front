@@ -90,6 +90,9 @@ class DocumentList extends React.Component {
                   Nº de questões
                   </th>
                   <th>
+                  Editar
+                  </th>
+                  <th>
                   Exportar
                   </th>
                   <th>
@@ -110,7 +113,16 @@ class DocumentList extends React.Component {
                       {document.questions.length}
                     </OpenDocumentModalHeader>
                     <td>
-                      <ExportDocumentButtonContainer documentId={document.id} documentName={document.name} documentTotalQuestions={document.questions.length} />
+                      <Button color="warning" onClick={() => this.editDocument(document)}>
+                        <i className="fa fa-pencil" />
+                      </Button>
+                    </td>
+                    <td>
+                      <ExportDocumentButtonContainer
+                        documentId={document.id}
+                        documentName={document.name}
+                        documentTotalQuestions={document.questions.length}
+                      />
                     </td>
                     <td>
                       <Button color="danger" onClick={() => this.handleDelete(document.id, document.name)}>

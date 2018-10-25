@@ -2,7 +2,7 @@ import React from 'react';
 import Discipline from './Discipline';
 
 const DisciplineList = ({ list }) => (
-  <div className="disciplines">
+  <div className="disciplines" style={{'display':'inline-block !important'}}>
     {list && list.map((discipline, i) => (
       <Discipline
         key={i}
