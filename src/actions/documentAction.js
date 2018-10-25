@@ -236,7 +236,7 @@ export const deleteDocument = (idDocument) => {
   };
 };
 
-export const downloadDocument = (documentId, answer) => {
+export const downloadDocument = (documentId, docName, answer) => {
   const downloadSelectedDocument = documentName => ({ type: DOWNLOAD_DOCUMENT, documentName });
   const downloadSelectedDocumentSuccess = () => ({ type: DOWNLOAD_DOCUMENT_SUCCESS });
   const downloadSelectedDocumentFailure = error => ({ type: DOWNLOAD_DOCUMENT_FAILURE, error });
@@ -246,7 +246,7 @@ export const downloadDocument = (documentId, answer) => {
       return 1;
     }
     dispatch(downloadSelectedDocument(documentId));
-    return documentService.downloadDocument(documentId)
+    return documentService.downloadDocument(documentId,docName, answer)
       .then(response => response.blob()).then((blob) => {
         FileSaver.saveAs(blob, `${docName}.docx`);
         dispatch(downloadSelectedDocumentSuccess());

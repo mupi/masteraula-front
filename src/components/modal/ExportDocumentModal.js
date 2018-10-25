@@ -7,7 +7,7 @@ import {
   from 'reactstrap';
 
 const ConfirmExportModal = ({
-    closeModal, downloadDocument, title, message,
+    closeModal, documentId, documentName,downloadDocument, title, message,
   }) => (
    <div className="modal__content modal-content">
      <div className="modal__header modal-header">
@@ -21,14 +21,10 @@ const ConfirmExportModal = ({
      <div className="modal-body">
        <p>{message}</p>
        <div className="modal__footer modal-footer">
-       <button type="button" className="btn btn-secondary" onClick={() => downloadDocument(documentId, true)}><i className="fa fa-sign-out btn__icon" />
+       <button color="primary" className="btn--confirm btn btn-secondary" onClick={() => {downloadDocument(documentId, documentName, true); closeModal()}}>
        Sim</button>
-       <button type="button" className="btn btn-secondary" onClick={() => downloadDocument(documentId, false)><i className="fa fa-sign-out btn__icon" />
-       </button>
-       <button color="primary" className="btn--confirm btn btn-secondary" onClick={confirmAction}>
-         <i className="fa fa-check-circle btn__icon" />
-         Não
-       </button>
+       <button type="button" className="btn btn-secondary" onClick={() => {downloadDocument(documentId, documentName, false); closeModal()}}>
+       Não</button>
      </div>
      </div>
      
@@ -36,16 +32,18 @@ const ConfirmExportModal = ({
   );
   
     ConfirmExportModal.propTypes = {
+    closeModal: PropTypes.func,
     toggleModal: PropTypes.func,
-    confirmAction: PropTypes.func,
+    downloadDocument: PropTypes.func,
     title: PropTypes.string,
     message: PropTypes.string,
     modal: PropTypes.bool,
   };
   
     ConfirmExportModal.defaultProps = {
+    closeModal: f => f,
     toggleModal: f => f,
-    confirmAction: f => f,
+    downloadDocument: f => f,
     title: '',
     message: '',
     modal: false,

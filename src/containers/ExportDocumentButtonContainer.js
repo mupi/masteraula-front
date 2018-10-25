@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => ({
   showModal: (modalProps, modalType) => {
     dispatch(showModal({ modalProps, modalType }));
   },
-  downloadDocument: (idDocument,answer) => dispatch(downloadDocument(idDocument, answer)),
+  downloadDocument: (idDocument, documentName, answer) => dispatch(downloadDocument(idDocument, documentName, answer)),
 });
 
 const ExportDocumentButtonContainer = connect(
