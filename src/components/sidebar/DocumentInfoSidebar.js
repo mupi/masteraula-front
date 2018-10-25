@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
+import { Button , UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
@@ -22,11 +22,26 @@ const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId 
       </Link>
       <ExportDocumentButtonContainer
         text="Exportar"
-        styleCustomize="c-sidebar__document-button"
+        styleCustomize="c-sidebar__document-button btn-margin-right"
         documentId={documentId}
         documentName={documentName}
         documentTotalQuestions={documentTotalQuestions}
       />
+
+      <UncontrolledDropdown>
+                      <DropdownToggle className="" caret size="sm">
+                        Trocar prova
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem>
+                          Nome - Ascendente
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem>
+                          Data de criação - Ascendente
+                        </DropdownItem>
+                      </DropdownMenu>
+          </UncontrolledDropdown>
     </div>
   </div>
 );
