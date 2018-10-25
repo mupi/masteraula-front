@@ -42,8 +42,8 @@ class QuestionBasePage extends React.Component {
       <HomeUserPage showFilters>
         <div className="c-question-base">
           <QuestionSearchFormContainer />
-          <Row className="pagination-questions" >
-          <Col> {filter.disciplinesSelected.length > 0 ? "Filtros:":""}
+          
+          <Row> {filter.disciplinesSelected.length > 0 ? "Filtros:":""}
             {filter.disciplinesSelected.map(item => (
                 <Button id={item} onClick={clear}>
                   {item} X
@@ -60,10 +60,9 @@ class QuestionBasePage extends React.Component {
                   </Button>
                 )),
               )}
-          </Col>
-          <Col style={{'float':'right', 'marginLeft':'400px', 'text-align':'right'}}>
-            <CustomPagination {...this.props} {...questionPage} itensPerPage={16}/>
-          </Col>
+          </Row>
+          <Row className="pagination-questions" style={{'marginLeft':'80%'}}>
+            <CustomPagination {...this.props} {...questionPage} itensPerPage={16} />
           </Row>
           <div className="c-question-base__results">
             { isFetching ? (

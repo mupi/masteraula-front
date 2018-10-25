@@ -5,7 +5,7 @@
       padding: 0px 15px 15px 15px;
     }
     &__results{
-      margin-top: 20px;
+     // margin-top: 20px;
     }
 
     &__alert{
@@ -15,7 +15,6 @@
     }
 
     &__total-results{
-      margin-bottom: 15px;
       font-size: 14px;
       color:$color-ma-blue;
       font-weight: bold;
@@ -143,6 +142,8 @@
 
 .pagination-questions{
   padding: 0px 15px;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .pagination-questions.row a {

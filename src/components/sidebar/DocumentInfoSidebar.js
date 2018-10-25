@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId }) => (
   <div className="c-sidebar__document-info">
     <div className="c-sidebar__document-name-section">
-      <small className="c-sidebar__document-message">você está editando: </small>
+      <small className="c-sidebar__document-message">Você está editando: </small>
       <Link className="c_sidebar__document-link" to="/edit-document">
         {`${documentName}`}  
       </Link>

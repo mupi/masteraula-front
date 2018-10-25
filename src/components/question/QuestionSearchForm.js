@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, Form } from 'redux-form';
 import {
-  InputGroup, InputGroupAddon, Button, Row,
+  InputGroup, InputGroupAddon, Button, Row, Col,
 } from 'reactstrap';
 
 
@@ -32,7 +32,7 @@ const QuestionSearchForm = (props) => {
           </InputGroupAddon>
         </InputGroup>
       </Row>
-      {search ? 'Você pesquisou: '.concat(search) : ''
+      {search ? (<Row><Col sm="12">{'Você pesquisou: '.concat(search)}</Col></Row>) : ''
       }
     </Form>
   );
