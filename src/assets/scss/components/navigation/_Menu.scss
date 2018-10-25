@@ -1,7 +1,20 @@
+#navbar{
+    background: $color-ma-blue;
+}
 
 .nav-item .position-login{
   border: none;
   padding: 10px;
   display: block;
   text-align: center;
+}
+
+.menu-top{
+  background: $color-ma-blue !important;
+  width: 100%;
+
+  &__options{
+    background: $color-ma-blue !important;
+    width: 100%;
+  }
 }

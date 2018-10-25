@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 const ExportDocumentButton = ({
-  documentId, color, text, downloadDocument, documentName, documentTotalQuestions, hideModal, showModal,
+  documentId, color, text, downloadDocument, documentName, documentTotalQuestions, hideModal, showModal, styleCustomize,
 }) => {
   const handleClick = () => {
     if (documentTotalQuestions>0)
@@ -30,7 +30,7 @@ const ExportDocumentButton = ({
   };
  
   return (
-    <Button color={color} onClick={handleClick}>
+    <Button color={color} onClick={handleClick} className={styleCustomize}>
       <i className={text ? 'fa fa-download btn__icon' : 'fa fa-download'} />
       {text}
     </Button>

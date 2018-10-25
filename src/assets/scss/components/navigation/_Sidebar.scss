@@ -338,14 +338,17 @@ a.c_sidebar__document-link:hover{
 }
 
 .c-sidebar{
-  &__document-info{
+  &__document-message{
+    color: $color-ma-white;
+    font-size:12px;
+  }
 
+  &__document-name-section{
+    
   }
 
   &__document-l-buttons {
-      text-align: right;
       margin-top: 10px;
-      margin-right: 15px;
   }
 
   &__document-btn-item{
@@ -355,5 +358,11 @@ a.c_sidebar__document-link:hover{
   &__document-btn-item:hover{
     color: $color-ma-white;
     text-decoration: none;
+  }
+
+  &__document-button{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 13px;
   }
 }

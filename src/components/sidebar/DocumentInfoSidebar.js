@@ -7,24 +7,22 @@ import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContai
 
 const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId }) => (
   <div className="c-sidebar__document-info">
-    <h5>
-      Prova Atual
-    </h5>
-    <h6>
-      <i className="fa fa-file btn__icon" />
+    <h6 className="c-sidebar__document-name-section">
+      <small className="c-sidebar__document-message">você está editando: </small>
       <Link className="c_sidebar__document-link" to="/edit-document">
         {`${documentName} (${documentTotalQuestions})`}
       </Link>
     </h6>
     <div className="c-sidebar__document-l-buttons">
       <Link className="c-sidebar__document-btn-item" to="/edit-document">
-        <Button className="btn-margin-right">
+        <Button className="btn-margin-right c-sidebar__document-button">
           <i className="fa fa-pencil btn__icon" />
           Editar
         </Button>
       </Link>
       <ExportDocumentButtonContainer
         text="Exportar"
+        styleCustomize="c-sidebar__document-button"
         documentId={documentId}
         documentName={documentName}
         documentTotalQuestions={documentTotalQuestions}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col,
+  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col, Container
 } from 'reactstrap';
 
 import { Link } from 'react-router-dom';
@@ -21,7 +21,7 @@ const Menu = (props) => {
 
    
 
-      <NavItem> 
+      <NavItem className="hidden"> 
         <Link to="/question-base/1">
           <i className="fa fa-home" />
           {' '}
@@ -83,30 +83,29 @@ const Menu = (props) => {
       <Row>
         <Col xs="12">
           <Navbar id="masteraula-nav-header" className={navBarUserHome} color="primary" dark expand="md">
-            <div id="buttonSideBar" className="visible-xs col-xs-3">
-              <ul className="pull-left visible-xs-inline-block nav navbar-nav">
-                { isLoggedIn ? menu : null }
-              </ul>
-            </div>
-            <NavItem>
-              <Link exact="true" to="/">
-                {isLoggedIn ? '' : <img className="logo-in-menu no-login" src={logoMasterAula} alt="logo" />}
-              </Link>
-            </NavItem>
-            <NavbarToggler onClick={() => toggleMenu(isOpen)} />
+            <Container className="menu-top" fluid="true">    
+              <Row className="menu-top__options">
+                <div id="buttonSideBar" className="visible-xs col-xs-3">
+                  <ul className="pull-left visible-xs-inline-block nav navbar-nav">
+                    { isLoggedIn ? menu : null }
+                  </ul>
+                </div>
+                <Col sm="8" xs="12">
+                  {isLoggedIn && activeDocument && (
+                    <DocumentInfoSidebar
+                      documentName={activeDocument.name}
+                      documentTotalQuestions={activeDocument.questions.length}
+                      documentId={activeDocument.id}
+                    />
+                  )}
+                </Col>
+                <NavbarToggler onClick={() => toggleMenu(isOpen)} />
+                <Collapse isOpen={isOpen} navbar className="col-xs-collapse-right  text-right col-sm-4">
+                      { isLoggedIn ? loggedOptions : notLoggedOptions }
+                </Collapse>
+              </Row>
+            </Container>
 
-
-    {isLoggedIn && activeDocument && (
-      <DocumentInfoSidebar
-        documentName={activeDocument.name}
-        documentTotalQuestions={activeDocument.questions.length}
-        documentId={activeDocument.id}
-      />
-      )}
-            <Collapse isOpen={isOpen} navbar>
-
-              { isLoggedIn ? loggedOptions : notLoggedOptions }
-            </Collapse>
           </Navbar>
         </Col>
       </Row>
