@@ -3,23 +3,28 @@ import PropTypes from 'prop-types';
 import { Button , UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
+ import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
 
 const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId }) => (
   <div className="c-sidebar__document-info">
-    <h6 className="c-sidebar__document-name-section">
+    <div className="c-sidebar__document-name-section">
       <small className="c-sidebar__document-message">você está editando: </small>
       <Link className="c_sidebar__document-link" to="/edit-document">
-        {`${documentName} (${documentTotalQuestions})`}
+        {`${documentName}`}  
       </Link>
-    </h6>
+    </div>
     <div className="c-sidebar__document-l-buttons">
+    <a>
+    <p className="c-sidebar__document-questions  btn__icon"><small className="c-sidebar__document-message">Questões: {documentTotalQuestions} </small></p>
+
+      </a>
       <Link className="c-sidebar__document-btn-item" to="/edit-document">
         <Button className="btn-margin-right c-sidebar__document-button">
           <i className="fa fa-pencil btn__icon" />
           Editar
         </Button>
       </Link>
+      <a>
       <ExportDocumentButtonContainer
         text="Exportar"
         styleCustomize="c-sidebar__document-button btn-margin-right"
@@ -27,21 +32,23 @@ const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId 
         documentName={documentName}
         documentTotalQuestions={documentTotalQuestions}
       />
-
-      <UncontrolledDropdown>
-                      <DropdownToggle className="" caret size="sm">
+      </a>
+      <a>
+      <UncontrolledDropdown className="">
+                      <DropdownToggle className="c-sidebar__document-button" caret size="sm">
                         Trocar prova
                       </DropdownToggle>
                       <DropdownMenu>
                         <DropdownItem>
-                          Nome - Ascendente
+                          Prova 1
                         </DropdownItem>
                         <DropdownItem divider />
                         <DropdownItem>
-                          Data de criação - Ascendente
+                          Mais provas
                         </DropdownItem>
                       </DropdownMenu>
-          </UncontrolledDropdown>
+          </UncontrolledDropdown></a>
+    
     </div>
   </div>
 );

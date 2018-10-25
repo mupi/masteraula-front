@@ -219,8 +219,8 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
     font-weight: bold;
 }
 
-.sidebar-nav-container li.list-group-item:hover {
-    background: #c0e8f9;
+.sidebar-main-options li.list-group-item:hover {
+    background: $color-ma-skyblue-light !important;
     color: white;
 }
 
@@ -277,7 +277,7 @@ li.question-category-filter div{
     line-height: 14px;
     text-decoration: none;
     padding: 11px 0px 10px 15px;
-    background: #d6d8db;
+    background: white;
 }
 
 .question-category-filter i.fa.fa-angle-left {
@@ -328,23 +328,27 @@ img.logo-in-menu.no-login {
 /*New SCSS with BEM style*/
 a.c_sidebar__document-link {
     font-weight: normal;
-    color: $color-ma-green
+    color: $color-ma-green;
+    padding:5px;
+    font-size: 16px;
 }
 
 a.c_sidebar__document-link:hover{
     font-weight: bold;
-    color: $color-ma-green;
     text-decoration:none;
 }
 
 .c-sidebar{
   &__document-message{
     color: $color-ma-white;
-    font-size:12px;
+    font-size:13px;
   }
 
-  &__document-name-section{
+  &__document-questions {
+    margin-bottom: 0px;
+}
     
+  &__document-info{
   }
 
   &__document-l-buttons {
@@ -353,7 +357,7 @@ a.c_sidebar__document-link:hover{
   }
 
   &__document-btn-item{
-    color: $color-ma-white;
+    color: $color-ma-green;
   }
 
   &__document-btn-item:hover{
@@ -365,5 +369,10 @@ a.c_sidebar__document-link:hover{
     padding-top: 2px;
     padding-bottom: 2px;
     font-size: 13px;
+  }
+  &__filter-selected{
+      background: $color-ma-dark-gray !important;
+      border-radius: 3px;
+      margin-top:3px;
   }
 }

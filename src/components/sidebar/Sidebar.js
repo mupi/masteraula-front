@@ -8,7 +8,7 @@ import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
 
 import CreateDocumentModalContainer from 'containers/CreateDocumentModalContainer';
 import FilterContainer from 'containers/FilterContainer';
-import DocumentInfoSidebar from './DocumentInfoSidebar';
+// import DocumentInfoSidebar from './DocumentInfoSidebar';
 
 
 const Sidebar = (props) => {
@@ -23,21 +23,29 @@ const Sidebar = (props) => {
         <div className="container-fluid">
           <Row>
             <Col xs="12">
+              <ListGroup className="sidebar-main-options">
+                <ListGroupItem color="light">
+                  <CreateDocumentModalContainer activeDocument={activeDocument} />
+                </ListGroupItem>
+              </ListGroup>
               <div className="sidebar-nav-container">
                 <ListGroup className="sidebar-main-options">
-                  <ListGroupItem color="secondary">
-                    <CreateDocumentModalContainer activeDocument={activeDocument} />
-                  </ListGroupItem>
-                  <ListGroupItem color="secondary">
-                    <Link to="/documents/1">
-                      <i className="fa fa-folder-open btn__icon" />
-                      Minhas provas
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem color="secondary">
+                  <ListGroupItem color="light">
                     <Link to="/question-base/1">
                       <i className="fa fa-search btn__icon" />
                       Banco de questões
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem color="light">
+                    <Link to="/documents/1">
+                      <i className="fa fa-folder-open btn__icon" />
+                      Gerenciar minhas provas
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem color="light">
+                    <Link to="#">
+                      <i className="fa fa-folder-open btn__icon" />
+                      Gerenciar meus cabeçalhos
                     </Link>
                   </ListGroupItem>
                 </ListGroup>
