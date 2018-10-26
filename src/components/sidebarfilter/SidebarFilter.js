@@ -21,7 +21,7 @@ const SidebarFilter = ({
       <ListGroup className="question-single-filter">
         {filterList && filterList.map(filter => (
           <ListGroupItem key={filter.id} color="light" className={isChecked(filter.id) ? 'c-sidebar__filter-selected': {}}>
-            <Input type="checkbox" value={filter.id} onClick={handleFilter} checked={isChecked(filter.id)} />
+            <Input type="checkbox" value={filter.id} onClick={handleFilter} checked={isChecked(filter.id)} readOnly/>
             {filter.name}
           </ListGroupItem>
         ))}

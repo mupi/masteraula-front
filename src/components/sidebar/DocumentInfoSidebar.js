@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { Button , UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
- import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
-
+import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
+ 
 const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId }) => (
   <div className="c-sidebar__document-info">
     <div className="c-sidebar__document-name-section">
       <small className="c-sidebar__document-message">Você está editando: </small>
-      <Link className="c_sidebar__document-link" to="/edit-document">
+      <Link className="c-sidebar__document-link" to="/edit-document">
         {`${documentName}`}  
       </Link>
     </div>

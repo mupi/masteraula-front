@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col, Container
+  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col, Container,
 } from 'reactstrap';
 
 import { Link } from 'react-router-dom';
@@ -14,14 +14,9 @@ const Menu = (props) => {
     isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument,
   } = props;
 
-
-
   const loggedOptions = (
     <Nav className="ml-auto" navbar>
-
-   
-
-      <NavItem className="hidden"> 
+      <NavItem>
         <Link to="/question-base/1">
           <i className="fa fa-home" />
           {' '}
@@ -74,16 +69,18 @@ const Menu = (props) => {
         </span>
       </Button>
     </li>
-  ); 
-  const navBarUserHome = ( isLoggedIn ? 'masteraula-nav-header__user navbar navbar-default navbar-fixed-top': 'navbar navbar-default navbar-fixed-top');
+  );
+
+  const navHeader = ( isLoggedIn ? 'masteraula-nav-header__user navbar navbar-default navbar-fixed-top': 'masteraula-nav-header__notuser navbar navbar-default navbar-fixed-top');
 
   return (
-
     <div id="navbar" className="container-fluid">
       <Row>
         <Col xs="12">
-          <Navbar id="masteraula-nav-header" className={navBarUserHome} dark expand="md">
-            <Container className="menu-top" fluid="true">    
+        { isLoggedIn ?  
+          (
+          <Navbar id="masteraula-nav-header" className='masteraula-nav-header__user navbar navbar-default navbar-fixed-top' dark expand="md">
+          <Container className="menu-top" fluid={true} >    
               <Row className="menu-top__options">
                 <div id="buttonSideBar" className="visible-xs col-xs-3">
                   <ul className="pull-left visible-xs-inline-block nav navbar-nav">
@@ -91,7 +88,7 @@ const Menu = (props) => {
                   </ul>
                 </div>
                 <Col sm="8" xs="12">
-                  {isLoggedIn && activeDocument && (
+                  {activeDocument && (
                     <DocumentInfoSidebar
                       documentName={activeDocument.name}
                       documentTotalQuestions={activeDocument.questions.length}
@@ -105,8 +102,19 @@ const Menu = (props) => {
                 </Collapse>
               </Row>
             </Container>
-
-          </Navbar>
+            </Navbar>
+          ): (
+            <Navbar id="masteraula-nav-header" className='masteraula-nav-header__notuser navbar navbar-default navbar-fixed-top' dark expand="md">
+              <NavItem>
+                <Link exact="true" to="/">
+                  <img className="logo-in-menu no-login" src={logoMasterAula} alt="logo" />
+                </Link>
+              </NavItem>
+              <NavbarToggler onClick={() => toggleMenu(isOpen)} />
+              <Collapse isOpen={isOpen} navbar>
+                { notLoggedOptions }
+              </Collapse>
+            </Navbar>) }
         </Col>
       </Row>
     </div>
