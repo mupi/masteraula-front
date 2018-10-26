@@ -15,7 +15,8 @@ const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId 
     </div>
     <div className="c-sidebar__document-l-buttons">
     <a>
-    <p className="c-sidebar__document-questions  btn__icon"><small className="c-sidebar__document-message">Questões: {documentTotalQuestions} </small></p>
+      <p className="c-sidebar__document-questions  btn__icon">
+      <small className="c-sidebar__document-message">Questões: {documentTotalQuestions} </small></p>
 
       </a>
       <Link className="c-sidebar__document-btn-item" to="/edit-document">
