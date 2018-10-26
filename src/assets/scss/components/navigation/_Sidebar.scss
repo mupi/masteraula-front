@@ -169,6 +169,7 @@ html body .masteraula-nav-header__user {
     border: none;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    background: $color-ma-lightgray-backg !important;
 
     @include for-tablet-landscape-up {
         margin-left: 280px;
@@ -215,7 +216,7 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
 
 
 .sidebar-main-options li.list-group-item {
-    background: #f7f7f7;
+    background: $color-ma-lightgray-backg;
 }
 
 .sidebar-nav-container .list-group-item a {
@@ -276,7 +277,7 @@ li.question-category-filter div{
     line-height: 14px;
     text-decoration: none;
     padding: 11px 0px 10px 15px;
-    background: #f7f7f7;
+    background:  $color-ma-lightgray-backg;
 }
 
 .question-category-filter i.fa.fa-angle-left {

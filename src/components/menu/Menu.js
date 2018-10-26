@@ -82,7 +82,7 @@ const Menu = (props) => {
     <div id="navbar" className="container-fluid">
       <Row>
         <Col xs="12">
-          <Navbar id="masteraula-nav-header" className={navBarUserHome} color="primary" dark expand="md">
+          <Navbar id="masteraula-nav-header" className={navBarUserHome} dark expand="md">
             <Container className="menu-top" fluid="true">    
               <Row className="menu-top__options">
                 <div id="buttonSideBar" className="visible-xs col-xs-3">
