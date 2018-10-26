@@ -172,6 +172,7 @@ html body .masteraula-nav-header__user {
 
     @include for-tablet-landscape-up {
         margin-left: 280px;
+        box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
     }
 }
 
@@ -212,6 +213,9 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
 }
 
 
+.sidebar-main-options li.list-group-item {
+    background: #f7f7f7;
+}
 
 .sidebar-nav-container .list-group-item a {
     text-decoration: none;
@@ -227,12 +231,6 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
 #sidebar-container .col-12 {
     padding-left: 0px;
     padding-right: 0px;
-}
-
-
-
-ul.sidebar-main-options.list-group {
-    margin-right: 15px;
 }
 
 /*sidebar de filters*/
@@ -277,7 +275,7 @@ li.question-category-filter div{
     line-height: 14px;
     text-decoration: none;
     padding: 11px 0px 10px 15px;
-    background: white;
+    background: #f7f7f7;
 }
 
 .question-category-filter i.fa.fa-angle-left {
