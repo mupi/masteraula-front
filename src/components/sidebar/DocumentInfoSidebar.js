@@ -27,7 +27,7 @@ const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId 
       <a>
       <ExportDocumentButtonContainer
         text="Exportar"
-        styleCustomize="c-sidebar__document-button btn-margin-right"
+        styleCustomize="c-sidebar__document-button"
         documentId={documentId}
         documentName={documentName}
         documentTotalQuestions={documentTotalQuestions}

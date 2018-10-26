@@ -102,7 +102,7 @@ html body #sidebar #sidebar-container {
     bottom: 0;
     width: $sidebar-size;
     position: absolute;
-    top: 58px;
+    top: 70px;
     padding-top: 30px;
     padding-bottom: 30px;
     overflow-x: hidden;
@@ -173,6 +173,7 @@ html body .masteraula-nav-header__user {
     @include for-tablet-landscape-up {
         margin-left: 280px;
         box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
+        height:70px;
     }
 }
 
@@ -310,7 +311,7 @@ li.question-category-filter div{
     text-align: center;
     padding: 5px;
     background: $color-ma-green;
-    height: 58px;
+    height: 70px;
 }
 
 img.logo-in-menu {
@@ -367,6 +368,7 @@ a.c_sidebar__document-link:hover{
     padding-top: 2px;
     padding-bottom: 2px;
     font-size: 13px;
+    margin-right: 5px;
   }
   &__filter-selected{
       background: $color-ma-dark-gray !important;
