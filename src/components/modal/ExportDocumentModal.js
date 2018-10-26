@@ -7,7 +7,7 @@ import {
   from 'reactstrap';
 
 const ConfirmExportModal = ({
-    closeModal, documentId, documentName,downloadDocument, title, message,
+    closeModal, documentId, documentName,downloadDocument, title,
   }) => (
    <div className="modal__content modal-content">
      <div className="modal__header modal-header">
@@ -19,12 +19,14 @@ const ConfirmExportModal = ({
        </button>
      </div>
      <div className="modal-body">
-       <p>{message}</p>
+       <p>
+        Você gostaria de exportar o gabarito da prova <strong>{documentName}</strong> {' ?'}
+       </p>
        <div className="modal__footer modal-footer">
        <button color="primary" className="btn--confirm btn btn-secondary" onClick={() => {downloadDocument(documentId, documentName, true); closeModal()}}>
-       Sim</button>
+       Com gabarito</button>
        <button type="button" className="btn btn-secondary" onClick={() => {downloadDocument(documentId, documentName, false); closeModal()}}>
-       Não</button>
+       Sem gabarito</button>
      </div>
      </div>
      

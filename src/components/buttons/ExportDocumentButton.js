@@ -34,12 +34,11 @@ const ExportDocumentButton = ({
     // open modal
     showModal({
       open: true,
-      closeModal,
+      closeModal, 
       downloadDocument,
       documentId,
       documentName,
       title: 'Exportar Gabarito',
-      message: `Você gostaria de exportar o gabarito da prova "${documentName}"?`,
     }, 'exportDocument');
   };
 
