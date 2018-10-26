@@ -46,60 +46,54 @@ html body .masteraula-nav-header__user {
       background: $color-ma-lightgray-backg !important;
       width: 100%;
     }
+
+    &__document-message{
+      color: $color-ma-blue;
+      font-size:13px;
+    }
+    
+    &__document-questions {
+      margin-bottom: 0px;
+    }
+
+    &__document-number-questions {
+      font-size:16px;
+    }
+
+    &__document-l-buttons {
+        margin-top: 5px;
+        display: inline-flex;
+    }
+    
+    &__document-btn-item{
+      color: $color-ma-green;
+    }
+    
+    &__document-btn-item:hover{
+      color: $color-ma-white;
+      text-decoration: none;
+    }
+    
+    &__document-button{
+      padding-top: 2px;
+      padding-bottom: 2px;
+      font-size: 13px;
+      margin-right: 5px;
+    }
   }
 
 }
 
 
 /*New SCSS with BEM style*/
-a.c-sidebar__document-link {
+a.menu-top__document-link {
   font-weight: normal;
   color: $color-ma-green;
   padding:5px;
-  font-size: 16px;
+  font-size: 20px;
 }
 
-a.c-sidebar__document-link:hover{
+a.menu-top__document-link:hover{
   font-weight: bold;
   text-decoration:none;
-}
-
-.c-sidebar{
-&__document-message{
-  color: $color-ma-white;
-  font-size:13px;
-}
-
-&__document-questions {
-  margin-bottom: 0px;
-}
-  
-&__document-info{
-}
-
-&__document-l-buttons {
-    margin-top: 5px;
-    display: inline-flex;
-}
-
-&__document-btn-item{
-  color: $color-ma-green;
-}
-
-&__document-btn-item:hover{
-  color: $color-ma-white;
-  text-decoration: none;
-}
-
-&__document-button{
-  padding-top: 2px;
-  padding-bottom: 2px;
-  font-size: 13px;
-  margin-right: 5px;
-}
-&__filter-selected{
-    background: $color-ma-dark-gray !important;
-    border-radius: 3px;
-    margin-top:3px;
-}
 }
