@@ -8,10 +8,11 @@ const ExportDocumentButton = ({
 }) => {
   const handleClick = () => {
     if (documentTotalQuestions>0)
-      downloadDocument(documentId, documentName);
+      // downloadDocument(documentId, documentName);
+       handleExportAnswer();
     else{
       //open modal
-      handleExport(documentName);
+      handleExport();
     }
   };
 
@@ -25,10 +26,22 @@ const ExportDocumentButton = ({
       open: true,
       closeModal,
       title: 'Exportar prova',
-      message: `Não é possível exportar porque a prova "${name}" não tem questões`,
+      message: `Não é possível exportar porque a prova "${documentName}" não tem questões`,
     }, 'alert');
   };
  
+  const handleExportAnswer = () => {
+    // open modal
+    showModal({
+      open: true,
+      closeModal, 
+      downloadDocument,
+      documentId,
+      documentName,
+      title: 'Exportar Gabarito',
+    }, 'exportDocument');
+  };
+
   return (
     <Button color={color} onClick={handleClick}>
       <i className={text ? 'fa fa-download btn__icon' : 'fa fa-download'} />
