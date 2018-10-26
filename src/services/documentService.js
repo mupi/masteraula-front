@@ -209,15 +209,21 @@ function deleteDocument(idDocument) {
 }
 
 // Dowload a document docx file given its ID
-function downloadDocument(idDocument) {
+function downloadDocument(idDocument, docName, answer) {
   const requestOptions = {
     method: 'GET',
     headers: {
       Authorization: authHeader(),
     },
   };
+  
+  if (answer !== false ){
+    return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=True`, requestOptions);
+  } 
 
-  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=True`, requestOptions);
+  else{
+  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=False`, requestOptions);
+  }
 }
 
 const documentService = {
