@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import QuestionBasePage from 'pages/QuestionBase/QuestionBasePage';
 import { listQuestions } from 'actions/questionAction';
 import { toggleModal, addSelectedQuestion } from 'actions/documentAction';
-import { addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, removeSelectedDisciplineFilter } from 'actions/filterAction';
+import {
+  addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, removeSelectedDisciplineFilter,
+  addSelectedDifficultyFilter, removeSelectedDifficultyFilter, removeSelectedTeachingLevelFilter,
+} from 'actions/filterAction';
 import { history } from 'helpers/history';
 
 
@@ -10,6 +13,18 @@ const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
   history.replace('/question-base/1');
   return value
     ? addSelectedDisciplineFilter(idDiscipline) : removeSelectedDisciplineFilter(idDiscipline);
+};
+
+const toggleSelectedTeachingLevelFilter = (idTeachingLevel, value) => {
+  history.replace('/question-base/1');
+  return value
+    ? addSelectedTeachingLevelFilter(idTeachingLevel) : removeSelectedTeachingLevelFilter(idTeachingLevel);
+};
+
+const toggleSelectedDifficultyFilter = (difficultyType, value) => {
+  history.replace('/question-base/1');
+  return value
+    ? addSelectedDifficultyFilter(difficultyType) : removeSelectedDifficultyFilter(difficultyType);
 };
 
 const mapStateToProps = state => ({
@@ -28,6 +43,8 @@ const mapDispatchToProps = dispatch => ({
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(addSelectedTeachingLevelFilter(idTeachingLevel)),
   toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
+  toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
+  toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
 });
 
 const QuestionBasePageContainer = connect(

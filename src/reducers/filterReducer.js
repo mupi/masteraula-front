@@ -19,6 +19,11 @@ const initialState = {
   disciplinesSelected: [],
   teachingLevelsSelected: [],
   difficultiesSelected: [],
+  difficultyFilters: [
+    { id: 'E', name: 'Fácil' },
+    { id: 'M', name: 'Médio' },
+    { id: 'H', name: 'Difícil' },
+  ],
 };
 
 export const filter = (state = initialState, action) => {
@@ -55,32 +60,38 @@ export const filter = (state = initialState, action) => {
         isFetchingTeachingLevelFilters: false,
         error: action.error,
       });
-    case ADD_SELECTED_DISCIPLINE_FILTER:
+    case ADD_SELECTED_DISCIPLINE_FILTER:{
+      const filterDiscipline = state.disciplineFilters.filter(item => item.id == action.idDiscipline);
       return Object.assign({}, state, {
-        disciplinesSelected: [...state.disciplinesSelected, action.idDiscipline],
+        disciplinesSelected: [...state.disciplinesSelected, filterDiscipline[0]],
       });
+    }
     case REMOVE_SELECTED_DISCIPLINE_FILTER: {
-      const newDisciplines = state.disciplinesSelected.filter(item => item !== action.idDiscipline);
+      const newDisciplines = state.disciplinesSelected.filter(item => item.id != action.idDiscipline);
       return Object.assign({}, state, {
         disciplinesSelected: newDisciplines,
       });
     }
-    case ADD_SELECTED_TEACHINGLEVEL_FILTER:
+    case ADD_SELECTED_TEACHINGLEVEL_FILTER:{
+      const filterTeachingL = state.teachingLevelFilters.filter(item => item.id == action.idTeachingLevel);
       return Object.assign({}, state, {
-        teachingLevelsSelected: [...state.teachingLevelsSelected, action.idTeachingLevel],
+        teachingLevelsSelected: [...state.teachingLevelsSelected, filterTeachingL[0]],
       });
+    }
     case REMOVE_SELECTED_TEACHINGLEVEL_FILTER: {
-      const newTeachingLevels = state.teachingLevelsSelected.filter(item => item !== action.idTeachingLevel);
+      const newTeachingLevels = state.teachingLevelsSelected.filter(item => item.id != action.idTeachingLevel);
       return Object.assign({}, state, {
         teachingLevelsSelected: newTeachingLevels,
       });
     }
-    case ADD_SELECTED_DIFFICULTY_FILTER:
+    case ADD_SELECTED_DIFFICULTY_FILTER:{
+      const filterDifficulty = state.difficultyFilters.filter(item => item.id == action.difficultyType);
       return Object.assign({}, state, {
-        difficultiesSelected: [...state.difficultiesSelected, action.difficultyType],
+        difficultiesSelected: [...state.difficultiesSelected, filterDifficulty[0]],
       });
+    }
     case REMOVE_SELECTED_DIFFICULTY_FILTER: {
-      const newDifficulties = state.difficultiesSelected.filter(item => item !== action.difficultyType)
+      const newDifficulties = state.difficultiesSelected.filter(item => item.id != action.difficultyType);
       return Object.assign({}, state, {
         difficultiesSelected: newDifficulties,
       });
