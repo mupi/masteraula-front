@@ -8,7 +8,7 @@ const PreviewDocumentPage = () => {
     <Container>
       <Row>
         <h2>
-          Monte seu documento
+          Monte sua prova
         </h2>
       </Row>
       <Row>

@@ -49,7 +49,7 @@ const DocumentModal = ({
             />
           </div>
           <div>
-            <Button title="Editar documento" className="btn-success" onClick={() => editDocument(document)}>
+            <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
               <i className="fa fa-pencil btn__icon" />
               <span className="button-text">
                 Editar

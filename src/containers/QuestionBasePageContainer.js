@@ -2,7 +2,15 @@ import { connect } from 'react-redux';
 import QuestionBasePage from 'pages/QuestionBase/QuestionBasePage';
 import { listQuestions } from 'actions/questionAction';
 import { toggleModal, addSelectedQuestion } from 'actions/documentAction';
-import { addSelectedDisciplineFilter, addSelectedTeachingLevelFilter } from 'actions/filterAction';
+import { addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, removeSelectedDisciplineFilter } from 'actions/filterAction';
+import { history } from 'helpers/history';
+
+
+const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
+  history.replace('/question-base/1');
+  return value
+    ? addSelectedDisciplineFilter(idDiscipline) : removeSelectedDisciplineFilter(idDiscipline);
+};
 
 const mapStateToProps = state => ({
   isFetching: state.question.isFetching,
@@ -19,6 +27,7 @@ const mapDispatchToProps = dispatch => ({
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(addSelectedTeachingLevelFilter(idTeachingLevel)),
+  toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
 });
 
 const QuestionBasePageContainer = connect(

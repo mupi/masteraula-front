@@ -3,11 +3,12 @@ import QuestionContent from 'components/question/QuestionContent';
 import QuestionInfo from 'components/question/QuestionInfo';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import {
-  Alert, Container, Row, Col,
+  Alert, Container, Row, Col, Button,
 } from 'reactstrap';
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
+import { history } from 'helpers/history';
 
 class QuestionPage extends Component {
   componentDidMount() {
@@ -45,9 +46,14 @@ class QuestionPage extends Component {
     return (
       <HomeUserPage>
         <div className="c-question">
+          <Row>
+            <Button onClick={history.goBack}>
+              Voltar
+            </Button>
+            <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
+          </Row>
           <Row className="justify-content-center">
             <Col sm="12" md="12" xs="12">
-              <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
               <QuestionContent
                 alternatives={activeQuestion.alternatives}
                 statement={activeQuestion.statement}
@@ -59,7 +65,7 @@ class QuestionPage extends Component {
                   {!isQuestionAdded(activeDocument, activeQuestion.id) ? (
                     <Col className="c-question__add-question-rectangle">
                       <h6 className="c-question__add-question-title">
-                        Gostou da questão? Adicione ao seu documento
+                        Gostou da questão? Adicione a sua prova
                       </h6>
                       <AddQuestionButton
                         questionId={activeQuestion.id}
@@ -74,7 +80,7 @@ class QuestionPage extends Component {
                   ) : (
                     <Col className="c-question__add-question-rectangle">
                       <h6 className="c-question__add-question-title">
-                        Esta questão foi adicionada ao documento
+                        Esta questão foi adicionada à prova
                         {' '}
                         <strong>
                           {activeDocument.name}
@@ -96,7 +102,7 @@ class QuestionPage extends Component {
           </Row>
         </div>
         <div className="l-button-add-question">
-
+          {/* TODO: mobile only button */}
           {!isQuestionAdded(activeDocument, activeQuestion.id) ? (
             <AddQuestionButton
               questionId={activeQuestion.id}

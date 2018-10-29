@@ -44,12 +44,12 @@ const CreateDocumentForm = (props) => {
     <div>
       {initialValues.idQuestion ? (
         <p className="text-center">
-Você está adicionando uma questão a um documento sem nome.
+Você está adicionando uma questão a uma prova sem nome.
         </p>
       ) : ''}
       {messageWhenDocumentExist || (
       <p className="text-center">
-Por favor, insira um nome para o novo documento a ser criado
+Por favor, insira um nome para a nova prova a ser criada
       </p>
       )}
       <Form onSubmit={handleSubmit}>
@@ -59,7 +59,7 @@ Por favor, insira um nome para o novo documento a ser criado
             type="text"
             name="name"
             id="name"
-            label="Digite o nome do documento"
+            label="Digite o nome da prova"
           />
         </FormGroup>
         <FormGroup check>
@@ -100,7 +100,7 @@ const mapDispatchToProps = dispatch => ({
 const validate = (values) => {
   const errors = {};
   if (!values.name) {
-    errors.name = 'Por favor, digite um nome para o novo documento';
+    errors.name = 'Por favor, digite um nome para a nova prova';
   } else {
     const trueName = values.name.trim();
     if (trueName.length < 3) {
