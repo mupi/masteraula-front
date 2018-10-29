@@ -53,7 +53,6 @@ class DocumentList extends React.Component {
   editDocument(document) {
     const { switchActiveDocument } = this.props;
     switchActiveDocument(document);
-    history.push('/edit-document');
     this.closeModal();
   }
 

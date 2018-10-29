@@ -27,15 +27,14 @@ class DocumentInfoSidebar extends React.Component {
     const {
       listMyLastDocuments,
     } = this.props;
-    listMyLastDocuments(1, 'date', 'desc');   
+    listMyLastDocuments(1, 'date', 'desc');
   }
 
   editDocument(document) {
     const { switchActiveDocument } = this.props;
     switchActiveDocument(document);
+    
   }
-
-  
 
   render() {
     const {
