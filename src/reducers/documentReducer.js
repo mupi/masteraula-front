@@ -4,6 +4,7 @@ import {
   CREATE_DOCUMENT, CREATE_DOCUMENT_SUCCESS, CREATE_DOCUMENT_FAILURE,
   UPDATE_DOCUMENT, UPDATE_DOCUMENT_SUCCESS, UPDATE_DOCUMENT_FAILURE,
   LIST_MY_DOCUMENTS, LIST_MY_DOCUMENTS_SUCCESS, LIST_MY_DOCUMENTS_FAILURE,
+  LIST_MY_LAST_DOCUMENTS, LIST_MY_LAST_DOCUMENTS_SUCCESS, LIST_MY_LAST_DOCUMENTS_FAILURE,
   ADD_SELECTED_QUESTION, ADD_SELECTED_QUESTION_SUCCESS, ADD_SELECTED_QUESTION_FAILURE,
   REMOVE_SELECTED_QUESTION, REMOVE_SELECTED_QUESTION_SUCCESS, REMOVE_SELECTED_QUESTION_FAILURE,
   CREATE_DOCUMENT_TOGGLE_MODAL, SWITCH_ACTIVE_DOCUMENT, DELETE_DOCUMENT_SESSION,
@@ -112,6 +113,26 @@ export const document = (state = initialState, action) => {
       return Object.assign({}, state, {
         myDocumentsList: null,
         isFetching: false,
+        error: action.errorMessage,
+      });
+    case LIST_MY_LAST_DOCUMENTS:
+      return Object.assign({}, state, {
+        myLastDocumentsList: null,
+        isFetchingMyLastDocuments: true,
+        error: null,
+        orderField: action.orderField,
+        order: action.order,
+      });
+    case LIST_MY_LAST_DOCUMENTS_SUCCESS:
+      return Object.assign({}, state, {
+        myLastDocumentsList: action.myLastDocumentsList,
+        isFetchingMyLastDocuments: false,
+      });
+    case LIST_MY_LAST_DOCUMENTS_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        myLastDocumentsList: null,
+        isFetchingMyLastDocuments: false,
         error: action.errorMessage,
       });
     case ADD_SELECTED_QUESTION:

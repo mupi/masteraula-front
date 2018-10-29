@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
-import DocumentInfoSidebar from 'components/sidebar/DocumentInfoSidebar';
+import DocumentInfoSidebarContainer from 'containers/DocumentInfoSidebarContainer';
 
 const Menu = (props) => {
   const {
@@ -87,7 +87,7 @@ const Menu = (props) => {
                     </div>
                     <Col sm="8" xs="12">
                       {activeDocument && (
-                        <DocumentInfoSidebar
+                        <DocumentInfoSidebarContainer
                           documentName={activeDocument.name}
                           documentTotalQuestions={activeDocument.questions.length}
                           documentId={activeDocument.id}
