@@ -228,16 +228,16 @@ export const toggleModal = (modal, question) => ({
 });
 
 // Switch active document
-export const switchActiveDocument = (doc, isRedirect=false) => {
-  function requestDocument1() { return { type: FETCH_DOCUMENT }; }
-  function fetchDocumentSuccess1(activeDocument) { return { type: SWITCH_ACTIVE_DOCUMENT, activeDocument }; }
+export const switchActiveDocument = (doc, isRedirect = false) => {
+  function requestDocument() { return { type: FETCH_DOCUMENT }; }
+  function fetchDocumentSuccess(activeDocument) { return { type: SWITCH_ACTIVE_DOCUMENT, activeDocument }; }
   function fetchDocumentFailure(error) { return { type: FETCH_DOCUMENT_FAILURE, error }; }
 
   return (dispatch) => {
-    dispatch(requestDocument1(doc.id));
+    dispatch(requestDocument(doc.id));
     return documentService.fetchDocument(doc.id).then(
       (activeDocument) => {
-        dispatch(fetchDocumentSuccess1(activeDocument));
+        dispatch(fetchDocumentSuccess(activeDocument));
         localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
         if (isRedirect) history.push('/edit-document');
       }, (error) => {
