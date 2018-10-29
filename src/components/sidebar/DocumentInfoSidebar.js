@@ -25,20 +25,14 @@ class DocumentInfoSidebar extends React.Component {
     const {
       myLastDocumentsList, isFetchingMyLastDocuments, documentName, documentTotalQuestions, documentId,
     } = this.props;
-    console.log("mylast docus ES ... ")
-    console.log(myLastDocumentsList);
 
-    if(isFetchingMyLastDocuments){
+    if (isFetchingMyLastDocuments) {
       return (
-        <div className="modal__content modal-content">
-          <Alert className="alert--warning" color="warning">
-                Carregando ...
-          </Alert>
-        </div>
+        <div className="menu-top__document-info" />
       );
     }
 
-    return ( 
+    return (
       <div className="menu-top__document-info">
       <div className="menu-top__document-name-section">
         <small className="menu-top__document-message hidden-xs">Você está editando: </small>
@@ -46,52 +40,47 @@ class DocumentInfoSidebar extends React.Component {
           {`${documentName}`}
         </Link>
       </div>
-    <div className="menu-top__document-l-buttons">
-      <a>
-        <p className="menu-top__document-questions  btn__icon">
-          <small className="menu-top__document-message">
-            Questões:
-            {' '}<span className="menu-top__document-number-questions"><strong>{documentTotalQuestions}</strong></span>
-          </small>
-        </p>
-      </a>
-      <Link className="menu-top__document-btn-item" to="/edit-document">
-        <Button className="btn-margin-right menu-top__document-button">
-          <i className="fa fa-pencil btn__icon" />
-          Editar
-        </Button>
-      </Link>
-      <a>
-        <ExportDocumentButtonContainer
-          text="Exportar"
-          styleCustomize="menu-top__document-button"
-          documentId={documentId}
-          documentName={documentName}
-          documentTotalQuestions={documentTotalQuestions}
-        />
-      </a>
-      <a>
-        <UncontrolledDropdown className="">
-          <DropdownToggle className="menu-top__document-button" caret size="sm">
-          <i className="fa fa-refresh btn__icon"/>
-          Trocar prova
-          </DropdownToggle>
-          <DropdownMenu>
-          {myLastDocumentsList && myLastDocumentsList.results.map((document, i) => (
-            <DropdownItem key={document.id} className="menu-top__dropdown-item"  onClick={() => this.editDocument(document)} >
-             {document.name}
-            </DropdownItem>))}
-            <DropdownItem divider />
-            <DropdownItem className="menu-top__dropdown-item">
-              <Link to="/documents/1" className="menu-top__link-more-documents">
-                Ver mais provas
-              </Link>
-            </DropdownItem>
-          </DropdownMenu>
-        </UncontrolledDropdown>
-      </a>
-    </div>
-  </div> 
+        <div className="menu-top__document-l-buttons">
+          <p className="menu-top__document-questions  btn__icon">
+            <small className="menu-top__document-message">
+              Questões:
+              {' '}
+              <span className="menu-top__document-number-questions"><strong>{documentTotalQuestions}</strong></span>
+            </small>
+          </p>
+          <Link className="menu-top__document-btn-item" to="/edit-document">
+            <Button className="btn-margin-right menu-top__document-button">
+              <i className="fa fa-pencil btn__icon" />
+              Editar
+            </Button>
+          </Link>
+          <ExportDocumentButtonContainer
+            text="Exportar"
+            styleCustomize="menu-top__document-button"
+            documentId={documentId}
+            documentName={documentName}
+            documentTotalQuestions={documentTotalQuestions}
+          />
+          <UncontrolledDropdown className="">
+            <DropdownToggle className="menu-top__document-button" caret size="sm">
+              <i className="fa fa-refresh btn__icon"/>
+              Trocar prova
+            </DropdownToggle>
+            <DropdownMenu>
+              {myLastDocumentsList && myLastDocumentsList.results.map((document, i) => (
+                <DropdownItem key={document.id} className="menu-top__dropdown-item"  onClick={() => this.editDocument(document)} >
+                  {document.name}
+                </DropdownItem>))}
+              <DropdownItem divider />
+              <DropdownItem className="menu-top__dropdown-item">
+                <Link to="/documents/1" className="menu-top__link-more-documents">
+                  Ver mais provas
+                </Link>
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </div>
+      </div>
     );
   }
 }
