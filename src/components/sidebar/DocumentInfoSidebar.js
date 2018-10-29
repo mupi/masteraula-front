@@ -23,8 +23,20 @@ class DocumentInfoSidebar extends React.Component {
 
   render() {
     const {
-      myLastDocumentsList, isFetchingMyLastDocuments, documentName, documentTotalQuestions, documentId, activeDocument,
+      myLastDocumentsList, isFetchingMyLastDocuments, documentName, documentTotalQuestions, documentId,
     } = this.props;
+    console.log("mylast docus ES ... ")
+    console.log(myLastDocumentsList);
+
+    if(isFetchingMyLastDocuments){
+      return (
+        <div className="modal__content modal-content">
+          <Alert className="alert--warning" color="warning">
+                Carregando ...
+          </Alert>
+        </div>
+      );
+    }
 
     return ( 
       <div className="menu-top__document-info">
@@ -65,12 +77,15 @@ class DocumentInfoSidebar extends React.Component {
           Trocar prova
           </DropdownToggle>
           <DropdownMenu>
-          {activeDocument && false && myLastDocumentsList.results.map((document, i) => (
-            <DropdownItem className="menu-top__dropdown-item"  onClick={() => this.editDocument(document)} >
-              Prova de Matemáticas
+          {myLastDocumentsList && myLastDocumentsList.results.map((document, i) => (
+            <DropdownItem key={document.id} className="menu-top__dropdown-item"  onClick={() => this.editDocument(document)} >
+             {document.name}
             </DropdownItem>))}
+            <DropdownItem divider />
             <DropdownItem className="menu-top__dropdown-item">
-              Mais provas
+              <Link to="/documents/1" className="menu-top__link-more-documents">
+                Ver mais provas
+              </Link>
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>

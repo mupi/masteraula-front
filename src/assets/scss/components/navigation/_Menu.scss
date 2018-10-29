@@ -83,6 +83,17 @@ html body .masteraula-nav-header__user {
 
     &__dropdown-item{
       font-size: 13px;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+
+    &__link-more-documents{
+        color: #212529;
+        
+        &:hover{
+          text-decoration:none;
+        }
     }
   }
 
