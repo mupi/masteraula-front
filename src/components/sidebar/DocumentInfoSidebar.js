@@ -8,7 +8,9 @@ import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContai
 const first5Elements = (myLastDocumentsList) => {
   var myLast5DocumentsList = [];
   var count=0;
-  while (count < 5) {
+  var countLimit= (myLastDocumentsList.length < 5 ? myLastDocumentsList.length : 5  );
+
+  while (count < countLimit) {
     myLast5DocumentsList.push(myLastDocumentsList[count]); 
     count++;
   }
