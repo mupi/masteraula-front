@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button , UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Button, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
@@ -8,7 +8,7 @@ import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContai
 const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId }) => (
   <div className="menu-top__document-info">
     <div className="menu-top__document-name-section">
-      <small className="menu-top__document-message">Você está editando: </small>
+      <small className="menu-top__document-message hidden-xs">Você está editando: </small>
       <Link className="menu-top__document-link" to="/edit-document">
         {`${documentName}`}
       </Link>
@@ -40,14 +40,18 @@ const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId 
       <a>
         <UncontrolledDropdown className="">
           <DropdownToggle className="menu-top__document-button" caret size="sm">
-            Trocar prova
+          <i className="fa fa-refresh btn__icon"/>
+          Trocar prova
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem>
-              Prova 1
+            <DropdownItem className="menu-top__dropdown-item">
+              Prova de Matemáticas
+            </DropdownItem>
+            <DropdownItem className="menu-top__dropdown-item">
+              Prova de Geometria
             </DropdownItem>
             <DropdownItem divider />
-            <DropdownItem>
+            <DropdownItem className="menu-top__dropdown-item">
               Mais provas
             </DropdownItem>
           </DropdownMenu>

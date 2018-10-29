@@ -116,3 +116,10 @@ ul.header {
 .modal-title {
     width: 100%;
 }
+
+
+.hidden-xs{
+  @include for-tablet-landscape-bottom {
+    display: none;
+  }
+}

@@ -3,7 +3,6 @@ import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
 import { downloadDocument } from 'actions/documentAction';
 import { showModal, hideModal } from 'actions/modalAction';
 
-
 const mapStateToProps = state => ({
   isDownloadingDocument: state.document.isDownloadingDocument,
 });
