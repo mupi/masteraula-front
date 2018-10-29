@@ -11,7 +11,7 @@ import DocumentInfoSidebar from 'components/sidebar/DocumentInfoSidebar';
 
 const Menu = (props) => {
   const {
-    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument,
+    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument, 
   } = props;
 
   const loggedOptions = (
