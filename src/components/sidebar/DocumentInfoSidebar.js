@@ -5,14 +5,29 @@ import { Link } from 'react-router-dom';
 
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
 
+const first5Elements = (myLastDocumentsList) => {
+  var myLast5DocumentsList = [];
+  var count=0;
+  while (count < 5) {
+    myLast5DocumentsList.push(myLastDocumentsList[count]); 
+    count++;
+  }
+  return myLast5DocumentsList;
+}
+
 
 class DocumentInfoSidebar extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.editDocument = this.editDocument.bind(this);
+  }
 
   componentDidMount() {
     const {
       listMyLastDocuments,
     } = this.props;
-    listMyLastDocuments(1, 'date', 'desc');
+    listMyLastDocuments(1, 'date', 'desc');   
   }
 
   editDocument(document) {
@@ -20,6 +35,7 @@ class DocumentInfoSidebar extends React.Component {
     switchActiveDocument(document);
   }
 
+  
 
   render() {
     const {
@@ -30,6 +46,7 @@ class DocumentInfoSidebar extends React.Component {
       return (
         <div className="menu-top__document-info" />
       );
+      
     }
 
     return (
@@ -67,8 +84,13 @@ class DocumentInfoSidebar extends React.Component {
               Trocar prova
             </DropdownToggle>
             <DropdownMenu>
-              {myLastDocumentsList && myLastDocumentsList.results.map((document, i) => (
-                <DropdownItem key={document.id} className="menu-top__dropdown-item"  onClick={() => this.editDocument(document)} >
+              
+              {myLastDocumentsList && first5Elements(myLastDocumentsList.results).map((document, i) => (
+                <DropdownItem
+                  key={document.id} 
+                  className="menu-top__dropdown-item"
+                  onClick={() => this.editDocument(document)}
+                >
                   {document.name}
                 </DropdownItem>))}
               <DropdownItem divider />
