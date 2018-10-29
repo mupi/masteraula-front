@@ -1,18 +1,3 @@
-/*MENU*/
-
-
-/*
-MasterAula - Color list
--------
-pink		    : #ed508f
-purple		    : #4d3570
-yellow		  : #f3b232
-blue		    : #0980b2
-dark blue	: #27577f
-white      : #ffffff
-grey       : #eee
-green:      : #a6d057
-*/
 
 /******CSS for navbar - top header******/
 nav a {
@@ -77,7 +62,6 @@ div#navbar, div#navbar .col-12 {
     }
 }
 
-
 html body #masteraula-nav-header .navbar-nav:first-child {
     margin-left: 0px;
 }
@@ -92,15 +76,12 @@ html body #masteraula-nav-header .navbar-nav {
     display:flex;
 }
 
-
-
-
 /******CSS for sidebar, used only with user logged******/
 html body #sidebar #sidebar-container {
     bottom: 0;
     width: $sidebar-size;
     position: absolute;
-    top: 58px;
+    top: 70px;
     padding-top: 30px;
     padding-bottom: 30px;
     overflow-x: hidden;
@@ -197,11 +178,9 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
     margin-right:  $sidebar-size-neg;
 }
 
-html body #masteraula-nav-header {
-    border: none;
-    margin-left: 0;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+
+.sidebar-main-options li.list-group-item {
+    background: $color-ma-lightgray-backg;
 }
 
 .sidebar-nav-container .list-group-item a {
@@ -218,12 +197,6 @@ html body #masteraula-nav-header {
 #sidebar-container .col-12 {
     padding-left: 0px;
     padding-right: 0px;
-}
-
-
-
-ul.sidebar-main-options.list-group {
-    margin-right: 15px;
 }
 
 /*sidebar de filters*/
@@ -268,7 +241,7 @@ li.question-category-filter div{
     line-height: 14px;
     text-decoration: none;
     padding: 11px 0px 10px 15px;
-    background: white;
+    background:  $color-ma-lightgray-backg;
 }
 
 .question-category-filter i.fa.fa-angle-left {
@@ -303,7 +276,7 @@ li.question-category-filter div{
     text-align: center;
     padding: 5px;
     background: $color-ma-green;
-    height: 58px;
+    height: 70px;
 }
 
 img.logo-in-menu {
@@ -316,45 +289,8 @@ img.logo-in-menu.no-login {
 }
 
 
-/*New SCSS with BEM style*/
-a.c_sidebar__document-link {
-    font-weight: normal;
-    color: white;
-    background-color: #53BA65;
-    border-radius:10px;
-    padding:5px;
-}
-
-a.c_sidebar__document-link:hover{
-    font-weight: bold;
-    color: $color-ma-blue;
-    text-decoration:none;
-}
-
 .c-sidebar{
-  &__document-info{
-    background-color: #0E2538;
-    border-radius:10px;
-    padding:15px;
-  }
-
-  &__document-l-buttons {
-      margin-top: 10px;
-      display: inline-block;
-  }
-
-  &__document-btn-item{
-    color: $color-ma-green;
-  }
-
-  &__document-btn-item:hover{
-    color: $color-ma-white;
-    text-decoration: none;
-  }
-
-  &__filter-selected{
-      background: $color-ma-dark-gray !important;
-      border-radius: 3px;
-      margin-top:3px;
-  }
+    &__filter-selected{
+        font-weight:bold;
+    }
 }

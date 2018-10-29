@@ -113,7 +113,7 @@ class DocumentList extends React.Component {
                       {document.questions.length}
                     </OpenDocumentModalHeader>
                     <td>
-                      <Button color="warning" onClick={() => this.editDocument(document)}>
+                      <Button color="secondary" onClick={() => this.editDocument(document)}>
                         <i className="fa fa-pencil" />
                       </Button>
                     </td>

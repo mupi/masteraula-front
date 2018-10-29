@@ -5,7 +5,30 @@
       padding: 0px 15px 15px 15px;
     }
     &__results{
-      margin-top: 20px;
+     // margin-top: 20px;
+    }
+
+    &__keywords-title{
+      font-size: 14px;
+      color: $color-ma-blue;
+      font-weight: bold;
+      margin-bottom: 3px;
+    }
+
+    &__keywords{
+      font-size: 14px;
+      font-style: italic;
+      font-weight: normal;
+      color:$color-ma-black;
+    }
+
+    &__filter-selected{
+      padding: 3px 7px;
+      border-radius: 5px;
+      margin-right: 5px;
+      background: $color-ma-dark-gray;
+      border-color: $color-ma-dark-gray;
+      color: $color-ma-white;
     }
 
     &__alert{
@@ -15,7 +38,6 @@
     }
 
     &__total-results{
-      margin-bottom: 15px;
       font-size: 14px;
       color:$color-ma-blue;
       font-weight: bold;
@@ -142,7 +164,9 @@
 }
 
 .pagination-questions{
-  padding: 0px 15px;
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .pagination-questions.row a {

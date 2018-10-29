@@ -30,9 +30,6 @@ const Sidebar = (props) => {
               </ListGroup>
               <div className="sidebar-nav-container">
                 <ListGroup className="sidebar-main-options">
-                  {/* <ListGroupItem color="secondary">
-                    <CreateDocumentModalContainer activeDocument={activeDocument} />
-                  </ListGroupItem> */}
                   <ListGroupItem color="light">
                     <Link to="/question-base/1">
                       <i className="fa fa-search btn__icon" />
