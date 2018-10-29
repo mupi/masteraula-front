@@ -132,6 +132,28 @@ function listMyDocuments(page, orderField, order) {
     .then(activeDocument => activeDocument);
 }
 
+function listMyLastDocuments(page, orderField, order) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  return fetch(`${apiUrl}/documents/my_documents/?page=${page}&order_field=${orderField}&order=${order}`, requestOptions)
+    .then(handleResponse)
+    .then(activeDocument => activeDocument);
+}
+
 // Add a question to Active Document
 function addSelectedQuestion(idDocument, idQuestion, order) {
   const requestOptions = {
@@ -232,6 +254,7 @@ const documentService = {
   createDocument,
   updateDocument,
   listMyDocuments,
+  listMyLastDocuments,
   addSelectedQuestion,
   removeSelectedQuestion,
   deleteDocument,

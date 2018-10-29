@@ -1,18 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Button, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
 
-const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId }) => (
-  <div className="menu-top__document-info">
-    <div className="menu-top__document-name-section">
-      <small className="menu-top__document-message hidden-xs">Você está editando: </small>
-      <Link className="menu-top__document-link" to="/edit-document">
-        {`${documentName}`}
-      </Link>
-    </div>
+
+class DocumentInfoSidebar extends React.Component {
+
+  componentDidMount() {
+    const {
+      listMyLastDocuments,
+    } = this.props;
+    listMyLastDocuments(1, 'date', 'desc');
+  }
+
+  editDocument(document) {
+    const { switchActiveDocument } = this.props;
+    switchActiveDocument(document);
+  }
+
+
+  render() {
+    const {
+      myLastDocumentsList, isFetchingMyLastDocuments, documentName, documentTotalQuestions, documentId, activeDocument,
+    } = this.props;
+
+    return ( 
+      <div className="menu-top__document-info">
+      <div className="menu-top__document-name-section">
+        <small className="menu-top__document-message hidden-xs">Você está editando: </small>
+        <Link className="menu-top__document-link" to="/edit-document">
+          {`${documentName}`}
+        </Link>
+      </div>
     <div className="menu-top__document-l-buttons">
       <a>
         <p className="menu-top__document-questions  btn__icon">
@@ -44,13 +65,10 @@ const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId 
           Trocar prova
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem className="menu-top__dropdown-item">
+          {activeDocument && false && myLastDocumentsList.results.map((document, i) => (
+            <DropdownItem className="menu-top__dropdown-item"  onClick={() => this.editDocument(document)} >
               Prova de Matemáticas
-            </DropdownItem>
-            <DropdownItem className="menu-top__dropdown-item">
-              Prova de Geometria
-            </DropdownItem>
-            <DropdownItem divider />
+            </DropdownItem>))}
             <DropdownItem className="menu-top__dropdown-item">
               Mais provas
             </DropdownItem>
@@ -58,8 +76,10 @@ const DocumentInfoSidebar = ({ documentName, documentTotalQuestions, documentId 
         </UncontrolledDropdown>
       </a>
     </div>
-  </div>
-);
+  </div> 
+    );
+  }
+}
 
 DocumentInfoSidebar.propTypes = {
   documentName: PropTypes.string,
