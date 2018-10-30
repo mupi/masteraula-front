@@ -1,12 +1,17 @@
 import { connect } from 'react-redux';
 import { logout } from 'actions/loginAction';
 import { toggleMenu, openSidebar } from 'actions/menuAction';
+
 import Menu from 'components/menu/Menu';
+
+// state.<reducer's name>.<property>
 
 const mapStateToProps = state => ({
   isOpen: state.menu.isOpen,
   isOpenSidebar: state.menu.isOpenSidebar,
   isLoggedIn: state.session.session,
+  activeDocument: state.document.activeDocument,
+
 });
 
 const mapDispatchToProps = dispatch => ({

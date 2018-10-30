@@ -49,6 +49,11 @@ export const LIST_MY_DOCUMENTS = 'LIST_MY_DOCUMENTS';
 export const LIST_MY_DOCUMENTS_SUCCESS = 'LIST_MY_DOCUMENTS_SUCCESS';
 export const LIST_MY_DOCUMENTS_FAILURE = 'LIST_MY_DOCUMENTS_FAILURE';
 
+// List my Last 5 Documents
+export const LIST_MY_LAST_DOCUMENTS = 'LIST_MY_LAST_DOCUMENTS';
+export const LIST_MY_LAST_DOCUMENTS_SUCCESS = 'LIST_MY_LAST_DOCUMENTS_SUCCESS';
+export const LIST_MY_LAST_DOCUMENTS_FAILURE = 'LIST_MY_LAST_DOCUMENTS_FAILURE';
+
 // Document Create Toggle Modal
 export const CREATE_DOCUMENT_TOGGLE_MODAL = 'CREATE_DOCUMENT_TOGGLE_MODAL';
 
@@ -151,6 +156,22 @@ export const listMyDocuments = (page, orderField, order) => (dispatch) => {
     .catch(error);
 };
 
+// Shown in Top Menu - Only 5 documents
+export const listMyLastDocuments = (page, orderField, order) => (dispatch) => {
+  const success = myLastDocumentsList => (
+    dispatch({ type: LIST_MY_LAST_DOCUMENTS_SUCCESS, myLastDocumentsList }));
+
+  const error = errorMessage => (
+    dispatch({ type: LIST_MY_LAST_DOCUMENTS_FAILURE, errorMessage }));
+
+  dispatch({
+    type: LIST_MY_LAST_DOCUMENTS, page, orderField, order,
+  });
+  return documentService.listMyLastDocuments(page, orderField, order)
+    .then(success)
+    .catch(error);
+};
+
 // Add Selected Question to Document
 export const addSelectedQuestion = (idDocument, idQuestion, order) => {
   function addQuestionToDocument() { return { type: ADD_SELECTED_QUESTION }; }
@@ -207,9 +228,23 @@ export const toggleModal = (modal, question) => ({
 });
 
 // Switch active document
-export const switchActiveDocument = (doc) => {
-  localStorage.setItem('activeDocument', JSON.stringify(doc));
-  return { type: SWITCH_ACTIVE_DOCUMENT, activeDocument: doc };
+export const switchActiveDocument = (doc, isRedirect = false) => {
+  function requestDocument() { return { type: FETCH_DOCUMENT }; }
+  function fetchDocumentSuccess(activeDocument) { return { type: SWITCH_ACTIVE_DOCUMENT, activeDocument }; }
+  function fetchDocumentFailure(error) { return { type: FETCH_DOCUMENT_FAILURE, error }; }
+
+  return (dispatch) => {
+    dispatch(requestDocument(doc.id));
+    return documentService.fetchDocument(doc.id).then(
+      (activeDocument) => {
+        dispatch(fetchDocumentSuccess(activeDocument));
+        localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+        if (isRedirect) history.push('/edit-document');
+      }, (error) => {
+        dispatch(fetchDocumentFailure(error));
+      },
+    );
+  };
 };
 
 // delete document from session
@@ -246,7 +281,7 @@ export const downloadDocument = (documentId, docName, answer) => {
       return 1;
     }
     dispatch(downloadSelectedDocument(documentId));
-    return documentService.downloadDocument(documentId,docName, answer)
+    return documentService.downloadDocument(documentId, docName, answer)
       .then(response => response.blob()).then((blob) => {
         FileSaver.saveAs(blob, `${docName}.docx`);
         dispatch(downloadSelectedDocumentSuccess());

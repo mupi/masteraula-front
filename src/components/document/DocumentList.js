@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Row, Col, Table, Button,
 } from 'reactstrap';
-import { history } from 'helpers/history';
 import { formatDate } from 'helpers/question';
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
 
@@ -53,7 +52,6 @@ class DocumentList extends React.Component {
   editDocument(document) {
     const { switchActiveDocument } = this.props;
     switchActiveDocument(document);
-    history.push('/edit-document');
     this.closeModal();
   }
 
@@ -113,7 +111,7 @@ class DocumentList extends React.Component {
                       {document.questions.length}
                     </OpenDocumentModalHeader>
                     <td>
-                      <Button color="warning" onClick={() => this.editDocument(document)}>
+                      <Button color="secondary" onClick={() => this.editDocument(document)}>
                         <i className="fa fa-pencil" />
                       </Button>
                     </td>

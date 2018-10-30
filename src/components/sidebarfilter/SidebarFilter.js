@@ -10,7 +10,7 @@ const SidebarFilter = ({
     toggleFilter(valueFilter, event.target.checked);
   };
 
-  const isChecked = id => (selected && selected.includes(id.toString()));
+  const isChecked = id => (selected && selected.filter(item => item.id === id).length > 0);
 
   return (
     <ListGroupItem className="question-category-filter" color="light">
@@ -20,8 +20,8 @@ const SidebarFilter = ({
       </div>
       <ListGroup className="question-single-filter">
         {filterList && filterList.map(filter => (
-          <ListGroupItem key={filter.id} color="light" className={isChecked(filter.id) ? 'c-sidebar__filter-selected': {}}>
-            <Input type="checkbox" value={filter.id} onClick={handleFilter} checked={isChecked(filter.id)} />
+          <ListGroupItem key={filter.id} color="light" className={isChecked(filter.id) ? 'c-sidebar__filter-selected' : {}}>
+            <Input type="checkbox" value={filter.id} onClick={handleFilter} checked={isChecked(filter.id)} readOnly />
             {filter.name}
           </ListGroupItem>
         ))}
