@@ -4,6 +4,7 @@ import { SubmissionError } from 'redux-form';
 import { history } from 'helpers/history';
 import { updateSession, deleteSession } from 'actions/sessionAction';
 import { deleteDocumentSession } from './documentAction';
+import { clearSelectedFilters } from './filterAction';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -38,15 +39,17 @@ export const fetchLogin = (username, password) => {
 export const logout = () => (dispatch) => {
   dispatch(deleteSession());
   dispatch(deleteDocumentSession());
+  dispatch(clearSelectedFilters());
   history.push('/');
 };
 
 export const toggleModal = (modal) => {
-  function requestToggleModal(modal) { return {  
-    type: LOGIN_TOGGLE_MODAL,
-    modal: !modal,
-  }; 
-}
+  function requestToggleModal(modal) {
+    return {
+      type: LOGIN_TOGGLE_MODAL,
+      modal: !modal,
+    };
+  }
 
   return (dispatch) => {
     dispatch(deleteSession());
