@@ -85,7 +85,7 @@ const Menu = (props) => {
                         { isLoggedIn ? menu : null }
                       </ul>
                     </div>
-                    <Col sm="8" xs="12">
+                    <Col sm="8" xs="8">
                       {activeDocument && (
                         <DocumentInfoSidebarContainer
                           documentName={activeDocument.name}
@@ -94,7 +94,6 @@ const Menu = (props) => {
                         />
                       )}
                     </Col>
-                    <NavbarToggler onClick={() => toggleMenu(isOpen)} />
                     <Collapse isOpen={isOpen} navbar className="col-xs-collapse-right  text-right col-sm-4">
                       { loggedOptions }
                     </Collapse>
