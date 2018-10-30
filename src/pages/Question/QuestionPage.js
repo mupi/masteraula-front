@@ -10,6 +10,8 @@ import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { history } from 'helpers/history';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class QuestionPage extends Component {
   componentDidMount() {
@@ -47,6 +49,7 @@ class QuestionPage extends Component {
 
     return (
       <HomeUserPage>
+        <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-question">
           <Row>
             <Button onClick={history.goBack}>
