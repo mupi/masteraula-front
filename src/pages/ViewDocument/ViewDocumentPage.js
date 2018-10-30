@@ -43,7 +43,7 @@ class ViewDocumentPage extends React.Component {
 
   render() {
     const {
-      myDocumentsList, isFetching, isDeleted, match, listMyDocuments, orderField, order,
+      myDocumentsList, isFetchingMyDocuments, isDeleted, match, listMyDocuments, orderField, order,
     } = this.props;
 
     if (isDeleted) {
@@ -75,13 +75,13 @@ class ViewDocumentPage extends React.Component {
             </Col>
           </Row>
           <Row className="pagination-my-documents" style={{ marginTop: '1em' }}>
-            {isFetching
+            {isFetchingMyDocuments
               ? (
                 <Col sm="12">
                   <Alert className="alert--warning" color="warning" fade={false}>
                     Carregando ...
                   </Alert>
-                </Col>
+                </Col> 
               ) : (
                 <Col sm="12">
                   <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
