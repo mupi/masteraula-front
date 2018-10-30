@@ -96,7 +96,7 @@ export const document = (state = initialState, action) => {
         isRemoved: null,
         isUpdated: null,
         myDocumentsList: null,
-        isFetching: true,
+        isFetchingMyDocuments: true,
         currentPage: action.page,
         error: null,
         isDeleted: false,
@@ -106,13 +106,13 @@ export const document = (state = initialState, action) => {
     case LIST_MY_DOCUMENTS_SUCCESS:
       return Object.assign({}, state, {
         myDocumentsList: action.myDocumentsList,
-        isFetching: false,
+        isFetchingMyDocuments: false,
       });
     case LIST_MY_DOCUMENTS_FAILURE:
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         myDocumentsList: null,
-        isFetching: false,
+        isFetchingMyDocuments: false,
         error: action.errorMessage,
       });
     case LIST_MY_LAST_DOCUMENTS:

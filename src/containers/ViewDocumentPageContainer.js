@@ -8,7 +8,7 @@ import { showModal, hideModal } from 'actions/modalAction';
 // state.<reducer's name>.<property>
 
 const mapStateToProps = state => ({
-  isFetching: state.document.isFetching,
+  isFetchingMyDocuments: state.document.isFetchingMyDocuments,
   myDocumentsList: state.document.myDocumentsList,
   currentPage: state.document.currentPage,
   modal: state.document.modal,
