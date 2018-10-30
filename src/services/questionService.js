@@ -34,9 +34,9 @@ function listQuestions(page, filter) {
     },
   };
 
-  const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected });
-  const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected });
-  const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected });
+  const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected.map(item => item.id) });
+  const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
+  const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
 
   const url = (search) ? `${apiUrl}/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`
