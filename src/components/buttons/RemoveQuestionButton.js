@@ -10,14 +10,16 @@ const handleRemoveQuestionButton = (e, questionId, activeDocumentId, removeSelec
   }
 };
 
-const RemoveQuestionButton = ({ questionId, activeDocumentId, removeSelectedQuestion }) => (
+const RemoveQuestionButton = ({
+  questionId, activeDocumentId, removeSelectedQuestion, label,
+}) => (
   <Button
     value={questionId}
     title="Remover questão"
     className="c-document__btn-remove-question"
     onClick={(e => handleRemoveQuestionButton(e, questionId, activeDocumentId, removeSelectedQuestion))}
   >
-    <i className="fa fa-trash" />
+    {label}
   </Button>
 );
 

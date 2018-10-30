@@ -145,6 +145,7 @@ export const document = (state = initialState, action) => {
     case ADD_SELECTED_QUESTION_SUCCESS: {
       const activeDocument = { ...state.activeDocument, questions: [...state.activeDocument.questions, action.addedQuestion] };
       localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+      toast.success(`Questão adicionada com sucesso ao documento ${activeDocument.name}`, optionsSuccess);
       return Object.assign({}, state, {
         isFetchingAddQuestion: false,
         activeDocument,

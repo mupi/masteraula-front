@@ -8,6 +8,8 @@ import QuestionList from 'components/question/QuestionList';
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import QuestionSearchFormContainer from 'containers/QuestionSearchFormContainer';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class QuestionBasePage extends React.Component {
   componentDidMount() {
@@ -52,6 +54,7 @@ class QuestionBasePage extends React.Component {
 
     return (
       <HomeUserPage showFilters>
+        <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-question-base">
           <QuestionSearchFormContainer />
           {(filter.disciplinesSelected.length > 0) || (filter.difficultiesSelected.length > 0) || (filter.teachingLevelsSelected.length > 0) ? (
