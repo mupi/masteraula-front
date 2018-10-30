@@ -120,5 +120,5 @@ function mapStateToProps(state, ownProps) {
 
 export default connect(mapStateToProps)(reduxForm({
   form: 'update_document',
-  enableReinitialize: true, 
+  enableReinitialize: true,
 })(DocumentHeader));
