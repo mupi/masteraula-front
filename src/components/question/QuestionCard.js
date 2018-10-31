@@ -104,7 +104,7 @@ const QuestionCard = (props) => {
             questionId={question.id}
             customClass="question-card__btn "
             nameButton="Adicionar"
-            activeDocument={activeDocument}
+            activeDocument={activeDocument} 
             {...props}
           />
         ) : (
@@ -112,7 +112,7 @@ const QuestionCard = (props) => {
             questionId={question.id}
             activeDocumentId={activeDocument.id}
             removeSelectedQuestion={removeSelectedQuestion}
-            label={<span><i className="fa fa-minus btn__icon" />Remover</span>}
+            label={<span><FontAwesomeIcon icon="minus" className="btn__icon"/>Remover</span>}
           />
         )}
       </CardFooter>
