@@ -52,12 +52,8 @@ class DocumentInfoSidebar extends React.Component {
     return (
       <div className="menu-top__document-info">
         <div className="menu-top__document-name-section">
-        <FontAwesomeIcon
-          icon="file-word"
-        />
-  Username
           <small className="menu-top__document-message hidden-xs">
-Você está editando: 
+          Você está editando:
             {' '}
           </small>
           <Link className="menu-top__document-link" to="/edit-document">

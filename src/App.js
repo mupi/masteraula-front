@@ -35,8 +35,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 //import 'font-awesome/css/font-awesome.min.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEnvelope, faKey, faFileWord, faThumbtack } from '@fortawesome/free-solid-svg-icons';
-library.add(faEnvelope, faKey, faFileWord, faThumbtack);
+import {
+  faEnvelope, faKey, faFileWord, faThumbtack, faPlus,
+} from '@fortawesome/free-solid-svg-icons';
+
+library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus);
 
 class App extends Component {
   constructor(props) {
