@@ -76,9 +76,13 @@ const QuestionCard = (props) => {
             </span>
           ))}
         </p>
-        <div className="question-card__pin"><FontAwesomeIcon
-          icon="thumbtack"
-        /></div>
+        {isQuestionAdded(activeDocument, question.id) ? (
+          <div className="question-card__pin">
+            <FontAwesomeIcon
+              icon="thumbtack"
+            />
+          </div>
+        ): ('')}
       </CardHeader>
 
       <CardBody className="question-card__body">
