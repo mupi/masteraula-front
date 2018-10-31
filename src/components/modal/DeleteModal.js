@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DeleteModal = ({
   closeModal, deleteAction, title, message, idDocument,
@@ -31,12 +32,12 @@ const DeleteModal = ({
 
         <div className="modal-footer modal__footer">
           <Button color="secondary" onClick={closeModal}>
-            <i className="fa fa-sign-out-alt btn__icon" />
-          Fechar
+            <FontAwesomeIcon icon="sign-out-alt" className="btn__icon" />
+            Fechar
           </Button>
           <Button className="btn--confirm" onClick={() => handleConfirm()}>
-            <i className="fa fa-check-circle btn__icon" />
-          Apagar
+            <FontAwesomeIcon icon="check-circle" className="btn__icon" />
+            Apagar
           </Button>
         </div>
       </div>

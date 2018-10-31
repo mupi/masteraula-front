@@ -4,8 +4,8 @@ import {
   Button, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const first5Elements = (myLastDocumentsList) => {
   const myLast5DocumentsList = [];
@@ -53,14 +53,14 @@ class DocumentInfoSidebar extends React.Component {
       <div className="menu-top__document-info">
         <div className="menu-top__document-name-section">
           <small className="menu-top__document-message hidden-xs">
-Você está editando:
+          Você está editando:
             {' '}
           </small>
           <Link className="menu-top__document-link" to="/edit-document">
             {`${documentName}`}
           </Link>
         </div>
-        <div className="menu-top__document-l-buttons">
+        <div className="menu-top__document-l-buttons hidden-xs">
           <p className="menu-top__document-questions  btn__icon">
             <small className="menu-top__document-message">
               Questões:
@@ -74,7 +74,7 @@ Você está editando:
           </p>
           <Link className="menu-top__document-btn-item" to="/edit-document">
             <Button className="btn-margin-right menu-top__document-button">
-              <i className="fa fa-pencil btn__icon" />
+              <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
               Editar
             </Button>
           </Link>
@@ -87,7 +87,7 @@ Você está editando:
           />
           <UncontrolledDropdown className="">
             <DropdownToggle className="menu-top__document-button" caret size="sm">
-              <i className="fa fa-refresh btn__icon" />
+              <FontAwesomeIcon icon="sync-alt" className="btn__icon" />
               Trocar prova
             </DropdownToggle>
             <DropdownMenu>

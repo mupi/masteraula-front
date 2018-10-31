@@ -9,6 +9,7 @@ import imageCard from 'assets/img/home/question-card.jpg';
 import { Link } from 'react-router-dom';
 import { isQuestionAdded, getCleanExtractStatement } from 'helpers/question';
 import QuestionAuthor from './QuestionAuthor';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const getQuoteSeparator = (i, length) => {
@@ -75,6 +76,13 @@ const QuestionCard = (props) => {
             </span>
           ))}
         </p>
+        {isQuestionAdded(activeDocument, question.id) ? (
+          <div className="question-card__pin">
+            <FontAwesomeIcon
+              icon="thumbtack"
+            />
+          </div>
+        ): ('')}
       </CardHeader>
 
       <CardBody className="question-card__body">
@@ -96,7 +104,7 @@ const QuestionCard = (props) => {
             questionId={question.id}
             customClass="question-card__btn "
             nameButton="Adicionar"
-            activeDocument={activeDocument}
+            activeDocument={activeDocument} 
             {...props}
           />
         ) : (
@@ -104,7 +112,8 @@ const QuestionCard = (props) => {
             questionId={question.id}
             activeDocumentId={activeDocument.id}
             removeSelectedQuestion={removeSelectedQuestion}
-            label={<span><i className="fa fa-minus btn__icon" />Remover</span>}
+            customClass="c-question__btn-remove-question"
+            label={<span><FontAwesomeIcon icon="minus" className="btn__icon"/>Remover</span>}
           />
         )}
       </CardFooter>

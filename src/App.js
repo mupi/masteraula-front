@@ -23,7 +23,6 @@ import {
   from 'containers';
 import { showModal, hideModal } from 'actions/modalAction';
 
-
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
 import { history } from 'helpers/history';
@@ -33,8 +32,26 @@ import ModalRoot from './ModalRoot';
 // CSS imported in a single place (here)
 import 'assets/scss/styles.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'font-awesome/css/font-awesome.min.css';
+//import 'font-awesome/css/font-awesome.min.css';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faEnvelope, faKey, faFileWord, faThumbtack,
+  faFile, faPencilAlt, faSyncAlt, faSave, faTrash,
+  faBars,
+  faPlus, faMinus,
+  faUser, faHome, faSignOutAlt,
+  faSearch, faFolder, faFileAlt, faFilter, faAngleLeft,
+  faImage, faCheck, faCheckCircle,
+  faThumbsUp,
+  faComments, faInfoCircle, faBook,
+  faSignInAlt, faClone, faExclamationCircle,
+} from '@fortawesome/free-solid-svg-icons';
+
+library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile, faPencilAlt, faSyncAlt, faBars,
+  faUser, faHome, faSignOutAlt, faSearch, faFolder, faFileAlt, faFilter, faTrash,
+  faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft,
+  faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle);
 
 class App extends Component {
   constructor(props) {

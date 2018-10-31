@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const AddQuestionButton = ({
   customClass, questionId, nameButton, toggleModal, modal, activeDocument, addSelectedQuestion,
@@ -13,7 +14,7 @@ const AddQuestionButton = ({
       toggleModal(modal, questionId);
     }
   }
-
+ 
   return (
     <Button
       value={questionId}
@@ -21,7 +22,9 @@ const AddQuestionButton = ({
       className={customClass}
       onClick={e => handleAddQuestionButton(e)}
     >
-      <i className="fa fa-plus" />
+      <FontAwesomeIcon
+          icon="plus"
+        />
       {' '}
       {nameButton}
     </Button>

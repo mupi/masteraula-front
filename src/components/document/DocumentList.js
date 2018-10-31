@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import { formatDate } from 'helpers/question';
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const OpenDocumentModalHeader = (props) => {
   const { document, openDocumentModal, children } = props;
@@ -112,7 +112,9 @@ class DocumentList extends React.Component {
                     </OpenDocumentModalHeader>
                     <td>
                       <Button color="secondary" onClick={() => this.editDocument(document)}>
-                        <i className="fa fa-pencil" />
+                        <FontAwesomeIcon
+                          icon="pencil-alt"
+                        />
                       </Button>
                     </td>
                     <td>
@@ -124,7 +126,9 @@ class DocumentList extends React.Component {
                     </td>
                     <td>
                       <Button color="danger" onClick={() => this.handleDelete(document.id, document.name)}>
-                        <i className="fa fa-trash" />
+                        <FontAwesomeIcon
+                          icon="trash"
+                        />
                       </Button>
                     </td>
                   </tr>

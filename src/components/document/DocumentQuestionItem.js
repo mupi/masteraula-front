@@ -6,6 +6,7 @@ import {
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import { getTeachingLevel, getCleanExtractStatement } from 'helpers/question';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DocumentQuestionItem = (props) => {
   const {
@@ -97,11 +98,12 @@ const DocumentQuestionItem = (props) => {
                       questionId={question.id}
                       activeDocumentId={activeDocument.id}
                       removeSelectedQuestion={removeSelectedQuestion}
-                      label={<i className="fa fa-trash" />}
+                      customClass="c-document__btn-remove-question"
+                      label={<FontAwesomeIcon icon="trash" />}
                     />) : ' ' }
                   <Link to={`/view-question/${question.id}`}>
                     <Button>
-                      <i className="fa fa-search" />
+                      <FontAwesomeIcon icon="search" />
                       {' '}
                       <span className="button-text">
                         Ver questão

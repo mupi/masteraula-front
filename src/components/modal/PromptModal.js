@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
   Button
@@ -40,11 +41,11 @@ const PromptModal = ({ closeModal, confirmAction, title, fields, onInputChange }
       </div>
       <div className="modal-footer">
         <Button color="danger" onClick={closeModal}>
-        <i className="fa fa-sign-out-alt btn__icon" />
+        <FontAwesomeIcon icon="sign-out-alt" className="btn__icon" />
         Fechar
       </Button>
       <Button color="primary" onClick={confirmAction}>
-        <i className="fa fa-check-circle btn__icon" />
+        <FontAwesomeIcon icon="check-circle" className="btn__icon" />
         Continuar
       </Button>
       </div>

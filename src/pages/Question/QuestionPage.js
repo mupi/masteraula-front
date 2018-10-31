@@ -12,6 +12,7 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { history } from 'helpers/history';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class QuestionPage extends Component {
   componentDidMount() {
@@ -94,7 +95,8 @@ class QuestionPage extends Component {
                         questionId={activeQuestion.id}
                         activeDocumentId={activeDocument.id}
                         removeSelectedQuestion={removeSelectedQuestion}
-                        label="Remover"
+                        label={<span><FontAwesomeIcon icon="minus" className="btn__icon"/>Remover</span>}
+                        customClass="c-question__btn-remove-question"
                       />
                     </Col>
                   )}
@@ -120,7 +122,7 @@ class QuestionPage extends Component {
             />
           ) : (
             <span className="btn question-card__added">
-              <i className="fa fa-check-circle btn__icon" />
+              <FontAwesomeIcon icon="check-circle" />
               Adicionada
             </span>
           )}

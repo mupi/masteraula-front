@@ -120,6 +120,6 @@ ul.header {
 
 .hidden-xs{
   @include for-tablet-landscape-bottom {
-    display: none;
+    display: none !important;
   }
 }

@@ -8,6 +8,7 @@ import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 import DocumentInfoSidebarContainer from 'containers/DocumentInfoSidebarContainer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Menu = (props) => {
   const {
@@ -18,21 +19,27 @@ const Menu = (props) => {
     <Nav className="ml-auto" navbar>
       <NavItem>
         <Link to="/question-base/1">
-          <i className="fa fa-home" />
+          <FontAwesomeIcon
+            icon="home"
+          />
           {' '}
           Página Inicial
         </Link>
       </NavItem>
       <NavItem>
         <Link to="/user-profile">
-          <i className="fa fa-user" />
+          <FontAwesomeIcon
+            icon="user"
+          />
           {' '}
           Meu Perfil
         </Link>
       </NavItem>
       <NavItem>
         <Link onClick={(e) => { e.preventDefault(); logout(); }} to="/">
-          <i className="fa fa-sign-out" />
+          <FontAwesomeIcon
+            icon="sign-out-alt"
+          />
           {' '}
           Sair
         </Link>
@@ -65,7 +72,9 @@ const Menu = (props) => {
       }
       >
         <span>
-          <i className="fa fa-bars" />
+          <FontAwesomeIcon
+            icon="bars"
+          />
         </span>
       </Button>
     </li>
@@ -85,7 +94,7 @@ const Menu = (props) => {
                         { isLoggedIn ? menu : null }
                       </ul>
                     </div>
-                    <Col sm="8" xs="12">
+                    <Col sm="8" xs="8" className="d-flex align-items-center">
                       {activeDocument && (
                         <DocumentInfoSidebarContainer
                           documentName={activeDocument.name}
@@ -94,7 +103,6 @@ const Menu = (props) => {
                         />
                       )}
                     </Col>
-                    <NavbarToggler onClick={() => toggleMenu(isOpen)} />
                     <Collapse isOpen={isOpen} navbar className="col-xs-collapse-right  text-right col-sm-4">
                       { loggedOptions }
                     </Collapse>

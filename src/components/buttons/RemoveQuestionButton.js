@@ -11,17 +11,17 @@ const handleRemoveQuestionButton = (e, questionId, activeDocumentId, removeSelec
 };
 
 const RemoveQuestionButton = ({
-  questionId, activeDocumentId, removeSelectedQuestion, label,
+  questionId, activeDocumentId, removeSelectedQuestion, label, customClass,
 }) => (
   <Button
     value={questionId}
     title="Remover questão"
-    className="c-document__btn-remove-question"
+    className={customClass}
     onClick={(e => handleRemoveQuestionButton(e, questionId, activeDocumentId, removeSelectedQuestion))}
   >
     {label}
   </Button>
-);
+); 
 
 RemoveQuestionButton.propTypes = {
   questionId: PropTypes.number,

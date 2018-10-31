@@ -67,6 +67,12 @@
       max-width: 100%;
     }
 
+    &__btn-remove-question{
+      background: $color-ma-red !important;
+      color: $color-ma-white;
+      border: 1px solid  $color-ma-red;
+    }
+
   /*  &__learning-object{
 
     }*/
