@@ -147,7 +147,6 @@ ViewDocumentPage.propTypes = {
   }).isRequired,
   listMyDocuments: PropTypes.func.isRequired,
   myDocumentsList: PropTypes.shape(),
-  isFetchingMyDocuments: PropTypes.bool.isRequired,
   orderField: PropTypes.string,
   order: PropTypes.string,
 };
