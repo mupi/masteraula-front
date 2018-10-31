@@ -8,6 +8,7 @@ import imageCard from 'assets/img/home/question-card.jpg';
 import { Link } from 'react-router-dom';
 import { isQuestionAdded, getCleanExtractStatement } from 'helpers/question';
 import QuestionAuthor from './QuestionAuthor';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const getQuoteSeparator = (i, length) => {
@@ -73,6 +74,9 @@ const QuestionCard = (props) => {
             </span>
           ))}
         </p>
+        <div className="question-card__pin"><FontAwesomeIcon
+          icon="thumbtack"
+        /></div>
       </CardHeader>
 
       <CardBody className="question-card__body">

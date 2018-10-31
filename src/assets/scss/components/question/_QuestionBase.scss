@@ -102,6 +102,14 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.125);
     }
 
+    &__pin{
+      color: $color-ma-blue;
+      font-size: 25px;
+      position: absolute;
+      right: 5px;
+      top: -10px;
+    }
+
     &__info-section-item--italic{
       font-style: italic;
     }
