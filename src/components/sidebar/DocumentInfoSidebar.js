@@ -43,11 +43,11 @@ class DocumentInfoSidebar extends React.Component {
       myLastDocumentsList, isFetchingMyLastDocuments, documentName, documentTotalQuestions, documentId,
     } = this.props;
 
-    if (isFetchingMyLastDocuments) {
+   /* if (isFetchingMyLastDocuments) {
       return (
         <div className="menu-top__document-info" />
       );
-    }
+    }*/
 
     return (
       <div className="menu-top__document-info">

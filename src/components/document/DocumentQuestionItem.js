@@ -72,8 +72,8 @@ const DocumentQuestionItem = (props) => {
                 <p className="c-document__question-info-row">
                   Níveis de Ensino:
                   {' '}
-                  {question.teaching_levels && question.teaching_levels.map((level, i) => (
-                    <span key={i} className="c-document__question-info-detail c-document__question-info-detail--green">
+                  {question.teaching_levels && question.teaching_levels.map(level => (
+                    <span key={level.id} className="c-document__question-info-detail c-document__question-info-detail--green">
                       {level.name}
                     </span>
                   ))}
@@ -81,8 +81,8 @@ const DocumentQuestionItem = (props) => {
                 <p className="c-document__question-info-row">
                   Disciplinas:
                   {' '}
-                  {question.disciplines && question.disciplines.map((discipline, i) => (
-                    <span key={i} className="c-document__question-info-detail c-document__question-info-detail--pink">
+                  {question.disciplines && question.disciplines.map(discipline => (
+                    <span key={discipline.id} className="c-document__question-info-detail c-document__question-info-detail--pink">
                       {discipline.name}
                     </span>
                   ))}
@@ -97,6 +97,7 @@ const DocumentQuestionItem = (props) => {
                       questionId={question.id}
                       activeDocumentId={activeDocument.id}
                       removeSelectedQuestion={removeSelectedQuestion}
+                      label={<i className="fa fa-trash" />}
                     />) : ' ' }
                   <Link to={`/view-question/${question.id}`}>
                     <Button>

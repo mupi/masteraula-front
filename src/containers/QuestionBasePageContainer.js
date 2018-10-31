@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import QuestionBasePage from 'pages/QuestionBase/QuestionBasePage';
 import { listQuestions } from 'actions/questionAction';
-import { toggleModal, addSelectedQuestion } from 'actions/documentAction';
+import { toggleModal, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
 import {
   addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, removeSelectedDisciplineFilter,
   addSelectedDifficultyFilter, removeSelectedDifficultyFilter, removeSelectedTeachingLevelFilter,
@@ -45,6 +45,7 @@ const mapDispatchToProps = dispatch => ({
   toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
   toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
+  removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
 });
 
 const QuestionBasePageContainer = connect(

@@ -4,6 +4,7 @@ import {
   Button, Card, CardFooter, CardImg, CardBody, CardHeader,
 } from 'reactstrap';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
+import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import imageCard from 'assets/img/home/question-card.jpg';
 import { Link } from 'react-router-dom';
 import { isQuestionAdded, getCleanExtractStatement } from 'helpers/question';
@@ -21,6 +22,7 @@ const getQuoteSeparator = (i, length) => {
 const QuestionCard = (props) => {
   const {
     question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter,
+    removeSelectedQuestion,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
   return (
@@ -102,10 +104,12 @@ const QuestionCard = (props) => {
             {...props}
           />
         ) : (
-          <span className="btn question-card__added">
-            <i className="fa fa-check-circle btn__icon" />
-            Adicionada
-          </span>
+          <RemoveQuestionButton
+            questionId={question.id}
+            activeDocumentId={activeDocument.id}
+            removeSelectedQuestion={removeSelectedQuestion}
+            label={<span><i className="fa fa-minus btn__icon" />Remover</span>}
+          />
         )}
       </CardFooter>
     </Card>

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ViewDocumentPage from 'pages/ViewDocument/ViewDocumentPage';
 import {
-  listMyDocuments, switchActiveDocument, fetchPreviewDocument, deleteDocument,
+  listMyDocuments, switchActiveDocument, fetchPreviewDocument, deleteDocument, listMyLastDocuments,
 } from 'actions/documentAction';
 import { showModal, hideModal } from 'actions/modalAction';
 
@@ -30,7 +30,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(showModal({ modalProps, modalType }));
   },
   deleteDocument: idDocument => dispatch(deleteDocument(idDocument)),
-});
+  listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
+
+}); 
 
 const ViewDocumentPagePageContainer = connect(
   mapStateToProps,

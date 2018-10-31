@@ -2,6 +2,7 @@ import QuestionHeader from 'components/question/QuestionHeader';
 import QuestionContent from 'components/question/QuestionContent';
 import QuestionInfo from 'components/question/QuestionInfo';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
+import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import {
   Alert, Container, Row, Col, Button,
 } from 'reactstrap';
@@ -9,6 +10,8 @@ import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { history } from 'helpers/history';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class QuestionPage extends Component {
   componentDidMount() {
@@ -19,6 +22,7 @@ class QuestionPage extends Component {
   render() {
     const {
       activeQuestion, isFetching, rating, error, onRate, toggleModal, modal, activeDocument, addSelectedQuestion,
+      removeSelectedQuestion,
     } = this.props;
 
     if (isFetching) {
@@ -45,6 +49,7 @@ class QuestionPage extends Component {
 
     return (
       <HomeUserPage>
+        <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-question">
           <Row>
             <Button onClick={history.goBack}>
@@ -85,10 +90,12 @@ class QuestionPage extends Component {
                           {activeDocument.name}
                         </strong>
                       </h6>
-                      <span className="btn question-card__added">
-                        <i className="fa fa-check-circle btn__icon" />
-                          Adicionada
-                      </span>
+                      <RemoveQuestionButton
+                        questionId={activeQuestion.id}
+                        activeDocumentId={activeDocument.id}
+                        removeSelectedQuestion={removeSelectedQuestion}
+                        label="Remover"
+                      />
                     </Col>
                   )}
                 </Row>
