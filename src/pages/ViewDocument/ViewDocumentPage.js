@@ -38,6 +38,8 @@ class ViewDocumentPage extends React.Component {
     if ((match.params.page !== prevProps.match.params.page)) {
       listMyDocuments(parseInt(match.params.page, 10), orderField, order);
     }
+    console.log(' en view document page');
+
   }
 
 
