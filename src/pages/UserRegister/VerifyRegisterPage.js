@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Container, Row, Col, Alert, Button,
 } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 class VerifyRegisterPage extends React.Component {
@@ -17,7 +18,7 @@ class VerifyRegisterPage extends React.Component {
           {this.props.success && (
           <Alert color="success" className="text-center">
             <p className="alert__message">
-              <i className="fa fa-sign-in" />
+              <FontAwesomeIcon icon="sign-in-alt" />
               {' '}
               Parabéns! Seu cadastro foi ativado com sucesso.
             </p>
@@ -27,7 +28,7 @@ class VerifyRegisterPage extends React.Component {
           {this.props.error && (
           <Alert color="danger" className="text-center">
             <p>
-              <i className="fa fa-exclamation-circle " />
+              <FontAwesomeIcon icon="exclamation-circle" />
               {' '}
               Link inválido!
             </p>

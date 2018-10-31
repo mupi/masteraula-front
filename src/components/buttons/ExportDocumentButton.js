@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ExportDocumentButton = ({
   documentId, color, text, downloadDocument, documentName, documentTotalQuestions, hideModal, showModal, styleCustomize,
@@ -44,7 +44,7 @@ const ExportDocumentButton = ({
 
   return (
     <Button color={color} onClick={handleClick} className={styleCustomize}>
-      <i className={text ? 'fa fa-download btn__icon' : 'fa fa-download'} />
+      {text ? <FontAwesomeIcon icon="file-word" className="btn__icon"/> : <FontAwesomeIcon icon="file-word" />}
       {text}
     </Button>
   );

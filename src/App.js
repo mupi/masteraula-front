@@ -45,12 +45,13 @@ import {
   faImage, faCheck, faCheckCircle,
   faThumbsUp,
   faComments, faInfoCircle, faBook,
+  faSignInAlt, faClone, faExclamationCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile, faPencilAlt, faSyncAlt, faBars,
   faUser, faHome, faSignOutAlt, faSearch, faFolder, faFileAlt, faFilter, faTrash,
-  faImage, faCheck, faCheckCircle, faSave,faThumbsUp, faAngleLeft,
-  faComments, faInfoCircle, faBook);
+  faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft,
+  faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle);
 
 class App extends Component {
   constructor(props) {
