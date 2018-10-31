@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ListGroup, Alert, Button } from 'reactstrap';
 import SidebarFilter from 'components/sidebarfilter/SidebarFilter';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const filters = {
   difficultyLevels: [
@@ -31,7 +32,10 @@ class SidebarFilters extends Component {
       return (
         <ListGroup className="question-all-filters">
           <h6>
-            <i className="fa fa-filter" />
+            <FontAwesomeIcon
+              className="btn__icon"
+              icon="filter"
+            />
             {' Filtros'}
           </h6>
           <Alert className="alert--warning" color="warning">
@@ -56,7 +60,10 @@ class SidebarFilters extends Component {
 
       <ListGroup className="question-all-filters">
         <h6>
-          <i className="fa fa-filter" />
+          <FontAwesomeIcon
+            className="btn__icon"
+            icon="filter"
+          />
           {' Filtros'}
         </h6>
         {filter.disciplinesSelected.length > 0 || filter.teachingLevelsSelected.length > 0

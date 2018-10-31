@@ -8,7 +8,7 @@ import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
 
 import CreateDocumentModalContainer from 'containers/CreateDocumentModalContainer';
 import FilterContainer from 'containers/FilterContainer';
-// import DocumentInfoSidebar from './DocumentInfoSidebar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Sidebar = (props) => {
@@ -32,19 +32,28 @@ const Sidebar = (props) => {
                 <ListGroup className="sidebar-main-options">
                   <ListGroupItem color="light">
                     <Link to="/question-base/1">
-                      <i className="fa fa-search btn__icon" />
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="search"
+                      />
                       Banco de questões
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">
                     <Link to="/documents/1">
-                      <i className="fa fa-folder-open btn__icon" />
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="folder"
+                      />
                       Gerenciar minhas provas
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">
                     <Link to="#">
-                      <i className="fa fa-folder-open btn__icon" />
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="folder"
+                      />
                       Gerenciar meus cabeçalhos
                     </Link>
                   </ListGroupItem>

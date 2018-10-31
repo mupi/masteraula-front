@@ -40,10 +40,11 @@ import {
   faFile, faPencilAlt, faSyncAlt, faBars,
   faPlus, faMinus,
   faUser, faHome, faSignOutAlt,
+  faSearch, faFolder, faFileAlt, faFilter,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile, faPencilAlt, faSyncAlt, faBars,
-  faUser, faHome, faSignOutAlt);
+  faUser, faHome, faSignOutAlt, faSearch, faFolder, faFileAlt, faFilter);
 
 class App extends Component {
   constructor(props) {
