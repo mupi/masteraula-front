@@ -3,6 +3,7 @@ import {
   Button, Form, FormGroup, Alert, Row, Col, Input,
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const renderField = ({
   input,
@@ -61,9 +62,9 @@ const RedefinePassword = (props) => {
   return (
     <div className="c-redefine-password">
       <h3>
-        <i className="fa fa-lock" />
+        <FontAwesomeIcon icon="lock" />
         {' '}
-Mudar sua senha
+        Mudar sua senha
       </h3>
       <Row className="justify-content-center">
         <Col sm="12" xs="12">

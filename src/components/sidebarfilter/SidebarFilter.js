@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListGroup, ListGroupItem, Input } from 'reactstrap';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SidebarFilter = ({
   name, filterList, toggleFilter, selected,
@@ -16,7 +16,7 @@ const SidebarFilter = ({
     <ListGroupItem className="question-category-filter" color="light">
       <div>
         {name}
-        <i className="fa fa-angle-left" />
+        <span className="question-category-filter__icon-toogle"><FontAwesomeIcon icon="angle-left" /></span>
       </div>
       <ListGroup className="question-single-filter">
         {filterList && filterList.map(filter => (

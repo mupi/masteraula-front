@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import DocumentQuestionItem from 'components/document/DocumentQuestionItem';
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
 import documentLogo from 'assets/img/home/coruja-avatar.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
   Row, Col, Button, Label, Alert,
@@ -50,7 +51,7 @@ const DocumentModal = ({
           </div>
           <div>
             <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
-              <i className="fa fa-pencil btn__icon" />
+              <FontAwesomeIcon  icon="pencil-alt" className="btn__icon"/>
               <span className="button-text">
                 Editar
               </span>
@@ -116,28 +117,28 @@ const DocumentModal = ({
             {document && document.student_indicator
               ? (
                 <span className="c-document-modal__header-label--check btn__icon">
-                  <i className="fa fa-check" />
+                  <FontAwesomeIcon  icon="check"/>
                   Nome Aluno
                   {' '}
                 </span>) : ''}
             {document && document.class_indicator
               ? (
                 <span className="c-document-modal__header-label--check btn__icon">
-                  <i className="fa fa-check" />
+                  <FontAwesomeIcon  icon="check"/>
                   Turma
                   {' '}
                 </span>) : ''}
             {document && document.date_indicator
               ? (
                 <span className="c-document-modal__header-label--check btn__icon">
-                  <i className="fa fa-check" />
+                  <FontAwesomeIcon  icon="check"/>
                   Data
                   {' '}
                 </span>) : ''}
             {document && document.score_indicator
               ? (
-                <span className="c-document-modal__header-label--check">
-                  <i className="fa fa-check" />
+                <span className="c-document-modal__header-label--check btn__icon">
+                  <FontAwesomeIcon  icon="check"/>
                   Nota
                   {' '}
                 </span>) : ''}
@@ -148,7 +149,7 @@ const DocumentModal = ({
         ))}
         <div className="modal__footer modal-footer">
           <button type="button" className="btn btn-secondary" onClick={closeModal}>
-            <i className="fa fa-sign-out btn__icon" />
+            <FontAwesomeIcon icon="sign-out-alt" className="btn__icon" />
             Fechar
           </button>
         </div>

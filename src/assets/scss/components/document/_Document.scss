@@ -132,14 +132,8 @@
     }
 
     &__btn-remove-question{
-    //  padding: 0px;
-      //line-height: 0px;
-      background: $color-ma-red;
-   //   width: 40px;
-   //   height: 40px;
+      background: $color-ma-red !important;
       color: $color-ma-white;
-      //font-size: 21px;
-     // border-radius: 25px;
       border: 1px solid  $color-ma-red;
       margin-right: 5px;
     }

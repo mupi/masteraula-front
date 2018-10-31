@@ -112,6 +112,7 @@ const QuestionCard = (props) => {
             questionId={question.id}
             activeDocumentId={activeDocument.id}
             removeSelectedQuestion={removeSelectedQuestion}
+            customClass="c-question__btn-remove-question"
             label={<span><FontAwesomeIcon icon="minus" className="btn__icon"/>Remover</span>}
           />
         )}

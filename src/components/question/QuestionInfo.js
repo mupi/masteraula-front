@@ -7,6 +7,7 @@ import DisciplineList from 'components/disciplines/DisciplineList';
 import DescriptorList from 'components/descriptors/DescriptorList';
 import TagList from 'components/tags/TagList';
 import { getTeachingLevel } from 'helpers/question';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import QuestionAuthor from './QuestionAuthor';
 
@@ -14,7 +15,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
   <Container className="question-information">
     <Row className="c-question__tittle-section">
       <h4>
-        <i className="fa fa-info-circle" />
+        <FontAwesomeIcon icon="info-circle" />
         {' '}
           Informação da Questão
       </h4>

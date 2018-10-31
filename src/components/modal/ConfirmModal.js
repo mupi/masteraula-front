@@ -5,6 +5,7 @@ import {
   Modal, ModalHeader, ModalBody, ModalFooter, Button,
 }
   from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ConfirmModal = ({
    closeModal, confirmAction, title, message,
@@ -21,12 +22,14 @@ const ConfirmModal = ({
     <div className="modal-body">
       <p>{message}</p>
       <div className="modal__footer modal-footer">
-      <button type="button" className="btn btn-secondary" onClick={closeModal}><i className="fa fa-sign-out btn__icon" />
-      Fechar</button>
-      <button color="primary" className="btn--confirm btn btn-secondary" onClick={confirmAction}>
-        <i className="fa fa-check-circle btn__icon" />
-        Continuar
-      </button>
+        <button type="button" className="btn btn-secondary" onClick={closeModal}>
+          <FontAwesomeIcon icon="sign-out-alt" className="btn__icon" />
+          Fechar
+        </button>
+        <button color="primary" className="btn--confirm btn btn-secondary" onClick={confirmAction}>
+          <FontAwesomeIcon icon="check-circle" className="btn__icon" />
+          Continuar
+        </button>
     </div>
     </div>
     

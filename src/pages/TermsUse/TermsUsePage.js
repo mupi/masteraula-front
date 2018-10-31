@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { Container } from 'reactstrap';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const TermsUsePage = ({ date_update = '08 de outubro de 2018' }) => (
   <div className="l-site-masteraula__public-home c-terms-use middle-box">
     <Container>
       <h3>
-        <i className="fa fa-thumbs-up" />
+        <FontAwesomeIcon icon="thumbs-up" />
         {' '}
         Damos boas-vindas à plataforma Masteraula.
       </h3>

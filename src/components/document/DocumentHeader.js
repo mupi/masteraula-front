@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {
-  Row, Container, Col, Label, Button
+  Row, Container, Col, Label, Button,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Field, reduxForm, Form } from 'redux-form';
 import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 import documentLogo from 'assets/img/home/coruja-avatar.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class DocumentHeader extends Component {
   fileSelectedHandler= () => {
@@ -34,8 +35,11 @@ class DocumentHeader extends Component {
               <Col md="2" xs="12" className="text-center c-document__logo">
                 <Label for="upload-logo" className="upload-logo">
                   <span className="hidden">
-                    <i className="fa fa-picture-o" />
-                      Enviar logo
+                    <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="image"
+                    />
+                    Enviar logo
                   </span>
                   <div className="thumbnail">
                     <img src={documentLogo} alt="logo-prova" />
@@ -98,7 +102,10 @@ Aluno
             <Row className="c-document__main-buttons text-center">
               <Col>
                 <Button type="submit" title="Salvar cabeçalho" className="btn-secondary btn-margin-right">
-                  <i className="fa fa-save btn__icon" />
+                  <FontAwesomeIcon
+                    className="btn__icon"
+                    icon="save"
+                  />
                   <span>
                     Salvar
                   </span>

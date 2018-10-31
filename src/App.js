@@ -37,14 +37,20 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faEnvelope, faKey, faFileWord, faThumbtack,
-  faFile, faPencilAlt, faSyncAlt, faBars,
+  faFile, faPencilAlt, faSyncAlt, faSave, faTrash,
+  faBars,
   faPlus, faMinus,
   faUser, faHome, faSignOutAlt,
-  faSearch, faFolder, faFileAlt, faFilter,
+  faSearch, faFolder, faFileAlt, faFilter, faAngleLeft,
+  faImage, faCheck, faCheckCircle,
+  faThumbsUp,
+  faComments, faInfoCircle, faBook,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile, faPencilAlt, faSyncAlt, faBars,
-  faUser, faHome, faSignOutAlt, faSearch, faFolder, faFileAlt, faFilter);
+  faUser, faHome, faSignOutAlt, faSearch, faFolder, faFileAlt, faFilter, faTrash,
+  faImage, faCheck, faCheckCircle, faSave,faThumbsUp, faAngleLeft,
+  faComments, faInfoCircle, faBook);
 
 class App extends Component {
   constructor(props) {

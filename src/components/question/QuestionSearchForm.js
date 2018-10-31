@@ -3,7 +3,7 @@ import { Field, reduxForm, Form } from 'redux-form';
 import {
   InputGroup, InputGroupAddon, Button, Row, Col,
 } from 'reactstrap';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const QuestionSearchForm = (props) => {
   const {
@@ -27,7 +27,7 @@ const QuestionSearchForm = (props) => {
           />
           <InputGroupAddon addonType="prepend">
             <Button type="submit">
-              <i className="fa fa-search btn__icon"/>
+              <FontAwesomeIcon icon="search" className="btn__icon"/>
               Pesquisar
             </Button>
           </InputGroupAddon>

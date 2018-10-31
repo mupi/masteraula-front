@@ -74,7 +74,7 @@ class DocumentInfoSidebar extends React.Component {
           </p>
           <Link className="menu-top__document-btn-item" to="/edit-document">
             <Button className="btn-margin-right menu-top__document-button">
-              <i className="fa fa-pencil btn__icon" />
+              <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
               Editar
             </Button>
           </Link>
@@ -87,7 +87,7 @@ class DocumentInfoSidebar extends React.Component {
           />
           <UncontrolledDropdown className="">
             <DropdownToggle className="menu-top__document-button" caret size="sm">
-              <i className="fa fa-refresh btn__icon" />
+              <FontAwesomeIcon icon="sync-alt" className="btn__icon" />
               Trocar prova
             </DropdownToggle>
             <DropdownMenu>
