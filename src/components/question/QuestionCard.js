@@ -104,7 +104,7 @@ const QuestionCard = (props) => {
             questionId={question.id}
             activeDocumentId={activeDocument.id}
             removeSelectedQuestion={removeSelectedQuestion}
-            label="Remover"
+            label={<span><i className="fa fa-minus btn__icon" />Remover</span>}
           />
         )}
       </CardFooter>

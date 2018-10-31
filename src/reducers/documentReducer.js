@@ -167,7 +167,7 @@ export const document = (state = initialState, action) => {
       const newQuestionsInDocument = state.activeDocument.questions.filter(item => item.question.id !== action.idRemovedQuestion);
       const activeDocument = { ...state.activeDocument, questions: newQuestionsInDocument };
       localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
-      toast.success('Questão removida com sucesso', optionsSuccess);
+      toast.success(`Questão removida com sucesso do documento ${activeDocument.name}`, optionsSuccess);
       return {
         isFetchingRemoveQuestion: false,
         isRemoved: true,
