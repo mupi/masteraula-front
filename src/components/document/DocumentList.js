@@ -67,7 +67,7 @@ class DocumentList extends React.Component {
       deleteAction: deleteDocument,
     }, 'delete');
   }
-
+ 
   render() {
     const { documents } = this.props;
     return (

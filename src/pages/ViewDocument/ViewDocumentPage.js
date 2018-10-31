@@ -33,13 +33,14 @@ class ViewDocumentPage extends React.Component {
 
   componentDidUpdate(prevProps) {
     const {
-      match, listMyDocuments, orderField, order,
+      match, listMyDocuments, orderField, order, listMyLastDocuments,
     } = this.props;
     if ((match.params.page !== prevProps.match.params.page)) {
       listMyDocuments(parseInt(match.params.page, 10), orderField, order);
     }
-  }
 
+    listMyLastDocuments(1, 'date', 'desc');
+  }
 
   render() {
     const {
@@ -147,7 +148,6 @@ ViewDocumentPage.propTypes = {
   }).isRequired,
   listMyDocuments: PropTypes.func.isRequired,
   myDocumentsList: PropTypes.shape(),
-  isFetching: PropTypes.bool.isRequired,
   orderField: PropTypes.string,
   order: PropTypes.string,
 };

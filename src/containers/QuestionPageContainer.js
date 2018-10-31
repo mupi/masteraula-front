@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import QuestionPage from 'pages/Question/QuestionPage';
 import { fetchQuestion, rateQuestion } from 'actions/questionAction';
-import { toggleModal, addSelectedQuestion } from 'actions/documentAction';
+import { toggleModal, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
 
 const mapStateToProps = state => ({
   isFetching: state.question.isFetching,
@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
   onRate: rating => dispatch(rateQuestion(rating)),
   toggleModal: (modal, idQuestion) => dispatch(toggleModal(modal, idQuestion)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
-
+  removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
 });
 
 const QuestionPageContainer = connect(
