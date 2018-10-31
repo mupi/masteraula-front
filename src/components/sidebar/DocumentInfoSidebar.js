@@ -60,7 +60,7 @@ Você está editando:
             {`${documentName}`}
           </Link>
         </div>
-        <div className="menu-top__document-l-buttons">
+        <div className="menu-top__document-l-buttons hidden-xs">
           <p className="menu-top__document-questions  btn__icon">
             <small className="menu-top__document-message">
               Questões:

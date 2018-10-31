@@ -33,7 +33,7 @@ import ModalRoot from './ModalRoot';
 // CSS imported in a single place (here)
 import 'assets/scss/styles.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'font-awesome/css/font-awesome.min.css';
+//import 'font-awesome/css/font-awesome.min.css';
 
 
 class App extends Component {
