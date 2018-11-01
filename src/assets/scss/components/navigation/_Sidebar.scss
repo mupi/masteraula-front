@@ -86,6 +86,11 @@ html body #sidebar #sidebar-container {
     padding-bottom: 30px;
     overflow-x: hidden;
 
+    @include for-tablet-landscape-bottom{
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
 }
 
 html body #sidebar {
@@ -112,10 +117,7 @@ html body #sidebar {
 
 
 
-/*list of options in sidebar*/
-ul.list-group {
-    margin-top: 25px;
-}
+
 
 /* Why so many classes for 1 property*/
 .visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {
@@ -267,6 +269,7 @@ li.question-category-filter div{
     padding: 5px;
     background: $color-ma-green;
     height: 70px;
+    
 }
 
 img.logo-in-menu {
@@ -291,16 +294,68 @@ img.logo-in-menu.no-login {
 
     &__user-avatar{
         font-size:35px;
-        margin-bottom: 5px;
+    }
+
+    &__user-dropdown{
+        font-size: 13px;
+
+        button{
+            background: transparent;
+            border: transparent;
+        }
+
+        .show button{
+            background: transparent;
+            border: transparent;
+        }
+
+        button:hover{
+            background: transparent;
+            border: transparent;
+        }
+
+    }
+
+    &__user-dropdown-item{
+        font-size: 13px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+
+        a{
+            color: #212529;
+        
+            &:hover{
+                color: #212529;
+            }
+        }
+    }
+
+    &__user-dropdown-toogle{
     }
 
     &__link-my-profile{
         color: $color-ma-white;
-        font-size:14px;
 
         &:hover{
             color:$color-ma-white;
             text-decoration: none;
         }
     }
+
+    
+}
+
+/*list of options in sidebar*/
+#sidebar-container ul.list-group {
+    margin-top: 25px;
+
+    @include for-tablet-landscape-bottom{
+        margin-top:10px !important;
+    }
+}
+
+
+button.c-sidebar__user-dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
+    background: transparent;
+    border: transparent;
 }

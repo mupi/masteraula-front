@@ -12,9 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Sidebar = (props) => {
-  const { showFilters, activeDocument, user } = props;
-  console.log("hola sidebar");
-  console.log(user);
+  const { showFilters, activeDocument, user, logout } = props;
+
   return ( 
     <div id="sidebar">
       <div className="logo-top-sidebar">
@@ -23,24 +22,36 @@ const Sidebar = (props) => {
       <div id="sidebar-container">
         <div className="container-fluid">
           <Row>
-            <Col xs="12"className="c-sidebar__user-info-section">
+            <Col xs="12" className="c-sidebar__user-info-section visible-xs">
               <div className="c-sidebar__user-avatar">
                 <FontAwesomeIcon icon="user-circle"/>
               </div>
-              <UncontrolledDropdown>
-                <DropdownToggle caret size="sm">
+              <UncontrolledDropdown className="c-sidebar__user-dropdown">
+                <DropdownToggle caret size="sm" className="c-sidebar__user-dropdown-toggle">
                   {user.name}
                 </DropdownToggle>
-                  <DropdownMenu>
-                      <DropdownItem><Link to="/user-profile" className="c-sidebar__link-my-profile">Meu Perfil</Link></DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem>Sair</DropdownItem>
-                    </DropdownMenu>
-                </UncontrolledDropdown>
+                <DropdownMenu>
+                  <DropdownItem className="c-sidebar__user-dropdown-item">
+                    <Link to="/user-profile" className="c-sidebar__link-my-profile">
+                      <FontAwesomeIcon icon="user" />
+                      {' '}
+                      Meu Perfil
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem divider/>
+                  <DropdownItem className="c-sidebar__user-dropdown-item">
+                    <Link className="c-sidebar__link-my-profile" onClick={(e) => { e.preventDefault(); logout(); }} to="/">
+                      <FontAwesomeIcon icon="sign-out-alt" />
+                      {' '}
+                      Sair
+                    </Link>
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
             </Col>
 
             <Col xs="12">
-              <ListGroup className="sidebar-main-options">
+              <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
                 <ListGroupItem color="light">
                   <CreateDocumentModalContainer activeDocument={activeDocument} />
                 </ListGroupItem>
