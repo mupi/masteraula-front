@@ -17,7 +17,7 @@ const Menu = (props) => {
 
   const loggedOptions = (
     <Nav className="ml-auto" navbar>
-      <NavItem>
+      <NavItem className="hidden">
         <Link to="/question-base/1">
           <FontAwesomeIcon
             icon="home"
@@ -49,7 +49,7 @@ const Menu = (props) => {
 
   const notLoggedOptions = (
     <Nav className="ml-auto" navbar>
-      <NavItem>
+      <NavItem className="hidden">
         <Link exact="true" to="/">
           Página Inicial
         </Link>
@@ -94,7 +94,7 @@ const Menu = (props) => {
                         { isLoggedIn ? menu : null }
                       </ul>
                     </div>
-                    <Col sm="8" xs="8" className="d-flex align-items-center">
+                    <Col sm="8" xs="10" className="d-flex align-items-center menu-top__document-section">
                       {activeDocument && (
                         <DocumentInfoSidebarContainer
                           documentName={activeDocument.name}

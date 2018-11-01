@@ -57,8 +57,12 @@ class DocumentInfoSidebar extends React.Component {
             {' '}
           </small>
           <Link className="menu-top__document-link" to="/edit-document">
-            {`${documentName}`}
+            {`${documentName}`} {' '}
+            <span className="visible-xs menu-top__xs-document-number-questions">
+              {` (${documentTotalQuestions})`}
+            </span>
           </Link>
+          
         </div>
         <div className="menu-top__document-l-buttons hidden-xs">
           <p className="menu-top__document-questions  btn__icon">
