@@ -117,9 +117,17 @@ ul.header {
     width: 100%;
 }
 
-
+//Show elements only in web version
 .hidden-xs{
   @include for-tablet-landscape-bottom {
     display: none !important;
+  }
+}
+
+//Show elements only in mobile version
+.visible-xs {
+  display: none !important;
+  @include for-tablet-landscape-bottom{
+        display: block !important;
   }
 }

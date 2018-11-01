@@ -40,7 +40,7 @@ import {
   faFile, faPencilAlt, faSyncAlt, faSave, faTrash,
   faBars,
   faPlus, faMinus,
-  faUser, faHome, faSignOutAlt,
+  faUser, faHome, faSignOutAlt, faUserCircle,
   faSearch, faFolder, faFileAlt, faFilter, faAngleLeft,
   faImage, faCheck, faCheckCircle,
   faThumbsUp,
@@ -49,7 +49,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile, faPencilAlt, faSyncAlt, faBars,
-  faUser, faHome, faSignOutAlt, faSearch, faFolder, faFileAlt, faFilter, faTrash,
+  faUser, faHome, faSignOutAlt, faUserCircle, faSearch, faFolder, faFileAlt, faFilter, faTrash,
   faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft,
   faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle);
 

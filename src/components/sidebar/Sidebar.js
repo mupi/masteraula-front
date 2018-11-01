@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Row, Col, ListGroup, ListGroupItem,
+  Row, Col, ListGroup, ListGroupItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -12,9 +12,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Sidebar = (props) => {
-  const { showFilters, activeDocument } = props;
-
-  return (
+  const { showFilters, activeDocument, user } = props;
+  console.log("hola sidebar");
+  console.log(user);
+  return ( 
     <div id="sidebar">
       <div className="logo-top-sidebar">
         <img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" />
@@ -22,6 +23,22 @@ const Sidebar = (props) => {
       <div id="sidebar-container">
         <div className="container-fluid">
           <Row>
+            <Col xs="12"className="c-sidebar__user-info-section">
+              <div className="c-sidebar__user-avatar">
+                <FontAwesomeIcon icon="user-circle"/>
+              </div>
+              <UncontrolledDropdown>
+                <DropdownToggle caret size="sm">
+                  {user.name}
+                </DropdownToggle>
+                  <DropdownMenu>
+                      <DropdownItem><Link to="/user-profile" className="c-sidebar__link-my-profile">Meu Perfil</Link></DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem>Sair</DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
+            </Col>
+
             <Col xs="12">
               <ListGroup className="sidebar-main-options">
                 <ListGroupItem color="light">
