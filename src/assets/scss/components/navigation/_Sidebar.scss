@@ -322,10 +322,10 @@ img.logo-in-menu.no-login {
         padding-bottom: 0px;
 
         a{
-            color: #212529;
+            color: $color-ma-black-dropdown;
         
             &:hover{
-                color: #212529;
+                color: $color-ma-black-dropdown;
             }
         }
     }

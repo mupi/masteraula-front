@@ -100,7 +100,7 @@ html body .masteraula-nav-header__user {
     }
 
     &__link-more-documents{
-        color: #212529;
+        color: $color-ma-black-dropdown;
         
         &:hover{
           text-decoration:none;
@@ -121,52 +121,67 @@ html body .masteraula-nav-header__user {
 
 .o-doc-options{ 
 
-&__dropdown{
-  font-size: 13px;
-  color: $color-ma-green;
+    &__dropdown{
+      font-size: 13px;
+      color: $color-ma-green;
 
-  button{
-      background: transparent;
-      border: transparent;
-  }
-
-  .show button{
-      background: transparent;
-      border: transparent;
-  }
-
-  button:hover{
-      background: transparent;
-      border: transparent;
-  }
-
-}
-
-&__dropdown-item{
-  font-size: 13px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-
-  a{
-      color: #212529;
-  
-      &:hover{
-          color: #212529;
+      button{
+          background: transparent;
+          border: transparent;
       }
-  }
 
-  
-}
+      .show button{
+          background: transparent;
+          border: transparent;
+      }
 
-&__dropdown-toogle{
-  color: $color-ma-green !important;
-  }
+      button:hover{
+          background: transparent;
+          border: transparent;
+      }
+
+    }
+
+    &__dropdown-item{
+      font-size: 13px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+
+      a{
+          color: $color-ma-black-dropdown;
+      
+          &:hover{
+            color: $color-ma-black-dropdown;
+          }
+      }
+
+      
+    }
+
+    &__dropdown-toogle{
+      color: $color-ma-green !important;
+      }
+    
+      &__export-button{
+        &.btn.btn-secondary{
+          background: transparent !important;
+          color: $color-ma-black-dropdown;
+          padding: 0px;
+          font-size: 13px;
+          border: 0px;
+          margin: 0px;
+          font-weight: normal !important;
+        }
+      }
 }
 
 button.o-doc-options__dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
   background: transparent;
   border: transparent;
   color: $color-ma-green !important;
+  white-space: normal;
+  padding-left: 0px;
+  padding-right: 0px;
 
   &:active:focus{
     -webkit-box-shadow: none !important;

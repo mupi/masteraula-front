@@ -63,27 +63,29 @@ class DocumentInfoSidebar extends React.Component {
 
           <div className="menu-top__document-link visible-xs">
             <UncontrolledDropdown className="o-doc-options">
-                <DropdownToggle caret size="sm" className="o-doc-options__dropdown-toggle">
-                {`${documentName}`} {' '}
-            <span className="menu-top__xs-document-number-questions">
-              {` (${documentTotalQuestions})`}
-            </span>
-                </DropdownToggle>
-                <DropdownMenu>
+              <DropdownToggle caret size="sm" className="o-doc-options__dropdown-toggle">
+                  {`${documentName}`} {' '}
+                  <span className="menu-top__xs-document-number-questions">
+                    {` (${documentTotalQuestions})`}
+                  </span>
+              </DropdownToggle>
+              <DropdownMenu>
                   <DropdownItem className="o-doc-options__dropdown-item">
-                    <Link to="/user-profile" className="c-sidebar__link-my-profile">
+                    <Link to="/edit-document" className="c-sidebar__link-my-profile">
                       <FontAwesomeIcon icon="user" />
                       {' '}
-                      Meu Perfil
+                      Editar
                     </Link>
                   </DropdownItem>
                   <DropdownItem divider/>
                   <DropdownItem  className="o-doc-options__dropdown-item">
-                    <Link className="c-sidebar__link-my-profile" to="/">
-                      <FontAwesomeIcon icon="sign-out-alt" />
-                      {' '}
-                      Sair
-                    </Link>
+                  <ExportDocumentButtonContainer
+            text="Exportar"
+            styleCustomize="o-doc-options__export-button"
+            documentId={documentId}
+            documentName={documentName}
+            documentTotalQuestions={documentTotalQuestions}
+          />
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
