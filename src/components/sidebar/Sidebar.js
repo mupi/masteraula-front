@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Row, Col, ListGroup, ListGroupItem,
+  Row, Col, ListGroup, ListGroupItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -12,9 +12,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Sidebar = (props) => {
-  const { showFilters, activeDocument } = props;
+  const { showFilters, activeDocument, user, logout } = props;
 
-  return (
+  return ( 
     <div id="sidebar">
       <div className="logo-top-sidebar">
         <img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" />
@@ -22,8 +22,36 @@ const Sidebar = (props) => {
       <div id="sidebar-container">
         <div className="container-fluid">
           <Row>
+            <Col xs="12" className="c-sidebar__user-info-section visible-xs">
+              <div className="c-sidebar__user-avatar">
+                <FontAwesomeIcon icon="user-circle"/>
+              </div>
+              <UncontrolledDropdown className="c-sidebar__user-dropdown">
+                <DropdownToggle caret size="sm" className="c-sidebar__user-dropdown-toggle">
+                  {user.name}
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem className="c-sidebar__user-dropdown-item">
+                    <Link to="/user-profile" className="c-sidebar__link-my-profile">
+                      <FontAwesomeIcon icon="user" />
+                      {' '}
+                      Meu Perfil
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem divider/>
+                  <DropdownItem className="c-sidebar__user-dropdown-item">
+                    <Link className="c-sidebar__link-my-profile" onClick={(e) => { e.preventDefault(); logout(); }} to="/">
+                      <FontAwesomeIcon icon="sign-out-alt" />
+                      {' '}
+                      Sair
+                    </Link>
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Col>
+
             <Col xs="12">
-              <ListGroup className="sidebar-main-options">
+              <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
                 <ListGroupItem color="light">
                   <CreateDocumentModalContainer activeDocument={activeDocument} />
                 </ListGroupItem>

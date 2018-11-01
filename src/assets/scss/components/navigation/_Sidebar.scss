@@ -86,6 +86,11 @@ html body #sidebar #sidebar-container {
     padding-bottom: 30px;
     overflow-x: hidden;
 
+    @include for-tablet-landscape-bottom{
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
 }
 
 html body #sidebar {
@@ -112,19 +117,6 @@ html body #sidebar {
 
 
 
-/*list of options in sidebar*/
-ul.list-group {
-    margin-top: 25px;
-}
-
-/*yellow button to collapse sidebar*/
-.visible-xs {
-    display: none !important;
-
-    @include for-tablet-landscape-bottom{
-          display: block !important;
-    }
-}
 
 
 /* Why so many classes for 1 property*/
@@ -202,7 +194,7 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
 /*sidebar de filters*/
 li.question-filter.list-group-item:hover {
     background: none;
-}
+} 
 
 li.question-category-filter.list-group-item, .question-single-filter li.list-group-item {
     background:$color-ma-blue;
@@ -277,6 +269,7 @@ li.question-category-filter div{
     padding: 5px;
     background: $color-ma-green;
     height: 70px;
+    
 }
 
 img.logo-in-menu {
@@ -293,4 +286,86 @@ img.logo-in-menu.no-login {
     &__filter-selected{
         font-weight:bold;
     }
+
+    &__user-info-section{
+        color: $color-ma-white;
+        text-align: center;
+    }
+
+    &__user-avatar{
+        font-size:35px;
+    }
+
+    &__user-dropdown{
+        font-size: 13px;
+
+        button{
+            background: transparent;
+            border: transparent;
+        }
+
+        .show button{
+            background: transparent;
+            border: transparent;
+        }
+
+        button:hover{
+            background: transparent;
+            border: transparent;
+        }
+
+    }
+
+    &__user-dropdown-item{
+        font-size: 13px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+
+        a{
+            color: $color-ma-black-dropdown;
+        
+            &:hover{
+                color: $color-ma-black-dropdown;
+            }
+        }
+    }
+
+    &__user-dropdown-toogle{
+    }
+
+    &__link-my-profile{
+        color: $color-ma-white;
+
+        &:hover{
+            color:$color-ma-white;
+            text-decoration: none;
+        }
+    }
+
+    
+}
+
+/*list of options in sidebar*/
+#sidebar-container ul.list-group {
+    margin-top: 25px;
+
+    @include for-tablet-landscape-bottom{
+        margin-top:10px !important;
+    }
+}
+
+
+button.c-sidebar__user-dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
+    background: transparent;
+    border: transparent;
+
+    &:active:focus{
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+      }
+    
+      &:focus{
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+      }
 }

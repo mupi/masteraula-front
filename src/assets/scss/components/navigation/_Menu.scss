@@ -26,10 +26,11 @@ html body .masteraula-nav-header__user {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   background: $color-ma-lightgray-backg !important;
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
 
   @include for-tablet-landscape-up {
       margin-left: 280px;
-      box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
+      //box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
       height:70px;
   }
 
@@ -47,6 +48,10 @@ html body .masteraula-nav-header__user {
       width: 100%;
     }
 
+    &__document-section{
+      padding: 0px;
+    }
+
     &__document-message{
       color: $color-ma-blue;
       font-size:13px;
@@ -58,6 +63,12 @@ html body .masteraula-nav-header__user {
 
     &__document-number-questions {
       font-size:16px;
+    }
+
+    &__xs-document-number-questions{
+      margin-left: 3px;
+      font-weight: bold;
+      color: $color-ma-blue;
     }
 
     &__document-l-buttons {
@@ -89,15 +100,101 @@ html body .masteraula-nav-header__user {
     }
 
     &__link-more-documents{
-        color: #212529;
+        color: $color-ma-black-dropdown;
         
         &:hover{
           text-decoration:none;
         }
     }
+
+    &__document-link {
+      font-weight: normal;
+      color: $color-ma-green;
+      padding:5px;
+    }
+
   }
 
+  
+
 }
+
+.o-doc-options{ 
+
+    &__dropdown{
+      font-size: 13px;
+      color: $color-ma-green;
+
+      button{
+          background: transparent;
+          border: transparent;
+      }
+
+      .show button{
+          background: transparent;
+          border: transparent;
+      }
+
+      button:hover{
+          background: transparent;
+          border: transparent;
+      }
+
+    }
+
+    &__dropdown-item{
+      font-size: 13px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+
+      a{
+          color: $color-ma-black-dropdown;
+      
+          &:hover{
+            color: $color-ma-black-dropdown;
+          }
+      }
+
+      
+    }
+
+    &__dropdown-toogle{
+      color: $color-ma-green !important;
+      }
+    
+      &__export-button{
+        &.btn.btn-secondary{
+          background: transparent !important;
+          color: $color-ma-black-dropdown;
+          padding: 0px;
+          font-size: 13px;
+          border: 0px;
+          margin: 0px;
+          font-weight: normal !important;
+        }
+      }
+}
+
+button.o-doc-options__dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
+  background: transparent;
+  border: transparent;
+  color: $color-ma-green !important;
+  white-space: normal;
+  padding-left: 0px;
+  padding-right: 0px;
+
+  &:active:focus{
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  &:focus{
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
+
+
 
 
 /*New SCSS with BEM style*/
@@ -106,6 +203,11 @@ a.menu-top__document-link {
   color: $color-ma-green;
   padding:5px;
   font-size: 18px;
+
+  @include for-tablet-landscape-bottom{
+    display:inline-flex;
+    font-size:15px;
+  }
 }
 
 a.menu-top__document-link:hover{

@@ -16,6 +16,7 @@
 
     &__ma-toast--success{
         font-family: $lato;
+        letter-spacing: 0.3px;
         color: $color-ma-alert-success-font;
         background-color: $color-ma-alert-success;
         border-color:$color-ma-alert-success-font;
@@ -26,6 +27,7 @@
 
     &__ma-toast--error{
         font-family: $lato;
+        letter-spacing: 0.3px;
         color:$color-ma-alert-error-font;
         background-color: $color-ma-alert-error;
         border-color:$color-ma-alert-error-font;
