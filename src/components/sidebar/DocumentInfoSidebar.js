@@ -56,13 +56,39 @@ class DocumentInfoSidebar extends React.Component {
           Você está editando:
             {' '}
           </small>
-          <Link className="menu-top__document-link" to="/edit-document">
+
+          <Link className="menu-top__document-link hidden-xs" to="/edit-document">
             {`${documentName}`} {' '}
-            <span className="visible-xs menu-top__xs-document-number-questions">
+          </Link>
+
+          <div className="menu-top__document-link visible-xs">
+            <UncontrolledDropdown className="o-doc-options">
+                <DropdownToggle caret size="sm" className="o-doc-options__dropdown-toggle">
+                {`${documentName}`} {' '}
+            <span className="menu-top__xs-document-number-questions">
               {` (${documentTotalQuestions})`}
             </span>
-          </Link>
-          
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem className="o-doc-options__dropdown-item">
+                    <Link to="/user-profile" className="c-sidebar__link-my-profile">
+                      <FontAwesomeIcon icon="user" />
+                      {' '}
+                      Meu Perfil
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem divider/>
+                  <DropdownItem  className="o-doc-options__dropdown-item">
+                    <Link className="c-sidebar__link-my-profile" to="/">
+                      <FontAwesomeIcon icon="sign-out-alt" />
+                      {' '}
+                      Sair
+                    </Link>
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+          </div>
+         
         </div>
         <div className="menu-top__document-l-buttons hidden-xs">
           <p className="menu-top__document-questions  btn__icon">

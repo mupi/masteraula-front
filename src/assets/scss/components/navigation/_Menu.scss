@@ -106,9 +106,80 @@ html body .masteraula-nav-header__user {
           text-decoration:none;
         }
     }
+
+    &__document-link {
+      font-weight: normal;
+      color: $color-ma-green;
+      padding:5px;
+    }
+
+  }
+
+  
+
+}
+
+.o-doc-options{ 
+
+&__dropdown{
+  font-size: 13px;
+  color: $color-ma-green;
+
+  button{
+      background: transparent;
+      border: transparent;
+  }
+
+  .show button{
+      background: transparent;
+      border: transparent;
+  }
+
+  button:hover{
+      background: transparent;
+      border: transparent;
   }
 
 }
+
+&__dropdown-item{
+  font-size: 13px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+
+  a{
+      color: #212529;
+  
+      &:hover{
+          color: #212529;
+      }
+  }
+
+  
+}
+
+&__dropdown-toogle{
+  color: $color-ma-green !important;
+  }
+}
+
+button.o-doc-options__dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
+  background: transparent;
+  border: transparent;
+  color: $color-ma-green !important;
+
+  &:active:focus{
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  &:focus{
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
+
+
 
 
 /*New SCSS with BEM style*/

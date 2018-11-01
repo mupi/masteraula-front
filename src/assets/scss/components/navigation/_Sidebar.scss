@@ -358,4 +358,14 @@ img.logo-in-menu.no-login {
 button.c-sidebar__user-dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
     background: transparent;
     border: transparent;
+
+    &:active:focus{
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+      }
+    
+      &:focus{
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+      }
 }
