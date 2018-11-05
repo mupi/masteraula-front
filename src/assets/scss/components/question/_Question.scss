@@ -73,6 +73,14 @@
       border: 1px solid  $color-ma-red;
     }
 
+    
+    &__btn-back{
+      font-size:13px;
+      @include for-phone-only {
+        padding: 5px 8px;
+      }
+    }
+
   /*  &__learning-object{
 
     }*/

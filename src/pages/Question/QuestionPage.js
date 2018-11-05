@@ -53,9 +53,13 @@ class QuestionPage extends Component {
         <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-question">
           <Row>
-            <Button onClick={history.goBack}>
-              Voltar
-            </Button>
+            <Container>
+              <Row><Col>
+            <Button onClick={history.goBack} className="c-question__btn-back">
+              <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon"/> Voltar
+            </Button></Col>
+            </Row>
+            </Container>
             <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
           </Row>
           <Row className="justify-content-center">

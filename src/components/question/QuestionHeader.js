@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const QuestionHeader = ({
   id, disciplines, source, year,
 }) => (
-  <Container>
+  <Container> 
     <Row className="c-question__tittle-section">
 <Col>
       <h4> 
@@ -22,6 +22,8 @@ const QuestionHeader = ({
       <Col>
         <QuestionSourceYear source={source} year={year} />
       </Col>
+    </Row>
+    <Row>
     </Row>
   </Container>
 );

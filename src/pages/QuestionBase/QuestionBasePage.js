@@ -62,7 +62,7 @@ class QuestionBasePage extends React.Component {
               <Col sm="12">
                 <p className="c-question-base__keywords-title">
                   <span className="btn__icon">
-Filtros selecionados:
+                    Filtros selecionados:
                   </span>
                   {filter.disciplinesSelected.map(item => (
                     <Button id={item.id} onClick={clearDisciplines} className="c-question-base__filter-selected">
