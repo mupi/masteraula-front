@@ -42,7 +42,7 @@ const CreateDocumentModal = (props) => {
         <ModalHeader className="document__new-document-modal-header" toggle={() => toggleModal(modal)}>
             Criar nova prova
         </ModalHeader>
-        <ModalBody>
+        <ModalBody className="document__new-document-modal-body">
           <CreateDocumentForm onSubmit={submit} messageWhenDocumentExist={getAlertMessageDocumentExist(activeDocument)} />
         </ModalBody>
       </Modal>

@@ -294,6 +294,13 @@ img.logo-in-menu.no-login {
 
     &__user-avatar{
         font-size:35px;
+
+        img{
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background: $color-ma-green;
+        }
     }
 
     &__user-dropdown{

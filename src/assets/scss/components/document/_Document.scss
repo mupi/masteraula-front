@@ -247,6 +247,13 @@
     text-align: center;
   }
 
+  &__new-document-modal-body{
+    .p--without-mbottom{
+      margin-bottom: 0px;
+    }
+  }
+
+
   &__new-document-modal-content{
     @include for-tablet-landscape-up{
         box-shadow: 0 5px 15px rgba(0,0,0,0.5);
