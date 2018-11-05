@@ -4,7 +4,7 @@ import QuestionInfo from 'components/question/QuestionInfo';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import {
-  Alert, Container, Row, Col, Button,
+  Alert, Row, Col, Button,
 } from 'reactstrap';
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
@@ -53,11 +53,29 @@ class QuestionPage extends Component {
         <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-question">
           <Row>
-            <Button onClick={history.goBack}>
-              Voltar
-            </Button>
-            <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
+            <Col className="d-flex">
+              <Button onClick={history.goBack} className="c-question__btn-back mr-auto p-2">
+                <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon"/>
+                {' '}
+                Voltar
+              </Button>
+              <span className="c-question__label-tag-header c-question__tag--purple p-2">
+                {activeQuestion.source}
+                {' '}
+                {activeQuestion.year}
+              </span>
+              {activeQuestion.disciplines && activeQuestion.disciplines.map(discipline => (
+                <span
+                  key={discipline.id}
+                      className="c-question__label-tag-header c-question__tag--pink p-2"
+                >
+                  {discipline.name}
+                </span>
+              ))}
+            </Col>
+            
           </Row>
+          <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
           <Row className="justify-content-center">
             <Col sm="12" md="12" xs="12">
               <QuestionContent
@@ -66,7 +84,7 @@ class QuestionPage extends Component {
                 resolution={activeQuestion.resolution}
                 learningObject={activeQuestion.learning_object}
               />
-              <Container className="c-question__section-add-question">
+              <div className="c-question__section-add-question">
                 <Row>
                   {!isQuestionAdded(activeDocument, activeQuestion.id) ? (
                     <Col className="c-question__add-question-rectangle">
@@ -102,7 +120,7 @@ class QuestionPage extends Component {
                     </Col>
                   )}
                 </Row>
-              </Container>
+              </div>
 
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
 
@@ -123,7 +141,7 @@ class QuestionPage extends Component {
             />
           ) : (
             <span className="btn question-card__added">
-              <FontAwesomeIcon icon="check-circle" />
+              <FontAwesomeIcon icon="check-circle" className="btn__icon" />
               Adicionada
             </span>
           )}

@@ -43,13 +43,13 @@ const CreateDocumentForm = (props) => {
   return (
     <div>
       {initialValues.idQuestion ? (
-        <p className="text-center">
-Você está adicionando uma questão a uma prova sem nome.
+        <p className="text-center p--without-mbottom">
+          Você está adicionando uma questão a uma prova sem nome.
         </p>
       ) : ''}
       {messageWhenDocumentExist || (
       <p className="text-center">
-Por favor, insira um nome para a nova prova a ser criada
+        Por favor, insira um nome para a nova prova a ser criada
       </p>
       )}
       <Form onSubmit={handleSubmit}>

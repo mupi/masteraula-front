@@ -5,6 +5,7 @@ import {
 import { Link } from 'react-router-dom';
 
 import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
+import userPhoto from 'assets/img/home/avataruser2.png';
 
 import CreateDocumentModalContainer from 'containers/CreateDocumentModalContainer';
 import FilterContainer from 'containers/FilterContainer';
@@ -24,7 +25,8 @@ const Sidebar = (props) => {
           <Row>
             <Col xs="12" className="c-sidebar__user-info-section visible-xs">
               <div className="c-sidebar__user-avatar">
-                <FontAwesomeIcon icon="user-circle"/>
+                <FontAwesomeIcon icon="user-circle" className="hidden"/>
+                <img src={userPhoto} alt="foto-usuario" />
               </div>
               <UncontrolledDropdown className="c-sidebar__user-dropdown">
                 <DropdownToggle caret size="sm" className="c-sidebar__user-dropdown-toggle">
