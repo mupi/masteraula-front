@@ -4,13 +4,23 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ExportDocumentButton = ({
-  documentId, color, text, downloadDocument, documentName, documentTotalQuestions, hideModal, showModal, styleCustomize, isLink = false,
+  documentId, color, text, downloadDocument, documentName, documentTotalQuestions, hideModal, showModal, styleCustomize,
 }) => {
-  const closeModal = () => {
-    hideModal();
+  const handleClick = () => {
+    if (documentTotalQuestions>0)
+      // downloadDocument(documentId, documentName);
+       handleExportAnswer();
+    else{
+      //open modal
+      handleExport();
+    }
   };
 
-  const handleExport = () => {
+  const closeModal = ( ) => {
+    hideModal();
+  }
+
+  const handleExport = (name) => {
     // open modal
     showModal({
       open: true,
@@ -19,12 +29,12 @@ const ExportDocumentButton = ({
       message: `Não é possível exportar porque a prova "${documentName}" não tem questões`,
     }, 'alert');
   };
-
+ 
   const handleExportAnswer = () => {
     // open modal
     showModal({
       open: true,
-      closeModal,
+      closeModal, 
       downloadDocument,
       documentId,
       documentName,
@@ -32,26 +42,11 @@ const ExportDocumentButton = ({
     }, 'exportDocument');
   };
 
-  const handleClick = () => {
-    if (documentTotalQuestions > 0) {
-      handleExportAnswer();
-    } else {
-      handleExport();
-    }
-  };
-
   return (
-    !isLink
-      ? (
-        <Button color={color} onClick={handleClick} className={styleCustomize}>
-          {text ? <FontAwesomeIcon icon="file-word" className="btn__icon" /> : <FontAwesomeIcon icon="file-word" />}
-          {text}
-        </Button>) : (
-          <div color={color} onClick={handleClick} className={styleCustomize}>
-            {text ? <FontAwesomeIcon icon="file-word" className="btn__icon" /> : <FontAwesomeIcon icon="file-word" />}
-            {text}
-          </div>)
-
+    <Button color={color} onClick={handleClick} className={styleCustomize}>
+      {text ? <FontAwesomeIcon icon="file-word" className="btn__icon"/> : <FontAwesomeIcon icon="file-word" />}
+      {text}
+    </Button>
   );
 };
 export default ExportDocumentButton;

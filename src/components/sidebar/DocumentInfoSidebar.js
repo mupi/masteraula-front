@@ -40,8 +40,14 @@ class DocumentInfoSidebar extends React.Component {
 
   render() {
     const {
-      myLastDocumentsList, documentName, documentTotalQuestions, documentId,
+      myLastDocumentsList, isFetchingMyLastDocuments, documentName, documentTotalQuestions, documentId,
     } = this.props;
+
+   /* if (isFetchingMyLastDocuments) {
+      return (
+        <div className="menu-top__document-info" />
+      );
+    }*/
 
     return (
       <div className="menu-top__document-info">
@@ -52,42 +58,39 @@ class DocumentInfoSidebar extends React.Component {
           </small>
 
           <Link className="menu-top__document-link hidden-xs" to="/edit-document">
-            {`${documentName}`}
-            {' '}
+            {`${documentName}`} {' '}
           </Link>
 
           <div className="menu-top__document-link visible-xs">
             <UncontrolledDropdown className="o-doc-options">
               <DropdownToggle caret size="sm" className="o-doc-options__dropdown-toggle">
-                {`${documentName}`}
-                {' '}
-                <span className="menu-top__xs-document-number-questions">
-                  {` (${documentTotalQuestions})`}
-                </span>
+                  {`${documentName}`} {' '}
+                  <span className="menu-top__xs-document-number-questions">
+                    {` (${documentTotalQuestions})`}
+                  </span>
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem className="o-doc-options__dropdown-item">
-                  <Link to="/edit-document" className="c-sidebar__link-my-profile">
-                    <FontAwesomeIcon icon="user" />
-                    {' '}
-                    Editar
-                  </Link>
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem className="o-doc-options__dropdown-item">
+                  <DropdownItem className="o-doc-options__dropdown-item">
+                    <Link to="/edit-document" className="c-sidebar__link-my-profile">
+                      <FontAwesomeIcon icon="user" />
+                      {' '}
+                      Editar
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem divider/>
+                  <DropdownItem  className="o-doc-options__dropdown-item">
                   <ExportDocumentButtonContainer
-                    text="Exportar"
-                    isLink
-                    styleCustomize="o-doc-options__export-button"
-                    documentId={documentId}
-                    documentName={documentName}
-                    documentTotalQuestions={documentTotalQuestions}
-                  />
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
+            text="Exportar"
+            styleCustomize="o-doc-options__export-button"
+            documentId={documentId}
+            documentName={documentName}
+            documentTotalQuestions={documentTotalQuestions}
+          />
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
           </div>
-
+         
         </div>
         <div className="menu-top__document-l-buttons hidden-xs">
           <p className="menu-top__document-questions  btn__icon">
