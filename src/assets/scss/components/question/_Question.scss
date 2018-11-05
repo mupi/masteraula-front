@@ -135,10 +135,10 @@
       border-radius: 5px;
       color: $color-ma-white;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 13px;
       text-align: center;
       display: inline-block;
-      margin: 0px 5px 5px 0px;
+      margin: 0px 5px 0px 0px;
     }
 
     &__tag--pink{ 
@@ -164,4 +164,9 @@
 
 .texto_associado_questao img {
   max-width: 100%;
+}
+
+//Flex in c-question header
+.c-question .p-2 {
+  padding: 3px 7px !important;
 }

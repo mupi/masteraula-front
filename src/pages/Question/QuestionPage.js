@@ -53,11 +53,26 @@ class QuestionPage extends Component {
         <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-question">
           <Row>
-                <Col>
-                  <Button onClick={history.goBack} className="c-question__btn-back">
-                    <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon"/> Voltar
-                  </Button>
-                </Col>
+            <Col className="d-flex">
+              <Button onClick={history.goBack} className="c-question__btn-back mr-auto p-2">
+                <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon"/>
+                {' '}
+                Voltar
+              </Button>
+              <span className="c-question__label-tag-header c-question__tag--purple p-2">
+                {activeQuestion.source}
+                {' '}
+                {activeQuestion.year}
+              </span>
+              {activeQuestion.disciplines && activeQuestion.disciplines.map(discipline => (
+                <span
+                  key={discipline.id}
+                      className="c-question__label-tag-header c-question__tag--pink p-2"
+                >
+                  {discipline.name}
+                </span>
+              ))}
+            </Col>
             
           </Row>
           <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />

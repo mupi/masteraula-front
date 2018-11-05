@@ -15,7 +15,7 @@ const QuestionHeader = ({
         </h4>
       </Col>
     </Row>
-    <Row>
+    <Row className="hidden">
       <Col>
         <span className="c-question__label-tag-header c-question__tag--purple">
           {source}
