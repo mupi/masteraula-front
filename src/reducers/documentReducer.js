@@ -145,7 +145,7 @@ export const document = (state = initialState, action) => {
     case ADD_SELECTED_QUESTION_SUCCESS: {
       const activeDocument = { ...state.activeDocument, questions: [...state.activeDocument.questions, action.addedQuestion] };
       localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
-      toast.success(`Questão adicionada com sucesso ao documento ${activeDocument.name}`, optionsSuccess);
+      toast.success(`Questão adicionada com sucesso à prova ${activeDocument.name}`, optionsSuccess);
       return Object.assign({}, state, {
         isFetchingAddQuestion: false,
         activeDocument,
@@ -167,7 +167,7 @@ export const document = (state = initialState, action) => {
       const newQuestionsInDocument = state.activeDocument.questions.filter(item => item.question.id !== action.idRemovedQuestion);
       const activeDocument = { ...state.activeDocument, questions: newQuestionsInDocument };
       localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
-      toast.success(`Questão removida com sucesso do documento ${activeDocument.name}`, optionsSuccess);
+      toast.success(`Questão removida com sucesso da prova ${activeDocument.name}`, optionsSuccess);
       return {
         isFetchingRemoveQuestion: false,
         isRemoved: true,
