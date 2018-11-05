@@ -1,30 +1,37 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
-import DisciplineList from 'components/disciplines/DisciplineList';
-import QuestionSourceYear from './QuestionSourceYear';
+import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const QuestionHeader = ({
   id, disciplines, source, year,
 }) => (
-  <Container> 
+  <div>
     <Row className="c-question__tittle-section">
-<Col>
-      <h4> 
-        <FontAwesomeIcon icon="book" />
-        {' '}
-      Questão
-      </h4>
-      </Col>
-      <Col md={{ size: 'auto', offset:1  }}>
-      <DisciplineList list={disciplines}/>
-      </Col>
       <Col>
-        <QuestionSourceYear source={source} year={year} />
+        <h4>
+          <FontAwesomeIcon icon="book" />
+          {' '}
+          Questão
+        </h4>
       </Col>
     </Row>
     <Row>
+      <Col>
+        <span className="c-question__label-tag-header c-question__tag--purple">
+          {source}
+          {' '}
+          {year}
+        </span>
+        {disciplines && disciplines.map(discipline => (
+          <span
+            key={discipline.id}
+            className="c-question__label-tag-header c-question__tag--pink"
+          >
+            {discipline.name}
+          </span>
+        ))}
+      </Col>
     </Row>
-  </Container>
+  </div>
 );
 export default QuestionHeader;

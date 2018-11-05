@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import AlternativeList from 'components/alternatives/AlternativeList';
 import Alternative from 'components/alternatives/Alternative';
 import { getCleanCompleteStatement, getCleanAlternativeText } from 'helpers/question';
@@ -12,7 +12,7 @@ const QuestionContent = (question) => {
   } = question;
 
   return (
-    <Container className="c-question__full-statement">
+    <div className="c-question__full-statement">
       {learningObject && (
         <Row className="c-question--section-border">
           <Col sm="12" xs="12">
@@ -80,7 +80,7 @@ const QuestionContent = (question) => {
             </Col>
           </Row>
         ) : ''}
-    </Container>
+    </div>
   );
 };
 export default QuestionContent;
