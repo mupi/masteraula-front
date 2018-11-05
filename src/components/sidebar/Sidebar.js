@@ -5,7 +5,7 @@ import {
 import { Link } from 'react-router-dom';
 
 import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
-import userPhoto from 'assets/img/home/avataruser.png';
+import userPhoto from 'assets/img/home/avataruser2.png';
 
 import CreateDocumentModalContainer from 'containers/CreateDocumentModalContainer';
 import FilterContainer from 'containers/FilterContainer';
