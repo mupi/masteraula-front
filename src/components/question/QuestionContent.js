@@ -7,10 +7,25 @@ import { getCleanCompleteStatement, getCleanAlternativeText } from 'helpers/ques
 
 const QuestionContent = (question) => {
   /* eslint-disable react/no-danger */
-  const { statement, alternatives, resolution } = question;
+  const {
+    statement, alternatives, resolution, learningObject,
+  } = question;
 
   return (
     <Container className="c-question__full-statement">
+      {learningObject && (
+        <Row className="c-question--section-border">
+          <Col sm="12" xs="12">
+            <div className="c-question__learning-object">
+              {learningObject.text
+                ? <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(learningObject.text) }} />
+                : <img alt="objeto-aprendizagem" src={learningObject.image} />
+              }
+            </div>
+          </Col>
+        </Row>
+      )}
+
       <Row className="c-question--section-border">
         <Col sm="12" xs="12">
           <div className="">
@@ -18,13 +33,7 @@ const QuestionContent = (question) => {
           </div>
         </Col>
       </Row>
-      <Row className="text-center">
-        <Col sm="12" xs="12">
-          <div className="c-question__learning-object" style={{ display: 'none' }}>
-            <img className="c-question__img" alt="objeto-aprendizagem" />
-          </div>
-        </Col>
-      </Row>
+
       {(alternatives && alternatives.length > 0)
         ? (
           <Row className="c-question--section-border">
