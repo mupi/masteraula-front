@@ -64,6 +64,7 @@ class QuestionPage extends Component {
                 alternatives={activeQuestion.alternatives}
                 statement={activeQuestion.statement}
                 resolution={activeQuestion.resolution}
+                learningObject={activeQuestion.learning_object}
               />
               <Container className="c-question__section-add-question">
                 <Row>

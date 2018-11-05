@@ -4,23 +4,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ExportDocumentButton = ({
-  documentId, color, text, downloadDocument, documentName, documentTotalQuestions, hideModal, showModal, styleCustomize,
+  documentId, color, text, downloadDocument, documentName, documentTotalQuestions, hideModal, showModal, styleCustomize, isLink = false,
 }) => {
-  const handleClick = () => {
-    if (documentTotalQuestions>0)
-      // downloadDocument(documentId, documentName);
-       handleExportAnswer();
-    else{
-      //open modal
-      handleExport();
-    }
+  const closeModal = () => {
+    hideModal();
   };
 
-  const closeModal = ( ) => {
-    hideModal();
-  }
-
-  const handleExport = (name) => {
+  const handleExport = () => {
     // open modal
     showModal({
       open: true,
@@ -29,12 +19,12 @@ const ExportDocumentButton = ({
       message: `Não é possível exportar porque a prova "${documentName}" não tem questões`,
     }, 'alert');
   };
- 
+
   const handleExportAnswer = () => {
     // open modal
     showModal({
       open: true,
-      closeModal, 
+      closeModal,
       downloadDocument,
       documentId,
       documentName,
@@ -42,11 +32,26 @@ const ExportDocumentButton = ({
     }, 'exportDocument');
   };
 
+  const handleClick = () => {
+    if (documentTotalQuestions > 0) {
+      handleExportAnswer();
+    } else {
+      handleExport();
+    }
+  };
+
   return (
-    <Button color={color} onClick={handleClick} className={styleCustomize}>
-      {text ? <FontAwesomeIcon icon="file-word" className="btn__icon"/> : <FontAwesomeIcon icon="file-word" />}
-      {text}
-    </Button>
+    !isLink
+      ? (
+        <Button color={color} onClick={handleClick} className={styleCustomize}>
+          {text ? <FontAwesomeIcon icon="file-word" className="btn__icon" /> : <FontAwesomeIcon icon="file-word" />}
+          {text}
+        </Button>) : (
+          <div color={color} onClick={handleClick} className={styleCustomize}>
+            {text ? <FontAwesomeIcon icon="file-word" className="btn__icon" /> : <FontAwesomeIcon icon="file-word" />}
+            {text}
+          </div>)
+
   );
 };
 export default ExportDocumentButton;
