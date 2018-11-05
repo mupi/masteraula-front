@@ -66,17 +66,17 @@ class QuestionBasePage extends React.Component {
                   </span>
                   {filter.disciplinesSelected.map(item => (
                     <Button id={item.id} onClick={clearDisciplines} className="c-question-base__filter-selected">
-                      {item.name}
+                      {item.name} x 
                     </Button>
                   )).concat(
                     filter.difficultiesSelected.map(item => (
                       <Button id={item.id} onClick={clearDifficulties} className="c-question-base__filter-selected">
-                        {item.name}
+                        {item.name} x
                       </Button>
                     )),
                     filter.teachingLevelsSelected.map(item => (
                       <Button id={item.id} onClick={clearTeachingLevel} className="c-question-base__filter-selected">
-                        {item.name}
+                        {item.name} x
                       </Button>
                     )),
                   )}
