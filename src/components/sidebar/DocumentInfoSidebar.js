@@ -81,6 +81,7 @@ class DocumentInfoSidebar extends React.Component {
                   <DropdownItem  className="o-doc-options__dropdown-item">
                   <ExportDocumentButtonContainer
             text="Exportar"
+            isLink={true}
             styleCustomize="o-doc-options__export-button"
             documentId={documentId}
             documentName={documentName}

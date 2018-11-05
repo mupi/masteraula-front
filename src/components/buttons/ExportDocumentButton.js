@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ExportDocumentButton = ({
-  documentId, color, text, downloadDocument, documentName, documentTotalQuestions, hideModal, showModal, styleCustomize,
+  documentId, color, text, downloadDocument, documentName, documentTotalQuestions, hideModal, showModal, styleCustomize, isLink = false,
 }) => {
   const handleClick = () => {
     if (documentTotalQuestions>0)
@@ -12,7 +12,7 @@ const ExportDocumentButton = ({
        handleExportAnswer();
     else{
       //open modal
-      handleExport();
+      handleExport(); 
     }
   };
 
@@ -43,10 +43,17 @@ const ExportDocumentButton = ({
   };
 
   return (
+    !isLink
+      ? (
     <Button color={color} onClick={handleClick} className={styleCustomize}>
-      {text ? <FontAwesomeIcon icon="file-word" className="btn__icon"/> : <FontAwesomeIcon icon="file-word" />}
-      {text}
-    </Button>
+          {text ? <FontAwesomeIcon icon="file-word" className="btn__icon" /> : <FontAwesomeIcon icon="file-word" />}
+          {text}
+        </Button>
+    ): (<a color={color} onClick={handleClick} className={styleCustomize}>
+          {text ? <FontAwesomeIcon icon="file-word" className="btn__icon" /> : <FontAwesomeIcon icon="file-word" />}
+          {text}
+        </a>)
+
   );
 };
 export default ExportDocumentButton;
