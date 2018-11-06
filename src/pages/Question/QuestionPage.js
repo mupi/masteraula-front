@@ -131,15 +131,9 @@ Remover
                       <span>
 Essa questão também está em suas provas:
                         {' '}
-                        {activeQuestion.documents.filter(item => item.id !== activeDocument.id).map(item => (
-                          <span key={item.id}>
-                            <strong>
-                              {item.name}
-,
-                            </strong>
-                            {' '}
-                          </span>
-                        ))}
+                        <strong>
+                          {activeQuestion.documents.filter(item => item.id !== activeDocument.id).map(item => item.name).join(', ')}
+                        </strong>
                       </span>
                     </Row>
                   ) : ''}
