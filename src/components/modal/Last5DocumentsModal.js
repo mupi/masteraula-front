@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 const Last5DocumentsModal = ({
-  closeModal, title, message, myLastDocumentsList,
+  closeModal, title, message, myLastDocumentsList, switchActiveDocument
 }) => {
     const first5Elements = (myLastDocumentsList) => {
         const myLast5DocumentsList = [];
@@ -43,7 +43,7 @@ const Last5DocumentsModal = ({
                 <DropdownItem
                   key={document.id}
                   className="menu-top__dropdown-item"
-                  onClick={() => this.editDocument(document)}
+                  onClick={() => { switchActiveDocument(document);  closeModal();}}
                 >
                   {document.name}
                 </DropdownItem>))}
