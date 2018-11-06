@@ -5,6 +5,8 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
+import OpenLastDocumentListContainer from 'containers/OpenLastDocumentListContainer';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const first5Elements = (myLastDocumentsList) => {
@@ -83,6 +85,10 @@ class DocumentInfoSidebar extends React.Component {
                     documentName={documentName}
                     documentTotalQuestions={documentTotalQuestions}
                   />
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem className="o-doc-options__dropdown-item">
+                  <OpenLastDocumentListContainer />
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
