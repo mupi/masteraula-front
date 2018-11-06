@@ -10,7 +10,6 @@ const OpenLastDocumentList = ({
     hideModal();
   };
 
-
   const handleOpenLastDocumentList = () => {
     // open modal
     showModal({
@@ -22,7 +21,6 @@ const OpenLastDocumentList = ({
       switchActiveDocument,
     }, 'last5Documents');
   };
-
 
   return (
     <div

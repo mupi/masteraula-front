@@ -76,7 +76,7 @@ class DocumentInfoSidebar extends React.Component {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem className="o-doc-options__dropdown-item">
-                  <OpenLastDocumentListContainer myLastDocumentsList={myLastDocumentsList}/>
+                  <OpenLastDocumentListContainer myLastDocumentsList={myLastDocumentsList} />
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
