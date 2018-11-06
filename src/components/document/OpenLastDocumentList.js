@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const OpenLastDocumentList = ({
-  myLast5DocumentList, editDocument, hideModal, showModal, 
+  myLastDocumentsList, hideModal, showModal, switchActiveDocument,
 }) => {
 
   const closeModal = () => {
@@ -20,6 +20,8 @@ const OpenLastDocumentList = ({
       closeModal,
       title: 'Trocar prova',
       message: `Selecione a prova a ser editada`,
+      myLastDocumentsList,
+      switchActiveDocument,
     }, 'last5Documents');
   };
 
