@@ -125,9 +125,9 @@ Remover
                     </Col>
                   )}
                 </Row>
-                {activeQuestion.documents
+                {activeQuestion.documents && activeQuestion.documents.filter(item => item.id !== activeDocument.id).length > 0
                   ? (
-                    <Row>
+                    <Row style={{ float: 'right' }}>
                       <span>
 Essa questão também está em suas provas:
                         {' '}
