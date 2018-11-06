@@ -20,7 +20,7 @@ const OpenLastDocumentList = ({
       closeModal,
       title: 'Trocar prova',
       message: `Selecione a prova a ser editada`,
-    }, 'alert');
+    }, 'last5Documents');
   };
 
 
