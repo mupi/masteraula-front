@@ -1,24 +1,12 @@
 import React from 'react';
-import { Button , DropdownItem} from 'reactstrap';
+import { Button, Table } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
-
+import { first5Elements } from 'helpers/document';
 
 const Last5DocumentsModal = ({
-  closeModal, title, message, myLastDocumentsList, switchActiveDocument
+  closeModal, title, message, myLastDocumentsList, switchActiveDocument,
 }) => {
-    const first5Elements = (myLastDocumentsList) => {
-        const myLast5DocumentsList = [];
-        let count = 0;
-        const countLimit = (myLastDocumentsList.length < 5 ? myLastDocumentsList.length : 5);
-      
-        while (count < countLimit) {
-          myLast5DocumentsList.push(myLastDocumentsList[count]);
-          count += 1;
-        }
-        return myLast5DocumentsList;
-      };
       
   return (
     <div className="modal-content modal__content">
@@ -39,20 +27,28 @@ const Last5DocumentsModal = ({
           {message}
         </p>
 
-         {myLastDocumentsList && first5Elements(myLastDocumentsList.results).map(document => (
-                <DropdownItem
-                  key={document.id}
-                  className="menu-top__dropdown-item"
-                  onClick={() => { switchActiveDocument(document);  closeModal();}}
-                >
+ <Table>
+        <thead>
+          <tr>
+            <th>Nome da prova</th>
+          </tr>
+        </thead>
+        <tbody>
+        {myLastDocumentsList && first5Elements(myLastDocumentsList.results).map(document => (
+                <tr className="menu-top__dropdown-item"
+                  key={document.id} > 
+                  <td role="gridcell"
+                 
+                  onClick={() => { switchActiveDocument(document);  closeModal();}} >
                   {document.name}
-                </DropdownItem>))}
-              <DropdownItem divider />
-              <DropdownItem className="menu-top__dropdown-item">
+                  </td>
+                </tr>))}
+        </tbody>
+      </Table>
+
                 <Link to="/documents/1" className="menu-top__link-more-documents">
                   Ver mais provas
                 </Link>
-              </DropdownItem>
 
         <div className="modal-footer modal__footer">
           <Button color="secondary" onClick={closeModal}>
