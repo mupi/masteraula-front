@@ -69,3 +69,18 @@
     transition: -webkit-transform 0.3s ease-out;
     transition: transform 0.3s ease-out;
     transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;}
+
+
+//Modal that shows last 5 documents in responsive mode
+.modal-last5-document{
+  &__link-more-documents{
+
+    &:hover{
+      text-decoration:none !important;
+    }
+
+    &:active{
+      text-decoration:none !important;
+    }
+  }
+}

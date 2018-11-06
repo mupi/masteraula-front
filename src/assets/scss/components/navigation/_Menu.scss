@@ -103,7 +103,12 @@ html body .masteraula-nav-header__user {
         color: $color-ma-black-dropdown;
         
         &:hover{
-          text-decoration:none;
+          text-decoration:none !important;
+        }
+
+        &:active{
+          text-decoration:none !important;
+          color: $color-ma-white;
         }
     }
 
