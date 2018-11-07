@@ -47,13 +47,16 @@ import {
   faArrowCircleLeft,
   faComments, faInfoCircle, faBook,
   faSignInAlt, faClone, faExclamationCircle,
+  faTimesCircle, /* 'x' icon with circle*/
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile, faPencilAlt, faSyncAlt, faBars,
   faUser, faHome, faSignOutAlt, faUserCircle, faSearch, faFolder, faFileAlt, faFilter, faTrash,
   faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft,
   faArrowCircleLeft,
-  faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle);
+  faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
+  faTimesCircle,
+);
 
 class App extends Component {
   constructor(props) {

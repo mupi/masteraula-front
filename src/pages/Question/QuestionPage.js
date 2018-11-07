@@ -14,6 +14,28 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+const QuestionListDocuments = (props) => {
+  const { activeQuestion, activeDocument } = props;
+  const listDocumentFilter = (activeDocument ? activeQuestion.documents.filter(item => item.id !== activeDocument.id) : activeQuestion.documents);
+
+  return (
+    activeQuestion.documents && listDocumentFilter.length > 0
+      ? (
+        <Row className="c-question__list-documents">
+          <Col className="c-question__add-question-rectangle">
+            <p>
+              Essa questão também está em suas provas:
+              {' '}
+              <strong>
+                {listDocumentFilter.map(item => item.name).join(', ')}
+              </strong>
+            </p>
+          </Col>
+        </Row>
+      ) : ''
+  );
+};
+
 class QuestionPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
@@ -125,20 +147,9 @@ class QuestionPage extends Component {
                     </Col>
                   )}
                 </Row>
-                {activeQuestion.documents && activeQuestion.documents.filter(item => item.id !== activeDocument.id).length > 0
-                  ? (
-                    <Row className="c-question__list-documents">
-                      <Col className="c-question__add-question-rectangle">
-                        <p>
-                          Essa questão também está em suas provas:
-                          {' '}
-                          <strong>
-                            {activeQuestion.documents.filter(item => item.id !== activeDocument.id).map(item => item.name).join(', ')}
-                          </strong>
-                        </p>
-                      </Col>
-                    </Row>
-                  ) : ''}
+                <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument}/>
+
+                
               </div>
 
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
