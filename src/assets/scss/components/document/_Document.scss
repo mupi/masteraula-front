@@ -281,7 +281,7 @@
 
 .c-my-documents{
   &__total-results {
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     font-size: 14px;
     color: $color-ma-blue;
     font-weight: bold;
@@ -289,7 +289,7 @@
 
   &__dropdown-section{
     float: right;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: inline-flex;
     font-size:12px;
   }

@@ -51,7 +51,7 @@ const CustomPagination = (props) => {
 
   return (
 
-    <Pagination aria-label={ariaLabel}>
+    <Pagination aria-label={ariaLabel} className="d-flex justify-content-end">
       <CustomPaginationItem disabled={!previous} page={currentPage - 1} previous />
 
       {rows.map(CustomPaginationItem)}
