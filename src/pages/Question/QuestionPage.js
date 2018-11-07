@@ -55,7 +55,7 @@ class QuestionPage extends Component {
           <Row>
             <Col className="d-flex">
               <Button onClick={history.goBack} className="c-question__btn-back mr-auto p-2">
-                <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon"/>
+                <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
                 {' '}
                 Voltar
               </Button>
@@ -67,13 +67,13 @@ class QuestionPage extends Component {
               {activeQuestion.disciplines && activeQuestion.disciplines.map(discipline => (
                 <span
                   key={discipline.id}
-                      className="c-question__label-tag-header c-question__tag--pink p-2"
+                  className="c-question__label-tag-header c-question__tag--pink p-2"
                 >
                   {discipline.name}
                 </span>
               ))}
             </Col>
-            
+
           </Row>
           <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
           <Row className="justify-content-center">
@@ -114,12 +114,29 @@ class QuestionPage extends Component {
                         questionId={activeQuestion.id}
                         activeDocumentId={activeDocument.id}
                         removeSelectedQuestion={removeSelectedQuestion}
-                        label={<span><FontAwesomeIcon icon="minus" className="btn__icon"/>Remover</span>}
+                        label={(
+                          <span>
+                            <FontAwesomeIcon icon="minus" className="btn__icon" />
+Remover
+                          </span>
+)}
                         customClass="c-question__btn-remove-question"
                       />
                     </Col>
                   )}
                 </Row>
+                {activeQuestion.documents && activeQuestion.documents.filter(item => item.id !== activeDocument.id).length > 0
+                  ? (
+                    <Row style={{ float: 'right' }}>
+                      <span>
+Essa questão também está em suas provas:
+                        {' '}
+                        <strong>
+                          {activeQuestion.documents.filter(item => item.id !== activeDocument.id).map(item => item.name).join(', ')}
+                        </strong>
+                      </span>
+                    </Row>
+                  ) : ''}
               </div>
 
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
