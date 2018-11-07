@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const CustomPaginationItem = (props) => {
   const {
-    page, label, disabled, currentPage, next, previous
+    page, label, disabled, currentPage, next, previous,
   } = props;
 
   return (
