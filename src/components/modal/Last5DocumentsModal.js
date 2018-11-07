@@ -46,7 +46,7 @@ const Last5DocumentsModal = ({
         </tbody>
       </Table>
       <p>
-        <Link to="/documents/1" className="modal-last5-document__link-more-documents">
+        <Link to="/documents/1" className="modal-last5-document__link-more-documents" onClick={() => { closeModal(); }}>
           Ver mais provas
         </Link>
       </p>
