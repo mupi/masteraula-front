@@ -281,7 +281,7 @@
 
 .c-my-documents{
   &__total-results {
-    margin-bottom: 0px;
+    margin-bottom: 10px;
     font-size: 14px;
     color: $color-ma-blue;
     font-weight: bold;
@@ -306,7 +306,9 @@
   }
 }
 
-
+.pagination-my-documents ul.pagination {
+  margin-bottom: 0px;
+}
 .pagination-my-documents.row a {
   color:$color-ma-blue;
 }

@@ -75,7 +75,7 @@ class ViewDocumentPage extends React.Component {
               <h4>Minhas Provas</h4>
             </Col>
           </Row>
-          <Row className="pagination-my-documents" style={{ marginTop: '1em' }}>
+          <Row className="pagination-my-documents">
             {isFetchingMyDocuments
               ? (
                 <Col sm="12">
