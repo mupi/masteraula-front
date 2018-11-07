@@ -75,7 +75,7 @@
     &__btn-remove-question{
       background: $color-ma-red !important;
       color: $color-ma-white;
-      border: 1px solid  $color-ma-red;
+      border: 1px solid  $color-ma-red !important;
     }
 
     
@@ -124,10 +124,19 @@
 
     &__add-question-rectangle{
       text-align: right;
+      padding-right: 8px;
     }
 
     &__add-question-title{
       margin-bottom: 15px;
+    }
+
+    &__list-documents{
+      margin-top: 15px;
+
+      p{
+        margin-bottom: 0px;
+      }
     }
 
     &__label-tag-header{

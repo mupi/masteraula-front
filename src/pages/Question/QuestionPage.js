@@ -117,9 +117,9 @@ class QuestionPage extends Component {
                         label={(
                           <span>
                             <FontAwesomeIcon icon="minus" className="btn__icon" />
-Remover
+                            Remover
                           </span>
-)}
+                        )}
                         customClass="c-question__btn-remove-question"
                       />
                     </Col>
@@ -127,14 +127,16 @@ Remover
                 </Row>
                 {activeQuestion.documents && activeQuestion.documents.filter(item => item.id !== activeDocument.id).length > 0
                   ? (
-                    <Row style={{ float: 'right' }}>
-                      <span>
-Essa questão também está em suas provas:
-                        {' '}
-                        <strong>
-                          {activeQuestion.documents.filter(item => item.id !== activeDocument.id).map(item => item.name).join(', ')}
-                        </strong>
-                      </span>
+                    <Row className="c-question__list-documents">
+                      <Col className="c-question__add-question-rectangle">
+                        <p>
+                          Essa questão também está em suas provas:
+                          {' '}
+                          <strong>
+                            {activeQuestion.documents.filter(item => item.id !== activeDocument.id).map(item => item.name).join(', ')}
+                          </strong>
+                        </p>
+                      </Col>
                     </Row>
                   ) : ''}
               </div>

@@ -134,13 +134,18 @@
     &__btn-remove-question{
       background: $color-ma-red !important;
       color: $color-ma-white;
-      border: 1px solid  $color-ma-red;
+      border: 1px solid  $color-ma-red !important;
       margin-right: 5px;
     }
 
     &__btn-remove-question:hover{
       background: $color-ma-red;
-      border-color: $color-ma-red;
+      border-color: $color-ma-red !important;
+    }
+
+    &__btn-remove-question:focus{
+      background: $color-ma-red;
+      border-color: $color-ma-red !important;
     }
 
 }
