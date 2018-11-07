@@ -168,11 +168,11 @@ export const document = (state = initialState, action) => {
       const activeDocument = { ...state.activeDocument, questions: newQuestionsInDocument };
       localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
       toast.success(`Questão removida com sucesso da prova ${activeDocument.name}`, optionsSuccess);
-      return {
+      return Object.assign({}, state,  {
         isFetchingRemoveQuestion: false,
         isRemoved: true,
         activeDocument,
-      };
+      });
     }
     case REMOVE_SELECTED_QUESTION_FAILURE:
       toast.error('Ocorreu um erro com sua solicitação', optionsError);

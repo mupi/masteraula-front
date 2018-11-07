@@ -23,7 +23,7 @@ const AddQuestionButton = ({
       onClick={e => handleAddQuestionButton(e)}
     >
       <FontAwesomeIcon
-          icon="plus"
+        icon="plus"
         />
       {' '}
       {nameButton}
