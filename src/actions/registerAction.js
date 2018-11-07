@@ -61,6 +61,7 @@ export const resendEmail = (email, password) => {
       .then(
         (session) => {
           dispatch(success(session));
+          dispatch(reset('login'));
         },
         (error) => {
           dispatch(failure(error));
