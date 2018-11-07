@@ -14,7 +14,7 @@ const AddQuestionButton = ({
       toggleModal(modal, questionId);
     }
   }
- 
+
   return (
     <Button
       value={questionId}
@@ -24,7 +24,7 @@ const AddQuestionButton = ({
     >
       <FontAwesomeIcon
         icon="plus"
-        />
+      />
       {' '}
       {nameButton}
     </Button>

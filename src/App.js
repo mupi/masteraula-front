@@ -28,11 +28,9 @@ import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import { history } from 'helpers/history';
 
 import Footer from 'components/footer/Footer';
-import ModalRoot from './ModalRoot';
 // CSS imported in a single place (here)
 import 'assets/scss/styles.css';
 import 'bootstrap/dist/css/bootstrap.css';
-//import 'font-awesome/css/font-awesome.min.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -47,16 +45,17 @@ import {
   faArrowCircleLeft,
   faComments, faInfoCircle, faBook,
   faSignInAlt, faClone, faExclamationCircle,
-  faTimesCircle, /* 'x' icon with circle*/
+  faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
+import ModalRoot from './ModalRoot';
+
 
 library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile, faPencilAlt, faSyncAlt, faBars,
   faUser, faHome, faSignOutAlt, faUserCircle, faSearch, faFolder, faFileAlt, faFilter, faTrash,
   faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft,
   faArrowCircleLeft,
   faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
-  faTimesCircle,
-);
+  faTimesCircle);
 
 class App extends Component {
   constructor(props) {
