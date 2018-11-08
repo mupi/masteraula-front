@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Sidebar = (props) => {
-  const { showFilters, activeDocument, user, logout } = props;
+  const { showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar } = props;
 
   return ( 
     <div id="sidebar">
@@ -42,7 +42,7 @@ const Sidebar = (props) => {
                   </DropdownItem>
                   <DropdownItem divider/>
                   <DropdownItem className="c-sidebar__user-dropdown-item">
-                    <Link className="c-sidebar__link-my-profile" onClick={(e) => { e.preventDefault(); logout(); }} to="/">
+                    <Link className="c-sidebar__link-my-profile" onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); }} to="/">
                       <FontAwesomeIcon icon="sign-out-alt" />
                       {' '}
                       Sair
