@@ -35,6 +35,8 @@ export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
 // Clear all filters selected
 export const CLEAR_SELECTED_FILTERS = 'CLEAR_SELECTED_FILTERS';
 
+export const CLEAR_SEARCH = 'CLEAR_SEARCH';
+
 
 // Discipline List
 export const listDisciplineFilters = (param) => {
@@ -124,4 +126,8 @@ export const setSearchText = searchText => ({
 
 export const clearSelectedFilters = () => ({
   type: CLEAR_SELECTED_FILTERS,
+});
+
+export const clearSearch = () => ({
+  type: CLEAR_SEARCH,
 });
