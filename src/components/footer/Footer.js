@@ -10,7 +10,7 @@ const Footer = ({ year, version }) => (
         {year}
         {' '}
         MasterAula - Mupi - versão
-        {' '} 
+        {' '}
         {version}
       </Col>
     </Row>
