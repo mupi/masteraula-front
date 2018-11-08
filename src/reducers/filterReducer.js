@@ -10,7 +10,7 @@ import {
   ADD_SELECTED_DIFFICULTY_FILTER,
   REMOVE_SELECTED_DIFFICULTY_FILTER,
   SET_SEARCH_TEXT,
-  CLEAR_SELECTED_FILTERS,
+  CLEAR_SELECTED_FILTERS, CLEAR_SEARCH,
 } from 'actions/filterAction';
 
 const initialState = {
@@ -109,6 +109,11 @@ export const filter = (state = initialState, action) => {
         disciplinesSelected: [],
         teachingLevelsSelected: [],
         difficultiesSelected: [],
+      });
+    }
+    case CLEAR_SEARCH: {
+      return Object.assign({}, state, {
+        searchText: '',
       });
     }
     default:
