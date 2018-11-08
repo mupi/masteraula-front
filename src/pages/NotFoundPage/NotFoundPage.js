@@ -14,7 +14,7 @@ A página que você tentou acessar não existe ou está indisponível
     <div className="c-public-home__features">
       <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
         <h4>
-Caso acredite que isto é um erro, entre contato com a administração em contato@mupi.me
+Caso acredite que isto é um erro, entre contato com a administração em contato@masteraula.com.br
         </h4>
       </div>
       <div style={{ padding: '100px 0' }}>

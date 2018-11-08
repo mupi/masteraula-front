@@ -97,7 +97,7 @@ const TermsUsePage = ({ date_update = '08 de outubro de 2018' }) => (
                 <li>A plataforma exige de suas empresas parceiras e prestadores de serviços a garantia de proteção e privacidade de dados assegurados em nossa política, quando há necessidade de compartilhamento dos mesmos.</li>
                 <li>O USUÁRIO INSCRITO concorda em não reproduzir, duplicar, copiar, vender, revender ou explorar com quaisquer fins comerciais, qualquer porção do conteúdo da plataforma Masteraula ou uso do “site” ou o acesso ao “site” para o fim de vendas de bens ou serviços, ou a promoção de uma companhia, bem ou serviço.</li>
                 <li>Poderemos eventualmente atualizar esta política sem aviso prévio. As mudanças mais significativas, quando oportuno, poderão ser comunicadas em área de destaque no website ou através de e-mail.</li>
-                <li>Após o cancelamento de sua inscrição, suas informações continuarão armazenadas em nosso banco de dados. Caso você queira que estes dados sejam removidos, é necessário o envio de solicitação formal para o e-mail contato@mupi.me.</li>
+                <li>Após o cancelamento de sua inscrição, suas informações continuarão armazenadas em nosso banco de dados. Caso você queira que estes dados sejam removidos, é necessário o envio de solicitação formal para o e-mail contato@masteraula.com.br</li>
         </ol>
         </p>
         <p>
