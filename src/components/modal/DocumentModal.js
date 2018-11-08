@@ -27,11 +27,11 @@ const DocumentModal = ({
   return (
     <div className="modal__content modal-content">
       <div className="modal__header modal-header">
-        <h5
+        <h6
           className="modal-title"
         >
           {document && document.name}
-        </h5>
+        </h6>
         <button type="button" className="close" aria-label="Close" onClick={closeModal}>
           <span aria-hidden="true">
             &times;
