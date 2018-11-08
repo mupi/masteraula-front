@@ -14,6 +14,28 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+const QuestionListDocuments = (props) => {
+  const { activeQuestion, activeDocument } = props;
+  const listDocumentFilter = ((activeDocument && activeQuestion.documents) ? activeQuestion.documents.filter(item => item.id !== activeDocument.id) : activeQuestion.documents);
+
+  return (
+    activeQuestion.documents && listDocumentFilter.length > 0
+      ? (
+        <Row className="c-question__list-documents">
+          <Col className="c-question__add-question-rectangle">
+            <p>
+              Essa questão também está em suas provas:
+              {' '}
+              <strong>
+                {listDocumentFilter.map(item => item.name).join(', ')}
+              </strong>
+            </p>
+          </Col>
+        </Row>
+      ) : ''
+  );
+};
+
 class QuestionPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
@@ -55,7 +77,7 @@ class QuestionPage extends Component {
           <Row>
             <Col className="d-flex">
               <Button onClick={history.goBack} className="c-question__btn-back mr-auto p-2">
-                <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon"/>
+                <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
                 {' '}
                 Voltar
               </Button>
@@ -67,13 +89,13 @@ class QuestionPage extends Component {
               {activeQuestion.disciplines && activeQuestion.disciplines.map(discipline => (
                 <span
                   key={discipline.id}
-                      className="c-question__label-tag-header c-question__tag--pink p-2"
+                  className="c-question__label-tag-header c-question__tag--pink p-2"
                 >
                   {discipline.name}
                 </span>
               ))}
             </Col>
-            
+
           </Row>
           <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
           <Row className="justify-content-center">
@@ -114,12 +136,20 @@ class QuestionPage extends Component {
                         questionId={activeQuestion.id}
                         activeDocumentId={activeDocument.id}
                         removeSelectedQuestion={removeSelectedQuestion}
-                        label={<span><FontAwesomeIcon icon="minus" className="btn__icon"/>Remover</span>}
+                        label={(
+                          <span>
+                            <FontAwesomeIcon icon="minus" className="btn__icon" />
+                            Remover
+                          </span>
+                        )}
                         customClass="c-question__btn-remove-question"
                       />
                     </Col>
                   )}
                 </Row>
+                <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument}/>
+
+                
               </div>
 
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />

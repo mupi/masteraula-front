@@ -8,8 +8,8 @@ import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import imageCard from 'assets/img/home/question-card.jpg';
 import { Link } from 'react-router-dom';
 import { isQuestionAdded, getCleanExtractStatement } from 'helpers/question';
-import QuestionAuthor from './QuestionAuthor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import QuestionAuthor from './QuestionAuthor';
 
 
 const getQuoteSeparator = (i, length) => {
@@ -64,7 +64,7 @@ const QuestionCard = (props) => {
           {
             (question.tags.length > 0) ? (
               <span className="question-card__more-info--lightgray">
-                {'| '}
+                {' | '}
                 tags:
                 {' '}
               </span>

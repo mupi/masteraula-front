@@ -31,7 +31,7 @@ const ConfirmModal = ({
           Continuar
         </button>
     </div>
-    </div>
+    </div> 
     
   </div>
 );

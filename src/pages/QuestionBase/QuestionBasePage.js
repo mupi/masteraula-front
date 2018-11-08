@@ -9,6 +9,7 @@ import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import QuestionSearchFormContainer from 'containers/QuestionSearchFormContainer';
 import { ToastContainer } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'react-toastify/dist/ReactToastify.css';
 
 class QuestionBasePage extends React.Component {
@@ -65,18 +66,24 @@ class QuestionBasePage extends React.Component {
                     Filtros selecionados:
                   </span>
                   {filter.disciplinesSelected.map(item => (
-                    <Button id={item.id} onClick={clearDisciplines} className="c-question-base__filter-selected">
-                      {item.name} x 
+                    <Button key={item.id} id={item.id} onClick={clearDisciplines} className="c-question-base__filter-selected">
+                      {item.name}
+                      {' '}
+                      x
                     </Button>
                   )).concat(
                     filter.difficultiesSelected.map(item => (
-                      <Button id={item.id} onClick={clearDifficulties} className="c-question-base__filter-selected">
-                        {item.name} x
+                      <Button key={item.id} id={item.id} onClick={clearDifficulties} className="c-question-base__filter-selected">
+                        {item.name}
+                        {' '}
+                        x
                       </Button>
                     )),
                     filter.teachingLevelsSelected.map(item => (
-                      <Button id={item.id} onClick={clearTeachingLevel} className="c-question-base__filter-selected">
-                        {item.name} x
+                      <Button key={item.id} id={item.id} onClick={clearTeachingLevel} className="c-question-base__filter-selected">
+                        {item.name}
+                        {' '}
+                        x
                       </Button>
                     )),
                   )}

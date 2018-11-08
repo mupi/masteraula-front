@@ -16,7 +16,7 @@ const Menu = (props) => {
   } = props;
 
   const loggedOptions = (
-    <Nav className="ml-auto" navbar>
+    <Nav className="ml-auto hidden-xs" navbar>
       <NavItem className="hidden">
         <Link to="/question-base/1">
           <FontAwesomeIcon

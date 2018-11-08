@@ -13,9 +13,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Sidebar = (props) => {
-  const { showFilters, activeDocument, user, logout } = props;
+  const {
+    showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu
+  } = props; 
 
-  return ( 
+  return (
     <div id="sidebar">
       <div className="logo-top-sidebar">
         <img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" />
@@ -25,7 +27,7 @@ const Sidebar = (props) => {
           <Row>
             <Col xs="12" className="c-sidebar__user-info-section visible-xs">
               <div className="c-sidebar__user-avatar">
-                <FontAwesomeIcon icon="user-circle" className="hidden"/>
+                <FontAwesomeIcon icon="user-circle" className="hidden" />
                 <img src={userPhoto} alt="foto-usuario" />
               </div>
               <UncontrolledDropdown className="c-sidebar__user-dropdown">
@@ -40,9 +42,9 @@ const Sidebar = (props) => {
                       Meu Perfil
                     </Link>
                   </DropdownItem>
-                  <DropdownItem divider/>
+                  <DropdownItem divider />
                   <DropdownItem className="c-sidebar__user-dropdown-item">
-                    <Link className="c-sidebar__link-my-profile" onClick={(e) => { e.preventDefault(); logout(); }} to="/">
+                    <Link className="c-sidebar__link-my-profile" onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen)}} to="/">
                       <FontAwesomeIcon icon="sign-out-alt" />
                       {' '}
                       Sair
@@ -79,7 +81,7 @@ const Sidebar = (props) => {
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">
-                    <Link to="#">
+                    <Link to="/documents/1">
                       <FontAwesomeIcon
                         className="btn__icon"
                         icon="folder"

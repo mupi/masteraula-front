@@ -11,7 +11,7 @@ const MODAL_TYPES = {
   prompt: modalTypes.promptModal,
   document: modalTypes.documentModal,
   exportDocument: modalTypes.exportDocumentModal,
-
+  last5Documents: modalTypes.last5DocumentsModal,
 };
 
 const mapStateToProps = state => ({

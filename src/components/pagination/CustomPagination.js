@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const CustomPaginationItem = (props) => {
   const {
-    page, label, disabled, currentPage, next, previous
+    page, label, disabled, currentPage, next, previous,
   } = props;
 
   return (
@@ -51,7 +51,7 @@ const CustomPagination = (props) => {
 
   return (
 
-    <Pagination aria-label={ariaLabel}>
+    <Pagination aria-label={ariaLabel} className="d-flex justify-content-end">
       <CustomPaginationItem disabled={!previous} page={currentPage - 1} previous />
 
       {rows.map(CustomPaginationItem)}

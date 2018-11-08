@@ -5,20 +5,10 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
+import OpenLastDocumentListContainer from 'containers/OpenLastDocumentListContainer';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-const first5Elements = (myLastDocumentsList) => {
-  const myLast5DocumentsList = [];
-  let count = 0;
-  const countLimit = (myLastDocumentsList.length < 5 ? myLastDocumentsList.length : 5);
-
-  while (count < countLimit) {
-    myLast5DocumentsList.push(myLastDocumentsList[count]);
-    count += 1;
-  }
-  return myLast5DocumentsList;
-};
-
+import { first5Elements } from 'helpers/document';
 
 class DocumentInfoSidebar extends React.Component {
   constructor(props) {
@@ -83,6 +73,10 @@ class DocumentInfoSidebar extends React.Component {
                     documentName={documentName}
                     documentTotalQuestions={documentTotalQuestions}
                   />
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem className="o-doc-options__dropdown-item">
+                  <OpenLastDocumentListContainer myLastDocumentsList={myLastDocumentsList} />
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

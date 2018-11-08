@@ -85,20 +85,20 @@ const TermsUsePage = ({ date_update = '08 de outubro de 2018' }) => (
         Leia com atenção as informações aqui apresentadas, pois elas indicam como seus dados pessoais são coletados, utilizados e protegidos na plataforma. Ao fornecer informações pessoais ou navegar no site, você estará automaticamente concordando com as regras de utilização, proteção e segurança estabelecidas neste instrumento.      
         </p>
         <p>
-        <ol>
-                <li>O INSCRITO se declara ciente de que, a partir do cadastro na plataforma, armazenamos o seu endereço de e-mail, endereço ip e os demais dados sigilosos que foram informados ao site em nosso banco de dados. Comprometemo-nos a manter confidencialidade de suas informações.</li>
-                <li>Ao se logar em nosso site, armazenaremos um cookie em seu computador ou outro dispositivo com finalidade de identificar a sua conta na plataforma e melhorarmos a qualidade de sua navegação, podendo armazenar algumas preferências do usuário.</li>
-                <li>Inicialmente, a maioria dos navegadores é configurada para aceitar cookies, mas você pode redefinir o seu navegador para que recuse todos os cookies ou indique quando um cookie está sendo enviado. No entanto, alguns recursos da plataforma podem não funcionar adequadamente se os cookies estiverem desativados.</li>
-                <li>Os registros de eventos e atividades da plataforma serão utilizados apenas para fins estatísticos e de métricas dos serviços disponibilizados. Contudo, a plataforma reserva-se ao direito de utilizar-se de tais registros, de forma individualizada, caso exista ordem judicial neste sentido ou mediante a ocorrência de eventos que exijam estas medidas, incluindo, mas não se limitando, a investigações que se promovam na tentativa de elucidar casos de evidência de autoria ou acesso, fraudes, alterações indevidas nos sistemas, o fornecimento de prova em procedimentos judiciais, etc.</li>
-                <li>Utilizamos os seus dados para identificar seus assuntos de maior interesse e mostrar a você cursos, aulas e quaisquer conteúdo que acreditarmos estar alinhados aos seus interesses. </li>
-                <li>O usuário tem ciência de que algumas de suas informações pessoais ficarão disponíveis a outros usuários da plataforma.</li>
-                <li>Outros sites – Esta Política de Privacidade aplica-se apenas a esta plataforma. Não controlamos os sites exibidos como resultados de post em nossos Fóruns, Murais, Blogs, Biblioteca ou Links. Esses outros sites podem enviar seus próprios cookies ou outros arquivos para o seu computador, coletar dados ou solicitar informações pessoais.</li>
-                <li>Declaramos que não comercializamos, não alugamos, não vendemos e não compartilhamos as informações pessoais com outras pessoas ou com empresas, exceto com objetivo de fornecer a você serviços solicitados, tendo obtido para tanto a sua permissão, ou em circunstâncias específicas como ordem judicial ou advindas de lei. Se decidirmos utilizar essas informações para alguma outra finalidade diferente da original, pediremos o seu consentimento antes.</li>
-                <li>A plataforma exige de suas empresas parceiras e prestadores de serviços a garantia de proteção e privacidade de dados assegurados em nossa política, quando há necessidade de compartilhamento dos mesmos.</li>
-                <li>O USUÁRIO INSCRITO concorda em não reproduzir, duplicar, copiar, vender, revender ou explorar com quaisquer fins comerciais, qualquer porção do conteúdo da plataforma Masteraula ou uso do “site” ou o acesso ao “site” para o fim de vendas de bens ou serviços, ou a promoção de uma companhia, bem ou serviço.</li>
-                <li>Poderemos eventualmente atualizar esta política sem aviso prévio. As mudanças mais significativas, quando oportuno, poderão ser comunicadas em área de destaque no website ou através de e-mail.</li>
-                <li>Após o cancelamento de sua inscrição, suas informações continuarão armazenadas em nosso banco de dados. Caso você queira que estes dados sejam removidos, é necessário o envio de solicitação formal para o e-mail contato@mupi.me.</li>
-        </ol>
+          <ol>
+            <li>O INSCRITO se declara ciente de que, a partir do cadastro na plataforma, armazenamos o seu endereço de e-mail, endereço ip e os demais dados sigilosos que foram informados ao site em nosso banco de dados. Comprometemo-nos a manter confidencialidade de suas informações.</li>
+            <li>Ao se logar em nosso site, armazenaremos um cookie em seu computador ou outro dispositivo com finalidade de identificar a sua conta na plataforma e melhorarmos a qualidade de sua navegação, podendo armazenar algumas preferências do usuário.</li>
+            <li>Inicialmente, a maioria dos navegadores é configurada para aceitar cookies, mas você pode redefinir o seu navegador para que recuse todos os cookies ou indique quando um cookie está sendo enviado. No entanto, alguns recursos da plataforma podem não funcionar adequadamente se os cookies estiverem desativados.</li>
+            <li>Os registros de eventos e atividades da plataforma serão utilizados apenas para fins estatísticos e de métricas dos serviços disponibilizados. Contudo, a plataforma reserva-se ao direito de utilizar-se de tais registros, de forma individualizada, caso exista ordem judicial neste sentido ou mediante a ocorrência de eventos que exijam estas medidas, incluindo, mas não se limitando, a investigações que se promovam na tentativa de elucidar casos de evidência de autoria ou acesso, fraudes, alterações indevidas nos sistemas, o fornecimento de prova em procedimentos judiciais, etc.</li>
+            <li>Utilizamos os seus dados para identificar seus assuntos de maior interesse e mostrar a você cursos, aulas e quaisquer conteúdo que acreditarmos estar alinhados aos seus interesses. </li>
+            <li>O usuário tem ciência de que algumas de suas informações pessoais ficarão disponíveis a outros usuários da plataforma.</li>
+            <li>Outros sites – Esta Política de Privacidade aplica-se apenas a esta plataforma. Não controlamos os sites exibidos como resultados de post em nossos Fóruns, Murais, Blogs, Biblioteca ou Links. Esses outros sites podem enviar seus próprios cookies ou outros arquivos para o seu computador, coletar dados ou solicitar informações pessoais.</li>
+            <li>Declaramos que não comercializamos, não alugamos, não vendemos e não compartilhamos as informações pessoais com outras pessoas ou com empresas, exceto com objetivo de fornecer a você serviços solicitados, tendo obtido para tanto a sua permissão, ou em circunstâncias específicas como ordem judicial ou advindas de lei. Se decidirmos utilizar essas informações para alguma outra finalidade diferente da original, pediremos o seu consentimento antes.</li>
+            <li>A plataforma exige de suas empresas parceiras e prestadores de serviços a garantia de proteção e privacidade de dados assegurados em nossa política, quando há necessidade de compartilhamento dos mesmos.</li>
+            <li>O USUÁRIO INSCRITO concorda em não reproduzir, duplicar, copiar, vender, revender ou explorar com quaisquer fins comerciais, qualquer porção do conteúdo da plataforma Masteraula ou uso do “site” ou o acesso ao “site” para o fim de vendas de bens ou serviços, ou a promoção de uma companhia, bem ou serviço.</li>
+            <li>Poderemos eventualmente atualizar esta política sem aviso prévio. As mudanças mais significativas, quando oportuno, poderão ser comunicadas em área de destaque no website ou através de e-mail.</li>
+            <li>Após o cancelamento de sua inscrição, suas informações continuarão armazenadas em nosso banco de dados. Caso você queira que estes dados sejam removidos, é necessário o envio de solicitação formal para o e-mail contato@masteraula.com.br</li>
+          </ol>
         </p>
         <p>
         Esta Política de Privacidade pode ser alterada periodicamente. Ela não reduzirá os seus direitos sem o seu consentimento explícito. Publicaremos todas as alterações da Política de Privacidade nesta página e, se as alterações forem significativas, colocaremos um aviso com mais destaque, e nos esforçaremos para notificar os USUÁRIOS das alterações da Política de Privacidade.
@@ -107,8 +107,9 @@ const TermsUsePage = ({ date_update = '08 de outubro de 2018' }) => (
       </div>
 
       <p className="date-update-terms">
-Atualizado em:
-        {' '}{date_update}
+        Atualizado em:
+        {' '}
+        {date_update}
       </p>
     </Container>
   </div>
