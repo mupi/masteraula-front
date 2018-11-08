@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from 'assets/img/home/logo_masteraula.png';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 const NotFoundPage = () => (
   <div className="l-site-masteraula__public-home">
