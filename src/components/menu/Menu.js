@@ -94,7 +94,7 @@ const Menu = (props) => {
                         { isLoggedIn ? menu : null }
                       </ul>
                     </div>
-                    <Col sm="8" xs="10" className="d-flex align-items-center menu-top__document-section">
+                    <Col sm="8" xs="9" className="d-flex align-items-center menu-top__document-section">
                       {activeDocument && (
                         <DocumentInfoSidebarContainer
                           documentName={activeDocument.name}

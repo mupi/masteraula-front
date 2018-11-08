@@ -44,7 +44,7 @@ const Sidebar = (props) => {
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem className="c-sidebar__user-dropdown-item">
-                    <Link className="c-sidebar__link-my-profile" onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen)}} to="/">
+                    <Link className="c-sidebar__link-my-profile" onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen); }} to="/">
                       <FontAwesomeIcon icon="sign-out-alt" />
                       {' '}
                       Sair

@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   isOpen: state.menu.isOpen,
   user: state.session.session.user,
   activeDocument: state.document.activeDocument,
-  isOpenSidebar: state.menu.isOpenSidebar, 
+  isOpenSidebar: state.menu.isOpenSidebar,
 });
 
 const mapDispatchToProps = dispatch => ({
