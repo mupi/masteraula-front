@@ -64,7 +64,7 @@ const QuestionCard = (props) => {
           {
             (question.tags.length > 0) ? (
               <span className="question-card__more-info--lightgray">
-                {'| '}
+                {' | '}
                 tags:
                 {' '}
               </span>
