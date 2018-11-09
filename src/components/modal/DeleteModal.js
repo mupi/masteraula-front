@@ -31,13 +31,11 @@ const DeleteModal = ({
         </p>
 
         <div className="modal-footer modal__footer">
-          <Button color="secondary" onClick={closeModal}>
-            <FontAwesomeIcon icon="sign-out-alt" className="btn__icon" />
-            Fechar
-          </Button>
           <Button className="btn--confirm" onClick={() => handleConfirm()}>
-            <FontAwesomeIcon icon="check-circle" className="btn__icon" />
             Apagar
+          </Button>
+          <Button color="secondary" onClick={closeModal}>
+            Cancelar
           </Button>
         </div>
       </div>

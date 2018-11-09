@@ -34,7 +34,7 @@ class UserProfilePage extends React.Component {
               Meu Perfil
           </h3>
           <h5 className="text-center">
-              Permite que a comunidade do MasterAula te conheça
+              Conte um pouco sobre você
           </h5>
           <UserProfileContainer stateList={stateList} />
           <UserPasswordProfileContainer />

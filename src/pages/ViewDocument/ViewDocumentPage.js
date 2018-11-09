@@ -13,8 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const getOrderNameField = (text) => {
   switch (text) {
-    case 'asc': return 'Ascendente';
-    case 'desc': return 'Descendente';
+    case 'asc': return 'Crescente';
+    case 'desc': return 'Decrescente';
     case 'name': return 'Nome';
     case 'date': return 'Data de criação';
     case 'question_number': return 'Nº questões';
@@ -106,24 +106,24 @@ class ViewDocumentPage extends React.Component {
                       </DropdownToggle>
                       <DropdownMenu>
                         <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'name', 'asc')}>
-                          Nome - Ascendente
+                          Nome - Crescente
                         </DropdownItem>
                         <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'name', 'desc')}>
-                          Nome - Descendente
+                          Nome - Decrescente
                         </DropdownItem>
                         <DropdownItem divider />
                         <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'date', 'asc')}>
-                          Data de criação - Ascendente
+                          Data de criação - Crescente
                         </DropdownItem>
                         <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'date', 'desc')}>
-                          Data de criação - Descendente
+                          Data de criação - Decrescente
                         </DropdownItem>
                         <DropdownItem divider />
                         <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'asc')}>
-                          Nº Questões - Ascendente
+                          Nº Questões - Crescente
                         </DropdownItem>
                         <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'desc')}>
-                          Nº Questões - Descendente
+                          Nº Questões - Decrescente
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
