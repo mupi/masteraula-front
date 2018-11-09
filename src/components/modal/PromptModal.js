@@ -41,13 +41,11 @@ const PromptModal = ({ closeModal, confirmAction, title, fields, onInputChange }
       </div>
       <div className="modal-footer">
         <Button color="danger" onClick={closeModal}>
-        <FontAwesomeIcon icon="sign-out-alt" className="btn__icon" />
-        Fechar
-      </Button>
-      <Button color="primary" onClick={confirmAction}>
-        <FontAwesomeIcon icon="check-circle" className="btn__icon" />
-        Continuar
-      </Button>
+        Cancelar
+        </Button>
+        <Button color="primary" onClick={confirmAction}>
+          Continuar
+        </Button>
       </div>
     </div>
   )

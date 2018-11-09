@@ -28,7 +28,7 @@ const AlertModal = ({
 
         <div className="modal-footer modal__footer">
           <Button color="secondary" onClick={closeModal}>
-          Fechar
+          Cancelar
           </Button>
         </div>
       </div>

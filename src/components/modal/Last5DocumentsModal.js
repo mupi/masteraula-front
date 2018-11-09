@@ -52,7 +52,7 @@ const Last5DocumentsModal = ({
       </p>
       <div className="modal-footer modal__footer">
         <Button color="secondary" onClick={closeModal}>
-          Fechar
+          Cancelar
         </Button>
       </div>
     </div>

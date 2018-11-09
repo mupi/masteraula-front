@@ -22,13 +22,11 @@ const ConfirmModal = ({
     <div className="modal-body">
       <p>{message}</p>
       <div className="modal__footer modal-footer">
-        <button type="button" className="btn btn-secondary" onClick={closeModal}>
-          <FontAwesomeIcon icon="sign-out-alt" className="btn__icon" />
-          Fechar
-        </button>
-        <button color="primary" className="btn--confirm btn btn-secondary" onClick={confirmAction}>
-          <FontAwesomeIcon icon="check-circle" className="btn__icon" />
+        <button type="button" color="primary" className="btn--confirm btn btn-secondary" onClick={confirmAction}>
           Continuar
+        </button>
+        <button type="button" className="btn btn-secondary" onClick={closeModal}>
+          Cancelar
         </button>
     </div>
     </div> 

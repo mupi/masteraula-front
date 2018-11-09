@@ -149,8 +149,7 @@ const DocumentModal = ({
         ))}
         <div className="modal__footer modal-footer">
           <button type="button" className="btn btn-secondary" onClick={closeModal}>
-            <FontAwesomeIcon icon="sign-out-alt" className="btn__icon" />
-            Fechar
+            Cancelar
           </button>
         </div>
       </div>
