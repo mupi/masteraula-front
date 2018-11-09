@@ -89,12 +89,12 @@ const ForgotPassword = (props) => {
 const validate = (values) => {
   const errors = {};
   if (!values.email) {
-    errors.email = 'Insira seu email'
+    errors.email = 'Insira seu email';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'O email deve conter um @';
+    errors.email = 'Email inválido';
   }
   return errors;
-};
+}; 
 
 export default reduxForm({
   form: 'forgot_password',
