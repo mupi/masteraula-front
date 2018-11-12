@@ -61,40 +61,40 @@ export const filter = (state = initialState, action) => {
         error: action.error,
       });
     case ADD_SELECTED_DISCIPLINE_FILTER: {
-      const filterDiscipline = state.disciplineFilters.filter(item => item.id == action.idDiscipline);
-      if (state.disciplinesSelected.filter(item => item == filterDiscipline[0]).length > 0) return state; // do not add duplicates
+      const filterDiscipline = state.disciplineFilters.filter(item => item.id === parseInt(action.idDiscipline, 10));
+      if (state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
         disciplinesSelected: [...state.disciplinesSelected, filterDiscipline[0]],
       });
     }
     case REMOVE_SELECTED_DISCIPLINE_FILTER: {
-      const newDisciplines = state.disciplinesSelected.filter(item => item.id != action.idDiscipline);
+      const newDisciplines = state.disciplinesSelected.filter(item => item.id !== parseInt(action.idDiscipline, 10));
       return Object.assign({}, state, {
         disciplinesSelected: newDisciplines,
       });
     }
     case ADD_SELECTED_TEACHINGLEVEL_FILTER: {
-      const filterTeachingL = state.teachingLevelFilters.filter(item => item.id == action.idTeachingLevel);
-      if (state.teachingLevelsSelected.filter(item => item == filterTeachingL[0]).length > 0) return state; // do not add duplicates
+      const filterTeachingL = state.teachingLevelFilters.filter(item => item.id === parseInt(action.idTeachingLevel, 10));
+      if (state.teachingLevelsSelected.filter(item => item.id === filterTeachingL[0].id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
         teachingLevelsSelected: [...state.teachingLevelsSelected, filterTeachingL[0]],
       });
     }
     case REMOVE_SELECTED_TEACHINGLEVEL_FILTER: {
-      const newTeachingLevels = state.teachingLevelsSelected.filter(item => item.id != action.idTeachingLevel);
+      const newTeachingLevels = state.teachingLevelsSelected.filter(item => item.id !== parseInt(action.idTeachingLevel, 10));
       return Object.assign({}, state, {
         teachingLevelsSelected: newTeachingLevels,
       });
     }
     case ADD_SELECTED_DIFFICULTY_FILTER: {
-      const filterDifficulty = state.difficultyFilters.filter(item => item.id == action.difficultyType);
-      if (state.difficultiesSelected.filter(item => item == filterDifficulty[0]).length > 0) return state; // do not add duplicates
+      const filterDifficulty = state.difficultyFilters.filter(item => item.id === action.difficultyType);
+      if (state.difficultiesSelected.filter(item => item.id === filterDifficulty[0].id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
         difficultiesSelected: [...state.difficultiesSelected, filterDifficulty[0]],
       });
     }
     case REMOVE_SELECTED_DIFFICULTY_FILTER: {
-      const newDifficulties = state.difficultiesSelected.filter(item => item.id != action.difficultyType);
+      const newDifficulties = state.difficultiesSelected.filter(item => item.id !== action.difficultyType);
       return Object.assign({}, state, {
         difficultiesSelected: newDifficulties,
       });
