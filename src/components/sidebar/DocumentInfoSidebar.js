@@ -58,7 +58,7 @@ class DocumentInfoSidebar extends React.Component {
               <DropdownMenu>
                 <DropdownItem className="o-doc-options__dropdown-item">
                   <Link to="/edit-document" className="c-sidebar__link-my-profile">
-                    <FontAwesomeIcon icon="user" />
+                    <FontAwesomeIcon icon="pencil-alt" />
                     {' '}
                     Editar
                   </Link>
