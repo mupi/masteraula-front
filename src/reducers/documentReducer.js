@@ -45,6 +45,7 @@ export const document = (state = initialState, action) => {
         isDeleted: false,
       });
     case FETCH_DOCUMENT_SUCCESS:
+      localStorage.setItem('activeDocument', JSON.stringify(state.activeDocument));
       return Object.assign({}, state, {
         activeDocument: action.activeDocument,
         isFetching: false,
@@ -207,6 +208,8 @@ export const document = (state = initialState, action) => {
       });
     }
     case SWITCH_ACTIVE_DOCUMENT: {
+      localStorage.setItem('activeDocument', JSON.stringify(action.activeDocument));
+
       return Object.assign({}, state, {
         activeDocument: action.activeDocument,
       });
