@@ -169,7 +169,7 @@ export const document = (state = initialState, action) => {
       const activeDocument = { ...state.activeDocument, questions: newQuestionsInDocument };
       localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
       toast.success(`Questão removida com sucesso da prova ${activeDocument.name}`, optionsSuccess);
-      return Object.assign({}, state,  {
+      return Object.assign({}, state, {
         isFetchingRemoveQuestion: false,
         isRemoved: true,
         activeDocument,
@@ -247,6 +247,7 @@ export const document = (state = initialState, action) => {
       });
     }
     case DOWNLOAD_DOCUMENT: {
+      toast.success('Seu download iniciará a qualquer momento', optionsSuccess);
       return Object.assign({}, state, {
         isDownloadingDocument: true,
         isDowloaded: false,
@@ -259,6 +260,7 @@ export const document = (state = initialState, action) => {
       });
     }
     case DOWNLOAD_DOCUMENT_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isDownloadingDocument: false,
         error: action.error,
