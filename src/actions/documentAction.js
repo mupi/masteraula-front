@@ -2,6 +2,12 @@ import { documentService } from 'services';
 import { history } from 'helpers/history';
 import FileSaver from 'file-saver';
 
+import {
+  LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS,
+  LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS,
+} from 'actions/questionAction';
+
+
 // Load single document
 export const FETCH_DOCUMENT = 'FETCH_DOCUMENT';
 export const FETCH_DOCUMENT_SUCCESS = 'FETCH_DOCUMENT_SUCCESS';
@@ -62,7 +68,7 @@ export const SWITCH_ACTIVE_DOCUMENT = 'SWITCH_ACTIVE_DOCUMENT';
 
 // Delete active document in session
 export const DELETE_DOCUMENT_SESSION = 'DELETE_DOCUMENT_SESSION';
-
+ 
 // Download the document
 export const DOWNLOAD_DOCUMENT = 'DOWNLOAD_DOCUMENT';
 export const DOWNLOAD_DOCUMENT_SUCCESS = 'DOWNLOAD_DOCUMENT_SUCCESS';
@@ -178,6 +184,8 @@ export const addSelectedQuestion = (idDocument, idQuestion, order) => {
   function addQuestionToDocumentSuccess(addedQuestion) { return { type: ADD_SELECTED_QUESTION_SUCCESS, addedQuestion }; }
   function addQuestionToDocumentFailure(error) { return { type: ADD_SELECTED_QUESTION_FAILURE, error }; }
 
+  function listDocumentsAfterAddQuestionSuccess(addedQuestion) { return { type: LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS, addedQuestion }; }
+
   return (dispatch, getState) => {
     if (getState().document.isFetchingAddQuestion) {
       return 1;
@@ -187,6 +195,7 @@ export const addSelectedQuestion = (idDocument, idQuestion, order) => {
       .then(
         (addedQuestion) => {
           dispatch(addQuestionToDocumentSuccess(addedQuestion));
+          dispatch(listDocumentsAfterAddQuestionSuccess(addedQuestion));
         },
         (error) => {
           dispatch(addQuestionToDocumentFailure(error));
@@ -200,12 +209,16 @@ export const removeSelectedQuestion = (idDocument, idQuestion) => {
   function removeQuestionFromDocument() { return { type: REMOVE_SELECTED_QUESTION }; }
   function removeQuestionFromDocumentSuccess(idRemovedQuestion) { return { type: REMOVE_SELECTED_QUESTION_SUCCESS, idRemovedQuestion }; }
   function removeQuestionFromDocumentFailure(error) { return { type: REMOVE_SELECTED_QUESTION_FAILURE, error }; }
+
+  function listDocumentsAfterRemoveQuestionSuccess(addedQuestion) { return { type: LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS, addedQuestion }; }
+
   return (dispatch) => {
     dispatch(removeQuestionFromDocument(idDocument, idQuestion));
     return documentService.removeSelectedQuestion(idDocument, idQuestion)
       .then(
         (idRemovedQuestion) => {
           dispatch(removeQuestionFromDocumentSuccess(idRemovedQuestion));
+          dispatch(listDocumentsAfterRemoveQuestionSuccess(idRemovedQuestion));
         },
         (error) => {
           dispatch(removeQuestionFromDocumentFailure(error));
