@@ -14,7 +14,7 @@ const OpenDocumentModalHeader = (props) => {
   };
 
   return (
-    <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }}  className="col-5 c-my-documents__cell">
+    <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }}  className="c-my-documents__cell">
       { children }
     </td>
   );

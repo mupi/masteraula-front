@@ -10,7 +10,7 @@ const OpenDocumentModalHeader = (props) => {
 
 
   return (
-    <td role="gridcell" className="col-5 c-my-documents__cell">
+    <td role="gridcell" className="c-my-documents__cell">
       { children }
     </td>
   );
@@ -65,7 +65,8 @@ class HeadersList extends React.Component {
   }
  
   render() {
-    const documents=[ {id: '1', name:'cabeçalho 1'}, {id: '2', name:'cabeçalho 2'}];
+    const documents=[ {id: '1', name:'cabeçalho 1', discipline: 'Matemática', institution: 'Pequeno Urso', professor: 'Paula Furtado'}, 
+    {id: '2', name:'cabeçalho 2' , discipline: 'Matemática', institution: 'Pequeno Urso', professor: 'Paula Furtado'}];
 
     return (
       <Row className="l-my-documents-list">
@@ -76,22 +77,22 @@ class HeadersList extends React.Component {
               <thead align="center">
                 <tr>
                   <th>
-                Nome
+                    Nome do cabeçalho
                   </th>
                   <th>
-                  Data de criação
+                    Disciplina
                   </th>
                   <th>
-                  Nº de questões
+                    Instituição
                   </th>
                   <th>
-                  Editar
+                    Professor
                   </th>
                   <th>
-                  Exportar
+                    Editar
                   </th>
                   <th>
-                  Apagar
+                    Remover
                   </th>
                 </tr>
               </thead>
@@ -100,6 +101,15 @@ class HeadersList extends React.Component {
                   <tr key={document.id}>
                     <OpenDocumentModalHeader>
                       {document.name}
+                    </OpenDocumentModalHeader>
+                    <OpenDocumentModalHeader>
+                      {document.discipline}
+                    </OpenDocumentModalHeader>
+                    <OpenDocumentModalHeader>
+                      {document.institution}
+                    </OpenDocumentModalHeader>
+                    <OpenDocumentModalHeader>
+                      {document.professor}
                     </OpenDocumentModalHeader>
                     <td>
                       <Button color="secondary"/* onClick={() => this.editDocument(document)}*/>
