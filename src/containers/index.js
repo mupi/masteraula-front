@@ -8,3 +8,5 @@ export { default as ForgotPasswordPageContainer } from './ForgotPasswordPageCont
 export { default as ViewDocumentPageContainer } from './ViewDocumentPageContainer';
 export { default as EditDocumentPageContainer } from './EditDocumentPageContainer';
 export { default as MenuContainer } from './MenuContainer';
+export { default as MyHeadersPageContainer } from './MyHeadersPageContainer';
+

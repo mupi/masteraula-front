@@ -81,7 +81,7 @@ const Sidebar = (props) => {
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">
-                    <Link to="/documents/1">
+                    <Link to="/my-headers/1">
                       <FontAwesomeIcon
                         className="btn__icon"
                         icon="folder"
