@@ -65,8 +65,14 @@ class HeadersList extends React.Component {
   }
  
   render() {
-    const documents=[ {id: '1', name:'cabeçalho 1', discipline: 'Matemática', institution: 'Pequeno Urso', professor: 'Paula Furtado'}, 
-    {id: '2', name:'cabeçalho 2' , discipline: 'Matemática', institution: 'Pequeno Urso', professor: 'Paula Furtado'}];
+    const documents = [
+      {
+        id: '1', name: 'cabeçalho 1', discipline: 'Matemática', institution: 'Pequeno Urso', professor: 'Paula Furtado' 
+      },
+      {
+        id: '2', name: 'cabeçalho 2', discipline: 'Geografia', institution: 'Pequeno Urso', professor: 'Marcio Lopez' 
+      },
+    ];
 
     return (
       <Row className="l-my-documents-list">

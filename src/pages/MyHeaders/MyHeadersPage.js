@@ -4,6 +4,7 @@ import {
   Row, Col, Button, Input, InputGroup, InputGroupAddon, Alert,
   UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HeadersList from 'components/headers/HeadersList';
@@ -21,7 +22,6 @@ const getOrderNameField = (text) => {
     default: return text;
   }
 };
-
 
 class MyHeadersPage extends React.Component {
 
@@ -41,6 +41,27 @@ class MyHeadersPage extends React.Component {
               <h4>Meus Cabeçalhos</h4>
             </Col>
           </Row>
+          
+          <Row>
+              <Col sm="12" className="d-flex justify-content-end">
+          <div className="p-2">
+            <Button>
+            <FontAwesomeIcon
+        icon="plus" className="btn__icon"
+      /> Criar novo</Button>
+
+        
+          </div>
+          <div className="p-2">
+            <Button> <FontAwesomeIcon  icon="eye" className="btn__icon"/>  <span className="button-text">
+                Ver cabeçalhos
+              </span></Button>
+
+          </div>
+          </Col>
+        </Row>
+
+
           <Row className="pagination-my-documents">
             {false
               ? (
@@ -55,7 +76,9 @@ class MyHeadersPage extends React.Component {
                     {`Cabeçalhos encontrados: ${false ? 10 : 0}`}
                     {' '}
                   </p>
-                  <div className="c-my-documents__dropdown-section">
+                  <Row>
+              <Col sm="12" className="d-flex justify-content-end">
+              <div className="c-my-documents__dropdown-section">
                     <span className="c-my-documents__order-label">
                       Ordenar por:
                     </span>
@@ -91,6 +114,9 @@ class MyHeadersPage extends React.Component {
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </div>
+          </Col>
+        </Row>
+                  
                   {true
                     && <HeadersList />
                   }
