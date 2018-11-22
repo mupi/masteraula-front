@@ -6,6 +6,8 @@ import {
 } from 'reactstrap';
 
 import CustomPagination from 'components/pagination/CustomPagination';
+import HeadersList from 'components/headers/HeadersList';
+
 import { ToastContainer } from 'react-toastify';
 import HomeUserPage from '../HomeUser/HomeUserPage';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,7 +18,6 @@ const getOrderNameField = (text) => {
     case 'desc': return 'Decrescente';
     case 'name': return 'Nome';
     case 'date': return 'Data de criação';
-    case 'question_number': return 'Nº questões';
     default: return text;
   }
 };
@@ -90,7 +91,9 @@ class MyHeadersPage extends React.Component {
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </div>
-                 
+                  {true
+                    && <HeadersList />
+                  }
                 </Col>
               )}
           </Row>
