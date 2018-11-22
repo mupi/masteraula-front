@@ -24,7 +24,7 @@ const Sidebar = (props) => {
       </div>
       <div id="sidebar-container">
         <div className="container-fluid">
-          <Row>
+          <Row className="sidebar-row">
             <Col xs="12" className="c-sidebar__user-info-section visible-xs">
               <div className="c-sidebar__user-avatar">
                 <FontAwesomeIcon icon="user-circle" className="hidden" />
