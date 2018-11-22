@@ -8,7 +8,7 @@ import {
 const sessionData = JSON.parse(localStorage.getItem('activeDocument'));
 
 const initialState = {
-  activeQuestion: {},
+  activeQuestion: { documents: [] },
   questionPage: {},
   activeDocument: sessionData,
 };
