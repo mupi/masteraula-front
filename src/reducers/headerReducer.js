@@ -1,261 +1,137 @@
 import {
   FETCH_HEADER, FETCH_HEADER_SUCCESS, FETCH_HEADER_FAILURE,
-  CREATE_DOCUMENT, CREATE_DOCUMENT_SUCCESS, CREATE_DOCUMENT_FAILURE,
-  UPDATE_DOCUMENT, UPDATE_DOCUMENT_SUCCESS, UPDATE_DOCUMENT_FAILURE,
-  LIST_MY_DOCUMENTS, LIST_MY_DOCUMENTS_SUCCESS, LIST_MY_DOCUMENTS_FAILURE,
-  DELETE_DOCUMENT, DELETE_DOCUMENT_SUCCESS, DELETE_DOCUMENT_FAILURE,
-  } from 'actions/headerAction';
-  import { toast } from 'react-toastify';
-  
-  const initialState = {
-  };
-  
-  const optionsSuccess = {
-    className: 'alert__ma-toast--success',
-    type: 'success',
-  };
-  
-  const optionsError = {
-    className: 'alert__ma-toast--error',
-    type: 'error',
-  };
-  
-  export const document = (state = initialState, action) => {
-    switch (action.type) {
-      case FETCH_HEADER:
-        return Object.assign({}, state, {
-          isRemoved: null,
-          isUpdated: null,
-          isFetching: true,
-          error: null,
-          isDeleted: false,
-        });
-      case FETCH_DOCUMENT_SUCCESS:
-        localStorage.setItem('activeDocument', JSON.stringify(state.activeDocument));
-        return Object.assign({}, state, {
-          activeDocument: action.activeDocument,
-          isFetching: false,
-        });
-      case FETCH_DOCUMENT_FAILURE:
-        return Object.assign({}, state, {
-          isFetching: false,
-          error: action.error,
-        });
-  
-      case FETCH_PREVIEW_DOCUMENT:
-        return Object.assign({}, state, {
-          isFetchingPreviewDocument: true,
-          error: null,
-        });
-      case FETCH_PREVIEW_DOCUMENT_SUCCESS:
-        return Object.assign({}, state, {
-          previewDocument: action.previewDocument,
-          isFetchingPreviewDocument: false,
-        });
-      case FETCH_PREVIEW_DOCUMENT_FAILURE:
-        return Object.assign({}, state, {
-          isFetchingPreviewDocument: false,
-          error: action.error,
-        });
-  
-      case CREATE_DOCUMENT:
-        return Object.assign({}, state, {
-          isRemoved: null,
-          isUpdated: null,
-          activeDocument: action.newDocument,
-          isFetching: false,
-        });
-      case CREATE_DOCUMENT_SUCCESS:
-        return Object.assign({}, state, {
-          isRemoved: null,
-          isUpdated: null,
-          activeDocument: action.newDocument,
-          isFetching: false,
-        });
-      case CREATE_DOCUMENT_FAILURE:
-        return Object.assign({}, state, {
-          isFetching: false,
-          error: action.error,
-        });
-  
-      case LIST_MY_DOCUMENTS:
-        return Object.assign({}, state, {
-          isRemoved: null,
-          isUpdated: null,
-          myDocumentsList: null,
-          isFetchingMyDocuments: true,
-          currentPage: action.page,
-          error: null,
-          isDeleted: false,
-          orderField: action.orderField,
-          order: action.order,
-        });
-      case LIST_MY_DOCUMENTS_SUCCESS:
-        return Object.assign({}, state, {
-          myDocumentsList: action.myDocumentsList,
-          isFetchingMyDocuments: false,
-        });
-      case LIST_MY_DOCUMENTS_FAILURE:
-        toast.error('Ocorreu um erro com sua solicitação', optionsError);
-        return Object.assign({}, state, {
-          myDocumentsList: null,
-          isFetchingMyDocuments: false,
-          error: action.errorMessage,
-        });
-      case LIST_MY_LAST_DOCUMENTS:
-        return Object.assign({}, state, {
-          myLastDocumentsList: null,
-          isFetchingMyLastDocuments: true,
-          error: null,
-          orderField: action.orderField,
-          order: action.order,
-        });
-      case LIST_MY_LAST_DOCUMENTS_SUCCESS:
-        return Object.assign({}, state, {
-          myLastDocumentsList: action.myLastDocumentsList,
-          isFetchingMyLastDocuments: false,
-        });
-      case LIST_MY_LAST_DOCUMENTS_FAILURE:
-        toast.error('Ocorreu um erro com sua solicitação', optionsError);
-        return Object.assign({}, state, {
-          myLastDocumentsList: null,
-          isFetchingMyLastDocuments: false,
-          error: action.errorMessage,
-        });
-      case ADD_SELECTED_QUESTION:
-        return Object.assign({}, state, {
-          isFetchingAddQuestion: true,
-          isRemoved: null,
-          isUpdated: null,
-          error: null,
-        });
-      case ADD_SELECTED_QUESTION_SUCCESS: {
-        const activeDocument = { ...state.activeDocument, questions: [...state.activeDocument.questions, action.addedQuestion] };
-        localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
-        toast.success(`Questão adicionada com sucesso à prova ${activeDocument.name}`, optionsSuccess);
-        return Object.assign({}, state, {
-          isFetchingAddQuestion: false,
-          activeDocument,
-        });
-      }
-      case ADD_SELECTED_QUESTION_FAILURE:
-        return Object.assign({}, state, {
-          isFetchingAddQuestion: false,
-          error: action.error,
-        });
-      case REMOVE_SELECTED_QUESTION:
-        return Object.assign({}, state, {
-          isFetchingRemoveQuestion: true,
-          isRemoved: null,
-          isUpdated: null,
-          error: null,
-        });
-      case REMOVE_SELECTED_QUESTION_SUCCESS: {
-        const newQuestionsInDocument = state.activeDocument.questions.filter(item => item.question.id !== action.idRemovedQuestion);
-        const activeDocument = { ...state.activeDocument, questions: newQuestionsInDocument };
-        localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
-        toast.success(`Questão removida com sucesso da prova ${activeDocument.name}`, optionsSuccess);
-        return Object.assign({}, state, {
-          isFetchingRemoveQuestion: false,
-          isRemoved: true,
-          activeDocument,
-        });
-      }
-      case REMOVE_SELECTED_QUESTION_FAILURE:
-        toast.error('Ocorreu um erro com sua solicitação', optionsError);
-        return Object.assign({}, state, {
-          isFetchingRemoveQuestion: false,
-          error: action.error,
-        });
-      case CREATE_DOCUMENT_TOGGLE_MODAL: {
-        return Object.assign({}, state, {
-          modal: action.modal,
-          willAddQuestion: action.willAddQuestion,
-        });
-      }
-      case UPDATE_DOCUMENT: {
-        return Object.assign({}, state, {
-          isRemoved: null,
-          error: null,
-          isUpdated: null,
-        });
-      }
-      case UPDATE_DOCUMENT_SUCCESS: {
-        toast.success('Cabeçalho atualizado com sucesso', optionsSuccess);
-        return Object.assign({}, state, {
-          activeDocument: { ...action.activeDocument, questions: state.activeDocument.questions },
-          isUpdated: true,
-        });
-      }
-      case UPDATE_DOCUMENT_FAILURE: {
-        toast.error('Ocorreu um erro com sua solicitação', optionsError);
-        return Object.assign({}, state, {
-          error: action.error,
-        });
-      }
-      case SWITCH_ACTIVE_DOCUMENT: {
-        localStorage.setItem('activeDocument', JSON.stringify(action.activeDocument));
-  
-        return Object.assign({}, state, {
-          activeDocument: action.activeDocument,
-        });
-      }
-      case DELETE_DOCUMENT_SESSION: {
-        return Object.assign({}, state, {
-          activeDocument: null,
-        });
-      }
-      case DELETE_DOCUMENT: {
-        return Object.assign({}, state, {
-          isDeletingDocument: true,
-          isDeleted: false,
-        });
-      }
-      case DELETE_DOCUMENT_SUCCESS: {
-        const newList = state.myDocumentsList.results.filter(item => item.id !== action.idDocumentRemoved);
-        let newActive = state.activeDocument;
-        if (state.activeDocument && state.activeDocument.id === action.idDocumentRemoved) {
-          newActive = null;
-          localStorage.setItem('activeDocument', null);
-        }
-        toast.success('Prova removida com sucesso', optionsSuccess);
-        return Object.assign({}, state, {
-          activeDocument: newActive,
-          isDeleted: true,
-          myDocumentsList: { ...state.myDocumentsList, count: state.myDocumentsList.count - 1, results: newList },
-        });
-      }
-      case DELETE_DOCUMENT_FAILURE: {
-        toast.error('Ocorreu um erro com sua solicitação', optionsError);
-        return Object.assign({}, state, {
-          error: action.error,
-          isDeleted: false,
-        });
-      }
-      case DOWNLOAD_DOCUMENT: {
-        toast.success('Seu download iniciará a qualquer momento', optionsSuccess);
-        return Object.assign({}, state, {
-          isDownloadingDocument: true,
-          isDowloaded: false,
-        });
-      }
-      case DOWNLOAD_DOCUMENT_SUCCESS: {
-        return Object.assign({}, state, {
-          isDownloadingDocument: false,
-          isDowloaded: true,
-        });
-      }
-      case DOWNLOAD_DOCUMENT_FAILURE: {
-        toast.error('Ocorreu um erro com sua solicitação', optionsError);
-        return Object.assign({}, state, {
-          isDownloadingDocument: false,
-          error: action.error,
-        });
-      }
-      default:
-        return state;
+  CREATE_HEADER, CREATE_HEADER_SUCCESS, CREATE_HEADER_FAILURE,
+  UPDATE_HEADER, UPDATE_HEADER_SUCCESS, UPDATE_HEADER_FAILURE,
+  LIST_MY_HEADERS, LIST_MY_HEADERS_SUCCESS, LIST_MY_HEADERS_FAILURE,
+  DELETE_HEADER, DELETE_HEADER_SUCCESS, DELETE_HEADER_FAILURE,
+} from 'actions/headerAction';
+import { toast } from 'react-toastify';
+
+const initialState = {
+};
+
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
+
+const optionsError = {
+  className: 'alert__ma-toast--error',
+  type: 'error',
+};
+
+export const header = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_HEADER:
+      return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        isFetching: true,
+        error: null,
+        isDeleted: false,
+      });
+    case FETCH_HEADER_SUCCESS:
+      localStorage.setItem('activeHeader', JSON.stringify(state.activeHeader));
+      return Object.assign({}, state, {
+        activeHeader: action.activeHeader,
+        isFetching: false,
+      });
+    case FETCH_HEADER_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
+    case CREATE_HEADER:
+      return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        actionHeader: action.newHeader,
+        isFetching: false,
+      });
+    case CREATE_HEADER_SUCCESS:
+      return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        actionHeader: action.newHeader,
+        isFetching: false,
+      });
+    case CREATE_HEADER_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
+    case LIST_MY_HEADERS:
+      return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        myHeadersList: null,
+        isFetchingMyHeaders: true,
+        currentPage: action.page,
+        error: null,
+        isDeleted: false,
+        orderField: action.orderField,
+        order: action.order,
+      });
+    case LIST_MY_HEADERS_SUCCESS:
+      return Object.assign({}, state, {
+        myHeadersList: action.myHeadersList,
+        isFetchingMyHeaders: false,
+      });
+    case LIST_MY_HEADERS_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        myHeadersList: null,
+        isFetchingMyHeaders: false,
+        error: action.errorMessage,
+      });
+    case UPDATE_HEADER: {
+      return Object.assign({}, state, {
+        isRemoved: null,
+        error: null,
+        isUpdated: null,
+      });
     }
-  };
-  
-  export default document;
-  
+    case UPDATE_HEADER_SUCCESS: {
+      toast.success('Cabeçalho atualizado com sucesso', optionsSuccess);
+      return Object.assign({}, state, {
+        activeHeader: { ...action.activeHeader },
+        isUpdated: true,
+      });
+    }
+    case UPDATE_HEADER_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, { error: action.error });
+    }
+    case DELETE_HEADER: {
+      return Object.assign({}, state, {
+        isDeletingHeader: true,
+        isDeleted: false,
+      });
+    }
+    case DELETE_HEADER_SUCCESS: {
+      const newList = state.myHeadersList.results.filter(item => item.id !== action.idHeaderRemoved);
+      let newActive = state.activeHeader;
+      if (state.activeHeader && state.activeHeader.id === action.idHeaderRemoved) {
+        newActive = null;
+        localStorage.setItem('activeHeader', null);
+      }
+      toast.success('Cabeçalho removido com sucesso', optionsSuccess);
+      return Object.assign({}, state, {
+        activeHeader: newActive,
+        isDeleted: true,
+        myHeadersList: { ...state.myHeadersList, count: state.myHeadersList.count - 1, results: newList },
+      });
+    }
+    case DELETE_HEADER_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        error: action.error,
+        isDeleted: false,
+      });
+    }
+    default:
+      return state;
+  }
+};
+
+export default header;
