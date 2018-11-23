@@ -14,7 +14,7 @@ const OpenDocumentModalHeader = (props) => {
   };
 
   return (
-    <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }}  className="col-5 c-my-documents__cell">
+    <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }} className="col-5 c-my-documents__cell">
       { children }
     </td>
   );
@@ -67,7 +67,7 @@ class DocumentList extends React.Component {
       deleteAction: deleteDocument,
     }, 'delete');
   }
- 
+
   render() {
     const { documents } = this.props;
     return (
@@ -91,6 +91,9 @@ class DocumentList extends React.Component {
                   Editar
                   </th>
                   <th>
+                  Duplicar
+                  </th>
+                  <th>
                   Exportar
                   </th>
                   <th>
@@ -99,7 +102,7 @@ class DocumentList extends React.Component {
                 </tr>
               </thead>
               <tbody align="center">
-                {documents.map((document, i) => (
+                {documents.map(document => (
                   <tr key={document.id}>
                     <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
                       {document.name}
@@ -111,9 +114,16 @@ class DocumentList extends React.Component {
                       {document.questions.length}
                     </OpenDocumentModalHeader>
                     <td>
-                      <Button color="secondary" onClick={() => this.editDocument(document)}>
+                      <Button color="secondary" onClick={() => this.editDocument(document)} title="Editar prova">
                         <FontAwesomeIcon
                           icon="pencil-alt"
+                        />
+                      </Button>
+                    </td>
+                    <td>
+                      <Button color="secondary" title="Criar cópia da prova">
+                        <FontAwesomeIcon
+                          icon="copy"
                         />
                       </Button>
                     </td>
@@ -125,9 +135,9 @@ class DocumentList extends React.Component {
                       />
                     </td>
                     <td>
-                      <Button color="danger" onClick={() => this.handleDelete(document.id, document.name)}>
+                      <Button color="danger" onClick={() => this.handleDelete(document.id, document.name)} title="Excluir prova">
                         <FontAwesomeIcon
-                          icon="trash"
+                          icon="trash-alt"
                         />
                       </Button>
                     </td>
