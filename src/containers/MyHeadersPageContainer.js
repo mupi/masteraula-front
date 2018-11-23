@@ -6,17 +6,14 @@ import { showModal, hideModal } from 'actions/modalAction';
 // state.<reducer's name>.<property>
 
 const mapStateToProps = state => ({
-  isFetchingMyDocuments: state.document.isFetchingMyDocuments,
-  myDocumentsList: state.document.myDocumentsList,
-  currentPage: state.document.currentPage,
-  modal: state.document.modal,
-  activeDocument: state.document.activeDocument,
-  previewDocument: state.document.previewDocument,
-  isFetchingPreviewDocument: state.document.isFetchingPreviewDocument,
-  error: state.document.error,
-  isDeleted: state.document.isDeleted,
-  orderField: state.document.orderField,
-  order: state.document.order,
+  isFetchingMyHeaders: state.header.isFetchingMyHeaders,
+  myHeadersList: state.header.myHeadersList,
+  currentPage: state.header.currentPage,
+  activeHeader: state.header.activeHeader,
+  error: state.header.error,
+  isDeleted: state.header.isDeleted,
+  orderField: state.header.orderField,
+  order: state.header.order,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -24,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
   showModal: (modalProps, modalType) => {
     dispatch(showModal({ modalProps, modalType }));
   },
-}); 
+});
 
 const MyHeadersPageContainer = connect(
   mapStateToProps,
