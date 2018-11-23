@@ -17,14 +17,6 @@ class DocumentHeader extends Component {
 
     return (
       <Container>
-        <Row className="c-document__main-buttons">
-          <div className="auto-margin-left-element">
-            <GoToQuestionBaseButton
-              customClass="btn-success"
-              nameButton="Adicionar questões"
-            />
-          </div>
-        </Row>
         <Container className="c-document__header">
           Nome:
           <Form onSubmit={handleSubmit}>

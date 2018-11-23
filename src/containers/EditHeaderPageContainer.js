@@ -1,18 +1,13 @@
 import { connect } from 'react-redux';
-import MyHeadersPage from 'pages/MyHeaders/MyHeadersPage';
+import EditHeaderPage from 'pages/EditHeader/EditHeaderPage';
 
 import { showModal, hideModal } from 'actions/modalAction';
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
-  isFetchingMyHeaders: state.header.isFetchingMyHeaders,
-  myHeadersList: state.header.myHeadersList,
-  currentPage: state.header.currentPage,
   activeHeader: state.header.activeHeader,
+  isUpdated: state.header.isUpdated,
   error: state.header.error,
-  isDeleted: state.header.isDeleted,
-  orderField: state.header.orderField,
-  order: state.header.order,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,9 +17,9 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const MyHeadersPageContainer = connect(
+const EditHeaderPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(MyHeadersPage);
+)(EditHeaderPage);
 
-export default MyHeadersPageContainer;
+export default EditHeaderPageContainer;

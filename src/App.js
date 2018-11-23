@@ -20,6 +20,7 @@ import {
   EditDocumentPageContainer,
   MenuContainer,
   MyHeadersPageContainer,
+  EditHeaderPageContainer,
 }
   from 'containers';
 import { showModal, hideModal } from 'actions/modalAction';
@@ -81,6 +82,8 @@ class App extends Component {
                 <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
                 <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
                 <Route path="/edit-document" component={EditDocumentPageContainer} />
+                <Route path="/edit-header" component={EditHeaderPageContainer} />
+
                 <Redirect from="/" to="/question-base/1" />
               </Switch>
             )

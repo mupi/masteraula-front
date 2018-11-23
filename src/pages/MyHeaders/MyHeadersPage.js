@@ -7,6 +7,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import CustomPagination from 'components/pagination/CustomPagination';
+import { Link } from 'react-router-dom';
+
 import HeadersList from 'components/headers/HeadersList';
 
 import { ToastContainer } from 'react-toastify';
@@ -44,13 +46,15 @@ class MyHeadersPage extends React.Component {
           <Row>
             <Col sm="12" className="d-flex justify-content-end">
               <div className="p-2">
-                <Button>
-                  <FontAwesomeIcon
-                    icon="plus"
-                    className="btn__icon"
-                  />
-                  Criar novo
-                </Button>
+                <Link className="" to="/edit-header">
+                  <Button>
+                    <FontAwesomeIcon
+                      icon="plus"
+                      className="btn__icon"
+                    />
+                    Criar novo
+                  </Button>
+                </Link>
               </div>
               <div className="p-2">
                 <Button>
