@@ -51,7 +51,7 @@ function createHeader(newHeaderData) {
   return fetch(`${apiUrl}/headers/`, requestOptions)
     .then(handleResponse)
     .then((activeHeader) => {
-      localStorage.setItem('activeDocument', JSON.stringify(activeHeader));
+      localStorage.setItem('activeHeader', JSON.stringify(activeHeader));
       return activeHeader;
     });
 }
@@ -78,10 +78,10 @@ function updateHeader(activeUpdateHeader) {
 
   const idHeader = activeUpdateHeader.id;
 
-  return fetch(`${apiUrl}/documents/${idHeader}/`, requestOptions)
+  return fetch(`${apiUrl}/headers/${idHeader}/`, requestOptions)
     .then(handleResponse)
     .then((activeHeader) => {
-      localStorage.setItem('activeDocument', JSON.stringify(activeHeader));
+      localStorage.setItem('activeHeader', JSON.stringify(activeHeader));
       return activeHeader;
     });
 }
@@ -104,12 +104,12 @@ function listMyHeaders(page, orderField, order) {
     return data;
   });
 
-  return fetch(`${apiUrl}/documents/my_documents/?page=${page}&order_field=${orderField}&order=${order}`, requestOptions)
+  return fetch(`${apiUrl}/headers/my_headers/?page=${page}&order_field=${orderField}&order=${order}`, requestOptions)
     .then(handleResponse)
     .then(activeHeader => activeHeader);
 }
 
-// Delete a document given its ID
+// Delete a header given its ID
 function deleteHeader(idHeader) {
   const requestOptions = {
     method: 'DELETE',
