@@ -30,7 +30,6 @@ class MyHeadersPage extends React.Component {
   }
 
   render() {
-    const headerResults = 25;
 
     return (
       <HomeUserPage>
@@ -43,24 +42,26 @@ class MyHeadersPage extends React.Component {
           </Row>
           
           <Row>
-              <Col sm="12" className="d-flex justify-content-end">
-          <div className="p-2">
-            <Button>
-            <FontAwesomeIcon
-        icon="plus" className="btn__icon"
-      /> Criar novo</Button>
-
-        
-          </div>
-          <div className="p-2">
-            <Button> <FontAwesomeIcon  icon="eye" className="btn__icon"/>  <span className="button-text">
-                Ver cabeçalhos
-              </span></Button>
-
-          </div>
-          </Col>
-        </Row>
-
+            <Col sm="12" className="d-flex justify-content-end">
+              <div className="p-2">
+                <Button>
+                  <FontAwesomeIcon
+                    icon="plus"
+                    className="btn__icon"
+                  />
+                  Criar novo
+                </Button>
+              </div>
+              <div className="p-2">
+                <Button>
+                  <FontAwesomeIcon icon="eye" className="btn__icon" />
+                  <span className="button-text">
+                      Ver cabeçalhos
+                  </span>
+                </Button>
+              </div>
+            </Col>
+          </Row>
 
           <Row className="pagination-my-documents">
             {false
@@ -77,45 +78,45 @@ class MyHeadersPage extends React.Component {
                     {' '}
                   </p>
                   <Row>
-              <Col sm="12" className="d-flex justify-content-end">
-              <div className="c-my-documents__dropdown-section">
-                    <span className="c-my-documents__order-label">
-                      Ordenar por:
-                    </span>
-                    <UncontrolledDropdown>
-                      <DropdownToggle className="c-my-documents__dropdown-toogle" caret size="sm">
-                        {' '}
-                        {' '}
-                        {' '}
-                        {' - '}
-                        {' '}
-                      </DropdownToggle>
-                      <DropdownMenu>
-                        <DropdownItem className="c-my-documents__dropdown-item" >
-                          Nome - Crescente
-                        </DropdownItem>
-                        <DropdownItem className="c-my-documents__dropdown-item" >
-                          Nome - Decrescente
-                        </DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem className="c-my-documents__dropdown-item" >
-                          Data de criação - Crescente
-                        </DropdownItem>
-                        <DropdownItem className="c-my-documents__dropdown-item" >
-                          Data de criação - Decrescente
-                        </DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem className="c-my-documents__dropdown-item" >
-                          Nº Questões - Crescente
-                        </DropdownItem>
-                        <DropdownItem className="c-my-documents__dropdown-item" >
-                          Nº Questões - Decrescente
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledDropdown>
-                  </div>
-          </Col>
-        </Row>
+                    <Col sm="12" className="d-flex justify-content-end">
+                      <div className="c-my-documents__dropdown-section">
+                        <span className="c-my-documents__order-label">
+                          Ordenar por:
+                        </span>
+                        <UncontrolledDropdown>
+                          <DropdownToggle className="c-my-documents__dropdown-toogle" caret size="sm">
+                              {' '}
+                              {' '}
+                              {' Nome '}
+                              {' - '}
+                            {' Crescente '}
+                          </DropdownToggle>
+                            <DropdownMenu>
+                              <DropdownItem className="c-my-documents__dropdown-item" >
+                                Nome - Crescente
+                              </DropdownItem>
+                              <DropdownItem className="c-my-documents__dropdown-item" >
+                                Nome - Decrescente
+                              </DropdownItem>
+                              <DropdownItem divider />
+                              <DropdownItem className="c-my-documents__dropdown-item" >
+                                Data de criação - Crescente
+                              </DropdownItem>
+                              <DropdownItem className="c-my-documents__dropdown-item" >
+                                Data de criação - Decrescente
+                              </DropdownItem>
+                              <DropdownItem divider />
+                              <DropdownItem className="c-my-documents__dropdown-item" >
+                                Nº Questões - Crescente
+                              </DropdownItem>
+                              <DropdownItem className="c-my-documents__dropdown-item" >
+                                Nº Questões - Decrescente
+                              </DropdownItem>
+                            </DropdownMenu>
+                          </UncontrolledDropdown>
+                        </div>
+                </Col>
+              </Row>
                   
                   {true
                     && <HeadersList />
