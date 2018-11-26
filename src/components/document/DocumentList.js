@@ -48,7 +48,6 @@ class DocumentList extends React.Component {
     }, 'document');
   }
 
-
   editDocument(document) {
     const { switchActiveDocument } = this.props;
     switchActiveDocument(document);
@@ -67,12 +66,11 @@ class DocumentList extends React.Component {
       deleteAction: deleteDocument,
     }, 'delete');
   }
- 
+
   render() {
     const { documents } = this.props;
     return (
       <Row className="l-my-documents-list">
-
         <Col xs="12">
           <div>
             <Table responsive hover>

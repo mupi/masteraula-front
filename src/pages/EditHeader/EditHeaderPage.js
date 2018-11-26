@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import DocumentHeader from 'components/document/DocumentHeader';
+import DocumentHeaderContainer from 'containers/DocumentHeaderContainer';
 
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { ToastContainer } from 'react-toastify';
@@ -8,21 +8,23 @@ import 'react-toastify/dist/ReactToastify.css';
 
 class EditHeaderPage extends Component {
   componentDidMount() {
-    /*const { fetchDocument, activeDocument } = this.props;
-    if (!activeDocument) {
-      fetchDocument(parseInt(activeDocument.id, 10));
-    }*/
+    const { fetchHeader, match } = this.props;
+    if (match.params.id) {
+      console.log("EDITAR CABEÇALHO");
+      fetchHeader(match.params.id);
+    } else {
+      console.log("NOVO CABEÇALHO");
+    }
   }
 
   render() {
-   /* const {
-     activeHeader, submit,
-    } = this.props;*/ /*data={activeHeader} onSubmit={submit}*/
+    const { activeHeader } = this.props;
+    console.log(activeHeader);
 
     return (
       <HomeUserPage>
         <div className="c-header">
-          <DocumentHeader  />
+          <DocumentHeaderContainer />
         </div>
         <ToastContainer hideProgressBar position="bottom-right" />
       </HomeUserPage>);

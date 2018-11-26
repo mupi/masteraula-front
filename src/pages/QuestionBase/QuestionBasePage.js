@@ -9,7 +9,6 @@ import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import QuestionSearchFormContainer from 'containers/QuestionSearchFormContainer';
 import { ToastContainer } from 'react-toastify';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'react-toastify/dist/ReactToastify.css';
 
 class QuestionBasePage extends React.Component {

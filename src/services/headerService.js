@@ -16,7 +16,6 @@ function fetchHeader(id) {
       const error = (data && data.email);
       return Promise.reject(error);
     }
-
     return data;
   });
 
@@ -27,7 +26,6 @@ function fetchHeader(id) {
       return activeHeader;
     });
 }
-
 
 // Create a New Header
 function createHeader(newHeaderData) {

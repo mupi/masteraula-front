@@ -4,10 +4,10 @@ import {
 } from 'reactstrap';
 import { formatDate } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const OpenDocumentModalHeader = (props) => {
   const { children } = props;
-
 
   return (
     <td role="gridcell" className="c-my-documents__cell">
@@ -43,7 +43,6 @@ class HeadersList extends React.Component {
       editDocument: this.editDocument,
     }, 'document');
   }
-
 
   editDocument(document) {
     const { switchActiveDocument } = this.props;
@@ -113,16 +112,18 @@ class HeadersList extends React.Component {
                     </OpenDocumentModalHeader>
                     <OpenDocumentModalHeader>
                       {document.institution}
-                    </OpenDocumentModalHeader>
+                    </OpenDocumentModalHeader> 
                     <OpenDocumentModalHeader>
                       {document.professor}
                     </OpenDocumentModalHeader>
                     <td>
-                      <Button color="secondary"/* onClick={() => this.editDocument(document)}*/>
-                        <FontAwesomeIcon
-                          icon="pencil-alt"
-                        />
-                      </Button>
+                      <Link to={`/edit-header/1`}>
+                        <Button color="secondary"/* onClick={() => this.editDocument(document)}*/>
+                          <FontAwesomeIcon
+                            icon="pencil-alt"
+                          />
+                        </Button>
+                      </Link>
                     </td>
                     <td>
                       <Button color="danger" /* onClick={() => this.handleDelete(document.id, document.name)}*/>

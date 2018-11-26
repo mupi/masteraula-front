@@ -82,8 +82,8 @@ class App extends Component {
                 <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
                 <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
                 <Route path="/edit-document" component={EditDocumentPageContainer} />
-                <Route path="/edit-header" component={EditHeaderPageContainer} />
-
+                <Route path="/edit-header/:id" component={EditHeaderPageContainer} />
+                <Route path="/new-header" component={EditHeaderPageContainer} />
                 <Redirect from="/" to="/question-base/1" />
               </Switch>
             )

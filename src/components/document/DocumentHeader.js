@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import {
-  Row, Container, Col, Label, Button,
+  Row, Col, Label, Button,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Field, reduxForm, Form } from 'redux-form';
-import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 import documentLogo from 'assets/img/home/coruja-avatar.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-
 
 class DocumentHeader extends Component {
   fileSelectedHandler= () => {
@@ -20,32 +18,32 @@ class DocumentHeader extends Component {
     return (
       <div>
         <Row>
-            <Col sm="12" className="d-flex justify-content-end">
-              <div className="p-2">
-                <Link className="" to="/edit-header">
-                  <Button>
-                    <FontAwesomeIcon
-                      icon="plus"
-                      className="btn__icon"
-                    />
-                    Criar novo
-                  </Button>
-                </Link>
-              </div>
-              <div className="p-2">
+          <Col sm="12" className="d-flex justify-content-end">
+            <div className="p-2">
+              <Link className="" to="/edit-header">
                 <Button>
-                  <FontAwesomeIcon icon="eye" className="btn__icon" />
-                  <span className="button-text">
-                      Ver cabeçalhos
-                  </span>
+                  <FontAwesomeIcon
+                    icon="plus"
+                    className="btn__icon"
+                  />
+                  Criar novo
                 </Button>
-              </div>
-            </Col>
+              </Link>
+            </div>
+            <div className="p-2">
+              <Button>
+                <FontAwesomeIcon icon="eye" className="btn__icon" />
+                <span className="button-text">
+                    Ver cabeçalhos
+                </span>
+              </Button>
+            </div>
+          </Col>
         </Row>
         <div className="c-document__header">
-          Nome:
           <Form onSubmit={handleSubmit}>
-            <Field placeholder="Nome da prova" className="form-control" name="name" component="input" type="text" />
+            Nome:
+            <Field placeholder="Nome do cabeçalho" className="form-control" name="name" component="input" type="text" />
             <br />
             Cabeçalho:
             <Row>
@@ -53,10 +51,10 @@ class DocumentHeader extends Component {
                 <Label for="upload-logo" className="upload-logo">
                   <span className="hidden">
                     <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="image"
+                      className="btn__icon"
+                      icon="image"
                     />
-                    Enviar logo
+                  Enviar logo
                   </span>
                   <div className="thumbnail">
                     <img src={documentLogo} alt="logo-prova" />
@@ -97,11 +95,11 @@ class DocumentHeader extends Component {
                   <Col>
                     <Field addon="true" type="checkbox" id="studentName" name="student_indicator" component="input" />
                     {' '}
-Aluno
+                    Aluno
                     <br />
                     <Field addon="true" type="checkbox" id="class" name="class_indicator" component="input" />
                     {' '}
-                      Turma
+                    Turma
                     <br />
                   </Col>
                   <Col>
@@ -124,7 +122,7 @@ Aluno
                     icon="save"
                   />
                   <span>
-                    Salvar
+                    Salvaraa
                   </span>
                 </Button>
               </Col>
@@ -143,6 +141,6 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default connect(mapStateToProps)(reduxForm({
-  form: 'update_document',
+  form: 'new_header',
   enableReinitialize: true,
 })(DocumentHeader));

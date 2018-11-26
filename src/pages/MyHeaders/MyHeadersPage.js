@@ -46,7 +46,7 @@ class MyHeadersPage extends React.Component {
           <Row>
             <Col sm="12" className="d-flex justify-content-end">
               <div className="p-2">
-                <Link className="" to="/edit-header">
+                <Link className="" to="/new-header">
                   <Button>
                     <FontAwesomeIcon
                       icon="plus"
