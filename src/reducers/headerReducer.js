@@ -1,6 +1,6 @@
 import {
   FETCH_HEADER, FETCH_HEADER_SUCCESS, FETCH_HEADER_FAILURE,
-  CREATE_HEADER, CREATE_HEADER_SUCCESS, CREATE_HEADER_FAILURE,
+  CREATE_HEADER, CREATE_HEADER_SUCCESS, CREATE_HEADER_FAILURE, RESET_NEW_HEADER,
   UPDATE_HEADER, UPDATE_HEADER_SUCCESS, UPDATE_HEADER_FAILURE,
   LIST_MY_HEADERS, LIST_MY_HEADERS_SUCCESS, LIST_MY_HEADERS_FAILURE,
   DELETE_HEADER, DELETE_HEADER_SUCCESS, DELETE_HEADER_FAILURE,
@@ -59,6 +59,10 @@ export const header = (state = initialState, action) => {
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,
+      });
+    case RESET_NEW_HEADER:
+      return Object.assign({}, state, {
+        actionHeader: null,
       });
     case LIST_MY_HEADERS:
       return Object.assign({}, state, {

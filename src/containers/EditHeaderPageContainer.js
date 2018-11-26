@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import EditHeaderPage from 'pages/EditHeader/EditHeaderPage';
 
 import { showModal, hideModal } from 'actions/modalAction';
-import { fetchHeader } from 'actions/headerAction';
+import { fetchHeader, resetNewHeader } from 'actions/headerAction';
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchHeader: id => dispatch(fetchHeader(id)),
+  resetNewHeader: () => dispatch(resetNewHeader()),
   hideModal: () => dispatch(hideModal()),
   showModal: (modalProps, modalType) => {
     dispatch(showModal({ modalProps, modalType }));

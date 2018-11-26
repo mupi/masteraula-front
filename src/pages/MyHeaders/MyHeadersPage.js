@@ -57,12 +57,14 @@ class MyHeadersPage extends React.Component {
                 </Link>
               </div>
               <div className="p-2">
-                <Button>
-                  <FontAwesomeIcon icon="eye" className="btn__icon" />
-                  <span className="button-text">
+                <Link className="" to="/my-headers/1">
+                  <Button>
+                    <FontAwesomeIcon icon="eye" className="btn__icon" />
+                    <span className="button-text">
                       Ver cabeçalhos
-                  </span>
-                </Button>
+                    </span>
+                  </Button>
+                </Link>
               </div>
             </Col>
           </Row>
