@@ -68,12 +68,16 @@ export const SWITCH_ACTIVE_DOCUMENT = 'SWITCH_ACTIVE_DOCUMENT';
 
 // Delete active document in session
 export const DELETE_DOCUMENT_SESSION = 'DELETE_DOCUMENT_SESSION';
- 
+
 // Download the document
 export const DOWNLOAD_DOCUMENT = 'DOWNLOAD_DOCUMENT';
 export const DOWNLOAD_DOCUMENT_SUCCESS = 'DOWNLOAD_DOCUMENT_SUCCESS';
 export const DOWNLOAD_DOCUMENT_FAILURE = 'DOWNLOAD_DOCUMENT_FAILURE';
 
+// Copy Document
+export const COPY_DOCUMENT = 'COPY_DOCUMENT';
+export const COPY_DOCUMENT_SUCCESS = 'COPY_DOCUMENT_SUCCESS';
+export const COPY_DOCUMENT_FAILURE = 'COPY_DOCUMENT_FAILURE';
 
 export const fetchDocument = (id) => {
   function requestDocument() { return { type: FETCH_DOCUMENT }; }
@@ -302,5 +306,22 @@ export const downloadDocument = (documentId, docName, answer) => {
       (error) => {
         dispatch(downloadSelectedDocumentFailure(error));
       });
+  };
+};
+
+export const copyDocument = (props) => {
+  function copySelectedDocument() { return { type: COPY_DOCUMENT }; }
+  function copySelectedDocumentSuccess(activeDocument) { return { type: COPY_DOCUMENT_SUCCESS, activeDocument }; }
+  function copySelectedDocumentFailure(error) { return { type: COPY_DOCUMENT_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(copySelectedDocument(props));
+    return documentService.copyDocument(props).then(
+      (activeDocument) => {
+        dispatch(copySelectedDocumentSuccess(activeDocument));
+      },
+      (error) => {
+        dispatch(copySelectedDocumentFailure(error));
+      },
+    );
   };
 };

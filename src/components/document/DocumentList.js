@@ -68,11 +68,15 @@ class DocumentList extends React.Component {
     }, 'delete');
   }
 
+  copyDocument(doc) {
+    const { copyDocument } = this.props;
+    copyDocument(doc);
+  }
+
   render() {
     const { documents } = this.props;
     return (
       <Row className="l-my-documents-list">
-
         <Col xs="12">
           <div>
             <Table responsive hover>
@@ -121,7 +125,7 @@ class DocumentList extends React.Component {
                       </Button>
                     </td>
                     <td>
-                      <Button color="secondary" title="Criar cópia da prova">
+                      <Button color="secondary" title="Criar cópia da prova" onClick={() => this.copyDocument(document)}>
                         <FontAwesomeIcon
                           icon="copy"
                         />

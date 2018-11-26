@@ -82,7 +82,7 @@ class ViewDocumentPage extends React.Component {
                   <Alert className="alert--warning" color="warning" fade={false}>
                     Carregando ...
                   </Alert>
-                </Col> 
+                </Col>
               ) : (
                 <Col sm="12">
                   <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />

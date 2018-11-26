@@ -10,6 +10,7 @@ import {
   CREATE_DOCUMENT_TOGGLE_MODAL, SWITCH_ACTIVE_DOCUMENT, DELETE_DOCUMENT_SESSION,
   DELETE_DOCUMENT, DELETE_DOCUMENT_SUCCESS, DELETE_DOCUMENT_FAILURE,
   DOWNLOAD_DOCUMENT, DOWNLOAD_DOCUMENT_SUCCESS, DOWNLOAD_DOCUMENT_FAILURE,
+  COPY_DOCUMENT, COPY_DOCUMENT_FAILURE, COPY_DOCUMENT_SUCCESS,
 
 } from 'actions/documentAction';
 import { toast } from 'react-toastify';
@@ -263,6 +264,26 @@ export const document = (state = initialState, action) => {
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isDownloadingDocument: false,
+        error: action.error,
+      });
+    }
+    case COPY_DOCUMENT: {
+      return Object.assign({}, state, {
+        isRemoved: null,
+        error: null,
+        isUpdated: null,
+      });
+    }
+    case COPY_DOCUMENT_SUCCESS: {
+      toast.success('Cópia realizada com sucesso', optionsSuccess);
+      return Object.assign({}, state, {
+        activeDocument: { ...action.activeDocument },
+        isDuplicated: true,
+      });
+    }
+    case COPY_DOCUMENT_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
         error: action.error,
       });
     }
