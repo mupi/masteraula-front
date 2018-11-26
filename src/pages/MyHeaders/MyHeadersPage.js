@@ -115,10 +115,10 @@ class MyHeadersPage extends React.Component {
                               Disciplina - Decrescente
                             </DropdownItem>
                             <DropdownItem divider />
-                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'professor', 'desc')}>
+                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'teacher', 'desc')}>
                               Professor - Crescente
                             </DropdownItem>
-                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'professor', 'desc')}>
+                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'teacher', 'desc')}>
                               Professor - Decrescente
                             </DropdownItem>
                           </DropdownMenu>
