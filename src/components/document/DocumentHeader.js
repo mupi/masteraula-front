@@ -7,6 +7,8 @@ import { Field, reduxForm, Form } from 'redux-form';
 import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 import documentLogo from 'assets/img/home/coruja-avatar.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
+
 
 class DocumentHeader extends Component {
   fileSelectedHandler= () => {
@@ -16,8 +18,31 @@ class DocumentHeader extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <Container>
-        <Container className="c-document__header">
+      <div>
+        <Row>
+            <Col sm="12" className="d-flex justify-content-end">
+              <div className="p-2">
+                <Link className="" to="/edit-header">
+                  <Button>
+                    <FontAwesomeIcon
+                      icon="plus"
+                      className="btn__icon"
+                    />
+                    Criar novo
+                  </Button>
+                </Link>
+              </div>
+              <div className="p-2">
+                <Button>
+                  <FontAwesomeIcon icon="eye" className="btn__icon" />
+                  <span className="button-text">
+                      Ver cabeçalhos
+                  </span>
+                </Button>
+              </div>
+            </Col>
+        </Row>
+        <div className="c-document__header">
           Nome:
           <Form onSubmit={handleSubmit}>
             <Field placeholder="Nome da prova" className="form-control" name="name" component="input" type="text" />
@@ -105,8 +130,8 @@ Aluno
               </Col>
             </Row>
           </Form>
-        </Container>
-      </Container>
+        </div>
+      </div>
     );
   }
 }
