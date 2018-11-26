@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DocumentHeaderContainer from 'containers/DocumentHeaderContainer';
 import HeaderOptions from 'components/headers/HeaderOptions';
+import {
+  Row, Col,
+} from 'reactstrap';
 
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { ToastContainer } from 'react-toastify';
@@ -18,13 +21,21 @@ class EditHeaderPage extends Component {
   }
 
   render() {
+    const { activeHeader, createHeader, updateHeader } = this.props;
+    const submit = (activeHeader ? updateHeader : createHeader);
+
     return (
       <HomeUserPage>
         <div className="c-edit-header__options">
           <HeaderOptions />
         </div>
         <div className="c-header">
-          <DocumentHeaderContainer />
+          <Row>
+            <Col sm="12">
+              <h4>Dados do cabeçalho</h4>
+            </Col>
+          </Row>
+          <DocumentHeaderContainer onSubmit={submit} />
         </div>
         <ToastContainer hideProgressBar position="bottom-right" />
       </HomeUserPage>);
@@ -33,11 +44,14 @@ class EditHeaderPage extends Component {
 
 EditHeaderPage.propTypes = {
   activeHeader: PropTypes.shape({}),
-  // submit: PropTypes.func,
+  createHeader: PropTypes.func,
+  updateHeader: PropTypes.func,
+
 };
 
 EditHeaderPage.defaultProps = {
-//  submit: f => f,
+  createHeader: f => f,
+  updateHeader: f => f,
 };
 
 export default EditHeaderPage;

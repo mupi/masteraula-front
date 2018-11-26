@@ -1,5 +1,6 @@
 import { headerService } from 'services';
 import { history } from 'helpers/history';
+import { reset } from 'redux-form';
 
 // Fetch header
 export const FETCH_HEADER = 'FETCH_HEADER';
@@ -53,11 +54,12 @@ export const createHeader = (props) => {
   function createHeaderSuccess(newHeader) { return { type: CREATE_HEADER_SUCCESS, newHeader }; }
   function createHeaderFailure(error) { return { type: CREATE_HEADER_FAILURE, error }; }
   return (dispatch) => {
+    dispatch(reset('header_form'));
     dispatch(createNewHeader(props));
     return headerService.createHeader(props).then(
       (newHeader) => {
         dispatch(createHeaderSuccess(newHeader));
-        history.push('/question-base/1');
+        history.push('/my-headers/1');
       },
       (error) => {
         dispatch(createHeaderFailure(error));
