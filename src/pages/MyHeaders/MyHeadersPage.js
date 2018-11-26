@@ -4,11 +4,9 @@ import {
   Row, Col, Button, Input, InputGroup, InputGroupAddon, Alert,
   UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import CustomPagination from 'components/pagination/CustomPagination';
-import { Link } from 'react-router-dom';
-
+import HeaderOptions from 'components/headers/HeaderOptions';
 import HeadersList from 'components/headers/HeadersList';
 
 import { ToastContainer } from 'react-toastify';
@@ -36,40 +34,15 @@ class MyHeadersPage extends React.Component {
     return (
       <HomeUserPage>
         <ToastContainer hideProgressBar position="bottom-right" />
-        <div className="c-my-documents">
+        <HeaderOptions />
+
+        <div className="c-my-headers">
           <Row>
             <Col sm="12">
               <h4>Meus Cabeçalhos</h4>
             </Col>
           </Row>
-          
-          <Row>
-            <Col sm="12" className="d-flex justify-content-end">
-              <div className="p-2">
-                <Link className="" to="/new-header">
-                  <Button>
-                    <FontAwesomeIcon
-                      icon="plus"
-                      className="btn__icon"
-                    />
-                    Criar novo
-                  </Button>
-                </Link>
-              </div>
-              <div className="p-2">
-                <Link className="" to="/my-headers/1">
-                  <Button>
-                    <FontAwesomeIcon icon="eye" className="btn__icon" />
-                    <span className="button-text">
-                      Ver cabeçalhos
-                    </span>
-                  </Button>
-                </Link>
-              </div>
-            </Col>
-          </Row>
-
-          <Row className="pagination-my-documents">
+          <Row className="pagination-my-headers">
             {false
               ? (
                 <Col sm="12">
@@ -79,51 +52,50 @@ class MyHeadersPage extends React.Component {
                 </Col>
               ) : (
                 <Col sm="12">
-                  <p className="c-my-documents__total-results">
+                  <p className="c-my-headers__total-results">
                     {`Cabeçalhos encontrados: ${false ? 10 : 0}`}
                     {' '}
                   </p>
                   <Row>
                     <Col sm="12" className="d-flex justify-content-end">
-                      <div className="c-my-documents__dropdown-section">
-                        <span className="c-my-documents__order-label">
+                      <div className="c-my-headers__dropdown-section">
+                        <span className="c-my-headers__order-label">
                           Ordenar por:
                         </span>
                         <UncontrolledDropdown>
-                          <DropdownToggle className="c-my-documents__dropdown-toogle" caret size="sm">
-                              {' '}
-                              {' '}
-                              {' Nome '}
-                              {' - '}
+                          <DropdownToggle className="c-my-headers__dropdown-toogle" caret size="sm">
+                            {' '}
+                            {' '}
+                            {' Nome '}
+                            {' - '}
                             {' Crescente '}
                           </DropdownToggle>
-                            <DropdownMenu>
-                              <DropdownItem className="c-my-documents__dropdown-item" >
-                                Nome - Crescente
-                              </DropdownItem>
-                              <DropdownItem className="c-my-documents__dropdown-item" >
-                                Nome - Decrescente
-                              </DropdownItem>
-                              <DropdownItem divider />
-                              <DropdownItem className="c-my-documents__dropdown-item" >
-                                Data de criação - Crescente
-                              </DropdownItem>
-                              <DropdownItem className="c-my-documents__dropdown-item" >
-                                Data de criação - Decrescente
-                              </DropdownItem>
-                              <DropdownItem divider />
-                              <DropdownItem className="c-my-documents__dropdown-item" >
-                                Nº Questões - Crescente
-                              </DropdownItem>
-                              <DropdownItem className="c-my-documents__dropdown-item" >
-                                Nº Questões - Decrescente
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </div>
-                </Col>
-              </Row>
-                  
+                          <DropdownMenu>
+                            <DropdownItem className="c-my-headers__dropdown-item">
+                              Nome - Crescente
+                            </DropdownItem>
+                            <DropdownItem className="c-my-headers__dropdown-item">
+                              Nome - Decrescente
+                            </DropdownItem>
+                            <DropdownItem divider />
+                            <DropdownItem className="c-my-headers__dropdown-item">
+                              Data de criação - Crescente
+                            </DropdownItem>
+                            <DropdownItem className="c-my-headers__dropdown-item">
+                              Data de criação - Decrescente
+                            </DropdownItem>
+                            <DropdownItem divider />
+                            <DropdownItem className="c-my-headers__dropdown-item">
+                              Nº Questões - Crescente
+                            </DropdownItem>
+                            <DropdownItem className="c-my-headers__dropdown-item">
+                              Nº Questões - Decrescente
+                            </DropdownItem>
+                          </DropdownMenu>
+                        </UncontrolledDropdown>
+                      </div>
+                    </Col>
+                  </Row>
                   {true
                     && <HeadersList />
                   }
