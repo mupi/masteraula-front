@@ -20,28 +20,12 @@ class HeadersList extends React.Component {
   constructor(props) {
     super(props);
     this.closeModal = this.closeModal.bind(this);
-    this.openDocumentModal = this.openDocumentModal.bind(this);
     this.editDocument = this.editDocument.bind(this);
   }
 
   closeModal() {
     const { hideModal } = this.props;
     hideModal();
-  }
-
-  openDocumentModal(id) {
-    // event.preventDefault();
-    const {
-      showModal, fetchPreviewDocument, previewDocument,
-    } = this.props;
-
-    fetchPreviewDocument(parseInt(id, 10));
-    showModal({
-      open: true,
-      document: previewDocument,
-      closeModal: this.closeModal,
-      editDocument: this.editDocument,
-    }, 'document');
   }
 
   editDocument(document) {
@@ -64,15 +48,7 @@ class HeadersList extends React.Component {
   }
  
   render() {
-    const documents = [
-      {
-        id: '1', name: 'cabeçalho 1', discipline: 'Matemática', institution: 'Pequeno Urso', professor: 'Paula Furtado' 
-      },
-      {
-        id: '2', name: 'cabeçalho 2', discipline: 'Geografia', institution: 'Pequeno Urso', professor: 'Marcio Lopez' 
-      },
-    ];
-
+    const { headers } = this.props;
     return (
       <Row className="l-my-documents-list">
 
@@ -102,19 +78,19 @@ class HeadersList extends React.Component {
                 </tr>
               </thead>
               <tbody align="center">
-                {documents.map((document, i) => (
-                  <tr key={document.id}>
+                {headers && headers.map((header, i) => (
+                  <tr key={header.id}>
                     <OpenDocumentModalHeader>
-                      {document.name}
+                      {header.name}
                     </OpenDocumentModalHeader>
                     <OpenDocumentModalHeader>
-                      {document.discipline}
+                      {header.discipline_name}
                     </OpenDocumentModalHeader>
                     <OpenDocumentModalHeader>
-                      {document.institution}
-                    </OpenDocumentModalHeader> 
+                      {header.institution_name}
+                    </OpenDocumentModalHeader>
                     <OpenDocumentModalHeader>
-                      {document.professor}
+                      {header.professor_name}
                     </OpenDocumentModalHeader>
                     <td>
                       <Link to={`/edit-header/1`}>

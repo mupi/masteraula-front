@@ -18,19 +18,39 @@ const getOrderNameField = (text) => {
     case 'asc': return 'Crescente';
     case 'desc': return 'Decrescente';
     case 'name': return 'Nome';
-    case 'date': return 'Data de criação';
+    case 'institution': return 'Instituição';
+    case 'discipline': return 'Disciplina';
+    case 'teacher': return 'Professor';
     default: return text;
   }
 };
 
 class MyHeadersPage extends React.Component {
-
   componentDidMount() {
+    const {
+      match, listMyHeaders, orderField, order,
+    } = this.props;
+    listMyHeaders(parseInt(match.params.page, 10), orderField, order);
+  }
 
+  componentDidUpdate(prevProps) {
+    const {
+      match, listMyHeaders, orderField, order,
+    } = this.props;
+    if ((match.params.page !== prevProps.match.params.page)) {
+      listMyHeaders(parseInt(match.params.page, 10), orderField, order);
+    }
   }
 
   render() {
+    const {
+      myHeadersList, isFetchingMyHeaders, isDeleted, match, listMyHeaders, orderField, order,
+    } = this.props;
 
+    if (isDeleted) {
+      listMyHeaders(parseInt(match.params.page, 10), orderField, order);
+    }
+ 
     return (
       <HomeUserPage>
         <ToastContainer hideProgressBar position="bottom-right" />
@@ -43,7 +63,7 @@ class MyHeadersPage extends React.Component {
             </Col>
           </Row>
           <Row className="pagination-my-headers">
-            {false
+            {isFetchingMyHeaders
               ? (
                 <Col sm="12">
                   <Alert className="alert--warning" color="warning" fade={false}>
@@ -52,8 +72,9 @@ class MyHeadersPage extends React.Component {
                 </Col>
               ) : (
                 <Col sm="12">
+                  <CustomPagination {...this.props} {...myHeadersList} itensPerPage={10} />
                   <p className="c-my-headers__total-results">
-                    {`Cabeçalhos encontrados: ${false ? 10 : 0}`}
+                    {`Cabeçalhos encontrados: ${myHeadersList ? myHeadersList.count : 0}`}
                     {' '}
                   </p>
                   <Row>
@@ -66,38 +87,47 @@ class MyHeadersPage extends React.Component {
                           <DropdownToggle className="c-my-headers__dropdown-toogle" caret size="sm">
                             {' '}
                             {' '}
-                            {' Nome '}
+                            {getOrderNameField(orderField)}
+                            {' '}
                             {' - '}
-                            {' Crescente '}
+                            {' '}
+                            {getOrderNameField(order)}
                           </DropdownToggle>
                           <DropdownMenu>
-                            <DropdownItem className="c-my-headers__dropdown-item">
+                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'name', 'asc')}>
                               Nome - Crescente
                             </DropdownItem>
-                            <DropdownItem className="c-my-headers__dropdown-item">
+                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'name', 'desc')}>
                               Nome - Decrescente
                             </DropdownItem>
                             <DropdownItem divider />
-                            <DropdownItem className="c-my-headers__dropdown-item">
-                              Data de criação - Crescente
+                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'institution', 'asc')}>
+                              Instituição - Crescente
                             </DropdownItem>
-                            <DropdownItem className="c-my-headers__dropdown-item">
-                              Data de criação - Decrescente
+                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'institution', 'desc')}>
+                              Instituição  - Decrescente
                             </DropdownItem>
                             <DropdownItem divider />
-                            <DropdownItem className="c-my-headers__dropdown-item">
-                              Nº Questões - Crescente
+                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'discipline', 'desc')}>
+                              Disciplina - Crescente
                             </DropdownItem>
-                            <DropdownItem className="c-my-headers__dropdown-item">
-                              Nº Questões - Decrescente
+                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'discipline', 'desc')}>
+                              Disciplina - Decrescente
+                            </DropdownItem>
+                            <DropdownItem divider />
+                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'professor', 'desc')}>
+                              Professor - Crescente
+                            </DropdownItem>
+                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'professor', 'desc')}>
+                              Professor - Decrescente
                             </DropdownItem>
                           </DropdownMenu>
                         </UncontrolledDropdown>
                       </div>
                     </Col>
                   </Row>
-                  {true
-                    && <HeadersList />
+                  {myHeadersList
+                    && <HeadersList headers={myHeadersList.results} {...this.props} />
                   }
                 </Col>
               )}

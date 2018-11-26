@@ -2,6 +2,9 @@ import { connect } from 'react-redux';
 import MyHeadersPage from 'pages/MyHeaders/MyHeadersPage';
 
 import { showModal, hideModal } from 'actions/modalAction';
+import {
+  listMyHeaders,
+} from 'actions/headerAction';
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
@@ -16,6 +19,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  listMyHeaders: (page, orderField, order) => dispatch(listMyHeaders(page, orderField, order)),
   hideModal: () => dispatch(hideModal()),
   showModal: (modalProps, modalType) => {
     dispatch(showModal({ modalProps, modalType }));
