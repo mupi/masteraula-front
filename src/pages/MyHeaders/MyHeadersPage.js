@@ -108,14 +108,14 @@ class MyHeadersPage extends React.Component {
                               Instituição  - Decrescente
                             </DropdownItem>
                             <DropdownItem divider />
-                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'discipline', 'desc')}>
+                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'discipline', 'asc')}>
                               Disciplina - Crescente
                             </DropdownItem>
                             <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'discipline', 'desc')}>
                               Disciplina - Decrescente
                             </DropdownItem>
                             <DropdownItem divider />
-                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'teacher', 'desc')}>
+                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'teacher', 'asc')}>
                               Professor - Crescente
                             </DropdownItem>
                             <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'teacher', 'desc')}>
@@ -138,5 +138,23 @@ class MyHeadersPage extends React.Component {
   }
 }
 
+
+MyHeadersPage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      page: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+  listMyHeaders: PropTypes.func.isRequired,
+  myHeadersList: PropTypes.shape(),
+  orderField: PropTypes.string,
+  order: PropTypes.string,
+};
+
+MyHeadersPage.defaultProps = {
+  myHeadersList: null,
+  orderField: 'name',
+  order: 'asc',
+};
 
 export default MyHeadersPage;
