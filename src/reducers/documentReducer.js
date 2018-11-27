@@ -279,6 +279,11 @@ export const document = (state = initialState, action) => {
       return Object.assign({}, state, {
         activeDocument: { ...action.activeDocument },
         isDuplicated: true,
+        myDocumentsList: {
+          ...state.myDocumentsList,
+          results: [...state.myDocumentsList.results, action.activeDocument],
+          count: state.myDocumentsList.count + 1,
+        },
       });
     }
     case COPY_DOCUMENT_FAILURE: {

@@ -44,12 +44,8 @@ class ViewDocumentPage extends React.Component {
 
   render() {
     const {
-      myDocumentsList, isFetchingMyDocuments, isDeleted, match, listMyDocuments, orderField, order,
+      myDocumentsList, isFetchingMyDocuments, listMyDocuments, orderField, order,
     } = this.props;
-
-    if (isDeleted) {
-      listMyDocuments(parseInt(match.params.page, 10), orderField, order);
-    }
 
     return (
       <HomeUserPage>
