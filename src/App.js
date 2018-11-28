@@ -35,7 +35,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faEnvelope, faKey, faFileWord, faThumbtack,
-  faFile, faPencilAlt, faSyncAlt, faSave, faTrash,
+  faFile, faPencilAlt, faSyncAlt, faSave, faTrashAlt,
   faBars,
   faPlus, faMinus,
   faUser, faHome, faSignOutAlt, faUserCircle,
@@ -46,16 +46,17 @@ import {
   faComments, faInfoCircle, faBook,
   faSignInAlt, faClone, faExclamationCircle,
   faTimesCircle,
+  faCopy,
 } from '@fortawesome/free-solid-svg-icons';
 import ModalRoot from './ModalRoot';
 
 
 library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile, faPencilAlt, faSyncAlt, faBars,
-  faUser, faHome, faSignOutAlt, faUserCircle, faSearch, faFolder, faFileAlt, faFilter, faTrash,
+  faUser, faHome, faSignOutAlt, faUserCircle, faSearch, faFolder, faFileAlt, faFilter, faTrashAlt,
   faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft,
   faArrowCircleLeft,
   faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
-  faTimesCircle);
+  faTimesCircle, faCopy);
 
 class App extends Component {
   constructor(props) {

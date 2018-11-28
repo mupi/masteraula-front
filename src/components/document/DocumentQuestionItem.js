@@ -99,7 +99,7 @@ const DocumentQuestionItem = (props) => {
                       activeDocumentId={activeDocument.id}
                       removeSelectedQuestion={removeSelectedQuestion}
                       customClass="c-document__btn-remove-question"
-                      label={<FontAwesomeIcon icon="trash" />}
+                      label={<FontAwesomeIcon icon="trash-alt" />}
                     />) : ' ' }
                   <Link to={`/view-question/${question.id}`}>
                     <Button>
