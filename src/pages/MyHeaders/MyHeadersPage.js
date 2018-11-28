@@ -44,7 +44,7 @@ class MyHeadersPage extends React.Component {
 
   render() {
     const {
-      myHeadersList, isFetchingMyHeaders, isDeleted, match, listMyHeaders, orderField, order,
+      myHeadersList, isFetchingMyHeaders, isDeleted, match, listMyHeaders, orderField, order, resetNewHeader,
     } = this.props;
 
     if (isDeleted) {
@@ -52,9 +52,9 @@ class MyHeadersPage extends React.Component {
     }
 
     return (
-      <HomeUserPage> 
+      <HomeUserPage>
         <ToastContainer hideProgressBar position="bottom-right" />
-        <HeaderOptions />
+        <HeaderOptions resetNewHeader={resetNewHeader} />
 
         <div className="c-my-headers">
           <Row>

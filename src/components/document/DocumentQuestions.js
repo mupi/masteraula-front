@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container } from 'reactstrap';
 // import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 import DocumentQuestionItem from './DocumentQuestionItem';
 

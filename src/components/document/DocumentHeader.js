@@ -149,6 +149,6 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default connect(mapStateToProps)(reduxForm({
-  form: 'new_header',
+  form: 'header_form',
   enableReinitialize: true,
 })(DocumentHeader));
