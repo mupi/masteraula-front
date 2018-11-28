@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Row, Col, Button, Input, InputGroup, InputGroupAddon, Alert,
+  Row, Col, Alert,
   UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 
@@ -50,7 +50,7 @@ class MyHeadersPage extends React.Component {
     if (isDeleted) {
       listMyHeaders(parseInt(match.params.page, 10), orderField, order);
     }
- 
+
     return (
       <HomeUserPage>
         <ToastContainer hideProgressBar position="bottom-right" />
