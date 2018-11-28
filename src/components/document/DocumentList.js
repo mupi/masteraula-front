@@ -14,7 +14,7 @@ const OpenDocumentModalHeader = (props) => {
   };
 
   return (
-    <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }}  className="c-my-documents__cell">
+    <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }} className="c-my-documents__cell">
       { children }
     </td>
   );
@@ -66,7 +66,7 @@ class DocumentList extends React.Component {
       idDocument: id,
       deleteAction: deleteDocument,
     }, 'delete');
-  } 
+  }
 
   render() {
     const { documents } = this.props;
@@ -98,7 +98,7 @@ class DocumentList extends React.Component {
                 </tr>
               </thead>
               <tbody align="center">
-                {documents.map((document, i) => (
+                {documents.map(document => (
                   <tr key={document.id}>
                     <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
                       {document.name}

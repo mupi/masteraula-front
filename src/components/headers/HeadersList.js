@@ -93,8 +93,8 @@ class HeadersList extends React.Component {
                       {header.professor_name}
                     </OpenDocumentModalHeader>
                     <td>
-                      <Link to={`/edit-header/1`}>
-                        <Button color="secondary"/* onClick={() => this.editDocument(document)}*/>
+                      <Link to="/edit-header/1">
+                        <Button color="secondary"/* onClick={() => this.editDocument(document)} */>
                           <FontAwesomeIcon
                             icon="pencil-alt"
                           />
