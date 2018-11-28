@@ -12,7 +12,7 @@ import {
   DOWNLOAD_DOCUMENT, DOWNLOAD_DOCUMENT_SUCCESS, DOWNLOAD_DOCUMENT_FAILURE,
 
 } from 'actions/documentAction';
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'; 
 
 const sessionData = JSON.parse(localStorage.getItem('activeDocument'));
 const initialState = sessionData ? {

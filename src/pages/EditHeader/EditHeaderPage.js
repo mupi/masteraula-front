@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 class EditHeaderPage extends Component {
   componentDidMount() {
-    const { fetchHeader, resetNewHeader, match } = this.props;
+    const { fetchHeader, resetNewHeader, match } = this.props; 
     if (match.params.id) {
       fetchHeader(match.params.id);
     } else {
@@ -26,6 +26,7 @@ class EditHeaderPage extends Component {
 
     return (
       <HomeUserPage>
+        <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-edit-header__options">
           <HeaderOptions />
         </div>

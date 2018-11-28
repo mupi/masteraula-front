@@ -59,7 +59,7 @@ export const createHeader = (props) => {
     return headerService.createHeader(props).then(
       (newHeader) => {
         dispatch(createHeaderSuccess(newHeader));
-        history.push('/my-headers/1');
+        // history.push('/my-headers/1');
       },
       (error) => {
         dispatch(createHeaderFailure(error));
