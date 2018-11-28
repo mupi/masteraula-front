@@ -104,7 +104,7 @@ class HeadersList extends React.Component {
                     <td>
                       <Button color="danger" onClick={() => this.handleDelete(header.id, header.name)}>
                         <FontAwesomeIcon
-                          icon="trash"
+                          icon="trash-alt"
                         />
                       </Button>
                     </td>
