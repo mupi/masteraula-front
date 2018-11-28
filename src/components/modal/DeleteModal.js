@@ -29,6 +29,7 @@ const DeleteModal = ({
           {message}
           {' '}
           <strong>{name}</strong>
+          {' ?'}
         </p>
 
         <div className="modal-footer modal__footer">
