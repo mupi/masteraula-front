@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import ViewDocumentPage from 'pages/ViewDocument/ViewDocumentPage';
 import {
   listMyDocuments, switchActiveDocument, fetchPreviewDocument, deleteDocument, listMyLastDocuments,
+  copyDocument,
 } from 'actions/documentAction';
 import { showModal, hideModal } from 'actions/modalAction';
 
@@ -17,8 +18,9 @@ const mapStateToProps = state => ({
   isFetchingPreviewDocument: state.document.isFetchingPreviewDocument,
   error: state.document.error,
   isDeleted: state.document.isDeleted,
+  isDuplicated: state.document.isDuplicated,
   orderField: state.document.orderField,
-  order: state.document.order, 
+  order: state.document.order,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -31,6 +33,7 @@ const mapDispatchToProps = dispatch => ({
   },
   deleteDocument: idDocument => dispatch(deleteDocument(idDocument)),
   listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
+  copyDocument: doc => dispatch(copyDocument(doc)),
 });
 
 const ViewDocumentPagePageContainer = connect(

@@ -247,6 +247,34 @@ function downloadDocument(idDocument, docName, answer) {
   return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=False`, requestOptions);
 }
 
+function copyDocument(activeNewDocument) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  const idDocument = activeNewDocument.id;
+
+  return fetch(`${apiUrl}/documents/${idDocument}/copy_document/`, requestOptions)
+    .then(handleResponse)
+    .then((activeDocument) => {
+      localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+      return activeDocument;
+    });
+}
+
 const documentService = {
   fetchDocument,
   fetchPreviewDocument,
@@ -258,6 +286,7 @@ const documentService = {
   removeSelectedQuestion,
   deleteDocument,
   downloadDocument,
+  copyDocument,
 };
 
 export default documentService;

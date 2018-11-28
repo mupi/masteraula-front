@@ -68,6 +68,11 @@ class DocumentList extends React.Component {
     }, 'delete');
   }
 
+  copyDocument(doc) {
+    const { copyDocument } = this.props;
+    copyDocument(doc);
+  }
+
   render() {
     const { documents } = this.props;
     return (
@@ -90,6 +95,9 @@ class DocumentList extends React.Component {
                   Editar
                   </th>
                   <th>
+                  Duplicar
+                  </th>
+                  <th>
                   Exportar
                   </th>
                   <th>
@@ -110,9 +118,16 @@ class DocumentList extends React.Component {
                       {document.questions.length}
                     </OpenDocumentModalHeader>
                     <td>
-                      <Button color="secondary" onClick={() => this.editDocument(document)}>
+                      <Button color="secondary" onClick={() => this.editDocument(document)} title="Editar prova">
                         <FontAwesomeIcon
                           icon="pencil-alt"
+                        />
+                      </Button>
+                    </td>
+                    <td>
+                      <Button color="secondary" title="Criar cópia da prova" onClick={() => this.copyDocument(document)}>
+                        <FontAwesomeIcon
+                          icon="copy"
                         />
                       </Button>
                     </td>
@@ -124,9 +139,9 @@ class DocumentList extends React.Component {
                       />
                     </td>
                     <td>
-                      <Button color="danger" onClick={() => this.handleDelete(document.id, document.name)}>
+                      <Button color="danger" onClick={() => this.handleDelete(document.id, document.name)} title="Excluir prova">
                         <FontAwesomeIcon
-                          icon="trash"
+                          icon="trash-alt"
                         />
                       </Button>
                     </td>
