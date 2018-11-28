@@ -45,7 +45,7 @@ export const header = (state = initialState, action) => {
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
-        actionHeader: action.newHeader,
+        activeHeader: action.newHeader,
         isFetching: false,
       });
     case CREATE_HEADER_SUCCESS: {
@@ -53,7 +53,7 @@ export const header = (state = initialState, action) => {
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
-        actionHeader: action.newHeader,
+        activeHeader: action.newHeader,
         isFetching: false,
       });
     }
@@ -66,7 +66,7 @@ export const header = (state = initialState, action) => {
     }
     case RESET_NEW_HEADER:
       return Object.assign({}, state, {
-        actionHeader: null,
+        activeHeader: null,
       });
     case LIST_MY_HEADERS:
       return Object.assign({}, state, {

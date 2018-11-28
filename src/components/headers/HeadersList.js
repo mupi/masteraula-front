@@ -19,18 +19,11 @@ class HeadersList extends React.Component {
   constructor(props) {
     super(props);
     this.closeModal = this.closeModal.bind(this);
-    this.editDocument = this.editDocument.bind(this);
   }
 
   closeModal() {
     const { hideModal } = this.props;
     hideModal();
-  }
-
-  editDocument(document) {
-    const { switchActiveDocument } = this.props;
-    switchActiveDocument(document);
-    this.closeModal();
   }
 
   handleDelete(id, name) {
@@ -93,8 +86,8 @@ class HeadersList extends React.Component {
                       {header.professor_name}
                     </OpenDocumentModalHeader>
                     <td>
-                      <Link to="/edit-header/1">
-                        <Button color="secondary"/* onClick={() => this.editDocument(document)} */>
+                      <Link to={`/edit-header/${header.id}`}>
+                        <Button color="secondary">
                           <FontAwesomeIcon
                             icon="pencil-alt"
                           />

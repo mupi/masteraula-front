@@ -36,7 +36,7 @@ class EditHeaderPage extends Component {
               <h4>Dados do cabeçalho</h4>
             </Col>
           </Row>
-          <DocumentHeaderContainer onSubmit={submit} />
+          <DocumentHeaderContainer onSubmit={submit} data={activeHeader} />
         </div>
         <ToastContainer hideProgressBar position="bottom-right" />
       </HomeUserPage>);
