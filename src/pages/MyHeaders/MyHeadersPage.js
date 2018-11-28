@@ -52,7 +52,7 @@ class MyHeadersPage extends React.Component {
     }
 
     return (
-      <HomeUserPage>
+      <HomeUserPage> 
         <ToastContainer hideProgressBar position="bottom-right" />
         <HeaderOptions />
 

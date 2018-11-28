@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
   error: state.document.error,
   isDeleted: state.document.isDeleted,
   orderField: state.document.orderField,
-  order: state.document.order,
+  order: state.document.order, 
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -31,8 +31,7 @@ const mapDispatchToProps = dispatch => ({
   },
   deleteDocument: idDocument => dispatch(deleteDocument(idDocument)),
   listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
-
-}); 
+});
 
 const ViewDocumentPagePageContainer = connect(
   mapStateToProps,

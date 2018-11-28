@@ -3,7 +3,7 @@ import MyHeadersPage from 'pages/MyHeaders/MyHeadersPage';
 
 import { showModal, hideModal } from 'actions/modalAction';
 import {
-  listMyHeaders,
+  listMyHeaders, deleteHeader,
 } from 'actions/headerAction';
 
 // state.<reducer's name>.<property>
@@ -24,6 +24,7 @@ const mapDispatchToProps = dispatch => ({
   showModal: (modalProps, modalType) => {
     dispatch(showModal({ modalProps, modalType }));
   },
+  deleteHeader: idHeader => dispatch(deleteHeader(idHeader)),
 });
 
 const MyHeadersPageContainer = connect(

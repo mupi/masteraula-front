@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Row, Col, Table, Button,
 } from 'reactstrap';
-import { formatDate } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
@@ -35,18 +34,18 @@ class HeadersList extends React.Component {
   }
 
   handleDelete(id, name) {
-    const { deleteDocument, showModal } = this.props;
+    const { deleteHeader, showModal } = this.props;
     // open modal
     showModal({
       open: true,
       closeModal: this.closeModal,
-      title: 'Apagar prova',
-      message: `Você tem certeza que deseja apagar a prova ${name}?`,
+      title: 'Apagar cabeçalho',
+      message: `Você tem certeza que deseja apagar o cabeçalho ${name}?`,
       idDocument: id,
-      deleteAction: deleteDocument,
+      deleteAction: deleteHeader,
     }, 'delete');
   }
- 
+
   render() {
     const { headers } = this.props;
     return (
@@ -102,7 +101,7 @@ class HeadersList extends React.Component {
                       </Link>
                     </td>
                     <td>
-                      <Button color="danger" /* onClick={() => this.handleDelete(document.id, document.name)}*/>
+                      <Button color="danger" onClick={() => this.handleDelete(header.id, header.name)}>
                         <FontAwesomeIcon
                           icon="trash"
                         />
