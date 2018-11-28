@@ -40,7 +40,8 @@ class HeadersList extends React.Component {
       open: true,
       closeModal: this.closeModal,
       title: 'Apagar cabeçalho',
-      message: `Você tem certeza que deseja apagar o cabeçalho ${name}?`,
+      message: 'Você tem certeza que deseja apagar o cabeçalho',
+      name,
       idDocument: id,
       deleteAction: deleteHeader,
     }, 'delete');

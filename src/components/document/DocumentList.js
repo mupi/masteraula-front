@@ -61,11 +61,12 @@ class DocumentList extends React.Component {
       open: true,
       closeModal: this.closeModal,
       title: 'Apagar prova',
-      message: `Você tem certeza que deseja apagar a prova ${name}?`,
+      message: 'Você tem certeza que deseja apagar a prova',
+      name,
       idDocument: id,
       deleteAction: deleteDocument,
     }, 'delete');
-  }
+  } 
 
   render() {
     const { documents } = this.props;

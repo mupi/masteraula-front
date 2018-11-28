@@ -1,10 +1,9 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DeleteModal = ({
-  closeModal, deleteAction, title, message, idDocument,
+  closeModal, deleteAction, title, message, name, idDocument,
 }) => {
   const handleConfirm = () => {
     deleteAction(idDocument);
@@ -21,13 +20,15 @@ const DeleteModal = ({
         </h5>
         <button type="button" className="close" aria-label="Close" onClick={closeModal}>
           <span aria-hidden="true">
-&times;
+            &times;
           </span>
         </button>
       </div>
       <div className="modal-basic-operation__body modal-body">
         <p>
           {message}
+          {' '}
+          <strong>{name}</strong>
         </p>
 
         <div className="modal-footer modal__footer">
