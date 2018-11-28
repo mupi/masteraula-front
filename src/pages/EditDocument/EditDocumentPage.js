@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { history } from 'helpers/history';
 
-import DocumentHeader from 'components/document/DocumentHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 class EditDocumentPage extends Component {
   componentDidMount() {
@@ -20,13 +19,12 @@ class EditDocumentPage extends Component {
 
   render() {
     const {
-      activeDocument, removeSelectedQuestion, submit,
+      activeDocument, removeSelectedQuestion,
     } = this.props;
 
     return (
       <HomeUserPage>
         <div className="c-document">
-          <DocumentHeader data={activeDocument} onSubmit={submit} />
           <DocumentQuestions
             activeDocument={activeDocument}
             removeSelectedQuestion={removeSelectedQuestion}
@@ -38,14 +36,12 @@ class EditDocumentPage extends Component {
 }
 
 EditDocumentPage.propTypes = {
-  // activeDocument: PropTypes.object,
+  activeDocument: PropTypes.shape({}),
   removeSelectedQuestion: PropTypes.func,
-  submit: PropTypes.func,
 };
 
 EditDocumentPage.defaultProps = {
   removeSelectedQuestion: f => f,
-  submit: f => f,
 };
 
 export default EditDocumentPage;

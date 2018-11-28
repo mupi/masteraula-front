@@ -14,7 +14,7 @@ const OpenDocumentModalHeader = (props) => {
   };
 
   return (
-    <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }} className="col-5 c-my-documents__cell">
+    <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }} className="c-my-documents__cell">
       { children }
     </td>
   );
@@ -48,7 +48,6 @@ class DocumentList extends React.Component {
     }, 'document');
   }
 
-
   editDocument(document) {
     const { switchActiveDocument } = this.props;
     switchActiveDocument(document);
@@ -62,7 +61,8 @@ class DocumentList extends React.Component {
       open: true,
       closeModal: this.closeModal,
       title: 'Apagar prova',
-      message: `Você tem certeza que deseja apagar a prova ${name}?`,
+      message: 'Você tem certeza que deseja apagar a prova',
+      name,
       idDocument: id,
       deleteAction: deleteDocument,
     }, 'delete');

@@ -1,20 +1,6 @@
 import { apiUrl } from 'helpers/config';
 
-export const forgotPasswordService = {
-  sendForgotPasswordEmail,
-  resetForgotPassword,
-};
-
 function sendForgotPasswordEmail(email) {
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email }),
-  };
-
-  return fetch(`${apiUrl}/auth/password/reset/ `, requestOptions)
-    .then(handleResponse)
-    .then(confirmation => confirmation);
 
   function handleResponse(response) {
     return response.json().then((data) => {
@@ -26,6 +12,16 @@ function sendForgotPasswordEmail(email) {
       return data;
     });
   }
+
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  };
+
+  return fetch(`${apiUrl}/auth/password/reset/ `, requestOptions)
+    .then(handleResponse)
+    .then(confirmation => confirmation);
 }
 
 function resetForgotPassword(new_password1, new_password2, uid, token) {
@@ -37,10 +33,6 @@ function resetForgotPassword(new_password1, new_password2, uid, token) {
     }),
   };
 
-  return fetch(`${apiUrl}/auth/password/reset/confirm/`, requestOptions)
-    .then(handleResponse)
-    .then(confirmation => confirmation);
-
   function handleResponse(response) {
     return response.json().then((data) => {
       if (!response.ok) {
@@ -51,4 +43,15 @@ function resetForgotPassword(new_password1, new_password2, uid, token) {
       return data;
     });
   }
+
+  return fetch(`${apiUrl}/auth/password/reset/confirm/`, requestOptions)
+    .then(handleResponse)
+    .then(confirmation => confirmation);
 }
+
+const forgotPasswordService = {
+  sendForgotPasswordEmail,
+  resetForgotPassword,
+};
+
+export default forgotPasswordService;

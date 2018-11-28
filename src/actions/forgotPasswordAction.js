@@ -1,9 +1,9 @@
-import { forgotPasswordService } from 'services/forgotPasswordService';
-import { SubmissionError, clearFields, reset } from 'redux-form';
+import { forgotPasswordService } from 'services';
+import { SubmissionError, reset } from 'redux-form';
 
 export const FORGOT_PASSWORD_RESET = 'FORGOT_PASSWORD_OPEN';
 export const FORGOT_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST';
-export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
+export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS'; 
 export const FORGOT_PASSWORD_FAILURE = 'FORGOT_PASSWORD_FAILURE';
 
 export const CHANGE_PASSWORD_RESET = 'CHANGE_PASSWORD_RESET';
@@ -16,6 +16,10 @@ export const resetForgotPasswordForm = () => ({
 });
 
 export const sendForgotPasswordEmail = (email) => {
+  function requestForgotPassword() { return { type: FORGOT_PASSWORD_REQUEST }; }
+  function success() { return { type: FORGOT_PASSWORD_SUCCESS }; }
+  function failure(error) { return { type: FORGOT_PASSWORD_FAILURE, error }; }
+
   return (dispatch) => {
     dispatch(requestForgotPassword());
     return forgotPasswordService.sendForgotPasswordEmail(email)
@@ -31,10 +35,6 @@ export const sendForgotPasswordEmail = (email) => {
         },
       );
   };
-
-  function requestForgotPassword() { return { type: FORGOT_PASSWORD_REQUEST }; }
-  function success() { return { type: FORGOT_PASSWORD_SUCCESS }; }
-  function failure(error) { return { type: FORGOT_PASSWORD_FAILURE, error }; }
 };
 
 export const resetChangePasswordForm = () => ({
@@ -42,13 +42,16 @@ export const resetChangePasswordForm = () => ({
 });
 
 export const resetForgotPassword = (password, confirmation, uid, token) => {
+  function requestResetForgotPassword() { return { type: CHANGE_PASSWORD_REQUEST }; }
+  function success() { return { type: CHANGE_PASSWORD_SUCCESS }; }
+  function failure(error) { return { type: CHANGE_PASSWORD_FAILURE, error }; }
+
   return (dispatch) => {
     dispatch(requestResetForgotPassword());
     return forgotPasswordService.resetForgotPassword(password, confirmation, uid, token)
       .then(
         () => {
           dispatch(success()),
-          // dispatch(clearFields('redefine_password', true, true, 'repeatpassword', 'newpassword'));
           dispatch(reset('redefine_password'));
         },
         (error) => {
@@ -59,8 +62,4 @@ export const resetForgotPassword = (password, confirmation, uid, token) => {
         },
       );
   };
-
-  function requestResetForgotPassword() { return { type: CHANGE_PASSWORD_REQUEST }; }
-  function success() { return { type: CHANGE_PASSWORD_SUCCESS }; }
-  function failure(error) { return { type: CHANGE_PASSWORD_FAILURE, error }; }
 };

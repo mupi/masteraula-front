@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Button, Form, FormGroup, Input, Label, Container, Row, Col,
 } from 'reactstrap';
-import { Field } from 'redux-form';
+import { Field } from 'redux-form'; 
 
 const renderField = ({
   input,

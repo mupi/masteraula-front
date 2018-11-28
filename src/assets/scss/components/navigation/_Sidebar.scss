@@ -113,6 +113,11 @@ html body #sidebar {
 
     h5{color:$color-ma-white}
     h6{color:$color-ma-white}
+
+    .sidebar-row{
+        margin-left: -15px;
+        margin-right: -15px;
+    }
 }
 
 
@@ -173,6 +178,16 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
 
 .sidebar-main-options li.list-group-item {
     background: $color-ma-lightgray-backg;
+
+    &:first-child {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    &:last-child {
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
 }
 
 .sidebar-nav-container .list-group-item a {
@@ -192,6 +207,8 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
 }
 
 /*sidebar de filters*/
+
+
 li.question-filter.list-group-item:hover {
     background: none;
 } 
@@ -214,13 +231,13 @@ li.question-category-filter.list-group-item:hover, .question-single-filter li.li
 }
 
 ul.question-single-filter.list-group {
-    margin: 10px;
+    margin: 10px !important;
 }
 
 li.question-category-filter.list-group-item {
     padding: 0px 15px;
     margin-top: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 
 li.question-category-filter div{
@@ -284,7 +301,7 @@ img.logo-in-menu.no-login {
 
 .c-sidebar{
     &__filter-selected{
-        font-weight:bold;
+        font-weight:bold; 
     }
 
     &__user-info-section{
@@ -356,10 +373,10 @@ img.logo-in-menu.no-login {
 
 /*list of options in sidebar*/
 #sidebar-container ul.list-group {
-    margin-top: 25px;
+    margin-top: 20px;
 
     @include for-tablet-landscape-bottom{
-        margin-top:10px !important;
+        margin-top:15px !important;
     }
 }
 

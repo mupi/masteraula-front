@@ -13,7 +13,7 @@ import {
   COPY_DOCUMENT, COPY_DOCUMENT_FAILURE, COPY_DOCUMENT_SUCCESS,
 
 } from 'actions/documentAction';
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'; 
 
 const sessionData = JSON.parse(localStorage.getItem('activeDocument'));
 const initialState = sessionData ? {

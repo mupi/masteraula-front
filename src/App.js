@@ -19,6 +19,8 @@ import {
   QuestionBasePageContainer,
   EditDocumentPageContainer,
   MenuContainer,
+  MyHeadersPageContainer,
+  EditHeaderPageContainer,
 }
   from 'containers';
 import { showModal, hideModal } from 'actions/modalAction';
@@ -46,6 +48,7 @@ import {
   faComments, faInfoCircle, faBook,
   faSignInAlt, faClone, faExclamationCircle,
   faTimesCircle,
+  faEye,
   faCopy,
 } from '@fortawesome/free-solid-svg-icons';
 import ModalRoot from './ModalRoot';
@@ -56,7 +59,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft,
   faArrowCircleLeft,
   faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
-  faTimesCircle, faCopy);
+  faTimesCircle, faEye, faCopy);
 
 class App extends Component {
   constructor(props) {
@@ -78,7 +81,10 @@ class App extends Component {
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePageContainer} />
                 <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
+                <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
                 <Route path="/edit-document" component={EditDocumentPageContainer} />
+                <Route path="/edit-header/:id" component={EditHeaderPageContainer} />
+                <Route path="/new-header" component={EditHeaderPageContainer} />
                 <Redirect from="/" to="/question-base/1" />
               </Switch>
             )
