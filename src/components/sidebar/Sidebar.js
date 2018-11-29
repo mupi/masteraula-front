@@ -30,7 +30,7 @@ const Sidebar = (props) => {
   } = props;
 
   return (
-    <Swipeable onSwipeRight={() => openSidebar(isOpenSidebar)} onSwipeLeft={ () => openSidebar(isOpenSidebar)}>
+    <Swipeable onSwipeRight={() => openSidebar(isOpenSidebar)} onSwipeLeft={() => openSidebar(isOpenSidebar)}>
       <div id="sidebar">
         <div className="logo-top-sidebar">
           <img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" />
@@ -62,7 +62,7 @@ const Sidebar = (props) => {
                     <DropdownItem divider />
                     <DropdownItem className="c-sidebar__user-dropdown-item">
                       <Link
-                        className="c-sidebar__link-my-profile" 
+                        className="c-sidebar__link-my-profile"
                         onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen); }}
                         to="/"
                       >
@@ -84,7 +84,7 @@ const Sidebar = (props) => {
                 <div className="sidebar-nav-container">
                   <ListGroup className="sidebar-main-options">
                     <ListGroupItem color="light">
-                      <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1');}}>
+                      <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1'); }}>
                         <FontAwesomeIcon
                           className="btn__icon"
                           icon="search"
