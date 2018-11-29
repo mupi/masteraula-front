@@ -19,11 +19,21 @@ const QuestionContent = (question) => {
             <Col sm="12" xs="12">
               {learningObjects.map((learningObject, i) => (
                 <div key={learningObject.id} className="c-question__learning-object">
-                  <img
-                    alt="objeto-aprendizagem"
-                    src={`http://localhost:8000${learningObject.image}`}
-                  />
-                  <p><small>{learningObject.source}</small></p>
+                  { (learningObject.image) ? (
+                    <div>
+                      <img
+                        alt="objeto-aprendizagem"
+                        src={`http://localhost:8000${learningObject.image}`}
+                      />
+                    </div>
+                  ) : ''}
+
+                  { (learningObject.text) ? (
+                    <div className="c-question__learning-object--text">
+                      <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(learningObject.text) }} />
+                    </div>
+                  ) : ''}
+                  <p><small>Fonte: <i>{learningObject.source}</i></small></p>
                 </div>
               ))}
             </Col>

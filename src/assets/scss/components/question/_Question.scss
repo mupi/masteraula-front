@@ -90,6 +90,14 @@
       text-align: center;
       margin-bottom:15px;
 
+      &--text{
+       // text-align: left;
+      }
+
+      &--image{
+
+      }
+
       &:last-child{
         margin-bottom: 0px;
       }
