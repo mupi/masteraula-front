@@ -5,7 +5,6 @@ import { Row, Col } from 'reactstrap';
 const HomeUserPage = (props) => {
   const { showFilters } = props;
   const { children } = props;
-
   return (
     <div className="l-site-masteraula__user-home">
       <SidebarContainer showFilters={showFilters} />

@@ -6,6 +6,16 @@ import {
 import CreateDocumentForm from 'components/document/CreateDocumentForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+const toogleSidebarAfterOpenModal = (e, openSidebar, isOpenSidebar) => {
+  const responsiveMode = window.matchMedia('(max-width: 989px)');
+
+  if (responsiveMode.matches) {
+    e.preventDefault();
+    openSidebar(isOpenSidebar);
+  }
+};
+
+
 const getAlertMessageDocumentExist = (activeDocument) => {
   if (activeDocument) {
     return (
@@ -26,12 +36,15 @@ const getAlertMessageDocumentExist = (activeDocument) => {
 
 const CreateDocumentModal = (props) => {
   const {
-    modal, toggleModal, activeDocument, submit,
+    modal, toggleModal, activeDocument, submit, openSidebar, isOpenSidebar,
   } = props;
 
   return (
     <div className="document__new-document-option">
-      <div className="document__new-document-btn text-center" onClick={() => toggleModal(modal)}>
+      <div
+        className="document__new-document-btn text-center"
+        onClick={(e) => { toggleModal(modal); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
+      >
         <FontAwesomeIcon
           className="btn__icon"
           icon="file"
