@@ -12,6 +12,17 @@ import FilterContainer from 'containers/FilterContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Swipeable } from 'react-touch';
 
+import { history } from 'helpers/history';
+
+const redirectURL = (e, openSidebar, isOpenSidebar, url) => {
+  const responsiveMode = window.matchMedia('(max-width: 989px)');
+
+  if (responsiveMode.matches) {
+    e.preventDefault();
+    openSidebar(isOpenSidebar);
+    history.push(url);
+  }
+};
 
 const Sidebar = (props) => {
   const {
@@ -38,7 +49,11 @@ const Sidebar = (props) => {
                   </DropdownToggle>
                   <DropdownMenu>
                     <DropdownItem className="c-sidebar__user-dropdown-item">
-                      <Link to="/user-profile" className="c-sidebar__link-my-profile">
+                      <Link
+                        className="c-sidebar__link-my-profile"
+                        onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/user-profile'); }}
+                        to="/user-profile"
+                      >
                         <FontAwesomeIcon icon="user" />
                         {' '}
                         Meu Perfil
@@ -46,7 +61,11 @@ const Sidebar = (props) => {
                     </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem className="c-sidebar__user-dropdown-item">
-                      <Link className="c-sidebar__link-my-profile" onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen); }} to="/">
+                      <Link
+                        className="c-sidebar__link-my-profile" 
+                        onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen); }}
+                        to="/"
+                      >
                         <FontAwesomeIcon icon="sign-out-alt" />
                         {' '}
                         Sair
@@ -65,7 +84,7 @@ const Sidebar = (props) => {
                 <div className="sidebar-nav-container">
                   <ListGroup className="sidebar-main-options">
                     <ListGroupItem color="light">
-                      <Link to="/question-base/1">
+                      <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1');}}>
                         <FontAwesomeIcon
                           className="btn__icon"
                           icon="search"
@@ -74,7 +93,7 @@ const Sidebar = (props) => {
                       </Link>
                     </ListGroupItem>
                     <ListGroupItem color="light">
-                      <Link to="/documents/1">
+                      <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
                         <FontAwesomeIcon
                           className="btn__icon"
                           icon="folder"
@@ -83,7 +102,7 @@ const Sidebar = (props) => {
                       </Link>
                     </ListGroupItem>
                     <ListGroupItem color="light">
-                      <Link to="/my-headers/1">
+                      <Link to="/my-headers/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-headers/1'); }}>
                         <FontAwesomeIcon
                           className="btn__icon"
                           icon="folder"
