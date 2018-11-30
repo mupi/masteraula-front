@@ -33,7 +33,9 @@ const QuestionContent = (question) => {
                       <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(learningObject.text) }} />
                     </div>
                   ) : ''}
-                  <p><small>Fonte: <i>{learningObject.source}</i></small></p>
+                  { (learningObject.source) ? (
+                    <p><small>Fonte: <i>{learningObject.source}</i></small></p>
+                  ) : ''}
                 </div>
               ))}
             </Col>
