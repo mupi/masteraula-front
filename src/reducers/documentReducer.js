@@ -196,7 +196,7 @@ export const document = (state = initialState, action) => {
       });
     }
     case UPDATE_DOCUMENT_SUCCESS: {
-      toast.success('Cabeçalho atualizado com sucesso', optionsSuccess);
+      toast.success('Nome da prova atualizado com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeDocument: { ...action.activeDocument, questions: state.activeDocument.questions },
         isUpdated: true,
