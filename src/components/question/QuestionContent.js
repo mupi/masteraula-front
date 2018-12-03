@@ -8,23 +8,39 @@ import { getCleanCompleteStatement, getCleanAlternativeText } from 'helpers/ques
 const QuestionContent = (question) => {
   /* eslint-disable react/no-danger */
   const {
-    statement, alternatives, resolution, learningObject,
+    statement, alternatives, resolution, learningObjects,
   } = question;
 
   return (
     <div className="c-question__full-statement">
-      {learningObject && (
-        <Row className="c-question--section-border">
-          <Col sm="12" xs="12">
-            <div className="c-question__learning-object">
-              {learningObject.text
-                ? <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(learningObject.text) }} />
-                : <img alt="objeto-aprendizagem" src={learningObject.image} />
-              }
-            </div>
-          </Col>
-        </Row>
-      )}
+      {(learningObjects && learningObjects.length > 0)
+        ? (
+          <Row className="c-question--section-border">
+            <Col sm="12" xs="12">
+              {learningObjects.map((learningObject, i) => (
+                <div key={learningObject.id} className="c-question__learning-object">
+                  { (learningObject.image) ? (
+                    <div>
+                      <img
+                        alt="objeto-aprendizagem"
+                        src={`http://localhost:8000${learningObject.image}`}
+                      />
+                    </div>
+                  ) : ''}
+
+                  { (learningObject.text) ? (
+                    <div className="c-question__learning-object--text">
+                      <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(learningObject.text) }} />
+                    </div>
+                  ) : ''}
+                  { (learningObject.source) ? (
+                    <p><small>Fonte: <i>{learningObject.source}</i></small></p>
+                  ) : ''}
+                </div>
+              ))}
+            </Col>
+          </Row>
+        ) : ''}
 
       <Row className="c-question--section-border">
         <Col sm="12" xs="12">
