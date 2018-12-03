@@ -39,27 +39,28 @@ const DocumentModal = ({
         </button>
       </div>
       <div className="c-document-modal__body modal-body">
-      { document ? (
-       <div><Row>
-          <div className="auto-margin-left-element btn-margin-right">
-            <ExportDocumentButtonContainer
-              color="success"
-              text="Exportar"
-              documentId={document.id}
-              documentName={document.name}
-              documentTotalQuestions={document.questions.length}
-            />
-          </div>
+        { document ? (
           <div>
-            <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
-              <FontAwesomeIcon  icon="pencil-alt" className="btn__icon" />
-              <span className="button-text">
-                Editar
-              </span>
-            </Button>
-          </div>
-        </Row>
-        </div>) : ' '}
+            <Row>
+              <div className="auto-margin-left-element btn-margin-right">
+                <ExportDocumentButtonContainer
+                  color="success"
+                  text="Exportar"
+                  documentId={document.id}
+                  documentName={document.name}
+                  documentTotalQuestions={document.questions.length}
+                />
+              </div>
+              <div>
+                <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
+                  <FontAwesomeIcon  icon="pencil-alt" className="btn__icon" />
+                  <span className="button-text">
+                    Editar
+                  </span>
+                </Button>
+              </div>
+            </Row>
+          </div>) : ' '}
         {document && document.questions.map(questionOrder => (
           <DocumentQuestionItem key={questionOrder.question.id} question={questionOrder.question} readOnly />
         ))}
