@@ -119,6 +119,10 @@ ul.header {
     width: 100%;
 }
 
+.modal-body{
+  word-wrap: break-word;
+}
+
 //Show elements only in web version
 .hidden-xs{
   @include for-tablet-landscape-bottom {

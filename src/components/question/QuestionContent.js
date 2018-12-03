@@ -15,7 +15,7 @@ const QuestionContent = (question) => {
     <div className="c-question__full-statement">
       {(learningObjects && learningObjects.length > 0)
         ? (
-          <Row className="c-question--section-border">
+          <Row className="c-question__section-list-learning-objects">
             <Col sm="12" xs="12">
               {learningObjects.map((learningObject, i) => (
                 <div key={learningObject.id} className="c-question__learning-object">

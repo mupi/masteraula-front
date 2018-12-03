@@ -13,7 +13,10 @@ import { first5Elements } from 'helpers/document';
 class DocumentInfoSidebar extends React.Component {
   constructor(props) {
     super(props);
+    this.closeModal = this.closeModal.bind(this);
+    this.openDocumentModal = this.openDocumentModal.bind(this);
     this.editDocument = this.editDocument.bind(this);
+    this.editDocumentFromPreview = this.editDocumentFromPreview.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +29,33 @@ class DocumentInfoSidebar extends React.Component {
   editDocument(document) {
     const { switchActiveDocument } = this.props;
     switchActiveDocument(document);
+  }
+
+  closeModal() {
+    const { hideModal } = this.props;
+    hideModal();
+  }
+
+  openDocumentModal(id) {
+    // event.preventDefault();
+    const {
+      showModal, fetchPreviewDocument, previewDocument,
+    } = this.props;
+
+    console.log(id);
+    fetchPreviewDocument(parseInt(id, 10));
+    showModal({
+      open: true,
+      document: previewDocument,
+      closeModal: this.closeModal,
+      editDocument: this.editDocumentFromPreview,
+    }, 'document');
+  }
+
+  editDocumentFromPreview(document) {
+    const { switchActiveDocument } = this.props;
+    switchActiveDocument(document);
+    this.closeModal();
   }
 
   render() {
@@ -65,6 +95,16 @@ class DocumentInfoSidebar extends React.Component {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem className="o-doc-options__dropdown-item">
+                  <a className="c-sidebar__link-my-profile" onClick={() => this.openDocumentModal(documentId)}>
+                    <FontAwesomeIcon icon="eye" />
+                    {' '}
+                    Visualizar
+                  </a>
+                </DropdownItem>
+
+                <DropdownItem divider />
+
+                <DropdownItem className="o-doc-options__dropdown-item">
                   <ExportDocumentButtonContainer
                     text="Exportar"
                     isLink
@@ -101,6 +141,10 @@ class DocumentInfoSidebar extends React.Component {
               Editar
             </Button>
           </Link>
+          <Button className="btn-margin-right menu-top__document-button" onClick={() => this.openDocumentModal(documentId)}>
+            <FontAwesomeIcon icon="eye" className="btn__icon" />
+            Visualizar
+          </Button>
           <ExportDocumentButtonContainer
             text="Exportar"
             styleCustomize="menu-top__document-button"

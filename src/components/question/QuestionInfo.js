@@ -34,7 +34,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
       </Col>
       <Col sm="8" xs="8">
         <span className="question-info  difficulty-level">
-          {getTeachingLevel(question.difficulty)}
+          {getTeachingLevel(question.difficulty)} 
         </span>
       </Col>
     </Row>
@@ -46,22 +46,27 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
         <TagList list={question.teaching_levels} styleTag="question-info  teaching-level" />
       </Col>
     </Row>
-    <Row className="c-question__row-info">
-      <Col className="info-label" sm="4" xs="4">
-        Tags
-      </Col>
-      <Col sm="8" xs="8">
-        <TagList list={question.tags} styleTag="question-info  tag-name" />
-      </Col>
-    </Row>
-    <Row className="c-question__row-info">
-      <Col className="info-label" sm="4" xs="4">
-        Descritores
-      </Col>
-      <Col sm="8" xs="12">
-        <DescriptorList list={question.descriptors} styleTag="question-info  descriptor-name" />
-      </Col>
-    </Row>
+    {question.tags && question.tags.length > 0 ? (
+      <Row className="c-question__row-info">
+        <Col className="info-label" sm="4" xs="4">
+          Tags
+        </Col>
+        <Col sm="8" xs="8">
+          <TagList list={question.tags} styleTag="question-info  tag-name" />
+        </Col>
+      </Row>
+    ) : ' '}
+    {question.descriptors && question.descriptors.length > 0 ? (
+      <Row className="c-question__row-info">
+        <Col className="info-label" sm="4" xs="4">
+          Descritores
+        </Col>
+        <Col sm="8" xs="12">
+          <DescriptorList list={question.descriptors} styleTag="question-info  descriptor-name" />
+        </Col>
+      </Row>
+    ) : ' '}
+
     <Row className="c-question__row-info">
       <Col className="info-label" sm="4" xs="4">
       Autor

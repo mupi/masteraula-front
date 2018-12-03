@@ -24,8 +24,7 @@ const OpenLastDocumentList = ({
 
   return (
     <div
-      onClick={handleOpenLastDocumentList} 
-      className="menu-top__document-button"
+      onClick={handleOpenLastDocumentList}
     >
       <FontAwesomeIcon icon="sync-alt" />
       {' '}
