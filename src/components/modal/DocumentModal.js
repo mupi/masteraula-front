@@ -14,7 +14,6 @@ import {
 const DocumentModal = ({
   document, closeModal, editDocument, isFetchingPreviewDocument,
 }) => {
-  console.log('documento é:' + document);
   if (isFetchingPreviewDocument) {
     return (
       <div className="modal__content modal-content">
@@ -60,92 +59,7 @@ const DocumentModal = ({
             </Button>
           </div>
         </Row>
-        <Row className="c-document-modal__header-info">
-          <Col xs="12" sm="2" className="c-document-modal__header-logo">
-            <Label for="upload-avatar" className="upload-avatar">
-              <div className="thumbnail">
-                <img src={documentLogo} alt="logo-prova" />
-              </div>
-            </Label>
-          </Col>
-          <Col xs="12" sm="10">
-            <Label>
-              {document && document.institution_name ? (
-                <span className="c-document-modal__header-label">
-                  Nome da instituição:
-                  {' '}
-                  <span className="c-document-modal__header-label--info">
-                    {document.institution_name}
-                  </span>
-                </span>) : (
-                  <span className="c-document-modal__header-label">
-                      Nome da instituição
-                  </span>)
-              }
-            </Label>
-            <br />
-            <Label>
-              {document && document.discipline_name ? (
-                <span className="c-document-modal__header-label">
-                  Curso/Disciplina:
-                  {' '}
-                  <span className="c-document-modal__header-label--info">
-                    {document.discipline_name}
-                  </span>
-                </span>) : (
-                  <span className="c-document-modal__header-label">
-                  Curso/Disciplina
-                  </span>)
-              }
-            </Label>
-            <br />
-            <Label>
-              {document && document.professor_name ? (
-                <span className="c-document-modal__header-label">
-                  Professor(a):
-                  {' '}
-                  <span className="c-document-modal__header-label--info">
-                    {document.professor_name}
-                  </span>
-                </span>) : (
-                  <span className="c-document-modal__header-label">
-                  Professor(a)
-                  </span>)
-                }
-            </Label>
-            <p className="c-document-modal__header-label">
-                  Mostrar os seguintes campos em branco:
-            </p>
-            {document && document.student_indicator
-              ? (
-                <span className="c-document-modal__header-label--check btn__icon">
-                  <FontAwesomeIcon  icon="check"/>
-                  Nome Aluno
-                  {' '}
-                </span>) : ''}
-            {document && document.class_indicator
-              ? (
-                <span className="c-document-modal__header-label--check btn__icon">
-                  <FontAwesomeIcon  icon="check"/>
-                  Turma
-                  {' '}
-                </span>) : ''}
-            {document && document.date_indicator
-              ? (
-                <span className="c-document-modal__header-label--check btn__icon">
-                  <FontAwesomeIcon  icon="check"/>
-                  Data
-                  {' '}
-                </span>) : ''}
-            {document && document.score_indicator
-              ? (
-                <span className="c-document-modal__header-label--check btn__icon">
-                  <FontAwesomeIcon  icon="check"/>
-                  Nota
-                  {' '}
-                </span>) : ''}
-          </Col>
-        </Row></div>) : ' '}
+        </div>) : ' '}
         {document && document.questions.map(questionOrder => (
           <DocumentQuestionItem key={questionOrder.question.id} question={questionOrder.question} readOnly />
         ))}
