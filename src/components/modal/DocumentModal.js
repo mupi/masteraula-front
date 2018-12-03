@@ -53,7 +53,7 @@ const DocumentModal = ({
               </div>
               <div>
                 <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
-                  <FontAwesomeIcon  icon="pencil-alt" className="btn__icon" />
+                  <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
                   <span className="button-text">
                     Editar
                   </span>
