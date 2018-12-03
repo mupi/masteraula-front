@@ -39,13 +39,17 @@ class ViewDocumentPage extends React.Component {
       listMyDocuments(parseInt(match.params.page, 10), orderField, order);
     }
 
-   // listMyLastDocuments(1, 'date', 'desc');
+    listMyLastDocuments(1, 'date', 'desc');
   }
 
   render() {
     const {
-      myDocumentsList, isFetchingMyDocuments, listMyDocuments, orderField, order,
+      myDocumentsList, isFetchingMyDocuments, isDeleted, match, listMyDocuments, orderField, order,
     } = this.props;
+
+    if (isDeleted) {
+      listMyDocuments(parseInt(match.params.page, 10), orderField, order);
+    }
 
     return (
       <HomeUserPage>
