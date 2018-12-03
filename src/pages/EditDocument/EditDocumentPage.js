@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { history } from 'helpers/history';
 
+import DocumentBasicHeader from 'components/document/DocumentBasicHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { ToastContainer } from 'react-toastify';
@@ -19,12 +20,13 @@ class EditDocumentPage extends Component {
 
   render() {
     const {
-      activeDocument, removeSelectedQuestion,
+      activeDocument, removeSelectedQuestion, submit,
     } = this.props;
 
     return (
       <HomeUserPage>
         <div className="c-document">
+          <DocumentBasicHeader data={activeDocument} onSubmit={submit} />
           <DocumentQuestions
             activeDocument={activeDocument}
             removeSelectedQuestion={removeSelectedQuestion}
