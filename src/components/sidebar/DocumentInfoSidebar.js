@@ -95,11 +95,11 @@ class DocumentInfoSidebar extends React.Component {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem className="o-doc-options__dropdown-item">
-                  <div to="/edit-document" className="c-sidebar__link-my-profile" onClick={() => this.openDocumentModal(documentId)}>
+                  <a className="c-sidebar__link-my-profile" onClick={() => this.openDocumentModal(documentId)}>
                     <FontAwesomeIcon icon="eye" />
                     {' '}
                     Visualizar
-                  </div>
+                  </a>
                 </DropdownItem>
 
                 <DropdownItem divider />
