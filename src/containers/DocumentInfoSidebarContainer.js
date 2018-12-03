@@ -3,7 +3,7 @@ import DocumentInfoSidebar from 'components/sidebar/DocumentInfoSidebar';
 import { showModal, hideModal } from 'actions/modalAction';
 
 import {
-  listMyLastDocuments, switchActiveDocument, fetchPreviewDocument
+  listMyLastDocuments, switchActiveDocument, fetchPreviewDocument,
 } from 'actions/documentAction';
 
 const mapStateToProps = state => ({
@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
   previewDocument: state.document.previewDocument,
   isFetchingPreviewDocument: state.document.isFetchingPreviewDocument,
   isFetchingMyLastDocuments: state.document.isFetchingMyLastDocuments,
-  myLastDocumentsList: state.document.myLastDocumentsList, 
+  myLastDocumentsList: state.document.myLastDocumentsList,
 });
 
 const mapDispatchToProps = dispatch => ({
