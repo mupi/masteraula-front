@@ -86,9 +86,26 @@
       }
     }
 
-  /*  &__learning-object{
+    &__learning-object{
+      text-align: center;
+      margin-bottom:15px;
 
-    }*/
+      &--text{
+       // text-align: left;
+      }
+
+      &--image{
+
+      }
+
+      &:last-child{
+        margin-bottom: 0px;
+      }
+
+      p{
+        margin-bottom:0px;
+      }
+    }
 
     //Learning Object section in QuestionPage
     &__img{
