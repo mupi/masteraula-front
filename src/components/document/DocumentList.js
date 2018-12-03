@@ -11,7 +11,7 @@ const OpenDocumentModalHeader = (props) => {
 
   const onClickHandler = () => {
     openDocumentModal(document.id);
-  };
+  }; 
 
   return (
     <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }} className="c-my-documents__cell">

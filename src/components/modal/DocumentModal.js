@@ -14,6 +14,7 @@ import {
 const DocumentModal = ({
   document, closeModal, editDocument, isFetchingPreviewDocument,
 }) => {
+  console.log('documento é:' + document);
   if (isFetchingPreviewDocument) {
     return (
       <div className="modal__content modal-content">
@@ -39,7 +40,8 @@ const DocumentModal = ({
         </button>
       </div>
       <div className="c-document-modal__body modal-body">
-        <Row>
+      { document ? (
+       <div><Row>
           <div className="auto-margin-left-element btn-margin-right">
             <ExportDocumentButtonContainer
               color="success"
@@ -51,7 +53,7 @@ const DocumentModal = ({
           </div>
           <div>
             <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
-              <FontAwesomeIcon  icon="pencil-alt" className="btn__icon"/>
+              <FontAwesomeIcon  icon="pencil-alt" className="btn__icon" />
               <span className="button-text">
                 Editar
               </span>
@@ -143,7 +145,7 @@ const DocumentModal = ({
                   {' '}
                 </span>) : ''}
           </Col>
-        </Row>
+        </Row></div>) : ' '}
         {document && document.questions.map(questionOrder => (
           <DocumentQuestionItem key={questionOrder.question.id} question={questionOrder.question} readOnly />
         ))}
