@@ -39,7 +39,7 @@ class ViewDocumentPage extends React.Component {
       listMyDocuments(parseInt(match.params.page, 10), orderField, order);
     }
 
-    listMyLastDocuments(1, 'date', 'desc');
+   // listMyLastDocuments(1, 'date', 'desc');
   }
 
   render() {
