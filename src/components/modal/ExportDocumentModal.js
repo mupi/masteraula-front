@@ -12,7 +12,7 @@ const ConfirmExportModal = ({
    <div className="modal__content modal-content">
      <div className="modal__header modal-header">
        <h5
-         className="modal-title"
+         className="modal-title" 
        >{title}</h5>
        <button type="button" className="close" aria-label="Close" onClick={closeModal}>
          <span aria-hidden="true">&times;</span>
@@ -20,8 +20,12 @@ const ConfirmExportModal = ({
      </div>
      <div className="modal-body">
        <p>
-        Você gostaria de exportar o gabarito da prova <strong>{documentName}</strong> {' ?'}
+        Selecione as opções para exportar sua prova
+         {' '}
+         <strong>{documentName}</strong>
        </p>
+       Selecionar Cabeçalho
+       
        <div className="modal__footer modal-footer">
        <button color="primary" className="btn--confirm btn btn-secondary" onClick={() => {downloadDocument(documentId, documentName, true); closeModal()}}>
        Com gabarito</button>
