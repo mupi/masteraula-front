@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { history } from 'helpers/history';
+import {
+  Row,
+} from 'reactstrap';
+import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 
+import DocumentBasicHeader from 'components/document/DocumentBasicHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { ToastContainer } from 'react-toastify';
@@ -19,12 +24,21 @@ class EditDocumentPage extends Component {
 
   render() {
     const {
-      activeDocument, removeSelectedQuestion,
+      activeDocument, removeSelectedQuestion, submit,
     } = this.props;
 
     return (
       <HomeUserPage>
         <div className="c-document">
+          <Row className="c-document__main-buttons">
+            <div className="auto-margin-left-element">
+              <GoToQuestionBaseButton
+                customClass="btn-success"
+                nameButton="Adicionar questões"
+              />
+            </div>
+          </Row>
+          <DocumentBasicHeader data={activeDocument} onSubmit={submit} />
           <DocumentQuestions
             activeDocument={activeDocument}
             removeSelectedQuestion={removeSelectedQuestion}

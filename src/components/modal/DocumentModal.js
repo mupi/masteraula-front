@@ -41,7 +41,7 @@ const DocumentModal = ({
       <div className="c-document-modal__body modal-body">
         { document ? (
           <div>
-            <Row>
+            <Row className="c-document-modal__main-options">
               <div className="auto-margin-left-element btn-margin-right">
                 <ExportDocumentButtonContainer
                   color="success"
