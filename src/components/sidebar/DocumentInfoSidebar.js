@@ -65,6 +65,16 @@ class DocumentInfoSidebar extends React.Component {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem className="o-doc-options__dropdown-item">
+                  <Link to="/edit-document" className="c-sidebar__link-my-profile">
+                    <FontAwesomeIcon icon="eye" />
+                    {' '}
+                    Visualizar
+                  </Link>
+                </DropdownItem>
+
+                <DropdownItem divider />
+
+                <DropdownItem className="o-doc-options__dropdown-item">
                   <ExportDocumentButtonContainer
                     text="Exportar"
                     isLink
@@ -99,6 +109,12 @@ class DocumentInfoSidebar extends React.Component {
             <Button className="btn-margin-right menu-top__document-button">
               <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
               Editar
+            </Button>
+          </Link>
+          <Link className="menu-top__document-btn-item" to="/edit-document">
+            <Button className="btn-margin-right menu-top__document-button">
+              <FontAwesomeIcon icon="eye" className="btn__icon" />
+              Visualizar
             </Button>
           </Link>
           <ExportDocumentButtonContainer

@@ -34,7 +34,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
       </Col>
       <Col sm="8" xs="8">
         <span className="question-info  difficulty-level">
-          {getTeachingLevel(question.difficulty)}
+          {getTeachingLevel(question.difficulty)} 
         </span>
       </Col>
     </Row>
