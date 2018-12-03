@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Row, Col, Label, Button, Input,
+  Row, Col, Button, Input,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Field, reduxForm, Form } from 'redux-form';

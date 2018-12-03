@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { history } from 'helpers/history';
+import {
+  Row,
+} from 'reactstrap';
+import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 
 import DocumentBasicHeader from 'components/document/DocumentBasicHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
@@ -26,6 +30,14 @@ class EditDocumentPage extends Component {
     return (
       <HomeUserPage>
         <div className="c-document">
+          <Row className="c-document__main-buttons">
+            <div className="auto-margin-left-element">
+              <GoToQuestionBaseButton
+                customClass="btn-success"
+                nameButton="Adicionar questões"
+              />
+            </div>
+          </Row>
           <DocumentBasicHeader data={activeDocument} onSubmit={submit} />
           <DocumentQuestions
             activeDocument={activeDocument}
