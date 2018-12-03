@@ -2,10 +2,10 @@
 CSS for UserProfile
 */
 .l-user-profile {
-    border: 2px solid $color-ma-white;
+    border: 1px solid rgba(0, 0, 0, 0.125);
     padding: 25px 25px 25px 25px;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  //  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background: $color-ma-white;
     @include for-phone-only {
       padding: 5px;
