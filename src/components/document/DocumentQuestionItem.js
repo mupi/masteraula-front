@@ -56,17 +56,17 @@ const DocumentQuestionItem = (props) => {
                 <p className="c-document__question-info-row">
                   Fonte:
                   {' '}
-                  { question.source}
+                  <span className="c-document__question-info-detail">{ question.source}</span>
                 </p>
                 <p className="c-document__question-info-row">
                   Ano:
                   {' '}
-                  { question.year}
+                  <span className="c-document__question-info-detail">{ question.year}</span>
                 </p>
                 <p className="c-document__question-info-row">
                   Dificuldade:
                   {' '}
-                  <span className="c-document__question-info-detail c-document__question-info-detail--green">
+                  <span className="c-document__question-info-detail">
                     {getTeachingLevel(question.difficulty)}
                   </span>
                 </p>
@@ -74,7 +74,7 @@ const DocumentQuestionItem = (props) => {
                   Níveis de Ensino:
                   {' '}
                   {question.teaching_levels && question.teaching_levels.map(level => (
-                    <span key={level.id} className="c-document__question-info-detail c-document__question-info-detail--green">
+                    <span key={level.id} className="c-document__question-info-detail">
                       {level.name}
                     </span>
                   ))}
@@ -83,7 +83,7 @@ const DocumentQuestionItem = (props) => {
                   Disciplinas:
                   {' '}
                   {question.disciplines && question.disciplines.map(discipline => (
-                    <span key={discipline.id} className="c-document__question-info-detail c-document__question-info-detail--pink">
+                    <span key={discipline.id} className="c-document__question-info-detail">
                       {discipline.name}
                     </span>
                   ))}
