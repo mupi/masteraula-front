@@ -28,7 +28,7 @@ const ExportDocumentButton = ({
       downloadDocument,
       documentId,
       documentName,
-      title: 'Exportar Gabarito',
+      title: 'Exportar prova',
     }, 'exportDocument');
   };
 
