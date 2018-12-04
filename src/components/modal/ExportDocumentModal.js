@@ -28,12 +28,13 @@ const renderSelectField = ({
   </div>
 );
 
-
+ 
 class ConfirmExportModal extends React.Component {
 
   componentDidMount() {
-
-  }
+   // const { listMyHeaders } = this.props;
+  //  listMyHeaders();
+  } 
 
   render() {
     const {
@@ -45,7 +46,7 @@ class ConfirmExportModal extends React.Component {
     };
 
     return (
-      <div className="modal__content modal-content">
+      <div className="modal__content modal-content c-export-document">
         <div className="modal__header modal-header">
           <h5
             className="modal-title"
@@ -57,12 +58,16 @@ class ConfirmExportModal extends React.Component {
           </button>
         </div>
         <div className="modal-body">
-          <p>
+          <p className="text-center">
             Selecione as opções para exportar sua prova
             {' '}
             <strong>{documentName}</strong>
           </p>
-          <FormGroup>
+      
+          <p className="c-export-document__option-name">
+            Selecione um cabeçalho
+          </p>
+          <FormGroup className="c-export-document__select">
             <Field
               name="headerDocument"
               type="text"
@@ -71,54 +76,49 @@ class ConfirmExportModal extends React.Component {
               label="Sem cabeçalho"
             >
               { headerList.results && headerList.results.map(header => (
-                <option className="c-export-document__" key={header.id} value={header.id}>
-                    {header.name}
-                            </option>
-                          )) }
-                        </Field>
+                <option className="c-export-document__select-item" key={header.id} value={header.id}>
+                  {header.name}
+                </option>
+              )) }
+            </Field>
+          </FormGroup>
 
-                      </FormGroup>
-
-            <FormGroup>
-              <label>
-                <Field
-                  name="sex"
-                  component="input"
-                  type="radio"
-                  value="male"
-                  className="form-group"
-                />{' '}
-                Sem gabarito
-              </label>
-              <label>
-                <Field
-                  name="sex"
-                  component="input"
-                  type="radio"
-                  value="female"
-                  className="form-group"
-
-                />{' '}
-                Com gabarito
-              </label>
-              </FormGroup>
-
-
-
-
-                <div className="modal-footer modal__footer">
-                  <Button className="btn--confirm">
-                    Apagar
-                  </Button>
-                  <Button color="secondary" onClick={closeModal}>
-                    Cancelar
-                  </Button>
-                </div>
-
+          <p className="c-export-document__option-name">
+            Com ou sem gabarito?
+          </p>  
+          <FormGroup className="c-export-document__answers-section">
+            <Label className="c-export-document__answers-label">
+              <Field
+                name="answers"
+                component="input"
+                type="radio"
+                value="without"
+              />
+              {' '}
+              Sem gabarito
+            </Label>
+            <Label className="c-export-document__answers-label">
+              <Field
+                name="answers"
+                component="input"
+                type="radio"
+                value="with"
+              />
+              {' '}
+              Com gabarito
+            </Label>
+          </FormGroup>
+          <div className="modal-footer modal__footer">
+            <Button className="btn--confirm">
+              Exportar
+            </Button>
+            <Button color="secondary" onClick={closeModal}>
+              Cancelar
+            </Button>
+          </div>
         </div>
-        
       </div>
-)
+    );
   }
 }
 
@@ -156,4 +156,4 @@ class ConfirmExportModal extends React.Component {
     mapDispatchToProps,
   )(reduxForm({
     form: 'exportDocumentModal',
-  })(ConfirmExportModal));
+})(ConfirmExportModal));

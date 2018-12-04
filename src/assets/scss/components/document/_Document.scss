@@ -344,5 +344,27 @@ tbody tr.odd {
 
 /* Export Document Modal - options*/
 .c-export-document{
-  
+
+  &__option-name{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: $color-ma-lightgray;
+  }
+
+  &__select select.form-control {
+    font-size: 14px;
+  }
+
+  &__answers-section{
+    margin-bottom:0px;
+  }
+
+  &__answers-label {
+    padding-left: 20px;
+  }
+
+  &__answers-label:first-child {
+    padding-left: 0px;
+  }
+
 }
