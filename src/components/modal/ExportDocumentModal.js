@@ -4,6 +4,8 @@ import {
   Button, Form, FormGroup, Input, Label, Container, Row, Col,
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+
 
 
 const renderSelectField = ({
@@ -123,7 +125,6 @@ class ConfirmExportModal extends React.Component {
   
     ConfirmExportModal.propTypes = {
     closeModal: PropTypes.func,
-    toggleModal: PropTypes.func,
     downloadDocument: PropTypes.func,
     title: PropTypes.string,
     message: PropTypes.string,
@@ -132,13 +133,27 @@ class ConfirmExportModal extends React.Component {
   
     ConfirmExportModal.defaultProps = {
     closeModal: f => f,
-    toggleModal: f => f,
     downloadDocument: f => f,
     title: '',
     message: '',
     modal: false,
   };
-  export default reduxForm({
-    form: 'exportDocumentModal' // a unique identifier for this form
-  })(ConfirmExportModal)
 
+  const mapStateToProps = state => ({
+    modal: state.document.modal,
+    initialValues: {
+      idQuestion: state.document.willAddQuestion,
+    },
+  });
+  
+  const mapDispatchToProps = dispatch => ({
+   
+  });
+  
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(reduxForm({
+    form: 'exportDocumentModal',
+  })(ConfirmExportModal));
