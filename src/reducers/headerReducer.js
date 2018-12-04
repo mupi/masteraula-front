@@ -80,11 +80,14 @@ export const header = (state = initialState, action) => {
         orderField: action.orderField,
         order: action.order,
       });
-    case LIST_MY_HEADERS_SUCCESS:
+    case LIST_MY_HEADERS_SUCCESS: {
+      localStorage.setItem('myHeadersList', JSON.stringify(action.myHeadersList));
+
       return Object.assign({}, state, {
         myHeadersList: action.myHeadersList,
         isFetchingMyHeaders: false,
       });
+    }
     case LIST_MY_HEADERS_FAILURE:
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
@@ -123,7 +126,7 @@ export const header = (state = initialState, action) => {
         newActive = null;
         localStorage.setItem('activeHeader', null);
       }
-      toast.success('Cabeçalho removido com sucesso', optionsSuccess);
+      toast.success('Cabeçalho removido com sucesso', optionsSuccess); 
       return Object.assign({}, state, {
         activeHeader: newActive,
         isDeleted: true,

@@ -51,7 +51,7 @@ export const resetForgotPassword = (password, confirmation, uid, token) => {
     return forgotPasswordService.resetForgotPassword(password, confirmation, uid, token)
       .then(
         () => {
-          dispatch(success()),
+          dispatch(success());
           dispatch(reset('redefine_password'));
         },
         (error) => {
