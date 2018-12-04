@@ -1,41 +1,125 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import {
-  Modal, ModalHeader, ModalBody, ModalFooter, Button,
-}
-  from 'reactstrap';
+  Button, Form, FormGroup, Input, Label, Container, Row, Col,
+} from 'reactstrap';
+import { Field, reduxForm } from 'redux-form';
 
-const ConfirmExportModal = ({
-    closeModal, documentId, documentName,downloadDocument, title,
-  }) => (
-   <div className="modal__content modal-content">
-     <div className="modal__header modal-header">
-       <h5
-         className="modal-title" 
-       >{title}</h5>
-       <button type="button" className="close" aria-label="Close" onClick={closeModal}>
-         <span aria-hidden="true">&times;</span>
-       </button>
-     </div>
-     <div className="modal-body">
-       <p>
-        Selecione as opções para exportar sua prova
-         {' '}
-         <strong>{documentName}</strong>
-       </p>
-       Selecionar Cabeçalho
-       
-       <div className="modal__footer modal-footer">
-       <button color="primary" className="btn--confirm btn btn-secondary" onClick={() => {downloadDocument(documentId, documentName, true); closeModal()}}>
-       Com gabarito</button>
-       <button type="button" className="btn btn-secondary" onClick={() => {downloadDocument(documentId, documentName, false); closeModal()}}>
-       Sem gabarito</button>
-     </div>
-     </div>
-     
-   </div>
-  );
+
+const renderSelectField = ({
+  input, label, meta: { touched, error }, children, optionDefault,
+}) => (
+  <div>
+    <div>
+      <select {...input} className="form-control">
+        <option value={optionDefault}>
+          {label}
+        </option>
+        {children}
+      </select>
+      {touched && error && (
+        <span className="error-message-text">
+          {error}
+        </span>
+      )}
+    </div>
+  </div>
+);
+
+
+class ConfirmExportModal extends React.Component {
+
+  componentDidMount() {
+
+  }
+
+  render() {
+    const {
+      closeModal, documentId, documentName, downloadDocument, title,
+    } = this.props;
+
+    const headerList = {
+      results: [{ id: 1, name: 'cabeçalho 1' }, { id: 2, name: 'cabeçalho turma 1' }],
+    };
+
+    return (
+      <div className="modal__content modal-content">
+        <div className="modal__header modal-header">
+          <h5
+            className="modal-title"
+          >
+            {title}
+          </h5>
+          <button type="button" className="close" aria-label="Close" onClick={closeModal}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div className="modal-body">
+          <p>
+            Selecione as opções para exportar sua prova
+            {' '}
+            <strong>{documentName}</strong>
+          </p>
+          <FormGroup>
+            <Field
+              name="headerDocument"
+              type="text"
+              component={renderSelectField}
+              className="form-control"
+              label="Sem cabeçalho"
+            >
+              { headerList.results && headerList.results.map(header => (
+                <option className="c-export-document__" key={header.id} value={header.id}>
+                    {header.name}
+                            </option>
+                          )) }
+                        </Field>
+
+                      </FormGroup>
+
+            <FormGroup>
+              <label>
+                <Field
+                  name="sex"
+                  component="input"
+                  type="radio"
+                  value="male"
+                  className="form-group"
+                />{' '}
+                Sem gabarito
+              </label>
+              <label>
+                <Field
+                  name="sex"
+                  component="input"
+                  type="radio"
+                  value="female"
+                  className="form-group"
+
+                />{' '}
+                Com gabarito
+              </label>
+              </FormGroup>
+
+
+
+
+                <div className="modal-footer modal__footer">
+                  <Button className="btn--confirm">
+                    Apagar
+                  </Button>
+                  <Button color="secondary" onClick={closeModal}>
+                    Cancelar
+                  </Button>
+                </div>
+
+        </div>
+        
+      </div>
+)
+  }
+}
+
   
     ConfirmExportModal.propTypes = {
     closeModal: PropTypes.func,
@@ -54,5 +138,7 @@ const ConfirmExportModal = ({
     message: '',
     modal: false,
   };
-  
-  export default ConfirmExportModal;
+  export default reduxForm({
+    form: 'exportDocumentModal' // a unique identifier for this form
+  })(ConfirmExportModal)
+
