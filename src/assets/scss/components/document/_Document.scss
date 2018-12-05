@@ -344,16 +344,31 @@ tbody tr.odd {
 
 /* Export Document Modal - options*/
 .c-export-document{
+  
+  &__new-header{
+    font-size:12px;
+    margin-left: 2px;
 
+    &:hover{
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+  
   &__option-name{
     margin-bottom: 5px;
     font-weight: bold;
     color: $color-ma-lightgray;
   }
 
+  &__select-item{
+    font-size: 14px;
+  }
+
   &__select select.form-control {
     font-size: 14px;
   }
+
 
   &__answers-section{
     margin-bottom:0px;

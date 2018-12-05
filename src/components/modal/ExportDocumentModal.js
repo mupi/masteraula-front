@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Form, FormGroup, Input, Label, Container, Row, Col,
+  Button, Form, FormGroup, Input, Label, Container, Row, Col,  UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const renderSelectField = ({
   input, label, meta: { touched, error }, children, optionDefault,
@@ -42,7 +42,7 @@ class ConfirmExportModal extends React.Component {
     } = this.props;
 
     const headerList = {
-      results: [{ id: 1, name: 'cabeçalho 1' }, { id: 2, name: 'cabeçalho turma 1' }],
+      results: [{ id: 1, name: 'Cabeçalho - Turma Objetivo' }, { id: 2, name: 'Prova de Biologia - Pequeno Urso' }],
     };
 
     return (
@@ -74,6 +74,7 @@ class ConfirmExportModal extends React.Component {
               component={renderSelectField}
               className="form-control"
               label="Sem cabeçalho"
+              optionDefault="NaN"
             >
               { headerList.results && headerList.results.map(header => (
                 <option className="c-export-document__select-item" key={header.id} value={header.id}>
@@ -81,6 +82,9 @@ class ConfirmExportModal extends React.Component {
                 </option>
               )) }
             </Field>
+            <Link onClick={closeModal} to="/new-header" className="c-export-document__new-header">
+              Criar novo
+            </Link>
           </FormGroup>
 
           <p className="c-export-document__option-name">
