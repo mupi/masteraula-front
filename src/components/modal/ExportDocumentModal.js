@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import {
   listMyHeadersCombo,
 } from 'actions/headerAction';
+import { downloadDocument } from 'actions/documentAction';
 
 const renderSelectField = ({
   input, label, meta: { touched, error }, children, optionDefault,
@@ -41,7 +42,7 @@ class ConfirmExportModal extends React.Component {
 
   render() {
     const {
-      closeModal, documentId, documentName, downloadDocument, title, myHeadersListCombo,
+      closeModal, documentId, documentName, title, myHeadersListCombo, handleSubmit,
     } = this.props;
 
     /*const headerList = {
@@ -61,11 +62,12 @@ class ConfirmExportModal extends React.Component {
           </button>
         </div>
         <div className="modal-body">
-          <p className="text-center">
-            Selecione as opções para exportar sua prova
-            {' '}
-            <strong>{documentName}</strong>
-          </p>
+          <Form onSubmit={handleSubmit}>
+            <p className="text-center">
+              Selecione as opções para exportar sua prova
+              {' '}
+              <strong>{documentName}</strong>
+            </p>
       
           <p className="c-export-document__option-name">
             Selecione um cabeçalho
@@ -82,7 +84,7 @@ class ConfirmExportModal extends React.Component {
               { myHeadersListCombo && myHeadersListCombo.map(header => (
                 <option className="c-export-document__select-item" key={header.id} value={header.id}>
                   {header.name}
-                </option>
+                </option> 
               )) }
             </Field>
             <Link onClick={closeModal} to="/new-header" className="c-export-document__new-header">
@@ -124,6 +126,8 @@ class ConfirmExportModal extends React.Component {
               Cancelar
             </Button>
           </div>
+        </Form>
+
         </div>
       </div>
     );
@@ -144,18 +148,22 @@ class ConfirmExportModal extends React.Component {
     title: '',
     message: '',
     modal: false,
-  };
+  }; 
 
 const mapStateToProps = state => ({
   myHeadersListCombo: state.header.myHeadersListCombo,
   modal: state.document.modal,
-  initialValues: {
-    idQuestion: state.document.willAddQuestion,
-  },
 });
 
 const mapDispatchToProps = dispatch => ({
   listMyHeadersCombo: () => dispatch(listMyHeadersCombo()),
+  onSubmit: (values) => {
+    const exportOptions = {
+      headerId: values.headerDocument,
+      answer: values.answer,
+    };
+    return dispatch(downloadDocument(exportOptions));
+  },
 });
 
 export default connect(

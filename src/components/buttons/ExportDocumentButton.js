@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ExportDocumentButton = ({
-  documentId, color, text, downloadDocument, documentName, documentTotalQuestions, hideModal, showModal, styleCustomize, isLink = false,
+  documentId, color, text, documentName, documentTotalQuestions, hideModal, showModal, styleCustomize, isLink = false,
 }) => {
   const closeModal = () => {
     hideModal();
@@ -25,7 +25,6 @@ const ExportDocumentButton = ({
     showModal({
       open: true,
       closeModal,
-      downloadDocument,
       documentId,
       documentName,
       title: 'Exportar prova',

@@ -283,8 +283,8 @@ export const deleteDocument = (idDocument) => {
   };
 };
 
-export const downloadDocument = (documentId, docName, answer) => {
-  const downloadSelectedDocument = documentName => ({ type: DOWNLOAD_DOCUMENT, documentName });
+export const downloadDocument = (props) => {
+  const downloadSelectedDocument = () => ({ type: DOWNLOAD_DOCUMENT });
   const downloadSelectedDocumentSuccess = () => ({ type: DOWNLOAD_DOCUMENT_SUCCESS });
   const downloadSelectedDocumentFailure = error => ({ type: DOWNLOAD_DOCUMENT_FAILURE, error });
 
@@ -292,10 +292,10 @@ export const downloadDocument = (documentId, docName, answer) => {
     if (getState().document.isDownloadingDocument) {
       return 1;
     }
-    dispatch(downloadSelectedDocument(documentId));
-    return documentService.downloadDocument(documentId, docName, answer)
+    dispatch(downloadSelectedDocument(props));
+    return documentService.downloadDocument(props, getState().document.activeDocument.id)
       .then(response => response.blob()).then((blob) => {
-        FileSaver.saveAs(blob, `${docName}.docx`);
+        FileSaver.saveAs(blob, `${getState().document.activeDocument.name}.docx`);
         dispatch(downloadSelectedDocumentSuccess());
       },
       (error) => {

@@ -18,7 +18,6 @@ const validate = (values) => {
   return errors;
 };
 
-
 const mapStateToProps = (state) => {
   const { user } = state.session.session;
 
