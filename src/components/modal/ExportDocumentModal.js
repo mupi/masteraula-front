@@ -7,6 +7,9 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import {
+  listMyHeadersCombo,
+} from 'actions/headerAction';
 
 const renderSelectField = ({
   input, label, meta: { touched, error }, children, optionDefault,
@@ -32,18 +35,18 @@ const renderSelectField = ({
 class ConfirmExportModal extends React.Component {
 
   componentDidMount() {
-   // const { listMyHeaders } = this.props;
-  //  listMyHeaders();
+    const { listMyHeadersCombo } = this.props;
+    listMyHeadersCombo();
   } 
 
   render() {
     const {
-      closeModal, documentId, documentName, downloadDocument, title,
+      closeModal, documentId, documentName, downloadDocument, title, myHeadersListCombo,
     } = this.props;
 
-    const headerList = {
+    /*const headerList = {
       results: [{ id: 1, name: 'Cabeçalho - Turma Objetivo' }, { id: 2, name: 'Prova de Biologia - Pequeno Urso' }],
-    };
+    };*/
 
     return (
       <div className="modal__content modal-content c-export-document">
@@ -76,14 +79,14 @@ class ConfirmExportModal extends React.Component {
               label="Sem cabeçalho"
               optionDefault="NaN"
             >
-              { headerList.results && headerList.results.map(header => (
+              { myHeadersListCombo && myHeadersListCombo.map(header => (
                 <option className="c-export-document__select-item" key={header.id} value={header.id}>
                   {header.name}
                 </option>
               )) }
             </Field>
             <Link onClick={closeModal} to="/new-header" className="c-export-document__new-header">
-              Criar novo
+              Criar novo cabeçalho
             </Link>
           </FormGroup>
 
@@ -97,6 +100,7 @@ class ConfirmExportModal extends React.Component {
                 component="input"
                 type="radio"
                 value="without"
+                checked
               />
               {' '}
               Sem gabarito
@@ -126,7 +130,6 @@ class ConfirmExportModal extends React.Component {
   }
 }
 
-  
     ConfirmExportModal.propTypes = {
     closeModal: PropTypes.func,
     downloadDocument: PropTypes.func,
@@ -143,21 +146,21 @@ class ConfirmExportModal extends React.Component {
     modal: false,
   };
 
-  const mapStateToProps = state => ({
-    modal: state.document.modal,
-    initialValues: {
-      idQuestion: state.document.willAddQuestion,
-    },
-  });
-  
-  const mapDispatchToProps = dispatch => ({
-   
-  });
-  
-  
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(reduxForm({
-    form: 'exportDocumentModal',
+const mapStateToProps = state => ({
+  myHeadersListCombo: state.header.myHeadersListCombo,
+  modal: state.document.modal,
+  initialValues: {
+    idQuestion: state.document.willAddQuestion,
+  },
+});
+
+const mapDispatchToProps = dispatch => ({
+  listMyHeadersCombo: () => dispatch(listMyHeadersCombo()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(reduxForm({
+  form: 'exportDocumentModal',
 })(ConfirmExportModal));

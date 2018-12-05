@@ -3,6 +3,7 @@ import {
   CREATE_HEADER, CREATE_HEADER_SUCCESS, CREATE_HEADER_FAILURE, RESET_NEW_HEADER,
   UPDATE_HEADER, UPDATE_HEADER_SUCCESS, UPDATE_HEADER_FAILURE,
   LIST_MY_HEADERS, LIST_MY_HEADERS_SUCCESS, LIST_MY_HEADERS_FAILURE,
+  LIST_MY_HEADERS_COMBO, LIST_MY_HEADERS_COMBO_SUCCESS, LIST_MY_HEADERS_COMBO_FAILURE,
   DELETE_HEADER, DELETE_HEADER_SUCCESS, DELETE_HEADER_FAILURE,
 } from 'actions/headerAction';
 import { toast } from 'react-toastify';
@@ -93,6 +94,24 @@ export const header = (state = initialState, action) => {
       return Object.assign({}, state, {
         myHeadersList: null,
         isFetchingMyHeaders: false,
+        error: action.errorMessage,
+      });
+    case LIST_MY_HEADERS_COMBO:
+      return Object.assign({}, state, {
+        myHeadersListCombo: null,
+        isFetchingMyHeadersCombo: true,
+      });
+    case LIST_MY_HEADERS_COMBO_SUCCESS: {
+      return Object.assign({}, state, {
+        myHeadersListCombo: action.myHeadersListCombo,
+        isFetchingMyHeadersCombo: false,
+      });
+    }
+    case LIST_MY_HEADERS_COMBO_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        myHeadersListCombo: null,
+        isFetchingMyHeadersCombo: false,
         error: action.errorMessage,
       });
     case UPDATE_HEADER: {
