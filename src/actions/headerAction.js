@@ -62,7 +62,7 @@ export const fetchHeader = (id) => {
     );
   };
 };
- 
+
 // Function 2: Create a new header
 export const createHeader = (props) => {
   function createNewHeader() { return { type: CREATE_HEADER }; }
