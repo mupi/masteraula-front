@@ -5,7 +5,6 @@ import { showModal, hideModal } from 'actions/modalAction';
 import {
   fetchHeader, resetNewHeader, createHeader, updateHeader,
 } from 'actions/headerAction';
-import { history } from 'helpers/history';
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
@@ -23,11 +22,9 @@ const mapDispatchToProps = dispatch => ({
   },
   createHeader: (formData) => {
     dispatch(createHeader(formData));
-    history.push('/my-headers/1');
   },
   updateHeader: (props) => {
     dispatch(updateHeader(props));
-    history.push('/my-headers/1');
   },
 });
 
