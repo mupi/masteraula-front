@@ -238,12 +238,12 @@ function downloadDocument(props, idDocument) {
       Authorization: authHeader(),
     },
   };
-console.log("hola - answer");
+console.log("Descarregar documento com gabarito?");
   console.log(props.answer);
 
   const headerParameter = (props.headerId ? `&header=${props.headerId}` : '');
   
-  if (props.answer ==='with') {
+  if (props.answer === 'with') {
     return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=True${headerParameter}`, requestOptions);
   }
 

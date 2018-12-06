@@ -134,21 +134,21 @@ class ConfirmExportModal extends React.Component {
   }
 }
 
-    ConfirmExportModal.propTypes = {
-    closeModal: PropTypes.func,
-    downloadDocument: PropTypes.func,
-    title: PropTypes.string,
-    message: PropTypes.string,
-    modal: PropTypes.bool,
-  };
-  
-    ConfirmExportModal.defaultProps = {
-    closeModal: f => f,
-    downloadDocument: f => f,
-    title: '',
-    message: '',
-    modal: false,
-  }; 
+ConfirmExportModal.propTypes = {
+  closeModal: PropTypes.func,
+  downloadDocument: PropTypes.func,
+  title: PropTypes.string,
+  message: PropTypes.string,
+  modal: PropTypes.bool,
+};
+
+ConfirmExportModal.defaultProps = {
+  closeModal: f => f,
+  downloadDocument: f => f,
+  title: '',
+  message: '',
+  modal: false,
+};
 
 const mapStateToProps = state => ({
   myHeadersListCombo: state.header.myHeadersListCombo,
