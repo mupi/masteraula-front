@@ -1,6 +1,7 @@
 import { headerService } from 'services';
 import { history } from 'helpers/history';
 import { reset } from 'redux-form';
+import { toast } from 'react-toastify';
 
 // Fetch header
 export const FETCH_HEADER = 'FETCH_HEADER';
@@ -35,6 +36,16 @@ export const LIST_MY_HEADERS_COMBO = 'LIST_MY_HEADERS_COMBO';
 export const LIST_MY_HEADERS_COMBO_SUCCESS = 'LIST_MY_HEADERS_COMBO_SUCCESS';
 export const LIST_MY_HEADERS_COMBO_FAILURE = 'LIST_MY_HEADERS_COMBO_FAILURE';
 
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
+
+const optionsError = {
+  className: 'alert__ma-toast--error',
+  type: 'error',
+};
+
 // Function 1: Fetch Header
 export const fetchHeader = (id) => {
   function requestHeader() { return { type: FETCH_HEADER }; }
@@ -51,7 +62,7 @@ export const fetchHeader = (id) => {
     );
   };
 };
-
+ 
 // Function 2: Create a new header
 export const createHeader = (props) => {
   function createNewHeader() { return { type: CREATE_HEADER }; }
@@ -64,9 +75,11 @@ export const createHeader = (props) => {
       (newHeader) => {
         dispatch(createHeaderSuccess(newHeader));
         history.push('/my-headers/1');
+        toast.success('Cabeçalho criado com sucesso', optionsSuccess);
       },
       (error) => {
         dispatch(createHeaderFailure(error));
+        toast.error('Ocorreu um erro com sua solicitação', optionsError);
       },
     );
   };
@@ -83,9 +96,11 @@ export const updateHeader = (props) => {
       (activeHeader) => {
         dispatch(updateHeaderSuccess(activeHeader));
         history.push('/my-headers/1');
+        toast.success('Cabeçalho atualizado com sucesso', optionsSuccess);
       },
       (error) => {
         dispatch(updateHeaderFailure(error));
+        toast.error('Ocorreu um erro com sua solicitação', optionsError);
       },
     );
   };
