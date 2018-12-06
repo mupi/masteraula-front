@@ -50,7 +50,7 @@ export const header = (state = initialState, action) => {
         isFetching: false,
       });
     case CREATE_HEADER_SUCCESS: {
-     // toast.success('Cabeçalho criado com sucesso', optionsSuccess);
+      // toast.success('Cabeçalho criado com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
@@ -59,7 +59,7 @@ export const header = (state = initialState, action) => {
       });
     }
     case CREATE_HEADER_FAILURE: {
-   //   toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      //   toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,
@@ -145,7 +145,7 @@ export const header = (state = initialState, action) => {
         newActive = null;
         localStorage.setItem('activeHeader', null);
       }
-      toast.success('Cabeçalho removido com sucesso', optionsSuccess); 
+      toast.success('Cabeçalho removido com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeHeader: newActive,
         isDeleted: true,
