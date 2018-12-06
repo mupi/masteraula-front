@@ -84,50 +84,49 @@ class ConfirmExportModal extends React.Component {
               { myHeadersListCombo && myHeadersListCombo.map(header => (
                 <option className="c-export-document__select-item" key={header.id} value={header.id}>
                   {header.name}
-                </option> 
+                </option>
               )) }
             </Field>
             <Link onClick={closeModal} to="/new-header" className="c-export-document__new-header">
               Criar novo cabeçalho
             </Link>
           </FormGroup>
-
-          <p className="c-export-document__option-name">
+            <p className="c-export-document__option-name">
             Com ou sem gabarito?
-          </p>  
-          <FormGroup className="c-export-document__answers-section">
-            <Label className="c-export-document__answers-label">
-              <Field
-                name="answers"
-                component="input"
-                type="radio"
-                value="without"
-                checked
-              />
-              {' '}
-              Sem gabarito
-            </Label>
-            <Label className="c-export-document__answers-label">
-              <Field
-                name="answers"
-                component="input"
-                type="radio"
-                value="with"
-              />
-              {' '}
-              Com gabarito
-            </Label>
-          </FormGroup>
-          <div className="modal-footer modal__footer">
-            <Button className="btn--confirm">
-              Exportar
-            </Button>
-            <Button color="secondary" onClick={closeModal}>
-              Cancelar
-            </Button>
-          </div>
-        </Form>
-
+            </p>
+            <FormGroup className="c-export-document__answers-section">
+              <div>
+                <Label className="c-export-document__answers-label">
+                  <Field
+                    name="answers"
+                    component="input"
+                    type="radio"
+                    value="without"
+                  />
+                  {' '}
+                  Sem gabarito
+                </Label>
+                <Label className="c-export-document__answers-label">
+                  <Field
+                    name="answers"
+                    component="input"
+                    type="radio"
+                    value="with"
+                  />
+                  {' '}
+                  Com gabarito
+                </Label>
+              </div>
+            </FormGroup>
+            <div className="modal-footer modal__footer">
+              <Button className="btn--confirm">
+                Exportar
+              </Button>
+              <Button color="secondary" onClick={closeModal}>
+                Cancelar
+              </Button>
+            </div>
+          </Form>
         </div>
       </div>
     );
@@ -160,7 +159,7 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: (values) => {
     const exportOptions = {
       headerId: values.headerDocument,
-      answer: values.answer,
+      answer: values.answers,
     };
     return dispatch(downloadDocument(exportOptions));
   },
