@@ -238,8 +238,6 @@ function downloadDocument(props, idDocument) {
       Authorization: authHeader(),
     },
   };
-console.log("Descarregar documento com gabarito?");
-  console.log(props.answer);
 
   const headerParameter = (props.headerId ? `&header=${props.headerId}` : '');
   

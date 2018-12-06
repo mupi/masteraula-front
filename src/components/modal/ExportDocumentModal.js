@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Form, FormGroup, Input, Label, Container, Row, Col,  UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
+  Button, Form, FormGroup, Label,
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import {
   listMyHeadersCombo,
@@ -42,12 +41,8 @@ class ConfirmExportModal extends React.Component {
 
   render() {
     const {
-      closeModal, documentId, documentName, title, myHeadersListCombo, handleSubmit,
+      closeModal, documentName, title, myHeadersListCombo, handleSubmit,
     } = this.props;
-
-    /*const headerList = {
-      results: [{ id: 1, name: 'Cabeçalho - Turma Objetivo' }, { id: 2, name: 'Prova de Biologia - Pequeno Urso' }],
-    };*/
 
     return (
       <div className="modal__content modal-content c-export-document">
@@ -68,29 +63,28 @@ class ConfirmExportModal extends React.Component {
               {' '}
               <strong>{documentName}</strong>
             </p>
-      
-          <p className="c-export-document__option-name">
-            Selecione um cabeçalho
-          </p>
-          <FormGroup className="c-export-document__select">
-            <Field
-              name="headerDocument"
-              type="text"
-              component={renderSelectField}
-              className="form-control"
-              label="Sem cabeçalho"
-              optionDefault="NaN"
-            >
-              { myHeadersListCombo && myHeadersListCombo.map(header => (
-                <option className="c-export-document__select-item" key={header.id} value={header.id}>
-                  {header.name}
-                </option>
-              )) }
-            </Field>
-            <Link onClick={closeModal} to="/new-header" className="c-export-document__new-header">
-              Criar novo cabeçalho
-            </Link>
-          </FormGroup>
+            <p className="c-export-document__option-name">
+              Selecione um cabeçalho
+            </p>
+            <FormGroup className="c-export-document__select">
+              <Field
+                name="headerDocument"
+                type="text"
+                component={renderSelectField}
+                className="form-control"
+                label="Sem cabeçalho"
+                optionDefault="NaN"
+              >
+                { myHeadersListCombo && myHeadersListCombo.map(header => (
+                  <option className="c-export-document__select-item" key={header.id} value={header.id}>
+                    {header.name}
+                  </option>
+                )) }
+              </Field>
+              <Link onClick={closeModal} to="/new-header" className="c-export-document__new-header">
+                Criar novo cabeçalho
+              </Link>
+            </FormGroup>
             <p className="c-export-document__option-name">
             Com ou sem gabarito?
             </p>
@@ -135,17 +129,13 @@ class ConfirmExportModal extends React.Component {
 
 ConfirmExportModal.propTypes = {
   closeModal: PropTypes.func,
-  downloadDocument: PropTypes.func,
   title: PropTypes.string,
-  message: PropTypes.string,
-  modal: PropTypes.bool,
 };
 
 ConfirmExportModal.defaultProps = {
   closeModal: f => f,
   downloadDocument: f => f,
   title: '',
-  message: '',
   modal: false,
 };
 
