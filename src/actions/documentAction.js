@@ -6,6 +6,7 @@ import {
   LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS,
   LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS,
 } from 'actions/questionAction';
+import { hideModal } from 'actions/modalAction';
 
 
 // Load single document
@@ -293,6 +294,8 @@ export const downloadDocument = (props) => {
       return 1;
     }
     dispatch(downloadSelectedDocument(props));
+    dispatch(hideModal());
+
     return documentService.downloadDocument(props, getState().document.activeDocument.id)
       .then(response => response.blob()).then((blob) => {
         FileSaver.saveAs(blob, `${getState().document.activeDocument.name}.docx`);
