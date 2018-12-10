@@ -242,11 +242,11 @@
 /*New document button in Sidebar*/
 .document{
   &__new-document-btn{
-    background: transparent;
-    border-color: transparent;
-    color: $color-ma-blue;
-    font-weight: bold;
-    cursor: pointer;
+    background: transparent !important;
+    border-color: transparent !important;
+    color: $color-ma-blue !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
   }
 
   &__new-document-modal-header{
