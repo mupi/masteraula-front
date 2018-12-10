@@ -112,7 +112,7 @@ class ConfirmExportModal extends React.Component {
               </div>
             </FormGroup>
             <div className="modal-footer modal__footer">
-              <Button className="btn--confirm">
+              <Button className="btn--confirm" type="submit">
                 Exportar
               </Button>
               <Button color="secondary" onClick={closeModal}>
