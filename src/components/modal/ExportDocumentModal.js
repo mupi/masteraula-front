@@ -142,6 +142,9 @@ ConfirmExportModal.defaultProps = {
 const mapStateToProps = state => ({
   myHeadersListCombo: state.header.myHeadersListCombo,
   modal: state.document.modal,
+  initialValues: {
+    answers: 'without',
+  },
 });
 
 const mapDispatchToProps = dispatch => ({
