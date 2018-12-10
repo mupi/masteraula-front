@@ -3,6 +3,7 @@ import {
   CREATE_HEADER, CREATE_HEADER_SUCCESS, CREATE_HEADER_FAILURE, RESET_NEW_HEADER,
   UPDATE_HEADER, UPDATE_HEADER_SUCCESS, UPDATE_HEADER_FAILURE,
   LIST_MY_HEADERS, LIST_MY_HEADERS_SUCCESS, LIST_MY_HEADERS_FAILURE,
+  LIST_MY_HEADERS_COMBO, LIST_MY_HEADERS_COMBO_SUCCESS, LIST_MY_HEADERS_COMBO_FAILURE,
   DELETE_HEADER, DELETE_HEADER_SUCCESS, DELETE_HEADER_FAILURE,
 } from 'actions/headerAction';
 import { toast } from 'react-toastify';
@@ -49,7 +50,7 @@ export const header = (state = initialState, action) => {
         isFetching: false,
       });
     case CREATE_HEADER_SUCCESS: {
-      toast.success('Cabeçalho criado com sucesso', optionsSuccess);
+      // toast.success('Cabeçalho criado com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
@@ -58,7 +59,7 @@ export const header = (state = initialState, action) => {
       });
     }
     case CREATE_HEADER_FAILURE: {
-      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      //   toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,
@@ -80,16 +81,37 @@ export const header = (state = initialState, action) => {
         orderField: action.orderField,
         order: action.order,
       });
-    case LIST_MY_HEADERS_SUCCESS:
+    case LIST_MY_HEADERS_SUCCESS: {
+      localStorage.setItem('myHeadersList', JSON.stringify(action.myHeadersList));
+
       return Object.assign({}, state, {
         myHeadersList: action.myHeadersList,
         isFetchingMyHeaders: false,
       });
+    }
     case LIST_MY_HEADERS_FAILURE:
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         myHeadersList: null,
         isFetchingMyHeaders: false,
+        error: action.errorMessage,
+      });
+    case LIST_MY_HEADERS_COMBO:
+      return Object.assign({}, state, {
+        myHeadersListCombo: null,
+        isFetchingMyHeadersCombo: true,
+      });
+    case LIST_MY_HEADERS_COMBO_SUCCESS: {
+      return Object.assign({}, state, {
+        myHeadersListCombo: action.myHeadersListCombo,
+        isFetchingMyHeadersCombo: false,
+      });
+    }
+    case LIST_MY_HEADERS_COMBO_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        myHeadersListCombo: null,
+        isFetchingMyHeadersCombo: false,
         error: action.errorMessage,
       });
     case UPDATE_HEADER: {

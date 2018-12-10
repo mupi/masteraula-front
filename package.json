@@ -22,7 +22,7 @@
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.1",
+    "react-scripts": "1.1.4",
     "react-toastify": "^4.4.0",
     "react-touch": "^0.4.4",
     "reactstrap": "^6.5.0",
@@ -57,5 +57,10 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
-  "homepage": "https://masteraula.com.br"
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Row, Col, Button, Label, Alert,
 }
-  from 'reactstrap';
+  from 'reactstrap'; 
 
 const DocumentModal = ({
   document, closeModal, editDocument, isFetchingPreviewDocument,

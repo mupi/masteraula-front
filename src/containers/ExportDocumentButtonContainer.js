@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import ExportDocumentButton from 'components/buttons/ExportDocumentButton';
-import { downloadDocument } from 'actions/documentAction';
 import { showModal, hideModal } from 'actions/modalAction';
 
 const mapStateToProps = state => ({
@@ -12,7 +11,6 @@ const mapDispatchToProps = dispatch => ({
   showModal: (modalProps, modalType) => {
     dispatch(showModal({ modalProps, modalType }));
   },
-  downloadDocument: (idDocument, documentName, answer) => dispatch(downloadDocument(idDocument, documentName, answer)),
 });
 
 const ExportDocumentButtonContainer = connect(

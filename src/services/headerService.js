@@ -107,6 +107,29 @@ function listMyHeaders(page, orderField, order) {
     .then(activeHeader => activeHeader);
 }
 
+
+function listMyHeadersCombo() {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  return fetch(`${apiUrl}/headers/list_headers/`, requestOptions)
+    .then(handleResponse)
+    .then(activeHeader => activeHeader);
+}
+
 // Delete a header given its ID
 function deleteHeader(idHeader) {
   const requestOptions = {
@@ -135,6 +158,7 @@ const headerService = {
   updateHeader,
   deleteHeader,
   listMyHeaders,
+  listMyHeadersCombo,
 };
 
 export default headerService;

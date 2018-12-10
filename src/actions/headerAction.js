@@ -1,6 +1,7 @@
 import { headerService } from 'services';
 import { history } from 'helpers/history';
 import { reset } from 'redux-form';
+import { toast } from 'react-toastify';
 
 // Fetch header
 export const FETCH_HEADER = 'FETCH_HEADER';
@@ -30,6 +31,20 @@ export const LIST_MY_HEADERS = 'LIST_MY_HEADERS';
 export const LIST_MY_HEADERS_SUCCESS = 'LIST_MY_HEADERS_SUCCESS';
 export const LIST_MY_HEADERS_FAILURE = 'LIST_MY_HEADERS_FAILURE';
 
+// List my headers - combo
+export const LIST_MY_HEADERS_COMBO = 'LIST_MY_HEADERS_COMBO';
+export const LIST_MY_HEADERS_COMBO_SUCCESS = 'LIST_MY_HEADERS_COMBO_SUCCESS';
+export const LIST_MY_HEADERS_COMBO_FAILURE = 'LIST_MY_HEADERS_COMBO_FAILURE';
+
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
+
+const optionsError = {
+  className: 'alert__ma-toast--error',
+  type: 'error',
+};
 
 // Function 1: Fetch Header
 export const fetchHeader = (id) => {
@@ -60,9 +75,11 @@ export const createHeader = (props) => {
       (newHeader) => {
         dispatch(createHeaderSuccess(newHeader));
         history.push('/my-headers/1');
+        toast.success('Cabeçalho criado com sucesso', optionsSuccess);
       },
       (error) => {
         dispatch(createHeaderFailure(error));
+        toast.error('Ocorreu um erro com sua solicitação', optionsError);
       },
     );
   };
@@ -79,9 +96,11 @@ export const updateHeader = (props) => {
       (activeHeader) => {
         dispatch(updateHeaderSuccess(activeHeader));
         history.push('/my-headers/1');
+        toast.success('Cabeçalho atualizado com sucesso', optionsSuccess);
       },
       (error) => {
         dispatch(updateHeaderFailure(error));
+        toast.error('Ocorreu um erro com sua solicitação', optionsError);
       },
     );
   };
@@ -99,6 +118,22 @@ export const listMyHeaders = (page, orderField, order) => (dispatch) => {
     type: LIST_MY_HEADERS, page, orderField, order,
   });
   return headerService.listMyHeaders(page, orderField, order)
+    .then(success)
+    .catch(error);
+};
+
+// Function 4.1: Get all my headers as a list to be populated in combobox
+export const listMyHeadersCombo = () => (dispatch) => {
+  const success = myHeadersListCombo => (
+    dispatch({ type: LIST_MY_HEADERS_COMBO_SUCCESS, myHeadersListCombo }));
+
+  const error = errorMessage => (
+    dispatch({ type: LIST_MY_HEADERS_COMBO_FAILURE, errorMessage }));
+
+  dispatch({
+    type: LIST_MY_HEADERS_COMBO,
+  });
+  return headerService.listMyHeadersCombo()
     .then(success)
     .catch(error);
 };

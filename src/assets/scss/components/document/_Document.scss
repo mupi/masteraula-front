@@ -340,3 +340,44 @@ tbody tr {
 tbody tr.odd {
   background-color: $color-ma-gray-tables
 }
+
+
+/* Export Document Modal - options*/
+.c-export-document{
+  
+  &__new-header{
+    font-size:12px;
+    margin-left: 2px;
+
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  
+  &__option-name{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: $color-ma-lightgray;
+  }
+
+  &__select-item{
+    font-size: 14px;
+  }
+
+  &__select select.form-control {
+    font-size: 14px;
+  }
+
+  &__answers-section{
+    margin-bottom:0px;
+  }
+
+  &__answers-label {
+    padding-left: 20px;
+  }
+
+  &__answers-label:first-child {
+    padding-left: 0px;
+  }
+
+}

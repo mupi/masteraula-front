@@ -231,7 +231,7 @@ function deleteDocument(idDocument) {
 }
 
 // Dowload a document docx file given its ID
-function downloadDocument(idDocument, docName, answer) {
+function downloadDocument(props, idDocument) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -239,12 +239,13 @@ function downloadDocument(idDocument, docName, answer) {
     },
   };
 
-  if (answer !== false) {
-    return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=True`, requestOptions);
+  const headerParameter = (props.headerId ? `&header=${props.headerId}` : '');
+  
+  if (props.answer === 'with') {
+    return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=True${headerParameter}`, requestOptions);
   }
 
-
-  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=False`, requestOptions);
+  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=False${headerParameter}`, requestOptions);
 }
 
 function copyDocument(activeNewDocument) {
