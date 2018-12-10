@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Button, Form, FormGroup, Label,
 } from 'reactstrap';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -36,12 +36,14 @@ class ConfirmExportModal extends React.Component {
   componentDidMount() {
     const { listMyHeadersCombo } = this.props;
     listMyHeadersCombo();
-  }
+  } 
 
   render() {
     const {
-      closeModal, documentName, title, myHeadersListCombo, handleSubmit,
+      closeModal, documentId, documentName, title, myHeadersListCombo, handleSubmit,
     } = this.props;
+    this.props.dispatch(change('exportDocumentModal', 'documentId', documentId));
+    this.props.dispatch(change('exportDocumentModal', 'documentName', documentName));
 
     return (
       <div className="modal__content modal-content c-export-document">
@@ -144,6 +146,7 @@ const mapStateToProps = state => ({
   initialValues: {
     answers: 'without',
   },
+  enableReinitialize: true,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -152,6 +155,9 @@ const mapDispatchToProps = dispatch => ({
     const exportOptions = {
       headerId: values.headerDocument,
       answer: values.answers,
+      documentId: values.documentId,
+      documentName: values.documentName,
+
     };
     return dispatch(downloadDocument(exportOptions));
   },
