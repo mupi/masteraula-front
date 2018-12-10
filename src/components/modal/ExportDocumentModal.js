@@ -31,13 +31,12 @@ const renderSelectField = ({
   </div>
 );
 
- 
 class ConfirmExportModal extends React.Component {
 
   componentDidMount() {
     const { listMyHeadersCombo } = this.props;
     listMyHeadersCombo();
-  } 
+  }
 
   render() {
     const {
