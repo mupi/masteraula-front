@@ -296,9 +296,9 @@ export const downloadDocument = (props) => {
     dispatch(downloadSelectedDocument(props));
     dispatch(hideModal());
 
-    return documentService.downloadDocument(props, getState().document.activeDocument.id)
+    return documentService.downloadDocument(props, props.documentId)
       .then(response => response.blob()).then((blob) => {
-        FileSaver.saveAs(blob, `${getState().document.activeDocument.name}.docx`);
+        FileSaver.saveAs(blob, `${props.documentName}.docx`);
         dispatch(downloadSelectedDocumentSuccess());
       },
       (error) => {
