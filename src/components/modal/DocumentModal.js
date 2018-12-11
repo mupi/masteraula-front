@@ -73,7 +73,7 @@ const DocumentModal = ({
                 </Button>
               </div>
             </Row>
-              <p className="text-center">A prova não tem questões</p>
+              <p className="text-center">A prova não tem questões. Para adicionar questões, entre na opção <strong>Editar</strong></p>
             </div>
           )
         }
