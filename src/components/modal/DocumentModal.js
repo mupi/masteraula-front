@@ -39,7 +39,7 @@ const DocumentModal = ({
         </button>
       </div>
       <div className="c-document-modal__body modal-body">
-        { document ? (
+        { document && document.questions.length > 0 ? (
           <div>
             <Row className="c-document-modal__main-options">
               <div className="auto-margin-left-element btn-margin-right">
@@ -60,7 +60,23 @@ const DocumentModal = ({
                 </Button>
               </div>
             </Row>
-          </div>) : ' '}
+          </div>)
+          : (
+            <div>
+              <Row className="c-document-modal__main-options">
+              <div className="auto-margin-left-element">
+              <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
+                  <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
+                  <span className="button-text">
+                    Editar
+                  </span>
+                </Button>
+              </div>
+            </Row>
+              <p className="text-center">A prova não tem questões</p>
+            </div>
+          )
+        }
         {document && document.questions.map(questionOrder => (
           <DocumentQuestionItem key={questionOrder.question.id} question={questionOrder.question} readOnly />
         ))}
