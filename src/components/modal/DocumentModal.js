@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import DocumentQuestionItem from 'components/document/DocumentQuestionItem';
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
-import documentLogo from 'assets/img/home/coruja-avatar.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
-  Row, Col, Button, Label, Alert,
+  Row, Button, Alert,
 }
-  from 'reactstrap'; 
+  from 'reactstrap';
 
 const DocumentModal = ({
   document, closeModal, editDocument, isFetchingPreviewDocument,
@@ -64,16 +63,19 @@ const DocumentModal = ({
           : (
             <div>
               <Row className="c-document-modal__main-options">
-              <div className="auto-margin-left-element">
-              <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
-                  <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
-                  <span className="button-text">
-                    Editar
-                  </span>
-                </Button>
-              </div>
-            </Row>
-              <p className="text-center">A prova não tem questões. Para adicionar questões, entre na opção <strong>Editar</strong></p>
+                <div className="auto-margin-left-element">
+                  <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
+                    <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
+                    <span className="button-text">
+                      Editar
+                    </span>
+                  </Button>
+                </div>
+              </Row>
+              <p className="text-center">
+                A prova não tem questões. Para adicionar questões, entre na opção
+                <strong>Editar</strong>
+              </p>
             </div>
           )
         }
