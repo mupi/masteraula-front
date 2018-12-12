@@ -91,7 +91,7 @@ const QuestionCard = (props) => {
               icon="thumbtack"
             />
           </div>
-        ): ('')}
+        ) : ('')}
       </CardHeader>
 
       <CardBody className="question-card__body">
