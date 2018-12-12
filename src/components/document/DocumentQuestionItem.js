@@ -34,7 +34,19 @@ const DocumentQuestionItem = (props) => {
           </Col>
           <Col sm="8" className="c-document__question-image">
             <p className="c-document__question-info-title">
-              Questão:
+              Questão{' '}
+              {question.learning_objects && question.learning_objects.length > 0 ? (
+                <span className="c-document__question-number-learning-obj">
+                  (
+                  {' '}
+                  <FontAwesomeIcon icon="image" />
+                  {' '}
+                  {question.learning_objects.length}
+                  {' '}
+                  )
+                </span>
+              ) : ''}
+              :
             </p>
             <p className="c-document__question-info-statement">
               { (extractStatement.length >= 350) ? ` ${extractStatement.substring(0, 350)}${' ...'}` : extractStatement }
