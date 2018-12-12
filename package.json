@@ -56,11 +56,5 @@
     "redux-form": "^7.4.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  }
 }
