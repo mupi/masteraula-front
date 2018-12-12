@@ -19,19 +19,6 @@ const DocumentQuestionItem = (props) => {
 
       { question.statement && (
         <Row>
-          <Col sm="12" className="hidden">
-            <p className="c-document__question-info-title">
-              Questão:
-            </p>
-            <p className="c-document__question-info-statement">
-              { (extractStatement.length >= 350) ? ` ${extractStatement.substring(0, 350)}${' ...'}` : extractStatement }
-            </p>
-            <p className="c-document__question-info-author">
-              por:
-              {' '}
-              {question.author.name}
-            </p>
-          </Col>
           <Col sm="8" className="c-document__question-image">
             <p className="c-document__question-info-title">
               Questão{' '}

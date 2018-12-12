@@ -51,6 +51,15 @@ const QuestionCard = (props) => {
           ))}
         </div>
         <p className="question-card__more-info">
+          {question.learning_objects && question.learning_objects.length > 0 ? (
+            <span className="question-card__number-learning-obj">
+              <FontAwesomeIcon icon="image" />
+              {' '}
+              {question.learning_objects.length}
+              {' '}
+              {' | '}
+            </span>
+          ) : ''}
           {question.source}
           {' '}
           {question.year}
