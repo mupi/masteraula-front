@@ -1,16 +1,14 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import { createLogger } from 'redux-logger';
-import { combineReducers } from 'redux';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import {
-  login, menu, register, forgotPassword, profileEdit, question, filter, session,document, modal
+  login, menu, register, forgotPassword, profileEdit, question, filter, session, document, modal, header,
 } from 'reducers';
 
 import { history } from 'helpers/history';
 import { reducer as formReducer } from 'redux-form';
+import { createLogger } from 'redux-logger';
 
-const loggerMiddleware = createLogger();
 /* List of reducers */
 const appReducer = combineReducers({
   login,
@@ -23,24 +21,27 @@ const appReducer = combineReducers({
   session,
   document,
   modal,
+  header,
   form: formReducer,
 });
 
-const rootReducer = (state, action) => {
-  if (action.type === 'DELETE_SESSION') {
-    state = undefined
-  }
+const middlewares = [];
 
-  return appReducer(state, action)
+if (process.env.REACT_APP_ENV === 'dev') {
+  const loggerMiddleware = createLogger();
+
+
+  middlewares.push(loggerMiddleware);
 }
+
 
 export default function configureStore(preloadedState) {
   return createStore(
-    connectRouter(history)(rootReducer),
+    connectRouter(history)(appReducer),
     preloadedState,
     applyMiddleware(
+      ...middlewares,
       thunkMiddleware,
-      loggerMiddleware,
       routerMiddleware(history),
     ),
   );

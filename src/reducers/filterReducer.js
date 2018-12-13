@@ -9,6 +9,8 @@ import {
   REMOVE_SELECTED_TEACHINGLEVEL_FILTER,
   ADD_SELECTED_DIFFICULTY_FILTER,
   REMOVE_SELECTED_DIFFICULTY_FILTER,
+  SET_SEARCH_TEXT,
+  CLEAR_SELECTED_FILTERS, CLEAR_SEARCH,
 } from 'actions/filterAction';
 
 const initialState = {
@@ -17,6 +19,11 @@ const initialState = {
   disciplinesSelected: [],
   teachingLevelsSelected: [],
   difficultiesSelected: [],
+  difficultyFilters: [
+    { id: 'E', name: 'Fácil' },
+    { id: 'M', name: 'Médio' },
+    { id: 'H', name: 'Difícil' },
+  ],
 };
 
 export const filter = (state = initialState, action) => {
@@ -29,9 +36,6 @@ export const filter = (state = initialState, action) => {
       });
     case LIST_DISCIPLINE_FILTERS_SUCCESS:
       return Object.assign({}, state, {
-        disciplinesSelected: [],
-        teachingLevelsSelected: [],
-        difficultiesSelected: [],
         disciplineFilters: action.disciplineFilters,
         isFetchingDisciplineFilters: false,
       });
@@ -48,9 +52,6 @@ export const filter = (state = initialState, action) => {
       });
     case LIST_TEACHINGLEVEL_FILTERS_SUCCESS:
       return Object.assign({}, state, {
-        disciplinesSelected: [],
-        teachingLevelsSelected: [],
-        difficultiesSelected: [],
         teachingLevelFilters: action.teachingLevelFilters,
         isFetchingTeachingLevelFilters: false,
       });
@@ -59,55 +60,61 @@ export const filter = (state = initialState, action) => {
         isFetchingTeachingLevelFilters: false,
         error: action.error,
       });
-    case ADD_SELECTED_DISCIPLINE_FILTER:
+    case ADD_SELECTED_DISCIPLINE_FILTER: {
+      const filterDiscipline = state.disciplineFilters.filter(item => item.id === parseInt(action.idDiscipline, 10));
+      if (state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
-        disciplinesSelected: [...state.disciplinesSelected, action.idDiscipline],
-        teachingLevelsSelected: [...state.teachingLevelsSelected],
-        difficultiesSelected: [...state.difficultiesSelected],
+        disciplinesSelected: [...state.disciplinesSelected, filterDiscipline[0]],
       });
+    }
     case REMOVE_SELECTED_DISCIPLINE_FILTER: {
-      const newDisciplines = state.disciplinesSelected.filter(item => item !== action.idDiscipline);
-      return {
-        disciplineFilters: state.disciplineFilters,
-        teachingLevelFilters: state.teachingLevelFilters,
+      const newDisciplines = state.disciplinesSelected.filter(item => item.id !== parseInt(action.idDiscipline, 10));
+      return Object.assign({}, state, {
         disciplinesSelected: newDisciplines,
-        teachingLevelsSelected: [...state.teachingLevelsSelected],
-        difficultiesSelected: [...state.difficultiesSelected],
-      };
-    }
-    case ADD_SELECTED_TEACHINGLEVEL_FILTER:
-      return Object.assign({}, state, {
-        disciplinesSelected: [...state.disciplinesSelected],
-        teachingLevelsSelected: [...state.teachingLevelsSelected, action.idTeachingLevel],
-        difficultiesSelected: [...state.difficultiesSelected],
       });
+    }
+    case ADD_SELECTED_TEACHINGLEVEL_FILTER: {
+      const filterTeachingL = state.teachingLevelFilters.filter(item => item.id === parseInt(action.idTeachingLevel, 10));
+      if (state.teachingLevelsSelected.filter(item => item.id === filterTeachingL[0].id).length > 0) return state; // do not add duplicates
+      return Object.assign({}, state, {
+        teachingLevelsSelected: [...state.teachingLevelsSelected, filterTeachingL[0]],
+      });
+    }
     case REMOVE_SELECTED_TEACHINGLEVEL_FILTER: {
-      const newTeachingLevels = state.teachingLevelsSelected.filter(item => item !== action.idTeachingLevel);
-      return {
-        disciplineFilters: state.disciplineFilters,
-        teachingLevelFilters: state.teachingLevelFilters,
-        disciplinesSelected: [...state.disciplinesSelected],
-        teachingLevelsSelected: newTeachingLevels,
-        difficultiesSelected: [...state.difficultiesSelected],
-      };
-    }
-    case ADD_SELECTED_DIFFICULTY_FILTER:
+      const newTeachingLevels = state.teachingLevelsSelected.filter(item => item.id !== parseInt(action.idTeachingLevel, 10));
       return Object.assign({}, state, {
-        disciplineFilters: state.disciplineFilters,
-        teachingLevelFilters: state.teachingLevelFilters,
-        disciplinesSelected: [...state.disciplinesSelected],
-        teachingLevelsSelected: [...state.teachingLevelsSelected],
-        difficultiesSelected: [...state.difficultiesSelected, action.difficultyType],
+        teachingLevelsSelected: newTeachingLevels,
       });
+    }
+    case ADD_SELECTED_DIFFICULTY_FILTER: {
+      const filterDifficulty = state.difficultyFilters.filter(item => item.id === action.difficultyType);
+      if (state.difficultiesSelected.filter(item => item.id === filterDifficulty[0].id).length > 0) return state; // do not add duplicates
+      return Object.assign({}, state, {
+        difficultiesSelected: [...state.difficultiesSelected, filterDifficulty[0]],
+      });
+    }
     case REMOVE_SELECTED_DIFFICULTY_FILTER: {
-      const newDifficulties = state.difficultiesSelected.filter(item => item !== action.difficultyType)
-      return {
-        disciplineFilters: state.disciplineFilters,
-        teachingLevelFilters: state.teachingLevelFilters,
-        disciplinesSelected: [...state.disciplinesSelected],
-        teachingLevelsSelected: [...state.teachingLevelsSelected],
+      const newDifficulties = state.difficultiesSelected.filter(item => item.id !== action.difficultyType);
+      return Object.assign({}, state, {
         difficultiesSelected: newDifficulties,
-      };
+      });
+    }
+    case SET_SEARCH_TEXT: {
+      return Object.assign({}, state, {
+        searchText: action.searchText,
+      });
+    }
+    case CLEAR_SELECTED_FILTERS: {
+      return Object.assign({}, state, {
+        disciplinesSelected: [],
+        teachingLevelsSelected: [],
+        difficultiesSelected: [],
+      });
+    }
+    case CLEAR_SEARCH: {
+      return Object.assign({}, state, {
+        searchText: '',
+      });
     }
     default:
       return state;

@@ -18,83 +18,53 @@ import {
   QuestionPageContainer,
   QuestionBasePageContainer,
   EditDocumentPageContainer,
+  MenuContainer,
+  MyHeadersPageContainer,
+  EditHeaderPageContainer,
 }
   from 'containers';
 import { showModal, hideModal } from 'actions/modalAction';
 
-
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
-import Menu from 'components/menu/Menu';
 import { history } from 'helpers/history';
 
 import Footer from 'components/footer/Footer';
-import ModalRoot from './ModalRoot';
 // CSS imported in a single place (here)
 import 'assets/scss/styles.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'font-awesome/css/font-awesome.min.css';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faEnvelope, faKey, faFileWord, faThumbtack,
+  faFile, faPencilAlt, faSyncAlt, faSave, faTrashAlt,
+  faBars,
+  faPlus, faMinus,
+  faUser, faHome, faSignOutAlt, faUserCircle,
+  faSearch, faFolder, faFileAlt, faFilter, faAngleLeft,
+  faImage, faCheck, faCheckCircle,
+  faThumbsUp,
+  faArrowCircleLeft,
+  faComments, faInfoCircle, faBook,
+  faSignInAlt, faClone, faExclamationCircle,
+  faTimesCircle,
+  faEye,
+  faCopy,
+} from '@fortawesome/free-solid-svg-icons';
+import ModalRoot from './ModalRoot';
+
+
+library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile, faPencilAlt, faSyncAlt, faBars,
+  faUser, faHome, faSignOutAlt, faUserCircle, faSearch, faFolder, faFileAlt, faFilter, faTrashAlt,
+  faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft,
+  faArrowCircleLeft,
+  faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
+  faTimesCircle, faEye, faCopy);
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    this.closeModal = this.closeModal.bind(this);
-    this.onInputChange = this.onInputChange.bind(this);
-    this.openAlertModal = this.openAlertModal.bind(this);
-    //this.openConfirmModal = this.openConfirmModal.bind(this);
-    this.openDeleteModal = this.openDeleteModal.bind(this);
-    this.openPromptModal = this.openPromptModal.bind(this);
-    this.showInput = this.showInput.bind(this);
-  }
-
-  closeModal(event) {
-    this.props.hideModal();
-  }
-
-  onInputChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
-  showInput(event) {
-    console.log(this.state);
-  }
-
-  openAlertModal(event) {
-    this.props.showModal({ 
-      open: true,
-      title: 'Alert Modal',
-      message: 'Alert modal masteraula',
-      closeModal: this.closeModal,
-    }, 'alert');
-  }
-
- 
-  openDeleteModal(event) {
-    this.props.showModal({
-      open: true,
-      title: 'Delete Modal',
-      message: 'Delete modal masteraula',
-      deleteAction: this.closeModal,
-      closeModal: this.closeModal,
-    }, 'delete');
-  }
-
-  openPromptModal(event) {
-    this.props.showModal({
-      open: true,
-      title: 'Prompt Modal',
-      fields: [{
-        label: 'Address name',
-        name: 'addressName',
-        placeholder: 'Enter address name',
-      }],
-      onInputChange: this.onInputChange,
-      confirmAction: this.showInput,
-    }, 'prompt');
   }
 
   render() {
@@ -103,7 +73,7 @@ class App extends Component {
     return (
       <ConnectedRouter history={history}>
         <div id="main-masteraula-container" className={isOpenSidebar ? 'container-open' : ''}>
-          <Menu />
+          <MenuContainer />
           {isLoggedIn
             ? (
               <Switch>
@@ -111,7 +81,10 @@ class App extends Component {
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePageContainer} />
                 <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
+                <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
                 <Route path="/edit-document" component={EditDocumentPageContainer} />
+                <Route path="/edit-header/:id" component={EditHeaderPageContainer} />
+                <Route path="/new-header" component={EditHeaderPageContainer} />
                 <Redirect from="/" to="/question-base/1" />
               </Switch>
             )

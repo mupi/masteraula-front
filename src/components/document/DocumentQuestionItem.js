@@ -4,66 +4,108 @@ import {
   Row, Col, Button,
 } from 'reactstrap';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
-import { getTeachingLevel } from 'helpers/question';
+import { getTeachingLevel, getCleanExtractStatement } from 'helpers/question';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const DocumentQuestionItem = (props) => { 
-  const { question, activeDocument, removeSelectedQuestion, readOnly=false } = props;
+const DocumentQuestionItem = (props) => {
+  const {
+    question, activeDocument, removeSelectedQuestion, readOnly = false,
+  } = props;
+  const extractStatement = getCleanExtractStatement(question.statement);
+
   return (
     <div className="c-document__question">
-     
+
       { question.statement && (
         <Row>
-          <Col sm="12">
-            <p className="c-document__question-info-title">Questão:</p>
-            <p className="c-document__question-info-statement">{ (question.statement.length>=350)? ` ${question.statement.substring(0, 350)}${' ...'}`  :  question.statement }</p>
-            <p className="c-document__question-info-author">por: {' '} {question.author.name}</p>
+          <Col sm="8" className="c-document__question-image">
+            <p className="c-document__question-info-title">
+              Questão{' '}
+              {question.learning_objects && question.learning_objects.length > 0 ? (
+                <span className="c-document__question-number-learning-obj">
+                  (
+                  {' '}
+                  <FontAwesomeIcon icon="image" />
+                  {' '}
+                  {question.learning_objects.length}
+                  {' '}
+                  )
+                </span>
+              ) : ''}
+              :
+            </p>
+            <p className="c-document__question-info-statement">
+              { (extractStatement.length >= 350) ? ` ${extractStatement.substring(0, 350)}${' ...'}` : extractStatement }
+            </p>
+            <p className="c-document__question-info-author">
+              por:
+              {' '}
+              {question.author.name}
+            </p>
           </Col>
-          <Col sm="4" className="c-document__question-image">
-            <img className="c-question__img" src="https://www.asomadetodosafetos.com/content/uploads/2016/05/Tirinha-Mafalda5.jpg" alt="objeto-aprendizagem" />
-          </Col>
-          <Col sm="8" className="c-document__question-info">
+          <Col sm="4" className="c-document__question-info">
             <Row>
               <Col sm="12">
-                <p className="c-document__question-info-subtitle">Informações:</p>
+                <p className="c-document__question-info-subtitle">
+                  Informações:
+                </p>
               </Col>
               <Col sm="12">
-                <p className="c-document__question-info-row">Fonte: {' '} { question.source} </p>
-                <p className="c-document__question-info-row">Ano: {' '} { question.year} </p>
-                <p className="c-document__question-info-row">Dificuldade: {' '} <span className="c-document__question-info-detail c-document__question-info-detail--green"> {getTeachingLevel(question.difficulty)}</span> </p>
-                <p className="c-document__question-info-row">Níveis de Ensino: {' '}  {question.teaching_levels && question.teaching_levels.map((level, i) => (
-                  <span key={i} className="c-document__question-info-detail c-document__question-info-detail--green">
-                    {level.name}
-                  </span>
-                ))}
+                <p className="c-document__question-info-row">
+                  Fonte:
+                  {' '}
+                  <span className="c-document__question-info-detail">{ question.source}</span>
                 </p>
-                <p className="c-document__question-info-row">Disciplinas: {' '}  {question.disciplines && question.disciplines.map((discipline, i) => (
-                  <span key={i} className="c-document__question-info-detail c-document__question-info-detail--pink">
-                    {discipline.name}
-                  </span>
-                ))}
+                <p className="c-document__question-info-row">
+                  Ano:
+                  {' '}
+                  <span className="c-document__question-info-detail">{ question.year}</span>
                 </p>
-               
-
+                <p className="c-document__question-info-row">
+                  Dificuldade:
+                  {' '}
+                  <span className="c-document__question-info-detail">
+                    {getTeachingLevel(question.difficulty)}
+                  </span>
+                </p>
+                <p className="c-document__question-info-row">
+                  Níveis de Ensino:
+                  {' '}
+                  {question.teaching_levels && question.teaching_levels.map(level => (
+                    <span key={level.id} className="c-document__question-info-detail">
+                      {level.name}
+                    </span>
+                  ))}
+                </p>
+                <p className="c-document__question-info-row">
+                  Disciplinas:
+                  {' '}
+                  {question.disciplines && question.disciplines.map(discipline => (
+                    <span key={discipline.id} className="c-document__question-info-detail">
+                      {discipline.name}
+                    </span>
+                  ))}
+                </p>
               </Col>
             </Row>
-            
-            { (!readOnly ) ? (
+            { (!readOnly) ? (
               <Row>
-                 <div className="c-document__question-view-more col-md-4 offset-md-8">
-                { (!readOnly ) ? (
-      <RemoveQuestionButton
-        questionId={question.id}
-        activeDocumentId={activeDocument.id}
-        removeSelectedQuestion={removeSelectedQuestion}
-      /> ) : ' ' }
-               
+                <div className="c-document__question-view-more col-md-12">
+                  { (!readOnly) ? (
+                    <RemoveQuestionButton
+                      questionId={question.id}
+                      activeDocumentId={activeDocument.id}
+                      removeSelectedQuestion={removeSelectedQuestion}
+                      customClass="c-document__btn-remove-question"
+                      label={<FontAwesomeIcon icon="trash-alt" />}
+                    />) : ' ' }
                   <Link to={`/view-question/${question.id}`}>
                     <Button>
-                      <i className="fa fa-search" />
+                      <FontAwesomeIcon icon="search" />
                       {' '}
                       <span className="button-text">
-                        Ver questão 
+                        Ver questão
                       </span>
                     </Button>
                   </Link>

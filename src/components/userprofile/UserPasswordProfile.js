@@ -1,10 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import {
-  Button, Form, FormGroup, Input, Label, UncontrolledAlert,
+  Button, Form, FormGroup, Input, Label, Container, Row, Col,
 } from 'reactstrap';
-import { Container, Row, Col } from 'reactstrap';
-import { Field, reduxForm } from 'redux-form';
+import { Field } from 'redux-form'; 
 
 const renderField = ({
   input,
@@ -36,22 +34,21 @@ const renderField = ({
 );
 
 const UserPasswordProfile = (props) => {
-  const { handleSubmit, user, submitSucceeded } = props;
+  const { handleSubmit, user } = props;
 
   return (
     <Form onSubmit={handleSubmit}>
       <Container>
         <Row className="section-user-title">
           <h4>
-Minha Conta
+            Minha Conta
           </h4>
         </Row>
         <Row>
-          <Col sm="4">
-
-                  Email
+          <Col sm="4" xs="12">
+            Email
           </Col>
-          <Col sm="4">
+          <Col sm="4" xs="12" className="text-center">
             <Label>
               {user.email}
             </Label>
@@ -59,90 +56,58 @@ Minha Conta
         </Row>
         <Row className="sub-section-user-title">
           <h5>
-Trocar senha
+            Trocar senha
           </h5>
         </Row>
         <Row>
           <Col sm="4" xs="12">
-            <Field
-              component={renderField}
-              type="password"
-              name="old_password"
-              id="old_password"
-              placeholder="Senha Atual"
-              className="form-control"
-            />
+            <FormGroup>
+              <Field
+                component={renderField}
+                type="password"
+                name="old_password"
+                id="old_password"
+                placeholder="Senha Atual"
+                className="form-group"
+              />
+            </FormGroup>
           </Col>
           <Col sm="4">
-            <Field
-              component={renderField}
-              type="password"
-              name="new_password"
-              id="new_password"
-              placeholder="Nova senha"
-              className="form-control"
-            />
+            <FormGroup>
+              <Field
+                component={renderField}
+                type="password"
+                name="new_password"
+                id="new_password"
+                placeholder="Nova senha"
+                className="form-group"
+              />
+            </FormGroup>
           </Col>
           <Col sm="4">
-            <Field
-              component={renderField}
-              type="password"
-              name="password_confirmation"
-              id="password_confirmation"
-              placeholder="Confirme nova senha"
-              className="form-control"
-            />
+            <FormGroup>
+              <Field
+                component={renderField}
+                type="password"
+                name="password_confirmation"
+                id="password_confirmation"
+                placeholder="Confirme nova senha"
+                className="form-control form-group"
+              />
+            </FormGroup>
           </Col>
         </Row>
-        <Row className="section-user-title">
+        <Row className="c-user-profile__button-section">
           <Col className="text-center">
             <Button type="submit">
-Redefinir senha
+              Redefinir senha
             </Button>
           </Col>
         </Row>
-        <div>
-          { submitSucceeded && (
-            <UncontrolledAlert color="success">
-
-                    Senha alterada com sucesso
-            </UncontrolledAlert>
-          ) }
-        </div>
+        <div />
       </Container>
     </Form>
   );
 };
 
-const validate = (values) => {
-  const errors = {};
-
-  if (values.new_password) {
-    if (values.new_password.length < 8) {
-      errors.new_password = 'A nova senha deve conter no mínimo 8 caracteres';
-    } else if (!isNaN(values.new_password)) {
-      errors.new_password = 'A nova senha não deve conter apenas números';
-    }
-  }
-
-  if (values.new_password && values.password_confirmation && values.new_password !== values.password_confirmation) {
-    errors.password_confirmation = 'Senha e confirmação não coincidem';
-  }
-
-  return errors;
-};
-
-
-const mapStateToProps = (state) => {
-  const { user } = state.session.session;
-  return ({
-    user,
-  });
-};
-
-export default connect(
-  mapStateToProps,
-)(reduxForm({
-  form: 'profile_password',
-  validate,
-})(UserPasswordProfile));
+export default UserPasswordProfile;

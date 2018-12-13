@@ -1,9 +1,31 @@
 import { connect } from 'react-redux';
 import QuestionBasePage from 'pages/QuestionBase/QuestionBasePage';
 import { listQuestions } from 'actions/questionAction';
-import { toggleModal, addSelectedQuestion } from 'actions/documentAction';
+import { toggleModal, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
+import {
+  addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, removeSelectedDisciplineFilter,
+  addSelectedDifficultyFilter, removeSelectedDifficultyFilter, removeSelectedTeachingLevelFilter,
+} from 'actions/filterAction';
+import { history } from 'helpers/history';
 
-// state.<reducer's name>.<property>
+
+const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
+  history.replace('/question-base/1');
+  return value
+    ? addSelectedDisciplineFilter(idDiscipline) : removeSelectedDisciplineFilter(idDiscipline);
+};
+
+const toggleSelectedTeachingLevelFilter = (idTeachingLevel, value) => {
+  history.replace('/question-base/1');
+  return value
+    ? addSelectedTeachingLevelFilter(idTeachingLevel) : removeSelectedTeachingLevelFilter(idTeachingLevel);
+};
+
+const toggleSelectedDifficultyFilter = (difficultyType, value) => {
+  history.replace('/question-base/1');
+  return value
+    ? addSelectedDifficultyFilter(difficultyType) : removeSelectedDifficultyFilter(difficultyType);
+};
 
 const mapStateToProps = state => ({
   isFetching: state.question.isFetching,
@@ -16,13 +38,20 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
-  toggleModal: modal => dispatch(toggleModal(modal)),
+  toggleModal: (modal, idQuestion) => dispatch(toggleModal(modal, idQuestion)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
+  addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
+  addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(addSelectedTeachingLevelFilter(idTeachingLevel)),
+  toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
+  toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
+  toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
+  removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
 });
 
 const QuestionBasePageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(QuestionBasePage);
+
 
 export default QuestionBasePageContainer;

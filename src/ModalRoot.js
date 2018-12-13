@@ -10,6 +10,8 @@ const MODAL_TYPES = {
   delete: modalTypes.deleteModal,
   prompt: modalTypes.promptModal,
   document: modalTypes.documentModal,
+  exportDocument: modalTypes.exportDocumentModal,
+  last5Documents: modalTypes.last5DocumentsModal,
 };
 
 const mapStateToProps = state => ({
@@ -40,21 +42,25 @@ class ModalContainer extends React.Component {
   render() {
     const { modalType, modalProps } = this.props;
     const { modalIsOpen } = this.state;
-
+    let modalClassName = 'modal-dialog';
     if (!modalType) {
       return null;
     }
+
+    if (modalType === 'document') modalClassName = 'modal-dialog modal-lg';
+
     const SpecifiedModal = MODAL_TYPES[modalType];
+
     return (
       <div>
         <ReactModal
           isOpen={modalIsOpen}
           onRequestClose={this.closeModal}
-          contentLabel="Example Modal"
+          contentLabel="Modal"
           ariaHideApp={false}
           overlayClassName="modal fade show"
           bodyOpenClassName="modal-open"
-          className="modal-dialog modal-lg"
+          className={modalClassName}
           closeTimeoutMS={350}
         >
           <SpecifiedModal

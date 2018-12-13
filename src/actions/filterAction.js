@@ -29,6 +29,14 @@ export const ADD_SELECTED_DIFFICULTY_FILTER = 'ADD_SELECTED_DIFFICULTY_FILTER';
 // Remove selected teachingLevel filter
 export const REMOVE_SELECTED_DIFFICULTY_FILTER = 'REMOVE_SELECTED_DIFFICULTY_FILTER';
 
+// Remove selected teachingLevel filter
+export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
+
+// Clear all filters selected
+export const CLEAR_SELECTED_FILTERS = 'CLEAR_SELECTED_FILTERS';
+
+export const CLEAR_SEARCH = 'CLEAR_SEARCH';
+
 
 // Discipline List
 export const listDisciplineFilters = (param) => {
@@ -108,4 +116,18 @@ export const addSelectedDifficultyFilter = difficultyType => ({
 // Remove Selected Difficulty filter
 export const removeSelectedDifficultyFilter = difficultyType => ({
   type: REMOVE_SELECTED_DIFFICULTY_FILTER, difficultyType,
+});
+
+
+export const setSearchText = searchText => ({
+  type: SET_SEARCH_TEXT, searchText,
+});
+
+
+export const clearSelectedFilters = () => ({
+  type: CLEAR_SELECTED_FILTERS,
+});
+
+export const clearSearch = () => ({
+  type: CLEAR_SEARCH,
 });

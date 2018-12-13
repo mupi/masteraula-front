@@ -7,10 +7,12 @@ body{
   padding: 0px;
   margin: 0;
   font-size: 14px;
+  letter-spacing: 0.3px;
 }
 
 h1, h2, p, ul, li {
   font-family: $lato;
+  letter-spacing: 0.3px;
 }
 
 /*CSS header*/
@@ -102,13 +104,11 @@ ul.header {
   margin-bottom: 10px;
 }
 
-.container {
-  @include for-phone-only {
-    padding-right: 0px;
-    padding-left: 0px;
-  }
+.dropdown-item.active, .dropdown-item:active {
+  color: $color-ma-white;
+  text-decoration: none;
+  background-color: $color-ma-dark-gray;
 }
-
 
 /*Modal CSS General**/
 .modal-content {
@@ -117,4 +117,23 @@ ul.header {
 }
 .modal-title {
     width: 100%;
+}
+
+.modal-body{
+  word-wrap: break-word;
+}
+
+//Show elements only in web version
+.hidden-xs{
+  @include for-tablet-landscape-bottom {
+    display: none !important;
+  }
+}
+
+//Show elements only in mobile version
+.visible-xs {
+  display: none !important;
+  @include for-tablet-landscape-bottom{
+        display: block !important;
+  }
 }

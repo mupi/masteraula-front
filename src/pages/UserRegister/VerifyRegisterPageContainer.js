@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { toggleModal } from 'actions/loginAction';
 
-import { REGISTER_SUCCESS, verifyEmail } from 'actions/registerAction.js';
+import { REGISTER_SUCCESS, verifyEmail } from 'actions/registerAction';
 import VerifyRegisterPage from './VerifyRegisterPage';
 
 const mapStateToProps = state => ({
-  success: state.register.success,
+  success: state.register.verifySuccess,
   error: state.register.error,
   modal: state.login.modal,
 });

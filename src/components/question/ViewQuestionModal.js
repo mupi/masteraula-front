@@ -20,7 +20,7 @@ const ViewQuestionModal = (props) => {
         </Button>
         {' '}
         <Button color="danger" onClick={() => toggleModal(modal)}>
-          Fechar
+          Cancelar
         </Button>
       </ModalFooter>
     </Modal>

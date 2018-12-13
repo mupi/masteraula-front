@@ -30,6 +30,9 @@
 @import 'components/question/Question';
 @import 'components/question/QuestionBase';
 @import 'components/buttons/AddQuestionButton';
+@import 'components/buttons/ExportDocumentButton';
+@import 'components/question/Filters';
+
 
 //DisciplineList
 @import 'components/discipline/Discipline';
@@ -46,6 +49,9 @@
 
 //Components related to document
 @import 'components/document/Document';
+
+//Components related to document header
+@import 'components/header/Header';
 
 //Components related to Home
 @import 'components/Home';

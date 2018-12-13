@@ -42,7 +42,7 @@ const mapDispatchToProps = dispatch => ({
   submit: (values) => {
     if (!values.accept_terms) {
       throw new SubmissionError({
-        _error: 'Termos de uso não aceito',
+        _error: 'Você deve concordar com os Termos de Uso para usar o MasterAula ',
       });
     }
 

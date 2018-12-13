@@ -3,13 +3,13 @@
   z-index: 9999;
 
   @include for-tablet-portrait-up{
-    right: 37px;
-    top:70px;
+    display: none;
   }
 
   @include for-phone-only {
     right: 0px;
     bottom:0px;
+    display: block;
   }
 }
 

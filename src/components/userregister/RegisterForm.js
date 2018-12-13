@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  Button, Form, FormGroup, Input, Label, Col,
+  Alert, Button, Form, FormGroup, Input, Label, Col,
 } from 'reactstrap';
-import { Alert } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import { NavLink } from 'react-router-dom';
+import { userNameValidator, emailValidator } from 'helpers/validators';
+
 
 import { toggleModal } from 'actions/registerAction';
 
@@ -24,7 +25,7 @@ const renderField = ({
     />
     { touched
       && ((error && (
-      <span>
+      <span className="error-message-text">
         {error}
       </span>
       ))
@@ -35,7 +36,7 @@ const renderField = ({
         {' '}
       </span>
       )))
-    }
+    } 
   </div>
 );
 
@@ -56,6 +57,7 @@ const RegisterForm = (props) => {
               name="name"
               id="name"
               label="Insira seu nome completo"
+              validate={userNameValidator}
             />
           </FormGroup>
           <FormGroup>
@@ -65,6 +67,7 @@ const RegisterForm = (props) => {
               name="email"
               id="email"
               label="Insira seu email"
+              validate={emailValidator}
             />
           </FormGroup>
           <FormGroup>
@@ -95,10 +98,9 @@ const RegisterForm = (props) => {
                   component={accept_terms => (
                     <div>
                       <input type={accept_terms.type} {...accept_terms.input} />
-
-                            Eu concordo com os
-                      <NavLink className="use-terms" to="/terms-use" onClick={() => toggleModal(modal)}>
-Termos de Uso
+                          Eu concordo com os {' '}
+                      <NavLink target="_blank" className="use-terms" to="/terms-use">
+                        Termos de Uso
                       </NavLink>
                       { accept_terms.meta.touched && accept_terms.meta.error && (
                         <span>
@@ -146,12 +148,12 @@ const validate = (values) => {
   }
   if (!values.email) {
     errors.email = 'Insira um email';
-  }
+  } 
 
   if (!values.password) {
     errors.password = 'Insira uma senha';
   } else if (values.password.length < 8) {
-    errors.password = 'A senha deve conter no mínimo 8 dígitos';
+    errors.password = 'A senha deve conter no mínimo 8 caracteres';
   } else if (!isNaN(values.password)) {
     errors.password = 'A senha não deve conter apenas números';
   }

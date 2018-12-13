@@ -4,17 +4,29 @@ import {
 }
   from 'reactstrap';
 import CreateDocumentForm from 'components/document/CreateDocumentForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const toogleSidebarAfterOpenModal = (e, openSidebar, isOpenSidebar) => {
+  const responsiveMode = window.matchMedia('(max-width: 989px)');
+
+  if (responsiveMode.matches) {
+    e.preventDefault();
+    openSidebar(isOpenSidebar);
+  }
+};
+
 
 const getAlertMessageDocumentExist = (activeDocument) => {
   if (activeDocument) {
     return (
       <p className="text-center">
-        Atualmente você está editando o documento{' '}
+        Atualmente você está editando a prova
+        {' '}
         <strong>
           {activeDocument.name}
         </strong>
         <br />
-        Você tem certeza que deseja criar um novo documento? Se sim, insira um nome para ele
+        Você tem certeza que deseja criar uma nova prova? Se sim, insira um nome para ela
         <br />
       </p>
     );
@@ -24,20 +36,26 @@ const getAlertMessageDocumentExist = (activeDocument) => {
 
 const CreateDocumentModal = (props) => {
   const {
-    modal, toggleModal, activeDocument, submit
+    modal, toggleModal, activeDocument, submit, openSidebar, isOpenSidebar,
   } = props;
 
   return (
     <div className="document__new-document-option">
-      <div className="document__new-document-btn" onClick={() => toggleModal(modal)}>
-        <i className="fa fa-file btn__icon" />
-          Novo documento
+      <div
+        className="document__new-document-btn text-center"
+        onClick={(e) => { toggleModal(modal); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
+      >
+        <FontAwesomeIcon
+          className="btn__icon"
+          icon="file"
+        />
+        Criar prova
       </div>
       <Modal isOpen={modal} toggle={() => toggleModal(modal)} className="document__new-document-modal-content">
         <ModalHeader className="document__new-document-modal-header" toggle={() => toggleModal(modal)}>
-            Criar novo documento
+            Criar nova prova
         </ModalHeader>
-        <ModalBody>
+        <ModalBody className="document__new-document-modal-body">
           <CreateDocumentForm onSubmit={submit} messageWhenDocumentExist={getAlertMessageDocumentExist(activeDocument)} />
         </ModalBody>
       </Modal>

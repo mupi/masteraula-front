@@ -1,0 +1,66 @@
+.c-headers-options{
+
+}
+
+.c-edit-header {
+    &__options{
+        .d-flex.justify-content-end.col-sm-12 {
+            padding: 0px;
+            margin: 2px;
+        }
+    }
+}
+
+.c-my-headers{
+    &__cell{
+      word-wrap: break-word;
+        @include for-tablet-landscape-bottom{
+        max-width: 200px;
+        word-wrap: break-word;
+        padding: 5px !important;
+        margin: 0px;
+        }
+    }
+  
+    &__total-results {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: $color-ma-blue;
+      font-weight: bold;
+      margin-top:10px;
+  
+    }
+  
+    &__dropdown-section{
+      float: right;
+      margin-bottom: 15px;
+      display: inline-flex;
+      font-size:12px;
+    }
+  
+    &__dropdown-toogle{
+      font-size:12px;
+    }
+    &__dropdown-item{
+      font-size:11px;
+    }
+  
+    &__order-label{
+      margin: 5px;
+    }
+  }
+  
+  .pagination-my-headers ul.pagination {
+    margin-bottom: 0px;
+  }
+  .pagination-my-headers.row a {
+    color:$color-ma-blue;
+  }
+  
+  tbody tr {
+    background-color:$color-ma-white;
+  }
+  
+  tbody tr.odd {
+    background-color: $color-ma-gray-tables
+  }

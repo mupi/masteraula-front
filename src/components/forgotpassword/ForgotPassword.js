@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, Form, FormGroup, Input } from 'reactstrap';
-import { Alert } from 'reactstrap';
-import { Row, Col } from 'reactstrap';
+import { Alert, Row, Col, Button, Form, FormGroup, Input 
+} from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 
 const renderField = ({
@@ -18,7 +17,7 @@ const renderField = ({
     />
     { touched
       && ((error && (
-      <span>
+      <span className="error-message-text">
         {error}
       </span>
       ))
@@ -41,12 +40,16 @@ const ForgotPassword = (props) => {
       <h3>
         Redefinição de senha 
       </h3>
-      <p>
+      { !success
+              &&  (<p>
         Informe abaixo o endereço de email que você cadastrou para receber a mensagem de redefinição de senha
-      </p>
+      </p>)
+          }
       <Row className="justify-content-center">
         <Col sm="12" xs="12">
           <Form onSubmit={handleSubmit}>
+          { !success
+              &&  (
             <FormGroup className="text-left">
               <Field
                 component={renderField}
@@ -55,23 +58,30 @@ const ForgotPassword = (props) => {
                 id="email"
                 label="Insira seu email"
                 className="form-control"
-              />
+              /> 
             </FormGroup>
+            )
+          }
+            { success
+              && (
+              <Alert color="success">
+                <p className="alert__message">
+                  Caso o e-mail estiver cadastrado, enviamos um email com instruções para recuperar sua senha
+                </p>
+              </Alert>
+              )
+            }
+
+            { !success
+              &&  (
             <Button>
               Enviar email
-            </Button>
+            </Button>)
+          }
           </Form>
         </Col>
       </Row>
-      { success
-          && (
-          <Alert color="success">
-            <p className="alert__message">
-              Enviamos um email com instruções para recuperar sua senha
-            </p>
-          </Alert>
-          )
-        }
+     
     </div>
   );
 };
@@ -79,12 +89,12 @@ const ForgotPassword = (props) => {
 const validate = (values) => {
   const errors = {};
   if (!values.email) {
-    errors.email = 'Insira seu email'
+    errors.email = 'Insira seu email';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Informe um endereço de email válido.'
+    errors.email = 'Email inválido';
   }
   return errors;
-};
+}; 
 
 export default reduxForm({
   form: 'forgot_password',

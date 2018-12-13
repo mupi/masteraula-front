@@ -1,28 +1,42 @@
 
 .error-message-text{
-  font-size: 11px;
-  color: red;
+    color:$color-ma-red;
+    font-size: 12px;
+    margin-left: 2px;
 }
 
 .alert {
     margin-top: 10px;
     margin-bottom: 10px;
-    padding: 10px;
     text-align: center;
 
     &__message{
         margin-bottom: 0px;
     }
 
-    &--warning{
-
+    &__ma-toast--success{
+        font-family: $lato;
+        letter-spacing: 0.3px;
+        color: $color-ma-alert-success-font;
+        background-color: $color-ma-alert-success;
+        border-color:$color-ma-alert-success-font;
+        border: 1px solid  $color-ma-alert-success;
+        border-radius: 0.25rem;
+        box-shadow: none;
     }
 
-    &--error{
-
+    &__ma-toast--error{
+        font-family: $lato;
+        letter-spacing: 0.3px;
+        color:$color-ma-alert-error-font;
+        background-color: $color-ma-alert-error;
+        border-color:$color-ma-alert-error-font;
+        border: 1px solid  $color-ma-alert-error;
+        border-radius: 0.25rem;
+        box-shadow: none;
     }
+}
 
-    &--success{
-      
-    }
+.Toastify__close-button{
+    color:inherit;
 }

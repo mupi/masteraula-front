@@ -9,13 +9,13 @@ const HomePage = () => (
     <div className="c-public-home__banner">
       <Row>
         <Col md="12">
-          <h1 className="c-public-home__main-title">
-Biblioteca inteligente de questões
+          <h1 className="c-public-home__main-title hidden">
+            Biblioteca inteligente de questões
           </h1>
           <Col md="6" className="offset-md-3">
             <p className="c-public-home__title-description">
-
-                MasterAula é uma ferramenta feita por educadores para educadores onde você encontra milhares de questões para montar provas e testes.
+               Ganhe tempo na preparação de provas e atividades para o cotidiano escolar do Ensino Básico.
+               Masteraula é uma plataforma para professores e escolas!
             </p>
           </Col>
         </Col>
@@ -28,11 +28,11 @@ Biblioteca inteligente de questões
           <div className="o-thumb-circle">
             <img className="o-thumb-circle__img" src={moneyImg} alt="venda-questoes" />
           </div>
-          <h4>
-Venda suas questões
+          <h4 className="hidden">
+            Venda suas questões
           </h4>
-          <p>
-Ganhe uma renda extra vendendo os materiais que você já criou para outros educadores da comunidade.
+          <p className="c-public-home__feature-description">
+            Experimente! Gere até 5 provas gratuitamente (em formato .docx para você poder editar)
           </p>
         </Col>
 
@@ -40,11 +40,11 @@ Ganhe uma renda extra vendendo os materiais que você já criou para outros educ
           <div className="o-thumb-circle">
             <img className="o-thumb-circle__img" src={clockImg} alt="monte-questoes" />
           </div>
-          <h4>
-Monte provas e testes em 5 minutos!
+          <h4 className="hidden">
+            Monte provas e testes em 5 minutos!
           </h4>
-          <p>
-Otimize seu tempo de preparar aulas encontrando materiais curados por educadores de todo o Brasil.
+          <p className="c-public-home__feature-description">
+          Ganhe tempo! Elaborar provas e listas de atividades será mais rápido
           </p>
         </Col>
 
@@ -52,17 +52,16 @@ Otimize seu tempo de preparar aulas encontrando materiais curados por educadores
           <div className="o-thumb-circle">
             <img className="o-thumb-circle__img" src={searchImg} alt="encontre-materiais" />
           </div>
-          <h4>
-Encontre materiais online
+          <h4 className="hidden">
+            Encontre materiais online
           </h4>
-          <p>
-Busque por disciplina, assunto ou tipo de material para você adaptar e utilizar com seus alunos.
+          <p className="c-public-home__feature-description">
+            Encontre questões de exames de todo Brasil e das diferentes áreas do conhecimento
           </p>
         </Col>
       </Row>
     </Container>
   </div>
 );
-
 
 export default HomePage;

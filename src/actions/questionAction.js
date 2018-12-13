@@ -1,4 +1,5 @@
 import { questionService } from 'services';
+import { history } from 'helpers/history';
 
 // Load single question
 export const FETCH_QUESTION = 'FETCH_QUESTION';
@@ -25,6 +26,9 @@ export const LIST_QUESTION_PAGE = 'LIST_QUESTION_PAGE';
 export const LIST_QUESTION_PAGE_SUCCESS = 'LIST_QUESTION_PAGE_SUCCESS';
 export const LIST_QUESTION_PAGE_FAILURE = 'LIST_QUESTION_PAGE_FAILURE';
 
+// Fetch documents that belong to question
+export const LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS = 'LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS';
+export const LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS = 'LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS';
 
 export const fetchQuestion = (id) => {
   function requestQuestion() { return { type: FETCH_QUESTION }; }
@@ -39,6 +43,7 @@ export const fetchQuestion = (id) => {
         },
         (error) => {
           dispatch(fetchQuestionFailure(error));
+          history.push('/question-base/1');
         },
       );
   };
@@ -49,7 +54,10 @@ export const listQuestions = (page, filter) => {
   function requestQuestionPage() { return { type: LIST_QUESTION_PAGE, page }; }
   function fetchQuestionPageSuccess(questionPage) { return { type: LIST_QUESTION_PAGE_SUCCESS, questionPage }; }
   function fetchQuestionPageFailure(error) { return { type: LIST_QUESTION_PAGE_FAILURE, error }; }
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    if (getState().question.isFetching) {
+      return 1;
+    }
     dispatch(requestQuestionPage());
     return questionService.listQuestions(page, filter)
       .then(

@@ -2,12 +2,6 @@ import { apiUrl } from 'helpers/config';
 import { authHeader } from 'helpers';
 import queryString from 'query-string';
 
-const questionService = {
-  rateQuestion,
-  fetchQuestion,
-  listQuestions,
-};
-
 function fetchQuestion(id) {
   const requestOptions = {
     method: 'GET',
@@ -40,10 +34,13 @@ function listQuestions(page, filter) {
     },
   };
 
-  const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected });
-  const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected });
-  const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected });
-  const url = `${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`;
+  const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected.map(item => item.id) });
+  const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
+  const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
+  const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
+
+  const url = (search) ? `${apiUrl}/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`
+    : `${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`;
 
   const handleResponse = response => response.json().then((data) => {
     if (!response.ok) {
@@ -64,5 +61,11 @@ function listQuestions(page, filter) {
 function rateQuestion() {
 
 }
+
+const questionService = {
+  rateQuestion,
+  fetchQuestion,
+  listQuestions,
+};
 
 export default questionService;

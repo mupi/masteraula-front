@@ -1,7 +1,220 @@
+#navbar{
+    background: $color-ma-blue;
+}
 
 .nav-item .position-login{
   border: none;
   padding: 10px;
   display: block;
   text-align: center;
+}
+
+
+/* 
+  Top Menu - NOT USER
+*/
+.masteraula-nav-header__notuser{
+  background: $color-ma-blue;
+}
+
+
+/* 
+  Top Menu - USER
+*/
+html body .masteraula-nav-header__user {
+  border: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  background: $color-ma-lightgray-backg !important;
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
+
+  @include for-tablet-landscape-up {
+      margin-left: 280px;
+      //box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
+      height:70px;
+  }
+
+  .nav-item a, .nav-item:hover {
+    color: $color-ma-blue;
+  }
+
+  // Top Menu - USER - Document options
+  .menu-top{
+    background: $color-ma-lightgray-backg !important;
+    width: 100%;
+
+    &__options{
+      background: $color-ma-lightgray-backg !important;
+      width: 100%;
+    }
+
+    &__document-section{
+      padding: 0px;
+    }
+
+    &__document-message{
+      color: $color-ma-blue;
+      font-size:13px;
+    }
+    
+    &__document-questions {
+      margin-bottom: 0px;
+    }
+
+    &__document-number-questions {
+      font-size:16px;
+    }
+
+    &__xs-document-number-questions{
+      margin-left: 3px;
+      font-weight: bold;
+      color: $color-ma-blue;
+    }
+
+    &__document-l-buttons {
+        margin-top: 5px;
+        display: inline-flex;
+    }
+    
+    &__document-btn-item{
+      color: $color-ma-green;
+    }
+    
+    &__document-btn-item:hover{
+      color: $color-ma-white;
+      text-decoration: none;
+    }
+    
+    &__document-button{
+      font-size: 13px;
+      margin-right: 3px;
+      padding: 2px 8px;
+    }
+
+    &__dropdown-item{
+      font-size: 13px;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+
+    &__link-more-documents{
+        color: $color-ma-black-dropdown;
+        
+        &:hover{
+          text-decoration:none !important;
+        }
+
+        &:active{
+          text-decoration:none !important;
+          color: $color-ma-white;
+        }
+    }
+
+    &__document-link {
+      font-weight: normal;
+      color: $color-ma-green;
+      padding:5px;
+    }
+
+  }
+
+  
+
+}
+
+.o-doc-options{ 
+
+    &__dropdown{
+      font-size: 13px;
+      color: $color-ma-green;
+
+      button{
+          background: transparent;
+          border: transparent;
+      }
+
+      .show button{
+          background: transparent;
+          border: transparent;
+      }
+
+      button:hover{
+          background: transparent;
+          border: transparent;
+      }
+
+    }
+
+    &__dropdown-item{
+      font-size: 13px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+
+      a{
+          color: $color-ma-black-dropdown;
+      
+          &:hover{
+            color: $color-ma-black-dropdown;
+          }
+      }
+
+      
+    }
+
+    &__dropdown-toogle{
+      color: $color-ma-green !important;
+      }
+    
+      &__export-button{
+        &.btn.btn-secondary{
+          background: transparent !important;
+          color: $color-ma-black-dropdown;
+          padding: 0px;
+          font-size: 13px;
+          border: 0px;
+          margin: 0px;
+          font-weight: normal !important;
+        }
+      }
+}
+
+button.o-doc-options__dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
+  background: transparent;
+  border: transparent;
+  color: $color-ma-green !important;
+  white-space: normal;
+  padding-left: 0px;
+  padding-right: 0px;
+
+  &:active:focus{
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  &:focus{
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
+
+
+
+
+/*New SCSS with BEM style*/
+a.menu-top__document-link {
+  font-weight: normal;
+  color: $color-ma-green;
+  padding:5px;
+  font-size: 18px;
+
+  @include for-tablet-landscape-bottom{
+    display:inline-flex;
+    font-size:15px;
+  }
+}
+
+a.menu-top__document-link:hover{
+  font-weight: bold;
+  text-decoration:none;
 }

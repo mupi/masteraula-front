@@ -8,7 +8,7 @@ import {
   addSelectedDisciplineFilter, removeSelectedDisciplineFilter,
   addSelectedTeachingLevelFilter, removeSelectedTeachingLevelFilter,
   addSelectedDifficultyFilter, removeSelectedDifficultyFilter,
-
+  clearSelectedFilters,
 } from 'actions/filterAction';
 
 // state.<reducer's name>.<property>
@@ -23,19 +23,19 @@ const mapStateToProps = state => ({
 
 });
 
-const toogleSelectedDisciplineFilter = (idDiscipline, value) => {
+const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
   history.replace('/question-base/1');
   return value
     ? addSelectedDisciplineFilter(idDiscipline) : removeSelectedDisciplineFilter(idDiscipline);
 };
 
-const toogleSelectedTeachingLevelFilter = (idTeachingLevel, value) => {
+const toggleSelectedTeachingLevelFilter = (idTeachingLevel, value) => {
   history.replace('/question-base/1');
   return value
     ? addSelectedTeachingLevelFilter(idTeachingLevel) : removeSelectedTeachingLevelFilter(idTeachingLevel);
 };
 
-const toogleSelectedDifficultyFilter = (difficultyType, value) => {
+const toggleSelectedDifficultyFilter = (difficultyType, value) => {
   history.replace('/question-base/1');
   return value
     ? addSelectedDifficultyFilter(difficultyType) : removeSelectedDifficultyFilter(difficultyType);
@@ -45,10 +45,11 @@ const toogleSelectedDifficultyFilter = (difficultyType, value) => {
 const mapDispatchToProps = dispatch => ({
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
   listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
-  toogleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toogleSelectedDisciplineFilter(idDiscipline, value)),
-  toogleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toogleSelectedTeachingLevelFilter(idTeachingLevel, value)),
-  toogleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toogleSelectedDifficultyFilter(difficultyType, value)),
+  toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
+  toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
+  toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
+  clearFilters: () => dispatch(clearSelectedFilters()),
 });
 
 const FilterContainer = connect(

@@ -1,44 +1,45 @@
 import React from 'react';
 import {
-  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button,
+  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col, Container,
 } from 'reactstrap';
-import { Row, Col } from 'reactstrap';
 
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { logout } from 'actions/loginAction';
-import { toggleMenu, openSidebar } from 'actions/menuAction';
 import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
+import DocumentInfoSidebarContainer from 'containers/DocumentInfoSidebarContainer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Menu = (props) => {
-  const { isOpen } = props;
-  const { isOpenSidebar } = props;
-  const { isLoggedIn } = props;
-  const { toggleMenu } = props;
-  const { openSidebar } = props;
-  const { logout } = props;
+  const {
+    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument,
+  } = props;
 
   const loggedOptions = (
-    <Nav className="ml-auto" navbar>
-      <NavItem>
+    <Nav className="ml-auto hidden-xs" navbar>
+      <NavItem className="hidden">
         <Link to="/question-base/1">
-          <i className="fa fa-home" />
+          <FontAwesomeIcon
+            icon="home"
+          />
           {' '}
           Página Inicial
         </Link>
       </NavItem>
       <NavItem>
         <Link to="/user-profile">
-          <i className="fa fa-user" />
+          <FontAwesomeIcon
+            icon="user"
+          />
           {' '}
           Meu Perfil
         </Link>
       </NavItem>
       <NavItem>
         <Link onClick={(e) => { e.preventDefault(); logout(); }} to="/">
-          <i className="fa fa-sign-out" />
+          <FontAwesomeIcon
+            icon="sign-out-alt"
+          />
           {' '}
           Sair
         </Link>
@@ -48,7 +49,7 @@ const Menu = (props) => {
 
   const notLoggedOptions = (
     <Nav className="ml-auto" navbar>
-      <NavItem>
+      <NavItem className="hidden">
         <Link exact="true" to="/">
           Página Inicial
         </Link>
@@ -71,7 +72,9 @@ const Menu = (props) => {
       }
       >
         <span>
-          <i className="fa fa-bars" />
+          <FontAwesomeIcon
+            icon="bars"
+          />
         </span>
       </Button>
     </li>
@@ -81,44 +84,47 @@ const Menu = (props) => {
     <div id="navbar" className="container-fluid">
       <Row>
         <Col xs="12">
-          <Navbar id="masteraula-nav-header" className="navbar navbar-default navbar-fixed-top" color="primary" dark expand="md">
-            <div id="buttonSideBar" className="visible-xs col-xs-3">
-              <ul className="pull-left visible-xs-inline-block nav navbar-nav">
-                { isLoggedIn ? menu : null }
-              </ul>
-            </div>
-            <NavItem>
-              <Link exact="true" to="/">
-                {isLoggedIn ? '' : <img className="logo-in-menu no-login" src={logoMasterAula} />}
-              </Link>
-            </NavItem>
-            <NavbarToggler onClick={() => toggleMenu(isOpen)} />
-            <Collapse isOpen={isOpen} navbar>
-
-              { isLoggedIn ? loggedOptions : notLoggedOptions }
-            </Collapse>
-          </Navbar>
+          { isLoggedIn
+            ? (
+              <Navbar id="masteraula-nav-header" className="masteraula-nav-header__user navbar navbar-default navbar-fixed-top" dark expand="md">
+                <Container className="menu-top" fluid>
+                  <Row className="menu-top__options">
+                    <div id="buttonSideBar" className="visible-xs col-xs-3">
+                      <ul className="pull-left visible-xs-inline-block nav navbar-nav">
+                        { isLoggedIn ? menu : null }
+                      </ul>
+                    </div>
+                    <Col sm="8" xs="9" className="d-flex align-items-center menu-top__document-section">
+                      {activeDocument && (
+                        <DocumentInfoSidebarContainer
+                          documentName={activeDocument.name}
+                          documentTotalQuestions={activeDocument.questions.length}
+                          documentId={activeDocument.id}
+                        />
+                      )}
+                    </Col>
+                    <Collapse isOpen={isOpen} navbar className="col-xs-collapse-right  text-right col-sm-4">
+                      { loggedOptions }
+                    </Collapse>
+                  </Row>
+                </Container>
+              </Navbar>
+            ) : (
+              <Navbar id="masteraula-nav-header" className="masteraula-nav-header__notuser navbar navbar-default navbar-fixed-top" dark expand="md">
+                <NavItem>
+                  <Link exact="true" to="/">
+                    <img className="logo-in-menu no-login" src={logoMasterAula} alt="logo" />
+                  </Link>
+                </NavItem>
+                <NavbarToggler onClick={() => toggleMenu(isOpen)} />
+                <Collapse isOpen={isOpen} navbar>
+                  { notLoggedOptions }
+                </Collapse>
+              </Navbar>) }
         </Col>
       </Row>
     </div>
   );
 };
 
-// ///////////////////////////////////////////// Container
-
-const mapStateToProps = state => ({
-  isOpen: state.menu.isOpen,
-  isOpenSidebar: state.menu.isOpenSidebar,
-  isLoggedIn: state.session.session,
-});
-
-const mapDispatchToProps = dispatch => ({
-  toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
-  openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
-  logout: () => dispatch(logout()),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Menu);
+export default Menu;

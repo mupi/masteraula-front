@@ -1,32 +1,54 @@
 /*
 CSS for UserProfile
 */
+.l-user-profile {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 25px 25px 25px 25px;
+    border-radius: 8px;
+  //  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: $color-ma-white;
+    @include for-phone-only {
+      padding: 5px;
+      border:0px;
+      box-shadow: none;
+    }
+  } 
 
-.contenedor-profile .form-group{
-   font-family: $lato;
+.c-user-profile{
+    &__button-section{
+        margin-top: 0px;
+    }
+
+    &__avatar{
+      
+      margin:auto;
+
+      @include for-phone-only {
+          padding: 0px 0px 15px 0px;
+      }
+
+      img {
+        max-width: 200px;
+      }
+    }
+
+    &__basic-info{
+        .col-12{
+        padding:0px;
+        }
+    }   
 }
 
-.thumbnail img {
-    max-width: 200px;
-}
 .small-text {
     font-size: 14px;
 }
 
 .section-user-title {
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 .sub-section-user-title{
   margin-top: 10px;
-}
-
-.contenedor-profile {
-  border: 2px solid #FFFFFF;
-  padding: 25px 25px 25px 25px;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background: #FFFFFF;
 }
 
 #senha-atual, #nova-senha {

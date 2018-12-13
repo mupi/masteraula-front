@@ -1,28 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
-
-const handleAddQuestionButton = (e, questionId, activeDocument, addSelectedQuestion) => {
-  e.preventDefault();
-  if (activeDocument) {
-    addSelectedQuestion(activeDocument.id, questionId, 0);
-  }
-};
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const AddQuestionButton = ({
   customClass, questionId, nameButton, toggleModal, modal, activeDocument, addSelectedQuestion,
-}) => (
-  <Button
-    value={questionId}
-    title="Adicionar questões"
-    className={customClass}
-    onClick={(!activeDocument) ? (() => toggleModal(modal)) : (e => handleAddQuestionButton(e, questionId, activeDocument, addSelectedQuestion))}
-  >
-    <i className="fa fa-plus" />
-    {' '}
-    {nameButton}
-  </Button>
-);
+}) => {
+  function handleAddQuestionButton(e) {
+    e.preventDefault();
+    if (activeDocument) {
+      addSelectedQuestion(activeDocument.id, questionId, 0);
+    } else {
+      toggleModal(modal, questionId);
+    }
+  }
+
+  return (
+    <Button
+      value={questionId}
+      title="Adicionar questões"
+      className={customClass}
+      onClick={e => handleAddQuestionButton(e)}
+    >
+      <FontAwesomeIcon
+        icon="plus"
+      />
+      {' '}
+      {nameButton}
+    </Button>
+  );
+};
 
 AddQuestionButton.propTypes = {
   customClass: PropTypes.string.isRequired,

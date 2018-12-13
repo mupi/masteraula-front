@@ -1,12 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import {
-  Button, Form, FormGroup, Input, Label, UncontrolledAlert,
+  Button, Form, FormGroup, Input, Label, Container, Row, Col,
 } from 'reactstrap';
-import { Container, Row, Col } from 'reactstrap';
-import { Field, reduxForm } from 'redux-form';
+import { Field } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
-import userPhoto from 'assets/img/home/person-female.png';
+import userPhoto from 'assets/img/home/coruja-avatar.png';
+import { userNameValidator } from 'helpers/validators';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const renderField = ({
   input,
@@ -22,7 +22,7 @@ const renderField = ({
     />
     { touched
       && ((error && (
-      <span>
+      <span className="error-message-text">
         {error}
       </span>
       ))
@@ -37,105 +37,168 @@ const renderField = ({
   </div>
 );
 
-const UserProfile = (props) => {
-  const { handleSubmit, user, submitSucceeded } = props;
+const renderSelectField = ({
+  input, label, meta: { touched, error }, children, optionDefault,
+}) => (
+  <div>
+    <div>
+      <select {...input} className="form-control">
+        <option value={optionDefault}>
+          {label}
+        </option>
+        {children}
+      </select>
+      {touched && error && (
+        <span className="error-message-text">
+          {error}
+        </span>
+      )}
+    </div>
+  </div>
+);
 
-  return (
-    <Form onSubmit={handleSubmit}>
-      <Container>
-        <Row className="section-user-title">
-          <FormGroup>
+class UserProfile extends React.Component {
+  componentDidMount() {
+    const { getCitiesList, user } = this.props;
+    if (user.city) {
+      getCitiesList(user.city.uf, true);
+    }
+  }
+
+  callGetCities = (e, newValue) => {
+    const {
+      getCitiesList,
+    } = this.props;
+
+    getCitiesList(newValue, false);
+  }
+
+  render() {
+    const {
+      handleSubmit, stateList, cityList,
+    } = this.props;
+
+    return (
+      <Form onSubmit={handleSubmit}>
+        <Container>
+          <Row className="section-user-title">
             <h4>
-Dados básicos
+                Dados básicos
             </h4>
-          </FormGroup>
-        </Row>
-        <Row>
-          <Col sm="4" xs="12" className="text-center">
-            <Label for="upload-avatar" className="upload-avatar">
-              <span>
-                <i className="fa fa-picture-o" />
-Enviar foto
-              </span>
-              <div className="thumbnail">
-                <img src={userPhoto} alt="foto-usuario" />
+          </Row>
+          <Row className="c-user-profile__basic-info">
+            <Col sm="4" xs="12" className="text-center c-user-profile__avatar">
+              <Label for="upload-avatar" className="upload-avatar">
+                <span className="hidden">
+                  <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="image"
+                  />
+                  Enviar foto
+                </span>
+                <div className="thumbnail">
+                  <img src={userPhoto} alt="foto-usuario" />
+                </div>
+              </Label>
+              <div className="small-text hidden">
+                Tamanho máximo 1 MB. (JPG, GIF ou PNG)
               </div>
-            </Label>
-            <div className="small-text">
-Tamano máximo 1 MB. JPG, GIF ou PNG
-            </div>
-            <Field
-              component="input"
-              type="file"
-              name="picture"
-              id="upload-avatar"
-              className="hidden"
-            />
+            </Col>
+            <Col sm="8" xs="12">
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <Label>
+                      Nome completo
+                    </Label>
+                    <Field
+                      component={renderField}
+                      type="text"
+                      name="name"
+                      id="name"
+                      placeholder="Insira seu nome completo"
+                      className="form-control"
+                      validate={userNameValidator}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
 
-          </Col>
-          <Col sm="8" xs="12">
-            <FormGroup>
-              <Label>
-Nome completo
-              </Label>
-              <Field
-                component="input"
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Ingrese seu nome completo"
-                className="form-control"
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>
-Sobre mim
-              </Label>
-              <Field
-                component="textarea"
-                name="about"
-                id="about"
-                placeholder=""
-                className="form-control"
-              />
-            </FormGroup>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <Label>
+                      Sobre mim
+                    </Label>
+                    <Field
+                      component="textarea"
+                      name="about"
+                      id="about"
+                      placeholder="Conte um pouco sobre o que gosta de fazer"
+                      className="form-control"
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
 
-          </Col>
-        </Row>
-        <Row className="section-user-title">
-          <Col className="text-center">
-            <Button type="submit">
-Salvar
-            </Button>
-          </Col>
-        </Row>
-        <div>
-          { submitSucceeded && (
-            <UncontrolledAlert color="success">
+              <Row>
+                <Col sm="12">
+                  <Label>
+                    Lugar de residência
+                  </Label>
+                </Col>
+                <Col sm="4">
+                  <FormGroup>
+                    <Field
+                      name="userState"
+                      type="text"
+                      component={renderSelectField}
+                      className="form-control"
+                      onChange={this.callGetCities}
+                      label="Selecione o estado"
+                      optionDefault="NaN"
+                    >
+                      { stateList && stateList.map(state => (
+                        <option className="c-user-profile__state-city-dropdown-item" key={state.uf} value={state.uf}>
+                          {state.name}
+                        </option>
+                      )) }
+                    </Field>
+                  </FormGroup>
 
-                    Usuário alterado com sucesso
-            </UncontrolledAlert>
-          ) }
-        </div>
-      </Container>
-    </Form>
-  );
-};
+                </Col>
+                <Col sm="8">
+                  <FormGroup>
+                    <Field
+                      name="userCity"
+                      type="text"
+                      component={renderSelectField}
+                      className="form-control"
+                      label="Selecione a cidade"
+                      optionDefault="0"
+                    >
+                      { cityList && cityList.map(city => (
+                        <option className="c-user-profile__state-city-dropdown-item" key={city.id} value={city.id}>
+                          {city.name}
+                        </option>
+                      )) }
+                    </Field>
+                  </FormGroup>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row className="c-user-profile__button-section">
+            <Col className="text-center">
+              <Button type="submit">
+                Salvar
+              </Button>
+            </Col>
+          </Row>
+        </Container>
+      </Form>
+    );
+  }
+}
 
-
-const mapStateToProps = (state) => {
-  const { user } = state.session.session;
-  return ({
-    initialValues: {
-      name: user.name,
-      about: user.about,
-    },
-    user,
-  });
-};
-
-export default connect(
-  mapStateToProps,
-)(reduxForm({
-  form: 'profile',
-})(UserProfile));
+export default UserProfile;

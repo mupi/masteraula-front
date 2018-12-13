@@ -50,9 +50,7 @@ function fetchPreviewDocument(id) {
 
   return fetch(`${apiUrl}/documents/${id}/`, requestOptions)
     .then(handleResponse)
-    .then((previewDocument) => {
-      return previewDocument;
-    });
+    .then(previewDocument => previewDocument);
 }
 
 // Create a New Document
@@ -63,7 +61,7 @@ function createDocument(newDocumentData) {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    body: JSON.stringify({ ...newDocumentData, questions: [], secret: true }),
+    body: JSON.stringify({ ...newDocumentData, secret: true }),
   };
 
   const handleResponse = response => response.json().then((data) => {
@@ -76,10 +74,10 @@ function createDocument(newDocumentData) {
 
   return fetch(`${apiUrl}/documents/`, requestOptions)
     .then(handleResponse)
-    .then(activeDocument => {
-          localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
-          return activeDocument;
-        });
+    .then((activeDocument) => {
+      localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+      return activeDocument;
+    });
 }
 
 // Update an Active Document
@@ -106,13 +104,13 @@ function updateDocument(activeNewDocument) {
 
   return fetch(`${apiUrl}/documents/${idDocument}/`, requestOptions)
     .then(handleResponse)
-    .then(activeDocument => {
-        localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
-        return activeDocument
-      });
+    .then((activeDocument) => {
+      localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+      return activeDocument;
+    });
 }
 
-function listMyDocuments(page) {
+function listMyDocuments(page, orderField, order) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -129,9 +127,31 @@ function listMyDocuments(page) {
     return data;
   });
 
-  return fetch(`${apiUrl}/documents/my_documents/?page=${page}`, requestOptions)
-  .then(handleResponse)
-  .then(activeDocument => activeDocument);
+  return fetch(`${apiUrl}/documents/my_documents/?page=${page}&order_field=${orderField}&order=${order}`, requestOptions)
+    .then(handleResponse)
+    .then(activeDocument => activeDocument);
+}
+
+function listMyLastDocuments(page, orderField, order) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  return fetch(`${apiUrl}/documents/my_documents/?page=${page}&order_field=${orderField}&order=${order}`, requestOptions)
+    .then(handleResponse)
+    .then(activeDocument => activeDocument);
 }
 
 // Add a question to Active Document
@@ -188,6 +208,73 @@ function removeSelectedQuestion(idDocument, idQuestion) {
     .then(idRemovedQuestion => idRemovedQuestion);
 }
 
+// Delete a document given its ID
+function deleteDocument(idDocument) {
+  const requestOptions = {
+    method: 'DELETE',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = (response) => {
+    if (!response.ok) {
+      return Promise.reject();
+    }
+
+    return idDocument;
+  };
+
+  return fetch(`${apiUrl}/documents/${idDocument}/`, requestOptions)
+    .then(handleResponse)
+    .then(idRemovedDocument => idRemovedDocument);
+}
+
+// Dowload a document docx file given its ID
+function downloadDocument(props, idDocument) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  const headerParameter = (props.headerId && props.headerId !== 'NaN' ? `&header=${props.headerId}` : '');
+  
+  if (props.answer === 'with') {
+    return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=True${headerParameter}`, requestOptions);
+  }
+
+  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=False${headerParameter}`, requestOptions);
+}
+
+function copyDocument(activeNewDocument) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  const idDocument = activeNewDocument.id;
+
+  return fetch(`${apiUrl}/documents/${idDocument}/copy_document/`, requestOptions)
+    .then(handleResponse)
+    .then((activeDocument) => {
+      localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+      return activeDocument;
+    });
+}
 
 const documentService = {
   fetchDocument,
@@ -195,8 +282,12 @@ const documentService = {
   createDocument,
   updateDocument,
   listMyDocuments,
+  listMyLastDocuments,
   addSelectedQuestion,
   removeSelectedQuestion,
+  deleteDocument,
+  downloadDocument,
+  copyDocument,
 };
 
 export default documentService;

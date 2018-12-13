@@ -7,6 +7,12 @@
     padding: 0px;
 }
 
+.l-home-user{
+    @include for-phone-only {
+          padding: 0px !important;
+    }
+}
+
 
 #main-masteraula-container {
     display: -webkit-box;

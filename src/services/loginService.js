@@ -1,9 +1,8 @@
 import { apiUrl } from 'helpers/config';
 
-const loginService = {
-  login,
-  logout,
-};
+function logout() {
+  localStorage.removeItem('session');
+}
 
 export const handleResponse = response => response.json().then((data) => {
   if (!response.ok) {
@@ -12,7 +11,7 @@ export const handleResponse = response => response.json().then((data) => {
     }
     if (data && data.non_field_errors) {
       if (data.non_field_errors[0] === 'E-mail is not verified.') {
-        return Promise.reject('Email ainda não verificado');
+        return Promise.reject('Seu cadastro ainda não foi confirmado. Para enviar um novo email de confirmação, clique aqui.');
       } if (data.non_field_errors[0] === 'Unable to log in with provided credentials.') {
         return Promise.reject('Usuário e/ou senha inválido(s)');
       }
@@ -47,8 +46,10 @@ function login(email, password) {
     );
 }
 
-function logout() {
-  localStorage.removeItem('session');
-}
+
+const loginService = {
+  login,
+  logout,
+};
 
 export default loginService;

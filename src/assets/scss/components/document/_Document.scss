@@ -3,18 +3,26 @@
 
 
 .c-document{
-    &__tab-content{
-
-    }
 
     &__header{
       padding: 15px;
-      border: 2px solid #FFFFFF;
+      border: 2px solid $color-ma-white;
       padding: 25px;
       border-radius: 4px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      background: #FFFFFF;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      background: $color-ma-white;
       margin-top: 10px;
+    }
+
+    &__logo{
+      padding: 10px;
+      @include for-phone-only {
+        padding: 0px 0px 15px 0px;
+      }
+
+      img {
+        max-width: 200px;
+      }
     }
 
     &__main-buttons{
@@ -24,17 +32,16 @@
     &__question{
       position: relative;
       border-radius: 4px;
-      -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       background: $color-ma-white;
       border: 1px solid rgba(0, 0, 0, 0.125);
       margin: 20px 0px;      
       padding: 20px 10px;
     }
 
-    &__question-image{
+   /* &__question-image{
    
-    }
+    }*/
 
     &__question-info {
       background: $color-ma-white;
@@ -56,19 +63,21 @@
     &__question-info-row {
       font-size: 13px;
       margin-bottom: 5px;
-      font-style:italic;
+    //  font-style:italic;
 
     }
 
     &__question-info-detail {
-      padding: 3px 5px;
+    //  padding: 3px 5px;
       border-radius: 5px;
-      color: $color-ma-white;
-      font-weight: bold;
+    //  color: $color-ma-white;
+    //  font-weight: bold;
       margin-bottom: 10px;
       margin-right: 5px;
       text-align: center;
       font-style:normal;
+      white-space: nowrap;
+      font-style:italic;
     }
 
     &__question-info-detail--green {
@@ -77,6 +86,11 @@
 
     &__question-info-detail--pink {
       background: $color-ma-pink;
+    }
+
+    &__question-number-learning-obj{
+      font-size: 13px;
+      color:$color-ma-green;
     }
 
     &__question-info-statement {
@@ -106,6 +120,7 @@
 
       @include for-tablet-landscape-bottom{
         text-align: center;
+        margin-top: 10px;
       }
     }
 
@@ -122,21 +137,20 @@
     }
 
     &__btn-remove-question{
-    //  padding: 0px;
-      line-height: 0px;
-      background: $color-ma-red;
-   //   width: 40px;
-   //   height: 40px;
+      background: $color-ma-red !important;
       color: $color-ma-white;
-      font-size: 21px;
-     // border-radius: 25px;
-      border: 1px solid  $color-ma-red;
+      border: 1px solid  $color-ma-red !important;
       margin-right: 5px;
     }
 
     &__btn-remove-question:hover{
       background: $color-ma-red;
-      border-color: $color-ma-red;
+      border-color: $color-ma-red !important;
+    }
+
+    &__btn-remove-question:focus{
+      background: $color-ma-red;
+      border-color: $color-ma-red !important;
     }
 
 }
@@ -211,8 +225,11 @@
     padding: 20px 10px;
   }
 
-  &__question-number{
+/*  &__question-number{
 
+  }*/
+  &__main-options{
+    margin: 0px;
   }
 
   &__question-content{
@@ -230,11 +247,11 @@
 /*New document button in Sidebar*/
 .document{
   &__new-document-btn{
-    background: transparent;
-    border-color: transparent;
-    color: $color-ma-blue;
-    font-weight: bold;
-    cursor: pointer;
+    background: transparent !important;
+    border-color: transparent !important;
+    color: $color-ma-blue !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
   }
 
   &__new-document-modal-header{
@@ -242,6 +259,13 @@
     color: white;
     text-align: center;
   }
+
+  &__new-document-modal-body{
+    .p--without-mbottom{
+      margin-bottom: 0px;
+    }
+  }
+
 
   &__new-document-modal-content{
     @include for-tablet-landscape-up{
@@ -268,16 +292,48 @@
   width:100%;
 }
 
-.my-documents{ 
+.c-my-documents{
+  &__cell{
+    word-wrap: break-word;
+      @include for-tablet-landscape-bottom{
+      max-width: 200px;
+      word-wrap: break-word;
+      padding: 5px !important;
+      margin: 0px;
+      }
+  }
+
   &__total-results {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-size: 14px;
     color: $color-ma-blue;
     font-weight: bold;
-    margin-left: -10px;
+    margin-top:10px;
+
+  }
+
+  &__dropdown-section{
+    float: right;
+    margin-bottom: 15px;
+    display: inline-flex;
+    font-size:12px;
+  }
+
+  &__dropdown-toogle{
+    font-size:12px;
+  }
+  &__dropdown-item{
+    font-size:11px;
+  }
+
+  &__order-label{
+    margin: 5px;
   }
 }
 
+.pagination-my-documents ul.pagination {
+  margin-bottom: 0px;
+}
 .pagination-my-documents.row a {
   color:$color-ma-blue;
 }
@@ -290,3 +346,43 @@ tbody tr.odd {
   background-color: $color-ma-gray-tables
 }
 
+
+/* Export Document Modal - options*/
+.c-export-document{
+  
+  &__new-header{
+    font-size:12px;
+    margin-left: 2px;
+
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  
+  &__option-name{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: $color-ma-lightgray;
+  }
+
+  &__select-item{
+    font-size: 14px;
+  }
+
+  &__select select.form-control {
+    font-size: 14px;
+  }
+
+  &__answers-section{
+    margin-bottom:0px;
+  }
+
+  &__answers-label {
+    padding-left: 20px;
+  }
+
+  &__answers-label:first-child {
+    padding-left: 0px;
+  }
+
+}

@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { history } from 'helpers/history';
+import {
+  Row,
+} from 'reactstrap';
+import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 
-import { UncontrolledAlert } from 'reactstrap';
-import DocumentHeader from 'components/document/DocumentHeader';
+import DocumentBasicHeader from 'components/document/DocumentBasicHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 class EditDocumentPage extends Component {
-
   componentDidMount() {
     const { fetchDocument, activeDocument } = this.props;
     if (!activeDocument) {
@@ -19,48 +23,39 @@ class EditDocumentPage extends Component {
   }
 
   render() {
-    const { activeDocument, removeSelectedQuestion, submit, isUpdated, error, isRemoved } = this.props;
+    const {
+      activeDocument, removeSelectedQuestion, submit,
+    } = this.props;
 
     return (
       <HomeUserPage>
         <div className="c-document">
-          { isUpdated ? (
-            <UncontrolledAlert className="alert--success" color="success">
-              Documento editado com sucesso
-            </UncontrolledAlert>
-          ) : ''
-          }
-          { error ? (
-            <UncontrolledAlert className="alert--danger" color="danger">
-                Ocorreu algum erro com sua solicitação, tente novamente.
-            </UncontrolledAlert>
-          ) : ''
-          }
-          { isRemoved ? (
-            <UncontrolledAlert className="alert--success" color="success">
-                Questão removida com sucesso
-            </UncontrolledAlert>
-          ) : ''
-          }
-          <DocumentHeader data={activeDocument} onSubmit={submit}/>
+          <Row className="c-document__main-buttons">
+            <div className="auto-margin-left-element">
+              <GoToQuestionBaseButton
+                customClass="btn-success"
+                nameButton="Adicionar questões"
+              />
+            </div>
+          </Row>
+          <DocumentBasicHeader data={activeDocument} onSubmit={submit} />
           <DocumentQuestions
             activeDocument={activeDocument}
             removeSelectedQuestion={removeSelectedQuestion}
           />
         </div>
+        <ToastContainer hideProgressBar position="bottom-right" />
       </HomeUserPage>);
   }
 }
 
 EditDocumentPage.propTypes = {
-  activeDocument: PropTypes.object,
+  activeDocument: PropTypes.shape({}),
   removeSelectedQuestion: PropTypes.func,
-  submit: PropTypes.func,
 };
 
 EditDocumentPage.defaultProps = {
   removeSelectedQuestion: f => f,
-  submit: f => f,
 };
 
 export default EditDocumentPage;

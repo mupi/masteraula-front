@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ListGroup, Alert } from 'reactstrap';
+import { ListGroup, Alert, Button } from 'reactstrap';
 import SidebarFilter from 'components/sidebarfilter/SidebarFilter';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const filters = {
   difficultyLevels: [
@@ -19,14 +20,18 @@ class SidebarFilters extends Component {
   render() {
     const {
       disciplineFilters, teachingLevelFilters, isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, error,
-      toogleSelectedDisciplineFilter, toogleSelectedTeachingLevelFilter, toogleSelectedDifficultyFilter,
+      toggleSelectedDisciplineFilter, toggleSelectedTeachingLevelFilter, toggleSelectedDifficultyFilter, filter,
+      clearFilters,
     } = this.props;
 
     if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters) {
       return (
         <ListGroup className="question-all-filters">
           <h6>
-            <i className="fa fa-filter" />
+            <FontAwesomeIcon
+              className="btn__icon"
+              icon="filter"
+            />
             {' Filtros'}
           </h6>
           <Alert className="alert--warning" color="warning">
@@ -36,11 +41,11 @@ class SidebarFilters extends Component {
       );
     }
 
+
     if (error) {
       return (
         <ListGroup className="question-all-filters">
           <Alert color="danger">
-
               Erro nos filtros
           </Alert>
         </ListGroup>
@@ -51,23 +56,40 @@ class SidebarFilters extends Component {
 
       <ListGroup className="question-all-filters">
         <h6>
-          <i className="fa fa-filter" />
+          <FontAwesomeIcon
+            className="btn__icon"
+            icon="filter"
+          />
           {' Filtros'}
         </h6>
+        {filter.disciplinesSelected.length > 0 || filter.teachingLevelsSelected.length > 0
+          || filter.difficultiesSelected.length > 0
+          ? (
+            <div className="l-question-all-filters__clear-button">
+              <Button className="l-question-all-filters__clear-button--btn" onClick={clearFilters}>
+              Limpar todos os filtros
+              </Button>
+            </div>
+          )
+          : ''
+        }
         <SidebarFilter
           name="Disciplinas"
           filterList={disciplineFilters}
-          toogleFilter={toogleSelectedDisciplineFilter}
+          toggleFilter={toggleSelectedDisciplineFilter}
+          selected={filter.disciplinesSelected}
         />
         <SidebarFilter
           name="Nível de Ensino"
           filterList={teachingLevelFilters}
-          toogleFilter={toogleSelectedTeachingLevelFilter}
+          toggleFilter={toggleSelectedTeachingLevelFilter}
+          selected={filter.teachingLevelsSelected}
         />
         <SidebarFilter
           name="Dificuldade"
           filterList={filters.difficultyLevels}
-          toogleFilter={toogleSelectedDifficultyFilter}
+          toggleFilter={toggleSelectedDifficultyFilter}
+          selected={filter.difficultiesSelected}
         />
       </ListGroup>
     );

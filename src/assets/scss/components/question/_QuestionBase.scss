@@ -2,65 +2,181 @@
 .c-question-base{
 
     &__search-text{
-      padding: 15px;
+      padding: 0px 15px 15px 15px;
     }
     &__results{
-      margin-top: 20px;
+     // margin-top: 20px;
     }
+
+    &__keywords-title{
+      font-size: 14px;
+      color: $color-ma-blue;
+      font-weight: bold;
+      margin-bottom: 3px;
+    }
+
+    &__keywords{
+      font-size: 14px;
+      font-style: italic;
+      font-weight: normal;
+      color:$color-ma-black;
+    }
+
+    &__filter-selected{
+      padding: 3px 7px;
+      border-radius: 1rem;
+      margin-right: 5px;
+      background: $color-ma-dark-gray;
+      border-color: $color-ma-dark-gray;
+      color: $color-ma-white;
+      font-size:13px;
+
+      &.btn::after {
+       /* content: "\f057";
+        width: 20px;
+        float: right;
+        margin-top: 0;
+        font-family: 'Font Awesome 5 Free';*/
+      }
+    }
+
 
     &__alert{
       &--warning{
-        margin-left: 15px;
+        margin-left: 10px;
       }
     }
 
     &__total-results{
-      margin-bottom: 15px;
       font-size: 14px;
       color:$color-ma-blue;
       font-weight: bold;
+      margin-top:10px;
     }
 }
 
 //Classes for QuestionCard
 .l-question-card-text{
-    margin-top: 15px;
+    //margin-top: 5px; 
 }
 
 .question-card {
     margin-bottom: 20px;
+    padding: 12px 12px;
 
+
+    &__full{ 
+
+      &:hover {
+       // border: 0px solid transparent;
+        -webkit-box-shadow: 0 3px 7px 0 ;
+        -moz-box-shadow: 0 3px 7px 0  $color-ma-dark-gray;
+        box-shadow: 0 3px 7px 0 $color-ma-dark-gray;
+      } 
+    }
+
+    //ini: buttons
     &__btn{
-      margin-right: 10px;
-    }
-
-    &__body{
-      padding: 15px;
-
-      .question-info {
-        font-size: 12px;
-        margin-bottom: 0px;
-        padding:5px;
-        margin-right: 5px;
+      background-color: $color-ma-blue;
+      font-size:13px;
+      margin: 5px;
+      @include for-phone-only {
+        padding: 5px 8px;
       }
-
-      .disciplines__item {
-        font-size: 12px;
-        padding: 5px;
-        margin-right: 5px;
-    }
-    }
-
-    &__image{
-
     }
 
     &__added{
+      font-size:13px;
       background: $color-ma-yellow;
       color: $color-ma-white;
       cursor: default !important;
+      @include for-phone-only {
+        padding: 5px 8px;
+      }
     }
-}
+    //end: buttons 
+
+    &__header{
+      padding: 13px 10px 5px;
+      margin-bottom: 0;
+      background-color: rgba(0, 0, 0, 0.03);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    &__number-learning-obj{
+      
+    }
+
+    &__pin{
+      color: $color-ma-blue;
+      font-size: 25px;
+      position: absolute;
+      right: 5px;
+      top: -10px;
+    }
+
+    &__info-section-item--italic{
+      font-style: italic;
+    }
+
+    &__info-section-item{
+      padding: 2px 4px;
+      border-radius: 5px;
+      color: $color-ma-white;
+      font-weight: bold;
+      font-size: 11px;
+      text-align: center;
+      display: inline-block;
+      background: $color-ma-dark-gray;
+      margin: 0px 5px 5px 0px;
+    }
+
+    &__info-section-item--pink{ 
+      background: $color-ma-pink;
+      border-color:  $color-ma-pink
+    }
+
+    &__info-section-item--green{ 
+      background: $color-ma-green;
+      border-color:  $color-ma-green;
+    }
+
+    &__info-section-item--purple{ 
+      background: $color-ma-purple;
+      border-color:  $color-ma-purple;
+    }
+  
+    &__more-info{
+      font-size: 12px;
+      margin-bottom: 5px;
+
+      &--lightgray{
+        color:$color-ma-lightgray;
+      }
+    }
+
+    &__extract{
+      font-size: 14px;
+      margin-bottom: 0px;
+      text-align: justify;
+    }
+  
+    &__author{
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    &__body{
+      padding:12px 12px;
+    }
+
+    &__footer{
+      background-color: $color-ma-white;
+      text-align:center;
+      padding: 5px;
+    }
+    
+} 
 
 
 
@@ -71,7 +187,9 @@
 }
 
 .pagination-questions{
-  padding: 0px 15px;
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .pagination-questions.row a {
