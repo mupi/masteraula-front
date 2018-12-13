@@ -122,8 +122,8 @@ export const document = (state = initialState, action) => {
         myLastDocumentsList: null,
         isFetchingMyLastDocuments: true,
         error: null,
-        orderField: action.orderField,
-        order: action.order,
+      //  orderField: action.orderField,
+      //  order: action.order,
       });
     case LIST_MY_LAST_DOCUMENTS_SUCCESS:
       return Object.assign({}, state, {

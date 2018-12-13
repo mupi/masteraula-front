@@ -176,7 +176,7 @@ export const listMyLastDocuments = (page, orderField, order) => (dispatch) => {
   return documentService.listMyLastDocuments(page, orderField, order)
     .then(success)
     .catch(error);
-};
+}; 
 
 // Add Selected Question to Document
 export const addSelectedQuestion = (idDocument, idQuestion, order) => {
