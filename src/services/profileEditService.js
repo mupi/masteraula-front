@@ -20,6 +20,15 @@ const handlePasswordResponse = response => response.json().then((data) => {
   return data;
 });
 
+const handleProfileResponse = response => response.json().then((data) => {
+  if (!response.ok) {
+    if (data.profile_pic) return Promise.reject('O tamanho máximo da imagem é 1MB');
+    return Promise.reject(data);
+  }
+
+  return data;
+});
+
 // Get all states
 function getStatesList() {
   const requestOptions = {
@@ -82,7 +91,7 @@ function profileEdit(profile) {
   };
 
   const fetchProfile = fetch(`${apiUrl}/auth/user/ `, requestOptions)
-    .then(handleResponse)
+    .then(handleProfileResponse)
     .then(detail => detail);
 
 
