@@ -403,6 +403,8 @@ button.c-sidebar__user-dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm 
     border: transparent;
     padding: 5px 0px;
     color: $color-ma-white;
+    font-weight: bold;
+    letter-spacing: 0.75px;
 
     &:active:focus{
         -webkit-box-shadow: none !important;

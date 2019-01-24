@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Row, Col, ListGroup, ListGroupItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
@@ -31,7 +31,7 @@ const SidebarMobile = ({showFilters, activeDocument, user, logout, isOpenSidebar
       <div id="sidebar-container">
         <div className="container-fluid">
           <Row className="sidebar-row">
-            <Col xs="12" className="c-sidebar__user-info-section visible-xs">
+            <Col xs="12" className="c-sidebar__user-info-section">
               <div className="c-sidebar__ma-logo">
                 <Link to="/#/question-base/1">
                   <img src={maLogo} alt="masteraula" />
@@ -175,18 +175,56 @@ const SidebarWeb = ({showFilters, activeDocument, isOpenSidebar, openSidebar }) 
   );
 };
 
-const Sidebar = (props) => {
-  const {
-    showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu,
-  } = props;
 
+class Sidebar extends Component {
 
-  const responsiveMode = window.matchMedia('(max-width: 989px)');
+  constructor() {
+    super();
+    this.state = {
+      width: window.innerWidth,
+    };
+  }
 
+  componentWillMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+  }
 
-  if (responsiveMode.matches) {
+  // make sure to remove the listener
+  // when the component is not mounted anymore
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowSizeChange);
+  }
+
+  handleWindowSizeChange = () => {
+    this.setState({ width: window.innerWidth });
+  };
+
+  render() {
+    const {
+      showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu,
+    } = this.props;
+
+    const { width } = this.state;
+    const isMobile = width <= 989;
+
+    const responsiveMode = window.matchMedia('(max-width: 989px)');
+    if (responsiveMode.matches) {
+      return (
+        <SidebarMobile
+          showFilters={showFilters}
+          activeDocument={activeDocument}
+          user={user}
+          logout={logout}
+          isOpenSidebar={isOpenSidebar}
+          openSidebar={openSidebar}
+          isOpen={isOpen}
+          toggleMenu={toggleMenu}
+        />
+      );
+    }
+  
     return (
-      <SidebarMobile
+      <SidebarWeb
         showFilters={showFilters}
         activeDocument={activeDocument}
         user={user}
@@ -198,19 +236,6 @@ const Sidebar = (props) => {
       />
     );
   }
-
-  return (
-    <SidebarWeb
-      showFilters={showFilters}
-      activeDocument={activeDocument}
-      user={user}
-      logout={logout}
-      isOpenSidebar={isOpenSidebar}
-      openSidebar={openSidebar}
-      isOpen={isOpen}
-      toggleMenu={toggleMenu}
-    />
-  );
-};
+}
 
 export default Sidebar;
