@@ -27,6 +27,7 @@ const mapStateToProps = (state) => {
       about: user.about,
       userState: user.city ? user.city.uf : null,
       userCity: user.city ? user.city.id : null,
+      profile_pic: user.profile_pic ? user.profile_pic : null,
     },
     user,
     stateList: state.profileEdit.stateList,
