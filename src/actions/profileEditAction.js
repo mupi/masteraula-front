@@ -83,6 +83,7 @@ export const profileEdit = (profile) => {
       .then(
         (data) => {
           const user = data[0];
+          dispatch(change('profile', 'profile_pic', null));
 
           dispatch(success());
           dispatch(updateSessionUser(user));
