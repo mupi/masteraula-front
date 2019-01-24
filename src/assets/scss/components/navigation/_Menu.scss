@@ -123,6 +123,12 @@ html body .masteraula-nav-header__user {
 
 }
 
+.masteraula-nav-header__greeting{
+  border: none;
+  padding: 10px;
+  display: block;
+  color: $color-ma-blue;
+}
 .o-doc-options{ 
 
     &__dropdown{

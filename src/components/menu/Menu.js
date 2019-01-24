@@ -12,19 +12,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Menu = (props) => {
   const {
-    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument,
+    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument, user,
   } = props;
 
   const loggedOptions = (
     <Nav className="ml-auto hidden-xs" navbar>
-      <NavItem className="hidden">
-        <Link to="/question-base/1">
-          <FontAwesomeIcon
+      <NavItem className="masteraula-nav-header__greeting">
+        <FontAwesomeIcon
             icon="home"
+            className="hidden"
           />
-          {' '}
-          Página Inicial
-        </Link>
+         Oi {user.name}!
       </NavItem>
       <NavItem>
         <Link to="/user-profile">

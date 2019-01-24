@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
   isOpenSidebar: state.menu.isOpenSidebar,
   isLoggedIn: state.session.session,
   activeDocument: state.document.activeDocument,
-
+  user: state.session.session.user,
 });
 
 const mapDispatchToProps = dispatch => ({
