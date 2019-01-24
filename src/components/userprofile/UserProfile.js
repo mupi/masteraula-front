@@ -57,12 +57,13 @@ const renderSelectField = ({
 );
 
 export const fieldFile = ({ input, type }) => {
-  delete input.value;
+  const newInput = input;
+  delete newInput.value;
 
   return (
     <div>
       <label htmlFor={input.name}>
-        <input {...input} type={type} />
+        <input {...newInput} type={type} />
       </label>
     </div>
   );
