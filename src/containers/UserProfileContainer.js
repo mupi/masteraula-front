@@ -43,6 +43,7 @@ const mapDispatchToProps = dispatch => ({
       name: values.name,
       about: values.about,
       city: values.userCity !== '0' ? values.userCity : null,
+      profile_pic: values.profile_pic ? values.profile_pic : 'teste',
     };
     return dispatch(profileEdit(profile));
   },

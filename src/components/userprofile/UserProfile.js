@@ -57,7 +57,25 @@ const renderSelectField = ({
   </div>
 );
 
+export const fieldFile = ({ input, type }) => {
+  delete input.value;
+
+  return (
+    <div>
+      <label htmlFor={input.name}>
+        Choose File from your Computer
+        <input {...input} type={type} />
+      </label>
+    </div>
+  );
+};
+
 class UserProfile extends React.Component {
+  constructor() {
+    super();
+    this.fileInput = React.createRef();
+  }
+
   componentDidMount() {
     const { getCitiesList, user } = this.props;
     if (user.city) {
@@ -89,10 +107,10 @@ class UserProfile extends React.Component {
           <Row className="c-user-profile__basic-info">
             <Col sm="4" xs="12" className="text-center c-user-profile__avatar">
               <Label for="upload-avatar" className="upload-avatar">
-                <span className="hidden">
+                <span className="">
                   <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="image"
+                    className="btn__icon"
+                    icon="image"
                   />
                   Enviar foto
                 </span>
@@ -100,9 +118,16 @@ class UserProfile extends React.Component {
                   <img src={userPhoto} alt="foto-usuario" />
                 </div>
               </Label>
-              <div className="small-text hidden">
+              <div className="small-text ">
                 Tamanho máximo 1 MB. (JPG, GIF ou PNG)
               </div>
+              <Field
+                component={fieldFile}
+                type="file"
+                name="profile_pic"
+                id="profile_pic"
+                className="form-control"
+              />
             </Col>
             <Col sm="8" xs="12">
               <Row>

@@ -21,7 +21,7 @@ const handlePasswordResponse = response => response.json().then((data) => {
 });
 
 // Get all states
-function getStatesList(param) {
+function getStatesList() {
   const requestOptions = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -68,19 +68,19 @@ function profilePasswordEdit(profile) {
 }
 
 function profileEdit(profile) {
+  const formData = new FormData();
+  for (const name in profile) {
+    if (name === 'profile_pic') formData.append(name, profile[name][0]);
+    else formData.append(name, profile[name]);
+  }
   const requestOptions = {
     method: 'PATCH',
     headers: {
-      'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    body: JSON.stringify({
-      name: profile.name,
-      about: profile.about,
-      city: profile.city,
-    }),
+    body: formData,
   };
-  
+
   const fetchProfile = fetch(`${apiUrl}/auth/user/ `, requestOptions)
     .then(handleResponse)
     .then(detail => detail);
