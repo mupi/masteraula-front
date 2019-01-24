@@ -87,8 +87,9 @@ html body #sidebar #sidebar-container {
     overflow-x: hidden;
 
     @include for-tablet-landscape-bottom{
-        padding-top: 15px;
+        padding-top: 0px;
         padding-bottom: 15px;
+        top:0px;
     }
 
 }
@@ -304,9 +305,25 @@ img.logo-in-menu.no-login {
         font-weight:bold; 
     }
 
+    &__ma-logo{
+        position: absolute;
+        right: -171px;
+        top: 15px;
+
+        img{
+         width: 20%;
+        }
+    }
+
     &__user-info-section{
         color: $color-ma-white;
-        text-align: center;
+        text-align: left;
+        padding-left: 15px !important;
+        background-image:  url(../img/home/sidebar-background-2.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+ //   background-color: #EEE;
+    background-size: 100%;
     }
 
     &__user-avatar{
@@ -384,6 +401,8 @@ img.logo-in-menu.no-login {
 button.c-sidebar__user-dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
     background: transparent;
     border: transparent;
+    padding: 5px 0px;
+    color: $color-ma-white;
 
     &:active:focus{
         -webkit-box-shadow: none !important;
