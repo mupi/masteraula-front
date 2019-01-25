@@ -28,6 +28,19 @@ html body .masteraula-nav-header__user {
   background: $color-ma-lightgray-backg !important;
   box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
 
+
+  &-avatar{
+    display: inline-block;
+    img{
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      background: $color-ma-white;
+      padding: 1px;
+      border: 1px solid $color-ma-green;
+      margin-right: 5px;
+    }
+  }
   @include for-tablet-landscape-up {
       margin-left: 280px;
       //box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
@@ -37,6 +50,7 @@ html body .masteraula-nav-header__user {
   .nav-item a, .nav-item:hover {
     color: $color-ma-blue;
   }
+  
 
   // Top Menu - USER - Document options
   .menu-top{
@@ -125,10 +139,12 @@ html body .masteraula-nav-header__user {
 
 .masteraula-nav-header__greeting{
   border: none;
-  padding: 10px;
+  padding: 8px;
   display: block;
   color: $color-ma-blue;
+  letter-spacing: 0.75px;
 }
+
 .o-doc-options{ 
 
     &__dropdown{

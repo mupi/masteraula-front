@@ -9,6 +9,14 @@ import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 import DocumentInfoSidebarContainer from 'containers/DocumentInfoSidebarContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import userPhoto from 'assets/img/home/avataruser3.png';
+
+const getUserName = (userName) => {
+  if (userName) {
+    return (userName.split(' '))[0];
+  }
+  return null;
+}
 
 const Menu = (props) => {
   const {
@@ -18,11 +26,13 @@ const Menu = (props) => {
   const loggedOptions = (
     <Nav className="ml-auto hidden-xs" navbar>
       <NavItem className="masteraula-nav-header__greeting">
-        <FontAwesomeIcon
-            icon="home"
-            className="hidden"
-          />
-         Oi {user.name}!
+        <div className="masteraula-nav-header__user-avatar">
+          <img src={userPhoto} alt="foto-usuario" />
+        </div>
+        Oi
+        {' '}
+        {getUserName(user.name)}
+        {'!'}
       </NavItem>
       <NavItem>
         <Link to="/user-profile">
