@@ -214,19 +214,16 @@ li.question-filter.list-group-item:hover {
     background: none;
 } 
 
-li.question-category-filter.list-group-item, .question-single-filter li.list-group-item {
+li.question-category-filter.list-group-item {
     background:$color-ma-blue;
-    color: $color-ma-white;
+    color: $color-ma-blue;
     border: none;
 }
 
-li.question-category-filter.list-group-item:hover, .question-single-filter li.list-group-item:hover{
-  background:$color-ma-blue;
-  color: $color-ma-white;
-  border: none;
-}
-
 .question-single-filter li.list-group-item {
+    background:$color-ma-lightgray-backg;
+    color: $color-ma-blue;
+    border: none;
     padding: 0px 10px;
     font-size: 14px;
 }
@@ -239,27 +236,32 @@ li.question-category-filter.list-group-item {
     padding: 0px 15px;
     margin-top: 0px;
     margin-bottom: 10px;
+    overflow: hidden;
 }
 
 li.question-category-filter div{
-    height: 35px;
     border: none;
     outline: none;
     color: $color-ma-blue !important;
     display: block;
     font-size: 14px;
-    line-height: 14px;
+    line-height: 1.5;
     text-decoration: none;
     padding: 11px 0px 10px 15px;
     background:  $color-ma-lightgray-backg;
+
 }
 
 .question-category-filter__icon-toogle {
-    top: 7px;
+    top: 3px;
     right: 25px;
     position: absolute;
     font-size: 20px;
     font-weight: bold;
+    line-height: inherit;
+    border: 0px;
+    background-color: inherit;
+    color: inherit;
 }
 
 /*SCROLl-Y in sidebar*/

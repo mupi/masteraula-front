@@ -74,18 +74,21 @@ class SidebarFilters extends Component {
           : ''
         }
         <SidebarFilter
+          id="1"
           name="Disciplinas"
           filterList={disciplineFilters}
           toggleFilter={toggleSelectedDisciplineFilter}
           selected={filter.disciplinesSelected}
         />
         <SidebarFilter
+          id="2"
           name="Nível de Ensino"
           filterList={teachingLevelFilters}
           toggleFilter={toggleSelectedTeachingLevelFilter}
           selected={filter.teachingLevelsSelected}
         />
         <SidebarFilter
+          id="3"
           name="Dificuldade"
           filterList={filters.difficultyLevels}
           toggleFilter={toggleSelectedDifficultyFilter}
