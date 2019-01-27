@@ -75,7 +75,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
         <QuestionAuthor author={question.author} styleTag="question-info author" />
       </Col>
     </Row>
-    <Row className="c-question__row-info">
+    <Row className="c-question__row-info hidden">
       <Col className="info-label" sm="4" xs="4">
         Avaliação
       </Col>
