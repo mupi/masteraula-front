@@ -1,14 +1,63 @@
+//For each group of filters. Ex. "Discipline's filters"
 .c-filters{
+    background:  $color-ma-lightgray-backg;
+    color: $color-ma-blue;
+    border: none;
+    padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    overflow: hidden;
 
-  
+    &:last-child {
+        border-radius: 0px;
+    }
+
+    /* Ex.: "Disciplina"*/
+    &__question-category-filter{
+        font-weight: bold;
+        padding: 11px 0px 10px 15px;
+    }
+
+    &__question-category-filter-icon {
+        top: 3px;
+        right: 0px;
+        position: absolute;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: inherit;
+        border: 0px;
+        background-color: inherit;
+        color: inherit;
+    }
+    
+
+    /* Ex.: "Arte", "Matemática", "Biologia", etc */
+    &__question-group-filters{
+        margin: 0px 10px !important;
+    }
+
+    /* Ex.: "Arte" */
+    &__question-single-filter{
+        background:$color-ma-lightgray-backg;
+        color: $color-ma-blue;
+        border: none;
+        padding: 0px 0px 0px 25px;
+        font-size: 14px;
+        font-weight: normal;
+
+        &:last-child {
+            padding-bottom: 10px;
+        }
+    }
+
 }
+
 
 .l-question-all-filters__clear-button{
 
     text-align:center;
-    padding:5px 15px;
+    padding:5px 2px;
     
-
     &--btn{
         width:100%;
         font-size:12px;
