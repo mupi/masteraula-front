@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
 import maLogo from 'assets/img/home/logo_masteraula-rubrica-blanca.png';
+import userPhoto from 'assets/img/home/avataruser3.png';
 
 
 import CreateDocumentModalContainer from 'containers/CreateDocumentModalContainer';
@@ -37,7 +38,10 @@ const SidebarMobile = ({showFilters, activeDocument, user, logout, isOpenSidebar
                 </Link>
               </div>
               <div className="c-sidebar__user-avatar">
-                <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
+                { user.profile_pic
+                  ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" /> :
+                  <img src={userPhoto} alt="foto-usuario" />
+                }
               </div>
               <UncontrolledDropdown className="c-sidebar__user-dropdown">
                 <DropdownToggle caret size="sm" className="c-sidebar__user-dropdown-toggle">
