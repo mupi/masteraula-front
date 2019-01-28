@@ -4,7 +4,6 @@ import {
 } from 'reactstrap';
 import { Field } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
-import userPhoto from 'assets/img/home/coruja-avatar.png';
 import { userNameValidator } from 'helpers/validators';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -57,6 +56,19 @@ const renderSelectField = ({
   </div>
 );
 
+export const fieldFile = ({ input, type }) => {
+  const newInput = input;
+  delete newInput.value;
+
+  return (
+    <div>
+      <label htmlFor={input.name}>
+        <input {...newInput} type={type} />
+      </label>
+    </div>
+  );
+};
+
 class UserProfile extends React.Component {
   componentDidMount() {
     const { getCitiesList, user } = this.props;
@@ -75,7 +87,7 @@ class UserProfile extends React.Component {
 
   render() {
     const {
-      handleSubmit, stateList, cityList,
+      handleSubmit, stateList, cityList, user,
     } = this.props;
 
     return (
@@ -89,20 +101,25 @@ class UserProfile extends React.Component {
           <Row className="c-user-profile__basic-info">
             <Col sm="4" xs="12" className="text-center c-user-profile__avatar">
               <Label for="upload-avatar" className="upload-avatar">
-                <span className="hidden">
-                  <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="image"
-                  />
-                  Enviar foto
-                </span>
                 <div className="thumbnail">
-                  <img src={userPhoto} alt="foto-usuario" />
+                  <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
                 </div>
+                <FontAwesomeIcon
+                  className="btn__icon"
+                  icon="image"
+                />
+                  Enviar foto
               </Label>
-              <div className="small-text hidden">
+              <div className="small-text ">
                 Tamanho máximo 1 MB. (JPG, GIF ou PNG)
               </div>
+              <Field
+                component={fieldFile}
+                type="file"
+                name="profile_pic"
+                id="profile_pic"
+                className="form-control"
+              />
             </Col>
             <Col sm="8" xs="12">
               <Row>

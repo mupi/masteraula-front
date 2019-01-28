@@ -14,14 +14,27 @@ const handleResponse = response => response.json().then((data) => {
 
 const handlePasswordResponse = response => response.json().then((data) => {
   if (!response.ok) {
-    return Promise.reject('DIFFERENT_OLD_PASSWORD');
+    return Promise.reject(new Error('DIFFERENT_OLD_PASSWORD'));
+  }
+
+  return data;
+});
+
+const handleProfileResponse = response => response.json().then((data) => {
+  if (!response.ok) {
+    if (data.profile_pic) {
+      if (data.profile_pic[0].includes('Max')) return Promise.reject(new Error('O tamanho máximo da imagem é 1MB'));
+      if (data.profile_pic[0].includes('valid')) return Promise.reject(new Error('Arquivo inválido. Escolha um arquivo JPG, PNG ou GIF.'));
+      return Promise.reject(data.profile_pic[0]);
+    }
+    return Promise.reject(data);
   }
 
   return data;
 });
 
 // Get all states
-function getStatesList(param) {
+function getStatesList() {
   const requestOptions = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -62,27 +75,27 @@ function profilePasswordEdit(profile) {
     .then(handlePasswordResponse)
     .then(detail => detail);
 
-  if (profile.old_password) {
-    return Promise.all([fetchPassword]);
-  }
+  return Promise.all([fetchPassword]);
 }
 
 function profileEdit(profile) {
+  const formData = new FormData();
+  Object.keys(profile).forEach((name) => {
+    if (name === 'profile_pic') {
+      if (profile[name]) { formData.append(name, profile[name][0]); }
+    } else formData.append(name, profile[name]);
+  });
+
   const requestOptions = {
     method: 'PATCH',
     headers: {
-      'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    body: JSON.stringify({
-      name: profile.name,
-      about: profile.about,
-      city: profile.city,
-    }),
+    body: formData,
   };
-  
+
   const fetchProfile = fetch(`${apiUrl}/auth/user/ `, requestOptions)
-    .then(handleResponse)
+    .then(handleProfileResponse)
     .then(detail => detail);
 
 
