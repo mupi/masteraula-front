@@ -27,14 +27,14 @@ const Menu = (props) => {
     <Nav className="ml-auto hidden-xs" navbar>
       <NavItem className="masteraula-nav-header__greeting">
         <div className="masteraula-nav-header__user-avatar">
-          { user.profile_pic
+          { user && user.profile_pic
             ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
             : <img src={userPhoto} alt="foto-usuario" />
           }
         </div>
         Oi
         {' '}
-        {getUserName(user.name)}
+        {user ? getUserName(user.name) : ''}
         {'!'}
       </NavItem>
       <NavItem>
