@@ -20,7 +20,7 @@ class EditHeaderPage extends Component {
     } else {
       resetNewHeader();
     }
-  }
+  } 
  
   render() {
     const {
