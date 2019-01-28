@@ -63,8 +63,7 @@ export function profileEdit(state = initialState, action) {
       });
     }
     case PROFILE_EDIT_FAILURE:
-      const msgError = action.error + '';
-      toast.error(msgError, optionsError);
+      toast.error(`${action.error}`, optionsError);
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,
