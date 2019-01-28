@@ -63,7 +63,7 @@ export const fieldFile = ({ input, type }) => {
   return (
     <div>
       <label htmlFor={input.name}>
-        <input {...newInput} type={type} />
+        <input {...newInput} type={type} placeholder="Carregar imagem" />
       </label>
     </div>
   );
@@ -102,6 +102,7 @@ class UserProfile extends React.Component {
             <Col sm="4" xs="12" className="text-center c-user-profile__avatar">
               <Label for="upload-avatar" className="upload-avatar">
                 <div className="thumbnail">
+                  <FontAwesomeIcon icon="times-circle" className="c-user-profile__remove-photo hidden" />
                   <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
                 </div>
                 <FontAwesomeIcon

@@ -32,6 +32,12 @@ CSS for UserProfile
       }
     }
 
+    &__remove-photo {
+        color: $color-ma-blue;
+        position: absolute;
+        right: 45px;
+    }
+
     &__basic-info{
         .col-12{
         padding:0px;

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DocumentHeaderContainer from 'containers/DocumentHeaderContainer';
-import HeaderOptions from 'components/headers/HeaderOptions';
 import {
-  Row, Col,
+  Row, Col, Button,
 } from 'reactstrap';
+
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { ToastContainer } from 'react-toastify';
@@ -19,10 +21,10 @@ class EditHeaderPage extends Component {
       resetNewHeader();
     }
   }
-
+ 
   render() {
     const {
-      activeHeader, createHeader, updateHeader, resetNewHeader,
+      activeHeader, createHeader, updateHeader,
     } = this.props;
     const submit = (activeHeader ? updateHeader : createHeader);
 
@@ -30,7 +32,20 @@ class EditHeaderPage extends Component {
       <HomeUserPage>
         <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-edit-header__options">
-          <HeaderOptions resetNewHeader={resetNewHeader} />
+          <Row className="c-headers-options">
+            <Col sm="12" className="d-flex justify-content-end">
+              <div className="p-2">
+                <Link className="" to="/my-headers/1">
+                  <Button>
+                    <FontAwesomeIcon icon="eye" className="btn__icon" />
+                    <span className="button-text">
+                        Ver cabeçalhos
+                    </span>
+                  </Button>
+                </Link>
+              </div>
+            </Col>
+          </Row>
         </div>
         <div className="c-header">
           <Row>
