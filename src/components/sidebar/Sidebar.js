@@ -5,7 +5,6 @@ import {
 import { Link } from 'react-router-dom';
 
 import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
-import userPhoto from 'assets/img/home/avataruser3.png';
 import maLogo from 'assets/img/home/logo_masteraula-rubrica-blanca.png';
 
 
@@ -38,8 +37,7 @@ const SidebarMobile = ({showFilters, activeDocument, user, logout, isOpenSidebar
                 </Link>
               </div>
               <div className="c-sidebar__user-avatar">
-                <FontAwesomeIcon icon="user-circle" className="hidden" />
-                <img src={userPhoto} alt="foto-usuario" />
+                <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
               </div>
               <UncontrolledDropdown className="c-sidebar__user-dropdown">
                 <DropdownToggle caret size="sm" className="c-sidebar__user-dropdown-toggle">
@@ -54,7 +52,7 @@ const SidebarMobile = ({showFilters, activeDocument, user, logout, isOpenSidebar
                     >
                       <FontAwesomeIcon icon="user" />
                       {' '}
-                      Meu Perfil
+                      Meu Perfil 
                     </Link>
                   </DropdownItem>
                   <DropdownItem divider />
