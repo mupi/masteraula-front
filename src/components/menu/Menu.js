@@ -9,6 +9,7 @@ import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 import DocumentInfoSidebarContainer from 'containers/DocumentInfoSidebarContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import userPhoto from 'assets/img/home/avataruser3.png';
 
 const getUserName = (userName) => {
   if (userName) {
@@ -26,7 +27,10 @@ const Menu = (props) => {
     <Nav className="ml-auto hidden-xs" navbar>
       <NavItem className="masteraula-nav-header__greeting">
         <div className="masteraula-nav-header__user-avatar">
-          <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
+          { user.profile_pic
+            ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
+            : <img src={userPhoto} alt="foto-usuario" />
+          }
         </div>
         Oi
         {' '}

@@ -6,6 +6,7 @@ import { Field } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.css';
 import { userNameValidator } from 'helpers/validators';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import userPhoto from 'assets/img/home/avataruser3.png';
 
 const renderField = ({
   input,
@@ -102,7 +103,10 @@ class UserProfile extends React.Component {
             <Col sm="4" xs="12" className="text-center c-user-profile__avatar">
               <Label for="upload-avatar" className="upload-avatar">
                 <div className="thumbnail">
-                  <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
+                  { user.profile_pic
+                    ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
+                    : <img src={userPhoto} alt="foto-usuario" />
+                  }
                 </div>
                 <FontAwesomeIcon
                   className="btn__icon"
