@@ -64,7 +64,7 @@ export const fieldFile = ({ input, type }) => {
   return (
     <div>
       <label htmlFor={input.name}>
-        <input {...newInput} type={type} />
+        <input {...newInput} type={type} placeholder="Carregar imagem" />
       </label>
     </div>
   );

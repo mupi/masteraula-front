@@ -1,5 +1,7 @@
 .c-headers-options{
-
+  .p-2{
+    padding: 0px !important;
+  }
 }
 
 .c-edit-header {
@@ -11,7 +13,16 @@
     }
 }
 
+
 .c-my-headers{
+    &__options{
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: $color-ma-blue;
+      font-weight: bold;
+      margin-top:10px;
+    }
+
     &__cell{
       word-wrap: break-word;
         @include for-tablet-landscape-bottom{
