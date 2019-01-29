@@ -10,7 +10,14 @@ const QuestionList = (props) => {
       <Col sm="12" className="c-question-base__total-results">
         {`Questões encontradas: ${count}`}
         {' '}
-        <a style={{ 'font-size': '10px', color: '#CCCAC1' }} href="https://goo.gl/forms/bG2mMbMNNrNiOjqt2">Não encontrou o que queria?</a>
+        <a
+          className="c-question-base__link-askquestion"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://goo.gl/forms/bG2mMbMNNrNiOjqt2"
+        >
+Não encontrou o que queria?
+        </a>
       </Col>
       {questions.map(question => (
         <Col sm={sm} xs="12" key={question.id} className="question-card">
