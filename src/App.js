@@ -65,14 +65,33 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.props = props;
+    this.state = {
+      width: window.innerWidth,
+    };
   }
 
-  render() {
+  componentWillMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+  }
+
+   // make sure to remove the listener
+  // when the component is not mounted anymore
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowSizeChange);
+  }
+
+  handleWindowSizeChange = () => {
+    this.setState({ width: window.innerWidth });
+  };
+
+  render() { 
     const { isOpenSidebar, isLoggedIn } = this.props;
+    const { width } = this.state;
+    const isMobile = width <= 989;
 
     return (
       <ConnectedRouter history={history}>
-        <div id="main-masteraula-container" className={isOpenSidebar ? 'container-open' : ''}>
+        <div id="main-masteraula-container" className={(isOpenSidebar && isMobile) ? 'container-open' : ''}>
           <MenuContainer />
           {isLoggedIn
             ? (

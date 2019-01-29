@@ -9,22 +9,33 @@ import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 import DocumentInfoSidebarContainer from 'containers/DocumentInfoSidebarContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import userPhoto from 'assets/img/home/avataruser3.png';
+
+const getUserName = (userName) => {
+  if (userName) {
+    return (userName.split(' '))[0];
+  }
+  return null;
+}
 
 const Menu = (props) => {
   const {
-    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument,
+    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument, user,
   } = props;
 
   const loggedOptions = (
     <Nav className="ml-auto hidden-xs" navbar>
-      <NavItem className="hidden">
-        <Link to="/question-base/1">
-          <FontAwesomeIcon
-            icon="home"
-          />
-          {' '}
-          Página Inicial
-        </Link>
+      <NavItem className="masteraula-nav-header__greeting">
+        <div className="masteraula-nav-header__user-avatar">
+          { user && user.profile_pic
+            ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
+            : <img src={userPhoto} alt="foto-usuario" />
+          }
+        </div>
+        Oi
+        {' '}
+        {user ? getUserName(user.name) : ''}
+        {'!'}
       </NavItem>
       <NavItem>
         <Link to="/user-profile">
@@ -34,7 +45,7 @@ const Menu = (props) => {
           {' '}
           Meu Perfil
         </Link>
-      </NavItem>
+      </NavItem> 
       <NavItem>
         <Link onClick={(e) => { e.preventDefault(); logout(); }} to="/">
           <FontAwesomeIcon
