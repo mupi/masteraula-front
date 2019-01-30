@@ -1,6 +1,15 @@
 //Classes for Question Base that holds all question cards results.
 .c-question-base{
 
+    &__link-askquestion{
+      font-size: 10px;
+      color: #CCCAC1;
+
+      &:hover{
+        color:$color-ma-blue;
+      }  
+    }
+
     &__search-text{
       padding: 0px 15px 15px 15px;
     }

@@ -1,17 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Row, Col, Alert,
+  Row, Col, Alert, Button,
   UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { history } from 'helpers/history';
+
 import CustomPagination from 'components/pagination/CustomPagination';
-import HeaderOptions from 'components/headers/HeaderOptions';
 import HeadersList from 'components/headers/HeadersList';
 
 import { ToastContainer } from 'react-toastify';
 import HomeUserPage from '../HomeUser/HomeUserPage';
 import 'react-toastify/dist/ReactToastify.css';
+
+const createNewHeader = (resetNewHeader) => {
+  history.replace('/new-header');
+  resetNewHeader();
+};
 
 const getOrderNameField = (text) => {
   switch (text) {
@@ -54,7 +62,20 @@ class MyHeadersPage extends React.Component {
     return (
       <HomeUserPage>
         <ToastContainer hideProgressBar position="bottom-right" />
-        <HeaderOptions resetNewHeader={resetNewHeader} />
+        <div className="c-my-headers__options">
+          <Row className="c-headers-options">
+            <Col sm="12" className="d-flex justify-content-end">
+              <div className="p-2">
+                <Link className="" to="/new-header">
+                  <Button onClick={() => createNewHeader(resetNewHeader)}>
+                    <FontAwesomeIcon icon="plus" className="btn__icon" />
+                    Criar novo cabeçalho
+                  </Button>
+                </Link>
+              </div>
+            </Col>
+          </Row>
+        </div>
 
         <div className="c-my-headers">
           <Row>
@@ -77,25 +98,23 @@ class MyHeadersPage extends React.Component {
                     {`Cabeçalhos encontrados: ${myHeadersList ? myHeadersList.count : 0}`}
                     {' '}
                   </p>
-                  <Row>
-                    <Col sm="12" className="d-flex justify-content-end">
-                      <div className="c-my-headers__dropdown-section">
-                        <span className="c-my-headers__order-label">
-                          Ordenar por:
-                        </span>
-                        <UncontrolledDropdown>
-                          <DropdownToggle className="c-my-headers__dropdown-toogle" caret size="sm">
-                            {' '}
-                            {' '}
-                            {getOrderNameField(orderField)}
-                            {' '}
-                            {' - '}
-                            {' '}
-                            {getOrderNameField(order)}
-                          </DropdownToggle>
-                          <DropdownMenu>
-                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'name', 'asc')}>
-                              Nome - Crescente
+                  <div className="c-my-headers__dropdown-section">
+                    <span className="c-my-headers__order-label">
+                      Ordenar por:
+                    </span>
+                    <UncontrolledDropdown>
+                      <DropdownToggle className="c-my-headers__dropdown-toogle" caret size="sm">
+                        {' '}
+                        {' '}
+                        {getOrderNameField(orderField)}
+                        {' '}
+                        {' - '}
+                        {' '}
+                        {getOrderNameField(order)}
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'name', 'asc')}>
+                          Nome - Crescente
                             </DropdownItem>
                             <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'name', 'desc')}>
                               Nome - Decrescente
@@ -124,8 +143,6 @@ class MyHeadersPage extends React.Component {
                           </DropdownMenu>
                         </UncontrolledDropdown>
                       </div>
-                    </Col>
-                  </Row>
                   {myHeadersList
                     && <HeadersList headers={myHeadersList.results} {...this.props} />
                   }
@@ -137,7 +154,6 @@ class MyHeadersPage extends React.Component {
       </HomeUserPage>);
   }
 }
-
 
 MyHeadersPage.propTypes = {
   match: PropTypes.shape({
