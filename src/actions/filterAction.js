@@ -202,8 +202,8 @@ export const removeSelectedSourceFilter = idSource => ({
 });
 
 // Add Selected Year filter
-export const addSelectedYearFilter = year => ({
-  type: ADD_SELECTED_YEAR_FILTER, year,
+export const addSelectedYearFilter = idYear => ({
+  type: ADD_SELECTED_YEAR_FILTER, idYear,
 });
 
 // Remove Selected Year filter
