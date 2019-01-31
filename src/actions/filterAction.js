@@ -10,6 +10,15 @@ export const LIST_TEACHINGLEVEL_FILTERS = 'LIST_TEACHINGLEVEL_FILTERS';
 export const LIST_TEACHINGLEVEL_FILTERS_SUCCESS = 'LIST_TEACHINGLEVEL_FILTERS_SUCCESS';
 export const LIST_TEACHINGLEVEL_FILTERS_FAILURE = 'LIST_TEACHINGLEVEL_FILTERS_FAILURE';
 
+// List Source Filters (UNICAMP, ENEM)
+export const LIST_SOURCE_FILTERS = 'LIST_SOURCE_FILTERS';
+export const LIST_SOURCE_FILTERS_SUCCESS = 'LIST_SOURCE_FILTERS_SUCCESS';
+export const LIST_SOURCE_FILTERS_FAILURE = 'LIST_SOURCE_FILTERS_FAILURE';
+
+// List Years Filters (2010, 2011)
+export const LIST_YEAR_FILTERS = 'LIST_YEAR_FILTERS';
+export const LIST_YEAR_FILTERS_SUCCESS = 'LIST_YEAR_FILTERS_SUCCESS';
+export const LIST_YEAR_FILTERS_FAILURE = 'LIST_YEAR_FILTERS_FAILURE';
 
 // Add selected discipline filter
 export const ADD_SELECTED_DISCIPLINE_FILTER = 'ADD_SELECTED_DISCIPLINE_FILTER';
@@ -23,11 +32,23 @@ export const ADD_SELECTED_TEACHINGLEVEL_FILTER = 'ADD_SELECTED_TEACHINGLEVEL_FIL
 // Remove selected teachingLevel filter
 export const REMOVE_SELECTED_TEACHINGLEVEL_FILTER = 'REMOVE_SELECTED_TEACHINGLEVEL_FILTER';
 
-// Add selected teachingLevel filter
+// Add selected difficulty filter
 export const ADD_SELECTED_DIFFICULTY_FILTER = 'ADD_SELECTED_DIFFICULTY_FILTER';
 
-// Remove selected teachingLevel filter
+// Remove selected difficulty filter
 export const REMOVE_SELECTED_DIFFICULTY_FILTER = 'REMOVE_SELECTED_DIFFICULTY_FILTER';
+
+// Add selected source filter
+export const ADD_SELECTED_SOURCE_FILTER = 'ADD_SELECTED_SOURCE_FILTER';
+
+// Remove selected source filter
+export const REMOVE_SELECTED_SOURCE_FILTER = 'REMOVE_SELECTED_SOURCE_FILTER';
+
+// Add selected year filter
+export const ADD_SELECTED_YEAR_FILTER = 'ADD_SELECTED_YEAR_FILTER';
+
+// Remove selected year filter
+export const REMOVE_SELECTED_YEAR_FILTER = 'REMOVE_SELECTED_YEAR_FILTER';
 
 // Remove selected teachingLevel filter
 export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
@@ -88,6 +109,58 @@ export const listTeachingLevelFilters = () => {
   };
 };
 
+// Source List
+export const listSourceFilters = () => {
+  function requestListSourceFilters() {
+    return { type: LIST_SOURCE_FILTERS };
+  }
+  function fetchListSourceFiltersSuccess(sourceFilters) {
+    return { type: LIST_SOURCE_FILTERS_SUCCESS, sourceFilters };
+  }
+  function fetchListSourceFiltersFailure(error) {
+    return { type: LIST_SOURCE_FILTERS_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    dispatch(requestListSourceFilters());
+    return filterService.listSourceFilters()
+      .then(
+        (sourceFilters) => {
+          dispatch(fetchListSourceFiltersSuccess(sourceFilters));
+        },
+        (error) => {
+          dispatch(fetchListSourceFiltersFailure(error));
+        },
+      );
+  };
+};
+
+// Year List
+export const listYearFilters = () => {
+  function requestListYearFilters() {
+    return { type: LIST_YEAR_FILTERS };
+  }
+  function fetchListYearFiltersSuccess(yearFilters) {
+    return { type: LIST_YEAR_FILTERS_SUCCESS, yearFilters };
+  }
+  function fetchListYearFiltersFailure(error) {
+    return { type: LIST_YEAR_FILTERS_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    dispatch(requestListYearFilters());
+    return filterService.listYearFilters()
+      .then(
+        (yearFilters) => {
+          dispatch(fetchListYearFiltersSuccess(yearFilters));
+        },
+        (error) => {
+          dispatch(fetchListYearFiltersFailure(error));
+        },
+      );
+  };
+};
+
 // Add Selected Discipline filter
 export const addSelectedDisciplineFilter = idDiscipline => ({
   type: ADD_SELECTED_DISCIPLINE_FILTER, idDiscipline,
@@ -118,6 +191,25 @@ export const removeSelectedDifficultyFilter = difficultyType => ({
   type: REMOVE_SELECTED_DIFFICULTY_FILTER, difficultyType,
 });
 
+// Add Selected Source filter
+export const addSelectedSourceFilter = idSource => ({
+  type: ADD_SELECTED_SOURCE_FILTER, idSource,
+});
+
+// Remove Selected Source filter
+export const removeSelectedSourceFilter = idSource => ({
+  type: REMOVE_SELECTED_SOURCE_FILTER, idSource,
+});
+
+// Add Selected Year filter
+export const addSelectedYearFilter = year => ({
+  type: ADD_SELECTED_YEAR_FILTER, year,
+});
+
+// Remove Selected Year filter
+export const removeSelectedYearFilter = year => ({
+  type: REMOVE_SELECTED_YEAR_FILTER, year,
+});
 
 export const setSearchText = searchText => ({
   type: SET_SEARCH_TEXT, searchText,
