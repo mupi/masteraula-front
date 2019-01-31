@@ -48,6 +48,18 @@ const toggleSelectedDifficultyFilter = (difficultyType, value) => {
     ? addSelectedDifficultyFilter(difficultyType) : removeSelectedDifficultyFilter(difficultyType);
 };
 
+const toggleSelectedSourceFilter = (idSource, value) => {
+  history.replace('/question-base/1');
+  return value
+    ? addSelectedSourceFilter(idSource) : removeSelectedSourceFilter(idSource);
+};
+
+const toggleSelectedYearFilter = (idYear, value) => {
+  history.replace('/question-base/1');
+  return value
+    ? addSelectedYearFilter(idYear) : removeSelectedYearFilter(idYear);
+};
+
 
 const mapDispatchToProps = dispatch => ({
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
@@ -58,6 +70,9 @@ const mapDispatchToProps = dispatch => ({
   toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
   toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
+  toggleSelectedSourceFilter: (idSource, value) => dispatch(toggleSelectedSourceFilter(idSource, value)),
+  toggleSelectedYearFilter: (idYear, value) => dispatch(toggleSelectedYearFilter(idYear, value)),
+
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
   clearFilters: () => dispatch(clearSelectedFilters()),
 });

@@ -105,14 +105,14 @@ class SidebarFilters extends Component {
           name="Fonte"
           filterList={sourceFilters}
           toggleFilter={toggleSelectedSourceFilter}
-          selected={filter.sourceSelected}
+          selected={filter.sourcesSelected}
         />
         <SidebarFilter
           id="5"
           name="Ano"
           filterList={yearFilters}
           toggleFilter={toggleSelectedYearFilter}
-          selected={filter.yearSelected}
+          selected={filter.yearsSelected}
         />
       </ListGroup>
     );

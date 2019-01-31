@@ -24,8 +24,13 @@ import {
 const initialState = {
   disciplineFilters: [],
   teachingLevelFilters: [],
+  sourceFilters: [],
+  yearFilters: [],
+
   disciplinesSelected: [],
   teachingLevelsSelected: [],
+  sourcesSelected: [],
+  yearsSelected: [],
   difficultiesSelected: [],
   difficultyFilters: [
     { id: 'E', name: 'Fácil' },
@@ -147,7 +152,7 @@ export const filter = (state = initialState, action) => {
       });
     }
     case REMOVE_SELECTED_SOURCE_FILTER: {
-      const newSources = state.sourcesSelected.filter(item => item.id !== action.idSource);
+      const newSources = state.sourcesSelected.filter(item => item.id !== parseInt(action.idSource, 10));
       return Object.assign({}, state, {
         sourcesSelected: newSources,
       });
@@ -160,7 +165,7 @@ export const filter = (state = initialState, action) => {
       });
     }
     case REMOVE_SELECTED_YEAR_FILTER: {
-      const newYears = state.yearsSelected.filter(item => item.id !== action.idYear);
+      const newYears = state.yearsSelected.filter(item => item.id !== parseInt(action.idYear, 10));
       return Object.assign({}, state, {
         yearsSelected: newYears,
       });
@@ -175,6 +180,8 @@ export const filter = (state = initialState, action) => {
         disciplinesSelected: [],
         teachingLevelsSelected: [],
         difficultiesSelected: [],
+        sourcesSelected: [],
+        yearsSelected: [],
       });
     }
     case CLEAR_SEARCH: {
