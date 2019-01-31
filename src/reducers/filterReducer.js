@@ -92,7 +92,7 @@ export const filter = (state = initialState, action) => {
       });
     case LIST_YEAR_FILTERS_SUCCESS:
       return Object.assign({}, state, {
-        yearFidlters: action.yearFilters,
+        yearFilters: action.yearFilters,
         isFetchingYearFilters: false,
       });
     case LIST_YEAR_FILTERS_FAILURE:

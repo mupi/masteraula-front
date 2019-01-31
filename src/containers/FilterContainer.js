@@ -4,10 +4,12 @@ import { history } from 'helpers/history';
 
 import SidebarFilters from 'components/sidebar/SidebarFilters';
 import {
-  listDisciplineFilters, listTeachingLevelFilters,
+  listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, listYearFilters,
   addSelectedDisciplineFilter, removeSelectedDisciplineFilter,
   addSelectedTeachingLevelFilter, removeSelectedTeachingLevelFilter,
   addSelectedDifficultyFilter, removeSelectedDifficultyFilter,
+  addSelectedSourceFilter, removeSelectedSourceFilter,
+  addSelectedYearFilter, removeSelectedYearFilter,
   clearSelectedFilters,
 } from 'actions/filterAction';
 
@@ -15,8 +17,13 @@ import {
 const mapStateToProps = state => ({
   disciplineFilters: state.filter.disciplineFilters,
   teachingLevelFilters: state.filter.teachingLevelFilters,
+  sourceFilters: state.filter.sourceFilters,
+  yearFilters: state.filter.yearFilters,
   isFetchingDisciplineFilters: state.filter.isFetchingDisciplineFilters,
   isFetchingTeachingLevelFilters: state.filter.isFetchingTeachingLevelFilters,
+  isFetchingSourceFilters: state.filter.isFetchingSourceFilters,
+  isFetchingYearFilters: state.filter.isFetchingYearFilters,
+
   filter: state.filter,
   questionPage: state.question.questionPage,
   currentPage: state.question.currentPage,
@@ -45,6 +52,9 @@ const toggleSelectedDifficultyFilter = (difficultyType, value) => {
 const mapDispatchToProps = dispatch => ({
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
   listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
+  listSourceFilters: param => dispatch(listSourceFilters(param)),
+  listYearFilters: param => dispatch(listYearFilters(param)),
+
   toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
   toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),

@@ -15,16 +15,22 @@ class SidebarFilters extends Component {
   componentDidMount() {
     this.props.listDisciplineFilters();
     this.props.listTeachingLevelFilters();
+    this.props.listSourceFilters();
+    this.props.listYearFilters();
   }
 
   render() {
     const {
-      disciplineFilters, teachingLevelFilters, isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, error,
-      toggleSelectedDisciplineFilter, toggleSelectedTeachingLevelFilter, toggleSelectedDifficultyFilter, filter,
+      disciplineFilters, teachingLevelFilters, sourceFilters, yearFilters,
+      isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, isFetchingSourceFilters, isFetchingYearFilters,
+      error,
+      toggleSelectedDisciplineFilter, toggleSelectedTeachingLevelFilter, toggleSelectedDifficultyFilter,
+      toggleSelectedSourceFilter, toggleSelectedYearFilter,
+      filter,
       clearFilters,
     } = this.props;
 
-    if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters) {
+    if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters || isFetchingSourceFilters || isFetchingYearFilters) {
       return (
         <ListGroup className="question-all-filters">
           <h6>
@@ -93,6 +99,20 @@ class SidebarFilters extends Component {
           filterList={filters.difficultyLevels}
           toggleFilter={toggleSelectedDifficultyFilter}
           selected={filter.difficultiesSelected}
+        />
+        <SidebarFilter
+          id="4"
+          name="Fonte"
+          filterList={sourceFilters}
+          toggleFilter={toggleSelectedSourceFilter}
+          selected={filter.sourceSelected}
+        />
+        <SidebarFilter
+          id="5"
+          name="Ano"
+          filterList={yearFilters}
+          toggleFilter={toggleSelectedYearFilter}
+          selected={filter.yearSelected}
         />
       </ListGroup>
     );
