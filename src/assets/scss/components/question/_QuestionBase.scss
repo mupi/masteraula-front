@@ -3,7 +3,7 @@
 
   &__link-askquestion{
     font-size: 10px;
-    color: #CCCAC1;
+    color: $color-ma-dark-gray;
 
     &:hover{
       color:$color-ma-blue;
@@ -39,6 +39,7 @@
     border-color: $color-ma-dark-gray;
     color: $color-ma-white;
     font-size:13px;
+    margin-bottom:3px;
 
     &.btn::after {
      /* content: "\f057";

@@ -37,8 +37,8 @@ function listQuestions(page, filter) {
   const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected.map(item => item.id) });
   const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
-  const sourcesParams = queryString.stringify({ sources: filter.sourcesSelected.map(item => item.id) });
-  const yearsParams = queryString.stringify({ years: filter.yearsSelected.map(item => item.id) });
+  const sourcesParams = queryString.stringify({ sources: filter.sourcesSelected.map(item => item.name) });
+  const yearsParams = queryString.stringify({ years: filter.yearsSelected.map(item => item.name) });
 
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
 
