@@ -42,7 +42,7 @@ function listQuestions(page, filter) {
 
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
 
-  const url = (search) ? `${apiUrl}/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`
+  const url = (search) ? `${apiUrl}/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`
     : `${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`;
 
   console.log(url);
