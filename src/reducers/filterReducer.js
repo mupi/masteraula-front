@@ -145,7 +145,7 @@ export const filter = (state = initialState, action) => {
       });
     }
     case ADD_SELECTED_SOURCE_FILTER: {
-      const filterSource = state.sourceFilters.filter(item => item.id === action.idSource);
+      const filterSource = state.sourceFilters.filter(item => item.id === parseInt(action.idSource, 10));
       if (state.sourcesSelected.filter(item => item.id === filterSource[0].id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
         sourcesSelected: [...state.sourcesSelected, filterSource[0]],
@@ -158,7 +158,7 @@ export const filter = (state = initialState, action) => {
       });
     }
     case ADD_SELECTED_YEAR_FILTER: {
-      const filterYear = state.yearFilters.filter(item => item.id === action.idYear);
+      const filterYear = state.yearFilters.filter(item => item.id === parseInt(action.idYear, 10));
       if (state.yearsSelected.filter(item => item.id === filterYear[0].id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
         yearsSelected: [...state.yearsSelected, filterYear[0]],

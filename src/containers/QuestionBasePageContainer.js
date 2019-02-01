@@ -5,6 +5,8 @@ import { toggleModal, addSelectedQuestion, removeSelectedQuestion } from 'action
 import {
   addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, removeSelectedDisciplineFilter,
   addSelectedDifficultyFilter, removeSelectedDifficultyFilter, removeSelectedTeachingLevelFilter,
+  addSelectedSourceFilter, removeSelectedSourceFilter,
+  addSelectedYearFilter, removeSelectedYearFilter,
 } from 'actions/filterAction';
 import { history } from 'helpers/history';
 
@@ -26,6 +28,17 @@ const toggleSelectedDifficultyFilter = (difficultyType, value) => {
   return value
     ? addSelectedDifficultyFilter(difficultyType) : removeSelectedDifficultyFilter(difficultyType);
 };
+const toggleSelectedSourceFilter = (idSource, value) => {
+  history.replace('/question-base/1');
+  return value
+    ? addSelectedSourceFilter(idSource) : removeSelectedSourceFilter(idSource);
+};
+
+const toggleSelectedYearFilter = (idYear, value) => {
+  history.replace('/question-base/1');
+  return value
+    ? addSelectedYearFilter(idYear) : removeSelectedYearFilter(idYear);
+};
 
 const mapStateToProps = state => ({
   isFetching: state.question.isFetching,
@@ -45,6 +58,9 @@ const mapDispatchToProps = dispatch => ({
   toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
   toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
+  toggleSelectedSourceFilter: (idSource, value) => dispatch(toggleSelectedSourceFilter(idSource, value)),
+  toggleSelectedYearFilter: (idYear, value) => dispatch(toggleSelectedYearFilter(idYear, value)),
+
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
 });
 

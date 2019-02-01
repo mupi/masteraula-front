@@ -207,8 +207,8 @@ export const addSelectedYearFilter = idYear => ({
 });
 
 // Remove Selected Year filter
-export const removeSelectedYearFilter = year => ({
-  type: REMOVE_SELECTED_YEAR_FILTER, year,
+export const removeSelectedYearFilter = idYear => ({
+  type: REMOVE_SELECTED_YEAR_FILTER, idYear,
 });
 
 export const setSearchText = searchText => ({

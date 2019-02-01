@@ -37,13 +37,6 @@ function listQuestions(page, filter) {
   const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected.map(item => item.id) });
   const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
-  console.log("hola 1");
-
-  console.log(filter.sourcesSelected);
-  console.log("hola 2");
-
-  console.log(filter.teachingLevelsSelected);
-
   const sourcesParams = queryString.stringify({ sources: filter.sourcesSelected.map(item => item.id) });
   const yearsParams = queryString.stringify({ years: filter.yearsSelected.map(item => item.id) });
 
@@ -52,6 +45,7 @@ function listQuestions(page, filter) {
   const url = (search) ? `${apiUrl}/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`
     : `${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`;
 
+  console.log(url);
   const handleResponse = response => response.json().then((data) => {
     if (!response.ok) {
       const error = (data && data.email);

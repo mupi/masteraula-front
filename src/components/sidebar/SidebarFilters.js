@@ -69,7 +69,8 @@ class SidebarFilters extends Component {
           {' Filtros'}
         </h6>
         {filter.disciplinesSelected.length > 0 || filter.teachingLevelsSelected.length > 0
-          || filter.difficultiesSelected.length > 0
+          || filter.difficultiesSelected.length > 0 || filter.sourcesSelected.length > 0
+          || filter.sourcesSelected.length > 0
           ? (
             <div className="l-question-all-filters__clear-button">
               <Button className="l-question-all-filters__clear-button--btn" onClick={clearFilters}>
