@@ -95,7 +95,7 @@ class QuestionBasePage extends React.Component {
                       </Button>
                     )),
                     filter.sourcesSelected.map(item => (
-                      <Button key={`S${item.id}`}id={item.id} onClick={clearSources} className="c-question-base__filter-selected">
+                      <Button key={`S${item.id}`} id={item.id} onClick={clearSources} className="c-question-base__filter-selected">
                         {item.name}
                         {' '}
                         x
