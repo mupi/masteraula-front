@@ -137,6 +137,9 @@ padding-right: 1em;
     margin-bottom: 0;
     background-color: rgba(0, 0, 0, 0.03);
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    @include for-desktop-up{
+      height:6em;
+    }
   }
 
   &__number-learning-obj{

@@ -20,7 +20,7 @@ Não encontrou o que queria?
         </a>
       </Col>
       {questions.map(question => (
-        <Col sm={sm} xs="12" key={question.id} className="question-card">
+        <Col sm={sm} lg="3" xs="12" key={question.id} className="question-card">
           <QuestionCard question={question} {...props} />
         </Col>
       ))}
