@@ -104,7 +104,7 @@ const validate = (values) => {
   } else {
     const trueName = values.name.trim();
     if (trueName.length < 3) {
-      errors.name = 'Seu nome precisa ter no mínimo 3 caracteres válidos.';
+      errors.name = 'Seu nome precisa ter no mínimo 3 caracteres';
     }
   }
 
