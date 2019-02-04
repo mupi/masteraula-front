@@ -21,10 +21,11 @@ const getQuoteSeparator = (i, length) => {
 
 const QuestionCard = (props) => {
   const {
-    question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter,
+    question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, addSelectedSourceFilter, addSelectedYearFilter,
     removeSelectedQuestion,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
+
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100 question-card__full'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }

@@ -37,11 +37,15 @@ function listQuestions(page, filter) {
   const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected.map(item => item.id) });
   const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
+  const sourcesParams = queryString.stringify({ sources: filter.sourcesSelected.map(item => item.name) });
+  const yearsParams = queryString.stringify({ years: filter.yearsSelected.map(item => item.name) });
+
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
 
-  const url = (search) ? `${apiUrl}/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`
-    : `${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}`;
+  const url = (search) ? `${apiUrl}/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`
+    : `${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`;
 
+  console.log(url);
   const handleResponse = response => response.json().then((data) => {
     if (!response.ok) {
       const error = (data && data.email);

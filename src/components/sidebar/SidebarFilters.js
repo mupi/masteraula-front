@@ -15,16 +15,22 @@ class SidebarFilters extends Component {
   componentDidMount() {
     this.props.listDisciplineFilters();
     this.props.listTeachingLevelFilters();
+    this.props.listSourceFilters();
+    this.props.listYearFilters();
   }
 
   render() {
     const {
-      disciplineFilters, teachingLevelFilters, isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, error,
-      toggleSelectedDisciplineFilter, toggleSelectedTeachingLevelFilter, toggleSelectedDifficultyFilter, filter,
+      disciplineFilters, teachingLevelFilters, sourceFilters, yearFilters,
+      isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, isFetchingSourceFilters, isFetchingYearFilters,
+      error,
+      toggleSelectedDisciplineFilter, toggleSelectedTeachingLevelFilter, toggleSelectedDifficultyFilter,
+      toggleSelectedSourceFilter, toggleSelectedYearFilter,
+      filter,
       clearFilters,
     } = this.props;
 
-    if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters) {
+    if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters || isFetchingSourceFilters || isFetchingYearFilters) {
       return (
         <ListGroup className="question-all-filters">
           <h6>
@@ -63,7 +69,8 @@ class SidebarFilters extends Component {
           {' Filtros'}
         </h6>
         {filter.disciplinesSelected.length > 0 || filter.teachingLevelsSelected.length > 0
-          || filter.difficultiesSelected.length > 0
+          || filter.difficultiesSelected.length > 0 || filter.sourcesSelected.length > 0
+          || filter.sourcesSelected.length > 0
           ? (
             <div className="l-question-all-filters__clear-button">
               <Button className="l-question-all-filters__clear-button--btn" onClick={clearFilters}>
@@ -93,6 +100,20 @@ class SidebarFilters extends Component {
           filterList={filters.difficultyLevels}
           toggleFilter={toggleSelectedDifficultyFilter}
           selected={filter.difficultiesSelected}
+        />
+        <SidebarFilter
+          id="4"
+          name="Fonte"
+          filterList={sourceFilters}
+          toggleFilter={toggleSelectedSourceFilter}
+          selected={filter.sourcesSelected}
+        />
+        <SidebarFilter
+          id="5"
+          name="Ano"
+          filterList={yearFilters}
+          toggleFilter={toggleSelectedYearFilter}
+          selected={filter.yearsSelected}
         />
       </ListGroup>
     );

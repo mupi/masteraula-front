@@ -28,7 +28,7 @@ class QuestionBasePage extends React.Component {
   render() {
     const {
       questionPage, isFetching, error, filter, toggleSelectedDisciplineFilter, toggleSelectedDifficultyFilter,
-      toggleSelectedTeachingLevelFilter,
+      toggleSelectedTeachingLevelFilter, toggleSelectedSourceFilter, toggleSelectedYearFilter,
     } = this.props;
     if (error) {
       return (
@@ -52,12 +52,21 @@ class QuestionBasePage extends React.Component {
       toggleSelectedTeachingLevelFilter(event.target.id, false);
     }
 
+    function clearSources(event) {
+      toggleSelectedSourceFilter(event.target.id, false);
+    }
+
+
+    function clearYears(event) {
+      toggleSelectedYearFilter(event.target.id, false);
+    }
+
     return (
       <HomeUserPage showFilters>
         <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-question-base">
           <QuestionSearchFormContainer />
-          {(filter.disciplinesSelected.length > 0) || (filter.difficultiesSelected.length > 0) || (filter.teachingLevelsSelected.length > 0) ? (
+          {(filter.disciplinesSelected.length > 0) || (filter.difficultiesSelected.length > 0) || (filter.teachingLevelsSelected.length > 0) || (filter.sourcesSelected.length > 0) || (filter.yearsSelected.length > 0)  ? (
             <Row>
               <Col sm="12">
                 <p className="c-question-base__keywords-title">
@@ -65,21 +74,35 @@ class QuestionBasePage extends React.Component {
                     Filtros selecionados:
                   </span>
                   {filter.disciplinesSelected.map(item => (
-                    <Button key={item.id} id={item.id} onClick={clearDisciplines} className="c-question-base__filter-selected">
+                    <Button key={`DI${item.id}`} id={item.id} onClick={clearDisciplines} className="c-question-base__filter-selected">
                       {item.name}
                       {' '}
                       x
                     </Button>
                   )).concat(
                     filter.difficultiesSelected.map(item => (
-                      <Button key={item.id} id={item.id} onClick={clearDifficulties} className="c-question-base__filter-selected">
+                      <Button key={`DF${item.id}`} id={item.id} onClick={clearDifficulties} className="c-question-base__filter-selected">
                         {item.name}
                         {' '}
                         x
                       </Button>
                     )),
                     filter.teachingLevelsSelected.map(item => (
-                      <Button key={item.id} id={item.id} onClick={clearTeachingLevel} className="c-question-base__filter-selected">
+                      <Button key={`TL${item.id}`} id={item.id} onClick={clearTeachingLevel} className="c-question-base__filter-selected">
+                        {item.name}
+                        {' '}
+                        x
+                      </Button>
+                    )),
+                    filter.sourcesSelected.map(item => (
+                      <Button key={`S${item.id}`} id={item.id} onClick={clearSources} className="c-question-base__filter-selected">
+                        {item.name}
+                        {' '}
+                        x
+                      </Button>
+                    )),
+                    filter.yearsSelected.map(item => (
+                      <Button key={`Y${item.id}`} id={item.id} onClick={clearYears} className="c-question-base__filter-selected">
                         {item.name}
                         {' '}
                         x
