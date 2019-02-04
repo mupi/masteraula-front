@@ -61,9 +61,9 @@ const QuestionCard = (props) => {
               {' | '}
             </span>
           ) : ''}
-          {question.source}
+          <a href="#">{question.source}</a>
           {' '}
-          {question.year}
+          <a href="#">{question.year}</a>
           <span className="question-card__more-info--lightgray">
             {' | '}
           </span>
