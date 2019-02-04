@@ -19,27 +19,12 @@ const getQuoteSeparator = (i, length) => {
   return '';
 };
 
-const getIdFilter = (name, filters) => {
-  let i = 0;
-  for (i = 0; i < filters.length; i++) {
-    if (filters[i].name === name) return filters[i].id;
-  }
-  return -1;
-};
-
-const handleClickAddFilter = (e, addFilter, id) => {
-  e.preventDefault();
-  addFilter(id);
-}
-
 const QuestionCard = (props) => {
   const {
     question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, addSelectedSourceFilter, addSelectedYearFilter,
     removeSelectedQuestion, filter,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
-  const sourceQuestion = getIdFilter(question.source, filter.sourceFilters);
-  const yearQuestion = getIdFilter(question.year.toString(), filter.yearFilters);
 
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100 question-card__full'}>
@@ -76,10 +61,8 @@ const QuestionCard = (props) => {
               {' | '}
             </span>
           ) : ''}
-          <a href="#" className="hidden" onClick={(e)=>handleClickAddFilter(e, addSelectedSourceFilter, sourceQuestion.toString())}>{question.source}</a>
           {question.source}
           {' '}
-          <a href="#" className="hidden"  onClick={(e)=>handleClickAddFilter(e, addSelectedYearFilter, yearQuestion.toString())}>{question.year}</a>
           {question.year}
           <span className="question-card__more-info--lightgray">
             {' | '}
