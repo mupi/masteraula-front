@@ -22,7 +22,7 @@ const getQuoteSeparator = (i, length) => {
 const QuestionCard = (props) => {
   const {
     question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, addSelectedSourceFilter, addSelectedYearFilter,
-    removeSelectedQuestion, filter,
+    removeSelectedQuestion,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
 
