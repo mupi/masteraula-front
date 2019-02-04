@@ -38,7 +38,8 @@ const QuestionCard = (props) => {
               className="question-card__info-section-item question-card__info-section-item--pink"
               onClick={() => addSelectedDisciplineFilter(discipline.id.toString())}
             >
-              {discipline.name}
+              <span className="question-card__info-section--complete">{discipline.name}</span>
+              <span className="question-card__info-section--substring">{discipline.name.substring(0 , 3).toUpperCase()}</span>
             </Button>
           ))}
           {question.teaching_levels && question.teaching_levels.map(teachingLevel => (

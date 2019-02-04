@@ -157,6 +157,34 @@ padding-right: 1em;
     top: -10px;
   }
 
+  &__info-section--complete{
+    @include for-phone-only{
+      display: block !important;
+    }
+
+    @include for-desktop-up-1455{
+      display: block;
+    }
+
+    @include for-desktop-bottom-1455{
+      display: none;
+    }
+  }
+
+  &__info-section--substring{
+    @include for-phone-only{
+      display: none !important;
+    }
+
+    @include for-desktop-up-1455{
+      display: none;
+    }
+
+    @include for-desktop-bottom-1455{
+      display: block;
+    }
+  }
+
   &__info-section-item--italic{
     font-style: italic;
   }
