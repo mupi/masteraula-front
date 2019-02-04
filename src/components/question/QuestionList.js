@@ -16,7 +16,7 @@ const QuestionList = (props) => {
           rel="noopener noreferrer"
           href="https://goo.gl/forms/bG2mMbMNNrNiOjqt2"
         >
-Não encontrou o que queria?
+          Não encontrou o que queria?
         </a>
       </Col>
       {questions.map(question => (

@@ -3,12 +3,20 @@ import {
   LIST_DISCIPLINE_FILTERS_SUCCESS, LIST_DISCIPLINE_FILTERS_FAILURE,
   LIST_TEACHINGLEVEL_FILTERS,
   LIST_TEACHINGLEVEL_FILTERS_SUCCESS, LIST_TEACHINGLEVEL_FILTERS_FAILURE,
+  LIST_SOURCE_FILTERS,
+  LIST_SOURCE_FILTERS_SUCCESS, LIST_SOURCE_FILTERS_FAILURE,
+  LIST_YEAR_FILTERS,
+  LIST_YEAR_FILTERS_SUCCESS, LIST_YEAR_FILTERS_FAILURE,
   ADD_SELECTED_DISCIPLINE_FILTER,
   REMOVE_SELECTED_DISCIPLINE_FILTER,
   ADD_SELECTED_TEACHINGLEVEL_FILTER,
   REMOVE_SELECTED_TEACHINGLEVEL_FILTER,
   ADD_SELECTED_DIFFICULTY_FILTER,
   REMOVE_SELECTED_DIFFICULTY_FILTER,
+  ADD_SELECTED_SOURCE_FILTER,
+  REMOVE_SELECTED_SOURCE_FILTER,
+  ADD_SELECTED_YEAR_FILTER,
+  REMOVE_SELECTED_YEAR_FILTER,
   SET_SEARCH_TEXT,
   CLEAR_SELECTED_FILTERS, CLEAR_SEARCH,
 } from 'actions/filterAction';
@@ -16,8 +24,13 @@ import {
 const initialState = {
   disciplineFilters: [],
   teachingLevelFilters: [],
+  sourceFilters: [],
+  yearFilters: [],
+
   disciplinesSelected: [],
   teachingLevelsSelected: [],
+  sourcesSelected: [],
+  yearsSelected: [],
   difficultiesSelected: [],
   difficultyFilters: [
     { id: 'E', name: 'Fácil' },
@@ -60,6 +73,38 @@ export const filter = (state = initialState, action) => {
         isFetchingTeachingLevelFilters: false,
         error: action.error,
       });
+    case LIST_SOURCE_FILTERS:
+      return Object.assign({}, state, {
+        sourceFilters: action.sourceFilters,
+        isFetchingSourceFilters: true,
+        error: null,
+      });
+    case LIST_SOURCE_FILTERS_SUCCESS:
+      return Object.assign({}, state, {
+        sourceFilters: action.sourceFilters,
+        isFetchingSourceFilters: false,
+      });
+    case LIST_SOURCE_FILTERS_FAILURE:
+      return Object.assign({}, state, {
+        isFetchingSourceFilters: false,
+        error: action.error,
+      });
+    case LIST_YEAR_FILTERS:
+      return Object.assign({}, state, {
+        yearFilters: action.yearFilters,
+        isFetchingYearFilters: true,
+        error: null,
+      });
+    case LIST_YEAR_FILTERS_SUCCESS:
+      return Object.assign({}, state, {
+        yearFilters: action.yearFilters,
+        isFetchingYearFilters: false,
+      });
+    case LIST_YEAR_FILTERS_FAILURE:
+      return Object.assign({}, state, {
+        isFetchingYearFilters: false,
+        error: action.error,
+      });
     case ADD_SELECTED_DISCIPLINE_FILTER: {
       const filterDiscipline = state.disciplineFilters.filter(item => item.id === parseInt(action.idDiscipline, 10));
       if (state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) return state; // do not add duplicates
@@ -99,6 +144,32 @@ export const filter = (state = initialState, action) => {
         difficultiesSelected: newDifficulties,
       });
     }
+    case ADD_SELECTED_SOURCE_FILTER: {
+      const filterSource = state.sourceFilters.filter(item => item.id === parseInt(action.idSource, 10));
+      if (state.sourcesSelected.filter(item => item.id === filterSource[0].id).length > 0) return state; // do not add duplicates
+      return Object.assign({}, state, {
+        sourcesSelected: [...state.sourcesSelected, filterSource[0]],
+      });
+    }
+    case REMOVE_SELECTED_SOURCE_FILTER: {
+      const newSources = state.sourcesSelected.filter(item => item.id !== parseInt(action.idSource, 10));
+      return Object.assign({}, state, {
+        sourcesSelected: newSources,
+      });
+    }
+    case ADD_SELECTED_YEAR_FILTER: {
+      const filterYear = state.yearFilters.filter(item => item.id === parseInt(action.idYear, 10));
+      if (state.yearsSelected.filter(item => item.id === filterYear[0].id).length > 0) return state; // do not add duplicates
+      return Object.assign({}, state, {
+        yearsSelected: [...state.yearsSelected, filterYear[0]],
+      });
+    }
+    case REMOVE_SELECTED_YEAR_FILTER: {
+      const newYears = state.yearsSelected.filter(item => item.id !== parseInt(action.idYear, 10));
+      return Object.assign({}, state, {
+        yearsSelected: newYears,
+      });
+    }
     case SET_SEARCH_TEXT: {
       return Object.assign({}, state, {
         searchText: action.searchText,
@@ -109,6 +180,8 @@ export const filter = (state = initialState, action) => {
         disciplinesSelected: [],
         teachingLevelsSelected: [],
         difficultiesSelected: [],
+        sourcesSelected: [],
+        yearsSelected: [],
       });
     }
     case CLEAR_SEARCH: {

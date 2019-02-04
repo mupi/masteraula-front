@@ -5,6 +5,8 @@ import { toggleModal, addSelectedQuestion, removeSelectedQuestion } from 'action
 import {
   addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, removeSelectedDisciplineFilter,
   addSelectedDifficultyFilter, removeSelectedDifficultyFilter, removeSelectedTeachingLevelFilter,
+  addSelectedSourceFilter, removeSelectedSourceFilter,
+  addSelectedYearFilter, removeSelectedYearFilter,
 } from 'actions/filterAction';
 import { history } from 'helpers/history';
 
@@ -26,6 +28,17 @@ const toggleSelectedDifficultyFilter = (difficultyType, value) => {
   return value
     ? addSelectedDifficultyFilter(difficultyType) : removeSelectedDifficultyFilter(difficultyType);
 };
+const toggleSelectedSourceFilter = (idSource, value) => {
+  history.replace('/question-base/1');
+  return value
+    ? addSelectedSourceFilter(idSource) : removeSelectedSourceFilter(idSource);
+};
+
+const toggleSelectedYearFilter = (idYear, value) => {
+  history.replace('/question-base/1');
+  return value
+    ? addSelectedYearFilter(idYear) : removeSelectedYearFilter(idYear);
+};
 
 const mapStateToProps = state => ({
   isFetching: state.question.isFetching,
@@ -34,7 +47,7 @@ const mapStateToProps = state => ({
   filter: state.filter,
   modal: state.document.modal,
   activeDocument: state.document.activeDocument,
-});
+}); 
 
 const mapDispatchToProps = dispatch => ({
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
@@ -42,9 +55,15 @@ const mapDispatchToProps = dispatch => ({
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(addSelectedTeachingLevelFilter(idTeachingLevel)),
+  addSelectedSourceFilter: idSource => dispatch(addSelectedSourceFilter(idSource)),
+  addSelectedYearFilter: idYear => dispatch(addSelectedYearFilter(idYear)),
+
   toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
   toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
+  toggleSelectedSourceFilter: (idSource, value) => dispatch(toggleSelectedSourceFilter(idSource, value)),
+  toggleSelectedYearFilter: (idYear, value) => dispatch(toggleSelectedYearFilter(idYear, value)),
+
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
 });
 
