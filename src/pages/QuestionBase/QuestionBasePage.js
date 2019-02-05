@@ -112,7 +112,7 @@ class QuestionBasePage extends React.Component {
                 </p>
               </Col>
             </Row>) : ''
-      }
+      } 
 
 
           <Row className="pagination-questions" style={{ marginLeft: '80%' }}>
@@ -124,7 +124,7 @@ class QuestionBasePage extends React.Component {
                   Carregando ...
               </Alert>
             ) : (
-              <QuestionList sm="3" {...this.props} questions={questionPage.results} count={questionPage.count} />
+              <QuestionList sm="4" {...this.props} questions={questionPage.results} count={questionPage.count} />
             )
             }
           </div>

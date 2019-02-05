@@ -70,6 +70,33 @@
   //margin-top: 5px; 
 }
 
+/* mixin for multiline */
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white){
+overflow: hidden;
+position: relative;
+line-height: $lineHeight;
+max-height: $lineHeight * $lineCount; 
+text-align: justify;
+margin-right: -1em;
+padding-right: 1em;
+&:before {
+  content: '...';
+  position: absolute;
+  right: 1px;
+  bottom: 0;
+}
+&:after {
+  content: '';
+  position: absolute;
+  right: 2px;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: $bgColor;
+}
+}
+
+
 .question-card {
   margin-bottom: 20px;
   padding: 12px 12px;
@@ -111,6 +138,11 @@
     margin-bottom: 0;
     background-color: rgba(0, 0, 0, 0.03);
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+   
+    @include for-tablet-portrait-up{
+      height:6em;
+    }
+
   }
 
   &__number-learning-obj{
@@ -123,6 +155,34 @@
     position: absolute;
     right: 5px;
     top: -10px;
+  }
+
+  &__info-section--complete{
+    @include for-phone-only{
+      display: block !important;
+    }
+
+    @include for-desktop-up-1455{
+      display: block;
+    }
+
+    @include for-desktop-bottom-1455{
+      display: none;
+    }
+  }
+
+  &__info-section--substring{
+    @include for-phone-only{
+      display: none !important;
+    }
+
+    @include for-desktop-up-1455{
+      display: none;
+    }
+
+    @include for-desktop-bottom-1455{
+      display: block;
+    }
   }
 
   &__info-section-item--italic{
@@ -159,10 +219,13 @@
   &__more-info{
     font-size: 12px;
     margin-bottom: 5px;
-
+    @include multiLineEllipsis($lineHeight: 1.5em, $lineCount: 2, $bgColor:rgb(247, 247, 247));  
+    
     &--lightgray{
       color:$color-ma-lightgray;
     }
+
+
   }
 
   &__extract{
