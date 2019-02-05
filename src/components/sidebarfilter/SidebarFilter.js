@@ -18,7 +18,10 @@ const SidebarFilter = ({
     <ListGroupItem className="c-filters">
       <div className="c-filters__question-category-filter">
         {name}
-        <Button id={`toggler${id}`} className="c-filters__question-category-filter-icon" color="light"><FontAwesomeIcon icon="angle-left" /></Button>
+        <Button id={`toggler${id}`} className="c-filters__question-category-filter-icon" color="light">
+          <FontAwesomeIcon icon="angle-left" />
+          <FontAwesomeIcon className="hidden" icon="angle-down" />
+        </Button>
       </div>
       <UncontrolledCollapse toggler={id ? `#toggler${id}` : ''}>
         <ListGroup className="c-filters__question-group-filters">

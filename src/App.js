@@ -41,7 +41,8 @@ import {
   faBars,
   faPlus, faMinus,
   faUser, faHome, faSignOutAlt, faUserCircle,
-  faSearch, faFolder, faFileAlt, faFilter, faAngleLeft,
+  faSearch, faFolder, faFileAlt, faFilter, 
+  faAngleLeft, faAngleDown,
   faImage, faCheck, faCheckCircle,
   faThumbsUp,
   faArrowCircleLeft,
@@ -56,7 +57,7 @@ import ModalRoot from './ModalRoot';
 
 library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile, faPencilAlt, faSyncAlt, faBars,
   faUser, faHome, faSignOutAlt, faUserCircle, faSearch, faFolder, faFileAlt, faFilter, faTrashAlt,
-  faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft,
+  faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft, faAngleDown,
   faArrowCircleLeft,
   faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
   faTimesCircle, faEye, faCopy);
