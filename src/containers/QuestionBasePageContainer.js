@@ -47,7 +47,9 @@ const mapStateToProps = state => ({
   filter: state.filter,
   modal: state.document.modal,
   activeDocument: state.document.activeDocument,
-}); 
+  sourceFilters: state.filter.sourceFilters,
+  yearFilters: state.filter.yearFilters,
+});
 
 const mapDispatchToProps = dispatch => ({
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),

@@ -12,6 +12,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionAuthor from './QuestionAuthor';
 
 
+const getIdFilter = (list, name) =>{
+  const obj = list.filter(item => item.name.toString().trim() === name.toString().trim());
+  if (obj.length > 0) return obj[0].id;
+  return -1;
+};
+
+const handleClick = (e, addSelectedSourceFilter, id) => {
+  e.preventDefault();
+  addSelectedSourceFilter(id);
+};
+
 const getQuoteSeparator = (i, length) => {
   if (i !== length - 1) {
     return ', ';
@@ -22,10 +33,12 @@ const getQuoteSeparator = (i, length) => {
 const QuestionCard = (props) => {
   const {
     question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, addSelectedSourceFilter, addSelectedYearFilter,
-    removeSelectedQuestion,
+    removeSelectedQuestion, sourceFilters, yearFilters,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
-
+  const idSource = getIdFilter(sourceFilters, question.source );
+  const idYear = getIdFilter(yearFilters, question.year );
+  
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100 question-card__full'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
@@ -63,9 +76,9 @@ const QuestionCard = (props) => {
               {' | '}
             </span>
           ) : ''}
-          {question.source}
+          <a href="#" onClick={(e=>handleClick(e,addSelectedSourceFilter, idSource ))}>{question.source}</a>
           {' '}
-          {question.year}
+          <a href="#" onClick={(e=>handleClick(e,addSelectedYearFilter, idYear ))}>{question.year}</a>
           <span className="question-card__more-info--lightgray">
             {' | '}
           </span>
