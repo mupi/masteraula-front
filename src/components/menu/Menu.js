@@ -32,10 +32,13 @@ const Menu = (props) => {
             : <img src={userPhoto} alt="foto-usuario" />
           }
         </div>
-        Oi
-        {' '}
-        {user ? getUserName(user.name) : ''}
-        {'!'}
+        <span className="masteraula-nav-header__icon-option">
+          {' '}
+          Oi
+          {' '}
+          {user ? getUserName(user.name) : ''}
+          {'!'}
+        </span>
       </NavItem>
       <NavItem>
         <Link to="/user-profile">
@@ -43,7 +46,7 @@ const Menu = (props) => {
             icon="user"
           />
           {' '}
-          Meu Perfil
+          <span className="masteraula-nav-header__icon-option">Meu Perfil</span>
         </Link>
       </NavItem> 
       <NavItem>
@@ -52,7 +55,7 @@ const Menu = (props) => {
             icon="sign-out-alt"
           />
           {' '}
-          Sair
+          <span className="masteraula-nav-header__icon-option">Sair</span>
         </Link>
       </NavItem>
     </Nav>

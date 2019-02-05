@@ -126,7 +126,7 @@ class DocumentInfoSidebar extends React.Component {
         <div className="menu-top__document-l-buttons hidden-xs">
           <p className="menu-top__document-questions  btn__icon">
             <small className="menu-top__document-message">
-              Questões:
+              Q<span className="masteraula-nav-header__icon-option">uestões</span>:
               {' '}
               <span className="menu-top__document-number-questions">
                 <strong>
