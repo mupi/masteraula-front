@@ -80,9 +80,10 @@ const QuestionCard = (props) => {
               {' | '}
             </span>
           ) : ''}
-          <a href="#" onClick={(e=>handleClick(e,addSelectedSourceFilter, idSource, question.source.toString().trim() ))}>{question.source}</a>
+          <button type="button" className="question-card__filter-link btn btn-link" onClick={(e => handleClick(e, addSelectedSourceFilter, idSource, question.source.toString().trim()))}>{question.source}</button>
           {' '}
-          <a href="#" onClick={(e=>handleClick(e,addSelectedYearFilter, idYear, question.year.toString().trim() ))}>{question.year}</a>
+          <button type="button" className="question-card__filter-link btn btn-link" onClick={(e => handleClick(e, addSelectedYearFilter, idYear, question.year.toString().trim()))}>{question.year}</button>
+
           <span className="question-card__more-info--lightgray">
             {' | '}
           </span>

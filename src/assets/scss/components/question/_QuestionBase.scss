@@ -149,6 +149,21 @@ padding-right: 1em;
     
   }
 
+  &__filter-link{
+    background:transparent;
+    border:none;
+    padding:0px;
+    font-size: 12px;
+    color:#212529;
+
+    &:hover{
+      background:transparent;
+      //font-weight: bold;
+      color:#212529;
+      text-decoration: underline;
+    }
+  }
+
   &__pin{
     color: $color-ma-blue;
     font-size: 25px;
