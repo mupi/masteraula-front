@@ -57,8 +57,8 @@ const mapDispatchToProps = dispatch => ({
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(addSelectedTeachingLevelFilter(idTeachingLevel)),
-  addSelectedSourceFilter: idSource => dispatch(addSelectedSourceFilter(idSource)),
-  addSelectedYearFilter: idYear => dispatch(addSelectedYearFilter(idYear)),
+  addSelectedSourceFilter: (idSource, nameSource) => dispatch(addSelectedSourceFilter(idSource, nameSource)),
+  addSelectedYearFilter: (idYear, nameYear) => dispatch(addSelectedYearFilter(idYear, nameYear)),
 
   toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
