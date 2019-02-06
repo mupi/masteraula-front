@@ -28,13 +28,13 @@ const toggleSelectedDifficultyFilter = (difficultyType, value) => {
   return value
     ? addSelectedDifficultyFilter(difficultyType) : removeSelectedDifficultyFilter(difficultyType);
 };
-const toggleSelectedSourceFilter = (idSource, nameSource = 'default', value) => {
+const toggleSelectedSourceFilter = (idSource, value, nameSource = 'default') => {
   history.replace('/question-base/1');
   return value
     ? addSelectedSourceFilter(idSource, nameSource) : removeSelectedSourceFilter(idSource);
 };
 
-const toggleSelectedYearFilter = (idYear, nameYear = 'default', value) => {
+const toggleSelectedYearFilter = (idYear, value, nameYear = 'default') => {
   history.replace('/question-base/1');
   return value
     ? addSelectedYearFilter(idYear, nameYear) : removeSelectedYearFilter(idYear);
@@ -58,8 +58,8 @@ const mapDispatchToProps = dispatch => ({
 
   addSelectedDisciplineFilter: idDiscipline => dispatch(toggleSelectedDisciplineFilter(idDiscipline, true)),
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),
-  addSelectedSourceFilter: (idSource, nameSource) => dispatch(toggleSelectedSourceFilter(idSource, nameSource, true)),
-  addSelectedYearFilter: (idYear, nameYear) => dispatch(toggleSelectedYearFilter(idYear, nameYear, true)),
+  addSelectedSourceFilter: (idSource, nameSource) => dispatch(toggleSelectedSourceFilter(idSource, true, nameSource)),
+  addSelectedYearFilter: (idYear, nameYear) => dispatch(toggleSelectedYearFilter(idYear, true, nameYear)),
 
   toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
