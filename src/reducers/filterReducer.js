@@ -145,27 +145,46 @@ export const filter = (state = initialState, action) => {
       });
     }
     case ADD_SELECTED_SOURCE_FILTER: {
-      const filterSource = state.sourceFilters.filter(item => item.id === parseInt(action.idSource, 10));
-      if (state.sourcesSelected.filter(item => item.id === filterSource[0].id).length > 0) return state; // do not add duplicates
-      return Object.assign({}, state, {
-        sourcesSelected: [...state.sourcesSelected, filterSource[0]],
-      });
+      if (parseInt(action.idSource, 10) !== -1) {
+        const filterSource = state.sourceFilters.filter(item => item.id === parseInt(action.idSource, 10));
+        if (state.sourcesSelected.filter(item => item.id === filterSource[0].id).length > 0) return state; // do not add duplicates
+        return Object.assign({}, state, {
+          sourcesSelected: [...state.sourcesSelected, filterSource[0]],
+        });
+      }
+
+      if (state.sourcesSelected.filter(item => item.name === action.nameSource).length > 0) return state; // do not add duplicates
+        const newSource = { id: action.nameSource, name: action.nameSource };
+        return Object.assign({}, state, {
+          sourcesSelected: [...state.sourcesSelected, newSource],
+        });
+      
     }
     case REMOVE_SELECTED_SOURCE_FILTER: {
-      const newSources = state.sourcesSelected.filter(item => item.id !== parseInt(action.idSource, 10));
+      const newSources = state.sourcesSelected.filter(item => item.id.toString() !== action.idSource.toString());
       return Object.assign({}, state, {
         sourcesSelected: newSources,
       });
+
+
     }
     case ADD_SELECTED_YEAR_FILTER: {
-      const filterYear = state.yearFilters.filter(item => item.id === parseInt(action.idYear, 10));
-      if (state.yearsSelected.filter(item => item.id === filterYear[0].id).length > 0) return state; // do not add duplicates
+      if (parseInt(action.idYear, 10) !== -1) {
+        const filterYear = state.yearFilters.filter(item => item.id === parseInt(action.idYear, 10));
+        if (state.yearsSelected.filter(item => item.id === filterYear[0].id).length > 0) return state; // do not add duplicates
+        return Object.assign({}, state, {
+          yearsSelected: [...state.yearsSelected, filterYear[0]],
+        });
+      }
+
+      if (state.yearsSelected.filter(item => item.name === action.nameYear).length > 0) return state; // do not add duplicates
+      const newYear = { id: action.nameYear, name: action.nameYear };
       return Object.assign({}, state, {
-        yearsSelected: [...state.yearsSelected, filterYear[0]],
+        yearsSelected: [...state.yearsSelected, newYear],
       });
     }
     case REMOVE_SELECTED_YEAR_FILTER: {
-      const newYears = state.yearsSelected.filter(item => item.id !== parseInt(action.idYear, 10));
+      const newYears = state.yearsSelected.filter(item => item.id.toString() !== action.idYear);
       return Object.assign({}, state, {
         yearsSelected: newYears,
       });

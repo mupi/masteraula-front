@@ -141,12 +141,28 @@ padding-right: 1em;
    
     @include for-tablet-portrait-up{
       height:6em;
+      overflow: hidden;
     }
 
   }
 
   &__number-learning-obj{
     
+  }
+
+  &__filter-link{
+    background:transparent;
+    border:none;
+    padding:0px;
+    font-size: 12px;
+    color:$color-ma-blue;
+
+    &:hover{
+      background:transparent;
+      //font-weight: bold;
+      color: $color-ma-blue;
+      text-decoration: underline;
+    }
   }
 
   &__pin{

@@ -206,8 +206,8 @@ class Sidebar extends Component {
       showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu,
     } = this.props;
 
-    const { width } = this.state;
-    const isMobile = width <= 989;
+    //const { width } = this.state;
+    //const isMobile = width <= 989;
 
     const responsiveMode = window.matchMedia('(max-width: 989px)');
     if (responsiveMode.matches) {

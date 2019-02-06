@@ -192,8 +192,8 @@ export const removeSelectedDifficultyFilter = difficultyType => ({
 });
 
 // Add Selected Source filter
-export const addSelectedSourceFilter = idSource => ({
-  type: ADD_SELECTED_SOURCE_FILTER, idSource,
+export const addSelectedSourceFilter = (idSource, nameSource = 'default') => ({
+  type: ADD_SELECTED_SOURCE_FILTER, idSource, nameSource,
 });
 
 // Remove Selected Source filter
@@ -202,8 +202,8 @@ export const removeSelectedSourceFilter = idSource => ({
 });
 
 // Add Selected Year filter
-export const addSelectedYearFilter = idYear => ({
-  type: ADD_SELECTED_YEAR_FILTER, idYear,
+export const addSelectedYearFilter = (idYear, nameYear = 'default') => ({
+  type: ADD_SELECTED_YEAR_FILTER, idYear, nameYear,
 });
 
 // Remove Selected Year filter

@@ -12,6 +12,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionAuthor from './QuestionAuthor';
 
 
+const getIdFilter = (list, name) =>{
+  if (list){
+    const obj = list.filter(item => item.name.toString().trim() === name.toString().trim());
+    if (obj.length > 0) return obj[0].id;
+  }
+  return -1;
+};
+
+const handleClick = (e, addFilter, id, name) => {
+  e.preventDefault();
+  if (name && id === -1) {
+    addFilter(id, name);
+  } else {
+    addFilter(id);
+  }
+};
+
 const getQuoteSeparator = (i, length) => {
   if (i !== length - 1) {
     return ', ';
@@ -22,10 +39,12 @@ const getQuoteSeparator = (i, length) => {
 const QuestionCard = (props) => {
   const {
     question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, addSelectedSourceFilter, addSelectedYearFilter,
-    removeSelectedQuestion,
+    removeSelectedQuestion, sourceFilters, yearFilters,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
-
+  const idSource = getIdFilter(sourceFilters, question.source);
+  const idYear = getIdFilter(yearFilters, question.year);
+  
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100 question-card__full'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
@@ -63,9 +82,10 @@ const QuestionCard = (props) => {
               {' | '}
             </span>
           ) : ''}
-          {question.source}
+          <button type="button" className="question-card__filter-link btn btn-link" onClick={(e => handleClick(e, addSelectedSourceFilter, idSource, question.source.toString().trim()))}>{question.source}</button>
           {' '}
-          {question.year}
+          <button type="button" className="question-card__filter-link btn btn-link" onClick={(e => handleClick(e, addSelectedYearFilter, idYear, question.year.toString().trim()))}>{question.year}</button>
+
           <span className="question-card__more-info--lightgray">
             {' | '}
           </span>

@@ -47,7 +47,9 @@ const mapStateToProps = state => ({
   filter: state.filter,
   modal: state.document.modal,
   activeDocument: state.document.activeDocument,
-}); 
+  sourceFilters: state.filter.sourceFilters,
+  yearFilters: state.filter.yearFilters,
+});
 
 const mapDispatchToProps = dispatch => ({
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
@@ -55,8 +57,8 @@ const mapDispatchToProps = dispatch => ({
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(addSelectedTeachingLevelFilter(idTeachingLevel)),
-  addSelectedSourceFilter: idSource => dispatch(addSelectedSourceFilter(idSource)),
-  addSelectedYearFilter: idYear => dispatch(addSelectedYearFilter(idYear)),
+  addSelectedSourceFilter: (idSource, nameSource) => dispatch(addSelectedSourceFilter(idSource, nameSource)),
+  addSelectedYearFilter: (idYear, nameYear) => dispatch(addSelectedYearFilter(idYear, nameYear)),
 
   toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
