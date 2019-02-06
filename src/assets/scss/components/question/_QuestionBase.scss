@@ -141,6 +141,7 @@ padding-right: 1em;
    
     @include for-tablet-portrait-up{
       height:6em;
+      overflow: hidden;
     }
 
   }
