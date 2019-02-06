@@ -13,8 +13,10 @@ import QuestionAuthor from './QuestionAuthor';
 
 
 const getIdFilter = (list, name) =>{
-  const obj = list.filter(item => item.name.toString().trim() === name.toString().trim());
-  if (obj.length > 0) return obj[0].id;
+  if (list){
+    const obj = list.filter(item => item.name.toString().trim() === name.toString().trim());
+    if (obj.length > 0) return obj[0].id;
+  }
   return -1;
 };
 
