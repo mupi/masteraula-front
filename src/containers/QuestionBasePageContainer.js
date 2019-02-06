@@ -28,16 +28,16 @@ const toggleSelectedDifficultyFilter = (difficultyType, value) => {
   return value
     ? addSelectedDifficultyFilter(difficultyType) : removeSelectedDifficultyFilter(difficultyType);
 };
-const toggleSelectedSourceFilter = (idSource, value) => {
+const toggleSelectedSourceFilter = (idSource, value, nameSource = 'default') => {
   history.replace('/question-base/1');
   return value
-    ? addSelectedSourceFilter(idSource) : removeSelectedSourceFilter(idSource);
+    ? addSelectedSourceFilter(idSource, nameSource) : removeSelectedSourceFilter(idSource);
 };
 
-const toggleSelectedYearFilter = (idYear, value) => {
+const toggleSelectedYearFilter = (idYear, value, nameYear = 'default') => {
   history.replace('/question-base/1');
   return value
-    ? addSelectedYearFilter(idYear) : removeSelectedYearFilter(idYear);
+    ? addSelectedYearFilter(idYear, nameYear) : removeSelectedYearFilter(idYear);
 };
 
 const mapStateToProps = state => ({
@@ -55,10 +55,11 @@ const mapDispatchToProps = dispatch => ({
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
   toggleModal: (modal, idQuestion) => dispatch(toggleModal(modal, idQuestion)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
-  addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
-  addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(addSelectedTeachingLevelFilter(idTeachingLevel)),
-  addSelectedSourceFilter: (idSource, nameSource) => dispatch(addSelectedSourceFilter(idSource, nameSource)),
-  addSelectedYearFilter: (idYear, nameYear) => dispatch(addSelectedYearFilter(idYear, nameYear)),
+
+  addSelectedDisciplineFilter: idDiscipline => dispatch(toggleSelectedDisciplineFilter(idDiscipline, true)),
+  addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),
+  addSelectedSourceFilter: (idSource, nameSource) => dispatch(toggleSelectedSourceFilter(idSource, true, nameSource)),
+  addSelectedYearFilter: (idYear, nameYear) => dispatch(toggleSelectedYearFilter(idYear, true, nameYear)),
 
   toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
