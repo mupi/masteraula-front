@@ -98,7 +98,6 @@ function profileEdit(profile) {
     .then(handleProfileResponse)
     .then(detail => detail);
 
-
   return Promise.all([fetchProfile]);
 }
 
