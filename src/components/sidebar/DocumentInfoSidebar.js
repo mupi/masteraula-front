@@ -168,10 +168,8 @@ class DocumentInfoSidebar extends React.Component {
                   {document.name}
                 </DropdownItem>))}
               <DropdownItem divider />
-              <DropdownItem className="menu-top__dropdown-item">
-                <Link to="/documents/1" className="menu-top__link-more-documents">
+              <DropdownItem tag={Link} to="/documents/1" className="menu-top__dropdown-item">
                   Ver mais provas
-                </Link>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
