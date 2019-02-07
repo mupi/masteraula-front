@@ -17,7 +17,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
-  switchActiveDocument: doc => dispatch(switchActiveDocument(doc)),
+  switchActiveDocument: doc => dispatch(switchActiveDocument(doc,true)),
   fetchPreviewDocument: props => dispatch(fetchPreviewDocument(props)),
 
   hideModal: () => dispatch(hideModal()),
