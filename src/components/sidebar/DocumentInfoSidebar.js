@@ -85,23 +85,18 @@ class DocumentInfoSidebar extends React.Component {
                   {` (${documentTotalQuestions})`}
                 </span>
               </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem className="o-doc-options__dropdown-item">
-                  <Link to="/edit-document" className="c-sidebar__link-my-profile">
-                    <FontAwesomeIcon icon="pencil-alt" />
-                    {' '}
-                    Editar
-                  </Link>
+              <DropdownMenu> 
+                <DropdownItem tag={Link} to="/edit-document" className="o-doc-options__dropdown-item">
+                  <FontAwesomeIcon icon="pencil-alt" />
+                  {' '}
+                  Editar
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem className="o-doc-options__dropdown-item">
-                  <a className="c-sidebar__link-my-profile" onClick={() => this.openDocumentModal(documentId)}>
-                    <FontAwesomeIcon icon="eye" />
-                    {' '}
-                    Visualizar
-                  </a>
+                <DropdownItem className="o-doc-options__dropdown-item" onClick={() => this.openDocumentModal(documentId)}>
+                  <FontAwesomeIcon icon="eye" />
+                  {' '}
+                  Visualizar
                 </DropdownItem>
-
                 <DropdownItem divider />
 
                 <DropdownItem className="o-doc-options__dropdown-item">
