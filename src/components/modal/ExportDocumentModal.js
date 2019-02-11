@@ -5,42 +5,41 @@ import {
 } from 'reactstrap';
 import { Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import {
-  listMyHeadersCombo,
+   listMyHeadersCombo,
 } from 'actions/headerAction';
 import { downloadDocument } from 'actions/documentAction';
 
-const renderSelectField = ({
-  input, label, meta: { touched, error }, children, optionDefault,
-}) => (
-  <div>
-    <div>
-      <select {...input} className="form-control">
-        <option value={optionDefault}>
-          {label}
-        </option>
-        {children}
-      </select>
-      {touched && error && (
-        <span className="error-message-text">
-          {error}
-        </span>
-      )}
-    </div>
-  </div>
-);
+// const renderSelectField = ({
+//   input, label, meta: { touched, error }, children, optionDefault,
+// }) => (
+//   <div>
+//     <div>
+//       <select {...input} className="form-control">
+//         <option value={optionDefault}>
+//           {label}
+//         </option>
+//         {children}
+//       </select>
+//       {touched && error && (
+//         <span className="error-message-text">
+//           {error}
+//         </span>
+//       )}
+//     </div>
+//   </div>
+// );
 
 class ConfirmExportModal extends React.Component {
-
   componentDidMount() {
     const { listMyHeadersCombo } = this.props;
     listMyHeadersCombo();
-  } 
+  }
 
   render() {
     const {
-      closeModal, documentId, documentName, title, myHeadersListCombo, handleSubmit,
+      closeModal, documentId, documentName, title, handleSubmit,
+      // myHeadersListCombo,
     } = this.props;
     this.props.dispatch(change('exportDocumentModal', 'documentId', documentId));
     this.props.dispatch(change('exportDocumentModal', 'documentName', documentName));
@@ -64,7 +63,7 @@ class ConfirmExportModal extends React.Component {
               {' '}
               <strong>{documentName}</strong>
             </p>
-            <p className="c-export-document__option-name">
+            {/* <p className="c-export-document__option-name">
               Selecione um cabeçalho
             </p>
             <FormGroup className="c-export-document__select">
@@ -85,7 +84,7 @@ class ConfirmExportModal extends React.Component {
               <Link onClick={closeModal} to="/new-header" className="c-export-document__new-header">
                 Criar novo cabeçalho
               </Link>
-            </FormGroup>
+            </FormGroup> */}
             <p className="c-export-document__option-name">
             Com ou sem gabarito?
             </p>
