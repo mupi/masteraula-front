@@ -289,15 +289,18 @@ img.logo-in-menu.no-login {
 
     &__user-dropdown{
         font-size: 13px;
+        color: $color-ma-black-dropdown;
 
         button{
             background: transparent;
             border: transparent;
+            cursor: pointer;
         }
 
         .show button{
             background: transparent;
             border: transparent;
+            color: $color-ma-black-dropdown;
         }
 
         button:hover{

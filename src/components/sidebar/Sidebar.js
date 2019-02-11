@@ -48,28 +48,20 @@ const SidebarMobile = ({showFilters, activeDocument, user, logout, isOpenSidebar
                   {user.name}
                 </DropdownToggle>
                 <DropdownMenu>
-                  <DropdownItem className="c-sidebar__user-dropdown-item">
-                    <Link
-                      className="c-sidebar__link-my-profile"
-                      onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/user-profile'); }}
-                      to="/user-profile"
-                    >
+                  <DropdownItem className="c-sidebar__user-dropdown-item" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/user-profile'); }}>
+                    <span>
                       <FontAwesomeIcon icon="user" />
                       {' '}
-                      Meu Perfil 
-                    </Link>
+                      Meu Perfil
+                    </span>
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem className="c-sidebar__user-dropdown-item">
-                    <Link
-                      className="c-sidebar__link-my-profile"
-                      onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen); }}
-                      to="/"
-                    >
+                  <DropdownItem className="c-sidebar__user-dropdown-item" onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen); }}> 
+                    <span>
                       <FontAwesomeIcon icon="sign-out-alt" />
                       {' '}
                       Sair
-                    </Link>
+                    </span>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
