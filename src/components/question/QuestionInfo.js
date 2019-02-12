@@ -17,7 +17,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
       <h4>
         <FontAwesomeIcon icon="info-circle" />
         {' '}
-          Informação da Questão
+          Informações da Questão
       </h4>
     </Row>
     <Row>

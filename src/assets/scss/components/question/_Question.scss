@@ -42,6 +42,9 @@
 
 //Question Page where c-question is the main container
 .c-question {
+    &__options{
+      margin-top: 5px;
+    }
 
     &__row-info {
         margin-bottom: 10px;
@@ -183,6 +186,10 @@
       margin: 0px 5px 0px 0px;
     }
 
+    &__label-tag-header--withoutmargin{
+      margin: 0px 0px 0px 0px;
+    }
+
     &__tag--pink{ 
       background: $color-ma-pink;
       border-color:  $color-ma-pink
@@ -209,6 +216,6 @@
 }
 
 //Flex in c-question header
-.c-question .p-2 {
+.c-question__label-tag-header.p-2 {
   padding: 3px 7px !important;
 }

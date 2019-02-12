@@ -13,6 +13,7 @@ import { history } from 'helpers/history';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
@@ -76,11 +77,21 @@ class QuestionPage extends Component {
         <div className="c-question">
           <Row>
             <Col className="d-flex">
-              <Button onClick={history.goBack} className="c-question__btn-back mr-auto p-2">
+              <Link className="mr-auto btn btn-secondary c-question__btn-back" to="/question-base/1" role="button">
                 <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
                 {' '}
                 Voltar
-              </Button>
+              </Link>
+
+              <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
+                <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
+                {' '}
+                Editar
+              </Link>
+            </Col>
+          </Row>
+          <Row className="c-question__options">
+            <Col className="d-flex  justify-content-end">
               <span className="c-question__label-tag-header c-question__tag--purple p-2">
                 {activeQuestion.source}
                 {' '}
@@ -89,7 +100,7 @@ class QuestionPage extends Component {
               {activeQuestion.disciplines && activeQuestion.disciplines.map(discipline => (
                 <span
                   key={discipline.id}
-                  className="c-question__label-tag-header c-question__tag--pink p-2"
+                  className="c-question__label-tag-header c-question__tag--pink p-2 c-question__label-tag-header--withoutmargin"
                 >
                   {discipline.name}
                 </span>
@@ -131,7 +142,7 @@ class QuestionPage extends Component {
                         <strong>
                           {activeDocument.name}
                         </strong>
-                      </h6>
+                      </h6> 
                       <RemoveQuestionButton
                         questionId={activeQuestion.id}
                         activeDocumentId={activeDocument.id}

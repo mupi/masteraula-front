@@ -23,7 +23,7 @@ const QuestionContent = (question) => {
                     <div>
                       <img
                         alt="objeto-aprendizagem"
-                        src={learningObject.image}
+                        src={`http://localhost:8000${learningObject.image}`}
                       />
                     </div>
                   ) : ''}

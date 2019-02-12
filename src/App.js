@@ -99,6 +99,7 @@ class App extends Component {
               <Switch>
                 <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
+                <Route path="/edit-question/:id" component={QuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePageContainer} />
                 <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
                 <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
