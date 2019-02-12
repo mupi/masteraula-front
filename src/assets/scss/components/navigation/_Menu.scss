@@ -184,6 +184,7 @@ html body .masteraula-nav-header__user {
       font-size: 13px;
       padding-top: 0px;
       padding-bottom: 0px;
+      cursor: pointer;
 
       a{
           color: $color-ma-black-dropdown;
@@ -201,15 +202,13 @@ html body .masteraula-nav-header__user {
       }
     
       &__export-button{
-        &.btn.btn-secondary{
           background: transparent !important;
           color: $color-ma-black-dropdown;
-          padding: 0px;
+          padding: 0em 1.5rem;
           font-size: 13px;
           border: 0px;
           margin: 0px;
           font-weight: normal !important;
-        }
       }
 }
 
