@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const OpenLastDocumentList = ({
-  myLastDocumentsList, hideModal, showModal, switchActiveDocument,
+  myLastDocumentsList, hideModal, showModal, switchActiveDocument, styleCustomize = '',
 }) => {
 
   const closeModal = () => {
@@ -23,7 +23,7 @@ const OpenLastDocumentList = ({
   };
 
   return (
-    <div
+    <div className={styleCustomize}
       onClick={handleOpenLastDocumentList}
     >
       <FontAwesomeIcon icon="sync-alt" />

@@ -42,7 +42,6 @@ class DocumentInfoSidebar extends React.Component {
       showModal, fetchPreviewDocument, previewDocument,
     } = this.props;
 
-    console.log(id);
     fetchPreviewDocument(parseInt(id, 10));
     showModal({
       open: true,
@@ -85,7 +84,7 @@ class DocumentInfoSidebar extends React.Component {
                   {` (${documentTotalQuestions})`}
                 </span>
               </DropdownToggle>
-              <DropdownMenu> 
+              <DropdownMenu>
                 <DropdownItem tag={Link} to="/edit-document" className="o-doc-options__dropdown-item">
                   <FontAwesomeIcon icon="pencil-alt" />
                   {' '}
@@ -98,21 +97,16 @@ class DocumentInfoSidebar extends React.Component {
                   Visualizar
                 </DropdownItem>
                 <DropdownItem divider />
-
-                <DropdownItem className="o-doc-options__dropdown-item">
-                  <ExportDocumentButtonContainer
-                    text="Exportar"
-                    isLink
-                    styleCustomize="o-doc-options__export-button"
-                    documentId={documentId}
-                    documentName={documentName}
-                    documentTotalQuestions={documentTotalQuestions}
-                  />
-                </DropdownItem>
+                <ExportDocumentButtonContainer
+                  text="Exportar"
+                  isLink
+                  styleCustomize="o-doc-options__dropdown-item o-doc-options__export-button"
+                  documentId={documentId}
+                  documentName={documentName}
+                  documentTotalQuestions={documentTotalQuestions}
+                />
                 <DropdownItem divider />
-                <DropdownItem className="o-doc-options__dropdown-item">
-                  <OpenLastDocumentListContainer myLastDocumentsList={myLastDocumentsList} />
-                </DropdownItem>
+                <OpenLastDocumentListContainer styleCustomize="o-doc-options__dropdown-item o-doc-options__export-button" myLastDocumentsList={myLastDocumentsList} />
               </DropdownMenu>
             </UncontrolledDropdown>
           </div>
@@ -121,7 +115,9 @@ class DocumentInfoSidebar extends React.Component {
         <div className="menu-top__document-l-buttons hidden-xs">
           <p className="menu-top__document-questions  btn__icon">
             <small className="menu-top__document-message">
-              Q<span className="masteraula-nav-header__icon-option">uestões</span>:
+              Q
+              <span className="masteraula-nav-header__icon-option">uestões</span>
+              :
               {' '}
               <span className="menu-top__document-number-questions">
                 <strong>
