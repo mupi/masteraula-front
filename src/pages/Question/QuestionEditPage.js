@@ -86,7 +86,7 @@ class QuestionPage extends Component {
               <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
                 <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
                 {' '}
-                Editar
+                Salvar
               </Link>
             </Col>
           </Row>

@@ -1,4 +1,5 @@
 export { default as QuestionPageContainer } from './QuestionPageContainer';
+export { default as QuestionEditPageContainer } from './QuestionEditPageContainer';
 export { default as QuestionBasePageContainer } from './QuestionBasePageContainer';
 export { default as RedefinePasswordPageContainer } from './RedefinePasswordPageContainer';
 export { default as UserPasswordProfileContainer } from './UserPasswordProfileContainer';

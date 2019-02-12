@@ -20,6 +20,26 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
           Informações da Questão
       </h4>
     </Row>
+    <Row className="c-question__row-info">
+      <Col className="info-label" sm="4" xs="4">
+      Ano
+      </Col>
+      <Col sm="8" xs="8">
+        <span className="question-info c-question__tag--purple">
+          {question.year}
+        </span>
+      </Col>
+    </Row>
+    <Row className="c-question__row-info">
+      <Col className="info-label" sm="4" xs="4">
+      Fonte
+      </Col>
+      <Col sm="8" xs="8">
+        <span className="question-info c-question__tag--purple">
+          {question.source}
+        </span>
+      </Col>
+    </Row>
     <Row>
       <Col className="info-label" sm="4" xs="4">
           Disciplinas
