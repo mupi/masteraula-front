@@ -184,11 +184,12 @@
       text-align: center;
       display: inline-block;
       margin: 0px 5px 0px 0px;
+      &:last-child{
+        margin: 0px 0px 0px 0px;
+      }
     }
 
-    &__label-tag-header--withoutmargin{
-      margin: 0px 0px 0px 0px;
-    }
+    
 
     &__tag--pink{ 
       background: $color-ma-pink;

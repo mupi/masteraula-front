@@ -100,7 +100,7 @@ class QuestionPage extends Component {
               {activeQuestion.disciplines && activeQuestion.disciplines.map(discipline => (
                 <span
                   key={discipline.id}
-                  className="c-question__label-tag-header c-question__tag--pink p-2 c-question__label-tag-header--withoutmargin"
+                  className="c-question__label-tag-header c-question__tag--pink p-2"
                 >
                   {discipline.name}
                 </span>

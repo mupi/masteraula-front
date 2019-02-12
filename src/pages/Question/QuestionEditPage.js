@@ -83,11 +83,19 @@ class QuestionPage extends Component {
                 Voltar
               </Link>
 
-              <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
+              <Link className="hidden btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
                 <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
                 {' '}
                 Salvar
               </Link>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Alert color="warning" className="c-question-edit__warning-message">
+                Você está editando a questão N°
+                {activeQuestion.id}
+              </Alert>
             </Col>
           </Row>
           <Row className="c-question__options">
@@ -100,7 +108,7 @@ class QuestionPage extends Component {
               {activeQuestion.disciplines && activeQuestion.disciplines.map(discipline => (
                 <span
                   key={discipline.id}
-                  className="c-question__label-tag-header c-question__tag--pink p-2 c-question__label-tag-header--withoutmargin"
+                  className="c-question__label-tag-header c-question__tag--pink p-2"
                 >
                   {discipline.name}
                 </span>
