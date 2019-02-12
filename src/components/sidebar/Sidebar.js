@@ -25,7 +25,9 @@ const redirectURL = (e, openSidebar, isOpenSidebar, url) => {
   }
 };
 
-const SidebarMobile = ({showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu }) => (
+const SidebarMobile = ({
+  showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu,
+}) => (
   <Swipeable onSwipeRight={() => openSidebar(isOpenSidebar)} onSwipeLeft={() => openSidebar(isOpenSidebar)}>
     <div id="sidebar">
       <div id="sidebar-container">
@@ -39,8 +41,8 @@ const SidebarMobile = ({showFilters, activeDocument, user, logout, isOpenSidebar
               </div>
               <div className="c-sidebar__user-avatar">
                 { user.profile_pic
-                  ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" /> :
-                  <img src={userPhoto} alt="foto-usuario" />
+                  ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
+                  : <img src={userPhoto} alt="foto-usuario" />
                 }
               </div>
               <UncontrolledDropdown className="c-sidebar__user-dropdown">
@@ -48,7 +50,10 @@ const SidebarMobile = ({showFilters, activeDocument, user, logout, isOpenSidebar
                   {user.name}
                 </DropdownToggle>
                 <DropdownMenu>
-                  <DropdownItem className="c-sidebar__user-dropdown-item" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/user-profile'); }}>
+                  <DropdownItem
+                    className="c-sidebar__user-dropdown-item"
+                    onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/user-profile'); }}
+                  >
                     <span>
                       <FontAwesomeIcon icon="user" />
                       {' '}
@@ -56,7 +61,10 @@ const SidebarMobile = ({showFilters, activeDocument, user, logout, isOpenSidebar
                     </span>
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem className="c-sidebar__user-dropdown-item" onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen); }}> 
+                  <DropdownItem
+                    className="c-sidebar__user-dropdown-item"
+                    onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen); }}
+                  >
                     <span>
                       <FontAwesomeIcon icon="sign-out-alt" />
                       {' '}
@@ -93,7 +101,7 @@ const SidebarMobile = ({showFilters, activeDocument, user, logout, isOpenSidebar
                       Gerenciar minhas provas
                     </Link>
                   </ListGroupItem>
-                  <ListGroupItem color="light">
+                  {/* <ListGroupItem color="light">
                     <Link to="/my-headers/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-headers/1'); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
@@ -101,7 +109,7 @@ const SidebarMobile = ({showFilters, activeDocument, user, logout, isOpenSidebar
                       />
                       Gerenciar meus cabeçalhos
                     </Link>
-                  </ListGroupItem>
+                  </ListGroupItem> */}
                 </ListGroup>
                 {showFilters && <FilterContainer />}
               </div>
@@ -114,42 +122,43 @@ const SidebarMobile = ({showFilters, activeDocument, user, logout, isOpenSidebar
 );
 
 
-const SidebarWeb = ({showFilters, activeDocument, isOpenSidebar, openSidebar }) => {
-  return (
-    <div id="sidebar">
-      <div className="logo-top-sidebar">
-        <Link to="/#/question-base/1" ><img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo"/></Link>
-      </div>
-      <div id="sidebar-container">
-        <div className="container-fluid">
-          <Row className="sidebar-row">
-            <Col xs="12">
-              <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
+const SidebarWeb = ({
+  showFilters, activeDocument, isOpenSidebar, openSidebar,
+}) => (
+  <div id="sidebar">
+    <div className="logo-top-sidebar">
+      <Link to="/#/question-base/1"><img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" /></Link>
+    </div>
+    <div id="sidebar-container">
+      <div className="container-fluid">
+        <Row className="sidebar-row">
+          <Col xs="12">
+            <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
+              <ListGroupItem color="light">
+                <CreateDocumentModalContainer activeDocument={activeDocument} />
+              </ListGroupItem>
+            </ListGroup>
+            <div className="sidebar-nav-container">
+              <ListGroup className="sidebar-main-options">
                 <ListGroupItem color="light">
-                  <CreateDocumentModalContainer activeDocument={activeDocument} />
-                </ListGroupItem>
-              </ListGroup>
-              <div className="sidebar-nav-container">
-                <ListGroup className="sidebar-main-options">
-                  <ListGroupItem color="light">
-                    <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1'); }}>
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="search"
-                      />
+                  <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1'); }}>
+                    <FontAwesomeIcon
+                      className="btn__icon"
+                      icon="search"
+                    />
                       Banco de questões
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem color="light">
-                    <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="folder"
-                      />
+                  </Link>
+                </ListGroupItem>
+                <ListGroupItem color="light">
+                  <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
+                    <FontAwesomeIcon
+                      className="btn__icon"
+                      icon="folder"
+                    />
                       Gerenciar minhas provas
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem color="light">
+                  </Link>
+                </ListGroupItem>
+                {/* <ListGroupItem color="light">
                     <Link to="/my-headers/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-headers/1'); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
@@ -157,21 +166,19 @@ const SidebarWeb = ({showFilters, activeDocument, isOpenSidebar, openSidebar }) 
                       />
                       Gerenciar meus cabeçalhos
                     </Link>
-                  </ListGroupItem>
-                </ListGroup>
-                {showFilters && <FilterContainer />}
-              </div>
-            </Col>
-          </Row>
-        </div>
+                  </ListGroupItem> */}
+              </ListGroup>
+              {showFilters && <FilterContainer />}
+            </div>
+          </Col>
+        </Row>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 
 class Sidebar extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -198,8 +205,8 @@ class Sidebar extends Component {
       showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu,
     } = this.props;
 
-    //const { width } = this.state;
-    //const isMobile = width <= 989;
+    // const { width } = this.state;
+    // const isMobile = width <= 989;
 
     const responsiveMode = window.matchMedia('(max-width: 989px)');
     if (responsiveMode.matches) {
@@ -216,7 +223,7 @@ class Sidebar extends Component {
         />
       );
     }
-  
+
     return (
       <SidebarWeb
         showFilters={showFilters}
