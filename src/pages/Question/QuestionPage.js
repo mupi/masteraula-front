@@ -1,4 +1,3 @@
-import QuestionHeader from 'components/question/QuestionHeader';
 import QuestionContent from 'components/question/QuestionContent';
 import QuestionInfo from 'components/question/QuestionInfo';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
@@ -108,7 +107,17 @@ class QuestionPage extends Component {
             </Col>
 
           </Row>
-          <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
+          <Row className="c-question__tittle-section">
+            <Col>
+              <h4>
+                <FontAwesomeIcon icon="book" />
+                {' '}
+                Questão N°
+                {' '}
+                {activeQuestion.id}
+              </h4>
+            </Col>
+          </Row>
           <Row className="justify-content-center">
             <Col sm="12" md="12" xs="12">
               <QuestionContent
