@@ -12,8 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionAuthor from './QuestionAuthor';
 
 
-const getIdFilter = (list, name) =>{
-  if (list){
+const getIdFilter = (list, name) => {
+  if (list) {
     const obj = list.filter(item => item.name.toString().trim() === name.toString().trim());
     if (obj.length > 0) return obj[0].id;
   }
@@ -44,7 +44,10 @@ const QuestionCard = (props) => {
   const extractStatement = getCleanExtractStatement(question.statement);
   const idSource = getIdFilter(sourceFilters, question.source);
   const idYear = getIdFilter(yearFilters, question.year);
-  
+  const tagList = question.tags.concat(question.topics.map(topic => topic.name));
+  // for (let topic of question.topics){
+  //   tagList.append(topic.name);
+  // }
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100 question-card__full'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
@@ -82,9 +85,21 @@ const QuestionCard = (props) => {
               {' | '}
             </span>
           ) : ''}
-          <button type="button" className="question-card__filter-link btn btn-link" onClick={(e => handleClick(e, addSelectedSourceFilter, idSource, question.source.toString().trim()))}>{question.source}</button>
+          <button
+            type="button"
+            className="question-card__filter-link btn btn-link"
+            onClick={(e => handleClick(e, addSelectedSourceFilter, idSource, question.source.toString().trim()))}
+          >
+            {question.source}
+          </button>
           {' '}
-          <button type="button" className="question-card__filter-link btn btn-link" onClick={(e => handleClick(e, addSelectedYearFilter, idYear, question.year.toString().trim()))}>{question.year}</button>
+          <button
+            type="button"
+            className="question-card__filter-link btn btn-link"
+            onClick={(e => handleClick(e, addSelectedYearFilter, idYear, question.year.toString().trim()))}
+          >
+            {question.year}
+          </button>
 
           <span className="question-card__more-info--lightgray">
             {' | '}
@@ -94,17 +109,17 @@ const QuestionCard = (props) => {
           </span>
           <QuestionAuthor author={question.author} styleTag="question-card__info-section-item--italic" />
           {
-            (question.tags.length > 0) ? (
+            (tagList.length > 0) ? (
               <span className="question-card__more-info--lightgray">
                 {' | '}
                 tags:
                 {' '}
               </span>
             ) : ''}
-          {question.tags && question.tags.map((tag, i) => (
-            <span key={i} className="question-card__tag question-card__info-section-item--italic">
+          {tagList && tagList.map((tag, i) => (
+            <span className="question-card__tag question-card__info-section-item--italic">
               {tag.name}
-              { getQuoteSeparator(i, question.tags.length)}
+              { getQuoteSeparator(i, tagList.length)}
             </span>
           ))}
         </p>
@@ -136,7 +151,7 @@ const QuestionCard = (props) => {
             questionId={question.id}
             customClass="question-card__btn "
             nameButton="Adicionar"
-            activeDocument={activeDocument} 
+            activeDocument={activeDocument}
             {...props}
           />
         ) : (
@@ -145,7 +160,12 @@ const QuestionCard = (props) => {
             activeDocumentId={activeDocument.id}
             removeSelectedQuestion={removeSelectedQuestion}
             customClass="c-question__btn-remove-question"
-            label={<span><FontAwesomeIcon icon="minus" className="btn__icon"/>Remover</span>}
+            label={(
+              <span>
+                <FontAwesomeIcon icon="minus" className="btn__icon" />
+Remover
+              </span>
+)}
           />
         )}
       </CardFooter>
