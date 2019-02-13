@@ -1,5 +1,5 @@
 import {
-  Container, Alert, Row, Col, Form, Button, Input, FormGroup, Label,
+  Container, Alert, Row, Col, Form, Button, Input,
 } from 'reactstrap';
 import { getTeachingLevel, getCleanCompleteStatement, getCleanAlternativeText } from 'helpers/question';
 import React, { Component } from 'react';
@@ -103,7 +103,7 @@ const renderLearningObjects = ({ fields, meta: { error, submitFailed } }) => (
           ) : ''}
           <Row className="c-question-edit__tags-learning-objects">
             <Col sm="2" className="align-self-center text-right">
-              tags:
+              <i>tags:</i>
             </Col>
             <Col sm="8">
               <Field
@@ -122,7 +122,7 @@ const renderLearningObjects = ({ fields, meta: { error, submitFailed } }) => (
   </Row>
 );
 
-const renderTopics = ({ fields, meta: { error, submitFailed } }) => (
+const renderTopics = ({ fields, meta: { error, submitFailed }, subjects}) => (
   <Row>
     <Col md="12">
       <Row className="c-question__row-info c-question-edit__row-topic c-question-edit__header-topic">
@@ -140,25 +140,27 @@ const renderTopics = ({ fields, meta: { error, submitFailed } }) => (
         </Col>
       </Row>
       <Row>{submitFailed && error && <span>{error}</span>}</Row>
-      {fields.map((member, index) => (
+      {fields.map((topicRow, index) => (
         <Row key={index} className="c-question__row-info c-question-edit__row-topic">
           <Col sm="3">
             <Field
-              name="subject"
+              name={`${topicRow}.subject`}
               type="text"
               component={renderSelectField}
               className="form-control"
               label="Assunto"
               optionDefault="NaN"
             >
-              <option className="c-user-profile__state-city-dropdown-item">
-                Assunto
-              </option>
+              { subjects && subjects.map(subject => (
+                <option key={`${index}${subject.id}`} value={subject.id}>
+                  {subject.name}
+                </option>
+              )) }
             </Field>
           </Col>
           <Col sm="3">
             <Field
-              name="subsubject"
+              name={`${topicRow}.subsubject`}
               type="text"
               component={renderSelectField}
               className="form-control"
@@ -172,7 +174,7 @@ const renderTopics = ({ fields, meta: { error, submitFailed } }) => (
           </Col>
           <Col sm="3">
             <Field
-              name="topic"
+              name={`${topicRow}.topic`}
               type="text"
               component={renderSelectField}
               className="form-control"
@@ -227,13 +229,14 @@ const QuestionListDocuments = (props) => {
 
 class QuestionPage extends Component {
   componentDidMount() {
-    const { fetchQuestion, match } = this.props;
+    const { fetchQuestion, match, listTopics } = this.props;
     fetchQuestion(match.params.id);
+    listTopics();
   }
 
   render() {
     const {
-      activeQuestion, isFetching, error, activeDocument,
+      activeQuestion, isFetching, error, activeDocument, handleSubmit, topicsList,
     } = this.props;
 
     const {
@@ -241,7 +244,7 @@ class QuestionPage extends Component {
     } = activeQuestion;
 
     const learningObjects = activeQuestion.learning_objects;
-
+    
     if (isFetching) {
       return (
         <HomeUserPage>
@@ -265,7 +268,7 @@ class QuestionPage extends Component {
     return (
       <HomeUserPage>
         <ToastContainer hideProgressBar position="bottom-right" />
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <div className="c-question">
             <Row>
               <Col className="d-flex">
@@ -481,7 +484,7 @@ class QuestionPage extends Component {
                       </Field>
                     </Col>
                   </Row>
-                  <FieldArray name="topics" component={renderTopics} />
+                  <FieldArray name="topics" component={renderTopics} subjects={topicsList}  />
                 </Container>
 
               </Col>

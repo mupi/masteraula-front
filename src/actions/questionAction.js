@@ -12,6 +12,12 @@ export const CREATE_QUESTION_SUCCESS = 'CREATE_QUESTION_SUCCESS';
 export const CREATE_QUESTION_FAILURE = 'CREATE_QUESTION_FAILURE';
 export const RESET_NEW_QUESTION = 'RESET_NEW_QUESTION';
 
+// Update question
+export const UPDATE_QUESTION = 'UPDATE_QUESTION';
+export const UPDATE_QUESTION_SUCCESS = 'UPDATE_QUESTION_SUCCESS';
+export const UPDATE_QUESTION_FAILURE = 'UPDATE_QUESTION_FAILURE';
+export const RESET_UPDATE_QUESTION = 'RESET_UPDATE_QUESTION';
+
 // Delete question
 export const DELETE_QUESTION = 'DELETE_QUESTION';
 export const DELETE_QUESTION_SUCCESS = 'DELETE_QUESTION_SUCCESS';
@@ -48,6 +54,29 @@ export const fetchQuestion = (id) => {
       );
   };
 };
+
+// Function: Update an active question
+/*
+export const updateQuestion = (props) => {
+  function updateActiveHeader() { return { type: UPDATE_HEADER }; }
+  function updateHeaderSuccess(activeHeader) { return { type: UPDATE_HEADER_SUCCESS, activeHeader }; }
+  function updateHeaderFailure(error) { return { type: UPDATE_HEADER_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(updateActiveHeader(props));
+    return headerService.updateHeader(props).then(
+      (activeHeader) => {
+        dispatch(updateHeaderSuccess(activeHeader));
+        history.push('/my-headers/1');
+        toast.success('Cabeçalho atualizado com sucesso', optionsSuccess);
+      },
+      (error) => {
+        dispatch(updateHeaderFailure(error));
+        toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      },
+    );
+  };
+};*/
+
 
 // listQuestion using filters
 export const listQuestions = (page, filter) => {
