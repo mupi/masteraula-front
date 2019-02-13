@@ -1,6 +1,5 @@
-import QuestionTopics from 'components/question/test';
 import {
-  Container, Alert, Row, Col, Form, Button,
+  Container, Alert, Row, Col, Form, Button, Input, FormGroup, Label,
 } from 'reactstrap';
 import { getTeachingLevel, getCleanCompleteStatement, getCleanAlternativeText } from 'helpers/question';
 import React, { Component } from 'react';
@@ -24,25 +23,43 @@ const difficultyList = {
     { id: 'H', name: 'Difícil' },
   ],
 };
+
 const renderField = ({
- input, label, type, meta: { touched, error } 
+  input,
+  placeholder,
+  type,
+  meta: { touched, error, warning },
 }) => (
   <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} type={type} placeholder={label} />
-      {touched && error && <span>{error}</span>}
-    </div>
+    <Input
+      {...input}
+      placeholder={placeholder}
+      type={type}
+    />
+    { touched
+      && ((error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
   </div>
 );
 
 
 const renderSelectField = ({
-  input, label, meta: { touched, error }, children, optionDefault,
+  input, label, meta: { touched, error }, children, optionDefault, styleCustomize = 'form-control',
 }) => (
   <div>
     <div>
-      <select {...input} className="form-control">
+      <select {...input} className={styleCustomize}>
         <option value={optionDefault}>
           {label}
         </option>
@@ -58,57 +75,73 @@ const renderSelectField = ({
 );
 
 const renderLearningObjects = ({ fields, meta: { error, submitFailed } }) => (
-  <ul>
-    <li>
-      {submitFailed && error && <span>{error}</span>}
-    </li>
-    {fields.map((member, index) => (
-      <li key={index}>
-        <button
-          type="button"
-          title="Remove Member"
-          onClick={() => fields.remove(index)}
-        />
-        <h4>
-Member #
-          {index + 1}
-        </h4>
-        <Field
-          name={`${member}.firstName`}
-          type="text"
-          component={renderField}
-          label="First Name"
-        />
-        <Field
-          name={`${member}.lastName`}
-          type="text"
-          component={renderField}
-          label="Last Name"
-        />
-      </li>
-    ))}
-  </ul>
+  <Row className="c-question__section-list-learning-objects">
+    <Col sm="12" xs="12">
+      {fields.map((learningObject, i) => (
+        <div key={learningObject.id} className="c-question__learning-object">
+          { (learningObject.image) ? (
+            <div>
+              <img
+                alt="objeto-aprendizagem"
+                src={`http://localhost:8000${learningObject.image}`}
+              />
+            </div>
+          ) : ''}
+          { (learningObject.text) ? (
+            <div className="c-question__learning-object--text">
+              <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(learningObject.text) }} />
+            </div>
+          ) : ''}
+          { (learningObject.source) ? (
+            <p>
+              <small>
+                Fonte:
+                {' '}
+                <i>{learningObject.source}</i>
+              </small>
+            </p>
+          ) : ''}
+          <Row className="c-question-edit__tags-learning-objects">
+            <Col sm="2" className="align-self-center text-right">
+              tags:
+            </Col>
+            <Col sm="8">
+              <Field
+                component={renderField}
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Separe as tags com vírgulas"
+                className="form-control"
+              />
+            </Col>
+          </Row>
+        </div>
+      ))}
+    </Col>
+  </Row>
 );
 
 const renderTopics = ({ fields, meta: { error, submitFailed } }) => (
   <Row>
     <Col md="12">
-      <Row className="c-question__row-info">
-        <Col sm="3">Assunto</Col>
-        <Col sm="3">Subassunto</Col>
-        <Col sm="3">Tópico</Col>
+      <Row className="c-question__row-info c-question-edit__row-topic c-question-edit__header-topic">
+        <Col sm="3" className="align-self-center">Assunto</Col>
+        <Col sm="3" className="align-self-center">Subassunto</Col>
+        <Col sm="3" className="align-self-center">Tópico</Col>
         <Col sm="3">
           <Button onClick={() => fields.push({})}>
             <FontAwesomeIcon
               icon="plus"
+              className="btn__icon"
             />
             Adicionar tópicos
           </Button>
         </Col>
       </Row>
-      {submitFailed && error && <span>{error}</span>}
+      <Row>{submitFailed && error && <span>{error}</span>}</Row>
       {fields.map((member, index) => (
-        <Row key={index} className="c-question__row-info">
+        <Row key={index} className="c-question__row-info c-question-edit__row-topic">
           <Col sm="3">
             <Field
               name="subject"
@@ -155,6 +188,7 @@ const renderTopics = ({ fields, meta: { error, submitFailed } }) => (
             <Button
               type="button"
               title="Remove Member"
+              className="c-question-edit__btn-remove-topic"
               onClick={() => fields.remove(index)}
             >
               <FontAwesomeIcon
@@ -241,7 +275,10 @@ class QuestionPage extends Component {
                   Voltar
                 </Link>
                 <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
-                  <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
+                  <FontAwesomeIcon
+                    className="btn__icon"
+                    icon="save"
+                  />
                   {' '}
                   Salvar
                 </Link>
@@ -290,36 +327,7 @@ class QuestionPage extends Component {
                 <div className="c-question__full-statement">
                   {(learningObjects && learningObjects.length > 0)
                     ? (
-                      <Row className="c-question__section-list-learning-objects">
-                        <Col sm="12" xs="12">
-                          {learningObjects.map((learningObject, i) => (
-                            <div key={learningObject.id} className="c-question__learning-object">
-                              { (learningObject.image) ? (
-                                <div>
-                                  <img
-                                    alt="objeto-aprendizagem"
-                                    src={`http://localhost:8000${learningObject.image}`}
-                                  />
-                                </div>
-                              ) : ''}
-                              { (learningObject.text) ? (
-                                <div className="c-question__learning-object--text">
-                                  <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(learningObject.text) }} />
-                                </div>
-                              ) : ''}
-                              { (learningObject.source) ? (
-                                <p>
-                                  <small>
-                                    Fonte:
-                                    {' '}
-                                    <i>{learningObject.source}</i>
-                                  </small>
-                                </p>
-                              ) : ''}
-                            </div>
-                          ))}
-                        </Col>
-                      </Row>
+                      <FieldArray name="learning-objects" component={renderLearningObjects} fields={learningObjects} />
                     ) : ''}
                   <Row className="c-question--section-border c-question__section-statement-text">
                     <Col sm="12" xs="12">
@@ -416,10 +424,39 @@ class QuestionPage extends Component {
                   </Row>
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
-                    Nível de Ensino
+                      Nível de Ensino
                     </Col>
-                      <Col sm="8" xs="8">
+                    <Col sm="8" xs="8">
                       <TagList list={activeQuestion.teaching_levels} styleTag="question-info  teaching-level" />
+                    </Col>
+                  </Row>
+                  {activeQuestion.tags && activeQuestion.tags.length > 0 ? (
+                    <Row className="c-question__row-info">
+                      <Col className="info-label" sm="4" xs="4">
+                        Tags
+                      </Col>
+                      <Col sm="8" xs="8">
+                        <TagList list={activeQuestion.tags} styleTag="question-info  tag-name" />
+                      </Col>
+                    </Row>
+                  ) : ' '}
+                  {activeQuestion.descriptors && activeQuestion.descriptors.length > 0 ? (
+                    <Row className="c-question__row-info">
+                      <Col className="info-label" sm="4" xs="4">
+                        Descritores
+                      </Col>
+                      <Col sm="8" xs="12">
+                        <DescriptorList list={activeQuestion.descriptors} styleTag="question-info  descriptor-name" />
+                      </Col>
+                    </Row>
+                  ) : ' '}
+
+                  <Row className="c-question__row-info">
+                    <Col className="info-label" sm="4" xs="4">
+                      Autor
+                    </Col>
+                    <Col sm="8" xs="8">
+                      <QuestionAuthor author={activeQuestion.author} styleTag="question-info author" />
                     </Col>
                   </Row>
                   <Row className="c-question__row-info">
@@ -434,6 +471,7 @@ class QuestionPage extends Component {
                         className="form-control"
                         label="Selecione um nível de dificuldade"
                         optionDefault="NaN"
+                        styleCustomize="form-control c-question-edit__select-difficulty"
                       >
                         { difficultyList && difficultyList.difficulties.map(difficulty => (
                           <option className="c-user-profile__state-city-dropdown-item" key={difficulty.id} value={difficulty.id}>
@@ -444,38 +482,8 @@ class QuestionPage extends Component {
                     </Col>
                   </Row>
                   <FieldArray name="topics" component={renderTopics} />
-                  
-                  {activeQuestion.tags && activeQuestion.tags.length > 0 ? (
-                    <Row className="c-question__row-info">
-                    <Col className="info-label" sm="4" xs="4">
-                      Tags
-                    </Col>
-                    <Col sm="8" xs="8">
-                      <TagList list={activeQuestion.tags} styleTag="question-info  tag-name" />
-                    </Col>
-                  </Row>
-                ) : ' '}
-                  {activeQuestion.descriptors && activeQuestion.descriptors.length > 0 ? (
-                    <Row className="c-question__row-info">
-                    <Col className="info-label" sm="4" xs="4">
-                      Descritores
-                    </Col>
-                    <Col sm="8" xs="12">
-                      <DescriptorList list={activeQuestion.descriptors} styleTag="question-info  descriptor-name" />
-                    </Col>
-                  </Row>
-                ) : ' '}
-
-                  <Row className="c-question__row-info">
-                    <Col className="info-label" sm="4" xs="4">
-                  Autor
-                  </Col>
-                    <Col sm="8" xs="8">
-                    <QuestionAuthor author={activeQuestion.author} styleTag="question-info author" />
-                  </Col>
-                  </Row>
                 </Container>
-                
+
               </Col>
             </Row>
           </div>
