@@ -101,7 +101,7 @@ const SidebarMobile = ({
                       Gerenciar minhas provas
                     </Link>
                   </ListGroupItem>
-                  {/* <ListGroupItem color="light">
+                   <ListGroupItem color="light">
                     <Link to="/my-headers/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-headers/1'); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
@@ -109,7 +109,7 @@ const SidebarMobile = ({
                       />
                       Gerenciar meus cabeçalhos
                     </Link>
-                  </ListGroupItem> */}
+                  </ListGroupItem> 
                 </ListGroup>
                 {showFilters && <FilterContainer />}
               </div>

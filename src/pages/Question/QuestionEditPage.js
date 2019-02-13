@@ -1,6 +1,6 @@
 import QuestionHeader from 'components/question/QuestionHeader';
 import QuestionContent from 'components/question/QuestionContent';
-import QuestionInfo from 'components/question/QuestionInfo';
+import QuestionEditInfoContainer from 'containers/QuestionEditInfoContainer';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import {
@@ -9,7 +9,6 @@ import {
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import { history } from 'helpers/history';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -45,7 +44,7 @@ class QuestionPage extends Component {
 
   render() {
     const {
-      activeQuestion, isFetching, rating, error, onRate, toggleModal, modal, activeDocument, addSelectedQuestion,
+      activeQuestion, isFetching, error, toggleModal, modal, activeDocument, addSelectedQuestion,
       removeSelectedQuestion,
     } = this.props;
 
@@ -169,10 +168,10 @@ class QuestionPage extends Component {
                 <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument}/>
               </div>
 
-              <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
+              <QuestionEditInfoContainer question={activeQuestion} />
 
 
-            </Col>
+            </Col> 
           </Row>
         </div>
         <div className="l-button-add-question">

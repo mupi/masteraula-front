@@ -6,14 +6,12 @@ import { toggleModal, addSelectedQuestion, removeSelectedQuestion } from 'action
 const mapStateToProps = state => ({
   isFetching: state.question.isFetching,
   activeQuestion: state.question.activeQuestion,
-  rating: state.question.rating,
   modal: state.document.modal,
   activeDocument: state.document.activeDocument,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchQuestion: id => dispatch(fetchQuestion(id)),
-  onRate: rating => dispatch(rateQuestion(rating)),
   toggleModal: (modal, idQuestion) => dispatch(toggleModal(modal, idQuestion)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),

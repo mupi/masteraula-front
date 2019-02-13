@@ -49,7 +49,7 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const UserPasswordProfileContainer = connect(
+const UserProfileContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(reduxForm({
@@ -57,4 +57,4 @@ const UserPasswordProfileContainer = connect(
   validate,
 })(UserProfile));
 
-export default UserPasswordProfileContainer;
+export default UserProfileContainer;
