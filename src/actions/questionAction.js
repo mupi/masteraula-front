@@ -1,5 +1,6 @@
 import { questionService } from 'services';
 import { history } from 'helpers/history';
+import { initialize } from 'redux-form';
 
 // Load single question
 export const FETCH_QUESTION = 'FETCH_QUESTION';
@@ -23,7 +24,7 @@ export const DELETE_QUESTION = 'DELETE_QUESTION';
 export const DELETE_QUESTION_SUCCESS = 'DELETE_QUESTION_SUCCESS';
 export const DELETE_QUESTION_FAILURE = 'DELETE_QUESTION_FAILURE';
 export const RESET_DELETE_QUESTION = 'RESET_DELETE_QUESTION';
- 
+
 // Star rating question
 export const RATE_QUESTION = 'RATE_QUESTION';
 
@@ -45,6 +46,7 @@ export const fetchQuestion = (id) => {
     return questionService.fetchQuestion(id)
       .then(
         (activeQuestion) => {
+          dispatch(initialize('question-edit', { difficulty: activeQuestion.difficulty, learning_objects: activeQuestion.learning_objects}));
           dispatch(fetchQuestionSuccess(activeQuestion));
         },
         (error) => {
