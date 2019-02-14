@@ -6,20 +6,13 @@ import { listTopics } from 'actions/topicAction';
 
 import { toggleModal, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
 
-const mapStateToProps = (state) => {
-  const { activeQuestion } = state.question;
-  return ({
-    initialValues: {
-      difficulty: activeQuestion.difficulty,
-    },
-
-    isFetching: state.question.isFetching,
-    activeQuestion: state.question.activeQuestion,
-    modal: state.document.modal,
-    activeDocument: state.document.activeDocument,
-    topicsList: state.topic.topics,
-  });
-};
+const mapStateToProps = state => ({
+  isFetching: state.question.isFetching,
+  activeQuestion: state.question.activeQuestion,
+  modal: state.document.modal,
+  activeDocument: state.document.activeDocument,
+  topicsList: state.topic.topics,
+});
 
 
 const mapDispatchToProps = dispatch => ({
