@@ -74,30 +74,52 @@ const renderSelectField = ({
   </div>
 );
 
-const renderLearningObjects = ({ fields }) => (
+const renderTagsLearningObjects = ({ fields }) => (
+  <Row className="c-question__section-list-learning-objects">
+    <Col sm="12" xs="12">
+      {fields && fields.map(tag => (
+
+        <Row className="c-question-edit__tags-learning-objects">
+          {
+            <Col sm="8">
+              <Field
+                component={renderField}
+                type="text"
+                name={`${tag}.name`}
+                placeholder="Separe as tags com vírgulas"
+                className="form-control"
+              />
+            </Col>}
+        </Row>
+      ))}
+    </Col>
+  </Row>
+);
+
+const renderLearningObjects = ({ fields, learningObjectList }) => (
   <Row className="c-question__section-list-learning-objects">
     <Col sm="12" xs="12">
       {fields && fields.map((learningObject, i) => (
         <div className="c-question__learning-object">
-          { (learningObject.image) ? (
+          { (learningObjectList[i].image) ? (
             <div>
               <img
                 alt="objeto-aprendizagem"
-                src={`http://localhost:8000${learningObject.image}`}
+                src={`http://localhost:8000${learningObjectList[i].image}`}
               />
             </div>
           ) : ''}
-          { (learningObject.text) ? (
+          { (learningObjectList[i].text) ? (
             <div className="c-question__learning-object--text">
-              <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(learningObject.text) }} />
+              <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(learningObjectList[i].text) }} />
             </div>
           ) : ''}
-          { (learningObject.source) ? (
+          { (learningObjectList[i].source) ? (
             <p>
               <small>
                 Fonte:
                 {' '}
-                <i>{learningObject.source}</i>
+                <i>{learningObjectList[i].source}</i>
               </small>
             </p>
           ) : ''}
@@ -107,13 +129,15 @@ const renderLearningObjects = ({ fields }) => (
             </Col>
             {
               <Col sm="8">
-                <Field
-                  component={renderField}
-                  type="text"
-                  name={`${learningObject}.source`}
-                  placeholder="Separe as tags com vírgulas"
-                  className="form-control"
-                />
+                {/* <Field
+                component={renderField}
+                type="text"
+                name={`${learningObject}.tags`}
+                placeholder="Separe as tags com vírgulas"
+                className="form-control"
+              /> */
+            }
+                <FieldArray name={`${learningObject}.tags`} component={renderTagsLearningObjects} />
               </Col>}
           </Row>
         </div>
@@ -244,7 +268,7 @@ const QuestionListDocuments = (props) => {
   );
 };
 
-class QuestionPage extends Component {
+class QuestionEditPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match, listTopics } = this.props;
     fetchQuestion(match.params.id);
@@ -294,14 +318,14 @@ class QuestionPage extends Component {
                   {' '}
                   Voltar
                 </Link>
-                <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
+                <Button className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`} type="submit">
                   <FontAwesomeIcon
                     className="btn__icon"
                     icon="save"
                   />
                   {' '}
                   Salvar
-                </Link>
+                </Button>
               </Col>
             </Row>
             <Row>
@@ -347,7 +371,7 @@ class QuestionPage extends Component {
                 <div className="c-question__full-statement">
                   {(learningObjects && learningObjects.length > 0)
                     ? (
-                      <FieldArray name="learning_objects" component={renderLearningObjects} />
+                      <FieldArray name="learning_objects" component={renderLearningObjects} learningObjectList={learningObjects} />
                     ) : ''}
                   <Row className="c-question--section-border c-question__section-statement-text">
                     <Col sm="12" xs="12">
@@ -469,7 +493,7 @@ class QuestionPage extends Component {
                         Tags
                       </Col>
                       <Col sm="8" xs="8">
-                        {/* <TagList list={activeQuestion.tags} styleTag="question-info  tag-name" /> */}
+                        { /* <TagList list={activeQuestion.tags} styleTag="question-info  tag-name" /> */}
                         <Field
                           component={renderField}
                           type="text"
@@ -539,4 +563,4 @@ class QuestionPage extends Component {
     );
   }
 }
-export default QuestionPage;
+export default QuestionEditPage;

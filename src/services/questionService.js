@@ -1,7 +1,7 @@
 import { apiUrl } from 'helpers/config';
 import { authHeader } from 'helpers';
 import queryString from 'query-string';
- 
+
 function fetchQuestion(id) {
   const requestOptions = {
     method: 'GET',
@@ -28,7 +28,7 @@ function fetchQuestion(id) {
 // Update a Question
 function updateQuestion(activeUpdateQuestion) {
   const requestOptions = {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
@@ -73,8 +73,9 @@ function listQuestions(page, filter) {
 
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
 
-  const url = (search) ? `${apiUrl}/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`
-    : `${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`;
+  const url = (search)
+    ? `/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`
+    : `/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`;
 
   const handleResponse = response => response.json().then((data) => {
     if (!response.ok) {
@@ -85,7 +86,7 @@ function listQuestions(page, filter) {
     return data;
   });
 
-  return fetch(url, requestOptions)
+  return fetch(`${apiUrl}${url}`, requestOptions)
     .then(handleResponse)
     .then(questionPage => questionPage);
 }
