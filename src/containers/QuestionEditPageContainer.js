@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
     topicsList: state.topic.topics,
   });
 };
+
 const mapDispatchToProps = dispatch => ({
   fetchQuestion: id => dispatch(fetchQuestion(id)),
   toggleModal: (modal, idQuestion) => dispatch(toggleModal(modal, idQuestion)),
@@ -27,10 +28,14 @@ const mapDispatchToProps = dispatch => ({
     const newUpdateQuestion = {
       id: props.activeQuestion.id,
       tags: values.tags.split(','),
-   //   topics_ids: values.,
+      topics_ids: values.topics.map((topic) => {
+        if (topic && topic.topic) return topic.topic;
+        if (topic && topic.subsubject) return topic.subsubject;
+        if (topic && topic.subject) return topic.subject;
+        return null;
+      }).filter(topic => topic != null),
       difficulty: values.difficulty,
     };
-    //dispatch(updateLearningObject)
     return dispatch(updateQuestion(newUpdateQuestion));
   },
 });
