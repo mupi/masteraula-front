@@ -1,20 +1,22 @@
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm, formValueSelector } from 'redux-form';
 import QuestionEditPage from 'pages/Question/QuestionEditPage';
 import { fetchQuestion } from 'actions/questionAction';
 import { listTopics } from 'actions/topicAction';
 
 import { toggleModal, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
 
-const mapStateToProps = state => ({
-  isFetching: state.question.isFetching,
-  activeQuestion: state.question.activeQuestion,
-  modal: state.document.modal,
-  activeDocument: state.document.activeDocument,
-  topicsList: state.topic.topics,
-});
-
-
+const mapStateToProps = (state) => {
+  const selector = formValueSelector('question-edit');
+  return ({
+    topics: selector(state, 'topics'),
+    isFetching: state.question.isFetching,
+    activeQuestion: state.question.activeQuestion,
+    modal: state.document.modal,
+    activeDocument: state.document.activeDocument,
+    topicsList: state.topic.topics,
+  });
+};
 const mapDispatchToProps = dispatch => ({
   fetchQuestion: id => dispatch(fetchQuestion(id)),
   toggleModal: (modal, idQuestion) => dispatch(toggleModal(modal, idQuestion)),
