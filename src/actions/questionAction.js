@@ -46,7 +46,11 @@ export const fetchQuestion = (id) => {
     return questionService.fetchQuestion(id)
       .then(
         (activeQuestion) => {
-          dispatch(initialize('question-edit', { difficulty: activeQuestion.difficulty, learning_objects: activeQuestion.learning_objects }));
+          dispatch(initialize('question-edit', {
+            difficulty: activeQuestion.difficulty,
+            learning_objects: activeQuestion.learning_objects,
+            tags: activeQuestion.tags.reduce( (at, ac)=> `${at.name}, ${ac.name}` ) }
+            ));
           dispatch(fetchQuestionSuccess(activeQuestion));
         },
         (error) => {

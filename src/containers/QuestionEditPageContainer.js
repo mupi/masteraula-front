@@ -26,14 +26,11 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: (values, d, props) => {
     const newUpdateQuestion = {
       id: props.activeQuestion.id,
-      tags: ['pamela', 'rosales'],
-      topics_ids: [1, 2],
+      tags: values.tags.split(','),
+   //   topics_ids: values.,
       difficulty: values.difficulty,
     };
-    console.log('hola..');
-    console.log(props);
-    console.log(values);
-
+    //dispatch(updateLearningObject)
     return dispatch(updateQuestion(newUpdateQuestion));
   },
 });
