@@ -67,7 +67,7 @@ export const updateQuestion = (props) => {
   function updateQuestionSuccess(activeQuestion) { return { type: UPDATE_QUESTION_SUCCESS, activeQuestion }; }
   function updateQuestionFailure(error) { return { type: UPDATE_QUESTION_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(updateActiveQuestion(props)); 
+    dispatch(updateActiveQuestion(props));
     return questionService.updateQuestion(props).then(
       (activeQuestion) => {
         dispatch(updateQuestionSuccess(activeQuestion));

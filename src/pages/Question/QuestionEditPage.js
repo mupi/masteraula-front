@@ -1,5 +1,5 @@
 import {
-  Container, Alert, Row, Col, Form, Button, Input, Label,
+  Container, Alert, Row, Col, Form, Button, Input,
 } from 'reactstrap';
 import { getTeachingLevel, getCleanCompleteStatement, getCleanAlternativeText } from 'helpers/question';
 import React, { Component } from 'react';
@@ -74,32 +74,33 @@ const renderSelectField = ({
   </div>
 );
 
-const renderTagsLearningObjects = ({ fields, meta: { error, submitFailed } }) => (
+const renderTagsLearningObjects = ({ fields }) => (
   <Row className="c-question__section-list-learning-objects">
     <Col sm="12" xs="12">
-      {fields && fields.map((tag, i) => (
+      {fields && fields.map(tag => (
 
         <Row className="c-question-edit__tags-learning-objects">
-          {<Col sm="8">
-            <Field
-              component={renderField}
-              type="text"
-              name={`${tag}.name`}
-              placeholder="Separe as tags com vírgulas"
-              className="form-control"
-            />
-           </Col>}
+          {
+            <Col sm="8">
+              <Field
+                component={renderField}
+                type="text"
+                name={`${tag}.name`}
+                placeholder="Separe as tags com vírgulas"
+                className="form-control"
+              />
+            </Col>}
         </Row>
       ))}
     </Col>
   </Row>
 );
 
-const renderLearningObjects = ({ fields, meta: { error, submitFailed }, learningObjectList }) => (
+const renderLearningObjects = ({ fields, learningObjectList }) => (
   <Row className="c-question__section-list-learning-objects">
     <Col sm="12" xs="12">
       {fields && fields.map((learningObject, i) => (
-        <div key={i} className="c-question__learning-object">
+        <div className="c-question__learning-object">
           { (learningObjectList[i].image) ? (
             <div>
               <img
@@ -153,7 +154,9 @@ const renderLearningObjects = ({ fields, meta: { error, submitFailed }, learning
   </Row>
 );
 
-const renderTopics = ({ fields, meta: { error, submitFailed }, subjects }) => (
+const renderTopics = ({
+  fields, meta: { error, submitFailed }, topicsList, selectedTopics,
+}) => (
   <Row>
     <Col md="12">
       <Row className="c-question__row-info c-question-edit__row-topic c-question-edit__header-topic">
@@ -171,66 +174,80 @@ const renderTopics = ({ fields, meta: { error, submitFailed }, subjects }) => (
         </Col>
       </Row>
       <Row>{submitFailed && error && <span>{error}</span>}</Row>
-      {fields.map((topicRow, i) => (
-        <Row key={i} className="c-question__row-info c-question-edit__row-topic">
-          <Col sm="3">
-            <Field
-              name={`${topicRow}.subject`}
-              type="text"
-              component={renderSelectField}
-              className="form-control"
-              label="Assunto"
-              optionDefault="NaN"
-            >
-              { subjects && subjects.map(subject => (
-                <option key={`${i}${subject.id}`} value={subject.id}>
-                  {subject.name}
-                </option>
-              )) }
-            </Field>
-          </Col>
-          <Col sm="3">
-            <Field
-              name={`${topicRow}.subsubject`}
-              type="text"
-              component={renderSelectField}
-              className="form-control"
-              label="Subassunto"
-              optionDefault="NaN"
-            >
-              <option className="c-user-profile__state-city-dropdown-item">
-                  Subassunto
-              </option>
-            </Field>
-          </Col>
-          <Col sm="3">
-            <Field
-              name={`${topicRow}.topic`}
-              type="text"
-              component={renderSelectField}
-              className="form-control"
-              label="Tópico"
-              optionDefault="NaN"
-            >
-              <option className="c-user-profile__state-city-dropdown-item">
-                  Tópico
-              </option>
-            </Field>
-          </Col>
-          <Col sm="3">
-            <Button
-              type="button"
-              title="Remove Member"
-              className="c-question-edit__btn-remove-topic"
-              onClick={() => fields.remove(i)}
-            >
-              <FontAwesomeIcon
-                icon="trash-alt"
-              />
-            </Button>
-          </Col>
-        </Row>
-      ))}
+      {fields.map((topicRow, i) => {
+        const selSubject = selectedTopics[i].subject != null
+          ? topicsList.find(s => s.id === parseInt(selectedTopics[i].subject, 10)) : null;
+        const subsubjects = selSubject != null ? selSubject.childs : null;
+
+        const selSubsubject = selectedTopics[i].subsubject != null
+          ? subsubjects.find(s => s.id === parseInt(selectedTopics[i].subsubject, 10)) : null;
+        const topics = selSubsubject != null ? selSubsubject.childs : null;
+
+        return (
+          <Row className="c-question__row-info c-question-edit__row-topic">
+            <Col sm="3">
+              <Field
+                name={`${topicRow}.subject`}
+                type="text"
+                component={renderSelectField}
+                className="form-control"
+                label="Assunto"
+                optionDefault="NaN"
+              >
+                { topicsList && topicsList.map(subject => (
+                  <option value={subject.id}>
+                    {subject.name}
+                  </option>
+                )) }
+              </Field>
+            </Col>
+            <Col sm="3">
+              <Field
+                name={`${topicRow}.subsubject`}
+                type="text"
+                component={renderSelectField}
+                className="form-control"
+                label="Subassunto"
+                optionDefault="NaN"
+              >
+                { subsubjects && subsubjects.map(subject => (
+                  <option value={subject.id}>
+                    {subject.name}
+                  </option>
+                )) }
+              </Field>
+            </Col>
+            <Col sm="3">
+              <Field
+                name={`${topicRow}.topic`}
+                type="text"
+                component={renderSelectField}
+                className="form-control"
+                label="Tópico"
+                optionDefault="NaN"
+              >
+                { topics && topics.map(subject => (
+                  <option value={subject.id}>
+                    {subject.name}
+                  </option>
+                )) }
+              </Field>
+            </Col>
+            <Col sm="3">
+              <Button
+                type="button"
+                title="Remove Member"
+                className="c-question-edit__btn-remove-topic"
+                onClick={() => fields.remove(i)}
+              >
+                <FontAwesomeIcon
+                  icon="trash-alt"
+                />
+              </Button>
+            </Col>
+          </Row>
+        );
+      })}
     </Col>
   </Row>
 );
@@ -238,7 +255,8 @@ const renderTopics = ({ fields, meta: { error, submitFailed }, subjects }) => (
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
-  const listDocumentFilter = ((activeDocument && activeQuestion.documents) ? activeQuestion.documents.filter(item => item.id !== activeDocument.id) : activeQuestion.documents);
+  const listDocumentFilter = ((activeDocument && activeQuestion.documents)
+    ? activeQuestion.documents.filter(item => item.id !== activeDocument.id) : activeQuestion.documents);
 
   return (
     activeQuestion.documents && listDocumentFilter.length > 0
@@ -267,7 +285,7 @@ class QuestionEditPage extends Component {
 
   render() {
     const {
-      activeQuestion, isFetching, error, activeDocument, handleSubmit, topicsList,
+      activeQuestion, isFetching, error, activeDocument, handleSubmit, topicsList, topics,
     } = this.props;
 
     const {
@@ -409,7 +427,12 @@ class QuestionEditPage extends Component {
                               ) : ''
                             ))}
                             {resolution
-                              ? (<div className="c-question__resolution-text" dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(resolution) }} />) : ''
+                              ? (
+                                <div
+                                  className="c-question__resolution-text"
+                                  dangerouslySetInnerHTML={
+                                { __html: getCleanAlternativeText(resolution) }}
+                                />) : ''
                             }
                           </div>
                         </Col>
@@ -478,6 +501,7 @@ class QuestionEditPage extends Component {
                         Tags
                       </Col>
                       <Col sm="8" xs="8">
+                        { /* <TagList list={activeQuestion.tags} styleTag="question-info  tag-name" /> */}
                         <Field
                           component={renderField}
                           type="text"
@@ -523,7 +547,7 @@ class QuestionEditPage extends Component {
                       </Field>
                     </Col>
                   </Row>
-                  <FieldArray name="topics" component={renderTopics} subjects={topicsList} />
+                  <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} />
                 </Container>
 
               </Col>
