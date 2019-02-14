@@ -127,15 +127,19 @@ const renderLearningObjects = ({ fields, meta: { error, submitFailed }, learning
               <i>tags:</i>
             </Col>
             {<Col sm="8">
-             {/* <Field
-                component={renderField}
+            {learningObjectList[i].tags.join(",")}
+             <Field
+                component="input"
                 type="text"
-                name={`${learningObject}.tags`}
+                name={`id-${learningObject}.tags`}
+                values={learningObjectList[i].tags.join(",")}
                 placeholder="Separe as tags com vírgulas"
                 className="form-control"
-              />*/
+              />
+            
+            { /* <FieldArray name={`${learningObject}.tags`} component={renderTagsLearningObjects}/>
+            */
             }
-         <FieldArray name={`${learningObject}.tags`} component={renderTagsLearningObjects}/>
 
              </Col>}
           </Row>
