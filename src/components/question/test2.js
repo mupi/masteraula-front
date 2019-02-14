@@ -1,5 +1,7 @@
 import React from 'react'
-import { Field, FieldArray, reduxForm } from 'redux-form'
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { Field, FieldArray, reduxForm, formValueSelector } from 'redux-form'
 
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
   <div>
@@ -11,63 +13,84 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
   </div>
 )
 
-const renderHobbies = ({ fields, meta: { error } }) => (
-  <ul>
-    <li>
-      <button type="button" onClick={() => fields.push()}>Add Hobby</button>
-    </li>
-    {fields.map((hobby, index) =>
-      <li key={index}>
-        <button
-          type="button"
-          title="Remove Hobby"
-          onClick={() => fields.remove(index)}/>
-        <Field
-          name={hobby}
-          type="text"
-          component={renderField}
-          label={`Hobby #${index + 1}`}/>
-      </li>
-    )}
-    {error && <li className="error">{error}</li>}
-  </ul>
+const renderCalcField = ({ input, label, type, meta: { touched, error }, calc }) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <input {...input} type={type} placeholder={label} value={calc()} />
+      {touched && error && <span>{error}</span>}
+    </div>
+  </div>
 )
 
-const renderMembers = ({ fields, meta: { touched, error, submitFailed } }) => (
-  <ul>
-    <li>
-      <button type="button" onClick={() => fields.push({})}>Add Member</button>
-      {(touched || submitFailed) && error && <span>{error}</span>}
-    </li>
-    {fields.map((member, index) =>
-      <li key={index}>
-        <button
-          type="button"
-          title="Remove Member"
-          onClick={() => fields.remove(index)}/>
-        <h4>Member #{index + 1}</h4>
-        <Field
-          name={`${member}.firstName`}
-          type="text"
-          component={renderField}
-          label="First Name"/>
-        <Field
-          name={`${member}.lastName`}
-          type="text"
-          component={renderField}
-          label="Last Name"/>
-        <FieldArray name={`${member}.hobbies`} component={renderHobbies}/>
-      </li>
-    )}
-  </ul>
-)
+const renderCompetences = ({ fields, meta: { touched, error, submitFailed }, products, productSelectValue }) => {
+  return (
+    <div>
+      <ul>
+        {fields.map((competence, index) =>
+                    <li key={index}>
+                      <h4>Competence #{index + 1}</h4>
+                      <Field
+                        name={`${competence}.singlePrice`}
+                        type="number"
+                        component={renderField}
+                        label="Single Price"
+                        onChange={() => {
+                          const current = fields.get(index);
+                          current.totalPrice = current.singlePrice * current.standardQuantity;
+                          fields.remove(index);
+                          fields.insert(index, current);
+                        }}
+                        />
+                      <Field
+                        name={`${competence}.standardQuantity`}
+                        type="number"
+                        component={renderField}
+                        label="Standard Quantity"
+                        />
+                      <Field
+                        name={`${competence}.totalPrice`}
+                        type="number"
+                        component={renderCalcField}
+                        props={{calc: () => {
+                          const current = fields.get(index);
+                          return current.singlePrice * current.standardQuantity;
+                        }}}
+                        label="Total Price"
+                        />
+
+                      <button 
+                        type="button" 
+                        onClick={() => fields.remove(index)} 
+                        style={{color: 'red'}}
+                        >
+                        ✘
+                      </button>
+                    </li>
+                   )}
+      </ul>
+      <div>
+        <Field name="productSelect" component="select">
+          <option>Select product</option>
+          {products.map(p => <option value={p.id}>{p.name}</option>)}
+        </Field>
+        <button type="button" onClick={() => {
+            const selectedProduct = products.find(p => p.id === productSelectValue);
+            fields.push(selectedProduct);
+          }}>Add</button>
+        {(touched || submitFailed) && error && <span>{error}</span>}
+      </div>
+    </div>
+  );
+}
 
 const FieldArraysForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting } = props
+  const { handleSubmit, pristine, reset, submitting, products, productSelectValue } = props;
+
   return (
     <form onSubmit={handleSubmit}>
-      <Field name="clubName" type="text" component={renderField} label="Club Name"/>
-      <FieldArray name="members" component={renderMembers}/>
+      <Field name="recipientName" type="text" component={renderField} label="Recipient Name"/>
+      <FieldArray name="competences" component={renderCompetences} props={{products, productSelectValue}}/>
       <div>
         <button type="submit" disabled={submitting}>Submit</button>
         <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
@@ -76,6 +99,16 @@ const FieldArraysForm = (props) => {
   )
 }
 
-export default reduxForm({
-  form: 'fieldArrays',     // a unique identifier for this form
-})(FieldArraysForm)
+const selector = formValueSelector('fieldArrays');
+
+const mapStateToProps = (state) => {
+  const productSelectValue = selector(state, 'productSelect');
+  return { productSelectValue };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  reduxForm({
+    form: 'fieldArrays'
+  })
+)(FieldArraysForm);

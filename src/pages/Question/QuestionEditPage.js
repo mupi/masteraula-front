@@ -78,7 +78,7 @@ const renderLearningObjects = ({ fields, meta: { error, submitFailed } }) => (
   <Row className="c-question__section-list-learning-objects">
     <Col sm="12" xs="12">
       {fields && fields.map((learningObject, i) => (
-        <div key={learningObject.id} className="c-question__learning-object">
+        <div key={i} className="c-question__learning-object">
           { (learningObject.image) ? (
             <div>
               <img
@@ -109,7 +109,7 @@ const renderLearningObjects = ({ fields, meta: { error, submitFailed } }) => (
               <Field
                 component={renderField}
                 type="text"
-                name={`id-${i}.tags`}
+                name={`${learningObject}.source`}
                 placeholder="Separe as tags com vírgulas"
                 className="form-control"
               />
@@ -118,7 +118,7 @@ const renderLearningObjects = ({ fields, meta: { error, submitFailed } }) => (
         </div>
       ))}
     </Col>
-  </Row>
+  </Row> 
 );
 
 const renderTopics = ({ fields, meta: { error, submitFailed }, subjects }) => (
@@ -329,7 +329,7 @@ class QuestionPage extends Component {
                 <div className="c-question__full-statement">
                   {(learningObjects && learningObjects.length > 0)
                     ? (
-                      <FieldArray name="learning_objects" component={renderLearningObjects} fields={learningObjects} />
+                      <FieldArray name="learning_objects" component={renderLearningObjects} />
                     ) : ''}
                   <Row className="c-question--section-border c-question__section-statement-text">
                     <Col sm="12" xs="12">
