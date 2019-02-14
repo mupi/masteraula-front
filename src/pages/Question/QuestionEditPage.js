@@ -100,7 +100,7 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
   <Row className="c-question__section-list-learning-objects">
     <Col sm="12" xs="12">
       {fields && fields.map((learningObject, i) => (
-        <div className="c-question__learning-object">
+        <div key={learningObjectList[i]} className="c-question__learning-object">
           { (learningObjectList[i].image) ? (
             <div>
               <img
@@ -166,6 +166,7 @@ const renderTopics = ({
         </Col>
       </Row>
       <Row>{submitFailed && error && <span>{error}</span>}</Row>
+
       {fields.map((topicRow, i) => {
         const selSubject = selectedTopics[i].subject != null
           ? topicsList.find(s => s.id === parseInt(selectedTopics[i].subject, 10)) : null;
@@ -176,7 +177,7 @@ const renderTopics = ({
         const topics = selSubsubject != null ? selSubsubject.childs : null;
 
         return (
-          <Row className="c-question__row-info c-question-edit__row-topic">
+          <Row key={topicRow} className="c-question__row-info c-question-edit__row-topic">
             <Col sm="3">
               <Field
                 name={`${topicRow}.subject`}
@@ -187,7 +188,7 @@ const renderTopics = ({
                 optionDefault="NaN"
               >
                 { topicsList && topicsList.map(subject => (
-                  <option value={subject.id}>
+                  <option key={subject.id} value={subject.id}>
                     {subject.name}
                   </option>
                 )) }
@@ -203,7 +204,7 @@ const renderTopics = ({
                 optionDefault="NaN"
               >
                 { subsubjects && subsubjects.map(subject => (
-                  <option value={subject.id}>
+                  <option key={subject.id} value={subject.id}>
                     {subject.name}
                   </option>
                 )) }
@@ -219,7 +220,7 @@ const renderTopics = ({
                 optionDefault="NaN"
               >
                 { topics && topics.map(subject => (
-                  <option value={subject.id}>
+                  <option key={subject.id} value={subject.id}>
                     {subject.name}
                   </option>
                 )) }
