@@ -127,12 +127,16 @@ const renderLearningObjects = ({ fields, meta: { error, submitFailed }, learning
               <i>tags:</i>
             </Col>
             {<Col sm="8">
-            {learningObjectList[i].tags.join(",")}
+           
+
+          {learningObjectList[i].tags && learningObjectList[i].tags.map((tag, i) => (
+      <span key={i}> {tag.name},</span>
+    ))}
+          
              <Field
                 component="input"
                 type="text"
                 name={`id-${learningObject}.tags`}
-                values={learningObjectList[i].tags.join(",")}
                 placeholder="Separe as tags com vírgulas"
                 className="form-control"
               />
@@ -474,12 +478,11 @@ class QuestionEditPage extends Component {
                         Tags
                       </Col>
                       <Col sm="8" xs="8">
-                    { /* <TagList list={activeQuestion.tags} styleTag="question-info  tag-name" /> */}
                         <Field
                           component={renderField}
                           type="text"
-                          name="tags-question"
-                          id="tags-question"
+                          name="tags"
+                          id="tags"
                           placeholder="Separe as tags com vírgulas"
                           className="form-control"
                         />
