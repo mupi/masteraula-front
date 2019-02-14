@@ -1,7 +1,7 @@
 import { apiUrl } from 'helpers/config';
 import { authHeader } from 'helpers';
 import queryString from 'query-string';
-
+ 
 function fetchQuestion(id) {
   const requestOptions = {
     method: 'GET',
@@ -24,6 +24,37 @@ function fetchQuestion(id) {
     .then(handleResponse)
     .then(activeQuestion => activeQuestion);
 }
+
+// Update a Question
+function updateQuestion(activeUpdateQuestion) {
+  const requestOptions = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+    body: JSON.stringify({ ...activeUpdateQuestion, secret: true }),
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  const idQuestion = activeUpdateQuestion.id;
+
+  return fetch(`${apiUrl}/questions/${idQuestion}/`, requestOptions)
+    .then(handleResponse)
+    .then((activeQuestion) => {
+      localStorage.setItem('activeQuestion', JSON.stringify(activeQuestion));
+      return activeQuestion;
+    });
+}
+
 
 function listQuestions(page, filter) {
   const requestOptions = {
@@ -69,6 +100,7 @@ const questionService = {
   rateQuestion,
   fetchQuestion,
   listQuestions,
+  updateQuestion,
 };
 
 export default questionService;
