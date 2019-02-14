@@ -28,7 +28,7 @@ function fetchQuestion(id) {
 // Update a Question
 function updateQuestion(activeUpdateQuestion) {
   const requestOptions = {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader(),

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import QuestionEditPage from 'pages/Question/QuestionEditPage';
-import { fetchQuestion } from 'actions/questionAction';
+import { fetchQuestion, updateQuestion } from 'actions/questionAction';
 import { listTopics } from 'actions/topicAction';
 
 import { toggleModal, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
@@ -21,6 +21,20 @@ const mapDispatchToProps = dispatch => ({
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
   listTopics: param => dispatch(listTopics(param)),
+  onSubmit:( values, d,props) => {
+
+    const newUpdateQuestion = {
+      id: props.activeQuestion.id,
+      tags: ["pamela", "rosales"],
+      topics_ids: [1,2],
+      difficulty: values.difficulty,
+    };
+    console.log("hola..");
+    console.log(props);
+    console.log(values);
+
+    return dispatch(updateQuestion(newUpdateQuestion));
+  },
 });
 
 const QuestionEditPageContainer = connect(
