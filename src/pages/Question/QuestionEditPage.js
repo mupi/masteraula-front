@@ -122,7 +122,7 @@ const renderLearningObjects = ({ fields, meta: { error, submitFailed } }) => (
   </Row>
 );
 
-const renderTopics = ({ fields, meta: { error, submitFailed }, subjects}) => (
+const renderTopics = ({ fields, meta: { error, submitFailed }, subjects }) => (
   <Row>
     <Col md="12">
       <Row className="c-question__row-info c-question-edit__row-topic c-question-edit__header-topic">
@@ -244,7 +244,7 @@ class QuestionPage extends Component {
     } = activeQuestion;
 
     const learningObjects = activeQuestion.learning_objects;
-    
+
     if (isFetching) {
       return (
         <HomeUserPage>
@@ -433,13 +433,29 @@ class QuestionPage extends Component {
                       <TagList list={activeQuestion.teaching_levels} styleTag="question-info  teaching-level" />
                     </Col>
                   </Row>
+                  <Row className="c-question__row-info">
+                    <Col className="info-label" sm="4" xs="4">
+                      Autor
+                    </Col>
+                    <Col sm="8" xs="8">
+                      <QuestionAuthor author={activeQuestion.author} styleTag="question-info author" />
+                    </Col>
+                  </Row>
                   {activeQuestion.tags && activeQuestion.tags.length > 0 ? (
                     <Row className="c-question__row-info">
                       <Col className="info-label" sm="4" xs="4">
                         Tags
                       </Col>
                       <Col sm="8" xs="8">
-                        <TagList list={activeQuestion.tags} styleTag="question-info  tag-name" />
+                        {/* <TagList list={activeQuestion.tags} styleTag="question-info  tag-name" /> */}
+                        <Field
+                          component={renderField}
+                          type="text"
+                          name="tags"
+                          id="tags"
+                          placeholder="Separe as tags com vírgulas"
+                          className="form-control"
+                        />
                       </Col>
                     </Row>
                   ) : ' '}
@@ -454,14 +470,7 @@ class QuestionPage extends Component {
                     </Row>
                   ) : ' '}
 
-                  <Row className="c-question__row-info">
-                    <Col className="info-label" sm="4" xs="4">
-                      Autor
-                    </Col>
-                    <Col sm="8" xs="8">
-                      <QuestionAuthor author={activeQuestion.author} styleTag="question-info author" />
-                    </Col>
-                  </Row>
+
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
                         Grau de difuldade
@@ -484,7 +493,7 @@ class QuestionPage extends Component {
                       </Field>
                     </Col>
                   </Row>
-                  <FieldArray name="topics" component={renderTopics} subjects={topicsList}  />
+                  <FieldArray name="topics" component={renderTopics} subjects={topicsList} />
                 </Container>
 
               </Col>
