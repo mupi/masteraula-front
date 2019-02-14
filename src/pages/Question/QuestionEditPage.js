@@ -77,7 +77,7 @@ const renderSelectField = ({
 const renderLearningObjects = ({ fields, meta: { error, submitFailed } }) => (
   <Row className="c-question__section-list-learning-objects">
     <Col sm="12" xs="12">
-      {fields.map((learningObject, i) => (
+      {fields && fields.map((learningObject, i) => (
         <div key={learningObject.id} className="c-question__learning-object">
           { (learningObject.image) ? (
             <div>
@@ -105,16 +105,15 @@ const renderLearningObjects = ({ fields, meta: { error, submitFailed } }) => (
             <Col sm="2" className="align-self-center text-right">
               <i>tags:</i>
             </Col>
-            <Col sm="8">
+            {<Col sm="8">
               <Field
                 component={renderField}
                 type="text"
-                name="name"
-                id="name"
+                name={`id-${i}.tags`}
                 placeholder="Separe as tags com vírgulas"
                 className="form-control"
               />
-            </Col>
+            </Col>}
           </Row>
         </div>
       ))}
@@ -140,8 +139,8 @@ const renderTopics = ({ fields, meta: { error, submitFailed }, subjects }) => (
         </Col>
       </Row>
       <Row>{submitFailed && error && <span>{error}</span>}</Row>
-      {fields.map((topicRow, index) => (
-        <Row key={index} className="c-question__row-info c-question-edit__row-topic">
+      {fields.map((topicRow, i) => (
+        <Row key={i} className="c-question__row-info c-question-edit__row-topic">
           <Col sm="3">
             <Field
               name={`${topicRow}.subject`}
@@ -152,7 +151,7 @@ const renderTopics = ({ fields, meta: { error, submitFailed }, subjects }) => (
               optionDefault="NaN"
             >
               { subjects && subjects.map(subject => (
-                <option key={`${index}${subject.id}`} value={subject.id}>
+                <option key={`${i}${subject.id}`} value={subject.id}>
                   {subject.name}
                 </option>
               )) }
@@ -191,7 +190,7 @@ const renderTopics = ({ fields, meta: { error, submitFailed }, subjects }) => (
               type="button"
               title="Remove Member"
               className="c-question-edit__btn-remove-topic"
-              onClick={() => fields.remove(index)}
+              onClick={() => fields.remove(i)}
             >
               <FontAwesomeIcon
                 icon="trash-alt"
@@ -330,7 +329,7 @@ class QuestionPage extends Component {
                 <div className="c-question__full-statement">
                   {(learningObjects && learningObjects.length > 0)
                     ? (
-                      <FieldArray name="learning-objects" component={renderLearningObjects} fields={learningObjects} />
+                      <FieldArray name="learning_objects" component={renderLearningObjects} fields={learningObjects} />
                     ) : ''}
                   <Row className="c-question--section-border c-question__section-statement-text">
                     <Col sm="12" xs="12">
@@ -428,7 +427,7 @@ class QuestionPage extends Component {
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
                       Nível de Ensino
-                    </Col>
+                    </Col> 
                     <Col sm="8" xs="8">
                       <TagList list={activeQuestion.teaching_levels} styleTag="question-info  teaching-level" />
                     </Col>
@@ -451,8 +450,8 @@ class QuestionPage extends Component {
                         <Field
                           component={renderField}
                           type="text"
-                          name="tags"
-                          id="tags"
+                          name="tags-question"
+                          id="tags-question"
                           placeholder="Separe as tags com vírgulas"
                           className="form-control"
                         />

@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
   return ({
     initialValues: {
       difficulty: activeQuestion.difficulty,
+      learning_objects: activeQuestion.learning_objects,
     },
 
     isFetching: state.question.isFetching,
