@@ -44,10 +44,8 @@ const QuestionCard = (props) => {
   const extractStatement = getCleanExtractStatement(question.statement);
   const idSource = getIdFilter(sourceFilters, question.source);
   const idYear = getIdFilter(yearFilters, question.year);
-  const tagList = question.tags.concat(question.topics.map(topic => topic.name));
-  // for (let topic of question.topics){
-  //   tagList.append(topic.name);
-  // }
+  const tagList = question.tags.concat(question.topics);
+
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100 question-card__full'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
