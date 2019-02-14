@@ -46,10 +46,36 @@ export const fetchQuestion = (id) => {
     return questionService.fetchQuestion(id)
       .then(
         (activeQuestion) => {
+          const allTopics = [];
+          activeQuestion.topics.forEach((topic) => {
+            const tl = [];
+            let t = topic;
+            while (t != null) {
+              tl.push(t.id.toString());
+              t = t.parent;
+            }
+            if (tl.length === 3) {
+              allTopics.push({
+                topic: tl[0],
+                subsubject: tl[1],
+                subject: tl[2],
+              });
+            } else if (tl.length === 2) {
+              allTopics.push({
+                subsubject: tl[2],
+                subject: tl[1],
+              });
+            } else {
+              allTopics.push({
+                subject: tl[0],
+              });
+            }
+          });
           dispatch(initialize('question-edit', {
             difficulty: activeQuestion.difficulty,
             learning_objects: activeQuestion.learning_objects,
             tags: activeQuestion.tags.map(tag => tag.name).join(','),
+            topics: allTopics,
           }));
           dispatch(fetchQuestionSuccess(activeQuestion));
         },

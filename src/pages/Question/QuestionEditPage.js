@@ -74,27 +74,27 @@ const renderSelectField = ({
   </div>
 );
 
-const renderTagsLearningObjects = ({ fields }) => (
-  <Row className="c-question__section-list-learning-objects">
-    <Col sm="12" xs="12">
-      {fields && fields.map(tag => (
+// const renderTagsLearningObjects = ({ fields }) => (
+//   <Row className="c-question__section-list-learning-objects">
+//     <Col sm="12" xs="12">
+//       {fields && fields.map(tag => (
 
-        <Row className="c-question-edit__tags-learning-objects">
-          {
-            <Col sm="8">
-              <Field
-                component={renderField}
-                type="text"
-                name={`${tag}.name`}
-                placeholder="Separe as tags com vírgulas"
-                className="form-control"
-              />
-            </Col>}
-        </Row>
-      ))}
-    </Col>
-  </Row>
-);
+//         <Row className="c-question-edit__tags-learning-objects">
+//           {
+//             <Col sm="8">
+//               <Field
+//                 component={renderField}
+//                 type="text"
+//                 name={`${tag}.name`}
+//                 placeholder="Separe as tags com vírgulas"
+//                 className="form-control"
+//               />
+//             </Col>}
+//         </Row>
+//       ))}
+//     </Col>
+//   </Row>
+// );
 
 const renderLearningObjects = ({ fields, learningObjectList }) => (
   <Row className="c-question__section-list-learning-objects">
@@ -127,26 +127,19 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             <Col sm="2" className="align-self-center text-right">
               <i>tags:</i>
             </Col>
-            {<Col sm="8">
-           
-
-          {learningObjectList[i].tags && learningObjectList[i].tags.map((tag, i) => (
-      <span key={i}> {tag.name},</span>
-    ))}
-          
-             <Field
-                component="input"
-                type="text"
-                name={`id-${learningObject}.tags`}
-                placeholder="Separe as tags com vírgulas"
-                className="form-control"
-              />
-            
-            { /* <FieldArray name={`${learningObject}.tags`} component={renderTagsLearningObjects}/>
-            */
-            }
-
-             </Col>}
+            {
+              <Col sm="8">
+                {/* {learningObjectList[i].tags && learningObjectList[i].tags.map(tag => (
+                  <span key={i}>` ${tag.name},`</span>
+                ))} */}
+                <Field
+                  component="input"
+                  type="text"
+                  name={`id-${learningObject}.tags`}
+                  placeholder="Separe as tags com vírgulas"
+                  className="form-control"
+                />
+              </Col>}
           </Row>
         </div>
       ))}
@@ -280,8 +273,8 @@ const QuestionListDocuments = (props) => {
 class QuestionEditPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match, listTopics } = this.props;
-    fetchQuestion(match.params.id);
     listTopics();
+    fetchQuestion(match.params.id);
   }
 
   render() {
