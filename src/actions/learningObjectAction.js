@@ -5,6 +5,10 @@ export const UPDATE_LEARNING_OBJECT = 'UPDATE_LEARNING_OBJECT';
 export const UPDATE_LEARNING_OBJECT_SUCCESS = 'UPDATE_LEARNING_OBJECT_SUCCESS';
 export const UPDATE_LEARNING_OBJECT_FAILURE = 'UPDATE_LEARNING_OBJECT_FAILURE';
 
+export const UPDATE_ALL_LEARNING_OBJECTS = 'UPDATE_ALL_LEARNING_OBJECTS'
+export const UPDATE_ALL_LEARNING_OBJECTS_SUCCESS = 'UPDATE_ALL_LEARNING_OBJECTS_SUCCESS'
+export const UPDATE_ALL_LEARNING_OBJECTS_FAILURE = 'UPDATE_ALL_LEARNING_OBJECTS_FAILURE'
+
 
 // Update LearningObject
 export const updateLearningObject = (props) => {
@@ -25,9 +29,5 @@ export const updateLearningObject = (props) => {
 };
 
 // Update LearningObject List
-export const updateLearningObjectList = (props) => {
-  let i;
-  for (i = 0; i < props.length; i += 1) {
-    updateLearningObject(props[i]);
-  }
+export const updateLearningObjectList = (props) => { return { type: UPDATE_ALL_LEARNING_OBJECTS_SUCCESS, props };
 };
