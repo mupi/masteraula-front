@@ -100,7 +100,7 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
   <Row className="c-question__section-list-learning-objects">
     <Col sm="12" xs="12">
       {fields && fields.map((learningObject, i) => (
-        <div className="c-question__learning-object">
+        <div className="c-question__learning-object" key={learningObjectList[i].id}>
           { (learningObjectList[i].image) ? (
             <div>
               <img
@@ -134,18 +134,10 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
       <span key={i}> {tag.name},</span>
     ))}
           
-             <Field
-                component="input"
-                type="text"
-                name={`id-${learningObject}.tags`}
-                placeholder="Separe as tags com vírgulas"
-                className="form-control"
-              />
             
-            { /* <FieldArray name={`${learningObject}.tags`} component={renderTagsLearningObjects}/>
-            */
-            }
-
+            
+         { /* <FieldArray name={`${learningObject}.tags`} component={renderTagsLearningObjects}/>*/
+          }
              </Col>}
           </Row>
         </div>

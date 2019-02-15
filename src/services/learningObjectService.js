@@ -4,7 +4,7 @@ import { authHeader } from 'helpers';
 // Update an Active LearningObject
 function updateLearningObject(activeUpdateLearningObject) {
   const requestOptions = {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader(),

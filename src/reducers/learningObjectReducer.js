@@ -26,7 +26,7 @@ export const learningObject = (state = initialState, action) => {
       });
     }
     case UPDATE_LEARNING_OBJECT_SUCCESS: {
-      toast.success('Cabeçalho atualizado com sucesso', optionsSuccess);
+      toast.success('Objeto(s) de aprendizagem atualizado(s) com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeLearningObject: { ...action.activeLearningObject },
         isUpdated: true,

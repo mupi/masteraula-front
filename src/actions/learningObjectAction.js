@@ -26,5 +26,8 @@ export const updateLearningObject = (props) => {
 
 // Update LearningObject List
 export const updateLearningObjectList = (props) => {
-  
+  let i;
+  for (i = 0; i < props.length; i += 1) {
+    updateLearningObject(props[i]);
+  }
 };

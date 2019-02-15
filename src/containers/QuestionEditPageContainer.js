@@ -3,7 +3,7 @@ import { reduxForm, formValueSelector } from 'redux-form';
 import QuestionEditPage from 'pages/Question/QuestionEditPage';
 import { fetchQuestion, updateQuestion } from 'actions/questionAction';
 import { listTopics } from 'actions/topicAction';
-import { updateLearningObjectList } from 'actions/learningObjectAction';
+import { updateLearningObjectList, updateLearningObject } from 'actions/learningObjectAction';
 
 
 import { toggleModal, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
@@ -27,12 +27,17 @@ const mapDispatchToProps = dispatch => ({
   listTopics: param => dispatch(listTopics(param)),
   onSubmit: (values, d, props) => {
     const newUpdateQuestion = {
-      id: props.activeQuestion.id, 
+      id: props.activeQuestion.id,
       tags: values.tags.split(','),
-   //   topics_ids: values.,
       difficulty: values.difficulty,
+      topics_ids: [1, 2],
     };
- //   dispatch(updateLearningObjectList(props));
+
+    const newLearningObject ={
+      id: 10,
+      tags: ["supertag","superwoman"]
+    }
+    dispatch(updateLearningObject(newLearningObject));
     return dispatch(updateQuestion(newUpdateQuestion));
   },
 });
