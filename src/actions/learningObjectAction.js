@@ -7,24 +7,24 @@ export const UPDATE_LEARNING_OBJECT_FAILURE = 'UPDATE_LEARNING_OBJECT_FAILURE';
 
 
 // Update LearningObject
-export const listTopics = (param) => {
-  function requestListTopics() { return { type: LIST_TOPIC }; }
-  function fetchListTopicsSuccess(topics) {
-    return { type: LIST_TOPIC_SUCCESS, topics };
-  }
-  function fetchListTopicsFailure(error) {
-    return { type: LIST_TOPIC_FAILURE, error };
-  }
+export const updateLearningObject = (props) => {
+  function updateActiveLearningObject() { return { type: UPDATE_LEARNING_OBJECT }; }
+  function updateLearningObjectSuccess(activeLearningObject) { return { type: UPDATE_LEARNING_OBJECT_SUCCESS, activeLearningObject }; }
+  function updateLearningObjectFailure(error) { return { type: UPDATE_LEARNING_OBJECT_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(requestListTopics(param));
-    return topicService.listTopics(param)
-      .then(
-        (topics) => {
-          dispatch(fetchListTopicsSuccess(topics));
-        },
-        (error) => {
-          dispatch(fetchListTopicsFailure(error));
-        },
-      );
+    dispatch(updateActiveLearningObject(props));
+    return learningObjectService.updateLearningObject(props).then(
+      (activeLearningObject) => {
+        dispatch(updateLearningObjectSuccess(activeLearningObject));
+      },
+      (error) => {
+        dispatch(updateLearningObjectFailure(error));
+      },
+    );
   };
+};
+
+// Update LearningObject List
+export const updateLearningObjectList = (props) => {
+  
 };

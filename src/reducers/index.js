@@ -10,4 +10,4 @@ export { default as document } from './documentReducer';
 export { default as header } from './headerReducer';
 export { default as modal } from './modalReducer';
 export { default as topic } from './topicReducer';
-
+export { default as learningObject } from './learningObjectReducer';
