@@ -42,6 +42,9 @@
 
 //Question Page where c-question is the main container
 .c-question {
+    &__options{
+      margin-top: 5px;
+    }
 
     &__row-info {
         margin-bottom: 10px;
@@ -130,6 +133,18 @@
         }
     }
 
+    &__section-statement-text{
+
+    }
+
+    &__section-alternatives{
+      
+    }
+
+    &__section-answer{
+      
+    }
+
     &__alternatives .alternative:last-child{
         margin-bottom: 0px;
     }
@@ -181,7 +196,12 @@
       text-align: center;
       display: inline-block;
       margin: 0px 5px 0px 0px;
+      &:last-child{
+        margin: 0px 0px 0px 0px;
+      }
     }
+
+    
 
     &__tag--pink{ 
       background: $color-ma-pink;
@@ -209,6 +229,6 @@
 }
 
 //Flex in c-question header
-.c-question .p-2 {
+.c-question__label-tag-header.p-2 {
   padding: 3px 7px !important;
 }

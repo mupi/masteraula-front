@@ -3,7 +3,9 @@ import {
   RATE_QUESTION,
   LIST_QUESTION_PAGE, LIST_QUESTION_PAGE_SUCCESS, LIST_QUESTION_PAGE_FAILURE,
   LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS, LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS,
+  UPDATE_QUESTION, UPDATE_QUESTION_SUCCESS, UPDATE_QUESTION_FAILURE,
 } from 'actions/questionAction';
+import { toast } from 'react-toastify';
 
 const sessionData = JSON.parse(localStorage.getItem('activeDocument'));
 
@@ -12,6 +14,17 @@ const initialState = {
   questionPage: {},
   activeDocument: sessionData,
 };
+
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
+
+const optionsError = {
+  className: 'alert__ma-toast--error',
+  type: 'error',
+};
+
 
 export const question = (state = initialState, action) => {
   switch (action.type) {
@@ -70,6 +83,24 @@ export const question = (state = initialState, action) => {
       return Object.assign({}, state, {
         activeQuestion,
       });
+    }
+    case UPDATE_QUESTION: {
+      return Object.assign({}, state, {
+        isRemoved: null,
+        error: null,
+        isUpdated: null,
+      });
+    }
+    case UPDATE_QUESTION_SUCCESS: {
+      toast.success('Questão atualizada com sucesso', optionsSuccess);
+      return Object.assign({}, state, {
+        activeQuestion: { ...action.activeQuestion },
+        isUpdated: true,
+      });
+    }
+    case UPDATE_QUESTION_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, { error: action.error });
     }
     default:
       return state;

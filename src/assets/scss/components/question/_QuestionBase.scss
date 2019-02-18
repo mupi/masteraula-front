@@ -2,8 +2,9 @@
 .c-question-base{
 
   &__link-askquestion{
-    font-size: 10px;
-    color: $color-ma-dark-gray;
+    font-size: 13px;
+    color: $color-ma-blue;
+    font-weight: normal;
 
     &:hover{
       color:$color-ma-blue;

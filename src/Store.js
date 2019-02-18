@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import {
-  login, menu, register, forgotPassword, profileEdit, question, filter, session, document, modal, header,
+  login, menu, register, forgotPassword, profileEdit, question, filter, session, document, modal, header, topic, learningObject,
 } from 'reducers';
 
 import { history } from 'helpers/history';
@@ -22,6 +22,8 @@ const appReducer = combineReducers({
   document,
   modal,
   header,
+  topic,
+  learningObject,
   form: formReducer,
 });
 

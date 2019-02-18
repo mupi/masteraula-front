@@ -12,5 +12,9 @@ export const emailValidator = value => (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.
 
 export const requiredValidator = value => (value ? undefined : 'Campo obrigatório');
 
+
+export const requiredSelectValidator = value => ((value !== '0' ) ? undefined : 'Campo obrigatório');
+
+
 export const requiredHeaderNameValidator = value => (value ? undefined : 'Digite um nome para o novo cabeçalho');
 
