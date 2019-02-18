@@ -31,12 +31,12 @@ const mapDispatchToProps = dispatch => ({
       id: props.activeQuestion.id,
       tags: values.tags.split(','),
       topics_ids: values.topics.map((topic) => {
-        if (topic && topic.topic) return topic.topic;
-        if (topic && topic.subsubject) return topic.subsubject;
-        if (topic && topic.subject) return topic.subject;
+        if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic;
+        if (topic && topic.subsubject && parseInt(topic.subsubject, 10) > 0) return topic.subsubject;
+        if (topic && topic.subject && parseInt(topic.subject, 10) > 0) return topic.subject;
         return null;
       }).filter(topic => topic != null),
-      difficulty: values.difficulty,
+      difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
     };
 
     const newLearningObjects = values.learning_objects.map(lobj => ({

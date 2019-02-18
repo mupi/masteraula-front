@@ -164,7 +164,7 @@ const renderTopics = ({
           ? topicsList.find(s => s.id === parseInt(selectedTopics[i].subject, 10)) : null;
         const subsubjects = selSubject != null ? selSubject.childs : null;
 
-        const selSubsubject = selectedTopics[i].subsubject != null
+        const selSubsubject = selSubject != null && selectedTopics[i].subsubject != null
           ? subsubjects.find(s => s.id === parseInt(selectedTopics[i].subsubject, 10)) : null;
         const topics = selSubsubject != null ? selSubsubject.childs : null;
 
@@ -177,7 +177,7 @@ const renderTopics = ({
                 component={renderSelectField}
                 className="form-control"
                 label="Assunto"
-                optionDefault="NaN"
+                optionDefault="-1"
               >
                 { topicsList && topicsList.map(subject => (
                   <option key={subject.id} value={subject.id}>
@@ -193,7 +193,7 @@ const renderTopics = ({
                 component={renderSelectField}
                 className="form-control"
                 label="Subassunto"
-                optionDefault="NaN"
+                optionDefault="-1"
               >
                 { subsubjects && subsubjects.map(subject => (
                   <option key={subject.id} value={subject.id}>
@@ -209,7 +209,7 @@ const renderTopics = ({
                 component={renderSelectField}
                 className="form-control"
                 label="Tópico"
-                optionDefault="NaN"
+                optionDefault="-1"
               >
                 { topics && topics.map(subject => (
                   <option key={subject.id} value={subject.id}>
