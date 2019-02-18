@@ -127,18 +127,18 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             <Col sm="2" className="align-self-center text-right">
               <i>tags:</i>
             </Col>
-            {<Col sm="8">
-           
+            {
+              <Col sm="8">
+                {learningObjectList[i].tags && learningObjectList[i].tags.map((tag, i) => (
+                  <span key={i}>
+                    {' '}
+                    {tag.name}
+                  </span>
+                ))}
 
-          {learningObjectList[i].tags && learningObjectList[i].tags.map((tag, i) => (
-      <span key={i}> {tag.name},</span>
-    ))}
-          
-            
-            
-         <Field name={`${learningObject}.tags`} component={renderField} />
-          
-             </Col>}
+                <Field name={`${learningObject}.tags`} component={renderField} />
+
+              </Col>}
           </Row>
         </div>
       ))}
