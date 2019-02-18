@@ -136,8 +136,8 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
           
             
             
-         { /* <FieldArray name={`${learningObject}.tags`} component={renderTagsLearningObjects}/>*/
-          }
+         <Field name={`${learningObject}.tags`} component={renderField} />
+          
              </Col>}
           </Row>
         </div>

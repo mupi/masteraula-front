@@ -29,5 +29,7 @@ export const updateLearningObject = (props) => {
 };
 
 // Update LearningObject List
-export const updateLearningObjectList = (props) => { return { type: UPDATE_ALL_LEARNING_OBJECTS_SUCCESS, props };
+export const updateLearningObjectList = (newLearningObjects) => { 
+
+
 };

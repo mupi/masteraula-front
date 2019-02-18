@@ -33,25 +33,20 @@ const mapDispatchToProps = dispatch => ({
       topics_ids: [1, 2],
     };
 
-    const newLearningObjects =[ { 
+    const newLearningObjects = [{
       id: 10,
-      tags: ["NUEVO TAG1","NUEVO TAG2"]},
-      { 
-        id: 21,
-        tags: ["NUEVO TAG3","NUEVO TAG4"]},
-    ]
+      tags: ['X', 'AB'],
+    },
+    {
+      id: 21,
+      tags: ['D', 'F'],
+    },
+    ];
 
-    const singleObject = { 
-      id: 10,
-      tags: ["POCOYOOO TAG1","NUEVO TAG2"]};
-   // dispatch(updateLearningObjectList(newLearningObjects));
-
-   let i;
-   for (i = 0; i < newLearningObjects.length; i += 1) {
-    dispatch(updateLearningObject(newLearningObjects[i]));
-     console.log("aqii" + i);
-   }
-  //  dispatch(updateLearningObject(singleObject));
+    let i;
+    for (i = 0; i < newLearningObjects.length; i += 1) {
+      dispatch(updateLearningObject(newLearningObjects[i]));
+    }
 
     return dispatch(updateQuestion(newUpdateQuestion));
   },
