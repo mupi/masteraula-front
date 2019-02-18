@@ -30,7 +30,7 @@ const renderField = ({
   input,
   placeholder,
   type,
-  meta: { touched, error, warning, dirty },
+  meta: { touched, error, warning },
 }) => (
   <div>
     <Input
@@ -140,11 +140,11 @@ const renderTopics = ({
       <Row>{submitFailed && error && <span>{error}</span>}</Row>
 
       {fields.map((topicRow, i) => {
-        const selSubject = selectedTopics[i].subject != null
+        const selSubject = (selectedTopics[i].subject != null && topicsList)
           ? topicsList.find(s => s.id === parseInt(selectedTopics[i].subject, 10)) : null;
         const subsubjects = selSubject != null ? selSubject.childs : null;
 
-        const selSubsubject = selSubject != null && selectedTopics[i].subsubject != null
+        const selSubsubject = (selSubject != null && selectedTopics[i].subsubject != null && subsubjects)
           ? subsubjects.find(s => s.id === parseInt(selectedTopics[i].subsubject, 10)) : null;
         const topics = selSubsubject != null ? selSubsubject.childs : null;
 
@@ -242,7 +242,7 @@ const QuestionListDocuments = (props) => {
         </Row>
       ) : ''
   );
-}; 
+};
 
 class QuestionEditPage extends Component {
   componentDidMount() {
@@ -310,7 +310,7 @@ class QuestionEditPage extends Component {
                   {' '}
                   N°
                   {activeQuestion.id}
-                  { (!pristine) ? '. Tem mudanças ainda pendentes.' : ''
+                  { (!pristine) ? '. Existem mudanças ainda não salvas na questão.' : ''
                   }
                 </Alert>
               </Col>
@@ -515,6 +515,16 @@ class QuestionEditPage extends Component {
                     </Col>
                   </Row>
                   <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} />
+                  <Row>
+                    <Col>
+                      { (!pristine) ? (
+                        <Alert color="warning" className="c-question-edit__warning-message">
+                          Existem mudanças ainda não salvas na questão
+                        </Alert>
+                      ) : ''
+                      }
+                    </Col>
+                  </Row>
                 </Container>
 
               </Col>
