@@ -34,8 +34,19 @@ const QuestionContent = (question) => {
                     </div>
                   ) : ''}
                   { (learningObject.source) ? (
-                    <p><small>Fonte: <i>{learningObject.source}</i></small></p>
+                    <p>
+                      <small>
+Fonte:
+                        <i>{learningObject.source}</i>
+                      </small>
+                    </p>
                   ) : ''}
+                  { (learningObject.tags) ? (
+                    <p className="c-question__learning-object-tags">
+                      <small>Tags:</small>
+                      {' '}
+                      <small><i>{learningObject.tags.map(tag => tag.name.trim()).join(', ')}</i></small>
+                    </p>) : ''}
                 </div>
               ))}
             </Col>

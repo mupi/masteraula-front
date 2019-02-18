@@ -1,0 +1,45 @@
+.c-question-edit{
+    &__warning-message{
+        text-align: left; 
+    }
+
+    &__select-difficulty{
+        width:auto;
+    }
+
+    &__row-topic{
+        margin-left: -15px;
+    }
+
+    &__header-topic{
+        text-align: center;
+        font-weight: bold;
+    }
+
+    &__tags-learning-objects{
+        margin-top: 5px;
+
+        &--position{
+            text-align: right;
+            @include for-phone-only {
+                text-align: center;
+            }
+        }
+    }
+
+    &__col-btn-remove-topic{
+        @include for-phone-only {
+            text-align: right;
+        }
+    }
+
+    &__btn-remove-topic{
+        background: $color-ma-red !important;
+        color: $color-ma-white;
+        border: 1px solid $color-ma-red  !important;
+    }
+
+    &__topic {
+        margin-bottom: 5px;
+    }
+}

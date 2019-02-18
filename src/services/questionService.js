@@ -25,6 +25,37 @@ function fetchQuestion(id) {
     .then(activeQuestion => activeQuestion);
 }
 
+// Update a Question
+function updateQuestion(activeUpdateQuestion) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+    body: JSON.stringify({ ...activeUpdateQuestion, secret: true }),
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  const idQuestion = activeUpdateQuestion.id;
+
+  return fetch(`${apiUrl}/questions/${idQuestion}/`, requestOptions)
+    .then(handleResponse)
+    .then((activeQuestion) => {
+      localStorage.setItem('activeQuestion', JSON.stringify(activeQuestion));
+      return activeQuestion;
+    });
+}
+
+
 function listQuestions(page, filter) {
   const requestOptions = {
     method: 'GET',
@@ -42,8 +73,9 @@ function listQuestions(page, filter) {
 
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
 
-  const url = (search) ? `${apiUrl}/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`
-    : `${apiUrl}/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`;
+  const url = (search)
+    ? `/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`
+    : `/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`;
 
   const handleResponse = response => response.json().then((data) => {
     if (!response.ok) {
@@ -54,7 +86,7 @@ function listQuestions(page, filter) {
     return data;
   });
 
-  return fetch(url, requestOptions)
+  return fetch(`${apiUrl}${url}`, requestOptions)
     .then(handleResponse)
     .then(questionPage => questionPage);
 }
@@ -69,6 +101,7 @@ const questionService = {
   rateQuestion,
   fetchQuestion,
   listQuestions,
+  updateQuestion,
 };
 
 export default questionService;

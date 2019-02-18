@@ -16,6 +16,7 @@ import {
   UserProfilePageContainer,
   RedefinePasswordPageContainer,
   QuestionPageContainer,
+  QuestionEditPageContainer,
   QuestionBasePageContainer,
   EditDocumentPageContainer,
   MenuContainer,
@@ -41,7 +42,7 @@ import {
   faBars,
   faPlus, faMinus,
   faUser, faHome, faSignOutAlt, faUserCircle,
-  faSearch, faFolder, faFileAlt, faFilter, 
+  faSearch, faFolder, faFileAlt, faFilter,
   faAngleLeft, faAngleDown,
   faImage, faCheck, faCheckCircle,
   faThumbsUp,
@@ -75,7 +76,7 @@ class App extends Component {
     window.addEventListener('resize', this.handleWindowSizeChange);
   }
 
-   // make sure to remove the listener
+  // make sure to remove the listener
   // when the component is not mounted anymore
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleWindowSizeChange);
@@ -85,7 +86,7 @@ class App extends Component {
     this.setState({ width: window.innerWidth });
   };
 
-  render() { 
+  render() {
     const { isOpenSidebar, isLoggedIn } = this.props;
     const { width } = this.state;
     const isMobile = width <= 989;
@@ -99,6 +100,7 @@ class App extends Component {
               <Switch>
                 <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
+                <Route path="/edit-question/:id" component={QuestionEditPageContainer} />
                 <Route path="/user-profile" component={UserProfilePageContainer} />
                 <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
                 <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />

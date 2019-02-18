@@ -1,22 +1,22 @@
-import QuestionHeader from 'components/question/QuestionHeader';
 import QuestionContent from 'components/question/QuestionContent';
 import QuestionInfo from 'components/question/QuestionInfo';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import {
-  Alert, Row, Col, Button,
+  Alert, Row, Col, 
 } from 'reactstrap';
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import { history } from 'helpers/history';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
-  const listDocumentFilter = ((activeDocument && activeQuestion.documents) ? activeQuestion.documents.filter(item => item.id !== activeDocument.id) : activeQuestion.documents);
+  const listDocumentFilter = ((activeDocument && activeQuestion.documents) ?
+   activeQuestion.documents.filter(item => item.id !== activeDocument.id) : activeQuestion.documents);
 
   return (
     activeQuestion.documents && listDocumentFilter.length > 0
@@ -76,11 +76,21 @@ class QuestionPage extends Component {
         <div className="c-question">
           <Row>
             <Col className="d-flex">
-              <Button onClick={history.goBack} className="c-question__btn-back mr-auto p-2">
+              <Link className="mr-auto btn btn-secondary c-question__btn-back" to="/question-base/1" role="button">
                 <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
                 {' '}
                 Voltar
-              </Button>
+              </Link>
+
+              <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
+                <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
+                {' '}
+                Editar
+              </Link>
+            </Col>
+          </Row>
+          <Row className="c-question__options">
+            <Col className="d-flex  justify-content-end">
               <span className="c-question__label-tag-header c-question__tag--purple p-2">
                 {activeQuestion.source}
                 {' '}
@@ -97,7 +107,17 @@ class QuestionPage extends Component {
             </Col>
 
           </Row>
-          <QuestionHeader disciplines={activeQuestion.disciplines} source={activeQuestion.source} year={activeQuestion.year} />
+          <Row className="c-question__tittle-section">
+            <Col>
+              <h4>
+                <FontAwesomeIcon icon="book" />
+                {' '}
+                Questão N°
+                {' '}
+                {activeQuestion.id}
+              </h4>
+            </Col>
+          </Row>
           <Row className="justify-content-center">
             <Col sm="12" md="12" xs="12">
               <QuestionContent
@@ -147,9 +167,7 @@ class QuestionPage extends Component {
                     </Col>
                   )}
                 </Row>
-                <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument}/>
-
-                
+                <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument} />
               </div>
 
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />

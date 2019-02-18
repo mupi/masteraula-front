@@ -17,8 +17,28 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
       <h4>
         <FontAwesomeIcon icon="info-circle" />
         {' '}
-          Informação da Questão
+          Informações da Questão
       </h4>
+    </Row>
+    <Row className="c-question__row-info">
+      <Col className="info-label" sm="4" xs="4">
+      Ano
+      </Col>
+      <Col sm="8" xs="8">
+        <span className="question-info c-question__tag--purple">
+          {question.year}
+        </span>
+      </Col>
+    </Row>
+    <Row className="c-question__row-info">
+      <Col className="info-label" sm="4" xs="4">
+      Fonte
+      </Col>
+      <Col sm="8" xs="8">
+        <span className="question-info c-question__tag--purple">
+          {question.source}
+        </span>
+      </Col>
     </Row>
     <Row>
       <Col className="info-label" sm="4" xs="4">
@@ -30,20 +50,20 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
     </Row>
     <Row className="c-question__row-info">
       <Col className="info-label" sm="4" xs="4">
+        Nível de Ensino
+      </Col>
+      <Col sm="8" xs="8">
+        <TagList list={question.teaching_levels} styleTag="question-info  teaching-level" />
+      </Col>
+    </Row>
+    <Row className="c-question__row-info">
+      <Col className="info-label" sm="4" xs="4">
           Grau de difuldade
       </Col>
       <Col sm="8" xs="8">
         <span className="question-info  difficulty-level">
           {getTeachingLevel(question.difficulty)}
         </span>
-      </Col>
-    </Row>
-    <Row className="c-question__row-info">
-      <Col className="info-label" sm="4" xs="4">
-        Nível de Ensino
-      </Col>
-      <Col sm="8" xs="8">
-        <TagList list={question.teaching_levels} styleTag="question-info  teaching-level" />
       </Col>
     </Row>
     {question.tags && question.tags.concat(question.topics).length > 0 ? (
