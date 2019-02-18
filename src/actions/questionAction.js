@@ -1,6 +1,8 @@
 import { questionService } from 'services';
 import { history } from 'helpers/history';
 import { initialize } from 'redux-form';
+import { listTopics } from 'actions/topicAction';
+
 
 // Load single question
 export const FETCH_QUESTION = 'FETCH_QUESTION';
@@ -86,6 +88,7 @@ export const fetchQuestion = (id) => {
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
             topics: allTopics,
           }));
+          dispatch(listTopics(activeQuestion.disciplines));
           dispatch(fetchQuestionSuccess(activeQuestion));
         },
         (error) => {

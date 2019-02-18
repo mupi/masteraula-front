@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { reduxForm, formValueSelector } from 'redux-form';
 import QuestionEditPage from 'pages/Question/QuestionEditPage';
 import { fetchQuestion, updateQuestion } from 'actions/questionAction';
-import { listTopics } from 'actions/topicAction';
 import { updateLearningObject } from 'actions/learningObjectAction';
 
 
@@ -25,7 +24,6 @@ const mapDispatchToProps = dispatch => ({
   toggleModal: (modal, idQuestion) => dispatch(toggleModal(modal, idQuestion)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
-  listTopics: param => dispatch(listTopics(param)),
   onSubmit: (values, d, props) => {
     const newUpdateQuestion = {
       id: props.activeQuestion.id,

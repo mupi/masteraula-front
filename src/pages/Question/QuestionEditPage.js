@@ -242,12 +242,11 @@ const QuestionListDocuments = (props) => {
         </Row>
       ) : ''
   );
-};
+}; 
 
 class QuestionEditPage extends Component {
   componentDidMount() {
-    const { fetchQuestion, match, listTopics } = this.props;
-    listTopics();
+    const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
   }
 
@@ -463,21 +462,21 @@ class QuestionEditPage extends Component {
                       <QuestionAuthor author={activeQuestion.author} styleTag="question-info author" />
                     </Col>
                   </Row>
-                    <Row className="c-question__row-info">
-                      <Col className="info-label" sm="4" xs="4">
-                        Tags
-                      </Col>
-                      <Col sm="8" xs="8">
-                        <Field
-                          component={renderField}
-                          type="text"
-                          name="tags"
-                          id="tags"
-                          placeholder="Separe as tags com vírgulas"
-                          className="form-control"
-                        />
-                      </Col>
-                    </Row>
+                  <Row className="c-question__row-info">
+                    <Col className="info-label" sm="4" xs="4">
+                      Tags
+                    </Col>
+                    <Col sm="8" xs="8">
+                      <Field
+                        component={renderField}
+                        type="text"
+                        name="tags"
+                        id="tags"
+                        placeholder="Separe as tags com vírgulas"
+                        className="form-control"
+                      />
+                    </Col>
+                  </Row>
                   {activeQuestion.descriptors && activeQuestion.descriptors.length > 0 ? (
                     <Row className="c-question__row-info">
                       <Col className="info-label" sm="4" xs="4">
