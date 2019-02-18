@@ -15,6 +15,8 @@ import DescriptorList from 'components/descriptors/DescriptorList';
 import TagList from 'components/tags/TagList';
 import { Field, FieldArray } from 'redux-form';
 import QuestionAuthor from 'components/question/QuestionAuthor';
+import { requiredSelectValidator } from 'helpers/validators';
+
 
 const difficultyList = {
   difficulties: [
@@ -73,28 +75,6 @@ const renderSelectField = ({
     </div>
   </div>
 );
-
-// const renderTagsLearningObjects = ({ fields }) => (
-//   <Row className="c-question__section-list-learning-objects">
-//     <Col sm="12" xs="12">
-//       {fields && fields.map(tag => (
-
-//         <Row className="c-question-edit__tags-learning-objects">
-//           {
-//             <Col sm="8">
-//               <Field
-//                 component={renderField}
-//                 type="text"
-//                 name={`${tag}.name`}
-//                 placeholder="Separe as tags com vírgulas"
-//                 className="form-control"
-//               />
-//             </Col>}
-//         </Row>
-//       ))}
-//     </Col>
-//   </Row>
-// );
 
 const renderLearningObjects = ({ fields, learningObjectList }) => (
   <Row className="c-question__section-list-learning-objects">
@@ -521,8 +501,9 @@ class QuestionEditPage extends Component {
                         component={renderSelectField}
                         className="form-control"
                         label="Selecione um nível de dificuldade"
-                        optionDefault="NaN"
+                        optionDefault="0"
                         styleCustomize="form-control c-question-edit__select-difficulty"
+                        validate={requiredSelectValidator}
                       >
                         { difficultyList && difficultyList.difficulties.map(difficulty => (
                           <option className="c-user-profile__state-city-dropdown-item" key={difficulty.id} value={difficulty.id}>
