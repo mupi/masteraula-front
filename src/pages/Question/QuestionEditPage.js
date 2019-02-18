@@ -129,15 +129,7 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             </Col>
             {
               <Col sm="8">
-                {learningObjectList[i].tags && learningObjectList[i].tags.map(tag => (
-                  <span key={tag.name}>
-                    {' '}
-                    {tag.name}
-                  </span>
-                ))}
-
                 <Field name={`${learningObject}.tags`} component={renderField} />
-
               </Col>}
           </Row>
         </div>
