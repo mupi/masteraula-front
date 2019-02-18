@@ -130,7 +130,7 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             {
               <Col sm="8">
                 {learningObjectList[i].tags && learningObjectList[i].tags.map(tag => (
-                  <span key={tag}>
+                  <span key={tag.name}>
                     {' '}
                     {tag.name}
                   </span>

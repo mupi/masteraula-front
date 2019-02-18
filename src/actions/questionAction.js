@@ -62,7 +62,7 @@ export const fetchQuestion = (id) => {
               });
             } else if (tl.length === 2) {
               allTopics.push({
-                subsubject: tl[2],
+                subsubject: tl[0],
                 subject: tl[1],
               });
             } else {
@@ -71,6 +71,7 @@ export const fetchQuestion = (id) => {
               });
             }
           });
+          allTopics.push({});
           dispatch(initialize('question-edit', {
             difficulty: activeQuestion.difficulty,
             learning_objects: activeQuestion.learning_objects,
