@@ -463,13 +463,11 @@ class QuestionEditPage extends Component {
                       <QuestionAuthor author={activeQuestion.author} styleTag="question-info author" />
                     </Col>
                   </Row>
-                  {activeQuestion.tags && activeQuestion.tags.length > 0 ? (
                     <Row className="c-question__row-info">
                       <Col className="info-label" sm="4" xs="4">
                         Tags
                       </Col>
                       <Col sm="8" xs="8">
-                        { /* <TagList list={activeQuestion.tags} styleTag="question-info  tag-name" /> */}
                         <Field
                           component={renderField}
                           type="text"
@@ -480,7 +478,6 @@ class QuestionEditPage extends Component {
                         />
                       </Col>
                     </Row>
-                  ) : ' '}
                   {activeQuestion.descriptors && activeQuestion.descriptors.length > 0 ? (
                     <Row className="c-question__row-info">
                       <Col className="info-label" sm="4" xs="4">
