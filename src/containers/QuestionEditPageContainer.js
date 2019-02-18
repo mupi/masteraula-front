@@ -33,15 +33,10 @@ const mapDispatchToProps = dispatch => ({
       topics_ids: [1, 2],
     };
 
-    const newLearningObjects = [{
-      id: 10,
-      tags: ['X', 'AB'],
-    },
-    {
-      id: 21,
-      tags: ['D', 'F'],
-    },
-    ];
+    const newLearningObjects = values.learning_objects.map(lobj => ({
+      id: lobj.id,
+      tags: lobj.tags.split(','),
+    }));
 
     let i;
     for (i = 0; i < newLearningObjects.length; i += 1) {

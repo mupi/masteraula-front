@@ -46,9 +46,16 @@ export const fetchQuestion = (id) => {
     return questionService.fetchQuestion(id)
       .then(
         (activeQuestion) => {
+          const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
+            id: lobj.id,
+            tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
+          }));
+
           dispatch(initialize('question-edit', {
             difficulty: activeQuestion.difficulty,
-            learning_objects: activeQuestion.learning_objects,
+            learning_objects: newLearningObjectList,
+
+
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
           }));
           dispatch(fetchQuestionSuccess(activeQuestion));
