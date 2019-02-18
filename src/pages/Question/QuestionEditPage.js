@@ -30,7 +30,7 @@ const renderField = ({
   input,
   placeholder,
   type,
-  meta: { touched, error, warning },
+  meta: { touched, error, warning, dirty },
 }) => (
   <div>
     <Input
@@ -252,7 +252,7 @@ class QuestionEditPage extends Component {
 
   render() {
     const {
-      activeQuestion, isFetching, error, activeDocument, handleSubmit, topicsList, topics,
+      activeQuestion, isFetching, error, activeDocument, handleSubmit, topicsList, topics, pristine,
     } = this.props;
 
     const {
@@ -310,6 +310,8 @@ class QuestionEditPage extends Component {
                   {' '}
                   N°
                   {activeQuestion.id}
+                  { (!pristine) ? '. Tem mudanças ainda pendentes.' : ''
+                  }
                 </Alert>
               </Col>
             </Row>

@@ -83,13 +83,11 @@ export const fetchQuestion = (id) => {
           dispatch(initialize('question-edit', {
             difficulty: activeQuestion.difficulty,
             learning_objects: newLearningObjectList,
-
-
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
             topics: allTopics,
           }));
           dispatch(listTopics(activeQuestion.disciplines));
-          dispatch(fetchQuestionSuccess(activeQuestion));
+          dispatch(fetchQuestionSuccess(activeQuestion)); 
         },
         (error) => {
           dispatch(fetchQuestionFailure(error));
@@ -109,6 +107,44 @@ export const updateQuestion = (props) => {
     return questionService.updateQuestion(props).then(
       (activeQuestion) => {
         dispatch(updateQuestionSuccess(activeQuestion));
+        const allTopics = [];
+        activeQuestion.topics.forEach((topic) => {
+          const tl = [];
+          let t = topic;
+          while (t != null) {
+            tl.push(t.id.toString());
+            t = t.parent;
+          }
+          if (tl.length === 3) {
+            allTopics.push({
+              topic: tl[0],
+              subsubject: tl[1],
+              subject: tl[2],
+            });
+          } else if (tl.length === 2) {
+            allTopics.push({
+              subsubject: tl[0],
+              subject: tl[1],
+            });
+          } else {
+            allTopics.push({
+              subject: tl[0],
+            });
+          }
+        });
+        allTopics.push({});
+
+        const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
+          id: lobj.id,
+          tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
+        }));
+
+        dispatch(initialize('question-edit', {
+          difficulty: activeQuestion.difficulty,
+          learning_objects: newLearningObjectList,
+          tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
+          topics: allTopics,
+        }));
       },
       (error) => {
         dispatch(updateQuestionFailure(error));
