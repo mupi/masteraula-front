@@ -74,7 +74,7 @@ export const fetchQuestion = (id) => {
           dispatch(initialize('question-edit', {
             difficulty: activeQuestion.difficulty,
             learning_objects: activeQuestion.learning_objects,
-            tags: activeQuestion.tags.map(tag => tag.name).join(','),
+            tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
             topics: allTopics,
           }));
           dispatch(fetchQuestionSuccess(activeQuestion));
