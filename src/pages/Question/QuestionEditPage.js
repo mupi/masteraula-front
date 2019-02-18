@@ -105,7 +105,7 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             <div>
               <img
                 alt="objeto-aprendizagem"
-                src={`http://localhost:8000${learningObjectList[i].image}`}
+                src={learningObjectList[i].image}
               />
             </div>
           ) : ''}
