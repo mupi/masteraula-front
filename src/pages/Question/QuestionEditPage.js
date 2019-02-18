@@ -104,7 +104,7 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             </p>
           ) : ''}
           <Row className="c-question-edit__tags-learning-objects">
-            <Col sm="2" className="align-self-center text-right">
+            <Col sm="2" className="align-self-center c-question-edit__tags-learning-objects--position">
               <i>tags:</i>
             </Col>
             {
@@ -124,9 +124,9 @@ const renderTopics = ({
   <Row>
     <Col md="12">
       <Row className="c-question__row-info c-question-edit__row-topic c-question-edit__header-topic">
-        <Col sm="3" className="align-self-center">Assunto</Col>
-        <Col sm="3" className="align-self-center">Subassunto</Col>
-        <Col sm="3" className="align-self-center">Tópico</Col>
+        <Col sm="3" className="align-self-center hidden-xs">Assunto</Col>
+        <Col sm="3" className="align-self-center hidden-xs">Subassunto</Col>
+        <Col sm="3" className="align-self-center hidden-xs">Tópico</Col>
         <Col sm="3">
           <Button onClick={() => fields.push({})}>
             <FontAwesomeIcon
@@ -158,6 +158,7 @@ const renderTopics = ({
                 className="form-control"
                 label="Assunto"
                 optionDefault="-1"
+                styleCustomize="form-control c-question-edit__topic"
               >
                 { topicsList && topicsList.map(subject => (
                   <option key={subject.id} value={subject.id}>
@@ -174,6 +175,7 @@ const renderTopics = ({
                 className="form-control"
                 label="Subassunto"
                 optionDefault="-1"
+                styleCustomize="form-control c-question-edit__topic"
               >
                 { subsubjects && subsubjects.map(subject => (
                   <option key={subject.id} value={subject.id}>
@@ -190,6 +192,7 @@ const renderTopics = ({
                 className="form-control"
                 label="Tópico"
                 optionDefault="-1"
+                styleCustomize="form-control c-question-edit__topic"
               >
                 { topics && topics.map(subject => (
                   <option key={subject.id} value={subject.id}>
@@ -198,7 +201,7 @@ const renderTopics = ({
                 )) }
               </Field>
             </Col>
-            <Col sm="3">
+            <Col sm="3" className="c-question-edit__col-btn-remove-topic">
               <Button
                 type="button"
                 title="Remove Member"
