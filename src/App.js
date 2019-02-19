@@ -42,7 +42,7 @@ import {
   faBars,
   faPlus, faMinus,
   faUser, faHome, faSignOutAlt, faUserCircle,
-  faSearch, faFolder, faFileAlt, faFilter, 
+  faSearch, faFolder, faFileAlt, faFilter,
   faAngleLeft, faAngleDown,
   faImage, faCheck, faCheckCircle,
   faThumbsUp,
@@ -76,7 +76,7 @@ class App extends Component {
     window.addEventListener('resize', this.handleWindowSizeChange);
   }
 
-   // make sure to remove the listener
+  // make sure to remove the listener
   // when the component is not mounted anymore
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleWindowSizeChange);
@@ -86,7 +86,7 @@ class App extends Component {
     this.setState({ width: window.innerWidth });
   };
 
-  render() { 
+  render() {
     const { isOpenSidebar, isLoggedIn } = this.props;
     const { width } = this.state;
     const isMobile = width <= 989;

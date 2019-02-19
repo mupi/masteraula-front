@@ -79,7 +79,7 @@ export const question = (state = initialState, action) => {
       const activeDocument = JSON.parse(localStorage.getItem('activeDocument'));
       const newDocumentList = state.activeQuestion.documents.filter(item => item.id !== activeDocument.id);
       const activeQuestion = { ...state.activeQuestion, documents: newDocumentList };
-      localStorage.setItem('activeQuestion', JSON.stringify(activeQuestion));  
+      localStorage.setItem('activeQuestion', JSON.stringify(activeQuestion));
       return Object.assign({}, state, {
         activeQuestion,
       });

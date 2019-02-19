@@ -3,12 +3,11 @@ import QuestionInfo from 'components/question/QuestionInfo';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import {
-  Alert, Row, Col, Button,
+  Alert, Row, Col, 
 } from 'reactstrap';
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import { history } from 'helpers/history';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,7 +15,8 @@ import { Link } from 'react-router-dom';
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
-  const listDocumentFilter = ((activeDocument && activeQuestion.documents) ? activeQuestion.documents.filter(item => item.id !== activeDocument.id) : activeQuestion.documents);
+  const listDocumentFilter = ((activeDocument && activeQuestion.documents) ?
+   activeQuestion.documents.filter(item => item.id !== activeDocument.id) : activeQuestion.documents);
 
   return (
     activeQuestion.documents && listDocumentFilter.length > 0
@@ -151,7 +151,7 @@ class QuestionPage extends Component {
                         <strong>
                           {activeDocument.name}
                         </strong>
-                      </h6> 
+                      </h6>
                       <RemoveQuestionButton
                         questionId={activeQuestion.id}
                         activeDocumentId={activeDocument.id}
@@ -167,7 +167,7 @@ class QuestionPage extends Component {
                     </Col>
                   )}
                 </Row>
-                <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument}/>
+                <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument} />
               </div>
 
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />

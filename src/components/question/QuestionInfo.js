@@ -76,6 +76,16 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
         </Col>
       </Row>
     ) : ' '}
+    {question.topics && question.topics.length > 0 ? (
+      <Row className="c-question__row-info">
+        <Col className="info-label" sm="4" xs="4">
+          Assuntos
+        </Col>
+        <Col sm="8" xs="8">
+          <TagList list={question.topics} styleTag="question-info  tag-name" />
+        </Col>
+      </Row>
+    ) : ' '}
     {question.descriptors && question.descriptors.length > 0 ? (
       <Row className="c-question__row-info">
         <Col className="info-label" sm="4" xs="4">

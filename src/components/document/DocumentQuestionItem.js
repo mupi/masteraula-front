@@ -21,7 +21,8 @@ const DocumentQuestionItem = (props) => {
         <Row>
           <Col sm="8" className="c-document__question-image">
             <p className="c-document__question-info-title">
-              Questão{' '}
+              Questão
+              {' '}
               {question.learning_objects && question.learning_objects.length > 0 ? (
                 <span className="c-document__question-number-learning-obj">
                   (
@@ -87,6 +88,16 @@ const DocumentQuestionItem = (props) => {
                     </span>
                   ))}
                 </p>
+                {(!readOnly) && (question.tags || question.topics) && (question.tags.length > 0 || question.topics.length > 0) ? (
+                  <p className="c-document__question-info-row">
+                  Tags:
+                    {' '}
+                    {question.tags.concat(question.topics).map(tag => (
+                      <span key={tag.id} className="c-document__question-info-detail">
+                        {tag.name}
+                      </span>
+                    ))}
+                  </p>) : ''}
               </Col>
             </Row>
             { (!readOnly) ? (
