@@ -87,7 +87,7 @@ export const fetchQuestion = (id) => {
             topics: allTopics,
           }));
           dispatch(listTopics(activeQuestion.disciplines));
-          dispatch(fetchQuestionSuccess(activeQuestion)); 
+          dispatch(fetchQuestionSuccess(activeQuestion));
         },
         (error) => {
           dispatch(fetchQuestionFailure(error));
