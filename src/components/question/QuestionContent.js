@@ -36,12 +36,12 @@ const QuestionContent = (question) => {
                   { (learningObject.source) ? (
                     <p>
                       <small>
-Fonte:
+                        Fonte:
                         <i>{learningObject.source}</i>
                       </small>
                     </p>
                   ) : ''}
-                  { (learningObject.tags && learningObject.tags.length > 0 && learningObject.tags[0]!== '') ? (
+                  { (learningObject.tags && learningObject.tags.length > 0) ? (
                     <p className="c-question__learning-object-tags">
                       <small>Tags:</small>
                       {' '}
