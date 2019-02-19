@@ -42,6 +42,16 @@
 
 //Question Page where c-question is the main container
 .c-question {
+
+    &__row-tags{
+      margin-bottom: 0px !important;
+    }
+
+    &__tag-name{
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
     &__options{
       margin-top: 5px;
     }

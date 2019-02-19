@@ -27,7 +27,7 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: (values, d, props) => {
     const newUpdateQuestion = {
       id: props.activeQuestion.id,
-      tags: values.tags.split(','),
+      tags: values.tags.split(',').map(tag => tag.trim()),
       topics_ids: values.topics.map((topic) => {
         if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic;
         if (topic && topic.subsubject && parseInt(topic.subsubject, 10) > 0) return topic.subsubject;
@@ -39,7 +39,7 @@ const mapDispatchToProps = dispatch => ({
 
     const newLearningObjects = values.learning_objects.map(lobj => ({
       id: lobj.id,
-      tags: lobj.tags.split(','),
+      tags: lobj.tags.split(',').map(tag => tag.trim()),
     }));
 
     let i;

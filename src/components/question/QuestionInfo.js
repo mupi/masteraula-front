@@ -67,22 +67,22 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
       </Col>
     </Row>
     {question.tags && question.tags.length > 0 ? (
-      <Row className="c-question__row-info">
+      <Row className="c-question__row-info c-question__row-tags">
         <Col className="info-label" sm="4" xs="4">
           Tags
         </Col>
         <Col sm="8" xs="8">
-          <TagList list={question.tags} styleTag="question-info  tag-name" />
+          <TagList list={question.tags} styleTag="question-info  c-question__tag-name" />
         </Col>
       </Row>
     ) : ' '}
     {question.topics && question.topics.length > 0 ? (
-      <Row className="c-question__row-info">
+      <Row className="c-question__row-info c-question__row-tags">
         <Col className="info-label" sm="4" xs="4">
-          Assuntos
+          Tópicos
         </Col>
         <Col sm="8" xs="8">
-          <TagList list={question.topics} styleTag="question-info  tag-name" />
+          <TagList list={question.topics} styleTag="question-info c-question__tag-name" />
         </Col>
       </Row>
     ) : ' '}
