@@ -41,7 +41,7 @@ Fonte:
                       </small>
                     </p>
                   ) : ''}
-                  { (learningObject.tags) ? (
+                  { (learningObject.tags && learningObject.tags.length > 0 && learningObject.tags[0]!== '') ? (
                     <p className="c-question__learning-object-tags">
                       <small>Tags:</small>
                       {' '}
