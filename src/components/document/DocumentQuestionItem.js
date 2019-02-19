@@ -82,21 +82,13 @@ const DocumentQuestionItem = (props) => {
                 <p className="c-document__question-info-row">
                   Disciplinas:
                   {' '}
-                  {question.disciplines && question.disciplines.map(discipline => (
-                    <span key={discipline.id} className="c-document__question-info-detail">
-                      {discipline.name}
-                    </span>
-                  ))}
+                  <i>{question.disciplines && question.disciplines.map(discipline => (discipline.name.trim())).join(', ')}</i>
                 </p>
                 {(!readOnly) && (question.tags || question.topics) && (question.tags.length > 0 || question.topics.length > 0) ? (
                   <p className="c-document__question-info-row">
                   Tags:
                     {' '}
-                    {question.tags.concat(question.topics).map(tag => (
-                      <span key={tag.id} className="c-document__question-info-detail">
-                        {tag.name}
-                      </span>
-                    ))}
+                    <i>{question.tags.concat(question.topics).map(tag => (tag.name.trim())).join(', ')}</i>
                   </p>) : ''}
               </Col>
             </Row>
