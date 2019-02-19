@@ -79,7 +79,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
     {question.topics && question.topics.length > 0 ? (
       <Row className="c-question__row-info">
         <Col className="info-label" sm="4" xs="4">
-          Assuntos
+          Tópicos
         </Col>
         <Col sm="8" xs="8">
           <TagList list={question.topics} styleTag="question-info  tag-name" />
