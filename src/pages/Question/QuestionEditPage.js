@@ -16,6 +16,7 @@ import TagList from 'components/tags/TagList';
 import { Field, FieldArray } from 'redux-form';
 import QuestionAuthor from 'components/question/QuestionAuthor';
 import { requiredSelectValidator } from 'helpers/validators';
+import ReactTags  from 'react-tag-autocomplete';
 
 
 const difficultyList = {
@@ -25,6 +26,24 @@ const difficultyList = {
     { id: 'H', name: 'Difícil' },
   ],
 };
+
+const renderFieldTags = ({
+  input,
+  placeholder,
+  type, handleDelete, handleAddition,
+  meta: { touched, error, warning },
+}) => (
+  <div>
+    <ReactTags
+  handleDelete={handleDelete}
+  handleAddition={handleAddition} 
+  placeholder='Separe as tags com vírgulas'
+  allowNew
+  delimiterChars={[',']}
+/>
+  </div>
+);
+
 
 const renderField = ({
   input,
@@ -245,6 +264,29 @@ const QuestionListDocuments = (props) => {
 };
 
 class QuestionEditPage extends Component {
+
+  constructor (props) {
+    super(props)
+ 
+    this.state = {
+      tags: [],
+      suggestions: []
+    }
+  }
+
+  handleDelete (i) {
+    const tags = this.state.tags.slice(0)
+    tags.splice(i, 1)
+    this.setState({ tags })
+    console.log("tags...");
+    console.log(tags);
+  }
+ 
+  handleAddition (tag) {
+    const tags = [].concat(this.state.tags, tag)
+    this.setState({ tags })
+  }
+
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
@@ -473,14 +515,26 @@ class QuestionEditPage extends Component {
                     <Col className="info-label" sm="4" xs="4">
                       Tags
                     </Col>
+                    
                     <Col sm="8" xs="8">
+                    <ReactTags
+        tags={this.state.tags}
+        suggestions={this.state.suggestions}
+        handleDelete={this.handleDelete.bind(this)}
+        handleAddition={this.handleAddition.bind(this)} 
+        placeholder="novo tag"
+        allowNew
+        delimiterChars={[',']}
+        />
                       <Field
-                        component={renderField}
+                        component={renderFieldTags}
                         type="text"
                         name="tags"
                         id="tags"
                         placeholder="Separe as tags com vírgulas"
                         className="form-control"
+                        handleDelete={this.handleDelete.bind(this)}
+                        handleAddition={this.handleAddition.bind(this)}
                       />
                     </Col>
                   </Row>
