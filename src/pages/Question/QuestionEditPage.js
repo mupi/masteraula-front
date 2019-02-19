@@ -293,7 +293,7 @@ class QuestionEditPage extends Component {
                   {' '}
                   Voltar
                 </Link>
-                <Link className="btn btn-secondary c-question__btn-back btn__icon" to={`/view-question/${activeQuestion.id}`} role="button">
+                <Link className="btn btn-secondary c-question__btn-back btn__icon hidden" to={`/view-question/${activeQuestion.id}`} role="button">
                   <FontAwesomeIcon icon="eye" className="btn__icon" />                  
                   {' '}
                   Visualizar
