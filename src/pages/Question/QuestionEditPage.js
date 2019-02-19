@@ -293,6 +293,11 @@ class QuestionEditPage extends Component {
                   {' '}
                   Voltar
                 </Link>
+                <Link className="btn btn-secondary c-question__btn-back btn__icon" to={`/view-question/${activeQuestion.id}`} role="button">
+                  <FontAwesomeIcon icon="eye" className="btn__icon" />                  
+                  {' '}
+                  Visualizar
+                </Link>
                 <Button className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`} type="submit">
                   <FontAwesomeIcon
                     className="btn__icon"
