@@ -37,6 +37,9 @@ const mapDispatchToProps = dispatch => ({
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
     };
 
+    console.log("teste");
+    console.log(newUpdateQuestion.tags);
+
     const newLearningObjects = values.learning_objects.map(lobj => ({
       id: lobj.id,
       tags: lobj.tags.split(',').map(tag => tag.trim()),
