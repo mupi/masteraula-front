@@ -59,13 +59,17 @@ const renderField = ({
 const renderMAReactTags = ({
   input,
   placeholder,
-  type,
   meta: { touched, error, warning },
-}) => (
+}) => {
+  const newTags = input.value.split(',').map((nTag, i) => ({
+    id: i,
+    name: nTag,
+  }));
+  return(
   <div>
     <MAReactTags
       {...input}
-      tags={input.value.split(',')}
+      tags={newTags}
       placeholder={placeholder}
     />
     { touched
@@ -83,7 +87,7 @@ const renderMAReactTags = ({
       )))
     }
   </div>
-);
+)};
 
 
 const renderSelectField = ({

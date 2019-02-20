@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import ReactTags from 'react-tag-autocomplete';
 
 class MAReactTags extends Component {
@@ -15,10 +15,6 @@ class MAReactTags extends Component {
 
   componentDidMount() {
     const { tags } = this.props;
-    console.log("INI COMPONENT DID MOUNT - MA REACTTAG");
-    console.log(tags);
-    console.log("FIN COMPONENT DID MOUNT - MA REACTTAG");
-
     this.setState({ tags });
   }
 
@@ -31,20 +27,44 @@ class MAReactTags extends Component {
   handleAddition(tag) {
     const tags = [].concat(this.state.tags, tag);
     this.setState({ tags });
+    console.log("en add");
+    console.log(tags);
+  }
+
+  handleValidate(tag) {
+    return tag.name.length <= 50;
   }
 
   render() {
+    const {onChange} = this.props;
     return (
       <ReactTags
         tags={this.state.tags}
         handleDelete={this.handleDelete.bind(this)}
         handleAddition={this.handleAddition.bind(this)}
+        handleValidate={this.handleValidate.bind(this)}
         placeholder="Separe as tags com vírgulas"
         allowNew
         delimiterChars={[',']}
+        handleInputChange={e => onChange(e)}
+       
+
       />
     );
   }
 }
+/*
+MAReactTags.propTypes = {
+  input: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    onBlur: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onFocus: PropTypes.func.isRequired,
+  }).isRequired,
+  tags: PropTypes.array.isRequired,
+ // multi: PropTypes.bool,
+  className: PropTypes.string
+};*/
 
 export default MAReactTags;
