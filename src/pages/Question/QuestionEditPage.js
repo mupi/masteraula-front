@@ -17,6 +17,8 @@ import { Field, FieldArray } from 'redux-form';
 import QuestionAuthor from 'components/question/QuestionAuthor';
 import { requiredSelectValidator } from 'helpers/validators';
 import MAReactTags from 'components/tags/MAReactTag';
+import RFReactSelect from 'components/tags/RFReactSelect';
+
 
 const difficultyList = {
   difficulties: [
@@ -511,7 +513,6 @@ class QuestionEditPage extends Component {
                     <Col sm="8" xs="8">
                       <Field
                         component={renderMAReactTags}
-                        type="text"
                         name="tags"
                         id="tags"
                         placeholder="Separe as tags com vírgulas"

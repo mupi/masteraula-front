@@ -25,7 +25,11 @@ class MAReactTags extends Component {
   }
 
   handleAddition(tag) {
-    const tags = [].concat(this.state.tags, tag);
+    const newTag = {
+      id: tag.name,
+      name: tag.name,
+    }
+    const tags = [].concat(this.state.tags, newTag);
     this.setState({ tags });
     console.log("en add");
     console.log(tags);
@@ -35,20 +39,24 @@ class MAReactTags extends Component {
     return tag.name.length <= 50;
   }
 
-  render() {
+  handleInputChange(e){
     const {onChange} = this.props;
+    onChange(e);
+  }
+
+  render() {
+    const {onChange, placeholder} = this.props;
     return (
       <ReactTags
         tags={this.state.tags}
         handleDelete={this.handleDelete.bind(this)}
         handleAddition={this.handleAddition.bind(this)}
         handleValidate={this.handleValidate.bind(this)}
-        placeholder="Separe as tags com vírgulas"
+        placeholder={placeholder}
         allowNew
         delimiterChars={[',']}
-        handleInputChange={e => onChange(e)}
-       
-
+        handleValidate={this.handleValidate.bind(this)}
+        handleInputChange={ e => onChange(e)}
       />
     );
   }
