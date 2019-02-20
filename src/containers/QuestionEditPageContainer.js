@@ -56,7 +56,7 @@ const QuestionEditPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(reduxForm({
-  form: 'question-edit', 
+  form: 'question-edit',
 })(QuestionEditPage));
 
 export default QuestionEditPageContainer;

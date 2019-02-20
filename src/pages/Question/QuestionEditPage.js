@@ -17,8 +17,6 @@ import { Field, FieldArray } from 'redux-form';
 import QuestionAuthor from 'components/question/QuestionAuthor';
 import { requiredSelectValidator } from 'helpers/validators';
 import MAReactTags from 'components/tags/MAReactTag';
-import RFReactSelect from 'components/tags/RFReactSelect';
-
 
 const difficultyList = {
   difficulties: [
@@ -62,16 +60,11 @@ const renderMAReactTags = ({
   input,
   placeholder,
   meta: { touched, error, warning },
-}) => {
-  const newTags = input.value.split(',').map((nTag, i) => ({
-    id: i,
-    name: nTag,
-  }));
-  return(
+}) => (
   <div>
     <MAReactTags
       {...input}
-      tags={newTags}
+      onChange={value => input.onChange(value)}
       placeholder={placeholder}
     />
     { touched
@@ -89,7 +82,7 @@ const renderMAReactTags = ({
       )))
     }
   </div>
-)};
+);
 
 
 const renderSelectField = ({
@@ -330,7 +323,7 @@ class QuestionEditPage extends Component {
                   Voltar
                 </Link>
                 <Link className="btn btn-secondary c-question__btn-back btn__icon hidden" to={`/view-question/${activeQuestion.id}`} role="button">
-                  <FontAwesomeIcon icon="eye" className="btn__icon" />                  
+                  <FontAwesomeIcon icon="eye" className="btn__icon" />
                   {' '}
                   Visualizar
                 </Link>
@@ -509,7 +502,7 @@ class QuestionEditPage extends Component {
                     <Col className="info-label" sm="4" xs="4">
                       Tags
                     </Col>
-                    
+
                     <Col sm="8" xs="8">
                       <Field
                         component={renderMAReactTags}

@@ -1,62 +1,69 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import ReactTags from 'react-tag-autocomplete';
 
 class MAReactTags extends Component {
+  static handleValidate(tag) {
+    return tag.name.length <= 50 && tag.name.trim() !== '';
+  }
+
   constructor(props) {
     super(props);
-
-   // const { tags } = this.props;
 
     this.state = {
       tags: [],
     };
+
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleAddition = this.handleAddition.bind(this);
+    this.handleValidate = MAReactTags.handleValidate.bind(this);
   }
 
   componentDidMount() {
-    const { tags } = this.props;
+    const { value } = this.props;
+    const tags = value === '' ? [] : value.split(',').map(tag => ({ name: tag, id: tag }));
     this.setState({ tags });
   }
 
   handleDelete(i) {
-    const tags = this.state.tags.slice(0);
+    const { onChange } = this.props;
+    const { tags } = this.state;
+
     tags.splice(i, 1);
     this.setState({ tags });
+
+    const value = tags.map(t => (t.name)).join(',');
+    onChange(value);
   }
 
   handleAddition(tag) {
+    const { onChange } = this.props;
+    let { tags } = this.state;
+
     const newTag = {
       id: tag.name,
       name: tag.name,
-    }
-    const tags = [].concat(this.state.tags, newTag);
+    };
+
+    tags = [].concat(tags, newTag);
     this.setState({ tags });
-    console.log("en add");
-    console.log(tags);
+
+    const value = tags.map(t => (t.name)).join(',');
+    onChange(value);
   }
 
-  handleValidate(tag) {
-    return tag.name.length <= 50;
-  }
-
-  handleInputChange(e){
-    const {onChange} = this.props;
-    onChange(e);
-  }
 
   render() {
-    const {onChange, placeholder} = this.props;
+    const { placeholder } = this.props;
+    const { tags } = this.state;
     return (
       <ReactTags
-        tags={this.state.tags}
-        handleDelete={this.handleDelete.bind(this)}
-        handleAddition={this.handleAddition.bind(this)}
-        handleValidate={this.handleValidate.bind(this)}
+        tags={tags}
+        handleDelete={this.handleDelete}
+        handleAddition={this.handleAddition}
+        handleValidate={this.handleValidate}
         placeholder={placeholder}
         allowNew
         delimiterChars={[',']}
-        handleValidate={this.handleValidate.bind(this)}
-        handleInputChange={ e => onChange(e)}
       />
     );
   }
@@ -73,6 +80,6 @@ MAReactTags.propTypes = {
   tags: PropTypes.array.isRequired,
  // multi: PropTypes.bool,
   className: PropTypes.string
-};*/
+}; */
 
 export default MAReactTags;
