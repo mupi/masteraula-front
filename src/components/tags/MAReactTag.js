@@ -51,7 +51,6 @@ class MAReactTags extends Component {
     onChange(value);
   }
 
-
   render() {
     const { placeholder } = this.props;
     const { tags } = this.state;
@@ -68,18 +67,5 @@ class MAReactTags extends Component {
     );
   }
 }
-/*
-MAReactTags.propTypes = {
-  input: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    onBlur: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onFocus: PropTypes.func.isRequired,
-  }).isRequired,
-  tags: PropTypes.array.isRequired,
- // multi: PropTypes.bool,
-  className: PropTypes.string
-}; */
 
 export default MAReactTags;
