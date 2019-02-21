@@ -3,7 +3,7 @@ import QuestionInfo from 'components/question/QuestionInfo';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import {
-  Alert, Row, Col, 
+  Alert, Row, Col, Button,
 } from 'reactstrap';
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
@@ -12,11 +12,12 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { history } from 'helpers/history';
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
-  const listDocumentFilter = ((activeDocument && activeQuestion.documents) ?
-   activeQuestion.documents.filter(item => item.id !== activeDocument.id) : activeQuestion.documents);
+  const listDocumentFilter = ((activeDocument && activeQuestion.documents)
+    ? activeQuestion.documents.filter(item => item.id !== activeDocument.id) : activeQuestion.documents);
 
   return (
     activeQuestion.documents && listDocumentFilter.length > 0
@@ -76,11 +77,11 @@ class QuestionPage extends Component {
         <div className="c-question">
           <Row>
             <Col className="d-flex">
-              <Link className="mr-auto btn btn-secondary c-question__btn-back" to="/question-base/1" role="button">
+              <Button onClick={history.goBack} className="mr-auto btn btn-secondary c-question__btn-back">
                 <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
                 {' '}
                 Voltar
-              </Link>
+              </Button>
 
               <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
                 <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
