@@ -83,7 +83,7 @@ const renderMAReactTags = ({
     }
   </div>
 );
- 
+
 
 const renderSelectField = ({
   input, label, meta: { touched, error }, children, optionDefault, styleCustomize = 'form-control',
@@ -138,7 +138,7 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             </Col>
             {
               <Col sm="8">
-                <Field name={`${learningObject}.tags`} component={renderMAReactTags}  placeholder="Separe as tags com vírgulas"/>
+                <Field name={`${learningObject}.tags`} component={renderField} />
               </Col>}
           </Row>
         </div>
