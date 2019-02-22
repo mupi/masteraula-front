@@ -17,6 +17,7 @@ import { Field, FieldArray } from 'redux-form';
 import QuestionAuthor from 'components/question/QuestionAuthor';
 import { requiredSelectValidator } from 'helpers/validators';
 import MAReactTags from 'components/tags/MAReactTag';
+import { history } from 'helpers/history';
 
 const difficultyList = {
   difficulties: [
@@ -317,11 +318,11 @@ class QuestionEditPage extends Component {
           <div className="c-question">
             <Row>
               <Col className="d-flex">
-                <Link className="mr-auto btn btn-secondary c-question__btn-back" to="/question-base/1" role="button">
+                <Button onClick={history.goBack} className="mr-auto btn btn-secondary c-question__btn-back">
                   <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
                   {' '}
-                  Voltar
-                </Link>
+                Voltar
+                </Button>
                 <Link className="btn btn-secondary c-question__btn-back btn__icon hidden" to={`/view-question/${activeQuestion.id}`} role="button">
                   <FontAwesomeIcon icon="eye" className="btn__icon" />
                   {' '}
