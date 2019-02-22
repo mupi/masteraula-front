@@ -44,7 +44,7 @@ const QuestionCard = (props) => {
   const extractStatement = getCleanExtractStatement(question.statement);
   const idSource = getIdFilter(sourceFilters, question.source);
   const idYear = getIdFilter(yearFilters, question.year);
-  const tagList = question.tags.concat(question.all_topics);
+  const tagList = question.tags.concat(question.topics);
 
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100 question-card__full'}>
