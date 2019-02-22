@@ -76,13 +76,13 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
         </Col>
       </Row>
     ) : ' '}
-    {question.topics && question.topics.length > 0 ? (
+    {question.all_topics && question.all_topics.length > 0 ? (
       <Row className="c-question__row-info c-question__row-tags">
         <Col className="info-label" sm="4" xs="4">
           Tópicos
         </Col>
         <Col sm="8" xs="8">
-          <TagList list={question.topics} styleTag="question-info c-question__tag-name" />
+          <TagList list={question.all_topics} styleTag="question-info c-question__tag-name" />
         </Col>
       </Row>
     ) : ' '}

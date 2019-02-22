@@ -44,7 +44,7 @@ const QuestionCard = (props) => {
   const extractStatement = getCleanExtractStatement(question.statement);
   const idSource = getIdFilter(sourceFilters, question.source);
   const idYear = getIdFilter(yearFilters, question.year);
-  const tagList = question.tags.concat(question.topics);
+  const tagList = question.tags.concat(question.all_topics);
 
   return (
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100 question-card__full'}>
@@ -115,7 +115,7 @@ const QuestionCard = (props) => {
               </span>
             ) : ''}
           {tagList && tagList.map((tag, i) => (
-            <span key={i} className="question-card__tag question-card__info-section-item--italic">
+            <span key={tag.id} className="question-card__tag question-card__info-section-item--italic">
               {tag.name}
               { getQuoteSeparator(i, tagList.length)}
             </span>

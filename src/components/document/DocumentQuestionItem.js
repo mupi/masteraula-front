@@ -84,11 +84,11 @@ const DocumentQuestionItem = (props) => {
                   {' '}
                   <i>{question.disciplines && question.disciplines.map(discipline => (discipline.name.trim())).join(', ')}</i>
                 </p>
-                {(!readOnly) && (question.tags || question.topics) && (question.tags.length > 0 || question.topics.length > 0) ? (
+                {(!readOnly) && (question.tags || question.all_topics) && (question.tags.length > 0 || question.all_topics.length > 0) ? (
                   <p className="c-document__question-info-row">
                   Tags:
                     {' '}
-                    <i>{question.tags.concat(question.topics).map(tag => (tag.name.trim())).join(', ')}</i>
+                    <i>{question.tags.concat(question.all_topics).map(tag => (tag.name.trim())).join(', ')}</i>
                   </p>) : ''}
               </Col>
             </Row>
