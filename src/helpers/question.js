@@ -43,14 +43,13 @@ export const getCleanExtractStatement = (html) => {
       a: [],
     },
   });
- // return extractStatement;
+  // return extractStatement;
   return extractStatement.replace(/&quot;/g, '\'');
-
 };
 
 export const getCleanAlternativeText = (alternative) => {
   const clean = sanitizeHtml(alternative, {
-    allowedTags: ['img'],
+    allowedTags: ['img', 'sup', 'sub', 'b', 'p'],
     allowedAttributes: {
       a: [],
       img: ['src'],
