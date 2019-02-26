@@ -219,7 +219,7 @@ export const setSearchText = searchText => ({
 export const clearSelectedFilters = () => ({
   type: CLEAR_SELECTED_FILTERS,
 });
-
+ 
 export const clearSearch = () => ({
   type: CLEAR_SEARCH,
-});
+}); 

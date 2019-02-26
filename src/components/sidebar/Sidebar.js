@@ -25,6 +25,12 @@ const redirectURL = (e, openSidebar, isOpenSidebar, url) => {
   }
 };
 
+const clearAllSearchAndRedirect = (e, cleanAllSearch,  url) => {
+    e.preventDefault();
+    cleanAllSearch();
+    history.push(url); 
+};
+
 const SidebarMobile = ({
   showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu,
 }) => (
@@ -123,11 +129,13 @@ const SidebarMobile = ({
 
 
 const SidebarWeb = ({
-  showFilters, activeDocument, isOpenSidebar, openSidebar,
+  showFilters, activeDocument, isOpenSidebar, openSidebar, cleanAllSearch,
 }) => (
   <div id="sidebar">
     <div className="logo-top-sidebar">
-      <Link to="/#/question-base/1"><img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" /></Link>
+      <Link to="/#/question-base/1" onClick={ (e)=> { clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}>
+        <img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" />
+      </Link>
     </div>
     <div id="sidebar-container">
       <div className="container-fluid">
@@ -202,7 +210,7 @@ class Sidebar extends Component {
 
   render() {
     const {
-      showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu,
+      showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch,
     } = this.props;
 
     // const { width } = this.state;
@@ -220,6 +228,7 @@ class Sidebar extends Component {
           openSidebar={openSidebar}
           isOpen={isOpen}
           toggleMenu={toggleMenu}
+          cleanAllSearch={cleanAllSearch}
         />
       );
     }
@@ -234,6 +243,7 @@ class Sidebar extends Component {
         openSidebar={openSidebar}
         isOpen={isOpen}
         toggleMenu={toggleMenu}
+        cleanAllSearch={cleanAllSearch}
       />
     );
   }
