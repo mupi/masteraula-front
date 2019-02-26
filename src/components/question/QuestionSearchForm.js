@@ -12,8 +12,13 @@ const QuestionSearchForm = (props) => {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <Row>
+        <Col sm="12" className="c-question-base__title">
+          <h4>Banco de Questões</h4>
+        </Col>
+      </Row>
       <Row className="c-question-base__search-text">
-        <p className="c-question-base__search-info">
+        <p className="c-question-base__search-info hidden">
           Pesquisar por palavras-chave no banco de questões
         </p>
         <InputGroup>
@@ -37,7 +42,7 @@ const QuestionSearchForm = (props) => {
         <Row>
           <Col sm="12">
             <p className="c-question-base__keywords-title">
-              <span>Palavras chaves:</span>
+              <span>Resultado da busca para:</span>
               <span className="c-question-base__keywords"> {search}</span>
             </p>
           </Col>

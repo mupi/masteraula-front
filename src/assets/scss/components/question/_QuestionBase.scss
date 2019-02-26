@@ -1,13 +1,17 @@
 //Classes for Question Base that holds all question cards results.
 .c-question-base{
+  &__title{
+    text-align: center;
+    padding-bottom: 15px;
+  }
 
   &__link-askquestion{
     font-size: 13px;
-    color: $color-ma-blue;
+    color: $color-ma-blue-link;
     font-weight: normal;
 
     &:hover{
-      color:$color-ma-blue;
+      color:$color-ma-blue-link;
     }  
   }
 
@@ -156,12 +160,12 @@ padding-right: 1em;
     border:none;
     padding:0px;
     font-size: 12px;
-    color:$color-ma-blue;
+    color:$color-ma-blue-link;
 
     &:hover{
       background:transparent;
       //font-weight: bold;
-      color: $color-ma-blue;
+      color: $color-ma-blue-link;
       text-decoration: underline;
     }
   }
