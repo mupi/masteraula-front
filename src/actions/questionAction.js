@@ -168,6 +168,9 @@ export const listQuestions = (page, filter) => {
       .then(
         (questionPage) => {
           dispatch(fetchQuestionPageSuccess(questionPage));
+          dispatch(initialize('questionSearch', {
+            searchText: filter.searchText,
+          }));
         },
         (error) => {
           dispatch(fetchQuestionPageFailure(error));
