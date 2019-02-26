@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import Sidebar from 'components/sidebar/Sidebar';
 import { logout } from 'actions/loginAction';
 import { toggleMenu, openSidebar } from 'actions/menuAction';
+import { clearSelectedFilters, clearSearch } from 'actions/filterAction';
 
 
 // state.<reducer's name>.<property>
@@ -16,6 +17,10 @@ const mapDispatchToProps = dispatch => ({
   toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
   openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
   logout: () => dispatch(logout()),
+  cleanAllSearch: () => {
+    dispatch(clearSearch());
+    dispatch(clearSelectedFilters());
+  }
 });
 
 export default connect(
