@@ -1,13 +1,13 @@
 import React from 'react';
 import { Field, reduxForm, Form } from 'redux-form';
 import {
-  InputGroup, InputGroupAddon, Button, Row, Col,
+  InputGroup, InputGroupAddon, Button, Row, Col, UncontrolledTooltip,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const QuestionSearchForm = (props) => {
   const {
-    handleSubmit, search,
+    handleSubmit, search, clearSearch,
   } = props;
 
   return (
@@ -27,12 +27,22 @@ const QuestionSearchForm = (props) => {
             type="text"
             name="searchText"
             id="searchText"
-            placeholder="Ex: fenômenos químicos, temperatura, química"
+            placeholder="Pesquisar por palavras-chave no banco de questões"
             className="form-control"
           />
+          {search ? (
+            <InputGroupAddon addonType="prepend">
+              <Button color="primary" id="dica" onClick={clearSearch}>
+              X
+              </Button>
+              <UncontrolledTooltip placement="bottom" target="dica">
+              Limpar busca
+              </UncontrolledTooltip>
+            </InputGroupAddon>
+          ) : ''}
           <InputGroupAddon addonType="prepend">
             <Button type="submit">
-              <FontAwesomeIcon icon="search" className="btn__icon"/>
+              <FontAwesomeIcon icon="search" className="btn__icon" />
               Pesquisar
             </Button>
           </InputGroupAddon>
@@ -43,7 +53,10 @@ const QuestionSearchForm = (props) => {
           <Col sm="12">
             <p className="c-question-base__keywords-title">
               <span>Resultado da busca para:</span>
-              <span className="c-question-base__keywords"> {search}</span>
+              <span className="c-question-base__keywords">
+                {' '}
+                {search}
+              </span>
             </p>
           </Col>
         </Row>) : ''
