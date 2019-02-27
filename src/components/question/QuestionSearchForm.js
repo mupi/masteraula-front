@@ -4,46 +4,56 @@ import {
   InputGroup, InputGroupAddon, Button, Row, Col,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import MATooltip from 'components/tooltip/MATooltip.js';
 
 const QuestionSearchForm = (props) => {
   const {
     handleSubmit, search,
   } = props;
 
+  const message = "Separe seus termos com vírgulas para buscas mais abrangentes"
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
         <Col sm="12" className="c-question-base__title">
-          <h4>Banco de Questões</h4>
+          <h4>
+            Banco de Questões
+            {' '}
+            <span className="c-question-base__tooltip" href="#" id="TooltipExample">
+              <FontAwesomeIcon icon="info-circle"/>
+            </span>
+            <MATooltip message={message} idTarget="TooltipExample"/>
+          </h4>
         </Col>
       </Row>
       <Row className="c-question-base__search-text">
-        <p className="c-question-base__search-info hidden">
-          Pesquisar por palavras-chave no banco de questões
-        </p>
         <InputGroup>
           <Field
             component="input"
             type="text"
             name="searchText"
             id="searchText"
-            placeholder="Ex: fenômenos químicos, temperatura, química"
+            placeholder="Exemplo: fenômenos químicos, temperatura, química"
             className="form-control"
           />
           <InputGroupAddon addonType="prepend">
             <Button type="submit">
-              <FontAwesomeIcon icon="search" className="btn__icon"/>
+              <FontAwesomeIcon icon="search" className="btn__icon" />
               Pesquisar
             </Button>
           </InputGroupAddon>
         </InputGroup>
+        <p className="c-question-base__search-info hidden" />
       </Row>
       {search ? (
         <Row>
           <Col sm="12">
             <p className="c-question-base__keywords-title">
               <span>Resultado da busca para:</span>
-              <span className="c-question-base__keywords"> {search}</span>
+              <span className="c-question-base__keywords"> 
+{' '}
+{search}
+</span>
             </p>
           </Col>
         </Row>) : ''

@@ -52,6 +52,7 @@ import {
   faTimesCircle,
   faEye,
   faCopy,
+  faQuestionCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import ModalRoot from './ModalRoot';
 
@@ -61,7 +62,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft, faAngleDown,
   faArrowCircleLeft,
   faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
-  faTimesCircle, faEye, faCopy);
+  faTimesCircle, faEye, faCopy, faQuestionCircle);
 
 class App extends Component {
   constructor(props) {
