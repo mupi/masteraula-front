@@ -32,8 +32,8 @@ const QuestionSearchForm = (props) => {
           />
           {search ? (
             <InputGroupAddon addonType="prepend">
-              <Button color="primary" id="dica" onClick={clearSearch}>
-              X
+              <Button className="c-question-base__clear_search" id="dica" onClick={clearSearch}>
+                <FontAwesomeIcon icon="times-circle" />
               </Button>
               <UncontrolledTooltip placement="bottom" target="dica">
               Limpar busca
