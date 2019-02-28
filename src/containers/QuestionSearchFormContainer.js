@@ -17,6 +17,7 @@ const setDispatchSearchText = (searchText) => {
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: values => dispatch(setDispatchSearchText(values.searchText)),
+  clearSearch: () => dispatch(setSearchText()),
 });
 
 const QuestionSearchFormContainer = connect(
