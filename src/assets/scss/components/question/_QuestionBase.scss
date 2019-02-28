@@ -15,6 +15,14 @@
     }  
   }
 
+  /*Clear search button*/
+  &__clear_search{
+    color:grey;
+    background-color:white;
+    border-color:white;
+  }
+
+
   &__search-text{
     padding: 0px 15px 15px 15px;
   }
