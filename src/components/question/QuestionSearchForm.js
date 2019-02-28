@@ -11,6 +11,7 @@ const renderField = ({
   type,
   meta: { pristine, error },
   clearSearch,
+  clearSearchField,
   search,
   placeholder,
 }) => (
@@ -22,7 +23,7 @@ const renderField = ({
     />
     {search || !pristine || !error ? (
       <InputGroupAddon addonType="prepend">
-        <Button className="c-question-base__clear-search" id="dica" onClick={clearSearch}>
+        <Button className="c-question-base__clear-search" id="dica" onClick={search ? clearSearch : clearSearchField}>
           <FontAwesomeIcon icon="times-circle" />
         </Button>
         <UncontrolledTooltip placement="bottom" target="dica" className="tooltip__message">
@@ -41,7 +42,7 @@ const renderField = ({
 
 const QuestionSearchForm = (props) => {
   const {
-    handleSubmit, search, clearSearch,
+    handleSubmit, search, clearSearch, clearSearchField,
   } = props;
 
   return (
@@ -65,6 +66,7 @@ const QuestionSearchForm = (props) => {
           validate={requiredValidator}
           search={search}
           clearSearch={clearSearch}
+          clearSearchField={clearSearchField}
         />
       </Row>
       {search ? (

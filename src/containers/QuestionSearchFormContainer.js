@@ -8,6 +8,8 @@ const mapStateToProps = state => ({
     searchText: state.filter.searchText,
   },
   search: state.filter.searchText,
+  preSearch: state.form.questionSearch ? state.form.questionSearch.values.searchText : '',
+
 });
 
 const setDispatchSearchText = (searchText) => {
@@ -18,6 +20,11 @@ const setDispatchSearchText = (searchText) => {
 const mapDispatchToProps = dispatch => ({
   onSubmit: values => dispatch(setDispatchSearchText(values.searchText)),
   clearSearch: () => dispatch(setSearchText()),
+  clearSearchField: () => dispatch({
+    type: '@@redux-form/CHANGE',
+    payload: null,
+    meta: { form: 'questionSearch', field: 'searchText' },
+  }),
 });
 
 const QuestionSearchFormContainer = connect(
