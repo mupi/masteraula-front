@@ -467,7 +467,7 @@ class QuestionEditPage extends Component {
                   </Row>
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
-                    Fonte
+                      Vestibular
                     </Col>
                     <Col sm="8" xs="8">
                       <span className="question-info c-question__tag--purple">
