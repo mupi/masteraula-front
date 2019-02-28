@@ -1,17 +1,15 @@
 import React from 'react';
 import { Field, reduxForm, Form } from 'redux-form';
 import {
-  InputGroup, InputGroupAddon, Button, Row, Col,
+  InputGroup, InputGroupAddon, Button, Row, Col, UncontrolledTooltip,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import MATooltip from 'components/tooltip/MATooltip.js';
 
 const QuestionSearchForm = (props) => {
   const {
     handleSubmit, search,
   } = props;
 
-  const message = "Separe seus termos com vírgulas para buscas mais abrangentes"
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
@@ -22,7 +20,9 @@ const QuestionSearchForm = (props) => {
             <span className="c-question-base__tooltip" href="#" id="TooltipExample">
               <FontAwesomeIcon icon="info-circle"/>
             </span>
-            <MATooltip message={message} idTarget="TooltipExample"/>
+            <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
+              Separe seus termos com vírgulas para buscas mais abrangentes
+            </UncontrolledTooltip>
           </h4>
         </Col>
       </Row>
