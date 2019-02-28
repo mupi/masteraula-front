@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const QuestionSearchForm = (props) => {
   const {
-    handleSubmit, search, clearSearch, pristine,
+    handleSubmit, search, clearSearch, dirty,
   } = props;
 
   return (
@@ -30,14 +30,14 @@ const QuestionSearchForm = (props) => {
             placeholder="Pesquisar por palavras-chave no banco de questões"
             className="form-control"
           />
-          {search || !pristine ? (
+          {search || dirty ? (
             <InputGroupAddon addonType="prepend">
-              <Button className="c-question-base__clear_search" id="dica" onClick={clearSearch}>
+              <Button className="c-question-base__clear-search" id="dica" onClick={clearSearch}>
                 <FontAwesomeIcon icon="times-circle" />
               </Button>
               <UncontrolledTooltip placement="bottom" target="dica">
               Limpar busca
-              </UncontrolledTooltip>
+              </UncontrolledTooltip> 
             </InputGroupAddon>
           ) : ''}
           <InputGroupAddon addonType="prepend">

@@ -16,10 +16,15 @@
   }
 
   /*Clear search button*/
-  &__clear_search{
-    color:grey;
-    background-color:white;
-    border-color:white;
+  &__clear-search{
+    color: $color-ma-white;
+    background-color: $color-ma-blue-link;
+    border-color:$color-ma-blue-link;
+    
+    &:hover{
+      background-color:$color-ma-blue-link;
+      border-color:$color-ma-blue-link;
+    }
   }
 
 
