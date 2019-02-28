@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const QuestionSearchForm = (props) => {
   const {
-    handleSubmit, search, clearSearch,
+    handleSubmit, search, clearSearch, pristine,
   } = props;
 
   return (
@@ -30,7 +30,7 @@ const QuestionSearchForm = (props) => {
             placeholder="Pesquisar por palavras-chave no banco de questões"
             className="form-control"
           />
-          {search ? (
+          {search || !pristine ? (
             <InputGroupAddon addonType="prepend">
               <Button color="primary" id="dica" onClick={clearSearch}>
               X
