@@ -493,7 +493,7 @@ class QuestionEditPage extends Component {
                   </Row>
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
-                      Autor
+                      Publicado por
                     </Col>
                     <Col sm="8" xs="8">
                       <QuestionAuthor author={activeQuestion.author} styleTag="question-info author" />

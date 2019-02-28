@@ -99,7 +99,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
 
     <Row className="c-question__row-info">
       <Col className="info-label" sm="4" xs="4">
-      Autor
+        Publicado por
       </Col>
       <Col sm="8" xs="8">
         <QuestionAuthor author={question.author} styleTag="question-info author" />
