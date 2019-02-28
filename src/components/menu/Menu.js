@@ -2,8 +2,7 @@ import React from 'react';
 import {
   Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col, Container,
 } from 'reactstrap';
-
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import LoginModal from 'components/login/LoginModal';
 import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
@@ -63,10 +62,10 @@ const Menu = (props) => {
 
   const notLoggedOptions = (
     <Nav className="ml-auto" navbar>
-      <NavItem className="hidden">
-        <Link exact="true" to="/">
-          Página Inicial
-        </Link>
+      <NavItem>
+        <NavLink to="/nossos-planos">
+          Preços
+        </NavLink>
       </NavItem>
       <NavItem>
         <LoginModal />
