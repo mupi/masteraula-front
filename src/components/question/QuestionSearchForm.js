@@ -25,7 +25,7 @@ const renderField = ({
         <Button className="c-question-base__clear-search" id="dica" onClick={clearSearch}>
           <FontAwesomeIcon icon="times-circle" />
         </Button>
-        <UncontrolledTooltip placement="bottom" target="dica">
+        <UncontrolledTooltip placement="bottom" target="dica" className="tooltip__message">
               Limpar busca
         </UncontrolledTooltip>
       </InputGroupAddon>
