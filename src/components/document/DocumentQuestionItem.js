@@ -54,7 +54,7 @@ const DocumentQuestionItem = (props) => {
               </Col>
               <Col sm="12">
                 <p className="c-document__question-info-row">
-                  Fonte:
+                  Vestibular:
                   {' '}
                   <span className="c-document__question-info-detail">{ question.source}</span>
                 </p>

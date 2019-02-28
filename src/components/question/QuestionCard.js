@@ -99,13 +99,13 @@ const QuestionCard = (props) => {
             {question.year}
           </button>
 
-          <span className="question-card__more-info--lightgray">
+          <span className="question-card__more-info--lightgray hidden">
             {' | '}
           </span>
-          <span className="question-card__more-info--lightgray">
+          <span className="question-card__more-info--lightgray hidden">
             {'autor: '}
           </span>
-          <QuestionAuthor author={question.author} styleTag="question-card__info-section-item--italic" />
+          {/*<QuestionAuthor author={question.author} styleTag="question-card__info-section-item--italic" />*/}
           {
             (tagList.length > 0) ? (
               <span className="question-card__more-info--lightgray">
