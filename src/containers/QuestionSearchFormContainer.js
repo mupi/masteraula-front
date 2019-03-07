@@ -12,14 +12,14 @@ const mapStateToProps = state => ({
 
 });
 
-const setDispatchSearchText = (searchText) => {
+const setDispatchSearchText = (searchText ='') => {
   history.replace('/question-base/1');
   return setSearchText(searchText);
 };
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: values => dispatch(setDispatchSearchText(values.searchText)),
-  clearSearch: () => dispatch(setSearchText()),
+  clearSearch: () => dispatch(setDispatchSearchText()),
   clearSearchField: () => dispatch({
     type: '@@redux-form/CHANGE',
     payload: null,
