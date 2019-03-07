@@ -28,7 +28,7 @@ export const fetchRegister = (email, password, name) => {
         (error) => {
           dispatch(failure(error));
           throw new SubmissionError({
-            _error: 'Já existe uma conta associada a este usuário',
+            _error: error,
           });
         },
       );

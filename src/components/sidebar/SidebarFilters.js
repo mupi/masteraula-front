@@ -103,7 +103,7 @@ class SidebarFilters extends Component {
         />
         <SidebarFilter
           id="4"
-          name="Fonte"
+          name="Vestibular"
           filterList={sourceFilters}
           toggleFilter={toggleSelectedSourceFilter}
           selected={filter.sourcesSelected}
