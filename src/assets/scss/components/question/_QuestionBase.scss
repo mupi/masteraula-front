@@ -5,6 +5,17 @@
     padding-bottom: 15px;
   }
 
+  &__l-tooltip{
+    padding-right: 0px !important;
+  }
+
+  &__tooltip{
+    font-size: 20px;
+    @include for-phone-only {
+      display: none;
+    }
+  }
+
   &__link-askquestion{
     font-size: 13px;
     color: $color-ma-blue-link;
