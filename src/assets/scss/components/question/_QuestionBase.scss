@@ -5,6 +5,10 @@
     padding-bottom: 15px;
   }
 
+  &__l-tooltip{
+    padding-right: 0px !important;
+  }
+
   &__tooltip{
     font-size: 14px;
     @include for-phone-only {

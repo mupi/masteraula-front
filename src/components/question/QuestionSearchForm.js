@@ -48,17 +48,22 @@ const QuestionSearchForm = (props) => {
   return (
     <Form onSubmit={handleSubmit}> 
       <Row>
-        <Col sm="12" className="c-question-base__title">
-          <h4>
-            Banco de Questões
-            {' '}
+        <Col sm="12" className="c-question-base__title d-flex justify-content-between">
+          <div className="p-2"></div>
+          <div className="p-2">
+            <h4>
+              Banco de Questões
+              {' '}
+            </h4>
+          </div>
+          <div className="p-2 c-question-base__l-tooltip">
             <span className="c-question-base__tooltip" href="#" id="TooltipExample">
               <FontAwesomeIcon icon="info-circle"/>
             </span>
             <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
-              Separe seus termos com vírgulas para buscas mais abrangentes
+              Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos das questões. Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos. Combine os termos da busca com as opções de filtro disponíveis na barra lateral.
             </UncontrolledTooltip>
-          </h4>
+          </div>
         </Col>
       </Row>
       <Row className="c-question-base__search-text">
