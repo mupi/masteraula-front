@@ -21,7 +21,7 @@ const renderField = ({
       placeholder={placeholder}
       type={type}
     />
-    {search || !pristine || !error ? (
+    {search || !pristine ? (
       <InputGroupAddon addonType="prepend">
         <Button className="c-question-base__clear-search" id="dica" onClick={search ? clearSearch : clearSearchField}>
           <FontAwesomeIcon icon="times-circle" />
@@ -46,7 +46,7 @@ const QuestionSearchForm = (props) => {
   } = props;
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}> 
       <Row>
         <Col sm="12" className="c-question-base__title">
           <h4>Banco de Questões</h4>
@@ -63,7 +63,7 @@ const QuestionSearchForm = (props) => {
           id="searchText"
           placeholder="Pesquisar por palavras-chave no banco de questões"
           className="form-control"
-          validate={requiredValidator}
+         
           search={search}
           clearSearch={clearSearch}
           clearSearchField={clearSearchField}
