@@ -3,8 +3,8 @@ import { apiUrl } from 'helpers/config';
 
 export const handleResponse = response => response.json().then((data) => {
   if (!response.ok) {
-    const error = (data && data.email);
-    return Promise.reject(error);
+    /* temporary solution shows only first error */
+    for (const key in data) return Promise.reject(data[key]);
   }
 
   return data;
