@@ -1,13 +1,48 @@
 import React from 'react';
 import { Field, reduxForm, Form } from 'redux-form';
 import {
-  InputGroup, InputGroupAddon, Button, Row, Col, UncontrolledTooltip,
+  Input, InputGroup, InputGroupAddon, Button, Row, Col, UncontrolledTooltip,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { requiredValidator } from 'helpers/validators';
+
+const renderField = ({
+  input,
+  type,
+  meta: { pristine, error },
+  clearSearch,
+  clearSearchField,
+  search,
+  placeholder,
+}) => (
+  <InputGroup>
+    <Input
+      {...input}
+      placeholder={placeholder}
+      type={type}
+    />
+    {search || !pristine || !error ? (
+      <InputGroupAddon addonType="prepend">
+        <Button className="c-question-base__clear-search" id="dica" onClick={search ? clearSearch : clearSearchField}>
+          <FontAwesomeIcon icon="times-circle" />
+        </Button>
+        <UncontrolledTooltip placement="bottom" target="dica" className="tooltip__message">
+              Limpar busca
+        </UncontrolledTooltip>
+      </InputGroupAddon>
+    ) : ''}
+    <InputGroupAddon addonType="prepend">
+      <Button type="submit">
+        <FontAwesomeIcon icon="search" className="btn__icon" />
+              Pesquisar
+      </Button>
+    </InputGroupAddon>
+  </InputGroup>
+);
 
 const QuestionSearchForm = (props) => {
   const {
-    handleSubmit, search, clearSearch,
+    handleSubmit, search, clearSearch, clearSearchField,
   } = props;
 
   return (
@@ -21,32 +56,18 @@ const QuestionSearchForm = (props) => {
         <p className="c-question-base__search-info hidden">
           Pesquisar por palavras-chave no banco de questões
         </p>
-        <InputGroup>
-          <Field
-            component="input"
-            type="text"
-            name="searchText"
-            id="searchText"
-            placeholder="Pesquisar por palavras-chave no banco de questões"
-            className="form-control"
-          />
-          {search ? (
-            <InputGroupAddon addonType="prepend">
-              <Button className="c-question-base__clear_search" id="dica" onClick={clearSearch}>
-                <FontAwesomeIcon icon="times-circle" />
-              </Button>
-              <UncontrolledTooltip placement="bottom" target="dica">
-              Limpar busca
-              </UncontrolledTooltip>
-            </InputGroupAddon>
-          ) : ''}
-          <InputGroupAddon addonType="prepend">
-            <Button type="submit">
-              <FontAwesomeIcon icon="search" className="btn__icon" />
-              Pesquisar
-            </Button>
-          </InputGroupAddon>
-        </InputGroup>
+        <Field
+          component={renderField}
+          type="text"
+          name="searchText"
+          id="searchText"
+          placeholder="Pesquisar por palavras-chave no banco de questões"
+          className="form-control"
+          validate={requiredValidator}
+          search={search}
+          clearSearch={clearSearch}
+          clearSearchField={clearSearchField}
+        />
       </Row>
       {search ? (
         <Row>
