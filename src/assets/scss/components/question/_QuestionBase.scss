@@ -10,7 +10,7 @@
   }
 
   &__tooltip{
-    font-size: 14px;
+    font-size: 20px;
     @include for-phone-only {
       display: none;
     }
