@@ -15,6 +15,19 @@
     }  
   }
 
+  /*Clear search button*/
+  &__clear-search{
+    color: $color-ma-white;
+    background-color: $color-ma-pink;
+    border-color:$color-ma-pink;
+    
+    &:hover{
+      background-color:$color-ma-pink;
+      border-color:$color-ma-pink;
+    }
+  }
+
+
   &__search-text{
     padding: 0px 15px 15px 15px;
   }
