@@ -1,7 +1,23 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import {
+ Container, Row, Col, Button 
+} from 'reactstrap';
 
-const PricingPage = () => (
+const PricingPage = ({ hideModal, showModal, submit }) => {
+  const closeModal = () => {
+    hideModal();
+  };
+
+  const handleOpenRegisterModal = () => {
+    // open modal
+    showModal({
+      open: true,
+      closeModal,
+      submit,
+    }, 'register2');
+  };
+
+  return (
   <div className="c-public-home l-site-masteraula__public-home">
     <Container className="c-public-home__features">
       <Row className="c-pricing-page__section">
@@ -14,10 +30,16 @@ const PricingPage = () => (
         <Col md="4">
           <div className="c-pricing-page__item">
             <div className="c-pricing-page__item-top c-pricing-page__item--1">
-              <h2>Professor <br/> GRATUITO</h2>
+              <h2>
+                Professor
+                {' '}
+                <br />
+                {' '}
+                GRATUITO
+              </h2>
               <p className="c-pricing-page__item-description">Para facilitar seu cotidiano escolar!</p>
               <p className="c-pricing-page__item-price"> R$0 </p>
-              <Button className="c-pricing-page__start-button" size="lg">Comece já!</Button>
+              <Button className="c-pricing-page__start-button" size="lg" onClick={handleOpenRegisterModal}>Comece já!</Button>
             </div>
             <div className="c-pricing-page__item-bottom">
               <ul className="c-pricing-page__item-details">
@@ -34,20 +56,18 @@ const PricingPage = () => (
         <Col md="4">
           <div className="c-pricing-page__item">
             <div className="c-pricing-page__item--2  c-pricing-page__item--full-borders">
-              <h2>Professor <br/> ILIMITADO</h2>
+              <h2>
+                Professor
+                {' '}
+                <br />
+                {' '}
+                ILIMITADO
+              </h2>
               <p className="c-pricing-page__item-description">Para não se preocupar durante 1 ANO.</p>
               <p className="c-pricing-page__item-price"> R$180,00 </p>
               <a
-                className="btn btn-primary c-pricing-page__start-button hidden"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://pag.ae/7UGCBoG1a"
-                role="button"
-              >
-                Comece já
-              </a>
-              <a
                 href="https://pag.ae/7UGCBoG1a/button"
+                rel="noopener noreferrer"
                 target="_blank"
                 title="Pagar com PagSeguro"
               >
@@ -73,12 +93,19 @@ const PricingPage = () => (
         <Col md="4">
           <div className="c-pricing-page__item">
             <div className="c-pricing-page__item--3  c-pricing-page__item--full-borders">
-              <h2>Escola <br/> ILIMITADO</h2>
+              <h2>
+                Escola
+                {' '}
+                <br />
+                {' '}
+                ILIMITADO
+              </h2>
               <p className="c-pricing-page__item-description">Valores especiais para grupo de professores com acesso a todas disciplinas.</p>
               <p>
                 Entre em contato pelo e-mail
+                {' '}
                 <a href="mailto:contato@masteraula.com.br" className="c-pricing-page__contact-email">
-                  contato@masteraula.com.br.
+                  contato@masteraula.com.br
                 </a>
               </p>
             </div>
@@ -98,6 +125,7 @@ const PricingPage = () => (
         <Col sm="12" className="text-center c-pricing-page__section-info">
           <p className="c-pricing-page__detail-text">
             Dúvidas e informações pelo e-mail
+            {' '}
             <a href="mailto:contato@masteraula.com.br">contato@masteraula.com.br</a>
             .
             {' '}
@@ -107,6 +135,7 @@ const PricingPage = () => (
       </Row>
     </Container>
   </div>
-);
+  )
+ ;};
 
 export default PricingPage;

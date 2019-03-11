@@ -36,6 +36,7 @@
             padding: 1em;
             color: white;
             margin-bottom: 2em;
+            min-height: 233px;
         }
     }
 
@@ -87,6 +88,6 @@
 
     &__pagoseguro{
         padding-top: 6px;
-        padding-bottom: 6px;
+        max-width: 100%;
     }
 }

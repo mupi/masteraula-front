@@ -12,6 +12,8 @@ const MODAL_TYPES = {
   document: modalTypes.documentModal,
   exportDocument: modalTypes.exportDocumentModal,
   last5Documents: modalTypes.last5DocumentsModal,
+  register2: modalTypes.register2Modal,
+
 };
 
 const mapStateToProps = state => ({

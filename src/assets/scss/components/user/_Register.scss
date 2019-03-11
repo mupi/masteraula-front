@@ -12,14 +12,22 @@ CSS for RegisterPage
         border-radius: 6px;
 
     &__modal-content {
-        max-width: 500px;
-        background: $color-ma-blue-sky;
-        border-radius: 6px;
+        max-width: 500px !important;
+        background: $color-ma-blue-sky !important;
+        border-radius: 6px !important;
     }
 
     &__modal-header{
-      padding: 0px 10px;
-      border-bottom: 0px;
+      padding: 0px 10px !important;
+      border-bottom: 0px !important;
+      background: $color-ma-blue-sky !important;
+    }
+
+    &__modal-body{
+      position: relative;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      padding: 1rem;
     }
 
     .form-check{

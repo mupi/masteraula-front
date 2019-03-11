@@ -5,7 +5,8 @@ import promptModal from './PromptModal';
 import documentModal from './DocumentModal';
 import exportDocumentModal from './ExportDocumentModal';
 import last5DocumentsModal from './Last5DocumentsModal';
-
+import register2Modal from './Register2Modal';
+ 
 const modalTypes = {
   alertModal,
   confirmModal,
@@ -14,6 +15,7 @@ const modalTypes = {
   documentModal,
   exportDocumentModal,
   last5DocumentsModal,
+  register2Modal,
 };
 
 export default modalTypes;
