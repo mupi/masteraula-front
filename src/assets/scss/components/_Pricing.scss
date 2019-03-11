@@ -33,10 +33,10 @@
 
         &--full-borders{
             border-radius: 6px !important;
-            padding: 1em;
+            padding: 2em 1em;
             color: white;
             margin-bottom: 2em;
-            min-height: 233px;
+            min-height: 290px;
         }
     }
 
@@ -45,6 +45,7 @@
         border-radius: 6px 6px 0 0;
         color: white;
         padding: 1em;
+        padding: 3em 1em;
     }
 
     &__item-bottom{
