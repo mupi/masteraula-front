@@ -174,6 +174,9 @@ export const listQuestions = (page, filter) => {
         },
         (error) => {
           dispatch(fetchQuestionPageFailure(error));
+          dispatch(initialize('questionSearch', {
+            searchText: filter.searchText,
+          }));
         },
       );
   };

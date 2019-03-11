@@ -19,7 +19,14 @@ const setDispatchSearchText = (searchText) => {
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: values => dispatch(setDispatchSearchText(values.searchText)),
-  clearSearch: () => { dispatch(setDispatchSearchText())},
+  clearSearch: () => {
+    dispatch({
+      type: '@@redux-form/CHANGE',
+      payload: null,
+      meta: { form: 'questionSearch', field: 'searchText' },
+    });
+    dispatch(setDispatchSearchText());
+  },
   clearSearchField: () => dispatch({
     type: '@@redux-form/CHANGE',
     payload: null,
