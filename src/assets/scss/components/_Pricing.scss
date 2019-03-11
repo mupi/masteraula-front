@@ -1,0 +1,94 @@
+.c-pricing-page{
+    &__section{
+        padding: 3em 1em;
+    }
+
+    &__section-info{
+        margin: 0 auto;
+        max-width: 650px;
+
+        @include for-phone-only{
+            max-width: 600px;
+        }
+    }
+
+    &__detail-text{
+        font-size: 16px;
+        margin: 25px 0px 0px 0px;
+    }
+
+    &__item{
+        text-align:center;
+        &--1{
+            background-color: $color-ma-pricing-1;
+        }
+
+        &--2{
+            background-color: $color-ma-pricing-2;
+        }
+
+        &--3{
+            background-color: $color-ma-pricing-3;
+        }
+
+        &--full-borders{
+            border-radius: 6px !important;
+            padding: 2em 1em;
+            color: white;
+            margin-bottom: 2em;
+            min-height: 290px;
+        }
+    }
+
+
+    &__item-top{
+        border-radius: 6px 6px 0 0;
+        color: white;
+        padding: 1em;
+        padding: 3em 1em;
+    }
+
+    &__item-bottom{
+        border: 1px solid #D6DADC;
+        border-radius: 0 0 6px 6px;
+        border-top: none;
+        margin-bottom: 2em;
+        text-align: left;
+    }
+
+    &__item-price{
+        font-size: 2em;
+        font-weight: bold;
+        margin: 0 auto;
+    }
+
+    &__item-details{
+        margin-top: 0;
+        padding: 1em 1em 0 2.25em;
+    }
+
+    &__start-button{
+        background-color: $color-ma-green;
+        border-color: $color-ma-green;
+        font-size: 20px;
+        font-weight: bold;
+
+        &:hover{
+            background-color: $color-ma-green-hover;
+            border-color: $color-ma-green-hover;
+        }
+    }
+
+    &__contact-email{
+        color:white;
+        font-weight: bold;
+        &:hover{
+            color:white;
+        }
+    }
+
+    &__pagoseguro{
+        padding-top: 6px;
+        max-width: 100%;
+    }
+}

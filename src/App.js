@@ -22,6 +22,7 @@ import {
   MenuContainer,
   MyHeadersPageContainer,
   EditHeaderPageContainer,
+  PricingPageContainer
 }
   from 'containers';
 import { showModal, hideModal } from 'actions/modalAction';
@@ -115,6 +116,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/login" component={LoginModal} />
+                <Route path="/nossos-planos" component={PricingPageContainer} />
                 <Route path="/register" component={RegisterModal} />
                 <Route path="/esqueci-senha" component={ForgotPasswordPageContainer} />
                 <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
