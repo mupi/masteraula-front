@@ -6,21 +6,59 @@ const PricingPage = () => (
     <Container className="c-public-home__features">
       <Row className="c-pricing-page__section">
         <Col sm="12" className="text-center c-pricing-page__section-info">
-          <h2><strong>Conhece nossos planos</strong></h2>
-          <p className="c-pricing-page__detail-text">Trusted by millions, Masteraula powers teams around the world. Check out which option is right for you.</p>
+          <h2><strong>Conheça nossos planos</strong></h2>
+          <p className="c-pricing-page__detail-text">Venha fazer parte de nossa comunidade de educadores de todo Brasil.</p>
         </Col>
       </Row>
-      <Row>
+      <Row className="row-eq-height">
         <Col md="4">
           <div className="c-pricing-page__item">
             <div className="c-pricing-page__item-top c-pricing-page__item--1">
-              <h2>Free</h2>
-              <p className="c-pricing-page__item-description"> A simple and powerful way to get things done. </p>
-              <span className="c-pricing-page__item-price"> R$0 </span>
-              <p> Free, forever.</p>
-              <Button className="c-pricing-page__start-button" size="lg">Começa já</Button>
+              <h2>Professor <br/> GRATUITO</h2>
+              <p className="c-pricing-page__item-description">Para facilitar seu cotidiano escolar!</p>
+              <p className="c-pricing-page__item-price"> R$0 </p>
+              <Button className="c-pricing-page__start-button" size="lg">Comece já!</Button>
             </div>
             <div className="c-pricing-page__item-bottom">
+              <ul className="c-pricing-page__item-details">
+                <li>
+                  <span>
+                    Download de até 2 provas mensais
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </Col>
+
+        <Col md="4">
+          <div className="c-pricing-page__item">
+            <div className="c-pricing-page__item--2  c-pricing-page__item--full-borders">
+              <h2>Professor <br/> ILIMITADO</h2>
+              <p className="c-pricing-page__item-description">Para não se preocupar durante 1 ANO.</p>
+              <p className="c-pricing-page__item-price"> R$180,00 </p>
+              <a
+                className="btn btn-primary c-pricing-page__start-button hidden"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://pag.ae/7UGCBoG1a"
+                role="button"
+              >
+                Comece já
+              </a>
+              <a
+                href="https://pag.ae/7UGCBoG1a/button"
+                target="_blank"
+                title="Pagar com PagSeguro"
+              >
+                <img
+                  src="//assets.pagseguro.com.br/ps-integration-assets/botoes/pagamentos/205x30-pagar.gif"
+                  alt="Pague com PagSeguro - é rápido, grátis e seguro!"
+                  className="c-pricing-page__pagoseguro"
+                />
+              </a>
+            </div>
+            <div className="c-pricing-page__item-bottom hidden">
               <ul className="c-pricing-page__item-details">
                 <li>
                   <span>
@@ -34,35 +72,17 @@ const PricingPage = () => (
 
         <Col md="4">
           <div className="c-pricing-page__item">
-            <div className="c-pricing-page__item-top c-pricing-page__item--2">
-              <h2>Professor Parcial</h2>
-              <p className="c-pricing-page__item-description"> A simple and powerful way to get things done. </p>
-              <span className="c-pricing-page__item-price"> R$9,90 </span>
-              <p> Free, forever.</p>
-              <Button className="c-pricing-page__start-button" size="lg">Começa já</Button>
+            <div className="c-pricing-page__item--3  c-pricing-page__item--full-borders">
+              <h2>Escola <br/> ILIMITADO</h2>
+              <p className="c-pricing-page__item-description">Valores especiais para grupo de professores com acesso a todas disciplinas.</p>
+              <p>
+                Entre em contato pelo e-mail
+                <a href="mailto:contato@masteraula.com.br" className="c-pricing-page__contact-email">
+                  contato@masteraula.com.br.
+                </a>
+              </p>
             </div>
-            <div className="c-pricing-page__item-bottom">
-              <ul className="c-pricing-page__item-details">
-                <li>
-                  <span>
-                    Acesso as questões de todas as disciplinas do ENEM
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </Col>
-
-        <Col md="4">
-          <div className="c-pricing-page__item">
-            <div className="c-pricing-page__item-top c-pricing-page__item--3">
-              <h2>Professor Completo</h2>
-              <p className="c-pricing-page__item-description"> A simple and powerful way to get things done. </p>
-              <span className="c-pricing-page__item-price"> R$19,90 </span>
-              <p> Free, forever.</p>
-              <Button className="c-pricing-page__start-button" size="lg">Começa já</Button>
-            </div>
-            <div className="c-pricing-page__item-bottom">
+            <div className="c-pricing-page__item-bottom hidden">
               <ul className="c-pricing-page__item-details">
                 <li>
                   <span>
@@ -76,7 +96,13 @@ const PricingPage = () => (
       </Row>
       <Row className="c-pricing-page__section-bottom">
         <Col sm="12" className="text-center c-pricing-page__section-info">
-          <p className="c-pricing-page__detail-text">Trusted by millions, Masteraula powers teams around the world. Check out which option is right for you.</p>
+          <p className="c-pricing-page__detail-text">
+            Dúvidas e informações pelo e-mail
+            <a href="mailto:contato@masteraula.com.br">contato@masteraula.com.br</a>
+            .
+            {' '}
+            Estamos sempre disponíveis para nossos professores!
+          </p>
         </Col>
       </Row>
     </Container>

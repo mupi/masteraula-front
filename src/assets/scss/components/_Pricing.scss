@@ -30,7 +30,15 @@
         &--3{
             background-color: $color-ma-pricing-3;
         }
+
+        &--full-borders{
+            border-radius: 6px !important;
+            padding: 1em;
+            color: white;
+            margin-bottom: 2em;
+        }
     }
+
 
     &__item-top{
         border-radius: 6px 6px 0 0;
@@ -67,5 +75,18 @@
             background-color: $color-ma-green-hover;
             border-color: $color-ma-green-hover;
         }
+    }
+
+    &__contact-email{
+        color:white;
+        font-weight: bold;
+        &:hover{
+            color:white;
+        }
+    }
+
+    &__pagoseguro{
+        padding-top: 6px;
+        padding-bottom: 6px;
     }
 }
