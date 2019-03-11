@@ -11,9 +11,9 @@ const validate = (values) => {
     errors.name = 'Insira um nome';
   }
 
-  // if (values.userState !== 'NaN' && values.userCity === '0') {
-  //   errors.userCity = 'Selecione a cidade';
-  // }
+  if (values.userState !== 'NaN' && values.userCity === '0') {
+    errors.userCity = 'Selecione a cidade';
+  }
 
   return errors;
 };
