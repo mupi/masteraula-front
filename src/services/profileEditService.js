@@ -14,10 +14,11 @@ const handleResponse = response => response.json().then((data) => {
 
 const handlePasswordResponse = response => response.json().then((data) => {
   if (!response.ok) {
-    if (data.old_password) {
-      if (data.old_password[0].includes('Invalid password')) return Promise.reject('A senha atual é inválida');
-      return Promise.reject(data.old_password[0]);
-    }
+  //   if (data.old_password) {
+  //     if (data.old_password[0].includes('Invalid password')) return Promise.reject('A senha atual é inválida');
+  //     return Promise.reject(data.old_password[0]);
+  //   }
+    return Promise.reject(data);
   }
 
   return data;
