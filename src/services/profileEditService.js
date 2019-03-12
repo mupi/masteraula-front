@@ -26,7 +26,7 @@ const handlePasswordResponse = response => response.json().then((data) => {
 const handleProfileResponse = response => response.json().then((data) => {
   if (!response.ok) {
     if (data.profile_pic) {
-      if (data.profile_pic[0].includes('1MB')) return Promise.reject('O tamanho máximo da imagem é 1MB');
+      if (data.profile_pic[0].includes('1Mb')) return Promise.reject('O tamanho máximo da imagem é 1MB');
       if (data.profile_pic[0].includes('não é um arquivo de imagem')) {
         return Promise.reject('Arquivo inválido. Escolha um arquivo JPG, PNG ou GIF.');
       }
