@@ -8,7 +8,8 @@
         "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
         "react/prop-types": 0,
         "react/require-default-props":0,
-        "no-restricted-globals":0
+        "no-restricted-globals":0,
+        "prefer-promise-reject-errors":"off"
     },
     "settings": {
         "import/resolver": {
