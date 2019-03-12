@@ -10,11 +10,13 @@ export const handleResponse = response => response.json().then((data) => {
       logout();
     }
     if (data && data.non_field_errors) {
-      if (data.non_field_errors[0] === 'E-mail is not verified.') {
+     /* if (data.non_field_errors[0] === 'E-mail is not verified.') {
         return Promise.reject('Seu cadastro ainda não foi confirmado. Para enviar um novo email de confirmação, clique aqui.');
       } if (data.non_field_errors[0] === 'Unable to log in with provided credentials.') {
         return Promise.reject('Usuário e/ou senha inválido(s)');
-      }
+      }*/
+
+      return Promise.reject(data.non_field_errors[0]);
     }
     const error = (data && data.non_field_errors) || response.statusText;
     return Promise.reject(error);
