@@ -22,7 +22,7 @@ import {
   MenuContainer,
   MyHeadersPageContainer,
   EditHeaderPageContainer,
-  PricingPageContainer
+  PricingPageContainer,
 }
   from 'containers';
 import { showModal, hideModal } from 'actions/modalAction';
@@ -128,7 +128,7 @@ class App extends Component {
           }
           <ModalRoot />
 
-          <Footer year="2018" version="1.0" />
+          <Footer year="2019" version="1.0" />
         </div>
       </ConnectedRouter>
     );
