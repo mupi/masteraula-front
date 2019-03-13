@@ -36,10 +36,12 @@
         border-radius: 33px;
         padding: 10px 27px;
         font-size: 35px;
+        letter-spacing: 3px;
 
         &:hover{
-            color: $color-ma-white;
-            background-color: $color-ma-green-hover;
+            color: $color-ma-blue;
+            background-color: $color-ma-green-light;
+            border-color: $color-ma-green-light;
         }
     }
 
