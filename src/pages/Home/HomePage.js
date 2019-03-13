@@ -3,6 +3,8 @@ import clockImg from 'assets/img/home/clock.png';
 import searchImg from 'assets/img/home/search.png';
 import moneyImg from 'assets/img/home/money.png';
 import { Container, Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const HomePage = () => (
   <div className="c-public-home l-site-masteraula__public-home">
@@ -61,6 +63,17 @@ const HomePage = () => (
         </Col>
       </Row>
     </Container>
+    <Container className="c-public-home__pricing-section">
+      <Row className="c-public-home__pricing-section-row">
+        <Col md="12" className="c-public-home__pricing-button-section"> 
+          <Link className="btn c-public-home__pricing-button" to="/nossos-planos" role="button">
+                Comece já
+          </Link>
+        </Col>
+      </Row>
+
+    </Container>
+   
   </div>
 );
 
