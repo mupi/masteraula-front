@@ -22,6 +22,13 @@ class EditDocumentPage extends Component {
     }
   }
 
+  componentDidUpdate() {
+    const {
+      listMyLastDocuments,
+    } = this.props;
+    listMyLastDocuments(1, 'date', 'desc');
+  }
+  
   render() {
     const {
       activeDocument, removeSelectedQuestion, submit,
@@ -41,7 +48,7 @@ class EditDocumentPage extends Component {
           <DocumentBasicHeader data={activeDocument} onSubmit={submit} />
           <DocumentQuestions
             activeDocument={activeDocument}
-            removeSelectedQuestion={removeSelectedQuestion}
+            removeSelectedQuestion={removeSelectedQuestion} 
           />
         </div>
         <ToastContainer hideProgressBar position="bottom-right" />
