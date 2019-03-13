@@ -13,13 +13,14 @@ export const handleResponse = response => response.json().then((data) => {
       if (data.non_field_errors[0].includes('E-mail ainda não verificado')) {
         return Promise.reject('Seu cadastro ainda não foi confirmado. Para enviar um novo email de confirmação, clique aqui.');
       }
+      return Promise.reject(data.non_field_errors[0]);
     }
-    const error = (data && data.non_field_errors) || response.statusText;
-    return Promise.reject(error);
+ //   const error = (data && data.non_field_errors) || response.statusText;
+    return Promise.reject(data);
   }
 
   return data;
-});
+}); 
 
 function login(email, password) {
   const requestOptions = {
