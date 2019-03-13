@@ -19,7 +19,45 @@
 
    &__pricing-section{
         background-color: #f6f8f9;
+        max-width: 100%
    } 
+
+   &__pricing-section-row{
+        max-width: 1140px;   
+        margin: auto;
+        text-align: center;
+    } 
+
+    &__pricing-button {
+        color: $color-ma-white;
+        background-color: $color-ma-green;
+        border-color: $color-ma-green;
+        font-size: 35px;
+        border-radius: 33px;
+        padding: 10px 27px;
+        font-size: 35px;
+        letter-spacing: 3px;
+
+        &:hover{
+            color: $color-ma-blue;
+            background-color: $color-ma-green-light;
+            border-color: $color-ma-green-light;
+        }
+    }
+
+    &__pricing-button-section {
+        min-height: 180px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__pricing-description {
+        font-size: 20px;
+        padding: 25px;
+        line-height: 2em;
+    }
 
    &__features{
     padding-top: 60px;
