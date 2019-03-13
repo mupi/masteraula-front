@@ -65,7 +65,7 @@ const RedefinePassword = (props) => {
         <FontAwesomeIcon icon="lock" />
         {' '}
         Mudar sua senha
-      </h3>
+      </h3> 
       <Row className="justify-content-center">
         <Col sm="12" xs="12">
           <Form onSubmit={handleSubmit}>
@@ -91,7 +91,9 @@ const RedefinePassword = (props) => {
             </FormGroup>
             {error && (
             <Alert color="danger">
-              {error}. Solicite uma nova redefinição de senha <a href="/#/esqueci-senha">aqui</a>
+              {error}
+              {'. '}
+              { (!error.includes('muito comum') ) ? ( <span>Solicite uma nova redefinição de senha <a href="/#/esqueci-senha">aqui</a></span>): ''}
             </Alert>
             )}
             { submitSucceeded

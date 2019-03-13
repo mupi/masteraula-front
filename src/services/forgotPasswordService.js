@@ -36,8 +36,12 @@ function resetForgotPassword(new_password1, new_password2, uid, token) {
   function handleResponse(response) {
     return response.json().then((data) => {
       if (!response.ok) {
-        //const error = (data && data.error) || response.statusText;
-        
+               
+        if (data.new_password2) {
+          if (data.new_password2.includes('Esta senha é muito comum.')) return Promise.reject('Esta senha é muito comum');
+          return Promise.reject(data.new_password2[0]);
+        }
+
         return Promise.reject('A URL para redefinição de senha é inválida ou expirou');
       }
 

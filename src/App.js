@@ -54,12 +54,14 @@ import {
   faEye,
   faCopy,
   faQuestionCircle,
+  faLock,
 } from '@fortawesome/free-solid-svg-icons';
 import ModalRoot from './ModalRoot';
 
 
 library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile, faPencilAlt, faSyncAlt, faBars,
   faUser, faHome, faSignOutAlt, faUserCircle, faSearch, faFolder, faFileAlt, faFilter, faTrashAlt,
+  faLock,
   faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft, faAngleDown,
   faArrowCircleLeft,
   faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
