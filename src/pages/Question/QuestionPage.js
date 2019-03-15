@@ -46,7 +46,7 @@ class QuestionPage extends Component {
   render() {
     const {
       activeQuestion, isFetching, rating, error, onRate, toggleModal, modal, activeDocument, addSelectedQuestion,
-      removeSelectedQuestion,
+      removeSelectedQuestion, role,
     } = this.props;
 
     if (isFetching) {
@@ -82,12 +82,14 @@ class QuestionPage extends Component {
                 {' '}
                 Voltar
               </Button>
-
-              <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
-                <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
-                {' '}
+              {role === 'editor'
+                ? (
+                  <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
+                    <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
+                    {' '}
                 Editar
-              </Link>
+                  </Link>
+                ) : ''}
             </Col>
           </Row>
           <Row className="c-question__options">

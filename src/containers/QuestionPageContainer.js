@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
   rating: state.question.rating,
   modal: state.document.modal,
   activeDocument: state.document.activeDocument,
+  role: state.session.session.user.role,
 });
 
 const mapDispatchToProps = dispatch => ({
