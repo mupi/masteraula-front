@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/static/media/logo_masteraula-fd-verde.87bacab4.png"
   },
   {
-    "revision": "9c74ddf07a8da9beb6c7",
+    "revision": "21be14a9ba92b9585b6a",
     "url": "/static/css/main.37db4dfa.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/static/js/runtime~main.a8a9905a.js"
   },
   {
-    "revision": "5e04d3019dfb3274ff31de6e268a3166",
-    "url": "/static/media/sidebar-background-2.5e04d301.jpg"
+    "revision": "ef2b8468921feae7df9181301c8575c1",
+    "url": "/static/media/banner.ef2b8468.jpg"
   },
   {
     "revision": "dc25eca5322c4544334b",
@@ -36,8 +36,8 @@ self.__precacheManifest = [
     "url": "/static/media/money.0e5d6fa0.png"
   },
   {
-    "revision": "9c74ddf07a8da9beb6c7",
-    "url": "/static/js/main.bb065a24.chunk.js"
+    "revision": "21be14a9ba92b9585b6a",
+    "url": "/static/js/main.3ff9e3e5.chunk.js"
   },
   {
     "revision": "f135e7e8de776e355a859d290bab0d90",
@@ -60,15 +60,15 @@ self.__precacheManifest = [
     "url": "/static/media/logo_masteraula.dc132bac.png"
   },
   {
-    "revision": "ef2b8468921feae7df9181301c8575c1",
-    "url": "/static/media/banner.ef2b8468.jpg"
+    "revision": "5e04d3019dfb3274ff31de6e268a3166",
+    "url": "/static/media/sidebar-background-2.5e04d301.jpg"
   },
   {
     "revision": "dc25eca5322c4544334b",
     "url": "/static/css/2.e7369806.chunk.css"
   },
   {
-    "revision": "523ac8da8aabab71b2959ea8d9dda283",
+    "revision": "e7d01f6bd2bec45ee8cb19f5568f836f",
     "url": "/index.html"
   }
 ];
