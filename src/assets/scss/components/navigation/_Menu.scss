@@ -143,22 +143,33 @@ html body .masteraula-nav-header__user {
 
 }
 
-.masteraula-nav-header__greeting{
-  border: none;
-  padding: 8px;
-  display: block;
-  color: $color-ma-blue;
-  letter-spacing: 0.75px;
-}
+/*New SCSS with BEM style*/
+.masteraula-nav-header{
+  &__greeting{
+    border: none;
+    padding: 8px;
+    display: block;
+    color: $color-ma-blue;
+    letter-spacing: 0.75px;
+  }
 
-.masteraula-nav-header__icon-option{
-  @include for-desktop-bottom-1160{
-    display:none;
+  &__link-myprofile{
+    border: none;
+    padding: 7px !important;
+    display: block;
+    color: $color-ma-blue;
+    letter-spacing: 0.85px;
+  }
+
+  &__icon-option{
+    @include for-desktop-bottom-1160{
+      display:none;
+    }
   }
 }
 
-.o-doc-options{ 
 
+.o-doc-options{ 
     &__dropdown{
       font-size: 13px;
       color: $color-ma-green;

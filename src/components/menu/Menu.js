@@ -15,7 +15,7 @@ const getUserName = (userName) => {
     return (userName.split(' '))[0];
   }
   return null;
-}
+};
 
 const Menu = (props) => {
   const {
@@ -24,30 +24,18 @@ const Menu = (props) => {
 
   const loggedOptions = (
     <Nav className="ml-auto hidden-xs" navbar>
-      <NavItem className="masteraula-nav-header__greeting">
-        <div className="masteraula-nav-header__user-avatar">
-          { user && user.profile_pic
-            ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
-            : <img src={userPhoto} alt="foto-usuario" />
-          }
-        </div>
-        <span className="masteraula-nav-header__icon-option">
-          {' '}
-          Oi
-          {' '}
-          {user ? getUserName(user.name) : ''}
-          {'!'}
-        </span>
-      </NavItem>
       <NavItem>
-        <Link to="/user-profile">
-          <FontAwesomeIcon
-            icon="user"
-          />
+        <Link to="/user-profile" className="masteraula-nav-header__link-myprofile">
+          <div className="masteraula-nav-header__user-avatar">
+            { user && user.profile_pic
+              ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
+              : <img src={userPhoto} alt="foto-usuario" />
+            }
+          </div>
           {' '}
-          <span className="masteraula-nav-header__icon-option">Meu Perfil</span>
+          <span className="masteraula-nav-header__icon-option">{user ? getUserName(user.name) : ''}</span>
         </Link>
-      </NavItem> 
+      </NavItem>
       <NavItem>
         <Link onClick={(e) => { e.preventDefault(); logout(); }} to="/">
           <FontAwesomeIcon
