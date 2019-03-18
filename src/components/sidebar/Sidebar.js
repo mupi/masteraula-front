@@ -32,7 +32,7 @@ const clearAllSearchAndRedirect = (e, cleanAllSearch,  url) => {
 };
 
 const SidebarMobile = ({
-  showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu,
+  showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch,
 }) => (
   <Swipeable onSwipeRight={() => openSidebar(isOpenSidebar)} onSwipeLeft={() => openSidebar(isOpenSidebar)}>
     <div id="sidebar">
@@ -41,7 +41,7 @@ const SidebarMobile = ({
           <Row className="sidebar-row">
             <Col xs="12" className="c-sidebar__user-info-section">
               <div className="c-sidebar__ma-logo">
-                <Link to="/#/question-base/1">
+                <Link to="/#/question-base/1" onClick={ (e)=> { clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}>
                   <img src={maLogo} alt="masteraula" />
                 </Link>
               </div>
