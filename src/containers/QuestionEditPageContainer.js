@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
     modal: state.document.modal,
     activeDocument: state.document.activeDocument,
     topicsList: state.topic.topics,
-    role: state.session.session.user.role,
+    role: state.session.session.user.groups,
   });
 };
 

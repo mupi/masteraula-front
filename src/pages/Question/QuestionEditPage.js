@@ -312,7 +312,7 @@ class QuestionEditPage extends Component {
       );
     }
 
-    if (role !== 'editor') {
+    if (!role.includes('Editores')) {
       return (
         <HomeUserPage>
           <Alert color="danger">
