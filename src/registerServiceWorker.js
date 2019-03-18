@@ -10,7 +10,7 @@
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://bit.ly/CRA-PWA
 
-// Masteraula test - 18/03 v3
+// Masteraula test - 18/03 - vFinal
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
