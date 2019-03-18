@@ -25,10 +25,10 @@ const redirectURL = (e, openSidebar, isOpenSidebar, url) => {
   }
 };
 
-const clearAllSearchAndRedirect = (e, cleanAllSearch,  url) => {
-    e.preventDefault();
-    cleanAllSearch();
-    history.push(url); 
+const clearAllSearchAndRedirect = (e, cleanAllSearch, url) => {
+  e.preventDefault();
+  cleanAllSearch();
+  history.push(url);
 };
 
 const SidebarMobile = ({
@@ -41,7 +41,7 @@ const SidebarMobile = ({
           <Row className="sidebar-row">
             <Col xs="12" className="c-sidebar__user-info-section">
               <div className="c-sidebar__ma-logo">
-                <Link to="/#/question-base/1" onClick={ (e)=> { clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}>
+                <Link to="/#/question-base/1" onClick={(e) => { clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}>
                   <img src={maLogo} alt="masteraula" />
                 </Link>
               </div>
@@ -133,7 +133,7 @@ const SidebarWeb = ({
 }) => (
   <div id="sidebar">
     <div className="logo-top-sidebar">
-      <Link to="/#/question-base/1" onClick={ (e)=> { clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}>
+      <Link to="/#/question-base/1" onClick={(e) => { clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}>
         <img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" />
       </Link>
     </div>
