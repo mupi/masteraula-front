@@ -8,7 +8,7 @@ const Footer = ({ year, version }) => (
         ©
         {year}
         {' '}
-        MasterAula - Service Worker test v2 - versão
+        MasterAula - Service Worker test v3 - versão
         {' '}
         {version}
       </Col>
