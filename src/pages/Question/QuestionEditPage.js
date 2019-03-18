@@ -1,3 +1,5 @@
+/* eslint-disable react/no-danger */
+
 import {
   Container, Alert, Row, Col, Form, Button, Input,
 } from 'reactstrap';
