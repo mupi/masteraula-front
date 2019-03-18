@@ -5,11 +5,10 @@ const Footer = ({ year, version }) => (
   <div className="c-footer text-center">
     <Row>
       <Col xs="12">
-
-              ©
+        ©
         {year}
         {' '}
-        MasterAula - Update Março - Mupi - versão
+        MasterAula - Update Março v5 - FIM - versão
         {' '}
         {version}
       </Col>
