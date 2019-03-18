@@ -18,6 +18,11 @@ const mapDispatchToProps = dispatch => ({
   openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
   logout: () => dispatch(logout()),
   cleanAllSearch: () => {
+    dispatch({
+      type: '@@redux-form/CHANGE',
+      payload: null,
+      meta: { form: 'questionSearch', field: 'searchText' },
+    });
     dispatch(clearSearch());
     dispatch(clearSelectedFilters());
   }
