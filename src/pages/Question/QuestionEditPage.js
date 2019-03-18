@@ -139,7 +139,7 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             </Col>
             {
               <Col sm="8">
-                <Field name={`${learningObject}.tags`} component={renderField} />
+                <Field name={`${learningObject}.tags`} component={renderField} placeholder="Separe as tags por virgula" />
               </Col>}
           </Row>
         </div>
@@ -509,7 +509,7 @@ class QuestionEditPage extends Component {
                         component={renderMAReactTags}
                         name="tags"
                         id="tags"
-                        placeholder="Separe as tags com vírgulas"
+                        placeholder="Dê enter após inserir uma tag"
                         className="form-control"
                       />
                     </Col>
