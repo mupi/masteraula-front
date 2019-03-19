@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/static/media/logo_masteraula-fd-verde.87bacab4.png"
   },
   {
-    "revision": "15c2c8232497716e1463",
+    "revision": "0dd864051ef435c13765",
     "url": "/static/css/main.37db4dfa.chunk.css"
   },
   {
@@ -36,8 +36,8 @@ self.__precacheManifest = [
     "url": "/static/media/money.0e5d6fa0.png"
   },
   {
-    "revision": "15c2c8232497716e1463",
-    "url": "/static/js/main.fd491589.chunk.js"
+    "revision": "0dd864051ef435c13765",
+    "url": "/static/js/main.e50f5c28.chunk.js"
   },
   {
     "revision": "f135e7e8de776e355a859d290bab0d90",
@@ -68,7 +68,7 @@ self.__precacheManifest = [
     "url": "/static/css/2.e7369806.chunk.css"
   },
   {
-    "revision": "693cceff03d25b885c98ff20b3363f67",
+    "revision": "b54723f37d55e0d7e5a0542ec4141917",
     "url": "/index.html"
   }
 ];
