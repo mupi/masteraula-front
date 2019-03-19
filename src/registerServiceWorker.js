@@ -11,6 +11,7 @@
 // opt-in, read https://bit.ly/CRA-PWA
 
 // Masteraula test - 18/03 - vFinalv2
+// Masteraula final test - 19/03
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
