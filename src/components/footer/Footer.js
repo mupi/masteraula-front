@@ -8,7 +8,7 @@ const Footer = ({ year, version }) => (
         ©
         {year}
         {' '}
-        Masteraula - Mupi v2 - versão
+        Masteraula - Mupi v3 - versão
         {' '}
         {version}
       </Col>
