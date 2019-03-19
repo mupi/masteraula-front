@@ -50,6 +50,8 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb": "^17.1.0",
     "prop-types": "^15.6.2",
     "redux-form": "^7.4.2",
     "redux-logger": "^3.0.6",
