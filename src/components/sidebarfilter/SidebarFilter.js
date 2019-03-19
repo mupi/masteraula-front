@@ -21,7 +21,7 @@ class SidebarFilter extends Component {
 
   render() {
     const {
-      name, filterList, toggleFilter, selected,
+      name, filterList, toggleFilter, selected, isFetchingQuestions,
     } = this.props;
 
     const {
@@ -37,7 +37,7 @@ class SidebarFilter extends Component {
     return (
       <ListGroupItem className="c-filters">
         <div className="c-filters__question-category-filter" onClick={this.toggle}>
-          {name}
+          {name} 
           <Button className="c-filters__question-category-filter-icon" color="light">
             {collapse ? <FontAwesomeIcon icon="angle-down" /> : <FontAwesomeIcon icon="angle-left" />}
           </Button>
@@ -50,7 +50,7 @@ class SidebarFilter extends Component {
                 color="light"
                 className={isChecked(filter.id) ? 'c-filters__question-single-filter c-sidebar__filter-selected' : 'c-filters__question-single-filter'}
               >
-                <Input type="checkbox" value={filter.id} onClick={handleFilter} checked={isChecked(filter.id)} readOnly />
+                <Input type="checkbox" value={filter.id} onClick={handleFilter} checked={isChecked(filter.id)} readOnly disabled={isFetchingQuestions} />
                 {filter.name}
               </ListGroupItem>
             ))}
