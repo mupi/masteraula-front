@@ -6,10 +6,11 @@
 // will only see deployed updates on subsequent visits to a page, after all the
 // existing tabs open on the page have been closed, since previously cached
 // resources are updated in the background.
+
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://bit.ly/CRA-PWA
 
-// Masteraula Sprint 10 - Part I - 19/03
+// Masteraula Sprint 10 - Part 1 - 19/03
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
