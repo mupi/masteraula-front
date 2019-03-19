@@ -23,14 +23,15 @@ class SidebarFilters extends Component {
     const {
       disciplineFilters, teachingLevelFilters, sourceFilters, yearFilters,
       isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, isFetchingSourceFilters, isFetchingYearFilters,
-      error,
+      error, isFetchingQuestions,
       toggleSelectedDisciplineFilter, toggleSelectedTeachingLevelFilter, toggleSelectedDifficultyFilter,
       toggleSelectedSourceFilter, toggleSelectedYearFilter,
       filter,
       clearFilters,
     } = this.props;
 
-    if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters || isFetchingSourceFilters || isFetchingYearFilters) {
+    if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters || isFetchingSourceFilters || isFetchingYearFilters
+      || isFetchingQuestions) {
       return (
         <ListGroup className="question-all-filters">
           <h6>
