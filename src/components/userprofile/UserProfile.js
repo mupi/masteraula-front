@@ -3,10 +3,26 @@ import {
   Button, Form, FormGroup, Input, Label, Container, Row, Col,
 } from 'reactstrap';
 import { Field } from 'redux-form';
+import Multiselect from 'react-widgets/lib/Multiselect';
 import 'bootstrap/dist/css/bootstrap.css';
+
 import { userNameValidator } from 'helpers/validators';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import userPhoto from 'assets/img/home/avataruser3.png';
+ 
+const renderMultiselect = ({
+  input, data, valueField, textField, className, placeholder,
+}) => (
+  <Multiselect
+    {...input}
+    onBlur={() => input.onBlur()}
+    value={input.value || []} // requires value to be an array
+    data={data}
+    valueField='hola'
+    textField='chau'
+    placeholder={placeholder}
+  />
+);
 
 const renderField = ({
   input,
@@ -72,6 +88,8 @@ export const fieldFile = ({ input, type }) => {
 
 class UserProfile extends React.Component {
   componentDidMount() {
+    this.props.listDisciplineFilters();
+
     const { getCitiesList, user } = this.props;
     if (user.city) {
       getCitiesList(user.city.uf, true);
@@ -88,7 +106,7 @@ class UserProfile extends React.Component {
 
   render() {
     const {
-      handleSubmit, stateList, cityList, user,
+      handleSubmit, stateList, cityList, user, disciplineFilters,
     } = this.props;
 
     return (
@@ -204,6 +222,22 @@ class UserProfile extends React.Component {
                         </option>
                       )) }
                     </Field>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <Label>
+                      Informações sobre sua atuação como Professor(a)
+                    </Label>
+                    <Field
+                      name="userDisciplines"
+                      className="form-control"
+                      component={renderMultiselect}
+                      placeholder="Insira as disciplinas que você leciona"
+                      data={disciplineFilters && disciplineFilters.map(discipline => discipline.name)}
+                    />
                   </FormGroup>
                 </Col>
               </Row>
