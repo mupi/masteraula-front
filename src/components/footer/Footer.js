@@ -6,9 +6,9 @@ const Footer = ({ year, version }) => (
     <Row>
       <Col xs="12">
         ©
-        {year}  
+        {year}
         {' '}
-        Masteraula v3- versão
+        Masteraula - Mupi - versão
         {' '}
         {version}
       </Col>
