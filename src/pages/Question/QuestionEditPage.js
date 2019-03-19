@@ -285,6 +285,7 @@ class QuestionEditPage extends Component {
   render() {
     const {
       activeQuestion, isFetching, error, activeDocument, handleSubmit, topicsList, topics, pristine,
+      role,
     } = this.props;
 
     const {
@@ -311,6 +312,15 @@ class QuestionEditPage extends Component {
           </Alert>
         </HomeUserPage>
       );
+    }
+
+    if (!role.includes('Editores')) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+              Você não tem permissão para visualizar esta página.
+          </Alert>
+        </HomeUserPage>);
     }
 
     return (
