@@ -42,7 +42,7 @@ class SidebarFilters extends Component {
             {' Filtros'}
           </h6>
           <Alert className="alert--warning" color="warning">
-              Carregando 2...
+              Carregando ...
           </Alert>
         </ListGroup>
       );
@@ -74,7 +74,7 @@ class SidebarFilters extends Component {
           || filter.yearsSelected.length > 0
           ? (
             <div className="l-question-all-filters__clear-button">
-              <Button className="l-question-all-filters__clear-button--btn" onClick={clearFilters}>
+              <Button className="l-question-all-filters__clear-button--btn" onClick={clearFilters} disabled={isFetchingQuestions}>
               Limpar todos os filtros
               </Button>
             </div>
