@@ -23,7 +23,7 @@ const mapStateToProps = state => ({
   isFetchingTeachingLevelFilters: state.filter.isFetchingTeachingLevelFilters,
   isFetchingSourceFilters: state.filter.isFetchingSourceFilters,
   isFetchingYearFilters: state.filter.isFetchingYearFilters,
-
+  isFetchingQuestions: state.question.isFetching,
   filter: state.filter,
   questionPage: state.question.questionPage,
   currentPage: state.question.currentPage,
