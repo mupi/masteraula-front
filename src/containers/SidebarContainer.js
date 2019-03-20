@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   user: state.session.session.user,
   activeDocument: state.document.activeDocument,
   isOpenSidebar: state.menu.isOpenSidebar,
+  isFetchingQuestions: state.question.isFetching,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,7 +28,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(clearSelectedFilters());
   }
 });
-
+ 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
