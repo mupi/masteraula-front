@@ -98,6 +98,11 @@ function profileEdit(profile) {
 
     if (name === 'disciplines') {
       // Fix do allan
+      for (var i = 0; i < profile[name].length; i++) {
+        console.log("hola" + i);
+        console.log(profile[name][i]);
+        formData.append('disciplines[]', profile[name][i]);
+      }
     } else if (name === 'profile_pic') {
       if (profile[name]) { formData.append(name, profile[name][0]); }
     } else formData.append(name, profile[name]);
