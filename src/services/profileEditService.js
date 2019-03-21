@@ -18,7 +18,7 @@ const handlePasswordResponse = response => response.json().then((data) => {
       if (data.old_password[0].includes('Invalid password')) return Promise.reject('A senha atual é inválida');
       return Promise.reject(data.old_password[0]);
     }
-  
+
     if (data.new_password1) {
       return Promise.reject(data.new_password1[0]);
     }
@@ -95,9 +95,10 @@ function profilePasswordEdit(profile) {
 function profileEdit(profile) {
   const formData = new FormData();
   Object.keys(profile).forEach((name) => {
-
     if (name === 'disciplines') {
-      // Fix do allan
+      profile[name].forEach((discipline, index) => {
+        formData.append(`disciplines[${index}]`, discipline);
+      });
     } else if (name === 'profile_pic') {
       if (profile[name]) { formData.append(name, profile[name][0]); }
     } else formData.append(name, profile[name]);
