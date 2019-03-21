@@ -23,14 +23,15 @@ class SidebarFilters extends Component {
     const {
       disciplineFilters, teachingLevelFilters, sourceFilters, yearFilters,
       isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, isFetchingSourceFilters, isFetchingYearFilters,
-      error,
+      error, isFetchingQuestions,
       toggleSelectedDisciplineFilter, toggleSelectedTeachingLevelFilter, toggleSelectedDifficultyFilter,
       toggleSelectedSourceFilter, toggleSelectedYearFilter,
       filter,
       clearFilters,
     } = this.props;
 
-    if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters || isFetchingSourceFilters || isFetchingYearFilters) {
+    if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters || isFetchingSourceFilters || isFetchingYearFilters
+      ) {
       return (
         <ListGroup className="question-all-filters">
           <h6>
@@ -73,7 +74,7 @@ class SidebarFilters extends Component {
           || filter.yearsSelected.length > 0
           ? (
             <div className="l-question-all-filters__clear-button">
-              <Button className="l-question-all-filters__clear-button--btn" onClick={clearFilters}>
+              <Button className="l-question-all-filters__clear-button--btn" onClick={clearFilters} disabled={isFetchingQuestions}>
               Limpar todos os filtros
               </Button>
             </div>
@@ -86,6 +87,7 @@ class SidebarFilters extends Component {
           filterList={disciplineFilters}
           toggleFilter={toggleSelectedDisciplineFilter}
           selected={filter.disciplinesSelected}
+          isFetchingQuestions={isFetchingQuestions}
         />
         <SidebarFilter
           id="2"
@@ -93,6 +95,8 @@ class SidebarFilters extends Component {
           filterList={teachingLevelFilters}
           toggleFilter={toggleSelectedTeachingLevelFilter}
           selected={filter.teachingLevelsSelected}
+          isFetchingQuestions={isFetchingQuestions}
+
         />
         <SidebarFilter
           id="3"
@@ -100,6 +104,8 @@ class SidebarFilters extends Component {
           filterList={filters.difficultyLevels}
           toggleFilter={toggleSelectedDifficultyFilter}
           selected={filter.difficultiesSelected}
+          isFetchingQuestions={isFetchingQuestions}
+
         />
         <SidebarFilter
           id="4"
@@ -107,6 +113,8 @@ class SidebarFilters extends Component {
           filterList={sourceFilters}
           toggleFilter={toggleSelectedSourceFilter}
           selected={filter.sourcesSelected}
+          isFetchingQuestions={isFetchingQuestions}
+
         />
         <SidebarFilter
           id="5"
@@ -114,6 +122,8 @@ class SidebarFilters extends Component {
           filterList={yearFilters}
           toggleFilter={toggleSelectedYearFilter}
           selected={filter.yearsSelected}
+          isFetchingQuestions={isFetchingQuestions}
+
         />
       </ListGroup>
     );

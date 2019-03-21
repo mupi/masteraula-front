@@ -82,7 +82,7 @@ class QuestionPage extends Component {
                 {' '}
                 Voltar
               </Button>
-              {role.includes('Editores')
+              {role && role.includes('Editores')
                 ? (
                   <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
                     <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
