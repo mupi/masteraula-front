@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
       about: user.about,
       userState: user.city ? user.city.uf : null,
       userCity: user.city ? user.city.id : null,
-      disciplines: [{ id: 16, name: 'Arte', slug: 'Art' }], // user.disciplines
+      disciplines: user.disciplines,
     },
     user,
     stateList: state.profileEdit.stateList,

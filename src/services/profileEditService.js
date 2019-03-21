@@ -95,7 +95,10 @@ function profilePasswordEdit(profile) {
 function profileEdit(profile) {
   const formData = new FormData();
   Object.keys(profile).forEach((name) => {
-    if (name === 'profile_pic') {
+
+    if (name === 'disciplines') {
+      // Fix do allan
+    } else if (name === 'profile_pic') {
       if (profile[name]) { formData.append(name, profile[name][0]); }
     } else formData.append(name, profile[name]);
   });
