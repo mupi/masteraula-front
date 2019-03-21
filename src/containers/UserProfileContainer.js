@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
       about: user.about,
       userState: user.city ? user.city.uf : null,
       userCity: user.city ? user.city.id : null,
-      disciplines: ['Artes', 'Espanhol', 'Informática'], //user.disciplines.map(discipline => discipline.name)
+      disciplines: [{id: 16, name: "Arte", slug: "Art"}], // user.disciplines
     },
     user,
     stateList: state.profileEdit.stateList,
@@ -50,7 +50,7 @@ const mapDispatchToProps = dispatch => ({
       about: values.about,
       city: values.userCity !== '0' ? values.userCity : null,
       profile_pic: values.profile_pic ? values.profile_pic : null,
-      disciplines: values.disciplines,
+      disciplines: values.disciplines.map(discipline => discipline.id),
     };
     return dispatch(profileEdit(profile));
   },

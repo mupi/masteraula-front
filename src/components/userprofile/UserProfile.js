@@ -16,13 +16,15 @@ const messages = {
 };
 
 const renderMultiselect = ({
-  input, data, placeholder,
+  input, data, placeholder, valueField, textField,
 }) => (
   <Multiselect
     {...input}
     onBlur={() => input.onBlur()}
     value={input.value || []}
     data={data}
+    valueField={valueField}
+    textField={textField}
     placeholder={placeholder}
     messages={messages}
   />
@@ -239,7 +241,9 @@ class UserProfile extends React.Component {
                       className="form-control"
                       component={renderMultiselect}
                       placeholder="Insira as disciplinas que você leciona"
-                      data={disciplineFilters && disciplineFilters.map(discipline => discipline.name)}
+                      data={disciplineFilters}
+                      valueField="id"
+                      textField="name"
                     />
                   </FormGroup>
                 </Col>
