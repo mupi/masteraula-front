@@ -65,7 +65,13 @@
         padding:3px;
         background: $color-ma-green;
         border-color: $color-ma-green;
-        font-weight:bold;;
+        font-weight:bold;
+
+        &:disabled {
+            background: $color-ma-green !important;
+            color: $color-ma-white !important;
+            opacity: 0.9 !important;
+        }
     }
 
     &--btn:hover{

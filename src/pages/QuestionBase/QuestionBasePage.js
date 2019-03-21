@@ -74,35 +74,35 @@ class QuestionBasePage extends React.Component {
                     Filtros selecionados:
                   </span>
                   {filter.disciplinesSelected.map(item => (
-                    <Button key={`DI${item.id}`} id={item.id} onClick={clearDisciplines} className="c-question-base__filter-selected">
+                    <Button disabled={isFetching} key={`DI${item.id}`} id={item.id} onClick={clearDisciplines} className="c-question-base__filter-selected">
                       {item.name}
                       {' '}
                       x
                     </Button>
                   )).concat(
                     filter.difficultiesSelected.map(item => (
-                      <Button key={`DF${item.id}`} id={item.id} onClick={clearDifficulties} className="c-question-base__filter-selected">
+                      <Button disabled={isFetching} key={`DF${item.id}`} id={item.id} onClick={clearDifficulties} className="c-question-base__filter-selected">
                         {item.name}
                         {' '}
                         x
                       </Button>
                     )),
                     filter.teachingLevelsSelected.map(item => (
-                      <Button key={`TL${item.id}`} id={item.id} onClick={clearTeachingLevel} className="c-question-base__filter-selected">
+                      <Button disabled={isFetching} key={`TL${item.id}`} id={item.id} onClick={clearTeachingLevel} className="c-question-base__filter-selected">
                         {item.name}
                         {' '}
                         x
                       </Button>
                     )),
                     filter.sourcesSelected.map(item => (
-                      <Button key={`S${item.id}`} id={item.id} onClick={clearSources} className="c-question-base__filter-selected">
+                      <Button disabled={isFetching} key={`S${item.id}`} id={item.id} onClick={clearSources} className="c-question-base__filter-selected">
                         {item.name}
                         {' '}
                         x
                       </Button>
                     )),
                     filter.yearsSelected.map(item => (
-                      <Button key={`Y${item.id}`} id={item.id} onClick={clearYears} className="c-question-base__filter-selected">
+                      <Button disabled={isFetching} key={`Y${item.id}`} id={item.id} onClick={clearYears} className="c-question-base__filter-selected">
                         {item.name}
                         {' '}
                         x
