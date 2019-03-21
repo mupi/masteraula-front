@@ -1,13 +1,20 @@
-
-
-
 .c-footer {
     transition: all 0.3s ease;
     background: $color-ma-blue;
-    padding: 3px;
-    color: white;
+    padding: 0px;
+    color: $color-ma-white;
     bottom: 0;
     width: 100%;
-    z-index: -1;
+    /* z-index: -1; */
     font-size: 13px;
+
+    &__section-info-contact{
+        padding: 10px;
+    }
+
+    &__section-copyright{
+        background-color: $color-ma-black-footer;
+        padding: 3px;
+    }
+
 }
