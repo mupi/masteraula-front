@@ -11,16 +11,16 @@ import { fetchRegister, toggleModal } from 'actions/registerAction';
 
 
 const RegisterModal = (props) => {
-  const { modal, toggleModal, submit } = props;
+  const { modal, toggleThisModal, submit } = props;
 
   return (
     <NavItem>
-      <Link to="#" onClick={() => toggleModal(modal)}>
+      <Link to="#top" onClick={() => toggleThisModal(modal)}>
 Cadastre-se
       </Link>
-      <Modal className="c-register" isOpen={modal} toggle={() => toggleModal(modal)}>
+      <Modal className="c-register" isOpen={modal} toggle={() => toggleThisModal(modal)}>
         <div className="c-register__modal-content">
-          <ModalHeader className="c-register__modal-header" toggle={() => toggleModal(modal)} />
+          <ModalHeader className="c-register__modal-header" toggle={() => toggleThisModal(modal)} />
           <ModalBody>
             <h4 className="text-center">
 Cadastre-se
@@ -38,7 +38,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal: modal => dispatch(toggleModal(modal)),
+  toggleThisModal: modal => dispatch(toggleModal(modal)),
   submit: (values) => {
     if (!values.accept_terms) {
       throw new SubmissionError({
@@ -46,7 +46,7 @@ const mapDispatchToProps = dispatch => ({
       });
     }
 
-    return dispatch(fetchRegister(values.email, values.password, values.name));
+    return dispatch(fetchRegister(values.email, values.password, values.name, values.accept_terms));
   },
 });
 
