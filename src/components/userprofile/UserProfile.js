@@ -92,13 +92,12 @@ export const fieldFile = ({ input, type }) => {
 
 class UserProfile extends React.Component {
   componentDidMount() {
-    this.props.listDisciplineFilters();
-
-    const { getCitiesList, user } = this.props;
+    const { getCitiesList, user, listDisciplineFilters } = this.props;
+    listDisciplineFilters();
     if (user.city) {
       getCitiesList(user.city.uf, true);
     }
-  } 
+  }
 
   callGetCities = (e, newValue) => {
     const {
