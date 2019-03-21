@@ -263,6 +263,10 @@ img.logo-in-menu.no-login {
         }
     }
 
+    &__ma-logo-link--disabled{
+        pointer-events: none;
+    }
+
     &__user-info-section{
         color: $color-ma-white;
         text-align: left;
