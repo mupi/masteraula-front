@@ -284,7 +284,9 @@ class QuestionEditPage extends Component {
   }
 
   goBackButton() {
-    if (history.length > 2 && document.domain.includes('masteraula')) history.goBack;
+    if (history.length > 2 && document.domain.includes('masteraula')){ 
+      history.goBack();
+    }
     else history.replace('/question-base/1');
   }
 
