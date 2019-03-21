@@ -4,12 +4,11 @@ import {
   Input, InputGroup, InputGroupAddon, Button, Row, Col, UncontrolledTooltip,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { requiredValidator } from 'helpers/validators';
 
 const renderField = ({
   input,
   type,
-  meta: { pristine, error },
+  meta: { pristine },
   clearSearch,
   clearSearchField,
   search,
@@ -46,10 +45,10 @@ const QuestionSearchForm = (props) => {
   } = props;
 
   return (
-    <Form onSubmit={handleSubmit}> 
+    <Form onSubmit={handleSubmit}>
       <Row>
         <Col sm="12" className="c-question-base__title d-flex justify-content-between">
-          <div className="p-2"></div>
+          <div className="p-2" />
           <div className="p-2">
             <h4>
               Banco de Questões
@@ -58,7 +57,7 @@ const QuestionSearchForm = (props) => {
           </div>
           <div className="p-2 c-question-base__l-tooltip">
             <span className="c-question-base__tooltip" href="#" id="TooltipExample">
-              <FontAwesomeIcon icon="info-circle"/>
+              <FontAwesomeIcon icon="info-circle" />
             </span>
             <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
               Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos das questões. Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos. Combine os termos da busca com as opções de filtro disponíveis na barra lateral.
@@ -77,7 +76,7 @@ const QuestionSearchForm = (props) => {
           id="searchText"
           placeholder="Pesquisar por palavras-chave no banco de questões"
           className="form-control"
-         
+
           search={search}
           clearSearch={clearSearch}
           clearSearchField={clearSearchField}
