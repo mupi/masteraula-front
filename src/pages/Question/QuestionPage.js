@@ -38,16 +38,17 @@ const QuestionListDocuments = (props) => {
 };
 
 class QuestionPage extends Component {
-  static goBackButton() {
-    if (history.length > 2 && document.domain.includes('masteraula')) history.goBack();
-    else history.replace('/question-base/1');
-  }
 
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
   }
 
+  goBackButton() {
+    if (history.length > 2 && document.domain.includes('masteraula')) history.goBack;
+    else history.replace('/question-base/1');
+  }
+  
   render() {
     const {
       activeQuestion, isFetching, rating, error, onRate, toggleModal, modal, activeDocument, addSelectedQuestion,

@@ -277,16 +277,16 @@ const QuestionListDocuments = (props) => {
 };
 
 class QuestionEditPage extends Component {
-  static goBackButton() {
-    if (history.length > 2 && document.domain.includes('masteraula')) history.goBack();
-    else history.replace('/question-base/1');
-  }
 
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
   }
 
+  goBackButton() {
+    if (history.length > 2 && document.domain.includes('masteraula')) history.goBack;
+    else history.replace('/question-base/1');
+  }
 
   render() {
     const {
