@@ -9,18 +9,22 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { userNameValidator } from 'helpers/validators';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import userPhoto from 'assets/img/home/avataruser3.png';
- 
+
+const messages = {
+  emptyList: 'Não existem resultados',
+  emptyFilter: 'Não existem resultados que coincidam',
+};
+
 const renderMultiselect = ({
-  input, data, valueField, textField, className, placeholder,
+  input, data, placeholder,
 }) => (
   <Multiselect
     {...input}
     onBlur={() => input.onBlur()}
-    value={input.value || []} // requires value to be an array
+    value={input.value || []}
     data={data}
-    valueField='hola'
-    textField='chau'
     placeholder={placeholder}
+    messages={messages}
   />
 );
 
@@ -94,7 +98,7 @@ class UserProfile extends React.Component {
     if (user.city) {
       getCitiesList(user.city.uf, true);
     }
-  }
+  } 
 
   callGetCities = (e, newValue) => {
     const {
@@ -232,7 +236,7 @@ class UserProfile extends React.Component {
                       Informações sobre sua atuação como Professor(a)
                     </Label>
                     <Field
-                      name="userDisciplines"
+                      name="disciplines"
                       className="form-control"
                       component={renderMultiselect}
                       placeholder="Insira as disciplinas que você leciona"
