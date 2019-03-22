@@ -4,7 +4,6 @@ import {
 } from 'reactstrap';
 import { Link, NavLink } from 'react-router-dom';
 import LoginModal from 'components/login/LoginModal';
-import RegisterModal from 'components/userregister/RegisterModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 import DocumentInfoSidebarContainer from 'containers/DocumentInfoSidebarContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,8 +18,21 @@ const getUserName = (userName) => {
 
 const Menu = (props) => {
   const {
-    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument, user,
+    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument, user, hideModal, showModal,
   } = props;
+
+  const closeModal = () => {
+    hideModal();
+  };
+
+  const handleOpenRegisterModal = () => {
+    // open modal
+    showModal({
+      open: true,
+      closeModal,
+    }, 'register2');
+  };
+
 
   const loggedOptions = (
     <Nav className="ml-auto hidden-xs" navbar>
@@ -58,7 +70,11 @@ const Menu = (props) => {
       <NavItem>
         <LoginModal />
       </NavItem>
-      <RegisterModal />
+      <NavItem>
+        <Link to="#top" onClick={handleOpenRegisterModal}>
+          Cadastre-se
+        </Link>
+      </NavItem>
     </Nav>
   );
 

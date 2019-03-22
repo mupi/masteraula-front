@@ -5,7 +5,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 
 import LoginModal from 'components/login/LoginModal';
-import RegisterModal from 'components/userregister/RegisterModal';
 import TermsUsePage from 'pages/TermsUse/TermsUsePage';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 import HomePage from 'pages/Home/HomePage';
@@ -119,7 +118,6 @@ class App extends Component {
                 <Route exact path="/" component={HomePage} />
                 <Route path="/login" component={LoginModal} />
                 <Route path="/nossos-planos" component={PricingPageContainer} />
-                <Route path="/register" component={RegisterModal} />
                 <Route path="/esqueci-senha" component={ForgotPasswordPageContainer} />
                 <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
                 <Route path="/terms-use" component={TermsUsePage} />
