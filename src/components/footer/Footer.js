@@ -10,14 +10,30 @@ const Footer = ({ year, version }) => (
           className="btn__icon"
           icon="envelope"
         />
-        <span>contato@masteraula.com.br</span>
+        <a
+          href="mailto:contato@masteraula.com.br"
+          className="c-footer__contact-info-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          contato@masteraula.com.br
+        </a>
         {' | '}
         {' '}
         <FontAwesomeIcon
           className="btn__icon"
           icon={['fab', 'whatsapp']}
         />
-        <span>(19) 997702004</span>
+        <span>
+          <a
+            href="https://api.whatsapp.com/send?l=pt&phone=5519999084183"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="c-footer__contact-info-link"
+          >
+            +55 (19) 999084183
+          </a>
+        </span>
       </Col>
     </Row>
     <Row className="c-footer__section-copyright">

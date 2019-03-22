@@ -3,8 +3,12 @@ import { render } from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+ import registerServiceWorker from './registerServiceWorker';
+// import { unregister } from './registerServiceWorker';
+
 import configureStore from './Store';
+//import * as serviceWorker from './registerServiceWorker';
+
 
 const store = configureStore();
 
@@ -14,6 +18,8 @@ render(
   </Provider>,
   document.getElementById('root'),
 );
+
+//unregister();
 registerServiceWorker();
 
 // Every time the state changes, log it

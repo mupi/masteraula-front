@@ -32,7 +32,7 @@ const clearAllSearchAndRedirect = (e, cleanAllSearch, url) => {
 };
 
 const SidebarMobile = ({
-  showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch,
+  showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions,
 }) => (
   <Swipeable onSwipeRight={() => openSidebar(isOpenSidebar)} onSwipeLeft={() => openSidebar(isOpenSidebar)}>
     <div id="sidebar">
@@ -41,7 +41,11 @@ const SidebarMobile = ({
           <Row className="sidebar-row">
             <Col xs="12" className="c-sidebar__user-info-section">
               <div className="c-sidebar__ma-logo">
-                <Link to="/#/question-base/1" onClick={(e) => { clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}>
+                <Link
+                  className={isFetchingQuestions ? 'c-sidebar__ma-logo-link--disabled' : ''}
+                  to="/#/question-base/1"
+                  onClick={(e) => { if (!isFetchingQuestions) clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}
+                >
                   <img src={maLogo} alt="masteraula" />
                 </Link>
               </div>
@@ -129,14 +133,19 @@ const SidebarMobile = ({
 
 
 const SidebarWeb = ({
-  showFilters, activeDocument, isOpenSidebar, openSidebar, cleanAllSearch,
+  showFilters, activeDocument, isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions,
 }) => (
   <div id="sidebar">
-    <div className="logo-top-sidebar">
-      <Link to="/#/question-base/1" onClick={(e) => { clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}>
+    <Link
+      className={isFetchingQuestions ? 'c-sidebar__ma-logo-link--disabled' : ''}
+      to="/#/question-base/1"
+      onClick={(e) => { if (!isFetchingQuestions) clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}
+    >
+      <div className="logo-top-sidebar">
         <img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" />
-      </Link>
-    </div>
+      </div>
+    </Link>
+
     <div id="sidebar-container">
       <div className="container-fluid">
         <Row className="sidebar-row">
@@ -210,7 +219,7 @@ class Sidebar extends Component {
 
   render() {
     const {
-      showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch,
+      showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions,
     } = this.props;
 
     // const { width } = this.state;
@@ -229,6 +238,7 @@ class Sidebar extends Component {
           isOpen={isOpen}
           toggleMenu={toggleMenu}
           cleanAllSearch={cleanAllSearch}
+          isFetchingQuestions={isFetchingQuestions}
         />
       );
     }
@@ -244,6 +254,8 @@ class Sidebar extends Component {
         isOpen={isOpen}
         toggleMenu={toggleMenu}
         cleanAllSearch={cleanAllSearch}
+        isFetchingQuestions={isFetchingQuestions}
+
       />
     );
   }
