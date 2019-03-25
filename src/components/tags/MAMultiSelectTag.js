@@ -1,62 +1,57 @@
 import React from 'react';
 import Multiselect from 'react-widgets/lib/Multiselect';
 
-
-//const tags = value === '' ? [] : value.split(',').map((tag, i) => ({ name: tag, id: i }));
-
-
 class MAMultiSelectTag extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(...args) {
+    super(...args);
 
     this.state = {
-      value: this.props.defaultValue,
-      extData: this.props.data
-    }
-
-    this._create = this._create.bind(this);
+      value: [],
+      tags: [],
+    };
   }
 
-  _create(name) {
+  componentDidMount() {
+    // Initialize values
+    const { input } = this.props;
+    const tags = input.value === '' ? [] : input.value.split(',').map((tag, i) => ({ name: tag, id: i }));
+    this.setState({ value: tags, tags });
+  }
 
-    const tag = {
+  handleCreate(name) {
+    const { input } = this.props;
+    const { tags, value } = this.state;
+
+    const newTag = {
       name,
-      id: name,
+      id: tags.length + 1,
     };
 
-    var value = this.state.value.concat(tag)
-    var extData = this.state.extData.concat(tag)
-
     this.setState({
-      extData,
-      value
-    })
-  }
+      value: [...value, newTag], // select new option
+      tags: [...tags, newTag], // add new option to our dataset
+    });
 
-  componentDidUpdate() {
-    let { onChange } = this.props.input
-    onChange(this.state.value)
-  }
-
-  handleOnChange(value) {
-    this.setState({ value })
+    const tagsSaved = value.map(t => (t.name)).join(',');
+    input.onChange(tagsSaved);
   }
 
   render() {
-    const input = this.props
+    const { value, tags } = this.state;
+    const { placeholder, input } = this.props;
+
     return (
       <Multiselect
-        {...input}
-        data={this.state.extData}
-        onBlur={() => input.onBlur()}
-        defaultValue={input.value}
-        value={this.state.value || []}
-        valueField="id"
+        data={tags}
+        value={value}
+        allowCreate="onFilter"
+        onCreate={name => this.handleCreate(name)}
+        onChange={value => {console.log("onchange.."); this.setState({ value }); input.onChange(value.map(t => (t.name)).join(','));}}
         textField="name"
-        onCreate={this._create}
-        onChange={value => this.handleOnChange(value)}
+        placeholder={placeholder}
+        showPlaceholderWithValues
       />
-    )
+    );
   }
 }
 
