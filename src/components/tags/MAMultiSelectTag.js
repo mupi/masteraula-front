@@ -1,53 +1,60 @@
 import React from 'react';
 import Multiselect from 'react-widgets/lib/Multiselect';
 
+
+//const tags = value === '' ? [] : value.split(',').map((tag, i) => ({ name: tag, id: i }));
+
+
 class MAMultiSelectTag extends React.Component {
-  constructor(...args) {
-    super(...args)
+  constructor(props) {
+    super(props);
 
     this.state = {
-      value: [],
-      tagsDropdown: [], // options available to select
+      value: this.props.defaultValue,
+      extData: this.props.data
     }
+
+    this._create = this._create.bind(this);
   }
 
-  componentDidMount() {
-    const { value } = this.props;
-    const tags = value === '' ? [] : value.split(',').map((tag, i) => ({ name: tag, id: i }));
-   
-    this.setState({ value: tags });
-  }
+  _create(name) {
 
-  handleCreate(name) {
-    const { onChange } = this.props;
-    let { value } = this.state;
-
-    const newOption = {
+    const tag = {
       name,
       id: name,
     };
 
-    this.setState({
-      value: [...value, newOption],  // select new option
-    });
+    var value = this.state.value.concat(tag)
+    var extData = this.state.extData.concat(tag)
 
-    const tagsSaved = value.map(t => (t.name)).join(',');
-    onChange(tagsSaved);
+    this.setState({
+      extData,
+      value
+    })
+  }
+
+  componentDidUpdate() {
+    let { onChange } = this.props.input
+    onChange(this.state.value)
+  }
+
+  handleOnChange(value) {
+    this.setState({ value })
   }
 
   render() {
-    const { value } = this.state;
-    const { placeholder, onChange } = this.props;
-
-
+    const input = this.props
     return (
-      <Multiselect 
-        value={value}
-        allowCreate="onFilter"
-        onCreate={name => this.handleCreate(name)}
-        onChange={value => this.setState({ value })}
+      <Multiselect
+        {...input}
+        data={this.state.extData}
+        onBlur={() => input.onBlur()}
+        defaultValue={input.value}
+        value={this.state.value || []}
+        valueField="id"
         textField="name"
-        placeholder={placeholder}
+        onCreate={this._create}
+        onChange={value => this.handleOnChange(value)}
       />
     )
   }

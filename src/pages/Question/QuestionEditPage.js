@@ -66,8 +66,8 @@ const renderMAMultiSelectTag = ({
 }) => (
   <div className="o-learningobj__tags">
     <MAMultiSelectTag
-      {...input}
-      onChange={value => input.onChange(value)}
+      input={input}
+     // onChange={value => input.onChange(value)}
       placeholder={placeholder}
     />
     { touched

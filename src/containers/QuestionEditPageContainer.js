@@ -47,7 +47,6 @@ const mapDispatchToProps = dispatch => ({
 
     let i;
     for (i = 0; i < newLearningObjects.length; i += 1) {
-      console.log(newLearningObjects[i].tags);
       dispatch(updateLearningObject(newLearningObjects[i], false));
     }
 
