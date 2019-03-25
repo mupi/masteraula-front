@@ -550,7 +550,7 @@ class QuestionEditPage extends Component {
 
                     <Col sm="8" xs="8">
                       <Field
-                        component={renderMAReactTags}
+                        component={renderMAMultiSelectTag}
                         name="tags"
                         id="tags"
                         placeholder="Dê enter após inserir uma tag"
