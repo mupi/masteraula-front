@@ -38,15 +38,9 @@ const QuestionListDocuments = (props) => {
 };
 
 class QuestionPage extends Component {
-
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
-  }
-
-  goBackButton() {
-    if (history.length > 2 && document.domain.includes('masteraula')) history.goBack();
-    else history.replace('/question-base/1');
   }
 
   render() {
@@ -83,7 +77,7 @@ class QuestionPage extends Component {
         <div className="c-question">
           <Row>
             <Col className="d-flex">
-              <Button onClick={() => this.goBackButton()} className="mr-auto btn btn-secondary c-question__btn-back">
+              <Button onClick={() => history.replace('/question-base/1')} className="mr-auto btn btn-secondary c-question__btn-back">
                 <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
                 {' '}
                 Voltar

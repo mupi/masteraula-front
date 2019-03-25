@@ -1,5 +1,4 @@
 /* eslint-disable react/no-danger */
-
 import {
   Container, Alert, Row, Col, Form, Button, Input,
 } from 'reactstrap';
@@ -277,17 +276,9 @@ const QuestionListDocuments = (props) => {
 };
 
 class QuestionEditPage extends Component {
-
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
-  }
-
-  goBackButton() {
-    if (history.length > 2 && document.domain.includes('masteraula')){ 
-      history.goBack();
-    }
-    else history.replace('/question-base/1');
   }
 
   render() {
@@ -338,7 +329,10 @@ class QuestionEditPage extends Component {
           <div className="c-question">
             <Row>
               <Col className="d-flex">
-                <Button onClick={() => this.goBackButton()} className="mr-auto btn btn-secondary c-question__btn-back">
+                <Button
+                  onClick={() => history.replace(`/view-question/${activeQuestion.id}`)}
+                  className="mr-auto btn btn-secondary c-question__btn-back"
+                >
                   <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
                   {' '}
                 Voltar
