@@ -77,7 +77,7 @@ class QuestionPage extends Component {
         <div className="c-question">
           <Row>
             <Col className="d-flex">
-              <Button onClick={history.goBack} className="mr-auto btn btn-secondary c-question__btn-back">
+              <Button onClick={() => history.replace('/question-base/1')} className="mr-auto btn btn-secondary c-question__btn-back">
                 <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
                 {' '}
                 Voltar
