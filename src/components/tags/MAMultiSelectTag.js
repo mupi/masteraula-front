@@ -15,13 +15,14 @@ class MAMultiSelectTag extends React.Component {
     // Initialize values
     const { input } = this.props;
     const tags = input.value === '' ? [] : input.value.split(',').map((tag, i) => ({ name: tag, id: i }));
-    this.setState({ value: tags, tags });
+    this.setState({ value: tags });
   }
 
   handleCreate(name) {
     const { input } = this.props;
     const { tags, value } = this.state;
 
+    console.log("No handleCreate");
     const newTag = {
       name,
       id: tags.length + 1,
@@ -29,7 +30,7 @@ class MAMultiSelectTag extends React.Component {
 
     this.setState({
       value: [...value, newTag], // select new option
-      tags: [...tags, newTag], // add new option to our dataset
+     // tags: [...tags, newTag], // add new option to our dataset
     });
 
     const tagsSaved = value.map(t => (t.name)).join(',');
@@ -46,7 +47,7 @@ class MAMultiSelectTag extends React.Component {
         value={value}
         allowCreate="onFilter"
         onCreate={name => this.handleCreate(name)}
-        onChange={value => {console.log("onchange.."); this.setState({ value }); input.onChange(value.map(t => (t.name)).join(','));}}
+        onChange={value => { console.log("No Onchange"); this.setState({ value }); input.onChange(value.map(t => (t.name)).join(','));}}
         textField="name"
         placeholder={placeholder}
         showPlaceholderWithValues
