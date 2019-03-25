@@ -1,5 +1,4 @@
 /* eslint-disable react/no-danger */
-
 import {
   Container, Alert, Row, Col, Form, Button, Input,
 } from 'reactstrap';
@@ -360,7 +359,10 @@ class QuestionEditPage extends Component {
           <div className="c-question">
             <Row>
               <Col className="d-flex">
-                <Button onClick={history.goBack} className="mr-auto btn btn-secondary c-question__btn-back">
+                <Button
+                  onClick={() => history.replace(`/view-question/${activeQuestion.id}`)}
+                  className="mr-auto btn btn-secondary c-question__btn-back"
+                >
                   <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
                   {' '}
                 Voltar
