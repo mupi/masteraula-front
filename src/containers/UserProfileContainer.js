@@ -4,6 +4,9 @@ import UserProfile from 'components/userprofile/UserProfile';
 import {
   profileEdit, getCitiesList,
 } from 'actions/profileEditAction';
+import {
+  listDisciplineFilters,
+} from 'actions/filterAction';
 
 const validate = (values) => {
   const errors = {};
@@ -27,16 +30,19 @@ const mapStateToProps = (state) => {
       about: user.about,
       userState: user.city ? user.city.uf : null,
       userCity: user.city ? user.city.id : null,
+      disciplines: user.disciplines,
     },
     user,
     stateList: state.profileEdit.stateList,
     isFetchingStatesList: state.profileEdit.isFetchingStatesList,
     cityList: state.profileEdit.cityList,
+    disciplineFilters: state.filter.disciplineFilters,
   });
 };
 
 const mapDispatchToProps = dispatch => ({
   getCitiesList: (idState, autoLoad) => dispatch(getCitiesList(idState, autoLoad)),
+  listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
 
   onSubmit: (values) => {
     const profile = {
@@ -44,6 +50,7 @@ const mapDispatchToProps = dispatch => ({
       about: values.about,
       city: values.userCity !== '0' ? values.userCity : null,
       profile_pic: values.profile_pic ? values.profile_pic : null,
+      disciplines: values.disciplines.map(discipline => discipline.id),
     };
     return dispatch(profileEdit(profile));
   },

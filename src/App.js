@@ -36,6 +36,8 @@ import 'assets/scss/styles.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons'
+
 import {
   faEnvelope, faKey, faFileWord, faThumbtack,
   faFile, faPencilAlt, faSyncAlt, faSave, faTrashAlt,
@@ -55,6 +57,7 @@ import {
   faQuestionCircle,
   faLock,
 } from '@fortawesome/free-solid-svg-icons';
+
 import ModalRoot from './ModalRoot';
 
 
@@ -64,7 +67,8 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft, faAngleDown,
   faArrowCircleLeft,
   faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
-  faTimesCircle, faEye, faCopy, faQuestionCircle);
+  faTimesCircle, faEye, faCopy, faQuestionCircle,
+  fab);
 
 class App extends Component {
   constructor(props) {

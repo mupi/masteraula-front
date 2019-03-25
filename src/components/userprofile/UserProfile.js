@@ -3,10 +3,32 @@ import {
   Button, Form, FormGroup, Input, Label, Container, Row, Col,
 } from 'reactstrap';
 import { Field } from 'redux-form';
+import Multiselect from 'react-widgets/lib/Multiselect';
 import 'bootstrap/dist/css/bootstrap.css';
+
 import { userNameValidator } from 'helpers/validators';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import userPhoto from 'assets/img/home/avataruser3.png';
+
+const messages = {
+  emptyList: 'Não existem resultados',
+  emptyFilter: 'Não existem resultados que coincidam',
+};
+
+const renderMultiselect = ({
+  input, data, placeholder, valueField, textField,
+}) => (
+  <Multiselect
+    {...input}
+    onBlur={() => input.onBlur()}
+    value={input.value || []}
+    data={data}
+    valueField={valueField}
+    textField={textField}
+    placeholder={placeholder}
+    messages={messages}
+  />
+);
 
 const renderField = ({
   input,
@@ -72,7 +94,8 @@ export const fieldFile = ({ input, type }) => {
 
 class UserProfile extends React.Component {
   componentDidMount() {
-    const { getCitiesList, user } = this.props;
+    const { getCitiesList, user, listDisciplineFilters } = this.props;
+    listDisciplineFilters();
     if (user.city) {
       getCitiesList(user.city.uf, true);
     }
@@ -88,7 +111,7 @@ class UserProfile extends React.Component {
 
   render() {
     const {
-      handleSubmit, stateList, cityList, user,
+      handleSubmit, stateList, cityList, user, disciplineFilters,
     } = this.props;
 
     return (
@@ -204,6 +227,24 @@ class UserProfile extends React.Component {
                         </option>
                       )) }
                     </Field>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <Label>
+                      Informações sobre sua atuação como Professor(a)
+                    </Label>
+                    <Field
+                      name="disciplines"
+                      className="form-control"
+                      component={renderMultiselect}
+                      placeholder="Insira as disciplinas que você leciona"
+                      data={disciplineFilters}
+                      valueField="id"
+                      textField="name"
+                    />
                   </FormGroup>
                 </Col>
               </Row>
