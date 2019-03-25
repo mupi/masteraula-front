@@ -3,7 +3,7 @@ import {
   Container, Row, Col, Button,
 } from 'reactstrap';
 
-const PricingPage = ({ hideModal, showModal, submit }) => {
+const PricingPage = ({ hideModal, showModal }) => {
   const closeModal = () => {
     hideModal();
   };
@@ -13,7 +13,6 @@ const PricingPage = ({ hideModal, showModal, submit }) => {
     showModal({
       open: true,
       closeModal,
-      submit,
     }, 'register2');
   };
 

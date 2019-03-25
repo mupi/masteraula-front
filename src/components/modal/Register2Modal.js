@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RegisterForm from 'components/userregister/RegisterForm';
+import { connect } from 'react-redux';
+import { SubmissionError } from 'redux-form';
+import { fetchRegister } from 'actions/registerAction';
 
 const Register2Modal = ({
   closeModal, submit,
@@ -33,4 +36,23 @@ Register2Modal.defaultProps = {
   closeModal: f => f,
 };
 
-export default Register2Modal;
+const mapDispatchToProps = dispatch => ({
+  submit: (values) => {
+    if (!values.accept_terms) {
+      throw new SubmissionError({
+        _error: 'Você deve concordar com os Termos de Uso para usar o MasterAula ',
+      });
+    }
+
+    return dispatch(fetchRegister(values.email, values.password, values.name, values.accept_terms));
+  },
+});
+
+const mapStateToProps = state => ({
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Register2Modal);
+ 
