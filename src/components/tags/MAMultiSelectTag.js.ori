@@ -3,45 +3,49 @@ import Multiselect from 'react-widgets/lib/Multiselect';
 
 class MAMultiSelectTag extends React.Component {
   constructor(...args) {
-    super(...args)
+    super(...args);
 
     this.state = {
       value: [],
-      tagsDropdown: [], // options available to select
-    }
+      tags: [],
+    };
   }
 
   componentDidMount() {
     const { value } = this.props;
-    const tags = value === '' ? [] : value.split(',').map((tag, i) => ({ name: tag, id: i }));
+    const tags = value === '' ? [] : value.split(',').map((i, tag) => ({ name: tag, id: i }));
    
-    this.setState({ value: tags });
+    this.setState({ value:value.split(',') });
   }
 
   handleCreate(name) {
     const { onChange } = this.props;
-    let { value } = this.state;
+    let { tags, value } = this.state;
 
     const newOption = {
       name,
-      id: name,
+      id: tags.length + 1,
     };
 
+    tags = [].concat(tags, newOption);
+
     this.setState({
-      value: [...value, newOption],  // select new option
+      value: [...value, newOption], // select new option
+      tags: [...tags, newOption], // add new option to our dataset
     });
 
     const tagsSaved = value.map(t => (t.name)).join(',');
     onChange(tagsSaved);
-  }
+
+  } 
 
   render() {
-    const { value } = this.state;
-    const { placeholder, onChange } = this.props;
-
+    const { value, tags } = this.state;
+    const { placeholder } = this.props;
 
     return (
-      <Multiselect 
+      <Multiselect
+        data={tags}
         value={value}
         allowCreate="onFilter"
         onCreate={name => this.handleCreate(name)}
@@ -49,7 +53,7 @@ class MAMultiSelectTag extends React.Component {
         textField="name"
         placeholder={placeholder}
       />
-    )
+    );
   }
 }
 

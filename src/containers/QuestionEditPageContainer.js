@@ -44,8 +44,10 @@ const mapDispatchToProps = dispatch => ({
       tags: lobj.tags.split(',').map(tag => tag.trim()),
     }));
 
+
     let i;
     for (i = 0; i < newLearningObjects.length; i += 1) {
+      console.log(newLearningObjects[i].tags);
       dispatch(updateLearningObject(newLearningObjects[i], false));
     }
 
