@@ -5,7 +5,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 
 import LoginModal from 'components/login/LoginModal';
-import RegisterModal from 'components/userregister/RegisterModal';
 import TermsUsePage from 'pages/TermsUse/TermsUsePage';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 import HomePage from 'pages/Home/HomePage';
@@ -37,6 +36,8 @@ import 'assets/scss/styles.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons'
+
 import {
   faEnvelope, faKey, faFileWord, faThumbtack,
   faFile, faPencilAlt, faSyncAlt, faSave, faTrashAlt,
@@ -56,6 +57,7 @@ import {
   faQuestionCircle,
   faLock,
 } from '@fortawesome/free-solid-svg-icons';
+
 import ModalRoot from './ModalRoot';
 
 
@@ -65,7 +67,8 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faImage, faCheck, faCheckCircle, faSave, faThumbsUp, faAngleLeft, faAngleDown,
   faArrowCircleLeft,
   faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
-  faTimesCircle, faEye, faCopy, faQuestionCircle);
+  faTimesCircle, faEye, faCopy, faQuestionCircle,
+  fab);
 
 class App extends Component {
   constructor(props) {
@@ -119,7 +122,6 @@ class App extends Component {
                 <Route exact path="/" component={HomePage} />
                 <Route path="/login" component={LoginModal} />
                 <Route path="/nossos-planos" component={PricingPageContainer} />
-                <Route path="/register" component={RegisterModal} />
                 <Route path="/esqueci-senha" component={ForgotPasswordPageContainer} />
                 <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
                 <Route path="/terms-use" component={TermsUsePage} />

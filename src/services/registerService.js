@@ -10,13 +10,13 @@ export const handleResponse = response => response.json().then((data) => {
       }
       return Promise.reject(data.email[0]);
     }
-    for (const key in data) return Promise.reject(data[key]);
+    return Promise.reject(data[Object.keys(data)[0]]);
   }
 
   return data;
 });
 
-function register(email, password, name) {
+function register(email, password, name, acceptTerms) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -26,6 +26,7 @@ function register(email, password, name) {
       password1: password,
       password2: password,
       name,
+      terms_use: acceptTerms,
     }),
   };
 

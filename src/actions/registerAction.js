@@ -13,13 +13,13 @@ export const RESEND_EMAIL_SUCCESS = 'RESEND_EMAIL_SUCCESS';
 export const RESEND_EMAIL_RESET = 'RESEND_EMAIL_RESET';
 export const RESEND_EMAIL = 'RESEND_EMAIL';
 
-export const fetchRegister = (email, password, name) => {
+export const fetchRegister = (email, password, name, acceptTerms) => {
   function requestRegister() { return { type: REGISTER_REQUEST }; }
   function success(session) { return { type: REGISTER_SUCCESS, session }; }
   function failure(error) { return { type: REGISTER_FAILURE, error }; }
   return (dispatch) => {
     dispatch(requestRegister(email));
-    return registerService.register(email, password, name)
+    return registerService.register(email, password, name, acceptTerms)
       .then(
         (session) => {
           dispatch(success(session));
