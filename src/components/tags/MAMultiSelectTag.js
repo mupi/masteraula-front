@@ -20,12 +20,12 @@ class MAMultiSelectTag extends React.Component {
 
   handleCreate(name) {
     const { input } = this.props;
-    const { tags, value } = this.state;
+    const { value } = this.state;
 
-    if (name !== '' && name.replace(',', '') !== '') {
+    if (name !== '' && name.replace(/,/g, '') !== '') {
       const newTag = {
-        name: name.replace(',', ''),
-        id: tags.length + 1,
+        name: name.replace(/,/g, ''),
+        id: name,
       };
 
       this.setState({
