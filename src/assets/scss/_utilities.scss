@@ -164,3 +164,10 @@ span.rw-select {
   margin: 0px 0px 5px 0px;
   display:inline;
 }
+
+input.rw-input-reset{
+  
+  @include for-phone-only {
+    width:100% !important;
+  } 
+}

@@ -242,3 +242,10 @@
 .c-question__label-tag-header.p-2 {
   padding: 3px 7px !important;
 }
+
+.question-information.container{
+  @include for-phone-only {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+}
