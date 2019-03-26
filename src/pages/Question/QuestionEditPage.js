@@ -19,6 +19,7 @@ import QuestionAuthor from 'components/question/QuestionAuthor';
 import { requiredSelectValidator } from 'helpers/validators';
 import MAReactTags from 'components/tags/MAReactTag';
 import { history } from 'helpers/history';
+import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 
 const difficultyList = {
   difficulties: [
@@ -56,6 +57,35 @@ const renderField = ({
     }
   </div>
 );
+
+const renderMAMultiSelectTag = ({
+  input,
+  placeholder,
+  meta: { touched, error, warning },
+}) => (
+  <div className="o-learningobj__tags">
+    <MAMultiSelectTag
+      input={input}
+      onChange={value => input.onChange(value)}
+      placeholder={placeholder}
+    />
+    { touched
+      && ((error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
+  </div>
+);
+
 
 
 const renderMAReactTags = ({
@@ -140,7 +170,7 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             </Col>
             {
               <Col sm="8">
-                <Field name={`${learningObject}.tags`} component={renderField} placeholder="Separe as tags por virgula" />
+                <Field name={`${learningObject}.tags`} component={renderMAMultiSelectTag} placeholder="Dê enter após inserir uma tag" />
               </Col>}
           </Row>
         </div>
@@ -520,7 +550,7 @@ class QuestionEditPage extends Component {
 
                     <Col sm="8" xs="8">
                       <Field
-                        component={renderMAReactTags}
+                        component={renderMAMultiSelectTag}
                         name="tags"
                         id="tags"
                         placeholder="Dê enter após inserir uma tag"
