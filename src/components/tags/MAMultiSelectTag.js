@@ -20,28 +20,27 @@ class MAMultiSelectTag extends React.Component {
 
   handleCreate(name) {
     const { input } = this.props;
-    let { tags, value } = this.state;
+    const { tags, value } = this.state;
 
-    let newTag = {
+    const newTag = {
       name,
       id: tags.length + 1,
     };
-    console.log(newTag);
 
+    if (name !== '') {
+      this.setState({
+        value: [...value, newTag], // select new option
+      });
 
-    this.setState({
-      value: [...value, newTag], // select new option
-    });
+      value.push(newTag);
 
-    value.push(newTag);
-
-    const tagsSaved = value.map(t => (t.name)).join(',');
-    console.log(tagsSaved);
-    input.onChange(tagsSaved);
+      const tagsSaved = value.map(t => (t.name)).join(',');
+      input.onChange(tagsSaved);
+    }
   }
 
   render() {
-    let { value, tags } = this.state;
+    const { value, tags } = this.state;
     const { placeholder, input } = this.props;
 
     return (
