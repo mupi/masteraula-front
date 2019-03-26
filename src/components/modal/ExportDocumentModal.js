@@ -6,7 +6,7 @@ import {
 import { Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
 import {
-   listMyHeadersCombo,
+  listMyHeadersCombo,
 } from 'actions/headerAction';
 import { downloadDocument } from 'actions/documentAction';
 
@@ -31,11 +31,6 @@ import { downloadDocument } from 'actions/documentAction';
 // );
 
 class ConfirmExportModal extends React.Component {
-  componentDidMount() {
-    const { listMyHeadersCombo } = this.props;
-    listMyHeadersCombo();
-  }
-
   render() {
     const {
       closeModal, documentId, documentName, title, handleSubmit,
@@ -59,6 +54,7 @@ class ConfirmExportModal extends React.Component {
         <div className="modal-body">
           <Form onSubmit={handleSubmit}>
             <p className="text-center">
+
               Selecione as opções para exportar sua prova
               {' '}
               <strong>{documentName}</strong>
@@ -86,6 +82,7 @@ class ConfirmExportModal extends React.Component {
               </Link>
             </FormGroup> */}
             <p className="c-export-document__option-name">
+
             Com ou sem gabarito?
             </p>
             <FormGroup className="c-export-document__answers-section">
@@ -98,6 +95,7 @@ class ConfirmExportModal extends React.Component {
                     value="without"
                   />
                   {' '}
+
                   Sem gabarito
                 </Label>
                 <Label className="c-export-document__answers-label">
@@ -108,15 +106,18 @@ class ConfirmExportModal extends React.Component {
                     value="with"
                   />
                   {' '}
+
                   Com gabarito
                 </Label>
               </div>
             </FormGroup>
             <div className="modal-footer modal__footer">
               <Button className="btn--confirm" type="submit">
+
                 Exportar
               </Button>
               <Button color="secondary" onClick={closeModal}>
+
                 Cancelar
               </Button>
             </div>
