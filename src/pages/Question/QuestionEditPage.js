@@ -171,7 +171,7 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
                 <Field
                   name={`${learningObject}.tags`}
                   component={renderMAMultiSelectTag}
-                  placeholder="Dê enter após inserir uma tag"
+                  placeholder="Dê enter ou vírgula após inserir uma tag"
                 />
               </Col>}
           </Row>
@@ -557,7 +557,7 @@ class QuestionEditPage extends Component {
                         component={renderMAMultiSelectTag}
                         name="tags"
                         id="tags"
-                        placeholder="Dê enter após inserir uma tag"
+                        placeholder="Dê enter ou vírgula após inserir uma tag"
                         className="form-control"
                       />
                     </Col>
