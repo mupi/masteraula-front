@@ -5,10 +5,17 @@
 
     &__select-difficulty{
         width:auto;
+
+        @include for-phone-only {
+            width:100%;
+        }
     }
 
     &__row-topic{
         margin-left: -15px;
+        @include for-phone-only {
+            margin-right: -15px;
+        }
     }
 
     &__header-topic{
