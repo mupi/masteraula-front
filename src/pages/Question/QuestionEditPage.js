@@ -27,7 +27,7 @@ const difficultyList = {
     { id: 'M', name: 'Médio' },
     { id: 'H', name: 'Difícil' },
   ],
-}; 
+};
 
 const renderField = ({
   input,
@@ -85,8 +85,6 @@ const renderMAMultiSelectTag = ({
     }
   </div>
 );
-
-
 
 const renderMAReactTags = ({
   input,
@@ -171,9 +169,9 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             {
               <Col sm="8">
                 <Field
-                  name={`${learningObject}.tags`} 
-                  component={renderMAMultiSelectTag} 
-                  placeholder="Dê enter após inserir uma tag" 
+                  name={`${learningObject}.tags`}
+                  component={renderMAMultiSelectTag}
+                  placeholder="Dê enter após inserir uma tag"
                 />
               </Col>}
           </Row>
@@ -353,7 +351,8 @@ class QuestionEditPage extends Component {
           <Alert color="danger">
               Você não tem permissão para visualizar esta página.
           </Alert>
-        </HomeUserPage>);
+        </HomeUserPage>
+      );
     }
 
     return (
@@ -484,7 +483,8 @@ class QuestionEditPage extends Component {
                                   className="c-question__resolution-text"
                                   dangerouslySetInnerHTML={
                                 { __html: getCleanAlternativeText(resolution) }}
-                                />) : ''
+                                />
+                              ) : ''
                             }
                           </div>
                         </Col>
