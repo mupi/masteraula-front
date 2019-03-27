@@ -27,7 +27,7 @@ const difficultyList = {
     { id: 'M', name: 'Médio' },
     { id: 'H', name: 'Difícil' },
   ],
-};
+}; 
 
 const renderField = ({
   input,
@@ -170,7 +170,11 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             </Col>
             {
               <Col sm="8">
-                <Field name={`${learningObject}.tags`} component={renderMAMultiSelectTag} placeholder="Dê enter após inserir uma tag" />
+                <Field
+                  name={`${learningObject}.tags`} 
+                  component={renderMAMultiSelectTag} 
+                  placeholder="Dê enter após inserir uma tag" 
+                />
               </Col>}
           </Row>
         </div>
