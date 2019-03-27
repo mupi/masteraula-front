@@ -22,9 +22,9 @@ class MAMultiSelectTag extends React.Component {
     const { input } = this.props;
     const { value } = this.state;
 
-    if (name !== '' && name.replace(/,/g, '') !== '') {
+    if (name !== '') {
       const newTag = {
-        name: name.replace(/,/g, ''),
+        name,
         id: name,
       };
 

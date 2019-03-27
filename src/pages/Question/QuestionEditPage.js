@@ -86,8 +86,6 @@ const renderMAMultiSelectTag = ({
   </div>
 );
 
-
-
 const renderMAReactTags = ({
   input,
   placeholder,
@@ -170,7 +168,11 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             </Col>
             {
               <Col sm="8">
-                <Field name={`${learningObject}.tags`} component={renderMAMultiSelectTag} placeholder="Dê enter após inserir uma tag" />
+                <Field
+                  name={`${learningObject}.tags`}
+                  component={renderMAMultiSelectTag}
+                  placeholder="Dê enter ou vírgula após inserir uma tag"
+                />
               </Col>}
           </Row>
         </div>
@@ -349,7 +351,8 @@ class QuestionEditPage extends Component {
           <Alert color="danger">
               Você não tem permissão para visualizar esta página.
           </Alert>
-        </HomeUserPage>);
+        </HomeUserPage>
+      );
     }
 
     return (
@@ -480,7 +483,8 @@ class QuestionEditPage extends Component {
                                   className="c-question__resolution-text"
                                   dangerouslySetInnerHTML={
                                 { __html: getCleanAlternativeText(resolution) }}
-                                />) : ''
+                                />
+                              ) : ''
                             }
                           </div>
                         </Col>
@@ -553,7 +557,7 @@ class QuestionEditPage extends Component {
                         component={renderMAMultiSelectTag}
                         name="tags"
                         id="tags"
-                        placeholder="Dê enter após inserir uma tag"
+                        placeholder="Dê enter ou vírgula após inserir uma tag"
                         className="form-control"
                       />
                     </Col>
