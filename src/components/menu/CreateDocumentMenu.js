@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { first5Elements } from 'helpers/document';
 
-class CreateDocumentSidebar extends React.Component {
+class CreateDocumentMenu extends React.Component {
   constructor(props) {
     super(props);
     this.closeModal = this.closeModal.bind(this);
-    this.openDocumentModal = this.openDocumentModal.bind(this);
+    this.openCreateDocumentModal = this.openCreateDocumentModal.bind(this);
   }
 
   componentDidMount() {
@@ -20,26 +20,27 @@ class CreateDocumentSidebar extends React.Component {
     listMyLastDocuments(1, 'date', 'desc');
   }
 
+  editDocument(document) {
+    const { switchActiveDocument } = this.props;
+    switchActiveDocument(document);
+  }
+
   closeModal() {
     const { hideModal } = this.props;
     hideModal();
-  } 
-
-  openDocumentModal(id) {
-    // event.preventDefault();
-    const {
-      showModal, fetchPreviewDocument, previewDocument,
-    } = this.props;
-
-    fetchPreviewDocument(parseInt(id, 10));
-    showModal({
-      open: true,
-      document: previewDocument,
-      closeModal: this.closeModal,
-      editDocument: this.editDocumentFromPreview,
-    }, 'document');
   }
 
+  openCreateDocumentModal() {
+    // open modal
+    const {
+      showModal,
+    } = this.props;
+
+    showModal({
+      open: true,
+      closeModal: this.closeModal,
+    }, 'createDocument');
+  }
 
   render() {
     const {
@@ -54,15 +55,13 @@ class CreateDocumentSidebar extends React.Component {
           </small>
         </div>
         <div className="menu-top__document-l-buttons">
-          <Link className="menu-top__document-btn-item" to="/edit-document">
-            <Button className="btn-margin-right menu-top__document-button">
-              <FontAwesomeIcon
-                className="btn__icon"
-                icon="file"
-              />
-              Criar prova
-            </Button>
-          </Link>
+          <Button className="btn-margin-right menu-top__document-button" onClick={() => { this.openCreateDocumentModal(); }}>
+            <FontAwesomeIcon
+              className="btn__icon"
+              icon="file"
+            />
+            Criar prova
+          </Button>
           <UncontrolledDropdown className="">
             <DropdownToggle className="menu-top__document-button" caret size="sm">
               <FontAwesomeIcon icon="sync-alt" className="btn__icon" />
@@ -91,4 +90,4 @@ class CreateDocumentSidebar extends React.Component {
   }
 }
 
-export default CreateDocumentSidebar;
+export default CreateDocumentMenu;

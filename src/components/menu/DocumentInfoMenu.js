@@ -106,7 +106,10 @@ class DocumentInfoMenu extends React.Component {
                   documentTotalQuestions={documentTotalQuestions}
                 />
                 <DropdownItem divider />
-                <OpenLastDocumentListContainer styleCustomize="o-doc-options__dropdown-item o-doc-options__export-button" myLastDocumentsList={myLastDocumentsList} />
+                <OpenLastDocumentListContainer
+                  styleCustomize="o-doc-options__dropdown-item o-doc-options__export-button"
+                  myLastDocumentsList={myLastDocumentsList}
+                />
               </DropdownMenu>
             </UncontrolledDropdown>
           </div>
@@ -157,7 +160,8 @@ class DocumentInfoMenu extends React.Component {
                   onClick={() => this.editDocument(document)}
                 >
                   {document.name}
-                </DropdownItem>))}
+                </DropdownItem>
+              ))}
               <DropdownItem divider />
               <DropdownItem tag={Link} to="/documents/1" className="menu-top__dropdown-item">
                   Ver mais provas
