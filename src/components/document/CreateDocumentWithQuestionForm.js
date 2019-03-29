@@ -4,6 +4,31 @@ import {
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { first5Elements } from 'helpers/document';
+import {
+    listMyLastDocuments,
+  } from 'actions/documentAction';
+
+ const renderSelectField = ({
+   input, label, meta: { touched, error }, children, optionDefault,
+ }) => (
+   <div>
+     <div>
+       <select {...input} className="form-control">
+        <option value={optionDefault}>
+           {label}
+        </option>
+         {children}
+       </select>
+       {touched && error && (
+         <span className="error-message-text">
+          {error}
+         </span>
+       )}
+     </div>
+   </div>
+ );
+
 
 const renderField = ({
   input,
@@ -34,10 +59,20 @@ const renderField = ({
   </div>
 );
 
-const CreateDocumentWithQuestionForm = (props) => {
+class CreateDocumentWithQuestionForm extends React.Component {
+
+    componentDidMount() {
+        const {
+          listMyLastDocuments,
+        } = this.props;
+        listMyLastDocuments(1, 'date', 'desc');
+      }
+
+
+    render(){ 
   const {
-    handleSubmit, error, closeModal, initialValues,
-  } = props;
+    handleSubmit, error, closeModal, initialValues, myLastDocumentsList,
+  } = this.props;
 
   return (
     <div>
@@ -47,6 +82,22 @@ const CreateDocumentWithQuestionForm = (props) => {
         {initialValues.idQuestion}
       </p>
       <Form onSubmit={handleSubmit}>
+      <FormGroup className="c-export-document__select">
+              <Field
+                name="headerDocument"
+                type="text"
+                component={renderSelectField}
+                className="form-control"
+                label="Selecione sua prova"
+                optionDefault="NaN"
+              >
+                { myLastDocumentsList && first5Elements(myLastDocumentsList.results).map(document => (
+                  <option className="c-export-document__select-item" key={document.id} value={document.id}>
+                    {document.name}
+                  </option>
+                )) }
+              </Field>
+            </FormGroup> 
         <FormGroup>
           <Field
             component={renderField}
@@ -61,7 +112,7 @@ const CreateDocumentWithQuestionForm = (props) => {
           <Alert color="danger">
             {error}
           </Alert>
-          )}
+          )} 
         </FormGroup>
         <div className="document__new-document-modal-footer modal-footer">
           <Button type="submit" color="" className="btn--confirm">
@@ -75,15 +126,22 @@ const CreateDocumentWithQuestionForm = (props) => {
 
       </Form>
     </div>
-  );
+  )};
 };
+
+
 
 const mapStateToProps = state => ({
   modal: state.document.modal,
   initialValues: {
     idQuestion: state.document.willAddQuestion,
   },
+  myLastDocumentsList: state.document.myLastDocumentsList,
 });
+
+const mapDispatchToProps = dispatch => ({
+    listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
+  });
 
 const validate = (values) => {
   const errors = {};
@@ -101,6 +159,7 @@ const validate = (values) => {
 
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(reduxForm({
   form: 'create_document_withquestion',
   validate,
