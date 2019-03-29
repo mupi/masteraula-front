@@ -33,8 +33,9 @@ class CreateDocumentMenu extends React.Component {
   openCreateDocumentModal() {
     // open modal
     const {
-      showModal,
+      showModal, setQuestionIdToNewDocument,
     } = this.props;
+    setQuestionIdToNewDocument();
 
     showModal({
       open: true,

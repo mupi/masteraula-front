@@ -44,7 +44,12 @@ const CreateDocumentModal = ({
       </button>
     </div>
     <div className="modal-basic-operation__body modal-body">
-      <CreateDocumentForm onSubmit={submit} messageWhenDocumentExist={getAlertMessageDocumentExist(activeDocument)} closeModal={closeModal} />
+      <CreateDocumentForm
+        onSubmit={submit}
+        activeDocument={activeDocument}
+        messageWhenDocumentExist={getAlertMessageDocumentExist(activeDocument)}
+        closeModal={closeModal}
+      />
     </div>
   </div>
 );

@@ -4,16 +4,24 @@ import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const AddQuestionButton = ({
-  customClass, questionId, nameButton, toggleModal, modal, activeDocument, addSelectedQuestion,
+  customClass, questionId, nameButton, setQuestionIdToNewDocument, activeDocument, addSelectedQuestion, hideModal, showModal,
 }) => {
-  function handleAddQuestionButton(e) {
+  const closeModal = () => {
+    hideModal();
+  };
+
+  const handleAddQuestionButton = (e) => {
     e.preventDefault();
     if (activeDocument) {
       addSelectedQuestion(activeDocument.id, questionId, 0);
     } else {
-      toggleModal(modal, questionId);
+      setQuestionIdToNewDocument(questionId);
+      showModal({
+        open: true,
+        closeModal,
+      }, 'createDocument');
     }
-  }
+  };
 
   return (
     <Button
@@ -34,9 +42,7 @@ const AddQuestionButton = ({
 AddQuestionButton.propTypes = {
   customClass: PropTypes.string.isRequired,
   questionId: PropTypes.number,
-  toggleModal: PropTypes.func,
   nameButton: PropTypes.string,
-  modal: PropTypes.bool,
   activeDocument: PropTypes.shape({}),
   addSelectedQuestion: PropTypes.func,
 };

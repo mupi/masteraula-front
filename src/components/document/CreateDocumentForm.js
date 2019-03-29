@@ -4,7 +4,6 @@ import {
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { toggleModal } from 'actions/documentAction';
 
 const renderField = ({
   input,
@@ -37,12 +36,12 @@ const renderField = ({
 
 const CreateDocumentForm = (props) => {
   const {
-    handleSubmit, error, messageWhenDocumentExist, initialValues, closeModal,
+    handleSubmit, error, messageWhenDocumentExist, initialValues, closeModal, activeDocument,
   } = props;
 
   return (
     <div>
-      {initialValues.idQuestion ? (
+      {!activeDocument && initialValues.idQuestion ? (
         <p className="text-center p--without-mbottom">
           Você está adicionando uma questão a uma prova sem nome.
         </p>
@@ -71,11 +70,11 @@ const CreateDocumentForm = (props) => {
         </FormGroup>
         <div className="document__new-document-modal-footer modal-footer">
           <Button type="submit" color="" className="btn--confirm">
-Criar
+            Criar
           </Button>
           {' '}
           <Button color="secondary" onClick={() => closeModal()}>
-Cancelar
+            Cancelar
           </Button>
         </div>
 
@@ -88,12 +87,6 @@ const mapStateToProps = state => ({
   modal: state.document.modal,
   initialValues: {
     idQuestion: state.document.willAddQuestion,
-  },
-});
-
-const mapDispatchToProps = dispatch => ({
-  toggleModal: (modal) => {
-    dispatch(toggleModal(modal));
   },
 });
 
@@ -113,7 +106,6 @@ const validate = (values) => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
 )(reduxForm({
   form: 'create_document',
   validate,

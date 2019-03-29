@@ -41,6 +41,7 @@ const toogleSidebarAfterOpenModal = (e, openSidebar, isOpenSidebar) => {
 
 const SidebarMobile = ({
   showFilters, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, hideModal, showModal,
+  setQuestionIdToNewDocument,
 }) => {
   const closeModal = () => {
     hideModal();
@@ -48,6 +49,8 @@ const SidebarMobile = ({
 
   const openCreateDocumentModal = () => {
     // open modal
+    setQuestionIdToNewDocument();
+
     showModal({
       open: true,
       closeModal,
@@ -166,7 +169,7 @@ const SidebarMobile = ({
 
 
 const SidebarWeb = ({
-  showFilters, isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, hideModal, showModal,
+  showFilters, isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, hideModal, showModal, setQuestionIdToNewDocument,
 }) => {
   const closeModal = () => {
     hideModal();
@@ -174,6 +177,8 @@ const SidebarWeb = ({
 
   const openCreateDocumentModal = () => {
     // open modal
+    setQuestionIdToNewDocument();
+
     showModal({
       open: true,
       closeModal,
@@ -279,7 +284,7 @@ class Sidebar extends Component {
   render() {
     const {
       showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions,
-      hideModal, showModal,
+      hideModal, showModal, setQuestionIdToNewDocument,
     } = this.props;
 
     // const { width } = this.state;
@@ -301,6 +306,7 @@ class Sidebar extends Component {
           isFetchingQuestions={isFetchingQuestions}
           hideModal={hideModal}
           showModal={showModal}
+          setQuestionIdToNewDocument={setQuestionIdToNewDocument}
         />
       );
     }
@@ -319,6 +325,7 @@ class Sidebar extends Component {
         isFetchingQuestions={isFetchingQuestions}
         hideModal={hideModal}
         showModal={showModal}
+        setQuestionIdToNewDocument={setQuestionIdToNewDocument}
       />
     );
   }
