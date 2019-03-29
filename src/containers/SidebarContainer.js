@@ -3,6 +3,8 @@ import Sidebar from 'components/sidebar/Sidebar';
 import { logout } from 'actions/loginAction';
 import { toggleMenu, openSidebar } from 'actions/menuAction';
 import { clearSelectedFilters, clearSearch } from 'actions/filterAction';
+import { showModal, hideModal } from 'actions/modalAction';
+
 
 
 // state.<reducer's name>.<property>
@@ -14,7 +16,7 @@ const mapStateToProps = state => ({
   isFetchingQuestions: state.question.isFetching,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({ 
   toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
   openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
   logout: () => dispatch(logout()),
@@ -26,9 +28,14 @@ const mapDispatchToProps = dispatch => ({
     });
     dispatch(clearSearch());
     dispatch(clearSelectedFilters());
-  }
+  },
+  // new way to handle modals
+  hideModal: () => dispatch(hideModal()),
+  showModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType })); 
+  },
 });
- 
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

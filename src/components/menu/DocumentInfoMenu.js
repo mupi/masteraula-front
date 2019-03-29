@@ -10,7 +10,7 @@ import OpenLastDocumentListContainer from 'containers/OpenLastDocumentListContai
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { first5Elements } from 'helpers/document';
 
-class DocumentInfoSidebar extends React.Component {
+class DocumentInfoMenu extends React.Component {
   constructor(props) {
     super(props);
     this.closeModal = this.closeModal.bind(this);
@@ -170,14 +170,14 @@ class DocumentInfoSidebar extends React.Component {
   }
 }
 
-DocumentInfoSidebar.propTypes = {
+DocumentInfoMenu.propTypes = {
   documentName: PropTypes.string,
   documentTotalQuestions: PropTypes.number,
 };
 
-DocumentInfoSidebar.defaultProps = {
+DocumentInfoMenu.defaultProps = {
   documentName: 'Sem nome',
   documentTotalQuestions: 0,
 };
 
-export default DocumentInfoSidebar;
+export default DocumentInfoMenu;

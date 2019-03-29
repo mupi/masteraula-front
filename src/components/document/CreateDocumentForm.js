@@ -37,7 +37,7 @@ const renderField = ({
 
 const CreateDocumentForm = (props) => {
   const {
-    handleSubmit, error, modal, messageWhenDocumentExist, initialValues, toggleModal,
+    handleSubmit, error, messageWhenDocumentExist, initialValues, closeModal,
   } = props;
 
   return (
@@ -74,7 +74,7 @@ const CreateDocumentForm = (props) => {
 Criar
           </Button>
           {' '}
-          <Button color="secondary" onClick={() => toggleModal(modal)}>
+          <Button color="secondary" onClick={() => closeModal()}>
 Cancelar
           </Button>
         </div>

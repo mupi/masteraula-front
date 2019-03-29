@@ -1,12 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   Button, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
-import OpenLastDocumentListContainer from 'containers/OpenLastDocumentListContainer';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { first5Elements } from 'helpers/document';
 
@@ -15,8 +11,6 @@ class CreateDocumentSidebar extends React.Component {
     super(props);
     this.closeModal = this.closeModal.bind(this);
     this.openDocumentModal = this.openDocumentModal.bind(this);
-    this.editDocument = this.editDocument.bind(this);
-    this.editDocumentFromPreview = this.editDocumentFromPreview.bind(this);
   }
 
   componentDidMount() {
@@ -26,15 +20,10 @@ class CreateDocumentSidebar extends React.Component {
     listMyLastDocuments(1, 'date', 'desc');
   }
 
-  editDocument(document) {
-    const { switchActiveDocument } = this.props;
-    switchActiveDocument(document);
-  }
-
   closeModal() {
     const { hideModal } = this.props;
     hideModal();
-  }
+  } 
 
   openDocumentModal(id) {
     // event.preventDefault();
@@ -51,11 +40,6 @@ class CreateDocumentSidebar extends React.Component {
     }, 'document');
   }
 
-  editDocumentFromPreview(document) {
-    const { switchActiveDocument } = this.props;
-    switchActiveDocument(document);
-    this.closeModal();
-  }
 
   render() {
     const {
@@ -94,7 +78,7 @@ class CreateDocumentSidebar extends React.Component {
                 >
                   {document.name}
                 </DropdownItem>
-))}
+              ))}
               <DropdownItem divider />
               <DropdownItem tag={Link} to="/documents/1" className="menu-top__dropdown-item">
                   Ver mais provas
@@ -106,15 +90,5 @@ class CreateDocumentSidebar extends React.Component {
     );
   }
 }
-
-CreateDocumentSidebar.propTypes = {
-  documentName: PropTypes.string,
-  documentTotalQuestions: PropTypes.number,
-};
-
-CreateDocumentSidebar.defaultProps = {
-  documentName: 'Sem nome',
-  documentTotalQuestions: 0,
-};
 
 export default CreateDocumentSidebar;

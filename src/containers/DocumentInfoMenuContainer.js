@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import DocumentInfoSidebar from 'components/sidebar/DocumentInfoSidebar';
+import DocumentInfoMenu from 'components/menu/DocumentInfoMenu';
 import { showModal, hideModal } from 'actions/modalAction';
 
 import {
@@ -26,9 +26,9 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const DocumentInfoSidebarContainer = connect(
+const DocumentInfoMenuContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(DocumentInfoSidebar);
+)(DocumentInfoMenu);
 
-export default DocumentInfoSidebarContainer;
+export default DocumentInfoMenuContainer;

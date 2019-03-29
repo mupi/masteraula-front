@@ -42,7 +42,8 @@ const Last5DocumentsModal = ({
               >
                 {document.name}
               </td>
-            </tr>))}
+            </tr>
+          ))}
         </tbody>
       </Table>
       <p>

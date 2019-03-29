@@ -9,7 +9,6 @@ import maLogo from 'assets/img/home/logo_masteraula-rubrica-blanca.png';
 import userPhoto from 'assets/img/home/avataruser3.png';
 
 
-import CreateDocumentModalContainer from 'containers/CreateDocumentModalContainer';
 import FilterContainer from 'containers/FilterContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Swipeable } from 'react-touch';
@@ -29,6 +28,15 @@ const clearAllSearchAndRedirect = (e, cleanAllSearch, url) => {
   e.preventDefault();
   cleanAllSearch();
   history.push(url);
+};
+
+const toogleSidebarAfterOpenModal = (e, openSidebar, isOpenSidebar) => {
+  const responsiveMode = window.matchMedia('(max-width: 989px)');
+
+  if (responsiveMode.matches) {
+    e.preventDefault();
+    openSidebar(isOpenSidebar);
+  }
 };
 
 const SidebarMobile = ({
@@ -82,13 +90,24 @@ const SidebarMobile = ({
                     </span>
                   </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown> 
             </Col>
 
             <Col xs="12">
               <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
                 <ListGroupItem color="light">
-                  <CreateDocumentModalContainer activeDocument={activeDocument} />
+                  <div className="document__new-document-option">
+                    <div
+                      className="document__new-document-btn text-center"
+                     /* onClick={() => this.openDocumentModal()}*/
+                    >
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="file"
+                      />
+                      Criar prova
+                    </div>
+                  </div>  
                 </ListGroupItem>
               </ListGroup>
               <div className="sidebar-nav-container">
@@ -133,8 +152,22 @@ const SidebarMobile = ({
 
 
 const SidebarWeb = ({
-  showFilters, activeDocument, isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions,
-}) => (
+  showFilters, isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, hideModal, showModal,
+}) => { 
+  const closeModal = () => {
+    hideModal();
+  };
+
+  const openCreateDocumentModal = () => {
+    // open modal
+    showModal({
+      open: true,
+      closeModal,
+    }, 'createDocument');
+  };
+
+  return(
+
   <div id="sidebar">
     <Link
       className={isFetchingQuestions ? 'c-sidebar__ma-logo-link--disabled' : ''}
@@ -152,7 +185,19 @@ const SidebarWeb = ({
           <Col xs="12">
             <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
               <ListGroupItem color="light">
-                <CreateDocumentModalContainer activeDocument={activeDocument} />
+                <div className="document__new-document-option">
+                  <div
+                    className="document__new-document-btn text-center"
+                    onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
+
+                  >
+                    <FontAwesomeIcon
+                      className="btn__icon"
+                      icon="file"
+                    />
+                    Criar prova
+                  </div>
+                </div>  
               </ListGroupItem>
             </ListGroup>
             <div className="sidebar-nav-container">
@@ -192,7 +237,7 @@ const SidebarWeb = ({
       </div>
     </div>
   </div>
-);
+  )};
 
 
 class Sidebar extends Component {
@@ -215,11 +260,12 @@ class Sidebar extends Component {
 
   handleWindowSizeChange = () => {
     this.setState({ width: window.innerWidth });
-  };
+  }; 
 
   render() {
     const {
       showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions,
+      hideModal, showModal,
     } = this.props;
 
     // const { width } = this.state;
@@ -255,7 +301,8 @@ class Sidebar extends Component {
         toggleMenu={toggleMenu}
         cleanAllSearch={cleanAllSearch}
         isFetchingQuestions={isFetchingQuestions}
-
+        hideModal={hideModal}
+        showModal={showModal}
       />
     );
   }
