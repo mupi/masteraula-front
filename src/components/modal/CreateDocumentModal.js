@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CreateDocumentForm from 'components/document/CreateDocumentForm';
+import CreateDocumentWithQuestionForm from 'components/document/CreateDocumentWithQuestionForm';
+
 import {
   createDocument,
 } from 'actions/documentAction';
@@ -28,14 +30,14 @@ const getAlertMessageDocumentExist = (activeDocument) => {
 };
 
 const CreateDocumentModal = ({
-  closeModal, submit, activeDocument,
+  closeModal, submit, activeDocument, willAddQuestion, title = 'Criar nova prova',
 }) => (
   <div className="modal-content modal__content">
     <div className="modal-header modal__header">
       <h5
         className="modal-title"
       >
-        Criar nova prova
+        {title}
       </h5>
       <button type="button" className="close" aria-label="Close" onClick={closeModal}>
         <span aria-hidden="true">
@@ -44,12 +46,14 @@ const CreateDocumentModal = ({
       </button>
     </div>
     <div className="modal-basic-operation__body modal-body">
-      <CreateDocumentForm
-        onSubmit={submit}
-        activeDocument={activeDocument}
-        messageWhenDocumentExist={getAlertMessageDocumentExist(activeDocument)}
-        closeModal={closeModal}
-      />
+      {!willAddQuestion ? (
+        <CreateDocumentForm
+          onSubmit={submit}
+          activeDocument={activeDocument}
+          messageWhenDocumentExist={getAlertMessageDocumentExist(activeDocument)}
+          closeModal={closeModal}
+        />
+      ) : <CreateDocumentWithQuestionForm onSubmit={submit} closeModal={closeModal} />}
     </div>
   </div>
 );

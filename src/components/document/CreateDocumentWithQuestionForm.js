@@ -34,18 +34,18 @@ const renderField = ({
   </div>
 );
 
-const CreateDocumentForm = (props) => {
+const CreateDocumentWithQuestionForm = (props) => {
   const {
-    handleSubmit, error, messageWhenDocumentExist, closeModal,
+    handleSubmit, error, closeModal, initialValues,
   } = props;
 
   return (
     <div>
-      {messageWhenDocumentExist || (
-      <p className="text-center">
-        Por favor, insira um nome para a nova prova a ser criada
+      <p className="text-center p--without-mbottom">
+        Selecione a prova onde vai adicionar a questão N°
+        {' '}
+        {initialValues.idQuestion}
       </p>
-      )}
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Field
@@ -102,6 +102,6 @@ const validate = (values) => {
 export default connect(
   mapStateToProps,
 )(reduxForm({
-  form: 'create_document',
+  form: 'create_document_withquestion',
   validate,
-})(CreateDocumentForm));
+})(CreateDocumentWithQuestionForm));
