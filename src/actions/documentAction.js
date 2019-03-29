@@ -44,7 +44,7 @@ export const REMOVE_SELECTED_QUESTION_FAILURE = 'REMOVE_SELECTED_QUESTION_FAILUR
 export const DELETE_DOCUMENT = 'DELETE_DOCUMENT';
 export const DELETE_DOCUMENT_SUCCESS = 'DELETE_DOCUMENT_SUCCESS';
 export const DELETE_DOCUMENT_FAILURE = 'DELETE_DOCUMENT_FAILURE';
-export const RESET_DELETE_DOCUMENT = 'RESET_DELETE_DOCUMENT'; 
+export const RESET_DELETE_DOCUMENT = 'RESET_DELETE_DOCUMENT';
 
 // List my Documents
 export const LIST_MY_DOCUMENTS = 'LIST_MY_DOCUMENTS';
@@ -176,7 +176,7 @@ export const listMyLastDocuments = (page, orderField, order) => (dispatch) => {
   return documentService.listMyLastDocuments(page, orderField, order)
     .then(success)
     .catch(error);
-}; 
+};
 
 // Add Selected Question to Document
 export const addSelectedQuestion = (idDocument, idQuestion, order) => {
@@ -239,6 +239,13 @@ export const toggleModal = (modal, question) => ({
   modal: !modal,
   willAddQuestion: question || null,
 });
+
+// Clear idQuestion when user is creating a new doc. Set idQuestion when user presses "add question"
+export const setQuestionIdToNewDocument = (question = null) => ({
+  type: CREATE_DOCUMENT_TOGGLE_MODAL,
+  willAddQuestion: question || null,
+});
+
 
 // Switch active document
 export const switchActiveDocument = (doc, isRedirect = false) => {

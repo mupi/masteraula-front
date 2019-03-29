@@ -5,7 +5,8 @@ import {
 import { Link, NavLink } from 'react-router-dom';
 import LoginModal from 'components/login/LoginModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
-import DocumentInfoSidebarContainer from 'containers/DocumentInfoSidebarContainer';
+import DocumentInfoMenuContainer from 'containers/DocumentInfoMenuContainer';
+import CreateDocumentMenuContainer from 'containers/CreateDocumentMenuContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import userPhoto from 'assets/img/home/avataruser3.png';
 
@@ -32,7 +33,6 @@ const Menu = (props) => {
       closeModal,
     }, 'register2');
   };
-
 
   const loggedOptions = (
     <Nav className="ml-auto hidden-xs" navbar>
@@ -112,13 +112,13 @@ const Menu = (props) => {
                       </ul>
                     </div>
                     <Col sm="8" xs="9" className="d-flex align-items-center menu-top__document-section">
-                      {activeDocument && (
-                        <DocumentInfoSidebarContainer
+                      {activeDocument ? (
+                        <DocumentInfoMenuContainer
                           documentName={activeDocument.name}
                           documentTotalQuestions={activeDocument.questions.length}
                           documentId={activeDocument.id}
                         />
-                      )}
+                      ) : <CreateDocumentMenuContainer />}
                     </Col>
                     <Collapse isOpen={isOpen} navbar className="col-xs-collapse-right  text-right col-sm-4">
                       { loggedOptions }
@@ -137,7 +137,8 @@ const Menu = (props) => {
                 <Collapse isOpen={isOpen} navbar>
                   { notLoggedOptions }
                 </Collapse>
-              </Navbar>) }
+              </Navbar>
+            ) }
         </Col>
       </Row>
     </div>

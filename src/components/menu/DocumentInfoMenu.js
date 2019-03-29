@@ -10,7 +10,7 @@ import OpenLastDocumentListContainer from 'containers/OpenLastDocumentListContai
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { first5Elements } from 'helpers/document';
 
-class DocumentInfoSidebar extends React.Component {
+class DocumentInfoMenu extends React.Component {
   constructor(props) {
     super(props);
     this.closeModal = this.closeModal.bind(this);
@@ -106,7 +106,10 @@ class DocumentInfoSidebar extends React.Component {
                   documentTotalQuestions={documentTotalQuestions}
                 />
                 <DropdownItem divider />
-                <OpenLastDocumentListContainer styleCustomize="o-doc-options__dropdown-item o-doc-options__export-button" myLastDocumentsList={myLastDocumentsList} />
+                <OpenLastDocumentListContainer
+                  styleCustomize="o-doc-options__dropdown-item o-doc-options__export-button"
+                  myLastDocumentsList={myLastDocumentsList}
+                />
               </DropdownMenu>
             </UncontrolledDropdown>
           </div>
@@ -157,7 +160,8 @@ class DocumentInfoSidebar extends React.Component {
                   onClick={() => this.editDocument(document)}
                 >
                   {document.name}
-                </DropdownItem>))}
+                </DropdownItem>
+              ))}
               <DropdownItem divider />
               <DropdownItem tag={Link} to="/documents/1" className="menu-top__dropdown-item">
                   Ver mais provas
@@ -170,14 +174,14 @@ class DocumentInfoSidebar extends React.Component {
   }
 }
 
-DocumentInfoSidebar.propTypes = {
+DocumentInfoMenu.propTypes = {
   documentName: PropTypes.string,
   documentTotalQuestions: PropTypes.number,
 };
 
-DocumentInfoSidebar.defaultProps = {
+DocumentInfoMenu.defaultProps = {
   documentName: 'Sem nome',
   documentTotalQuestions: 0,
 };
 
-export default DocumentInfoSidebar;
+export default DocumentInfoMenu;

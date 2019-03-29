@@ -9,7 +9,6 @@ import maLogo from 'assets/img/home/logo_masteraula-rubrica-blanca.png';
 import userPhoto from 'assets/img/home/avataruser3.png';
 
 
-import CreateDocumentModalContainer from 'containers/CreateDocumentModalContainer';
 import FilterContainer from 'containers/FilterContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Swipeable } from 'react-touch';
@@ -31,64 +30,192 @@ const clearAllSearchAndRedirect = (e, cleanAllSearch, url) => {
   history.push(url);
 };
 
+const toogleSidebarAfterOpenModal = (e, openSidebar, isOpenSidebar) => {
+  const responsiveMode = window.matchMedia('(max-width: 989px)');
+
+  if (responsiveMode.matches) {
+    e.preventDefault();
+    openSidebar(isOpenSidebar);
+  }
+};
+
 const SidebarMobile = ({
-  showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions,
-}) => (
-  <Swipeable onSwipeRight={() => openSidebar(isOpenSidebar)} onSwipeLeft={() => openSidebar(isOpenSidebar)}>
+  showFilters, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, hideModal, showModal,
+  setQuestionIdToNewDocument,
+}) => {
+  const closeModal = () => {
+    hideModal();
+  };
+
+  const openCreateDocumentModal = () => {
+    // open modal
+    setQuestionIdToNewDocument();
+
+    showModal({
+      open: true,
+      closeModal,
+    }, 'createDocument');
+  };
+
+  return (
+    <Swipeable onSwipeRight={() => openSidebar(isOpenSidebar)} onSwipeLeft={() => openSidebar(isOpenSidebar)}>
+      <div id="sidebar">
+        <div id="sidebar-container">
+          <div className="container-fluid">
+            <Row className="sidebar-row">
+              <Col xs="12" className="c-sidebar__user-info-section">
+                <div className="c-sidebar__ma-logo">
+                  <Link
+                    className={isFetchingQuestions ? 'c-sidebar__ma-logo-link--disabled' : ''}
+                    to="/#/question-base/1"
+                    onClick={(e) => { if (!isFetchingQuestions) clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}
+                  >
+                    <img src={maLogo} alt="masteraula" />
+                  </Link>
+                </div>
+                <div className="c-sidebar__user-avatar">
+                  { user.profile_pic
+                    ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
+                    : <img src={userPhoto} alt="foto-usuario" />
+                  }
+                </div>
+                <UncontrolledDropdown className="c-sidebar__user-dropdown">
+                  <DropdownToggle caret size="sm" className="c-sidebar__user-dropdown-toggle">
+                    {user.name}
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem
+                      className="c-sidebar__user-dropdown-item"
+                      onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/user-profile'); }}
+                    >
+                      <span>
+                        <FontAwesomeIcon icon="user" />
+                        {' '}
+                        Meu Perfil
+                      </span>
+                    </DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem
+                      className="c-sidebar__user-dropdown-item"
+                      onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen); }}
+                    >
+                      <span>
+                        <FontAwesomeIcon icon="sign-out-alt" />
+                        {' '}
+                        Sair
+                      </span>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              </Col>
+
+              <Col xs="12">
+                <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
+                  <ListGroupItem color="light">
+                    <div className="document__new-document-option">
+                      <div
+                        className="document__new-document-btn text-center"
+                        onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
+                      >
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="file"
+                        />
+                        Criar prova
+                      </div>
+                    </div>
+                  </ListGroupItem>
+                </ListGroup>
+                <div className="sidebar-nav-container">
+                  <ListGroup className="sidebar-main-options">
+                    <ListGroupItem color="light">
+                      <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="search"
+                        />
+                        Banco de questões
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem color="light">
+                      <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="folder"
+                        />
+                        Gerenciar minhas provas
+                      </Link>
+                    </ListGroupItem>
+                    {/* <ListGroupItem color="light">
+                      <Link to="/my-headers/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-headers/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="folder"
+                        />
+                        Gerenciar meus cabeçalhos
+                      </Link>
+                    </ListGroupItem> */}
+                  </ListGroup>
+                  {showFilters && <FilterContainer />}
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </div>
+      </div>
+    </Swipeable>
+  );
+};
+
+
+const SidebarWeb = ({
+  showFilters, isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, hideModal, showModal, setQuestionIdToNewDocument,
+}) => {
+  const closeModal = () => {
+    hideModal();
+  };
+
+  const openCreateDocumentModal = () => {
+    // open modal
+    setQuestionIdToNewDocument();
+
+    showModal({
+      open: true,
+      closeModal,
+    }, 'createDocument');
+  };
+
+  return (
+
     <div id="sidebar">
+      <Link
+        className={isFetchingQuestions ? 'c-sidebar__ma-logo-link--disabled' : ''}
+        to="/#/question-base/1"
+        onClick={(e) => { if (!isFetchingQuestions) clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}
+      >
+        <div className="logo-top-sidebar">
+          <img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" />
+        </div>
+      </Link>
+
       <div id="sidebar-container">
         <div className="container-fluid">
           <Row className="sidebar-row">
-            <Col xs="12" className="c-sidebar__user-info-section">
-              <div className="c-sidebar__ma-logo">
-                <Link
-                  className={isFetchingQuestions ? 'c-sidebar__ma-logo-link--disabled' : ''}
-                  to="/#/question-base/1"
-                  onClick={(e) => { if (!isFetchingQuestions) clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}
-                >
-                  <img src={maLogo} alt="masteraula" />
-                </Link>
-              </div>
-              <div className="c-sidebar__user-avatar">
-                { user.profile_pic
-                  ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
-                  : <img src={userPhoto} alt="foto-usuario" />
-                }
-              </div>
-              <UncontrolledDropdown className="c-sidebar__user-dropdown">
-                <DropdownToggle caret size="sm" className="c-sidebar__user-dropdown-toggle">
-                  {user.name}
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem
-                    className="c-sidebar__user-dropdown-item"
-                    onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/user-profile'); }}
-                  >
-                    <span>
-                      <FontAwesomeIcon icon="user" />
-                      {' '}
-                      Meu Perfil
-                    </span>
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem
-                    className="c-sidebar__user-dropdown-item"
-                    onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen); }}
-                  >
-                    <span>
-                      <FontAwesomeIcon icon="sign-out-alt" />
-                      {' '}
-                      Sair
-                    </span>
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Col>
-
             <Col xs="12">
               <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
                 <ListGroupItem color="light">
-                  <CreateDocumentModalContainer activeDocument={activeDocument} />
+                  <div className="document__new-document-option">
+                    <div
+                      className="document__new-document-btn text-center"
+                      onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
+                    >
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="file"
+                      />
+                      Criar prova
+                    </div>
+                  </div>
                 </ListGroupItem>
               </ListGroup>
               <div className="sidebar-nav-container">
@@ -99,7 +226,7 @@ const SidebarMobile = ({
                         className="btn__icon"
                         icon="search"
                       />
-                      Banco de questões
+                        Banco de questões
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">
@@ -108,18 +235,18 @@ const SidebarMobile = ({
                         className="btn__icon"
                         icon="folder"
                       />
-                      Gerenciar minhas provas
+                        Gerenciar minhas provas
                     </Link>
                   </ListGroupItem>
                   {/* <ListGroupItem color="light">
-                    <Link to="/my-headers/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-headers/1'); }}>
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="folder"
-                      />
-                      Gerenciar meus cabeçalhos
-                    </Link>
-                  </ListGroupItem> */}
+                      <Link to="/my-headers/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-headers/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="folder"
+                        />
+                        Gerenciar meus cabeçalhos
+                      </Link>
+                    </ListGroupItem> */}
                 </ListGroup>
                 {showFilters && <FilterContainer />}
               </div>
@@ -128,71 +255,8 @@ const SidebarMobile = ({
         </div>
       </div>
     </div>
-  </Swipeable>
-);
-
-
-const SidebarWeb = ({
-  showFilters, activeDocument, isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions,
-}) => (
-  <div id="sidebar">
-    <Link
-      className={isFetchingQuestions ? 'c-sidebar__ma-logo-link--disabled' : ''}
-      to="/#/question-base/1"
-      onClick={(e) => { if (!isFetchingQuestions) clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}
-    >
-      <div className="logo-top-sidebar">
-        <img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" />
-      </div>
-    </Link>
-
-    <div id="sidebar-container">
-      <div className="container-fluid">
-        <Row className="sidebar-row">
-          <Col xs="12">
-            <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
-              <ListGroupItem color="light">
-                <CreateDocumentModalContainer activeDocument={activeDocument} />
-              </ListGroupItem>
-            </ListGroup>
-            <div className="sidebar-nav-container">
-              <ListGroup className="sidebar-main-options">
-                <ListGroupItem color="light">
-                  <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1'); }}>
-                    <FontAwesomeIcon
-                      className="btn__icon"
-                      icon="search"
-                    />
-                      Banco de questões
-                  </Link>
-                </ListGroupItem>
-                <ListGroupItem color="light">
-                  <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
-                    <FontAwesomeIcon
-                      className="btn__icon"
-                      icon="folder"
-                    />
-                      Gerenciar minhas provas
-                  </Link>
-                </ListGroupItem>
-                {/* <ListGroupItem color="light">
-                    <Link to="/my-headers/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-headers/1'); }}>
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="folder"
-                      />
-                      Gerenciar meus cabeçalhos
-                    </Link>
-                  </ListGroupItem> */}
-              </ListGroup>
-              {showFilters && <FilterContainer />}
-            </div>
-          </Col>
-        </Row>
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 
 class Sidebar extends Component {
@@ -220,6 +284,7 @@ class Sidebar extends Component {
   render() {
     const {
       showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions,
+      hideModal, showModal, setQuestionIdToNewDocument,
     } = this.props;
 
     // const { width } = this.state;
@@ -239,6 +304,9 @@ class Sidebar extends Component {
           toggleMenu={toggleMenu}
           cleanAllSearch={cleanAllSearch}
           isFetchingQuestions={isFetchingQuestions}
+          hideModal={hideModal}
+          showModal={showModal}
+          setQuestionIdToNewDocument={setQuestionIdToNewDocument}
         />
       );
     }
@@ -255,7 +323,9 @@ class Sidebar extends Component {
         toggleMenu={toggleMenu}
         cleanAllSearch={cleanAllSearch}
         isFetchingQuestions={isFetchingQuestions}
-
+        hideModal={hideModal}
+        showModal={showModal}
+        setQuestionIdToNewDocument={setQuestionIdToNewDocument}
       />
     );
   }

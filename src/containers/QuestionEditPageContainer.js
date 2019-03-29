@@ -5,7 +5,7 @@ import { fetchQuestion, updateQuestion } from 'actions/questionAction';
 import { updateLearningObject } from 'actions/learningObjectAction';
 
 
-import { toggleModal, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
+import { addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('question-edit');
@@ -19,10 +19,9 @@ const mapStateToProps = (state) => {
     role: state.session.session.user.groups,
   });
 };
-
+ 
 const mapDispatchToProps = dispatch => ({
   fetchQuestion: id => dispatch(fetchQuestion(id)),
-  toggleModal: (modal, idQuestion) => dispatch(toggleModal(modal, idQuestion)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
   onSubmit: (values, d, props) => {

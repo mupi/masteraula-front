@@ -45,8 +45,8 @@ class QuestionPage extends Component {
 
   render() {
     const {
-      activeQuestion, isFetching, rating, error, onRate, toggleModal, modal, activeDocument, addSelectedQuestion,
-      removeSelectedQuestion, role,
+      activeQuestion, isFetching, rating, error, onRate, activeDocument, addSelectedQuestion,
+      removeSelectedQuestion, role, setQuestionIdToNewDocument, showModal, hideModal,
     } = this.props;
 
     if (isFetching) {
@@ -64,7 +64,6 @@ class QuestionPage extends Component {
       return (
         <HomeUserPage>
           <Alert color="danger">
-
               Erro na questão
           </Alert>
         </HomeUserPage>
@@ -140,10 +139,11 @@ class QuestionPage extends Component {
                         questionId={activeQuestion.id}
                         customClass="question-card__btn"
                         nameButton="Adicionar"
-                        toggleModal={toggleModal}
-                        modal={modal}
+                        setQuestionIdToNewDocument={setQuestionIdToNewDocument}
                         activeDocument={activeDocument}
                         addSelectedQuestion={addSelectedQuestion}
+                        showModal={showModal}
+                        hideModal={hideModal}
                       />
                     </Col>
                   ) : (
@@ -185,8 +185,6 @@ class QuestionPage extends Component {
             <AddQuestionButton
               questionId={activeQuestion.id}
               customClass="o-button-add-question-doc o-button-add-question-doc--xl"
-              toggleModal={toggleModal}
-              modal={modal}
               activeDocument={activeDocument}
               addSelectedQuestion={addSelectedQuestion}
             />

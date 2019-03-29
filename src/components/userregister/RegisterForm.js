@@ -7,10 +7,6 @@ import { Field, reduxForm } from 'redux-form';
 import { NavLink } from 'react-router-dom';
 import { userNameValidator, emailValidator } from 'helpers/validators';
 
-
-import { toggleModal } from 'actions/registerAction';
-
-
 const renderField = ({
   input,
   label,
@@ -42,7 +38,7 @@ const renderField = ({
 
 const RegisterForm = (props) => {
   const {
-    handleSubmit, error, modal, toggleModal, submitSucceeded,
+    handleSubmit, error, submitSucceeded,
   } = props;
 
   return (
@@ -173,9 +169,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal: (modal) => {
-    dispatch(toggleModal(modal));
-  },
 });
 
 export default connect(

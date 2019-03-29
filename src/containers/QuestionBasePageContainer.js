@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import QuestionBasePage from 'pages/QuestionBase/QuestionBasePage';
 import { listQuestions } from 'actions/questionAction';
-import { toggleModal, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
+import { setQuestionIdToNewDocument, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
+import { showModal, hideModal } from 'actions/modalAction';
+
 import {
   addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, removeSelectedDisciplineFilter,
   addSelectedDifficultyFilter, removeSelectedDifficultyFilter, removeSelectedTeachingLevelFilter,
@@ -9,7 +11,6 @@ import {
   addSelectedYearFilter, removeSelectedYearFilter,
 } from 'actions/filterAction';
 import { history } from 'helpers/history';
-
 
 const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
   history.replace('/question-base/1');
@@ -53,7 +54,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
-  toggleModal: (modal, idQuestion) => dispatch(toggleModal(modal, idQuestion)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 
   addSelectedDisciplineFilter: idDiscipline => dispatch(toggleSelectedDisciplineFilter(idDiscipline, true)),
@@ -68,6 +68,14 @@ const mapDispatchToProps = dispatch => ({
   toggleSelectedYearFilter: (idYear, value) => dispatch(toggleSelectedYearFilter(idYear, value)),
 
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
+
+  // new way to handle modals
+  hideModal: () => dispatch(hideModal()),
+  showModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType }));
+  },
+  setQuestionIdToNewDocument: idQuestion => dispatch(setQuestionIdToNewDocument(idQuestion)),
+
 });
 
 const QuestionBasePageContainer = connect(
