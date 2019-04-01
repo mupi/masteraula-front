@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CreateDocumentForm from 'components/document/CreateDocumentForm';
-import CreateDocumentWithQuestionForm from 'components/document/CreateDocumentWithQuestionForm';
+import CreateDocumentWithQuestionFormContainer from 'containers/CreateDocumentWithQuestionFormContainer';
 
 import {
   createDocument,
@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { openSidebar } from 'actions/menuAction';
 import { hideModal } from 'actions/modalAction';
 
-const getAlertMessageDocumentExist = (activeDocument) => {
+const getAlertMessageDocumentExist = (activeDocument) => { 
   if (activeDocument) {
     return (
       <p className="text-center">
@@ -53,7 +53,7 @@ const CreateDocumentModal = ({
           messageWhenDocumentExist={getAlertMessageDocumentExist(activeDocument)}
           closeModal={closeModal}
         />
-      ) : <CreateDocumentWithQuestionForm onSubmit={submit} closeModal={closeModal} />}
+      ) : <CreateDocumentWithQuestionFormContainer closeModal={closeModal} />}
     </div>
   </div>
 );
