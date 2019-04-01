@@ -6,28 +6,61 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { first5Elements } from 'helpers/document';
 import {
-    listMyLastDocuments,
-  } from 'actions/documentAction';
+  listMyLastDocuments,
+} from 'actions/documentAction';
+import MACreateDropdownList from 'components/dropdownlist/MACreateDropdownList';
 
- const renderSelectField = ({
-   input, label, meta: { touched, error }, children, optionDefault,
- }) => (
+
+const renderSelectField = ({
+  input, label, meta: { touched, error }, children, optionDefault,
+}) => (
    <div>
      <div>
        <select {...input} className="form-control">
-        <option value={optionDefault}>
-           {label}
+         <option value={optionDefault}>
+          {label}
         </option>
          {children}
        </select>
        {touched && error && (
          <span className="error-message-text">
-          {error}
+           {error}
          </span>
        )}
      </div>
    </div>
- );
+);
+
+const renderMADropDownListDocuments = ({
+  input,
+  placeholder,
+  meta: { touched, error, warning },
+  listOptions, valueField, textField,
+}) => (
+  <div className="o-list5documents">
+    <MACreateDropdownList
+      input={input}
+      placeholder={placeholder}
+      listOptions={listOptions}
+      valueField={valueField}
+      textField={textField}
+    />
+    { touched
+      && ((error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
+  </div>
+);
 
 
 const renderField = ({
@@ -60,21 +93,20 @@ const renderField = ({
 );
 
 class CreateDocumentWithQuestionForm extends React.Component {
+  componentDidMount() {
+    const {
+      listMyLastDocuments,
+    } = this.props;
+    listMyLastDocuments(1, 'date', 'desc');
+  }
 
-    componentDidMount() {
-        const {
-          listMyLastDocuments,
-        } = this.props;
-        listMyLastDocuments(1, 'date', 'desc');
-      }
 
+  render() {
+    const {
+      handleSubmit, error, closeModal, initialValues, myLastDocumentsList,
+    } = this.props;
 
-    render(){ 
-  const {
-    handleSubmit, error, closeModal, initialValues, myLastDocumentsList,
-  } = this.props;
-
-  return (
+    return (
     <div>
       <p className="text-center p--without-mbottom">
         Selecione a prova onde vai adicionar a questão N°
@@ -82,37 +114,28 @@ class CreateDocumentWithQuestionForm extends React.Component {
         {initialValues.idQuestion}
       </p>
       <Form onSubmit={handleSubmit}>
-      <FormGroup className="c-export-document__select">
-              <Field
-                name="headerDocument"
-                type="text"
-                component={renderSelectField}
+        <FormGroup className="c-export-document__select">
+        <Field
+                name="name"
+                component={renderMADropDownListDocuments}
                 className="form-control"
-                label="Selecione sua prova"
-                optionDefault="NaN"
-              >
-                { myLastDocumentsList && first5Elements(myLastDocumentsList.results).map(document => (
+                placeholder="Selecione sua prova"
+                valueField="id"
+                textField="name"
+                listOptions={myLastDocumentsList && first5Elements(myLastDocumentsList.results)}
+              />
+        { /* myLastDocumentsList && first5Elements(myLastDocumentsList.results).map(document => (
                   <option className="c-export-document__select-item" key={document.id} value={document.id}>
                     {document.name}
                   </option>
-                )) }
-              </Field>
-            </FormGroup> 
-        <FormGroup>
-          <Field
-            component={renderField}
-            type="text"
-            name="name"
-            id="name"
-            label="Digite o nome da prova"
-          />
-        </FormGroup>
+                )) */}
+      </FormGroup>
         <FormGroup check>
           {error && (
           <Alert color="danger">
             {error}
           </Alert>
-          )} 
+          )}
         </FormGroup>
         <div className="document__new-document-modal-footer modal-footer">
           <Button type="submit" color="" className="btn--confirm">
@@ -126,9 +149,9 @@ class CreateDocumentWithQuestionForm extends React.Component {
 
       </Form>
     </div>
-  )};
+    )
+ ;}
 };
-
 
 
 const mapStateToProps = state => ({
@@ -140,8 +163,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
-  });
+  listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
+});
 
 const validate = (values) => {
   const errors = {};
