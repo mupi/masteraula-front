@@ -19,7 +19,7 @@ const AddQuestionButton = ({
       showModal({
         open: true,
         closeModal,
-        title:'Adicionar questão a prova',
+        title: 'Adicionar questão a prova',
       }, 'createDocument');
     }
   };

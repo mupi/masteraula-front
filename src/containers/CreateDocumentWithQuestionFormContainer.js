@@ -9,7 +9,7 @@ import {
 
 const mapStateToProps = state => ({
   modal: state.document.modal,
-  initialValues: { 
+  initialValues: {
     idQuestion: state.document.willAddQuestion,
   },
   myLastDocumentsList: state.document.myLastDocumentsList,
@@ -23,7 +23,6 @@ const mapDispatchToProps = dispatch => ({
         name: values.documentSelected.name,
         idQuestion: values.idQuestion,
       };
-      console.log("crear sin redirección");
       dispatch(createDocument(newDocument, false));
     } else {
       const fetchDocument = {

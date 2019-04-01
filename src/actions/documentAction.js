@@ -125,7 +125,7 @@ export const createDocument = (props, isRedirect = true) => {
     return documentService.createDocument(props).then(
       (newDocument) => {
         dispatch(createDocumentSuccess(newDocument));
-        if (isRedirect) { history.push('/question-base/1'); } 
+        if (isRedirect) { history.push('/question-base/1'); }
       },
       (error) => {
         dispatch(createDocumentFailure(error));
