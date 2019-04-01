@@ -75,6 +75,11 @@ export const COPY_DOCUMENT = 'COPY_DOCUMENT';
 export const COPY_DOCUMENT_SUCCESS = 'COPY_DOCUMENT_SUCCESS';
 export const COPY_DOCUMENT_FAILURE = 'COPY_DOCUMENT_FAILURE';
 
+// Add question to selected document
+export const ADDQUESTION_SELECTED_DOCUMENT = 'ADDQUESTION_SELECTED_DOCUMENT';
+export const ADDQUESTION_SELECTED_DOCUMENT_SUCCESS = 'ADDQUESTION_SELECTED_DOCUMENT_SUCCESS';
+export const ADDQUESTION_SELECTED_DOCUMENT_FAILURE = 'ADDQUESTION_SELECTED_DOCUMENT_FAILURE';
+
 export const fetchDocument = (id) => {
   function requestDocument() { return { type: FETCH_DOCUMENT }; }
   function fetchDocumentSuccess(activeDocument) { return { type: FETCH_DOCUMENT_SUCCESS, activeDocument }; }
@@ -330,3 +335,34 @@ export const copyDocument = (props) => {
     );
   };
 };
+
+
+export const addQuestionAfterSelectingDocument = (doc, idQuestion) => {
+  function requestDocument() { return { type: FETCH_DOCUMENT }; }
+  function fetchDocumentSuccess(activeDocument) { return { type: SWITCH_ACTIVE_DOCUMENT, activeDocument }; }
+  function fetchDocumentFailure(error) { return { type: FETCH_DOCUMENT_FAILURE, error }; }
+
+  return (dispatch) => {
+    dispatch(requestDocument(doc.id));
+    return documentService.fetchDocument(doc.id).then(
+      (activeDocument) => {
+        dispatch(fetchDocumentSuccess(activeDocument));
+        localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+        const wasAddedBefore = activeDocument.questions.filter(question => question.question.id === parseInt(idQuestion, 10));
+        if (wasAddedBefore.length === 0) { return dispatch(addSelectedQuestion(doc.id, idQuestion)); }
+      }, (error) => {
+        dispatch(fetchDocumentFailure(error));
+      },
+    );
+  };
+};
+
+
+/* Example of chain dispatch
+  export function addQuestionAfterSelectingDocument(doc, idQuestion) {
+    return (dispatch) => {
+      return dispatch(switchActiveDocument(doc)).then(() => {
+        return dispatch(addSelectedQuestion(doc.id, idQuestion,0))
+      })
+    }
+} */

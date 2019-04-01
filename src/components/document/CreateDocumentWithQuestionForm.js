@@ -61,7 +61,7 @@ class CreateDocumentWithQuestionForm extends React.Component {
         <Form onSubmit={handleSubmit}>
           <FormGroup className="c-export-document__select">
             <Field
-              name="name"
+              name="documentSelected"
               component={renderMADropDownListDocuments}
               className="form-control"
               placeholder="Selecione sua prova"

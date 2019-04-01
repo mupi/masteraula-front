@@ -240,7 +240,7 @@ function downloadDocument(props, idDocument) {
   };
 
   const headerParameter = (props.headerId && props.headerId !== 'NaN' ? `&header=${props.headerId}` : '');
-  
+
   if (props.answer === 'with') {
     return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=True${headerParameter}`, requestOptions);
   }

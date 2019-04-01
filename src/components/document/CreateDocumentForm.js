@@ -80,9 +80,6 @@ const CreateDocumentForm = (props) => {
 
 const mapStateToProps = state => ({
   modal: state.document.modal,
-  initialValues: {
-    idQuestion: state.document.willAddQuestion,
-  },
 });
 
 const validate = (values) => {
