@@ -116,7 +116,7 @@ export const fetchPreviewDocument = (id) => {
 };
 
 // Create a new document
-export const createDocument = (props) => {
+export const createDocument = (props, isRedirect = true) => {
   function createNewDocument() { return { type: CREATE_DOCUMENT }; }
   function createDocumentSuccess(newDocument) { return { type: CREATE_DOCUMENT_SUCCESS, newDocument }; }
   function createDocumentFailure(error) { return { type: CREATE_DOCUMENT_FAILURE, error }; }
@@ -125,7 +125,7 @@ export const createDocument = (props) => {
     return documentService.createDocument(props).then(
       (newDocument) => {
         dispatch(createDocumentSuccess(newDocument));
-        history.push('/question-base/1');
+        if (isRedirect) { history.push('/question-base/1'); } 
       },
       (error) => {
         dispatch(createDocumentFailure(error));
@@ -335,7 +335,6 @@ export const copyDocument = (props) => {
     );
   };
 };
-
 
 export const addQuestionAfterSelectingDocument = (doc, idQuestion) => {
   function requestDocument() { return { type: FETCH_DOCUMENT }; }
