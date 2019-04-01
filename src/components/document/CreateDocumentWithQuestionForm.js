@@ -70,13 +70,11 @@ class CreateDocumentWithQuestionForm extends React.Component {
               listOptions={myLastDocumentsList && first5Elements(myLastDocumentsList.results)}
             />
           </FormGroup>
-          <FormGroup check>
-            {error && (
-            <Alert color="danger">
+          {error && (
+            <span className="error-message-text">
               {error}
-            </Alert>
-            )}
-          </FormGroup>
+            </span>
+          )}
           <div className="document__new-document-modal-footer modal-footer">
             <Button type="submit" color="" className="btn--confirm">
               Adicionar

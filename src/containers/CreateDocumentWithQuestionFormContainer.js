@@ -36,17 +36,16 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-
 const validate = (values) => {
   const errors = {};
   if (values.documentSelected && !values.documentSelected.name) {
-    errors.name = 'Por favor, digite um nome para a nova prova';
+    errors.documentSelected = 'Por favor, digite um nome para a nova prova';
   } else {
     const trueName = values.documentSelected && values.documentSelected.name && values.documentSelected.name.trim();
     if (trueName && trueName.length < 3) {
-      errors.name = 'O nome da prova precisa ter no mínimo 3 caracteres';
+      errors.documentSelected = 'O nome da prova precisa ter no mínimo 3 caracteres';
     }
-  }
+  } 
 
   return errors;
 };
