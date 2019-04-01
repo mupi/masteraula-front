@@ -176,7 +176,7 @@ class QuestionPage extends Component {
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
 
 
-            </Col>
+            </Col> 
           </Row>
         </div>
         <div className="l-button-add-question">
@@ -187,6 +187,9 @@ class QuestionPage extends Component {
               customClass="o-button-add-question-doc o-button-add-question-doc--xl"
               activeDocument={activeDocument}
               addSelectedQuestion={addSelectedQuestion}
+              setQuestionIdToNewDocument={setQuestionIdToNewDocument}
+              showModal={showModal}
+              hideModal={hideModal}
             />
           ) : (
             <span className="btn question-card__added">

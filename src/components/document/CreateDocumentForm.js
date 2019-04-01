@@ -36,16 +36,11 @@ const renderField = ({
 
 const CreateDocumentForm = (props) => {
   const {
-    handleSubmit, error, messageWhenDocumentExist, initialValues, closeModal, activeDocument,
+    handleSubmit, error, messageWhenDocumentExist, closeModal,
   } = props;
 
   return (
     <div>
-      {!activeDocument && initialValues.idQuestion ? (
-        <p className="text-center p--without-mbottom">
-          Você está adicionando uma questão a uma prova sem nome.
-        </p>
-      ) : ''}
       {messageWhenDocumentExist || (
       <p className="text-center">
         Por favor, insira um nome para a nova prova a ser criada
@@ -85,9 +80,6 @@ const CreateDocumentForm = (props) => {
 
 const mapStateToProps = state => ({
   modal: state.document.modal,
-  initialValues: {
-    idQuestion: state.document.willAddQuestion,
-  },
 });
 
 const validate = (values) => {

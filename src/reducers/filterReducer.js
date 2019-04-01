@@ -154,19 +154,16 @@ export const filter = (state = initialState, action) => {
       }
 
       if (state.sourcesSelected.filter(item => item.name === action.nameSource).length > 0) return state; // do not add duplicates
-        const newSource = { id: action.nameSource, name: action.nameSource };
-        return Object.assign({}, state, {
-          sourcesSelected: [...state.sourcesSelected, newSource],
-        });
-      
+      const newSource = { id: action.nameSource, name: action.nameSource };
+      return Object.assign({}, state, {
+        sourcesSelected: [...state.sourcesSelected, newSource],
+      });
     }
     case REMOVE_SELECTED_SOURCE_FILTER: {
       const newSources = state.sourcesSelected.filter(item => item.id.toString() !== action.idSource.toString());
       return Object.assign({}, state, {
         sourcesSelected: newSources,
       });
-
-
     }
     case ADD_SELECTED_YEAR_FILTER: {
       if (parseInt(action.idYear, 10) !== -1) {

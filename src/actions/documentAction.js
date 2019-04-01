@@ -75,6 +75,11 @@ export const COPY_DOCUMENT = 'COPY_DOCUMENT';
 export const COPY_DOCUMENT_SUCCESS = 'COPY_DOCUMENT_SUCCESS';
 export const COPY_DOCUMENT_FAILURE = 'COPY_DOCUMENT_FAILURE';
 
+// Add question to selected document
+export const ADDQUESTION_SELECTED_DOCUMENT = 'ADDQUESTION_SELECTED_DOCUMENT';
+export const ADDQUESTION_SELECTED_DOCUMENT_SUCCESS = 'ADDQUESTION_SELECTED_DOCUMENT_SUCCESS';
+export const ADDQUESTION_SELECTED_DOCUMENT_FAILURE = 'ADDQUESTION_SELECTED_DOCUMENT_FAILURE';
+
 export const fetchDocument = (id) => {
   function requestDocument() { return { type: FETCH_DOCUMENT }; }
   function fetchDocumentSuccess(activeDocument) { return { type: FETCH_DOCUMENT_SUCCESS, activeDocument }; }
@@ -111,7 +116,7 @@ export const fetchPreviewDocument = (id) => {
 };
 
 // Create a new document
-export const createDocument = (props) => {
+export const createDocument = (props, isRedirect = true) => {
   function createNewDocument() { return { type: CREATE_DOCUMENT }; }
   function createDocumentSuccess(newDocument) { return { type: CREATE_DOCUMENT_SUCCESS, newDocument }; }
   function createDocumentFailure(error) { return { type: CREATE_DOCUMENT_FAILURE, error }; }
@@ -120,7 +125,7 @@ export const createDocument = (props) => {
     return documentService.createDocument(props).then(
       (newDocument) => {
         dispatch(createDocumentSuccess(newDocument));
-        history.push('/question-base/1');
+        if (isRedirect) { history.push('/question-base/1'); }
       },
       (error) => {
         dispatch(createDocumentFailure(error));
@@ -330,3 +335,33 @@ export const copyDocument = (props) => {
     );
   };
 };
+
+export const addQuestionAfterSelectingDocument = (doc, idQuestion) => {
+  function requestDocument() { return { type: FETCH_DOCUMENT }; }
+  function fetchDocumentSuccess(activeDocument) { return { type: SWITCH_ACTIVE_DOCUMENT, activeDocument }; }
+  function fetchDocumentFailure(error) { return { type: FETCH_DOCUMENT_FAILURE, error }; }
+
+  return (dispatch) => {
+    dispatch(requestDocument(doc.id));
+    return documentService.fetchDocument(doc.id).then(
+      (activeDocument) => {
+        dispatch(fetchDocumentSuccess(activeDocument));
+        localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+        const wasAddedBefore = activeDocument.questions.filter(question => question.question.id === parseInt(idQuestion, 10));
+        if (wasAddedBefore.length === 0) { return dispatch(addSelectedQuestion(doc.id, idQuestion)); }
+      }, (error) => {
+        dispatch(fetchDocumentFailure(error));
+      },
+    );
+  };
+};
+
+
+/* Example of chain dispatch
+  export function addQuestionAfterSelectingDocument(doc, idQuestion) {
+    return (dispatch) => {
+      return dispatch(switchActiveDocument(doc)).then(() => {
+        return dispatch(addSelectedQuestion(doc.id, idQuestion,0))
+      })
+    }
+} */

@@ -184,7 +184,6 @@ export const document = (state = initialState, action) => {
       });
     case CREATE_DOCUMENT_TOGGLE_MODAL: {
       return Object.assign({}, state, {
-       /* modal: action.modal,*/
         willAddQuestion: action.willAddQuestion,
       });
     }
