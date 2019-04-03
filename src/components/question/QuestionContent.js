@@ -34,7 +34,7 @@ const QuestionContent = (question) => {
                     </div>
                   ) : ''}
                   { (learningObject.source) ? (
-                    <p>
+                    <p className="c-question__learning-object--source">
                       <small>
                         Fonte:
                         <i>{learningObject.source}</i>
@@ -55,7 +55,7 @@ const QuestionContent = (question) => {
 
       <Row className="c-question--section-border">
         <Col sm="12" xs="12">
-          <div className="">
+          <div className="c-question__single-statement">
             <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(statement) }} />
           </div>
         </Col>

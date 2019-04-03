@@ -23,7 +23,8 @@ export const getCleanCompleteStatement = (html) => {
       'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br', 'div',
       'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td', 'pre', 'iframe', 'img', 'span', 'sup', 'sub', 'small'],
     allowedClasses: {
-      p: ['texto_associado_questao'],
+      p: ['text-center', 'text-justify'],
+      div: ['text-center', 'text-justify'],
     },
     allowedAttributes: {
       a: ['href', 'name', 'target'],
