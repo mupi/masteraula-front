@@ -82,8 +82,18 @@
       }
     }
 
-    &__full-statement img{
-      max-width: 100%;
+    &__full-statement{
+      p:last-child {
+        margin-bottom: 0px;
+      }
+
+      img{
+        max-width: 100%;
+      }
+    }
+
+    &__single-statement{
+      
     }
 
     &__btn-remove-question{
@@ -121,10 +131,16 @@
 
       &--text{
        text-align: justify;
+       max-width: 750px;
+       margin: auto !important;
       }
 
       &--image{
 
+      }
+
+      &--source{
+        padding:10px 0px 0px;
       }
 
       &:last-child{
