@@ -239,13 +239,23 @@ function downloadDocument(props, idDocument) {
     },
   };
 
+  const handleResponse = (response) => {
+    if (!response.ok) {
+      return Promise.reject();
+    }
+
+    return response.blob();
+  };
+
   const headerParameter = (props.headerId && props.headerId !== 'NaN' ? `&header=${props.headerId}` : '');
 
   if (props.answer === 'with') {
-    return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=True${headerParameter}`, requestOptions);
+    return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=True${headerParameter}`, requestOptions)
+      .then(handleResponse);
   }
 
-  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=False${headerParameter}`, requestOptions);
+  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=False${headerParameter}`, requestOptions)
+    .then(handleResponse);
 }
 
 function copyDocument(activeNewDocument) {

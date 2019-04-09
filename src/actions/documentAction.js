@@ -309,7 +309,7 @@ export const downloadDocument = (props) => {
     dispatch(hideModal());
 
     return documentService.downloadDocument(props, props.documentId)
-      .then(response => response.blob()).then((blob) => {
+      .then((blob) => {
         FileSaver.saveAs(blob, `${props.documentName}.docx`);
         dispatch(downloadSelectedDocumentSuccess());
       },
