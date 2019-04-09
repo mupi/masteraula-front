@@ -132,7 +132,7 @@ class App extends Component {
           }
           <ModalRoot />
 
-          <Footer year="2019" version="1.1" />
+          <Footer year="2019" version="1.0" />
         </div>
       </ConnectedRouter>
     );

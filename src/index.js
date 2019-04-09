@@ -4,10 +4,10 @@ import './index.css';
 import { Provider } from 'react-redux';
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
- import { unregister } from './registerServiceWorker';
+// import { unregister } from './registerServiceWorker';
 
 import configureStore from './Store';
-import * as serviceWorker from './registerServiceWorker';
+import * as serviceWorker from './serviceWorker';
 
 
 const store = configureStore();
@@ -19,11 +19,9 @@ render(
   document.getElementById('root'),
 );
 
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
 //unregister();
-//registerServiceWorker();
 serviceWorker.register();
-
-// Every time the state changes, log it
-// Note that subscribe() returns a function for unregistering the listener
-// const unsubscribe = store.subscribe(() => console.log(store.getState()));
  
