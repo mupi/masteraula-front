@@ -387,3 +387,11 @@ tbody tr.odd {
 .o-list5documents .rw-filter-input.rw-input.rw-widget-picker.rw-widget-container {
   width: 98% !important;
 }
+
+/*Add question with CreateDocumentModal - user is able to select a document*/
+
+.o-list5documents .rw-list-option-create li.rw-list-option {
+  background: $color-ma-blue;
+  color:$color-ma-white;
+  font-size: 16px !important;
+}
