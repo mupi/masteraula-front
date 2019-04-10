@@ -5,10 +5,10 @@ import 'react-widgets/dist/css/react-widgets.css';
 const messages = {
   emptyList: 'Não existem resultados',
   emptyFilter: 'Não existem resultados que coincidam',
-  filterPlaceholder: 'Busque sua prova',
+  filterPlaceholder: 'Selecione ou dê o nome para uma nova prova',
   createOption: function createOption(_ref) {
     var searchTerm = _ref.searchTerm;
-    return [' Criar nova prova', searchTerm && ' ', searchTerm && <strong key='_'>{searchTerm}</strong>];
+    return ['+ Criar nova prova', searchTerm && ' ', searchTerm && <strong key='_'>{searchTerm}</strong>];
   }
 };
 

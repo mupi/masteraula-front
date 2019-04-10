@@ -11,7 +11,7 @@ import MACreateDropdownList from 'components/dropdownlist/MACreateDropdownList';
 
 
 const renderMADropDownListDocuments = ({
-  input,
+  input, 
   placeholder,
   meta: { touched, error, warning },
   listOptions, valueField, textField,
@@ -23,12 +23,12 @@ const renderMADropDownListDocuments = ({
       listOptions={listOptions}
       valueField={valueField}
       textField={textField}
-    />
+    /> 
     { touched
       && ((error && (
       <span className="error-message-text">
         {error}
-      </span>
+      </span> 
       ))
       || (warning && (
       <span>
@@ -54,7 +54,7 @@ class CreateDocumentWithQuestionForm extends React.Component {
     return (
       <div>
         <p className="text-center p--without-mbottom">
-          Selecione a prova onde vai adicionar a questão N°
+          Selecione ou crie uma prova onde vai adicionar a questão N°
           {' '}
           {initialValues.idQuestion}
         </p>
@@ -64,7 +64,7 @@ class CreateDocumentWithQuestionForm extends React.Component {
               name="documentSelected"
               component={renderMADropDownListDocuments}
               className="form-control"
-              placeholder="Selecione sua prova"
+              placeholder="Selecione dentre as 5 últimas provas criadas"
               valueField="id"
               textField="name"
               listOptions={myLastDocumentsList && first5Elements(myLastDocumentsList.results)}
