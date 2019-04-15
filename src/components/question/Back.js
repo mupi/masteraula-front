@@ -6,20 +6,22 @@ import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Back = ({ lastLocation }) => (
-  lastLocation ? (
-    <Link className="btn btn-secondary c-question__btn-back btn__icon" to={lastLocation || '/'}>
-      {' '}
-      <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
-      {' '}
-      Voltar anterior
-    </Link>
-  ) : (
-    <Button onClick={() => history.replace('/question-base/1')} className="mr-auto btn btn-secondary c-question__btn-back">
-      <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
-      {' '}
-        Voltar banco
-    </Button>
-  )
+
+  lastLocation
+    ? (
+      <Link className="mr-auto btn btn-secondary c-question__btn-back btn__icon" to={lastLocation || '/'}>
+        {' '}
+        <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
+        {' '}
+        Voltar
+      </Link>
+    ) : (
+      <Button onClick={() => history.replace('/question-base/1')} className="mr-auto btn btn-secondary c-question__btn-back">
+        <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
+        {' '}
+        Voltar
+      </Button>
+    )
 );
 
 export default withLastLocation(Back);
