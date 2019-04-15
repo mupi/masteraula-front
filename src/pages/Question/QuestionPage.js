@@ -3,7 +3,7 @@ import QuestionInfo from 'components/question/QuestionInfo';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import {
-  Alert, Row, Col, Button,
+  Alert, Row, Col,
 } from 'reactstrap';
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
@@ -168,11 +168,8 @@ class QuestionPage extends Component {
                 </Row>
                 <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument} />
               </div>
-
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
-
-
-            </Col> 
+            </Col>
           </Row>
         </div>
         <div className="l-button-add-question">

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
-import { ConnectedRouter } from 'connected-react-router';
-import { LastLocationProvider } from "react-router-last-location";
+import {
+  Router, Route, Switch, Redirect,
+} from 'react-router-dom';
+/* import { ConnectedRouter } from 'connected-react-router'; */
+import { LastLocationProvider } from 'react-router-last-location';
 
 import LoginModal from 'components/login/LoginModal';
 import TermsUsePage from 'pages/TermsUse/TermsUsePage';
@@ -37,7 +39,7 @@ import 'assets/scss/styles.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons';
 
 import {
   faEnvelope, faKey, faFileWord, faThumbtack,
