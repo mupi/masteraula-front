@@ -28,7 +28,7 @@ class DocumentInfoMenu extends React.Component {
 
   editDocument(document) {
     const { switchActiveDocument } = this.props;
-    switchActiveDocument(document);
+    switchActiveDocument(document, false);
   }
 
   closeModal() {
@@ -53,7 +53,7 @@ class DocumentInfoMenu extends React.Component {
 
   editDocumentFromPreview(document) {
     const { switchActiveDocument } = this.props;
-    switchActiveDocument(document);
+    switchActiveDocument(document, true);
     this.closeModal();
   }
 
@@ -138,7 +138,7 @@ class DocumentInfoMenu extends React.Component {
           <Button className="btn-margin-right menu-top__document-button" onClick={() => this.openDocumentModal(documentId)}>
             <FontAwesomeIcon icon="eye" className="btn__icon" />
             Visualizar
-          </Button>
+          </Button> 
           <ExportDocumentButtonContainer
             text="Exportar"
             styleCustomize="menu-top__document-button"
