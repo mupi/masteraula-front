@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/static/media/clock.d8d94d4c.png"
   },
   {
-    "revision": "1b34e2d849c3773c026f",
+    "revision": "4e847dafad6e726b9502",
     "url": "/static/css/main.3ffdc976.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/static/js/runtime~main.a8a9905a.js"
   },
   {
-    "revision": "ef2b8468921feae7df9181301c8575c1",
-    "url": "/static/media/banner.ef2b8468.jpg"
+    "revision": "5e04d3019dfb3274ff31de6e268a3166",
+    "url": "/static/media/sidebar-background-2.5e04d301.jpg"
   },
   {
     "revision": "63f3574b5adb2f2974df",
@@ -28,12 +28,12 @@ self.__precacheManifest = [
     "url": "/static/media/loader-big.a770b679.gif"
   },
   {
-    "revision": "eceddf474df95d8d4a7e316668c3be85",
-    "url": "/static/media/rw-widgets.eceddf47.ttf"
-  },
-  {
     "revision": "bc7c4a59f924cf037aad6e1f9edba366",
     "url": "/static/media/rw-widgets.bc7c4a59.eot"
+  },
+  {
+    "revision": "eceddf474df95d8d4a7e316668c3be85",
+    "url": "/static/media/rw-widgets.eceddf47.ttf"
   },
   {
     "revision": "12f0820c451bdc75f4d1ef97732bf6e8",
@@ -44,8 +44,8 @@ self.__precacheManifest = [
     "url": "/static/media/rw-widgets.792dcd18.svg"
   },
   {
-    "revision": "1b34e2d849c3773c026f",
-    "url": "/static/js/main.c88ffaee.chunk.js"
+    "revision": "4e847dafad6e726b9502",
+    "url": "/static/js/main.9391a2f6.chunk.js"
   },
   {
     "revision": "b1225a53dbba5758eb500953f5e4750c",
@@ -80,15 +80,15 @@ self.__precacheManifest = [
     "url": "/static/media/logo_masteraula.dc132bac.png"
   },
   {
-    "revision": "5e04d3019dfb3274ff31de6e268a3166",
-    "url": "/static/media/sidebar-background-2.5e04d301.jpg"
+    "revision": "ef2b8468921feae7df9181301c8575c1",
+    "url": "/static/media/banner.ef2b8468.jpg"
   },
   {
     "revision": "63f3574b5adb2f2974df",
     "url": "/static/css/2.a1d6b70d.chunk.css"
   },
   {
-    "revision": "16e335fb7a6a11ae3c70f4d57d80f923",
+    "revision": "6bedef7aedbff61604d7d3b672a677cf",
     "url": "/index.html"
   }
 ];
