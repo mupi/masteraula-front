@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
+import { LastLocationProvider } from "react-router-last-location";
 
 import LoginModal from 'components/login/LoginModal';
 import TermsUsePage from 'pages/TermsUse/TermsUsePage';
@@ -99,42 +100,44 @@ class App extends Component {
     const isMobile = width <= 989;
 
     return (
-      <ConnectedRouter history={history}>
-        <div id="main-masteraula-container" className={(isOpenSidebar && isMobile) ? 'container-open' : ''}>
-          <MenuContainer />
-          {isLoggedIn
-            ? (
-              <Switch>
-                <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
-                <Route path="/view-question/:id" component={QuestionPageContainer} />
-                <Route path="/edit-question/:id" component={QuestionEditPageContainer} />
-                <Route path="/user-profile" component={UserProfilePageContainer} />
-                <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
-                <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
-                <Route path="/edit-document" component={EditDocumentPageContainer} />
-                <Route path="/edit-header/:id" component={EditHeaderPageContainer} />
-                <Route path="/new-header" component={EditHeaderPageContainer} />
-                <Redirect from="/" to="/question-base/1" />
-              </Switch>
-            )
-            : (
-              <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route path="/login" component={LoginModal} />
-                <Route path="/nossos-planos" component={PricingPageContainer} />
-                <Route path="/esqueci-senha" component={ForgotPasswordPageContainer} />
-                <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
-                <Route path="/terms-use" component={TermsUsePage} />
-                <Route path="/verify-userregister/:key" component={VerifyRegisterPageContainer} />
-                <Route component={NotFoundPage} />
-              </Switch>
-            )
-          }
-          <ModalRoot />
+      <Router history={history}>
+        <LastLocationProvider>
+          <div id="main-masteraula-container" className={(isOpenSidebar && isMobile) ? 'container-open' : ''}>
+            <MenuContainer />
+            {isLoggedIn
+              ? (
+                <Switch>
+                  <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
+                  <Route path="/view-question/:id" component={QuestionPageContainer} />
+                  <Route path="/edit-question/:id" component={QuestionEditPageContainer} />
+                  <Route path="/user-profile" component={UserProfilePageContainer} />
+                  <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
+                  <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
+                  <Route path="/edit-document" component={EditDocumentPageContainer} />
+                  <Route path="/edit-header/:id" component={EditHeaderPageContainer} />
+                  <Route path="/new-header" component={EditHeaderPageContainer} />
+                  <Redirect from="/" to="/question-base/1" />
+                </Switch>
+              )
+              : (
+                <Switch>
+                  <Route exact path="/" component={HomePage} />
+                  <Route path="/login" component={LoginModal} />
+                  <Route path="/nossos-planos" component={PricingPageContainer} />
+                  <Route path="/esqueci-senha" component={ForgotPasswordPageContainer} />
+                  <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
+                  <Route path="/terms-use" component={TermsUsePage} />
+                  <Route path="/verify-userregister/:key" component={VerifyRegisterPageContainer} />
+                  <Route component={NotFoundPage} />
+                </Switch>
+              )
+            }
+            <ModalRoot />
 
-          <Footer year="2019" version="1.0" />
-        </div>
-      </ConnectedRouter>
+            <Footer year="2019" version="1.0" />
+          </div>
+        </LastLocationProvider>
+      </Router>
     );
   }
 }

@@ -12,7 +12,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { history } from 'helpers/history';
+import Back from 'components/question/Back';
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
@@ -76,17 +76,13 @@ class QuestionPage extends Component {
         <div className="c-question">
           <Row>
             <Col className="d-flex">
-              <Button onClick={() => history.replace('/question-base/1')} className="mr-auto btn btn-secondary c-question__btn-back">
-                <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
-                {' '}
-                Voltar
-              </Button>
+              <Back />
               {role && role.includes('Editores')
                 ? (
                   <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
                     <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
                     {' '}
-                Editar
+                    Editar
                   </Link>
                 ) : ''}
             </Col>
