@@ -50,7 +50,7 @@ export const getCleanExtractStatement = (html) => {
 
 export const getCleanAlternativeText = (alternative) => {
   const clean = sanitizeHtml(alternative, {
-    allowedTags: ['img', 'sup', 'sub', 'b', 'p'],
+    allowedTags: ['img', 'sup', 'sub', 'b', 'p', 'br', 'strong', 'u'],
     allowedAttributes: {
       a: [],
       img: ['src'],

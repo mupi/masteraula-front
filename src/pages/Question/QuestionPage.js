@@ -3,7 +3,7 @@ import QuestionInfo from 'components/question/QuestionInfo';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import {
-  Alert, Row, Col, Button,
+  Alert, Row, Col,
 } from 'reactstrap';
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
@@ -12,7 +12,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import Back from 'components/question/Back';
 import { history } from 'helpers/history';
+
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
@@ -41,19 +43,19 @@ class QuestionPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
+    history.push(`/view-question/${match.params.id}`);
   }
 
   render() {
     const {
       activeQuestion, isFetching, rating, error, onRate, activeDocument, addSelectedQuestion,
-      removeSelectedQuestion, role, setQuestionIdToNewDocument, showModal, hideModal,
+      removeSelectedQuestion, role, setQuestionIdToNewDocument, showModal, hideModal, location,
     } = this.props;
-
+  
     if (isFetching) {
       return (
         <HomeUserPage>
           <Alert className="alert--warning" color="warning">
-
               Carregando ...
           </Alert>
         </HomeUserPage>
@@ -76,17 +78,13 @@ class QuestionPage extends Component {
         <div className="c-question">
           <Row>
             <Col className="d-flex">
-              <Button onClick={() => history.replace('/question-base/1')} className="mr-auto btn btn-secondary c-question__btn-back">
-                <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
-                {' '}
-                Voltar
-              </Button>
+              <Back />
               {role && role.includes('Editores')
                 ? (
                   <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
                     <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
                     {' '}
-                Editar
+                    Editar
                   </Link>
                 ) : ''}
             </Col>
@@ -172,11 +170,8 @@ class QuestionPage extends Component {
                 </Row>
                 <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument} />
               </div>
-
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
-
-
-            </Col> 
+            </Col>
           </Row>
         </div>
         <div className="l-button-add-question">

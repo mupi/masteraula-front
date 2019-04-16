@@ -45,11 +45,13 @@ const ExportDocumentButton = ({
         <Button color={color} onClick={handleClick} className={styleCustomize} title="Exportar prova">
           {text ? <FontAwesomeIcon icon="file-word" className="btn__icon" /> : <FontAwesomeIcon icon="file-word" />}
           {text}
-        </Button>) : (
-          <div color={color} onClick={handleClick} className={styleCustomize}>
-            {text ? <FontAwesomeIcon icon="file-word" className="btn__icon" /> : <FontAwesomeIcon icon="file-word" />}
-            {text}
-          </div>)
+        </Button>
+      ) : (
+        <div color={color} onClick={handleClick} className={styleCustomize}>
+          {text ? <FontAwesomeIcon icon="file-word" className="btn__icon" /> : <FontAwesomeIcon icon="file-word" />}
+          {text}
+        </div>
+      )
 
   );
 };
