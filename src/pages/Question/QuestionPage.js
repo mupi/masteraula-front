@@ -13,6 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import Back from 'components/question/Back';
+import { history } from 'helpers/history';
+
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
@@ -41,19 +43,19 @@ class QuestionPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
+    history.push(`/view-question/${match.params.id}`);
   }
 
   render() {
     const {
       activeQuestion, isFetching, rating, error, onRate, activeDocument, addSelectedQuestion,
-      removeSelectedQuestion, role, setQuestionIdToNewDocument, showModal, hideModal,
+      removeSelectedQuestion, role, setQuestionIdToNewDocument, showModal, hideModal, location,
     } = this.props;
-
+  
     if (isFetching) {
       return (
         <HomeUserPage>
           <Alert className="alert--warning" color="warning">
-
               Carregando ...
           </Alert>
         </HomeUserPage>

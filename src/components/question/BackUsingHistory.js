@@ -1,28 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { withLastLocation } from 'react-router-last-location';
 import { history } from 'helpers/history';
 import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Back = ({ lastLocation }) => {
+const BackUsingHistory = ( location ) => {
+    console.log("en back: ");
+    console.log(location);
+    console.log(history.goBack);
+    console.log("history..");
   return (
-    lastLocation && !lastLocation.pathname.includes('edit-question')
+    location
       ? (
-        <Link className="mr-auto btn btn-secondary c-question__btn-back btn__icon" to={lastLocation || '/'}>
-          {' '}
+        <Button onClick={history.goBack} className="mr-auto btn btn-secondary c-question__btn-back">
           <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
           {' '}
-          Voltar
-        </Link>
+          Voltar History
+        </Button>
       ) : (
         <Button onClick={() => history.push('/question-base/1')} className="mr-auto btn btn-secondary c-question__btn-back">
           <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
           {' '}
-          Voltar
+          Voltar Banco
         </Button>
       )
   );
 };
 
-export default withLastLocation(Back);
+export default BackUsingHistory;
