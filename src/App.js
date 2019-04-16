@@ -12,7 +12,7 @@ import TermsUsePage from 'pages/TermsUse/TermsUsePage';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 import HomePage from 'pages/Home/HomePage';
 
-import {
+import { 
   ViewDocumentPageContainer,
   ForgotPasswordPageContainer,
   UserProfilePageContainer,
