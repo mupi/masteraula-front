@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   Router, Route, Switch, Redirect,
 } from 'react-router-dom';
-/* import { ConnectedRouter } from 'connected-react-router'; */
+import { ConnectedRouter } from 'connected-react-router'; 
 import { LastLocationProvider } from 'react-router-last-location';
 
 import LoginModal from 'components/login/LoginModal';
