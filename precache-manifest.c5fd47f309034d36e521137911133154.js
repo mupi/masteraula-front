@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/static/media/clock.d8d94d4c.png"
   },
   {
-    "revision": "4e847dafad6e726b9502",
+    "revision": "7ea7e33ee4bd8581311b",
     "url": "/static/css/main.3ffdc976.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/static/js/runtime~main.a8a9905a.js"
   },
   {
-    "revision": "5e04d3019dfb3274ff31de6e268a3166",
-    "url": "/static/media/sidebar-background-2.5e04d301.jpg"
+    "revision": "ef2b8468921feae7df9181301c8575c1",
+    "url": "/static/media/banner.ef2b8468.jpg"
   },
   {
     "revision": "63f3574b5adb2f2974df",
@@ -36,16 +36,16 @@ self.__precacheManifest = [
     "url": "/static/media/rw-widgets.eceddf47.ttf"
   },
   {
-    "revision": "12f0820c451bdc75f4d1ef97732bf6e8",
-    "url": "/static/media/rw-widgets.12f0820c.woff"
-  },
-  {
     "revision": "792dcd18baf5f544aabcad1883d673c2",
     "url": "/static/media/rw-widgets.792dcd18.svg"
   },
   {
-    "revision": "4e847dafad6e726b9502",
-    "url": "/static/js/main.9391a2f6.chunk.js"
+    "revision": "12f0820c451bdc75f4d1ef97732bf6e8",
+    "url": "/static/media/rw-widgets.12f0820c.woff"
+  },
+  {
+    "revision": "7ea7e33ee4bd8581311b",
+    "url": "/static/js/main.ac285ef5.chunk.js"
   },
   {
     "revision": "b1225a53dbba5758eb500953f5e4750c",
@@ -80,15 +80,15 @@ self.__precacheManifest = [
     "url": "/static/media/logo_masteraula.dc132bac.png"
   },
   {
-    "revision": "ef2b8468921feae7df9181301c8575c1",
-    "url": "/static/media/banner.ef2b8468.jpg"
+    "revision": "5e04d3019dfb3274ff31de6e268a3166",
+    "url": "/static/media/sidebar-background-2.5e04d301.jpg"
   },
   {
     "revision": "63f3574b5adb2f2974df",
     "url": "/static/css/2.a1d6b70d.chunk.css"
   },
   {
-    "revision": "6bedef7aedbff61604d7d3b672a677cf",
+    "revision": "f2df5ebb2be6a54048e9d61a1e256e1e",
     "url": "/index.html"
   }
 ];
