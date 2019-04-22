@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import AlternativeList from 'components/alternatives/AlternativeList';
 import Alternative from 'components/alternatives/Alternative';
-import { getCleanCompleteStatement, getCleanAlternativeText } from 'helpers/question';
+import { getCleanCompleteStatement, getCleanAlternativeText, getCleanLearningObjectSource } from 'helpers/question';
 
 
 const QuestionContent = (question) => {
@@ -34,19 +34,17 @@ const QuestionContent = (question) => {
                     </div>
                   ) : ''}
                   { (learningObject.source) ? (
-                    <p className="c-question__learning-object--source">
-                      <small>
-                        Fonte:
-                        <i>{learningObject.source}</i>
-                      </small>
-                    </p>
+                    <div className="c-question__learning-object--source">
+                      <div dangerouslySetInnerHTML={{ __html: getCleanLearningObjectSource(learningObject.source) }} />
+                    </div>
                   ) : ''}
                   { (learningObject.tags && learningObject.tags.length > 0) ? (
                     <p className="c-question__learning-object-tags">
                       <small>Tags:</small>
                       {' '}
                       <small><i>{learningObject.tags.map(tag => tag.name.trim()).join(', ')}</i></small>
-                    </p>) : ''}
+                    </p>
+                  ) : ''}
                 </div>
               ))}
             </Col>
