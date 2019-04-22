@@ -185,6 +185,11 @@
 
     &__l-alternative{
       display: flex;
+      margin-bottom:7px;
+
+      p {
+        margin-bottom: 0px;
+      }
     }
 
     &__resolution-text{
