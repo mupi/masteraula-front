@@ -141,6 +141,7 @@
 
       &--source{
         padding:10px 0px 0px;
+        font-size:11px;
       }
 
       &:last-child{
@@ -185,6 +186,15 @@
 
     &__l-alternative{
       display: flex;
+      margin-bottom:7px;
+
+      p {
+        margin-bottom: 0px;
+      }
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
     }
 
     &__resolution-text{

@@ -50,7 +50,7 @@ export const getCleanExtractStatement = (html) => {
 
 export const getCleanAlternativeText = (alternative) => {
   const clean = sanitizeHtml(alternative, {
-    allowedTags: ['img', 'sup', 'sub', 'b', 'p', 'br', 'strong', 'u'],
+    allowedTags: ['img', 'sup', 'sub', 'b', 'p', 'br', 'strong', 'u', 'em'],
     allowedAttributes: {
       a: [],
       img: ['src'],
@@ -59,6 +59,18 @@ export const getCleanAlternativeText = (alternative) => {
   });
   return clean;
 };
+
+export const getCleanLearningObjectSource = (source) => {
+  const clean = sanitizeHtml(source, {
+    allowedTags: ['sup', 'sub', 'b', 'p', 'br', 'strong', 'u', 'em', 'a'],
+    allowedAttributes: {
+      a: ['href', 'name', 'target'],
+      p: ['style'],
+    },
+  });
+  return `Fonte: ${clean}`;
+};
+
 
 export const getOrderAlternative = (order) => {
   const letters = 'abcdef';
