@@ -113,6 +113,20 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
         <StarRating onRate={rt => onRate(rt)} starsSelected={rating} />
       </Col>
     </Row>
+    <Row>
+      <Col className="text-center">
+        <p>Essa questão apresenta algum problema?</p>
+        <a
+          className="btn btn-danger c-question__btn-report-error"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://forms.gle/7TcMH3L6dDfuQcRH7"
+        >
+          <FontAwesomeIcon icon="exclamation-circle" className="btn__icon" />
+          Reportar erro
+        </a>
+      </Col>
+    </Row>
   </Container>
 );
 QuestionInfo.propTypes = {

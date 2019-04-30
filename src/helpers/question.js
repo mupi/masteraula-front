@@ -50,7 +50,7 @@ export const getCleanExtractStatement = (html) => {
 
 export const getCleanAlternativeText = (alternative) => {
   const clean = sanitizeHtml(alternative, {
-    allowedTags: ['img', 'sup', 'sub', 'b', 'p', 'br', 'strong', 'u', 'em'],
+    allowedTags: ['img', 'sup', 'sub', 'b', 'p', 'br', 'strong', 'u', 'em', 'i'],
     allowedAttributes: {
       a: [],
       img: ['src'],
@@ -62,7 +62,7 @@ export const getCleanAlternativeText = (alternative) => {
 
 export const getCleanLearningObjectSource = (source) => {
   const clean = sanitizeHtml(source, {
-    allowedTags: ['sup', 'sub', 'b', 'p', 'br', 'strong', 'u', 'em', 'a'],
+    allowedTags: ['sup', 'sub', 'b', 'p', 'br', 'strong', 'u', 'em', 'i', 'a'],
     allowedAttributes: {
       a: ['href', 'name', 'target'],
       p: ['style'],

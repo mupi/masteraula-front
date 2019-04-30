@@ -43,6 +43,10 @@
 //Question Page where c-question is the main container
 .c-question {
 
+    &__btn-report-error{
+      font-size:16px !important;
+    }
+
     &__row-tags{
       margin-bottom: 0px !important;
     }
@@ -93,7 +97,9 @@
     }
 
     &__single-statement{
-      
+      p {
+        text-align: justify;
+      }
     }
 
     &__btn-remove-question{
@@ -253,6 +259,8 @@
       background: $color-ma-purple;
       border-color:  $color-ma-purple;
     }
+
+   
 }
 
 
