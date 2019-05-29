@@ -10,6 +10,7 @@ import LoginModal from 'components/login/LoginModal';
 import TermsUsePage from 'pages/TermsUse/TermsUsePage';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 import HomePage from 'pages/Home/HomePage';
+import CreateQuestionPage from 'pages/Question/CreateQuestionPage';
 
 import { 
   ViewDocumentPageContainer,
@@ -111,6 +112,7 @@ class App extends Component {
                   <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
                   <Route path="/view-question/:id" component={QuestionPageContainer} />
                   <Route path="/edit-question/:id" component={QuestionEditPageContainer} />
+                  <Route path="/create-question/" component={CreateQuestionPage} />
                   <Route path="/user-profile" component={UserProfilePageContainer} />
                   <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
                   <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
