@@ -47,7 +47,7 @@ class QuestionTextRichEditor extends Component {
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange}
             toolbar={{
-              image: { urlEnabled: true, uploadEnabled: true, uploadCallback: this.uploadCallback },
+              options: ['inline', 'blockType'],
             }}
             localization={{
               locale: 'pt',

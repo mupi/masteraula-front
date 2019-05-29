@@ -25,6 +25,34 @@ function fetchQuestion(id) {
     .then(activeQuestion => activeQuestion);
 }
 
+
+// Create a Question
+function createQuestion(newQuestionData) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+    body: JSON.stringify({ ...newQuestionData, secret: true }),
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+    return data;
+  });
+
+  return fetch(`${apiUrl}/headers/`, requestOptions)
+    .then(handleResponse)
+    .then((activeQuestion) => {
+      localStorage.setItem('activeQuestion', JSON.stringify(activeQuestion));
+      return activeQuestion;
+    });
+}
+
 // Update a Question
 function updateQuestion(activeUpdateQuestion) {
   const requestOptions = {
@@ -101,6 +129,7 @@ const questionService = {
   rateQuestion,
   fetchQuestion,
   listQuestions,
+  createQuestion,
   updateQuestion,
 };
 

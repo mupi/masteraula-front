@@ -4,6 +4,7 @@ import {
   LIST_QUESTION_PAGE, LIST_QUESTION_PAGE_SUCCESS, LIST_QUESTION_PAGE_FAILURE,
   LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS, LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS,
   UPDATE_QUESTION, UPDATE_QUESTION_SUCCESS, UPDATE_QUESTION_FAILURE,
+  CREATE_QUESTION, CREATE_QUESTION_SUCCESS, CREATE_QUESTION_FAILURE,
 } from 'actions/questionAction';
 import { toast } from 'react-toastify';
 
@@ -101,6 +102,27 @@ export const question = (state = initialState, action) => {
     case UPDATE_QUESTION_FAILURE: {
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, { error: action.error });
+    }
+    case CREATE_QUESTION:
+      return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        activeQuestion: action.newQuestion,
+        isCreating: false,
+      });
+    case CREATE_QUESTION_SUCCESS: {
+      return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        activeQuestion: action.newQuestion,
+        isCreating: false,
+      });
+    }
+    case CREATE_QUESTION_FAILURE: {
+      return Object.assign({}, state, {
+        isCreating: false,
+        error: action.error,
+      });
     }
     default:
       return state;
