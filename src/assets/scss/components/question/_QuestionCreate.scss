@@ -1,0 +1,14 @@
+//Question Creation Page where c-create-question is the main container
+.c-create-question {
+    &__row-info {
+      margin-bottom: 10px;
+    }
+
+    &__form-field{
+        font-size:14px;
+    }
+
+    &__year-field, &__difficulty-field{
+        width: auto;
+    }
+}

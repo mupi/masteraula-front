@@ -125,6 +125,15 @@ const SidebarMobile = ({
                       </div>
                     </div>
                   </ListGroupItem>
+                  <ListGroupItem>
+                    <Link to="/create-question" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-question'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="search"
+                      />
+                      Criar questão
+                    </Link>
+                  </ListGroupItem>
                 </ListGroup>
                 <div className="sidebar-nav-container">
                   <ListGroup className="sidebar-main-options">
@@ -216,6 +225,15 @@ const SidebarWeb = ({
                       Criar prova
                     </div>
                   </div>
+                </ListGroupItem>
+                <ListGroupItem className="list-group-item__simple-option text-center">
+                  <Link to="/create-question" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-question'); }}>
+                    <FontAwesomeIcon
+                      className="btn__icon"
+                      icon="plus"
+                    />
+                    Criar questão
+                  </Link>
                 </ListGroupItem>
               </ListGroup>
               <div className="sidebar-nav-container">

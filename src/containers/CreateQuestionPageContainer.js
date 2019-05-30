@@ -2,17 +2,27 @@ import { connect } from 'react-redux';
 import { reduxForm, formValueSelector } from 'redux-form';
 import CreateQuestionPage from 'pages/Question/CreateQuestionPage';
 import { updateQuestion } from 'actions/questionAction';
-
+import {
+  listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
+} from 'actions/filterAction';
 
 const mapStateToProps = (state) => {
-  const selector = formValueSelector('question-edit');
+  const selector = formValueSelector('question-create');
   return ({
     topics: selector(state, 'topics'),
     topicsList: state.topic.topics,
+    disciplineFilters: state.filter.disciplineFilters,
+    teachingLevelFilters: state.filter.teachingLevelFilters,
+    sourceFilters: state.filter.sourceFilters,
   });
 };
 
 const mapDispatchToProps = dispatch => ({
+  listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
+  listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
+  listSourceFilters: param => dispatch(listSourceFilters(param)),
+
+
   onSubmit: (values, d, props) => {
     const newQuestion = {
       tags: values.tags.split(',').map(tag => tag.trim()),

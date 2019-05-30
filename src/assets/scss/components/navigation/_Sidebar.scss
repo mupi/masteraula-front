@@ -192,7 +192,7 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
     }
 }
 
-.sidebar-nav-container .list-group-item a {
+.sidebar-nav-container .list-group-item a, .list-group-item__simple-option a {
     text-decoration: none;
     color: $color-ma-blue;
     font-weight: bold;

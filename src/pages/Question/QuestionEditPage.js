@@ -267,7 +267,7 @@ const renderTopics = ({
             <Col sm="3" className="c-question-edit__col-btn-remove-topic">
               <Button
                 type="button"
-                title="Remove Member"
+                title="Remover topico"
                 className="c-question-edit__btn-remove-topic"
                 onClick={() => fields.remove(i)}
               >

@@ -3,14 +3,13 @@ import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
-import { getCleanCompleteStatement } from 'helpers/question';
 import { Row, Col } from 'reactstrap';
 
 class QuestionTextRichEditor extends Component {
   /* eslint-disable react/no-danger */
   constructor(props) {
     super(props);
-    const html = '<p>Escreva seu enunciado ...</p>';
+    const html = '';
     const contentBlock = htmlToDraft(html);
     if (contentBlock) {
       const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
@@ -21,14 +20,6 @@ class QuestionTextRichEditor extends Component {
     }
   }
 
-  uploadCallback = () => {
-    return new Promise(
-      (resolve, reject) => {
-        resolve({ data: { link: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Clipart_owl.png" } });
-      }
-    );
-
-  };
 
   onEditorStateChange= (editorState) => {
     this.setState({
@@ -42,6 +33,7 @@ class QuestionTextRichEditor extends Component {
       <Row>
         <Col>
           <Editor
+            placeholder="Escreva o enunciado da questão aqui ..."
             editorState={editorState}
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
@@ -53,8 +45,12 @@ class QuestionTextRichEditor extends Component {
               locale: 'pt',
             }}
           />
-          <div className="c-question__learning-object--text hidden">
-            <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(draftToHtml(convertToRaw(editorState.getCurrentContent()))) }} />
+          <div className="">
+            <textarea
+              className="width-100"
+              disabled
+              value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+            />
           </div>
         </Col>
       </Row>

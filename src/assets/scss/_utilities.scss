@@ -165,3 +165,23 @@ input.rw-input-reset{
 }
 
   /*REACT WIDGETS: dropdownlist*/
+
+/*RREACT DRAFT - WYSIWYG*/
+.rdw-option-active{
+  background: $color-ma-green-light;
+}
+
+.rdw-editor-toolbar{
+  margin-bottom: 0px;
+}
+
+.demo-editor {
+  height: 275px !important;
+  border: 1px solid #F1F1F1 !important;
+  padding: 5px !important;
+  border-radius: 2px !important;
+}
+
+.rdw-option-wrapper {
+  height: 25px;
+}
