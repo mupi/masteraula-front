@@ -1,5 +1,5 @@
 import {
-  Container, Alert, Row, Col, Button, Form, Input,
+  Container, Alert, Row, Col, Button, Form, Input, Label,
 } from 'reactstrap';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
@@ -161,10 +161,10 @@ const renderAlternatives = ({
 }) => (
   <Row>
     <Col md="12">
-      <Row className="c-question__row-info c-question-edit__row-topic c-question-edit__header-topic">
-        <Col sm="3" className="align-self-center hidden-xs">É correta</Col>
-        <Col sm="3" className="align-self-center hidden-xs">Alternativa</Col>
-        <Col sm="3" className="align-self-center hidden-xs">Remover</Col>
+      <Row className="c-question__row-info c-create-question__row-alternative c-create-question__header-alternative">
+        <Col sm="2" className="align-self-center hidden-xs">É correta</Col>
+        <Col sm="4" className="align-self-center hidden-xs">Alternativa</Col>
+        <Col sm="2" className="align-self-center hidden-xs">Remover</Col>
         <Col sm="3">
           <Button onClick={() => fields.push({})}>
             <FontAwesomeIcon
@@ -178,14 +178,17 @@ const renderAlternatives = ({
       <Row>{submitFailed && error && <span>{error}</span>}</Row>
 
       {fields.map((alternative, i) => (
-        <Row key={alternative} className="c-question__row-info c-question-edit__row-topic">
-          <Col sm="3">
-              *
+        <Row key={alternative} className="c-question__row-info c-create-question__row-alternative">
+          <Col sm="2">
+            <Label check>
+              <Input type="radio" name="alternativecorrect" />
+              {' '}
+            </Label>
           </Col>
-          <Col sm="3">
+          <Col sm="4">
             <Field name="alternative" type="text" component={renderField} label="Insira sua alternativa" />
           </Col>
-          <Col sm="3" className="c-question-edit__col-btn-remove-topic">
+          <Col sm="2" className="c-question-edit__col-btn-remove-topic">
             <Button
               type="button"
               title="Remover alternativa"

@@ -10,5 +10,14 @@
 
     &__year-field, &__difficulty-field{
         width: auto;
+    } 
+
+    &__row-alternative{
+        text-align: center;
+    }
+
+    &__header-alternative {
+        text-align: center;
+        font-weight: bold;
     }
 }
