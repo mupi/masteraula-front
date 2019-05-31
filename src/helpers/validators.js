@@ -14,15 +14,22 @@ export const requiredValidator = value => (value ? undefined : 'Campo obrigatór
 
 
 export const requiredSelectValidator = value => ((value !== '0') ? undefined : 'Campo obrigatório');
+export const requiredMultiSelectValidator = value => (value && value.length !== 0 ? undefined : 'Campo obrigatório');
+export const minLengthTags = value => (value && value.length !== 0 ? undefined : 'Campo obrigatório');
 
 
 export const requiredHeaderNameValidator = value => (value ? undefined : 'Digite um nome para o novo cabeçalho');
 
 export const mustBeNumber = value => (value && isNaN(Number(value)) ? 'Insira um valor numérico' : undefined);
 
-const maxLength = max => value => (value && value.length > max ? `Insira máximo ${max} caracteres ou menos` : undefined);
+const maxLength = (max, text) => value => (value && value.length > max ? `Insira máximo ${max} ${text}` : undefined);
+export const maxLength5 = (maxLength(5, 'alternativas'));
+const minLength = (min, text) => value => (value && value.length < min ? `Insira minimo ${min} ${text}` : undefined);
+export const minLength3Alternatives = (minLength(3, 'alternativas'));
+export const minLength1Topics = (minLength(1, 'tópico'));
 
-export const maxLength15 = (maxLength(4));
+
+export const minLength2Tags = value => (((value && (value.split(',').length < 2)) || value === undefined) ? 'Insira minimo 2 tags' : undefined);
 
 const maxValue = max => value => (value && value > max ? `O valor máximo permitido é ${max}` : undefined);
 export const maxYearValue = maxValue(2019);

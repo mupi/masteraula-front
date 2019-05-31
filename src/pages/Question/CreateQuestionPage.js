@@ -9,7 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
-import { requiredSelectValidator, mustBeNumber, maxYearValue } from 'helpers/validators';
+import {
+  requiredMultiSelectValidator, requiredSelectValidator, mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, minLength2Tags,
+} from 'helpers/validators';
 import { Field, FieldArray } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
 import Multiselect from 'react-widgets/lib/Multiselect';
@@ -34,7 +36,34 @@ const renderField = ({
       {...input}
       placeholder={label}
       type={type}
+      className="form-control c-create-question__form-field"
     />
+    { touched
+      && ((error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
+  </div>
+);
+
+
+// Basic Input as Checkbutton Field
+const renderCheckButtonField = ({
+  nameGroup,
+  valueAlternative,
+  meta: { touched, error, warning },
+}) => (
+  <div>
+    <Input type="radio" name={nameGroup} value={valueAlternative} className="c-create-question__radio-button-field" />
     { touched
       && ((error && (
       <span className="error-message-text">
@@ -90,14 +119,14 @@ const renderMAMultiSelectTag = ({
   placeholder,
   meta: { touched, error, warning },
 }) => (
-  <div className="o-learningobj__tags">
+  <div className="c-create-question__tags">
     <MAMultiSelectTag
       input={input}
       onChange={value => input.onChange(value)}
       placeholder={placeholder}
     />
     { touched
-      && ((error && (
+      || ((error && (
       <span className="error-message-text">
         {error}
       </span>
@@ -121,17 +150,35 @@ const messages = {
 // Multiselect for Disciplines and Teaching Level
 const renderMultiselect = ({
   input, data, placeholder, valueField, textField,
+  meta: { touched, error, warning },
+
 }) => (
-  <Multiselect
-    {...input}
-    onBlur={() => input.onBlur()}
-    value={input.value || []}
-    data={data}
-    valueField={valueField}
-    textField={textField}
-    placeholder={placeholder}
-    messages={messages}
-  />
+  <div>
+    <Multiselect
+      {...input}
+      onBlur={() => input.onBlur()}
+      value={input.value || []}
+      data={data}
+      valueField={valueField}
+      textField={textField}
+      placeholder={placeholder}
+      messages={messages}
+    />
+    { touched
+      && ((error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
+  </div>
 );
 
 // Multiselect for Source
@@ -155,38 +202,41 @@ const renderSelectField = ({
   </div>
 );
 
+
 // Alternatives section
 const renderAlternatives = ({
-  fields, meta: { error, submitFailed },
+  fields,
+  meta: {
+    submitFailed, touched, error, warning,
+  },
 }) => (
   <Row>
     <Col md="12">
       <Row className="c-question__row-info c-create-question__row-alternative c-create-question__header-alternative">
-        <Col sm="2" className="align-self-center hidden-xs">É correta</Col>
-        <Col sm="4" className="align-self-center hidden-xs">Alternativa</Col>
+        <Col sm="1" className="align-self-center hidden-xs">É correta</Col>
+        <Col sm="6" className="align-self-center hidden-xs">Alternativa</Col>
         <Col sm="2" className="align-self-center hidden-xs">Remover</Col>
-        <Col sm="3">
-          <Button onClick={() => fields.push({})}>
-            <FontAwesomeIcon
-              icon="plus"
-              className="btn__icon"
-            />
-            Adicionar alternativa
-          </Button>
-        </Col>
+        { fields.length < 5
+          ? (
+            <Col sm="3">
+              <Button onClick={() => fields.push({})}>
+                <FontAwesomeIcon
+                  icon="plus"
+                  className="btn__icon"
+                />
+              Adicionar alternativa
+              </Button>
+            </Col>
+          ) : ''}
       </Row>
-      <Row>{submitFailed && error && <span>{error}</span>}</Row>
 
       {fields.map((alternative, i) => (
         <Row key={alternative} className="c-question__row-info c-create-question__row-alternative">
-          <Col sm="2">
-            <Label check>
-              <Input type="radio" name="alternativecorrect" />
-              {' '}
-            </Label>
+          <Col sm="1">
+            <Field name={`${alternative}.id`} component={renderCheckButtonField} nameGroup="alternatives" valueAlternative={`${alternative}.id`} />
           </Col>
-          <Col sm="4">
-            <Field name="alternative" type="text" component={renderField} label="Insira sua alternativa" />
+          <Col sm="6">
+            <Field type="text" component={renderField} name={`${alternative}.alternativeText`} label="Insira sua alternativa" />
           </Col>
           <Col sm="2" className="c-question-edit__col-btn-remove-topic">
             <Button
@@ -200,8 +250,10 @@ const renderAlternatives = ({
               />
             </Button>
           </Col>
+
         </Row>
       ))}
+      <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
     </Col>
   </Row>
 );
@@ -226,7 +278,6 @@ const renderTopics = ({
           </Button>
         </Col>
       </Row>
-      <Row>{submitFailed && error && <span>{error}</span>}</Row>
 
       {fields.map((topicRow, i) => {
         const selSubject = (selectedTopics[i].subject != null && topicsList)
@@ -244,10 +295,9 @@ const renderTopics = ({
                 name={`${topicRow}.subject`}
                 type="text"
                 component={renderSelectField}
-                className="form-control"
+                className="form-control c-create-question__form-field"
                 label="Assunto"
                 optionDefault="-1"
-                styleCustomize="form-control c-question-edit__topic"
               >
                 { topicsList && topicsList.map(subject => (
                   <option key={subject.id} value={subject.id}>
@@ -261,10 +311,9 @@ const renderTopics = ({
                 name={`${topicRow}.subsubject`}
                 type="text"
                 component={renderSelectField}
-                className="form-control"
+                className="form-control c-create-question__form-field"
                 label="Subassunto"
                 optionDefault="-1"
-                styleCustomize="form-control c-question-edit__topic"
               >
                 { subsubjects && subsubjects.map(subject => (
                   <option key={subject.id} value={subject.id}>
@@ -278,10 +327,9 @@ const renderTopics = ({
                 name={`${topicRow}.topic`}
                 type="text"
                 component={renderSelectField}
-                className="form-control"
+                className="form-control c-create-question__form-field"
                 label="Tópico"
                 optionDefault="-1"
-                styleCustomize="form-control c-question-edit__topic"
               >
                 { topics && topics.map(subject => (
                   <option key={subject.id} value={subject.id}>
@@ -305,6 +353,7 @@ const renderTopics = ({
           </Row>
         );
       })}
+      <Row>{error && <span className="error-message-text">{error}</span>}</Row>
     </Col>
   </Row>
 );
@@ -393,7 +442,7 @@ class CreateQuestionPage extends Component {
             </Row>
             <Row className="justify-content-center">
               <Col sm="12" md="12" xs="12">
-                <FieldArray name="alternatives" component={renderAlternatives} />
+                <FieldArray name="alternatives" component={renderAlternatives} validate={minLength3Alternatives} />
               </Col>
             </Row>
             <Container className="question-information">
@@ -431,7 +480,6 @@ class CreateQuestionPage extends Component {
                     className="form-control c-create-question__form-field"
                     label="Selecione um vestibular"
                     optionDefault="0"
-                    validate={requiredSelectValidator}
                   >
                     { sourceFilters && sourceFilters.map(source => (
                       <option className="c-user-profile__state-city-dropdown-item" key={source.id} value={source.id}>
@@ -454,6 +502,7 @@ class CreateQuestionPage extends Component {
                     data={disciplineFilters}
                     valueField="id"
                     textField="name"
+                    validate={requiredMultiSelectValidator}
                   />
                 </Col>
               </Row>
@@ -470,6 +519,7 @@ class CreateQuestionPage extends Component {
                     data={teachingLevelFilters}
                     valueField="id"
                     textField="name"
+                    validate={requiredMultiSelectValidator}
                   />
                 </Col>
               </Row>
@@ -484,6 +534,7 @@ class CreateQuestionPage extends Component {
                     id="tags"
                     placeholder="Dê enter ou vírgula após inserir uma tag"
                     className="form-control"
+                    validate={minLength2Tags}
                   />
                 </Col>
               </Row>
@@ -509,7 +560,7 @@ class CreateQuestionPage extends Component {
                   </Field>
                 </Col>
               </Row>
-              <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} />
+              <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} validate={minLength1Topics} />
               <Row>
                 <Col>
                   { (!pristine) ? (

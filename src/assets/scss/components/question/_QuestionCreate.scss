@@ -8,6 +8,11 @@
         font-size:14px;
     }
 
+    &__radio-button-field{
+        margin-left: 0px;
+        margin-top: 0.75rem;
+    }
+
     &__year-field, &__difficulty-field{
         width: auto;
     } 
@@ -19,5 +24,12 @@
     &__header-alternative {
         text-align: center;
         font-weight: bold;
+    }
+
+    &__tags {
+        text-align: left;
+        .rw-popup-container {
+            display: none;
+        }
     }
 }
