@@ -13,6 +13,7 @@ function listTopics(disciplines) {
 
 
   const url = `/topics/?${disciplinesParams}`;
+
   const handleResponse = response => response.json().then((data) => {
     if (!response.ok) {
       const error = (data && data.email);

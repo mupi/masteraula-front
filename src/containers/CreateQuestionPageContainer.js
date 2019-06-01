@@ -5,7 +5,9 @@ import { updateQuestion } from 'actions/questionAction';
 import {
   listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
 } from 'actions/filterAction';
+import { listTopics } from 'actions/topicAction';
 
+ 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('question-create');
   return ({
@@ -21,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
   listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
   listSourceFilters: param => dispatch(listSourceFilters(param)),
-
+  listTopics: param => dispatch(listTopics(param)),
 
   onSubmit: (values, d, props) => {
     const newQuestion = {

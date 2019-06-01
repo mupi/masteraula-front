@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Button, FormGroup, Alert, Form,
+  Button, FormGroup, Form,
 } from 'reactstrap';
 import { Field } from 'redux-form';
 import { first5Elements } from 'helpers/document';

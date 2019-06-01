@@ -1,5 +1,5 @@
 import {
-  Container, Alert, Row, Col, Button, Form, Input, Label,
+  Container, Alert, Row, Col, Button, Form, Input,
 } from 'reactstrap';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
@@ -367,10 +367,18 @@ class CreateQuestionPage extends Component {
     listSourceFilters();
   }
 
+  getListTopics = (e, newValue) => {
+    const {
+      listTopics,
+    } = this.props;
+    listTopics(newValue);
+  }
+
   render() {
     const {
       isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters, teachingLevelFilters,
     } = this.props;
+
     if (isCreating) {
       return (
         <HomeUserPage>
@@ -503,6 +511,7 @@ class CreateQuestionPage extends Component {
                     valueField="id"
                     textField="name"
                     validate={requiredMultiSelectValidator}
+                    onChange={this.getListTopics}
                   />
                 </Col>
               </Row>

@@ -15,6 +15,10 @@
 
     &__year-field, &__difficulty-field{
         width: auto;
+
+        @include for-phone-only{
+            width: 100%;
+        }
     } 
 
     &__row-alternative{
@@ -28,8 +32,10 @@
 
     &__tags {
         text-align: left;
-        .rw-popup-container {
+        .rw-popup-container, .rw-select {
             display: none;
         }
+
+        
     }
 }

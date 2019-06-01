@@ -125,7 +125,7 @@ const SidebarMobile = ({
                       </div>
                     </div>
                   </ListGroupItem>
-                  <ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option text-center">
                     <Link to="/create-question" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-question'); }}>
                       <FontAwesomeIcon
                         className="btn__icon"

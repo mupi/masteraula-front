@@ -49,7 +49,7 @@ class QuestionPage extends Component {
   render() {
     const {
       activeQuestion, isFetching, rating, error, onRate, activeDocument, addSelectedQuestion,
-      removeSelectedQuestion, role, setQuestionIdToNewDocument, showModal, hideModal, location,
+      removeSelectedQuestion, role, setQuestionIdToNewDocument, showModal, hideModal,
     } = this.props;
   
     if (isFetching) {
