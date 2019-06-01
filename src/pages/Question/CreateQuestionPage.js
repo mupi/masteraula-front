@@ -374,9 +374,9 @@ class CreateQuestionPage extends Component {
     listTopics(newValue);
   }
 
-  render() {
+  render() { 
     const {
-      isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters, teachingLevelFilters,
+      isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters, teachingLevelFilters, handleSubmit,
     } = this.props;
 
     if (isCreating) {
@@ -402,7 +402,7 @@ class CreateQuestionPage extends Component {
     return (
       <HomeUserPage>
         <ToastContainer hideProgressBar position="bottom-right" />
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <div className="c-question c-create-question">
             <Row className="c-question__tittle-section">
               <Col>
@@ -482,10 +482,10 @@ class CreateQuestionPage extends Component {
                 </Col>
                 <Col sm="8" xs="8">
                   <Field
-                    name="vestibular"
+                    name="source"
                     type="text"
                     component={renderSelectField}
-                    className="form-control c-create-question__form-field"
+                    className="form-control c-create-question__source-field c-create-question__form-field"
                     label="Selecione um vestibular"
                     optionDefault="0"
                   >
@@ -521,7 +521,7 @@ class CreateQuestionPage extends Component {
                 </Col>
                 <Col sm="8" xs="8">
                   <Field
-                    name="teachingLevel"
+                    name="teachingLevels"
                     className="form-control"
                     component={renderMultiselect}
                     placeholder="Insira o nível de ensino da questão"
