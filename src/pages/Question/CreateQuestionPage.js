@@ -116,6 +116,22 @@ const renderNumericField = ({
   </div>
 );
 
+const renderQuestionTextEditor = (props) => {
+  const {
+    placeholderEditor, input: { onChange, value }, disabled, id,
+  } = props;
+
+  return (
+    <QuestionTextRichEditor
+      id={id}
+      disabled={disabled}
+      placeholder={placeholderEditor}
+      onChange={onChange}
+      value={value}
+    />
+  );
+};
+
 // Multiselect for Tags field
 // touche is not working with multiselectTag
 const renderMAMultiSelectTag = ({
@@ -438,7 +454,14 @@ class CreateQuestionPage extends Component {
             </Row>
             <Row className="justify-content-center">
               <Col sm="12" md="12" xs="12">
-                <Field component={QuestionTextRichEditor} name="statement" />
+                <Field
+                  component={renderQuestionTextEditor}
+                  name="statement"
+                  key="field"
+                  id="statementEditorText"
+                  disabled={false}
+                  placeholderEditor="Escreva o enunciado da questão aqui ..."
+                />
               </Col>
             </Row>
             <Row className="c-question__tittle-section">

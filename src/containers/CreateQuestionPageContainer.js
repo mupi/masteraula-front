@@ -26,10 +26,13 @@ const mapDispatchToProps = dispatch => ({
   listTopics: param => dispatch(listTopics(param)),
 
   onSubmit: (values, d, props) => {
+
+    console.log("enunciado...");
+    console.log(values.statement);
     const newQuestion = {
       tags: values.tags.split(',').map(tag => tag.trim()),
       topics_ids: values.topics.map((topic) => {
-        if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic;
+        if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic; 
         if (topic && topic.subsubject && parseInt(topic.subsubject, 10) > 0) return topic.subsubject;
         if (topic && topic.subject && parseInt(topic.subject, 10) > 0) return topic.subject;
         return null;
@@ -39,7 +42,7 @@ const mapDispatchToProps = dispatch => ({
 
 
     return dispatch(updateQuestion(newQuestion));
-  },
+  }, 
 });
 
 const CreateQuestionPageContainer = connect(

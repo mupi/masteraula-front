@@ -20,8 +20,15 @@ class QuestionTextRichEditor extends Component {
     }
   }
 
+  onEditorStateChange = (editorState) => {
+    const { onChange, value } = this.props;
 
-  onEditorStateChange= (editorState) => {
+    const newValue = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+
+    if (value !== newValue) {
+      onChange(newValue);
+    }
+
     this.setState({
       editorState,
     });
@@ -29,11 +36,12 @@ class QuestionTextRichEditor extends Component {
 
   render() {
     const { editorState } = this.state;
+    const { placeholder } = this.props;
     return (
       <Row>
         <Col>
           <Editor
-            placeholder="Escreva o enunciado da questão aqui ..."
+            placeholder={placeholder}
             editorState={editorState}
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
