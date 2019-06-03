@@ -59,14 +59,14 @@ const renderField = ({
 );
 
 
-// Basic Input as Checkbutton Field
+// Basic Input as Radiobutton Field
 const renderCheckButtonField = ({
   nameGroup,
   valueAlternative,
   meta: { touched, error, warning },
 }) => (
   <div>
-    <Input type="radio" name={nameGroup} value={valueAlternative} className="c-create-question__radio-button-field" />
+    <Input type="radio" name={nameGroup} value={valueAlternative} className="c-create-question__radio-button-field" checked />
     { touched
       && ((error && (
       <span className="error-message-text">
@@ -200,7 +200,6 @@ const renderSelectField = ({
   </div>
 );
 
-
 // Alternatives section
 const renderAlternatives = ({
   fields,
@@ -231,7 +230,12 @@ const renderAlternatives = ({
       {fields.map((alternative, i) => (
         <Row key={alternative} className="c-question__row-info c-create-question__row-alternative">
           <Col sm="1">
-            <Field name={`${alternative}.id`} component={renderCheckButtonField} nameGroup="alternatives" valueAlternative={`${alternative}.id`} />
+            <Field
+              name={`${alternative}.id`}
+              component={renderCheckButtonField}
+              nameGroup="alternatives"
+              valueAlternative={`${alternative}.id`}
+            />
           </Col>
           <Col sm="6">
             <Field type="text" component={renderField} name={`${alternative}.alternativeText`} label="Insira sua alternativa" validate={requiredValidator} />
