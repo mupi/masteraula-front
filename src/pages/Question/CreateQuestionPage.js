@@ -66,7 +66,7 @@ const renderCheckButtonField = ({
   meta: { touched, error, warning },
 }) => (
   <div>
-    <Input type="radio" name={nameGroup} value={valueAlternative} className="c-create-question__radio-button-field" checked />
+    <Input type="radio" name={nameGroup} value={valueAlternative} className="c-create-question__radio-button-field" defaultChecked />
     { touched
       && ((error && (
       <span className="error-message-text">
