@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { reduxForm, formValueSelector } from 'redux-form';
+import { reduxForm, formValueSelector, initialize } from 'redux-form';
 import CreateQuestionPage from 'pages/Question/CreateQuestionPage';
 import { updateQuestion } from 'actions/questionAction';
 import {
@@ -7,11 +7,12 @@ import {
 } from 'actions/filterAction';
 import { listTopics } from 'actions/topicAction';
 
- 
+
 const mapStateToProps = (state) => {
   const selector = formValueSelector('question-create');
   return ({
     topics: selector(state, 'topics'),
+    alternatives: selector(state, 'alternatives'),
     topicsList: state.topic.topics,
     disciplineFilters: state.filter.disciplineFilters,
     teachingLevelFilters: state.filter.teachingLevelFilters,
@@ -24,13 +25,19 @@ const mapDispatchToProps = dispatch => ({
   listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
   listSourceFilters: param => dispatch(listSourceFilters(param)),
   listTopics: param => dispatch(listTopics(param)),
+  prepareForm: () => {
+    dispatch(initialize('question-create', {
+      topics: [{}],
+      alternatives: [{}, {}, {}],
+    }));
+  },
 
   onSubmit: (values, d, props) => {
     const newQuestion = {
       statement: values.statement,
       tags: values.tags.split(',').map(tag => tag.trim()),
       topics_ids: values.topics.map((topic) => {
-        if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic; 
+        if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic;
         if (topic && topic.subsubject && parseInt(topic.subsubject, 10) > 0) return topic.subsubject;
         if (topic && topic.subject && parseInt(topic.subject, 10) > 0) return topic.subject;
         return null;
@@ -40,7 +47,7 @@ const mapDispatchToProps = dispatch => ({
 
 
     return dispatch(updateQuestion(newQuestion));
-  }, 
+  },
 });
 
 const CreateQuestionPageContainer = connect(
