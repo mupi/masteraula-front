@@ -10,7 +10,10 @@ import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEd
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 import {
-  requiredMultiSelectValidator, requiredSelectValidator, mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, minLength2Tags,
+  requiredValidator,
+  requiredMultiSelectValidator,
+  requiredSelectValidator,
+  mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, minLength2Tags,
 } from 'helpers/validators';
 import { Field, FieldArray } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
@@ -117,7 +120,9 @@ const renderNumericField = ({
 const renderMAMultiSelectTag = ({
   input,
   placeholder,
-  meta: { touched, error, warning },
+  meta: {
+    touched, error,
+  },
 }) => (
   <div className="c-create-question__tags">
     <MAMultiSelectTag
@@ -125,20 +130,13 @@ const renderMAMultiSelectTag = ({
       onChange={value => input.onChange(value)}
       placeholder={placeholder}
     />
-    { touched
-      || ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
-      ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
-    }
+    { touched && error
+     && (
+     <span className="error-message-text">
+       {error}
+     </span>
+     )
+   }
   </div>
 );
 
@@ -236,7 +234,7 @@ const renderAlternatives = ({
             <Field name={`${alternative}.id`} component={renderCheckButtonField} nameGroup="alternatives" valueAlternative={`${alternative}.id`} />
           </Col>
           <Col sm="6">
-            <Field type="text" component={renderField} name={`${alternative}.alternativeText`} label="Insira sua alternativa" />
+            <Field type="text" component={renderField} name={`${alternative}.alternativeText`} label="Insira sua alternativa" validator={requiredValidator} />
           </Col>
           <Col sm="2" className="c-question-edit__col-btn-remove-topic">
             <Button
@@ -374,7 +372,7 @@ class CreateQuestionPage extends Component {
     listTopics(newValue);
   }
 
-  render() { 
+  render() {
     const {
       isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters, teachingLevelFilters, handleSubmit,
     } = this.props;
@@ -436,7 +434,7 @@ class CreateQuestionPage extends Component {
             </Row>
             <Row className="justify-content-center">
               <Col sm="12" md="12" xs="12">
-                <QuestionTextRichEditor />
+                <Field component={QuestionTextRichEditor} name="statement" />
               </Col>
             </Row>
             <Row className="c-question__tittle-section">
