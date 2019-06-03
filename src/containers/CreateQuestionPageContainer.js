@@ -26,10 +26,8 @@ const mapDispatchToProps = dispatch => ({
   listTopics: param => dispatch(listTopics(param)),
 
   onSubmit: (values, d, props) => {
-
-    console.log("enunciado...");
-    console.log(values.statement);
     const newQuestion = {
+      statement: values.statement,
       tags: values.tags.split(',').map(tag => tag.trim()),
       topics_ids: values.topics.map((topic) => {
         if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic; 
