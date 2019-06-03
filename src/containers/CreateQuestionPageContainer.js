@@ -7,7 +7,6 @@ import {
 } from 'actions/filterAction';
 import { listTopics } from 'actions/topicAction';
 
- 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('question-create');
   return ({
@@ -36,17 +35,19 @@ const mapDispatchToProps = dispatch => ({
         return null;
       }).filter(topic => topic != null),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
-      alternatives: values.alternatives.alternativeText,
+      alternatives: values.alternatives.map(alternative => ({
+        is_correct: alternative.isCorrect,
+        text: alternative.alternativeText,
+      })),
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
       year: values.year,
     };
 
-    console.log(newQuestion);
-
+    // console.log(newQuestion);
 
     return dispatch(updateQuestion(newQuestion));
-  }, 
+  },
 });
 
 const CreateQuestionPageContainer = connect(

@@ -247,14 +247,20 @@ const renderAlternatives = ({
         <Row key={alternative} className="c-question__row-info c-create-question__row-alternative">
           <Col sm="1">
             <Field
-              name={`${alternative}.id`}
+              name={`${alternative}.isCorrect`}
               component={renderCheckButtonField}
               nameGroup="alternatives"
               valueAlternative={`${alternative}.id`}
             />
           </Col>
           <Col sm="6">
-            <Field type="text" component={renderField} name={`${alternative}.alternativeText`} label="Insira sua alternativa" validate={requiredValidator} />
+            <Field
+              type="text"
+              component={renderField}
+              name={`${alternative}.alternativeText`}
+              label="Insira sua alternativa"
+              validate={requiredValidator}
+            />
           </Col>
           <Col sm="2" className="c-question-edit__col-btn-remove-topic">
             <Button
@@ -278,7 +284,7 @@ const renderAlternatives = ({
 
 // Topic section
 const renderTopics = ({
-  fields, meta: { error, submitFailed }, topicsList, selectedTopics,
+  fields, meta: { error }, topicsList, selectedTopics,
 }) => (
   <Row>
     <Col md="12">
