@@ -108,38 +108,6 @@ export const createQuestion = (props) => {
     return questionService.createQuestion(props).then(
       (newQuestion) => {
         dispatch(createQuestionSuccess(newQuestion));
-        const allTopics = [];
-        newQuestion.topics.forEach((topic) => {
-          const tl = [];
-          let t = topic;
-          while (t != null) {
-            tl.push(t.id.toString());
-            t = t.parent;
-          }
-          if (tl.length === 3) {
-            allTopics.push({
-              topic: tl[0],
-              subsubject: tl[1],
-              subject: tl[2],
-            });
-          } else if (tl.length === 2) {
-            allTopics.push({
-              subsubject: tl[0],
-              subject: tl[1],
-            });
-          } else {
-            allTopics.push({
-              subject: tl[0],
-            });
-          }
-        });
-        allTopics.push({});
-        // TODO
-        dispatch(initialize('question-create', {
-          difficulty: newQuestion.difficulty,
-          tags: newQuestion.tags.map(tag => tag.name.trim()).join(', '),
-          topics: allTopics,
-        }));
       },
       (error) => {
         dispatch(createQuestionFailure(error));
