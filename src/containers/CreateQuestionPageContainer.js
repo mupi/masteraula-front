@@ -30,13 +30,19 @@ const mapDispatchToProps = dispatch => ({
       statement: values.statement,
       tags: values.tags.split(',').map(tag => tag.trim()),
       topics_ids: values.topics.map((topic) => {
-        if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic; 
+        if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic;
         if (topic && topic.subsubject && parseInt(topic.subsubject, 10) > 0) return topic.subsubject;
         if (topic && topic.subject && parseInt(topic.subject, 10) > 0) return topic.subject;
         return null;
       }).filter(topic => topic != null),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
+      alternatives: values.alternatives.alternativeText,
+      disciplines_ids: values.disciplines.map(discipline => discipline.id),
+      teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
+      year: values.year,
     };
+
+    console.log(newQuestion);
 
 
     return dispatch(updateQuestion(newQuestion));
