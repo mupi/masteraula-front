@@ -34,7 +34,7 @@ const renderField = ({
   type,
   meta: { touched, error, warning },
 }) => (
-  <div>
+  <div className="text-left">
     <Input
       {...input}
       placeholder={label}
@@ -117,11 +117,12 @@ const renderNumericField = ({
 );
 
 // Multiselect for Tags field
+// touche is not working with multiselectTag
 const renderMAMultiSelectTag = ({
   input,
   placeholder,
   meta: {
-    touched, error,
+    error,
   },
 }) => (
   <div className="c-create-question__tags">
@@ -130,12 +131,11 @@ const renderMAMultiSelectTag = ({
       onChange={value => input.onChange(value)}
       placeholder={placeholder}
     />
-    { touched && error
-     && (
-     <span className="error-message-text">
-       {error}
-     </span>
-     )
+    { error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+    )
    }
   </div>
 );
@@ -205,7 +205,7 @@ const renderSelectField = ({
 const renderAlternatives = ({
   fields,
   meta: {
-    submitFailed, touched, error, warning,
+    error,
   },
 }) => (
   <Row>
@@ -234,7 +234,7 @@ const renderAlternatives = ({
             <Field name={`${alternative}.id`} component={renderCheckButtonField} nameGroup="alternatives" valueAlternative={`${alternative}.id`} />
           </Col>
           <Col sm="6">
-            <Field type="text" component={renderField} name={`${alternative}.alternativeText`} label="Insira sua alternativa" validator={requiredValidator} />
+            <Field type="text" component={renderField} name={`${alternative}.alternativeText`} label="Insira sua alternativa" validate={requiredValidator} />
           </Col>
           <Col sm="2" className="c-question-edit__col-btn-remove-topic">
             <Button
