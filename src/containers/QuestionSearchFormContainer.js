@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
   isFetchingQuestions: state.question.isFetching,
   preSearch: state.form.questionSearch ? state.form.questionSearch.values.searchText : '',
 });
- 
+
 const setDispatchSearchText = (searchText) => {
   history.replace('/question-base/1');
   return setSearchText(searchText);

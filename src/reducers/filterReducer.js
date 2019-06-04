@@ -207,6 +207,7 @@ export const filter = (state = initialState, action) => {
         difficultiesSelected: [],
         sourcesSelected: [],
         yearsSelected: [],
+        onlyMyQuestions: false,
       });
     }
     case CLEAR_SEARCH: {
