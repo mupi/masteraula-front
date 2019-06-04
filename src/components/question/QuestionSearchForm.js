@@ -71,8 +71,13 @@ const renderField = ({
 
 const QuestionSearchForm = (props) => {
   const {
-    handleSubmit, search, clearSearch, clearSearchField,
+    handleSubmit, search, clearSearch, clearSearchField, author, isFetchingQuestions, onlyMyQuestions, addMyQuestionsFilter,
   } = props;
+
+  const handleFilter = (event) => {
+    const valueFilter = event.target.value;
+    addMyQuestionsFilter(valueFilter, event.target.checked);
+  };
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -114,12 +119,20 @@ const QuestionSearchForm = (props) => {
       </Row>
       <Row className="c-question-base__myquestions-filter">
         <Label check>
-          <Field
+          { /* <Field
             name="onlyMyQuestions"
             id="onlyMyQuestions"
             component={renderBasicInputField}
             type="checkbox"
+          /> */}
+          <Input
+            type="checkbox"
+            value={author}
+            onClick={handleFilter}
+            checked={onlyMyQuestions}
+            disabled={isFetchingQuestions}
           />
+
           {'Pesquisar só nas ' }
           <strong>
             {'"Minhas questões"'}

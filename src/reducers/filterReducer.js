@@ -18,7 +18,7 @@ import {
   ADD_SELECTED_YEAR_FILTER,
   REMOVE_SELECTED_YEAR_FILTER,
   SET_SEARCH_TEXT,
-  SET_MYQUESTIONS_FILTER,
+  ADD_MYQUESTIONS_FILTER,
   CLEAR_SELECTED_FILTERS, CLEAR_SEARCH,
 } from 'actions/filterAction';
 
@@ -193,9 +193,10 @@ export const filter = (state = initialState, action) => {
       });
     }
 
-    case SET_MYQUESTIONS_FILTER: {
+    case ADD_MYQUESTIONS_FILTER: {
       return Object.assign({}, state, {
         onlyMyQuestions: action.onlyMyQuestions,
+        author: action.author,
       });
     }
 

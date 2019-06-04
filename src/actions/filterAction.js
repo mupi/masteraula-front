@@ -54,7 +54,7 @@ export const REMOVE_SELECTED_YEAR_FILTER = 'REMOVE_SELECTED_YEAR_FILTER';
 export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
 
 // Set my questions filter (My questions check)
-export const SET_MYQUESTIONS_FILTER = 'SET_MYQUESTIONS_FILTER';
+export const ADD_MYQUESTIONS_FILTER = 'ADD_MYQUESTIONS_FILTER';
 
 // Clear all filters selected
 export const CLEAR_SELECTED_FILTERS = 'CLEAR_SELECTED_FILTERS';
@@ -218,8 +218,8 @@ export const setSearchText = searchText => ({
   type: SET_SEARCH_TEXT, searchText,
 });
 
-export const setMyQuestionsFilter = onlyMyQuestions => ({
-  type: SET_MYQUESTIONS_FILTER, onlyMyQuestions,
+export const addMyQuestionsFilter = (author, onlyMyQuestions) => ({
+  type: ADD_MYQUESTIONS_FILTER, onlyMyQuestions, author,
 });
 
 export const clearSelectedFilters = () => ({
