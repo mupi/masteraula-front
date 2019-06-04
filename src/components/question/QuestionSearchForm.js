@@ -1,9 +1,39 @@
 import React from 'react';
 import { Field, reduxForm, Form } from 'redux-form';
 import {
-  Input, InputGroup, InputGroupAddon, Button, Row, Col, UncontrolledTooltip,
+  Input, InputGroup, InputGroupAddon, Button, Row, Col, UncontrolledTooltip, Label,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+const renderBasicInputField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error, warning },
+}) => (
+  <div>
+    <Input
+      {...input}
+      placeholder={label}
+      type={type}
+    />
+    { touched
+      && ((error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
+  </div>
+);
 
 const renderField = ({
   input,
@@ -82,6 +112,20 @@ const QuestionSearchForm = (props) => {
           clearSearchField={clearSearchField}
         />
       </Row>
+      <Row className="c-question-base__myquestions-filter">
+        <Label check>
+          <Field
+            name="myQuestions"
+            id="myQuestions"
+            component={renderBasicInputField}
+            type="checkbox"
+          />
+          {'Pesquisar só nas ' }
+          <strong>
+            {'"Minhas questões"'}
+          </strong>
+        </Label>
+      </Row>
       {search ? (
         <Row>
           <Col sm="12">
@@ -93,7 +137,8 @@ const QuestionSearchForm = (props) => {
               </span>
             </p>
           </Col>
-        </Row>) : ''
+        </Row>
+      ) : ''
       }
     </Form>
   );
