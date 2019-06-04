@@ -53,11 +53,14 @@ const DocumentQuestionItem = (props) => {
                 </p>
               </Col>
               <Col sm="12">
+                { question.source && (
                 <p className="c-document__question-info-row">
                   Vestibular:
                   {' '}
                   <span className="c-document__question-info-detail">{ question.source}</span>
                 </p>
+                )
+                }
                 <p className="c-document__question-info-row">
                   Ano:
                   {' '}
@@ -89,7 +92,8 @@ const DocumentQuestionItem = (props) => {
                   Tags:
                     {' '}
                     <i>{question.tags.concat(question.all_topics).map(tag => (tag.name.trim())).join(', ')}</i>
-                  </p>) : ''}
+                  </p>
+                ) : ''}
               </Col>
             </Row>
             { (!readOnly) ? (
@@ -102,7 +106,8 @@ const DocumentQuestionItem = (props) => {
                       removeSelectedQuestion={removeSelectedQuestion}
                       customClass="c-document__btn-remove-question"
                       label={<FontAwesomeIcon icon="trash-alt" />}
-                    />) : ' ' }
+                    />
+                  ) : ' ' }
                   <Link to={`/view-question/${question.id}`}>
                     <Button>
                       <FontAwesomeIcon icon="search" />
@@ -113,7 +118,8 @@ const DocumentQuestionItem = (props) => {
                     </Button>
                   </Link>
                 </div>
-              </Row>) : ' ' }
+              </Row>
+            ) : ' ' }
           </Col>
         </Row>
       )}
