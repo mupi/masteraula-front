@@ -74,12 +74,12 @@ const mapDispatchToProps = dispatch => ({
         is_correct: (alternative.isCorrect === 'true'),
         text: alternative.alternativeText,
       })),
+      source_id: values.source !== '0' ? values.source : null,
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
       year: values.year,
     };
 
-    console.log(newQuestion);
     if (newQuestion && (newQuestion.statement.trim() === '<p></p>' || newQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
     }
