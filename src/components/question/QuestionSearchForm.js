@@ -115,8 +115,8 @@ const QuestionSearchForm = (props) => {
       <Row className="c-question-base__myquestions-filter">
         <Label check>
           <Field
-            name="myQuestions"
-            id="myQuestions"
+            name="onlyMyQuestions"
+            id="onlyMyQuestions"
             component={renderBasicInputField}
             type="checkbox"
           />

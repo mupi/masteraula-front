@@ -13,15 +13,19 @@ import 'react-toastify/dist/ReactToastify.css';
 
 class QuestionBasePage extends React.Component {
   componentDidMount() {
-    const { match, filter, listQuestions } = this.props;
-    listQuestions(parseInt(match.params.page, 10), filter);
+    const {
+      match, filter, listQuestions, user,
+    } = this.props;
+    listQuestions(parseInt(match.params.page, 10), filter, user.id);
   }
 
   componentDidUpdate(prevProps) {
-    const { match, filter, listQuestions } = this.props;
+    const {
+      match, filter, listQuestions, user,
+    } = this.props;
     if ((match.params.page !== prevProps.match.params.page)
     || (filter !== prevProps.filter)) {
-      listQuestions(parseInt(match.params.page, 10), filter);
+      listQuestions(parseInt(match.params.page, 10), filter, user.id);
     }
   }
 

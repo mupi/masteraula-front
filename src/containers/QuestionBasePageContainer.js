@@ -50,10 +50,11 @@ const mapStateToProps = state => ({
   activeDocument: state.document.activeDocument,
   sourceFilters: state.filter.sourceFilters,
   yearFilters: state.filter.yearFilters,
+  user: state.session.session.user,
 });
 
 const mapDispatchToProps = dispatch => ({
-  listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
+  listQuestions: (page, filter, userId) => dispatch(listQuestions(page, filter, userId)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 
   addSelectedDisciplineFilter: idDiscipline => dispatch(toggleSelectedDisciplineFilter(idDiscipline, true)),

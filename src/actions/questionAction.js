@@ -174,7 +174,7 @@ export const updateQuestion = (props) => {
 
 
 // listQuestion using filters
-export const listQuestions = (page, filter) => {
+export const listQuestions = (page, filter, userId = null) => {
   function requestQuestionPage() { return { type: LIST_QUESTION_PAGE, page }; }
   function fetchQuestionPageSuccess(questionPage) { return { type: LIST_QUESTION_PAGE_SUCCESS, questionPage }; }
   function fetchQuestionPageFailure(error) { return { type: LIST_QUESTION_PAGE_FAILURE, error }; }
@@ -183,12 +183,13 @@ export const listQuestions = (page, filter) => {
       return 1;
     }
     dispatch(requestQuestionPage());
-    return questionService.listQuestions(page, filter)
+    return questionService.listQuestions(page, filter, userId)
       .then(
         (questionPage) => {
           dispatch(fetchQuestionPageSuccess(questionPage));
           dispatch(initialize('questionSearch', {
             searchText: filter.searchText,
+            onlyMyQuestions: filter.onlyMyQuestions,
           }));
         },
         (error) => {

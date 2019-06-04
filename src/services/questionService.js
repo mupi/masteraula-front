@@ -84,7 +84,7 @@ function updateQuestion(activeUpdateQuestion) {
 }
 
 
-function listQuestions(page, filter) {
+function listQuestions(page, filter, userId) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -92,7 +92,6 @@ function listQuestions(page, filter) {
       Authorization: authHeader(),
     },
   };
-
   const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected.map(item => item.id) });
   const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
@@ -100,10 +99,11 @@ function listQuestions(page, filter) {
   const yearsParams = queryString.stringify({ years: filter.yearsSelected.map(item => item.name) });
 
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
+  const author = (filter.onlyMyQuestions) ? queryString.stringify({ author: userId }) : '';
 
   const url = (search)
-    ? `/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`
-    : `/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}`;
+    ? `/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}&${author}`
+    : `/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}&${author}`;
 
   const handleResponse = response => response.json().then((data) => {
     if (!response.ok) {
