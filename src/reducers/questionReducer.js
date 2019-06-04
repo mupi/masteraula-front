@@ -105,15 +105,11 @@ export const question = (state = initialState, action) => {
     }
     case CREATE_QUESTION:
       return Object.assign({}, state, {
-        isRemoved: null,
-        isUpdated: null,
-        activeQuestion: action.newQuestion,
-        isCreating: false,
+        error: null,
+        isCreating: true,
       });
     case CREATE_QUESTION_SUCCESS: {
       return Object.assign({}, state, {
-        isRemoved: null,
-        isUpdated: null,
         activeQuestion: action.newQuestion,
         isCreating: false,
       });

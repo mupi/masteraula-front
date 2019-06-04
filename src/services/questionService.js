@@ -45,12 +45,9 @@ function createQuestion(newQuestionData) {
     return data;
   });
 
-  return fetch(`${apiUrl}/headers/`, requestOptions)
+  return fetch(`${apiUrl}/questions/`, requestOptions)
     .then(handleResponse)
-    .then((activeQuestion) => {
-      localStorage.setItem('activeQuestion', JSON.stringify(activeQuestion));
-      return activeQuestion;
-    });
+    .then(activeQuestion => activeQuestion);
 }
 
 // Update a Question

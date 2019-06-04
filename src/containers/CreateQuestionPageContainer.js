@@ -3,7 +3,7 @@ import {
   reduxForm, formValueSelector, SubmissionError, initialize,
 } from 'redux-form';
 import CreateQuestionPage from 'pages/Question/CreateQuestionPage';
-import { updateQuestion } from 'actions/questionAction';
+import { createQuestion } from 'actions/questionAction';
 import {
   listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
 } from 'actions/filterAction';
@@ -90,8 +90,7 @@ const mapDispatchToProps = dispatch => ({
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
-
-    return dispatch(updateQuestion(newQuestion));
+    return dispatch(createQuestion(newQuestion));
   },
 });
 
