@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
-import { reduxForm, formValueSelector, SubmissionError } from 'redux-form';
+import {
+  reduxForm, formValueSelector, SubmissionError, initialize,
+} from 'redux-form';
 import CreateQuestionPage from 'pages/Question/CreateQuestionPage';
 import { updateQuestion } from 'actions/questionAction';
 import {
@@ -11,6 +13,7 @@ const mapStateToProps = (state) => {
   const selector = formValueSelector('question-create');
   return ({
     topics: selector(state, 'topics'),
+    alternatives: selector(state, 'alternatives'),
     topicsList: state.topic.topics,
     disciplineFilters: state.filter.disciplineFilters,
     teachingLevelFilters: state.filter.teachingLevelFilters,
@@ -48,6 +51,12 @@ const mapDispatchToProps = dispatch => ({
   listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
   listSourceFilters: param => dispatch(listSourceFilters(param)),
   listTopics: param => dispatch(listTopics(param)),
+  prepareForm: () => {
+    dispatch(initialize('question-create', {
+      topics: [{}],
+      alternatives: [{}, {}, {}],
+    }));
+  },
 
   onSubmit: (values, d, props) => {
     const errors = [];

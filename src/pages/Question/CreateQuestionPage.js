@@ -417,10 +417,13 @@ const renderTopics = ({
 
 class CreateQuestionPage extends Component {
   componentDidMount() {
-    const { listDisciplineFilters, listTeachingLevelFilters, listSourceFilters } = this.props;
+    const {
+      listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, prepareForm,
+    } = this.props;
     listDisciplineFilters();
     listTeachingLevelFilters();
     listSourceFilters();
+    prepareForm();
   }
 
   getListTopics = (e, newValue) => {
