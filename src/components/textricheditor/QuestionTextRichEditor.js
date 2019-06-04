@@ -53,7 +53,7 @@ class QuestionTextRichEditor extends Component {
               locale: 'pt',
             }}
           />
-          <div className="hidden">
+          <div>
             <textarea
               className="width-100"
               disabled

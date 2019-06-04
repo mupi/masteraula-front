@@ -119,17 +119,35 @@ const renderNumericField = ({
 
 const renderQuestionTextEditor = (props) => {
   const {
-    placeholderEditor, input: { onChange, value }, disabled, id,
+    placeholderEditor,
+    input: { onChange, value }, disabled, id,
+    meta: { touched, error, warning },
   } = props;
 
   return (
-    <QuestionTextRichEditor
-      id={id}
-      disabled={disabled}
-      placeholder={placeholderEditor}
-      onChange={onChange}
-      value={value}
-    />
+    <div>
+      <QuestionTextRichEditor
+        id={id}
+        disabled={disabled}
+        placeholder={placeholderEditor}
+        onChange={onChange}
+        value={value}
+      />
+      { touched
+        && ((error && (
+        <span className="error-message-text">
+          {error}
+        </span>
+        ))
+        || (warning && (
+        <span>
+          {' '}
+          {warning}
+          {' '}
+        </span>
+        )))
+      }
+    </div>
   );
 };
 
@@ -481,6 +499,7 @@ class CreateQuestionPage extends Component {
                   id="statementEditorText"
                   disabled={false}
                   placeholderEditor="Escreva o enunciado da questão aqui ..."
+                  validate={requiredValidator}
                 />
               </Col>
             </Row>
