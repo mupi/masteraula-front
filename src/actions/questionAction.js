@@ -101,13 +101,14 @@ export const fetchQuestion = (id) => {
 // Function: Create a new question
 export const createQuestion = (props) => {
   function createNewQuestion() { return { type: CREATE_QUESTION }; }
-  function createQuestionSuccess(activeQuestion) { return { type: CREATE_QUESTION_SUCCESS, activeQuestion }; }
+  function createQuestionSuccess(newQuestion) { return { type: CREATE_QUESTION_SUCCESS, newQuestion }; }
   function createQuestionFailure(error) { return { type: CREATE_QUESTION_FAILURE, error }; }
   return (dispatch) => {
     dispatch(createNewQuestion(props));
     return questionService.createQuestion(props).then(
       (newQuestion) => {
         dispatch(createQuestionSuccess(newQuestion));
+        history.push(`/view-question/${newQuestion.id}`);
       },
       (error) => {
         dispatch(createQuestionFailure(error));
