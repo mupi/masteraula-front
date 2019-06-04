@@ -40,7 +40,7 @@ const QuestionCard = (props) => {
     removeSelectedQuestion, sourceFilters, yearFilters,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
-  const idSource = getIdFilter(sourceFilters, question.source);
+  const idSource = question.source ? getIdFilter(sourceFilters, question.source) : null;
   const idYear = getIdFilter(yearFilters, question.year);
   const tagList = question.tags.concat(question.topics);
 
@@ -81,6 +81,7 @@ const QuestionCard = (props) => {
               {' | '}
             </span>
           ) : ''}
+          {question.source && (
           <button
             type="button"
             className="question-card__filter-link btn btn-link"
@@ -88,6 +89,8 @@ const QuestionCard = (props) => {
           >
             {question.source}
           </button>
+          )
+          }
           {' '}
           <button
             type="button"
@@ -103,7 +106,7 @@ const QuestionCard = (props) => {
           <span className="question-card__more-info--lightgray hidden">
             {'autor: '}
           </span>
-          {/*<QuestionAuthor author={question.author} styleTag="question-card__info-section-item--italic" />*/}
+          {/* <QuestionAuthor author={question.author} styleTag="question-card__info-section-item--italic" /> */}
           {
             (tagList.length > 0) ? (
               <span className="question-card__more-info--lightgray">
