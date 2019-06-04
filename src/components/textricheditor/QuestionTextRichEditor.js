@@ -54,7 +54,7 @@ class QuestionTextRichEditor extends Component {
             }}
           />
           <div>
-            <textarea
+            <textarea hidden
               className="width-100"
               disabled
               value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
