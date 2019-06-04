@@ -60,7 +60,6 @@ const mapDispatchToProps = dispatch => ({
 
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
-
       profile.new_password1 = values.password_confirmation;
       profile.new_password2 = values.new_password;
       profile.old_password = values.old_password;

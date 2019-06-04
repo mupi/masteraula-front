@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { reduxForm, formValueSelector } from 'redux-form';
+import { reduxForm, formValueSelector, SubmissionError } from 'redux-form';
 import CreateQuestionPage from 'pages/Question/CreateQuestionPage';
 import { updateQuestion } from 'actions/questionAction';
 import {
@@ -25,6 +25,7 @@ const mapDispatchToProps = dispatch => ({
   listTopics: param => dispatch(listTopics(param)),
 
   onSubmit: (values, d, props) => {
+   
     const newQuestion = {
       statement: values.statement,
       tags: values.tags.split(',').map(tag => tag.trim()),
@@ -36,7 +37,7 @@ const mapDispatchToProps = dispatch => ({
       }).filter(topic => topic != null),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
       alternatives: values.alternatives.map(alternative => ({
-        is_correct: alternative.isCorrect,
+        is_correct: (alternative.isCorrect === 'true'),
         text: alternative.alternativeText,
       })),
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
@@ -44,7 +45,13 @@ const mapDispatchToProps = dispatch => ({
       year: values.year,
     };
 
-    // console.log(newQuestion);
+    console.log(newQuestion);
+
+    if (newQuestion && newQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
+      throw new SubmissionError({
+        isCorrect: 'Selecione uma resposta correta',
+      });
+    }
 
     return dispatch(updateQuestion(newQuestion));
   },

@@ -61,12 +61,13 @@ const renderField = ({
 
 // Basic Input as Radiobutton Field
 const renderCheckButtonField = ({
+  input,
+  type,
   nameGroup,
-  valueAlternative,
   meta: { touched, error, warning },
 }) => (
   <div>
-    <Input type="radio" name={nameGroup} value={valueAlternative} className="c-create-question__radio-button-field" defaultChecked />
+    <Input {...input} type={type} name={nameGroup} className="c-create-question__radio-button-field" />
     { touched
       && ((error && (
       <span className="error-message-text">
@@ -216,6 +217,16 @@ const renderSelectField = ({
   </div>
 );
 
+const renderError = ({ meta: { touched, error } }) => (
+  <div>
+    {touched && error && (
+      <span className="error-message-text">
+          {error}
+      </span>
+    )}
+  </div>
+);
+
 // Alternatives section
 const renderAlternatives = ({
   fields,
@@ -250,7 +261,8 @@ const renderAlternatives = ({
               name={`${alternative}.isCorrect`}
               component={renderCheckButtonField}
               nameGroup="alternatives"
-              valueAlternative={`${alternative}.id`}
+              type="radio"
+              value="true"
             />
           </Col>
           <Col sm="6">
@@ -278,6 +290,8 @@ const renderAlternatives = ({
         </Row>
       ))}
       <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
+      <Field name="isCorrect" component={renderError} />
+
     </Col>
   </Row>
 );
