@@ -354,6 +354,7 @@ const renderTopics = ({
                 className="form-control c-create-question__form-field"
                 label="Assunto"
                 optionDefault="-1"
+                validate={requiredSelectValidator}
               >
                 { topicsList && topicsList.map(subject => (
                   <option key={subject.id} value={subject.id}>

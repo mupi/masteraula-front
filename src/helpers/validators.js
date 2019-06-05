@@ -13,7 +13,7 @@ export const emailValidator = value => (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.
 export const requiredValidator = value => (value ? undefined : 'Campo obrigatório');
 
 
-export const requiredSelectValidator = value => ((value === '0' || value === undefined) ? 'Campo obrigatório' : undefined);
+export const requiredSelectValidator = value => ((value === '-1' || value === '0' || value === undefined) ? 'Campo obrigatório' : undefined);
 ;
 
 export const requiredMultiSelectValidator = value => (value && value.length !== 0 ? undefined : 'Campo obrigatório');
