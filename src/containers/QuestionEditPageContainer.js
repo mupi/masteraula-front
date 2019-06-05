@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
     role: state.session.session.user.groups,
   });
 };
- 
+
 const mapDispatchToProps = dispatch => ({
   fetchQuestion: id => dispatch(fetchQuestion(id)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),

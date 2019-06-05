@@ -4,7 +4,6 @@ import searchImg from 'assets/img/home/search.png';
 import moneyImg from 'assets/img/home/money.png';
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const HomePage = () => (
   <div className="c-public-home l-site-masteraula__public-home">

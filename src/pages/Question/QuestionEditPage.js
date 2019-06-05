@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import {
-  Container, Alert, Row, Col, Form, Button, Input,
+  Container, Alert, Row, Col, Form, Button,
 } from 'reactstrap';
 import { getTeachingLevel, getCleanCompleteStatement, getCleanAlternativeText } from 'helpers/question';
 import React, { Component } from 'react';
@@ -17,7 +17,7 @@ import TagList from 'components/tags/TagList';
 import { Field, FieldArray } from 'redux-form';
 import QuestionAuthor from 'components/question/QuestionAuthor';
 import { requiredSelectValidator } from 'helpers/validators';
-import MAReactTags from 'components/tags/MAReactTag';
+// import MAReactTags from 'components/tags/MAReactTag';
 import { history } from 'helpers/history';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 
@@ -29,7 +29,7 @@ const difficultyList = {
   ],
 };
 
-const renderField = ({
+/* const renderField = ({
   input,
   placeholder,
   type,
@@ -56,7 +56,7 @@ const renderField = ({
       )))
     }
   </div>
-);
+); */
 
 const renderMAMultiSelectTag = ({
   input,
@@ -86,7 +86,7 @@ const renderMAMultiSelectTag = ({
   </div>
 );
 
-const renderMAReactTags = ({
+/* const renderMAReactTags = ({
   input,
   placeholder,
   meta: { touched, error, warning },
@@ -112,7 +112,7 @@ const renderMAReactTags = ({
       )))
     }
   </div>
-);
+); */
 
 
 const renderSelectField = ({
@@ -267,7 +267,7 @@ const renderTopics = ({
             <Col sm="3" className="c-question-edit__col-btn-remove-topic">
               <Button
                 type="button"
-                title="Remove Member"
+                title="Remover topico"
                 className="c-question-edit__btn-remove-topic"
                 onClick={() => fields.remove(i)}
               >

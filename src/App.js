@@ -11,13 +11,14 @@ import TermsUsePage from 'pages/TermsUse/TermsUsePage';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 import HomePage from 'pages/Home/HomePage';
 
-import { 
+import {
   ViewDocumentPageContainer,
   ForgotPasswordPageContainer,
   UserProfilePageContainer,
   RedefinePasswordPageContainer,
   QuestionPageContainer,
   QuestionEditPageContainer,
+  CreateQuestionPageContainer,
   QuestionBasePageContainer,
   EditDocumentPageContainer,
   MenuContainer,
@@ -111,6 +112,7 @@ class App extends Component {
                   <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
                   <Route path="/view-question/:id" component={QuestionPageContainer} />
                   <Route path="/edit-question/:id" component={QuestionEditPageContainer} />
+                  <Route path="/create-question/" component={CreateQuestionPageContainer} />
                   <Route path="/user-profile" component={UserProfilePageContainer} />
                   <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
                   <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />

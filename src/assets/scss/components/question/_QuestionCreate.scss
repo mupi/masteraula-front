@@ -1,0 +1,41 @@
+//Question Creation Page where c-create-question is the main container
+.c-create-question {
+    &__row-info {
+      margin-bottom: 10px;
+    }
+
+    &__form-field{
+        font-size:14px;
+    }
+
+    &__radio-button-field{
+        margin-left: 0px;
+        margin-top: 0.75rem;
+    }
+
+    &__source-field, &__year-field, &__difficulty-field{
+        width: auto;
+
+        @include for-phone-only{
+            width: 100%;
+        }
+    } 
+
+    &__row-alternative{
+        text-align: center;
+    }
+
+    &__header-alternative {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    &__tags {
+        text-align: left;
+        .rw-popup-container, .rw-select {
+            display: none;
+        }
+
+        
+    }
+}
