@@ -41,7 +41,7 @@ const mapDispatchToProps = dispatch => ({
 
   onSubmit: (values, d, props) => {
     const errors = [];
-    const newQuestion = {
+    const myUpdatedQuestion = {
       statement: values.statement,
       tags: values.tags.split(',').map(tag => tag.trim()),
       topics_ids: values.topics.map((topic) => {
@@ -61,17 +61,17 @@ const mapDispatchToProps = dispatch => ({
       year: values.year,
     };
 
-    if (newQuestion && (newQuestion.statement.trim() === '<p></p>' || newQuestion.statement.trim() === '')) {
+    if (myUpdatedQuestion && (myUpdatedQuestion.statement.trim() === '<p></p>' || myUpdatedQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
     }
     // validations
-    if (newQuestion && newQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
+    if (myUpdatedQuestion && myUpdatedQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
       errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
     }
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
-    return dispatch(updateMyQuestion(newQuestion));
+    return dispatch(updateMyQuestion(myUpdatedQuestion));
   },
 });
 

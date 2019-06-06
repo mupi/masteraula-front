@@ -63,11 +63,12 @@ const renderField = ({
 const renderCheckButtonField = ({
   input,
   type,
+  valueCheck,
   nameGroup,
   meta: { touched, error, warning },
 }) => (
   <div>
-    <Input {...input} type={type} name={nameGroup} className="c-create-question__radio-button-field" />
+    <Input {...input} type={type} name={nameGroup} className="c-create-question__radio-button-field" checked={valueCheck} />
     { touched
         && ((error && (
         <span className="error-message-text">
@@ -214,7 +215,7 @@ const renderMultiselect = ({
   </div>
 );
 
-// Multiselect for Source
+// Multiselect
 const renderSelectField = ({
   input, label, meta: { touched, error }, children, optionDefault, className,
 }) => (
@@ -259,53 +260,53 @@ const renderAlternatives = ({
         <Col sm="6" className="align-self-center hidden-xs">Alternativa</Col>
         <Col sm="2" className="align-self-center hidden-xs">Remover</Col>
         { fields.length < 5
-            ? (
-              <Col sm="3">
-                <Button onClick={() => fields.push({})}>
-                  <FontAwesomeIcon
-                    icon="plus"
-                    className="btn__icon"
-                  />
+          ? (
+            <Col sm="3">
+              <Button onClick={() => fields.push({})}>
+                <FontAwesomeIcon
+                  icon="plus"
+                  className="btn__icon"
+                />
                 Adicionar alternativa
-                </Button>
-              </Col>
-            ) : ''}
+              </Button>
+            </Col>
+          ) : ''}
       </Row>
 
       {fields.map((alternative, i) => (
         <Row key={alternative} className="c-question__row-info c-create-question__row-alternative">
-            <Col sm="1">
-              <Field
-                name={`${alternative}.isCorrect`}
-                component={renderCheckButtonField}
-                nameGroup="alternatives"
-                type="radio"
-                value="true"
+          <Col sm="1">
+            <Field
+              name={`${alternative}.isCorrect`}
+              component={renderCheckButtonField}
+              nameGroup="alternatives"
+              type="radio"
+              valueCheck={`${alternative}.isCorrect`}
+            />
+          </Col>
+          <Col sm="6">
+            <Field
+              type="text"
+              component={renderField}
+              name={`${alternative}.alternativeText`}
+              label="Insira sua alternativa"
+              validate={requiredValidator}
+            />
+          </Col>
+          <Col sm="2" className="c-question-edit__col-btn-remove-topic">
+            <Button
+              type="button"
+              title="Remover alternativa"
+              className="c-question-edit__btn-remove-topic"
+              onClick={() => fields.remove(i)}
+            >
+              <FontAwesomeIcon
+                icon="trash-alt"
               />
-            </Col>
-            <Col sm="6">
-              <Field
-                type="text"
-                component={renderField}
-                name={`${alternative}.alternativeText`}
-                label="Insira sua alternativa"
-                validate={requiredValidator}
-              />
-            </Col>
-            <Col sm="2" className="c-question-edit__col-btn-remove-topic">
-              <Button
-                type="button"
-                title="Remover alternativa"
-                className="c-question-edit__btn-remove-topic"
-                onClick={() => fields.remove(i)}
-              >
-                <FontAwesomeIcon
-                  icon="trash-alt"
-                />
-              </Button>
-            </Col>
+            </Button>
+          </Col>
 
-          </Row>
+        </Row>
       ))}
       <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
       <Field name="isCorrect" component={renderError} />
@@ -325,14 +326,14 @@ const renderTopics = ({
         <Col sm="3" className="align-self-center hidden-xs">Subassunto</Col>
         <Col sm="3" className="align-self-center hidden-xs">Tópico</Col>
         <Col sm="3">
-            <Button onClick={() => fields.push({})}>
-              <FontAwesomeIcon
-                icon="plus"
-                className="btn__icon"
-              />
+          <Button onClick={() => fields.push({})}>
+            <FontAwesomeIcon
+              icon="plus"
+              className="btn__icon"
+            />
               Adicionar tópicos
-            </Button>
-          </Col>
+          </Button>
+        </Col>
       </Row>
 
       {fields.map((topicRow, i) => {
@@ -345,69 +346,69 @@ const renderTopics = ({
         const topics = selSubsubject != null ? selSubsubject.childs : null;
 
         return (
-            <Row key={topicRow} className="c-question__row-info c-question-edit__row-topic">
-              <Col sm="3">
-                <Field
-                  name={`${topicRow}.subject`}
-                  type="text"
-                  component={renderSelectField}
-                  className="form-control c-create-question__form-field"
-                  label="Assunto"
-                  optionDefault="-1"
-                  validate={requiredSelectValidator}
-                >
-                  { topicsList && topicsList.map(subject => (
-                    <option key={subject.id} value={subject.id}>
+          <Row key={topicRow} className="c-question__row-info c-question-edit__row-topic">
+            <Col sm="3">
+              <Field
+                name={`${topicRow}.subject`}
+                type="text"
+                component={renderSelectField}
+                className="form-control c-create-question__form-field"
+                label="Assunto"
+                optionDefault="-1"
+                validate={requiredSelectValidator}
+              >
+                { topicsList && topicsList.map(subject => (
+                  <option key={subject.id} value={subject.id}>
                       {subject.name}
                     </option>
-                  )) }
-                </Field>
-              </Col>
-              <Col sm="3">
-                <Field
-                  name={`${topicRow}.subsubject`}
-                  type="text"
-                  component={renderSelectField}
-                  className="form-control c-create-question__form-field"
-                  label="Subassunto"
-                  optionDefault="-1"
-                >
-                  { subsubjects && subsubjects.map(subject => (
-                    <option key={subject.id} value={subject.id}>
+                )) }
+              </Field>
+            </Col>
+            <Col sm="3">
+              <Field
+                name={`${topicRow}.subsubject`}
+                type="text"
+                component={renderSelectField}
+                className="form-control c-create-question__form-field"
+                label="Subassunto"
+                optionDefault="-1"
+              >
+                { subsubjects && subsubjects.map(subject => (
+                  <option key={subject.id} value={subject.id}>
                       {subject.name}
                     </option>
-                  )) }
-                </Field>
-              </Col>
-              <Col sm="3">
-                <Field
-                  name={`${topicRow}.topic`}
-                  type="text"
-                  component={renderSelectField}
-                  className="form-control c-create-question__form-field"
-                  label="Tópico"
-                  optionDefault="-1"
-                >
-                  { topics && topics.map(subject => (
-                    <option key={subject.id} value={subject.id}>
+                )) }
+              </Field>
+            </Col>
+            <Col sm="3">
+              <Field
+                name={`${topicRow}.topic`}
+                type="text"
+                component={renderSelectField}
+                className="form-control c-create-question__form-field"
+                label="Tópico"
+                optionDefault="-1"
+              >
+                { topics && topics.map(subject => (
+                  <option key={subject.id} value={subject.id}>
                       {subject.name}
                     </option>
-                  )) }
-                </Field>
-              </Col>
-              <Col sm="3" className="c-question-edit__col-btn-remove-topic">
-                <Button
-                  type="button"
-                  title="Remove Member"
-                  className="c-question-edit__btn-remove-topic"
-                  onClick={() => fields.remove(i)}
-                >
-                  <FontAwesomeIcon
-                    icon="trash-alt"
-                  />
-                </Button>
-              </Col>
-            </Row>
+                )) }
+              </Field>
+            </Col>
+            <Col sm="3" className="c-question-edit__col-btn-remove-topic">
+              <Button
+                type="button"
+                title="Remove Member"
+                className="c-question-edit__btn-remove-topic"
+                onClick={() => fields.remove(i)}
+              >
+                <FontAwesomeIcon
+                  icon="trash-alt"
+                />
+              </Button>
+            </Col>
+          </Row>
         );
       })}
       <Row>{error && <span className="error-message-text">{error}</span>}</Row>
@@ -425,8 +426,6 @@ class MyQuestionEditPage extends Component {
     listTeachingLevelFilters();
     listSourceFilters();
     const { fetchQuestion, match } = this.props;
-    console.log('EN MY QUESTION EDIT...');
-    console.log(match.params.id);
     fetchQuestion(match.params.id);
 
     prepareForm();
@@ -443,7 +442,9 @@ class MyQuestionEditPage extends Component {
       const {
         activeQuestion, userId, isFetching, error, topicsList, topics, pristine, disciplineFilters, sourceFilters, teachingLevelFilters, handleSubmit,
       } = this.props;
-      
+
+      const authorPK = activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
+
       if (isFetching) {
         return (
           <HomeUserPage>
@@ -465,7 +466,7 @@ class MyQuestionEditPage extends Component {
       }
 
 
-      if (false) {
+      if (authorPK !== userId) {
         return (
           <HomeUserPage>
             <Alert color="danger">
@@ -577,7 +578,7 @@ class MyQuestionEditPage extends Component {
                       optionDefault="0"
                     >
                       { sourceFilters && sourceFilters.map(source => (
-                        <option className="c-user-profile__state-city-dropdown-item" key={source.id} value={source.id}>
+                        <option className="c-user-profile__state-city-dropdown-item" key={source.name} value={source.name}>
                           {getTeachingLevel(source.name)}
                         </option>
                       )) }

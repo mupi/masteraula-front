@@ -75,6 +75,15 @@ export const fetchQuestion = (id) => {
           });
           allTopics.push({});
 
+          const alternatives = activeQuestion.alternatives.map(alternative => ({
+            id: alternative.id,
+            alternativeText: alternative.text,
+            isCorrect: alternative.is_correct,
+          }));
+
+          console.log(alternatives);
+          console.log(activeQuestion.item);
+
           const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
             id: lobj.id,
             tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
@@ -99,6 +108,7 @@ export const fetchQuestion = (id) => {
             learning_objects: newLearningObjectList,
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
             topics: allTopics,
+            alternatives,
 
           }));
           dispatch(listTopics(activeQuestion.disciplines));

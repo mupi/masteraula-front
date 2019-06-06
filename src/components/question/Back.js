@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Back = ({ lastLocation }) => {
   return (
-    lastLocation && !lastLocation.pathname.includes('edit-question')
+    lastLocation && !lastLocation.pathname.includes('edit-question') && !lastLocation.pathname.includes('classify-question')
       ? (
         <Link className="mr-auto btn btn-secondary c-question__btn-back btn__icon" to={lastLocation || '/'}>
           {' '}
