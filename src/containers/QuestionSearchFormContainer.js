@@ -23,7 +23,8 @@ const setDispatchSearchText = (searchText) => {
 
 const mapDispatchToProps = dispatch => ({
 
-  addMyQuestionsFilter: (author, value) => { 
+  addMyQuestionsFilter: (author, value) => {
+    history.replace('/question-base/1');
     dispatch(addMyQuestionsFilter(author, value));
   },
   onSubmit: (values) => {
