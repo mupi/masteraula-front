@@ -1,5 +1,6 @@
 import { questionService } from 'services';
 import { history } from 'helpers/history';
+import { toast } from 'react-toastify';
 import { initialize } from 'redux-form';
 import { listTopics } from 'actions/topicAction';
 
@@ -38,6 +39,12 @@ export const LIST_QUESTION_PAGE_FAILURE = 'LIST_QUESTION_PAGE_FAILURE';
 // Fetch documents that belong to question
 export const LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS = 'LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS';
 export const LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS = 'LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS';
+
+
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
 
 export const fetchQuestion = (id) => {
   function requestQuestion() { return { type: FETCH_QUESTION }; }
@@ -130,6 +137,7 @@ export const createQuestion = (props) => {
       (newQuestion) => {
         dispatch(createQuestionSuccess(newQuestion));
         history.push(`/view-question/${newQuestion.id}`);
+        toast.success('Questão criada com sucesso', optionsSuccess);
       },
       (error) => {
         dispatch(createQuestionFailure(error));
@@ -139,7 +147,6 @@ export const createQuestion = (props) => {
 };
 
 // Function: Update an active question
-// IMPORTANT: it should be 'classify-question' form, but i didn't change yet.
 export const updateQuestion = (props) => {
   function updateActiveQuestion() { return { type: UPDATE_QUESTION }; }
   function updateQuestionSuccess(activeQuestion) { return { type: UPDATE_QUESTION_SUCCESS, activeQuestion }; }

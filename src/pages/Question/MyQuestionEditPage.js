@@ -64,10 +64,17 @@ const renderCheckButtonField = ({
   input,
   type,
   nameGroup,
+  valueCheck,
   meta: { touched, error, warning },
 }) => (
   <div>
-    <Input {...input} type={type} name={nameGroup} className="c-create-question__radio-button-field" />
+    <Input
+      {...input}
+      type={type}
+      name={nameGroup}
+      className="c-create-question__radio-button-field"
+      checked={valueCheck}
+    />
     { touched
       && ((error && (
       <span className="error-message-text">

@@ -31,7 +31,7 @@ export const minLength3Alternatives = (minLength(3, 'alternativas'));
 export const minLength1Topics = (minLength(1, 'tópico'));
 
 
-export const minLength2Tags = value => (((value && (value.split(',').length < 2)) || value === undefined) ? 'Insira minimo 2 tags' : undefined);
+export const minLength2Tags = value => (((value && (value.split(',').length < 2)) || value === undefined) ? 'Insira no minimo 2 tags' : undefined);
 
 const maxValue = max => value => (value && value > max ? `O valor máximo permitido é ${max}` : undefined);
 export const maxYearValue = maxValue(2019);
