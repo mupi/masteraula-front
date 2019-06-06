@@ -87,7 +87,7 @@ export const fetchQuestion = (id) => {
           }));
 
           // initialize Question Edit Page for users with Editor role
-          dispatch(initialize('question-edit', {
+          dispatch(initialize('classify-question', {
             difficulty: activeQuestion.difficulty,
             learning_objects: newLearningObjectList,
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
@@ -139,6 +139,7 @@ export const createQuestion = (props) => {
 };
 
 // Function: Update an active question
+// IMPORTANT: it should be 'classify-question' form, but i didn't change yet.
 export const updateQuestion = (props) => {
   function updateActiveQuestion() { return { type: UPDATE_QUESTION }; }
   function updateQuestionSuccess(activeQuestion) { return { type: UPDATE_QUESTION_SUCCESS, activeQuestion }; }
@@ -180,7 +181,7 @@ export const updateQuestion = (props) => {
           tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
         }));
 
-        dispatch(initialize('question-edit', {
+        dispatch(initialize('classify-question', {
           difficulty: activeQuestion.difficulty,
           learning_objects: newLearningObjectList,
           tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
@@ -195,7 +196,7 @@ export const updateQuestion = (props) => {
 };
 
 
-// Function: Update My active question
+// Function: Update MY active question
 export const updateMyQuestion = (props) => {
   function updateActiveQuestion() { return { type: UPDATE_QUESTION }; }
   function updateQuestionSuccess(activeQuestion) { return { type: UPDATE_QUESTION_SUCCESS, activeQuestion }; }
@@ -237,7 +238,7 @@ export const updateMyQuestion = (props) => {
           tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
         }));
 
-        dispatch(initialize('question-edit', {
+        dispatch(initialize('myquestion-edit', {
           difficulty: activeQuestion.difficulty,
           learning_objects: newLearningObjectList,
           tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
