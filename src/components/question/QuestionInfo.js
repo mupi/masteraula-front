@@ -30,6 +30,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
         </span>
       </Col>
     </Row>
+    { question.source && (
     <Row className="c-question__row-info">
       <Col className="info-label" sm="4" xs="4">
       Vestibular
@@ -40,6 +41,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
         </span>
       </Col>
     </Row>
+    )}
     <Row>
       <Col className="info-label" sm="4" xs="4">
           Disciplinas

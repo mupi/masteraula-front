@@ -3,7 +3,7 @@ import {
   reduxForm, formValueSelector, SubmissionError, initialize,
 } from 'redux-form';
 import CreateQuestionPage from 'pages/Question/CreateQuestionPage';
-import { updateQuestion } from 'actions/questionAction';
+import { createQuestion } from 'actions/questionAction';
 import {
   listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
 } from 'actions/filterAction';
@@ -74,12 +74,12 @@ const mapDispatchToProps = dispatch => ({
         is_correct: (alternative.isCorrect === 'true'),
         text: alternative.alternativeText,
       })),
+      source_id: values.source !== '0' ? values.source : null,
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
       year: values.year,
     };
 
-    console.log(newQuestion);
     if (newQuestion && (newQuestion.statement.trim() === '<p></p>' || newQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
     }
@@ -90,8 +90,7 @@ const mapDispatchToProps = dispatch => ({
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
-
-    return dispatch(updateQuestion(newQuestion));
+    return dispatch(createQuestion(newQuestion));
   },
 });
 
