@@ -18,6 +18,7 @@ import {
   ADD_SELECTED_YEAR_FILTER,
   REMOVE_SELECTED_YEAR_FILTER,
   SET_SEARCH_TEXT,
+  ADD_MYQUESTIONS_FILTER,
   CLEAR_SELECTED_FILTERS, CLEAR_SEARCH,
 } from 'actions/filterAction';
 
@@ -191,6 +192,14 @@ export const filter = (state = initialState, action) => {
         searchText: action.searchText,
       });
     }
+
+    case ADD_MYQUESTIONS_FILTER: {
+      return Object.assign({}, state, {
+        onlyMyQuestions: action.onlyMyQuestions,
+        author: action.author,
+      });
+    }
+
     case CLEAR_SELECTED_FILTERS: {
       return Object.assign({}, state, {
         disciplinesSelected: [],
@@ -198,6 +207,7 @@ export const filter = (state = initialState, action) => {
         difficultiesSelected: [],
         sourcesSelected: [],
         yearsSelected: [],
+        onlyMyQuestions: false,
       });
     }
     case CLEAR_SEARCH: {

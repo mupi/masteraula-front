@@ -50,6 +50,7 @@ const mapStateToProps = state => ({
   activeDocument: state.document.activeDocument,
   sourceFilters: state.filter.sourceFilters,
   yearFilters: state.filter.yearFilters,
+  user: state.session.session.user,
 });
 
 const mapDispatchToProps = dispatch => ({

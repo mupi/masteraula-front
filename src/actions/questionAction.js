@@ -190,6 +190,7 @@ export const listQuestions = (page, filter) => {
           dispatch(fetchQuestionPageSuccess(questionPage));
           dispatch(initialize('questionSearch', {
             searchText: filter.searchText,
+            onlyMyQuestions: filter.onlyMyQuestions,
           }));
         },
         (error) => {
