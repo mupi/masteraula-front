@@ -41,7 +41,7 @@ const QuestionCard = (props) => {
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
   const idSource = question.source ? getIdFilter(sourceFilters, question.source) : null;
-  const idYear = getIdFilter(yearFilters, question.year);
+  const idYear = question.year ? getIdFilter(yearFilters, question.year) : null;
   const tagList = question.tags.concat(question.topics);
 
   return (
@@ -92,14 +92,15 @@ const QuestionCard = (props) => {
           )
           }
           {' '}
-          <button
+          {question.year && (<button
             type="button"
             className="question-card__filter-link btn btn-link"
             onClick={(e => handleClick(e, addSelectedYearFilter, idYear, question.year.toString().trim()))}
           >
             {question.year}
           </button>
-
+          )
+          }
           <span className="question-card__more-info--lightgray hidden">
             {' | '}
           </span>

@@ -72,7 +72,7 @@ const renderField = ({
 class QuestionSearchForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { authorState: props.author };
+    this.state = { authorState: '', onlyMyQuestionsState: false };
     this.handleFilter = this.handleFilter.bind(this);
   }
 
@@ -81,7 +81,7 @@ class QuestionSearchForm extends Component {
     const valueFilter = event.target.value;
     this.setState({ authorState: author });
 
-    addMyQuestionsFilter(valueFilter, event.target.checked);  
+    addMyQuestionsFilter(valueFilter, event.target.checked); 
   }
 
   render() {
@@ -136,7 +136,7 @@ class QuestionSearchForm extends Component {
               type="checkbox"
               value={authorState || author}
               onChange={this.handleFilter}
-              checked={onlyMyQuestions}
+            //  checked={false || onlyMyQuestions}
               disabled={isFetchingQuestions}
             />
 
