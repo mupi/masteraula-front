@@ -63,26 +63,25 @@ const renderField = ({
 const renderCheckButtonField = ({
   input,
   type,
-  valueCheck,
   nameGroup,
   meta: { touched, error, warning },
 }) => (
   <div>
-    <Input {...input} type={type} name={nameGroup} className="c-create-question__radio-button-field" checked={valueCheck} />
+    <Input {...input} type={type} name={nameGroup} className="c-create-question__radio-button-field" />
     { touched
-        && ((error && (
-        <span className="error-message-text">
-          {error}
-        </span>
-        ))
-        || (warning && (
-        <span>
-          {' '}
-          {warning}
-          {' '}
-        </span>
-        )))
-      }
+      && ((error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
   </div>
 );
 
@@ -233,7 +232,7 @@ const renderSelectField = ({
         </span>
       )}
     </div>
-  </div>
+  </div> 
 );
 
 const renderError = ({ meta: { touched, error } }) => (
@@ -281,7 +280,6 @@ const renderAlternatives = ({
               component={renderCheckButtonField}
               nameGroup="alternatives"
               type="radio"
-              valueCheck={`${alternative}.isCorrect`}
             />
           </Col>
           <Col sm="6">
@@ -359,8 +357,8 @@ const renderTopics = ({
               >
                 { topicsList && topicsList.map(subject => (
                   <option key={subject.id} value={subject.id}>
-                      {subject.name}
-                    </option>
+                    {subject.name}
+                  </option>
                 )) }
               </Field>
             </Col>
@@ -375,8 +373,8 @@ const renderTopics = ({
               >
                 { subsubjects && subsubjects.map(subject => (
                   <option key={subject.id} value={subject.id}>
-                      {subject.name}
-                    </option>
+                    {subject.name}
+                  </option>
                 )) }
               </Field>
             </Col>
@@ -391,8 +389,8 @@ const renderTopics = ({
               >
                 { topics && topics.map(subject => (
                   <option key={subject.id} value={subject.id}>
-                      {subject.name}
-                    </option>
+                    {subject.name}
+                  </option>
                 )) }
               </Field>
             </Col>
@@ -470,7 +468,7 @@ class MyQuestionEditPage extends Component {
         return (
           <HomeUserPage>
             <Alert color="danger">
-                Você não tem permissão para visualizar esta página.
+                Você não tem permissão para editar esta questão.
             </Alert>
           </HomeUserPage>
         );

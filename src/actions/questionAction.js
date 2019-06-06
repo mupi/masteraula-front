@@ -81,9 +81,6 @@ export const fetchQuestion = (id) => {
             isCorrect: alternative.is_correct,
           }));
 
-          console.log(alternatives);
-          console.log(activeQuestion.item);
-
           const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
             id: lobj.id,
             tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
@@ -109,7 +106,6 @@ export const fetchQuestion = (id) => {
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
             topics: allTopics,
             alternatives,
-
           }));
           dispatch(listTopics(activeQuestion.disciplines));
           dispatch(fetchQuestionSuccess(activeQuestion));

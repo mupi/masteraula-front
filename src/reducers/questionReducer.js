@@ -109,6 +109,7 @@ export const question = (state = initialState, action) => {
         isCreating: true,
       });
     case CREATE_QUESTION_SUCCESS: {
+      toast.success('Questão criada com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeQuestion: action.newQuestion,
         isCreating: false,
