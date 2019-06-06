@@ -95,7 +95,7 @@ export const fetchQuestion = (id) => {
           })); 
 
           // initialize My Question Edit Page for owner's question
-          dispatch(initialize('myquestion-edit', {
+          dispatch(initialize('edit-question', {
             year: activeQuestion.year,
             source: activeQuestion.source,
             statement: activeQuestion.statement,
@@ -238,7 +238,7 @@ export const updateMyQuestion = (props) => {
           tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
         }));
 
-        dispatch(initialize('myquestion-edit', {
+        dispatch(initialize('edit-question', {
           difficulty: activeQuestion.difficulty,
           learning_objects: newLearningObjectList,
           tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),

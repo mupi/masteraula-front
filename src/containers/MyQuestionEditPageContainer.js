@@ -10,7 +10,7 @@ import {
 import { listTopics } from 'actions/topicAction';
 
 const mapStateToProps = (state) => {
-  const selector = formValueSelector('myquestion-edit');
+  const selector = formValueSelector('edit-question');
   const { user } = state.session.session;
 
   return ({
@@ -33,7 +33,7 @@ const mapDispatchToProps = dispatch => ({
   listSourceFilters: param => dispatch(listSourceFilters(param)),
   listTopics: param => dispatch(listTopics(param)),
   prepareForm: () => {
-    dispatch(initialize('myquestion-edit', {
+    dispatch(initialize('edit-question', {
       topics: [{}],
       alternatives: [{}, {}, {}],
     }));
@@ -71,7 +71,7 @@ const mapDispatchToProps = dispatch => ({
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
-    return dispatch(updateMyQuestion(myUpdatedQuestion));
+    return dispatch(updateMyQuestion(myUpdatedQuestion)); 
   },
 });
 
@@ -79,7 +79,7 @@ const MyQuestionEditPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(reduxForm({
-  form: 'myquestion-edit',
+  form: 'edit-question',
 })(MyQuestionEditPage));
 
 export default MyQuestionEditPageContainer;
