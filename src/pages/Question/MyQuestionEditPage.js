@@ -1,139 +1,139 @@
 import {
-    Container, Alert, Row, Col, Button, Form, Input,
-  } from 'reactstrap';
-  import React, { Component } from 'react';
-  import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-  import { ToastContainer } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
-  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-  import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
-  import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-  import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
-  import {
-    requiredValidator,
-    requiredMultiSelectValidator,
-    requiredSelectValidator,
-    mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, minLength2Tags,
-  } from 'helpers/validators';
-  import { Field, FieldArray } from 'redux-form';
-  import { getTeachingLevel } from 'helpers/question';
-  import Multiselect from 'react-widgets/lib/Multiselect';
-  
-  const difficultyList = {
-    difficulties: [
-      { id: 'E', name: 'Fácil' },
-      { id: 'M', name: 'Médio' },
-      { id: 'H', name: 'Difícil' },
-    ],
-  };
-  
-  // Basic Input Field
-  const renderField = ({
-    input,
-    label,
-    type,
+  Container, Alert, Row, Col, Button, Form, Input,
+} from 'reactstrap';
+import React, { Component } from 'react';
+import HomeUserPage from 'pages/HomeUser/HomeUserPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
+import {
+  requiredValidator,
+  requiredMultiSelectValidator,
+  requiredSelectValidator,
+  mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, minLength2Tags,
+} from 'helpers/validators';
+import { Field, FieldArray } from 'redux-form';
+import { getTeachingLevel } from 'helpers/question';
+import Multiselect from 'react-widgets/lib/Multiselect';
+
+const difficultyList = {
+  difficulties: [
+    { id: 'E', name: 'Fácil' },
+    { id: 'M', name: 'Médio' },
+    { id: 'H', name: 'Difícil' },
+  ],
+};
+
+// Basic Input Field
+const renderField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error, warning },
+}) => (
+  <div className="text-left">
+    <Input
+      {...input}
+      placeholder={label}
+      type={type}
+      className="form-control c-create-question__form-field"
+    />
+    { touched
+        && ((error && (
+        <span className="error-message-text">
+          {error}
+        </span>
+        ))
+        || (warning && (
+        <span>
+          {' '}
+          {warning}
+          {' '}
+        </span>
+        )))
+      }
+  </div>
+);
+
+
+// Basic Input as Radiobutton Field
+const renderCheckButtonField = ({
+  input,
+  type,
+  nameGroup,
+  meta: { touched, error, warning },
+}) => (
+  <div>
+    <Input {...input} type={type} name={nameGroup} className="c-create-question__radio-button-field" />
+    { touched
+        && ((error && (
+        <span className="error-message-text">
+          {error}
+        </span>
+        ))
+        || (warning && (
+        <span>
+          {' '}
+          {warning}
+          {' '}
+        </span>
+        )))
+      }
+  </div>
+);
+
+// Numeric Input Field
+const renderNumericField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error, warning },
+  className,
+}) => (
+  <div>
+    <Input
+      {...input}
+      placeholder={label}
+      type={type}
+      className={className}
+    />
+    { touched
+        && ((error && (
+        <span className="error-message-text">
+          {error}
+        </span>
+        ))
+        || (warning && (
+        <span>
+          {' '}
+          {warning}
+          {' '}
+        </span>
+        )))
+      }
+  </div>
+);
+
+const renderQuestionTextEditor = (props) => {
+  const {
+    placeholderEditor,
+    input: { onChange, value }, disabled, id,
     meta: { touched, error, warning },
-  }) => (
-    <div className="text-left">
-      <Input
-        {...input}
-        placeholder={label}
-        type={type}
-        className="form-control c-create-question__form-field"
+  } = props;
+
+  return (
+    <div>
+      <QuestionTextRichEditor
+        id={id}
+        disabled={disabled}
+        placeholder={placeholderEditor}
+        onChange={onChange}
+        value={value}
       />
       { touched
-        && ((error && (
-        <span className="error-message-text">
-          {error}
-        </span>
-        ))
-        || (warning && (
-        <span>
-          {' '}
-          {warning}
-          {' '}
-        </span>
-        )))
-      }
-    </div>
-  );
-  
-  
-  // Basic Input as Radiobutton Field
-  const renderCheckButtonField = ({
-    input,
-    type,
-    nameGroup,
-    meta: { touched, error, warning },
-  }) => (
-    <div>
-      <Input {...input} type={type} name={nameGroup} className="c-create-question__radio-button-field" />
-      { touched
-        && ((error && (
-        <span className="error-message-text">
-          {error}
-        </span>
-        ))
-        || (warning && (
-        <span>
-          {' '}
-          {warning}
-          {' '}
-        </span>
-        )))
-      }
-    </div>
-  );
-  
-  // Numeric Input Field
-  const renderNumericField = ({
-    input,
-    label,
-    type,
-    meta: { touched, error, warning },
-    className,
-  }) => (
-    <div>
-      <Input
-        {...input}
-        placeholder={label}
-        type={type}
-        className={className}
-      />
-      { touched
-        && ((error && (
-        <span className="error-message-text">
-          {error}
-        </span>
-        ))
-        || (warning && (
-        <span>
-          {' '}
-          {warning}
-          {' '}
-        </span>
-        )))
-      }
-    </div>
-  );
-  
-  const renderQuestionTextEditor = (props) => {
-    const {
-      placeholderEditor,
-      input: { onChange, value }, disabled, id,
-      meta: { touched, error, warning },
-    } = props;
-  
-    return (
-      <div>
-        <QuestionTextRichEditor
-          id={id}
-          disabled={disabled}
-          placeholder={placeholderEditor}
-          onChange={onChange}
-          value={value}
-        />
-        { touched
           && ((error && (
           <span className="error-message-text">
             {error}
@@ -147,57 +147,57 @@ import {
           </span>
           )))
         }
-      </div>
-    );
-  };
-  
-  // Multiselect for Tags field
-  // touche is not working with multiselectTag
-  const renderMAMultiSelectTag = ({
-    input,
-    placeholder,
-    meta: {
-      error,
-    },
-  }) => (
-    <div className="c-create-question__tags">
-      <MAMultiSelectTag
-        input={input}
-        onChange={value => input.onChange(value)}
-        placeholder={placeholder}
-      />
-      { error && (
-        <span className="error-message-text">
-          {error}
-        </span>
-      )
-     }
     </div>
   );
-  
-  const messages = {
-    emptyList: 'Não existem resultados',
-    emptyFilter: 'Não existem resultados que coincidam',
-  };
-  
-  // Multiselect for Disciplines and Teaching Level
-  const renderMultiselect = ({
-    input, data, placeholder, valueField, textField,
-    meta: { touched, error, warning },
-  
-  }) => (
-    <div>
-      <Multiselect
-        {...input}
-        onBlur={() => input.onBlur()}
-        value={input.value || []}
-        data={data}
-        valueField={valueField}
-        textField={textField}
-        placeholder={placeholder}
-        messages={messages}
-      />
-      { touched
+};
+
+// Multiselect for Tags field
+// touche is not working with multiselectTag
+const renderMAMultiSelectTag = ({
+  input,
+  placeholder,
+  meta: {
+    error,
+  },
+}) => (
+  <div className="c-create-question__tags">
+    <MAMultiSelectTag
+      input={input}
+      onChange={value => input.onChange(value)}
+      placeholder={placeholder}
+    />
+    { error && (
+    <span className="error-message-text">
+      {error}
+    </span>
+    )
+     }
+  </div>
+);
+
+const messages = {
+  emptyList: 'Não existem resultados',
+  emptyFilter: 'Não existem resultados que coincidam',
+};
+
+// Multiselect for Disciplines and Teaching Level
+const renderMultiselect = ({
+  input, data, placeholder, valueField, textField,
+  meta: { touched, error, warning },
+
+}) => (
+  <div>
+    <Multiselect
+      {...input}
+      onBlur={() => input.onBlur()}
+      value={input.value || []}
+      data={data}
+      valueField={valueField}
+      textField={textField}
+      placeholder={placeholder}
+      messages={messages}
+    />
+    { touched
         && ((error && (
         <span className="error-message-text">
           {error}
@@ -211,54 +211,54 @@ import {
         </span>
         )))
       }
-    </div>
-  );
-  
-  // Multiselect for Source
-  const renderSelectField = ({
-    input, label, meta: { touched, error }, children, optionDefault, className,
-  }) => (
+  </div>
+);
+
+// Multiselect for Source
+const renderSelectField = ({
+  input, label, meta: { touched, error }, children, optionDefault, className,
+}) => (
+  <div>
     <div>
-      <div>
-        <select {...input} className={className}>
-          <option value={optionDefault}>
-            {label}
-          </option>
-          {children}
-        </select>
-        {touched && error && (
-        <span className="error-message-text">
-            {error}
-        </span>
-        )}
-      </div>
-    </div>
-  );
-  
-  const renderError = ({ meta: { touched, error } }) => (
-    <div>
+      <select {...input} className={className}>
+        <option value={optionDefault}>
+          {label}
+        </option>
+        {children}
+      </select>
       {touched && error && (
         <span className="error-message-text">
             {error}
         </span>
       )}
     </div>
-  );
-  
-  // Alternatives section
-  const renderAlternatives = ({
-    fields,
-    meta: {
-      error,
-    },
-  }) => (
-    <Row>
-      <Col md="12">
-        <Row className="c-question__row-info c-create-question__row-alternative c-create-question__header-alternative">
-          <Col sm="1" className="align-self-center hidden-xs">É correta</Col>
-          <Col sm="6" className="align-self-center hidden-xs">Alternativa</Col>
-          <Col sm="2" className="align-self-center hidden-xs">Remover</Col>
-          { fields.length < 5
+  </div>
+);
+
+const renderError = ({ meta: { touched, error } }) => (
+  <div>
+    {touched && error && (
+    <span className="error-message-text">
+      {error}
+    </span>
+    )}
+  </div>
+);
+
+// Alternatives section
+const renderAlternatives = ({
+  fields,
+  meta: {
+    error,
+  },
+}) => (
+  <Row>
+    <Col md="12">
+      <Row className="c-question__row-info c-create-question__row-alternative c-create-question__header-alternative">
+        <Col sm="1" className="align-self-center hidden-xs">É correta</Col>
+        <Col sm="6" className="align-self-center hidden-xs">Alternativa</Col>
+        <Col sm="2" className="align-self-center hidden-xs">Remover</Col>
+        { fields.length < 5
             ? (
               <Col sm="3">
                 <Button onClick={() => fields.push({})}>
@@ -270,10 +270,10 @@ import {
                 </Button>
               </Col>
             ) : ''}
-        </Row>
-  
-        {fields.map((alternative, i) => (
-          <Row key={alternative} className="c-question__row-info c-create-question__row-alternative">
+      </Row>
+
+      {fields.map((alternative, i) => (
+        <Row key={alternative} className="c-question__row-info c-create-question__row-alternative">
             <Col sm="1">
               <Field
                 name={`${alternative}.isCorrect`}
@@ -304,27 +304,27 @@ import {
                 />
               </Button>
             </Col>
-  
+
           </Row>
-        ))}
-        <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
-        <Field name="isCorrect" component={renderError} />
-  
-      </Col>
-    </Row>
-  );
-  
-  // Topic section
-  const renderTopics = ({
-    fields, meta: { error }, topicsList, selectedTopics,
-  }) => (
-    <Row>
-      <Col md="12">
-        <Row className="c-question__row-info c-question-edit__row-topic c-question-edit__header-topic">
-          <Col sm="3" className="align-self-center hidden-xs">Assunto</Col>
-          <Col sm="3" className="align-self-center hidden-xs">Subassunto</Col>
-          <Col sm="3" className="align-self-center hidden-xs">Tópico</Col>
-          <Col sm="3">
+      ))}
+      <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
+      <Field name="isCorrect" component={renderError} />
+
+    </Col>
+  </Row>
+);
+
+// Topic section
+const renderTopics = ({
+  fields, meta: { error }, topicsList, selectedTopics,
+}) => (
+  <Row>
+    <Col md="12">
+      <Row className="c-question__row-info c-question-edit__row-topic c-question-edit__header-topic">
+        <Col sm="3" className="align-self-center hidden-xs">Assunto</Col>
+        <Col sm="3" className="align-self-center hidden-xs">Subassunto</Col>
+        <Col sm="3" className="align-self-center hidden-xs">Tópico</Col>
+        <Col sm="3">
             <Button onClick={() => fields.push({})}>
               <FontAwesomeIcon
                 icon="plus"
@@ -333,18 +333,18 @@ import {
               Adicionar tópicos
             </Button>
           </Col>
-        </Row>
-  
-        {fields.map((topicRow, i) => {
-          const selSubject = (selectedTopics[i].subject != null && topicsList)
-            ? topicsList.find(s => s.id === parseInt(selectedTopics[i].subject, 10)) : null;
-          const subsubjects = selSubject != null ? selSubject.childs : null;
-  
-          const selSubsubject = (selSubject != null && selectedTopics[i].subsubject != null && subsubjects)
-            ? subsubjects.find(s => s.id === parseInt(selectedTopics[i].subsubject, 10)) : null;
-          const topics = selSubsubject != null ? selSubsubject.childs : null;
-  
-          return (
+      </Row>
+
+      {fields.map((topicRow, i) => {
+        const selSubject = (selectedTopics[i].subject != null && topicsList)
+          ? topicsList.find(s => s.id === parseInt(selectedTopics[i].subject, 10)) : null;
+        const subsubjects = selSubject != null ? selSubject.childs : null;
+
+        const selSubsubject = (selSubject != null && selectedTopics[i].subsubject != null && subsubjects)
+          ? subsubjects.find(s => s.id === parseInt(selectedTopics[i].subsubject, 10)) : null;
+        const topics = selSubsubject != null ? selSubsubject.childs : null;
+
+        return (
             <Row key={topicRow} className="c-question__row-info c-question-edit__row-topic">
               <Col sm="3">
                 <Field
@@ -408,38 +408,43 @@ import {
                 </Button>
               </Col>
             </Row>
-          );
-        })}
-        <Row>{error && <span className="error-message-text">{error}</span>}</Row>
-      </Col>
-    </Row>
-  );
-  
-  
-  class MyQuestionEditPage extends Component {
-    componentDidMount() {
-      const {
-        listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, prepareForm,
-      } = this.props;
-      listDisciplineFilters();
-      listTeachingLevelFilters();
-      listSourceFilters();
-      prepareForm();
-    }
-  
+        );
+      })}
+      <Row>{error && <span className="error-message-text">{error}</span>}</Row>
+    </Col>
+  </Row>
+);
+
+
+class MyQuestionEditPage extends Component {
+  componentDidMount() {
+    const {
+      listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, prepareForm,
+    } = this.props;
+    listDisciplineFilters();
+    listTeachingLevelFilters();
+    listSourceFilters();
+    const { fetchQuestion, match } = this.props;
+    console.log('EN MY QUESTION EDIT...');
+    console.log(match.params.id);
+    fetchQuestion(match.params.id);
+
+    prepareForm();
+  }
+
     getListTopics = (e, newValue) => {
       const {
         listTopics,
       } = this.props;
       listTopics(newValue);
     }
-  
+
     render() {
       const {
-        isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters, teachingLevelFilters, handleSubmit,
+        activeQuestion, userId, isFetching, error, topicsList, topics, pristine, disciplineFilters, sourceFilters, teachingLevelFilters, handleSubmit,
       } = this.props;
-  
-      if (isCreating) {
+      
+      if (isFetching) {
         return (
           <HomeUserPage>
             <Alert className="alert--warning" color="warning">
@@ -448,7 +453,7 @@ import {
           </HomeUserPage>
         );
       }
-  
+
       if (error) {
         return (
           <HomeUserPage>
@@ -458,7 +463,18 @@ import {
           </HomeUserPage>
         );
       }
-  
+
+
+      if (false) {
+        return (
+          <HomeUserPage>
+            <Alert color="danger">
+                Você não tem permissão para visualizar esta página.
+            </Alert>
+          </HomeUserPage>
+        );
+      }
+
       return (
         <HomeUserPage>
           <ToastContainer hideProgressBar position="bottom-right" />
@@ -472,7 +488,7 @@ import {
                     Editar Questão
                     N°
                     {' '}
-                    { /*activeQuestion.id*/ } 
+                    { activeQuestion.id}
                   </h4>
                 </Col>
               </Row>
@@ -670,6 +686,5 @@ import {
         </HomeUserPage>
       );
     }
-  }
-  export default MyQuestionEditPage;
-  
+}
+export default MyQuestionEditPage;

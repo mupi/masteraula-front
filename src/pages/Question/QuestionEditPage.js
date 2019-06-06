@@ -283,7 +283,6 @@ const renderTopics = ({
   </Row>
 );
 
-
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
   const listDocumentFilter = ((activeDocument && activeQuestion.documents)
@@ -311,7 +310,7 @@ class QuestionEditPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
-  }
+  } 
 
   render() {
     const {

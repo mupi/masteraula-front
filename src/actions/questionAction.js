@@ -44,7 +44,7 @@ export const fetchQuestion = (id) => {
   function fetchQuestionSuccess(activeQuestion) { return { type: FETCH_QUESTION_SUCCESS, activeQuestion }; }
   function fetchQuestionFailure(error) { return { type: FETCH_QUESTION_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(requestQuestion(id));
+    dispatch(requestQuestion(id)); 
     return questionService.fetchQuestion(id)
       .then(
         (activeQuestion) => {
@@ -80,11 +80,26 @@ export const fetchQuestion = (id) => {
             tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
           }));
 
+          // initialize Question Edit Page for users with Editor role
           dispatch(initialize('question-edit', {
             difficulty: activeQuestion.difficulty,
             learning_objects: newLearningObjectList,
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
             topics: allTopics,
+          })); 
+
+          // initialize My Question Edit Page for owner's question
+          dispatch(initialize('myquestion-edit', {
+            year: activeQuestion.year,
+            source: activeQuestion.source,
+            statement: activeQuestion.statement,
+            difficulty: activeQuestion.difficulty,
+            disciplines: activeQuestion.disciplines,
+            teachingLevels: activeQuestion.teaching_levels,
+            learning_objects: newLearningObjectList,
+            tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
+            topics: allTopics,
+
           }));
           dispatch(listTopics(activeQuestion.disciplines));
           dispatch(fetchQuestionSuccess(activeQuestion));
@@ -119,6 +134,63 @@ export const createQuestion = (props) => {
 
 // Function: Update an active question
 export const updateQuestion = (props) => {
+  function updateActiveQuestion() { return { type: UPDATE_QUESTION }; }
+  function updateQuestionSuccess(activeQuestion) { return { type: UPDATE_QUESTION_SUCCESS, activeQuestion }; }
+  function updateQuestionFailure(error) { return { type: UPDATE_QUESTION_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(updateActiveQuestion(props));
+    return questionService.updateQuestion(props).then(
+      (activeQuestion) => {
+        dispatch(updateQuestionSuccess(activeQuestion));
+        const allTopics = [];
+        activeQuestion.topics.forEach((topic) => {
+          const tl = [];
+          let t = topic;
+          while (t != null) {
+            tl.push(t.id.toString());
+            t = t.parent;
+          }
+          if (tl.length === 3) {
+            allTopics.push({
+              topic: tl[0],
+              subsubject: tl[1],
+              subject: tl[2],
+            });
+          } else if (tl.length === 2) {
+            allTopics.push({
+              subsubject: tl[0],
+              subject: tl[1],
+            });
+          } else {
+            allTopics.push({
+              subject: tl[0],
+            });
+          }
+        });
+        allTopics.push({});
+
+        const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
+          id: lobj.id,
+          tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
+        }));
+
+        dispatch(initialize('question-edit', {
+          difficulty: activeQuestion.difficulty,
+          learning_objects: newLearningObjectList,
+          tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
+          topics: allTopics,
+        }));
+      },
+      (error) => {
+        dispatch(updateQuestionFailure(error));
+      },
+    );
+  };
+};
+
+
+// Function: Update My active question
+export const updateMyQuestion = (props) => {
   function updateActiveQuestion() { return { type: UPDATE_QUESTION }; }
   function updateQuestionSuccess(activeQuestion) { return { type: UPDATE_QUESTION_SUCCESS, activeQuestion }; }
   function updateQuestionFailure(error) { return { type: UPDATE_QUESTION_FAILURE, error }; }
