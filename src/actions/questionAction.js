@@ -85,8 +85,10 @@ export const fetchQuestion = (id) => {
           const alternatives = activeQuestion.alternatives.map(alternative => ({
             id: alternative.id,
             alternativeText: alternative.text,
-            isCorrect: alternative.is_correct,
+            isCorrect: (alternative.is_correct ? 'true' : ''),
           }));
+          console.log("hola");
+          console.log(alternatives);
 
           const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
             id: lobj.id,
@@ -99,7 +101,7 @@ export const fetchQuestion = (id) => {
             learning_objects: newLearningObjectList,
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
             topics: allTopics,
-          })); 
+          }));
 
           // initialize My Question Edit Page for owner's question
           dispatch(initialize('edit-question', {

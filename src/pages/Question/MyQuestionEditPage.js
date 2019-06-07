@@ -64,7 +64,6 @@ const renderCheckButtonField = ({
   input,
   type,
   nameGroup,
-  valueCheck,
   meta: { touched, error, warning },
 }) => (
   <div>
@@ -73,7 +72,6 @@ const renderCheckButtonField = ({
       type={type}
       name={nameGroup}
       className="c-create-question__radio-button-field"
-      checked={valueCheck}
     />
     { touched
       && ((error && (
@@ -287,6 +285,7 @@ const renderAlternatives = ({
               component={renderCheckButtonField}
               nameGroup="alternatives"
               type="radio"
+              value="true"
             />
           </Col>
           <Col sm="6">
@@ -586,7 +585,7 @@ class MyQuestionEditPage extends Component {
                         <option className="c-user-profile__state-city-dropdown-item" key={source.name} value={source.name}>
                           {getTeachingLevel(source.name)}
                         </option>
-                      )) }
+                      )) } 
                     </Field>
                   </Col>
                 </Row>

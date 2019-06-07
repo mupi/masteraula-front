@@ -71,7 +71,7 @@ const mapDispatchToProps = dispatch => ({
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
-    return dispatch(updateMyQuestion(myUpdatedQuestion)); 
+    return dispatch(updateMyQuestion(myUpdatedQuestion));  
   },
 });
 
