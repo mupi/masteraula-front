@@ -80,6 +80,38 @@ function classifyQuestion(activeUpdateQuestion) {
     });
 }
 
+// Update a Question - available for user's questions only
+function updateQuestion(activeUpdateQuestion) {
+  console.log("VAO ATUALIZAR");
+  const requestOptions = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+    body: JSON.stringify({ ...activeUpdateQuestion, secret: true }),
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  const idQuestion = parseInt(activeUpdateQuestion.id, 10);
+
+
+  return fetch(`${apiUrl}/questions/${idQuestion}/`, requestOptions)
+    .then(handleResponse)
+    .then((activeQuestion) => {
+      localStorage.setItem('activeQuestion', JSON.stringify(activeQuestion));
+      return activeQuestion;
+    });
+}
+
 
 function listQuestions(page, filter) {
   const requestOptions = {
@@ -128,6 +160,7 @@ const questionService = {
   listQuestions,
   createQuestion,
   classifyQuestion,
+  updateQuestion,
 };
 
 export default questionService;

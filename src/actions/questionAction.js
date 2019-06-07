@@ -209,8 +209,8 @@ export const classifyQuestion = (props) => {
 };
 
 
-// Function: Update MY active question / real Edit Question
-export const updateMyQuestion = (props) => {
+// Function: Update active question / available only for user's questions
+export const updateQuestion = (props) => {
   function updateActiveQuestion() { return { type: UPDATE_QUESTION }; }
   function updateQuestionSuccess(activeQuestion) { return { type: UPDATE_QUESTION_SUCCESS, activeQuestion }; }
   function updateQuestionFailure(error) { return { type: UPDATE_QUESTION_FAILURE, error }; }
@@ -251,11 +251,23 @@ export const updateMyQuestion = (props) => {
           tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
         }));
 
+        const alternatives = activeQuestion.alternatives.map(alternative => ({
+          id: alternative.id,
+          alternativeText: alternative.text,
+          isCorrect: (alternative.is_correct ? 'true' : ''),
+        }));
+
         dispatch(initialize('edit-question', {
+          year: activeQuestion.year,
+          source: activeQuestion.source,
+          statement: activeQuestion.statement,
           difficulty: activeQuestion.difficulty,
+          disciplines: activeQuestion.disciplines,
+          teachingLevels: activeQuestion.teaching_levels,
           learning_objects: newLearningObjectList,
           tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
           topics: allTopics,
+          alternatives,
         }));
       },
       (error) => {

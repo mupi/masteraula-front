@@ -3,7 +3,7 @@ import {
   reduxForm, formValueSelector, SubmissionError, initialize,
 } from 'redux-form';
 import MyQuestionEditPage from 'pages/Question/MyQuestionEditPage';
-import { fetchQuestion, updateMyQuestion } from 'actions/questionAction';
+import { fetchQuestion, updateQuestion } from 'actions/questionAction';
 import {
   listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
 } from 'actions/filterAction';
@@ -42,6 +42,7 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: (values, d, props) => {
     const errors = [];
     const myUpdatedQuestion = {
+      id: props.activeQuestion.id,
       statement: values.statement,
       tags: values.tags.split(',').map(tag => tag.trim()),
       topics_ids: values.topics.map((topic) => {
@@ -65,14 +66,13 @@ const mapDispatchToProps = dispatch => ({
     if (myUpdatedQuestion && (myUpdatedQuestion.statement.trim() === '<p></p>' || myUpdatedQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
     }
-    
     if (myUpdatedQuestion && myUpdatedQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
       errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
     }
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
-    return dispatch(updateMyQuestion(myUpdatedQuestion));
+    return dispatch(updateQuestion(myUpdatedQuestion));
   },
 });
 
