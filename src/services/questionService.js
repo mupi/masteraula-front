@@ -82,7 +82,6 @@ function classifyQuestion(activeUpdateQuestion) {
 
 // Update a Question - available for user's questions only
 function updateQuestion(activeUpdateQuestion) {
-  console.log("VAO ATUALIZAR");
   const requestOptions = {
     method: 'PATCH',
     headers: {
