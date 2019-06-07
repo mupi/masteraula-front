@@ -16,6 +16,12 @@ export const CREATE_QUESTION_SUCCESS = 'CREATE_QUESTION_SUCCESS';
 export const CREATE_QUESTION_FAILURE = 'CREATE_QUESTION_FAILURE';
 export const RESET_NEW_QUESTION = 'RESET_NEW_QUESTION';
 
+// Classify question
+export const CLASSIFY_QUESTION = 'CLASSIFY_QUESTION';
+export const CLASSIFY_QUESTION_SUCCESS = 'CLASSIFY_QUESTION_SUCCESS';
+export const CLASSIFY_QUESTION_FAILURE = 'CLASSIFY_QUESTION_FAILURE';
+export const RESET_CLASSIFY_QUESTION = 'RESET_CLASSIFY_QUESTION';
+
 // Update question
 export const UPDATE_QUESTION = 'UPDATE_QUESTION';
 export const UPDATE_QUESTION_SUCCESS = 'UPDATE_QUESTION_SUCCESS';
@@ -146,16 +152,16 @@ export const createQuestion = (props) => {
   };
 };
 
-// Function: Update an active question
-export const updateQuestion = (props) => {
-  function updateActiveQuestion() { return { type: UPDATE_QUESTION }; }
-  function updateQuestionSuccess(activeQuestion) { return { type: UPDATE_QUESTION_SUCCESS, activeQuestion }; }
-  function updateQuestionFailure(error) { return { type: UPDATE_QUESTION_FAILURE, error }; }
+// Function: Classify an active question
+export const classifyQuestion = (props) => {
+  function classifyActiveQuestion() { return { type: CLASSIFY_QUESTION }; }
+  function classifyQuestionSuccess(activeQuestion) { return { type: CLASSIFY_QUESTION_SUCCESS, activeQuestion }; }
+  function classifyQuestionFailure(error) { return { type: CLASSIFY_QUESTION_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(updateActiveQuestion(props));
-    return questionService.updateQuestion(props).then(
+    dispatch(classifyActiveQuestion(props));
+    return questionService.classifyQuestion(props).then(
       (activeQuestion) => {
-        dispatch(updateQuestionSuccess(activeQuestion));
+        dispatch(classifyQuestionSuccess(activeQuestion));
         const allTopics = [];
         activeQuestion.topics.forEach((topic) => {
           const tl = [];
@@ -196,14 +202,14 @@ export const updateQuestion = (props) => {
         }));
       },
       (error) => {
-        dispatch(updateQuestionFailure(error));
+        dispatch(classifyQuestionFailure(error));
       },
     );
   };
 };
 
 
-// Function: Update MY active question
+// Function: Update MY active question / real Edit Question
 export const updateMyQuestion = (props) => {
   function updateActiveQuestion() { return { type: UPDATE_QUESTION }; }
   function updateQuestionSuccess(activeQuestion) { return { type: UPDATE_QUESTION_SUCCESS, activeQuestion }; }

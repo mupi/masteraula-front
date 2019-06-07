@@ -14,7 +14,7 @@ export const requiredValidator = value => (value ? undefined : 'Campo obrigatór
 
 
 export const requiredSelectValidator = value => ((value === '-1' || value === '0' || value === undefined) ? 'Campo obrigatório' : undefined);
-;
+
 
 export const requiredMultiSelectValidator = value => (value && value.length !== 0 ? undefined : 'Campo obrigatório');
 export const minLengthTags = value => (value && value.length !== 0 ? undefined : 'Campo obrigatório');

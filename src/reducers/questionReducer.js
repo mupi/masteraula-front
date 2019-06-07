@@ -3,6 +3,7 @@ import {
   RATE_QUESTION,
   LIST_QUESTION_PAGE, LIST_QUESTION_PAGE_SUCCESS, LIST_QUESTION_PAGE_FAILURE,
   LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS, LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS,
+  CLASSIFY_QUESTION,  CLASSIFY_QUESTION_SUCCESS, CLASSIFY_QUESTION_FAILURE,
   UPDATE_QUESTION, UPDATE_QUESTION_SUCCESS, UPDATE_QUESTION_FAILURE,
   CREATE_QUESTION, CREATE_QUESTION_SUCCESS, CREATE_QUESTION_FAILURE,
 } from 'actions/questionAction';
@@ -85,21 +86,21 @@ export const question = (state = initialState, action) => {
         activeQuestion,
       });
     }
-    case UPDATE_QUESTION: {
+    case CLASSIFY_QUESTION: {
       return Object.assign({}, state, {
         isRemoved: null,
         error: null,
         isUpdated: null,
       });
     }
-    case UPDATE_QUESTION_SUCCESS: {
+    case CLASSIFY_QUESTION_SUCCESS: {
       toast.success('Questão atualizada com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeQuestion: { ...action.activeQuestion },
         isUpdated: true,
       });
     }
-    case UPDATE_QUESTION_FAILURE: {
+    case CLASSIFY_QUESTION_FAILURE: {
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, { error: action.error });
     }

@@ -50,8 +50,8 @@ function createQuestion(newQuestionData) {
     .then(activeQuestion => activeQuestion);
 }
 
-// Update a Question
-function updateQuestion(activeUpdateQuestion) {
+// Classify a Question
+function classifyQuestion(activeUpdateQuestion) {
   const requestOptions = {
     method: 'PATCH',
     headers: {
@@ -127,7 +127,7 @@ const questionService = {
   fetchQuestion,
   listQuestions,
   createQuestion,
-  updateQuestion,
+  classifyQuestion,
 };
 
 export default questionService;

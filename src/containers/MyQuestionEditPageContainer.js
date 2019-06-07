@@ -61,17 +61,18 @@ const mapDispatchToProps = dispatch => ({
       year: values.year,
     };
 
+    // validations
     if (myUpdatedQuestion && (myUpdatedQuestion.statement.trim() === '<p></p>' || myUpdatedQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
     }
-    // validations
+    
     if (myUpdatedQuestion && myUpdatedQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
       errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
     }
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
-    return dispatch(updateMyQuestion(myUpdatedQuestion));  
+    return dispatch(updateMyQuestion(myUpdatedQuestion));
   },
 });
 
