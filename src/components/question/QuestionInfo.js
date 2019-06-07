@@ -60,7 +60,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
     </Row>
     <Row className="c-question__row-info">
       <Col className="info-label" sm="4" xs="4">
-          Grau de difuldade
+          Grau de dificuldade
       </Col>
       <Col sm="8" xs="8">
         <span className="question-info  difficulty-level">
