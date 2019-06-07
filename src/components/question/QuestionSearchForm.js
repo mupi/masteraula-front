@@ -4,7 +4,9 @@ import {
   Input, InputGroup, InputGroupAddon, Button, Row, Col, UncontrolledTooltip, Label,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import {
+  minLength3characters,
+} from 'helpers/validators';
 
 const renderBasicInputField = ({
   input,
@@ -38,35 +40,53 @@ const renderBasicInputField = ({
 const renderField = ({
   input,
   type,
-  meta: { pristine },
+  meta: {
+    pristine, touched, error, warning,
+  },
   clearSearch,
   clearSearchField,
   search,
   placeholder,
 }) => (
-  <InputGroup>
-    <Input
-      {...input}
-      placeholder={placeholder}
-      type={type}
-    />
-    {search || !pristine ? (
+  <div className="c-question-base__search-all-section">
+    <InputGroup>
+      <Input
+        {...input}
+        placeholder={placeholder}
+        type={type}
+      />
+      {search || !pristine ? (
+        <InputGroupAddon addonType="prepend">
+          <Button className="c-question-base__clear-search" id="dica" onClick={search ? clearSearch : clearSearchField}>
+            <FontAwesomeIcon icon="times-circle" />
+          </Button>
+          <UncontrolledTooltip placement="bottom" target="dica" className="tooltip__message">
+                Limpar busca
+          </UncontrolledTooltip>
+        </InputGroupAddon>
+      ) : ''}
       <InputGroupAddon addonType="prepend">
-        <Button className="c-question-base__clear-search" id="dica" onClick={search ? clearSearch : clearSearchField}>
-          <FontAwesomeIcon icon="times-circle" />
+        <Button type="submit">
+          <FontAwesomeIcon icon="search" className="btn__icon" />
+                Pesquisar
         </Button>
-        <UncontrolledTooltip placement="bottom" target="dica" className="tooltip__message">
-              Limpar busca
-        </UncontrolledTooltip>
       </InputGroupAddon>
-    ) : ''}
-    <InputGroupAddon addonType="prepend">
-      <Button type="submit">
-        <FontAwesomeIcon icon="search" className="btn__icon" />
-              Pesquisar
-      </Button>
-    </InputGroupAddon>
-  </InputGroup>
+    </InputGroup>
+    { touched
+      && ((error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
+  </div>
 );
 
 class QuestionSearchForm extends Component {
@@ -81,7 +101,7 @@ class QuestionSearchForm extends Component {
     const valueFilter = event.target.value;
     this.setState({ authorState: author });
 
-    addMyQuestionsFilter(valueFilter, event.target.checked); 
+    addMyQuestionsFilter(valueFilter, event.target.checked);
   }
 
   render() {
@@ -90,7 +110,7 @@ class QuestionSearchForm extends Component {
     } = this.props;
 
     const { authorState, onlyMyQuestionsState } = this.state;
-    const isChecked = (onlyMyQuestions === undefined ? onlyMyQuestionsState : onlyMyQuestions)
+    const isChecked = (onlyMyQuestions === undefined ? onlyMyQuestionsState : onlyMyQuestions);
 
     return (
       <Form onSubmit={handleSubmit}>
@@ -124,7 +144,7 @@ class QuestionSearchForm extends Component {
             id="searchText"
             placeholder="Pesquisar por palavras-chave no banco de questões"
             className="form-control"
-
+            validate={minLength3characters}
             search={search}
             clearSearch={clearSearch}
             clearSearchField={clearSearchField}

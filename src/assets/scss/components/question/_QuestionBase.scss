@@ -1,5 +1,10 @@
 //Classes for Question Base that holds all question cards results.
 .c-question-base{
+
+  &__search-all-section{
+    width: 100%;
+  }
+  
   &__title{
     text-align: center;
     padding-bottom: 15px;

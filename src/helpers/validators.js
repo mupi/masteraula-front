@@ -24,12 +24,12 @@ export const requiredHeaderNameValidator = value => (value ? undefined : 'Digite
 
 export const mustBeNumber = value => (value && isNaN(Number(value)) ? 'Insira um valor numérico' : undefined);
 
-const maxLength = (max, text) => value => (value && value.length > max ? `Insira máximo ${max} ${text}` : undefined);
+const maxLength = (max, text) => value => (value && value.length > max ? `Insira no máximo ${max} ${text}` : undefined);
 export const maxLength5 = (maxLength(5, 'alternativas'));
-const minLength = (min, text) => value => (value && value.length < min ? `Insira minimo ${min} ${text}` : undefined);
+const minLength = (min, text) => value => (value && value.length < min ? `Insira no minimo ${min} ${text}` : undefined);
 export const minLength3Alternatives = (minLength(3, 'alternativas'));
 export const minLength1Topics = (minLength(1, 'tópico'));
-
+export const minLength3characters = (minLength(3, 'caracteres'));
 
 export const minLength2Tags = value => (((value && (value.split(',').length < 2)) || value === undefined) ? 'Insira no minimo 2 tags' : undefined);
 
