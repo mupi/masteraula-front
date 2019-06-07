@@ -359,6 +359,15 @@ class QuestionEditPage extends Component {
         <ToastContainer hideProgressBar position="bottom-right" />
         <Form onSubmit={handleSubmit}>
           <div className="c-question">
+            <Row className="c-question__tittle-section">
+              <Col>
+                <h4>
+                  <FontAwesomeIcon icon="book" />
+                  {' '}
+                  Classificar Questão
+                </h4>
+              </Col>
+            </Row>
             <Row>
               <Col className="d-flex">
                 <Button
@@ -387,7 +396,7 @@ class QuestionEditPage extends Component {
             <Row>
               <Col>
                 <Alert color="warning" className="c-question-edit__warning-message">
-                  Você está editando a questão
+                  Você está classificando a questão
                   {' '}
                   N°
                   {activeQuestion.id}
@@ -411,17 +420,6 @@ class QuestionEditPage extends Component {
                     {discipline.name}
                   </span>
                 ))}
-              </Col>
-            </Row>
-            <Row className="c-question__tittle-section">
-              <Col>
-                <h4>
-                  <FontAwesomeIcon icon="book" />
-                  {' '}
-                  Questão N°
-                  {' '}
-                  {activeQuestion.id}
-                </h4>
               </Col>
             </Row>
             <Row className="justify-content-center">

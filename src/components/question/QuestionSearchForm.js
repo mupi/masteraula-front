@@ -89,8 +89,8 @@ class QuestionSearchForm extends Component {
       handleSubmit, search, clearSearch, clearSearchField, author, isFetchingQuestions, onlyMyQuestions,
     } = this.props;
 
-    const { authorState } = this.state;
-    
+    const { authorState, onlyMyQuestionsState } = this.state;
+    const isChecked = (onlyMyQuestions === undefined ? onlyMyQuestionsState : onlyMyQuestions)
 
     return (
       <Form onSubmit={handleSubmit}>
@@ -136,7 +136,7 @@ class QuestionSearchForm extends Component {
               type="checkbox"
               value={authorState || author}
               onChange={this.handleFilter}
-            //  checked={false || onlyMyQuestions}
+              checked={isChecked}
               disabled={isFetchingQuestions}
             />
 

@@ -492,9 +492,6 @@ class MyQuestionEditPage extends Component {
                     <FontAwesomeIcon icon="book" />
                     {' '}
                     Editar Questão
-                    N°
-                    {' '}
-                    { activeQuestion.id}
                   </h4>
                 </Col>
               </Row>
@@ -508,6 +505,18 @@ class MyQuestionEditPage extends Component {
                     {' '}
                     Salvar
                   </Button>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Alert color="warning" className="c-question-edit__warning-message">
+                    Você está editando a questão
+                    {' '}
+                    N°
+                    {activeQuestion.id}
+                    { (!pristine) ? '. Existem mudanças ainda não salvas na questão.' : ''
+                    }
+                  </Alert>
                 </Col>
               </Row>
               <Row className="c-question__tittle-section">
