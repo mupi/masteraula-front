@@ -341,7 +341,7 @@ class QuestionEditPage extends Component {
                   {' '}
                   Visualizar
                 </Link>
-                <Button className="btn btn-secondary c-question__btn-back" to={`/classify-question/${activeQuestion.id}`} type="submit">
+                <Button className="btn btn-secondary c-question__btn-back" to={`/classify-question/${activeQuestion.id}`} type="submit" title="Salvar questão">
                   <FontAwesomeIcon
                     className="btn__icon"
                     icon="save"

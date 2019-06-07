@@ -307,6 +307,26 @@ export const listQuestions = (page, filter) => {
   };
 };
 
+// Function: Delete a question
+export const deleteQuestion = (idQuestion) => {
+  function deleteSelectedQuestion() { return { type: CREATE_QUESTION }; }
+  function deleteSelectedQuestionSuccess(newQuestion) { return { type: CREATE_QUESTION_SUCCESS, newQuestion }; }
+  function deleteSelectedQuestionFailure(error) { return { type: CREATE_QUESTION_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(deleteSelectedQuestion(props));
+    return questionService.createQuestion(props).then(
+      (newQuestion) => {
+        dispatch(deleteSelectedQuestionSuccess(newQuestion));
+        history.push(`/view-question/${newQuestion.id}`);
+        toast.success('Questão criada com sucesso', optionsSuccess);
+      },
+      (error) => {
+        dispatch(deleteSelectedQuestionFailure(error));
+      },
+    );
+  };
+};
+
 
 export const rateQuestion = rating => ({
   type: RATE_QUESTION,

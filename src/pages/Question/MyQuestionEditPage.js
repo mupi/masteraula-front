@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
+import DeleteQuestionButton from 'components/buttons/DeleteQuestionButton';
+
 import {
   requiredValidator,
   requiredMultiSelectValidator,
@@ -488,7 +490,22 @@ class MyQuestionEditPage extends Component {
             <div className="c-question c-create-question">
               <Row className="c-question__row-header-options">
                 <Col className="d-flex justify-content-end">
-                  <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit">
+                  <DeleteQuestionButton
+                    questionId={activeQuestion.id}
+                    customClass="c-question__btn-remove-question btn__icon"
+                    label={(
+                      <span>
+                        <FontAwesomeIcon icon="trash-alt" className="btn__icon" />
+                        Apagar
+                      </span>
+                      )}
+                  />
+                  <Button
+                    className="btn btn-secondary c-question__btn-back"
+                    to="/edit-question/"
+                    type="submit"
+                    title="Salvar questão"
+                  >
                     <FontAwesomeIcon
                       className="btn__icon"
                       icon="save"
@@ -513,7 +530,7 @@ class MyQuestionEditPage extends Component {
                     Você está editando a questão
                     {' '}
                     N°
-                    {activeQuestion.id}
+                    <strong>{activeQuestion.id}</strong>
                     { (!pristine) ? '. Existem mudanças ainda não salvas na questão.' : ''
                     }
                   </Alert>
