@@ -92,7 +92,8 @@ const QuestionCard = (props) => {
           )
           }
           {' '}
-          {question.year && (<button
+          {question.year && (
+          <button
             type="button"
             className="question-card__filter-link btn btn-link"
             onClick={(e => handleClick(e, addSelectedYearFilter, idYear, question.year.toString().trim()))}

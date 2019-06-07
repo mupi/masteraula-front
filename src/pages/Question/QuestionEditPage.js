@@ -310,7 +310,7 @@ class QuestionEditPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
-  } 
+  }
 
   render() {
     const {
@@ -512,9 +512,10 @@ class QuestionEditPage extends Component {
                       </span>
                     </Col>
                   </Row>
+                  { activeQuestion.source && (
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
-                      Vestibular
+                       Vestibular
                     </Col>
                     <Col sm="8" xs="8">
                       <span className="question-info c-question__tag--purple">
@@ -522,6 +523,7 @@ class QuestionEditPage extends Component {
                       </span>
                     </Col>
                   </Row>
+                  )}
                   <Row>
                     <Col className="info-label" sm="4" xs="4">
                         Disciplinas
