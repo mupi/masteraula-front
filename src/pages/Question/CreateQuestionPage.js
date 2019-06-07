@@ -461,16 +461,7 @@ class CreateQuestionPage extends Component {
       <HomeUserPage>
         <Form onSubmit={handleSubmit}>
           <div className="c-question c-create-question">
-            <Row className="c-question__tittle-section">
-              <Col>
-                <h4>
-                  <FontAwesomeIcon icon="book" />
-                  {' '}
-                  Criar Questão
-                </h4>
-              </Col>
-            </Row>
-            <Row>
+            <Row className="c-question__row-header-options">
               <Col className="d-flex justify-content-end">
                 <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit">
                   <FontAwesomeIcon
@@ -480,6 +471,15 @@ class CreateQuestionPage extends Component {
                   {' '}
                   Salvar
                 </Button>
+              </Col>
+            </Row>
+            <Row className="c-question__tittle-section">
+              <Col>
+                <h4>
+                  <FontAwesomeIcon icon="book" />
+                  {' '}
+                  Criar Questão
+                </h4>
               </Col>
             </Row>
             <Row className="c-question__tittle-section">

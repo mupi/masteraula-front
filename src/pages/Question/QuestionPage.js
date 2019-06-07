@@ -2,6 +2,7 @@ import QuestionContent from 'components/question/QuestionContent';
 import QuestionInfo from 'components/question/QuestionInfo';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
+import DeleteQuestionButton from 'components/buttons/DeleteQuestionButton';
 import {
   Alert, Row, Col,
 } from 'reactstrap';
@@ -13,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import Back from 'components/question/Back';
-import { history } from 'helpers/history'; 
+import { history } from 'helpers/history';
 
 
 const QuestionListDocuments = (props) => {
@@ -91,9 +92,22 @@ class QuestionPage extends Component {
       <HomeUserPage>
         <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-question">
-          <Row>
+          <Row className="c-question__row-header-options">
             <Col className="d-flex">
               <Back />
+              { (isOwner)
+                ? (
+                  <DeleteQuestionButton
+                    questionId={activeQuestion.id}
+                    customClass="c-question__btn-remove-question btn__icon"
+                    label={(
+                      <span>
+                        <FontAwesomeIcon icon="trash-alt" className="btn__icon" />
+                        Apagar
+                      </span>
+                    )}
+                  />
+                ) : ''}
               { ((role && role.includes('Editores')) || isOwner)
                 ? (
                   <Link

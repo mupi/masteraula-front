@@ -326,16 +326,7 @@ class QuestionEditPage extends Component {
         <ToastContainer hideProgressBar position="bottom-right" />
         <Form onSubmit={handleSubmit}>
           <div className="c-question">
-            <Row className="c-question__tittle-section">
-              <Col>
-                <h4>
-                  <FontAwesomeIcon icon="book" />
-                  {' '}
-                  Classificar Questão
-                </h4>
-              </Col>
-            </Row>
-            <Row>
+            <Row className="c-question__row-header-options">
               <Col className="d-flex">
                 <Button
                   onClick={() => history.replace(`/view-question/${activeQuestion.id}`)}
@@ -360,13 +351,22 @@ class QuestionEditPage extends Component {
                 </Button>
               </Col>
             </Row>
+            <Row className="c-question__tittle-section">
+              <Col>
+                <h4>
+                  <FontAwesomeIcon icon="book" />
+                  {' '}
+                  Classificar Questão
+                </h4>
+              </Col>
+            </Row>
             <Row>
               <Col>
                 <Alert color="warning" className="c-question-edit__warning-message">
                   Você está classificando a questão
                   {' '}
                   N°
-                  {activeQuestion.id}
+                  <strong>{activeQuestion.id}</strong>
                   { (!pristine) ? '. Existem mudanças ainda não salvas na questão.' : ''
                   }
                 </Alert>

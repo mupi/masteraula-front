@@ -486,16 +486,7 @@ class MyQuestionEditPage extends Component {
           <ToastContainer hideProgressBar position="bottom-right" />
           <Form onSubmit={handleSubmit}>
             <div className="c-question c-create-question">
-              <Row className="c-question__tittle-section">
-                <Col>
-                  <h4>
-                    <FontAwesomeIcon icon="book" />
-                    {' '}
-                    Editar Questão
-                  </h4>
-                </Col>
-              </Row>
-              <Row>
+              <Row className="c-question__row-header-options">
                 <Col className="d-flex justify-content-end">
                   <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit">
                     <FontAwesomeIcon
@@ -505,6 +496,15 @@ class MyQuestionEditPage extends Component {
                     {' '}
                     Salvar
                   </Button>
+                </Col>
+              </Row>
+              <Row className="c-question__tittle-section">
+                <Col>
+                  <h4>
+                    <FontAwesomeIcon icon="book" />
+                    {' '}
+                    Editar Questão
+                  </h4>
                 </Col>
               </Row>
               <Row>
