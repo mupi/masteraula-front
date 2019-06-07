@@ -8,36 +8,7 @@ import {
   minLength3characters,
 } from 'helpers/validators';
 
-const renderBasicInputField = ({
-  input,
-  label,
-  type,
-  meta: { touched, error, warning },
-}) => (
-  <div>
-    <Input
-      {...input}
-      placeholder={label}
-      type={type}
-    />
-    { touched
-      && ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
-      ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
-    }
-  </div>
-);
-
-const renderField = ({
+const renderSearchField = ({
   input,
   type,
   meta: {
@@ -47,6 +18,7 @@ const renderField = ({
   clearSearchField,
   search,
   placeholder,
+  isFetchingQuestions,
 }) => (
   <div className="c-question-base__search-all-section">
     <InputGroup>
@@ -54,6 +26,7 @@ const renderField = ({
         {...input}
         placeholder={placeholder}
         type={type}
+        disabled={isFetchingQuestions}
       />
       {search || !pristine ? (
         <InputGroupAddon addonType="prepend">
@@ -66,7 +39,7 @@ const renderField = ({
         </InputGroupAddon>
       ) : ''}
       <InputGroupAddon addonType="prepend">
-        <Button type="submit">
+        <Button type="submit" disabled={isFetchingQuestions}>
           <FontAwesomeIcon icon="search" className="btn__icon" />
                 Pesquisar
         </Button>
@@ -138,7 +111,7 @@ class QuestionSearchForm extends Component {
           Pesquisar por palavras-chave no banco de questões
           </p>
           <Field
-            component={renderField}
+            component={renderSearchField}
             type="text"
             name="searchText"
             id="searchText"
@@ -148,6 +121,7 @@ class QuestionSearchForm extends Component {
             search={search}
             clearSearch={clearSearch}
             clearSearchField={clearSearchField}
+            isFetchingQuestions={isFetchingQuestions}
           />
         </Row>
         <Row className="c-question-base__myquestions-filter">
