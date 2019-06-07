@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import {
+  EditorState, convertToRaw, ContentState, convertFromHTML,
+} from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
@@ -9,7 +11,7 @@ class QuestionTextRichEditor extends Component {
   /* eslint-disable react/no-danger */
   constructor(props) {
     super(props);
-    const html = '';
+    const html = (props.value !== '' ? props.value : '');
     const contentBlock = htmlToDraft(html);
     if (contentBlock) {
       const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
@@ -54,7 +56,8 @@ class QuestionTextRichEditor extends Component {
             }}
           />
           <div>
-            <textarea hidden
+            <textarea
+              hidden
               className="width-100"
               disabled
               value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
@@ -65,4 +68,4 @@ class QuestionTextRichEditor extends Component {
     );
   }
 }
-export default QuestionTextRichEditor; 
+export default QuestionTextRichEditor;

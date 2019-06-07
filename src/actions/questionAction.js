@@ -87,8 +87,6 @@ export const fetchQuestion = (id) => {
             alternativeText: alternative.text,
             isCorrect: (alternative.is_correct ? 'true' : ''),
           }));
-          console.log("hola");
-          console.log(alternatives);
 
           const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
             id: lobj.id,

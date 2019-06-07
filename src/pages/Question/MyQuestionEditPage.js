@@ -125,7 +125,8 @@ const renderNumericField = ({
 const renderQuestionTextEditor = (props) => {
   const {
     placeholderEditor,
-    input: { onChange, value }, disabled, id,
+    input: { onChange, value },
+    disabled, id,
     meta: { touched, error, warning },
   } = props;
 
@@ -136,7 +137,7 @@ const renderQuestionTextEditor = (props) => {
         disabled={disabled}
         placeholder={placeholderEditor}
         onChange={onChange}
-        value={value}
+        value={value || []}
       />
       { touched
           && ((error && (
