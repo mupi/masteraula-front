@@ -592,7 +592,7 @@ class MyQuestionEditPage extends Component {
                       optionDefault="0"
                     >
                       { sourceFilters && sourceFilters.map(source => (
-                        <option className="c-user-profile__state-city-dropdown-item" key={source.name} value={source.name}>
+                        <option className="c-user-profile__state-city-dropdown-item" key={source.id} value={source.name}>
                           {getTeachingLevel(source.name)}
                         </option>
                       )) } 
