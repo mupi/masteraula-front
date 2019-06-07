@@ -238,7 +238,7 @@ const renderSelectField = ({
         </span>
       )}
     </div>
-  </div> 
+  </div>
 );
 
 const renderError = ({ meta: { touched, error } }) => (
@@ -595,7 +595,7 @@ class MyQuestionEditPage extends Component {
                         <option className="c-user-profile__state-city-dropdown-item" key={source.id} value={source.name}>
                           {getTeachingLevel(source.name)}
                         </option>
-                      )) } 
+                      )) }
                     </Field>
                   </Col>
                 </Row>

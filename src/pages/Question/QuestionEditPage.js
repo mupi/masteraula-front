@@ -564,7 +564,7 @@ class QuestionEditPage extends Component {
                       </Field>
                     </Col>
                   </Row>
-                  <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} validate={minLength1Topics}/>
+                  <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} validate={minLength1Topics} />
                   <Row>
                     <Col>
                       { (!pristine) ? (
