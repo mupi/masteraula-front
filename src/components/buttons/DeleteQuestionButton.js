@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 
 import { Button } from 'reactstrap';
 
-const handleDeleteQuestionButton = (e) => {
+const handleDeleteQuestionButton = (e, questionId, deleteQuestion) => {
   e.preventDefault();
+  if (questionId) {
+    deleteQuestion(questionId);
+  }
 };
 
 const DeleteQuestionButton = ({
-  questionId, label, customClass,
+  questionId, label, customClass, deleteQuestion,
 }) => (
   <Button
     value={questionId}
     title="Apagar questão"
     className={customClass}
-    onClick={(e => handleDeleteQuestionButton(e, questionId))}
+    onClick={(e => handleDeleteQuestionButton(e, questionId, deleteQuestion))}
   >
     {label}
   </Button>

@@ -341,7 +341,12 @@ class QuestionEditPage extends Component {
                   {' '}
                   Visualizar
                 </Link>
-                <Button className="btn btn-secondary c-question__btn-back" to={`/classify-question/${activeQuestion.id}`} type="submit" title="Salvar questão">
+                <Button
+                  className="btn btn-secondary c-question__btn-back"
+                  to={`/classify-question/${activeQuestion.id}`}
+                  type="submit"
+                  title="Salvar questão"
+                >
                   <FontAwesomeIcon
                     className="btn__icon"
                     icon="save"
@@ -580,7 +585,7 @@ class QuestionEditPage extends Component {
               </Col>
             </Row>
           </div>
-          <Row className="c-document__main-buttons text-center">
+          <Row className="c-questions__row-footer-options text-center">
             <Col>
               <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right">
                 <FontAwesomeIcon

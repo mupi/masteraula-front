@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import { initialize } from 'redux-form';
 import { listTopics } from 'actions/topicAction';
 
-
 // Load single question
 export const FETCH_QUESTION = 'FETCH_QUESTION';
 export const FETCH_QUESTION_SUCCESS = 'FETCH_QUESTION_SUCCESS';
@@ -57,7 +56,7 @@ export const fetchQuestion = (id) => {
   function fetchQuestionSuccess(activeQuestion) { return { type: FETCH_QUESTION_SUCCESS, activeQuestion }; }
   function fetchQuestionFailure(error) { return { type: FETCH_QUESTION_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(requestQuestion(id)); 
+    dispatch(requestQuestion(id));
     return questionService.fetchQuestion(id)
       .then(
         (activeQuestion) => {
@@ -143,7 +142,7 @@ export const createQuestion = (props) => {
       (newQuestion) => {
         dispatch(createQuestionSuccess(newQuestion));
         history.push(`/view-question/${newQuestion.id}`);
-        toast.success('Questão criada com sucesso', optionsSuccess);
+        toast.success('Questão criada com sucesso ACTION', optionsSuccess);
       },
       (error) => {
         dispatch(createQuestionFailure(error));
@@ -309,16 +308,16 @@ export const listQuestions = (page, filter) => {
 
 // Function: Delete a question
 export const deleteQuestion = (idQuestion) => {
-  function deleteSelectedQuestion() { return { type: CREATE_QUESTION }; }
-  function deleteSelectedQuestionSuccess(newQuestion) { return { type: CREATE_QUESTION_SUCCESS, newQuestion }; }
-  function deleteSelectedQuestionFailure(error) { return { type: CREATE_QUESTION_FAILURE, error }; }
+  function deleteSelectedQuestion() { return { type: DELETE_QUESTION }; }
+  function deleteSelectedQuestionSuccess(idQuestionRemoved) { return { type: DELETE_QUESTION_SUCCESS, idQuestionRemoved }; }
+  function deleteSelectedQuestionFailure(error) { return { type: DELETE_QUESTION_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(deleteSelectedQuestion(props));
-    return questionService.createQuestion(props).then(
-      (newQuestion) => {
-        dispatch(deleteSelectedQuestionSuccess(newQuestion));
-        history.push(`/view-question/${newQuestion.id}`);
-        toast.success('Questão criada com sucesso', optionsSuccess);
+    dispatch(deleteSelectedQuestion(idQuestion));
+    return questionService.deleteQuestion(idQuestion).then(
+      (idQuestionRemoved) => {
+        dispatch(deleteSelectedQuestionSuccess(idQuestionRemoved));
+        history.push('/question-base/1');
+        toast.success('Questão apagada com sucesso', optionsSuccess);
       },
       (error) => {
         dispatch(deleteSelectedQuestionFailure(error));

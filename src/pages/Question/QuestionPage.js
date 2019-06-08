@@ -2,7 +2,7 @@ import QuestionContent from 'components/question/QuestionContent';
 import QuestionInfo from 'components/question/QuestionInfo';
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
-import DeleteQuestionButton from 'components/buttons/DeleteQuestionButton';
+import DeleteQuestionButtonContainer from 'containers/DeleteQuestionButtonContainer';
 import {
   Alert, Row, Col,
 } from 'reactstrap';
@@ -65,7 +65,7 @@ class QuestionPage extends Component {
       removeSelectedQuestion, role, setQuestionIdToNewDocument, showModal, hideModal,
     } = this.props;
 
-    const authorPk = activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
+    const authorPk = (activeQuestion && activeQuestion.author) ? activeQuestion.author.pk : 'Anônimo';
     const isOwner = (authorPk === userId);
 
     if (isFetching) {
@@ -73,6 +73,16 @@ class QuestionPage extends Component {
         <HomeUserPage>
           <Alert className="alert--warning" color="warning">
               Carregando ...
+          </Alert>
+        </HomeUserPage>
+      );
+    }
+
+    if (!activeQuestion) {
+      return (
+        <HomeUserPage>
+          <Alert className="alert--warning" color="warning">
+              A questão não existe
           </Alert>
         </HomeUserPage>
       );
@@ -97,7 +107,7 @@ class QuestionPage extends Component {
               <Back />
               { (isOwner)
                 ? (
-                  <DeleteQuestionButton
+                  <DeleteQuestionButtonContainer
                     questionId={activeQuestion.id}
                     customClass="c-question__btn-remove-question btn__icon"
                     label={(

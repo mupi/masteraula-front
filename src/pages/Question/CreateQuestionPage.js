@@ -16,6 +16,8 @@ import {
 import { Field, FieldArray } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
 import Multiselect from 'react-widgets/lib/Multiselect';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const difficultyList = {
   difficulties: [
@@ -647,7 +649,7 @@ class CreateQuestionPage extends Component {
               </Row>
             </Container>
           </div>
-          <Row className="c-document__main-buttons text-center">
+          <Row className="c-questions__row-footer-options text-center">
             <Col>
               <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right">
                 <FontAwesomeIcon

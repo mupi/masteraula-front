@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
-import DeleteQuestionButton from 'components/buttons/DeleteQuestionButton';
+import DeleteQuestionButtonContainer from 'containers/DeleteQuestionButtonContainer';
 
 import {
   requiredValidator,
@@ -490,7 +490,7 @@ class MyQuestionEditPage extends Component {
             <div className="c-question c-create-question">
               <Row className="c-question__row-header-options">
                 <Col className="d-flex justify-content-end">
-                  <DeleteQuestionButton
+                  <DeleteQuestionButtonContainer
                     questionId={activeQuestion.id}
                     customClass="c-question__btn-remove-question btn__icon"
                     label={(
@@ -701,7 +701,7 @@ class MyQuestionEditPage extends Component {
                 </Row>
               </Container>
             </div>
-            <Row className="c-document__main-buttons text-center">
+            <Row className="c-questions__row-footer-options text-center">
               <Col>
                 <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right">
                   <FontAwesomeIcon
