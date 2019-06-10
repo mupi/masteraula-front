@@ -366,7 +366,7 @@ class QuestionEditPage extends Component {
               </Col>
             </Row>
             <Row>
-              <Col>
+              <Col className="c-question__col-full-section-details">
                 <Alert color="warning" className="c-question-edit__warning-message">
                   Você está classificando a questão
                   {' '}
@@ -395,7 +395,7 @@ class QuestionEditPage extends Component {
               </Col>
             </Row>
             <Row className="justify-content-center">
-              <Col sm="12" md="12" xs="12">
+              <Col className="c-question__col-full-section-details" sm="12" md="12" xs="12">
                 <div className="c-question__full-statement">
                   {(learningObjects && learningObjects.length > 0)
                     ? (
@@ -571,7 +571,7 @@ class QuestionEditPage extends Component {
                   </Row>
                   <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} validate={minLength1Topics} />
                   <Row>
-                    <Col>
+                    <Col className="c-question__col-full-section-details">
                       { (!pristine) ? (
                         <Alert color="warning" className="c-question-edit__warning-message">
                           Existem mudanças ainda não salvas na questão

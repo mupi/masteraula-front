@@ -49,6 +49,12 @@
       padding: 10px 0px;
     }
 
+    &__col-full-section-details{
+        @include for-tablet-landscape-up {
+          padding: 0px;
+        }
+    }
+
     &__row-footer-options{
       margin: 15px 0px 0px;
     }
@@ -150,6 +156,7 @@
        max-width: 800px;
        margin: auto !important;
        font-size:13px;
+       word-wrap: break-word;
       }
 
       &--source{

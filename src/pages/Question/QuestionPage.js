@@ -162,7 +162,7 @@ class QuestionPage extends Component {
             </Col>
           </Row>
           <Row className="justify-content-center">
-            <Col sm="12" md="12" xs="12">
+            <Col className="c-question__col-full-section-details" sm="12" md="12" xs="12">
               <QuestionContent
                 alternatives={activeQuestion.alternatives}
                 statement={activeQuestion.statement}
