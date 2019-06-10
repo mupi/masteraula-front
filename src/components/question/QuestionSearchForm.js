@@ -4,20 +4,47 @@ import {
   Input, InputGroup, InputGroupAddon, Button, Row, Col, UncontrolledTooltip, Label,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  minLength3characters,
+} from 'helpers/validators';
 
-
-const renderBasicInputField = ({
+const renderSearchField = ({
   input,
-  label,
   type,
-  meta: { touched, error, warning },
+  meta: {
+    pristine, touched, error, warning,
+  },
+  clearSearch,
+  clearSearchField,
+  search,
+  placeholder,
+  isFetchingQuestions,
 }) => (
-  <div>
-    <Input
-      {...input}
-      placeholder={label}
-      type={type}
-    />
+  <div className="c-question-base__search-all-section">
+    <InputGroup>
+      <Input
+        {...input}
+        placeholder={placeholder}
+        type={type}
+        disabled={isFetchingQuestions}
+      />
+      {search || !pristine ? (
+        <InputGroupAddon addonType="prepend">
+          <Button className="c-question-base__clear-search" id="dica" onClick={search ? clearSearch : clearSearchField}>
+            <FontAwesomeIcon icon="times-circle" />
+          </Button>
+          <UncontrolledTooltip placement="bottom" target="dica" className="tooltip__message">
+                Limpar busca
+          </UncontrolledTooltip>
+        </InputGroupAddon>
+      ) : ''}
+      <InputGroupAddon addonType="prepend">
+        <Button type="submit" disabled={isFetchingQuestions}>
+          <FontAwesomeIcon icon="search" className="btn__icon" />
+                Pesquisar
+        </Button>
+      </InputGroupAddon>
+    </InputGroup>
     { touched
       && ((error && (
       <span className="error-message-text">
@@ -35,40 +62,6 @@ const renderBasicInputField = ({
   </div>
 );
 
-const renderField = ({
-  input,
-  type,
-  meta: { pristine },
-  clearSearch,
-  clearSearchField,
-  search,
-  placeholder,
-}) => (
-  <InputGroup>
-    <Input
-      {...input}
-      placeholder={placeholder}
-      type={type}
-    />
-    {search || !pristine ? (
-      <InputGroupAddon addonType="prepend">
-        <Button className="c-question-base__clear-search" id="dica" onClick={search ? clearSearch : clearSearchField}>
-          <FontAwesomeIcon icon="times-circle" />
-        </Button>
-        <UncontrolledTooltip placement="bottom" target="dica" className="tooltip__message">
-              Limpar busca
-        </UncontrolledTooltip>
-      </InputGroupAddon>
-    ) : ''}
-    <InputGroupAddon addonType="prepend">
-      <Button type="submit">
-        <FontAwesomeIcon icon="search" className="btn__icon" />
-              Pesquisar
-      </Button>
-    </InputGroupAddon>
-  </InputGroup>
-);
-
 class QuestionSearchForm extends Component {
   constructor(props) {
     super(props);
@@ -81,7 +74,7 @@ class QuestionSearchForm extends Component {
     const valueFilter = event.target.value;
     this.setState({ authorState: author });
 
-    addMyQuestionsFilter(valueFilter, event.target.checked); 
+    addMyQuestionsFilter(valueFilter, event.target.checked);
   }
 
   render() {
@@ -89,8 +82,8 @@ class QuestionSearchForm extends Component {
       handleSubmit, search, clearSearch, clearSearchField, author, isFetchingQuestions, onlyMyQuestions,
     } = this.props;
 
-    const { authorState } = this.state;
-    
+    const { authorState, onlyMyQuestionsState } = this.state;
+    const isChecked = (onlyMyQuestions === undefined ? onlyMyQuestionsState : onlyMyQuestions);
 
     return (
       <Form onSubmit={handleSubmit}>
@@ -118,16 +111,17 @@ class QuestionSearchForm extends Component {
           Pesquisar por palavras-chave no banco de questões
           </p>
           <Field
-            component={renderField}
+            component={renderSearchField}
             type="text"
             name="searchText"
             id="searchText"
             placeholder="Pesquisar por palavras-chave no banco de questões"
             className="form-control"
-
+            validate={minLength3characters}
             search={search}
             clearSearch={clearSearch}
             clearSearchField={clearSearchField}
+            isFetchingQuestions={isFetchingQuestions}
           />
         </Row>
         <Row className="c-question-base__myquestions-filter">
@@ -136,7 +130,7 @@ class QuestionSearchForm extends Component {
               type="checkbox"
               value={authorState || author}
               onChange={this.handleFilter}
-            //  checked={false || onlyMyQuestions}
+              checked={isChecked}
               disabled={isFetchingQuestions}
             />
 

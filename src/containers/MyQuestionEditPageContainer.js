@@ -2,15 +2,17 @@ import { connect } from 'react-redux';
 import {
   reduxForm, formValueSelector, SubmissionError, initialize,
 } from 'redux-form';
-import CreateQuestionPage from 'pages/Question/CreateQuestionPage';
-import { createQuestion } from 'actions/questionAction';
+import MyQuestionEditPage from 'pages/Question/MyQuestionEditPage';
+import { fetchQuestion, updateQuestion } from 'actions/questionAction';
 import {
   listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
 } from 'actions/filterAction';
 import { listTopics } from 'actions/topicAction';
 
 const mapStateToProps = (state) => {
-  const selector = formValueSelector('question-create');
+  const selector = formValueSelector('edit-question');
+  const { user } = state.session.session;
+
   return ({
     topics: selector(state, 'topics'),
     alternatives: selector(state, 'alternatives'),
@@ -18,16 +20,20 @@ const mapStateToProps = (state) => {
     disciplineFilters: state.filter.disciplineFilters,
     teachingLevelFilters: state.filter.teachingLevelFilters,
     sourceFilters: state.filter.sourceFilters,
+    isFetching: state.question.isFetching,
+    activeQuestion: state.question.activeQuestion,
+    userId: user.id,
   });
 };
 
 const mapDispatchToProps = dispatch => ({
+  fetchQuestion: id => dispatch(fetchQuestion(id)),
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
   listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
   listSourceFilters: param => dispatch(listSourceFilters(param)),
   listTopics: param => dispatch(listTopics(param)),
   prepareForm: () => {
-    dispatch(initialize('question-create', {
+    dispatch(initialize('edit-question', {
       topics: [{}],
       alternatives: [{}, {}, {}],
     }));
@@ -35,7 +41,8 @@ const mapDispatchToProps = dispatch => ({
 
   onSubmit: (values, d, props) => {
     const errors = [];
-    const newQuestion = {
+    const myUpdatedQuestion = {
+      id: props.activeQuestion.id,
       statement: values.statement,
       tags: values.tags.split(',').map(tag => tag.trim()),
       topics_ids: values.topics.map((topic) => {
@@ -49,31 +56,32 @@ const mapDispatchToProps = dispatch => ({
         is_correct: (alternative.isCorrect === 'true'),
         text: alternative.alternativeText,
       })),
-      source_id: values.source !== '0' ? values.source : null,
+      // source_id: values.source !== '0' ? values.source : null,
+      source: values.source,
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
       year: values.year,
     };
 
-    if (newQuestion && (newQuestion.statement.trim() === '<p></p>' || newQuestion.statement.trim() === '')) {
+    // validations
+    if (myUpdatedQuestion && (myUpdatedQuestion.statement.trim() === '<p></p>' || myUpdatedQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
     }
-    // validations
-    if (newQuestion && newQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
+    if (myUpdatedQuestion && myUpdatedQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
       errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
     }
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
-    return dispatch(createQuestion(newQuestion));
+    return dispatch(updateQuestion(myUpdatedQuestion));
   },
 });
 
-const CreateQuestionPageContainer = connect(
+const MyQuestionEditPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(reduxForm({
-  form: 'question-create',
-})(CreateQuestionPage));
+  form: 'edit-question',
+})(MyQuestionEditPage));
 
-export default CreateQuestionPageContainer;
+export default MyQuestionEditPageContainer;

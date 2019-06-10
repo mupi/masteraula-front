@@ -3,8 +3,6 @@ import {
 } from 'reactstrap';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -461,7 +459,6 @@ class CreateQuestionPage extends Component {
 
     return (
       <HomeUserPage>
-        <ToastContainer hideProgressBar position="bottom-right" />
         <Form onSubmit={handleSubmit}>
           <div className="c-question c-create-question">
             <Row className="c-question__tittle-section">

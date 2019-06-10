@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   modal: state.document.modal,
   activeDocument: state.document.activeDocument,
   role: state.session.session.user.groups,
+  userId: state.session.session.user.id,
 });
 
 const mapDispatchToProps = dispatch => ({

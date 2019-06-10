@@ -1,5 +1,6 @@
 import { questionService } from 'services';
 import { history } from 'helpers/history';
+import { toast } from 'react-toastify';
 import { initialize } from 'redux-form';
 import { listTopics } from 'actions/topicAction';
 
@@ -14,6 +15,12 @@ export const CREATE_QUESTION = 'CREATE_QUESTION';
 export const CREATE_QUESTION_SUCCESS = 'CREATE_QUESTION_SUCCESS';
 export const CREATE_QUESTION_FAILURE = 'CREATE_QUESTION_FAILURE';
 export const RESET_NEW_QUESTION = 'RESET_NEW_QUESTION';
+
+// Classify question
+export const CLASSIFY_QUESTION = 'CLASSIFY_QUESTION';
+export const CLASSIFY_QUESTION_SUCCESS = 'CLASSIFY_QUESTION_SUCCESS';
+export const CLASSIFY_QUESTION_FAILURE = 'CLASSIFY_QUESTION_FAILURE';
+export const RESET_CLASSIFY_QUESTION = 'RESET_CLASSIFY_QUESTION';
 
 // Update question
 export const UPDATE_QUESTION = 'UPDATE_QUESTION';
@@ -39,12 +46,18 @@ export const LIST_QUESTION_PAGE_FAILURE = 'LIST_QUESTION_PAGE_FAILURE';
 export const LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS = 'LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS';
 export const LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS = 'LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS';
 
+
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
+
 export const fetchQuestion = (id) => {
   function requestQuestion() { return { type: FETCH_QUESTION }; }
   function fetchQuestionSuccess(activeQuestion) { return { type: FETCH_QUESTION_SUCCESS, activeQuestion }; }
   function fetchQuestionFailure(error) { return { type: FETCH_QUESTION_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(requestQuestion(id));
+    dispatch(requestQuestion(id)); 
     return questionService.fetchQuestion(id)
       .then(
         (activeQuestion) => {
@@ -75,16 +88,37 @@ export const fetchQuestion = (id) => {
           });
           allTopics.push({});
 
+          const alternatives = activeQuestion.alternatives.map(alternative => ({
+            id: alternative.id,
+            alternativeText: alternative.text,
+            isCorrect: (alternative.is_correct ? 'true' : ''),
+          }));
+
           const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
             id: lobj.id,
             tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
           }));
 
-          dispatch(initialize('question-edit', {
+          // initialize Question Edit Page for users with Editor role
+          dispatch(initialize('classify-question', {
             difficulty: activeQuestion.difficulty,
             learning_objects: newLearningObjectList,
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
             topics: allTopics,
+          }));
+
+          // initialize My Question Edit Page for owner's question
+          dispatch(initialize('edit-question', {
+            year: activeQuestion.year,
+            source: activeQuestion.source,
+            statement: activeQuestion.statement,
+            difficulty: activeQuestion.difficulty,
+            disciplines: activeQuestion.disciplines,
+            teachingLevels: activeQuestion.teaching_levels,
+            learning_objects: newLearningObjectList,
+            tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
+            topics: allTopics,
+            alternatives,
           }));
           dispatch(listTopics(activeQuestion.disciplines));
           dispatch(fetchQuestionSuccess(activeQuestion));
@@ -109,6 +143,7 @@ export const createQuestion = (props) => {
       (newQuestion) => {
         dispatch(createQuestionSuccess(newQuestion));
         history.push(`/view-question/${newQuestion.id}`);
+        toast.success('Questão criada com sucesso', optionsSuccess);
       },
       (error) => {
         dispatch(createQuestionFailure(error));
@@ -117,7 +152,64 @@ export const createQuestion = (props) => {
   };
 };
 
-// Function: Update an active question
+// Function: Classify an active question
+export const classifyQuestion = (props) => {
+  function classifyActiveQuestion() { return { type: CLASSIFY_QUESTION }; }
+  function classifyQuestionSuccess(activeQuestion) { return { type: CLASSIFY_QUESTION_SUCCESS, activeQuestion }; }
+  function classifyQuestionFailure(error) { return { type: CLASSIFY_QUESTION_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(classifyActiveQuestion(props));
+    return questionService.classifyQuestion(props).then(
+      (activeQuestion) => {
+        dispatch(classifyQuestionSuccess(activeQuestion));
+        const allTopics = [];
+        activeQuestion.topics.forEach((topic) => {
+          const tl = [];
+          let t = topic;
+          while (t != null) {
+            tl.push(t.id.toString());
+            t = t.parent;
+          }
+          if (tl.length === 3) {
+            allTopics.push({
+              topic: tl[0],
+              subsubject: tl[1],
+              subject: tl[2],
+            });
+          } else if (tl.length === 2) {
+            allTopics.push({
+              subsubject: tl[0],
+              subject: tl[1],
+            });
+          } else {
+            allTopics.push({
+              subject: tl[0],
+            });
+          }
+        });
+        allTopics.push({});
+
+        const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
+          id: lobj.id,
+          tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
+        }));
+
+        dispatch(initialize('classify-question', {
+          difficulty: activeQuestion.difficulty,
+          learning_objects: newLearningObjectList,
+          tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
+          topics: allTopics,
+        }));
+      },
+      (error) => {
+        dispatch(classifyQuestionFailure(error));
+      },
+    );
+  };
+};
+
+
+// Function: Update active question / available only for user's questions
 export const updateQuestion = (props) => {
   function updateActiveQuestion() { return { type: UPDATE_QUESTION }; }
   function updateQuestionSuccess(activeQuestion) { return { type: UPDATE_QUESTION_SUCCESS, activeQuestion }; }
@@ -159,11 +251,23 @@ export const updateQuestion = (props) => {
           tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
         }));
 
-        dispatch(initialize('question-edit', {
+        const alternatives = activeQuestion.alternatives.map(alternative => ({
+          id: alternative.id,
+          alternativeText: alternative.text,
+          isCorrect: (alternative.is_correct ? 'true' : ''),
+        }));
+
+        dispatch(initialize('edit-question', {
+          year: activeQuestion.year,
+          source: activeQuestion.source,
+          statement: activeQuestion.statement,
           difficulty: activeQuestion.difficulty,
+          disciplines: activeQuestion.disciplines,
+          teachingLevels: activeQuestion.teaching_levels,
           learning_objects: newLearningObjectList,
           tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
           topics: allTopics,
+          alternatives,
         }));
       },
       (error) => {

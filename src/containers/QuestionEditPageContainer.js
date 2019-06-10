@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 import { reduxForm, formValueSelector } from 'redux-form';
 import QuestionEditPage from 'pages/Question/QuestionEditPage';
-import { fetchQuestion, updateQuestion } from 'actions/questionAction';
+import { fetchQuestion, classifyQuestion } from 'actions/questionAction';
 import { updateLearningObject } from 'actions/learningObjectAction';
 
 
 import { addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
 
 const mapStateToProps = (state) => {
-  const selector = formValueSelector('question-edit');
+  const selector = formValueSelector('classify-question');
   return ({
     topics: selector(state, 'topics'),
     isFetching: state.question.isFetching,
@@ -49,7 +49,7 @@ const mapDispatchToProps = dispatch => ({
       dispatch(updateLearningObject(newLearningObjects[i], false));
     }
 
-    return dispatch(updateQuestion(newUpdateQuestion));
+    return dispatch(classifyQuestion(newUpdateQuestion));
   },
 });
 
@@ -57,7 +57,7 @@ const QuestionEditPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(reduxForm({
-  form: 'question-edit',
+  form: 'classify-question',
 })(QuestionEditPage));
 
 export default QuestionEditPageContainer;

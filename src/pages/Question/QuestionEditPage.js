@@ -16,7 +16,7 @@ import DescriptorList from 'components/descriptors/DescriptorList';
 import TagList from 'components/tags/TagList';
 import { Field, FieldArray } from 'redux-form';
 import QuestionAuthor from 'components/question/QuestionAuthor';
-import { requiredSelectValidator } from 'helpers/validators';
+import { requiredSelectValidator, minLength2TagsForEdit, minLength1Topics } from 'helpers/validators';
 // import MAReactTags from 'components/tags/MAReactTag';
 import { history } from 'helpers/history';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
@@ -61,59 +61,24 @@ const difficultyList = {
 const renderMAMultiSelectTag = ({
   input,
   placeholder,
-  meta: { touched, error, warning },
+  meta: {
+    error,
+  },
 }) => (
-  <div className="o-learningobj__tags">
+  <div className="c-create-question__tags">
     <MAMultiSelectTag
       input={input}
       onChange={value => input.onChange(value)}
       placeholder={placeholder}
     />
-    { touched
-      && ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
-      ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
-    }
+    { error && (
+    <span className="error-message-text">
+      {error}
+    </span>
+    )
+     }
   </div>
 );
-
-/* const renderMAReactTags = ({
-  input,
-  placeholder,
-  meta: { touched, error, warning },
-}) => (
-  <div>
-    <MAReactTags
-      {...input}
-      onChange={value => input.onChange(value)}
-      placeholder={placeholder}
-    />
-    { touched
-      && ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
-      ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
-    }
-  </div>
-); */
-
 
 const renderSelectField = ({
   input, label, meta: { touched, error }, children, optionDefault, styleCustomize = 'form-control',
@@ -222,6 +187,7 @@ const renderTopics = ({
                 label="Assunto"
                 optionDefault="-1"
                 styleCustomize="form-control c-question-edit__topic"
+                validate={requiredSelectValidator}
               >
                 { topicsList && topicsList.map(subject => (
                   <option key={subject.id} value={subject.id}>
@@ -279,10 +245,10 @@ const renderTopics = ({
           </Row>
         );
       })}
+      <Row>{error && <span className="error-message-text">{error}</span>}</Row>
     </Col>
   </Row>
 );
-
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
@@ -360,6 +326,15 @@ class QuestionEditPage extends Component {
         <ToastContainer hideProgressBar position="bottom-right" />
         <Form onSubmit={handleSubmit}>
           <div className="c-question">
+            <Row className="c-question__tittle-section">
+              <Col>
+                <h4>
+                  <FontAwesomeIcon icon="book" />
+                  {' '}
+                  Classificar Questão
+                </h4>
+              </Col>
+            </Row>
             <Row>
               <Col className="d-flex">
                 <Button
@@ -375,7 +350,7 @@ class QuestionEditPage extends Component {
                   {' '}
                   Visualizar
                 </Link>
-                <Button className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`} type="submit">
+                <Button className="btn btn-secondary c-question__btn-back" to={`/classify-question/${activeQuestion.id}`} type="submit">
                   <FontAwesomeIcon
                     className="btn__icon"
                     icon="save"
@@ -388,7 +363,7 @@ class QuestionEditPage extends Component {
             <Row>
               <Col>
                 <Alert color="warning" className="c-question-edit__warning-message">
-                  Você está editando a questão
+                  Você está classificando a questão
                   {' '}
                   N°
                   {activeQuestion.id}
@@ -412,17 +387,6 @@ class QuestionEditPage extends Component {
                     {discipline.name}
                   </span>
                 ))}
-              </Col>
-            </Row>
-            <Row className="c-question__tittle-section">
-              <Col>
-                <h4>
-                  <FontAwesomeIcon icon="book" />
-                  {' '}
-                  Questão N°
-                  {' '}
-                  {activeQuestion.id}
-                </h4>
               </Col>
             </Row>
             <Row className="justify-content-center">
@@ -513,9 +477,10 @@ class QuestionEditPage extends Component {
                       </span>
                     </Col>
                   </Row>
+                  { activeQuestion.source && (
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
-                      Vestibular
+                       Vestibular
                     </Col>
                     <Col sm="8" xs="8">
                       <span className="question-info c-question__tag--purple">
@@ -523,6 +488,7 @@ class QuestionEditPage extends Component {
                       </span>
                     </Col>
                   </Row>
+                  )}
                   <Row>
                     <Col className="info-label" sm="4" xs="4">
                         Disciplinas
@@ -559,6 +525,7 @@ class QuestionEditPage extends Component {
                         id="tags"
                         placeholder="Dê enter ou vírgula após inserir uma tag"
                         className="form-control"
+                        validate={minLength2TagsForEdit}
                       />
                     </Col>
                   </Row>
@@ -597,7 +564,7 @@ class QuestionEditPage extends Component {
                       </Field>
                     </Col>
                   </Row>
-                  <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} />
+                  <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} validate={minLength1Topics} />
                   <Row>
                     <Col>
                       { (!pristine) ? (

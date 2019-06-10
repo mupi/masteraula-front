@@ -50,8 +50,8 @@ function createQuestion(newQuestionData) {
     .then(activeQuestion => activeQuestion);
 }
 
-// Update a Question
-function updateQuestion(activeUpdateQuestion) {
+// Classify a Question
+function classifyQuestion(activeUpdateQuestion) {
   const requestOptions = {
     method: 'PATCH',
     headers: {
@@ -71,6 +71,37 @@ function updateQuestion(activeUpdateQuestion) {
   });
 
   const idQuestion = activeUpdateQuestion.id;
+
+  return fetch(`${apiUrl}/questions/${idQuestion}/`, requestOptions)
+    .then(handleResponse)
+    .then((activeQuestion) => {
+      localStorage.setItem('activeQuestion', JSON.stringify(activeQuestion));
+      return activeQuestion;
+    });
+}
+
+// Update a Question - available for user's questions only
+function updateQuestion(activeUpdateQuestion) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+    body: JSON.stringify({ ...activeUpdateQuestion, secret: true }),
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  const idQuestion = parseInt(activeUpdateQuestion.id, 10);
+
 
   return fetch(`${apiUrl}/questions/${idQuestion}/`, requestOptions)
     .then(handleResponse)
@@ -127,6 +158,7 @@ const questionService = {
   fetchQuestion,
   listQuestions,
   createQuestion,
+  classifyQuestion,
   updateQuestion,
 };
 

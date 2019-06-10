@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import Back from 'components/question/Back';
-import { history } from 'helpers/history';
+import { history } from 'helpers/history'; 
 
 
 const QuestionListDocuments = (props) => {
@@ -39,6 +39,18 @@ const QuestionListDocuments = (props) => {
   );
 };
 
+const redirectURL = (e, role, isOwner, idQuestion) => {
+  let url = '';
+  e.preventDefault();
+  if (isOwner) {
+    url = `/edit-question/${idQuestion}`;
+  } else if (role && role.includes('Editores')) {
+    url = `/classify-question/${idQuestion}`;
+  }
+
+  history.push(url);
+};
+
 class QuestionPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
@@ -48,10 +60,13 @@ class QuestionPage extends Component {
 
   render() {
     const {
-      activeQuestion, isFetching, rating, error, onRate, activeDocument, addSelectedQuestion,
+      userId, activeQuestion, isFetching, rating, error, onRate, activeDocument, addSelectedQuestion,
       removeSelectedQuestion, role, setQuestionIdToNewDocument, showModal, hideModal,
     } = this.props;
-  
+
+    const authorPk = activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
+    const isOwner = (authorPk === userId);
+
     if (isFetching) {
       return (
         <HomeUserPage>
@@ -79,9 +94,13 @@ class QuestionPage extends Component {
           <Row>
             <Col className="d-flex">
               <Back />
-              {role && role.includes('Editores')
+              { ((role && role.includes('Editores')) || isOwner)
                 ? (
-                  <Link className="btn btn-secondary c-question__btn-back" to={`/edit-question/${activeQuestion.id}`}>
+                  <Link
+                    className="btn btn-secondary c-question__btn-back"
+                    to="/"
+                    onClick={(e) => { redirectURL(e, role, isOwner, activeQuestion.id); }}
+                  >
                     <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
                     {' '}
                     Editar
