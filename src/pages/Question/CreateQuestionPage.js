@@ -16,6 +16,8 @@ import {
 import { Field, FieldArray } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
 import Multiselect from 'react-widgets/lib/Multiselect';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const difficultyList = {
   difficulties: [
@@ -461,16 +463,7 @@ class CreateQuestionPage extends Component {
       <HomeUserPage>
         <Form onSubmit={handleSubmit}>
           <div className="c-question c-create-question">
-            <Row className="c-question__tittle-section">
-              <Col>
-                <h4>
-                  <FontAwesomeIcon icon="book" />
-                  {' '}
-                  Criar Questão
-                </h4>
-              </Col>
-            </Row>
-            <Row>
+            <Row className="c-question__row-header-options">
               <Col className="d-flex justify-content-end">
                 <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit">
                   <FontAwesomeIcon
@@ -484,6 +477,15 @@ class CreateQuestionPage extends Component {
             </Row>
             <Row className="c-question__tittle-section">
               <Col>
+                <h4>
+                  <FontAwesomeIcon icon="book" />
+                  {' '}
+                  Criar Questão
+                </h4>
+              </Col>
+            </Row>
+            <Row className="c-question__tittle-section">
+              <Col>
                 <h5>
                   <FontAwesomeIcon icon="pencil-alt" />
                   {' '}
@@ -492,7 +494,7 @@ class CreateQuestionPage extends Component {
               </Col>
             </Row>
             <Row className="justify-content-center">
-              <Col sm="12" md="12" xs="12">
+              <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
                 <Field
                   component={renderQuestionTextEditor}
                   name="statement"
@@ -647,7 +649,7 @@ class CreateQuestionPage extends Component {
               </Row>
             </Container>
           </div>
-          <Row className="c-document__main-buttons text-center">
+          <Row className="c-questions__row-footer-options text-center">
             <Col>
               <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right">
                 <FontAwesomeIcon

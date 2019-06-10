@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
+import DeleteQuestionButtonContainer from 'containers/DeleteQuestionButtonContainer';
+
 import {
   requiredValidator,
   requiredMultiSelectValidator,
@@ -470,6 +472,16 @@ class MyQuestionEditPage extends Component {
         );
       }
 
+      if (activeQuestion && activeQuestion.disabled) {
+        return (
+          <HomeUserPage>
+            <Alert color="danger">
+              Questão não disponível para edição
+            </Alert>
+          </HomeUserPage>
+        );
+      }
+
 
       if (authorPK !== userId) {
         return (
@@ -486,6 +498,33 @@ class MyQuestionEditPage extends Component {
           <ToastContainer hideProgressBar position="bottom-right" />
           <Form onSubmit={handleSubmit}>
             <div className="c-question c-create-question">
+              <Row className="c-question__row-header-options">
+                <Col className="d-flex justify-content-end">
+                  <DeleteQuestionButtonContainer
+                    questionId={activeQuestion.id}
+                    customClass="c-question__btn-remove-question btn__icon"
+                    label={(
+                      <span>
+                        <FontAwesomeIcon icon="trash-alt" className="btn__icon" />
+                        Apagar
+                      </span>
+                      )}
+                  />
+                  <Button
+                    className="btn btn-secondary c-question__btn-back"
+                    to="/edit-question/"
+                    type="submit"
+                    title="Salvar questão"
+                  >
+                    <FontAwesomeIcon
+                      className="btn__icon"
+                      icon="save"
+                    />
+                    {' '}
+                    Salvar
+                  </Button>
+                </Col>
+              </Row>
               <Row className="c-question__tittle-section">
                 <Col>
                   <h4>
@@ -496,24 +535,12 @@ class MyQuestionEditPage extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col className="d-flex justify-content-end">
-                  <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit">
-                    <FontAwesomeIcon
-                      className="btn__icon"
-                      icon="save"
-                    />
-                    {' '}
-                    Salvar
-                  </Button>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                <Col className="c-question__col-full-section-details">
                   <Alert color="warning" className="c-question-edit__warning-message">
                     Você está editando a questão
                     {' '}
                     N°
-                    {activeQuestion.id}
+                    <strong>{activeQuestion.id}</strong>
                     { (!pristine) ? '. Existem mudanças ainda não salvas na questão.' : ''
                     }
                   </Alert>
@@ -529,7 +556,7 @@ class MyQuestionEditPage extends Component {
                 </Col>
               </Row>
               <Row className="justify-content-center">
-                <Col sm="12" md="12" xs="12">
+                <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
                   <Field
                     component={renderQuestionTextEditor}
                     name="statement"
@@ -684,7 +711,7 @@ class MyQuestionEditPage extends Component {
                 </Row>
               </Container>
             </div>
-            <Row className="c-document__main-buttons text-center">
+            <Row className="c-questions__row-footer-options text-center">
               <Col>
                 <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right">
                   <FontAwesomeIcon

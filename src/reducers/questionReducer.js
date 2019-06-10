@@ -8,6 +8,7 @@ import {
   CREATE_QUESTION, CREATE_QUESTION_SUCCESS, CREATE_QUESTION_FAILURE,
 } from 'actions/questionAction';
 import { toast } from 'react-toastify';
+import { DELETE_QUESTION, DELETE_QUESTION_SUCCESS, DELETE_QUESTION_FAILURE } from '../actions/questionAction';
 
 const sessionData = JSON.parse(localStorage.getItem('activeDocument'));
 
@@ -138,6 +139,31 @@ export const question = (state = initialState, action) => {
       return Object.assign({}, state, {
         isCreating: false,
         error: action.error,
+      });
+    } 
+    case DELETE_QUESTION: {
+      return Object.assign({}, state, {
+        isDeleting: true,
+        isDeleted: false,
+      });
+    }
+    case DELETE_QUESTION_SUCCESS: {
+      let newActive = state.activeQuestion;
+      if (state.activeQuestion && state.activeQuestion.id === action.idQuestionRemoved) {
+        newActive = null;
+        localStorage.setItem('activeQuestion', null);
+      }
+      toast.success('Questão apagada com sucesso', optionsSuccess);
+      return Object.assign({}, state, {
+        activeQuestion: newActive,
+        isDeleted: true,
+      });
+    }
+    case DELETE_QUESTION_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        error: action.error,
+        isDeleted: false,
       });
     }
     default:

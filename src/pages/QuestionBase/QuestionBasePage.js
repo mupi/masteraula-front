@@ -70,7 +70,11 @@ class QuestionBasePage extends React.Component {
         <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-question-base">
           <QuestionSearchFormContainer />
-          {(filter.disciplinesSelected.length > 0) || (filter.difficultiesSelected.length > 0) || (filter.teachingLevelsSelected.length > 0) || (filter.sourcesSelected.length > 0) || (filter.yearsSelected.length > 0)  ? (
+          {(filter.disciplinesSelected.length > 0)
+          || (filter.difficultiesSelected.length > 0)
+          || (filter.teachingLevelsSelected.length > 0)
+          || (filter.sourcesSelected.length > 0)
+          || (filter.yearsSelected.length > 0) ? (
             <Row>
               <Col sm="12">
                 <p className="c-question-base__keywords-title">
@@ -78,35 +82,65 @@ class QuestionBasePage extends React.Component {
                     Filtros selecionados:
                   </span>
                   {filter.disciplinesSelected.map(item => (
-                    <Button disabled={isFetching} key={`DI${item.id}`} id={item.id} onClick={clearDisciplines} className="c-question-base__filter-selected">
+                    <Button
+                      disabled={isFetching}
+                      key={`DI${item.id}`}
+                      id={item.id}
+                      onClick={clearDisciplines}
+                      className="c-question-base__filter-selected"
+                    >
                       {item.name}
                       {' '}
                       x
                     </Button>
                   )).concat(
                     filter.difficultiesSelected.map(item => (
-                      <Button disabled={isFetching} key={`DF${item.id}`} id={item.id} onClick={clearDifficulties} className="c-question-base__filter-selected">
+                      <Button
+                        disabled={isFetching}
+                        key={`DF${item.id}`}
+                        id={item.id}
+                        onClick={clearDifficulties}
+                        className="c-question-base__filter-selected"
+                      >
                         {item.name}
                         {' '}
                         x
                       </Button>
                     )),
                     filter.teachingLevelsSelected.map(item => (
-                      <Button disabled={isFetching} key={`TL${item.id}`} id={item.id} onClick={clearTeachingLevel} className="c-question-base__filter-selected">
+                      <Button
+                        disabled={isFetching}
+                        key={`TL${item.id}`}
+                        id={item.id}
+                        onClick={clearTeachingLevel}
+                        className="c-question-base__filter-selected"
+                      >
                         {item.name}
                         {' '}
                         x
                       </Button>
                     )),
                     filter.sourcesSelected.map(item => (
-                      <Button disabled={isFetching} key={`S${item.id}`} id={item.id} onClick={clearSources} className="c-question-base__filter-selected">
+                      <Button
+                        disabled={isFetching}
+                        key={`S${item.id}`}
+                        id={item.id}
+                        onClick={clearSources}
+                        className="c-question-base__filter-selected"
+                      >
                         {item.name}
                         {' '}
                         x
                       </Button>
                     )),
                     filter.yearsSelected.map(item => (
-                      <Button disabled={isFetching} key={`Y${item.id}`} id={item.id} onClick={clearYears} className="c-question-base__filter-selected">
+                      <Button
+                        disabled={isFetching}
+                        key={`Y${item.id}`}
+                        id={item.id}
+                        onClick={clearYears}
+                        className="c-question-base__filter-selected"
+                      >
                         {item.name}
                         {' '}
                         x
@@ -115,8 +149,9 @@ class QuestionBasePage extends React.Component {
                   )}
                 </p>
               </Col>
-            </Row>) : ''
-      } 
+            </Row>
+            ) : ''
+      }
 
 
           <Row className="pagination-questions" style={{ marginLeft: '80%' }}>

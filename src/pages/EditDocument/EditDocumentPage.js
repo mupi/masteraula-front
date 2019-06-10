@@ -10,7 +10,7 @@ import DocumentBasicHeader from 'components/document/DocumentBasicHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
 
 class EditDocumentPage extends Component {
   componentDidMount() {
@@ -28,7 +28,7 @@ class EditDocumentPage extends Component {
     } = this.props;
     listMyLastDocuments(1, 'date', 'desc');
   }
-  
+
   render() {
     const {
       activeDocument, removeSelectedQuestion, submit,
@@ -48,11 +48,12 @@ class EditDocumentPage extends Component {
           <DocumentBasicHeader data={activeDocument} onSubmit={submit} />
           <DocumentQuestions
             activeDocument={activeDocument}
-            removeSelectedQuestion={removeSelectedQuestion} 
+            removeSelectedQuestion={removeSelectedQuestion}
           />
         </div>
         <ToastContainer hideProgressBar position="bottom-right" />
-      </HomeUserPage>);
+      </HomeUserPage>
+    );
   }
 }
 

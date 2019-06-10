@@ -311,6 +311,16 @@ class QuestionEditPage extends Component {
       );
     }
 
+    if (activeQuestion && activeQuestion.disabled) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+            Questão não disponível para classificação
+          </Alert>
+        </HomeUserPage>
+      );
+    }
+
     if (!role.includes('Editores')) {
       return (
         <HomeUserPage>
@@ -326,16 +336,7 @@ class QuestionEditPage extends Component {
         <ToastContainer hideProgressBar position="bottom-right" />
         <Form onSubmit={handleSubmit}>
           <div className="c-question">
-            <Row className="c-question__tittle-section">
-              <Col>
-                <h4>
-                  <FontAwesomeIcon icon="book" />
-                  {' '}
-                  Classificar Questão
-                </h4>
-              </Col>
-            </Row>
-            <Row>
+            <Row className="c-question__row-header-options">
               <Col className="d-flex">
                 <Button
                   onClick={() => history.replace(`/view-question/${activeQuestion.id}`)}
@@ -350,7 +351,12 @@ class QuestionEditPage extends Component {
                   {' '}
                   Visualizar
                 </Link>
-                <Button className="btn btn-secondary c-question__btn-back" to={`/classify-question/${activeQuestion.id}`} type="submit">
+                <Button
+                  className="btn btn-secondary c-question__btn-back"
+                  to={`/classify-question/${activeQuestion.id}`}
+                  type="submit"
+                  title="Salvar questão"
+                >
                   <FontAwesomeIcon
                     className="btn__icon"
                     icon="save"
@@ -360,13 +366,22 @@ class QuestionEditPage extends Component {
                 </Button>
               </Col>
             </Row>
-            <Row>
+            <Row className="c-question__tittle-section">
               <Col>
+                <h4>
+                  <FontAwesomeIcon icon="book" />
+                  {' '}
+                  Classificar Questão
+                </h4>
+              </Col>
+            </Row>
+            <Row>
+              <Col className="c-question__col-full-section-details">
                 <Alert color="warning" className="c-question-edit__warning-message">
                   Você está classificando a questão
                   {' '}
                   N°
-                  {activeQuestion.id}
+                  <strong>{activeQuestion.id}</strong>
                   { (!pristine) ? '. Existem mudanças ainda não salvas na questão.' : ''
                   }
                 </Alert>
@@ -390,7 +405,7 @@ class QuestionEditPage extends Component {
               </Col>
             </Row>
             <Row className="justify-content-center">
-              <Col sm="12" md="12" xs="12">
+              <Col className="c-question__col-full-section-details" sm="12" md="12" xs="12">
                 <div className="c-question__full-statement">
                   {(learningObjects && learningObjects.length > 0)
                     ? (
@@ -566,7 +581,7 @@ class QuestionEditPage extends Component {
                   </Row>
                   <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} validate={minLength1Topics} />
                   <Row>
-                    <Col>
+                    <Col className="c-question__col-full-section-details">
                       { (!pristine) ? (
                         <Alert color="warning" className="c-question-edit__warning-message">
                           Existem mudanças ainda não salvas na questão
@@ -580,7 +595,7 @@ class QuestionEditPage extends Component {
               </Col>
             </Row>
           </div>
-          <Row className="c-document__main-buttons text-center">
+          <Row className="c-questions__row-footer-options text-center">
             <Col>
               <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right">
                 <FontAwesomeIcon

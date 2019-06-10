@@ -136,7 +136,8 @@ class ViewDocumentPage extends React.Component {
           </Row>
 
         </div>
-      </HomeUserPage>);
+      </HomeUserPage>
+    );
   }
 }
 

@@ -42,6 +42,23 @@
 
 //Question Page where c-question is the main container
 .c-question {
+    // class for question's header options for all pages related to question
+    &__row-header-options {
+      background: $color-ma-green-light !important;
+      border-radius: 5px;
+      padding: 10px 0px;
+    }
+
+    &__col-full-section-details{
+        @include for-tablet-landscape-up {
+          padding: 0px;
+        }
+    }
+
+    &__row-footer-options{
+      margin: 15px 0px 0px;
+    }
+
     &__btn-report-error{
       font-size:16px !important;
     }
@@ -139,10 +156,7 @@
        max-width: 800px;
        margin: auto !important;
        font-size:13px;
-      }
-
-      &--image{
-
+       word-wrap: break-word;
       }
 
       &--source{
@@ -165,18 +179,6 @@
       @include for-phone-only {
             width: 100%;
         }
-    }
-
-    &__section-statement-text{
-
-    }
-
-    &__section-alternatives{
-      
-    }
-
-    &__section-answer{
-      
     }
 
     &__alternatives .alternative:last-child{

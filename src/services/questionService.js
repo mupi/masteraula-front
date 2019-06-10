@@ -153,6 +153,29 @@ function rateQuestion() {
 
 }
 
+// Delete a header given its ID
+function deleteQuestion(idQuestion) {
+  console.log("vou remover o " + idQuestion);
+  const requestOptions = {
+    method: 'DELETE',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = (response) => {
+    if (!response.ok) {
+      return Promise.reject();
+    }
+
+    return idQuestion;
+  };
+
+  return fetch(`${apiUrl}/questions/${idQuestion}/`, requestOptions)
+    .then(handleResponse)
+    .then(idRemovedHeader => idRemovedHeader);
+}
+
 const questionService = {
   rateQuestion,
   fetchQuestion,
@@ -160,6 +183,7 @@ const questionService = {
   createQuestion,
   classifyQuestion,
   updateQuestion,
+  deleteQuestion,
 };
 
 export default questionService;
