@@ -7,8 +7,8 @@
 
   &__search-field{
 
-    .form-control:disabled, .form-control[readonly]{
-      background-color: $color-ma-lightgray-backg;
+    &.form-control:disabled, .form-control[readonly]{
+      background-color: $color-ma-lightgray-backg !important;
     }
   }
   
