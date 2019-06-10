@@ -494,7 +494,7 @@ class CreateQuestionPage extends Component {
               </Col>
             </Row>
             <Row className="justify-content-center">
-              <Col sm="12" md="12" xs="12">
+              <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
                 <Field
                   component={renderQuestionTextEditor}
                   name="statement"
