@@ -27,6 +27,7 @@ const renderSearchField = ({
         placeholder={placeholder}
         type={type}
         disabled={isFetchingQuestions}
+        className="c-question-base__search-field"
       />
       {search || !pristine ? (
         <InputGroupAddon addonType="prepend">

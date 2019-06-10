@@ -4,6 +4,13 @@
   &__search-all-section{
     width: 100%;
   }
+
+  &__search-field{
+
+    .form-control:disabled, .form-control[readonly]{
+      background-color: $color-ma-lightgray-backg;
+    }
+  }
   
   &__title{
     text-align: center;
