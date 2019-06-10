@@ -33,5 +33,15 @@ export const minLength3characters = (minLength(3, 'caracteres'));
 
 export const minLength2Tags = value => (((value && (value.split(',').length < 2)) || value === undefined) ? 'Insira no minimo 2 tags' : undefined);
 
+export const minLength2TagsForEdit = (value) => {
+  let invalid;
+  if (value) {
+    invalid = false;
+  } else {
+    invalid = true;
+  }
+  return (((value && (value.split(',').length < 2)) || value === undefined || value === null || invalid) ? 'Insira no minimo 2 tags' : undefined);
+};
+
 const maxValue = max => value => (value && value > max ? `O valor máximo permitido é ${max}` : undefined);
 export const maxYearValue = maxValue(2019);

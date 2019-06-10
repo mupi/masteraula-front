@@ -13,7 +13,7 @@ import {
   requiredValidator,
   requiredMultiSelectValidator,
   requiredSelectValidator,
-  mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, minLength2Tags,
+  mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, minLength2TagsForEdit,
 } from 'helpers/validators';
 import { Field, FieldArray } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
@@ -645,7 +645,7 @@ class MyQuestionEditPage extends Component {
                       id="tags"
                       placeholder="Dê enter ou vírgula após inserir uma tag"
                       className="form-control"
-                      validate={minLength2Tags}
+                      validate={minLength2TagsForEdit}
                     />
                   </Col>
                 </Row>
