@@ -472,6 +472,16 @@ class MyQuestionEditPage extends Component {
         );
       }
 
+      if (activeQuestion && activeQuestion.disabled) {
+        return (
+          <HomeUserPage>
+            <Alert color="danger">
+              Questão não disponível para edição
+            </Alert>
+          </HomeUserPage>
+        );
+      }
+
 
       if (authorPK !== userId) {
         return (

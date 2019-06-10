@@ -40,6 +40,36 @@ const QuestionListDocuments = (props) => {
   );
 };
 
+const ShowAddRemoveButton = (props) => {
+  const { activeQuestion, activeDocument, removeSelectedQuestion } = props;
+  return (
+    isQuestionAdded(activeDocument, activeQuestion.id)
+      ? (
+        <Col className="c-question__add-question-rectangle">
+          <h6 className="c-question__add-question-title">
+            Esta questão foi adicionada à prova
+            {' '}
+            <strong>
+              {activeDocument.name}
+            </strong>
+          </h6>
+          <RemoveQuestionButton
+            questionId={activeQuestion.id}
+            activeDocumentId={activeDocument.id}
+            removeSelectedQuestion={removeSelectedQuestion}
+            label={(
+              <span>
+                <FontAwesomeIcon icon="minus" className="btn__icon" />
+                Remover
+              </span>
+                        )}
+            customClass="c-question__btn-remove-question"
+          />
+        </Col>
+      ) : ''
+  );
+};
+
 const redirectURL = (e, role, isOwner, idQuestion) => {
   let url = '';
   e.preventDefault();
@@ -62,7 +92,7 @@ class QuestionPage extends Component {
   render() {
     const {
       userId, activeQuestion, isFetching, rating, error, onRate, activeDocument, addSelectedQuestion,
-      removeSelectedQuestion, role, setQuestionIdToNewDocument, showModal, hideModal,
+      role, setQuestionIdToNewDocument, showModal, hideModal,
     } = this.props;
 
     const authorPk = (activeQuestion && activeQuestion.author) ? activeQuestion.author.pk : 'Anônimo';
@@ -78,17 +108,7 @@ class QuestionPage extends Component {
       );
     }
 
-    if (!activeQuestion) {
-      return (
-        <HomeUserPage>
-          <Alert className="alert--warning" color="warning">
-              A questão não existe
-          </Alert>
-        </HomeUserPage>
-      );
-    }
-
-    if (error) {
+    if (error || !activeQuestion) {
       return (
         <HomeUserPage>
           <Alert color="danger">
@@ -105,11 +125,11 @@ class QuestionPage extends Component {
           <Row className="c-question__row-header-options">
             <Col className="d-flex">
               <Back />
-              { (isOwner)
+              { (isOwner && !activeQuestion.disabled)
                 ? (
                   <DeleteQuestionButtonContainer
                     questionId={activeQuestion.id}
-                    customClass="c-question__btn-remove-question btn__icon"
+                    customClass={!activeQuestion.disabled ? 'c-question__btn-remove-question btn__icon' : 'c-question__btn-remove-question'}
                     label={(
                       <span>
                         <FontAwesomeIcon icon="trash-alt" className="btn__icon" />
@@ -118,7 +138,7 @@ class QuestionPage extends Component {
                     )}
                   />
                 ) : ''}
-              { ((role && role.includes('Editores')) || isOwner)
+              {(((role && role.includes('Editores')) || isOwner) && !activeQuestion.disabled)
                 ? (
                   <Link
                     className="btn btn-secondary c-question__btn-back"
@@ -161,6 +181,20 @@ class QuestionPage extends Component {
               </h4>
             </Col>
           </Row>
+          {activeQuestion.disabled ? (
+            <Row>
+              <Col className="c-question__col-full-section-details">
+                <Alert color="warning" className="c-question-edit__warning-message">
+                  A questão
+                  {' '}
+                  N°
+                  <strong>{activeQuestion.id}</strong>
+                  {' '}
+                  não está mais disponível
+                </Alert>
+              </Col>
+            </Row>
+          ) : ''}
           <Row className="justify-content-center">
             <Col className="c-question__col-full-section-details" sm="12" md="12" xs="12">
               <QuestionContent
@@ -171,7 +205,7 @@ class QuestionPage extends Component {
               />
               <div className="c-question__section-add-question">
                 <Row>
-                  {!isQuestionAdded(activeDocument, activeQuestion.id) ? (
+                  {!isQuestionAdded(activeDocument, activeQuestion.id) && !activeQuestion.disabled ? (
                     <Col className="c-question__add-question-rectangle">
                       <h6 className="c-question__add-question-title">
                         Gostou da questão? Adicione a sua prova
@@ -188,27 +222,7 @@ class QuestionPage extends Component {
                       />
                     </Col>
                   ) : (
-                    <Col className="c-question__add-question-rectangle">
-                      <h6 className="c-question__add-question-title">
-                        Esta questão foi adicionada à prova
-                        {' '}
-                        <strong>
-                          {activeDocument.name}
-                        </strong>
-                      </h6>
-                      <RemoveQuestionButton
-                        questionId={activeQuestion.id}
-                        activeDocumentId={activeDocument.id}
-                        removeSelectedQuestion={removeSelectedQuestion}
-                        label={(
-                          <span>
-                            <FontAwesomeIcon icon="minus" className="btn__icon" />
-                            Remover
-                          </span>
-                        )}
-                        customClass="c-question__btn-remove-question"
-                      />
-                    </Col>
+                    <ShowAddRemoveButton {...this.props} />
                   )}
                 </Row>
                 <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument} />

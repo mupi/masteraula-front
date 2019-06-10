@@ -311,6 +311,16 @@ class QuestionEditPage extends Component {
       );
     }
 
+    if (activeQuestion && activeQuestion.disabled) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+            Questão não disponível para classificação
+          </Alert>
+        </HomeUserPage>
+      );
+    }
+
     if (!role.includes('Editores')) {
       return (
         <HomeUserPage>
