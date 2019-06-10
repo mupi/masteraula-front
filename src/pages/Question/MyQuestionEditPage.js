@@ -525,7 +525,7 @@ class MyQuestionEditPage extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col>
+                <Col className="c-question__col-full-section-details">
                   <Alert color="warning" className="c-question-edit__warning-message">
                     Você está editando a questão
                     {' '}
@@ -546,7 +546,7 @@ class MyQuestionEditPage extends Component {
                 </Col>
               </Row>
               <Row className="justify-content-center">
-                <Col sm="12" md="12" xs="12">
+                <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
                   <Field
                     component={renderQuestionTextEditor}
                     name="statement"
