@@ -21,7 +21,9 @@ const DocumentQuestionItem = (props) => {
         <Row>
           <Col sm="8" className="c-document__question-image">
             <p className="c-document__question-info-title">
-              Questão
+              Questão N°
+              {' '}
+              {question.id}
               {' '}
               {question.learning_objects && question.learning_objects.length > 0 ? (
                 <span className="c-document__question-number-learning-obj">
