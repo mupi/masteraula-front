@@ -2,7 +2,9 @@
 import {
   Container, Alert, Row, Col, Form, Button,
 } from 'reactstrap';
-import { getTeachingLevel, getCleanCompleteStatement, getCleanAlternativeText, getCleanLearningObjectSource } from 'helpers/question';
+import {
+  getTeachingLevel, getCleanCompleteStatement, getCleanAlternativeText, getCleanLearningObjectSource,
+} from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
