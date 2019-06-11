@@ -2,9 +2,7 @@ import React from 'react';
 import { Alert } from 'reactstrap';
 import UserProfileContainer from 'containers/UserProfileContainer';
 import UserPasswordProfileContainer from 'containers/UserPasswordProfileContainer';
-import { ToastContainer } from 'react-toastify';
 import HomeUserPage from '../HomeUser/HomeUserPage';
-import 'react-toastify/dist/ReactToastify.css';
 
 class UserProfilePage extends React.Component {
   componentDidMount() {
@@ -39,7 +37,6 @@ class UserProfilePage extends React.Component {
           <UserProfileContainer stateList={stateList} />
           <UserPasswordProfileContainer />
         </div>
-        <ToastContainer hideProgressBar position="bottom-right" />
       </HomeUserPage>
     );
   }
