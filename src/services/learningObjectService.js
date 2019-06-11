@@ -1,6 +1,32 @@
 import { apiUrl } from 'helpers/config';
 import { authHeader } from 'helpers';
 
+// Fetch a LearningObject using ID
+function fetchLearningObject(id) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+    return data;
+  });
+
+  return fetch(`${apiUrl}/learning_object/${id}/`, requestOptions)
+    .then(handleResponse)
+    .then((activeLearningObject) => {
+      localStorage.setItem('activeLearningObject', JSON.stringify(activeLearningObject));
+      return activeLearningObject;
+    });
+}
+
 // Update an Active LearningObject
 function updateLearningObject(activeUpdateLearningObject) {
   const requestOptions = {
@@ -32,6 +58,7 @@ function updateLearningObject(activeUpdateLearningObject) {
 }
 
 const learningObjectService = {
+  fetchLearningObject,
   updateLearningObject,
 };
 
