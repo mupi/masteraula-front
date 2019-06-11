@@ -5,6 +5,8 @@
     padding: 20px 20px;
     border-radius: 8px;
 }
+
+
  .c-learning-object{
     background: $color-ma-white;
     text-align: center;
@@ -15,6 +17,18 @@
 
     @include for-tablet-landscape-bottom {
       margin-bottom: 15px;
+    }
+
+    &__row-header-options {
+      background: $color-ma-green-light !important;
+      border-radius: 5px;
+      padding: 10px 0px;
+    }
+
+    &__col-full-section-details{
+      @include for-tablet-landscape-up {
+        padding: 0px;
+      }
     }
 
     &__img{

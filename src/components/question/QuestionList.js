@@ -5,11 +5,11 @@ import QuestionCard from './QuestionCard';
 
 const QuestionList = (props) => {
   const {
-    questions, count, sm, textResult = 'Questões encontradas', showLink = true,
+    questions, count, sm, textResult = 'Questões encontradas', showLink = true, className = 'c-question-base__total-results',
   } = props;
   return (
     <Row>
-      <Col sm="12" className="c-question-base__total-results">
+      <Col sm="12" className={className}>
         {`${textResult}: ${count}`}
         {' '}
         {showLink ? (
