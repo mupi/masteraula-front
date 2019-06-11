@@ -61,7 +61,7 @@ class ViewLearningObjectPage extends Component {
           <div className="c-question-base__results">
             <QuestionList
               sm="4"
-              questions={[]}
+              questions={activeLearningObject.questions}
               count={activeLearningObject.questions.length}
               textResult="Questões associadas ao objeto de aprendizagem"
               showLink={false}
