@@ -147,7 +147,7 @@ export const createQuestion = (props) => {
       (newQuestion) => {
         dispatch(createQuestionSuccess(newQuestion));
         history.push(`/view-question/${newQuestion.id}`);
-        toast.success('Questão criada com sucesso ACTION', optionsSuccess);
+        toast.success('Questão criada com sucesso', optionsSuccess);
       },
       (error) => {
         toast.error('Ocorreu um erro com sua solicitação', optionsError);
