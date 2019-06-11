@@ -65,6 +65,7 @@ class ViewLearningObjectPage extends Component {
               count={activeLearningObject.questions.length}
               textResult="Questões associadas ao objeto de aprendizagem"
               showLink={false}
+              {...this.props}
             />
           </div>
         ) : (
