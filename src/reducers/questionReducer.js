@@ -68,7 +68,7 @@ export const question = (state = initialState, action) => {
     }
     case LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS: {
       const activeDocument = JSON.parse(localStorage.getItem('activeDocument'));
-      const newDocumentList = state.activeQuestion.documents.filter(item => item.id !== activeDocument.id);
+      const newDocumentList = (state.activeQuestion ? state.activeQuestion.documents.filter(item => item.id !== activeDocument.id) : null);
       const activeQuestion = { ...state.activeQuestion, documents: newDocumentList };
       localStorage.setItem('activeQuestion', JSON.stringify(activeQuestion));
       return Object.assign({}, state, {
