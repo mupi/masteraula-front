@@ -1,4 +1,5 @@
 import { learningObjectService } from 'services';
+import { history } from 'helpers/history';
 
 // Constants for Update learningObject
 
@@ -18,7 +19,6 @@ export const UPDATE_ALL_LEARNING_OBJECTS_FAILURE = 'UPDATE_ALL_LEARNING_OBJECTS_
 
 // Fetch a learning object
 export const fetchLearningObject = (id) => {
-  console.log("hola");
   function requestLearningObject() { return { type: FETCH_LEARNING_OBJECT }; }
   function requestLearningObjectSuccess(activeLearningObject) { return { type: FETCH_LEARNING_OBJECT_SUCCESS, activeLearningObject }; }
   function requestLearningObjectFailure(error) { return { type: FETCH_LEARNING_OBJECT_FAILURE, error }; }
@@ -29,6 +29,7 @@ export const fetchLearningObject = (id) => {
         dispatch(requestLearningObjectSuccess(activeLearningObject));
       }, (error) => {
         dispatch(requestLearningObjectFailure(error));
+        history.push('/question-base/1');
       },
     );
   };

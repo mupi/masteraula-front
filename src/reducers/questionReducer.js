@@ -140,7 +140,7 @@ export const question = (state = initialState, action) => {
         isCreating: false,
         error: action.error,
       });
-    } 
+    }
     case DELETE_QUESTION: {
       return Object.assign({}, state, {
         isDeleting: true,

@@ -1,0 +1,47 @@
+ //Learning Object - SinglePage
+.l-learning-object{
+    background: #E9F0F5 !important;
+    margin: 10px 0px;
+    padding: 20px 20px;
+    border-radius: 8px;
+}
+ .c-learning-object{
+    background: $color-ma-white;
+    text-align: center;
+    margin-bottom:15px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 20px;
+
+    @include for-tablet-landscape-bottom {
+      margin-bottom: 15px;
+    }
+
+    &__img{
+        @include for-phone-only {
+              width: 100%;
+          }
+      }
+
+    &--text{
+     text-align: justify;
+     max-width: 800px;
+     margin: auto !important;
+     font-size:13px;
+     word-wrap: break-word;
+    }
+
+    &--source{
+      padding:10px 0px 0px;
+      font-size:11px;
+      word-wrap: break-word;
+    }
+
+    &:last-child{
+      margin-bottom: 0px;
+    }
+
+    p{
+      margin-bottom:0px;
+    }
+  }

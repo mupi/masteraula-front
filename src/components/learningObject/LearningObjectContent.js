@@ -8,7 +8,7 @@ const LearningObjectContent = (props) => {
   } = props;
 
   return (
-    <div key={learningObject.id} className="c-question__learning-object">
+    <div key={learningObject.id} className="c-learning-object">
       {(learningObject.image) ? (
         <div>
           <img alt="objeto-aprendizagem" src={learningObject.image} />
@@ -16,17 +16,17 @@ const LearningObjectContent = (props) => {
       ) : ''}
 
       {(learningObject.text) ? (
-        <div className="c-question__learning-object--text">
+        <div className="c-learning-object--text">
           <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(learningObject.text) }} />
         </div>
       ) : ''}
       {(learningObject.source) ? (
-        <div className="c-question__learning-object--source">
+        <div className="c-learning-object--source">
           <div dangerouslySetInnerHTML={{ __html: getCleanLearningObjectSource(learningObject.source) }} />
         </div>
       ) : ''}
       {(learningObject.tags && learningObject.tags.length > 0) ? (
-        <p className="c-question__learning-object-tags">
+        <p className="c-learning-object-tags">
           <small>Tags:</small>
           {' '}
           <small><i>{learningObject.tags.map(tag => tag.name.trim()).join(', ')}</i></small>

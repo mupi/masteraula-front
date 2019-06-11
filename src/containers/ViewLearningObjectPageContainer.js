@@ -5,6 +5,7 @@ import { fetchLearningObject } from 'actions/learningObjectAction';
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
+  isFetchingLearningObject: state.learningObject.isFetchingLearningObject,
   activeLearningObject: state.learningObject.activeLearningObject,
   error: state.learningObject.error,
 });

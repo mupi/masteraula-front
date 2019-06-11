@@ -1,30 +1,67 @@
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import { Row, Col } from 'reactstrap';
+import { Alert, Row, Col } from 'reactstrap';
 import LearningObjectContent from 'components/learningObject/LearningObjectContent';
-import { history } from 'helpers/history';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import QuestionList from 'components/question/QuestionList';
 
 class ViewLearningObjectPage extends Component {
   componentDidMount() {
     const { fetchLearningObject, match } = this.props;
     fetchLearningObject(match.params.id);
-    history.push(`/view-learningobject/${match.params.id}`);
   }
 
   render() {
     const {
-      activeLearningObject,
+      activeLearningObject, isFetchingLearningObject, error,
     } = this.props;
+
+    if (isFetchingLearningObject) {
+      return (
+        <HomeUserPage>
+          <Alert className="alert--warning" color="warning">
+            Carregando ...
+          </Alert>
+        </HomeUserPage>
+      );
+    }
+
+    if (error || !activeLearningObject) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+            Erro no objeto de aprendizagem
+          </Alert>
+        </HomeUserPage>
+      );
+    }
+
     return (
       <HomeUserPage>
+        <Row className="c-question__tittle-section">
+          <Col>
+            <h4>
+              <FontAwesomeIcon icon="image" />
+              {' '}
+              Objeto de aprendizagem N°
+              {' '}
+              { activeLearningObject ? activeLearningObject.id : ''}
+            </h4>
+          </Col>
+        </Row>
         <Row>
           <Col sm="12">
-            <div className="c-learning-object">
+            <div className="l-learning-object">
               { activeLearningObject ? <LearningObjectContent learningObject={activeLearningObject} /> : ''}
             </div>
           </Col>
         </Row>
+        <Row className="pagination-questions" style={{ marginLeft: '80%' }} />
+        <div className="c-question-base__results">
+          <QuestionList sm="4" questions={[]} count={5} textResult="Questões associadas ao objeto de aprendizagem" showLink={false} />
+        </div>
+
+
       </HomeUserPage>
     );
   }

@@ -25,7 +25,7 @@ export const learningObject = (state = initialState, action) => {
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
-        isFetching: true,
+        isFetchingLearningObject: true,
         error: null,
         isDeleted: false,
       });
@@ -33,11 +33,11 @@ export const learningObject = (state = initialState, action) => {
       localStorage.setItem('activeLearningObject', JSON.stringify(state.activeLearningObject));
       return Object.assign({}, state, {
         activeLearningObject: action.activeLearningObject,
-        isFetching: false,
+        isFetchingLearningObject: false,
       });
     case FETCH_LEARNING_OBJECT_FAILURE:
       return Object.assign({}, state, {
-        isFetching: false,
+        isFetchingLearningObject: false,
         error: action.error,
       });
     case UPDATE_LEARNING_OBJECT: {
@@ -45,7 +45,7 @@ export const learningObject = (state = initialState, action) => {
         isRemoved: null,
         error: null,
         isUpdated: null,
-      }); 
+      });
     }
     case UPDATE_LEARNING_OBJECT_SUCCESS: {
       if (action.showMessage) toast.success('Objeto de aprendizagem atualizado com sucesso', optionsSuccess);
