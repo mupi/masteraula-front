@@ -9,8 +9,6 @@ import GoToQuestionBaseButton from 'components/buttons/GoToQuestionBaseButton';
 import DocumentBasicHeader from 'components/document/DocumentBasicHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 class EditDocumentPage extends Component {
   componentDidMount() {
@@ -51,7 +49,6 @@ class EditDocumentPage extends Component {
             removeSelectedQuestion={removeSelectedQuestion}
           />
         </div>
-        <ToastContainer hideProgressBar position="bottom-right" />
       </HomeUserPage>
     );
   }

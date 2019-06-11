@@ -7,7 +7,6 @@ import {
   UPDATE_QUESTION, UPDATE_QUESTION_SUCCESS, UPDATE_QUESTION_FAILURE,
   CREATE_QUESTION, CREATE_QUESTION_SUCCESS, CREATE_QUESTION_FAILURE,
 } from 'actions/questionAction';
-import { toast } from 'react-toastify';
 import { DELETE_QUESTION, DELETE_QUESTION_SUCCESS, DELETE_QUESTION_FAILURE } from '../actions/questionAction';
 
 const sessionData = JSON.parse(localStorage.getItem('activeDocument'));
@@ -17,17 +16,6 @@ const initialState = {
   questionPage: {},
   activeDocument: sessionData,
 };
-
-const optionsSuccess = {
-  className: 'alert__ma-toast--success',
-  type: 'success',
-};
-
-const optionsError = {
-  className: 'alert__ma-toast--error',
-  type: 'error',
-};
-
 
 export const question = (state = initialState, action) => {
   switch (action.type) {
@@ -80,7 +68,7 @@ export const question = (state = initialState, action) => {
     }
     case LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS: {
       const activeDocument = JSON.parse(localStorage.getItem('activeDocument'));
-      const newDocumentList = state.activeQuestion.documents.filter(item => item.id !== activeDocument.id);
+      const newDocumentList = (state.activeQuestion ? state.activeQuestion.documents.filter(item => item.id !== activeDocument.id) : null);
       const activeQuestion = { ...state.activeQuestion, documents: newDocumentList };
       localStorage.setItem('activeQuestion', JSON.stringify(activeQuestion));
       return Object.assign({}, state, {
@@ -95,14 +83,12 @@ export const question = (state = initialState, action) => {
       });
     }
     case CLASSIFY_QUESTION_SUCCESS: {
-      toast.success('Questão atualizada com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeQuestion: { ...action.activeQuestion },
         isClassified: true,
       });
     }
     case CLASSIFY_QUESTION_FAILURE: {
-      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, { error: action.error });
     }
     case UPDATE_QUESTION: {
@@ -113,14 +99,12 @@ export const question = (state = initialState, action) => {
       });
     }
     case UPDATE_QUESTION_SUCCESS: {
-      toast.success('Questão atualizada com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeQuestion: { ...action.activeQuestion },
         isUpdated: true,
       });
     }
     case UPDATE_QUESTION_FAILURE: {
-      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, { error: action.error });
     }
     case CREATE_QUESTION:
@@ -129,7 +113,6 @@ export const question = (state = initialState, action) => {
         isCreating: true,
       });
     case CREATE_QUESTION_SUCCESS: {
-      toast.success('Questão criada com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeQuestion: action.newQuestion,
         isCreating: false,
@@ -153,14 +136,12 @@ export const question = (state = initialState, action) => {
         newActive = null;
         localStorage.setItem('activeQuestion', null);
       }
-      toast.success('Questão apagada com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeQuestion: newActive,
         isDeleted: true,
       });
     }
     case DELETE_QUESTION_FAILURE: {
-      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         error: action.error,
         isDeleted: false,

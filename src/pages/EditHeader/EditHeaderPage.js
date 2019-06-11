@@ -9,8 +9,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 class EditHeaderPage extends Component {
   componentDidMount() {
@@ -20,8 +18,8 @@ class EditHeaderPage extends Component {
     } else {
       resetNewHeader();
     }
-  } 
- 
+  }
+
   render() {
     const {
       activeHeader, createHeader, updateHeader,
@@ -30,7 +28,6 @@ class EditHeaderPage extends Component {
 
     return (
       <HomeUserPage>
-        <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-edit-header__options">
           <Row className="c-headers-options">
             <Col sm="12" className="d-flex justify-content-end">
@@ -39,7 +36,7 @@ class EditHeaderPage extends Component {
                   <Button>
                     <FontAwesomeIcon icon="eye" className="btn__icon" />
                     <span className="button-text">
-                        Ver cabeçalhos
+                      Ver cabeçalhos
                     </span>
                   </Button>
                 </Link>
@@ -55,8 +52,8 @@ class EditHeaderPage extends Component {
           </Row>
           <DocumentHeaderContainer onSubmit={submit} data={activeHeader} />
         </div>
-        <ToastContainer hideProgressBar position="bottom-right" />
-      </HomeUserPage>);
+      </HomeUserPage>
+    );
   }
 }
 

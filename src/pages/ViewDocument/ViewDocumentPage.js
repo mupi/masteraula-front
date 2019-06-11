@@ -7,9 +7,7 @@ import {
 import DocumentList from 'components/document/DocumentList';
 
 import CustomPagination from 'components/pagination/CustomPagination';
-import { ToastContainer } from 'react-toastify';
 import HomeUserPage from '../HomeUser/HomeUserPage';
-import 'react-toastify/dist/ReactToastify.css';
 
 const getOrderNameField = (text) => {
   switch (text) {
@@ -53,7 +51,6 @@ class ViewDocumentPage extends React.Component {
 
     return (
       <HomeUserPage>
-        <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-my-documents">
           <Row className="hidden">
             <Col sm="12">

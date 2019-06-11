@@ -12,9 +12,7 @@ import { history } from 'helpers/history';
 import CustomPagination from 'components/pagination/CustomPagination';
 import HeadersList from 'components/headers/HeadersList';
 
-import { ToastContainer } from 'react-toastify';
 import HomeUserPage from '../HomeUser/HomeUserPage';
-import 'react-toastify/dist/ReactToastify.css';
 
 const createNewHeader = (resetNewHeader) => {
   history.replace('/new-header');
@@ -61,7 +59,6 @@ class MyHeadersPage extends React.Component {
 
     return (
       <HomeUserPage>
-        <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-my-headers__options">
           <Row className="c-headers-options">
             <Col sm="12" className="d-flex justify-content-end">
@@ -115,43 +112,43 @@ class MyHeadersPage extends React.Component {
                       <DropdownMenu>
                         <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'name', 'asc')}>
                           Nome - Crescente
-                            </DropdownItem>
-                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'name', 'desc')}>
-                              Nome - Decrescente
-                            </DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'institution', 'asc')}>
-                              Instituição - Crescente
-                            </DropdownItem>
-                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'institution', 'desc')}>
-                              Instituição  - Decrescente
-                            </DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'discipline', 'asc')}>
-                              Disciplina - Crescente
-                            </DropdownItem>
-                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'discipline', 'desc')}>
-                              Disciplina - Decrescente
-                            </DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'teacher', 'asc')}>
-                              Professor - Crescente
-                            </DropdownItem>
-                            <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'teacher', 'desc')}>
-                              Professor - Decrescente
-                            </DropdownItem>
-                          </DropdownMenu>
-                        </UncontrolledDropdown>
-                      </div>
+                        </DropdownItem>
+                        <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'name', 'desc')}>
+                          Nome - Decrescente
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'institution', 'asc')}>
+                          Instituição - Crescente
+                        </DropdownItem>
+                        <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'institution', 'desc')}>
+                          Instituição  - Decrescente
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'discipline', 'asc')}>
+                          Disciplina - Crescente
+                        </DropdownItem>
+                        <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'discipline', 'desc')}>
+                          Disciplina - Decrescente
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'teacher', 'asc')}>
+                          Professor - Crescente
+                        </DropdownItem>
+                        <DropdownItem className="c-my-headers__dropdown-item" onClick={() => listMyHeaders(1, 'teacher', 'desc')}>
+                          Professor - Decrescente
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                  </div>
                   {myHeadersList
                     && <HeadersList headers={myHeadersList.results} {...this.props} />
                   }
                 </Col>
               )}
           </Row>
-
         </div>
-      </HomeUserPage>);
+      </HomeUserPage>
+    );
   }
 }
 

@@ -37,6 +37,7 @@ import { history } from 'helpers/history';
 
 import Footer from 'components/footer/Footer';
 // CSS imported in a single place (here)
+import 'react-toastify/dist/ReactToastify.css';
 import 'assets/scss/styles.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -62,6 +63,8 @@ import {
   faQuestionCircle,
   faLock,
 } from '@fortawesome/free-solid-svg-icons';
+
+import { ToastContainer } from 'react-toastify';
 
 import ModalRoot from './ModalRoot';
 
@@ -146,6 +149,7 @@ class App extends Component {
             <Footer year="2019" version="1.0" />
           </div>
         </LastLocationProvider>
+        <ToastContainer hideProgressBar position="bottom-right" />
       </Router>
     );
   }
