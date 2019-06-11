@@ -78,6 +78,7 @@ class ViewLearningObjectPage extends Component {
               textResult="Questões associadas ao objeto de aprendizagem"
               showLink={false}
               className="c-learning-object__col-full-section-details c-question-base__total-results"
+              {...this.props}
             />
           </div>
         ) : (
