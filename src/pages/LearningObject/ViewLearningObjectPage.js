@@ -57,9 +57,21 @@ class ViewLearningObjectPage extends Component {
           </Col>
         </Row>
         <Row className="pagination-questions" style={{ marginLeft: '80%' }} />
-        <div className="c-question-base__results">
-          <QuestionList sm="4" questions={[]} count={5} textResult="Questões associadas ao objeto de aprendizagem" showLink={false} />
-        </div>
+        {activeLearningObject.questions ? (
+          <div className="c-question-base__results">
+            <QuestionList
+              sm="4"
+              questions={[]}
+              count={activeLearningObject.questions.length}
+              textResult="Questões associadas ao objeto de aprendizagem"
+              showLink={false}
+            />
+          </div>
+        ) : (
+          <Row>
+            <Col sm="12" className="c-question-base__total-results">Sem questões associadas</Col>
+          </Row>
+        )}
 
 
       </HomeUserPage>
