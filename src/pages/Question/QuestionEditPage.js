@@ -5,8 +5,6 @@ import {
 import { getTeachingLevel, getCleanCompleteStatement, getCleanAlternativeText } from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import AlternativeList from 'components/alternatives/AlternativeList';
@@ -333,7 +331,6 @@ class QuestionEditPage extends Component {
 
     return (
       <HomeUserPage>
-        <ToastContainer hideProgressBar position="bottom-right" />
         <Form onSubmit={handleSubmit}>
           <div className="c-question">
             <Row className="c-question__row-header-options">

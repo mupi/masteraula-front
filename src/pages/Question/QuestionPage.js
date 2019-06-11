@@ -9,8 +9,6 @@ import {
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import Back from 'components/question/Back';
@@ -86,7 +84,7 @@ class QuestionPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
-    history.push(`/view-question/${match.params.id}`);
+    // history.push(`/view-question/${match.params.id}`);
   }
 
   render() {
@@ -120,7 +118,6 @@ class QuestionPage extends Component {
 
     return (
       <HomeUserPage>
-        <ToastContainer hideProgressBar position="bottom-right" />
         <div className="c-question">
           <Row className="c-question__row-header-options">
             <Col className="d-flex">

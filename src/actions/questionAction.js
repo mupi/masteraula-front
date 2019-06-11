@@ -51,6 +51,11 @@ const optionsSuccess = {
   type: 'success',
 };
 
+const optionsError = {
+  className: 'alert__ma-toast--error',
+  type: 'error',
+};
+
 export const fetchQuestion = (id) => {
   function requestQuestion() { return { type: FETCH_QUESTION }; }
   function fetchQuestionSuccess(activeQuestion) { return { type: FETCH_QUESTION_SUCCESS, activeQuestion }; }
@@ -142,9 +147,10 @@ export const createQuestion = (props) => {
       (newQuestion) => {
         dispatch(createQuestionSuccess(newQuestion));
         history.push(`/view-question/${newQuestion.id}`);
-        toast.success('Questão criada com sucesso ACTION', optionsSuccess);
+        toast.success('Questão criada com sucesso', optionsSuccess);
       },
       (error) => {
+        toast.error('Ocorreu um erro com sua solicitação', optionsError);
         dispatch(createQuestionFailure(error));
       },
     );
@@ -160,6 +166,7 @@ export const classifyQuestion = (props) => {
     dispatch(classifyActiveQuestion(props));
     return questionService.classifyQuestion(props).then(
       (activeQuestion) => {
+        toast.success('Questão atualizada com sucesso', optionsSuccess);
         dispatch(classifyQuestionSuccess(activeQuestion));
         const allTopics = [];
         activeQuestion.topics.forEach((topic) => {
@@ -201,6 +208,7 @@ export const classifyQuestion = (props) => {
         }));
       },
       (error) => {
+        toast.error('Ocorreu um erro com sua solicitação', optionsError);
         dispatch(classifyQuestionFailure(error));
       },
     );
@@ -217,6 +225,7 @@ export const updateQuestion = (props) => {
     dispatch(updateActiveQuestion(props));
     return questionService.updateQuestion(props).then(
       (activeQuestion) => {
+        toast.success('Questão atualizada com sucesso', optionsSuccess);
         dispatch(updateQuestionSuccess(activeQuestion));
         const allTopics = [];
         activeQuestion.topics.forEach((topic) => {
@@ -270,6 +279,8 @@ export const updateQuestion = (props) => {
         }));
       },
       (error) => {
+        toast.error('Ocorreu um erro com sua solicitação', optionsError);
+
         dispatch(updateQuestionFailure(error));
       },
     );
