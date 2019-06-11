@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import { Alert, Row, Col, Button } from 'reactstrap';
+import {
+  Alert, Row, Col, Button,
+} from 'reactstrap';
 import LearningObjectContent from 'components/learningObject/LearningObjectContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionList from 'components/question/QuestionList';
@@ -83,8 +85,6 @@ class ViewLearningObjectPage extends Component {
             <Col sm="12" className="c-question-base__total-results">Sem questões associadas</Col>
           </Row>
         )}
-
-
       </HomeUserPage>
     );
   }
