@@ -461,6 +461,7 @@ class CreateQuestionPage extends Component {
 
     return (
       <HomeUserPage>
+        <ToastContainer hideProgressBar position="bottom-right" />
         <Form onSubmit={handleSubmit}>
           <div className="c-question c-create-question">
             <Row className="c-question__row-header-options">
