@@ -43,7 +43,7 @@ class ViewLearningObjectPage extends Component {
       <HomeUserPage>
         <Row className="c-learning-object__row-header-options">
           <Col className="d-flex">
-            <Button onClick={() => history.push('/question-base/1')} className="mr-auto btn btn-secondary c-question__btn-back">
+            <Button onClick={() => history.push('/object-base/1')} className="mr-auto btn btn-secondary c-question__btn-back">
               <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
               {' '}
               Voltar
