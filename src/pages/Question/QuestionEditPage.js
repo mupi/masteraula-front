@@ -2,7 +2,9 @@
 import {
   Container, Alert, Row, Col, Form, Button,
 } from 'reactstrap';
-import { getTeachingLevel, getCleanCompleteStatement, getCleanAlternativeText } from 'helpers/question';
+import {
+  getTeachingLevel, getCleanCompleteStatement, getCleanAlternativeText, getCleanLearningObjectSource,
+} from 'helpers/question';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -117,13 +119,9 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
             </div>
           ) : ''}
           { (learningObjectList[i].source) ? (
-            <p>
-              <small>
-                Fonte:
-                {' '}
-                <i>{learningObjectList[i].source}</i>
-              </small>
-            </p>
+            <div className="c-question__learning-object--source">
+              <div dangerouslySetInnerHTML={{ __html: getCleanLearningObjectSource(learningObjectList[i].source) }} />
+            </div>
           ) : ''}
           <Row className="c-question-edit__tags-learning-objects">
             <Col sm="2" className="align-self-center c-question-edit__tags-learning-objects--position">

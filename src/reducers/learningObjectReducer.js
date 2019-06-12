@@ -1,4 +1,5 @@
 import {
+  FETCH_LEARNING_OBJECT, FETCH_LEARNING_OBJECT_SUCCESS, FETCH_LEARNING_OBJECT_FAILURE,
   UPDATE_LEARNING_OBJECT, UPDATE_LEARNING_OBJECT_SUCCESS, UPDATE_LEARNING_OBJECT_FAILURE,
   UPDATE_ALL_LEARNING_OBJECTS, UPDATE_ALL_LEARNING_OBJECTS_SUCCESS, UPDATE_ALL_LEARNING_OBJECTS_FAILURE,
 
@@ -20,6 +21,25 @@ const optionsError = {
 
 export const learningObject = (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_LEARNING_OBJECT:
+      return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        isFetchingLearningObject: true,
+        error: null,
+        isDeleted: false,
+      });
+    case FETCH_LEARNING_OBJECT_SUCCESS:
+      localStorage.setItem('activeLearningObject', JSON.stringify(state.activeLearningObject));
+      return Object.assign({}, state, {
+        activeLearningObject: action.activeLearningObject,
+        isFetchingLearningObject: false,
+      });
+    case FETCH_LEARNING_OBJECT_FAILURE:
+      return Object.assign({}, state, {
+        isFetchingLearningObject: false,
+        error: action.error,
+      });
     case UPDATE_LEARNING_OBJECT: {
       return Object.assign({}, state, {
         isRemoved: null,

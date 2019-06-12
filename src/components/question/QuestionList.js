@@ -4,20 +4,24 @@ import { Row, Col } from 'reactstrap';
 import QuestionCard from './QuestionCard';
 
 const QuestionList = (props) => {
-  const { questions, count, sm } = props;
+  const {
+    questions, count, sm, textResult = 'Questões encontradas', showLink = true,
+  } = props;
   return (
     <Row>
       <Col sm="12" className="c-question-base__total-results">
-        {`Questões encontradas: ${count}`}
+        {`${textResult}: ${count}`}
         {' '}
-        <a
-          className="c-question-base__link-askquestion"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://goo.gl/forms/bG2mMbMNNrNiOjqt2"
-        >
+        {showLink ? (
+          <a
+            className="c-question-base__link-askquestion"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://goo.gl/forms/bG2mMbMNNrNiOjqt2"
+          >
           Não encontrou o que queria? Clique aqui
-        </a>
+          </a>
+        ) : ''}
       </Col>
       {questions.map(question => (
         <Col sm={sm} lg="3" xs="12" key={question.id} className="question-card">
