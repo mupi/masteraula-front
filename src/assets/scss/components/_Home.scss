@@ -17,31 +17,51 @@
 
 .c-public-home{
 
-   &__pricing-section{
-        background-color: #f6f8f9;
-        max-width: 100%
-   } 
+   &__video-section{
+        max-width: 100%;
+        background-color:$color-ma-blue-gray;
+        padding: 40px 0px;
+   }
 
-   &__pricing-section-row{
-        max-width: 1140px;   
-        margin: auto;
-        text-align: center;
-    } 
+   &__video-section-title{
+       color:#515b69;
+       &--sub{ 
+        color:#7f8795;
+       }
+   }
+
+   &__video-section-row{
+      margin: auto;
+      text-align: center;
+   }
+
+   &__video-section-col{
+       padding:10px;
+   }
+
+   &__video-iframe{
+        width:750px;
+        height:422px;
+        @include for-phone-only{
+            width:auto;
+            height:auto
+        }
+   }
 
     &__pricing-button {
         color: $color-ma-white;
-        background-color: $color-ma-green;
-        border-color: $color-ma-green;
+        background-color: $color-ma-green; // #72849c;
+        border-color: $color-ma-green;// #72849c;
         font-size: 35px;
-        border-radius: 33px;
+        border-radius: 10px;
         padding: 10px 27px;
         font-size: 35px;
         letter-spacing: 3px;
 
         &:hover{
-            color: $color-ma-blue;
-            background-color: $color-ma-green-light;
-            border-color: $color-ma-green-light;
+            background-color:#7cd08b; //#1e4f78;
+            border-color: #7cd08b;// #1e4f78;
+            color: $color-ma-white;
         }
     }
 

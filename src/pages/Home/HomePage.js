@@ -62,9 +62,23 @@ const HomePage = () => (
         </Col>
       </Row>
     </Container>
-    <Container className="c-public-home__pricing-section">
-      <Row className="c-public-home__pricing-section-row">
-        <Col md="12" className="c-public-home__pricing-button-section"> 
+    <Container className="c-public-home__video-section">
+      <Row className="c-public-home__video-section-row">
+        <Col md="12" className="c-public-home__video-section-col">
+          <h2 className="c-public-home__video-section-title">Crie Provas em Minutos!</h2>
+          <h5 className="c-public-home__video-section-title--sub">Assista nossa apresentação de como criar provas na plataforma MasterAula.</h5>
+        </Col>
+        <Col md="12" className="c-public-home__video-section-col">
+          <iframe
+            title="video-masteraula"
+            className="c-public-home__video-iframe"
+            src="https://www.youtube.com/embed/-4ZNtRvMMU4"
+            frameBorder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </Col>
+        <Col md="12" className="c-public-home__video-section-col">
           <Link className="btn c-public-home__pricing-button" to="/nossos-planos" role="button">
                 Comece já
           </Link>
@@ -72,7 +86,7 @@ const HomePage = () => (
       </Row>
 
     </Container>
-   
+
   </div>
 );
 
