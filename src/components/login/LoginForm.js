@@ -14,12 +14,14 @@ const renderField = ({
   label,
   type,
   meta: { touched, error, warning },
+  isAutoFocus = false,
 }) => (
   <div>
     <Input
       {...input}
       placeholder={label}
       type={type}
+      autoFocus={isAutoFocus}
     />
     { touched
       && ((error && (
