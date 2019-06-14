@@ -16,6 +16,7 @@ const renderField = ({
       {...input}
       placeholder={label}
       type={type}
+      autoFocus
     />
     { touched
       && ((error && (
