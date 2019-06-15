@@ -96,11 +96,13 @@ const RedefinePassword = (props) => {
             <Alert color="danger">
               {error}
               {'. '}
-              { (!error.includes('muito comum')) ? (<span>
-Solicite uma nova redefinição de senha
-{' '}
-<a href="/#/esqueci-senha">aqui</a>
-</span>) : ''}
+              { (!error.includes('muito comum')) ? (
+                <span>
+                  Solicite uma nova redefinição de senha
+                  {' '}
+                  <a href="/#/esqueci-senha">aqui</a>
+                </span>
+              ) : ''}
             </Alert>
             )}
             { submitSucceeded

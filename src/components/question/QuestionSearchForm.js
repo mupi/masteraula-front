@@ -103,7 +103,11 @@ class QuestionSearchForm extends Component {
                 <FontAwesomeIcon icon="info-circle" />
               </span>
               <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
-              Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos das questões. Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos. Combine os termos da busca com as opções de filtro disponíveis na barra lateral.
+                Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos das questões.
+                {' '}
+                Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos.
+                {' '}
+                Combine os termos da busca com as opções de filtro disponíveis na barra lateral.
               </UncontrolledTooltip>
             </div>
           </Col>
