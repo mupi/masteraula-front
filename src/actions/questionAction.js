@@ -90,7 +90,8 @@ export const fetchQuestion = (id) => {
               });
             }
           });
-          // allTopics.push({});
+          // validation for adding empty topic line
+          if (allTopics.length === 0) allTopics.push({});
 
           const alternatives = activeQuestion.alternatives.map(alternative => ({
             id: alternative.id,

@@ -425,7 +425,7 @@ const renderTopics = ({
 class MyQuestionEditPage extends Component {
   componentDidMount() {
     const {
-      listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, prepareForm,
+      listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
     } = this.props;
     listDisciplineFilters();
     listTeachingLevelFilters();

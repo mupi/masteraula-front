@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import {
-  reduxForm, formValueSelector, SubmissionError, initialize,
+  reduxForm, formValueSelector, SubmissionError,
 } from 'redux-form';
 import MyQuestionEditPage from 'pages/Question/MyQuestionEditPage';
 import { fetchQuestion, updateQuestion } from 'actions/questionAction';
