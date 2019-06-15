@@ -32,7 +32,7 @@ class SidebarFilters extends Component {
     } = this.props;
 
     if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters || isFetchingSourceFilters || isFetchingYearFilters
-      ) {
+    ) {
       return (
         <ListGroup className="question-all-filters">
           <h6>
