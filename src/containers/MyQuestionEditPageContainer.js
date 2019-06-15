@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import {
-  reduxForm, formValueSelector, SubmissionError, initialize,
+  reduxForm, formValueSelector, SubmissionError,
 } from 'redux-form';
 import MyQuestionEditPage from 'pages/Question/MyQuestionEditPage';
 import { fetchQuestion, updateQuestion } from 'actions/questionAction';
@@ -32,12 +32,6 @@ const mapDispatchToProps = dispatch => ({
   listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
   listSourceFilters: param => dispatch(listSourceFilters(param)),
   listTopics: param => dispatch(listTopics(param)),
-  prepareForm: () => {
-    dispatch(initialize('edit-question', {
-      topics: [{}],
-      alternatives: [{}, {}, {}],
-    }));
-  },
 
   onSubmit: (values, d, props) => {
     const errors = [];

@@ -28,10 +28,11 @@ class SidebarFilters extends Component {
       toggleSelectedSourceFilter, toggleSelectedYearFilter,
       filter,
       clearFilters,
+      onlyMyQuestions,
     } = this.props;
 
     if (isFetchingDisciplineFilters || isFetchingTeachingLevelFilters || isFetchingSourceFilters || isFetchingYearFilters
-      ) {
+    ) {
       return (
         <ListGroup className="question-all-filters">
           <h6>
@@ -71,7 +72,7 @@ class SidebarFilters extends Component {
         </h6>
         {filter.disciplinesSelected.length > 0 || filter.teachingLevelsSelected.length > 0
           || filter.difficultiesSelected.length > 0 || filter.sourcesSelected.length > 0
-          || filter.yearsSelected.length > 0
+          || filter.yearsSelected.length > 0 || onlyMyQuestions
           ? (
             <div className="l-question-all-filters__clear-button">
               <Button className="l-question-all-filters__clear-button--btn" onClick={clearFilters} disabled={isFetchingQuestions}>

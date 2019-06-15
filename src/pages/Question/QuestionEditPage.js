@@ -277,9 +277,12 @@ class QuestionEditPage extends Component {
 
   render() {
     const {
-      activeQuestion, isFetching, error, activeDocument, handleSubmit, topicsList, topics, pristine,
+      activeQuestion, userId, isFetching, error, activeDocument, handleSubmit, topicsList, topics, pristine,
       role,
     } = this.props;
+
+    const authorPK = activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
+
 
     const {
       alternatives, statement, resolution,
@@ -317,7 +320,7 @@ class QuestionEditPage extends Component {
       );
     }
 
-    if (!role.includes('Editores')) {
+    if (!role.includes('Editores') && (authorPK !== userId)) {
       return (
         <HomeUserPage>
           <Alert color="danger">
