@@ -22,7 +22,7 @@ const Login2Modal = ({
       >
         Entrar no MasterAula
       </h4>
-      <LoginForm onSubmit={submit} />
+      <LoginForm onSubmit={submit} closeModal={closeModal} />
     </div>
   </div>
 );

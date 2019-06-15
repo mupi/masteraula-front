@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert, Row, Col, Button, Form, FormGroup, Input 
+import {
+  Alert, Row, Col, Button, Form, FormGroup, Input,
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 
@@ -14,6 +15,7 @@ const renderField = ({
       {...input}
       placeholder={label}
       type={type}
+      autoFocus
     />
     { touched
       && ((error && (
@@ -38,29 +40,31 @@ const ForgotPassword = (props) => {
   return (
     <div className="c-forgot-password">
       <h3>
-        Redefinição de senha 
+        Redefinição de senha
       </h3>
       { !success
-              &&  (<p>
-        Informe abaixo o endereço de email que você cadastrou para receber a mensagem de redefinição de senha
-      </p>)
+              && (
+              <p>
+              Informe abaixo o endereço de email que você cadastrou para receber a mensagem de redefinição de senha
+              </p>
+              )
           }
       <Row className="justify-content-center">
         <Col sm="12" xs="12">
           <Form onSubmit={handleSubmit}>
-          { !success
-              &&  (
-            <FormGroup className="text-left">
-              <Field
-                component={renderField}
-                type="email"
-                name="email"
-                id="email"
-                label="Insira seu email"
-                className="form-control"
-              /> 
-            </FormGroup>
-            )
+            { !success
+              && (
+              <FormGroup className="text-left">
+                <Field
+                  component={renderField}
+                  type="email"
+                  name="email"
+                  id="email"
+                  label="Insira seu email"
+                  className="form-control"
+                />
+              </FormGroup>
+              )
           }
             { success
               && (
@@ -73,15 +77,16 @@ const ForgotPassword = (props) => {
             }
 
             { !success
-              &&  (
-            <Button>
+              && (
+              <Button>
               Enviar email
-            </Button>)
+              </Button>
+              )
           }
           </Form>
         </Col>
       </Row>
-     
+
     </div>
   );
 };
@@ -94,7 +99,7 @@ const validate = (values) => {
     errors.email = 'Email inválido';
   }
   return errors;
-}; 
+};
 
 export default reduxForm({
   form: 'forgot_password',
