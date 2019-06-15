@@ -3,7 +3,6 @@ import {
   Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col, Container,
 } from 'reactstrap';
 import { Link, NavLink } from 'react-router-dom';
-import LoginModal from 'components/login/LoginModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 import DocumentInfoMenuContainer from 'containers/DocumentInfoMenuContainer';
 import CreateDocumentMenuContainer from 'containers/CreateDocumentMenuContainer';

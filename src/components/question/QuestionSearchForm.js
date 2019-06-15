@@ -28,6 +28,7 @@ const renderSearchField = ({
         type={type}
         disabled={isFetchingQuestions}
         className="c-question-base__search-field"
+        autoFocus
       />
       {search || !pristine ? (
         <InputGroupAddon addonType="prepend">

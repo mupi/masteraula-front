@@ -10,12 +10,14 @@ const renderField = ({
   label,
   type,
   meta: { touched, error, warning },
+  isAutoFocus = false,
 }) => (
   <div>
     <Input
       {...input}
       placeholder={label}
       type={type}
+      autoFocus={isAutoFocus}
     />
     { touched
       && ((error && (
@@ -65,7 +67,7 @@ const RedefinePassword = (props) => {
         <FontAwesomeIcon icon="lock" />
         {' '}
         Mudar sua senha
-      </h3> 
+      </h3>
       <Row className="justify-content-center">
         <Col sm="12" xs="12">
           <Form onSubmit={handleSubmit}>
@@ -77,6 +79,7 @@ const RedefinePassword = (props) => {
                 id="newpassword"
                 label="Nova senha"
                 className="form-control"
+                isAutoFocus
               />
             </FormGroup>
             <FormGroup className="text-left">
@@ -93,7 +96,11 @@ const RedefinePassword = (props) => {
             <Alert color="danger">
               {error}
               {'. '}
-              { (!error.includes('muito comum') ) ? ( <span>Solicite uma nova redefinição de senha <a href="/#/esqueci-senha">aqui</a></span>): ''}
+              { (!error.includes('muito comum')) ? (<span>
+Solicite uma nova redefinição de senha
+{' '}
+<a href="/#/esqueci-senha">aqui</a>
+</span>) : ''}
             </Alert>
             )}
             { submitSucceeded
