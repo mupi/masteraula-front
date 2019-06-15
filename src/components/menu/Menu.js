@@ -34,6 +34,14 @@ const Menu = (props) => {
     }, 'register2');
   };
 
+  const handleOpenLoginModal = () => {
+    // open modal
+    showModal({
+      open: true,
+      closeModal,
+    }, 'login2');
+  };
+
   const loggedOptions = (
     <Nav className="ml-auto hidden-xs" navbar>
       <NavItem>
@@ -68,7 +76,9 @@ const Menu = (props) => {
         </NavLink>
       </NavItem>
       <NavItem>
-        <LoginModal />
+        <Link to="#login" onClick={handleOpenLoginModal}>
+          Entrar
+        </Link>
       </NavItem>
       <NavItem>
         <Link to="#top" onClick={handleOpenRegisterModal}>
