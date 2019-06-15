@@ -32,12 +32,6 @@ const mapDispatchToProps = dispatch => ({
   listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
   listSourceFilters: param => dispatch(listSourceFilters(param)),
   listTopics: param => dispatch(listTopics(param)),
-  prepareForm: () => {
-    dispatch(initialize('edit-question', {
-      topics: [{}],
-      alternatives: [{}, {}, {}],
-    }));
-  },
 
   onSubmit: (values, d, props) => {
     const errors = [];

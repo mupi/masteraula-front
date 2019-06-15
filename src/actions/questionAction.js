@@ -90,7 +90,7 @@ export const fetchQuestion = (id) => {
               });
             }
           });
-          allTopics.push({});
+          // allTopics.push({});
 
           const alternatives = activeQuestion.alternatives.map(alternative => ({
             id: alternative.id,
@@ -193,7 +193,7 @@ export const classifyQuestion = (props) => {
             });
           }
         });
-        allTopics.push({});
+        // allTopics.push({});
 
         const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
           id: lobj.id,
@@ -252,7 +252,7 @@ export const updateQuestion = (props) => {
             });
           }
         });
-        allTopics.push({});
+        // allTopics.push({});
 
         const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
           id: lobj.id,

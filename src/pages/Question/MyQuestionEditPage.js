@@ -432,8 +432,7 @@ class MyQuestionEditPage extends Component {
     listSourceFilters();
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
-
-    prepareForm();
+    // prepareForm();
   }
 
     getListTopics = (e, newValue) => {
