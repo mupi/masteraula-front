@@ -501,6 +501,7 @@ class CreateQuestionPage extends Component {
                   disabled={false}
                   placeholderEditor="Escreva o enunciado da questão aqui ..."
                   validate={requiredValidator}
+                  autoFocus
                 />
               </Col>
             </Row>
