@@ -165,6 +165,7 @@ class UserProfile extends React.Component {
                       placeholder="Insira seu nome completo"
                       className="form-control"
                       validate={userNameValidator}
+                      autoFocus
                     />
                   </FormGroup>
                 </Col>
