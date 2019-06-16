@@ -11,12 +11,14 @@ const renderField = ({
   label,
   type,
   meta: { touched, error, warning },
+  autoFocus = false,
 }) => (
   <div>
     <Input
       {...input}
       placeholder={label}
       type={type}
+      autoFocus={autoFocus}
     />
     { touched
       && ((error && (
@@ -52,6 +54,7 @@ class DocumentBasicHeader extends Component {
             name="name"
             id="name"
             label="Nome da prova"
+            autoFocus
           />
           <Row className="c-document__main-buttons text-center">
             <Col>

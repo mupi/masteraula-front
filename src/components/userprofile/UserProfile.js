@@ -35,12 +35,14 @@ const renderField = ({
   placeholder,
   type,
   meta: { touched, error, warning },
+  autoFocus = false,
 }) => (
   <div>
     <Input
       {...input}
       placeholder={placeholder}
       type={type}
+      autoFocus={autoFocus}
     />
     { touched
       && ((error && (
