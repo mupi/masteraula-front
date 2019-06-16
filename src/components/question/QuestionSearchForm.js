@@ -27,7 +27,7 @@ const renderSearchField = ({
         {...input}
         placeholder={placeholder}
         type={type}
-        disabled={isFetchingQuestions}
+      //  disabled={isFetchingQuestions}
         className="c-question-base__search-field"
         autoFocus={autoFocus}
       />
@@ -129,7 +129,7 @@ class QuestionSearchForm extends Component {
             clearSearch={clearSearch}
             clearSearchField={clearSearchField}
             isFetchingQuestions={isFetchingQuestions}
-            autoFocus={true}
+            autoFocus
           />
         </Row>
         <Row className="c-question-base__myquestions-filter">
