@@ -40,7 +40,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   submit: (values) => {
-    dispatch(fetchLogin(values.email, values.password));
+    return dispatch(fetchLogin(values.email, values.password));
   },
 });
 
