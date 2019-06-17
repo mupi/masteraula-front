@@ -75,12 +75,14 @@ const Menu = (props) => {
           Preços
         </NavLink>
       </NavItem>
-      <LoginModal />
-     {/* <NavItem>
+      <NavItem>
+        <LoginModal />
+      </NavItem>
+     <NavItem>
         <Link to="#login" onClick={handleOpenLoginModal}>
-          Entrar
+          Entrar v2
         </Link>
-     </NavItem>*/ }
+     </NavItem>
       <NavItem>
         <Link to="#top" onClick={handleOpenRegisterModal}>
           Cadastre-se
