@@ -43,10 +43,47 @@
 //Question Page where c-question is the main container
 .c-question {
     // class for question's header options for all pages related to question
+
     &__row-header-options {
-      background: $color-ma-green-light !important;
-      border-radius: 5px;
-      padding: 10px 0px;
+      background: #838d96 !important;
+      padding: 0.6rem 1rem;
+      box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+  
+      .btn {
+        color: #6c757d;
+        background: white;
+        font-weight: bold;
+        border: 1px solid white;
+        margin-right: 5px !important;
+      }
+    }
+
+    &__row-header-options--fixed{
+      // fixed
+      position: fixed;
+      right: 0;
+      z-index: 1030;
+      top: 70px;
+      width: 100%;
+
+      @include for-tablet-landscape-up{
+        left: 280px;
+      }
+
+      @include for-tablet-landscape-bottom{
+        margin: 0px;
+        top: 58px;
+        padding: 5px 0px;
+      }
+    }
+
+    &--space-for-questionyear{
+      padding-top: 25px;
+    }
+
+    &--space-for-titlequestion{
+      padding-top: 35px;
     }
 
     &__col-full-section-details{
@@ -120,7 +157,7 @@
 
     &__btn-remove-question{
       background: $color-ma-red !important;
-      color: $color-ma-white;
+      color: $color-ma-white !important;
       border: 1px solid  $color-ma-red !important;
     }
 

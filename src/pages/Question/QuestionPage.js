@@ -119,8 +119,8 @@ class QuestionPage extends Component {
     return (
       <HomeUserPage>
         <div className="c-question">
-          <Row className="c-question__row-header-options">
-            <Col className="d-flex">
+          <Row className="c-question__row-header-options c-question__row-header-options--fixed">
+            <Col /*className="d-flex"*/>
               <Back />
               { (isOwner && !activeQuestion.disabled)
                 ? (
@@ -149,7 +149,7 @@ class QuestionPage extends Component {
                 ) : ''}
             </Col>
           </Row>
-          <Row className="c-question__options">
+          <Row className="c-question__options c-question--space-for-questionyear">
             <Col className="d-flex  justify-content-end">
               <span className="c-question__label-tag-header c-question__tag--purple p-2">
                 {activeQuestion.source}

@@ -334,8 +334,8 @@ class QuestionEditPage extends Component {
       <HomeUserPage>
         <Form onSubmit={handleSubmit}>
           <div className="c-question">
-            <Row className="c-question__row-header-options">
-              <Col className="d-flex">
+            <Row className="c-question__row-header-options c-question__row-header-options--fixed">
+              <Col /*className="d-flex"*/>
                 <Button
                   onClick={() => history.replace(`/view-question/${activeQuestion.id}`)}
                   className="mr-auto btn btn-secondary c-question__btn-back"
@@ -364,7 +364,7 @@ class QuestionEditPage extends Component {
                 </Button>
               </Col>
             </Row>
-            <Row className="c-question__tittle-section">
+            <Row className="c-question__tittle-section c-question--space-for-titlequestion">
               <Col>
                 <h4>
                   <FontAwesomeIcon icon="book" />
@@ -385,7 +385,7 @@ class QuestionEditPage extends Component {
                 </Alert>
               </Col>
             </Row>
-            <Row className="c-question__options">
+            <Row className="c-question__options hidden">
               <Col className="d-flex  justify-content-end">
                 <span className="c-question__label-tag-header c-question__tag--purple p-2">
                   {activeQuestion.source}
