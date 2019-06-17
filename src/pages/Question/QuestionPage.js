@@ -12,6 +12,8 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import Back from 'components/question/Back';
+import BackUsingHistory from 'components/question/BackUsingHistory';
+
 import { history } from 'helpers/history';
 
 
@@ -121,7 +123,7 @@ class QuestionPage extends Component {
         <div className="c-question">
           <Row className="c-question__row-header-options c-question__row-header-options--fixed">
             <Col /*className="d-flex"*/>
-              <Back />
+              <BackUsingHistory />
               { (isOwner && !activeQuestion.disabled)
                 ? (
                   <DeleteQuestionButtonContainer

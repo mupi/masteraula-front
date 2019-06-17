@@ -20,6 +20,8 @@ import { requiredSelectValidator, minLength2TagsForEdit, minLength1Topics } from
 // import MAReactTags from 'components/tags/MAReactTag';
 import { history } from 'helpers/history';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
+import Back from 'components/question/Back';
+import BackUsingHistory from 'components/question/BackUsingHistory';
 
 const difficultyList = {
   difficulties: [
@@ -336,14 +338,7 @@ class QuestionEditPage extends Component {
           <div className="c-question">
             <Row className="c-question__row-header-options c-question__row-header-options--fixed">
               <Col /*className="d-flex"*/>
-                <Button
-                  onClick={() => history.replace(`/view-question/${activeQuestion.id}`)}
-                  className="mr-auto btn btn-secondary c-question__btn-back"
-                >
-                  <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
-                  {' '}
-                Voltar
-                </Button>
+                <BackUsingHistory />
                 <Link className="btn btn-secondary c-question__btn-back btn__icon hidden" to={`/view-question/${activeQuestion.id}`} role="button">
                   <FontAwesomeIcon icon="eye" className="btn__icon" />
                   {' '}

@@ -3,13 +3,13 @@ import { history } from 'helpers/history';
 import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const BackUsingHistory = location => (
+const BackUsingHistory = (location = true) => (
   location
     ? (
       <Button onClick={history.goBack} className="mr-auto btn btn-secondary c-question__btn-back">
         <FontAwesomeIcon icon="arrow-circle-left" className="btn__icon" />
         {' '}
-        Voltar History
+        Voltar
       </Button>
     ) : (
       <Button onClick={() => history.push('/question-base/1')} className="mr-auto btn btn-secondary c-question__btn-back">

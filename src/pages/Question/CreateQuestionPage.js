@@ -17,6 +17,7 @@ import { Field, FieldArray } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
 import Multiselect from 'react-widgets/lib/Multiselect';
 import Back from 'components/question/Back';
+import BackUsingHistory from 'components/question/BackUsingHistory';
 
 const difficultyList = {
   difficulties: [
@@ -464,7 +465,7 @@ class CreateQuestionPage extends Component {
           <div className="c-question c-create-question">
             <Row className="c-question__row-header-options c-question__row-header-options--fixed">
               <Col /*className="d-flex justify-content-end"*/>
-                <Back />
+                <BackUsingHistory />
                 <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit">
                   <FontAwesomeIcon
                     className="btn__icon"
