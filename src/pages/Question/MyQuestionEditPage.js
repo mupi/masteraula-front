@@ -425,15 +425,14 @@ const renderTopics = ({
 class MyQuestionEditPage extends Component {
   componentDidMount() {
     const {
-      listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, prepareForm,
+      listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
     } = this.props;
     listDisciplineFilters();
     listTeachingLevelFilters();
     listSourceFilters();
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
-
-    prepareForm();
+    // prepareForm();
   }
 
     getListTopics = (e, newValue) => {

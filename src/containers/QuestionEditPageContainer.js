@@ -9,6 +9,8 @@ import { addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAct
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('classify-question');
+  const { user } = state.session.session;
+
   return ({
     topics: selector(state, 'topics'),
     isFetching: state.question.isFetching,
@@ -17,6 +19,7 @@ const mapStateToProps = (state) => {
     activeDocument: state.document.activeDocument,
     topicsList: state.topic.topics,
     role: state.session.session.user.groups,
+    userId: user.id,
   });
 };
 

@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
   filter: state.filter,
   questionPage: state.question.questionPage,
   currentPage: state.question.currentPage,
-
+  onlyMyQuestions: state.filter.onlyMyQuestions,
 });
 
 const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
