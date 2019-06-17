@@ -129,7 +129,7 @@ const SidebarMobile = ({
                     <Link to="/create-question" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-question'); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
-                        icon="search"
+                        icon="plus"
                       />
                       Criar questão
                     </Link>
