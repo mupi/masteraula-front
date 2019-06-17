@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import LoginForm from 'components/login/LoginForm';
+import Login2Form from 'components/login/Login2Form';
 import { fetchLogin } from 'actions/loginAction';
 
 const Login2Modal = ({
@@ -22,7 +22,7 @@ const Login2Modal = ({
       >
         Entrar no MasterAula
       </h4>
-      <LoginForm onSubmit={submit} closeModal={closeModal} />
+      <Login2Form onSubmit={submit} closeModal={closeModal} />
     </div>
   </div>
 );
