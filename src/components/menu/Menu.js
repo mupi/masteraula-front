@@ -8,6 +8,7 @@ import DocumentInfoMenuContainer from 'containers/DocumentInfoMenuContainer';
 import CreateDocumentMenuContainer from 'containers/CreateDocumentMenuContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import userPhoto from 'assets/img/home/avataruser3.png';
+import LoginModal from 'components/login/LoginModal';
 
 const getUserName = (userName) => {
   if (userName) {
@@ -74,6 +75,9 @@ const Menu = (props) => {
           Preços
         </NavLink>
       </NavItem>
+      { /* <NavItem>
+        <LoginModal />
+     </NavItem> */ }
       <NavItem>
         <Link to="#login" onClick={handleOpenLoginModal}>
           Entrar
