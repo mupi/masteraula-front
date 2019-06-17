@@ -253,9 +253,9 @@ const renderAlternatives = ({
   <Row>
     <Col md="12">
       <Row className="c-question__row-info c-create-question__row-alternative c-create-question__header-alternative">
-        <Col sm="1" className="align-self-center hidden-xs">É correta</Col>
-        <Col sm="6" className="align-self-center hidden-xs">Alternativa</Col>
-        <Col sm="2" className="align-self-center hidden-xs">Remover</Col>
+        <Col sm="1" xs="1" className="align-self-center hidden-xs">É correta</Col>
+        <Col sm="6" xs="8" className="align-self-center hidden-xs">Alternativa</Col>
+        <Col sm="2" xs="1" className="align-self-center hidden-xs">Remover</Col>
         { fields.length < 5
           ? (
             <Col sm="3">
@@ -272,7 +272,7 @@ const renderAlternatives = ({
 
       {fields.map((alternative, i) => (
         <Row key={alternative} className="c-question__row-info c-create-question__row-alternative">
-          <Col sm="1">
+          <Col sm="1" xs="1">
             <Field
               name={`${alternative}.isCorrect`}
               component={renderCheckButtonField}
@@ -281,7 +281,7 @@ const renderAlternatives = ({
               value="true"
             />
           </Col>
-          <Col sm="6">
+          <Col sm="6" xs="9">
             <Field
               type="text"
               component={renderField}
@@ -290,7 +290,7 @@ const renderAlternatives = ({
               validate={requiredValidator}
             />
           </Col>
-          <Col sm="2" className="c-question-edit__col-btn-remove-topic">
+          <Col sm="2" xs="1" className="c-question-edit__col-btn-remove-topic">
             <Button
               type="button"
               title="Remover alternativa"
@@ -501,6 +501,7 @@ class CreateQuestionPage extends Component {
                   disabled={false}
                   placeholderEditor="Escreva o enunciado da questão aqui ..."
                   validate={requiredValidator}
+                  autoFocus
                 />
               </Col>
             </Row>

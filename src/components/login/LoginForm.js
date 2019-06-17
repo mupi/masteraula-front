@@ -14,12 +14,14 @@ const renderField = ({
   label,
   type,
   meta: { touched, error, warning },
+  isAutoFocus = false,
 }) => (
   <div>
     <Input
       {...input}
       placeholder={label}
       type={type}
+      autoFocus={isAutoFocus}
     />
     { touched
       && ((error && (
@@ -42,7 +44,7 @@ const renderField = ({
 const LoginForm = (props) => {
   const {
     handleSubmit, error, resendEmail, formValues,
-    resendError, resendSuccess, isSending,
+    resendError, resendSuccess, isSending, closeModal,
   } = props;
 
   function handleResend(message, values) {
@@ -61,6 +63,7 @@ const LoginForm = (props) => {
             label="Digite seu email"
             className="form-control login-field"
             component={renderField}
+            isAutoFocus
           />
         </FormGroup>
         <FormGroup>
@@ -94,7 +97,7 @@ const LoginForm = (props) => {
         )}
         <div className="text-center">
           <FormGroup>
-            <NavLink to="/esqueci-senha" onClick={() => props.toggle()}>
+            <NavLink to="/esqueci-senha" onClick={() => closeModal()}>
               Esqueci minha senha
             </NavLink>
           </FormGroup>
@@ -135,7 +138,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(toggleModal(modal));
   }, */
   resendEmail: (email, password) => dispatch(resendEmail(email, password)),
-}); 
+});
 
 export default connect(
   mapStateToProps,

@@ -19,6 +19,7 @@ const renderSearchField = ({
   search,
   placeholder,
   isFetchingQuestions,
+  autoFocus,
 }) => (
   <div className="c-question-base__search-all-section">
     <InputGroup>
@@ -26,8 +27,9 @@ const renderSearchField = ({
         {...input}
         placeholder={placeholder}
         type={type}
-        disabled={isFetchingQuestions}
+      //  disabled={isFetchingQuestions}
         className="c-question-base__search-field"
+        autoFocus={autoFocus}
       />
       {search || !pristine ? (
         <InputGroupAddon addonType="prepend">
@@ -102,7 +104,11 @@ class QuestionSearchForm extends Component {
                 <FontAwesomeIcon icon="info-circle" />
               </span>
               <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
-              Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos das questões. Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos. Combine os termos da busca com as opções de filtro disponíveis na barra lateral.
+                Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos das questões.
+                {' '}
+                Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos.
+                {' '}
+                Combine os termos da busca com as opções de filtro disponíveis na barra lateral.
               </UncontrolledTooltip>
             </div>
           </Col>
@@ -123,6 +129,7 @@ class QuestionSearchForm extends Component {
             clearSearch={clearSearch}
             clearSearchField={clearSearchField}
             isFetchingQuestions={isFetchingQuestions}
+            autoFocus
           />
         </Row>
         <Row className="c-question-base__myquestions-filter">

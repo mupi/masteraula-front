@@ -11,6 +11,8 @@ export const emailValidator = value => (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.
   : undefined);
 
 export const requiredValidator = value => (value ? undefined : 'Campo obrigatório');
+export const requiredEmailValidator = value => (value ? undefined : 'Insira seu email');
+export const requiredPasswordValidator = value => (value ? undefined : 'Insira sua senha');
 
 
 export const requiredSelectValidator = value => ((value === '-1' || value === '0' || value === undefined) ? 'Campo obrigatório' : undefined);

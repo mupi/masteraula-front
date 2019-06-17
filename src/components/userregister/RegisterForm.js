@@ -12,12 +12,14 @@ const renderField = ({
   label,
   type,
   meta: { touched, error, warning },
+  isAutoFocus = false,
 }) => (
   <div>
     <Input
       {...input}
       placeholder={label}
       type={type}
+      autoFocus={isAutoFocus}
     />
     { touched
       && ((error && (
@@ -32,7 +34,7 @@ const renderField = ({
         {' '}
       </span>
       )))
-    } 
+     }
   </div>
 );
 
@@ -54,6 +56,7 @@ const RegisterForm = (props) => {
               id="name"
               label="Insira seu nome completo"
               validate={userNameValidator}
+              isAutoFocus
             />
           </FormGroup>
           <FormGroup>

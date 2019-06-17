@@ -60,6 +60,7 @@ class MACreateDropdownList extends React.Component {
         allowCreate="onFilter"
         onCreate={name => this.handleCreate(name)}
         onChange={(value) => { this.setState({ value });input.onChange(value);}}
+        autofocus
        // onChange={input.onChange}
         placeholder={placeholder}
         valueField={valueField}

@@ -35,12 +35,14 @@ const renderField = ({
   placeholder,
   type,
   meta: { touched, error, warning },
+  autoFocus = false,
 }) => (
   <div>
     <Input
       {...input}
       placeholder={placeholder}
       type={type}
+      autoFocus={autoFocus}
     />
     { touched
       && ((error && (
@@ -163,6 +165,7 @@ class UserProfile extends React.Component {
                       placeholder="Insira seu nome completo"
                       className="form-control"
                       validate={userNameValidator}
+                      autoFocus
                     />
                   </FormGroup>
                 </Col>

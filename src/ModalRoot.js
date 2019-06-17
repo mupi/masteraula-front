@@ -13,6 +13,7 @@ const MODAL_TYPES = {
   exportDocument: modalTypes.exportDocumentModal,
   last5Documents: modalTypes.last5DocumentsModal,
   register2: modalTypes.register2Modal,
+  login2: modalTypes.login2Modal,
   createDocument: modalTypes.createDocument,
 };
 

@@ -3,6 +3,7 @@ import { SubmissionError } from 'redux-form';
 
 import { history } from 'helpers/history';
 import { updateSession, deleteSession } from 'actions/sessionAction';
+import { hideModal } from 'actions/modalAction';
 import { deleteDocumentSession } from './documentAction';
 import { clearSelectedFilters, clearSearch } from './filterAction';
 
@@ -24,6 +25,7 @@ export const fetchLogin = (username, password) => {
         (session) => {
           dispatch(success());
           dispatch(updateSession(session));
+          dispatch(hideModal());
           history.push('/question-base/1');
         },
         (error) => {

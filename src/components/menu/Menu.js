@@ -3,7 +3,6 @@ import {
   Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col, Container,
 } from 'reactstrap';
 import { Link, NavLink } from 'react-router-dom';
-import LoginModal from 'components/login/LoginModal';
 import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
 import DocumentInfoMenuContainer from 'containers/DocumentInfoMenuContainer';
 import CreateDocumentMenuContainer from 'containers/CreateDocumentMenuContainer';
@@ -32,6 +31,14 @@ const Menu = (props) => {
       open: true,
       closeModal,
     }, 'register2');
+  };
+
+  const handleOpenLoginModal = () => {
+    // open modal
+    showModal({
+      open: true,
+      closeModal,
+    }, 'login2');
   };
 
   const loggedOptions = (
@@ -68,7 +75,9 @@ const Menu = (props) => {
         </NavLink>
       </NavItem>
       <NavItem>
-        <LoginModal />
+        <Link to="#login" onClick={handleOpenLoginModal}>
+          Entrar
+        </Link>
       </NavItem>
       <NavItem>
         <Link to="#top" onClick={handleOpenRegisterModal}>

@@ -7,6 +7,7 @@ import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import { Row, Col } from 'reactstrap';
 
+
 class QuestionTextRichEditor extends Component {
   /* eslint-disable react/no-danger */
   constructor(props) {
@@ -36,13 +37,21 @@ class QuestionTextRichEditor extends Component {
     });
   };
 
+
   render() {
     const { editorState } = this.state;
     const { placeholder } = this.props;
+
+    const setEditorReference = (ref) => {
+      this.editorReferece = ref;
+      if (ref) ref.focus();
+    };
+
     return (
       <Row>
         <Col>
           <Editor
+            editorRef={setEditorReference}
             placeholder={placeholder}
             editorState={editorState}
             wrapperClassName="demo-wrapper"
