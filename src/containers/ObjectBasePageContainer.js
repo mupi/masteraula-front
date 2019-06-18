@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
   listObjects: (page, filter) => dispatch(listLearningObject(page, filter)),
 });
 
-const ObjectBasePageContainer = connect( 
+const ObjectBasePageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(ObjectBasePage);
