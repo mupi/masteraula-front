@@ -4,6 +4,7 @@ import { Alert, Row, Col } from 'reactstrap';
 import LearningObjectContent from 'components/learningObject/LearningObjectContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionList from 'components/question/QuestionList';
+import BackUsingHistory from 'components/question/BackUsingHistory';
 
 class ViewLearningObjectPage extends Component {
   componentDidMount() {
@@ -38,7 +39,12 @@ class ViewLearningObjectPage extends Component {
 
     return (
       <HomeUserPage>
-        <Row className="c-question__tittle-section">
+        <Row className="c-question__row-header-options c-question__row-header-options--fixed">
+          <Col>
+            <BackUsingHistory />
+          </Col>
+        </Row>
+        <Row className="c-question__tittle-section c-question--space-for-questionyear">
           <Col>
             <h4>
               <FontAwesomeIcon icon="image" />

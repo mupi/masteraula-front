@@ -57,7 +57,7 @@ const LearningObjectCard = (props) => {
               <span className="object-card__more-info--lightgray">
                 {' | '}
               </span>
-            ) : ''}         
+            ) : ''}
           {
             (object.source) ? (
               <span>
@@ -81,7 +81,7 @@ const LearningObjectCard = (props) => {
           ) : extractText }
       </CardBody>
       <CardFooter className="object-card__footer">
-        <Link to={`/view-learningobject/${object.id}`}>
+        <Link to={`/view-object/${object.id}`}>
           <Button className="object-card__btn">
             Ver objeto
             {' '}
