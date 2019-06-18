@@ -33,7 +33,7 @@ export const fetchLearningObject = (id) => {
         dispatch(requestLearningObjectSuccess(activeLearningObject));
       }, (error) => {
         dispatch(requestLearningObjectFailure(error));
-        history.push('/question-base/1');
+        history.push('/object-base/1');
       },
     );
   };

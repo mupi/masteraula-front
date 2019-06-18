@@ -29,7 +29,7 @@ class ObjectBasePage extends React.Component {
 
   render() {
     const {
-      objectPage, isFetching, error,
+      objectPage, isFetching, error, addSelectedObjectTypeFilter,
     } = this.props;
     if (error) {
       return (
@@ -58,6 +58,7 @@ class ObjectBasePage extends React.Component {
                 {...this.props}
                 objects={objectPage ? objectPage.results : null}
                 count={objectPage ? objectPage.count : 0}
+                addSelectedObjectTypeFilter={addSelectedObjectTypeFilter}
               />
             )
             }

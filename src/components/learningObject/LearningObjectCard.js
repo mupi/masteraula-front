@@ -12,31 +12,34 @@ const LearningObjectCard = (props) => {
     }
     return '';
   };
-  const { object } = props;
+  const { object, addSelectedObjectTypeFilter } = props;
   const extractText = object.text ? getCleanExtractStatement(object.text) : '';
   const cleanSource = object.source ? getCleanExtractStatement(object.source) : null;
 
   const objectTypeImage = object.image ? 'Imagem' : null;
-  const objectTypeText = object.text ? 'Texto' : null;
+  const objectTypeText = object.text ? 'Texto' : null; 
 
   return (
     <Card className="h-100 object-card__full">
       <CardHeader className="object-card__header">
         <div className="object-card__info-section">
-          {objectTypeText ? (
-            <Button
-              key={object.type}
-              className="object-card__filter-button object-card__filter-button--pink"
-            >
-              {objectTypeText}
-            </Button>
-          ) : ''}
           {objectTypeImage ? (
             <Button
               key={object.type}
               className="object-card__filter-button object-card__filter-button--green"
+              onClick={() => addSelectedObjectTypeFilter('I')}
+
             >
               {objectTypeImage}
+            </Button>
+          ) : ''}
+          {objectTypeText ? (
+            <Button
+              key={object.type}
+              className="object-card__filter-button object-card__filter-button--pink"
+              onClick={() => addSelectedObjectTypeFilter('T')}
+            >
+              {objectTypeText}
             </Button>
           ) : ''}
         </div>
