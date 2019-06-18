@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 import LearningObjectSearchForm from 'components/learningObject/LearningObjectSearchForm';
-import { setSearchTextObject } from 'actions/filterAction';
+import { setSearchTextObject } from 'actions/filterObjectAction';
 import { history } from 'helpers/history';
 
 
 const mapStateToProps = state => ({
   initialValues: {
-    searchTextObject: state.filter.searchTextObject,
+    searchTextObject: state.filterObject.searchTextObject,
   },
-  search: state.filter.searchTextObject,
+  search: state.filterObject.searchTextObject,
   author: state.session.session.user.id,
   isFetchingObjects: state.learningObject.isFetching,
   preSearch: state.form.objectSearch ? state.form.objectSearch.values.searchTextObject : '',

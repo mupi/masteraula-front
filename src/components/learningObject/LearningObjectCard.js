@@ -12,29 +12,34 @@ const LearningObjectCard = (props) => {
     }
     return '';
   };
-  const { object } = props;
+  const { object, addSelectedObjectTypeFilter } = props;
   const extractText = object.text ? getCleanExtractStatement(object.text) : '';
+  const cleanSource = object.source ? getCleanExtractStatement(object.source) : null;
+
   const objectTypeImage = object.image ? 'Imagem' : null;
-  const objectTypeText = object.text ? 'Texto' : null;
+  const objectTypeText = object.text ? 'Texto' : null; 
 
   return (
     <Card className="h-100 object-card__full">
       <CardHeader className="object-card__header">
         <div className="object-card__info-section">
-          {objectTypeText ? (
-            <Button
-              key={object.type}
-              className="object-card__filter-button object-card__filter-button--pink"
-            >
-              {objectTypeText}
-            </Button>
-          ) : ''}
           {objectTypeImage ? (
             <Button
               key={object.type}
               className="object-card__filter-button object-card__filter-button--green"
+              onClick={() => addSelectedObjectTypeFilter('I')}
+
             >
               {objectTypeImage}
+            </Button>
+          ) : ''}
+          {objectTypeText ? (
+            <Button
+              key={object.type}
+              className="object-card__filter-button object-card__filter-button--pink"
+              onClick={() => addSelectedObjectTypeFilter('T')}
+            >
+              {objectTypeText}
             </Button>
           ) : ''}
         </div>
@@ -53,24 +58,24 @@ const LearningObjectCard = (props) => {
             </span>
           ))}
           {
-            (object.tags.length > 0 && object.source) ? (
+            (object.tags.length > 0 && cleanSource) ? (
               <span className="object-card__more-info--lightgray">
                 {' | '}
               </span>
             ) : ''}
           {
-            (object.source) ? (
+            (cleanSource) ? (
               <span>
                 <span className="object-card__more-info--lightgray">Fonte:</span>
                 {' '}
-                <span className="object-card__tag object-card__info-section-item--italic">{object.source}</span>
+                <span className="object-card__tag object-card__info-section-item--italic">{cleanSource}</span>
               </span>
             ) : ''}
         </p>
       </CardHeader>
       <CardBody className="object-card__body">
         {object && object.image
-          ? <div className="object-card__img-wrapper"><img className="object-card__img" alt={object.source} src={object.image} width="150" /></div>
+          ? <div className="object-card__img-wrapper"><img className="object-card__img" alt={cleanSource} src={object.image} width="150" /></div>
           : ''}
         { (extractText && extractText.length >= 150)
           ? (

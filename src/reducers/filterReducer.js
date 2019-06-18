@@ -194,13 +194,7 @@ export const filter = (state = initialState, action) => {
         searchText: action.searchText,
       });
     }
-
-    case SET_SEARCH_TEXT_OBJECT: {
-      return Object.assign({}, state, {
-        searchTextObject: action.searchText,
-      });
-    }
-
+    
     case ADD_MYQUESTIONS_FILTER: {
       return Object.assign({}, state, {
         onlyMyQuestions: action.onlyMyQuestions,
