@@ -152,7 +152,7 @@ class QuestionBasePage extends React.Component {
 
 
           <Row className="pagination-questions" style={{ marginLeft: '80%' }}>
-            <CustomPagination {...this.props} {...questionPage} itensPerPage={16} />
+            <CustomPagination {...this.props} {...questionPage} disabled={isFetching} itensPerPage={16} />
           </Row>
           <div className="c-question-base__results">
             { isFetching ? (
@@ -165,7 +165,7 @@ class QuestionBasePage extends React.Component {
             }
           </div>
           <Row className="pagination-questions" style={{ marginLeft: '80%' }}>
-            <CustomPagination {...this.props} {...questionPage} itensPerPage={16} />
+            <CustomPagination {...this.props} {...questionPage} disabled={isFetching} itensPerPage={16} />
           </Row>
         </div>
       </HomeUserPage>

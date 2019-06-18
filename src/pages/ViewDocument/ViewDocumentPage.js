@@ -73,20 +73,18 @@ class ViewDocumentPage extends React.Component {
             </Col>
           </Row>
           <Row className="pagination-my-documents">
-            {isFetchingMyDocuments
-              ? (
-                <Col sm="12">
-                  <Alert className="alert--warning" color="warning" fade={false}>
-                    Carregando ...
-                  </Alert>
-                </Col>
+            <Col sm="12">
+              <CustomPagination {...this.props} {...myDocumentsList} disabled={isFetchingMyDocuments} itensPerPage={10} />
+              <p className="c-my-documents__total-results">
+                {`Provas encontradas: ${myDocumentsList ? (myDocumentsList.count) : 0}`}
+                {' '}
+              </p>
+              { isFetchingMyDocuments ? (
+                <Alert className="alert--warning" color="warning" fade={false}>
+                Carregando ...
+                </Alert>
               ) : (
-                <Col sm="12">
-                  <CustomPagination {...this.props} {...myDocumentsList} itensPerPage={10} />
-                  <p className="c-my-documents__total-results">
-                    {`Provas encontradas: ${myDocumentsList ? (myDocumentsList.count) : 0}`}
-                    {' '}
-                  </p>
+                <div>
                   <div className="c-my-documents__dropdown-section">
                     <span className="c-my-documents__order-label">
                       Ordenar por:
@@ -125,11 +123,13 @@ class ViewDocumentPage extends React.Component {
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </div>
-                  {myDocumentsList
+
+                  { myDocumentsList
                     && <DocumentList documents={myDocumentsList.results} {...this.props} />
                   }
-                </Col>
+                </div>
               )}
+            </Col>
           </Row>
 
         </div>
