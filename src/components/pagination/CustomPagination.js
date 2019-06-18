@@ -10,13 +10,13 @@ const CustomPaginationItem = (props) => {
 
   return (
     <PaginationItem key={page} active={page === currentPage} disabled={disabled}>
-      { disabled ? (
+      {disabled ? (
         <PaginationLink next={next} previous={previous}>
-          { label }
+          {label}
         </PaginationLink>
       ) : (
         <PaginationLink tag={Link} to={`${page}`} next={next} previous={previous}>
-          { label }
+          {label}
         </PaginationLink>
       )}
     </PaginationItem>
@@ -39,24 +39,29 @@ CustomPaginationItem.defaultProps = {
 
 const CustomPagination = (props) => {
   const {
-    ariaLabel, currentPage, previous, next, count, itensPerPage,
+    ariaLabel, currentPage, previous, next, count, itensPerPage, disabled,
   } = props;
 
   const rows = [];
   for (let page = currentPage - 3; page <= currentPage + 3; page += 1) {
     if (page > 0 && (page - 1) * itensPerPage < count) {
-      rows.push({ label: page, page, currentPage });
+      rows.push({
+        label: page,
+        page,
+        currentPage,
+        disabled,
+      });
     }
   }
 
   return (
 
     <Pagination aria-label={ariaLabel} className="d-flex justify-content-end">
-      <CustomPaginationItem disabled={!previous} page={currentPage - 1} previous />
+      <CustomPaginationItem disabled={!previous || disabled} page={currentPage - 1} previous />
 
       {rows.map(CustomPaginationItem)}
 
-      <CustomPaginationItem disabled={!next} page={currentPage + 1} next />
+      <CustomPaginationItem disabled={!next || disabled} page={currentPage + 1} next />
 
     </Pagination>
   );
