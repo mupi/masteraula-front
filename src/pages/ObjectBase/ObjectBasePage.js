@@ -45,12 +45,12 @@ class ObjectBasePage extends React.Component {
         <div className="c-object-base">
           <LearningObjectSearchFormContainer />
           <Row className="pagination-questions" style={{ marginLeft: '80%' }}>
-            <CustomPagination {...this.props} {...objectPage} itensPerPage={16} />
+            <CustomPagination {...this.props} {...objectPage} itensPerPage={16} disabled={isFetching} />
           </Row>
           <div className="c-question-base__results">
             { isFetching ? (
               <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
-                   Carregando ...
+                   Carregando ... 
               </Alert>
             ) : (
               <LearningObjectCardList
@@ -63,7 +63,7 @@ class ObjectBasePage extends React.Component {
             }
           </div>
           <Row className="pagination-questions" style={{ marginLeft: '80%' }}>
-            <CustomPagination {...this.props} {...objectPage} itensPerPage={16} />
+            <CustomPagination {...this.props} {...objectPage} itensPerPage={16} disabled={isFetching} />
           </Row>
         </div>
       </HomeUserPage>
