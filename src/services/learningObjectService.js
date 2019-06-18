@@ -58,7 +58,7 @@ function updateLearningObject(activeUpdateLearningObject) {
     });
 }
 
-function listLearningObject(page = 1, filter) {
+function listLearningObject(page, filter) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -67,7 +67,7 @@ function listLearningObject(page = 1, filter) {
     },
   };
 
-  const search = (filter && filter.searchTextObject) ? queryString.stringify({ text: filter.searchText }) : null;
+  const search = (filter && filter.searchTextObject) ? queryString.stringify({ text: filter.searchTextObject }) : null;
 
   const url = (search)
     ? `/learning_object/search/?page=${page}&${search}`

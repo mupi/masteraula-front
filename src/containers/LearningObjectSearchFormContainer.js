@@ -22,7 +22,7 @@ const setDispatchSearchText = (searchText) => {
 const mapDispatchToProps = dispatch => ({
 
   onSubmit: (values) => {
-    dispatch(setDispatchSearchText(values.searchText));
+    dispatch(setDispatchSearchText(values.searchTextObject));
   },
   clearSearch: () => {
     dispatch({

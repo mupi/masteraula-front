@@ -61,6 +61,7 @@ export const learningObject = (state = initialState, action) => {
     }
     case LIST_LEARNING_OBJECT:
       return Object.assign({}, state, {
+        currentPage: action.page,
         isFetching: true,
         error: null,
       });

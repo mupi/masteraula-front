@@ -81,13 +81,6 @@
     font-size:13px;
     margin-bottom:3px;
 
-    &.btn::after {
-     /* content: "\f057";
-      width: 20px;
-      float: right;
-      margin-top: 0;
-      font-family: 'Font Awesome 5 Free';*/
-    }
   }
   
   &__myquestions-filter{
@@ -115,7 +108,38 @@
 .object-card {
     margin-bottom: 20px;
     padding: 12px 12px;
+
+    &__filter-button{
+      padding: 2px 4px;
+      border-radius: 5px;
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 11px;
+      text-align: center;
+      display: inline-block;
+      background: #999a9a;
+      margin: 0px 5px 5px 0px;
+
+      &--pink{
+        background: $color-ma-pink;
+        border-color:$color-ma-pink;
+      }
+
+      &--green{
+        background: $color-ma-green;
+        border-color: $color-ma-green;
+      }
+    }
+
+
   
+    &__img-wrapper{
+      text-align: center;
+    }
+
+    &__img{
+      max-width: 100%;
+    }
   
     &__full{ 
   
@@ -184,64 +208,6 @@
       top: -10px;
     }
   
-    &__info-section--complete{
-      @include for-phone-only{
-        display: block !important;
-      }
-  
-      @include for-desktop-up-1455{
-        display: block;
-      }
-  
-      @include for-desktop-bottom-1455{
-        display: none;
-      }
-    }
-  
-    &__info-section--substring{
-      @include for-phone-only{
-        display: none !important;
-      }
-  
-      @include for-desktop-up-1455{
-        display: none;
-      }
-  
-      @include for-desktop-bottom-1455{
-        display: block;
-      }
-    }
-  
-    &__info-section-item--italic{
-      font-style: italic;
-    }
-  
-    &__info-section-item{
-      padding: 2px 4px;
-      border-radius: 5px;
-      color: $color-ma-white;
-      font-weight: bold;
-      font-size: 11px;
-      text-align: center;
-      display: inline-block;
-      background: $color-ma-dark-gray;
-      margin: 0px 5px 5px 0px;
-    }
-  
-    &__info-section-item--pink{ 
-      background: $color-ma-pink;
-      border-color:  $color-ma-pink
-    }
-  
-    &__info-section-item--green{ 
-      background: $color-ma-green;
-      border-color:  $color-ma-green;
-    }
-  
-    &__info-section-item--purple{ 
-      background: $color-ma-purple;
-      border-color:  $color-ma-purple;
-    }
   
     &__more-info{
       font-size: 12px;

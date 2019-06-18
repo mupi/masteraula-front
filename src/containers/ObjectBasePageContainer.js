@@ -8,13 +8,15 @@ const mapStateToProps = state => ({
   objectPage: state.learningObject.objectPage,
   filter: state.filter,
   modal: state.document.modal,
+  currentPage: state.learningObject.currentPage,
+
 });
 
 const mapDispatchToProps = dispatch => ({
   listObjects: (page, filter) => dispatch(listLearningObject(page, filter)),
 });
 
-const ObjectBasePageContainer = connect(
+const ObjectBasePageContainer = connect( 
   mapStateToProps,
   mapDispatchToProps,
 )(ObjectBasePage);
