@@ -14,6 +14,8 @@ const LearningObjectCard = (props) => {
   };
   const { object } = props;
   const extractText = object.text ? getCleanExtractStatement(object.text) : '';
+  const cleanSource = object.source ? getCleanExtractStatement(object.source) : null;
+
   const objectTypeImage = object.image ? 'Imagem' : null;
   const objectTypeText = object.text ? 'Texto' : null;
 
@@ -53,24 +55,24 @@ const LearningObjectCard = (props) => {
             </span>
           ))}
           {
-            (object.tags.length > 0 && object.source) ? (
+            (object.tags.length > 0 && cleanSource) ? (
               <span className="object-card__more-info--lightgray">
                 {' | '}
               </span>
             ) : ''}
           {
-            (object.source) ? (
+            (cleanSource) ? (
               <span>
                 <span className="object-card__more-info--lightgray">Fonte:</span>
                 {' '}
-                <span className="object-card__tag object-card__info-section-item--italic">{object.source}</span>
+                <span className="object-card__tag object-card__info-section-item--italic">{cleanSource}</span>
               </span>
             ) : ''}
         </p>
       </CardHeader>
       <CardBody className="object-card__body">
         {object && object.image
-          ? <div className="object-card__img-wrapper"><img className="object-card__img" alt={object.source} src={object.image} width="150" /></div>
+          ? <div className="object-card__img-wrapper"><img className="object-card__img" alt={cleanSource} src={object.image} width="150" /></div>
           : ''}
         { (extractText && extractText.length >= 150)
           ? (

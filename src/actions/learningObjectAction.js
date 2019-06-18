@@ -58,22 +58,22 @@ export const updateLearningObject = (props, showMessage = true) => {
 };
 
 // List learning objects
-export const listLearningObject = (page, filter) => {
+export const listLearningObject = (page, filterObject) => {
   function requestLearningObject() { return { type: LIST_LEARNING_OBJECT, page }; }
   function requestLearningObjectSuccess(objectPage) { return { type: LIST_LEARNING_OBJECT_SUCCESS, objectPage }; }
   function requestLearningObjectFailure(error) { return { type: LIST_LEARNING_OBJECT_FAILURE, error }; }
   return (dispatch) => {
     dispatch(requestLearningObject());
-    return learningObjectService.listLearningObject(page, filter).then(
+    return learningObjectService.listLearningObject(page, filterObject).then(
       (objectPage) => {
         dispatch(requestLearningObjectSuccess(objectPage));
         dispatch(initialize('learningObjectSearch', {
-          searchTextObject: filter.searchTextObject,
+          searchTextObject: filterObject.searchTextObject,
         }));
       }, (error) => {
         dispatch(requestLearningObjectFailure(error));
         dispatch(initialize('learningObjectSearch', {
-          searchTextObject: filter.searchTextObject,
+          searchTextObject: filterObject.searchTextObject,
         }));
       },
     );

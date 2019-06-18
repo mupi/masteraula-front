@@ -6,14 +6,14 @@ import { listLearningObject } from 'actions/learningObjectAction';
 const mapStateToProps = state => ({
   isFetching: state.learningObject.isFetching,
   objectPage: state.learningObject.objectPage,
-  filter: state.filter,
+  filterObject: state.filterObject,
   modal: state.document.modal,
   currentPage: state.learningObject.currentPage,
 
 });
 
 const mapDispatchToProps = dispatch => ({
-  listObjects: (page, filter) => dispatch(listLearningObject(page, filter)),
+  listObjects: (page, filterObject) => dispatch(listLearningObject(page, filterObject)),
 });
 
 const ObjectBasePageContainer = connect(

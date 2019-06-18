@@ -12,18 +12,18 @@ import LearningObjectCardList from 'components/learningObject/LearningObjectCard
 class ObjectBasePage extends React.Component {
   componentDidMount() {
     const {
-      match, filter, listObjects,
+      match, filterObject, listObjects,
     } = this.props;
-    listObjects(parseInt(match.params.page, 10), filter);
+    listObjects(parseInt(match.params.page, 10), filterObject);
   }
 
   componentDidUpdate(prevProps) {
     const {
-      match, filter, listObjects,
+      match, filterObject, listObjects,
     } = this.props;
     if ((match.params.page !== prevProps.match.params.page)
-    || (filter !== prevProps.filter)) {
-      listObjects(parseInt(match.params.page, 10), filter);
+    || (filterObject !== prevProps.filterObject)) {
+      listObjects(parseInt(match.params.page, 10), filterObject);
     }
   }
 
@@ -41,7 +41,7 @@ class ObjectBasePage extends React.Component {
       );
     }
     return (
-      <HomeUserPage showFilters>
+      <HomeUserPage showFiltersForObjectBase>
         <div className="c-object-base">
           <LearningObjectSearchFormContainer />
           <Row className="pagination-questions" style={{ marginLeft: '80%' }}>
@@ -77,7 +77,7 @@ ObjectBasePage.propTypes = {
       page: PropTypes.string.isRequired,
     }),
   }).isRequired,
-  filter: PropTypes.shape({}).isRequired,
+  filterObject: PropTypes.shape({}).isRequired,
   listObjects: PropTypes.func.isRequired,
   questionPage: PropTypes.shape({}),
   isFetching: PropTypes.bool,
