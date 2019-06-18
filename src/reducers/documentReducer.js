@@ -97,7 +97,6 @@ export const document = (state = initialState, action) => {
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
-        myDocumentsList: null,
         isFetchingMyDocuments: true,
         currentPage: action.page,
         error: null,
