@@ -1,5 +1,6 @@
 import { apiUrl } from 'helpers/config';
 import { authHeader } from 'helpers';
+import queryString from 'query-string';
 
 // Fetch a LearningObject using ID
 function fetchLearningObject(id) {
@@ -57,9 +58,39 @@ function updateLearningObject(activeUpdateLearningObject) {
     });
 }
 
+function listLearningObject(page = 1, filter) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const search = (filter && filter.searchTextObject) ? queryString.stringify({ text: filter.searchText }) : null;
+
+  const url = (search)
+    ? `/learning_object/search/?page=${page}&${search}`
+    : `/learning_object/?page=${page}`;
+
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+    return data;
+  });
+
+  return fetch(`${apiUrl}${url}`, requestOptions)
+    .then(handleResponse)
+    .then(objectPage => objectPage);
+}
+
 const learningObjectService = {
   fetchLearningObject,
   updateLearningObject,
+  listLearningObject,
 };
 
 export default learningObjectService;

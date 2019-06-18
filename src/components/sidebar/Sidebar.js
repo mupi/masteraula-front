@@ -147,6 +147,15 @@ const SidebarMobile = ({
                       </Link>
                     </ListGroupItem>
                     <ListGroupItem color="light">
+                      <Link to="/object-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/object-base/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="image"
+                        />
+                        Banco de objetos
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem color="light">
                       <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
                         <FontAwesomeIcon
                           className="btn__icon"
@@ -245,6 +254,15 @@ const SidebarWeb = ({
                         icon="search"
                       />
                         Banco de questões
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem color="light">
+                    <Link to="/object-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/object-base/1'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="image"
+                      />
+                        Banco de objetos
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">

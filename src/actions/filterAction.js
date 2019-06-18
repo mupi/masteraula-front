@@ -53,6 +53,9 @@ export const REMOVE_SELECTED_YEAR_FILTER = 'REMOVE_SELECTED_YEAR_FILTER';
 // Set search text
 export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
 
+// Set search text for Learning object
+export const SET_SEARCH_TEXT_OBJECT = 'SET_SEARCH_TEXT_OBJECT';
+
 // Set my questions filter (My questions check)
 export const ADD_MYQUESTIONS_FILTER = 'ADD_MYQUESTIONS_FILTER';
 
@@ -216,6 +219,10 @@ export const removeSelectedYearFilter = idYear => ({
 
 export const setSearchText = searchText => ({
   type: SET_SEARCH_TEXT, searchText,
+});
+
+export const setSearchTextObject = searchText => ({
+  type: SET_SEARCH_TEXT_OBJECT, searchText,
 });
 
 export const addMyQuestionsFilter = (author, onlyMyQuestions) => ({
