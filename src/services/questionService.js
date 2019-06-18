@@ -155,7 +155,6 @@ function rateQuestion() {
 
 // Delete a header given its ID
 function deleteQuestion(idQuestion) {
-  console.log("vou remover o " + idQuestion);
   const requestOptions = {
     method: 'DELETE',
     headers: {

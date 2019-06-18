@@ -8,7 +8,6 @@ import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEd
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 import DeleteQuestionButtonContainer from 'containers/DeleteQuestionButtonContainer';
-import Back from 'components/question/Back';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 
 
@@ -498,7 +497,7 @@ class MyQuestionEditPage extends Component {
           <Form onSubmit={handleSubmit}>
             <div className="c-question c-create-question">
               <Row className="c-question__row-header-options c-question__row-header-options--fixed">
-                <Col /*className="d-flex justify-content-end"*/>
+                <Col>
                   <BackUsingHistory />
                   <DeleteQuestionButtonContainer
                     questionId={activeQuestion.id}

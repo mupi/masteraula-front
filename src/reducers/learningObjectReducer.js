@@ -1,5 +1,6 @@
 import {
   FETCH_LEARNING_OBJECT, FETCH_LEARNING_OBJECT_SUCCESS, FETCH_LEARNING_OBJECT_FAILURE,
+  LIST_LEARNING_OBJECT, LIST_LEARNING_OBJECT_SUCCESS, LIST_LEARNING_OBJECT_FAILURE,
   UPDATE_LEARNING_OBJECT, UPDATE_LEARNING_OBJECT_SUCCESS, UPDATE_LEARNING_OBJECT_FAILURE,
   UPDATE_ALL_LEARNING_OBJECTS, UPDATE_ALL_LEARNING_OBJECTS_SUCCESS, UPDATE_ALL_LEARNING_OBJECTS_FAILURE,
 
@@ -58,6 +59,22 @@ export const learningObject = (state = initialState, action) => {
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, { error: action.error });
     }
+    case LIST_LEARNING_OBJECT:
+      return Object.assign({}, state, {
+        currentPage: action.page,
+        isFetching: true,
+        error: null,
+      });
+    case LIST_LEARNING_OBJECT_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        objectPage: action.objectPage,
+      });
+    case LIST_LEARNING_OBJECT_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
     default:
       return state;
   }
