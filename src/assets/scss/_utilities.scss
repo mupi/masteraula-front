@@ -179,8 +179,12 @@ input.rw-input-reset{
 .demo-editor {
   height: 275px !important;
   border: 1px solid #c2c2c2 !important;
-  padding: 5px !important;
+  padding: 15px 10px !important;
   border-radius: 2px !important;
+
+  @include for-phone-only{
+    height: 180px !important;
+  }
 }
 
 .rdw-option-wrapper {
