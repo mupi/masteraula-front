@@ -41,7 +41,7 @@ const toogleSidebarAfterOpenModal = (e, openSidebar, isOpenSidebar) => {
 };
 
 const SidebarMobile = ({
-  showFilters, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, hideModal, showModal,
+  showFilters, showFiltersForObjectBase, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, hideModal, showModal,
   setQuestionIdToNewDocument,
 }) => {
   const closeModal = () => {
@@ -176,6 +176,7 @@ const SidebarMobile = ({
                     </ListGroupItem> */}
                   </ListGroup>
                   {showFilters && <FilterContainer />}
+                  {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
                 </div>
               </Col>
             </Row>
