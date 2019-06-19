@@ -41,7 +41,9 @@ const toogleSidebarAfterOpenModal = (e, openSidebar, isOpenSidebar) => {
 };
 
 const SidebarMobile = ({
-  showFilters, showFiltersForObjectBase, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, hideModal, showModal,
+  showFilters,
+  showFiltersForObjectBase,
+  user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, hideModal, showModal,
   setQuestionIdToNewDocument,
 }) => {
   const closeModal = () => {
@@ -189,7 +191,8 @@ const SidebarMobile = ({
 
 
 const SidebarWeb = ({
-  showFilters, showFiltersForObjectBase, isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, hideModal, showModal, setQuestionIdToNewDocument,
+  showFilters, showFiltersForObjectBase,
+  isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, hideModal, showModal, setQuestionIdToNewDocument,
 }) => {
   const closeModal = () => {
     hideModal();
@@ -323,7 +326,8 @@ class Sidebar extends Component {
 
   render() {
     const {
-      showFilters, showFiltersForObjectBase, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions,
+      showFilters, showFiltersForObjectBase, activeDocument,
+      user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions,
       hideModal, showModal, setQuestionIdToNewDocument,
     } = this.props;
 
