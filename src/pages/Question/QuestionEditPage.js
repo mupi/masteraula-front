@@ -465,13 +465,15 @@ class QuestionEditPage extends Component {
                   <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument} />
                 </div>
 
-                <Container className="question-information">
+                <div className="question-information">
                   <Row className="c-question__tittle-section">
-                    <h4>
-                      <FontAwesomeIcon icon="info-circle" />
-                      {' '}
-                        Informações da Questão
-                    </h4>
+                    <Col>
+                      <h4>
+                        <FontAwesomeIcon icon="info-circle" />
+                        {' '}
+                          Informações da Questão
+                      </h4>
+                    </Col>
                   </Row>
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
@@ -581,7 +583,7 @@ class QuestionEditPage extends Component {
                       }
                     </Col>
                   </Row>
-                </Container>
+                </div>
 
               </Col>
             </Row>

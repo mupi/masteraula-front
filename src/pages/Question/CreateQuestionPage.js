@@ -414,8 +414,12 @@ const renderTopics = ({
   </Row>
 );
 
-
 class CreateQuestionPage extends Component {
+  constructor(props) {
+    super(props);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
   componentDidMount() {
     const {
       listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, prepareForm,
@@ -431,6 +435,21 @@ class CreateQuestionPage extends Component {
       listTopics,
     } = this.props;
     listTopics(newValue);
+  }
+
+  closeModal() {
+    const { hideModal } = this.props;
+    hideModal();
+  }
+
+  openSearchLearningObjectModal() {
+    const { showModal } = this.props;
+    // open modal
+    showModal({
+      open: true,
+      closeModal: this.closeModal,
+      title: 'Adicionar objeto de aprendizagem à questão',
+    }, 'searchObjectModal');
   }
 
   render() {
@@ -485,6 +504,24 @@ class CreateQuestionPage extends Component {
               </Col>
             </Row>
             <Row className="c-question__tittle-section">
+              <Col sm="12">
+                <h5>
+                  <FontAwesomeIcon icon="image" />
+                  {' '}
+                  Objetos de aprendizagem
+                </h5>
+              </Col>
+              <Col sm="3">
+                <Button onClick={() => this.openSearchLearningObjectModal()}>
+                  <FontAwesomeIcon
+                    icon="plus"
+                    className="btn__icon"
+                  />
+                Adicionar objeto
+                </Button>
+              </Col>
+            </Row>
+            <Row className="c-question__tittle-section">
               <Col>
                 <h5>
                   <FontAwesomeIcon icon="pencil-alt" />
@@ -521,13 +558,15 @@ class CreateQuestionPage extends Component {
                 <FieldArray name="alternatives" component={renderAlternatives} validate={minLength3Alternatives} />
               </Col>
             </Row>
-            <Container className="question-information">
+            <div className="question-information">
               <Row className="c-question__tittle-section">
-                <h5>
-                  <FontAwesomeIcon icon="info-circle" />
-                  {' '}
-                  Informações da Questão
-                </h5>
+                <Col>
+                  <h5>
+                    <FontAwesomeIcon icon="info-circle" />
+                    {' '}
+                    Informações da Questão
+                  </h5>
+                </Col>
               </Row>
               <Row className="c-create-question__row-info">
                 <Col className="info-label" sm="4" xs="4">
@@ -648,7 +687,7 @@ class CreateQuestionPage extends Component {
                       }
                 </Col>
               </Row>
-            </Container>
+            </div>
           </div>
           <Row className="c-questions__row-footer-options text-center">
             <Col>

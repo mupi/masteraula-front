@@ -15,6 +15,7 @@ const MODAL_TYPES = {
   register2: modalTypes.register2Modal,
   login2: modalTypes.login2Modal,
   createDocument: modalTypes.createDocument,
+  searchObjectModal: modalTypes.searchObjectModal,
 };
 
 const mapStateToProps = state => ({
@@ -51,6 +52,7 @@ class ModalContainer extends React.Component {
     }
 
     if (modalType === 'document') modalClassName = 'modal-dialog modal-lg';
+    if (modalType === 'searchObjectModal') modalClassName = 'modal-dialog modal-xl';
 
     const SpecifiedModal = MODAL_TYPES[modalType];
 

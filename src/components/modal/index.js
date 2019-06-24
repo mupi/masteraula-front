@@ -8,6 +8,8 @@ import last5DocumentsModal from './Last5DocumentsModal';
 import register2Modal from './Register2Modal';
 import login2Modal from './Login2Modal';
 import createDocument from './CreateDocumentModal';
+import searchObjectModal from './SearchLearningObjectModal';
+
 
 const modalTypes = {
   alertModal,
@@ -20,6 +22,7 @@ const modalTypes = {
   register2Modal,
   login2Modal,
   createDocument,
+  searchObjectModal,
 };
 
 export default modalTypes;

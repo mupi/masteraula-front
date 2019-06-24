@@ -8,6 +8,7 @@ import {
   listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
 } from 'actions/filterAction';
 import { listTopics } from 'actions/topicAction';
+import { showModal, hideModal } from 'actions/modalAction';
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('question-create');
@@ -31,6 +32,11 @@ const mapDispatchToProps = dispatch => ({
       topics: [{}],
       alternatives: [{}, {}, {}],
     }));
+  },
+  // new way to handle modals
+  hideModal: () => dispatch(hideModal()),
+  showModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType }));
   },
 
   onSubmit: (values, d, props) => {

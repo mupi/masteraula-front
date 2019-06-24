@@ -138,7 +138,7 @@ class DocumentInfoMenu extends React.Component {
           <Button className="btn-margin-right menu-top__document-button" onClick={() => this.openDocumentModal(documentId)}>
             <FontAwesomeIcon icon="eye" className="btn__icon" />
             Visualizar
-          </Button> 
+          </Button>
           <ExportDocumentButtonContainer
             text="Exportar"
             styleCustomize="menu-top__document-button"
