@@ -1,5 +1,5 @@
 import {
-  Container, Alert, Row, Col, Button, Form, Input,
+  Alert, Row, Col, Button, Form, Input,
 } from 'reactstrap';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';

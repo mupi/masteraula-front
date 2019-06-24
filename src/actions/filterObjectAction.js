@@ -7,6 +7,8 @@ export const REMOVE_SELECTED_TYPEOBJECT_FILTER = 'REMOVE_SELECTED_TYPEOBJECT_FIL
 // Set search text for Learning object
 export const SET_SEARCH_TEXT_OBJECT = 'SET_SEARCH_TEXT_OBJECT';
 
+// Set search text for Learning object - Modal
+export const SET_SEARCH_TEXT_OBJECT_MODAL = 'SET_SEARCH_TEXT_OBJECT_MODAL';
 
 // Clear all filters selected
 export const CLEAR_SELECTED_FILTERS = 'CLEAR_SELECTED_FILTERS';
@@ -23,6 +25,10 @@ export const removeSelectedObjectTypeFilter = objectType => ({
 
 export const setSearchTextObject = searchText => ({
   type: SET_SEARCH_TEXT_OBJECT, searchText,
+});
+
+export const setSearchTextObjectModal = searchText => ({
+  type: SET_SEARCH_TEXT_OBJECT_MODAL, searchText,
 });
 
 export const clearSelectedFilters = () => ({

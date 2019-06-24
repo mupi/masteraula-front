@@ -79,3 +79,26 @@ export const listLearningObject = (page, filterObject) => {
     );
   };
 };
+
+// List learning objects - Modal
+export const listLearningObjectModal = (page, filterObject) => {
+  function requestLearningObjectModal() { return { type: LIST_LEARNING_OBJECT, page }; }
+  function requestLearningObjectModalSuccess(objectPage) { return { type: LIST_LEARNING_OBJECT_SUCCESS, objectPage }; }
+  function requestLearningObjectModalFailure(error) { return { type: LIST_LEARNING_OBJECT_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(requestLearningObjectModal());
+    return learningObjectService.listLearningObject(page, filterObject).then(
+      (objectPage) => {
+        dispatch(requestLearningObjectModalSuccess(objectPage));
+        dispatch(initialize('learningObjectSearchModal', {
+          searchTextObject: filterObject.searchTextObjectModal,
+        }));
+      }, (error) => {
+        dispatch(requestLearningObjectModalFailure(error));
+        dispatch(initialize('learningObjectSearchModal', {
+          searchTextObject: filterObject.searchTextObjectModal,
+        }));
+      },
+    );
+  };
+};

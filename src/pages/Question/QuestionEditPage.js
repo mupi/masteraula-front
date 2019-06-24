@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import {
-  Container, Alert, Row, Col, Form, Button,
+  Alert, Row, Col, Form, Button,
 } from 'reactstrap';
 import {
   getTeachingLevel, getCleanCompleteStatement, getCleanAlternativeText, getCleanLearningObjectSource,
