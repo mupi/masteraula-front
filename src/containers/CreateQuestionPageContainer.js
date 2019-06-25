@@ -3,7 +3,7 @@ import {
   reduxForm, formValueSelector, SubmissionError, initialize,
 } from 'redux-form';
 import CreateQuestionPage from 'pages/Question/CreateQuestionPage';
-import { createQuestion, removeSelectedObjectToQuestion } from 'actions/questionAction';
+import { createQuestion, removeSelectedObjectToQuestion, resetSelectedObjects } from 'actions/questionAction';
 import {
   listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
 } from 'actions/filterAction';
@@ -40,8 +40,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(showModal({ modalProps, modalType }));
   },
 
-  removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)), 
-
+  removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)),
+  resetSelectedObjects: () => dispatch(resetSelectedObjects()),
   onSubmit: (values, d, props) => {
     const errors = [];
     const newQuestion = {

@@ -48,7 +48,7 @@ export const LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS = 'LIST_DOCUMENTS_AFTER
 // Add and Remove selected object to question
 export const ADD_SELECTED_OBJECT_QUESTION = 'ADD_SELECTED_OBJECT_QUESTION';
 export const REMOVE_SELECTED_OBJECT_QUESTION = 'REMOVE_SELECTED_OBJECT_QUESTION';
-
+export const RESET_SELECTED_OBJECTLIST_QUESTION = 'RESET_SELECTED_OBJECTLIST_QUESTION';
 
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
@@ -357,3 +357,7 @@ export const addSelectedObjectToQuestion = selectedObject => ({
 export const removeSelectedObjectToQuestion = idObject => ({
   type: REMOVE_SELECTED_OBJECT_QUESTION, idObject,
 });
+
+export const resetSelectedObjects = () => ({
+  type: RESET_SELECTED_OBJECTLIST_QUESTION
+})

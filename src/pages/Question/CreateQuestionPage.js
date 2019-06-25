@@ -423,12 +423,13 @@ class CreateQuestionPage extends Component {
 
   componentDidMount() {
     const {
-      listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, prepareForm,
+      listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, prepareForm, resetSelectedObjects,
     } = this.props;
     listDisciplineFilters();
     listTeachingLevelFilters();
     listSourceFilters();
     prepareForm();
+    resetSelectedObjects();
   }
 
   getListTopics = (e, newValue) => {
