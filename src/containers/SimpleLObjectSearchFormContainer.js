@@ -1,21 +1,21 @@
 import { connect } from 'react-redux';
 import SimpleLObjectSearchForm from 'components/learningObject/SimpleLObjectSearchForm';
 import { setSearchTextObjectModal } from 'actions/filterObjectAction';
-import { history } from 'helpers/history';
+// import { history } from 'helpers/history';
 import { reduxForm } from 'redux-form';
 
 const mapStateToProps = state => ({
   initialValues: {
-    searchTextObject: state.filterObject.searchTextObject,
+    searchTextObject: state.filterObject.searchTextObjectModal,
   },
-  search: state.filterObject.searchTextObject,
+  search: state.filterObject.searchTextObjectModal,
   author: state.session.session.user.id,
   isFetchingObjects: state.learningObject.isFetching,
-  preSearch: state.form.objectSearch ? state.form.objectSearch.values.searchTextObject : '',
+  // preSearch: state.form.objectSearch ? state.form.objectSearch.values.searchTextObject : '',
 });
 
 const setDispatchSearchText = (searchText) => {
-  history.replace('/object-base/1');
+  // history.replace('/object-base/1');
   return setSearchTextObjectModal(searchText);
 };
 

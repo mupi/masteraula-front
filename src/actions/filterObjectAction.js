@@ -27,8 +27,8 @@ export const setSearchTextObject = searchText => ({
   type: SET_SEARCH_TEXT_OBJECT, searchText,
 });
 
-export const setSearchTextObjectModal = searchText => ({
-  type: SET_SEARCH_TEXT_OBJECT_MODAL, searchText,
+export const setSearchTextObjectModal = searchTextModal => ({
+  type: SET_SEARCH_TEXT_OBJECT_MODAL, searchTextModal,
 });
 
 export const clearSelectedFilters = () => ({

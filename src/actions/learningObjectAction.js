@@ -21,6 +21,12 @@ export const UPDATE_ALL_LEARNING_OBJECTS = 'UPDATE_ALL_LEARNING_OBJECTS';
 export const UPDATE_ALL_LEARNING_OBJECTS_SUCCESS = 'UPDATE_ALL_LEARNING_OBJECTS_SUCCESS';
 export const UPDATE_ALL_LEARNING_OBJECTS_FAILURE = 'UPDATE_ALL_LEARNING_OBJECTS_FAILURE';
 
+// List learning object from modal
+export const LIST_LEARNING_OBJECT_MODAL = 'LIST_LEARNING_OBJECT_MODAL';
+export const LIST_LEARNING_OBJECT_MODAL_SUCCESS = 'LIST_LEARNING_OBJECT_MODAL_SUCESS';
+export const LIST_LEARNING_OBJECT_MODAL_FAILURE = 'LIST_LEARNING_OBJECT_MODAL_FAILURE';
+
+
 // Fetch a learning object
 export const fetchLearningObject = (id) => {
   function requestLearningObject() { return { type: FETCH_LEARNING_OBJECT }; }
@@ -81,15 +87,15 @@ export const listLearningObject = (page, filterObject) => {
 };
 
 // List learning objects - Modal
-export const listLearningObjectModal = (page, filterObject) => {
-  function requestLearningObjectModal() { return { type: LIST_LEARNING_OBJECT, page }; }
-  function requestLearningObjectModalSuccess(objectPage) { return { type: LIST_LEARNING_OBJECT_SUCCESS, objectPage }; }
-  function requestLearningObjectModalFailure(error) { return { type: LIST_LEARNING_OBJECT_FAILURE, error }; }
+export const listLearningObjectModal = (currentPageModal, filterObject) => {
+  function requestLearningObjectModal() { return { type: LIST_LEARNING_OBJECT_MODAL, currentPageModal }; }
+  function requestLearningObjectModalSuccess(objectPageModal) { return { type: LIST_LEARNING_OBJECT_MODAL_SUCCESS, objectPageModal }; }
+  function requestLearningObjectModalFailure(error) { return { type: LIST_LEARNING_OBJECT_MODAL_FAILURE, error }; }
   return (dispatch) => {
     dispatch(requestLearningObjectModal());
-    return learningObjectService.listLearningObject(page, filterObject).then(
-      (objectPage) => {
-        dispatch(requestLearningObjectModalSuccess(objectPage));
+    return learningObjectService.listLearningObjectModal(currentPageModal, filterObject).then(
+      (objectPageModal) => {
+        dispatch(requestLearningObjectModalSuccess(objectPageModal));
         dispatch(initialize('learningObjectSearchModal', {
           searchTextObject: filterObject.searchTextObjectModal,
         }));

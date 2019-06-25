@@ -18,7 +18,7 @@ const renderSearchField = ({
   clearSearchField,
   search,
   placeholder,
-  isFetchingQuestions,
+  isFetchingObjects,
   autoFocus,
 }) => (
   <div className="c-question-base__search-all-section">
@@ -27,7 +27,6 @@ const renderSearchField = ({
         {...input}
         placeholder={placeholder}
         type={type}
-      //  disabled={isFetchingQuestions}
         className="c-question-base__search-field"
         autoFocus={autoFocus}
       />
@@ -42,7 +41,7 @@ const renderSearchField = ({
         </InputGroupAddon>
       ) : ''}
       <InputGroupAddon addonType="prepend">
-        <Button type="submit" disabled={isFetchingQuestions}>
+        <Button type="submit" disabled={isFetchingObjects}>
           <FontAwesomeIcon icon="search" className="btn__icon" />
                 Pesquisar
         </Button>
@@ -77,8 +76,8 @@ class LearningObjectSearchForm extends Component {
 
   render() {
     const {
-      handleSubmit, search, clearSearch, clearSearchField, isFetchingQuestions, showHeader = true,
-    } = this.props;
+      handleSubmit, search, clearSearch, clearSearchField, isFetchingObjects, showHeader = true,
+    } = this.props; 
 
     return (
       <Form onSubmit={handleSubmit}>
@@ -122,7 +121,7 @@ class LearningObjectSearchForm extends Component {
             search={search}
             clearSearch={clearSearch}
             clearSearchField={clearSearchField}
-            isFetchingQuestions={isFetchingQuestions}
+            isFetchingObjects={isFetchingObjects}
             autoFocus
           />
         </Row>

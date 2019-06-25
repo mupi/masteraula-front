@@ -44,7 +44,7 @@ export const filterObject = (state = initialState, action) => {
 
     case SET_SEARCH_TEXT_OBJECT_MODAL: {
       return Object.assign({}, state, {
-        searchTextObjectModal: action.searchText,
+        searchTextObjectModal: action.searchTextModal,
       });
     }
 
