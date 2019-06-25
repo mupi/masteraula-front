@@ -10,8 +10,6 @@ const mapStateToProps = state => ({
   modal: state.document.modal,
   filterObject: state.filterObject,
   currentPage: state.learningObject.currentPageModal,
-  addSelectedObjectToQuestion: state.question.addSelectedObjectToQuestion,
-  removeSelectedObjectToQuestion: state.question.removeSelectedObjectToQuestion,
 });
 
 const setDispatchSearchText = (searchText) => {
@@ -31,7 +29,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setDispatchSearchText());
   },
   addSelectedObjectToQuestion: object => dispatch(addSelectedObjectToQuestion(object)),
-  removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)),
+  removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)), 
 });
 
 const SearchLearningObjectModalContainer = connect(

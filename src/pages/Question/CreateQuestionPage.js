@@ -455,7 +455,8 @@ class CreateQuestionPage extends Component {
 
   render() {
     const {
-      isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters, teachingLevelFilters, handleSubmit, selectedObjectList,
+      isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters,
+      teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
     } = this.props;
 
     if (isCreating) {
@@ -522,7 +523,13 @@ class CreateQuestionPage extends Component {
                 </Button>
               </Col>
             </Row>
-            { selectedObjectList ? (<LearningObjectList learningObjects={selectedObjectList} />) : '' }
+            { selectedObjectList ? (
+              <LearningObjectList
+                learningObjects={selectedObjectList}
+                removeOption
+                removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
+              />
+            ) : '' }
             <Row className="c-question__tittle-section">
               <Col>
                 <h5>

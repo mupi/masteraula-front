@@ -20,11 +20,11 @@ class SearchLearningObjectModal extends React.Component {
     listObjects(parseInt(1, 10), filterObject);
   }
 
-  componentDidUpdate(prevProps) { 
+  componentDidUpdate(prevProps) {
     const {
       currentPage, filterObject, listObjects,
     } = this.props;
-    if (/*(match.params.page !== prevProps.match.params.page)
+    if (/* (match.params.page !== prevProps.match.params.page)
     || */(filterObject !== prevProps.filterObject)) {
       listObjects(parseInt(currentPage, 10), filterObject);
     }
@@ -39,7 +39,7 @@ class SearchLearningObjectModal extends React.Component {
 
   render() {
     const {
-      objectPage, isFetching, error, closeModal, title, addSelectedObjectToQuestion,
+      objectPage, isFetching, closeModal, title, addSelectedObjectToQuestion,
     } = this.props;
     return (
       <div className="modal-content modal__content">
@@ -83,7 +83,7 @@ class SearchLearningObjectModal extends React.Component {
             </Row>
           </div>
 
-          <div className="modal-footer modal__footer">
+          <div className="modal-footer modal__footer c-object-base-modal__footer">
             <Button color="secondary" onClick={() => this.handleCloseModal(closeModal)}>
             Cancelar
             </Button>

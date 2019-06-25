@@ -3,7 +3,7 @@ import {
   reduxForm, formValueSelector, SubmissionError, initialize,
 } from 'redux-form';
 import CreateQuestionPage from 'pages/Question/CreateQuestionPage';
-import { createQuestion } from 'actions/questionAction';
+import { createQuestion, removeSelectedObjectToQuestion } from 'actions/questionAction';
 import {
   listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
 } from 'actions/filterAction';
@@ -40,6 +40,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(showModal({ modalProps, modalType }));
   },
 
+  removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)), 
+
   onSubmit: (values, d, props) => {
     const errors = [];
     const newQuestion = {
@@ -60,7 +62,7 @@ const mapDispatchToProps = dispatch => ({
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
       year: values.year,
-      learning_objects_ids: props.selectedObjects,
+      learning_objects_ids: props.selectedObjectList.map(object => object.id),
     };
 
     if (newQuestion && (newQuestion.statement.trim() === '<p></p>' || newQuestion.statement.trim() === '')) {

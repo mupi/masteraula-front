@@ -154,7 +154,7 @@ export const question = (state = initialState, action) => {
       return Object.assign({}, state, {
         selectedObjectList: [...state.selectedObjectList, action.selectedObject],
       });
-    }
+    } 
     case REMOVE_SELECTED_OBJECT_QUESTION: {
       const newSelectedObjectList = state.selectedObjectList.filter(item => item.id !== action.idObject);
       return Object.assign({}, state, {

@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap';
 import LearningObjectContent from 'components/learningObject/LearningObjectContent';
 
 
-const LearningObjectList = ({ learningObjects }) => {
+const LearningObjectList = ({ learningObjects, removeOption, removeSelectedObjectToQuestion }) => {
   /* eslint-disable react/no-danger */
   return (
     <div className="c-question__full-statement">
@@ -12,7 +12,12 @@ const LearningObjectList = ({ learningObjects }) => {
           <Row className="c-question__section-list-learning-objects">
             <Col sm="12" xs="12">
               {learningObjects.map((learningObject, i) => (
-                <LearningObjectContent learningObject={learningObject} />
+                <LearningObjectContent
+                  key={learningObject.id}
+                  learningObject={learningObject}
+                  removeOption={removeOption}
+                  removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
+                />
               ))}
             </Col>
           </Row>

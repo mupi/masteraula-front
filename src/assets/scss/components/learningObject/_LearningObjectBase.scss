@@ -257,3 +257,11 @@
     
   } 
   
+
+  // Learning Object Base from modal
+  .c-object-base-modal{
+    &__footer{
+      padding-top: 10px;
+      margin-right: 5px;
+    }
+  }

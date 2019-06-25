@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Button, Card, CardFooter, CardBody, CardHeader,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import { getCleanExtractStatement } from 'helpers/question';
 
 const SimpleLObjectCard = (props) => {
