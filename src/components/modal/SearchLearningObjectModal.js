@@ -39,7 +39,7 @@ class SearchLearningObjectModal extends React.Component {
 
   render() {
     const {
-      objectPage, isFetching, closeModal, title, addSelectedObjectToQuestion,
+      objectPage, isFetching, closeModal, title, addSelectedObjectToQuestion, selectedObjectList,
     } = this.props;
     return (
       <div className="modal-content modal__content">
@@ -74,6 +74,8 @@ class SearchLearningObjectModal extends React.Component {
                   {...this.props}
                   objects={objectPage ? objectPage.results : null}
                   count={objectPage ? objectPage.count : 0}
+                  selectedObjectList={selectedObjectList}
+                  showSelectedObjects
                 />
               )
             }
@@ -85,7 +87,7 @@ class SearchLearningObjectModal extends React.Component {
 
           <div className="modal-footer modal__footer c-object-base-modal__footer">
             <Button color="secondary" onClick={() => this.handleCloseModal(closeModal)}>
-            Cancelar
+              Fechar
             </Button>
           </div>
         </div>

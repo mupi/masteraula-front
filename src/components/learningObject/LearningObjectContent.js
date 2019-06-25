@@ -1,10 +1,6 @@
 import React from 'react';
 import { getCleanCompleteStatement, getCleanLearningObjectSource } from 'helpers/question';
-import {
-  Button,
-} from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import RemoveObjectFromQuestionButton from 'components/buttons/RemoveObjectFromQuestionButton';
 
 const LearningObjectContent = (props) => {
   /* eslint-disable react/no-danger */
@@ -16,16 +12,7 @@ const LearningObjectContent = (props) => {
     <div key={learningObject.id} className="c-learning-object">
       {removeOption ? (
         <div className="c-create-question__remove-object-btn">
-          <Button
-            value={learningObject.id}
-            title="Remover questão"
-            className="c-question__btn-remove-question"
-            onClick={() => removeSelectedObjectToQuestion(learningObject.id)}
-          >
-            <FontAwesomeIcon icon="trash-alt" className="btn__icon" />
-            {' '}
-            Remover objeto
-          </Button>
+          <RemoveObjectFromQuestionButton objectId={learningObject.id} removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}/>
         </div>
       ) : ''}
       {(learningObject.image) ? (

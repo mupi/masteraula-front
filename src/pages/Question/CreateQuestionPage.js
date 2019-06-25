@@ -450,7 +450,7 @@ class CreateQuestionPage extends Component {
     showModal({
       open: true,
       closeModal: this.closeModal,
-      title: 'Adicionar objeto de aprendizagem à questão',
+      title: 'Adicionar objeto(s) de aprendizagem à questão',
     }, 'searchObjectModal');
   }
 

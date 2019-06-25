@@ -3,6 +3,17 @@ import {
   Button, Card, CardFooter, CardBody, CardHeader,
 } from 'reactstrap';
 import { getCleanExtractStatement } from 'helpers/question';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import RemoveObjectFromQuestionButton from 'components/buttons/RemoveObjectFromQuestionButton';
+
+const isObjectAddedToQuestion = (selectedObjectList, id) => {
+  if (selectedObjectList) {
+    const objectAdded = selectedObjectList.filter(item => item.id === id);
+    return (objectAdded.length > 0);
+  }
+  return false;
+};
+
 
 const SimpleLObjectCard = (props) => {
   const getQuoteSeparator = (i, length) => {
@@ -11,7 +22,9 @@ const SimpleLObjectCard = (props) => {
     }
     return '';
   };
-  const { object, addSelectedObjectToQuestion } = props;
+  const {
+    object, addSelectedObjectToQuestion, selectedObjectList, removeSelectedObjectToQuestion,
+  } = props;
   const extractText = object.text ? getCleanExtractStatement(object.text) : '';
   const cleanSource = object.source ? getCleanExtractStatement(object.source) : null;
 
@@ -66,6 +79,13 @@ const SimpleLObjectCard = (props) => {
               </span>
             ) : ''}
         </p>
+        {isObjectAddedToQuestion(selectedObjectList, object.id) ? (
+          <div className="question-card__pin">
+            <FontAwesomeIcon
+              icon="thumbtack"
+            />
+          </div>
+        ) : ('')}
       </CardHeader>
       <CardBody className="object-card__body">
         {object && object.image
@@ -80,10 +100,15 @@ const SimpleLObjectCard = (props) => {
           ) : extractText }
       </CardBody>
       <CardFooter className="object-card__footer">
-        <Button className="object-card__btn" onClick={() => addSelectedObjectToQuestion(object)}>
-          Adicionar
-          {' '}
-        </Button>
+        {!isObjectAddedToQuestion(selectedObjectList, object.id) ? (
+          <Button className="object-card__btn" onClick={() => addSelectedObjectToQuestion(object)}>
+            <FontAwesomeIcon icon="plus" className="btn__icon" />
+            {' '}
+            Adicionar
+            {' '}
+          </Button>
+        ) : (<RemoveObjectFromQuestionButton objectId={object.id} removeSelectedObjectToQuestion={removeSelectedObjectToQuestion} />
+        )}
       </CardFooter>
     </Card>
   );
