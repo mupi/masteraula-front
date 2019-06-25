@@ -45,6 +45,10 @@ export const LIST_QUESTION_PAGE_FAILURE = 'LIST_QUESTION_PAGE_FAILURE';
 export const LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS = 'LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS';
 export const LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS = 'LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS';
 
+// Add and Remove selected object to question
+export const ADD_SELECTED_OBJECT_QUESTION = 'ADD_SELECTED_OBJECT_QUESTION';
+export const REMOVE_SELECTED_OBJECT_QUESTION = 'REMOVE_SELECTED_OBJECT_QUESTION';
+
 
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
@@ -342,4 +346,14 @@ export const deleteQuestion = (idQuestion) => {
 export const rateQuestion = rating => ({
   type: RATE_QUESTION,
   rating,
+});
+
+// Add Selected Object to Question
+export const addSelectedObjectToQuestion = selectedObject => ({
+  type: ADD_SELECTED_OBJECT_QUESTION, selectedObject,
+});
+
+// Remove Selected Object to Question
+export const removeSelectedObjectToQuestion = idObject => ({
+  type: REMOVE_SELECTED_OBJECT_QUESTION, idObject,
 });

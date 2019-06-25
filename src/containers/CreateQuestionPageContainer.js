@@ -19,6 +19,7 @@ const mapStateToProps = (state) => {
     disciplineFilters: state.filter.disciplineFilters,
     teachingLevelFilters: state.filter.teachingLevelFilters,
     sourceFilters: state.filter.sourceFilters,
+    selectedObjectList: state.question.selectedObjectList,
   });
 };
 
@@ -59,6 +60,7 @@ const mapDispatchToProps = dispatch => ({
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
       year: values.year,
+      learning_objects_ids: props.selectedObjects,
     };
 
     if (newQuestion && (newQuestion.statement.trim() === '<p></p>' || newQuestion.statement.trim() === '')) {

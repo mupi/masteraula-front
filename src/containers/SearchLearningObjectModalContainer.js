@@ -2,13 +2,16 @@ import { connect } from 'react-redux';
 import SearchLearningObjectModal from 'components/modal/SearchLearningObjectModal';
 import { listLearningObjectModal } from 'actions/learningObjectAction';
 import { setSearchTextObjectModal } from 'actions/filterObjectAction';
+import { addSelectedObjectToQuestion, removeSelectedObjectToQuestion } from 'actions/questionAction';
 
 const mapStateToProps = state => ({
   isFetching: state.learningObject.isFetching,
   objectPage: state.learningObject.objectPageModal,
   modal: state.document.modal,
   filterObject: state.filterObject,
-  currentPage: state.learningObject.currentPageModal, 
+  currentPage: state.learningObject.currentPageModal,
+  addSelectedObjectToQuestion: state.question.addSelectedObjectToQuestion,
+  removeSelectedObjectToQuestion: state.question.removeSelectedObjectToQuestion,
 });
 
 const setDispatchSearchText = (searchText) => {
@@ -26,7 +29,9 @@ const mapDispatchToProps = dispatch => ({
       meta: { form: 'learningObjectSearchModal', field: 'searchTextObject' },
     });
     dispatch(setDispatchSearchText());
-  }
+  },
+  addSelectedObjectToQuestion: object => dispatch(addSelectedObjectToQuestion(object)),
+  removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)),
 });
 
 const SearchLearningObjectModalContainer = connect(

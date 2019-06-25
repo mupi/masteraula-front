@@ -17,6 +17,7 @@ import { Field, FieldArray } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
 import Multiselect from 'react-widgets/lib/Multiselect';
 import BackUsingHistory from 'components/question/BackUsingHistory';
+import LearningObjectList from 'components/learningObject/LearningObjectList';
 
 const difficultyList = {
   difficulties: [
@@ -454,7 +455,7 @@ class CreateQuestionPage extends Component {
 
   render() {
     const {
-      isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters, teachingLevelFilters, handleSubmit,
+      isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters, teachingLevelFilters, handleSubmit, selectedObjectList,
     } = this.props;
 
     if (isCreating) {
@@ -521,6 +522,7 @@ class CreateQuestionPage extends Component {
                 </Button>
               </Col>
             </Row>
+            { selectedObjectList ? (<LearningObjectList learningObjects={selectedObjectList} />) : '' }
             <Row className="c-question__tittle-section">
               <Col>
                 <h5>

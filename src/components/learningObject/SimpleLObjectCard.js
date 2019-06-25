@@ -12,7 +12,7 @@ const SimpleLObjectCard = (props) => {
     }
     return '';
   };
-  const { object } = props;
+  const { object, addSelectedObjectToQuestion } = props;
   const extractText = object.text ? getCleanExtractStatement(object.text) : '';
   const cleanSource = object.source ? getCleanExtractStatement(object.source) : null;
 
@@ -81,12 +81,10 @@ const SimpleLObjectCard = (props) => {
           ) : extractText }
       </CardBody>
       <CardFooter className="object-card__footer">
-        <Link to={`/view-object/${object.id}`}>
-          <Button className="object-card__btn">
-            Adicionar
-            {' '}
-          </Button>
-        </Link>
+        <Button className="object-card__btn" onClick={() => addSelectedObjectToQuestion(object)}>
+          Adicionar
+          {' '}
+        </Button>
       </CardFooter>
     </Card>
   );

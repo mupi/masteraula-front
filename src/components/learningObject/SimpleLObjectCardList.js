@@ -5,7 +5,7 @@ import SimpleLObjectCard from './SimpleLObjectCard';
 
 const SimpleLObjectCardList = (props) => {
   const {
-    objects, count, sm, textResult = 'Objetos de aprendizagem encontrados',
+    objects, count, sm, textResult = 'Objetos de aprendizagem encontrados', addSelectedObjectToQuestion,
   } = props;
   return (
     <Row>
@@ -14,7 +14,7 @@ const SimpleLObjectCardList = (props) => {
       </Col>
       {objects && objects.map(object => (
         <Col sm={sm} lg="3" xs="12" key={object.id} className="object-card">
-          <SimpleLObjectCard object={object} {...props} />
+          <SimpleLObjectCard object={object} {...props} addSelectedObjectToQuestion={addSelectedObjectToQuestion} />
         </Col>
       ))}
     </Row>

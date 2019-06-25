@@ -39,7 +39,7 @@ class SearchLearningObjectModal extends React.Component {
 
   render() {
     const {
-      objectPage, isFetching, error, closeModal, title,
+      objectPage, isFetching, error, closeModal, title, addSelectedObjectToQuestion,
     } = this.props;
     return (
       <div className="modal-content modal__content">
@@ -69,6 +69,7 @@ class SearchLearningObjectModal extends React.Component {
                 </Alert>
               ) : (
                 <SimpleLObjectCardList
+                  addSelectedObjectToQuestion={addSelectedObjectToQuestion}
                   sm="4"
                   {...this.props}
                   objects={objectPage ? objectPage.results : null}
