@@ -6,6 +6,8 @@ import {
   CLASSIFY_QUESTION, CLASSIFY_QUESTION_SUCCESS, CLASSIFY_QUESTION_FAILURE,
   UPDATE_QUESTION, UPDATE_QUESTION_SUCCESS, UPDATE_QUESTION_FAILURE,
   CREATE_QUESTION, CREATE_QUESTION_SUCCESS, CREATE_QUESTION_FAILURE,
+  ADD_SELECTED_OBJECT_QUESTION, REMOVE_SELECTED_OBJECT_QUESTION,
+  RESET_SELECTED_OBJECTLIST_QUESTION,
 } from 'actions/questionAction';
 import { DELETE_QUESTION, DELETE_QUESTION_SUCCESS, DELETE_QUESTION_FAILURE } from '../actions/questionAction';
 
@@ -15,6 +17,7 @@ const initialState = {
   activeQuestion: { documents: [] },
   questionPage: {},
   activeDocument: sessionData,
+  selectedObjectList: [],
 };
 
 export const question = (state = initialState, action) => {
@@ -145,6 +148,23 @@ export const question = (state = initialState, action) => {
       return Object.assign({}, state, {
         error: action.error,
         isDeleted: false,
+      });
+    }
+    case ADD_SELECTED_OBJECT_QUESTION: {
+      if (state.selectedObjectList.filter(item => item.id === action.selectedObject.id).length > 0) return state; // do not add duplicates
+      return Object.assign({}, state, {
+        selectedObjectList: [...state.selectedObjectList, action.selectedObject],
+      });
+    }
+    case REMOVE_SELECTED_OBJECT_QUESTION: {
+      const newSelectedObjectList = state.selectedObjectList.filter(item => item.id !== action.idObject);
+      return Object.assign({}, state, {
+        selectedObjectList: newSelectedObjectList,
+      });
+    }
+    case RESET_SELECTED_OBJECTLIST_QUESTION: {
+      return Object.assign({}, state, {
+        selectedObjectList: [],
       });
     }
     default:

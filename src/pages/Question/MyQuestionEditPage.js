@@ -1,5 +1,5 @@
 import {
-  Container, Alert, Row, Col, Button, Form, Input,
+  Alert, Row, Col, Button, Form, Input,
 } from 'reactstrap';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
@@ -581,13 +581,15 @@ class MyQuestionEditPage extends Component {
                   <FieldArray name="alternatives" component={renderAlternatives} validate={minLength3Alternatives} />
                 </Col>
               </Row>
-              <Container className="question-information">
+              <div className="question-information">
                 <Row className="c-question__tittle-section">
-                  <h5>
-                    <FontAwesomeIcon icon="info-circle" />
-                    {' '}
-                    Informações da Questão
-                  </h5>
+                  <Col>
+                    <h5>
+                      <FontAwesomeIcon icon="info-circle" />
+                      {' '}
+                      Informações da Questão
+                    </h5>
+                  </Col>
                 </Row>
                 <Row className="c-create-question__row-info">
                   <Col className="info-label" sm="4" xs="4">
@@ -708,7 +710,7 @@ class MyQuestionEditPage extends Component {
                         }
                   </Col>
                 </Row>
-              </Container>
+              </div>
             </div>
             <Row className="c-questions__row-footer-options text-center">
               <Col>

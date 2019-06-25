@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import StarRating from 'components/stars/StarRating';
@@ -12,13 +12,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionAuthor from './QuestionAuthor';
 
 const QuestionInfo = ({ question, rating, onRate = f => f }) => (
-  <Container className="question-information">
+  <div className="question-information">
     <Row className="c-question__tittle-section">
-      <h4>
-        <FontAwesomeIcon icon="info-circle" />
-        {' '}
-          Informações da Questão
-      </h4>
+      <Col>
+        <h4>
+          <FontAwesomeIcon icon="info-circle" />
+          {' '}
+            Informações da Questão
+        </h4>
+      </Col>
     </Row>
     <Row className="c-question__row-info">
       <Col className="info-label" sm="4" xs="4">
@@ -129,7 +131,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => (
         </a>
       </Col>
     </Row>
-  </Container>
+  </div>
 );
 QuestionInfo.propTypes = {
   question: PropTypes.shape({}).isRequired,

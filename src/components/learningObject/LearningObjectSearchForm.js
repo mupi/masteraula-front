@@ -18,7 +18,7 @@ const renderSearchField = ({
   clearSearchField,
   search,
   placeholder,
-  isFetchingQuestions,
+  isFetchingObjects,
   autoFocus,
 }) => (
   <div className="c-question-base__search-all-section">
@@ -27,7 +27,6 @@ const renderSearchField = ({
         {...input}
         placeholder={placeholder}
         type={type}
-      //  disabled={isFetchingQuestions}
         className="c-question-base__search-field"
         autoFocus={autoFocus}
       />
@@ -42,7 +41,7 @@ const renderSearchField = ({
         </InputGroupAddon>
       ) : ''}
       <InputGroupAddon addonType="prepend">
-        <Button type="submit" disabled={isFetchingQuestions}>
+        <Button type="submit" disabled={isFetchingObjects}>
           <FontAwesomeIcon icon="search" className="btn__icon" />
                 Pesquisar
         </Button>
@@ -73,37 +72,40 @@ class LearningObjectSearchForm extends Component {
 
   handleFilter(event) {
     const { author } = this.props;
-    const valueFilter = event.target.value;
   }
 
   render() {
     const {
-      handleSubmit, search, clearSearch, clearSearchField, isFetchingQuestions,
-    } = this.props;
+      handleSubmit, search, clearSearch, clearSearchField, isFetchingObjects, showHeader = true,
+    } = this.props; 
 
     return (
       <Form onSubmit={handleSubmit}>
-        <Row>
-          <Col sm="12" className="c-question-base__title d-flex justify-content-between">
-            <div className="p-2" />
-            <div className="p-2">
-              <h4>
-                Banco de Objetos de Aprendizagem
-                {' '}
-              </h4>
-            </div>
-            <div className="p-2 c-question-base__l-tooltip">
-              <span className="c-question-base__tooltip" href="#" id="TooltipExample">
-                <FontAwesomeIcon icon="info-circle" />
-              </span>
-              <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
+        {showHeader
+          ? (
+            <Row>
+              <Col sm="12" className="c-question-base__title d-flex justify-content-between">
+                <div className="p-2" />
+                <div className="p-2">
+                  <h4>
+                  Banco de Objetos de Aprendizagem
+                    {' '}
+                  </h4>
+                </div>
+                <div className="p-2 c-question-base__l-tooltip">
+                  <span className="c-question-base__tooltip" href="#" id="TooltipExample">
+                    <FontAwesomeIcon icon="info-circle" />
+                  </span>
+                  <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
                 Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos dos objetos.
-                {' '}
+                    {' '}
                 Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos.
-              </UncontrolledTooltip>
-            </div>
-          </Col>
-        </Row>
+                  </UncontrolledTooltip>
+                </div>
+              </Col>
+            </Row>
+          )
+          : ''}
         <Row className="c-question-base__search-text">
           <p className="c-question-base__search-info hidden">
           Pesquisar por palavras-chave no banco de objetos de aprendizagem
@@ -113,13 +115,13 @@ class LearningObjectSearchForm extends Component {
             type="text"
             name="searchTextObject"
             id="searchTextObject"
-            placeholder="Pesquisar por palavras-chave banco de objetos de aprendizagem"
+            placeholder="Pesquisar por palavras-chave no banco de objetos de aprendizagem"
             className="form-control"
             validate={minLength3characters}
             search={search}
             clearSearch={clearSearch}
             clearSearchField={clearSearchField}
-            isFetchingQuestions={isFetchingQuestions}
+            isFetchingObjects={isFetchingObjects}
             autoFocus
           />
         </Row>

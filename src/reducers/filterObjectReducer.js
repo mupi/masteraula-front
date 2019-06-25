@@ -3,6 +3,7 @@ import {
   REMOVE_SELECTED_TYPEOBJECT_FILTER,
   SET_SEARCH_TEXT_OBJECT,
   CLEAR_SELECTED_FILTERS,
+  SET_SEARCH_TEXT_OBJECT_MODAL,
 } from 'actions/filterObjectAction';
 
 const initialState = {
@@ -41,9 +42,15 @@ export const filterObject = (state = initialState, action) => {
       });
     }
 
+    case SET_SEARCH_TEXT_OBJECT_MODAL: {
+      return Object.assign({}, state, {
+        searchTextObjectModal: action.searchTextModal,
+      });
+    }
+
     default:
       return state;
-  }
+  } 
 };
 
 export default filterObject;

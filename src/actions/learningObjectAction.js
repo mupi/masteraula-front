@@ -21,6 +21,12 @@ export const UPDATE_ALL_LEARNING_OBJECTS = 'UPDATE_ALL_LEARNING_OBJECTS';
 export const UPDATE_ALL_LEARNING_OBJECTS_SUCCESS = 'UPDATE_ALL_LEARNING_OBJECTS_SUCCESS';
 export const UPDATE_ALL_LEARNING_OBJECTS_FAILURE = 'UPDATE_ALL_LEARNING_OBJECTS_FAILURE';
 
+// List learning object from modal
+export const LIST_LEARNING_OBJECT_MODAL = 'LIST_LEARNING_OBJECT_MODAL';
+export const LIST_LEARNING_OBJECT_MODAL_SUCCESS = 'LIST_LEARNING_OBJECT_MODAL_SUCESS';
+export const LIST_LEARNING_OBJECT_MODAL_FAILURE = 'LIST_LEARNING_OBJECT_MODAL_FAILURE';
+
+
 // Fetch a learning object
 export const fetchLearningObject = (id) => {
   function requestLearningObject() { return { type: FETCH_LEARNING_OBJECT }; }
@@ -74,6 +80,29 @@ export const listLearningObject = (page, filterObject) => {
         dispatch(requestLearningObjectFailure(error));
         dispatch(initialize('learningObjectSearch', {
           searchTextObject: filterObject.searchTextObject,
+        }));
+      },
+    );
+  };
+};
+
+// List learning objects - Modal
+export const listLearningObjectModal = (currentPageModal, filterObject) => {
+  function requestLearningObjectModal() { return { type: LIST_LEARNING_OBJECT_MODAL, currentPageModal }; }
+  function requestLearningObjectModalSuccess(objectPageModal) { return { type: LIST_LEARNING_OBJECT_MODAL_SUCCESS, objectPageModal }; }
+  function requestLearningObjectModalFailure(error) { return { type: LIST_LEARNING_OBJECT_MODAL_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(requestLearningObjectModal());
+    return learningObjectService.listLearningObjectModal(currentPageModal, filterObject).then(
+      (objectPageModal) => {
+        dispatch(requestLearningObjectModalSuccess(objectPageModal));
+        dispatch(initialize('learningObjectSearchModal', {
+          searchTextObject: filterObject.searchTextObjectModal,
+        }));
+      }, (error) => {
+        dispatch(requestLearningObjectModalFailure(error));
+        dispatch(initialize('learningObjectSearchModal', {
+          searchTextObject: filterObject.searchTextObjectModal,
         }));
       },
     );

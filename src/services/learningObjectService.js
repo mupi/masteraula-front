@@ -70,10 +70,40 @@ function listLearningObject(page, filterObject) {
   const search = (filterObject && filterObject.searchTextObject) ? queryString.stringify({ text: filterObject.searchTextObject }) : null;
   const isImage = (filterObject && filterObject.typesObjectSelected.filter(item => item.id === 'I').length > 0) ? queryString.stringify({ is_image: 'true' }) : null;
   const isText = (filterObject && filterObject.typesObjectSelected.filter(item => item.id === 'T')).length > 0 ? queryString.stringify({ is_text: 'true' }) : null;
-
+  
   const url = (search)
     ? `/learning_object/search/?page=${page}&${search}&${isImage}&${isText}`
     : `/learning_object/?page=${page}&${isImage}&${isText}`;
+
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+    return data;
+  });
+
+  return fetch(`${apiUrl}${url}`, requestOptions)
+    .then(handleResponse)
+    .then(objectPage => objectPage);
+}
+
+
+function listLearningObjectModal(page, filterObject) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const search = (filterObject && filterObject.searchTextObjectModal) ? queryString.stringify({ text: filterObject.searchTextObjectModal }) : null;
+
+  const url = (search)
+    ? `/learning_object/search/?page=${page}&${search}`
+    : `/learning_object/?page=${page}`;
 
 
   const handleResponse = response => response.json().then((data) => {
@@ -93,6 +123,7 @@ const learningObjectService = {
   fetchLearningObject,
   updateLearningObject,
   listLearningObject,
+  listLearningObjectModal,
 };
 
 export default learningObjectService;

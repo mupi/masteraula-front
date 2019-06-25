@@ -109,6 +109,13 @@
     &__info-section-item--italic{
       font-style: italic !important;
     }
+
+    &__btn{
+      &--red{
+        border-color: $color-ma-red !important;
+        background: $color-ma-red !important;
+      }
+    }
   
     &__info-section-item{
       padding: 2px 4px;
@@ -257,3 +264,15 @@
     
   } 
   
+
+  // Learning Object Base from modal
+  .c-object-base-modal{
+    &__footer{
+      padding-top: 10px;
+      margin-right: 5px;
+    }
+
+    &__selected-number{
+      color: $color-ma-pink;
+    }
+  }
