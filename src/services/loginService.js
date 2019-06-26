@@ -1,10 +1,10 @@
-import { apiUrl } from 'helpers/config';
+import { apiUrl, facebookLoginId, googleLoginId } from 'helpers/config';
 
-function logout() {
+const logout = () => {
   localStorage.removeItem('session');
-}
+};
 
-export const handleResponse = response => response.json().then((data) => {
+const handleResponse = response => response.json().then((data) => {
   if (!response.ok) {
     if (response.status === 401) {
       logout();
@@ -15,14 +15,14 @@ export const handleResponse = response => response.json().then((data) => {
       }
       return Promise.reject(data.non_field_errors[0]);
     }
- //   const error = (data && data.non_field_errors) || response.statusText;
+    //   const error = (data && data.non_field_errors) || response.statusText;
     return Promise.reject(data);
   }
 
   return data;
-}); 
+});
 
-function login(email, password) {
+const login = (email, password) => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -32,7 +32,7 @@ function login(email, password) {
   return fetch(`${apiUrl}/auth/login/ `, requestOptions)
     .then(
       handleResponse,
-      error => Promise.reject('Problemas de conexão com o banco de dados'),
+      () => Promise.reject('Problemas de conexão com o banco de dados'),
     )
     .then(
       (session) => {
@@ -43,12 +43,39 @@ function login(email, password) {
         return session;
       },
     );
-}
+};
 
+const fetchSocialLogin = (accessToken, code, provider) => {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ access_token: accessToken, code }),
+  };
+
+  return fetch(`${apiUrl}/rest-auth/${provider}/`, requestOptions)
+    .then(
+      handleResponse,
+      () => Promise.reject('Problemas de conexão com o banco de dados'),
+    )
+    .then(
+      (session) => {
+        if (session.token) {
+          localStorage.setItem('session', JSON.stringify(session));
+        }
+        return session;
+      },
+    );
+};
+
+const loginFacebook = accessToken => fetchSocialLogin(accessToken, facebookLoginId, 'facebook');
+
+const loginGoogle = accessToken => fetchSocialLogin(accessToken, googleLoginId, 'google');
 
 const loginService = {
   login,
   logout,
+  loginGoogle,
+  loginFacebook,
 };
 
 export default loginService;
