@@ -458,6 +458,7 @@ class CreateQuestionPage extends Component {
     const {
       isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters,
       teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
+      submitting,
     } = this.props;
 
     if (isCreating) {
@@ -487,7 +488,7 @@ class CreateQuestionPage extends Component {
             <Row className="c-question__row-header-options c-question__row-header-options--fixed">
               <Col>
                 <BackUsingHistory />
-                <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit">
+                <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit" disabled={submitting}>
                   <FontAwesomeIcon
                     className="btn__icon"
                     icon="save"
@@ -701,7 +702,7 @@ class CreateQuestionPage extends Component {
           </div>
           <Row className="c-questions__row-footer-options text-center">
             <Col>
-              <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right">
+              <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
                 <FontAwesomeIcon
                   className="btn__icon"
                   icon="save"

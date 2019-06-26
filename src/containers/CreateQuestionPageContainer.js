@@ -68,6 +68,7 @@ const mapDispatchToProps = dispatch => ({
     if (newQuestion && (newQuestion.statement.trim() === '<p></p>' || newQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
     }
+
     // validations
     if (newQuestion && newQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
       errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
