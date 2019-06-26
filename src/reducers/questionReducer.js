@@ -30,6 +30,7 @@ export const question = (state = initialState, action) => {
     case FETCH_QUESTION_SUCCESS:
       return Object.assign({}, state, {
         activeQuestion: action.activeQuestion,
+        selectedObjectList: action.activeQuestion.learning_objects,
         isFetching: false,
       });
     case FETCH_QUESTION_FAILURE:

@@ -3,11 +3,14 @@ import {
   reduxForm, formValueSelector, SubmissionError,
 } from 'redux-form';
 import MyQuestionEditPage from 'pages/Question/MyQuestionEditPage';
-import { fetchQuestion, updateQuestion } from 'actions/questionAction';
+import {
+  fetchQuestion, updateQuestion, removeSelectedObjectToQuestion, resetSelectedObjects,
+} from 'actions/questionAction';
 import {
   listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
 } from 'actions/filterAction';
 import { listTopics } from 'actions/topicAction';
+import { showModal, hideModal } from 'actions/modalAction';
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('edit-question');
@@ -23,6 +26,8 @@ const mapStateToProps = (state) => {
     isFetching: state.question.isFetching,
     activeQuestion: state.question.activeQuestion,
     userId: user.id,
+    // add object to question
+    selectedObjectList: state.question.selectedObjectList,
   });
 };
 
@@ -32,6 +37,16 @@ const mapDispatchToProps = dispatch => ({
   listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
   listSourceFilters: param => dispatch(listSourceFilters(param)),
   listTopics: param => dispatch(listTopics(param)),
+
+  // new way to handle modals
+  hideModal: () => dispatch(hideModal()),
+  showModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType }));
+  },
+
+  // add objects to question
+  removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)),
+  resetSelectedObjects: () => dispatch(resetSelectedObjects()),
 
   onSubmit: (values, d, props) => {
     const errors = [];
@@ -55,6 +70,8 @@ const mapDispatchToProps = dispatch => ({
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
       year: values.year,
+      // selected objects to question
+      learning_objects_ids: props.selectedObjectList.map(object => object.id),
     };
 
     // validations

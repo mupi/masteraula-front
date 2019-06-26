@@ -19,6 +19,7 @@ import {
 import { Field, FieldArray, formValueSelector } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
 import Multiselect from 'react-widgets/lib/Multiselect';
+import LearningObjectList from 'components/learningObject/LearningObjectList';
 
 const difficultyList = {
   difficulties: [
@@ -382,6 +383,11 @@ const renderTopics = ({
 
 
 class MyQuestionEditPage extends Component {
+  constructor(props) {
+    super(props);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
   componentDidMount() {
     const {
       listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
@@ -401,10 +407,26 @@ class MyQuestionEditPage extends Component {
       listTopics(newValue);
     }
 
+    closeModal() {
+      const { hideModal } = this.props;
+      hideModal();
+    }
+
+    openSearchLearningObjectModal() {
+      const { showModal } = this.props;
+      // open modal
+      showModal({
+        open: true,
+        closeModal: this.closeModal,
+        title: 'Adicionar objeto(s) de aprendizagem à questão',
+      }, 'searchObjectModal');
+    }
+
     render() {
       const {
         activeQuestion, userId, isFetching, error, topicsList, topics, pristine, disciplineFilters, sourceFilters,
-        teachingLevelFilters, handleSubmit, submitting,
+        teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
+        submitting,
       } = this.props;
 
       const authorPK = activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
@@ -504,6 +526,31 @@ class MyQuestionEditPage extends Component {
                   </Alert>
                 </Col>
               </Row>
+              <Row className="c-question__tittle-section">
+                <Col sm="12">
+                  <h5>
+                    <FontAwesomeIcon icon="image" />
+                    {' '}
+                  Objetos de aprendizagem
+                  </h5>
+                </Col>
+                <Col sm="3">
+                  <Button onClick={() => this.openSearchLearningObjectModal()}>
+                    <FontAwesomeIcon
+                      icon="plus"
+                      className="btn__icon"
+                    />
+                Adicionar objeto
+                  </Button>
+                </Col>
+              </Row>
+              { selectedObjectList ? (
+                <LearningObjectList
+                  learningObjects={selectedObjectList}
+                  removeOption
+                  removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
+                />
+              ) : '' }
               <Row className="c-question__tittle-section">
                 <Col>
                   <h5>
