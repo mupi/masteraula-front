@@ -97,11 +97,12 @@ export const fetchQuestion = (id) => {
           // validation for adding empty topic line
           if (allTopics.length === 0) allTopics.push({});
 
-          const alternatives = activeQuestion.alternatives.map(alternative => ({
+          const alternatives = activeQuestion.alternatives.map((alternative, i) => ({
             id: alternative.id,
             alternativeText: alternative.text,
-            isCorrect: (alternative.is_correct ? 'true' : ''),
+            selectIndex: (alternative.is_correct ? i : ''),
           }));
+          const selectedAlternative = alternatives.filter(item => item.selectIndex !== '')[0].selectIndex;
 
           const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
             id: lobj.id,
@@ -128,6 +129,7 @@ export const fetchQuestion = (id) => {
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
             topics: allTopics,
             alternatives,
+            selectedIndex: selectedAlternative,
           }));
           dispatch(listTopics(activeQuestion.disciplines));
           dispatch(fetchQuestionSuccess(activeQuestion));
@@ -264,11 +266,12 @@ export const updateQuestion = (props) => {
           tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
         }));
 
-        const alternatives = activeQuestion.alternatives.map(alternative => ({
+        const alternatives = activeQuestion.alternatives.map((alternative, i) => ({
           id: alternative.id,
           alternativeText: alternative.text,
-          isCorrect: (alternative.is_correct ? 'true' : ''),
+          selectIndex: (alternative.is_correct ? i : ''),
         }));
+        const selectedAlternative = alternatives.filter(item => item.selectIndex !== '')[0].selectIndex;
 
         dispatch(initialize('edit-question', {
           year: activeQuestion.year,
@@ -281,6 +284,7 @@ export const updateQuestion = (props) => {
           tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
           topics: allTopics,
           alternatives,
+          selectedIndex: selectedAlternative,
         }));
       },
       (error) => {
@@ -359,5 +363,5 @@ export const removeSelectedObjectToQuestion = idObject => ({
 });
 
 export const resetSelectedObjects = () => ({
-  type: RESET_SELECTED_OBJECTLIST_QUESTION
-})
+  type: RESET_SELECTED_OBJECTLIST_QUESTION,
+});

@@ -13,7 +13,9 @@ import {
   requiredSelectValidator,
   mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, minLength2Tags,
 } from 'helpers/validators';
-import { Field, FieldArray } from 'redux-form';
+import { connect } from 'react-redux';
+
+import { Field, FieldArray, formValueSelector } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
 import Multiselect from 'react-widgets/lib/Multiselect';
 import BackUsingHistory from 'components/question/BackUsingHistory';
@@ -41,33 +43,6 @@ const renderField = ({
       type={type}
       className="form-control c-create-question__form-field"
     />
-    { touched
-      && ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
-      ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
-    }
-  </div>
-);
-
-
-// Basic Input as Radiobutton Field
-const renderCheckButtonField = ({
-  input,
-  type,
-  nameGroup,
-  meta: { touched, error, warning },
-}) => (
-  <div>
-    <Input {...input} type={type} name={nameGroup} className="c-create-question__radio-button-field" />
     { touched
       && ((error && (
       <span className="error-message-text">
@@ -235,23 +210,7 @@ const renderSelectField = ({
   </div>
 );
 
-const renderError = ({ meta: { touched, error } }) => (
-  <div>
-    {touched && error && (
-      <span className="error-message-text">
-          {error}
-      </span>
-    )}
-  </div>
-);
-
-// Alternatives section
-const renderAlternatives = ({
-  fields,
-  meta: {
-    error,
-  },
-}) => (
+const renderAlternatives2 = ({ fields, meta: { error }, selectedIndex }) => (
   <Row>
     <Col md="12">
       <Row className="c-question__row-info c-create-question__row-alternative c-create-question__header-alternative">
@@ -266,21 +225,22 @@ const renderAlternatives = ({
                   icon="plus"
                   className="btn__icon"
                 />
-              Adicionar alternativa
+                Adicionar alternativa
               </Button>
             </Col>
           ) : ''}
       </Row>
 
       {fields.map((alternative, i) => (
-        <Row key={alternative} className="c-question__row-info c-create-question__row-alternative">
+        <Row key={i} className="c-question__row-info c-create-question__row-alternative">
           <Col sm="1" xs="1">
             <Field
-              name={`${alternative}.isCorrect`}
-              component={renderCheckButtonField}
-              nameGroup="alternatives"
+              name="selectedIndex"
               type="radio"
-              value="true"
+              component="input"
+              normalize={value => parseInt(value, 10)}
+              value={i}
+              className="c-create-question__radio-button-field"
             />
           </Col>
           <Col sm="6" xs="9">
@@ -308,11 +268,15 @@ const renderAlternatives = ({
         </Row>
       ))}
       <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
-      <Field name="isCorrect" component={renderError} />
-
     </Col>
   </Row>
 );
+
+const RenderAlternatives2 = connect(
+  state => ({
+    selectedIndex: formValueSelector('question-create')(state, 'selectedIndex'),
+  }),
+)(renderAlternatives2);
 
 // Topic section
 const renderTopics = ({
@@ -566,7 +530,7 @@ class CreateQuestionPage extends Component {
             </Row>
             <Row className="justify-content-center">
               <Col sm="12" md="12" xs="12">
-                <FieldArray name="alternatives" component={renderAlternatives} validate={minLength3Alternatives} />
+                <FieldArray name="alternatives" component={RenderAlternatives2} validate={minLength3Alternatives} />
               </Col>
             </Row>
             <div className="question-information">
