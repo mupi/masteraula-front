@@ -46,8 +46,8 @@ const mapDispatchToProps = dispatch => ({
         return null;
       }).filter(topic => topic != null),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
-      alternatives: values.alternatives.map(alternative => ({
-        is_correct: (alternative.isCorrect === 'true'),
+      alternatives: values.alternatives.map((alternative, i) => ({
+        is_correct: (i === values.selectedIndex),
         text: alternative.alternativeText,
       })),
       // source_id: values.source !== '0' ? values.source : null,

@@ -81,11 +81,11 @@ const renderMAMultiSelectTag = ({
 );
 
 const renderSelectField = ({
-  input, label, meta: { touched, error }, children, optionDefault, styleCustomize = 'form-control',
+  input, label, meta: { touched, error }, children, optionDefault, className,
 }) => (
   <div>
     <div>
-      <select {...input} className={styleCustomize}>
+      <select {...input} className={className}>
         <option value={optionDefault}>
           {label}
         </option>
@@ -179,7 +179,7 @@ const renderTopics = ({
                 name={`${topicRow}.subject`}
                 type="text"
                 component={renderSelectField}
-                className="form-control"
+                className="form-control c-create-question__form-field"
                 label="Assunto"
                 optionDefault="-1"
                 styleCustomize="form-control c-question-edit__topic"
@@ -197,7 +197,7 @@ const renderTopics = ({
                 name={`${topicRow}.subsubject`}
                 type="text"
                 component={renderSelectField}
-                className="form-control"
+                className="form-control c-create-question__form-field"
                 label="Subassunto"
                 optionDefault="-1"
                 styleCustomize="form-control c-question-edit__topic"
@@ -214,7 +214,7 @@ const renderTopics = ({
                 name={`${topicRow}.topic`}
                 type="text"
                 component={renderSelectField}
-                className="form-control"
+                className="form-control c-create-question__form-field"
                 label="Tópico"
                 optionDefault="-1"
                 styleCustomize="form-control c-question-edit__topic"
@@ -278,7 +278,7 @@ class QuestionEditPage extends Component {
   render() {
     const {
       activeQuestion, userId, isFetching, error, activeDocument, handleSubmit, topicsList, topics, pristine,
-      role,
+      role, submitting,
     } = this.props;
 
     const authorPK = activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
@@ -347,6 +347,7 @@ class QuestionEditPage extends Component {
                   to={`/classify-question/${activeQuestion.id}`}
                   type="submit"
                   title="Salvar questão"
+                  disabled={submitting}
                 >
                   <FontAwesomeIcon
                     className="btn__icon"
@@ -558,7 +559,7 @@ class QuestionEditPage extends Component {
                         name="difficulty"
                         type="text"
                         component={renderSelectField}
-                        className="form-control"
+                        className="form-control c-create-question__source-field c-create-question__form-field"
                         label="Selecione um nível de dificuldade"
                         optionDefault="0"
                         styleCustomize="form-control c-question-edit__select-difficulty"
@@ -590,7 +591,7 @@ class QuestionEditPage extends Component {
           </div>
           <Row className="c-questions__row-footer-options text-center">
             <Col>
-              <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right">
+              <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
                 <FontAwesomeIcon
                   className="btn__icon"
                   icon="save"
