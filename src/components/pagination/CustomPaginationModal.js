@@ -6,11 +6,11 @@ import {
 
 const CustomPaginationItemModal = (props) => {
   const {
-    page, label, disabled, currentPage, next, previous, setCurrentPageModal,
+    page, label, disabled, currentPageModal, next, previous, setCurrentPageModal,
   } = props;
 
   return (
-    <PaginationItem key={page} active={page === currentPage} disabled={disabled}>
+    <PaginationItem key={page} active={page === currentPageModal} disabled={disabled}>
       {disabled ? (
         <PaginationLink next={next} previous={previous}>
           {label}
@@ -28,28 +28,28 @@ CustomPaginationItemModal.propTypes = {
   page: PropTypes.number.isRequired,
   label: PropTypes.string,
   disabled: PropTypes.bool,
-  currentPage: PropTypes.number,
+  currentPageModal: PropTypes.number,
 };
 
 CustomPaginationItemModal.defaultProps = {
   label: '',
   disabled: false,
-  currentPage: -1,
+  currentPageModal: -1,
 };
 
 
 const CustomPaginationModal = (props) => {
   const {
-    ariaLabel, currentPage, previous, next, count, itensPerPage, disabled, setCurrentPageModal,
+    ariaLabel, currentPageModal, previous, next, count, itensPerPage, disabled, setCurrentPageModal,
   } = props;
 
   const rows = [];
-  for (let page = currentPage - 3; page <= currentPage + 3; page += 1) {
+  for (let page = currentPageModal - 3; page <= currentPageModal + 3; page += 1) {
     if (page > 0 && (page - 1) * itensPerPage < count) {
       rows.push({
         label: page,
         page,
-        currentPage,
+        currentPageModal,
         disabled,
         setCurrentPageModal,
       });
@@ -59,11 +59,11 @@ const CustomPaginationModal = (props) => {
   return (
 
     <Pagination aria-label={ariaLabel} className="d-flex justify-content-end">
-      <CustomPaginationItemModal disabled={!previous || disabled} page={currentPage - 1} previous setCurrentPageModal={setCurrentPageModal}/>
+      <CustomPaginationItemModal disabled={!previous || disabled} page={currentPageModal - 1} previous setCurrentPageModal={setCurrentPageModal} />
 
       {rows.map(CustomPaginationItemModal)}
 
-      <CustomPaginationItemModal disabled={!next || disabled} page={currentPage + 1} next setCurrentPageModal={setCurrentPageModal} />
+      <CustomPaginationItemModal disabled={!next || disabled} page={currentPageModal + 1} next setCurrentPageModal={setCurrentPageModal} />
 
     </Pagination>
   );
@@ -71,7 +71,7 @@ const CustomPaginationModal = (props) => {
 
 CustomPaginationModal.propTypes = {
   ariaLabel: PropTypes.string,
-  currentPage: PropTypes.number,
+  currentPageModal: PropTypes.number,
   previous: PropTypes.string,
   next: PropTypes.string,
   count: PropTypes.number,
@@ -80,7 +80,7 @@ CustomPaginationModal.propTypes = {
 
 CustomPaginationModal.defaultProps = {
   ariaLabel: '',
-  currentPage: 1,
+  currentPageModal: 1,
   previous: null,
   next: null,
   count: 0,
