@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
- Pagination, PaginationItem, PaginationLink, Button,
+  Pagination, PaginationItem, PaginationLink, Button,
 } from 'reactstrap';
 
 const CustomPaginationItemModal = (props) => {
