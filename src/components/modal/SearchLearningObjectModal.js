@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Row, Alert } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import CustomPagination from 'components/pagination/CustomPagination';
+import CustomPaginationModal from 'components/pagination/CustomPaginationModal';
 import SimpleLObjectSearchFormContainer from 'containers/SimpleLObjectSearchFormContainer';
 import SimpleLObjectCardList from 'components/learningObject/SimpleLObjectCardList';
 
@@ -22,11 +22,10 @@ class SearchLearningObjectModal extends React.Component {
 
   componentDidUpdate(prevProps) {
     const {
-      currentPage, filterObject, listObjects,
+      currentPageModal, filterObject, listObjects,
     } = this.props;
-    if (/* (match.params.page !== prevProps.match.params.page)
-    || */(filterObject !== prevProps.filterObject)) {
-      listObjects(parseInt(currentPage, 10), filterObject);
+    if (currentPageModal !== prevProps.currentPageModal || filterObject !== prevProps.filterObject) {
+      listObjects(parseInt(currentPageModal, 10), filterObject);
     }
   }
 
@@ -39,7 +38,7 @@ class SearchLearningObjectModal extends React.Component {
 
   render() {
     const {
-      objectPage, isFetching, closeModal, title, addSelectedObjectToQuestion, selectedObjectList,
+      objectPage, isFetching, closeModal, title, addSelectedObjectToQuestion, selectedObjectList, setCurrentPageModal,
     } = this.props;
     return (
       <div className="modal-content modal__content">
@@ -60,13 +59,13 @@ class SearchLearningObjectModal extends React.Component {
           <div className="c-object-base">
             <SimpleLObjectSearchFormContainer />
             <Row className="pagination-questions" style={{ marginLeft: '80%' }}>
-              <CustomPagination {...this.props} {...objectPage} itensPerPage={16} disabled={isFetching} />
+              <CustomPaginationModal {...this.props} {...objectPage} itensPerPage={16} disabled={isFetching} />
             </Row>
             <div className="c-question-base__results">
               { isFetching ? (
                 <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
                    Carregando  ...
-                </Alert>
+                </Alert> 
               ) : (
                 <SimpleLObjectCardList
                   addSelectedObjectToQuestion={addSelectedObjectToQuestion}
@@ -81,7 +80,7 @@ class SearchLearningObjectModal extends React.Component {
             }
             </div>
             <Row className="pagination-questions" style={{ marginLeft: '80%' }}>
-              <CustomPagination {...this.props} {...objectPage} itensPerPage={16} disabled={isFetching} />
+              <CustomPaginationModal {...this.props} {...objectPage} itensPerPage={16} disabled={isFetching} setCurrentPageModal={setCurrentPageModal} />
             </Row>
           </div>
 
