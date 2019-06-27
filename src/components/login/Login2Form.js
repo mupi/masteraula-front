@@ -7,6 +7,10 @@ import { NavLink } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
 import { resendEmail } from 'actions/registerAction';
+import { loginFacebook, loginGoogle } from 'actions/loginAction';
+import { facebookLoginId, googleLoginId } from 'helpers/config';
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 
 
 const renderField = ({
@@ -40,16 +44,16 @@ const renderField = ({
   </div>
 );
 
-
 const Login2Form = (props) => {
   const {
-    handleSubmit, error, resendEmail, formValues,
+    handleSubmit, error, handleResendEmail, formValues,
     resendError, resendSuccess, isSending, closeModal,
+    responseFacebook, responseGoogle,
   } = props;
 
   function handleResend(message, values) {
     if (message.includes('confirmado')) {
-      resendEmail(values.email, values.password);
+      handleResendEmail(values.email, values.password);
     }
   }
 
@@ -105,6 +109,20 @@ const Login2Form = (props) => {
               Entrar
           </Button>
         </div>
+        <FacebookLogin
+          appId={facebookLoginId}
+          fields="name,email,picture"
+          callback={responseFacebook}
+          icon="fa-facebook"
+          size="small"
+        />
+        <GoogleLogin
+          clientId={googleLoginId}
+          buttonText="Login with Google"
+          onSuccess={responseGoogle}
+          // onFailure={responseGoogle}
+          cookiePolicy="single_host_origin"
+        />
       </Form>
     </Col>
   );
@@ -128,6 +146,7 @@ const mapStateToProps = state => ({
   modal: state.login.modal,
   formValues: state.form.login,
   resendError: state.register.error,
+  loginError: state.login.error,
   resendSuccess: state.register.success,
   isSending: state.register.isSending,
 });
@@ -137,7 +156,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(resetState());
     dispatch(toggleModal(modal));
   }, */
-  resendEmail: (email, password) => dispatch(resendEmail(email, password)),
+  responseGoogle: response => dispatch(loginGoogle(response)),
+  responseFacebook: response => dispatch(loginFacebook(response)),
+  handleResendEmail: (email, password) => dispatch(resendEmail(email, password)),
 });
 
 export default connect(

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getStatesList } from 'actions/profileEditAction';
+import { getStatesList, connectFacebook, connectGoogle } from 'actions/profileEditAction';
 import UserProfilePage from 'pages/UserProfile/UserProfilePage';
 
 const mapStateToProps = state => ({
@@ -9,6 +9,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getStatesList: param => dispatch(getStatesList(param)),
+  responseFacebook: response => dispatch(connectFacebook(response)),
+  responseGoogle: response => dispatch(connectGoogle(response)),
 });
 
 
