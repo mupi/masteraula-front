@@ -8,7 +8,6 @@ import DocumentInfoMenuContainer from 'containers/DocumentInfoMenuContainer';
 import CreateDocumentMenuContainer from 'containers/CreateDocumentMenuContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import userPhoto from 'assets/img/home/avataruser3.png';
-import LoginModal from 'components/login/LoginModal';
 
 const getUserName = (userName) => {
   if (userName) {
@@ -72,6 +71,7 @@ const Menu = (props) => {
     <Nav className="ml-auto" navbar>
       <NavItem>
         <NavLink to="/nossos-planos">
+
           Preços
         </NavLink>
       </NavItem>
@@ -80,11 +80,13 @@ const Menu = (props) => {
      </NavItem> */ }
       <NavItem>
         <Link to="#login" onClick={handleOpenLoginModal}>
+
           Entrar
         </Link>
       </NavItem>
       <NavItem>
         <Link to="#top" onClick={handleOpenRegisterModal}>
+
           Cadastre-se
         </Link>
       </NavItem>

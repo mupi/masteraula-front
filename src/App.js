@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import { LastLocationProvider } from 'react-router-last-location';
 
-import LoginModal from 'components/login/LoginModal';
 import TermsUsePage from 'pages/TermsUse/TermsUsePage';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 import HomePage from 'pages/Home/HomePage';
@@ -134,7 +133,6 @@ class App extends Component {
               : (
                 <Switch>
                   <Route exact path="/" component={HomePage} />
-                  <Route path="/login" component={LoginModal} />
                   <Route path="/nossos-planos" component={PricingPageContainer} />
                   <Route path="/esqueci-senha" component={ForgotPasswordPageContainer} />
                   <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
