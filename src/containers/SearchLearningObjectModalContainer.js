@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SearchLearningObjectModal from 'components/modal/SearchLearningObjectModal';
-import { listLearningObjectModal } from 'actions/learningObjectAction';
+import { listLearningObjectModal, setCurrentPageModal } from 'actions/learningObjectAction';
 import { setSearchTextObjectModal } from 'actions/filterObjectAction';
 import { addSelectedObjectToQuestion, removeSelectedObjectToQuestion } from 'actions/questionAction';
 
@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   objectPage: state.learningObject.objectPageModal,
   modal: state.document.modal,
   filterObject: state.filterObject,
-  currentPage: state.learningObject.currentPageModal,
+  currentPageModal: state.learningObject.currentPageModal,
   selectedObjectList: state.question.selectedObjectList,
 });
 
@@ -30,7 +30,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setDispatchSearchText());
   },
   addSelectedObjectToQuestion: object => dispatch(addSelectedObjectToQuestion(object)),
-  removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)), 
+  removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)),
+  setCurrentPageModal: page => { console.log("HOLA..." + page); dispatch(setCurrentPageModal(page))},
 });
 
 const SearchLearningObjectModalContainer = connect(
