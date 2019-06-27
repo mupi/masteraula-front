@@ -3,11 +3,12 @@ import {
   reduxForm, formValueSelector, SubmissionError, initialize,
 } from 'redux-form';
 import CreateQuestionPage from 'pages/Question/CreateQuestionPage';
-import { createQuestion } from 'actions/questionAction';
+import { createQuestion, removeSelectedObjectToQuestion, resetSelectedObjects } from 'actions/questionAction';
 import {
   listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
 } from 'actions/filterAction';
 import { listTopics } from 'actions/topicAction';
+import { showModal, hideModal } from 'actions/modalAction';
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('question-create');
@@ -18,6 +19,7 @@ const mapStateToProps = (state) => {
     disciplineFilters: state.filter.disciplineFilters,
     teachingLevelFilters: state.filter.teachingLevelFilters,
     sourceFilters: state.filter.sourceFilters,
+    selectedObjectList: state.question.selectedObjectList,
   });
 };
 
@@ -30,9 +32,17 @@ const mapDispatchToProps = dispatch => ({
     dispatch(initialize('question-create', {
       topics: [{}],
       alternatives: [{}, {}, {}],
+      selectedIndex: 0,
     }));
   },
+  // new way to handle modals
+  hideModal: () => dispatch(hideModal()),
+  showModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType }));
+  },
 
+  removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)),
+  resetSelectedObjects: () => dispatch(resetSelectedObjects()),
   onSubmit: (values, d, props) => {
     const errors = [];
     const newQuestion = {
@@ -45,19 +55,21 @@ const mapDispatchToProps = dispatch => ({
         return null;
       }).filter(topic => topic != null),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
-      alternatives: values.alternatives.map(alternative => ({
-        is_correct: (alternative.isCorrect === 'true'),
+      alternatives: values.alternatives.map((alternative, i) => ({
+        is_correct: (i === values.selectedIndex),
         text: alternative.alternativeText,
       })),
       source_id: values.source !== '0' ? values.source : null,
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
       year: values.year,
+      learning_objects_ids: props.selectedObjectList.map(object => object.id),
     };
 
     if (newQuestion && (newQuestion.statement.trim() === '<p></p>' || newQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
     }
+
     // validations
     if (newQuestion && newQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
       errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';

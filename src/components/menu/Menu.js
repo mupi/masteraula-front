@@ -75,9 +75,6 @@ const Menu = (props) => {
           Preços
         </NavLink>
       </NavItem>
-      { /* <NavItem>
-        <LoginModal />
-     </NavItem> */ }
       <NavItem>
         <Link to="#login" onClick={handleOpenLoginModal}>
 

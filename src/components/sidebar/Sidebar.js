@@ -10,6 +10,7 @@ import userPhoto from 'assets/img/home/avataruser3.png';
 
 
 import FilterContainer from 'containers/FilterContainer';
+import SidebarObjectFiltersContainer from 'containers/SidebarObjectFiltersContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Swipeable } from 'react-touch';
 
@@ -40,7 +41,9 @@ const toogleSidebarAfterOpenModal = (e, openSidebar, isOpenSidebar) => {
 };
 
 const SidebarMobile = ({
-  showFilters, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, hideModal, showModal,
+  showFilters,
+  showFiltersForObjectBase,
+  user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, hideModal, showModal,
   setQuestionIdToNewDocument,
 }) => {
   const closeModal = () => {
@@ -147,6 +150,15 @@ const SidebarMobile = ({
                       </Link>
                     </ListGroupItem>
                     <ListGroupItem color="light">
+                      <Link to="/object-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/object-base/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="image"
+                        />
+                        Banco de objetos
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem color="light">
                       <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
                         <FontAwesomeIcon
                           className="btn__icon"
@@ -166,6 +178,7 @@ const SidebarMobile = ({
                     </ListGroupItem> */}
                   </ListGroup>
                   {showFilters && <FilterContainer />}
+                  {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
                 </div>
               </Col>
             </Row>
@@ -178,7 +191,8 @@ const SidebarMobile = ({
 
 
 const SidebarWeb = ({
-  showFilters, isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, hideModal, showModal, setQuestionIdToNewDocument,
+  showFilters, showFiltersForObjectBase,
+  isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, hideModal, showModal, setQuestionIdToNewDocument,
 }) => {
   const closeModal = () => {
     hideModal();
@@ -248,6 +262,15 @@ const SidebarWeb = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">
+                    <Link to="/object-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/object-base/1'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="image"
+                      />
+                        Banco de objetos
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem color="light">
                     <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
@@ -267,6 +290,8 @@ const SidebarWeb = ({
                     </ListGroupItem> */}
                 </ListGroup>
                 {showFilters && <FilterContainer />}
+                {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
+
               </div>
             </Col>
           </Row>
@@ -301,7 +326,8 @@ class Sidebar extends Component {
 
   render() {
     const {
-      showFilters, activeDocument, user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions,
+      showFilters, showFiltersForObjectBase, activeDocument,
+      user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions,
       hideModal, showModal, setQuestionIdToNewDocument,
     } = this.props;
 
@@ -313,6 +339,7 @@ class Sidebar extends Component {
       return (
         <SidebarMobile
           showFilters={showFilters}
+          showFiltersForObjectBase={showFiltersForObjectBase}
           activeDocument={activeDocument}
           user={user}
           logout={logout}
@@ -332,6 +359,7 @@ class Sidebar extends Component {
     return (
       <SidebarWeb
         showFilters={showFilters}
+        showFiltersForObjectBase={showFiltersForObjectBase}
         activeDocument={activeDocument}
         user={user}
         logout={logout}

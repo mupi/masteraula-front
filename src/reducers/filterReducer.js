@@ -20,6 +20,7 @@ import {
   SET_SEARCH_TEXT,
   ADD_MYQUESTIONS_FILTER,
   CLEAR_SELECTED_FILTERS, CLEAR_SEARCH,
+
 } from 'actions/filterAction';
 
 const initialState = {
@@ -192,7 +193,6 @@ export const filter = (state = initialState, action) => {
         searchText: action.searchText,
       });
     }
-
     case ADD_MYQUESTIONS_FILTER: {
       return Object.assign({}, state, {
         onlyMyQuestions: action.onlyMyQuestions,

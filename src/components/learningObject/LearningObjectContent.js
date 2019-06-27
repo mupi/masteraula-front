@@ -1,14 +1,20 @@
 import React from 'react';
 import { getCleanCompleteStatement, getCleanLearningObjectSource } from 'helpers/question';
+import RemoveObjectFromQuestionButton from 'components/buttons/RemoveObjectFromQuestionButton';
 
 const LearningObjectContent = (props) => {
   /* eslint-disable react/no-danger */
   const {
-    learningObject,
+    learningObject, removeOption = false, removeSelectedObjectToQuestion,
   } = props;
 
   return (
     <div key={learningObject.id} className="c-learning-object">
+      {removeOption ? (
+        <div className="c-create-question__remove-object-btn">
+          <RemoveObjectFromQuestionButton objectId={learningObject.id} removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}/>
+        </div>
+      ) : ''}
       {(learningObject.image) ? (
         <div>
           <img alt="objeto-aprendizagem" src={learningObject.image} />

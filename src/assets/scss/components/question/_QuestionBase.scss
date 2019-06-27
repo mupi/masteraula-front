@@ -54,9 +54,6 @@
   &__search-text{
     padding: 0px 15px 15px 15px;
   }
-  &__results{
-   // margin-top: 20px;
-  }
 
   &__keywords-title{
     font-size: 14px;
@@ -81,14 +78,6 @@
     color: $color-ma-white;
     font-size:13px;
     margin-bottom:3px;
-
-    &.btn::after {
-     /* content: "\f057";
-      width: 20px;
-      float: right;
-      margin-top: 0;
-      font-family: 'Font Awesome 5 Free';*/
-    }
   }
   
   &__myquestions-filter{
@@ -111,11 +100,6 @@
     font-weight: bold;
     margin-top:10px;
   }
-}
-
-//Classes for QuestionCard
-.l-question-card-text{
-  //margin-top: 5px; 
 }
 
 /* mixin for multiline */
@@ -192,10 +176,6 @@ padding-right: 1em;
       overflow: hidden;
     }
 
-  }
-
-  &__number-learning-obj{
-    
   }
 
   &__filter-link{

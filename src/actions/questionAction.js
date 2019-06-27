@@ -45,6 +45,10 @@ export const LIST_QUESTION_PAGE_FAILURE = 'LIST_QUESTION_PAGE_FAILURE';
 export const LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS = 'LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS';
 export const LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS = 'LIST_DOCUMENTS_AFTER_REMOVEQUESTION_SUCCESS';
 
+// Add and Remove selected object to question
+export const ADD_SELECTED_OBJECT_QUESTION = 'ADD_SELECTED_OBJECT_QUESTION';
+export const REMOVE_SELECTED_OBJECT_QUESTION = 'REMOVE_SELECTED_OBJECT_QUESTION';
+export const RESET_SELECTED_OBJECTLIST_QUESTION = 'RESET_SELECTED_OBJECTLIST_QUESTION';
 
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
@@ -93,11 +97,12 @@ export const fetchQuestion = (id) => {
           // validation for adding empty topic line
           if (allTopics.length === 0) allTopics.push({});
 
-          const alternatives = activeQuestion.alternatives.map(alternative => ({
+          const alternatives = activeQuestion.alternatives.map((alternative, i) => ({
             id: alternative.id,
             alternativeText: alternative.text,
-            isCorrect: (alternative.is_correct ? 'true' : ''),
+            selectIndex: (alternative.is_correct ? i : ''),
           }));
+          const selectedAlternative = alternatives.filter(item => item.selectIndex !== '')[0].selectIndex;
 
           const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
             id: lobj.id,
@@ -124,6 +129,7 @@ export const fetchQuestion = (id) => {
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
             topics: allTopics,
             alternatives,
+            selectedIndex: selectedAlternative,
           }));
           dispatch(listTopics(activeQuestion.disciplines));
           dispatch(fetchQuestionSuccess(activeQuestion));
@@ -260,11 +266,12 @@ export const updateQuestion = (props) => {
           tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
         }));
 
-        const alternatives = activeQuestion.alternatives.map(alternative => ({
+        const alternatives = activeQuestion.alternatives.map((alternative, i) => ({
           id: alternative.id,
           alternativeText: alternative.text,
-          isCorrect: (alternative.is_correct ? 'true' : ''),
+          selectIndex: (alternative.is_correct ? i : ''),
         }));
+        const selectedAlternative = alternatives.filter(item => item.selectIndex !== '')[0].selectIndex;
 
         dispatch(initialize('edit-question', {
           year: activeQuestion.year,
@@ -277,6 +284,7 @@ export const updateQuestion = (props) => {
           tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
           topics: allTopics,
           alternatives,
+          selectedIndex: selectedAlternative,
         }));
       },
       (error) => {
@@ -342,4 +350,18 @@ export const deleteQuestion = (idQuestion) => {
 export const rateQuestion = rating => ({
   type: RATE_QUESTION,
   rating,
+});
+
+// Add Selected Object to Question
+export const addSelectedObjectToQuestion = selectedObject => ({
+  type: ADD_SELECTED_OBJECT_QUESTION, selectedObject,
+});
+
+// Remove Selected Object to Question
+export const removeSelectedObjectToQuestion = idObject => ({
+  type: REMOVE_SELECTED_OBJECT_QUESTION, idObject,
+});
+
+export const resetSelectedObjects = () => ({
+  type: RESET_SELECTED_OBJECTLIST_QUESTION,
 });

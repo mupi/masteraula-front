@@ -1,5 +1,5 @@
 import {
-  Container, Alert, Row, Col, Button, Form, Input,
+  Alert, Row, Col, Button, Form, Input,
 } from 'reactstrap';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
@@ -13,11 +13,13 @@ import {
   requiredSelectValidator,
   mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, minLength2Tags,
 } from 'helpers/validators';
-import { Field, FieldArray } from 'redux-form';
+import { connect } from 'react-redux';
+
+import { Field, FieldArray, formValueSelector } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
 import Multiselect from 'react-widgets/lib/Multiselect';
-import Back from 'components/question/Back';
 import BackUsingHistory from 'components/question/BackUsingHistory';
+import LearningObjectList from 'components/learningObject/LearningObjectList';
 
 const difficultyList = {
   difficulties: [
@@ -41,33 +43,6 @@ const renderField = ({
       type={type}
       className="form-control c-create-question__form-field"
     />
-    { touched
-      && ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
-      ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
-    }
-  </div>
-);
-
-
-// Basic Input as Radiobutton Field
-const renderCheckButtonField = ({
-  input,
-  type,
-  nameGroup,
-  meta: { touched, error, warning },
-}) => (
-  <div>
-    <Input {...input} type={type} name={nameGroup} className="c-create-question__radio-button-field" />
     { touched
       && ((error && (
       <span className="error-message-text">
@@ -235,23 +210,7 @@ const renderSelectField = ({
   </div>
 );
 
-const renderError = ({ meta: { touched, error } }) => (
-  <div>
-    {touched && error && (
-      <span className="error-message-text">
-          {error}
-      </span>
-    )}
-  </div>
-);
-
-// Alternatives section
-const renderAlternatives = ({
-  fields,
-  meta: {
-    error,
-  },
-}) => (
+const renderAlternatives2 = ({ fields, meta: { error }, selectedIndex }) => (
   <Row>
     <Col md="12">
       <Row className="c-question__row-info c-create-question__row-alternative c-create-question__header-alternative">
@@ -266,21 +225,22 @@ const renderAlternatives = ({
                   icon="plus"
                   className="btn__icon"
                 />
-              Adicionar alternativa
+                Adicionar alternativa
               </Button>
             </Col>
           ) : ''}
       </Row>
 
       {fields.map((alternative, i) => (
-        <Row key={alternative} className="c-question__row-info c-create-question__row-alternative">
+        <Row key={i} className="c-question__row-info c-create-question__row-alternative">
           <Col sm="1" xs="1">
             <Field
-              name={`${alternative}.isCorrect`}
-              component={renderCheckButtonField}
-              nameGroup="alternatives"
+              name="selectedIndex"
               type="radio"
-              value="true"
+              component="input"
+              normalize={value => parseInt(value, 10)}
+              value={i}
+              className="c-create-question__radio-button-field"
             />
           </Col>
           <Col sm="6" xs="9">
@@ -308,11 +268,15 @@ const renderAlternatives = ({
         </Row>
       ))}
       <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
-      <Field name="isCorrect" component={renderError} />
-
     </Col>
   </Row>
 );
+
+const RenderAlternatives2 = connect(
+  state => ({
+    selectedIndex: formValueSelector('question-create')(state, 'selectedIndex'),
+  }),
+)(renderAlternatives2);
 
 // Topic section
 const renderTopics = ({
@@ -415,16 +379,21 @@ const renderTopics = ({
   </Row>
 );
 
-
 class CreateQuestionPage extends Component {
+  constructor(props) {
+    super(props);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
   componentDidMount() {
     const {
-      listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, prepareForm,
+      listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, prepareForm, resetSelectedObjects,
     } = this.props;
     listDisciplineFilters();
     listTeachingLevelFilters();
     listSourceFilters();
     prepareForm();
+    resetSelectedObjects();
   }
 
   getListTopics = (e, newValue) => {
@@ -434,9 +403,26 @@ class CreateQuestionPage extends Component {
     listTopics(newValue);
   }
 
+  closeModal() {
+    const { hideModal } = this.props;
+    hideModal();
+  }
+
+  openSearchLearningObjectModal() {
+    const { showModal } = this.props;
+    // open modal
+    showModal({
+      open: true,
+      closeModal: this.closeModal,
+      title: 'Adicionar objeto(s) de aprendizagem à questão',
+    }, 'searchObjectModal');
+  }
+
   render() {
     const {
-      isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters, teachingLevelFilters, handleSubmit,
+      isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters,
+      teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
+      submitting,
     } = this.props;
 
     if (isCreating) {
@@ -464,9 +450,9 @@ class CreateQuestionPage extends Component {
         <Form onSubmit={handleSubmit}>
           <div className="c-question c-create-question">
             <Row className="c-question__row-header-options c-question__row-header-options--fixed">
-              <Col /*className="d-flex justify-content-end"*/>
+              <Col>
                 <BackUsingHistory />
-                <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit">
+                <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit" disabled={submitting}>
                   <FontAwesomeIcon
                     className="btn__icon"
                     icon="save"
@@ -485,6 +471,31 @@ class CreateQuestionPage extends Component {
                 </h4>
               </Col>
             </Row>
+            <Row className="c-question__tittle-section">
+              <Col sm="12">
+                <h5>
+                  <FontAwesomeIcon icon="image" />
+                  {' '}
+                  Objetos de aprendizagem
+                </h5>
+              </Col>
+              <Col sm="3">
+                <Button onClick={() => this.openSearchLearningObjectModal()}>
+                  <FontAwesomeIcon
+                    icon="plus"
+                    className="btn__icon"
+                  />
+                Adicionar objeto
+                </Button>
+              </Col>
+            </Row>
+            { selectedObjectList ? (
+              <LearningObjectList
+                learningObjects={selectedObjectList}
+                removeOption
+                removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
+              />
+            ) : '' }
             <Row className="c-question__tittle-section">
               <Col>
                 <h5>
@@ -519,16 +530,18 @@ class CreateQuestionPage extends Component {
             </Row>
             <Row className="justify-content-center">
               <Col sm="12" md="12" xs="12">
-                <FieldArray name="alternatives" component={renderAlternatives} validate={minLength3Alternatives} />
+                <FieldArray name="alternatives" component={RenderAlternatives2} validate={minLength3Alternatives} />
               </Col>
             </Row>
-            <Container className="question-information">
+            <div className="question-information">
               <Row className="c-question__tittle-section">
-                <h5>
-                  <FontAwesomeIcon icon="info-circle" />
-                  {' '}
-                  Informações da Questão
-                </h5>
+                <Col>
+                  <h5>
+                    <FontAwesomeIcon icon="info-circle" />
+                    {' '}
+                    Informações da Questão
+                  </h5>
+                </Col>
               </Row>
               <Row className="c-create-question__row-info">
                 <Col className="info-label" sm="4" xs="4">
@@ -649,11 +662,11 @@ class CreateQuestionPage extends Component {
                       }
                 </Col>
               </Row>
-            </Container>
+            </div>
           </div>
           <Row className="c-questions__row-footer-options text-center">
             <Col>
-              <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right">
+              <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
                 <FontAwesomeIcon
                   className="btn__icon"
                   icon="save"

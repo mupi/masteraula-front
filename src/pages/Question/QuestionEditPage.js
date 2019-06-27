@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import {
-  Container, Alert, Row, Col, Form, Button,
+  Alert, Row, Col, Form, Button,
 } from 'reactstrap';
 import {
   getTeachingLevel, getCleanCompleteStatement, getCleanAlternativeText, getCleanLearningObjectSource,
@@ -18,9 +18,7 @@ import { Field, FieldArray } from 'redux-form';
 import QuestionAuthor from 'components/question/QuestionAuthor';
 import { requiredSelectValidator, minLength2TagsForEdit, minLength1Topics } from 'helpers/validators';
 // import MAReactTags from 'components/tags/MAReactTag';
-import { history } from 'helpers/history';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
-import Back from 'components/question/Back';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 
 const difficultyList = {
@@ -83,11 +81,11 @@ const renderMAMultiSelectTag = ({
 );
 
 const renderSelectField = ({
-  input, label, meta: { touched, error }, children, optionDefault, styleCustomize = 'form-control',
+  input, label, meta: { touched, error }, children, optionDefault, className,
 }) => (
   <div>
     <div>
-      <select {...input} className={styleCustomize}>
+      <select {...input} className={className}>
         <option value={optionDefault}>
           {label}
         </option>
@@ -181,7 +179,7 @@ const renderTopics = ({
                 name={`${topicRow}.subject`}
                 type="text"
                 component={renderSelectField}
-                className="form-control"
+                className="form-control c-create-question__form-field"
                 label="Assunto"
                 optionDefault="-1"
                 styleCustomize="form-control c-question-edit__topic"
@@ -199,7 +197,7 @@ const renderTopics = ({
                 name={`${topicRow}.subsubject`}
                 type="text"
                 component={renderSelectField}
-                className="form-control"
+                className="form-control c-create-question__form-field"
                 label="Subassunto"
                 optionDefault="-1"
                 styleCustomize="form-control c-question-edit__topic"
@@ -216,7 +214,7 @@ const renderTopics = ({
                 name={`${topicRow}.topic`}
                 type="text"
                 component={renderSelectField}
-                className="form-control"
+                className="form-control c-create-question__form-field"
                 label="Tópico"
                 optionDefault="-1"
                 styleCustomize="form-control c-question-edit__topic"
@@ -280,7 +278,7 @@ class QuestionEditPage extends Component {
   render() {
     const {
       activeQuestion, userId, isFetching, error, activeDocument, handleSubmit, topicsList, topics, pristine,
-      role,
+      role, submitting,
     } = this.props;
 
     const authorPK = activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
@@ -337,7 +335,7 @@ class QuestionEditPage extends Component {
         <Form onSubmit={handleSubmit}>
           <div className="c-question">
             <Row className="c-question__row-header-options c-question__row-header-options--fixed">
-              <Col /*className="d-flex"*/>
+              <Col>
                 <BackUsingHistory />
                 <Link className="btn btn-secondary c-question__btn-back btn__icon hidden" to={`/view-question/${activeQuestion.id}`} role="button">
                   <FontAwesomeIcon icon="eye" className="btn__icon" />
@@ -349,6 +347,7 @@ class QuestionEditPage extends Component {
                   to={`/classify-question/${activeQuestion.id}`}
                   type="submit"
                   title="Salvar questão"
+                  disabled={submitting}
                 >
                   <FontAwesomeIcon
                     className="btn__icon"
@@ -467,13 +466,15 @@ class QuestionEditPage extends Component {
                   <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument} />
                 </div>
 
-                <Container className="question-information">
+                <div className="question-information">
                   <Row className="c-question__tittle-section">
-                    <h4>
-                      <FontAwesomeIcon icon="info-circle" />
-                      {' '}
-                        Informações da Questão
-                    </h4>
+                    <Col>
+                      <h4>
+                        <FontAwesomeIcon icon="info-circle" />
+                        {' '}
+                          Informações da Questão
+                      </h4>
+                    </Col>
                   </Row>
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
@@ -558,7 +559,7 @@ class QuestionEditPage extends Component {
                         name="difficulty"
                         type="text"
                         component={renderSelectField}
-                        className="form-control"
+                        className="form-control c-create-question__source-field c-create-question__form-field"
                         label="Selecione um nível de dificuldade"
                         optionDefault="0"
                         styleCustomize="form-control c-question-edit__select-difficulty"
@@ -583,14 +584,14 @@ class QuestionEditPage extends Component {
                       }
                     </Col>
                   </Row>
-                </Container>
+                </div>
 
               </Col>
             </Row>
           </div>
           <Row className="c-questions__row-footer-options text-center">
             <Col>
-              <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right">
+              <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
                 <FontAwesomeIcon
                   className="btn__icon"
                   icon="save"

@@ -26,6 +26,7 @@ import {
   EditHeaderPageContainer,
   PricingPageContainer,
   ViewLearningObjectPageContainer,
+  ObjectBasePageContainer,
 } from 'containers';
 
 import { showModal, hideModal } from 'actions/modalAction';
@@ -122,11 +123,10 @@ class App extends Component {
                   <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
                   <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
                   <Route path="/edit-document" component={EditDocumentPageContainer} />
-                  <Route path="/view-learningobject/:id" component={ViewLearningObjectPageContainer} />
-
-
+                  <Route path="/view-object/:id" component={ViewLearningObjectPageContainer} />
                   <Route path="/edit-header/:id" component={EditHeaderPageContainer} />
                   <Route path="/new-header" component={EditHeaderPageContainer} />
+                  <Route path="/object-base/:page(\d+)" component={ObjectBasePageContainer} />
                   <Redirect from="/" to="/question-base/1" />
                 </Switch>
               )

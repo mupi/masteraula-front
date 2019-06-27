@@ -1,8 +1,10 @@
 import {
   FETCH_LEARNING_OBJECT, FETCH_LEARNING_OBJECT_SUCCESS, FETCH_LEARNING_OBJECT_FAILURE,
+  LIST_LEARNING_OBJECT, LIST_LEARNING_OBJECT_SUCCESS, LIST_LEARNING_OBJECT_FAILURE,
   UPDATE_LEARNING_OBJECT, UPDATE_LEARNING_OBJECT_SUCCESS, UPDATE_LEARNING_OBJECT_FAILURE,
   UPDATE_ALL_LEARNING_OBJECTS, UPDATE_ALL_LEARNING_OBJECTS_SUCCESS, UPDATE_ALL_LEARNING_OBJECTS_FAILURE,
-
+  LIST_LEARNING_OBJECT_MODAL, LIST_LEARNING_OBJECT_MODAL_SUCCESS, LIST_LEARNING_OBJECT_MODAL_FAILURE,
+  SET_CURRENT_PAGE_MODAL,
 } from 'actions/learningObjectAction';
 import { toast } from 'react-toastify';
 
@@ -58,6 +60,43 @@ export const learningObject = (state = initialState, action) => {
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, { error: action.error });
     }
+    case LIST_LEARNING_OBJECT:
+      return Object.assign({}, state, {
+        currentPage: action.page,
+        isFetching: true,
+        error: null,
+      });
+    case LIST_LEARNING_OBJECT_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        objectPage: action.objectPage,
+      });
+    case LIST_LEARNING_OBJECT_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
+    case LIST_LEARNING_OBJECT_MODAL:
+      return Object.assign({}, state, {
+        currentPageModal: action.currentPageModal,
+        isFetching: true,
+        error: null,
+      });
+    case LIST_LEARNING_OBJECT_MODAL_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        objectPageModal: action.objectPageModal,
+      });
+    case LIST_LEARNING_OBJECT_MODAL_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
+    case SET_CURRENT_PAGE_MODAL:
+      return Object.assign({}, state, {
+        currentPageModal: action.currentPageModal,
+      });
+
     default:
       return state;
   }

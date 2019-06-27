@@ -64,7 +64,7 @@ class QuestionBasePage extends React.Component {
     }
 
     return (
-      <HomeUserPage showFilters>
+      <HomeUserPage showFilters showFiltersForObjectBase={false}>
         <div className="c-question-base">
           <QuestionSearchFormContainer />
           {(filter.disciplinesSelected.length > 0)
