@@ -110,6 +110,7 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
               <img
                 alt="objeto-aprendizagem"
                 src={learningObjectList[i].image}
+                className="c-learning-object__img"
               />
             </div>
           ) : ''}

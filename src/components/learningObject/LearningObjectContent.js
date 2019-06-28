@@ -12,7 +12,7 @@ const LearningObjectContent = (props) => {
     <div key={learningObject.id} className="c-learning-object">
       {removeOption ? (
         <div className="c-create-question__remove-object-btn">
-          <RemoveObjectFromQuestionButton objectId={learningObject.id} removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}/>
+          <RemoveObjectFromQuestionButton objectId={learningObject.id} removeSelectedObjectToQuestion={removeSelectedObjectToQuestion} />
         </div>
       ) : ''}
       {(learningObject.image) ? (
