@@ -17,7 +17,7 @@ const LearningObjectContent = (props) => {
       ) : ''}
       {(learningObject.image) ? (
         <div>
-          <img alt="objeto-aprendizagem" src={learningObject.image} />
+          <img alt="objeto-aprendizagem" className="c-learning-object__img" src={learningObject.image} />
         </div>
       ) : ''}
 

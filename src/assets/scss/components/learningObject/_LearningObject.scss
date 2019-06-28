@@ -18,10 +18,11 @@
     }
 
     &__img{
-        @include for-phone-only {
+       /* @include for-phone-only {
               width: 100%;
-          }
-      }
+          }*/
+      max-width:100%;
+    }
 
     &--text{
      text-align: justify;
