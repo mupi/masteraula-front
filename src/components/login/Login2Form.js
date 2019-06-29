@@ -59,6 +59,23 @@ const Login2Form = (props) => {
 
   return (
     <Col sm="12" xs="12">
+      <FacebookLogin
+        appId={facebookLoginId}
+        fields="name,email,picture"
+        callback={responseFacebook}
+        icon="fa-facebook"
+        size="small"
+        textButton="Entrar com Facebook"
+      />
+      <GoogleLogin
+        clientId={googleLoginId}
+        buttonText="Entrar com Google"
+        onSuccess={responseGoogle}
+          // onFailure={responseGoogle}
+        cookiePolicy="single_host_origin"
+        className="google-login"
+      />
+      <hr className="hr5" />
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Field
@@ -91,38 +108,28 @@ const Login2Form = (props) => {
         )}
         {isSending && (
           <Alert color="warning">
+
           Enviando...
           </Alert>
         )}
         {resendSuccess && (
           <Alert color="success">
+
           Enviamos um novo email de confirmação. Por favor, verifique sua caixa de entrada.
           </Alert>
         )}
         <div className="text-center">
           <FormGroup>
             <NavLink to="/esqueci-senha" onClick={() => closeModal()}>
+
               Esqueci minha senha
             </NavLink>
           </FormGroup>
           <Button type="submit">
+
               Entrar
           </Button>
         </div>
-        <FacebookLogin
-          appId={facebookLoginId}
-          fields="name,email,picture"
-          callback={responseFacebook}
-          icon="fa-facebook"
-          size="small"
-        />
-        <GoogleLogin
-          clientId={googleLoginId}
-          buttonText="Login with Google"
-          onSuccess={responseGoogle}
-          // onFailure={responseGoogle}
-          cookiePolicy="single_host_origin"
-        />
       </Form>
     </Col>
   );
