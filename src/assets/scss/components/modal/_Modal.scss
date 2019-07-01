@@ -88,3 +88,86 @@
     }
   }
 }
+
+//Modal fixed and scroll section
+.modal-fixed{
+  position: fixed;
+  top: 0px;
+  left: 30px;
+  right: 30px;
+  bottom: 0px;
+
+  @include for-phone-only{
+    left: 0;
+    right: 0;
+  }
+}
+
+.modal-fixed__content{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  min-height: 300px;
+}
+
+.modal-fixed__body{
+  position: absolute;
+  top: 62px;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  height: auto;
+  width: auto;
+  margin: 0;
+  overflow: auto;
+  background: #fff;
+  border-top: 1px solid #ddd;
+}
+
+.modal-fixed__body-all{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.modal-fixed__body-section-scroll{
+  position: absolute;
+  top: 150px;
+  left: 0;
+  bottom: 75px;
+  overflow: auto;
+  outline: 0;
+  padding: 5px;
+}
+
+.modal-fixed__footer{
+position: absolute;
+position: absolute;
+/* left: 200px; */
+right: 0;
+bottom: 0;
+/* height: 60px; */
+z-index: 100;
+/* bottom: 60px; */
+height: auto;
+padding: 10px;
+width: 100%;
+}
+
+.modal-fixed__pagination-top{
+  padding-right: 7px;
+}
+
+.modal-fixed__pagination-bottom{
+    position: absolute;
+    right: 0;
+    bottom: 25px;
+    z-index: 100;
+    height: auto;
+    padding: 10px 5px;
+    width: 100%;
+}
