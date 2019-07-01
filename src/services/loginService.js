@@ -52,7 +52,7 @@ const fetchSocialLogin = (accessToken, code, provider) => {
     body: JSON.stringify({ access_token: accessToken, code }),
   };
 
-  return fetch(`${apiUrl}/rest-auth/${provider}/`, requestOptions)
+  return fetch(`${apiUrl}/rest-auth/sign-in/${provider}/`, requestOptions)
     .then(
       handleResponse,
       () => Promise.reject('Problemas de conexão com o banco de dados'),
