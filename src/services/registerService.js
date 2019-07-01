@@ -1,20 +1,25 @@
 import { apiUrl, facebookLoginId, googleLoginId } from 'helpers/config';
 
 
-export const handleResponse = response => response.json().then((data) => {
-  if (!response.ok) {
-    /* temporary solution shows only first error */
-    if (data.email) {
-      if (data.email[0].includes('Um usuário já foi registado com este endereço de e-mail')) {
-        return Promise.reject('Um usuário já foi registrado com este endereço de e-mail.');
-      }
-      return Promise.reject(data.email[0]);
-    }
-    return Promise.reject(data[Object.keys(data)[0]]);
+export const handleResponse = (response) => {
+  if (response.status === 404) {
+    return Promise.reject('Ocorreu um erro durante sua solicitação.');
   }
+  return response.json().then((data) => {
+    if (!response.ok) {
+      /* temporary solution shows only first error */
+      if (data.email) {
+        if (data.email[0].includes('Um usuário já foi registado com este endereço de e-mail')) {
+          return Promise.reject('Um usuário já foi registrado com este endereço de e-mail.');
+        }
+        return Promise.reject(data.email[0]);
+      }
+      return Promise.reject(data[Object.keys(data)[0]]);
+    }
 
-  return data;
-});
+    return data;
+  });
+};
 
 function register(email, password, name, acceptTerms) {
   const requestOptions = {
