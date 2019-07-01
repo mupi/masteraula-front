@@ -1,4 +1,4 @@
-import { apiUrl } from 'helpers/config';
+import { apiUrl, facebookLoginId, googleLoginId } from 'helpers/config';
 
 
 export const handleResponse = response => response.json().then((data) => {
@@ -65,9 +65,33 @@ function resendEmail(email, password) {
     .then(detail => detail);
 }
 
+const fetchSocialRegister = (accessToken, code, provider) => {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ access_token: accessToken, code }),
+  };
+
+  return fetch(`${apiUrl}/rest-auth/sign-up/${provider}/`, requestOptions)
+    .then(
+      handleResponse,
+      () => Promise.reject('Problemas de conexão com o banco de dados'),
+    )
+    .then(
+      session => session,
+    );
+};
+
+const registerFacebook = accessToken => fetchSocialRegister(accessToken, facebookLoginId, 'facebook');
+
+const registerGoogle = accessToken => fetchSocialRegister(accessToken, googleLoginId, 'google');
+
+
 const registerService = {
   register,
   verifyEmail,
   resendEmail,
+  registerFacebook,
+  registerGoogle,
 };
 export default registerService;
