@@ -11,16 +11,6 @@ const SimpleLObjectCardList = (props) => {
   } = props;
   return (
     <Row>
-      <Col sm="12" className="c-object-base__total-results">
-        {`${textResult}: ${count}`}
-      </Col>
-      {showSelectedObjects ? (
-        <Col sm="12" className="c-object-base-modal__selected-number">
-          Objetos associados à questão:
-          {' '}
-          {selectedObjectList.length}
-        </Col>
-      ) : ''}
       {objects && objects.map(object => (
         <Col sm={sm} lg="3" xs="12" key={object.id} className="object-card">
           <SimpleLObjectCard object={object} {...props} addSelectedObjectToQuestion={addSelectedObjectToQuestion} />
