@@ -1,5 +1,8 @@
 import { registerService } from 'services';
-import { SubmissionError, reset } from 'redux-form';
+import { SubmissionError, reset, stopSubmit } from 'redux-form';
+import { history } from 'helpers/history';
+import { updateSession } from 'actions/sessionAction';
+import { hideModal } from 'actions/modalAction';
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -13,16 +16,54 @@ export const RESEND_EMAIL_SUCCESS = 'RESEND_EMAIL_SUCCESS';
 export const RESEND_EMAIL_RESET = 'RESEND_EMAIL_RESET';
 export const RESEND_EMAIL = 'RESEND_EMAIL';
 
-export const fetchRegister = (email, password, name, acceptTerms) => {
+const fetchSocialRegister = (method) => {
   function requestRegister() { return { type: REGISTER_REQUEST }; }
   function success(session) { return { type: REGISTER_SUCCESS, session }; }
   function failure(error) { return { type: REGISTER_FAILURE, error }; }
+
   return (dispatch) => {
-    dispatch(requestRegister(email));
-    return registerService.register(email, password, name, acceptTerms)
+    dispatch(requestRegister());
+    return method
       .then(
         (session) => {
           dispatch(success(session));
+          dispatch(updateSession(session));
+          dispatch(hideModal());
+          history.push('/question-base/1');
+          dispatch(reset('register'));
+        },
+        (error) => {
+          dispatch(stopSubmit('register', {
+            _error: error,
+          }));
+          dispatch(failure(error));
+        },
+      );
+  };
+};
+
+export const registerFacebook = (response) => {
+  const { accessToken } = response;
+  return fetchSocialRegister(registerService.registerFacebook(accessToken));
+};
+
+export const registerGoogle = (response) => {
+  const { accessToken } = response;
+  return fetchSocialRegister(registerService.registerGoogle(accessToken));
+};
+
+
+export const fetchRegister = (email, password, name, acceptTerms) => {
+  function requestRegister() { return { type: REGISTER_REQUEST }; }
+  function success() { return { type: REGISTER_SUCCESS }; }
+  function failure(error) { return { type: REGISTER_FAILURE, error }; }
+
+  return (dispatch) => {
+    dispatch(requestRegister());
+    return registerService.register(email, password, name, acceptTerms)
+      .then(
+        () => {
+          dispatch(success());
           dispatch(reset('register'));
         },
         (error) => {
