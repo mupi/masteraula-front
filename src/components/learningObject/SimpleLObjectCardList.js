@@ -16,7 +16,7 @@ const SimpleLObjectCardList = (props) => {
       </Col>
       {showSelectedObjects ? (
         <Col sm="12" className="c-object-base-modal__selected-number">
-          Objetos a serem adicionados a questão:
+          Objetos associados à questão:
           {' '}
           {selectedObjectList.length}
         </Col>
