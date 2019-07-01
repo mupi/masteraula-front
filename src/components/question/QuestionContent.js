@@ -24,6 +24,7 @@ const QuestionContent = (question) => {
                       <img
                         alt="objeto-aprendizagem"
                         src={learningObject.image}
+                        className="c-learning-object__img"
                       />
                     </div>
                   ) : ''}
