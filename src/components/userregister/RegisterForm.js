@@ -152,25 +152,6 @@ const RegisterForm = (props) => {
                 )
               }
             </FormGroup>
-<<<<<<< HEAD
-            <FacebookLogin
-              appId={facebookLoginId}
-              textButton="Cadastro com Facebook"
-              fields="name,email,picture"
-              callback={responseFacebook}
-              icon="fa-facebook"
-              size="small"
-              language="pt_BR"
-            />
-            <GoogleLogin
-              clientId={googleLoginId}
-              buttonText="Login with Google"
-              onSuccess={responseGoogle}
-              // onFailure={responseGoogle}
-              cookiePolicy="single_host_origin"
-            />
-=======
->>>>>>> 541a19e23ba52e5772b58f88d8e6d6a3c973e509
             <Button>
               Enviar
             </Button>
