@@ -4,23 +4,28 @@ const logout = () => {
   localStorage.removeItem('session');
 };
 
-const handleResponse = response => response.json().then((data) => {
-  if (!response.ok) {
-    if (response.status === 401) {
-      logout();
-    }
-    if (data && data.non_field_errors) {
-      if (data.non_field_errors[0].includes('E-mail ainda não verificado')) {
-        return Promise.reject('Seu cadastro ainda não foi confirmado. Para enviar um novo email de confirmação, clique aqui.');
-      }
-      return Promise.reject(data.non_field_errors[0]);
-    }
-    //   const error = (data && data.non_field_errors) || response.statusText;
-    return Promise.reject(data);
+const handleResponse = (response) => {
+  if (response.status === 404) {
+    return Promise.reject('Ocorreu um erro durante sua solicitação.');
   }
+  if (response.status === 401) {
+    logout();
+  }
+  return response.json().then((data) => {
+    if (!response.ok) {
+      if (data && data.non_field_errors) {
+        if (data.non_field_errors[0].includes('E-mail ainda não verificado')) {
+          return Promise.reject('Seu cadastro ainda não foi confirmado. Para enviar um novo email de confirmação, clique aqui.');
+        }
+        return Promise.reject(data.non_field_errors[0]);
+      }
+      //   const error = (data && data.non_field_errors) || response.statusText;
+      return Promise.reject(data);
+    }
 
-  return data;
-});
+    return data;
+  });
+};
 
 const login = (email, password) => {
   const requestOptions = {
@@ -52,7 +57,7 @@ const fetchSocialLogin = (accessToken, code, provider) => {
     body: JSON.stringify({ access_token: accessToken, code }),
   };
 
-  return fetch(`${apiUrl}/rest-auth/${provider}/`, requestOptions)
+  return fetch(`${apiUrl}/rest-auth/sign-in/${provider}/`, requestOptions)
     .then(
       handleResponse,
       () => Promise.reject('Problemas de conexão com o banco de dados'),

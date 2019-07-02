@@ -39,6 +39,16 @@ const fetchSocialLogin = (method) => {
   };
 };
 
+export const loginFacebook = (response) => {
+  const { accessToken } = response;
+  return fetchSocialLogin(loginService.loginFacebook(accessToken));
+};
+
+export const loginGoogle = (response) => {
+  const { accessToken } = response;
+  return fetchSocialLogin(loginService.loginGoogle(accessToken));
+};
+
 export const fetchLogin = (username, password) => {
   const requestLogin = () => ({ type: LOGIN_REQUEST });
   const success = () => ({ type: LOGIN_SUCCESS });
@@ -64,17 +74,6 @@ export const fetchLogin = (username, password) => {
       );
   };
 };
-
-export const loginFacebook = (response) => {
-  const { accessToken } = response;
-  return fetchSocialLogin(loginService.loginFacebook(accessToken));
-};
-
-export const loginGoogle = (response) => {
-  const { accessToken } = response;
-  return fetchSocialLogin(loginService.loginGoogle(accessToken));
-};
-
 
 export const logout = () => (dispatch) => {
   dispatch(deleteSession());
