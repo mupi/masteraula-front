@@ -25,7 +25,7 @@ export const UPDATE_ALL_LEARNING_OBJECTS_FAILURE = 'UPDATE_ALL_LEARNING_OBJECTS_
 export const LIST_LEARNING_OBJECT_MODAL = 'LIST_LEARNING_OBJECT_MODAL';
 export const LIST_LEARNING_OBJECT_MODAL_SUCCESS = 'LIST_LEARNING_OBJECT_MODAL_SUCESS';
 export const LIST_LEARNING_OBJECT_MODAL_FAILURE = 'LIST_LEARNING_OBJECT_MODAL_FAILURE';
-
+export const SET_CURRENT_PAGE_MODAL = 'SET_CURRENT_PAGE_MODAL';
 
 // Fetch a learning object
 export const fetchLearningObject = (id) => {
@@ -108,3 +108,8 @@ export const listLearningObjectModal = (currentPageModal, filterObject) => {
     );
   };
 };
+
+// Set page for search objects in modal
+export const setCurrentPageModal = currentPageModal => ({
+  type: SET_CURRENT_PAGE_MODAL, currentPageModal,
+});

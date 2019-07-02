@@ -71,16 +71,19 @@ const Menu = (props) => {
     <Nav className="ml-auto" navbar>
       <NavItem>
         <NavLink to="/nossos-planos">
+
           Preços
         </NavLink>
       </NavItem>
       <NavItem>
         <Link to="#login" onClick={handleOpenLoginModal}>
+
           Entrar
         </Link>
       </NavItem>
       <NavItem>
         <Link to="#top" onClick={handleOpenRegisterModal}>
+
           Cadastre-se
         </Link>
       </NavItem>

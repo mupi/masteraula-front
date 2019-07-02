@@ -3,6 +3,7 @@ import SimpleLObjectSearchForm from 'components/learningObject/SimpleLObjectSear
 import { setSearchTextObjectModal } from 'actions/filterObjectAction';
 // import { history } from 'helpers/history';
 import { reduxForm } from 'redux-form';
+import { setCurrentPageModal } from 'actions/learningObjectAction';
 
 const mapStateToProps = state => ({
   initialValues: {
@@ -14,14 +15,12 @@ const mapStateToProps = state => ({
   // preSearch: state.form.objectSearch ? state.form.objectSearch.values.searchTextObject : '',
 });
 
-const setDispatchSearchText = (searchText) => {
-  // history.replace('/object-base/1');
-  return setSearchTextObjectModal(searchText);
-};
-
+// history.replace('/object-base/1');
+const setDispatchSearchText = searchText => setSearchTextObjectModal(searchText);
 const mapDispatchToProps = dispatch => ({
 
   onSubmit: (values) => {
+    dispatch(setCurrentPageModal(1));
     dispatch(setDispatchSearchText(values.searchTextObject));
   },
   clearSearch: () => {
@@ -30,6 +29,7 @@ const mapDispatchToProps = dispatch => ({
       payload: null,
       meta: { form: 'learningObjectSearchModal', field: 'searchTextObject' },
     });
+    dispatch(setCurrentPageModal(1));
     dispatch(setDispatchSearchText());
   },
   clearSearchField: () => dispatch({
@@ -37,6 +37,7 @@ const mapDispatchToProps = dispatch => ({
     payload: null,
     meta: { form: 'learningObjectSearchModal', field: 'searchTextObject' },
   }),
+  setCurrentPageModal: page => dispatch(setCurrentPageModal(page)),
 
 });
 

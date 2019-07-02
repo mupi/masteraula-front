@@ -50,6 +50,23 @@ const RegisterForm = (props) => {
   return (
     <div className="row justify-content-center">
       <Col sm="12" xs="12">
+        <FacebookLogin
+          appId={facebookLoginId}
+          fields="name,email,picture"
+          callback={responseFacebook}
+          icon="fa-facebook"
+          size="small"
+          textButton="Cadastrar com Facebook"
+        />
+        <GoogleLogin
+          clientId={googleLoginId}
+          buttonText="Cadastrar com Google"
+          onSuccess={responseGoogle}
+          // onFailure={responseGoogle}
+          cookiePolicy="single_host_origin"
+          className="google-login"
+        />
+        <hr className="hr5" />
         <Form onSubmit={handleSubmit}>
           <FormGroup>
 
@@ -135,21 +152,6 @@ const RegisterForm = (props) => {
                 )
               }
             </FormGroup>
-            <FacebookLogin
-              appId={facebookLoginId}
-              fields="name,email,picture"
-              callback={responseFacebook}
-              onFailure={() => { }}
-              icon="fa-facebook"
-              size="small"
-            />
-            <GoogleLogin
-              clientId={googleLoginId}
-              buttonText="Login with Google"
-              onSuccess={responseGoogle}
-              // onFailure={responseGoogle}
-              cookiePolicy="single_host_origin"
-            />
             <Button>
               Enviar
             </Button>
