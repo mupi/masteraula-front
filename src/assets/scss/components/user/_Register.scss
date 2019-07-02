@@ -15,6 +15,10 @@ CSS for RegisterPage
         max-width: 500px !important;
         background: $color-ma-blue-sky !important;
         border-radius: 6px !important;
+
+        .form-check{
+          padding-left:0px;
+        }
     }
 
     &__modal-header{
@@ -30,8 +34,6 @@ CSS for RegisterPage
       padding: 1rem;
     }
 
-    .form-check{
-      padding-left:0px;
-    }
+    
 
 }

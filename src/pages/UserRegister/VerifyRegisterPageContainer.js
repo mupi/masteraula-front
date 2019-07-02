@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { toggleModal } from 'actions/loginAction';
-
+// import { toggleModal } from 'actions/loginAction';
+import { showModal, hideModal } from 'actions/modalAction';
 import { REGISTER_SUCCESS, verifyEmail } from 'actions/registerAction';
 import VerifyRegisterPage from './VerifyRegisterPage';
 
@@ -13,7 +13,12 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   verifyEmail: key => dispatch(verifyEmail(key)),
   resetVerifyEmail: () => dispatch(() => ({ type: REGISTER_SUCCESS })),
-  toggleModal: modal => dispatch(toggleModal(modal)),
+  // toggleModal: modal => dispatch(toggleModal(modal)),
+  // new way to handle modals
+  hideModal: () => dispatch(hideModal()),
+  showModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType }));
+  },
 });
 
 export default connect(
