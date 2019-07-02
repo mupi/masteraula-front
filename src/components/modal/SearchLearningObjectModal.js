@@ -69,7 +69,7 @@ class SearchLearningObjectModal extends React.Component {
                 {objectPage ? objectPage.count : 0}
               </Col>
               <Col sm="12" className="c-object-base-modal__selected-number">
-          Objetos associados à questão:
+                Objetos associados à questão:
                 {' '}
                 {selectedObjectList.length}
               </Col>
