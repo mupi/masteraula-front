@@ -139,6 +139,7 @@ const RegisterForm = (props) => {
               appId={facebookLoginId}
               fields="name,email,picture"
               callback={responseFacebook}
+              onFailure={() => { }}
               icon="fa-facebook"
               size="small"
             />

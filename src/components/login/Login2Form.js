@@ -27,19 +27,19 @@ const renderField = ({
       type={type}
       autoFocus={isAutoFocus}
     />
-    { touched
+    {touched
       && ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
+        <span className="error-message-text">
+          {error}
+        </span>
       ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
+        || (warning && (
+          <span>
+            {' '}
+            {warning}
+            {' '}
+          </span>
+        )))
     }
   </div>
 );
@@ -91,12 +91,12 @@ const Login2Form = (props) => {
         )}
         {isSending && (
           <Alert color="warning">
-          Enviando...
+            Enviando...
           </Alert>
         )}
         {resendSuccess && (
           <Alert color="success">
-          Enviamos um novo email de confirmação. Por favor, verifique sua caixa de entrada.
+            Enviamos um novo email de confirmação. Por favor, verifique sua caixa de entrada.
           </Alert>
         )}
         <div className="text-center">
@@ -106,13 +106,14 @@ const Login2Form = (props) => {
             </NavLink>
           </FormGroup>
           <Button type="submit">
-              Entrar
+            Entrar
           </Button>
         </div>
         <FacebookLogin
           appId={facebookLoginId}
           fields="name,email,picture"
           callback={responseFacebook}
+          onFailure={() => { }}
           icon="fa-facebook"
           size="small"
         />
@@ -152,10 +153,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-/*  toggleModal: (modal) => {
-    dispatch(resetState());
-    dispatch(toggleModal(modal));
-  }, */
+  /*  toggleModal: (modal) => {
+      dispatch(resetState());
+      dispatch(toggleModal(modal));
+    }, */
   responseGoogle: response => dispatch(loginGoogle(response)),
   responseFacebook: response => dispatch(loginFacebook(response)),
   handleResendEmail: (email, password) => dispatch(resendEmail(email, password)),
