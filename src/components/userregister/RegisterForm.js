@@ -137,10 +137,12 @@ const RegisterForm = (props) => {
             </FormGroup>
             <FacebookLogin
               appId={facebookLoginId}
+              textButton="Cadastro com Facebook"
               fields="name,email,picture"
               callback={responseFacebook}
               icon="fa-facebook"
               size="small"
+              language="pt_BR"
             />
             <GoogleLogin
               clientId={googleLoginId}
