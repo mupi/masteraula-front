@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Row, Col, Alert } from 'reactstrap';
+import {
+  Button, Row, Col, Alert,
+} from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import CustomPaginationModal from 'components/pagination/CustomPaginationModal';
@@ -62,16 +64,16 @@ class SearchLearningObjectModal extends React.Component {
               <CustomPaginationModal {...this.props} {...objectPage} itensPerPage={16} disabled={isFetching} />
             </Row>
             <Row>
-      <Col sm="12" className="c-object-base__total-results">
-        {`Objetos de aprendizagem encontrados:`}
-        {objectPage ? objectPage.count : 0}
-      </Col>
-        <Col sm="12" className="c-object-base-modal__selected-number">
-          Objetos associados à questão:
-          {' '}
-          {selectedObjectList.length}
-        </Col>
-      </Row>
+              <Col sm="12" className="c-object-base__total-results">
+                {'Objetos de aprendizagem encontrados:'}
+                {objectPage ? objectPage.count : 0}
+              </Col>
+              <Col sm="12" className="c-object-base-modal__selected-number">
+                Objetos associados à questão:
+                {' '}
+                {selectedObjectList.length}
+              </Col>
+            </Row>
             <div className="c-question-base__results modal-fixed__body-section-scroll">
               { isFetching ? (
                 <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
