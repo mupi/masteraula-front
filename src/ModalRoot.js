@@ -52,7 +52,7 @@ class ModalContainer extends React.Component {
     }
 
     if (modalType === 'document') modalClassName = 'modal-dialog modal-lg';
-    if (modalType === 'searchObjectModal') modalClassName = 'modal-dialog modal-xl';
+    if (modalType === 'searchObjectModal') modalClassName = 'modal-dialog modal-xl modal-fixed';
 
     const SpecifiedModal = MODAL_TYPES[modalType];
 
