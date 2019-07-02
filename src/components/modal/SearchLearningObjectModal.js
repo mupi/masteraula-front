@@ -90,7 +90,11 @@ class SearchLearningObjectModal extends React.Component {
               )
             }
             </div>
+<<<<<<< HEAD
             <Row className="pagination-questions modal-fixed__pagination-bottom" style={{ marginLeft: '80%' }}>
+=======
+            <Row className="pagination-questions" style={{ marginLeft: '80%' }}>
+>>>>>>> 541a19e23ba52e5772b58f88d8e6d6a3c973e509
               <CustomPaginationModal
                 {...this.props}
                 {...objectPage}

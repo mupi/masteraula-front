@@ -27,19 +27,19 @@ const renderField = ({
       type={type}
       autoFocus={isAutoFocus}
     />
-    { touched
+    {touched
       && ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
+        <span className="error-message-text">
+          {error}
+        </span>
       ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
+        || (warning && (
+          <span>
+            {' '}
+            {warning}
+            {' '}
+          </span>
+        )))
     }
   </div>
 );
@@ -59,6 +59,23 @@ const Login2Form = (props) => {
 
   return (
     <Col sm="12" xs="12">
+      <FacebookLogin
+        appId={facebookLoginId}
+        fields="name,email,picture"
+        callback={responseFacebook}
+        icon="fa-facebook"
+        size="small"
+        textButton="Entrar com Facebook"
+      />
+      <GoogleLogin
+        clientId={googleLoginId}
+        buttonText="Entrar com Google"
+        onSuccess={responseGoogle}
+          // onFailure={responseGoogle}
+        cookiePolicy="single_host_origin"
+        className="google-login"
+      />
+      <hr className="hr5" />
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Field
@@ -67,6 +84,7 @@ const Login2Form = (props) => {
             label="Digite seu email"
             className="form-control login-field"
             component={renderField}
+            onFailure={() => { }}
             isAutoFocus
           />
         </FormGroup>
@@ -91,17 +109,18 @@ const Login2Form = (props) => {
         )}
         {isSending && (
           <Alert color="warning">
-          Enviando...
+            Enviando...
           </Alert>
         )}
         {resendSuccess && (
           <Alert color="success">
-          Enviamos um novo email de confirmação. Por favor, verifique sua caixa de entrada.
+            Enviamos um novo email de confirmação. Por favor, verifique sua caixa de entrada.
           </Alert>
         )}
         <div className="text-center">
           <FormGroup>
             <NavLink to="/esqueci-senha" onClick={() => closeModal()}>
+
               Esqueci minha senha
             </NavLink>
           </FormGroup>
@@ -109,20 +128,6 @@ const Login2Form = (props) => {
               Entrar
           </Button>
         </div>
-        <FacebookLogin
-          appId={facebookLoginId}
-          fields="name,email,picture"
-          callback={responseFacebook}
-          icon="fa-facebook"
-          size="small"
-        />
-        <GoogleLogin
-          clientId={googleLoginId}
-          buttonText="Login with Google"
-          onSuccess={responseGoogle}
-          // onFailure={responseGoogle}
-          cookiePolicy="single_host_origin"
-        />
       </Form>
     </Col>
   );
@@ -152,10 +157,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-/*  toggleModal: (modal) => {
-    dispatch(resetState());
-    dispatch(toggleModal(modal));
-  }, */
+  /*  toggleModal: (modal) => {
+      dispatch(resetState());
+      dispatch(toggleModal(modal));
+    }, */
   responseGoogle: response => dispatch(loginGoogle(response)),
   responseFacebook: response => dispatch(loginFacebook(response)),
   handleResendEmail: (email, password) => dispatch(resendEmail(email, password)),

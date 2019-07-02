@@ -10,15 +10,11 @@ const mapStateToProps = state => ({
   modal: state.document.modal,
   filterObject: state.filterObject,
   currentPageModal: state.learningObject.currentPageModal,
-  selectedObjectList: state.question.selectedObjectList, 
+  selectedObjectList: state.question.selectedObjectList,
 });
 
-const setDispatchSearchText = (searchText) => {
-  // history.replace('/object-base/1');
-  return setSearchTextObjectModal(searchText);
-};
-
-
+// history.replace('/object-base/1');
+const setDispatchSearchText = searchText => setSearchTextObjectModal(searchText);
 const mapDispatchToProps = dispatch => ({
   listObjects: (page, filterObject) => dispatch(listLearningObjectModal(page, filterObject)),
   clearSearch: () => {

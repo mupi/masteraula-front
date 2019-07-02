@@ -20,3 +20,49 @@
     }
 
 }
+
+.kep-login-facebook.small{
+  margin: 10px auto;
+  display: block;
+  width: 300px;
+  border-radius: 5px;
+  height: 50px;
+  text-transform: initial;
+  i{
+    margin-right: 20px;
+  }
+}
+
+.google-login{
+  margin:10px auto  30px auto !important;
+  display: block !important;
+  width: 300px !important;
+  height: 50px;
+  div{
+    display: inline;
+  }
+  span{
+    display: inline;
+  }
+}
+
+.hr5 {
+  border: 0;
+  border-top: 1px solid #aba994;
+  height: 1px;
+  overflow: visible;
+  padding: 0;
+  color: #aba994;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hr5::after {
+  content: "ou";
+  display: inline-block;
+  position: relative;
+  top: -0.7em;
+  font-size: 1.4em;
+  padding: 0 0.3em;
+  background: $color-ma-blue-sky  ;
+}
