@@ -190,3 +190,17 @@ input.rw-input-reset{
 .rdw-option-wrapper {
   height: 25px;
 }
+
+
+/*React facebook and Google button style*/
+.kep-login-facebook, .google-login {
+  font-family: "Lato", serif !important;
+  letter-spacing: 0.5px;
+  font-size: 16px !important;
+  font-weight: normal !important;
+}
+
+.hr5 {
+  border-top: 1px solid $color-ma-lightgray;
+  color: $color-ma-lightgray;
+}
