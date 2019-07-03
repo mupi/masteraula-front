@@ -1,8 +1,20 @@
 import { profileEditService } from 'services';
 import { DIFFERENT_OLD_PASSWORD } from 'services/profileEditService';
 import { SubmissionError, change, reset } from 'redux-form';
+import { toast } from 'react-toastify';
 
 import { updateSessionUser } from './sessionAction';
+
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
+
+const optionsError = {
+  className: 'alert__ma-toast--error',
+  type: 'error',
+};
+
 
 // Get states list in UserProfile
 export const PROFILE_GET_STATES_REQUEST = 'PROFILE_GET_STATES_REQUEST';
@@ -21,6 +33,11 @@ export const PROFILE_EDIT_FAILURE = 'PROFILE_EDIT_FAILURE';
 export const PROFILE_PASSWORD_EDIT_REQUEST = 'PROFILE_PASSWORD_EDIT_REQUEST';
 export const PROFILE_PASSWORD_EDIT_SUCCESS = 'PROFILE_PASSWORD_EDIT_SUCCESS';
 export const PROFILE_PASSWORD_EDIT_FAILURE = 'PROFILE_PASSWORD_EDIT_FAILURE';
+
+// Connect to social accounts
+export const PROFILE_CONNECT_REQUEST = 'PROFILE_CONNECT_REQUEST';
+export const PROFILE_CONNECT_SUCCESS = 'PROFILE_CONNECT_SUCCESS';
+export const PROFILE_CONNECT_FAILURE = 'PROFILE_CONNECT_FAILURE';
 
 // State List
 export const getStatesList = (param) => {
@@ -127,4 +144,36 @@ export const redefineUserPassword = (passwordData) => {
         },
       );
   };
+};
+
+const fetchConnectSocial = (method) => {
+  const requestLogin = () => ({ type: PROFILE_CONNECT_REQUEST });
+  const success = () => ({ type: PROFILE_CONNECT_SUCCESS });
+  const failure = error => ({ type: PROFILE_CONNECT_FAILURE, error });
+
+  return (dispatch) => {
+    dispatch(requestLogin());
+
+    return method
+      .then(
+        () => {
+          dispatch(success());
+          toast.success('Conta conectada com sucesso', optionsSuccess);
+        },
+        (error) => {
+          dispatch(failure(error));
+          toast.error('Erro ao conectar a conta', optionsError);
+        },
+      );
+  };
+};
+
+export const connectFacebook = (response) => {
+  const { accessToken } = response;
+  return fetchConnectSocial(profileEditService.connectFacebook(accessToken));
+};
+
+export const connectGoogle = (response) => {
+  const { accessToken } = response;
+  return fetchConnectSocial(profileEditService.connectGoogle(accessToken));
 };

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import SimpleLObjectSearchForm from 'components/learningObject/SimpleLObjectSearchForm';
 import { setSearchTextObjectModal } from 'actions/filterObjectAction';
 // import { history } from 'helpers/history';
-import { reduxForm } from 'redux-form'; 
+import { reduxForm } from 'redux-form';
 import { setCurrentPageModal } from 'actions/learningObjectAction';
 
 const mapStateToProps = state => ({
@@ -15,11 +15,8 @@ const mapStateToProps = state => ({
   // preSearch: state.form.objectSearch ? state.form.objectSearch.values.searchTextObject : '',
 });
 
-const setDispatchSearchText = (searchText) => {
-  // history.replace('/object-base/1');
-  return setSearchTextObjectModal(searchText);
-};
-
+// history.replace('/object-base/1');
+const setDispatchSearchText = searchText => setSearchTextObjectModal(searchText);
 const mapDispatchToProps = dispatch => ({
 
   onSubmit: (values) => {

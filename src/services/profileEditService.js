@@ -1,5 +1,5 @@
 import { authHeader } from 'helpers';
-import { apiUrl } from 'helpers/config';
+import { apiUrl, facebookLoginId, googleLoginId } from 'helpers/config';
 
 export const DIFFERENT_OLD_PASSWORD = 'DIFFERENT_OLD_PASSWORD';
 
@@ -48,7 +48,7 @@ const handleProfileResponse = response => response.json().then((data) => {
 });
 
 // Get all states
-function getStatesList() {
+const getStatesList = () => {
   const requestOptions = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -57,10 +57,10 @@ function getStatesList() {
   return fetch(`${apiUrl}/states/`, requestOptions)
     .then(handleResponse)
     .then(stateList => stateList);
-}
+};
 
 // Get cities of state id
-function getCitiesList(idState) {
+const getCitiesList = (idState) => {
   const requestOptions = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -69,9 +69,9 @@ function getCitiesList(idState) {
   return fetch(`${apiUrl}/cities/?uf=${idState}`, requestOptions)
     .then(handleResponse)
     .then(cityList => cityList);
-}
+};
 
-function profilePasswordEdit(profile) {
+const profilePasswordEdit = (profile) => {
   const requestPasswordOption = {
     method: 'POST',
     headers: {
@@ -90,9 +90,9 @@ function profilePasswordEdit(profile) {
     .then(detail => detail);
 
   return Promise.all([fetchPassword]);
-}
+};
 
-function profileEdit(profile) {
+const profileEdit = (profile) => {
   const formData = new FormData();
   Object.keys(profile).forEach((name) => {
     if (name === 'disciplines') {
@@ -117,13 +117,44 @@ function profileEdit(profile) {
     .then(detail => detail);
 
   return Promise.all([fetchProfile]);
-}
+};
+
+const fetchSocialConnect = (accessToken, code, provider) => {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      Authorization: authHeader(),
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ access_token: accessToken, code }),
+  };
+
+  return fetch(`${apiUrl}/rest-auth/connect/${provider}/`, requestOptions)
+    .then(
+      handleResponse,
+      () => Promise.reject('Problemas de conexão com o banco de dados'),
+    )
+    .then(
+      (session) => {
+        if (session.token) {
+          localStorage.setItem('session', JSON.stringify(session));
+        }
+        return session;
+      },
+    );
+};
+
+const connectFacebook = accessToken => fetchSocialConnect(accessToken, facebookLoginId, 'facebook');
+
+const connectGoogle = accessToken => fetchSocialConnect(accessToken, googleLoginId, 'google');
 
 const profileEditService = {
   profileEdit,
   profilePasswordEdit,
   getStatesList,
   getCitiesList,
+  connectFacebook,
+  connectGoogle,
 };
 
 export default profileEditService;

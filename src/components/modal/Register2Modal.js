@@ -38,21 +38,18 @@ Register2Modal.defaultProps = {
 
 const mapDispatchToProps = dispatch => ({
   submit: (values) => {
-    if (!values.accept_terms) {
+    if (!values.acceptTerms) {
       throw new SubmissionError({
         _error: 'Você deve concordar com os Termos de Uso para usar o MasterAula ',
       });
     }
 
-    return dispatch(fetchRegister(values.email, values.password, values.name, values.accept_terms));
+    return dispatch(fetchRegister(values.email, values.password, values.name, values.acceptTerms));
   },
 });
 
-const mapStateToProps = state => ({
-});
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Register2Modal);
- 

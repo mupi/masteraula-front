@@ -7,6 +7,10 @@ import { NavLink } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
 import { resendEmail } from 'actions/registerAction';
+import { loginFacebook, loginGoogle } from 'actions/loginAction';
+import { facebookLoginId, googleLoginId } from 'helpers/config';
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 
 
 const renderField = ({
@@ -23,38 +27,55 @@ const renderField = ({
       type={type}
       autoFocus={isAutoFocus}
     />
-    { touched
+    {touched
       && ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
+        <span className="error-message-text">
+          {error}
+        </span>
       ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
+        || (warning && (
+          <span>
+            {' '}
+            {warning}
+            {' '}
+          </span>
+        )))
     }
   </div>
 );
 
-
 const Login2Form = (props) => {
   const {
-    handleSubmit, error, resendEmail, formValues,
+    handleSubmit, error, handleResendEmail, formValues,
     resendError, resendSuccess, isSending, closeModal,
+    responseFacebook, responseGoogle,
   } = props;
 
   function handleResend(message, values) {
     if (message.includes('confirmado')) {
-      resendEmail(values.email, values.password);
+      handleResendEmail(values.email, values.password);
     }
   }
 
   return (
     <Col sm="12" xs="12">
+      <FacebookLogin
+        appId={facebookLoginId}
+        fields="name,email,picture"
+        callback={responseFacebook}
+        icon="fa-facebook"
+        size="small"
+        textButton="Entrar com Facebook"
+      />
+      <GoogleLogin
+        clientId={googleLoginId}
+        buttonText="Entrar com Google"
+        onSuccess={responseGoogle}
+          // onFailure={responseGoogle}
+        cookiePolicy="single_host_origin"
+        className="google-login"
+      />
+      <hr className="hr5" />
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Field
@@ -63,6 +84,7 @@ const Login2Form = (props) => {
             label="Digite seu email"
             className="form-control login-field"
             component={renderField}
+            onFailure={() => { }}
             isAutoFocus
           />
         </FormGroup>
@@ -87,17 +109,18 @@ const Login2Form = (props) => {
         )}
         {isSending && (
           <Alert color="warning">
-          Enviando...
+            Enviando...
           </Alert>
         )}
         {resendSuccess && (
           <Alert color="success">
-          Enviamos um novo email de confirmação. Por favor, verifique sua caixa de entrada.
+            Enviamos um novo email de confirmação. Por favor, verifique sua caixa de entrada.
           </Alert>
         )}
         <div className="text-center">
           <FormGroup>
             <NavLink to="/esqueci-senha" onClick={() => closeModal()}>
+
               Esqueci minha senha
             </NavLink>
           </FormGroup>
@@ -128,16 +151,19 @@ const mapStateToProps = state => ({
   modal: state.login.modal,
   formValues: state.form.login,
   resendError: state.register.error,
+  loginError: state.login.error,
   resendSuccess: state.register.success,
   isSending: state.register.isSending,
 });
 
 const mapDispatchToProps = dispatch => ({
-/*  toggleModal: (modal) => {
-    dispatch(resetState());
-    dispatch(toggleModal(modal));
-  }, */
-  resendEmail: (email, password) => dispatch(resendEmail(email, password)),
+  /*  toggleModal: (modal) => {
+      dispatch(resetState());
+      dispatch(toggleModal(modal));
+    }, */
+  responseGoogle: response => dispatch(loginGoogle(response)),
+  responseFacebook: response => dispatch(loginFacebook(response)),
+  handleResendEmail: (email, password) => dispatch(resendEmail(email, password)),
 });
 
 export default connect(

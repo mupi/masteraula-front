@@ -6,6 +6,10 @@ import {
 import { Field, reduxForm } from 'redux-form';
 import { NavLink } from 'react-router-dom';
 import { userNameValidator, emailValidator } from 'helpers/validators';
+import { registerFacebook, registerGoogle } from 'actions/registerAction';
+import { facebookLoginId, googleLoginId } from 'helpers/config';
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 
 const renderField = ({
   input,
@@ -21,31 +25,48 @@ const renderField = ({
       type={type}
       autoFocus={isAutoFocus}
     />
-    { touched
+    {touched
       && ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
+        <span className="error-message-text">
+          {error}
+        </span>
       ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
-     }
+        || (warning && (
+          <span>
+            {' '}
+            {warning}
+            {' '}
+          </span>
+        )))
+    }
   </div>
 );
 
 const RegisterForm = (props) => {
   const {
-    handleSubmit, error, submitSucceeded,
+    handleSubmit, error, submitSucceeded, responseFacebook, responseGoogle,
   } = props;
 
   return (
     <div className="row justify-content-center">
       <Col sm="12" xs="12">
+        <FacebookLogin
+          appId={facebookLoginId}
+          fields="name,email,picture"
+          callback={responseFacebook}
+          icon="fa-facebook"
+          size="small"
+          textButton="Cadastrar com Facebook"
+        />
+        <GoogleLogin
+          clientId={googleLoginId}
+          buttonText="Cadastrar com Google"
+          onSuccess={responseGoogle}
+          // onFailure={responseGoogle}
+          cookiePolicy="single_host_origin"
+          className="google-login"
+        />
+        <hr className="hr5" />
         <Form onSubmit={handleSubmit}>
           <FormGroup>
 
@@ -91,22 +112,24 @@ const RegisterForm = (props) => {
             <FormGroup check className="form-group">
               <Label check>
                 <Field
-                  name="accept_terms"
-                  id="accept_terms"
+                  name="acceptTerms"
+                  id="acceptTerms"
                   type="checkbox"
-                  component={accept_terms => (
+                  component={acceptTerms => (
                     <div>
-                      <input type={accept_terms.type} {...accept_terms.input} />
-                          Eu concordo com os {' '}
+                      <input type={acceptTerms.type} {...acceptTerms.input} />
+                      Eu concordo com os
+                      {' '}
+                      {' '}
                       <NavLink target="_blank" className="use-terms" to="/terms-use">
                         Termos de Uso
                       </NavLink>
-                      { accept_terms.meta.touched && accept_terms.meta.error && (
+                      {acceptTerms.meta.touched && acceptTerms.meta.error && (
                         <span>
                           <br />
-                          {accept_terms.meta.error}
+                          {acceptTerms.meta.error}
                         </span>
-                      ) }
+                      )}
                     </div>
                   )}
                 />
@@ -119,18 +142,18 @@ const RegisterForm = (props) => {
                   {error}
                 </Alert>
               )}
-              { submitSucceeded
-                    && (
-                    <Alert color="success">
-                      <p className="alert__message">
-Enviamos um email com instruções para ativar seu cadastro
-                      </p>
-                    </Alert>
-                    )
-                  }
+              {submitSucceeded
+                && (
+                  <Alert color="success">
+                    <p className="alert__message">
+                      Enviamos um email com instruções para ativar seu cadastro
+                    </p>
+                  </Alert>
+                )
+              }
             </FormGroup>
             <Button>
-Enviar
+              Enviar
             </Button>
           </div>
         </Form>
@@ -147,7 +170,7 @@ const validate = (values) => {
   }
   if (!values.email) {
     errors.email = 'Insira um email';
-  } 
+  }
 
   if (!values.password) {
     errors.password = 'Insira uma senha';
@@ -172,6 +195,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  responseGoogle: response => dispatch(registerGoogle(response)),
+  responseFacebook: response => dispatch(registerFacebook(response)),
 });
 
 export default connect(

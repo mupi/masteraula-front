@@ -1,7 +1,10 @@
 import React from 'react';
-import { Alert } from 'reactstrap';
+import { Alert, Row, Col } from 'reactstrap';
 import UserProfileContainer from 'containers/UserProfileContainer';
 import UserPasswordProfileContainer from 'containers/UserPasswordProfileContainer';
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
+import { facebookLoginId, googleLoginId } from 'helpers/config';
 import HomeUserPage from '../HomeUser/HomeUserPage';
 
 class UserProfilePage extends React.Component {
@@ -12,14 +15,15 @@ class UserProfilePage extends React.Component {
 
   render() {
     const {
-      stateList, isFetchingStatesList,
+      stateList, isFetchingStatesList, responseFacebook, responseGoogle,
     } = this.props;
 
     if (isFetchingStatesList) {
       return (
         <HomeUserPage>
           <Alert className="alert--warning" color="warning">
-              Carregando ...
+
+            Carregando ...
           </Alert>
         </HomeUserPage>
       );
@@ -29,13 +33,41 @@ class UserProfilePage extends React.Component {
       <HomeUserPage>
         <div className="l-user-profile">
           <h3 className="text-center">
-              Meu Perfil
+
+            Meu Perfil
           </h3>
           <h5 className="text-center">
-              Conte um pouco sobre você
+
+            Conte um pouco sobre você
           </h5>
           <UserProfileContainer stateList={stateList} />
           <UserPasswordProfileContainer />
+          <Row style={{ marginTop: '20px' }}>
+            <Col className="text-center">
+              <span className="vertical-align">
+
+          Vincular contas
+              </span>
+            </Col>
+            <Col className="text-center">
+              <FacebookLogin
+                appId={facebookLoginId}
+                fields="name,email,picture"
+                callback={responseFacebook}
+                icon="fa-facebook"
+                size="small"
+                textButton="Entrar com Facebook"
+              />
+              <GoogleLogin
+                clientId={googleLoginId}
+                buttonText="Entrar com Google"
+                onSuccess={responseGoogle}
+          // onFailure={responseGoogle}
+                cookiePolicy="single_host_origin"
+                className="google-login"
+              />
+            </Col>
+          </Row>
         </div>
       </HomeUserPage>
     );

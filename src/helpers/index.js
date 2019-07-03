@@ -1,3 +1,3 @@
-export { default as config } from './config.js';
-export { history } from './history.js';
-export { isLoggedIn, authHeader } from './session.js';
+export { apiUrl, facebookLoginId, googleLoginId } from './config';
+export { history } from './history';
+export { isLoggedIn, authHeader } from './session';
