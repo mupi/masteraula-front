@@ -15,13 +15,14 @@ class UserProfilePage extends React.Component {
 
   render() {
     const {
-      stateList, isFetchingStatesList, responseFacebook, responseGoogle,
+      stateList, isFetchingStatesList, responseFacebook, responseGoogle, socialAccounts,
     } = this.props;
 
     if (isFetchingStatesList) {
       return (
         <HomeUserPage>
           <Alert className="alert--warning" color="warning">
+
 
             Carregando ...
           </Alert>
@@ -34,9 +35,11 @@ class UserProfilePage extends React.Component {
         <div className="l-user-profile">
           <h3 className="text-center">
 
+
             Meu Perfil
           </h3>
           <h5 className="text-center">
+
 
             Conte um pouco sobre você
           </h5>
@@ -46,26 +49,35 @@ class UserProfilePage extends React.Component {
             <Col className="text-center">
               <span className="vertical-align">
 
+
           Vincular contas
               </span>
             </Col>
             <Col className="text-center">
-              <FacebookLogin
-                appId={facebookLoginId}
-                fields="name,email,picture"
-                callback={responseFacebook}
-                icon="fa-facebook"
-                size="small"
-                textButton="Entrar com Facebook"
-              />
-              <GoogleLogin
-                clientId={googleLoginId}
-                buttonText="Entrar com Google"
-                onSuccess={responseGoogle}
+              {socialAccounts
+                ? <span>Facebook vinculado</span>
+                : (
+                  <FacebookLogin
+                    appId={facebookLoginId}
+                    fields="name,email,picture"
+                    callback={responseFacebook}
+                    icon="fa-facebook"
+                    size="small"
+                    textButton="Entrar com Facebook"
+                  />
+                )}
+              {socialAccounts
+                ? <span>Google vinculado</span>
+                : (
+                  <GoogleLogin
+                    clientId={googleLoginId}
+                    buttonText="Entrar com Google"
+                    onSuccess={responseGoogle}
           // onFailure={responseGoogle}
-                cookiePolicy="single_host_origin"
-                className="google-login"
-              />
+                    cookiePolicy="single_host_origin"
+                    className="google-login"
+                  />
+                )}
             </Col>
           </Row>
         </div>
