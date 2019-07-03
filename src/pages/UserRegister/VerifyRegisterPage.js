@@ -4,18 +4,40 @@ import {
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
 class VerifyRegisterPage extends React.Component {
-  componentDidMount() {
-    const { match } = this.props;
-    this.props.verifyEmail(match.params.key);
+  constructor(props) {
+    super(props);
+    this.closeModal = this.closeModal.bind(this);
+    this.handleOpenLoginModal = this.handleOpenLoginModal.bind(this);
   }
 
+  componentDidMount() {
+    const { match, verifyEmail } = this.props;
+    verifyEmail(match.params.key);
+  }
+
+  closeModal = () => {
+    const { hideModal } = this.props;
+    hideModal();
+  };
+
+  handleOpenLoginModal = () => {
+    // open modal
+    const { showModal } = this.props;
+
+    showModal({
+      open: true,
+      closeModal: this.closeModal,
+    }, 'login2');
+  };
+
   render() {
+    const { success, error } = this.props;
+
     return (
       <div className="l-site-masteraula__public-home middle-box">
         <Container className="l-user-operations c-verify-register">
-          {this.props.success && (
+          {success && (
           <Alert color="success" className="text-center">
             <p className="alert__message">
               <FontAwesomeIcon icon="sign-in-alt" />
@@ -25,7 +47,7 @@ class VerifyRegisterPage extends React.Component {
           </Alert>
           )
           }
-          {this.props.error && (
+          {error && (
           <Alert color="danger" className="text-center">
             <p>
               <FontAwesomeIcon icon="exclamation-circle" />
@@ -37,7 +59,7 @@ class VerifyRegisterPage extends React.Component {
           }
           <Row className="justify-content-center text-center">
             <Col sm="12" xs="12">
-              <Button onClick={() => this.props.toggleModal(this.props.modal)}>
+              <Button onClick={this.handleOpenLoginModal}>
                 Entrar
               </Button>
             </Col>
