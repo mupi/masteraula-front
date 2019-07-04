@@ -91,7 +91,6 @@ const registerFacebook = accessToken => fetchSocialRegister(accessToken, faceboo
 
 const registerGoogle = accessToken => fetchSocialRegister(accessToken, googleLoginId, 'google');
 
-
 const registerService = {
   register,
   verifyEmail,

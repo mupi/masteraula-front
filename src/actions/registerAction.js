@@ -7,6 +7,7 @@ import { hideModal } from 'actions/modalAction';
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+
 export const VERIFY_EMAIL_RESET = 'VERIFY_EMAIL_RESET';
 export const VERIFY_EMAIL_SUCCESS = 'VERIFY_EMAIL_SUCCESS';
 export const VERIFY_EMAIL_FAILURE = 'VERIFY_EMAIL_FAILURE';

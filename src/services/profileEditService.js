@@ -148,6 +148,32 @@ const connectFacebook = accessToken => fetchSocialConnect(accessToken, facebookL
 
 const connectGoogle = accessToken => fetchSocialConnect(accessToken, googleLoginId, 'google');
 
+// Disconnect from social accounts
+const disconnectSocialAccount = (accessToken, uid) => {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  };
+
+  return fetch(`${apiUrl}/socialaccounts/${uid}/disconnect`, requestOptions)
+    .then(
+      handleResponse,
+      () => Promise.reject('Problemas de conexão com o banco de dados'),
+    )
+    .then(
+      (session) => {
+        if (session.token) {
+          localStorage.setItem('session', JSON.stringify(session));
+        }
+        return session;
+      },
+    );
+};
+const disconnectFacebook = (accessToken, uid) => disconnectSocialAccount(accessToken, uid);
+
+const disconnectGoogle = (accessToken, uid) => disconnectSocialAccount(accessToken, uid);
+
+
 const profileEditService = {
   profileEdit,
   profilePasswordEdit,
@@ -155,6 +181,8 @@ const profileEditService = {
   getCitiesList,
   connectFacebook,
   connectGoogle,
+  disconnectFacebook,
+  disconnectGoogle
 };
 
 export default profileEditService;

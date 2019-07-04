@@ -39,6 +39,11 @@ export const PROFILE_CONNECT_REQUEST = 'PROFILE_CONNECT_REQUEST';
 export const PROFILE_CONNECT_SUCCESS = 'PROFILE_CONNECT_SUCCESS';
 export const PROFILE_CONNECT_FAILURE = 'PROFILE_CONNECT_FAILURE';
 
+// Disconnect from social accounts
+export const PROFILE_DISCONNECT_REQUEST = 'PROFILE_DISCONNECT_REQUEST';
+export const PROFILE_DISCONNECT_SUCCESS = 'PROFILE_DISCONNECT_SUCCESS';
+export const PROFILE_DISCONNECT_FAILURE = 'PROFILE_DISCONNECT_FAILURE';
+
 // State List
 export const getStatesList = (param) => {
   function fetchStatesList() { return { type: PROFILE_GET_STATES_REQUEST }; }
@@ -176,4 +181,37 @@ export const connectFacebook = (response) => {
 export const connectGoogle = (response) => {
   const { accessToken } = response;
   return fetchConnectSocial(profileEditService.connectGoogle(accessToken));
+};
+
+// Disconnect from social accounts in MyProfile
+const fetchDisconnectSocial = (method) => {
+  const requestDisconnect = () => ({ type: PROFILE_DISCONNECT_REQUEST });
+  const success = () => ({ type: PROFILE_DISCONNECT_SUCCESS });
+  const failure = error => ({ type: PROFILE_DISCONNECT_FAILURE, error });
+
+  return (dispatch) => {
+    dispatch(requestDisconnect());
+
+    return method
+      .then(
+        () => {
+          dispatch(success());
+          toast.success('Conta desconectada com sucesso', optionsSuccess);
+        },
+        (error) => {
+          dispatch(failure(error));
+          toast.error('Erro ao desconectar a conta', optionsError);
+        },
+      );
+  };
+};
+
+export const disconnectFacebook = (response) => {
+  const { accessToken, uid } = response;
+  return fetchDisconnectSocial(profileEditService.disconnectFacebook(accessToken, uid));
+};
+
+export const disconnectGoogle = (response) => {
+  const { accessToken, uid } = response;
+  return fetchDisconnectSocial(profileEditService.disconnectGoogle(accessToken, uid));
 };

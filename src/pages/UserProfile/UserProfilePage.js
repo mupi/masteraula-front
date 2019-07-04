@@ -18,14 +18,16 @@ class UserProfilePage extends React.Component {
   render() {
     const {
       stateList, isFetchingStatesList, responseFacebook, responseGoogle, socialAccounts,
+      disconnectFacebook, disconnectGoogle,
     } = this.props;
+
+    const socialAccountFacebook = (socialAccounts ? socialAccounts.filter(item => item.provider.toString().trim() === 'facebook') : null);
+    const socialAccountGoogle = (socialAccounts ? socialAccounts.filter(item => item.provider.toString().trim() === 'google') : null);
 
     if (isFetchingStatesList) {
       return (
         <HomeUserPage>
           <Alert className="alert--warning" color="warning">
-
-
             Carregando ...
           </Alert>
         </HomeUserPage>
@@ -55,8 +57,17 @@ class UserProfilePage extends React.Component {
             </Row>
             <Row style={{ marginTop: '20px' }}>
               <Col className="text-center">
-                {socialAccounts
-                  ? <span>Facebook vinculado</span>
+                {socialAccountFacebook
+                  ? (
+                    <FacebookLogin
+                      appId={facebookLoginId}
+                      fields="name,email,picture"
+                      callback={disconnectFacebook}
+                      icon="fa-facebook"
+                      size="small"
+                      textButton="Desvincular do Facebook"
+                    />
+                  )
                   : (
                     <FacebookLogin
                       appId={facebookLoginId}
@@ -67,14 +78,21 @@ class UserProfilePage extends React.Component {
                       textButton="Vincular com Facebook"
                     />
                   )}
-                {socialAccounts
-                  ? <span>Google vinculado</span>
+                {socialAccountGoogle
+                  ? (
+                    <GoogleLogin
+                      clientId={googleLoginId}
+                      buttonText="Vincular com Google"
+                      onSuccess={disconnectGoogle}
+                      cookiePolicy="single_host_origin"
+                      className="google-login"
+                    />
+                  )
                   : (
                     <GoogleLogin
                       clientId={googleLoginId}
                       buttonText="Vincular com Google"
                       onSuccess={responseGoogle}
-                    // onFailure={responseGoogle}
                       cookiePolicy="single_host_origin"
                       className="google-login"
                     />
