@@ -1,5 +1,7 @@
 import React from 'react';
-import { Alert, Row, Col, Container } from 'reactstrap';
+import {
+  Alert, Row, Col, Container,
+} from 'reactstrap';
 import UserProfileContainer from 'containers/UserProfileContainer';
 import UserPasswordProfileContainer from 'containers/UserPasswordProfileContainer';
 import FacebookLogin from 'react-facebook-login';
@@ -72,7 +74,7 @@ class UserProfilePage extends React.Component {
                       clientId={googleLoginId}
                       buttonText="Vincular com Google"
                       onSuccess={responseGoogle}
-            // onFailure={responseGoogle}
+                    // onFailure={responseGoogle}
                       cookiePolicy="single_host_origin"
                       className="google-login"
                     />
