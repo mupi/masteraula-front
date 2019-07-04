@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Row, Col } from 'reactstrap';
+import { Alert, Row, Col, Container } from 'reactstrap';
 import UserProfileContainer from 'containers/UserProfileContainer';
 import UserPasswordProfileContainer from 'containers/UserPasswordProfileContainer';
 import FacebookLogin from 'react-facebook-login';
@@ -45,41 +45,41 @@ class UserProfilePage extends React.Component {
           </h5>
           <UserProfileContainer stateList={stateList} />
           <UserPasswordProfileContainer />
-          <Row style={{ marginTop: '20px' }}>
-            <Col className="text-center">
-              <span className="vertical-align">
-
-
-          Vincular contas
-              </span>
-            </Col>
-            <Col className="text-center">
-              {socialAccounts
-                ? <span>Facebook vinculado</span>
-                : (
-                  <FacebookLogin
-                    appId={facebookLoginId}
-                    fields="name,email,picture"
-                    callback={responseFacebook}
-                    icon="fa-facebook"
-                    size="small"
-                    textButton="Entrar com Facebook"
-                  />
-                )}
-              {socialAccounts
-                ? <span>Google vinculado</span>
-                : (
-                  <GoogleLogin
-                    clientId={googleLoginId}
-                    buttonText="Entrar com Google"
-                    onSuccess={responseGoogle}
-          // onFailure={responseGoogle}
-                    cookiePolicy="single_host_origin"
-                    className="google-login"
-                  />
-                )}
-            </Col>
-          </Row>
+          <Container>
+            <Row className="sub-section-user-title">
+              <h5>
+              Vincular contas
+              </h5>
+            </Row>
+            <Row style={{ marginTop: '20px' }}>
+              <Col className="text-center">
+                {socialAccounts
+                  ? <span>Facebook vinculado</span>
+                  : (
+                    <FacebookLogin
+                      appId={facebookLoginId}
+                      fields="name,email,picture"
+                      callback={responseFacebook}
+                      icon="fa-facebook"
+                      size="small"
+                      textButton="Vincular com Facebook"
+                    />
+                  )}
+                {socialAccounts
+                  ? <span>Google vinculado</span>
+                  : (
+                    <GoogleLogin
+                      clientId={googleLoginId}
+                      buttonText="Vincular com Google"
+                      onSuccess={responseGoogle}
+            // onFailure={responseGoogle}
+                      cookiePolicy="single_host_origin"
+                      className="google-login"
+                    />
+                  )}
+              </Col>
+            </Row>
+          </Container>
         </div>
       </HomeUserPage>
     );
