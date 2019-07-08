@@ -111,6 +111,7 @@ export function profileEdit(state = initialState, action) {
       return Object.assign({}, state, {
         isFetching: true,
         error: null,
+        idSocialAccount: state.idSocialAccount,
       });
     case PROFILE_DISCONNECT_SUCCESS:
       return Object.assign({}, state, {

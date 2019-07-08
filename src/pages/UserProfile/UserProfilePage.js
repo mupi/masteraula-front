@@ -1,12 +1,13 @@
 import React from 'react';
 import {
-  Alert, Row, Col, Container,
+  Alert, Row, Col, Container, Button,
 } from 'reactstrap';
 import UserProfileContainer from 'containers/UserProfileContainer';
 import UserPasswordProfileContainer from 'containers/UserPasswordProfileContainer';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import { facebookLoginId, googleLoginId } from 'helpers/config';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HomeUserPage from '../HomeUser/HomeUserPage';
 
 class UserProfilePage extends React.Component {
@@ -18,12 +19,11 @@ class UserProfilePage extends React.Component {
   render() {
     const {
       stateList, isFetchingStatesList, responseFacebook, responseGoogle, socialAccounts,
-      disconnectFacebook, disconnectGoogle,
+      disconnectSocialAccount,
     } = this.props;
 
     const socialAccountFacebook = (socialAccounts ? socialAccounts.filter(item => item.provider.toString().trim() === 'facebook') : null);
     const socialAccountGoogle = (socialAccounts ? socialAccounts.filter(item => item.provider.toString().trim() === 'google') : null);
-
     if (isFetchingStatesList) {
       return (
         <HomeUserPage>
@@ -48,8 +48,33 @@ class UserProfilePage extends React.Component {
             Conte um pouco sobre você
           </h5>
           <UserProfileContainer stateList={stateList} />
-          <UserPasswordProfileContainer />
-          <Container>
+          {socialAccounts.length === 0
+            ? <UserPasswordProfileContainer />
+            : (
+              <Container>
+                <Row className="sub-section-user-title">
+                  <h5>
+                  Vincular contas
+                  </h5>
+                </Row>
+                <Row style={{ marginTop: '20px' }}>
+                  <Col className="text-center">
+                    {socialAccountFacebook && socialAccountFacebook.length > 0
+                      ? (
+                        <span>Conta vinculada com Facebook</span>
+                      )
+                      : ''}
+                    {socialAccountGoogle && socialAccountGoogle.length > 0
+                      ? (
+                        <span>Conta vinculada com Google</span>
+                      )
+                      : ''}
+                  </Col>
+                </Row>
+              </Container>
+            )
+          }
+          { /* <Container>
             <Row className="sub-section-user-title">
               <h5>
               Vincular contas
@@ -57,16 +82,18 @@ class UserProfilePage extends React.Component {
             </Row>
             <Row style={{ marginTop: '20px' }}>
               <Col className="text-center">
-                {socialAccountFacebook
+                {socialAccountFacebook && socialAccountFacebook.length > 0
                   ? (
-                    <FacebookLogin
-                      appId={facebookLoginId}
-                      fields="name,email,picture"
-                      callback={disconnectFacebook}
-                      icon="fa-facebook"
-                      size="small"
-                      textButton="Desvincular do Facebook"
-                    />
+                    <Button
+                      value={socialAccountFacebook[0].id}
+                      title="Desvincular do Facebook"
+                      onClick={() => disconnectSocialAccount(socialAccountFacebook[0].id)}
+                      className="kep-login-facebook small"
+                    >
+                      <FontAwesomeIcon icon={['fab', 'facebook']} className="btn__icon" />
+                      {' '}
+                      Desvincular do Facebook
+                    </Button>
                   )
                   : (
                     <FacebookLogin
@@ -78,15 +105,18 @@ class UserProfilePage extends React.Component {
                       textButton="Vincular com Facebook"
                     />
                   )}
-                {socialAccountGoogle
+                {socialAccountGoogle && socialAccountGoogle.length > 0
                   ? (
-                    <GoogleLogin
-                      clientId={googleLoginId}
-                      buttonText="Vincular com Google"
-                      onSuccess={disconnectGoogle}
-                      cookiePolicy="single_host_origin"
+                    <Button
+                      value={socialAccountGoogle[0].id}
+                      title="Desvincular do Google"
+                      onClick={() => disconnectSocialAccount(socialAccountGoogle[0].id)}
                       className="google-login"
-                    />
+                    >
+                      <FontAwesomeIcon icon={['fab', 'google']} className="btn__icon" />
+                      {' '}
+                      Desvincular do Google
+                    </Button>
                   )
                   : (
                     <GoogleLogin
@@ -99,7 +129,7 @@ class UserProfilePage extends React.Component {
                   )}
               </Col>
             </Row>
-          </Container>
+                </Container> */}
         </div>
       </HomeUserPage>
     );

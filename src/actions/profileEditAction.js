@@ -184,15 +184,15 @@ export const connectGoogle = (response) => {
 };
 
 // Disconnect from social accounts in MyProfile
-const fetchDisconnectSocial = (method) => {
-  const requestDisconnect = () => ({ type: PROFILE_DISCONNECT_REQUEST });
+export const fetchDisconnectSocial = (idSocialAccount) => {
+  const requestDisconnect = id => ({ type: PROFILE_DISCONNECT_REQUEST, idSocialAccount: id });
   const success = () => ({ type: PROFILE_DISCONNECT_SUCCESS });
   const failure = error => ({ type: PROFILE_DISCONNECT_FAILURE, error });
 
   return (dispatch) => {
-    dispatch(requestDisconnect());
+    dispatch(requestDisconnect(idSocialAccount));
 
-    return method
+    return profileEditService.disconnectSocialAccount(idSocialAccount)
       .then(
         () => {
           dispatch(success());
@@ -204,14 +204,4 @@ const fetchDisconnectSocial = (method) => {
         },
       );
   };
-};
-
-export const disconnectFacebook = (response) => {
-  const { accessToken, uid } = response;
-  return fetchDisconnectSocial(profileEditService.disconnectFacebook(accessToken, uid));
-};
-
-export const disconnectGoogle = (response) => {
-  const { accessToken, uid } = response;
-  return fetchDisconnectSocial(profileEditService.disconnectGoogle(accessToken, uid));
 };
