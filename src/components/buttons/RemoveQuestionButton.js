@@ -21,7 +21,7 @@ const RemoveQuestionButton = ({
   >
     {label}
   </Button>
-); 
+);
 
 RemoveQuestionButton.propTypes = {
   questionId: PropTypes.number,

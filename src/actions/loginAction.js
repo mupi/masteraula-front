@@ -1,5 +1,5 @@
 import { loginService } from 'services';
-import { SubmissionError } from 'redux-form';
+import { SubmissionError, stopSubmit } from 'redux-form';
 
 import { history } from 'helpers/history';
 import { updateSession, deleteSession } from 'actions/sessionAction';
@@ -13,13 +13,50 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT = 'LOGOUT';
 export const LOGIN_TOGGLE_MODAL = 'LOGIN_TOGGLE_MODAL';
 
-export const fetchLogin = (username, password) => {
-  function requestLogin() { return { type: LOGIN_REQUEST }; }
-  function success() { return { type: LOGIN_SUCCESS }; }
-  function failure(error) { return { type: LOGIN_FAILURE, error }; }
+const fetchSocialLogin = (method) => {
+  const requestLogin = () => ({ type: LOGIN_REQUEST });
+  const success = () => ({ type: LOGIN_SUCCESS });
+  const failure = error => ({ type: LOGIN_FAILURE, error });
 
   return (dispatch) => {
-    dispatch(requestLogin(username));
+    dispatch(requestLogin());
+
+    return method
+      .then(
+        (session) => {
+          dispatch(success());
+          dispatch(updateSession(session));
+          dispatch(hideModal());
+          history.push('/question-base/1');
+        },
+        (error) => {
+          dispatch(stopSubmit('login', {
+            _error: error,
+          }));
+          dispatch(failure(error));
+        },
+      );
+  };
+};
+
+export const loginFacebook = (response) => {
+  const { accessToken } = response;
+  return fetchSocialLogin(loginService.loginFacebook(accessToken));
+};
+
+export const loginGoogle = (response) => {
+  const { accessToken } = response;
+  return fetchSocialLogin(loginService.loginGoogle(accessToken));
+};
+
+export const fetchLogin = (username, password) => {
+  const requestLogin = () => ({ type: LOGIN_REQUEST });
+  const success = () => ({ type: LOGIN_SUCCESS });
+  const failure = error => ({ type: LOGIN_FAILURE, error });
+
+  return (dispatch) => {
+    dispatch(requestLogin());
+
     return loginService.login(username, password)
       .then(
         (session) => {
@@ -47,10 +84,10 @@ export const logout = () => (dispatch) => {
 };
 
 export const toggleModal = (modal) => {
-  function requestToggleModal(modal) {
+  function requestToggleModal(m) {
     return {
       type: LOGIN_TOGGLE_MODAL,
-      modal: !modal,
+      modal: !m,
     };
   }
 

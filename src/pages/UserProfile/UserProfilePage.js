@@ -1,7 +1,13 @@
 import React from 'react';
-import { Alert } from 'reactstrap';
+import {
+  Alert, Row, Col, Container, Button, Label,
+} from 'reactstrap';
 import UserProfileContainer from 'containers/UserProfileContainer';
 import UserPasswordProfileContainer from 'containers/UserPasswordProfileContainer';
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
+import { facebookLoginId, googleLoginId } from 'helpers/config';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HomeUserPage from '../HomeUser/HomeUserPage';
 
 class UserProfilePage extends React.Component {
@@ -12,14 +18,17 @@ class UserProfilePage extends React.Component {
 
   render() {
     const {
-      stateList, isFetchingStatesList,
+      stateList, isFetchingStatesList, responseFacebook, responseGoogle, socialAccounts,
+      disconnectSocialAccount, user,
     } = this.props;
 
+    const socialAccountFacebook = (socialAccounts ? socialAccounts.filter(item => item.provider.toString().trim() === 'facebook') : null);
+    const socialAccountGoogle = (socialAccounts ? socialAccounts.filter(item => item.provider.toString().trim() === 'google') : null);
     if (isFetchingStatesList) {
       return (
         <HomeUserPage>
           <Alert className="alert--warning" color="warning">
-              Carregando ...
+            Carregando ...
           </Alert>
         </HomeUserPage>
       );
@@ -29,13 +38,112 @@ class UserProfilePage extends React.Component {
       <HomeUserPage>
         <div className="l-user-profile">
           <h3 className="text-center">
-              Meu Perfil
+
+
+            Meu Perfil
           </h3>
           <h5 className="text-center">
-              Conte um pouco sobre você
+
+
+            Conte um pouco sobre você
           </h5>
           <UserProfileContainer stateList={stateList} />
-          <UserPasswordProfileContainer />
+          {socialAccounts && socialAccounts.length === 0
+            ? <UserPasswordProfileContainer /> : ''}
+          {socialAccounts && socialAccounts.length > 0 ? (
+              <Container>
+                <Row className="section-user-title">
+                  <h4>
+                    Minha Conta
+                  </h4>
+                </Row>
+                <Row>
+                  <Col sm="4" xs="12">
+                    Email
+                  </Col>
+                  <Col sm="4" xs="12" className="text-center">
+                    <Label>
+                      {user.email}
+                    </Label>
+                  </Col>
+                </Row>
+                <Row className="sub-section-user-title">
+                  <h5>
+                  Vincular contas
+                  </h5>
+                </Row>
+                <Row style={{ marginTop: '20px' }}>
+                  <Col className="text-center">
+                    {socialAccountFacebook && socialAccountFacebook.length > 0
+                      ? (
+                        <span>Conta vinculada com Facebook</span>
+                      )
+                      : ''}
+                    {socialAccountGoogle && socialAccountGoogle.length > 0
+                      ? (
+                        <span>Conta vinculada com Google</span>
+                      )
+                      : ''}
+                  </Col>
+                </Row>
+              </Container>
+          ) : ''}
+          { /* <Container>
+            <Row className="sub-section-user-title">
+              <h5>
+              Vincular contas
+              </h5>
+            </Row>
+            <Row style={{ marginTop: '20px' }}>
+              <Col className="text-center">
+                {socialAccountFacebook && socialAccountFacebook.length > 0
+                  ? (
+                    <Button
+                      value={socialAccountFacebook[0].id}
+                      title="Desvincular do Facebook"
+                      onClick={() => disconnectSocialAccount(socialAccountFacebook[0].id)}
+                      className="kep-login-facebook small"
+                    >
+                      <FontAwesomeIcon icon={['fab', 'facebook']} className="btn__icon" />
+                      {' '}
+                      Desvincular do Facebook
+                    </Button>
+                  )
+                  : (
+                    <FacebookLogin
+                      appId={facebookLoginId}
+                      fields="name,email,picture"
+                      callback={responseFacebook}
+                      icon="fa-facebook"
+                      size="small"
+                      textButton="Vincular com Facebook"
+                    />
+                  )}
+                {socialAccountGoogle && socialAccountGoogle.length > 0
+                  ? (
+                    <Button
+                      value={socialAccountGoogle[0].id}
+                      title="Desvincular do Google"
+                      onClick={() => disconnectSocialAccount(socialAccountGoogle[0].id)}
+                      className="google-login"
+                    >
+                      <FontAwesomeIcon icon={['fab', 'google']} className="btn__icon" />
+                      {' '}
+                      Desvincular do Google
+                    </Button>
+                  )
+                  : (
+                    <GoogleLogin
+                      clientId={googleLoginId}
+                      buttonText="Vincular com Google"
+                      onSuccess={responseGoogle}
+                      cookiePolicy="single_host_origin"
+                      className="google-login"
+                    />
+                  )}
+              </Col>
+            </Row>
+                </Container> */}
         </div>
       </HomeUserPage>
     );

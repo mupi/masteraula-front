@@ -190,3 +190,38 @@ input.rw-input-reset{
 .rdw-option-wrapper {
   height: 25px;
 }
+
+
+/*React facebook and Google button style*/
+.kep-login-facebook, .google-login {
+  font-family: "Lato", serif !important;
+  letter-spacing: 0.5px;
+  font-size: 16px !important;
+  font-weight: normal !important;
+  border-radius: 5px !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+}
+
+.kep-login-facebook{
+  background-color: #4c69ba !important;
+  border: calc(.06887vw + .67769px) solid #4c69ba !important;
+  color: $color-ma-white;
+  border: 1px solid transparent !important;
+}
+.kep-login-facebook:hover {
+  border: 1px solid #aeb2bd !important;
+}
+
+.google-login{
+  background-color: $color-ma-white !important;
+  color: rgba(0, 0, 0, 0.54) !important;
+  border: 1px solid transparent !important;
+}
+.google-login:hover {
+  border: 1px solid #e0e2e6 !important;
+}
+
+.hr5 {
+  border-top: 1px solid $color-ma-lightgray;
+  color: $color-ma-lightgray;
+}

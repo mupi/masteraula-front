@@ -3,8 +3,11 @@ import {
   PROFILE_PASSWORD_EDIT_REQUEST, PROFILE_PASSWORD_EDIT_SUCCESS, PROFILE_PASSWORD_EDIT_FAILURE,
   PROFILE_GET_STATES_REQUEST, PROFILE_GET_STATES_SUCCESS, PROFILE_GET_STATES_FAILURE,
   PROFILE_GET_CITIES_REQUEST, PROFILE_GET_CITIES_SUCCESS, PROFILE_GET_CITIES_FAILURE,
+  PROFILE_DISCONNECT_REQUEST, PROFILE_DISCONNECT_SUCCESS, PROFILE_DISCONNECT_FAILURE,
+
 } from 'actions/profileEditAction';
 import { toast } from 'react-toastify';
+import { PROFILE_CONNECT_REQUEST, PROFILE_CONNECT_SUCCESS, PROFILE_CONNECT_FAILURE } from '../actions/profileEditAction';
 
 const initialState = {};
 const optionsSuccess = {
@@ -63,7 +66,7 @@ export function profileEdit(state = initialState, action) {
       });
     }
     case PROFILE_EDIT_FAILURE:
-      //toast.error(`${action.error}`.split(':')[1], optionsError);
+      // toast.error(`${action.error}`.split(':')[1], optionsError);
       toast.error(action.error, optionsError);
       return Object.assign({}, state, {
         isFetching: false,
@@ -87,6 +90,37 @@ export function profileEdit(state = initialState, action) {
         isFetching: false,
         error: action.error,
         session: null,
+      });
+    case PROFILE_CONNECT_REQUEST:
+      return Object.assign({}, state, {
+        isFetching: true,
+        error: null,
+      });
+    case PROFILE_CONNECT_SUCCESS: {
+      return Object.assign({}, state, {
+        isFetching: false,
+      });
+    }
+    case PROFILE_CONNECT_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+        session: null,
+      });
+    case PROFILE_DISCONNECT_REQUEST:
+      return Object.assign({}, state, {
+        isFetching: true,
+        error: null,
+        idSocialAccount: state.idSocialAccount,
+      });
+    case PROFILE_DISCONNECT_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+      });
+    case PROFILE_DISCONNECT_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
       });
     default:
       return state;

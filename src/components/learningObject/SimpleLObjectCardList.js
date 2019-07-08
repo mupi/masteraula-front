@@ -5,9 +5,8 @@ import SimpleLObjectCard from './SimpleLObjectCard';
 
 const SimpleLObjectCardList = (props) => {
   const {
-    objects, count, sm, textResult = 'Objetos de aprendizagem encontrados',
-    addSelectedObjectToQuestion, showSelectedObjects = false,
-    selectedObjectList,
+    objects, sm,
+    addSelectedObjectToQuestion,
   } = props;
   return (
     <Row>
@@ -22,13 +21,11 @@ const SimpleLObjectCardList = (props) => {
 
 SimpleLObjectCardList.propTypes = {
   objects: PropTypes.arrayOf(PropTypes.shape({})),
-  count: PropTypes.number,
   sm: PropTypes.string,
 };
 
 SimpleLObjectCardList.defaultProps = {
   objects: [],
-  count: 0,
   sm: '4',
 };
 
