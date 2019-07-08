@@ -48,7 +48,7 @@ class UserProfilePage extends React.Component {
             Conte um pouco sobre você
           </h5>
           <UserProfileContainer stateList={stateList} />
-          {socialAccounts.length === 0
+          {socialAccounts && socialAccounts.length === 0
             ? <UserPasswordProfileContainer />
             : (
               <Container>
