@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Alert, Row, Col, Container, Button,
+  Alert, Row, Col, Container, Button, Label,
 } from 'reactstrap';
 import UserProfileContainer from 'containers/UserProfileContainer';
 import UserPasswordProfileContainer from 'containers/UserPasswordProfileContainer';
@@ -19,7 +19,7 @@ class UserProfilePage extends React.Component {
   render() {
     const {
       stateList, isFetchingStatesList, responseFacebook, responseGoogle, socialAccounts,
-      disconnectSocialAccount,
+      disconnectSocialAccount, user,
     } = this.props;
 
     const socialAccountFacebook = (socialAccounts ? socialAccounts.filter(item => item.provider.toString().trim() === 'facebook') : null);
@@ -49,9 +49,24 @@ class UserProfilePage extends React.Component {
           </h5>
           <UserProfileContainer stateList={stateList} />
           {socialAccounts && socialAccounts.length === 0
-            ? <UserPasswordProfileContainer />
-            : (
+            ? <UserPasswordProfileContainer /> : ''}
+          {socialAccounts && socialAccounts.length > 0 ? (
               <Container>
+                <Row className="section-user-title">
+                  <h4>
+                    Minha Conta
+                  </h4>
+                </Row>
+                <Row>
+                  <Col sm="4" xs="12">
+                    Email
+                  </Col>
+                  <Col sm="4" xs="12" className="text-center">
+                    <Label>
+                      {user.email}
+                    </Label>
+                  </Col>
+                </Row>
                 <Row className="sub-section-user-title">
                   <h5>
                   Vincular contas
@@ -72,8 +87,7 @@ class UserProfilePage extends React.Component {
                   </Col>
                 </Row>
               </Container>
-            )
-          }
+          ) : ''}
           { /* <Container>
             <Row className="sub-section-user-title">
               <h5>

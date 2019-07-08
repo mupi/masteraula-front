@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
   stateList: state.profileEdit.stateList,
   isFetchingStatesList: state.profileEdit.isFetchingStatesList,
   socialAccounts: state.session.session.user.soccialaccounts,
+  user: state.session.session.user,
 });
 
 const mapDispatchToProps = dispatch => ({
