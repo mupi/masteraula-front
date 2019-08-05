@@ -174,13 +174,13 @@ padding-right: 1em;
   
 
   &__header{
-    padding: 12px 10px 5px;
+    padding: 9px 10px 5px;
     margin-bottom: 0;
     background-color: rgba(0, 0, 0, 0.03);
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
    
     @include for-tablet-portrait-up{
-      height:6em;
+      height:7em;
       overflow: hidden;
     }
 
