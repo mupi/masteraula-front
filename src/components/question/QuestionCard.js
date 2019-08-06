@@ -57,7 +57,7 @@ const QuestionCard = (props) => {
         <div className="question-card__info-section">
           {question.disciplines && question.disciplines.map(discipline => (
             <Button
-              key={`Q-${discipline.id}`}
+              key={discipline.id}
               className="question-card__info-section-item question-card__info-section-item--pink"
               onClick={() => addSelectedDisciplineFilter(discipline.id.toString())}
             >

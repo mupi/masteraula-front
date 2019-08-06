@@ -24,7 +24,7 @@ const QuestionList = (props) => {
         ) : ''}
       </Col>
       {questions.map(question => (
-        <Col sm={sm} lg="3" xs="12" key={question.id} className="question-card">
+        <Col sm={sm} lg="3" xs="12" key={`Q${question.id}`} className="question-card">
           <QuestionCard question={question} {...props} />
         </Col>
       ))}
