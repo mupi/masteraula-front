@@ -49,6 +49,11 @@ const QuestionCard = (props) => {
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
 
       <CardHeader className="question-card__header">
+        <div className="question-card__id">
+          Questão N°
+          {' '}
+          {question.id}
+        </div>
         <div className="question-card__info-section">
           {question.disciplines && question.disciplines.map(discipline => (
             <Button
