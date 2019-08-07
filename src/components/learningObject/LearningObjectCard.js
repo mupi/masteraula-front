@@ -22,6 +22,11 @@ const LearningObjectCard = (props) => {
   return (
     <Card className="h-100 object-card__full">
       <CardHeader className="object-card__header">
+        <div className="object-card__id">
+          Objeto N°
+          {' '}
+          {object.id}
+        </div>
         <div className="object-card__info-section">
           {objectTypeImage ? (
             <Button

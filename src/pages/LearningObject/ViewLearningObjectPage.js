@@ -44,9 +44,9 @@ class ViewLearningObjectPage extends Component {
             <BackUsingHistory />
           </Col>
         </Row>
-        <Row className="c-question__tittle-section c-question--space-for-questionyear">
+        <Row className="l-learning-object__tittle-section">
           <Col>
-            <h4>
+            <h4> 
               <FontAwesomeIcon icon="image" />
               {' '}
               Objeto de aprendizagem N°
