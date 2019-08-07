@@ -15,6 +15,11 @@ const LearningObjectContent = (props) => {
           <RemoveObjectFromQuestionButton objectId={learningObject.id} removeSelectedObjectToQuestion={removeSelectedObjectToQuestion} />
         </div>
       ) : ''}
+      <div className="object-card__id">
+        Objeto N°
+        {' '}
+        {learningObject.id}
+      </div>
       {(learningObject.image) ? (
         <div>
           <img alt="objeto-aprendizagem" className="c-learning-object__img" src={learningObject.image} />
