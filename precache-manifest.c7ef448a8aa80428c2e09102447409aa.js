@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/static/media/clock.d8d94d4c.png"
   },
   {
-    "revision": "030699335ab78fc6a4f5",
-    "url": "/static/css/main.fa391144.chunk.css"
+    "revision": "69f95bf363c2a76532aa",
+    "url": "/static/css/main.5f387250.chunk.css"
   },
   {
     "revision": "42ac5946195a7306e2a5",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/static/media/banner.ef2b8468.jpg"
   },
   {
-    "revision": "c6039f1739979cd2d9fc",
+    "revision": "76fbe90ac4f9ca4d5eba",
     "url": "/static/js/2.aedac595.chunk.js"
   },
   {
@@ -44,8 +44,8 @@ self.__precacheManifest = [
     "url": "/static/media/rw-widgets.792dcd18.svg"
   },
   {
-    "revision": "030699335ab78fc6a4f5",
-    "url": "/static/js/main.93f28354.chunk.js"
+    "revision": "69f95bf363c2a76532aa",
+    "url": "/static/js/main.ca649e28.chunk.js"
   },
   {
     "revision": "b1225a53dbba5758eb500953f5e4750c",
@@ -84,11 +84,11 @@ self.__precacheManifest = [
     "url": "/static/media/sidebar-background-2.5e04d301.jpg"
   },
   {
-    "revision": "c6039f1739979cd2d9fc",
-    "url": "/static/css/2.06c7bf0a.chunk.css"
+    "revision": "76fbe90ac4f9ca4d5eba",
+    "url": "/static/css/2.04ad89f9.chunk.css"
   },
   {
-    "revision": "8f0be02a7896fe72e043ba76585c3c78",
+    "revision": "888d1be33f7ba07785542d68f72492c8",
     "url": "/index.html"
   }
 ];
