@@ -141,3 +141,13 @@
       }
    }
 }
+
+.c-menu-button-a, .c-menu-button-a:hover, .c-menu-button-a:not(:disabled){
+    border: none;
+    padding: 10px;
+    background: transparent;
+}
+
+.c-menu-button-a:focus{
+    box-shadow: none;
+}
