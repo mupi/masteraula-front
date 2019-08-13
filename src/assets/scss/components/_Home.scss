@@ -142,17 +142,21 @@
    }
 }
 
-.c-menu-button-a, .c-menu-button-a:hover, .c-menu-button-a:not(:disabled){
+.c-menu-button-a, {
     border: none;
     padding: 10px;
     background: transparent;
+
+    &:hover{
+        font-weight: bold;
+    }
+
+    &:focus{
+        box-shadow: none;
+    }
 }
 
-.c-menu-button-a:focus{
-    box-shadow: none;
-}
-
-.c-menu-button-a.btn-secondary:not(:disabled):not(.disabled):active, .c-menu-button-a.btn-secondary:not(:disabled):not(.disabled).active, .show > .c-menu-button-a.btn-secondary.dropdown-toggle{
+.c-menu-button-a:not(:disabled), .c-menu-button-a.btn-secondary:not(:disabled):not(.disabled):active, .c-menu-button-a.btn-secondary:not(:disabled):not(.disabled).active, .show > .c-menu-button-a.btn-secondary.dropdown-toggle{
     background-color: transparent;
     border-color: transparent;
 }
