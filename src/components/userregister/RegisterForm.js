@@ -57,6 +57,7 @@ const RegisterForm = (props) => {
           icon="fa-facebook"
           size="small"
           textButton="Cadastrar com Facebook"
+          isMobile={false}
         />
         <GoogleLogin
           clientId={googleLoginId}

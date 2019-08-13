@@ -66,6 +66,7 @@ const Login2Form = (props) => {
         icon="fa-facebook"
         size="small"
         textButton="Entrar com Facebook"
+        isMobile={false}
       />
       <GoogleLogin
         clientId={googleLoginId}
