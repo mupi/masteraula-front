@@ -151,3 +151,8 @@
 .c-menu-button-a:focus{
     box-shadow: none;
 }
+
+.c-menu-button-a.btn-secondary:not(:disabled):not(.disabled):active, .c-menu-button-a.btn-secondary:not(:disabled):not(.disabled).active, .show > .c-menu-button-a.btn-secondary.dropdown-toggle{
+    background-color: transparent;
+    border-color: transparent;
+}
