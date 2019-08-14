@@ -70,6 +70,17 @@ function resendEmail(email, password) {
     .then(detail => detail);
 }
 
+export const handleSocialResponse = response => response.json().then((data) => {
+  if (!response.ok) {
+    if (data[Object.keys(data)[0]].includes('Define callback_url in view')) {
+      return Promise.reject('Processo de cadastro cancelado');
+    }
+    return Promise.reject(data[Object.keys(data)[0]]);
+  }
+
+  return data;
+});
+
 const fetchSocialRegister = (accessToken, code, provider) => {
   const requestOptions = {
     method: 'POST',
@@ -78,13 +89,8 @@ const fetchSocialRegister = (accessToken, code, provider) => {
   };
 
   return fetch(`${apiUrl}/rest-auth/sign-up/${provider}/`, requestOptions)
-    .then(
-      handleResponse,
-      () => Promise.reject('Problemas de conexão com o banco de dados'),
-    )
-    .then(
-      session => session,
-    );
+    .then(handleSocialResponse)
+    .then(session => session);
 };
 
 const registerFacebook = accessToken => fetchSocialRegister(accessToken, facebookLoginId, 'facebook');
