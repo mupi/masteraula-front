@@ -50,6 +50,17 @@ const login = (email, password) => {
     );
 };
 
+export const handleSocialResponse = response => response.json().then((data) => {
+  if (!response.ok) {
+    if (data[Object.keys(data)[0]].includes('Define callback_url in view')) {
+      return Promise.reject('Processo de login cancelado');
+    }
+    return Promise.reject(data[Object.keys(data)[0]]);
+  }
+
+  return data;
+});
+
 const fetchSocialLogin = (accessToken, code, provider) => {
   const requestOptions = {
     method: 'POST',
@@ -59,7 +70,7 @@ const fetchSocialLogin = (accessToken, code, provider) => {
 
   return fetch(`${apiUrl}/rest-auth/sign-in/${provider}/`, requestOptions)
     .then(
-      handleResponse,
+      handleSocialResponse,
       () => Promise.reject('Problemas de conexão com o banco de dados'),
     )
     .then(
