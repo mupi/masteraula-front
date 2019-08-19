@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { history } from 'helpers/history';
 
 
 /*
@@ -25,6 +26,8 @@ const LearningObjectContent = (props) => {
     learningObject,
     removeSelectedObjectToQuestion,
     options,
+    addSelectedObjectToQuestion,
+    setObjectIdToNewQuestion,
   } = props;
 
   return (
@@ -43,7 +46,10 @@ const LearningObjectContent = (props) => {
             </Link>
           ) : ''}
           {options.showCreateQuestionButton ? (
-            <Button title="Adicionar objeto à nova questão">
+            <Button
+              title="Adicionar objeto à nova questão"
+              onClick={() => { addSelectedObjectToQuestion(learningObject); setObjectIdToNewQuestion(learningObject.id); history.push('/create-question'); }}
+            >
               <FontAwesomeIcon icon="plus" />
             </Button>
           ) : ''}

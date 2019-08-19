@@ -494,7 +494,7 @@ class CreateQuestionPage extends Component {
                     icon="plus"
                     className="btn__icon"
                   />
-                Adicionar objeto
+                  Adicionar objeto
                 </Button>
               </Col>
             </Row>

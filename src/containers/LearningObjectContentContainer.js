@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { setObjectIdToNewQuestion } from 'actions/learningObjectAction';
 import LearningObjectContent from 'components/learningObject/LearningObjectContent';
+import { addSelectedObjectToQuestion, setObjectIdToNewQuestion } from 'actions/questionAction';
 
 
 // state.<reducer's name>.<property>
@@ -8,9 +8,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
-  setObjectIdToNewQuestion: () => dispatch(setObjectIdToNewQuestion()),
-
+  setObjectIdToNewQuestion: id => dispatch(setObjectIdToNewQuestion(id)),
+  addSelectedObjectToQuestion: object => dispatch(addSelectedObjectToQuestion(object)),
 });
 
 

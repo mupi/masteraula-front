@@ -8,6 +8,7 @@ import {
   CREATE_QUESTION, CREATE_QUESTION_SUCCESS, CREATE_QUESTION_FAILURE,
   ADD_SELECTED_OBJECT_QUESTION, REMOVE_SELECTED_OBJECT_QUESTION,
   RESET_SELECTED_OBJECTLIST_QUESTION,
+  SET_OBJECT_TO_NEW_QUESTION,
 } from 'actions/questionAction';
 import { DELETE_QUESTION, DELETE_QUESTION_SUCCESS, DELETE_QUESTION_FAILURE } from '../actions/questionAction';
 
@@ -164,10 +165,19 @@ export const question = (state = initialState, action) => {
       });
     }
     case RESET_SELECTED_OBJECTLIST_QUESTION: {
+      const newSelectedObjectList = state.selectedObjectList.filter(item => item.id === state.objectIdAddedToQuestion);
       return Object.assign({}, state, {
-        selectedObjectList: [],
+        selectedObjectList: newSelectedObjectList,
+        objectIdAddedToQuestion: undefined,
       });
     }
+
+    case SET_OBJECT_TO_NEW_QUESTION: {
+      return Object.assign({}, state, {
+        objectIdAddedToQuestion: action.objectIdAddedToQuestion,
+      });
+    }
+
     default:
       return state;
   }
