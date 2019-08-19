@@ -51,42 +51,42 @@ class UserProfilePage extends React.Component {
           {socialAccounts && socialAccounts.length === 0
             ? <UserPasswordProfileContainer /> : ''}
           {socialAccounts && socialAccounts.length > 0 ? (
-              <Container>
-                <Row className="section-user-title">
-                  <h4>
+            <Container>
+              <Row className="section-user-title">
+                <h4>
                     Minha Conta
-                  </h4>
-                </Row>
-                <Row>
-                  <Col sm="4" xs="12">
+                </h4>
+              </Row>
+              <Row>
+                <Col sm="4" xs="12">
                     Email
-                  </Col>
-                  <Col sm="4" xs="12" className="text-center">
-                    <Label>
-                      {user.email}
-                    </Label>
-                  </Col>
-                </Row>
-                <Row className="sub-section-user-title">
-                  <h5>
+                </Col>
+                <Col sm="4" xs="12" className="text-center">
+                  <Label>
+                    {user.email}
+                  </Label>
+                </Col>
+              </Row>
+              <Row className="sub-section-user-title">
+                <h5>
                   Vincular contas
-                  </h5>
-                </Row>
-                <Row style={{ marginTop: '20px' }}>
-                  <Col className="text-center">
-                    {socialAccountFacebook && socialAccountFacebook.length > 0
-                      ? (
-                        <span>Conta vinculada com Facebook</span>
-                      )
-                      : ''}
-                    {socialAccountGoogle && socialAccountGoogle.length > 0
-                      ? (
-                        <span>Conta vinculada com Google</span>
-                      )
-                      : ''}
-                  </Col>
-                </Row>
-              </Container>
+                </h5>
+              </Row>
+              <Row style={{ marginTop: '20px' }}>
+                <Col className="text-center">
+                  {socialAccountFacebook && socialAccountFacebook.length > 0
+                    ? (
+                      <span>Conta vinculada com Facebook</span>
+                    )
+                    : ''}
+                  {socialAccountGoogle && socialAccountGoogle.length > 0
+                    ? (
+                      <span>Conta vinculada com Google</span>
+                    )
+                    : ''}
+                </Col>
+              </Row>
+            </Container>
           ) : ''}
           { /* <Container>
             <Row className="sub-section-user-title">

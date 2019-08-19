@@ -16,6 +16,9 @@ import { Swipeable } from 'react-touch';
 
 import { history } from 'helpers/history';
 
+import CustomScroll from 'react-custom-scroll';
+
+
 const redirectURL = (e, openSidebar, isOpenSidebar, url) => {
   const responsiveMode = window.matchMedia('(max-width: 989px)');
   if (responsiveMode.matches) {
@@ -223,8 +226,11 @@ const SidebarWeb = ({
 
       <div id="sidebar-container">
         <div className="container-fluid">
+        <CustomScroll>
+                <div className="hola" >
           <Row className="sidebar-row">
             <Col xs="12">
+              
               <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
                 <ListGroupItem color="light">
                   <div className="document__new-document-option">
@@ -295,6 +301,8 @@ const SidebarWeb = ({
               </div>
             </Col>
           </Row>
+</div>
+              </CustomScroll>
         </div>
       </div>
     </div>
