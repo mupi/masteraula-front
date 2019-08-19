@@ -493,6 +493,8 @@ class CreateQuestionPage extends Component {
               <LearningObjectList
                 learningObjects={selectedObjectList}
                 removeOption
+                showTitle
+                showOperations
                 removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
               />
             ) : '' }

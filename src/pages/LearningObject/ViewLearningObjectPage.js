@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import { Alert, Row, Col } from 'reactstrap';
+import {
+  Alert,
+  Row,
+  Col,
+} from 'reactstrap';
 import LearningObjectContent from 'components/learningObject/LearningObjectContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionList from 'components/question/QuestionList';
@@ -46,7 +50,7 @@ class ViewLearningObjectPage extends Component {
         </Row>
         <Row className="l-learning-object__tittle-section">
           <Col>
-            <h4> 
+            <h4>
               <FontAwesomeIcon icon="image" />
               {' '}
               Objeto de aprendizagem N°
@@ -58,7 +62,7 @@ class ViewLearningObjectPage extends Component {
         <Row>
           <Col sm="12">
             <div className="l-learning-object">
-              { activeLearningObject ? <LearningObjectContent learningObject={activeLearningObject} /> : ''}
+              { activeLearningObject ? <LearningObjectContent learningObject={activeLearningObject} showOperations /> : ''}
             </div>
           </Col>
         </Row>

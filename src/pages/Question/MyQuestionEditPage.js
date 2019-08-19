@@ -548,6 +548,7 @@ class MyQuestionEditPage extends Component {
                 <LearningObjectList
                   learningObjects={selectedObjectList}
                   removeOption
+                  showTitle
                   removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
                 />
               ) : '' }

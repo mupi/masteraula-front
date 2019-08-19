@@ -28,6 +28,12 @@
       margin-bottom: 15px;
     }
 
+    &__operations{
+      text-align: right;
+      margin-top: -15px;
+      margin-bottom: 5px;
+    }
+
     &__img{
        /* @include for-phone-only {
               width: 100%;
