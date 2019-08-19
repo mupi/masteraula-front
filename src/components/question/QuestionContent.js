@@ -9,7 +9,7 @@ import LearningObjectList from 'components/learningObject/LearningObjectList';
 const QuestionContent = (question) => {
   /* eslint-disable react/no-danger */
   const {
-    statement, alternatives, resolution, learningObjects,
+    statement, alternatives, resolution, learningObjects, options,
   } = question;
 
   return (
@@ -18,6 +18,7 @@ const QuestionContent = (question) => {
         ? (
           <LearningObjectList
             learningObjects={learningObjects}
+            options={options}
           />
         ) : ''}
 

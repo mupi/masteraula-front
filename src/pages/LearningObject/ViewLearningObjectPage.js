@@ -5,10 +5,19 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import LearningObjectContent from 'components/learningObject/LearningObjectContent';
+import LearningObjectContentContainer from 'containers/LearningObjectContentContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionList from 'components/question/QuestionList';
 import BackUsingHistory from 'components/question/BackUsingHistory';
+
+// Learning object's options available for LearnningObjectContent
+const options = {
+  showOperations: true,
+  showViewButton: false,
+  showCreateQuestionButton: true,
+  removeOption: false,
+  showTitle: false,
+};
 
 class ViewLearningObjectPage extends Component {
   componentDidMount() {
@@ -40,7 +49,7 @@ class ViewLearningObjectPage extends Component {
         </HomeUserPage>
       );
     }
-
+    
     return (
       <HomeUserPage>
         <Row className="c-question__row-header-options c-question__row-header-options--fixed">
@@ -62,7 +71,7 @@ class ViewLearningObjectPage extends Component {
         <Row>
           <Col sm="12">
             <div className="l-learning-object">
-              { activeLearningObject ? <LearningObjectContent learningObject={activeLearningObject} showOperations /> : ''}
+              { activeLearningObject ? <LearningObjectContentContainer learningObject={activeLearningObject} options={options} /> : ''}
             </div>
           </Col>
         </Row>

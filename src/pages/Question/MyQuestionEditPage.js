@@ -381,6 +381,15 @@ const renderTopics = ({
   </Row>
 );
 
+// Learning object's options available for LearnningObjectContent
+const options = {
+  showOperations: true,
+  showViewButton: true,
+  showCreateQuestionButton: false,
+  removeOption: true,
+  showTitle: true,
+};
+
 
 class MyQuestionEditPage extends Component {
   constructor(props) {
@@ -547,8 +556,7 @@ class MyQuestionEditPage extends Component {
               { selectedObjectList ? (
                 <LearningObjectList
                   learningObjects={selectedObjectList}
-                  removeOption
-                  showTitle
+                  options={options}
                   removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
                 />
               ) : '' }

@@ -1,11 +1,22 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
-import LearningObjectContent from 'components/learningObject/LearningObjectContent';
+import LearningObjectContentContainer from 'containers/LearningObjectContentContainer';
+
+/*
+Options available for LearningObjectContent
+const options = {
+  showOperations,
+  showViewButton,
+  showCreateQuestionButton,
+  removeOption,
+  showTitle,
+};
+*/
 
 
 /* eslint-disable react/no-danger */
 const LearningObjectList = ({
-  learningObjects, removeOption, showTitle, removeSelectedObjectToQuestion, showOperations,
+  learningObjects, removeSelectedObjectToQuestion, options,
 }) => (
   <div>
     {(learningObjects && learningObjects.length > 0)
@@ -13,13 +24,11 @@ const LearningObjectList = ({
         <Row className="c-question__section-list-learning-objects">
           <Col sm="12" xs="12">
             {learningObjects.map(learningObject => (
-              <LearningObjectContent
+              <LearningObjectContentContainer
                 key={learningObject.id}
                 learningObject={learningObject}
-                removeOption={removeOption}
-                showTitle={showTitle}
-                showOperations={showOperations}
                 removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
+                options={options}
               />
             ))}
           </Col>

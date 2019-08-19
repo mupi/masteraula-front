@@ -113,3 +113,7 @@ export const listLearningObjectModal = (currentPageModal, filterObject) => {
 export const setCurrentPageModal = currentPageModal => ({
   type: SET_CURRENT_PAGE_MODAL, currentPageModal,
 });
+
+export const setObjectIdToNewQuestion = (id) => {
+  console.log('COMENZAR CREAR QUESTÃO');
+};

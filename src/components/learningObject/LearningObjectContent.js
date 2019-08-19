@@ -7,39 +7,57 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
+
+/*
+Options available for LearningObjectContent
+const options = {
+  showOperations,
+  showViewButton,
+  showCreateQuestionButton,
+  removeOption,
+  showTitle,
+};
+*/
+
 const LearningObjectContent = (props) => {
   /* eslint-disable react/no-danger */
   const {
-    learningObject, showOperations = false, removeOption = false, showTitle = false, removeSelectedObjectToQuestion,
+    learningObject,
+    removeSelectedObjectToQuestion,
+    options,
   } = props;
 
   return (
     <div key={learningObject.id} className="c-learning-object">
-      { showOperations ? (
+      { options && options.showOperations ? (
         <div className="c-learning-object__operations">
-          <Link
-            to={`/view-object/${learningObject.id}`}
-            title="Visualizar objeto"
-            className="btn btn-secondary btn__icon"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon="eye" />
-          </Link>
-          <Button title="Adicionar objeto à nova questão">
-            <FontAwesomeIcon icon="plus" />
-          </Button>
+          {options.showViewButton ? (
+            <Link
+              to={`/view-object/${learningObject.id}`}
+              title="Visualizar objeto"
+              className="btn btn-secondary btn__icon"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon="eye" />
+            </Link>
+          ) : ''}
+          {options.showCreateQuestionButton ? (
+            <Button title="Adicionar objeto à nova questão">
+              <FontAwesomeIcon icon="plus" />
+            </Button>
+          ) : ''}
 
         </div>
       ) : ''
 
       }
-      {removeOption ? (
+      {options && options.removeOption ? (
         <div className="c-create-question__remove-object-btn">
           <RemoveObjectFromQuestionButton objectId={learningObject.id} removeSelectedObjectToQuestion={removeSelectedObjectToQuestion} />
         </div>
       ) : ''}
-      { showTitle ? (
+      { options && options.showTitle ? (
         <div className="object-card__id">
           Objeto N°
           {' '}
