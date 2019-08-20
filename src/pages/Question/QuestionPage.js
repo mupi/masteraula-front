@@ -87,7 +87,7 @@ const options = {
   showViewButton: true,
   showCreateQuestionButton: true,
   removeOption: false,
-  showTitle: true,
+  showTitle: false,
 };
 
 class QuestionPage extends Component {
