@@ -81,6 +81,15 @@ const redirectURL = (e, role, isOwner, idQuestion) => {
   history.push(url);
 };
 
+// Learning object's options available for LearnningObjectContent
+const options = {
+  showOperations: true,
+  showViewButton: true,
+  showCreateQuestionButton: true,
+  removeOption: false,
+  showTitle: true,
+};
+
 class QuestionPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
@@ -200,6 +209,7 @@ class QuestionPage extends Component {
                 statement={activeQuestion.statement}
                 resolution={activeQuestion.resolution}
                 learningObjects={activeQuestion.learning_objects}
+                options={options}
               />
               <div className="c-question__section-add-question">
                 <Row>

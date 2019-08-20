@@ -50,6 +50,9 @@ export const ADD_SELECTED_OBJECT_QUESTION = 'ADD_SELECTED_OBJECT_QUESTION';
 export const REMOVE_SELECTED_OBJECT_QUESTION = 'REMOVE_SELECTED_OBJECT_QUESTION';
 export const RESET_SELECTED_OBJECTLIST_QUESTION = 'RESET_SELECTED_OBJECTLIST_QUESTION';
 
+// Set object that will added in new Question - Create question based on selected object
+export const SET_OBJECT_TO_NEW_QUESTION = 'SET_OBJECT_TO_NEW_QUESTION';
+
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
   type: 'success',
@@ -364,4 +367,10 @@ export const removeSelectedObjectToQuestion = idObject => ({
 
 export const resetSelectedObjects = () => ({
   type: RESET_SELECTED_OBJECTLIST_QUESTION,
+});
+
+// Functions for create question based on Object
+export const setObjectIdToNewQuestion = objectId => ({
+  type: SET_OBJECT_TO_NEW_QUESTION,
+  objectIdAddedToQuestion: objectId,
 });

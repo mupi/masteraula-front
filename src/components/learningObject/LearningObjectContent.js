@@ -1,25 +1,75 @@
 import React from 'react';
 import { getCleanCompleteStatement, getCleanLearningObjectSource } from 'helpers/question';
 import RemoveObjectFromQuestionButton from 'components/buttons/RemoveObjectFromQuestionButton';
+import {
+  Button,
+} from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
+import { history } from 'helpers/history';
+
+
+/*
+Options available for LearningObjectContent
+const options = {
+  showOperations,
+  showViewButton,
+  showCreateQuestionButton,
+  removeOption,
+  showTitle,
+};
+*/
 
 const LearningObjectContent = (props) => {
   /* eslint-disable react/no-danger */
   const {
-    learningObject, removeOption = false, removeSelectedObjectToQuestion,
+    learningObject,
+    removeSelectedObjectToQuestion,
+    options,
+    addSelectedObjectToQuestion,
+    setObjectIdToNewQuestion,
   } = props;
 
   return (
     <div key={learningObject.id} className="c-learning-object">
-      {removeOption ? (
+      { options && options.showOperations ? (
+        <div className="c-learning-object__operations">
+          {options.showViewButton ? (
+            <Link
+              to={`/view-object/${learningObject.id}`}
+              title="Visualizar objeto"
+              className="btn btn-secondary btn__icon"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon="eye" />
+            </Link>
+          ) : ''}
+          {options.showCreateQuestionButton ? (
+            <Button
+              title="Adicionar objeto à nova questão"
+              onClick={() => { addSelectedObjectToQuestion(learningObject); setObjectIdToNewQuestion(learningObject.id); history.push('/create-question'); }}
+            >
+              <FontAwesomeIcon icon="plus" />
+            </Button>
+          ) : ''}
+
+        </div>
+      ) : ''
+
+      }
+      {options && options.removeOption ? (
         <div className="c-create-question__remove-object-btn">
           <RemoveObjectFromQuestionButton objectId={learningObject.id} removeSelectedObjectToQuestion={removeSelectedObjectToQuestion} />
         </div>
       ) : ''}
-      <div className="object-card__id">
-        Objeto N°
-        {' '}
-        {learningObject.id}
-      </div>
+      { options && options.showTitle ? (
+        <div className="object-card__id">
+          Objeto N°
+          {' '}
+          {learningObject.id}
+        </div>
+      ) : ''}
       {(learningObject.image) ? (
         <div>
           <img alt="objeto-aprendizagem" className="c-learning-object__img" src={learningObject.image} />

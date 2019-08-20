@@ -2,54 +2,24 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import AlternativeList from 'components/alternatives/AlternativeList';
 import Alternative from 'components/alternatives/Alternative';
-import { getCleanCompleteStatement, getCleanAlternativeText, getCleanLearningObjectSource } from 'helpers/question';
+import { getCleanCompleteStatement, getCleanAlternativeText } from 'helpers/question';
+import LearningObjectList from 'components/learningObject/LearningObjectList';
 
 
 const QuestionContent = (question) => {
   /* eslint-disable react/no-danger */
   const {
-    statement, alternatives, resolution, learningObjects,
+    statement, alternatives, resolution, learningObjects, options,
   } = question;
 
   return (
     <div className="c-question__full-statement">
       {(learningObjects && learningObjects.length > 0)
         ? (
-          <Row className="c-question__section-list-learning-objects">
-            <Col sm="12" xs="12">
-              {learningObjects.map((learningObject, i) => (
-                <div key={learningObject.id} className="c-question__learning-object">
-                  { (learningObject.image) ? (
-                    <div>
-                      <img
-                        alt="objeto-aprendizagem"
-                        src={learningObject.image}
-                        className="c-learning-object__img"
-                      />
-                    </div>
-                  ) : ''}
-
-                  { (learningObject.text) ? (
-                    <div className="c-question__learning-object--text">
-                      <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(learningObject.text) }} />
-                    </div>
-                  ) : ''}
-                  { (learningObject.source) ? (
-                    <div className="c-question__learning-object--source">
-                      <div dangerouslySetInnerHTML={{ __html: getCleanLearningObjectSource(learningObject.source) }} />
-                    </div>
-                  ) : ''}
-                  { (learningObject.tags && learningObject.tags.length > 0) ? (
-                    <p className="c-question__learning-object-tags">
-                      <small>Tags:</small>
-                      {' '}
-                      <small><i>{learningObject.tags.map(tag => tag.name.trim()).join(', ')}</i></small>
-                    </p>
-                  ) : ''}
-                </div>
-              ))}
-            </Col>
-          </Row>
+          <LearningObjectList
+            learningObjects={learningObjects}
+            options={options}
+          />
         ) : ''}
 
       <Row className="c-question--section-border">

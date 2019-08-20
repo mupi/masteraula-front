@@ -5,6 +5,7 @@ import {
   UPDATE_ALL_LEARNING_OBJECTS, UPDATE_ALL_LEARNING_OBJECTS_SUCCESS, UPDATE_ALL_LEARNING_OBJECTS_FAILURE,
   LIST_LEARNING_OBJECT_MODAL, LIST_LEARNING_OBJECT_MODAL_SUCCESS, LIST_LEARNING_OBJECT_MODAL_FAILURE,
   SET_CURRENT_PAGE_MODAL,
+  SET_OBJECT_TO_NEW_QUESTION,
 } from 'actions/learningObjectAction';
 import { toast } from 'react-toastify';
 
@@ -96,7 +97,6 @@ export const learningObject = (state = initialState, action) => {
       return Object.assign({}, state, {
         currentPageModal: action.currentPageModal,
       });
-
     default:
       return state;
   }
