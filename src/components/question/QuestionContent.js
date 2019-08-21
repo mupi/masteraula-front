@@ -38,19 +38,6 @@ const QuestionContent = (question) => {
             </Col>
           </Row>
         ) : ''}
-      {(resolution && alternatives.length === 0)
-        ? (
-          <Row className="c-question--section-border">
-            <Col sm="12" xs="12">
-              <div className="c-question__answer">
-                <p className="c-question__answer-title">
-                  Resposta:
-                </p>
-                <div dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(resolution) }} />
-              </div>
-            </Col>
-          </Row>
-        ) : ''}
 
       {(alternatives && alternatives.length > 0)
         ? (
@@ -69,9 +56,20 @@ const QuestionContent = (question) => {
                     />
                   ) : ''
                 ))}
-                {resolution
-                  ? (<div className="c-question__resolution-text" dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(resolution) }} />) : ''
-                }
+              </div>
+            </Col>
+          </Row>
+        ) : ''}
+
+      {(resolution)
+        ? (
+          <Row className="c-question--section-border">
+            <Col sm="12" xs="12">
+              <div className="c-question__answer">
+                <p className="c-question__answer-title">
+                  Resolução:
+                </p>
+                <div dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(resolution) }} />
               </div>
             </Col>
           </Row>

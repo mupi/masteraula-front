@@ -64,6 +64,7 @@ const mapDispatchToProps = dispatch => ({
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
       year: values.year,
       learning_objects_ids: props.selectedObjectList.map(object => object.id),
+      resolution: values.resolution,
     };
 
     if (newQuestion && (newQuestion.statement.trim() === '<p></p>' || newQuestion.statement.trim() === '')) {
