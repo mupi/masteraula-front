@@ -81,6 +81,7 @@ export const listLearningObject = (page, filterObject) => {
         dispatch(initialize('learningObjectSearch', {
           searchTextObject: filterObject.searchTextObject,
         }));
+        history.push('/object-base/1');
       },
     );
   };
