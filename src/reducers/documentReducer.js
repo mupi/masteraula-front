@@ -110,7 +110,6 @@ export const document = (state = initialState, action) => {
         isFetchingMyDocuments: false,
       });
     case LIST_MY_DOCUMENTS_FAILURE:
-      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         myDocumentsList: null,
         isFetchingMyDocuments: false,
