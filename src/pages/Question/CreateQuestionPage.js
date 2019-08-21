@@ -542,6 +542,20 @@ class CreateQuestionPage extends Component {
                 <FieldArray name="alternatives" component={RenderAlternatives2} validate={minLength3Alternatives} />
               </Col>
             </Row>
+            <Row className="c-question__tittle-section">
+              <Col>
+                <h5>
+                  <FontAwesomeIcon icon="check-double" />
+                  {' '}
+                  Resolução
+                </h5>
+              </Col>
+            </Row>
+            <Row className="justify-content-center">
+              <Col sm="12" md="12" xs="12">
+                <Field name="resolution" component={renderField} type="textarea" />
+              </Col>
+            </Row>
             <div className="question-information">
               <Row className="c-question__tittle-section">
                 <Col>

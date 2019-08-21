@@ -72,6 +72,7 @@ const mapDispatchToProps = dispatch => ({
       year: values.year === '' ? null : values.year,
       // selected objects to question
       learning_objects_ids: props.selectedObjectList.map(object => object.id),
+      resolution: values.resolution,
     };
 
     // validations

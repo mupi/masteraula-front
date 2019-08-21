@@ -419,19 +419,7 @@ class QuestionEditPage extends Component {
                         </Col>
                       </Row>
                     ) : ''}
-                  {(resolution && alternatives.length === 0)
-                    ? (
-                      <Row className="c-question--section-border c-question__section-answer">
-                        <Col sm="12" xs="12">
-                          <div className="c-question__answer">
-                            <p className="c-question__answer-title">
-                              Resposta:
-                            </p>
-                            <div dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(resolution) }} />
-                          </div>
-                        </Col>
-                      </Row>
-                    ) : ''}
+
                   {(alternatives && alternatives.length > 0)
                     ? (
                       <Row className="c-question--section-border c-question__section-answer">
@@ -449,15 +437,20 @@ class QuestionEditPage extends Component {
                                 />
                               ) : ''
                             ))}
-                            {resolution
-                              ? (
-                                <div
-                                  className="c-question__resolution-text"
-                                  dangerouslySetInnerHTML={
-                                { __html: getCleanAlternativeText(resolution) }}
-                                />
-                              ) : ''
-                            }
+                          </div>
+                        </Col>
+                      </Row>
+                    ) : ''}
+
+                  {(resolution)
+                    ? (
+                      <Row className="c-question--section-border">
+                        <Col sm="12" xs="12">
+                          <div className="c-question__answer">
+                            <p className="c-question__answer-title">
+                              Resolução:
+                            </p>
+                            <div dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(resolution) }} />
                           </div>
                         </Col>
                       </Row>

@@ -133,6 +133,7 @@ export const fetchQuestion = (id) => {
             topics: allTopics,
             alternatives,
             selectedIndex: selectedAlternative,
+            resolution: activeQuestion.resolution,
           }));
           dispatch(listTopics(activeQuestion.disciplines));
           dispatch(fetchQuestionSuccess(activeQuestion));
@@ -288,6 +289,7 @@ export const updateQuestion = (props) => {
           topics: allTopics,
           alternatives,
           selectedIndex: selectedAlternative,
+          resolution: activeQuestion.resolution,
         }));
       },
       (error) => {
