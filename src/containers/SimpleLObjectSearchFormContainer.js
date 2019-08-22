@@ -15,7 +15,6 @@ const mapStateToProps = state => ({
   // preSearch: state.form.objectSearch ? state.form.objectSearch.values.searchTextObject : '',
 });
 
-// history.replace('/object-base/1');
 const setDispatchSearchText = searchText => setSearchTextObjectModal(searchText);
 const mapDispatchToProps = dispatch => ({
 

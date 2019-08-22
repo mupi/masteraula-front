@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Row, Col, ListGroup, ListGroupItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,
+  Row, Col, ListGroup, ListGroupItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -115,8 +115,8 @@ const SidebarMobile = ({
               <Col xs="12">
                 <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
                   <ListGroupItem color="light">
-                    <div className="document__new-document-option">
-                      <div
+                    <div className="document__new-document-option text-center">
+                      <Button
                         className="document__new-document-btn text-center"
                         onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
                       >
@@ -125,7 +125,7 @@ const SidebarMobile = ({
                           icon="file"
                         />
                         Criar prova
-                      </div>
+                      </Button>
                     </div>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option text-center">
@@ -227,8 +227,9 @@ const SidebarWeb = ({
             <Col xs="12">
               <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
                 <ListGroupItem color="light">
-                  <div className="document__new-document-option">
-                    <div
+                  <div className="document__new-document-option text-center">
+                    <Button
+                      color="link"
                       className="document__new-document-btn text-center"
                       onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
                     >
@@ -237,11 +238,11 @@ const SidebarWeb = ({
                         icon="file"
                       />
                       Criar prova
-                    </div>
+                    </Button>
                   </div>
                 </ListGroupItem>
                 <ListGroupItem className="list-group-item__simple-option text-center">
-                  <Link to="/create-question" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-question'); }}>
+                  <Link to="/create-question">
                     <FontAwesomeIcon
                       className="btn__icon"
                       icon="plus"
@@ -253,7 +254,7 @@ const SidebarWeb = ({
               <div className="sidebar-nav-container">
                 <ListGroup className="sidebar-main-options">
                   <ListGroupItem color="light">
-                    <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1'); }}>
+                    <Link to="/question-base/1">
                       <FontAwesomeIcon
                         className="btn__icon"
                         icon="search"
@@ -262,7 +263,7 @@ const SidebarWeb = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">
-                    <Link to="/object-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/object-base/1'); }}>
+                    <Link to="/object-base/1">
                       <FontAwesomeIcon
                         className="btn__icon"
                         icon="image"
@@ -271,7 +272,7 @@ const SidebarWeb = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">
-                    <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
+                    <Link to="/documents/1">
                       <FontAwesomeIcon
                         className="btn__icon"
                         icon="folder"
@@ -280,7 +281,7 @@ const SidebarWeb = ({
                     </Link>
                   </ListGroupItem>
                   {/* <ListGroupItem color="light">
-                      <Link to="/my-headers/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-headers/1'); }}>
+                      <Link to="/my-headers/1">
                         <FontAwesomeIcon
                           className="btn__icon"
                           icon="folder"
@@ -335,6 +336,9 @@ class Sidebar extends Component {
     // const isMobile = width <= 989;
 
     const responsiveMode = window.matchMedia('(max-width: 989px)');
+
+    console.log(history);
+
     if (responsiveMode.matches) {
       return (
         <SidebarMobile

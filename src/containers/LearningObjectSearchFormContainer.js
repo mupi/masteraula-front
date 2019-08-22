@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
 });
 
 const setDispatchSearchText = (searchText) => {
-  history.replace('/object-base/1');
+  history.push('/object-base/1');
   return setSearchTextObject(searchText);
 };
 
