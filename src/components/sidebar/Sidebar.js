@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Row, Col, ListGroup, ListGroupItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,
+  Row, Col, ListGroup, ListGroupItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -115,8 +115,8 @@ const SidebarMobile = ({
               <Col xs="12">
                 <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
                   <ListGroupItem color="light">
-                    <div className="document__new-document-option">
-                      <div
+                    <div className="document__new-document-option text-center">
+                      <Button
                         className="document__new-document-btn text-center"
                         onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
                       >
@@ -125,7 +125,7 @@ const SidebarMobile = ({
                           icon="file"
                         />
                         Criar prova
-                      </div>
+                      </Button>
                     </div>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option text-center">
@@ -227,8 +227,9 @@ const SidebarWeb = ({
             <Col xs="12">
               <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
                 <ListGroupItem color="light">
-                  <div className="document__new-document-option">
-                    <div
+                  <div className="document__new-document-option text-center">
+                    <Button
+                      color="link"
                       className="document__new-document-btn text-center"
                       onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
                     >
@@ -237,7 +238,7 @@ const SidebarWeb = ({
                         icon="file"
                       />
                       Criar prova
-                    </div>
+                    </Button>
                   </div>
                 </ListGroupItem>
                 <ListGroupItem className="list-group-item__simple-option text-center">
