@@ -105,7 +105,6 @@ class App extends Component {
     const { isOpenSidebar, isLoggedIn } = this.props;
     const { width } = this.state;
     const isMobile = width <= 989;
-
     return (
       <Router history={history}>
         <div id="main-masteraula-container" className={(isOpenSidebar && isMobile) ? 'container-open' : ''}>

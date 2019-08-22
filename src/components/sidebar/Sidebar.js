@@ -336,6 +336,9 @@ class Sidebar extends Component {
     // const isMobile = width <= 989;
 
     const responsiveMode = window.matchMedia('(max-width: 989px)');
+
+    console.log(history);
+
     if (responsiveMode.matches) {
       return (
         <SidebarMobile
