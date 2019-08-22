@@ -241,7 +241,7 @@ const SidebarWeb = ({
                   </div>
                 </ListGroupItem>
                 <ListGroupItem className="list-group-item__simple-option text-center">
-                  <Link to="/create-question" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-question'); }}>
+                  <Link to="/create-question">
                     <FontAwesomeIcon
                       className="btn__icon"
                       icon="plus"
@@ -253,7 +253,7 @@ const SidebarWeb = ({
               <div className="sidebar-nav-container">
                 <ListGroup className="sidebar-main-options">
                   <ListGroupItem color="light">
-                    <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1'); }}>
+                    <Link to="/question-base/1">
                       <FontAwesomeIcon
                         className="btn__icon"
                         icon="search"
@@ -262,7 +262,7 @@ const SidebarWeb = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">
-                    <Link to="/object-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/object-base/1'); }}>
+                    <Link to="/object-base/1">
                       <FontAwesomeIcon
                         className="btn__icon"
                         icon="image"
@@ -271,7 +271,7 @@ const SidebarWeb = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem color="light">
-                    <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
+                    <Link to="/documents/1">
                       <FontAwesomeIcon
                         className="btn__icon"
                         icon="folder"
@@ -280,7 +280,7 @@ const SidebarWeb = ({
                     </Link>
                   </ListGroupItem>
                   {/* <ListGroupItem color="light">
-                      <Link to="/my-headers/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-headers/1'); }}>
+                      <Link to="/my-headers/1">
                         <FontAwesomeIcon
                           className="btn__icon"
                           icon="folder"
