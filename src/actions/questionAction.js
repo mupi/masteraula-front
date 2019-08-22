@@ -321,6 +321,7 @@ export const listQuestions = (page, filter) => {
           dispatch(initialize('questionSearch', {
             searchText: filter.searchText,
           }));
+          history.push('/question-base/1');
         },
       );
   };

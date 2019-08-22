@@ -152,19 +152,31 @@ export const updateDocument = (props) => {
   };
 };
 
-export const listMyDocuments = (page, orderField, order) => (dispatch) => {
-  const success = myDocumentsList => (
-    dispatch({ type: LIST_MY_DOCUMENTS_SUCCESS, myDocumentsList }));
-
-  const error = errorMessage => (
-    dispatch({ type: LIST_MY_DOCUMENTS_FAILURE, errorMessage }));
-
-  dispatch({
-    type: LIST_MY_DOCUMENTS, page, orderField, order,
-  });
-  return documentService.listMyDocuments(page, orderField, order)
-    .then(success)
-    .catch(error);
+// listMyDocuments using filters - v2019
+export const listMyDocuments = (page, orderField, order) => {
+  function requestDocumentPage() {
+    return {
+      type: LIST_MY_DOCUMENTS, page, orderField, order,
+    };
+  }
+  function fetchDocumentPageSuccess(myDocumentsList) { return { type: LIST_MY_DOCUMENTS_SUCCESS, myDocumentsList }; }
+  function fetchDocumentPageFailure(errorMessage) { return { type: LIST_MY_DOCUMENTS_FAILURE, errorMessage }; }
+  return (dispatch, getState) => {
+    if (getState().document.isFetchingMyDocuments) {
+      return 1;
+    }
+    dispatch(requestDocumentPage());
+    return documentService.listMyDocuments(page, orderField, order)
+      .then(
+        (activeDocument) => {
+          dispatch(fetchDocumentPageSuccess(activeDocument));
+        },
+        (error) => {
+          dispatch(fetchDocumentPageFailure(error));
+          history.push('/documents/1');
+        },
+      );
+  };
 };
 
 // Shown in Top Menu - Only 5 documents
