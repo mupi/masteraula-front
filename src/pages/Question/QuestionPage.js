@@ -12,10 +12,284 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import BackUsingHistory from 'components/question/BackUsingHistory';
-
+import RelatedQuestions from 'components/question/RelatedQuestions';
 import { history } from 'helpers/history';
 
+const relatedQuestionEmpty = [];
 
+const relatedQuestions = [
+  {
+    id: 1768,
+    author: {
+      pk: 1,
+      username: 'admin',
+      email: 'suporte@mupi.me',
+      name: 'Mupi',
+    },
+    create_date: '2018/09/03',
+    statement: '<p>A crise do lixo na Itália reflete</p>',
+    learning_objects: [
+      {
+        id: 474,
+        owner: 1,
+        source: 'Disponível em http://www.mafiadolixo.adm.br/default.asp. <em>Acessado em 8 de Julho de 2008</em>.',
+        image: null,
+        text: '<p>“Hoje a cidade de Nápoles assemelha-se a uma enorme lixeira. As autoridades napolitanas não sabem para onde levar os resíduos sólidos domiciliares produzidos pela cidade. [...] Sem saber o que fazer com o seu lixo, e com o receio crescente de epidemias, muitos habitantes já começaram a queimar os resíduos domiciliares, fazendo aumentar o rol de perigos associados ao problema, como a libertação de substâncias potencialmente cancerígenas para a atmosfera. Esta situação, com proporções mais preocupantes em Nápoles, afeta, no entanto, toda a região italiana da Campânia."</p>',
+        tags: [],
+      },
+    ],
+    resolution: '',
+    difficulty: 'M',
+    alternatives: [
+      {
+        id: 7843,
+        text: 'a importância adquirida pelos ambientalistas, que pressionam os governos dos países ricos por soluções para um desenvolvimento sustentável a nível global.',
+        is_correct: false,
+      },
+      {
+        id: 7844,
+        text: 'a falta de consciência ecológica por parte da população italiana, que, tal como a população dos países subdesenvolvidos, não se preocupa com o destino do lixo que produz.',
+        is_correct: false,
+      },
+      {
+        id: 7845,
+        text: 'a força do poder paralelo que tenta desestabilizar o governo italiano diante da população, já que é a Gamorra (a máfia local) quem controla os aterros sanitários da região.',
+        is_correct: false,
+      },
+      {
+        id: 7846,
+        text: 'o dilema da atual sociedade de consumo que dilapida o planeta na produção de necessidades supérfluas e de produtos descartáveis, mas não encontra soluções viáveis e ambientalmente sustentáveis para a enorme quantidade de lixo que produz.',
+        is_correct: true,
+      },
+      {
+        id: 7847,
+        text: 'um problema típico dos países ricos europeus, que dispõem de pouco espaço para fazer aterros sanitários, a solução mais viável para destinar a grande quantidade de lixo que produzem sem agredir o meio-ambiente.',
+        is_correct: false,
+      },
+    ],
+    disciplines: [
+      {
+        id: 6,
+        name: 'Geografia',
+        slug: 'Geo',
+      },
+    ],
+    teaching_levels: [
+      {
+        id: 4,
+        name: 'Ensino Médio',
+        slug: 'EM',
+      },
+    ],
+    year: 2008,
+    source: 'UEPB',
+    topics: [],
+    all_topics: [],
+    tags: [],
+    disabled: false,
+  },
+  {
+    id: 5177,
+    author: {
+      pk: 1,
+      username: 'admin',
+      email: 'suporte@mupi.me',
+      name: 'Mupi',
+    },
+    create_date: '2018/09/03',
+    statement: 'Um carro esportivo é financiado pelo Japão, projetado na Itália e montado em Indiana, México e França, usando os mais avançados componentes eletrônicos, que foram inventados em Nova Jérsei e fabricados na Coreia. A campanha publicitária é desenvolvida na Inglaterra, filmada no Canadá, a edição e as cópias, feitas em Nova York para serem veiculadas no mundo todo. Teias globais disfarçam-se com o uniforme nacional que lhes for mais conveniente. <br><br>REICH, R. <strong>O trabalho das nações</strong>: preparando-nos para o capitalismo no século XXI. São Paulo: Educator, 1994 (adaptado). <br><br>A viabilidade do processo de produção ilustrado pelo texto pressupõe o uso de<br><br> ',
+    learning_objects: [],
+    resolution: '',
+    difficulty: 'M',
+    alternatives: [
+      {
+        id: 23339,
+        text: 'linhas de montagem e formação de estoques. ',
+        is_correct: false,
+      },
+      {
+        id: 23340,
+        text: 'empresas burocráticas e mão de obra barata. ',
+        is_correct: false,
+      },
+      {
+        id: 23341,
+        text: 'controle estatal e infraestrutura consolidada ',
+        is_correct: false,
+      },
+      {
+        id: 23342,
+        text: 'organização em rede e tecnologia de informação. ',
+        is_correct: true,
+      },
+      {
+        id: 23343,
+        text: 'gestão centralizada e protecionismo econômico. ',
+        is_correct: false,
+      },
+    ],
+    disciplines: [
+      {
+        id: 6,
+        name: 'Geografia',
+        slug: 'Geo',
+      },
+    ],
+    teaching_levels: [
+      {
+        id: 4,
+        name: 'Ensino Médio',
+        slug: 'EM',
+      },
+    ],
+    year: 2015,
+    source: 'ENEM',
+    topics: [],
+    all_topics: [],
+    tags: [],
+    disabled: false,
+  },
+  {
+    id: 1180,
+    author: {
+      pk: 1,
+      username: 'admin',
+      email: 'suporte@mupi.me',
+      name: 'Mupi',
+    },
+    create_date: '2018/09/03',
+    statement: '<p>Analise as cinco afirmações feitas a respeito do tema estampado no mapa:</p>\r\n<br/>\r\n\r\n<p>I. Durante esse período, a América Central se transformou numa importante região imigratória.</p>\r\n<p>II. O Japão e a China também participaram deste período, com expressivo contingente populacional se deslocando para a América do Sul.</p>\r\n<p>III. O maior contingente migratório se deslocou para os Estados Unidos, saindo principalmente da Grã-Bretanha e da Itália.</p>\r\n<p>IV. O fim gradual da escravidão no continente americano e a demanda por mão de obra para substituir os escravos, associada à primeira revolução dos transportes, constituiram elementos que estimularam e intensificaram o fluxo migratório europeu.</p>\r\n<p>V. No final do século XIX, muitos europeus emigraram em direção ao continente americano para fugir das crises agrícolas, da pobreza e das perseguições.</p>\r\n\r\n<br/>\r\n<p>Estão corretas apenas as afirmações:</p>',
+    learning_objects: [
+      {
+        id: 418,
+        owner: 1,
+        source: 'Marie-Françoise Durand et al. <strong>Atlas da Mundialização: compreender o espaço mundial contemporâneo</strong>, 2009. Adaptado',
+        image: 'http://localhost:8000/media/masteraula/unesp2011-1/418-source.png',
+        text: '<p class="text-center">A grande migração transatlântica, final do séc. XIX e início do séc. XX</p>',
+        tags: [],
+      },
+    ],
+    resolution: '',
+    difficulty: 'M',
+    alternatives: [
+      {
+        id: 5227,
+        text: 'I, II e III.',
+        is_correct: false,
+      },
+      {
+        id: 5228,
+        text: 'II e V.',
+        is_correct: false,
+      },
+      {
+        id: 5229,
+        text: 'III, IV e V.',
+        is_correct: true,
+      },
+      {
+        id: 5230,
+        text: 'I, III, IV e V.',
+        is_correct: false,
+      },
+      {
+        id: 5231,
+        text: 'II, III, IV e V.',
+        is_correct: false,
+      },
+    ],
+    disciplines: [
+      {
+        id: 5,
+        name: 'História',
+        slug: 'His',
+      },
+    ],
+    teaching_levels: [
+      {
+        id: 4,
+        name: 'Ensino Médio',
+        slug: 'EM',
+      },
+    ],
+    year: 2011,
+    source: 'UNESP',
+    topics: [],
+    all_topics: [],
+    tags: [],
+    disabled: false,
+  },
+  {
+    id: 4656,
+    author: {
+      pk: 1,
+      username: 'admin',
+      email: 'suporte@mupi.me',
+      name: 'Mupi',
+    },
+    create_date: '2018/09/03',
+    statement: '<p>A União Européia resulta de um processo que se inicia em 1950 com a criação da Comunidade Européia do Carvão e do Aço e se concretiza em novembro de 1993 quando entrou em vigor o tratado de Maastricht. Com base no seu conhecimento e com o auxílio do Cartograma abaixo assinale com V as proposições VERDADEIRAS e com F as FALSAS, referentes à formação deste bloco econômico.</p>\r\n\r\n<p>( ) Em 1951 formava-se a Europa dos Seis, com a assinatura do tratado de Roma, que instituía a Comunidade Econômica Européia, da qual faziam parte a Inglaterra, Irlanda, França, Alemanha, Itália e Suíça.</p>\r\n\r\n<p>( ) Em 1973 dá-se o alargamento da Comunidade Européia, com o ingresso dos países ibéricos e da Grécia.</p>\r\n\r\n<p>( ) Em 1995 temos a formação da Europa dos Quinze, com a entrada da Áustria e de dois países escandinavos.</p>\r\n\r\n<p>( ) A partir de 2004 a União Européia se amplia com a admissão de países ex-socialistas do Leste Europeu, cuja aquisição mais recente são Bulgária e Romênia, totalizando hoje 27 países.</p>\r\n\r\n<p>A seqüência correta das assertivas é</p>',
+    learning_objects: [
+      {
+        id: 1997,
+        owner: 1,
+        source: 'Extraído do Vestibular UEPB 2007',
+        image: 'http://localhost:8000/media/masteraula/default/1997.jpg',
+        text: '<p class="text-center">EVOLUÇÃO DA UNIÃO EUROPÉIA</p>',
+        tags: [],
+      },
+    ],
+    resolution: '',
+    difficulty: 'M',
+    alternatives: [
+      {
+        id: 20963,
+        text: 'F F F F',
+        is_correct: false,
+      },
+      {
+        id: 20964,
+        text: 'F F V V',
+        is_correct: true,
+      },
+      {
+        id: 20965,
+        text: 'V V V V',
+        is_correct: false,
+      },
+      {
+        id: 20966,
+        text: 'F V V F',
+        is_correct: false,
+      },
+      {
+        id: 20967,
+        text: 'V F F V',
+        is_correct: false,
+      },
+    ],
+    disciplines: [
+      {
+        id: 6,
+        name: 'Geografia',
+        slug: 'Geo',
+      },
+    ],
+    teaching_levels: [
+      {
+        id: 4,
+        name: 'Ensino Médio',
+        slug: 'EM',
+      },
+    ],
+    year: 2007,
+    source: 'UEPB',
+    topics: [],
+    all_topics: [],
+    tags: [],
+    disabled: false,
+  },
+];
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
   const listDocumentFilter = ((activeDocument && activeQuestion.documents)
@@ -236,6 +510,7 @@ class QuestionPage extends Component {
                 <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument} />
               </div>
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
+              {relatedQuestions && relatedQuestions.length > 0 ? (<RelatedQuestions rquestions={relatedQuestions} {...this.props} />) : ''}
             </Col>
           </Row>
         </div>
