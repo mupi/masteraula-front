@@ -379,6 +379,15 @@ const renderTopics = ({
   </Row>
 );
 
+// Learning object's options available for LearnningObjectContent
+const options = {
+  showOperations: true,
+  showViewButton: true,
+  showCreateQuestionButton: false,
+  removeOption: true,
+  showTitle: true,
+};
+
 class CreateQuestionPage extends Component {
   constructor(props) {
     super(props);
@@ -485,14 +494,14 @@ class CreateQuestionPage extends Component {
                     icon="plus"
                     className="btn__icon"
                   />
-                Adicionar objeto
+                  Adicionar objeto
                 </Button>
               </Col>
             </Row>
             { selectedObjectList ? (
               <LearningObjectList
                 learningObjects={selectedObjectList}
-                removeOption
+                options={options}
                 removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
               />
             ) : '' }
@@ -531,6 +540,20 @@ class CreateQuestionPage extends Component {
             <Row className="justify-content-center">
               <Col sm="12" md="12" xs="12">
                 <FieldArray name="alternatives" component={RenderAlternatives2} validate={minLength3Alternatives} />
+              </Col>
+            </Row>
+            <Row className="c-question__tittle-section">
+              <Col>
+                <h5>
+                  <FontAwesomeIcon icon="check-double" />
+                  {' '}
+                  Resolução
+                </h5>
+              </Col>
+            </Row>
+            <Row className="justify-content-center">
+              <Col sm="12" md="12" xs="12">
+                <Field name="resolution" component={renderField} type="textarea" />
               </Col>
             </Row>
             <div className="question-information">

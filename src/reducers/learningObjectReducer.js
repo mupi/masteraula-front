@@ -96,7 +96,6 @@ export const learningObject = (state = initialState, action) => {
       return Object.assign({}, state, {
         currentPageModal: action.currentPageModal,
       });
-
     default:
       return state;
   }

@@ -247,6 +247,12 @@
     font-weight: bold !important;
     cursor: pointer !important;
     padding: 0.75rem 1.25rem;
+    letter-spacing: 0.5px;
+    width: 100%;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &__new-document-modal-header{
