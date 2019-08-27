@@ -233,7 +233,7 @@ const SidebarWeb = ({
 
                   <ListGroup className="sidebar-main-options c-sidebar__create-doc-option ">
                     <ListGroupItem color="light">
-                      <div className="document__new-document-option text-center --margin-top">
+                      <div className="document__new-document-option text-center">
                         <Button
                           color="link"
                           className="document__new-document-btn text-center"
