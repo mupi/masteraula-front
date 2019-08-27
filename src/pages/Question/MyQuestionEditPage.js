@@ -438,7 +438,7 @@ class MyQuestionEditPage extends Component {
         submitting,
       } = this.props;
 
-      const authorPK = activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
+      const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
 
       if (isFetching) {
         return (
