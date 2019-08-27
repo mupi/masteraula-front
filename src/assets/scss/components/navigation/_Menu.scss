@@ -51,6 +51,13 @@ html body .masteraula-nav-header__user {
     color: $color-ma-blue;
   }
   
+  //Top menu
+  .menu-top.container-fluid{
+    
+    @include for-tablet-landscape-bottom{
+      padding-left: 0px !important;
+    }
+  }
 
   // Top Menu - USER - Document options
   .menu-top{

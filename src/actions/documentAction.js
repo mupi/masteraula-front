@@ -152,7 +152,6 @@ export const updateDocument = (props) => {
   };
 };
 
-
 // listMyDocuments using filters - v2019
 export const listMyDocuments = (page, orderField, order) => {
   function requestDocumentPage() {
