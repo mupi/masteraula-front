@@ -225,68 +225,68 @@ const SidebarWeb = ({
       </Link>
 
       <div id="sidebar-container">
-        <div className="container-fluid">
-        <CustomScroll>
-                <div className="hola" >
-          <Row className="sidebar-row">
-            <Col xs="12">
-              
-              <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
-                <ListGroupItem color="light">
-                  <div className="document__new-document-option text-center">
-                    <Button
-                      color="link"
-                      className="document__new-document-btn text-center"
-                      onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
-                    >
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="file"
-                      />
+        <CustomScroll heightRelativeToParent="calc(100% + 70px)">
+          <div className="container-fluid">
+            <div className="sidebar-10vh">
+              <Row className="sidebar-row">
+                <Col xs="12">
+
+                  <ListGroup className="sidebar-main-options c-sidebar__create-doc-option ">
+                    <ListGroupItem color="light">
+                      <div className="document__new-document-option text-center --margin-top">
+                        <Button
+                          color="link"
+                          className="document__new-document-btn text-center"
+                          onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
+                        >
+                          <FontAwesomeIcon
+                            className="btn__icon"
+                            icon="file"
+                          />
                       Criar prova
-                    </Button>
-                  </div>
-                </ListGroupItem>
-                <ListGroupItem className="list-group-item__simple-option text-center">
-                  <Link to="/create-question">
-                    <FontAwesomeIcon
-                      className="btn__icon"
-                      icon="plus"
-                    />
+                        </Button>
+                      </div>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option text-center">
+                      <Link to="/create-question">
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="plus"
+                        />
                     Criar questão
-                  </Link>
-                </ListGroupItem>
-              </ListGroup>
-              <div className="sidebar-nav-container">
-                <ListGroup className="sidebar-main-options">
-                  <ListGroupItem color="light">
-                    <Link to="/question-base/1">
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="search"
-                      />
+                      </Link>
+                    </ListGroupItem>
+                  </ListGroup>
+                  <div className="sidebar-nav-container">
+                    <ListGroup className="sidebar-main-options">
+                      <ListGroupItem color="light">
+                        <Link to="/question-base/1">
+                          <FontAwesomeIcon
+                            className="btn__icon"
+                            icon="search"
+                          />
                         Banco de questões
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem color="light">
-                    <Link to="/object-base/1">
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="image"
-                      />
+                        </Link>
+                      </ListGroupItem>
+                      <ListGroupItem color="light">
+                        <Link to="/object-base/1">
+                          <FontAwesomeIcon
+                            className="btn__icon"
+                            icon="image"
+                          />
                         Banco de objetos
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem color="light">
-                    <Link to="/documents/1">
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="folder"
-                      />
+                        </Link>
+                      </ListGroupItem>
+                      <ListGroupItem color="light">
+                        <Link to="/documents/1">
+                          <FontAwesomeIcon
+                            className="btn__icon"
+                            icon="folder"
+                          />
                         Gerenciar minhas provas
-                    </Link>
-                  </ListGroupItem>
-                  {/* <ListGroupItem color="light">
+                        </Link>
+                      </ListGroupItem>
+                      {/* <ListGroupItem color="light">
                       <Link to="/my-headers/1">
                         <FontAwesomeIcon
                           className="btn__icon"
@@ -295,16 +295,17 @@ const SidebarWeb = ({
                         Gerenciar meus cabeçalhos
                       </Link>
                     </ListGroupItem> */}
-                </ListGroup>
-                {showFilters && <FilterContainer />}
-                {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
+                    </ListGroup>
+                    {showFilters && <FilterContainer />}
+                    {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
 
-              </div>
-            </Col>
-          </Row>
-</div>
-              </CustomScroll>
-        </div>
+                  </div>
+                </Col>
+              </Row>
+            </div>
+
+          </div>
+        </CustomScroll>
       </div>
     </div>
   );
@@ -344,8 +345,6 @@ class Sidebar extends Component {
     // const isMobile = width <= 989;
 
     const responsiveMode = window.matchMedia('(max-width: 989px)');
-
-    console.log(history);
 
     if (responsiveMode.matches) {
       return (
