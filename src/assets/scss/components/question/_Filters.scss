@@ -85,4 +85,10 @@
     h6{
         padding-left:10px;
     }
+
+    &.list-group{
+        @include for-tablet-landscape-up{
+            margin-bottom: 20px;
+        }
+    }
 }
