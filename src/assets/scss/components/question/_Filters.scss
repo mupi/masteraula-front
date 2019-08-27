@@ -10,6 +10,7 @@
 
     &:last-child {
         border-radius: 0px;
+        margin-bottom: 70px;
     }
 
     /* Ex.: "Disciplina"*/
@@ -83,5 +84,11 @@
 .question-all-filters{
     h6{
         padding-left:10px;
+    }
+
+    &.list-group{
+        @include for-tablet-landscape-up{
+            margin-bottom: 20px;
+        }
     }
 }

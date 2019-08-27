@@ -1,99 +1,101 @@
-
+ 
 /******CSS for navbar - top header******/
 nav a {
     color: $color-ma-white;
   }
-
-
+ 
+ 
 .navbar {
       @include for-tablet-landscape-bottom{
           padding:0px;
       }
 }
-
-
+ 
+ 
 .navbar-nav {
       @include for-tablet-landscape-up{
         float: left;
         margin: 0;
-
+ 
       }
 }
-
+ 
 li.nav-item {
     margin-right: 15px;
     list-style: none;
 }
-
+ 
 .nav-item a:hover {
     color: white;
     font-weight: bold;
     text-decoration: none;
 }
-
+ 
 .navbar-toggler{
   background: $color-ma-pink;
 }
-
-
+ 
+ 
 div#navbar, div#navbar .col-12 {
     padding: 0px;
 }
-
+ 
 .navbar-default {
     background-color: $color-ma-white;
     border-color: $color-ma-gray;
 }
-
+ 
 .navbar-fixed-top {
     top: 0;
     border-width: 0 0 1px;
 }
-
-
+ 
+ 
 .navbar-fixed-top, .navbar-fixed-bottom {
     position: fixed;
     right: 0;
     left: 0;
     z-index: 1030;
-
+ 
     @include for-tablet-landscape-up{
       border-radius: 0;
     }
 }
-
+ 
 html body #masteraula-nav-header .navbar-nav:first-child {
     margin-left: 0px;
 }
-
+ 
 html body #rmasteraula-nav-header .navbar-nav {
     margin: 0;
     display: inline-block;
 }
-
+ 
 html body #masteraula-nav-header .navbar-nav {
     margin: 0;
     display:flex;
 }
-
+ 
 /******CSS for sidebar, used only with user logged******/
 html body #sidebar #sidebar-container {
     bottom: 0;
     width: $sidebar-size;
     position: absolute;
     top: 70px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    overflow-x: hidden;
-
+ //   padding-top: 30px;
+ //   padding-bottom: 30px;
+  //  overflow-x: hidden;
+//    overflow-y: hidden;
+ 
     @include for-tablet-landscape-bottom{
         padding-top: 0px;
         padding-bottom: 15px;
         top:0px;
+        overflow-x: hidden;
     }
-
+ 
 }
-
+ 
 html body #sidebar {
     top: 0;
     bottom: 0;
@@ -103,45 +105,45 @@ html body #sidebar {
     transition: all 0.3s ease;
     width:  $sidebar-size;
     background: $color-ma-blue;
-
+ 
     @include for-tablet-landscape-up{
       left: 0;
     }
-
+ 
     @include for-tablet-landscape-bottom{
       left:  $sidebar-size-neg;
     }
-
+ 
     h5{color:$color-ma-white}
     h6{color:$color-ma-white}
-
+ 
     .sidebar-row{
         margin-left: -15px;
         margin-right: -15px;
     }
 }
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 /* Why so many classes for 1 property*/
 .visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {
     display: none !important;
 }
-
+ 
 .visible-xs-inline-block {
     @include for-tablet-landscape-bottom{
       display: inline-block !important;
     }
 }
-
-
+ 
+ 
 .pull-left {
     float: left !important;
 }
-
-
+ 
+ 
 html body #masteraula-nav-header .navbar-nav>li.sidebar-btn>a {
     color: $color-ma-white;
     background: $color-ma-green;
@@ -161,7 +163,7 @@ html body #masteraula-nav-header .navbar-nav>li>a {
     padding: 10px;
     display: block;
 }
-
+ 
 html body #main-masteraula-container.container-open #sidebar{
     left: 0;
 }
@@ -170,28 +172,28 @@ html body #main-masteraula-container.container-open #footer-container{
     margin-left:  $sidebar-size;
     margin-right:  $sidebar-size-neg;
 }
-
+ 
 html body #main-masteraula-container.container-open #masteraula-nav-header {
     margin-left:  $sidebar-size;
     margin-right:  $sidebar-size-neg;
 }
-
-
+ 
+ 
 .sidebar-main-options li.list-group-item {
     background: $color-ma-lightgray-backg;
     padding:0px;
-
+ 
     &:first-child {
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
     }
-
+ 
     &:last-child {
         border-bottom-right-radius: 0px;
         border-bottom-left-radius: 0px;
     }
 }
-
+ 
 .sidebar-nav-container .list-group-item a, .list-group-item__simple-option a {
     text-decoration: none;
     color: $color-ma-blue;
@@ -199,20 +201,20 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
     display:block;
     padding: 0.75rem 1.25rem;
 }
-
+ 
 .sidebar-main-options li.list-group-item:hover {
     background: $color-ma-skyblue-light !important;
     color: white;
 }
-
+ 
 #sidebar-container .col-12 {
     padding-left: 0px;
     padding-right: 0px;
 }
-
+ 
 /*SCROLl-Y in sidebar 2019*/
 #sidebar-container::-webkit-scrollbar {
-    width: 7px;
+    width: 0px;
 }
 #sidebar-container::-webkit-scrollbar-track {
     background:$color-ma-blue;
@@ -225,11 +227,11 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
 #sidebar-container::-webkit-scrollbar-thumb:hover {
     background: $color-ma-green;
 }
-
+ 
 .logo-sidebar {
     width: 80%;
 }
-
+ 
 .logo-top-sidebar {
     text-align: center;
     padding: 5px;
@@ -237,36 +239,36 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
     height: 70px;
     
 }
-
+ 
 img.logo-in-menu {
     max-width: 180px;
     margin: 5px;
 }
-
+ 
 img.logo-in-menu.no-login {
     margin-left: 10px !important;
 }
-
-
+ 
+ 
 .c-sidebar{
     &__filter-selected{
         font-weight:bold; 
     }
-
+ 
     &__ma-logo{
         position: absolute;
         right: -171px;
         top: 15px;
-
+ 
         img{
          width: 20%;
         }
     }
-
+ 
     &__ma-logo-link--disabled{
         pointer-events: none;
     }
-
+ 
     &__user-info-section{
         color: $color-ma-white;
         text-align: left;
@@ -277,10 +279,10 @@ img.logo-in-menu.no-login {
  //   background-color: #EEE;
     background-size: 100%;
     }
-
+ 
     &__user-avatar{
         font-size:35px;
-
+ 
         img{
             height: 50px;
             width: 50px;
@@ -290,35 +292,35 @@ img.logo-in-menu.no-login {
             border: 1px solid $color-ma-green;
         }
     }
-
+ 
     &__user-dropdown{
         font-size: 13px;
         color: $color-ma-black-dropdown;
-
+ 
         button{
             background: transparent;
             border: transparent;
             cursor: pointer;
         }
-
+ 
         .show button{
             background: transparent;
             border: transparent;
             color: $color-ma-black-dropdown;
         }
-
+ 
         button:hover{
             background: transparent;
             border: transparent;
         }
-
+ 
     }
-
+ 
     &__user-dropdown-item{
         font-size: 13px;
         padding-top: 0px;
         padding-bottom: 0px;
-
+ 
         a{
             color: $color-ma-black-dropdown;
         
@@ -327,32 +329,32 @@ img.logo-in-menu.no-login {
             }
         }
     }
-
+ 
     &__user-dropdown-toogle{
     }
-
+ 
     &__link-my-profile{
         color: $color-ma-white;
-
+ 
         &:hover{
             color:$color-ma-white;
             text-decoration: none;
         }
     }
-
+ 
     
 }
-
+ 
 /*list of options in sidebar*/
 #sidebar-container ul.list-group {
     margin-top: 20px;
-
+ 
   /*  @include for-tablet-landscape-bottom{
         margin-top:15px !important;
     }*/
 }
-
-
+ 
+ 
 button.c-sidebar__user-dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
     background: transparent;
     border: transparent;
@@ -360,7 +362,7 @@ button.c-sidebar__user-dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm 
     color: $color-ma-white;
     font-weight: bold;
     letter-spacing: 0.75px;
-
+ 
     &:active:focus{
         -webkit-box-shadow: none !important;
         box-shadow: none !important;
@@ -371,3 +373,68 @@ button.c-sidebar__user-dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm 
         box-shadow: none !important;
       }
 }
+ 
+ 
+ 
+// REACT-CUSTOM-SCROLL
+.rcs-custom-scroll {
+    min-height: 0;
+    min-width: 0; }
+    .rcs-custom-scroll .rcs-outer-container {
+      overflow: hidden; }
+      .rcs-custom-scroll .rcs-outer-container .rcs-positioning {
+        position: relative; }
+      .rcs-custom-scroll .rcs-outer-container:hover .rcs-custom-scrollbar {
+        opacity: 1;
+        transition-duration: 0.2s; }
+    .rcs-custom-scroll .rcs-inner-container {
+      overflow-x: hidden;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch; }
+      .rcs-custom-scroll .rcs-inner-container:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 0;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.05) 60%, transparent 100%);
+        pointer-events: none;
+        transition: height 0.1s ease-in;
+        will-change: height; }
+      .rcs-custom-scroll .rcs-inner-container.rcs-content-scrolled:after {
+        height: 5px;
+        transition: height 0.15s ease-out; }
+    .rcs-custom-scroll.rcs-scroll-handle-dragged .rcs-inner-container {
+      user-select: none; }
+    .rcs-custom-scroll .rcs-custom-scrollbar {
+      position: absolute;
+      height: 100%;
+      width: 6px;
+      right: 3px;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 0.4s ease-out;
+      padding: 6px 0;
+      box-sizing: border-box;
+      will-change: opacity;
+      pointer-events: none; }
+      .rcs-custom-scroll .rcs-custom-scrollbar.rcs-custom-scrollbar-rtl {
+        right: auto;
+        left: 3px; }
+    .rcs-custom-scroll.rcs-scroll-handle-dragged .rcs-custom-scrollbar {
+      opacity: 1; }
+    .rcs-custom-scroll .rcs-custom-scroll-handle {
+      position: absolute;
+      width: 100%;
+      top: 0; }
+    .rcs-custom-scroll .rcs-inner-handle {
+      height: calc(100% - 12px);
+      margin-top: 6px;
+      background-color: #53bb6473;
+      border-radius: 3px; }
+ 
+ 
+    .sidebar-10vh{
+        height: 100vh;
+    }
