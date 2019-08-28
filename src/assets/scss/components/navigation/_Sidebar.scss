@@ -168,7 +168,7 @@ html body #main-masteraula-container.container-open #sidebar{
     left: 0;
 }
 html body #main-masteraula-container.container-open #body,
-html body #main-masteraula-container.container-open #footer-container{
+html body #main-masteraula-container.container-open .c-footer{
     margin-left:  $sidebar-size;
     margin-right:  $sidebar-size-neg;
 }
