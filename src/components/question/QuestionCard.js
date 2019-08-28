@@ -9,6 +9,7 @@ import imageCard from 'assets/img/home/question-card.jpg';
 import { Link } from 'react-router-dom';
 import { isQuestionAdded, getCleanExtractStatement } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { history } from 'helpers/history';
 
 const getIdFilter = (list, name) => {
   if (list) {
@@ -146,11 +147,12 @@ const QuestionCard = (props) => {
         </div>
       </CardBody>
       <CardFooter className="question-card__footer">
-        <Link to={`/view-question/${question.id}`}>
-          <Button className="question-card__btn">
+          <Button
+            className="question-card__btn"
+            onClick={() => { history.push(`/view-question/${question.id}`); }}
+          >
             Ver questão
           </Button>
-        </Link>
 
         {!isQuestionAdded(activeDocument, question.id) ? (
           <AddQuestionButton
