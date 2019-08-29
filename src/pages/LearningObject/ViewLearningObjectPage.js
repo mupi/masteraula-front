@@ -25,6 +25,13 @@ class ViewLearningObjectPage extends Component {
     fetchLearningObject(match.params.id);
   }
 
+  componentDidUpdate(prevProps) {
+    const { fetchLearningObject, match: { params: { id } } } = this.props;
+    if (prevProps.match.params.id !== id) {
+      fetchLearningObject(id);
+    }
+  }
+
   render() {
     const {
       activeLearningObject, isFetchingLearningObject, error,
