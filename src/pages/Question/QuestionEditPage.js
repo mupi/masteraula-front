@@ -276,6 +276,13 @@ class QuestionEditPage extends Component {
     fetchQuestion(match.params.id);
   }
 
+  componentDidUpdate(prevProps) {
+    const { fetchQuestion, match: { params: { id } } } = this.props;
+    if (prevProps.match.params.id !== id) {
+      fetchQuestion(id);
+    }
+  }
+
   render() {
     const {
       activeQuestion, userId, isFetching, error, activeDocument, handleSubmit, topicsList, topics, pristine,

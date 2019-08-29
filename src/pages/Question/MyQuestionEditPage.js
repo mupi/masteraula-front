@@ -409,6 +409,19 @@ class MyQuestionEditPage extends Component {
     // prepareForm();
   }
 
+  componentDidUpdate(prevProps) {
+    const { fetchQuestion, match: { params: { id } } } = this.props;
+    if (prevProps.match.params.id !== id) {
+      const {
+        listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
+      } = this.props;
+      listDisciplineFilters();
+      listTeachingLevelFilters();
+      listSourceFilters();
+      fetchQuestion(id);
+    }
+  }
+
     getListTopics = (e, newValue) => {
       const {
         listTopics,
