@@ -12,9 +12,8 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import BackUsingHistory from 'components/question/BackUsingHistory';
-
+import RelatedQuestions from 'components/question/RelatedQuestions';
 import { history } from 'helpers/history';
-
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
@@ -94,7 +93,13 @@ class QuestionPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
-    // history.push(`/view-question/${match.params.id}`);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { fetchQuestion, match: { params: { id } } } = this.props;
+    if (prevProps.match.params.id !== id) {
+      fetchQuestion(id);
+    }
   }
 
   render() {
@@ -130,7 +135,7 @@ class QuestionPage extends Component {
       <HomeUserPage>
         <div className="c-question">
           <Row className="c-question__row-header-options c-question__row-header-options--fixed">
-            <Col>
+            <Col className="c-question__col-header-options">
               <BackUsingHistory />
               { (isOwner && !activeQuestion.disabled)
                 ? (
@@ -236,6 +241,8 @@ class QuestionPage extends Component {
                 <QuestionListDocuments activeQuestion={activeQuestion} activeDocument={activeDocument} />
               </div>
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
+              {activeQuestion.related_questions && activeQuestion.related_questions.length > 0 ? (
+                <RelatedQuestions rquestions={activeQuestion.related_questions} {...this.props} />) : ''}
             </Col>
           </Row>
         </div>

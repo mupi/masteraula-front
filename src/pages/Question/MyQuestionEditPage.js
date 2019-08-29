@@ -486,7 +486,7 @@ class MyQuestionEditPage extends Component {
           <Form onSubmit={handleSubmit}>
             <div className="c-question c-create-question">
               <Row className="c-question__row-header-options c-question__row-header-options--fixed">
-                <Col>
+                <Col className="c-question__col-header-options">
                   <BackUsingHistory />
                   <DeleteQuestionButtonContainer
                     questionId={activeQuestion.id}
