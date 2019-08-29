@@ -152,7 +152,7 @@ const renderTopics = ({
         <Col sm="3" className="align-self-center hidden-xs">Assunto</Col>
         <Col sm="3" className="align-self-center hidden-xs">Subassunto</Col>
         <Col sm="3" className="align-self-center hidden-xs">Tópico</Col>
-        <Col sm="3">
+        <Col md="3" sm="6">
           <Button onClick={() => fields.push({})}>
             <FontAwesomeIcon
               icon="plus"

@@ -219,7 +219,7 @@ const renderAlternatives2 = ({ fields, meta: { error }, selectedIndex }) => (
         <Col sm="2" xs="1" className="align-self-center hidden-xs">Remover</Col>
         { fields.length < 5
           ? (
-            <Col sm="3">
+            <Col md="3" sm="6">
               <Button onClick={() => fields.push({})}>
                 <FontAwesomeIcon
                   icon="plus"
@@ -288,7 +288,7 @@ const renderTopics = ({
         <Col sm="3" className="align-self-center hidden-xs">Assunto</Col>
         <Col sm="3" className="align-self-center hidden-xs">Subassunto</Col>
         <Col sm="3" className="align-self-center hidden-xs">Tópico</Col>
-        <Col sm="3">
+        <Col md="3" sm="6">
           <Button onClick={() => fields.push({})}>
             <FontAwesomeIcon
               icon="plus"
@@ -488,7 +488,7 @@ class CreateQuestionPage extends Component {
                   Objetos de aprendizagem
                 </h5>
               </Col>
-              <Col sm="3">
+              <Col md="3" sm="6">
                 <Button onClick={() => this.openSearchLearningObjectModal()}>
                   <FontAwesomeIcon
                     icon="plus"
