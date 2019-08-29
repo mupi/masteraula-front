@@ -25,6 +25,13 @@ class ViewLearningObjectPage extends Component {
     fetchLearningObject(match.params.id);
   }
 
+  componentDidUpdate(prevProps) {
+    const { fetchLearningObject, match: { params: { id } } } = this.props;
+    if (prevProps.match.params.id !== id) {
+      fetchLearningObject(id);
+    }
+  }
+
   render() {
     const {
       activeLearningObject, isFetchingLearningObject, error,
@@ -49,6 +56,10 @@ class ViewLearningObjectPage extends Component {
         </HomeUserPage>
       );
     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> develop
     return (
       <HomeUserPage>
         <Row className="c-question__row-header-options c-question__row-header-options--fixed">
