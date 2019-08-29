@@ -93,7 +93,13 @@ class QuestionPage extends Component {
   componentDidMount() {
     const { fetchQuestion, match } = this.props;
     fetchQuestion(match.params.id);
-    // history.push(`/view-question/${match.params.id}`);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { fetchQuestion, match: { params: { id } } } = this.props;
+    if (prevProps.match.params.id !== id) {
+      fetchQuestion(id);
+    }
   }
 
   render() {
