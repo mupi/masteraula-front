@@ -56,7 +56,7 @@ class ViewLearningObjectPage extends Component {
         </HomeUserPage>
       );
     }
-    
+
     return (
       <HomeUserPage>
         <Row className="c-question__row-header-options c-question__row-header-options--fixed">
