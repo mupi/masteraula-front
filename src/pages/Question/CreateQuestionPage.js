@@ -459,7 +459,7 @@ class CreateQuestionPage extends Component {
         <Form onSubmit={handleSubmit}>
           <div className="c-question c-create-question">
             <Row className="c-question__row-header-options c-question__row-header-options--fixed">
-              <Col>
+              <Col className="c-question__col-header-options">
                 <BackUsingHistory />
                 <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit" disabled={submitting}>
                   <FontAwesomeIcon

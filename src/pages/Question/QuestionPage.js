@@ -130,7 +130,7 @@ class QuestionPage extends Component {
       <HomeUserPage>
         <div className="c-question">
           <Row className="c-question__row-header-options c-question__row-header-options--fixed">
-            <Col>
+            <Col className="c-question__col-header-options">
               <BackUsingHistory />
               { (isOwner && !activeQuestion.disabled)
                 ? (
