@@ -152,7 +152,7 @@ const renderTopics = ({
         <Col sm="3" className="align-self-center hidden-xs">Assunto</Col>
         <Col sm="3" className="align-self-center hidden-xs">Subassunto</Col>
         <Col sm="3" className="align-self-center hidden-xs">Tópico</Col>
-        <Col sm="3">
+        <Col md="3" sm="6">
           <Button onClick={() => fields.push({})}>
             <FontAwesomeIcon
               icon="plus"
@@ -336,7 +336,7 @@ class QuestionEditPage extends Component {
         <Form onSubmit={handleSubmit}>
           <div className="c-question">
             <Row className="c-question__row-header-options c-question__row-header-options--fixed">
-              <Col>
+              <Col className="c-question__col-header-options">
                 <BackUsingHistory />
                 <Link className="btn btn-secondary c-question__btn-back btn__icon hidden" to={`/view-question/${activeQuestion.id}`} role="button">
                   <FontAwesomeIcon icon="eye" className="btn__icon" />

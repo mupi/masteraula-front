@@ -21,6 +21,9 @@
     &__header-topic{
         text-align: center;
         font-weight: bold;
+        @include for-tablet-landscape-bottom{
+            text-align: left;
+        }
     }
 
     &__tags-learning-objects{

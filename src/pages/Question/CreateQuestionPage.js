@@ -219,7 +219,7 @@ const renderAlternatives2 = ({ fields, meta: { error }, selectedIndex }) => (
         <Col sm="2" xs="1" className="align-self-center hidden-xs">Remover</Col>
         { fields.length < 5
           ? (
-            <Col sm="3">
+            <Col md="3" sm="6">
               <Button onClick={() => fields.push({})}>
                 <FontAwesomeIcon
                   icon="plus"
@@ -288,7 +288,7 @@ const renderTopics = ({
         <Col sm="3" className="align-self-center hidden-xs">Assunto</Col>
         <Col sm="3" className="align-self-center hidden-xs">Subassunto</Col>
         <Col sm="3" className="align-self-center hidden-xs">Tópico</Col>
-        <Col sm="3">
+        <Col md="3" sm="6">
           <Button onClick={() => fields.push({})}>
             <FontAwesomeIcon
               icon="plus"
@@ -459,7 +459,7 @@ class CreateQuestionPage extends Component {
         <Form onSubmit={handleSubmit}>
           <div className="c-question c-create-question">
             <Row className="c-question__row-header-options c-question__row-header-options--fixed">
-              <Col>
+              <Col className="c-question__col-header-options">
                 <BackUsingHistory />
                 <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit" disabled={submitting}>
                   <FontAwesomeIcon
@@ -488,7 +488,7 @@ class CreateQuestionPage extends Component {
                   Objetos de aprendizagem
                 </h5>
               </Col>
-              <Col sm="3">
+              <Col md="3" sm="6">
                 <Button onClick={() => this.openSearchLearningObjectModal()}>
                   <FontAwesomeIcon
                     icon="plus"
