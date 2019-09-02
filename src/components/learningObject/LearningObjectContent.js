@@ -39,8 +39,6 @@ const LearningObjectContent = (props) => {
               to={`/view-object/${learningObject.id}`}
               title="Visualizar objeto"
               className="btn btn-secondary btn__icon"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               <FontAwesomeIcon icon="eye" />
             </Link>
