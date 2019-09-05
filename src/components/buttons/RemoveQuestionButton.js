@@ -11,13 +11,14 @@ const handleRemoveQuestionButton = (e, questionId, activeDocumentId, removeSelec
 };
 
 const RemoveQuestionButton = ({
-  questionId, activeDocumentId, removeSelectedQuestion, label, customClass,
+  questionId, activeDocumentId, removeSelectedQuestion, label, customClass, isFetchingRemoveQuestion,
 }) => (
   <Button
     value={questionId}
     title="Remover questão"
     className={customClass}
     onClick={(e => handleRemoveQuestionButton(e, questionId, activeDocumentId, removeSelectedQuestion))}
+    disabled={isFetchingRemoveQuestion}
   >
     {label}
   </Button>

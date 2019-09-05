@@ -14,10 +14,11 @@ const DocumentQuestions = (props) => {
       </div> */}
       {activeDocument && activeDocument.questions.map((questionOrder, i) => (
         <DocumentQuestionItem
-          key={i + 1}
+          key={questionOrder.question.id}
           question={questionOrder.question}
           activeDocument={activeDocument}
           removeSelectedQuestion={removeSelectedQuestion}
+          {...props}
         />
       ))}
       {/* <ViewQuestionModal /> */}

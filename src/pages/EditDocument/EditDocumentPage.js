@@ -10,7 +10,7 @@ import DocumentBasicHeader from 'components/document/DocumentBasicHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
-class EditDocumentPage extends Component {
+class EditDocumentPage extends Component { 
   componentDidMount() {
     const { fetchDocument, activeDocument } = this.props;
     if (!activeDocument) {
@@ -47,6 +47,7 @@ class EditDocumentPage extends Component {
           <DocumentQuestions
             activeDocument={activeDocument}
             removeSelectedQuestion={removeSelectedQuestion}
+            {...this.props}
           />
         </div>
       </HomeUserPage>

@@ -43,6 +43,8 @@ const mapStateToProps = state => ({
   activeDocument: state.document.activeDocument,
   role: state.session.session.user.groups,
   userId: state.session.session.user.id,
+  isFetchingRemoveQuestion: state.document.isFetchingRemoveQuestion,
+  isFetchingAddQuestion: state.document.isFetchingAddQuestion,
 });
 
 const mapDispatchToProps = dispatch => ({

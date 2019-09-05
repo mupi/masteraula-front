@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
   isUpdated: state.document.isUpdated,
   error: state.document.error,
   isRemoved: state.document.isRemoved,
+  isFetchingRemoveQuestion: state.document.isFetchingRemoveQuestion,
 });
 
 const mapDispatchToProps = dispatch => ({

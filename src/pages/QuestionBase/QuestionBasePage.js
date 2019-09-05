@@ -158,7 +158,7 @@ class QuestionBasePage extends React.Component {
             { isFetching ? (
               <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
                   Carregando ...
-              </Alert>
+              </Alert> 
             ) : (
               <QuestionList sm="4" {...this.props} questions={questionPage.results} count={questionPage.count} />
             )

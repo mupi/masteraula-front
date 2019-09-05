@@ -51,6 +51,8 @@ const mapStateToProps = state => ({
   sourceFilters: state.filter.sourceFilters,
   yearFilters: state.filter.yearFilters,
   user: state.session.session.user,
+  isFetchingRemoveQuestion: state.document.isFetchingRemoveQuestion,
+  isFetchingAddQuestion: state.document.isFetchingAddQuestion,
 });
 
 const mapDispatchToProps = dispatch => ({
