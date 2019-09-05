@@ -11,6 +11,8 @@ const mapStateToProps = state => ({
   error: state.document.error,
   isRemoved: state.document.isRemoved,
   isFetchingRemoveQuestion: state.document.isFetchingRemoveQuestion,
+  idRemovedQuestion: state.document.idRemovedQuestion,
+
 });
 
 const mapDispatchToProps = dispatch => ({

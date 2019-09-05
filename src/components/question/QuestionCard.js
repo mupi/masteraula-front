@@ -48,7 +48,7 @@ const QuestionCard = (props) => {
     <Card className={urlImage !== '' ? 'h-10 image-card' : 'h-100 question-card__full'}>
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
 
-      <CardHeader className="question-card__header"> 
+      <CardHeader className="question-card__header">
         <div className="question-card__id">
           Questão N°
           {' '}
@@ -166,13 +166,13 @@ const QuestionCard = (props) => {
             activeDocumentId={activeDocument.id}
             removeSelectedQuestion={removeSelectedQuestion}
             customClass="c-question__btn-remove-question"
-            isFetchingRemoveQuestion={isFetchingRemoveQuestion}
             label={(
               <span>
                 <FontAwesomeIcon icon="minus" className="btn__icon" />
-Remover
+                Remover
               </span>
-)}
+            )}
+            {...props}
           />
         )}
       </CardFooter>

@@ -20,6 +20,7 @@ const mapStateToProps = (state) => {
     topicsList: state.topic.topics,
     role: state.session.session.user.groups,
     userId: user.id,
+    idRemovedQuestion: state.document.idRemovedQuestion,
   });
 };
 

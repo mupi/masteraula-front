@@ -4,13 +4,14 @@ import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const AddQuestionButton = ({
-  customClass, questionId, nameButton, setQuestionIdToNewDocument, activeDocument, addSelectedQuestion, hideModal, showModal, isFetchingAddQuestion,
+  customClass, questionId, nameButton, setQuestionIdToNewDocument,
+  activeDocument, addSelectedQuestion, hideModal, showModal, idAddedQuestion,
 }) => {
   const closeModal = () => {
     hideModal();
   };
 
-  const handleAddQuestionButton = (e) => {
+  const handleAddQuestionButton = (e) => { 
     e.preventDefault();
     if (activeDocument) {
       addSelectedQuestion(activeDocument.id, questionId, 0);
@@ -30,7 +31,7 @@ const AddQuestionButton = ({
       title="Adicionar questões"
       className={customClass}
       onClick={e => handleAddQuestionButton(e)}
-      disabled={isFetchingAddQuestion}
+      disabled={idAddedQuestion === questionId}
     >
       <FontAwesomeIcon
         icon="plus"
