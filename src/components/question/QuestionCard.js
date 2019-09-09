@@ -37,7 +37,7 @@ const getQuoteSeparator = (i, length) => {
 const QuestionCard = (props) => {
   const {
     question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, addSelectedSourceFilter, addSelectedYearFilter,
-    removeSelectedQuestion, sourceFilters, yearFilters,
+    removeSelectedQuestion, sourceFilters, yearFilters, isFetchingRemoveQuestion, isFetchingAddQuestion,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
   const idSource = question.source ? getIdFilter(sourceFilters, question.source) : null;
@@ -169,9 +169,10 @@ const QuestionCard = (props) => {
             label={(
               <span>
                 <FontAwesomeIcon icon="minus" className="btn__icon" />
-Remover
+                Remover
               </span>
-)}
+            )}
+            {...props}
           />
         )}
       </CardFooter>

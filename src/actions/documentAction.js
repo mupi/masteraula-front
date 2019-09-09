@@ -197,7 +197,7 @@ export const listMyLastDocuments = (page, orderField, order) => (dispatch) => {
 
 // Add Selected Question to Document
 export const addSelectedQuestion = (idDocument, idQuestion, order) => {
-  function addQuestionToDocument() { return { type: ADD_SELECTED_QUESTION }; }
+  function addQuestionToDocument() { return { type: ADD_SELECTED_QUESTION, idAddedQuestion: idQuestion }; }
   function addQuestionToDocumentSuccess(addedQuestion) { return { type: ADD_SELECTED_QUESTION_SUCCESS, addedQuestion }; }
   function addQuestionToDocumentFailure(error) { return { type: ADD_SELECTED_QUESTION_FAILURE, error }; }
 
@@ -223,7 +223,7 @@ export const addSelectedQuestion = (idDocument, idQuestion, order) => {
 
 // Remove Selected Question from Document
 export const removeSelectedQuestion = (idDocument, idQuestion) => {
-  function removeQuestionFromDocument() { return { type: REMOVE_SELECTED_QUESTION }; }
+  function removeQuestionFromDocument() { return { type: REMOVE_SELECTED_QUESTION, idRemovedQuestion: idQuestion }; }
   function removeQuestionFromDocumentSuccess(idRemovedQuestion) { return { type: REMOVE_SELECTED_QUESTION_SUCCESS, idRemovedQuestion }; }
   function removeQuestionFromDocumentFailure(error) { return { type: REMOVE_SELECTED_QUESTION_FAILURE, error }; }
 

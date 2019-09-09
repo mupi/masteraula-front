@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DocumentQuestionItem = (props) => {
   const {
-    question, activeDocument, removeSelectedQuestion, readOnly = false,
+    question, activeDocument, removeSelectedQuestion, readOnly = false, isFetchingRemoveQuestion,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
 
@@ -108,6 +108,7 @@ const DocumentQuestionItem = (props) => {
                       removeSelectedQuestion={removeSelectedQuestion}
                       customClass="c-document__btn-remove-question"
                       label={<FontAwesomeIcon icon="trash-alt" />}
+                      {...props}
                     />
                   ) : ' ' }
                   <Link to={`/view-question/${question.id}`}>

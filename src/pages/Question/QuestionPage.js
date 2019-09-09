@@ -62,6 +62,7 @@ const ShowAddRemoveButton = (props) => {
               </span>
                         )}
             customClass="c-question__btn-remove-question"
+            {...props}
           />
         </Col>
       ) : ''
@@ -232,6 +233,7 @@ class QuestionPage extends Component {
                         addSelectedQuestion={addSelectedQuestion}
                         showModal={showModal}
                         hideModal={hideModal}
+                        {...this.props}
                       />
                     </Col>
                   ) : (

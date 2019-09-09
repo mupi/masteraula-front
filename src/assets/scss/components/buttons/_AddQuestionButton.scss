@@ -53,3 +53,18 @@
       }
     }
 }
+
+
+.question-card__btn.btn-secondary.disabled,
+.question-card__btn.btn-secondary.disabled:hover,
+.question-card__btn.btn-secondary.disabled:focus,
+.question-card__btn.btn-secondary.disabled:active,
+.question-card__btn.btn-secondary.disabled.active,
+.question-card__btn.btn-secondary[disabled],
+.question-card__btn.btn-secondary[disabled]:hover,
+.question-card__btn.btn-secondary[disabled]:focus,
+.question-card__btn.btn-secondary[disabled]:active,
+.question-card__btn.btn-secondary.active[disabled]{
+  background-color: #356388 !important;
+  border-color: #356388 !important;
+}

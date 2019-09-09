@@ -141,6 +141,7 @@ export const document = (state = initialState, action) => {
         isRemoved: null,
         isUpdated: null,
         error: null,
+        idAddedQuestion: action.idAddedQuestion,
       });
     case ADD_SELECTED_QUESTION_SUCCESS: {
       const activeDocument = { ...state.activeDocument, questions: [...state.activeDocument.questions, action.addedQuestion] };
@@ -149,16 +150,19 @@ export const document = (state = initialState, action) => {
       return Object.assign({}, state, {
         isFetchingAddQuestion: false,
         activeDocument,
+        idAddedQuestion: null,
       });
     }
     case ADD_SELECTED_QUESTION_FAILURE:
       return Object.assign({}, state, {
         isFetchingAddQuestion: false,
         error: action.error,
+        idAddedQuestion: null,
       });
     case REMOVE_SELECTED_QUESTION:
       return Object.assign({}, state, {
         isFetchingRemoveQuestion: true,
+        idRemovedQuestion: action.idRemovedQuestion,
         isRemoved: null,
         isUpdated: null,
         error: null,
@@ -172,6 +176,7 @@ export const document = (state = initialState, action) => {
         isFetchingRemoveQuestion: false,
         isRemoved: true,
         activeDocument,
+        idRemovedQuestion: null,
       });
     }
     case REMOVE_SELECTED_QUESTION_FAILURE:
@@ -179,6 +184,7 @@ export const document = (state = initialState, action) => {
       return Object.assign({}, state, {
         isFetchingRemoveQuestion: false,
         error: action.error,
+        idRemovedQuestion: null,
       });
     case CREATE_DOCUMENT_TOGGLE_MODAL: {
       return Object.assign({}, state, {
