@@ -48,7 +48,10 @@ const mapStateToProps = state => ({
   activeLearningObject: state.learningObject.activeLearningObject,
   error: state.learningObject.error,
   activeDocument: state.document.activeDocument,
-
+  isFetchingRemoveQuestion: state.document.isFetchingRemoveQuestion,
+  isFetchingAddQuestion: state.document.isFetchingAddQuestion,
+  idRemovedQuestion: state.document.idRemovedQuestion,
+  idAddedQuestion: state.document.idAddedQuestion,
 });
 
 const mapDispatchToProps = dispatch => ({
