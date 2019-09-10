@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
   return ({
     topics: selector(state, 'topics'),
     alternatives: selector(state, 'alternatives'),
+    disciplinesList: selector(state, 'disciplines'),
     topicsList: state.topic.topics,
     disciplineFilters: state.filter.disciplineFilters,
     teachingLevelFilters: state.filter.teachingLevelFilters,
