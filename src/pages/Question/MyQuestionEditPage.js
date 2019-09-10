@@ -424,9 +424,13 @@ class MyQuestionEditPage extends Component {
 
     getListTopics = (e, newValue) => {
       const {
-        listTopics,
+        listTopics, resetTopicList,
       } = this.props;
-      listTopics(newValue);
+      if (newValue.length > 0) {
+        listTopics(newValue);
+      } else {
+        resetTopicList();
+      }
     }
 
     closeModal() {

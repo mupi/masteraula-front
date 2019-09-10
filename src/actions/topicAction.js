@@ -4,6 +4,7 @@ import { topicService } from 'services';
 export const LIST_TOPIC = 'LIST_TOPIC';
 export const LIST_TOPIC_SUCCESS = 'LIST_TOPIC_SUCCESS';
 export const LIST_TOPIC_FAILURE = 'LIST_TOPIC_FAILURE';
+export const RESET_TOPIC_LIST = 'RESET_TOPIC_LIST';
 
 
 // List all topics
@@ -13,7 +14,7 @@ export const listTopics = (param) => {
     return { type: LIST_TOPIC_SUCCESS, topics };
   }
   function fetchListTopicsFailure(error) {
-    return { type: LIST_TOPIC_FAILURE, error };
+    return { type: LIST_TOPIC_FAILURE, error }; 
   }
   return (dispatch) => {
     dispatch(requestListTopics(param));
@@ -28,3 +29,8 @@ export const listTopics = (param) => {
       );
   };
 };
+
+// Reset topic list
+export const resetTopicList = () => ({
+  type: RESET_TOPIC_LIST,
+});

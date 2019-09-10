@@ -7,7 +7,7 @@ import { createQuestion, removeSelectedObjectToQuestion, resetSelectedObjects } 
 import {
   listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
 } from 'actions/filterAction';
-import { listTopics } from 'actions/topicAction';
+import { listTopics, resetTopicList } from 'actions/topicAction';
 import { showModal, hideModal } from 'actions/modalAction';
 
 const mapStateToProps = (state) => {
@@ -28,6 +28,7 @@ const mapDispatchToProps = dispatch => ({
   listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
   listSourceFilters: param => dispatch(listSourceFilters(param)),
   listTopics: param => dispatch(listTopics(param)),
+  resetTopicList: () => dispatch(resetTopicList()),
   prepareForm: () => {
     dispatch(initialize('question-create', {
       topics: [{}],
