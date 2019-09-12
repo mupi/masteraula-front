@@ -1,4 +1,4 @@
-/*import React from 'react';
+import React from 'react';
 import { Route, Router } from 'react-router';
 
 export default (
@@ -22,15 +22,4 @@ export default (
     <Route path="/terms-use" />
     <Route path="/verify-userregister/:key" />
   </Route>
-);
-*/
-
-import React from 'react';
-import { Route } from 'react-router';
- 
-export default (
-    <Route>
-	<Route path='/' />
-	<Route path='/blog/:id' />
-    </Route>
 );

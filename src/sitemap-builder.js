@@ -1,12 +1,16 @@
-require('@babel-register');
- 
-const router = require('./sitemap-routes.js').default;
-const Sitemap = require('react-router-sitemap').default;
- 
-(
-    new Sitemap(<Route path='/home' />)
-        .build('https://masteraula.com.br')
-        .save('./sitemap.xml')
-);
+require('babel-register')({
+  presets: ['es2015', 'react'],
+});
 
-console.log("The sitemap was built."); // Only shows this message after everything works well.
+const router = require('./sitemap-routes').default;
+const Sitemap = require('react-router-sitemap').default;
+
+function generateSitemap() {
+  return (
+    new Sitemap(router)
+      .build('https://www.masteraula.com.br.com')
+      .save('./sitemap.xml')
+  );
+}
+
+generateSitemap();
