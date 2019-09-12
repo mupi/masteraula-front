@@ -1,4 +1,4 @@
-require('babel-register');
+require('@babel-register');
  
 const router = require('./sitemap-routes.js').default;
 const Sitemap = require('react-router-sitemap').default;
