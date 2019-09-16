@@ -46,9 +46,9 @@ class ObjectBasePage extends React.Component {
         <Helmet>
           <title>Masteraula - Banco de Objetos de aprendizagem</title>
           <meta
-              name="description"
-              content="Recursos úteis como textos e imagens para suas provas"
-            />
+            name="description"
+            content="Recursos úteis como textos e imagens para suas provas"
+          />
         </Helmet>
         <div className="c-object-base">
           <LearningObjectSearchFormContainer />
