@@ -6,7 +6,7 @@ const router = require('./sitemap-routes').default;
 // 2.
 (
   new Sitemap(router)
-    .build('https://masteraula.com.br/')
+    .build('https://masteraula.com.br/#/')
     .save('./sitemap.xml')
 );
 
