@@ -8,6 +8,7 @@ import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import LearningObjectSearchFormContainer from 'containers/LearningObjectSearchFormContainer';
 import LearningObjectCardList from 'components/learningObject/LearningObjectCardList';
+import { Helmet } from 'react-helmet';
 
 class ObjectBasePage extends React.Component {
   componentDidMount() {
@@ -42,6 +43,13 @@ class ObjectBasePage extends React.Component {
     }
     return (
       <HomeUserPage showFiltersForObjectBase>
+        <Helmet>
+          <title>Masteraula - Banco de Objetos de aprendizagem</title>
+          <meta
+              name="description"
+              content="Recursos úteis como textos e imagens para suas provas"
+            />
+        </Helmet>
         <div className="c-object-base">
           <LearningObjectSearchFormContainer />
           <Row className="pagination-questions" style={{ marginLeft: '80%' }}>
@@ -50,7 +58,7 @@ class ObjectBasePage extends React.Component {
           <div className="c-question-base__results">
             { isFetching ? (
               <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
-                   Carregando ... 
+                   Carregando ...
               </Alert>
             ) : (
               <LearningObjectCardList
