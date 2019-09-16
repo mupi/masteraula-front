@@ -28,16 +28,16 @@ self.__precacheManifest = [
     "url": "/static/media/loader-big.a770b679.gif"
   },
   {
-    "revision": "792dcd18baf5f544aabcad1883d673c2",
-    "url": "/static/media/rw-widgets.792dcd18.svg"
-  },
-  {
     "revision": "bc7c4a59f924cf037aad6e1f9edba366",
     "url": "/static/media/rw-widgets.bc7c4a59.eot"
   },
   {
     "revision": "eceddf474df95d8d4a7e316668c3be85",
     "url": "/static/media/rw-widgets.eceddf47.ttf"
+  },
+  {
+    "revision": "792dcd18baf5f544aabcad1883d673c2",
+    "url": "/static/media/rw-widgets.792dcd18.svg"
   },
   {
     "revision": "12f0820c451bdc75f4d1ef97732bf6e8",
