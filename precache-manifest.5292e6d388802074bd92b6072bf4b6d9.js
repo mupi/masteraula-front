@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/static/media/clock.d8d94d4c.png"
   },
   {
-    "revision": "ae300375eddb0495136a",
-    "url": "/static/css/main.6b82ed74.chunk.css"
+    "revision": "e753ac54c52bbb285379",
+    "url": "/static/css/main.2dfb26fd.chunk.css"
   },
   {
     "revision": "42ac5946195a7306e2a5",
@@ -44,7 +44,7 @@ self.__precacheManifest = [
     "url": "/static/media/rw-widgets.12f0820c.woff"
   },
   {
-    "revision": "ae300375eddb0495136a",
+    "revision": "e753ac54c52bbb285379",
     "url": "/static/js/main.332b9fd0.chunk.js"
   },
   {
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/static/css/2.ea4899fa.chunk.css"
   },
   {
-    "revision": "c39b46f56319a05857786d99ee3bda13",
+    "revision": "8b123d65e265939457553d74122836e7",
     "url": "/index.html"
   }
 ];
