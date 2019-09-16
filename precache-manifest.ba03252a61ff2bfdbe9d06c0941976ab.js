@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "d8d94d4c60100b2d0344152108817820",
-    "url": "/static/media/clock.d8d94d4c.png"
+    "revision": "9374574d8ece0f14f539e8742dd675b6",
+    "url": "/static/media/clock.9374574d.jpg"
   },
   {
-    "revision": "5c0ea0b46e6837bcf361",
+    "revision": "015d62c4c80a5cc47fdc",
     "url": "/static/css/main.8afac6c5.chunk.css"
   },
   {
@@ -28,32 +28,32 @@ self.__precacheManifest = [
     "url": "/static/media/loader-big.a770b679.gif"
   },
   {
-    "revision": "bc7c4a59f924cf037aad6e1f9edba366",
-    "url": "/static/media/rw-widgets.bc7c4a59.eot"
+    "revision": "792dcd18baf5f544aabcad1883d673c2",
+    "url": "/static/media/rw-widgets.792dcd18.svg"
   },
   {
-    "revision": "12f0820c451bdc75f4d1ef97732bf6e8",
-    "url": "/static/media/rw-widgets.12f0820c.woff"
+    "revision": "bc7c4a59f924cf037aad6e1f9edba366",
+    "url": "/static/media/rw-widgets.bc7c4a59.eot"
   },
   {
     "revision": "eceddf474df95d8d4a7e316668c3be85",
     "url": "/static/media/rw-widgets.eceddf47.ttf"
   },
   {
-    "revision": "792dcd18baf5f544aabcad1883d673c2",
-    "url": "/static/media/rw-widgets.792dcd18.svg"
+    "revision": "12f0820c451bdc75f4d1ef97732bf6e8",
+    "url": "/static/media/rw-widgets.12f0820c.woff"
   },
   {
-    "revision": "5c0ea0b46e6837bcf361",
-    "url": "/static/js/main.332b9fd0.chunk.js"
+    "revision": "015d62c4c80a5cc47fdc",
+    "url": "/static/js/main.f4962509.chunk.js"
   },
   {
-    "revision": "b1225a53dbba5758eb500953f5e4750c",
-    "url": "/static/media/search.b1225a53.png"
+    "revision": "884835a421ba1edc9c7de3565b265cab",
+    "url": "/static/media/search.884835a4.jpg"
   },
   {
-    "revision": "0e5d6fa02338f5fd8429b9c371b6a14b",
-    "url": "/static/media/money.0e5d6fa0.png"
+    "revision": "ae4824bfeb3a6f7e8ec872aef06e9805",
+    "url": "/static/media/money.ae4824bf.jpg"
   },
   {
     "revision": "87bacab469a1bec33d109a6649bb1ec5",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/static/css/2.ea4899fa.chunk.css"
   },
   {
-    "revision": "7bc3b4a618702f831b0980e9780f3fcc",
+    "revision": "23b594bd08700496d7b5f28bf9eeb1b4",
     "url": "/index.html"
   }
 ];
