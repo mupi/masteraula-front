@@ -1,7 +1,7 @@
 import React from 'react';
-import clockImg from 'assets/img/home/clock.png';
-import searchImg from 'assets/img/home/search.png';
-import moneyImg from 'assets/img/home/money.png';
+import clockImg from 'assets/img/home/clock.jpg';
+import searchImg from 'assets/img/home/search.jpg';
+import moneyImg from 'assets/img/home/money.jpg';
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
