@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "https://masteraula.com.br/static/media/clock.9374574d.jpg"
   },
   {
-    "revision": "2979aa206461eafe3a2a",
+    "revision": "87397e4df3e16ee525e5",
     "url": "https://masteraula.com.br/static/css/main.bc5402e3.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "https://masteraula.com.br/static/js/runtime~main.1e119479.js"
   },
   {
-    "revision": "5e04d3019dfb3274ff31de6e268a3166",
-    "url": "https://masteraula.com.br/static/media/sidebar-background-2.5e04d301.jpg"
+    "revision": "ef2b8468921feae7df9181301c8575c1",
+    "url": "https://masteraula.com.br/static/media/banner.ef2b8468.jpg"
   },
   {
     "revision": "da40dfa4a45a0072c963",
@@ -32,20 +32,20 @@ self.__precacheManifest = [
     "url": "https://masteraula.com.br/static/media/rw-widgets.bc7c4a59.eot"
   },
   {
-    "revision": "792dcd18baf5f544aabcad1883d673c2",
-    "url": "https://masteraula.com.br/static/media/rw-widgets.792dcd18.svg"
-  },
-  {
     "revision": "eceddf474df95d8d4a7e316668c3be85",
     "url": "https://masteraula.com.br/static/media/rw-widgets.eceddf47.ttf"
+  },
+  {
+    "revision": "792dcd18baf5f544aabcad1883d673c2",
+    "url": "https://masteraula.com.br/static/media/rw-widgets.792dcd18.svg"
   },
   {
     "revision": "12f0820c451bdc75f4d1ef97732bf6e8",
     "url": "https://masteraula.com.br/static/media/rw-widgets.12f0820c.woff"
   },
   {
-    "revision": "2979aa206461eafe3a2a",
-    "url": "https://masteraula.com.br/static/js/main.9a31fc1e.chunk.js"
+    "revision": "87397e4df3e16ee525e5",
+    "url": "https://masteraula.com.br/static/js/main.29648b69.chunk.js"
   },
   {
     "revision": "884835a421ba1edc9c7de3565b265cab",
@@ -80,15 +80,15 @@ self.__precacheManifest = [
     "url": "https://masteraula.com.br/static/media/logo_masteraula.dc132bac.png"
   },
   {
-    "revision": "ef2b8468921feae7df9181301c8575c1",
-    "url": "https://masteraula.com.br/static/media/banner.ef2b8468.jpg"
+    "revision": "5e04d3019dfb3274ff31de6e268a3166",
+    "url": "https://masteraula.com.br/static/media/sidebar-background-2.5e04d301.jpg"
   },
   {
     "revision": "da40dfa4a45a0072c963",
     "url": "https://masteraula.com.br/static/css/2.181215cf.chunk.css"
   },
   {
-    "revision": "9405fa068e0d201ef43bfc2f70c77cc7",
+    "revision": "44c6341edc34ea3a66f4f21857e072ac",
     "url": "https://masteraula.com.br/index.html"
   }
 ];
