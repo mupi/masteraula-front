@@ -32,6 +32,8 @@ const middlewares = [];
 
 if (process.env.REACT_APP_ENV === 'dev') {
   const loggerMiddleware = createLogger();
+  console.log("hola");
+  console.log(process.env.PUBLIC_URL);
 
 
   middlewares.push(loggerMiddleware);
