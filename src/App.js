@@ -115,6 +115,7 @@ class App extends Component {
               name="description"
               content="Ganhe tempo na preparação de provas e atividades para o cotidiano escolar do Ensino Básico."
             />
+            <meta property="og:image" content="https://masteraula.com.br/masteraula.jpg" />
           </Helmet>
           <MenuContainer />
           {isLoggedIn

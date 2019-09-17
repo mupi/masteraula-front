@@ -102,7 +102,7 @@ class QuestionPage extends Component {
     if (prevProps.match.params.id !== id) {
       fetchQuestion(id);
     }
-  } 
+  }
 
   render() {
     const {
@@ -134,7 +134,6 @@ class QuestionPage extends Component {
         </HomeUserPage>
       );
     }
-    
 
     return (
       <HomeUserPage>
