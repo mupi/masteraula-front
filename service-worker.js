@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://masteraula.com.br/precache-manifest.7cb643873846bd0b241a02dfed69422e.js"
+  "https://masteraula.com.br/precache-manifest.e39ca67588555bc963fd9abe63298e89.js"
 );
 
 workbox.clientsClaim();

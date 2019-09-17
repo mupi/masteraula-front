@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "https://masteraula.com.br/static/media/clock.9374574d.jpg"
   },
   {
-    "revision": "87397e4df3e16ee525e5",
+    "revision": "be5e2973a1422034e334",
     "url": "https://masteraula.com.br/static/css/main.bc5402e3.chunk.css"
   },
   {
@@ -28,14 +28,6 @@ self.__precacheManifest = [
     "url": "https://masteraula.com.br/static/media/loader-big.a770b679.gif"
   },
   {
-    "revision": "bc7c4a59f924cf037aad6e1f9edba366",
-    "url": "https://masteraula.com.br/static/media/rw-widgets.bc7c4a59.eot"
-  },
-  {
-    "revision": "eceddf474df95d8d4a7e316668c3be85",
-    "url": "https://masteraula.com.br/static/media/rw-widgets.eceddf47.ttf"
-  },
-  {
     "revision": "792dcd18baf5f544aabcad1883d673c2",
     "url": "https://masteraula.com.br/static/media/rw-widgets.792dcd18.svg"
   },
@@ -44,8 +36,16 @@ self.__precacheManifest = [
     "url": "https://masteraula.com.br/static/media/rw-widgets.12f0820c.woff"
   },
   {
-    "revision": "87397e4df3e16ee525e5",
-    "url": "https://masteraula.com.br/static/js/main.29648b69.chunk.js"
+    "revision": "bc7c4a59f924cf037aad6e1f9edba366",
+    "url": "https://masteraula.com.br/static/media/rw-widgets.bc7c4a59.eot"
+  },
+  {
+    "revision": "eceddf474df95d8d4a7e316668c3be85",
+    "url": "https://masteraula.com.br/static/media/rw-widgets.eceddf47.ttf"
+  },
+  {
+    "revision": "be5e2973a1422034e334",
+    "url": "https://masteraula.com.br/static/js/main.1054e378.chunk.js"
   },
   {
     "revision": "884835a421ba1edc9c7de3565b265cab",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "https://masteraula.com.br/static/css/2.181215cf.chunk.css"
   },
   {
-    "revision": "44c6341edc34ea3a66f4f21857e072ac",
+    "revision": "ab621f471d962b29644fa64ae512aef2",
     "url": "https://masteraula.com.br/index.html"
   }
 ];
