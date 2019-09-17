@@ -107,51 +107,53 @@ class App extends Component {
     const { width } = this.state;
     const isMobile = width <= 989;
     return (
-      <div id="main-masteraula-container" className={(isOpenSidebar && isMobile) ? 'container-open' : ''}>
-        <Helmet>
-          <title>Masteraula - Banco de Questões</title>
-          <meta
-            name="description"
-            content="Plataforma para preparação de provas e atividades para o cotidiano escolar do Ensino Básico."
-          />
-        </Helmet>
-        <MenuContainer />
-        {isLoggedIn
-          ? (
-            <Switch>
-              <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
-              <Route path="/view-question/:id" component={QuestionPageContainer} />
-              <Route path="/classify-question/:id" component={QuestionEditPageContainer} />
-              <Route path="/edit-question/:id" component={MyQuestionEditPageContainer} />
-              <Route path="/create-question/" component={CreateQuestionPageContainer} />
-              <Route path="/user-profile" component={UserProfilePageContainer} />
-              <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
-              <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
-              <Route path="/edit-document" component={EditDocumentPageContainer} />
-              <Route path="/view-object/:id" component={ViewLearningObjectPageContainer} />
-              <Route path="/edit-header/:id" component={EditHeaderPageContainer} />
-              <Route path="/new-header" component={EditHeaderPageContainer} />
-              <Route path="/object-base/:page(\d+)" component={ObjectBasePageContainer} />
-              <Redirect from="/" to="/question-base/1" />
-            </Switch>
-          )
-          : (
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route path="/nossos-planos" component={PricingPageContainer} />
-              <Route path="/esqueci-senha" component={ForgotPasswordPageContainer} />
-              <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
-              <Route path="/terms-use" component={TermsUsePage} />
-              <Route path="/verify-userregister/:key" component={VerifyRegisterPageContainer} />
-              <Route component={NotFoundPage} />
-            </Switch>
-          )
+      <Router history={history}>
+        <div id="main-masteraula-container" className={(isOpenSidebar && isMobile) ? 'container-open' : ''}>
+          <Helmet>
+            <title>Masteraula - Banco de Questões</title>
+            <meta
+              name="description"
+              content="Ganhe tempo na preparação de provas e atividades para o cotidiano escolar do Ensino Básico."
+            />
+          </Helmet>
+          <MenuContainer />
+          {isLoggedIn
+            ? (
+              <Switch>
+                <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
+                <Route path="/view-question/:id" component={QuestionPageContainer} />
+                <Route path="/classify-question/:id" component={QuestionEditPageContainer} />
+                <Route path="/edit-question/:id" component={MyQuestionEditPageContainer} />
+                <Route path="/create-question/" component={CreateQuestionPageContainer} />
+                <Route path="/user-profile" component={UserProfilePageContainer} />
+                <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
+                <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
+                <Route path="/edit-document" component={EditDocumentPageContainer} />
+                <Route path="/view-object/:id" component={ViewLearningObjectPageContainer} />
+                <Route path="/edit-header/:id" component={EditHeaderPageContainer} />
+                <Route path="/new-header" component={EditHeaderPageContainer} />
+                <Route path="/object-base/:page(\d+)" component={ObjectBasePageContainer} />
+                <Redirect from="/" to="/question-base/1" />
+              </Switch>
+            )
+            : (
+              <Switch>
+                <Route exact path="/" component={HomePage} />
+                <Route path="/nossos-planos" component={PricingPageContainer} />
+                <Route path="/esqueci-senha" component={ForgotPasswordPageContainer} />
+                <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
+                <Route path="/terms-use" component={TermsUsePage} />
+                <Route path="/verify-userregister/:key" component={VerifyRegisterPageContainer} />
+                <Route component={NotFoundPage} />
+              </Switch>
+            )
             }
-        <ModalRoot />
+          <ModalRoot />
 
-        <Footer year="2019" version="1.0" />
+          <Footer year="2019" version="1.0" />
+        </div>
         <ToastContainer hideProgressBar position="bottom-right" />
-      </div>
+      </Router>
     );
   }
 }

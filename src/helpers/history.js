@@ -1,9 +1,5 @@
-/* import { createHashHistory } from 'history'; */
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
-/*
-export const history = createHashHistory();
-*/
-export const history = createHistory({
+export const history = createBrowserHistory({
   basename: process.env.PUBLIC_URL,
 });
