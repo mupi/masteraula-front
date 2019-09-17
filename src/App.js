@@ -113,7 +113,7 @@ class App extends Component {
             <title>Masteraula - Banco de Questões</title>
             <meta
               name="description"
-              content="Ganhe tempo na preparação de provas e atividades para o cotidiano escolar do Ensino Básico."
+              content="Plataforma para preparação de provas e atividades para o cotidiano escolar do Ensino Básico."
             />
           </Helmet>
           <MenuContainer />
