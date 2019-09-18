@@ -14,7 +14,7 @@ import SidebarObjectFiltersContainer from 'containers/SidebarObjectFiltersContai
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Swipeable } from 'react-touch';
 
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 
 import CustomScroll from 'react-custom-scroll';
 
@@ -73,7 +73,7 @@ const SidebarMobile = ({
                 <div className="c-sidebar__ma-logo">
                   <Link
                     className={isFetchingQuestions ? 'c-sidebar__ma-logo-link--disabled' : ''}
-                    to="/#/question-base/1"
+                    to="/question-base/1"
                     onClick={(e) => { if (!isFetchingQuestions) clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}
                   >
                     <img src={maLogo} alt="masteraula" />
@@ -216,7 +216,7 @@ const SidebarWeb = ({
     <div id="sidebar">
       <Link
         className={isFetchingQuestions ? 'c-sidebar__ma-logo-link--disabled' : ''}
-        to="/#/question-base/1"
+        to="/question-base/1"
         onClick={(e) => { if (!isFetchingQuestions) clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}
       >
         <div className="logo-top-sidebar">

@@ -100,7 +100,7 @@ const RedefinePassword = (props) => {
                 <span>
                   Solicite uma nova redefinição de senha
                   {' '}
-                  <a href="/#/esqueci-senha">aqui</a>
+                  <a href="/esqueci-senha">aqui</a>
                 </span>
               ) : ''}
             </Alert>
