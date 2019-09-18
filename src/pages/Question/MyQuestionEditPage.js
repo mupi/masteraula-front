@@ -424,9 +424,13 @@ class MyQuestionEditPage extends Component {
 
     getListTopics = (e, newValue) => {
       const {
-        listTopics,
+        listTopics, resetTopicList,
       } = this.props;
-      listTopics(newValue);
+      if (newValue.length > 0) {
+        listTopics(newValue);
+      } else {
+        resetTopicList();
+      }
     }
 
     closeModal() {
@@ -449,6 +453,7 @@ class MyQuestionEditPage extends Component {
         activeQuestion, userId, isFetching, error, topicsList, topics, pristine, disciplineFilters, sourceFilters,
         teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
         submitting,
+        disciplinesList,
       } = this.props;
 
       const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
@@ -741,7 +746,14 @@ class MyQuestionEditPage extends Component {
                     </Field>
                   </Col>
                 </Row>
-                <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} validate={minLength1Topics} />
+
+                <FieldArray
+                  name="topics"
+                  component={renderTopics}
+                  topicsList={disciplinesList && disciplinesList.length > 0 ? topicsList : null}
+                  selectedTopics={topics}
+                  validate={minLength1Topics}
+                />
                 <Row>
                   <Col>
                     { (!pristine) ? (

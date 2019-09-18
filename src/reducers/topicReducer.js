@@ -1,6 +1,7 @@
 import {
   LIST_TOPIC,
   LIST_TOPIC_SUCCESS, LIST_TOPIC_FAILURE,
+  RESET_TOPIC_LIST,
 } from 'actions/topicAction';
 
 const initialState = {
@@ -24,6 +25,11 @@ export const topic = (state = initialState, action) => {
       return Object.assign({}, state, {
         isFetchingTopics: false,
         error: action.error,
+      });
+    case RESET_TOPIC_LIST:
+      return Object.assign({}, state, {
+        topics: null,
+        isFetchingTopics: false,
       });
     default:
       return state;
