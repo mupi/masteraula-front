@@ -10,7 +10,7 @@ import {
   addSelectedSourceFilter, removeSelectedSourceFilter,
   addSelectedYearFilter, removeSelectedYearFilter,
 } from 'actions/filterAction';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 
 const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
   history.replace('/question-base/1');

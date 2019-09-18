@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import RelatedQuestions from 'components/question/RelatedQuestions';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;

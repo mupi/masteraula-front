@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import SimpleLObjectSearchForm from 'components/learningObject/SimpleLObjectSearchForm';
 import { setSearchTextObjectModal } from 'actions/filterObjectAction';
-// import { history } from 'helpers/history';
+// import { history } from 'helpers';
 import { reduxForm } from 'redux-form';
 import { setCurrentPageModal } from 'actions/learningObjectAction';
 

@@ -1,5 +1,5 @@
 import { questionService } from 'services';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 import { toast } from 'react-toastify';
 import { initialize } from 'redux-form';
 import { listTopics } from 'actions/topicAction';

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { listQuestions } from 'actions/questionAction';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 
 import SidebarFilters from 'components/sidebar/SidebarFilters';
 import {

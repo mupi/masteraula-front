@@ -1,3 +1,3 @@
 export { apiUrl, facebookLoginId, googleLoginId } from './config';
-export { history } from './history';
+export { default as history } from './history';
 export { isLoggedIn, authHeader } from './session';

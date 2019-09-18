@@ -3,7 +3,7 @@ import ViewLearningObjectPage from 'pages/LearningObject/ViewLearningObjectPage'
 
 import { fetchLearningObject } from 'actions/learningObjectAction';
 import { setQuestionIdToNewDocument, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 import { showModal, hideModal } from 'actions/modalAction';
 
 import {
