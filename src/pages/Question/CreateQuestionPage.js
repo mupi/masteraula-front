@@ -362,7 +362,7 @@ const renderTopics = ({
             <Col sm="3" className="c-question-edit__col-btn-remove-topic">
               <Button
                 type="button"
-                title="Remove Member"
+                title="Remover tópico"
                 className="c-question-edit__btn-remove-topic"
                 onClick={() => fields.remove(i)}
               >
@@ -406,10 +406,16 @@ class CreateQuestionPage extends Component {
   }
 
   getListTopics = (e, newValue) => {
+
     const {
-      listTopics,
+      listTopics, resetTopicList,
     } = this.props;
-    listTopics(newValue);
+    console.log(newValue);
+    if (newValue.length > 0) {
+      listTopics(newValue);
+    } else {
+      resetTopicList();
+    }
   }
 
   closeModal() {
@@ -432,6 +438,7 @@ class CreateQuestionPage extends Component {
       isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters,
       teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
       submitting,
+      disciplinesList,
     } = this.props;
 
     if (isCreating) {
@@ -674,7 +681,13 @@ class CreateQuestionPage extends Component {
                   </Field>
                 </Col>
               </Row>
-              <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} validate={minLength1Topics} />
+              <FieldArray
+                name="topics"
+                component={renderTopics}
+                topicsList={disciplinesList && disciplinesList.length > 0 ? topicsList : null}
+                selectedTopics={topics}
+                validate={minLength1Topics}
+              />
               <Row>
                 <Col>
                   { (!pristine) ? (
