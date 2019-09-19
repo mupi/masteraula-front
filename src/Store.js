@@ -33,7 +33,6 @@ const middlewares = [];
 if (process.env.REACT_APP_ENV === 'dev') {
   const loggerMiddleware = createLogger();
 
-
   middlewares.push(loggerMiddleware);
 }
 

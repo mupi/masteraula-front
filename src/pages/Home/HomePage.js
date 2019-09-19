@@ -11,7 +11,7 @@ const HomePage = () => (
       <Row>
         <Col md="12">
           <h1 className="c-public-home__main-title hidden">
-            Biblioteca inteligente de questões
+            Banco inteligente de questões
           </h1>
           <Col md="6" className="offset-md-3">
             <p className="c-public-home__title-description">
