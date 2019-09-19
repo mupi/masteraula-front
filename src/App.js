@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
-  HashRouter, Route, Switch, Redirect,
+  Router, Route, Switch, Redirect,
 } from 'react-router-dom';
 
 import TermsUsePage from 'pages/TermsUse/TermsUsePage';
@@ -106,7 +106,7 @@ class App extends Component {
     const { width } = this.state;
     const isMobile = width <= 989;
     return (
-      <HashRouter history={history}>
+      <Router history={history}>
         <div id="main-masteraula-container" className={(isOpenSidebar && isMobile) ? 'container-open' : ''}>
           <MenuContainer />
           {isLoggedIn
@@ -145,7 +145,7 @@ class App extends Component {
           <Footer year="2019" version="1.0" />
         </div>
         <ToastContainer hideProgressBar position="bottom-right" />
-      </HashRouter>
+      </Router>
     );
   }
 }
