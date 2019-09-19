@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import RelatedQuestions from 'components/question/RelatedQuestions';
 import { history } from 'helpers';
+import { Helmet } from 'react-helmet';
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
@@ -111,6 +112,8 @@ class QuestionPage extends Component {
 
     const authorPk = (activeQuestion && activeQuestion.author) ? activeQuestion.author.pk : 'Anônimo';
     const isOwner = (authorPk === userId);
+    const disciplines = (activeQuestion && activeQuestion.disciplines) ? activeQuestion.disciplines.map(d => (d.name)).join(' ,') : '';
+    const tags = (activeQuestion && activeQuestion.tags) ? activeQuestion.tags.map(t => (t.name)).join(' ,') : '';
 
     if (isFetching) {
       return (
@@ -134,6 +137,15 @@ class QuestionPage extends Component {
 
     return (
       <HomeUserPage>
+        <Helmet>
+          <title>
+            {`Masteraula - Questão de ${disciplines}`}
+          </title>
+          <meta
+            name="description"
+            content={`Questão de ${disciplines} - ${tags}`}
+          />
+        </Helmet>
         <div className="c-question">
           <Row className="c-question__row-header-options c-question__row-header-options--fixed">
             <Col className="c-question__col-header-options">

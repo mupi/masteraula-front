@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {
   Router, Route, Switch, Redirect,
 } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import TermsUsePage from 'pages/TermsUse/TermsUsePage';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
@@ -108,6 +109,13 @@ class App extends Component {
     return (
       <Router history={history}>
         <div id="main-masteraula-container" className={(isOpenSidebar && isMobile) ? 'container-open' : ''}>
+          <Helmet>
+            <title>Masteraula - Banco de Questões</title>
+            <meta
+              name="description"
+              content="Plataforma para preparação de provas e atividades para o cotidiano escolar do Ensino Básico."
+            />
+          </Helmet>
           <MenuContainer />
           {isLoggedIn
             ? (

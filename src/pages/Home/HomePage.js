@@ -1,7 +1,7 @@
 import React from 'react';
-import clockImg from 'assets/img/home/clock.png';
-import searchImg from 'assets/img/home/search.png';
-import moneyImg from 'assets/img/home/money.png';
+import clockImg from 'assets/img/home/clock.jpg';
+import searchImg from 'assets/img/home/search.jpg';
+import moneyImg from 'assets/img/home/money.jpg';
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ const HomePage = () => (
       <Row>
         <Col md="12">
           <h1 className="c-public-home__main-title hidden">
-            Biblioteca inteligente de questões
+            Banco inteligente de questões
           </h1>
           <Col md="6" className="offset-md-3">
             <p className="c-public-home__title-description">
