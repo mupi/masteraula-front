@@ -1,5 +1,5 @@
 import { learningObjectService } from 'services';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 import { initialize } from 'redux-form';
 
 // Load single learning object

@@ -1,5 +1,5 @@
 import { documentService } from 'services';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 import FileSaver from 'file-saver';
 
 import {
@@ -360,7 +360,9 @@ export const addQuestionAfterSelectingDocument = (doc, idQuestion) => {
         dispatch(fetchDocumentSuccess(activeDocument));
         localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
         const wasAddedBefore = activeDocument.questions.filter(question => question.question.id === parseInt(idQuestion, 10));
-        if (wasAddedBefore.length === 0) { return dispatch(addSelectedQuestion(doc.id, idQuestion)); }
+        if (wasAddedBefore.length === 0) {
+          dispatch(addSelectedQuestion(doc.id, idQuestion));
+        }
       }, (error) => {
         dispatch(fetchDocumentFailure(error));
       },
