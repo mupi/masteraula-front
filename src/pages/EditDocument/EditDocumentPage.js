@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 import {
   Row,
 } from 'reactstrap';
@@ -10,7 +10,7 @@ import DocumentBasicHeader from 'components/document/DocumentBasicHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
-class EditDocumentPage extends Component { 
+class EditDocumentPage extends Component {
   componentDidMount() {
     const { fetchDocument, activeDocument } = this.props;
     if (!activeDocument) {

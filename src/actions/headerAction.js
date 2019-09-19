@@ -1,5 +1,5 @@
 import { headerService } from 'services';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 import { reset } from 'redux-form';
 import { toast } from 'react-toastify';
 

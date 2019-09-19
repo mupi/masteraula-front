@@ -32,7 +32,7 @@ import { showModal, hideModal } from 'actions/modalAction';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 
 import Footer from 'components/footer/Footer';
 // CSS imported in a single place (here)

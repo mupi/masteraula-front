@@ -1,6 +1,6 @@
 import { registerService } from 'services';
 import { SubmissionError, reset, stopSubmit } from 'redux-form';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 import { updateSession } from 'actions/sessionAction';
 import { hideModal } from 'actions/modalAction';
 

@@ -5,7 +5,7 @@ import {
   login, menu, register, forgotPassword, profileEdit, question, filter, filterObject, session, document, modal, header, topic, learningObject,
 } from 'reducers';
 
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 import { reducer as formReducer } from 'redux-form';
 import { createLogger } from 'redux-logger';
 

@@ -7,7 +7,7 @@ import {
 
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HeadersList from 'components/headers/HeadersList';

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 
 import SidebarObjectFilters from 'components/sidebar/SidebarObjectFilters';
 import {

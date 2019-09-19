@@ -1,5 +1,5 @@
 import React from 'react';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
