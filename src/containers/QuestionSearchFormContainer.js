@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import QuestionSearchForm from 'components/question/QuestionSearchForm';
 import { setSearchText, addMyQuestionsFilter } from 'actions/filterAction';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 
 
 const mapStateToProps = state => ({
@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => ({
     meta: { form: 'questionSearch', field: 'searchText' },
   }),
 
-}); 
+});
 
 const QuestionSearchFormContainer = connect(
   mapStateToProps,

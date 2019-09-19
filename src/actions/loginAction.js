@@ -1,7 +1,7 @@
 import { loginService } from 'services';
 import { SubmissionError, stopSubmit } from 'redux-form';
 
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 import { updateSession, deleteSession } from 'actions/sessionAction';
 import { hideModal } from 'actions/modalAction';
 import { deleteDocumentSession } from './documentAction';

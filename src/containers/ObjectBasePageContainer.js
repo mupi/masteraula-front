@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ObjectBasePage from 'pages/ObjectBase/ObjectBasePage';
 import { listLearningObject } from 'actions/learningObjectAction';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 
 import {
   addSelectedObjectTypeFilter,

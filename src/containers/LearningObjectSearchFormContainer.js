@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import LearningObjectSearchForm from 'components/learningObject/LearningObjectSearchForm';
 import { setSearchTextObject } from 'actions/filterObjectAction';
-import { history } from 'helpers/history';
+import { history } from 'helpers';
 
 
 const mapStateToProps = state => ({
