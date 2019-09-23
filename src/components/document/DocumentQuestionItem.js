@@ -17,10 +17,26 @@ const options = {
 };
 */
 
+
 const DocumentQuestionItem = (props) => {
   const {
-    question, activeDocument, removeSelectedQuestion, options,
+    question, activeDocument, removeSelectedQuestion, options, hideModal, showModal,
   } = props;
+
+  const closeModal = () => {
+    hideModal();
+  };
+
+  const handleOpenLoginModal = () => {
+    // open modal
+    const { optionalMessage } = options;
+    showModal({
+      open: true,
+      closeModal,
+      optionalMessage,
+    }, 'login2');
+  };
+
   const extractStatement = getCleanExtractStatement(question.statement);
 
   return (
@@ -119,7 +135,7 @@ const DocumentQuestionItem = (props) => {
                     {...props}
                   />
                 ) : ' ' }
-                { (options.showViewButton) ? (
+                { (options.showViewButton && !options.showLoginModal) ? (
                   <Link to={`/view-question/${question.id}`}>
                     <Button>
                       <FontAwesomeIcon icon="search" />
@@ -129,6 +145,15 @@ const DocumentQuestionItem = (props) => {
                       </span>
                     </Button>
                   </Link>
+                ) : ' ' }
+                { (options.showViewButton && options.showLoginModal) ? (
+                  <Button onClick={handleOpenLoginModal}>
+                    <FontAwesomeIcon icon="search" />
+                    {' '}
+                    <span className="button-text">
+                      Ver questão
+                    </span>
+                  </Button>
                 ) : ' ' }
               </div>
             </Row>

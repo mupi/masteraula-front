@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Login2Form from 'components/login/Login2Form';
 import { fetchLogin } from 'actions/loginAction';
+import {
+  Alert,
+} from 'reactstrap';
 
 const Login2Modal = ({
-  closeModal, submit,
+  closeModal, submit, optionalMessage,
 }) => (
   <div className="modal-content modal__content c-register__modal-content">
     <div className="modal-header modal__header c-register__modal-header">
@@ -17,6 +20,15 @@ const Login2Modal = ({
       </button>
     </div>
     <div className="modal-basic-operation__body modal-body c-register__modal-body">
+      {optionalMessage
+        ? (
+          <Alert
+            color="danger"
+            className="c-login__optional-message"
+          >
+            {optionalMessage}
+          </Alert>
+        ) : ''}
       <h4
         className="modal-title text-center"
       >
@@ -39,9 +51,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  submit: (values) => {
-    return dispatch(fetchLogin(values.email, values.password));
-  },
+  submit: values => dispatch(fetchLogin(values.email, values.password)),
 });
 
 export default connect(

@@ -16,6 +16,7 @@ const options = {
   showViewButton: false,
   removeOption: false,
   showTags: false,
+  showLoginModal: false,
 };
 
 const DocumentModal = ({

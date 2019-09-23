@@ -2,6 +2,8 @@ import ClonePublicDocumentPage from 'pages/ClonePublicDocument/ClonePublicDocume
 import {
   fetchPublicDocument,
 } from 'actions/documentAction';
+import { showModal, hideModal } from 'actions/modalAction';
+
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
@@ -13,6 +15,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchPublicDocument: props => dispatch(fetchPublicDocument(props)),
+  // new way to handle modals
+  hideModal: () => dispatch(hideModal()),
+  showModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType }));
+  },
 });
 
 const ClonePublicDocumentPageContainer = connect(

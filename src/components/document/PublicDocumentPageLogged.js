@@ -12,6 +12,7 @@ const options = {
   showViewButton: true,
   removeOption: false,
   showTags: false,
+  showLoginModal: false,
 };
 
 
