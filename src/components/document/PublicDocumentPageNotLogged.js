@@ -37,6 +37,7 @@ const PublicDocumentPagetLogged = (props) => {
     <div className="c-document">
       <Row className="c-public-document__section c-document__main-buttons align-items-center">
         <Col sm="8" className="c-public-document__name-col">
+          <h6>Você está visualizando a lista pública:</h6>
           <h4 className="c-public-document__name">{hardDoc.name}</h4>
         </Col>
         <Col sm="4" className="c-public-document__name-col text-right">

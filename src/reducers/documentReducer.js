@@ -62,7 +62,7 @@ export const document = (state = initialState, action) => {
         isRemoved: null,
         isUpdated: null,
         isFetchingPublicDocument: true,
-        error: null,
+        errorFetchingPublicDocument: null,
         isDeleted: false,
       });
     case FETCH_PUBLIC_DOCUMENT_SUCCESS:
@@ -74,7 +74,7 @@ export const document = (state = initialState, action) => {
     case FETCH_PUBLIC_DOCUMENT_FAILURE:
       return Object.assign({}, state, {
         isFetchingPublicDocument: false,
-        errorFetchingPublicDocument: action.error,
+        errorFetchingPublicDocument: true,
       });
 
     case FETCH_PREVIEW_DOCUMENT:
