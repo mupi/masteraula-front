@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Login2Form from 'components/login/Login2Form';
 import { fetchLogin } from 'actions/loginAction';
-import {
-  Alert,
-} from 'reactstrap';
 
 const Login2Modal = ({
   closeModal, submit, optionalMessage,

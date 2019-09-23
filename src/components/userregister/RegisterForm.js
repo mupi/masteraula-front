@@ -7,6 +7,7 @@ import { Field, reduxForm } from 'redux-form';
 import { NavLink } from 'react-router-dom';
 import { userNameValidator, emailValidator } from 'helpers/validators';
 import { registerFacebook, registerGoogle } from 'actions/registerAction';
+import { showModal, hideModal } from 'actions/modalAction';
 import { facebookLoginId, googleLoginId } from 'helpers/config';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
@@ -44,8 +45,17 @@ const renderField = ({
 
 const RegisterForm = (props) => {
   const {
-    handleSubmit, error, submitSucceeded, responseFacebook, responseGoogle,
+    handleSubmit, error, submitSucceeded, responseFacebook, responseGoogle, closeModal, showLoginModal,
   } = props;
+
+  const handleOpenLoginModal = () => {
+    closeModal();
+    // open modal
+    showLoginModal({
+      open: true,
+      closeModal,
+    }, 'login2');
+  };
 
   return (
     <div className="row justify-content-center">
@@ -153,9 +163,20 @@ const RegisterForm = (props) => {
                 )
               }
             </FormGroup>
-            <Button>
-              Enviar
-            </Button>
+
+            <div className="text-center">
+              <FormGroup>
+                <Button>
+                  Enviar
+                </Button>
+              </FormGroup>
+              <FormGroup className="c-login__link-options">
+                <span>Já tem uma conta?</span>
+                <Button color="" className="btn btn-link c-login__link-register" onClick={handleOpenLoginModal}>
+                  Fazer Login
+                </Button>
+              </FormGroup>
+            </div>
           </div>
         </Form>
       </Col>
@@ -198,6 +219,11 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   responseGoogle: response => dispatch(registerGoogle(response)),
   responseFacebook: response => dispatch(registerFacebook(response)),
+  // new way to handle modals
+  hideModal: () => dispatch(hideModal()),
+  showLoginModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType }));
+  },
 });
 
 export default connect(
