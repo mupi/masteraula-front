@@ -352,7 +352,7 @@ export const downloadDocument = (props) => {
   };
 };
 
-export const copyDocument = (props) => {
+export const copyDocument = (props, isRedirect = false) => {
   function copySelectedDocument() { return { type: COPY_DOCUMENT }; }
   function copySelectedDocumentSuccess(activeDocument) { return { type: COPY_DOCUMENT_SUCCESS, activeDocument }; }
   function copySelectedDocumentFailure(error) { return { type: COPY_DOCUMENT_FAILURE, error }; }
@@ -361,6 +361,7 @@ export const copyDocument = (props) => {
     return documentService.copyDocument(props).then(
       (activeDocument) => {
         dispatch(copySelectedDocumentSuccess(activeDocument));
+        if (isRedirect) history.push('/edit-document');
       },
       (error) => {
         dispatch(copySelectedDocumentFailure(error));

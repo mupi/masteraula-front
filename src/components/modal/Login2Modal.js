@@ -20,21 +20,7 @@ const Login2Modal = ({
       </button>
     </div>
     <div className="modal-basic-operation__body modal-body c-register__modal-body">
-      {optionalMessage
-        ? (
-          <Alert
-            color="danger"
-            className="c-login__optional-message"
-          >
-            {optionalMessage}
-          </Alert>
-        ) : ''}
-      <h4
-        className="modal-title text-center"
-      >
-        Entrar no MasterAula
-      </h4>
-      <Login2Form onSubmit={submit} closeModal={closeModal} />
+      <Login2Form onSubmit={submit} closeModal={closeModal} optionalMessage={optionalMessage} />
     </div>
   </div>
 );

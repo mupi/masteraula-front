@@ -74,7 +74,7 @@ export const document = (state = initialState, action) => {
     case FETCH_PUBLIC_DOCUMENT_FAILURE:
       return Object.assign({}, state, {
         isFetchingPublicDocument: false,
-        error: action.error,
+        errorFetchingPublicDocument: action.error,
       });
 
     case FETCH_PREVIEW_DOCUMENT:

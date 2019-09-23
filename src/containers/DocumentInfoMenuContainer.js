@@ -3,12 +3,11 @@ import DocumentInfoMenu from 'components/menu/DocumentInfoMenu';
 import { showModal, hideModal } from 'actions/modalAction';
 
 import {
-  listMyLastDocuments, switchActiveDocument, fetchPreviewDocument,
+  listMyDocuments, listMyLastDocuments, switchActiveDocument, fetchPreviewDocument,
 } from 'actions/documentAction';
 
 const mapStateToProps = state => ({
   activeDocument: state.document.activeDocument,
-
   previewDocument: state.document.previewDocument,
   isFetchingPreviewDocument: state.document.isFetchingPreviewDocument,
   isFetchingMyLastDocuments: state.document.isFetchingMyLastDocuments,
@@ -16,6 +15,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  listMyDocuments: (page, orderField, order) => dispatch(listMyDocuments(page, orderField, order)),
   listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
   switchActiveDocument: (doc, redirect) => dispatch(switchActiveDocument(doc, redirect)),
   fetchPreviewDocument: props => dispatch(fetchPreviewDocument(props)),

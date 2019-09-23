@@ -19,6 +19,12 @@ const options = {
 const PublicDocumentPagetLogged = (props) => {
   const { activePublicDocument } = props;
   const name = activePublicDocument ? activePublicDocument.name : '';
+
+  const copy = (doc) => {
+    const { copyDocument } = props;
+    copyDocument(doc);
+  };
+
   return (
     <div className="c-document">
       <Row className="c-document__main-buttons align-items-center">
@@ -26,7 +32,7 @@ const PublicDocumentPagetLogged = (props) => {
           <h4 className="c-public-document__name">{name}</h4>
         </Col>
         <Col sm="4" className="c-public-document__name-col text-right">
-          <Button className="btn-success btn btn-secondary" onClick={() => {}} size="lg">
+          <Button className="btn-success btn btn-secondary" onClick={() => copy(activePublicDocument)} size="lg">
             <FontAwesomeIcon icon="copy" className="btn__icon" />
              Copiar lista
           </Button>

@@ -18,9 +18,10 @@ class ClonePublicDocumentPage extends Component {
     if (isLoggedIn) fetchPublicDocument(parseInt(match.params.id, 10));
   }
 
+
   render() {
     const {
-      isLoggedIn, isFetchingPublicDocument,
+      isLoggedIn, isFetchingPublicDocument, errorFetchingPublicDocument,
     } = this.props;
 
 
@@ -36,9 +37,35 @@ class ClonePublicDocumentPage extends Component {
 
     if (isFetchingPublicDocument && !isLoggedIn) {
       return (
-        <Alert className="alert--warning" color="warning">
-          Carregando ...
-        </Alert>
+        <HomeUserNotLoggedPage>
+          <div className="c-public-document__section">
+            <Alert className="alert--warning" color="warning">
+              Carregando ...
+            </Alert>
+          </div>
+        </HomeUserNotLoggedPage>
+      );
+    }
+
+    if (errorFetchingPublicDocument && isLoggedIn) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+            A lista de questões não existe ou seu usuário não tem acesso permitido
+          </Alert>
+        </HomeUserPage>
+      );
+    }
+
+    if (errorFetchingPublicDocument && !isLoggedIn) {
+      return (
+        <HomeUserNotLoggedPage>
+          <div className="c-public-document__section">
+            <Alert color="danger">
+              A lista de questões não existe ou seu usuário não tem acesso permitido
+            </Alert>
+          </div>
+        </HomeUserNotLoggedPage>
       );
     }
 

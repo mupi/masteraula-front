@@ -49,7 +49,7 @@ const Login2Form = (props) => {
   const {
     handleSubmit, error, handleResendEmail, formValues,
     resendError, resendSuccess, isSending, closeModal, showRegisterModal,
-    responseFacebook, responseGoogle,
+    responseFacebook, responseGoogle, optionalMessage, pristine,
   } = props;
 
   function handleResend(message, values) {
@@ -69,6 +69,20 @@ const Login2Form = (props) => {
 
   return (
     <Col sm="12" xs="12">
+      {optionalMessage /*&& pristine*/
+        ? (
+          <Alert
+            color="danger"
+            className="c-login__optional-message"
+          >
+            {optionalMessage}
+          </Alert>
+        ) : ''}
+      <h4
+        className="modal-title text-center"
+      >
+        Entrar no MasterAula
+      </h4>
       <FacebookLogin
         appId={facebookLoginId}
         fields="name,email,picture"

@@ -11,7 +11,7 @@ import MACreateDropdownList from 'components/dropdownlist/MACreateDropdownList';
 
 
 const renderMADropDownListDocuments = ({
-  input, 
+  input,
   placeholder,
   meta: { touched, error, warning },
   listOptions, valueField, textField,
@@ -23,12 +23,12 @@ const renderMADropDownListDocuments = ({
       listOptions={listOptions}
       valueField={valueField}
       textField={textField}
-    /> 
+    />
     { touched
       && ((error && (
       <span className="error-message-text">
         {error}
-      </span> 
+      </span>
       ))
       || (warning && (
       <span>
@@ -43,6 +43,7 @@ const renderMADropDownListDocuments = ({
 
 class CreateDocumentWithQuestionForm extends React.Component {
   componentDidMount() {
+    console.log("List my last docs from CreateDocumentWithQuestionForm ");
     listMyLastDocuments(1, 'date', 'desc');
   }
 

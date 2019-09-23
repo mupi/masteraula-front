@@ -33,6 +33,8 @@ class EditDocumentPage extends Component {
     const {
       listMyLastDocuments,
     } = this.props;
+    console.log("DIDUPDATE - List my last docs from EditDocumentPage ");
+
     listMyLastDocuments(1, 'date', 'desc');
   }
 
