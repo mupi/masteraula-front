@@ -10,6 +10,14 @@ import DocumentBasicHeader from 'components/document/DocumentBasicHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
+
+const options = {
+  showViewButton: true,
+  removeOption: true,
+  showTags: true,
+};
+
+
 class EditDocumentPage extends Component {
   componentDidMount() {
     const { fetchDocument, activeDocument } = this.props;
@@ -47,6 +55,7 @@ class EditDocumentPage extends Component {
           <DocumentQuestions
             activeDocument={activeDocument}
             removeSelectedQuestion={removeSelectedQuestion}
+            options={options}
             {...this.props}
           />
         </div>

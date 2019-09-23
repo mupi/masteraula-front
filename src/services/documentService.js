@@ -28,6 +28,33 @@ function fetchDocument(id) {
     });
 }
 
+// Fetch a Document using ID
+function fetchPublicDocument(id) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  return fetch(`${apiUrl}/documents/${id}/`, requestOptions)
+    .then(handleResponse)
+    .then((activePublicDocument) => {
+      localStorage.setItem('activePublicDocument', JSON.stringify(activePublicDocument));
+      return activePublicDocument;
+    });
+}
+
 
 // Fetch a Document using ID for preview
 function fetchPreviewDocument(id) {
@@ -288,6 +315,7 @@ function copyDocument(activeNewDocument) {
 
 const documentService = {
   fetchDocument,
+  fetchPublicDocument,
   fetchPreviewDocument,
   createDocument,
   updateDocument,

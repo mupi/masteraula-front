@@ -1,5 +1,6 @@
 import {
   FETCH_DOCUMENT, FETCH_DOCUMENT_SUCCESS, FETCH_DOCUMENT_FAILURE,
+  FETCH_PUBLIC_DOCUMENT, FETCH_PUBLIC_DOCUMENT_SUCCESS, FETCH_PUBLIC_DOCUMENT_FAILURE,
   FETCH_PREVIEW_DOCUMENT, FETCH_PREVIEW_DOCUMENT_SUCCESS, FETCH_PREVIEW_DOCUMENT_FAILURE,
   CREATE_DOCUMENT, CREATE_DOCUMENT_SUCCESS, CREATE_DOCUMENT_FAILURE,
   UPDATE_DOCUMENT, UPDATE_DOCUMENT_SUCCESS, UPDATE_DOCUMENT_FAILURE,
@@ -54,6 +55,25 @@ export const document = (state = initialState, action) => {
     case FETCH_DOCUMENT_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
+        error: action.error,
+      });
+    case FETCH_PUBLIC_DOCUMENT:
+      return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        isFetchingPublicDocument: true,
+        error: null,
+        isDeleted: false,
+      });
+    case FETCH_PUBLIC_DOCUMENT_SUCCESS:
+      localStorage.setItem('activePublicDocument', JSON.stringify(state.activePublicDocument));
+      return Object.assign({}, state, {
+        activePublicDocument: action.activePublicDocument,
+        isFetchingPublicDocument: false,
+      });
+    case FETCH_PUBLIC_DOCUMENT_FAILURE:
+      return Object.assign({}, state, {
+        isFetchingPublicDocument: false,
         error: action.error,
       });
 

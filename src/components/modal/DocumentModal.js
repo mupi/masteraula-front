@@ -10,6 +10,14 @@ import {
 }
   from 'reactstrap';
 
+
+// Document's item options available for Public Document
+const options = {
+  showViewButton: false,
+  removeOption: false,
+  showTags: false,
+};
+
 const DocumentModal = ({
   document, closeModal, editDocument, isFetchingPreviewDocument,
 }) => {
@@ -59,7 +67,8 @@ const DocumentModal = ({
                 </Button>
               </div>
             </Row>
-          </div>)
+          </div>
+        )
           : (
             <div>
               <Row className="c-document-modal__main-options">
@@ -80,7 +89,7 @@ const DocumentModal = ({
           )
         }
         {document && document.questions.map(questionOrder => (
-          <DocumentQuestionItem key={questionOrder.question.id} question={questionOrder.question} readOnly />
+          <DocumentQuestionItem key={questionOrder.question.id} question={questionOrder.question} options={options} />
         ))}
         <div className="modal__footer modal-footer">
           <button type="button" className="btn btn-secondary" onClick={closeModal}>
