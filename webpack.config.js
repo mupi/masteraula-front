@@ -1,4 +1,4 @@
-const webpack = require("webpack");
+/*const webpack = require("webpack");
 
 module.exports = function () {
   return {
@@ -24,4 +24,4 @@ module.exports = function () {
       }
     }
   };
-};
+};*/
