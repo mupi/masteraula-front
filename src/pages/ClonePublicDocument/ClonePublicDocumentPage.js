@@ -13,9 +13,9 @@ import PublicDocumentPageNotLogged from 'components/document/PublicDocumentPageN
 class ClonePublicDocumentPage extends Component {
   componentDidMount() {
     /* test : 1042 */
-    const { match, fetchPublicDocument, isLoggedIn } = this.props;
+    const { match, fetchPublicDocument } = this.props;
 
-    if (isLoggedIn) fetchPublicDocument(parseInt(match.params.id, 10));
+    fetchPublicDocument(match.params.id);
   }
 
 

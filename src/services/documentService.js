@@ -47,7 +47,7 @@ function fetchPublicDocument(id) {
     return data;
   });
 
-  return fetch(`${apiUrl}/documents/${id}/`, requestOptions)
+  return fetch(`${apiUrl}/document_publication/${id}/`, requestOptions)
     .then(handleResponse)
     .then((activePublicDocument) => {
       localStorage.setItem('activePublicDocument', JSON.stringify(activePublicDocument));

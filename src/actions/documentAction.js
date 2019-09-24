@@ -107,7 +107,7 @@ export const fetchPublicDocument = (id) => {
   function fetchDocumentFailure(error) { return { type: FETCH_PUBLIC_DOCUMENT_FAILURE, error }; }
   return (dispatch) => {
     dispatch(requestDocument(id));
-    return documentService.fetchDocument(id).then(
+    return documentService.fetchPublicDocument(id).then(
       (activePublicDocument) => {
         dispatch(fetchDocumentSuccess(activePublicDocument));
       }, (error) => {
