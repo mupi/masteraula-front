@@ -49,7 +49,7 @@ const Login2Form = (props) => {
   const {
     handleSubmit, error, handleResendEmail, formValues,
     resendError, resendSuccess, isSending, closeModal, showRegisterModal,
-    responseFacebook, responseGoogle, optionalMessage, pristine,
+    responseFacebook, responseGoogle, optionalMessage, redirect,
   } = props;
 
   function handleResend(message, values) {
@@ -69,7 +69,7 @@ const Login2Form = (props) => {
 
   return (
     <Col sm="12" xs="12">
-      {optionalMessage /*&& pristine*/
+      {optionalMessage /* && pristine */
         ? (
           <Alert
             color="danger"
@@ -86,7 +86,7 @@ const Login2Form = (props) => {
       <FacebookLogin
         appId={facebookLoginId}
         fields="name,email,picture"
-        callback={responseFacebook}
+        callback={resp => responseFacebook(resp, redirect)}
         icon="fa-facebook"
         size="small"
         textButton="Entrar com Facebook"
@@ -95,13 +95,13 @@ const Login2Form = (props) => {
       <GoogleLogin
         clientId={googleLoginId}
         buttonText="Entrar com Google"
-        onSuccess={responseGoogle}
+        onSuccess={resp => responseGoogle(resp, redirect)}
           // onFailure={responseGoogle}
         cookiePolicy="single_host_origin"
         className="google-login"
       />
       <hr className="hr5" />
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={resp => handleSubmit(resp, redirect)}>
         <FormGroup>
           <Field
             name="email"
@@ -193,8 +193,8 @@ const mapDispatchToProps = dispatch => ({
       dispatch(resetState());
       dispatch(toggleModal(modal));
     }, */
-  responseGoogle: response => dispatch(loginGoogle(response)),
-  responseFacebook: response => dispatch(loginFacebook(response)),
+  responseGoogle: (response, redirect) => dispatch(loginGoogle(response, redirect)),
+  responseFacebook: (response, redirect) => dispatch(loginFacebook(response, redirect)),
   handleResendEmail: (email, password) => dispatch(resendEmail(email, password)),
   // new way to handle modals
   hideModal: () => dispatch(hideModal()),

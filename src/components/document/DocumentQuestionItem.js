@@ -29,11 +29,12 @@ const DocumentQuestionItem = (props) => {
 
   const handleOpenLoginModal = () => {
     // open modal
-    const { optionalMessage } = options;
+    const { optionalMessage, redirect } = options;
     showModal({
       open: true,
       closeModal,
       optionalMessage,
+      redirect,
     }, 'login2');
   };
 
