@@ -1,4 +1,4 @@
-import ClonePublicDocumentPage from 'pages/ClonePublicDocument/ClonePublicDocumentPage';
+import PublicDocumentPage from 'pages/PublicDocument/PublicDocumentPage';
 import {
   fetchPublicDocument, copyDocument,
 } from 'actions/documentAction';
@@ -18,15 +18,17 @@ const mapDispatchToProps = dispatch => ({
   // isRedirect to edit-document = true
   copyDocument: doc => dispatch(copyDocument(doc, true)),
   // new way to handle modals
-  hideModal: () => dispatch(hideModal()),
+  hideModal: () => {
+    dispatch(hideModal());
+  },
   showModal: (modalProps, modalType) => {
     dispatch(showModal({ modalProps, modalType }));
   },
 });
 
-const ClonePublicDocumentPageContainer = connect(
+const PublicDocumentPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ClonePublicDocumentPage);
+)(PublicDocumentPage);
 
-export default ClonePublicDocumentPageContainer;
+export default PublicDocumentPageContainer;

@@ -10,11 +10,10 @@ import PublicDocumentPageLogged from 'components/document/PublicDocumentPageLogg
 import PublicDocumentPageNotLogged from 'components/document/PublicDocumentPageNotLogged';
 
 
-class ClonePublicDocumentPage extends Component {
+class PublicDocumentPage extends Component {
   componentDidMount() {
     /* test : 1042 */
     const { match, fetchPublicDocument } = this.props;
-
     fetchPublicDocument(match.params.id);
   }
 
@@ -84,9 +83,9 @@ class ClonePublicDocumentPage extends Component {
   }
 }
 
-ClonePublicDocumentPage.propTypes = {
+PublicDocumentPage.propTypes = {
   activeDocument: PropTypes.shape({}),
   removeSelectedQuestion: PropTypes.func,
 };
 
-export default ClonePublicDocumentPage;
+export default PublicDocumentPage;

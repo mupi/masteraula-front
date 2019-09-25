@@ -20,4 +20,4 @@ export { default as DeleteQuestionButtonContainer } from './DeleteQuestionButton
 export { default as ViewLearningObjectPageContainer } from './ViewLearningObjectPageContainer';
 export { default as ObjectBasePageContainer } from './ObjectBasePageContainer';
 export { default as SidebarObjectFiltersContainer } from './SidebarObjectFiltersContainer';
-export { default as ClonePublicDocumentPageContainer } from './ClonePublicDocumentPageContainer';
+export { default as PublicDocumentPageContainer } from './PublicDocumentPageContainer';
