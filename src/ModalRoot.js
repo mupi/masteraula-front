@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
 
 import modalTypes from 'components/modal';
+import { hideModal } from 'actions/modalAction';
 
 const MODAL_TYPES = {
   alert: modalTypes.alertModal,
@@ -22,60 +23,41 @@ const mapStateToProps = state => ({
   ...state.modal,
 });
 
-class ModalContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modalIsOpen: false,
-    };
-    this.closeModal = this.closeModal.bind(this);
+const mapDispatchToProps = dispatch => ({
+  closeModal: () => dispatch(hideModal()),
+});
+
+const ModalContainer = (props) => {
+  const { modalType, modalProps, closeModal } = props;
+
+  let modalClassName = 'modal-dialog';
+  if (!modalType) {
+    return null;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps !== this.props) {
-      this.setState({
-        modalIsOpen: nextProps.modalProps.open,
-      });
-    }
-  }
+  if (modalType === 'document') modalClassName = 'modal-dialog modal-lg';
+  if (modalType === 'searchObjectModal') modalClassName = 'modal-dialog modal-xl modal-fixed';
 
-  closeModal() {
-    this.setState({ modalIsOpen: false });
-  }
+  const SpecifiedModal = MODAL_TYPES[modalType];
 
-  render() {
-    const { modalType, modalProps } = this.props;
-    const { modalIsOpen } = this.state;
-    let modalClassName = 'modal-dialog';
-    if (!modalType) {
-      return null;
-    }
+  return (
+    <div>
+      <ReactModal
+        isOpen={modalProps.open}
+        onRequestClose={closeModal}
+        contentLabel="Modal"
+        ariaHideApp={false}
+        overlayClassName="modal fade show"
+        bodyOpenClassName="modal-open"
+        className={modalClassName}
+        closeTimeoutMS={350}
+      >
+        <SpecifiedModal
+          {...modalProps}
+        />
+      </ReactModal>
+    </div>
+  );
+};
 
-    if (modalType === 'document') modalClassName = 'modal-dialog modal-lg';
-    if (modalType === 'searchObjectModal') modalClassName = 'modal-dialog modal-xl modal-fixed';
-
-    const SpecifiedModal = MODAL_TYPES[modalType];
-
-    return (
-      <div>
-        <ReactModal
-          isOpen={modalIsOpen}
-          onRequestClose={this.closeModal}
-          contentLabel="Modal"
-          ariaHideApp={false}
-          overlayClassName="modal fade show"
-          bodyOpenClassName="modal-open"
-          className={modalClassName}
-          closeTimeoutMS={350}
-        >
-          <SpecifiedModal
-            closeModal={this.closeModal}
-            {...modalProps}
-          />
-        </ReactModal>
-      </div>
-    );
-  }
-}
-
-export default connect(mapStateToProps, null)(ModalContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalContainer);
