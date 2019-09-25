@@ -20,7 +20,7 @@ const options = {
 
 const DocumentQuestionItem = (props) => {
   const {
-    question, activeDocument, removeSelectedQuestion, options, hideModal, showModal,
+    question, activeDocument, removeSelectedQuestion, options, hideModal, showModal, redirect,
   } = props;
 
   const closeModal = () => {
@@ -29,7 +29,7 @@ const DocumentQuestionItem = (props) => {
 
   const handleOpenLoginModal = () => {
     // open modal
-    const { optionalMessage, redirect } = options;
+    const { optionalMessage } = options;
     showModal({
       open: true,
       closeModal,

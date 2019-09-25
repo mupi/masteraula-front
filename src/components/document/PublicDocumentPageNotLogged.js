@@ -54,6 +54,7 @@ const PublicDocumentPageNotLogged = (props) => {
         activeDocument={activePublicDocument}
         {...props}
         options={options}
+        redirect={match.url}
       />
     </div>
   );
