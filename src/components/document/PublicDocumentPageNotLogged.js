@@ -13,11 +13,12 @@ const options = {
   removeOption: false,
   showTags: false,
   showLoginModal: true,
-  optionalMessage: 'Você precisa estar logado no sistema',
 };
 
-const PublicDocumentPagetLogged = (props) => {
-  const { activePublicDocument, hideModal, showModal } = props;
+const PublicDocumentPageNotLogged = (props) => {
+  const {
+    activePublicDocument, hideModal, showModal, match,
+  } = props;
   const name = activePublicDocument ? activePublicDocument.name : '';
 
   const closeModal = () => {
@@ -30,8 +31,10 @@ const PublicDocumentPagetLogged = (props) => {
       open: true,
       closeModal,
       optionalMessage: 'Você precisa estar logado no sistema',
+      redirect: match.url,
     }, 'login2');
   };
+
   return (
     <div className="c-document">
       <Row className="c-public-document__section c-document__main-buttons align-items-center">
@@ -57,4 +60,4 @@ const PublicDocumentPagetLogged = (props) => {
 };
 
 
-export default PublicDocumentPagetLogged;
+export default PublicDocumentPageNotLogged;

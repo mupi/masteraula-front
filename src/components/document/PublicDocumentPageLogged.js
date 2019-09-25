@@ -16,7 +16,7 @@ const options = {
 };
 
 
-const PublicDocumentPagetLogged = (props) => {
+const PublicDocumentPageLogged = (props) => {
   const { activePublicDocument } = props;
   const name = activePublicDocument ? activePublicDocument.name : '';
 
@@ -50,4 +50,4 @@ const PublicDocumentPagetLogged = (props) => {
 };
 
 
-export default PublicDocumentPagetLogged;
+export default PublicDocumentPageLogged;
