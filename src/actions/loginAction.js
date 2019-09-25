@@ -90,7 +90,7 @@ export const loginGoogle = (response, redirect = null) => {
 
 export const fetchLogin = (username, password, redirect = null) => (dispatch) => {
   dispatch(setRedirect(redirect));
-  dispatch(login(loginService.login(username, password)));
+  return dispatch(login(loginService.login(username, password)));
 };
 
 export const logout = () => (dispatch) => {
