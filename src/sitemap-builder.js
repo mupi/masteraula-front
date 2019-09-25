@@ -1,4 +1,4 @@
-require('@babel/register'); // 1.
+/*require('@babel/register'); // 1.
 
 const Sitemap = require('react-router-sitemap').default;
 const router = require('./sitemap-routes').default;
@@ -10,4 +10,4 @@ const router = require('./sitemap-routes').default;
     .save('../public/sitemap.xml')
 );
 
-console.log('The sitemap was built.'); // Only shows this message after everything works well.
+console.log('The sitemap was built.'); // Only shows this message after everything works well.*/
