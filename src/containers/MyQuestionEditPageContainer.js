@@ -52,6 +52,17 @@ const mapDispatchToProps = dispatch => ({
 
   onSubmit: (values, d, props) => {
     const errors = [];
+    let alternativesCleaned = [];
+
+    alternativesCleaned = values.alternatives.map((value, i) => {
+      if ((typeof (value.alternativeText) !== 'undefined') && value.alternativeText.trim().length > 0) {
+        return {
+          is_correct: (i === values.selectedIndex),
+          text: value.alternativeText,
+        };
+      }
+      return {};
+    }).filter(value => Object.keys(value).length !== 0);
 
     const myUpdatedQuestion = {
       id: props.activeQuestion.id,
@@ -64,10 +75,7 @@ const mapDispatchToProps = dispatch => ({
         return null;
       }).filter(topic => topic != null),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
-      alternatives: values.alternatives.map((alternative, i) => ({
-        is_correct: (i === values.selectedIndex),
-        text: alternative.alternativeText,
-      })),
+      alternatives: alternativesCleaned.length > 0 ? alternativesCleaned : null,
       // source_id: values.source !== '0' ? values.source : null,
       source: values.source,
       disciplines_ids: values.disciplines.map(discipline => discipline.id),

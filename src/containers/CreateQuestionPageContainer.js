@@ -50,10 +50,7 @@ const mapDispatchToProps = dispatch => ({
     const errors = [];
     let alternativesCleaned = [];
 
-    /*
-    if (values.alternatives && values.alternatives.filter(value => Object.keys(value).length !== 0).length === 0) {
-      alternativesCleaned = null;
-    } */
+
     alternativesCleaned = values.alternatives.map((value, i) => {
       if ((typeof (value.alternativeText) !== 'undefined') && value.alternativeText.trim().length > 0) {
         return {
@@ -63,9 +60,6 @@ const mapDispatchToProps = dispatch => ({
       }
       return {};
     }).filter(value => Object.keys(value).length !== 0);
-
-    console.log('alternativas limpias');
-    console.log(alternativesCleaned);
 
     const newQuestion = {
       statement: values.statement,
@@ -96,8 +90,6 @@ const mapDispatchToProps = dispatch => ({
         errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
       }
     }
-    console.log("errors")
-    console.log(errors)
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
