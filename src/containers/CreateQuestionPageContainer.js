@@ -16,6 +16,7 @@ const mapStateToProps = (state) => {
     topics: selector(state, 'topics'),
     alternatives: selector(state, 'alternatives'),
     disciplinesList: selector(state, 'disciplines'),
+    resolution: selector(state, 'resolution'),
     topicsList: state.topic.topics,
     disciplineFilters: state.filter.disciplineFilters,
     teachingLevelFilters: state.filter.teachingLevelFilters,
@@ -47,6 +48,18 @@ const mapDispatchToProps = dispatch => ({
   resetSelectedObjects: () => dispatch(resetSelectedObjects()),
   onSubmit: (values, d, props) => {
     const errors = [];
+    let alternativesCleaned = [];
+
+
+    if (values.alternatives && values.alternatives.filter(value => Object.keys(value).length !== 0).length === 0) {
+      alternativesCleaned = null;
+    } else {
+      alternativesCleaned = values.alternatives.map((alternative, i) => ({
+        is_correct: (i === values.selectedIndex),
+        text: alternative.alternativeText,
+      }));
+    }
+
     const newQuestion = {
       statement: values.statement,
       tags: values.tags.split(',').map(tag => tag.trim()),
@@ -57,10 +70,7 @@ const mapDispatchToProps = dispatch => ({
         return null;
       }).filter(topic => topic != null),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
-      alternatives: values.alternatives.map((alternative, i) => ({
-        is_correct: (i === values.selectedIndex),
-        text: alternative.alternativeText,
-      })),
+      alternatives: alternativesCleaned,
       source_id: values.source !== '0' ? values.source : null,
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
@@ -69,13 +79,15 @@ const mapDispatchToProps = dispatch => ({
       resolution: values.resolution,
     };
 
+    // validations
     if (newQuestion && (newQuestion.statement.trim() === '<p></p>' || newQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
     }
 
-    // validations
-    if (newQuestion && newQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
-      errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
+    if (newQuestion && newQuestion.alternatives && newQuestion.alternatives.length > 0) {
+      if (newQuestion && newQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
+        errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
+      }
     }
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);

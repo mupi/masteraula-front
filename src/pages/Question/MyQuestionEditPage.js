@@ -212,7 +212,7 @@ const renderSelectField = ({
   </div>
 );
 
-const renderAlternatives2 = ({ fields, meta: { error }, selectedIndex }) => (
+const renderAlternatives2 = ({ fields, meta: { error }, resolution }) => (
   <Row>
     <Col md="12">
       <Row className="c-question__row-info c-create-question__row-alternative c-create-question__header-alternative">
@@ -251,7 +251,7 @@ const renderAlternatives2 = ({ fields, meta: { error }, selectedIndex }) => (
               component={renderField}
               name={`${alternative}.alternativeText`}
               label="Insira sua alternativa"
-              validate={requiredValidator}
+              validate={resolution && resolution.length > 0 ? null : requiredValidator}
             />
           </Col>
           <Col sm="2" xs="1" className="c-question-edit__col-btn-remove-topic">
@@ -454,6 +454,7 @@ class MyQuestionEditPage extends Component {
         teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
         submitting,
         disciplinesList,
+        resolution,
       } = this.props;
 
       const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
@@ -611,7 +612,12 @@ class MyQuestionEditPage extends Component {
               </Row>
               <Row className="justify-content-center">
                 <Col sm="12" md="12" xs="12">
-                  <FieldArray name="alternatives" component={RenderAlternatives2} validate={minLength3Alternatives} />
+                  <FieldArray
+                    name="alternatives"
+                    component={RenderAlternatives2}
+                    validate={resolution && resolution.length > 0 ? null : minLength3Alternatives}
+                    resolution={resolution}
+                  />
                 </Col>
               </Row>
               <Row className="c-question__tittle-section">
@@ -726,7 +732,7 @@ class MyQuestionEditPage extends Component {
                 </Row>
                 <Row className="c-create-question__row-info">
                   <Col className="info-label" sm="4" xs="4">
-                    Grau de difuldade
+                    Grau de dificuldade
                   </Col>
                   <Col sm="8" xs="8">
                     <Field

@@ -20,6 +20,7 @@ const mapStateToProps = (state) => {
     topics: selector(state, 'topics'),
     alternatives: selector(state, 'alternatives'),
     disciplinesList: selector(state, 'disciplines'),
+    resolution: selector(state, 'resolution'),
     topicsList: state.topic.topics,
     disciplineFilters: state.filter.disciplineFilters,
     teachingLevelFilters: state.filter.teachingLevelFilters,
@@ -51,6 +52,7 @@ const mapDispatchToProps = dispatch => ({
 
   onSubmit: (values, d, props) => {
     const errors = [];
+
     const myUpdatedQuestion = {
       id: props.activeQuestion.id,
       statement: values.statement,
@@ -80,8 +82,10 @@ const mapDispatchToProps = dispatch => ({
     if (myUpdatedQuestion && (myUpdatedQuestion.statement.trim() === '<p></p>' || myUpdatedQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
     }
-    if (myUpdatedQuestion && myUpdatedQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
-      errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
+    if (myUpdatedQuestion && myUpdatedQuestion.alternatives.length > 0) {
+      if (myUpdatedQuestion && myUpdatedQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
+        errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
+      }
     }
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
