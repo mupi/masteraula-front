@@ -50,15 +50,22 @@ const mapDispatchToProps = dispatch => ({
     const errors = [];
     let alternativesCleaned = [];
 
-
+    /*
     if (values.alternatives && values.alternatives.filter(value => Object.keys(value).length !== 0).length === 0) {
       alternativesCleaned = null;
-    } else {
-      alternativesCleaned = values.alternatives.map((alternative, i) => ({
-        is_correct: (i === values.selectedIndex),
-        text: alternative.alternativeText,
-      }));
-    }
+    } */
+    alternativesCleaned = values.alternatives.map((value, i) => {
+      if ((typeof (value.alternativeText) !== 'undefined') && value.alternativeText.trim().length > 0) {
+        return {
+          is_correct: (i === values.selectedIndex),
+          text: value.alternativeText,
+        };
+      }
+      return {};
+    }).filter(value => Object.keys(value).length !== 0);
+
+    console.log('alternativas limpias');
+    console.log(alternativesCleaned);
 
     const newQuestion = {
       statement: values.statement,
@@ -70,7 +77,7 @@ const mapDispatchToProps = dispatch => ({
         return null;
       }).filter(topic => topic != null),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
-      alternatives: alternativesCleaned,
+      alternatives: alternativesCleaned.length > 0 ? alternativesCleaned : null,
       source_id: values.source !== '0' ? values.source : null,
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
@@ -89,6 +96,8 @@ const mapDispatchToProps = dispatch => ({
         errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
       }
     }
+    console.log("errors")
+    console.log(errors)
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
