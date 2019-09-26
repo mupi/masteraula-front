@@ -61,8 +61,8 @@ const mapDispatchToProps = dispatch => ({
       return {};
     }).filter(value => Object.keys(value).length !== 0);
 
-
-    const resolutionCleaned = typeof (values.resolution) !== 'undefined' && values.resolution && values.resolution.trim().length > 0 ? values.resolution : null;
+    const resolutionCleaned = typeof (values.resolution) !== 'undefined'
+                              && values.resolution && values.resolution.trim().length > 0 ? values.resolution : null;
 
     const newQuestion = {
       statement: values.statement,
@@ -105,7 +105,7 @@ const mapDispatchToProps = dispatch => ({
         errors.resolution = 'Insira no minimo 3 alternativas ou uma resolução';
       }
     }
-    
+
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 

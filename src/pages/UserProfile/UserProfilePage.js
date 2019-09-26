@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  Alert, Row, Col, Container, Button, Label,
+  Alert, Row, Col, Container, Label,
 } from 'reactstrap';
 import UserProfileContainer from 'containers/UserProfileContainer';
 import UserPasswordProfileContainer from 'containers/UserPasswordProfileContainer';
-/*import FacebookLogin from 'react-facebook-login';
+/* import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import { facebookLoginId, googleLoginId } from 'helpers/config';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';*/
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; */
 import HomeUserPage from '../HomeUser/HomeUserPage';
 
 class UserProfilePage extends React.Component {

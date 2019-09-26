@@ -64,7 +64,8 @@ const mapDispatchToProps = dispatch => ({
       return {};
     }).filter(value => Object.keys(value).length !== 0);
 
-    const resolutionCleaned = typeof (values.resolution) !== 'undefined' && values.resolution && values.resolution.trim().length > 0 ? values.resolution : null;
+    const resolutionCleaned = typeof (values.resolution) !== 'undefined'
+                            && values.resolution && values.resolution.trim().length > 0 ? values.resolution : null;
 
     const myUpdatedQuestion = {
       id: props.activeQuestion.id,
