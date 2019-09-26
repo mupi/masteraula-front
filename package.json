@@ -13,7 +13,6 @@
     "connected-react-router": "^4.5.0",
     "draft-js": "^0.10.5",
     "draftjs-to-html": "^0.8.4",
-    "eslint": "^5.12.0",
     "file-saver": "^2.0.0-rc.4",
     "gh-pages": "^1.2.0",
     "history": "^4.7.2",
