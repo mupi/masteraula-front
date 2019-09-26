@@ -30,8 +30,6 @@ import {
   PublicDocumentPageContainer,
 } from 'containers';
 
-import { showModal, hideModal } from 'actions/modalAction';
-
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
 import { history } from 'helpers';
@@ -175,11 +173,7 @@ const mapStateToProps = state => ({
   isLoggedIn: !!state.session.session,
 });
 
-const mapDispatchToProps = dispatch => ({
-  hideModal: () => dispatch(hideModal()),
-  showModal: (modalProps, modalType) => {
-    dispatch(showModal({ modalProps, modalType }));
-  },
+const mapDispatchToProps = () => ({
 });
 
 const connectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
