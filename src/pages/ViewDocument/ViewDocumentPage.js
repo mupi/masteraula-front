@@ -37,7 +37,6 @@ class ViewDocumentPage extends React.Component {
     if ((match.params.page !== prevProps.match.params.page)) {
       listMyDocuments(parseInt(match.params.page, 10), orderField, order);
     }
-    console.log("DIDUPDATE - List my last docs from ViewDocumentPage ");
     listMyLastDocuments(1, 'date', 'desc');
   }
 

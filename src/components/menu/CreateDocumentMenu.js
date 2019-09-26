@@ -17,7 +17,6 @@ class CreateDocumentMenu extends React.Component {
     const {
       listMyLastDocuments, listMyDocuments,
     } = this.props;
-    console.log("List my last docs from CreateDocumentMenu ");
 
     listMyLastDocuments(1, 'date', 'desc');
     listMyDocuments(1, 'date', 'desc');

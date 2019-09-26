@@ -23,7 +23,6 @@ class DocumentInfoMenu extends React.Component {
     const {
       listMyLastDocuments, listMyDocuments,
     } = this.props;
-    console.log("List my last docs from DocumentInfoMenu ");
 
     listMyLastDocuments(1, 'date', 'desc');
     listMyDocuments(1, 'date', 'desc');
