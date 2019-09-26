@@ -455,6 +455,7 @@ class MyQuestionEditPage extends Component {
         submitting,
         disciplinesList,
         resolution,
+        errors,
       } = this.props;
 
       const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
@@ -496,7 +497,7 @@ class MyQuestionEditPage extends Component {
             <Alert color="danger">
                 Você não tem permissão para editar esta questão.
             </Alert>
-          </HomeUserPage>
+          </HomeUserPage> 
         );
       }
 
@@ -774,6 +775,8 @@ class MyQuestionEditPage extends Component {
             </div>
             <Row className="c-questions__row-footer-options text-center">
               <Col>
+                {errors && <strong>{errors.isCorrect}</strong>}
+
                 <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
                   <FontAwesomeIcon
                     className="btn__icon"

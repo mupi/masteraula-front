@@ -100,8 +100,8 @@ export const fetchQuestion = (id) => {
           // validation for adding empty topic line
           if (allTopics.length === 0) allTopics.push({});
 
-          let alternatives = [];
-          let selectedAlternative = null;
+          let alternatives = [{}, {}, {}];
+          let selectedAlternative = 0;
 
           if (activeQuestion.alternatives && activeQuestion.alternatives.length > 0) {
             alternatives = activeQuestion.alternatives.map((alternative, i) => ({
@@ -275,8 +275,8 @@ export const updateQuestion = (props) => {
           tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
         }));
 
-        let alternatives = [];
-        let selectedAlternative = null;
+        let alternatives = [{}, {}, {}];
+        let selectedAlternative = 0;
 
         if (activeQuestion.alternatives && activeQuestion.alternatives.length > 0) {
           alternatives = activeQuestion.alternatives.map((alternative, i) => ({
