@@ -53,9 +53,10 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: (values, d, props) => {
     const errors = [];
     let alternativesCleaned = [];
-
+    console.log("alternativas editadas");
+    console.log( values.alternatives);
     alternativesCleaned = values.alternatives.map((value, i) => {
-      if ((typeof (value.alternativeText) !== 'undefined') && value.alternativeText.trim().length > 0) {
+      if ((typeof (value.alternativeText) !== 'undefined') && value.alternativeText && value.alternativeText.trim().length > 0) {
         return {
           is_correct: (i === values.selectedIndex),
           text: value.alternativeText,
