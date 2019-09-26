@@ -31,7 +31,7 @@ class ModalContainer extends React.Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
       this.setState({
         modalIsOpen: nextProps.modalProps.open,

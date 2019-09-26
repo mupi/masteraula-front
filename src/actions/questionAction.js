@@ -100,12 +100,17 @@ export const fetchQuestion = (id) => {
           // validation for adding empty topic line
           if (allTopics.length === 0) allTopics.push({});
 
-          const alternatives = activeQuestion.alternatives.map((alternative, i) => ({
-            id: alternative.id,
-            alternativeText: alternative.text,
-            selectIndex: (alternative.is_correct ? i : ''),
-          }));
-          const selectedAlternative = alternatives.filter(item => item.selectIndex !== '')[0].selectIndex;
+          let alternatives = [{}, {}, {}];
+          let selectedAlternative = 0;
+
+          if (activeQuestion.alternatives && activeQuestion.alternatives.length > 0) {
+            alternatives = activeQuestion.alternatives.map((alternative, i) => ({
+              id: alternative.id,
+              alternativeText: alternative.text,
+              selectIndex: (alternative.is_correct ? i : ''),
+            }));
+            selectedAlternative = alternatives.filter(item => item.selectIndex !== '')[0].selectIndex;
+          }
 
           const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
             id: lobj.id,
@@ -270,12 +275,17 @@ export const updateQuestion = (props) => {
           tags: lobj.tags.map(tag => tag.name.trim()).join(', '),
         }));
 
-        const alternatives = activeQuestion.alternatives.map((alternative, i) => ({
-          id: alternative.id,
-          alternativeText: alternative.text,
-          selectIndex: (alternative.is_correct ? i : ''),
-        }));
-        const selectedAlternative = alternatives.filter(item => item.selectIndex !== '')[0].selectIndex;
+        let alternatives = [{}, {}, {}];
+        let selectedAlternative = 0;
+
+        if (activeQuestion.alternatives && activeQuestion.alternatives.length > 0) {
+          alternatives = activeQuestion.alternatives.map((alternative, i) => ({
+            id: alternative.id,
+            alternativeText: alternative.text,
+            selectIndex: (alternative.is_correct ? i : ''),
+          }));
+          selectedAlternative = alternatives.filter(item => item.selectIndex !== '')[0].selectIndex;
+        }
 
         dispatch(initialize('edit-question', {
           year: activeQuestion.year,
