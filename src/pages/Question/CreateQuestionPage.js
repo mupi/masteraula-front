@@ -409,7 +409,6 @@ class CreateQuestionPage extends Component {
     const {
       listTopics, resetTopicList,
     } = this.props;
-    console.log(newValue);
     if (newValue.length > 0) {
       listTopics(newValue);
     } else {

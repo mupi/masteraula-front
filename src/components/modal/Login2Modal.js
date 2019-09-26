@@ -5,7 +5,7 @@ import Login2Form from 'components/login/Login2Form';
 import { fetchLogin } from 'actions/loginAction';
 
 const Login2Modal = ({
-  closeModal, submit,
+  closeModal, submit, optionalMessage, redirect,
 }) => (
   <div className="modal-content modal__content c-register__modal-content">
     <div className="modal-header modal__header c-register__modal-header">
@@ -17,12 +17,7 @@ const Login2Modal = ({
       </button>
     </div>
     <div className="modal-basic-operation__body modal-body c-register__modal-body">
-      <h4
-        className="modal-title text-center"
-      >
-        Entrar no MasterAula
-      </h4>
-      <Login2Form onSubmit={submit} closeModal={closeModal} />
+      <Login2Form onSubmit={submit} closeModal={closeModal} optionalMessage={optionalMessage} redirect={redirect} />
     </div>
   </div>
 );
@@ -35,13 +30,11 @@ Login2Modal.defaultProps = {
   closeModal: f => f,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  submit: (values) => {
-    return dispatch(fetchLogin(values.email, values.password));
-  },
+  submit: (values, _2, props) => dispatch(fetchLogin(values.email, values.password, props.redirect)),
 });
 
 export default connect(

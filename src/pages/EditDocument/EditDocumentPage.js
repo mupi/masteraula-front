@@ -10,6 +10,15 @@ import DocumentBasicHeader from 'components/document/DocumentBasicHeader';
 import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
+
+const options = {
+  showViewButton: true,
+  removeOption: true,
+  showTags: true,
+  showLoginModal: false,
+};
+
+
 class EditDocumentPage extends Component {
   componentDidMount() {
     const { fetchDocument, activeDocument } = this.props;
@@ -24,6 +33,7 @@ class EditDocumentPage extends Component {
     const {
       listMyLastDocuments,
     } = this.props;
+
     listMyLastDocuments(1, 'date', 'desc');
   }
 
@@ -47,6 +57,7 @@ class EditDocumentPage extends Component {
           <DocumentQuestions
             activeDocument={activeDocument}
             removeSelectedQuestion={removeSelectedQuestion}
+            options={options}
             {...this.props}
           />
         </div>

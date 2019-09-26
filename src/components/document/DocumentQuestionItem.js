@@ -8,10 +8,36 @@ import { getTeachingLevel, getCleanExtractStatement } from 'helpers/question';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+
+/* Document's item options available for Public Document
+const options = {
+  showViewButton,
+  removeOption,
+  showTags,
+};
+*/
+
+
 const DocumentQuestionItem = (props) => {
   const {
-    question, activeDocument, removeSelectedQuestion, readOnly = false,
+    question, activeDocument, removeSelectedQuestion, options, hideModal, showModal, redirect,
   } = props;
+
+  const closeModal = () => {
+    hideModal();
+  };
+
+  const handleOpenLoginModal = () => {
+    // open modal
+    const { optionalMessage } = options;
+    showModal({
+      open: true,
+      closeModal,
+      optionalMessage,
+      redirect,
+    }, 'login2');
+  };
+
   const extractStatement = getCleanExtractStatement(question.statement);
 
   return (
@@ -89,7 +115,7 @@ const DocumentQuestionItem = (props) => {
                   {' '}
                   <i>{question.disciplines && question.disciplines.map(discipline => (discipline.name.trim())).join(', ')}</i>
                 </p>
-                {(!readOnly) && (question.tags || question.all_topics) && (question.tags.length > 0 || question.all_topics.length > 0) ? (
+                {(options.showTags) && (question.tags || question.all_topics) && (question.tags.length > 0 || question.all_topics.length > 0) ? (
                   <p className="c-document__question-info-row">
                   Tags:
                     {' '}
@@ -98,19 +124,19 @@ const DocumentQuestionItem = (props) => {
                 ) : ''}
               </Col>
             </Row>
-            { (!readOnly) ? (
-              <Row>
-                <div className="c-document__question-view-more col-md-12">
-                  { (!readOnly) ? (
-                    <RemoveQuestionButton
-                      questionId={question.id}
-                      activeDocumentId={activeDocument.id}
-                      removeSelectedQuestion={removeSelectedQuestion}
-                      customClass="c-document__btn-remove-question"
-                      label={<FontAwesomeIcon icon="trash-alt" />}
-                      {...props}
-                    />
-                  ) : ' ' }
+            <Row>
+              <div className="c-document__question-view-more col-md-12">
+                { (options.removeOption) ? (
+                  <RemoveQuestionButton
+                    questionId={question.id}
+                    activeDocumentId={activeDocument.id}
+                    removeSelectedQuestion={removeSelectedQuestion}
+                    customClass="c-document__btn-remove-question"
+                    label={<FontAwesomeIcon icon="trash-alt" />}
+                    {...props}
+                  />
+                ) : ' ' }
+                { (options.showViewButton && !options.showLoginModal) ? (
                   <Link to={`/view-question/${question.id}`}>
                     <Button>
                       <FontAwesomeIcon icon="search" />
@@ -120,9 +146,18 @@ const DocumentQuestionItem = (props) => {
                       </span>
                     </Button>
                   </Link>
-                </div>
-              </Row>
-            ) : ' ' }
+                ) : ' ' }
+                { (options.showViewButton && options.showLoginModal) ? (
+                  <Button onClick={handleOpenLoginModal}>
+                    <FontAwesomeIcon icon="search" />
+                    {' '}
+                    <span className="button-text">
+                      Ver questão
+                    </span>
+                  </Button>
+                ) : ' ' }
+              </div>
+            </Row>
           </Col>
         </Row>
       )}

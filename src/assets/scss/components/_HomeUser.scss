@@ -5,6 +5,9 @@
     position: relative;
     margin-top: 25px;
     padding: 0px;
+    @include for-phone-only {
+        margin-top: 0px !important;
+    }
 }
 
 .l-home-user{

@@ -1,5 +1,5 @@
 import {
-  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_TOGGLE_MODAL,
+  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_TOGGLE_MODAL, REDIRECT_NEXT, REDIRECT_RESET,
 } from 'actions/loginAction';
 
 const session = JSON.parse(localStorage.getItem('session'));
@@ -27,6 +27,14 @@ export function login(state = initialState, action) {
     case LOGIN_TOGGLE_MODAL:
       return Object.assign({}, state, {
         modal: action.modal,
+      });
+    case REDIRECT_NEXT:
+      return Object.assign({}, state, {
+        next: action.next,
+      });
+    case REDIRECT_RESET:
+      return Object.assign({}, state, {
+        next: null,
       });
     default:
       return state;

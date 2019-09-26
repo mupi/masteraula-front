@@ -27,6 +27,7 @@ import {
   PricingPageContainer,
   ViewLearningObjectPageContainer,
   ObjectBasePageContainer,
+  PublicDocumentPageContainer,
 } from 'containers';
 
 import { showModal, hideModal } from 'actions/modalAction';
@@ -68,7 +69,6 @@ import {
 import { ToastContainer } from 'react-toastify';
 
 import ModalRoot from './ModalRoot';
-
 
 library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile, faPencilAlt, faSyncAlt, faBars,
   faUser, faHome, faSignOutAlt, faUserCircle, faSearch, faFolder, faFileAlt, faFilter, faTrashAlt,
@@ -133,6 +133,7 @@ class App extends Component {
                 <Route path="/edit-header/:id" component={EditHeaderPageContainer} />
                 <Route path="/new-header" component={EditHeaderPageContainer} />
                 <Route path="/object-base/:page(\d+)" component={ObjectBasePageContainer} />
+                <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
                 <Redirect from="/" to="/question-base/1" />
               </Switch>
             )
@@ -144,6 +145,7 @@ class App extends Component {
                 <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
                 <Route path="/terms-use" component={TermsUsePage} />
                 <Route path="/verify-userregister/:key" component={VerifyRegisterPageContainer} />
+                <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
                 <Route component={NotFoundPage} />
               </Switch>
             )

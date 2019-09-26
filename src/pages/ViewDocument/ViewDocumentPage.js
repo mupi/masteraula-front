@@ -26,6 +26,7 @@ class ViewDocumentPage extends React.Component {
     const {
       match, listMyDocuments, orderField, order,
     } = this.props;
+
     listMyDocuments(parseInt(match.params.page, 10), orderField, order);
   }
 
@@ -36,7 +37,6 @@ class ViewDocumentPage extends React.Component {
     if ((match.params.page !== prevProps.match.params.page)) {
       listMyDocuments(parseInt(match.params.page, 10), orderField, order);
     }
-
     listMyLastDocuments(1, 'date', 'desc');
   }
 
