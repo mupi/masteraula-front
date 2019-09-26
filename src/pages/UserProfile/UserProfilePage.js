@@ -18,8 +18,8 @@ class UserProfilePage extends React.Component {
 
   render() {
     const {
-      stateList, isFetchingStatesList, responseFacebook, responseGoogle, socialAccounts,
-      disconnectSocialAccount, user,
+      stateList, isFetchingStatesList, /* responseFacebook, responseGoogle */ socialAccounts,
+      /* disconnectSocialAccount */ user,
     } = this.props;
 
     const socialAccountFacebook = (socialAccounts ? socialAccounts.filter(item => item.provider.toString().trim() === 'facebook') : null);
