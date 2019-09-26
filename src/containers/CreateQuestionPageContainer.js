@@ -22,6 +22,7 @@ const mapStateToProps = (state) => {
     teachingLevelFilters: state.filter.teachingLevelFilters,
     sourceFilters: state.filter.sourceFilters,
     selectedObjectList: state.question.selectedObjectList,
+    errorsEditQuestion: state.form['question-create'] ? state.form['question-create'].submitErrors : null,
   });
 };
 
@@ -89,20 +90,20 @@ const mapDispatchToProps = dispatch => ({
     }
 
     if (newQuestion && !newQuestion.alternatives && !newQuestion.resolution) {
-      errors.resolution = 'Insira no minimo 3 alternativas ou uma resolução';
+      errors.general_errors = 'Insira no minimo 3 alternativas ou uma resolução';
     }
 
     if (newQuestion && newQuestion.alternatives && newQuestion.alternatives.length > 0) {
       if (newQuestion && newQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
-        errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
+        errors.general_errors = 'Campo obrigatório. Selecione uma resposta correta';
       }
 
       if (newQuestion && newQuestion.resolution && newQuestion.alternatives.length < 3) {
-        errors.resolution = 'Insira no minimo 3 alternativas ou apague todas';
+        errors.general_errors = 'Insira no minimo 3 alternativas ou apague todas';
       }
 
       if (newQuestion && !newQuestion.resolution && newQuestion.alternatives.length < 3) {
-        errors.resolution = 'Insira no minimo 3 alternativas ou uma resolução';
+        errors.general_errors = 'Insira no minimo 3 alternativas ou uma resolução';
       }
     }
 

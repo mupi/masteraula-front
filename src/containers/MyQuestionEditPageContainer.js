@@ -30,6 +30,7 @@ const mapStateToProps = (state) => {
     userId: user.id,
     // add object to question
     selectedObjectList: state.question.selectedObjectList,
+    errorsEditQuestion: state.form['edit-question'] ? state.form['edit-question'].submitErrors : null,
   });
 };
 
@@ -94,20 +95,20 @@ const mapDispatchToProps = dispatch => ({
     }
 
     if (myUpdatedQuestion && !myUpdatedQuestion.alternatives && !myUpdatedQuestion.resolution) {
-      errors.resolution = 'Insira no minimo 3 alternativas ou uma resolução';
+      errors.general_errors = 'Insira no minimo 3 alternativas ou uma resolução';
     }
 
     if (myUpdatedQuestion && myUpdatedQuestion.alternatives && myUpdatedQuestion.alternatives.length > 0) {
       if (myUpdatedQuestion && myUpdatedQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
-        errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
+        errors.general_errors = 'Selecione uma alternativa correta';
       }
 
       if (myUpdatedQuestion && myUpdatedQuestion.resolution && myUpdatedQuestion.alternatives.length < 3) {
-        errors.resolution = 'Insira no minimo 3 alternativas ou apague todas';
+        errors.general_errors = 'Insira no minimo 3 alternativas ou apague todas';
       }
 
       if (myUpdatedQuestion && !myUpdatedQuestion.resolution && myUpdatedQuestion.alternatives.length < 3) {
-        errors.resolution = 'Insira no minimo 3 alternativas ou uma resolução';
+        errors.general_errors = 'Insira no minimo 3 alternativas ou uma resolução';
       }
     }
 

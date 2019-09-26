@@ -455,6 +455,7 @@ class MyQuestionEditPage extends Component {
         submitting,
         disciplinesList,
         resolution,
+        errorsEditQuestion,
       } = this.props;
 
       const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
@@ -762,17 +763,17 @@ class MyQuestionEditPage extends Component {
                 />
                 <Row>
                   <Col>
-                    { (!pristine) ? (
-                      <Alert color="warning" className="c-question-edit__warning-message">
-                        Existem mudanças ainda não salvas na questão
-                      </Alert>
-                    ) : ''
-                        }
+                    {errorsEditQuestion && errorsEditQuestion.general_errors && (
+                    <Alert color="danger">
+                      {errorsEditQuestion.general_errors}
+                    </Alert>
+                    )}
                   </Col>
                 </Row>
               </div>
             </div>
             <Row className="c-questions__row-footer-options text-center">
+
               <Col>
                 <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
                   <FontAwesomeIcon

@@ -392,7 +392,7 @@ class CreateQuestionPage extends Component {
   constructor(props) {
     super(props);
     this.closeModal = this.closeModal.bind(this);
-  } 
+  }
 
   componentDidMount() {
     const {
@@ -406,7 +406,6 @@ class CreateQuestionPage extends Component {
   }
 
   getListTopics = (e, newValue) => {
-
     const {
       listTopics, resetTopicList,
     } = this.props;
@@ -440,6 +439,7 @@ class CreateQuestionPage extends Component {
       submitting,
       disciplinesList,
       resolution,
+      errorsEditQuestion,
     } = this.props;
 
     if (isCreating) {
@@ -694,6 +694,15 @@ class CreateQuestionPage extends Component {
                 selectedTopics={topics}
                 validate={minLength1Topics}
               />
+              <Row>
+                <Col>
+                  {errorsEditQuestion && errorsEditQuestion.general_errors && (
+                    <Alert color="danger">
+                      {errorsEditQuestion.general_errors}
+                    </Alert>
+                  )}
+                </Col>
+              </Row>
               <Row>
                 <Col>
                   { (!pristine) ? (
