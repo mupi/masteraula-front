@@ -23,7 +23,7 @@ const Register2Modal = ({
       >
         Cadastre-se
       </h4>
-      <RegisterForm onSubmit={submit} />
+      <RegisterForm onSubmit={submit} closeModal={closeModal}/>
     </div>
   </div>
 );

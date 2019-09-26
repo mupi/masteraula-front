@@ -19,6 +19,18 @@
       border-bottom: 0px;
     }
 
+    &__link-options{
+      margin: 0px;
+    }
+
+    &__link-register{
+      vertical-align: inherit;
+    }
+
+    &__optional-message{
+      margin-top:0px !important;
+    }
+
 }
 
 .kep-login-facebook.small{

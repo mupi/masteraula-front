@@ -8,6 +8,7 @@ import { Field, reduxForm } from 'redux-form';
 
 import { resendEmail } from 'actions/registerAction';
 import { loginFacebook, loginGoogle } from 'actions/loginAction';
+import { showModal, hideModal } from 'actions/modalAction';
 import { facebookLoginId, googleLoginId } from 'helpers/config';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
@@ -47,8 +48,8 @@ const renderField = ({
 const Login2Form = (props) => {
   const {
     handleSubmit, error, handleResendEmail, formValues,
-    resendError, resendSuccess, isSending, closeModal,
-    responseFacebook, responseGoogle,
+    resendError, resendSuccess, isSending, closeModal, showRegisterModal,
+    responseFacebook, responseGoogle, optionalMessage, redirect,
   } = props;
 
   function handleResend(message, values) {
@@ -57,12 +58,35 @@ const Login2Form = (props) => {
     }
   }
 
+  const handleOpenRegisterModal = () => {
+    closeModal();
+    // open modal
+    showRegisterModal({
+      open: true,
+      closeModal,
+    }, 'register2');
+  };
+
   return (
     <Col sm="12" xs="12">
+      {optionalMessage /* && pristine */
+        ? (
+          <Alert
+            color="danger"
+            className="c-login__optional-message"
+          >
+            {optionalMessage}
+          </Alert>
+        ) : ''}
+      <h4
+        className="modal-title text-center"
+      >
+        Entrar no MasterAula
+      </h4>
       <FacebookLogin
         appId={facebookLoginId}
         fields="name,email,picture"
-        callback={responseFacebook}
+        callback={resp => responseFacebook(resp, redirect)}
         icon="fa-facebook"
         size="small"
         textButton="Entrar com Facebook"
@@ -71,13 +95,13 @@ const Login2Form = (props) => {
       <GoogleLogin
         clientId={googleLoginId}
         buttonText="Entrar com Google"
-        onSuccess={responseGoogle}
+        onSuccess={resp => responseGoogle(resp, redirect)}
           // onFailure={responseGoogle}
         cookiePolicy="single_host_origin"
         className="google-login"
       />
       <hr className="hr5" />
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={resp => handleSubmit(resp, redirect)}>
         <FormGroup>
           <Field
             name="email"
@@ -120,14 +144,21 @@ const Login2Form = (props) => {
         )}
         <div className="text-center">
           <FormGroup>
+            <Button type="submit">
+              Entrar
+            </Button>
+          </FormGroup>
+          <FormGroup className="c-login__link-options">
             <NavLink to="/esqueci-senha" onClick={() => closeModal()}>
-
               Esqueci minha senha
             </NavLink>
           </FormGroup>
-          <Button type="submit">
-              Entrar
-          </Button>
+          <FormGroup className="c-login__link-options">
+            <span>Não tem uma conta?</span>
+            <Button color="" className="btn btn-link c-login__link-register" onClick={handleOpenRegisterModal}>
+              Cadastre-se
+            </Button>
+          </FormGroup>
         </div>
       </Form>
     </Col>
@@ -162,9 +193,14 @@ const mapDispatchToProps = dispatch => ({
       dispatch(resetState());
       dispatch(toggleModal(modal));
     }, */
-  responseGoogle: response => dispatch(loginGoogle(response)),
-  responseFacebook: response => dispatch(loginFacebook(response)),
+  responseGoogle: (response, redirect) => dispatch(loginGoogle(response, redirect)),
+  responseFacebook: (response, redirect) => dispatch(loginFacebook(response, redirect)),
   handleResendEmail: (email, password) => dispatch(resendEmail(email, password)),
+  // new way to handle modals
+  hideModal: () => dispatch(hideModal()),
+  showRegisterModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType }));
+  },
 });
 
 export default connect(

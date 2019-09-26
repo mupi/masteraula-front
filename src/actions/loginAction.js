@@ -12,67 +12,85 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT = 'LOGOUT';
 export const LOGIN_TOGGLE_MODAL = 'LOGIN_TOGGLE_MODAL';
+export const REDIRECT_NEXT = 'REDIRECT_NEXT';
+export const REDIRECT_RESET = 'REDIRECT_RESET';
 
-const fetchSocialLogin = (method) => {
-  const requestLogin = () => ({ type: LOGIN_REQUEST });
+export const setRedirect = next => ({
+  type: REDIRECT_NEXT,
+  next,
+});
+
+export const resetRedirect = () => (
+  {
+    type: REDIRECT_NEXT,
+  }
+);
+
+
+const successLogin = (dispatch, getState, session) => {
   const success = () => ({ type: LOGIN_SUCCESS });
-  const failure = error => ({ type: LOGIN_FAILURE, error });
 
-  return (dispatch) => {
+  dispatch(success());
+  dispatch(updateSession(session));
+  dispatch(hideModal());
+  if (getState().login.next) {
+    history.push(`${getState().login.next}`);
+  } else {
+    history.push('/question-base/1');
+  }
+};
+
+const failureLogin = (dispatch, error, social = false) => {
+  const failure = () => ({ type: LOGIN_FAILURE, error });
+
+  if (social) {
+    dispatch(stopSubmit('login', {
+      _error: error,
+    }));
+  } else {
+    dispatch(failure(error));
+    throw new SubmissionError({
+      _error: error,
+    });
+  }
+  dispatch(failure());
+};
+
+const login = (method, social = false) => {
+  const requestLogin = () => ({ type: LOGIN_REQUEST });
+
+  return (dispatch, getState) => {
     dispatch(requestLogin());
-
-    return method
-      .then(
-        (session) => {
-          dispatch(success());
-          dispatch(updateSession(session));
-          dispatch(hideModal());
-          history.push('/question-base/1');
-        },
-        (error) => {
-          dispatch(stopSubmit('login', {
-            _error: error,
-          }));
-          dispatch(failure(error));
-        },
-      );
+    return method.then(
+      (session) => {
+        successLogin(dispatch, getState, session);
+      },
+      (error) => {
+        failureLogin(dispatch, error, social);
+      },
+    );
   };
 };
 
-export const loginFacebook = (response) => {
+export const loginFacebook = (response, redirect = null) => {
   const { accessToken } = response;
-  return fetchSocialLogin(loginService.loginFacebook(accessToken));
-};
-
-export const loginGoogle = (response) => {
-  const { accessToken } = response;
-  return fetchSocialLogin(loginService.loginGoogle(accessToken));
-};
-
-export const fetchLogin = (username, password) => {
-  const requestLogin = () => ({ type: LOGIN_REQUEST });
-  const success = () => ({ type: LOGIN_SUCCESS });
-  const failure = error => ({ type: LOGIN_FAILURE, error });
-
   return (dispatch) => {
-    dispatch(requestLogin());
-
-    return loginService.login(username, password)
-      .then(
-        (session) => {
-          dispatch(success());
-          dispatch(updateSession(session));
-          dispatch(hideModal());
-          history.push('/question-base/1');
-        },
-        (error) => {
-          dispatch(failure(error));
-          throw new SubmissionError({
-            _error: error,
-          });
-        },
-      );
+    dispatch(setRedirect(redirect));
+    dispatch(login(loginService.loginFacebook(accessToken), true));
   };
+};
+
+export const loginGoogle = (response, redirect = null) => {
+  const { accessToken } = response;
+  return (dispatch) => {
+    dispatch(setRedirect(redirect));
+    dispatch(login(loginService.loginGoogle(accessToken), true));
+  };
+};
+
+export const fetchLogin = (username, password, redirect = null) => (dispatch) => {
+  dispatch(setRedirect(redirect));
+  return dispatch(login(loginService.login(username, password)));
 };
 
 export const logout = () => (dispatch) => {

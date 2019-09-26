@@ -14,6 +14,11 @@ export const FETCH_DOCUMENT = 'FETCH_DOCUMENT';
 export const FETCH_DOCUMENT_SUCCESS = 'FETCH_DOCUMENT_SUCCESS';
 export const FETCH_DOCUMENT_FAILURE = 'FETCH_DOCUMENT_FAILURE';
 
+// Load public single document
+export const FETCH_PUBLIC_DOCUMENT = 'FETCH_PUBLIC_DOCUMENT';
+export const FETCH_PUBLIC_DOCUMENT_SUCCESS = 'FETCH_PUBLIC_DOCUMENT_SUCCESS';
+export const FETCH_PUBLIC_DOCUMENT_FAILURE = 'FETCH_PUBLIC_DOCUMENT_FAILURE';
+
 // Load preview document
 export const FETCH_PREVIEW_DOCUMENT = 'FETCH_PREVIEW_DOCUMENT';
 export const FETCH_PREVIEW_DOCUMENT_SUCCESS = 'FETCH_PREVIEW_DOCUMENT_SUCCESS';
@@ -89,6 +94,22 @@ export const fetchDocument = (id) => {
     return documentService.fetchDocument(id).then(
       (activeDocument) => {
         dispatch(fetchDocumentSuccess(activeDocument));
+      }, (error) => {
+        dispatch(fetchDocumentFailure(error));
+      },
+    );
+  };
+};
+
+export const fetchPublicDocument = (id) => {
+  function requestDocument() { return { type: FETCH_PUBLIC_DOCUMENT }; }
+  function fetchDocumentSuccess(activePublicDocument) { return { type: FETCH_PUBLIC_DOCUMENT_SUCCESS, activePublicDocument }; }
+  function fetchDocumentFailure(error) { return { type: FETCH_PUBLIC_DOCUMENT_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(requestDocument(id));
+    return documentService.fetchPublicDocument(id).then(
+      (activePublicDocument) => {
+        dispatch(fetchDocumentSuccess(activePublicDocument));
       }, (error) => {
         dispatch(fetchDocumentFailure(error));
       },
@@ -331,7 +352,7 @@ export const downloadDocument = (props) => {
   };
 };
 
-export const copyDocument = (props) => {
+export const copyDocument = (props, isRedirect = false) => {
   function copySelectedDocument() { return { type: COPY_DOCUMENT }; }
   function copySelectedDocumentSuccess(activeDocument) { return { type: COPY_DOCUMENT_SUCCESS, activeDocument }; }
   function copySelectedDocumentFailure(error) { return { type: COPY_DOCUMENT_FAILURE, error }; }
@@ -340,6 +361,7 @@ export const copyDocument = (props) => {
     return documentService.copyDocument(props).then(
       (activeDocument) => {
         dispatch(copySelectedDocumentSuccess(activeDocument));
+        if (isRedirect) history.push('/edit-document');
       },
       (error) => {
         dispatch(copySelectedDocumentFailure(error));

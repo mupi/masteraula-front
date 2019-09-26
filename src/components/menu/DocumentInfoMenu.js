@@ -21,9 +21,11 @@ class DocumentInfoMenu extends React.Component {
 
   componentDidMount() {
     const {
-      listMyLastDocuments,
+      listMyLastDocuments, listMyDocuments,
     } = this.props;
+
     listMyLastDocuments(1, 'date', 'desc');
+    listMyDocuments(1, 'date', 'desc');
   }
 
   editDocument(document) {
