@@ -64,6 +64,8 @@ const mapDispatchToProps = dispatch => ({
       return {};
     }).filter(value => Object.keys(value).length !== 0);
 
+    const resolutionCleaned = typeof (values.resolution) !== 'undefined' && values.resolution.trim().length > 0 ? values.resolution : null;
+
     const myUpdatedQuestion = {
       id: props.activeQuestion.id,
       statement: values.statement,
@@ -83,20 +85,29 @@ const mapDispatchToProps = dispatch => ({
       year: values.year === '' ? null : values.year,
       // selected objects to question
       learning_objects_ids: props.selectedObjectList.map(object => object.id),
-      resolution: values.resolution,
+      resolution: resolutionCleaned,
     };
 
     // validations
     if (myUpdatedQuestion && (myUpdatedQuestion.statement.trim() === '<p></p>' || myUpdatedQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
     }
-    if (myUpdatedQuestion && myUpdatedQuestion.alternatives.length > 0) {
+
+    if (myUpdatedQuestion && !myUpdatedQuestion.alternatives && !myUpdatedQuestion.resolution) {
+      errors.resolution = 'Insira no minimo 3 alternativas ou uma resolução';
+    }
+
+    if (myUpdatedQuestion && myUpdatedQuestion.alternatives && myUpdatedQuestion.alternatives.length > 0) {
       if (myUpdatedQuestion && myUpdatedQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
         errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
       }
 
       if (myUpdatedQuestion && myUpdatedQuestion.resolution && myUpdatedQuestion.alternatives.length < 3) {
         errors.resolution = 'Insira no minimo 3 alternativas ou apague todas';
+      }
+
+      if (myUpdatedQuestion && !myUpdatedQuestion.resolution && myUpdatedQuestion.alternatives.length < 3) {
+        errors.resolution = 'Insira no minimo 3 alternativas ou uma resolução';
       }
     }
 

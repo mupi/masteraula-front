@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DocumentQuestionItem = (props) => {
   const {
-    question, activeDocument, removeSelectedQuestion, readOnly = false, isFetchingRemoveQuestion,
+    question, activeDocument, removeSelectedQuestion, readOnly = false,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
 

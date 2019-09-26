@@ -61,6 +61,9 @@ const mapDispatchToProps = dispatch => ({
       return {};
     }).filter(value => Object.keys(value).length !== 0);
 
+
+    const resolutionCleaned = typeof (values.resolution) !== 'undefined' && values.resolution.trim().length > 0 ? values.resolution : null;
+
     const newQuestion = {
       statement: values.statement,
       tags: values.tags.split(',').map(tag => tag.trim()),
@@ -77,12 +80,16 @@ const mapDispatchToProps = dispatch => ({
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
       year: values.year,
       learning_objects_ids: props.selectedObjectList.map(object => object.id),
-      resolution: values.resolution,
+      resolution: resolutionCleaned,
     };
 
     // validations
     if (newQuestion && (newQuestion.statement.trim() === '<p></p>' || newQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
+    }
+
+    if (newQuestion && !newQuestion.alternatives && !newQuestion.resolution) {
+      errors.resolution = 'Insira no minimo 3 alternativas ou uma resolução';
     }
 
     if (newQuestion && newQuestion.alternatives && newQuestion.alternatives.length > 0) {
@@ -93,7 +100,12 @@ const mapDispatchToProps = dispatch => ({
       if (newQuestion && newQuestion.resolution && newQuestion.alternatives.length < 3) {
         errors.resolution = 'Insira no minimo 3 alternativas ou apague todas';
       }
+
+      if (newQuestion && !newQuestion.resolution && newQuestion.alternatives.length < 3) {
+        errors.resolution = 'Insira no minimo 3 alternativas ou uma resolução';
+      }
     }
+    
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
