@@ -13,6 +13,7 @@ const options = {
   removeOption: false,
   showTags: false,
   showLoginModal: true,
+  optionalMessage: 'Você precisa estar logado no sistema',
 };
 
 const PublicDocumentPageNotLogged = (props) => {
@@ -26,11 +27,12 @@ const PublicDocumentPageNotLogged = (props) => {
   };
 
   const handleOpenLoginModal = () => {
+    const { optionalMessage } = options;
     // open modal
     showModal({
       open: true,
       closeModal,
-      optionalMessage: 'Você precisa estar logado no sistema',
+      optionalMessage,
       redirect: match.url,
     }, 'login2');
   };
