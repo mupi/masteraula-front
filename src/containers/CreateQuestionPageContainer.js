@@ -89,6 +89,10 @@ const mapDispatchToProps = dispatch => ({
       if (newQuestion && newQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
         errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
       }
+
+      if (newQuestion && newQuestion.resolution && newQuestion.alternatives.length < 3) {
+        errors.resolution = 'Insira no minimo 3 alternativas ou apague todas';
+      }
     }
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);

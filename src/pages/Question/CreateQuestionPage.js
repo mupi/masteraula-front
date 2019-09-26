@@ -552,7 +552,7 @@ class CreateQuestionPage extends Component {
                   component={RenderAlternatives2}
                   validate={resolution && resolution.length > 0 ? null : minLength3Alternatives}
                   resolution={resolution}
-                /> 
+                />
               </Col>
             </Row>
             <Row className="c-question__tittle-section">
