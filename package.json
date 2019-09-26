@@ -64,17 +64,11 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.0.0",
-    "babel-loader": "^8.0.5",
     "eslint-config-airbnb": "^17.1.0",
     "prop-types": "^15.6.2",
     "redux-form": "^7.4.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "webpack": "^4.29.5"
+    "redux-thunk": "^2.3.0"
   },
   "browserslist": [
     ">0.2%",
