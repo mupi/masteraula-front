@@ -86,7 +86,7 @@ const mapDispatchToProps = dispatch => ({
       // selected objects to question
       learning_objects_ids: props.selectedObjectList.map(object => object.id),
       resolution: resolutionCleaned,
-    }; 
+    };
 
     // validations
     if (myUpdatedQuestion && (myUpdatedQuestion.statement.trim() === '<p></p>' || myUpdatedQuestion.statement.trim() === '')) {
