@@ -20,24 +20,12 @@ const options = {
 
 const DocumentQuestionItem = (props) => {
   const {
-    question, activeDocument, removeSelectedQuestion, options, hideModal, showModal, redirect,
+    question, activeDocument, removeSelectedQuestion, options, match, showLoginModal,
   } = props;
 
-  const closeModal = () => {
-    hideModal();
-  };
-
   const handleOpenLoginModal = () => {
-    // open modal
-    const { optionalMessage } = options;
-    showModal({
-      open: true,
-      closeModal,
-      optionalMessage,
-      redirect,
-    }, 'login2');
+    showLoginModal(match.url);
   };
-
   const extractStatement = getCleanExtractStatement(question.statement);
 
   return (
