@@ -13,18 +13,25 @@ const mapStateToProps = state => ({
   myLastDocumentsList: state.document.myLastDocumentsList,
 });
 
-const mapDispatchToProps = dispatch => ({
-  listMyDocuments: (page, orderField, order) => dispatch(listMyDocuments(page, orderField, order)),
-  listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
-  switchActiveDocument: doc => dispatch(switchActiveDocument(doc, false)),
-  // new way to handle modals
-  hideModal: () => dispatch(hideModal()),
-  showModal: (modalProps, modalType) => {
-    dispatch(showModal({ modalProps, modalType }));
-  },
-  setQuestionIdToNewDocument: () => dispatch(setQuestionIdToNewDocument()),
+const mapDispatchToProps = (dispatch) => {
+  const createDocumentModalProps = {
+    modalProps: {
+      open: true,
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'createDocument',
+  };
 
-});
+  return ({
+    listMyDocuments: (page, orderField, order) => dispatch(listMyDocuments(page, orderField, order)),
+    listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
+    switchActiveDocument: doc => dispatch(switchActiveDocument(doc, false)),
+    // new way to handle modals
+
+    showCreateDocumentModal: () => dispatch(showModal(createDocumentModalProps)),
+    setQuestionIdToNewDocument: () => dispatch(setQuestionIdToNewDocument()),
+  });
+};
 
 const CreateDocumentMenuContainer = connect(
   mapStateToProps,
