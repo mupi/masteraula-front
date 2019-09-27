@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Row, Col, ListGroup, ListGroupItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button,
 } from 'reactstrap';
@@ -46,21 +46,13 @@ const toogleSidebarAfterOpenModal = (e, openSidebar, isOpenSidebar) => {
 const SidebarMobile = ({
   showFilters,
   showFiltersForObjectBase,
-  user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, hideModal, showModal,
+  user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal,
   setQuestionIdToNewDocument,
 }) => {
-  const closeModal = () => {
-    hideModal();
-  };
-
   const openCreateDocumentModal = () => {
     // open modal
     setQuestionIdToNewDocument();
-
-    showModal({
-      open: true,
-      closeModal,
-    }, 'createDocument');
+    showCreateDocumentModal();
   };
 
   return (
@@ -80,7 +72,7 @@ const SidebarMobile = ({
                   </Link>
                 </div>
                 <div className="c-sidebar__user-avatar">
-                  { user.profile_pic
+                  {user.profile_pic
                     ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
                     : <img src={userPhoto} alt="foto-usuario" />
                   }
@@ -195,20 +187,12 @@ const SidebarMobile = ({
 
 const SidebarWeb = ({
   showFilters, showFiltersForObjectBase,
-  isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, hideModal, showModal, setQuestionIdToNewDocument,
+  isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal, setQuestionIdToNewDocument,
 }) => {
-  const closeModal = () => {
-    hideModal();
-  };
-
   const openCreateDocumentModal = () => {
     // open modal
     setQuestionIdToNewDocument();
-
-    showModal({
-      open: true,
-      closeModal,
-    }, 'createDocument');
+    showCreateDocumentModal();
   };
 
   return (
@@ -239,21 +223,15 @@ const SidebarWeb = ({
                           className="document__new-document-btn text-center"
                           onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
                         >
-                          <FontAwesomeIcon
-                            className="btn__icon"
-                            icon="file"
-                          />
-                      Criar prova
+                          <FontAwesomeIcon className="btn__icon" icon="file" />
+                          Criar prova
                         </Button>
                       </div>
                     </ListGroupItem>
                     <ListGroupItem className="list-group-item__simple-option text-center">
                       <Link to="/create-question">
-                        <FontAwesomeIcon
-                          className="btn__icon"
-                          icon="plus"
-                        />
-                    Criar questão
+                        <FontAwesomeIcon className="btn__icon" icon="plus" />
+                        Criar questão
                       </Link>
                     </ListGroupItem>
                   </ListGroup>
@@ -261,29 +239,20 @@ const SidebarWeb = ({
                     <ListGroup className="sidebar-main-options">
                       <ListGroupItem color="light">
                         <Link to="/question-base/1">
-                          <FontAwesomeIcon
-                            className="btn__icon"
-                            icon="search"
-                          />
-                        Banco de questões
+                          <FontAwesomeIcon className="btn__icon" icon="search" />
+                          Banco de questões
                         </Link>
                       </ListGroupItem>
                       <ListGroupItem color="light">
                         <Link to="/object-base/1">
-                          <FontAwesomeIcon
-                            className="btn__icon"
-                            icon="image"
-                          />
-                        Banco de objetos
+                          <FontAwesomeIcon className="btn__icon" icon="image" />
+                          Banco de objetos
                         </Link>
                       </ListGroupItem>
                       <ListGroupItem color="light">
                         <Link to="/documents/1">
-                          <FontAwesomeIcon
-                            className="btn__icon"
-                            icon="folder"
-                          />
-                        Gerenciar minhas provas
+                          <FontAwesomeIcon className="btn__icon" icon="folder" />
+                          Gerenciar minhas provas
                         </Link>
                       </ListGroupItem>
                       {/* <ListGroupItem color="light">
@@ -312,14 +281,13 @@ const SidebarWeb = ({
 };
 
 
-class Sidebar extends Component {
-  constructor() {
-    super();
-    this.state = {
-      width: window.innerWidth,
-    };
-  }
-
+class Sidebar extends React.PureComponent {
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     width: window.innerWidth,
+  //   };
+  // }
   componentWillMount() {
     window.addEventListener('resize', this.handleWindowSizeChange);
   }
@@ -330,17 +298,11 @@ class Sidebar extends Component {
     window.removeEventListener('resize', this.handleWindowSizeChange);
   }
 
-  handleWindowSizeChange = () => {
-    this.setState({ width: window.innerWidth });
-  };
+  // handleWindowSizeChange = () => {
+  //   this.setState({ width: window.innerWidth });
+  // };
 
   render() {
-    const {
-      showFilters, showFiltersForObjectBase, activeDocument,
-      user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions,
-      hideModal, showModal, setQuestionIdToNewDocument,
-    } = this.props;
-
     // const { width } = this.state;
     // const isMobile = width <= 989;
 
@@ -348,42 +310,12 @@ class Sidebar extends Component {
 
     if (responsiveMode.matches) {
       return (
-        <SidebarMobile
-          showFilters={showFilters}
-          showFiltersForObjectBase={showFiltersForObjectBase}
-          activeDocument={activeDocument}
-          user={user}
-          logout={logout}
-          isOpenSidebar={isOpenSidebar}
-          openSidebar={openSidebar}
-          isOpen={isOpen}
-          toggleMenu={toggleMenu}
-          cleanAllSearch={cleanAllSearch}
-          isFetchingQuestions={isFetchingQuestions}
-          hideModal={hideModal}
-          showModal={showModal}
-          setQuestionIdToNewDocument={setQuestionIdToNewDocument}
-        />
+        <SidebarMobile {...this.props} />
       );
     }
 
     return (
-      <SidebarWeb
-        showFilters={showFilters}
-        showFiltersForObjectBase={showFiltersForObjectBase}
-        activeDocument={activeDocument}
-        user={user}
-        logout={logout}
-        isOpenSidebar={isOpenSidebar}
-        openSidebar={openSidebar}
-        isOpen={isOpen}
-        toggleMenu={toggleMenu}
-        cleanAllSearch={cleanAllSearch}
-        isFetchingQuestions={isFetchingQuestions}
-        hideModal={hideModal}
-        showModal={showModal}
-        setQuestionIdToNewDocument={setQuestionIdToNewDocument}
-      />
+      <SidebarWeb {...this.props} />
     );
   }
 }
