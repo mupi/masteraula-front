@@ -21,3 +21,4 @@ export { default as ViewLearningObjectPageContainer } from './ViewLearningObject
 export { default as ObjectBasePageContainer } from './ObjectBasePageContainer';
 export { default as SidebarObjectFiltersContainer } from './SidebarObjectFiltersContainer';
 export { default as PublicDocumentPageContainer } from './PublicDocumentPageContainer';
+export { default as DocumentListContainer } from './DocumentListContainer';
