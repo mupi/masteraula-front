@@ -78,7 +78,7 @@ const mapDispatchToProps = dispatch => ({
         return null;
       }).filter(topic => topic != null),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
-      alternatives: alternativesCleaned.length > 0 ? alternativesCleaned : null,
+      alternatives: alternativesCleaned.length > 0 ? alternativesCleaned : [],
       // source_id: values.source !== '0' ? values.source : null,
       source: values.source,
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
