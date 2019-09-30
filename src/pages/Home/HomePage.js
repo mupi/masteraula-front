@@ -2,6 +2,7 @@ import React from 'react';
 import clockImg from 'assets/img/home/clock.jpg';
 import searchImg from 'assets/img/home/search.jpg';
 import moneyImg from 'assets/img/home/money.jpg';
+import masteraulaDevice from 'assets/img/home/masteraula-screen.png';
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -9,16 +10,16 @@ const HomePage = () => (
   <div className="c-public-home l-site-masteraula__public-home">
     <div className="c-public-home__banner">
       <Row>
-        <Col md="12">
-          <h1 className="c-public-home__main-title hidden">
-            Banco inteligente de questões
+        <Col md="6">
+          <h1 className="c-public-home__main-title">
+            Crie Provas em Minutos
           </h1>
-          <Col md="6" className="offset-md-3">
-            <p className="c-public-home__title-description">
-               Ganhe tempo na preparação de provas e atividades para o cotidiano escolar do Ensino Básico.
-               Masteraula é uma plataforma para professores e escolas!
-            </p>
-          </Col>
+          <p className="c-public-home__title-description">
+            Com o Masteraula você gera uma prova em .doc com poucos cliques
+          </p>
+        </Col>
+        <Col md="6">
+          <img src={masteraulaDevice} alt="masteraula-responsive" />
         </Col>
       </Row>
     </div>

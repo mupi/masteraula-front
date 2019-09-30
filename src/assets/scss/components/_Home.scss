@@ -90,7 +90,8 @@
     }
 
    &__banner {
-      background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
+      // background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
+      background: $color-ma-blue top left 100% no-repeat fixed;
       background-size: 100% auto;
       color: $color-ma-white;
       padding: 1em;
@@ -140,23 +141,4 @@
           padding-bottom: 30px;
       }
    }
-}
-
-.c-menu-button-a, {
-    border: none;
-    padding: 10px;
-    background: transparent;
-
-    &:hover{
-        font-weight: bold;
-    }
-
-    &:focus{
-        box-shadow: none;
-    }
-}
-
-.c-menu-button-a:not(:disabled), .c-menu-button-a.btn-secondary:not(:disabled):not(.disabled):active, .c-menu-button-a.btn-secondary:not(:disabled):not(.disabled).active, .show > .c-menu-button-a.btn-secondary.dropdown-toggle{
-    background-color: transparent;
-    border-color: transparent;
 }
