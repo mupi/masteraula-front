@@ -19,17 +19,21 @@
         color: $color-ma-white;
         background-color: $color-ma-green; // #72849c;
         border-color: $color-ma-green;// #72849c;
-        font-size: 35px !important;
-        border-radius: 10px;
-        padding: 10px 27px !important;
+        border-radius: 10px; 
         letter-spacing: 3px;
-
+        
+        @include for-tablet-portrait-up {
+            font-size: 35px !important;
+            padding: 10px 27px !important;
+        }
 
         &:hover{
             background-color:#7cd08b; //#1e4f78;
             border-color: #7cd08b;// #1e4f78;
             color: $color-ma-white;
         }
+
+       
     }
 
 

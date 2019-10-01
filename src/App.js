@@ -36,7 +36,9 @@ import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
 import { history } from 'helpers';
 
+import FooterSocial from 'components/footer/FooterSocial';
 import Footer from 'components/footer/Footer';
+
 // CSS imported in a single place (here)
 import 'react-toastify/dist/ReactToastify.css';
 import 'assets/scss/styles.css';
@@ -151,8 +153,10 @@ class App extends Component {
             )
             }
           <ModalRoot />
-
-          <Footer year="2019" version="1.0" />
+          {isLoggedIn
+            ? (<Footer year="2019" version="1.0" />)
+            : <FooterSocial year="2019" version="1.0" />
+          }
         </div>
         <ToastContainer hideProgressBar position="bottom-right" />
       </Router>
