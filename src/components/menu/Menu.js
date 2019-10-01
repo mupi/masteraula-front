@@ -3,7 +3,7 @@ import {
   Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col, Container,
 } from 'reactstrap';
 import { Link, NavLink } from 'react-router-dom';
-import logoMasterAula from 'assets/img/home/masteraula-300x60.png';
+import logoMasterAula from 'assets/img/home/masteraula-azulverde-300x60.png';
 import DocumentInfoMenuContainer from 'containers/DocumentInfoMenuContainer';
 import CreateDocumentMenuContainer from 'containers/CreateDocumentMenuContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -71,18 +71,17 @@ const Menu = (props) => {
     <Nav className="ml-auto" navbar>
       <NavItem>
         <NavLink to="/nossos-planos">
-
-          Preços
+          <span className="menu-notuser__option">Preços</span>
         </NavLink>
       </NavItem>
       <NavItem className="text-center">
-        <Button className="c-menu-button-a" onClick={handleOpenLoginModal}>
-          Entrar
+        <Button color="link" className="c-menu-button-a" onClick={handleOpenLoginModal}>
+          <span className="menu-notuser__option">Entrar</span>
         </Button>
       </NavItem>
       <NavItem className="text-center">
-        <Button className="c-menu-button-a" onClick={handleOpenRegisterModal}>
-          Cadastre-se
+        <Button color="link" className="c-menu-button-a" onClick={handleOpenRegisterModal}>
+          <span className="menu-notuser__option">Cadastre-se</span>
         </Button>
       </NavItem>
     </Nav>

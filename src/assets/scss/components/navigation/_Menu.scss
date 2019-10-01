@@ -14,7 +14,50 @@
   Top Menu - NOT USER
 */
 .masteraula-nav-header__notuser{
-  background: $color-ma-blue;
+  background: $color-ma-lightgray-backg; 
+  box-shadow: 2px 3px 0 rgba(0,0,0,0.15);
+}
+
+.menu-notuser{
+  &__option{
+    color: $color-ma-blue;
+    font-size: 16px;
+
+    &:hover{
+      font-weight: bold;
+    }
+  }
+}
+
+/*
+  Options for NOT USER: Pricing, Login & Sign Up
+*/
+.c-menu-button-a, {
+  border: none;
+  padding: 10px; 
+  background: transparent;
+  text-decoration: none !important;
+
+  &:hover{
+      font-weight: bold; 
+      outline: 0;
+  }
+
+  &:focus{
+      box-shadow: none;
+      outline: 0 !important;
+
+  }
+
+  &:active{
+      box-shadow: none;
+      outline: 0 !important;
+  }
+}
+
+.c-menu-button-a:not(:disabled), .c-menu-button-a.btn-secondary:not(:disabled):not(.disabled):active, .c-menu-button-a.btn-secondary:not(:disabled):not(.disabled).active, .show > .c-menu-button-a.btn-secondary.dropdown-toggle{
+  background-color: transparent;
+  border-color: transparent;
 }
 
 
@@ -26,7 +69,7 @@ html body .masteraula-nav-header__user {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   background: $color-ma-lightgray-backg !important;
-  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
+  box-shadow: 2px 3px 0 rgba(0,0,0,0.15);
 
 
   &-avatar{

@@ -13,6 +13,7 @@ export { default as MenuContainer } from './MenuContainer';
 export { default as MyHeadersPageContainer } from './MyHeadersPageContainer';
 export { default as EditHeaderPageContainer } from './EditHeaderPageContainer';
 export { default as DocumentHeaderContainer } from './DocumentHeaderContainer';
+export { default as HomePageContainer } from './HomePageContainer';
 export { default as PricingPageContainer } from './PricingPageContainer';
 export { default as CreateDocumentWithQuestionFormContainer } from './CreateDocumentWithQuestionFormContainer';
 export { default as MyQuestionEditPageContainer } from './MyQuestionEditPageContainer';

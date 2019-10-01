@@ -50,6 +50,7 @@ const Login2Form = (props) => {
     handleSubmit, error, handleResendEmail, formValues,
     resendError, resendSuccess, isSending, closeModal, showRegisterModal,
     responseFacebook, responseGoogle, optionalMessage, redirect,
+    submitting,
   } = props;
 
   function handleResend(message, values) {
@@ -144,7 +145,7 @@ const Login2Form = (props) => {
         )}
         <div className="text-center">
           <FormGroup>
-            <Button type="submit">
+            <Button type="submit" disabled={submitting}>
               Entrar
             </Button>
           </FormGroup>

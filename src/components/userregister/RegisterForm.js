@@ -45,7 +45,7 @@ const renderField = ({
 
 const RegisterForm = (props) => {
   const {
-    handleSubmit, error, submitSucceeded, responseFacebook, responseGoogle, closeModal, showLoginModal,
+    handleSubmit, error, submitSucceeded, responseFacebook, responseGoogle, closeModal, showLoginModal, submitting,
   } = props;
 
   const handleOpenLoginModal = () => {
@@ -166,7 +166,7 @@ const RegisterForm = (props) => {
 
             <div className="text-center">
               <FormGroup>
-                <Button>
+                <Button disabled={submitting}>
                   Enviar
                 </Button>
               </FormGroup>
