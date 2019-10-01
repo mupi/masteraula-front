@@ -15,6 +15,11 @@
 }
 
 .c-public-home{
+    &__main-cointainer{
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
     &__signup-lg-btn{
         color: $color-ma-white;
         background-color: $color-ma-green; // #72849c;
