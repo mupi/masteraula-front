@@ -130,8 +130,8 @@
     }
 
    &__banner {
-      //background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
-      background: $color-ma-blue top left 100% no-repeat fixed;
+      background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4) ), url(../img/home/bg_callaction.png) top left 100% repeat fixed;
+      //background: $color-ma-blue top left 100% no-repeat fixed;
       background-size: 100% auto;
       color: $color-ma-white;
       padding: 1em;
@@ -145,7 +145,7 @@
    }
 
    &__call-action-bg {
-    background: url(../img/home/bg_callaction.png) bottom left 100% repeat fixed;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4) ), url(../img/home/bg_callaction.png) bottom left 100% repeat fixed;
     max-width: 100%;
   }
 
