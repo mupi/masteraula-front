@@ -108,7 +108,7 @@ const renderQuestionTextEditor = (props) => {
         disabled={disabled}
         placeholder={placeholderEditor}
         onChange={onChange}
-        value={value || []}
+        value={value}
       />
       { touched
           && ((error && (
