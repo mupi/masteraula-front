@@ -10,7 +10,6 @@ import masteraulaDevice from 'assets/img/home/masteraula-screen.png';
 import {
   Button, Container, Row, Col,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
 
 const HomePage = () => (
   <div className="c-public-home l-site-masteraula__public-home">
@@ -139,7 +138,7 @@ const HomePage = () => (
         <Col md="12" className="c-public-home__call-action-col">
           <h3 className="c-public-home__call-action-text"> Comece já o seu acesso gratuito</h3>
           <Button size="lg" color="success" className="c-public-home__signup-lg-btn">
-                Cadastre-se
+            Cadastre-se
           </Button>
         </Col>
       </Row>
