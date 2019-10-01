@@ -31,9 +31,7 @@ const PricingPage = ({ hideModal, showModal }) => {
             <div className="c-pricing-page__item-top c-pricing-page__item--1">
               <h2>
                   Professor
-                {' '}
                 <br />
-                {' '}
                   GRATUITO
               </h2>
               <p className="c-pricing-page__item-description">Para facilitar seu cotidiano escolar!</p>
@@ -57,9 +55,7 @@ const PricingPage = ({ hideModal, showModal }) => {
             <div className="c-pricing-page__item--2  c-pricing-page__item--full-borders">
               <h2>
                   Professor
-                {' '}
                 <br />
-                {' '}
                   ILIMITADO
               </h2>
               <p className="c-pricing-page__item-description">Para não se preocupar durante 1 ANO.</p>
@@ -94,9 +90,7 @@ const PricingPage = ({ hideModal, showModal }) => {
             <div className="c-pricing-page__item--3  c-pricing-page__item--full-borders">
               <h2>
                   Escola
-                {' '}
                 <br />
-                {' '}
                   ILIMITADO
               </h2>
               <p className="c-pricing-page__item-description">Valores especiais para grupo de professores com acesso a todas disciplinas.</p>

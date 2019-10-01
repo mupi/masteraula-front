@@ -50,13 +50,7 @@ const FooterSocial = ({ year, version }) => (
     </Row>
     <Row className="c-footer__section-copyright">
       <Col xs="12">
-        ©
-        {' '}
-        {year}
-        {' '}
-        Masteraula - Mupi - versão
-        {' '}
-        {version}
+        {`© ${year} Masteraula - Mupi - versão ${version}`}
       </Col>
     </Row>
   </div>
