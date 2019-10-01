@@ -8,7 +8,6 @@ import { Helmet } from 'react-helmet';
 
 import TermsUsePage from 'pages/TermsUse/TermsUsePage';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
-import HomePage from 'pages/Home/HomePage';
 
 import {
   ViewDocumentPageContainer,
@@ -24,6 +23,7 @@ import {
   MenuContainer,
   MyHeadersPageContainer,
   EditHeaderPageContainer,
+  HomePageContainer,
   PricingPageContainer,
   ViewLearningObjectPageContainer,
   ObjectBasePageContainer,
@@ -141,7 +141,7 @@ class App extends Component {
             )
             : (
               <Switch>
-                <Route exact path="/" component={HomePage} />
+                <Route exact path="/" component={HomePageContainer} />
                 <Route path="/nossos-planos" component={PricingPageContainer} />
                 <Route path="/esqueci-senha" component={ForgotPasswordPageContainer} />
                 <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
