@@ -237,9 +237,8 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
 .logo-top-sidebar {
     text-align: center;
     padding: 5px;
-    background: #f7f7f7 !important;
-    box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.15);;
-
+    background: $color-ma-lightgray-backg !important;
+    border-bottom: 1px solid rgba(153, 143, 143, 0.1);
     height: 70px;
     
 }
