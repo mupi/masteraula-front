@@ -231,12 +231,14 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
  
 .logo-sidebar {
     width: 80%;
+    padding-top:5px;
 }
  
 .logo-top-sidebar {
     text-align: center;
     padding: 5px;
-    background: $color-ma-green;
+    background: $color-ma-lightgray-backg !important;
+    border-bottom: 1px solid rgba(153, 143, 143, 0.1);
     height: 70px;
     
 }

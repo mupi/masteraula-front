@@ -4,7 +4,8 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
+import logoMasterAulaVerde from 'assets/img/home/masteraula-azulverde-300x60.png';
+
 import maLogo from 'assets/img/home/logo_masteraula-rubrica-blanca.png';
 import userPhoto from 'assets/img/home/avataruser3.png';
 
