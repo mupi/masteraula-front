@@ -30,4 +30,12 @@
         font-size:20px;
         color: $color-ma-white;
     }
+
+    &__whatsap{
+        @include for-phone-only{
+            display: block;
+        }
+    }
+
+    
 }

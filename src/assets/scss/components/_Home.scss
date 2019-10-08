@@ -168,6 +168,46 @@
 
 }
 
+
+.c-call-whatsap{
+    right: 30px;
+    bottom: 30px;
+    display: block;
+    position: fixed;
+    z-index: 9999;
+    
+
+    @include for-tablet-landscape-bottom{
+        right: 0px;
+        bottom: 10px;
+    }
+
+    &__icon-link{
+        padding: 6px 14px;
+        font-size: 45px;
+        line-height: 1.33;
+        border-radius: 50px;
+        text-align: center;
+        background-color: #25d366;
+        color: $color-ma-white;
+        margin: 10px;
+        border: 2px solid $color-ma-white;
+
+        @include for-tablet-landscape-bottom{
+            padding: 6px 10px;
+            font-size: 30px;
+        }
+
+        &:hover{
+            color: $color-ma-white;
+            font-weight: bold;
+            box-shadow: 1px 1px 9px rgba(60,60,60,.4);
+        }
+    }
+
+
+}
+
 .banner{
     &__img-ma-screen{
         width: 100%;
