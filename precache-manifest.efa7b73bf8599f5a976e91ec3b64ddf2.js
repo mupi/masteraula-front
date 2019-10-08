@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/static/js/runtime~main.a8a9905a.js"
   },
   {
-    "revision": "5e04d3019dfb3274ff31de6e268a3166",
-    "url": "/static/media/sidebar-background-2.5e04d301.jpg"
+    "revision": "9d2608706e8ef248b1ce46c87fb893bf",
+    "url": "/static/media/bg_callaction.9d260870.png"
   },
   {
     "revision": "de1a2ad704ee2b06552c",
@@ -72,15 +72,15 @@ self.__precacheManifest = [
     "url": "/static/media/logo_masteraula.dc132bac.png"
   },
   {
-    "revision": "9d2608706e8ef248b1ce46c87fb893bf",
-    "url": "/static/media/bg_callaction.9d260870.png"
+    "revision": "5e04d3019dfb3274ff31de6e268a3166",
+    "url": "/static/media/sidebar-background-2.5e04d301.jpg"
   },
   {
     "revision": "de1a2ad704ee2b06552c",
     "url": "/static/css/2.90d6be1f.chunk.css"
   },
   {
-    "revision": "cf566ee249b3600949a6a03be892fb53",
+    "revision": "c014696fc5c4a3c90d856efca350efae",
     "url": "/index.html"
   }
 ];
