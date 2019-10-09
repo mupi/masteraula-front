@@ -11,13 +11,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { first5Elements } from 'helpers/document';
 
 class DocumentInfoMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    // this.closeModal = this.closeModal.bind(this);
-    this.openDocumentModal = this.openDocumentModal.bind(this);
-    this.editDocument = this.editDocument.bind(this);
-  }
-
   componentDidMount() {
     const { listMyLastDocuments, listMyDocuments } = this.props;
 
