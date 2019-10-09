@@ -19,10 +19,23 @@
 
     &__contact-info-link{
         color:white;
+        text-decoration: none;
+        display: inline-block;
+
         &:hover{
             color:white;
             font-weight: bold;
             text-decoration: none;
+        }
+
+        // https://stackoverflow.com/questions/556153/inline-elements-shifting-when-made-bold-on-hover/20249560
+        &:before {
+            display: block;
+            content: attr(title);
+            font-weight: bold;
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
         }
     }
 

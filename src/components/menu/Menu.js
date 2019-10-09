@@ -52,7 +52,7 @@ const Menu = (props) => {
             }
           </div>
           {' '}
-          <span className="masteraula-nav-header__icon-option">{user ? getUserName(user.name) : ''}</span>
+          <span className="masteraula-nav-header__icon-option" title={user ? getUserName(user.name) : ''}>{user ? getUserName(user.name) : ''}</span>
         </Link>
       </NavItem>
       <NavItem>
@@ -61,7 +61,7 @@ const Menu = (props) => {
             icon="sign-out-alt"
           />
           {' '}
-          <span className="masteraula-nav-header__icon-option">Sair</span>
+          <span className="masteraula-nav-header__icon-option" title="Sair">Sair</span>
         </Link>
       </NavItem>
     </Nav>
@@ -71,17 +71,17 @@ const Menu = (props) => {
     <Nav className="ml-auto" navbar>
       <NavItem>
         <NavLink to="/nossos-planos">
-          <span className="menu-notuser__option">Preços</span>
+          <span className="menu-notuser__option" title="Preços">Preços</span>
         </NavLink>
       </NavItem>
       <NavItem className="text-center">
         <Button color="link" className="c-menu-button-a" onClick={handleOpenLoginModal}>
-          <span className="menu-notuser__option">Entrar</span>
+          <span className="menu-notuser__option" title="Entrar">Entrar</span>
         </Button>
       </NavItem>
       <NavItem className="text-center">
         <Button color="link" className="c-menu-button-a" onClick={handleOpenRegisterModal}>
-          <span className="menu-notuser__option">Cadastre-se</span>
+          <span className="menu-notuser__option" title="Cadastre-se">Cadastre-se</span>
         </Button>
       </NavItem>
     </Nav>
