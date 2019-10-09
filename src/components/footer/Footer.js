@@ -15,11 +15,11 @@ const Footer = ({ year, version }) => (
           className="c-footer__contact-info-link"
           target="_blank"
           rel="noopener noreferrer"
+          title="contato@masteraula.com.br"
         >
           contato@masteraula.com.br
         </a>
         {' | '}
-        {' '}
         <span className="c-footer__whatsap">
           <FontAwesomeIcon
             className="btn__icon"
@@ -30,6 +30,7 @@ const Footer = ({ year, version }) => (
             target="_blank"
             rel="noopener noreferrer"
             className="c-footer__contact-info-link"
+            title="+55 (19) 999084183"
           >
             +55 (19) 999084183
           </a>
@@ -38,13 +39,7 @@ const Footer = ({ year, version }) => (
     </Row>
     <Row className="c-footer__section-copyright">
       <Col xs="12">
-        ©
-        {' '}
-        {year}
-        {' '}
-        Masteraula - Mupi - versão
-        {' '}
-        {version}
+        {`© ${year} Masteraula - Mupi - versão ${version}`}
       </Col>
     </Row>
   </div>
