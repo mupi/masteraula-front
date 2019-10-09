@@ -4,7 +4,8 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-import logoMasterAulaVerde from 'assets/img/home/logo_masteraula-fd-verde.png';
+import logoMasterAulaVerde from 'assets/img/home/masteraula-azulverde-300x60.png';
+
 import maLogo from 'assets/img/home/logo_masteraula-rubrica-blanca.png';
 import userPhoto from 'assets/img/home/avataruser3.png';
 
@@ -288,15 +289,16 @@ class Sidebar extends React.PureComponent {
   //     width: window.innerWidth,
   //   };
   // }
-  componentWillMount() {
-    window.addEventListener('resize', this.handleWindowSizeChange);
-  }
+
+  // UNSAFE_componentWillMount() {
+  //   window.addEventListener('resize', this.handleWindowSizeChange);
+  // }
 
   // make sure to remove the listener
   // when the component is not mounted anymore
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleWindowSizeChange);
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener('resize', this.handleWindowSizeChange);
+  // }
 
   // handleWindowSizeChange = () => {
   //   this.setState({ width: window.innerWidth });

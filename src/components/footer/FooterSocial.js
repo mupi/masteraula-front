@@ -2,10 +2,10 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Footer = ({ year, version }) => (
+const FooterSocial = ({ year, version }) => (
   <div className="c-footer text-center">
-    <Row className="c-footer__section-info-contact">
-      <Col xs="12">
+    <Row className="c-footer__section-info-contact align-items-center">
+      <Col md="6" className="offset-md-3">
         <FontAwesomeIcon
           className="btn__icon"
           icon="envelope"
@@ -35,18 +35,24 @@ const Footer = ({ year, version }) => (
           </a>
         </span>
       </Col>
+      <Col md="3">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://facebook.com/masteraulaprofessores"
+        >
+          <FontAwesomeIcon
+            className="btn__icon c-footer__social-network-icon"
+            icon={['fab', 'facebook-f']}
+          />
+        </a>
+      </Col>
     </Row>
     <Row className="c-footer__section-copyright">
       <Col xs="12">
-        ©
-        {' '}
-        {year}
-        {' '}
-        Masteraula - Mupi - versão
-        {' '}
-        {version}
+        {`© ${year} Masteraula - Mupi - versão ${version}`}
       </Col>
     </Row>
   </div>
 );
-export default Footer;
+export default FooterSocial;

@@ -13,6 +13,7 @@ const options = {
   removeOption: false,
   showTags: false,
   showLoginModal: true,
+  optionalMessage: 'Você precisa estar logado no sistema',
 };
 
 const PublicDocumentPageNotLogged = (props) => {

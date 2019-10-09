@@ -20,6 +20,7 @@ const mapStateToProps = (state) => {
     topics: selector(state, 'topics'),
     alternatives: selector(state, 'alternatives'),
     disciplinesList: selector(state, 'disciplines'),
+    resolution: selector(state, 'resolution'),
     topicsList: state.topic.topics,
     disciplineFilters: state.filter.disciplineFilters,
     teachingLevelFilters: state.filter.teachingLevelFilters,
@@ -29,6 +30,7 @@ const mapStateToProps = (state) => {
     userId: user.id,
     // add object to question
     selectedObjectList: state.question.selectedObjectList,
+    errorsEditQuestion: state.form['edit-question'] ? state.form['edit-question'].submitErrors : null,
   });
 };
 
@@ -51,6 +53,20 @@ const mapDispatchToProps = dispatch => ({
 
   onSubmit: (values, d, props) => {
     const errors = [];
+    let alternativesCleaned = [];
+    alternativesCleaned = values.alternatives.map((value, i) => {
+      if ((typeof (value.alternativeText) !== 'undefined') && value.alternativeText && value.alternativeText.trim().length > 0) {
+        return {
+          is_correct: (i === values.selectedIndex),
+          text: value.alternativeText,
+        };
+      }
+      return {};
+    }).filter(value => Object.keys(value).length !== 0);
+
+    const resolutionCleaned = typeof (values.resolution) !== 'undefined'
+                            && values.resolution && values.resolution.trim().length > 0 ? values.resolution : null;
+
     const myUpdatedQuestion = {
       id: props.activeQuestion.id,
       statement: values.statement,
@@ -62,10 +78,7 @@ const mapDispatchToProps = dispatch => ({
         return null;
       }).filter(topic => topic != null),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
-      alternatives: values.alternatives.map((alternative, i) => ({
-        is_correct: (i === values.selectedIndex),
-        text: alternative.alternativeText,
-      })),
+      alternatives: alternativesCleaned.length > 0 ? alternativesCleaned : [],
       // source_id: values.source !== '0' ? values.source : null,
       source: values.source,
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
@@ -73,15 +86,30 @@ const mapDispatchToProps = dispatch => ({
       year: values.year === '' ? null : values.year,
       // selected objects to question
       learning_objects_ids: props.selectedObjectList.map(object => object.id),
-      resolution: values.resolution,
+      resolution: resolutionCleaned,
     };
 
     // validations
     if (myUpdatedQuestion && (myUpdatedQuestion.statement.trim() === '<p></p>' || myUpdatedQuestion.statement.trim() === '')) {
       errors.statement = 'Campo obrigatório. Insira o enunciado';
     }
-    if (myUpdatedQuestion && myUpdatedQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
-      errors.isCorrect = 'Campo obrigatório. Selecione uma resposta correta';
+
+    if (myUpdatedQuestion && !myUpdatedQuestion.alternatives && !myUpdatedQuestion.resolution) {
+      errors.general_errors = 'Insira no minimo 3 alternativas ou uma resolução';
+    }
+
+    if (myUpdatedQuestion && myUpdatedQuestion.alternatives && myUpdatedQuestion.alternatives.length > 0) {
+      if (myUpdatedQuestion && myUpdatedQuestion.alternatives.filter(alternative => alternative.is_correct === true).length === 0) {
+        errors.general_errors = 'Selecione uma alternativa correta';
+      }
+
+      if (myUpdatedQuestion && myUpdatedQuestion.resolution && myUpdatedQuestion.alternatives.length < 3) {
+        errors.general_errors = 'Insira no minimo 3 alternativas ou apague todas';
+      }
+
+      if (myUpdatedQuestion && !myUpdatedQuestion.resolution && myUpdatedQuestion.alternatives.length < 3) {
+        errors.general_errors = 'Insira no minimo 3 alternativas ou uma resolução';
+      }
     }
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);

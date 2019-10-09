@@ -1,5 +1,4 @@
 /*Clases do Home*/
-
 .o-thumb-circle {
     border-radius: 50%;
     width: 150px;
@@ -16,6 +15,32 @@
 }
 
 .c-public-home{
+    &__main-cointainer{
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    &__signup-lg-btn{
+        color: $color-ma-white;
+        background-color: $color-ma-green; // #72849c;
+        border-color: $color-ma-green;// #72849c;
+        border-radius: 10px; 
+        letter-spacing: 3px;
+        
+        @include for-tablet-portrait-up {
+            font-size: 35px !important;
+            padding: 10px 27px !important;
+        }
+
+        &:hover{
+            background-color:#7cd08b; //#1e4f78;
+            border-color: #7cd08b;// #1e4f78;
+            color: $color-ma-white;
+        }
+
+       
+    }
+
 
    &__video-section{
         max-width: 100%;
@@ -25,6 +50,7 @@
 
    &__video-section-title{
        color:#515b69;
+       font-weight: bold;
        &--sub{ 
         color:#7f8795;
        }
@@ -82,15 +108,30 @@
    &__features{
     padding-top: 60px;
     padding-bottom: 60px;
-  }
+    }
 
+    &__l-features-title{
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    &__features-title{
+        color: $color-ma-blue;
+        font-weight: bold;
+    }
+
+    &__features-icon{
+        margin-bottom: 15px;
+    }
+    
     &__feature-description{
     font-size:18px;
     margin-bottom: 30px;
     }
 
    &__banner {
-      background: url(../img/home/banner.jpg) top left 100% no-repeat fixed;
+      background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4) ), url(../img/home/bg_callaction.png) top left 100% repeat fixed;
+      //background: $color-ma-blue top left 100% no-repeat fixed;
       background-size: 100% auto;
       color: $color-ma-white;
       padding: 1em;
@@ -103,9 +144,80 @@
        font-weight: bold;
    }
 
+   &__call-action-bg {
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4) ), url(../img/home/bg_callaction.png) bottom left 100% repeat fixed;
+    max-width: 100%;
+  }
+
+    &__call-action-row{
+        margin: auto;
+        text-align: center;
+        padding:40px;
+        color: $color-ma-white;
+    }
+
+    &__call-action-col{
+        padding:10px;
+    }
+
+    &__call-action-text{
+        font-size:35px;
+        font-weight: bold;
+        padding: 15px 0px;
+    }
+
 }
 
 
+.c-call-whatsap{
+    right: 30px;
+    bottom: 30px;
+    display: block;
+    position: fixed;
+    z-index: 9999;
+    
+
+    @include for-tablet-landscape-bottom{
+        right: 0px;
+        bottom: 10px;
+    }
+
+    &__icon-link{
+        padding: 6px 14px;
+        font-size: 45px;
+        line-height: 1.33;
+        border-radius: 50px;
+        text-align: center;
+        background-color: #25d366;
+        color: $color-ma-white;
+        margin: 10px;
+        border: 2px solid $color-ma-white;
+
+        @include for-tablet-landscape-bottom{
+            padding: 6px 10px;
+            font-size: 30px;
+        }
+
+        &:hover{
+            color: $color-ma-white;
+            font-weight: bold;
+            box-shadow: 1px 1px 9px rgba(60,60,60,.4);
+        }
+    }
+
+
+}
+
+.banner{
+    &__img-ma-screen{
+        width: 100%;
+    }
+
+    &__text-side{
+        margin-bottom: 15px;
+    }
+
+}
 //Web mode only
 @media (min-width: $break-md){
   .c-public-home{
@@ -140,23 +252,4 @@
           padding-bottom: 30px;
       }
    }
-}
-
-.c-menu-button-a, {
-    border: none;
-    padding: 10px;
-    background: transparent;
-
-    &:hover{
-        font-weight: bold;
-    }
-
-    &:focus{
-        box-shadow: none;
-    }
-}
-
-.c-menu-button-a:not(:disabled), .c-menu-button-a.btn-secondary:not(:disabled):not(.disabled):active, .c-menu-button-a.btn-secondary:not(:disabled):not(.disabled).active, .show > .c-menu-button-a.btn-secondary.dropdown-toggle{
-    background-color: transparent;
-    border-color: transparent;
 }

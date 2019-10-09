@@ -15,6 +15,10 @@ h1, h2, p, ul, li {
   letter-spacing: 0.5px;
 }
 
+h1{
+  font-size: 3.5rem;
+}
+
 /*CSS header*/
 ul.header {
     padding: 0;
@@ -87,6 +91,19 @@ ul.header {
   margin-right: 7px;
 }
 
+
+// Customize success button colors
+
+.btn-success:hover {
+  background-color: $color-ma-green;
+  border-color: $color-ma-green;
+}
+
+.btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active, .show > .btn-success.dropdown-toggle {
+  color: $color-ma-white;
+  background-color: $color-ma-green;
+  border-color: $color-ma-green;
+}
 
 /*primary button
 .btn-primary:hover,
@@ -169,4 +186,11 @@ ul.header {
   @include for-tablet-landscape-bottom{
         display: block !important;
   }
+}
+
+
+/*Margins*/
+
+.mb-15{
+  margin-bottom: 15px;
 }

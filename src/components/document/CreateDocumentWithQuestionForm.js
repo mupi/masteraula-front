@@ -43,7 +43,6 @@ const renderMADropDownListDocuments = ({
 
 class CreateDocumentWithQuestionForm extends React.Component {
   componentDidMount() {
-    console.log("List my last docs from CreateDocumentWithQuestionForm ");
     listMyLastDocuments(1, 'date', 'desc');
   }
 

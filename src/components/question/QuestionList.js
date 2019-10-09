@@ -17,7 +17,7 @@ const QuestionList = (props) => {
             className="c-question-base__link-askquestion"
             target="_blank"
             rel="noopener noreferrer"
-            href="https://goo.gl/forms/bG2mMbMNNrNiOjqt2"
+            href="https://forms.gle/A1T4TPAMbrRA33hJA"
           >
           Não encontrou o que queria? Clique aqui
           </a>
