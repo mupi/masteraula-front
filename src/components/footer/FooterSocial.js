@@ -20,11 +20,11 @@ const FooterSocial = ({ year, version }) => (
         </a>
         {' | '}
         {' '}
-        <FontAwesomeIcon
-          className="btn__icon"
-          icon={['fab', 'whatsapp']}
-        />
-        <span>
+        <span className="c-footer__whatsap">
+          <FontAwesomeIcon
+            className="btn__icon"
+            icon={['fab', 'whatsapp']}
+          />
           <a
             href="https://api.whatsapp.com/send?l=pt&phone=5519999084183"
             target="_blank"

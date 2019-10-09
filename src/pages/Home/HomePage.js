@@ -5,6 +5,7 @@ import advQuestions from 'assets/img/home/3_questionsbd.png';
 import advSearch from 'assets/img/home/4_search.png';
 import advTeachers from 'assets/img/home/5_teachers.png';
 import advAnswers from 'assets/img/home/6_answers.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import masteraulaDevice from 'assets/img/home/masteraula-screen.png';
 import {
@@ -27,6 +28,20 @@ const HomePage = ({ hideModal, showModal }) => {
 
   return (
     <div className="c-public-home l-site-masteraula__public-home">
+
+      <div className="c-call-whatsap">
+        <a
+          href="https://api.whatsapp.com/send?l=pt&phone=5519999084183"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="c-call-whatsap__icon-link"
+        >
+          <FontAwesomeIcon
+            icon={['fab', 'whatsapp']}
+          />
+        </a>
+      </div>
+
       <div className="c-public-home__banner">
         <Container>
           <Row className="align-items-center">
