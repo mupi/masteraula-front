@@ -24,12 +24,34 @@ li.nav-item {
     margin-right: 15px;
     list-style: none;
 }
- 
-.nav-item a:hover {
-    color: white;
+
+.masteraula-nav-header__link-myprofile:hover .masteraula-nav-header__icon-option  {
     font-weight: bold;
+}
+
+.nav-item a:hover {
     text-decoration: none;
 }
+
+.masteraula-nav-header__icon-option {
+    text-decoration: none;
+    display: inline-block;
+
+    &:hover{
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    &:before {
+        display: block;
+        content: attr(title);
+        font-weight: bold;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+    }
+}
+
  
 .navbar-toggler{
   background: $color-ma-pink;
