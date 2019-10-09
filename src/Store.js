@@ -5,9 +5,12 @@ import {
   login, menu, register, forgotPassword, profileEdit, question, filter, filterObject, session, document, modal, header, topic, learningObject,
 } from 'reducers';
 
+import { gtmMetaReducer, gtmMiddleware } from 'helpers/googletagmanager';
+
 import { history } from 'helpers';
 import { reducer as formReducer } from 'redux-form';
 import { createLogger } from 'redux-logger';
+
 
 /* List of reducers */
 const appReducer = combineReducers({
@@ -26,6 +29,7 @@ const appReducer = combineReducers({
   topic,
   learningObject,
   form: formReducer,
+  gtmMetaReducer,
 });
 
 const middlewares = [];
@@ -43,6 +47,7 @@ export default function configureStore(preloadedState) {
     preloadedState,
     applyMiddleware(
       ...middlewares,
+      gtmMiddleware,
       thunkMiddleware,
       routerMiddleware(history),
     ),
