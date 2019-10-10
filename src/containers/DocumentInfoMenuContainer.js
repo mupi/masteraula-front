@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
   myLastDocumentsList: state.document.myLastDocumentsList,
 });
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   const documentModalProps = document => ({
     modalProps: {
       open: true,
@@ -35,9 +35,9 @@ const mapDispatchToProps = (dispatch) => {
     fetchPreviewDocument: props => dispatch(fetchPreviewDocument(props)),
 
     hideModal: () => dispatch(hideModal()),
-    showDocumentModal: (previewDocument, id) => {
+    showDocumentModal: (id) => {
       dispatch(fetchPreviewDocument(parseInt(id, 10)));
-      dispatch(showModal(documentModalProps(previewDocument)));
+      dispatch(showModal(documentModalProps(ownProps.previewDocument)));
     },
   });
 };

@@ -24,8 +24,8 @@ class DocumentInfoMenu extends React.Component {
   }
 
   showDocumentModal(id) {
-    const { showDocumentModal, previewDocument } = this.props;
-    showDocumentModal(id, previewDocument);
+    const { showDocumentModal } = this.props;
+    showDocumentModal(id);
   }
 
   render() {

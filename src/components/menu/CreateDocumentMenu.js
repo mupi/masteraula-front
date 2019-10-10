@@ -16,18 +16,18 @@ class CreateDocumentMenu extends React.PureComponent {
     listMyDocuments(1, 'date', 'desc');
   }
 
-  editDocument(document) {
-    const { switchActiveDocument } = this.props;
-    switchActiveDocument(document);
-  }
-
-  openCreateDocumentModal() {
+  openCreateDocumentModal = () => {
     // open modal
     const {
       showCreateDocumentModal, setQuestionIdToNewDocument,
     } = this.props;
     setQuestionIdToNewDocument();
     showCreateDocumentModal();
+  }
+
+  editDocument(document) {
+    const { switchActiveDocument } = this.props;
+    switchActiveDocument(document);
   }
 
   render() {
