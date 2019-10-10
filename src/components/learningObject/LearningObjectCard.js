@@ -5,91 +5,97 @@ import {
 import { Link } from 'react-router-dom';
 import { getCleanExtractStatement } from 'helpers/question';
 
+const CardBodyLearninObject = (props) => {
+  const { learningObject, objectType } = props;
+
+  const extractText = learningObject.text ? getCleanExtractStatement(learningObject.text) : '';
+  const cleanSource = learningObject.source ? getCleanExtractStatement(learningObject.source) : null;
+
+  return (
+    <CardBody className="object-card__body">
+      {objectType === 'Image' ? (
+        <div className="object-card__img-wrapper">
+          <img className="object-card__img" alt={cleanSource} src={learningObject.image} width="150" />
+        </div>
+      ) : ''}
+      {objectType === 'Texto' ? (
+        <p className="question-card__extract">
+          {extractText.substring(0, 150)}
+          {' ...'}
+        </p>
+      ) : extractText}
+    </CardBody>
+  );
+};
+
 const LearningObjectCard = (props) => {
-  const getQuoteSeparator = (i, length) => {
-    if (i !== length - 1) {
-      return ', ';
-    }
-    return '';
-  };
   const { object, addSelectedObjectTypeFilter } = props;
-  const extractText = object.text ? getCleanExtractStatement(object.text) : '';
   const cleanSource = object.source ? getCleanExtractStatement(object.source) : null;
 
-  const objectTypeImage = object.image ? 'Imagem' : null;
-  const objectTypeText = object.text ? 'Texto' : null; 
+  const objectType = (() => {
+    switch (object.object_type) {
+      case 'I': return 'Imagem';
+      case 'T': return 'Texto';
+      case 'A': return 'Audio';
+      case 'V': return 'Video';
+      default: return null;
+    }
+  })();
+
+  const buttonColor = (() => {
+    switch (object.object_type) {
+      case 'I': return 'pink';
+      case 'T': return 'green';
+      case 'A': return 'blue';
+      case 'V': return 'blue';
+      default: return null;
+    }
+  })();
+
+  const handleSelectedObjectTypeFilter = () => {
+    addSelectedObjectTypeFilter(object.object_type);
+  };
 
   return (
     <Card className="h-100 object-card__full">
       <CardHeader className="object-card__header">
         <div className="object-card__id">
-          Objeto N°
-          {' '}
-          {object.id}
+          {`Objeto N° ${object.id}`}
         </div>
         <div className="object-card__info-section">
-          {objectTypeImage ? (
+          {objectType ? (
             <Button
-              key={object.type}
-              className="object-card__filter-button object-card__filter-button--green"
-              onClick={() => addSelectedObjectTypeFilter('I')}
-
+              className={`object-card__filter-button object-card__filter-button--${buttonColor}`}
+              onClick={handleSelectedObjectTypeFilter}
             >
-              {objectTypeImage}
-            </Button>
-          ) : ''}
-          {objectTypeText ? (
-            <Button
-              key={object.type}
-              className="object-card__filter-button object-card__filter-button--pink"
-              onClick={() => addSelectedObjectTypeFilter('T')}
-            >
-              {objectTypeText}
+              {objectType}
             </Button>
           ) : ''}
         </div>
         <p className="object-card__more-info">
-          {
-            (object.tags.length > 0) ? (
-              <span className="object-card__more-info--lightgray">
-                tags:
-                {' '}
+          {(object.tags && object.tags.length > 0) && (
+            <span>
+              <span className="object-card__more-info--lightgray">tags: </span>
+              <span className="object-card__tag object-card__info-section-item--italic">
+                {object.tags.map(t => t.name).join(', ')}
               </span>
-            ) : ''}
-          {object.tags && object.tags.map((tag, i) => (
-            <span key={i} className="object-card__tag object-card__info-section-item--italic">
-              {tag.name}
-              { getQuoteSeparator(i, object.tags.length)}
             </span>
-          ))}
-          {
-            (object.tags.length > 0 && cleanSource) ? (
-              <span className="object-card__more-info--lightgray">
-                {' | '}
-              </span>
-            ) : ''}
+          )}
           {
             (cleanSource) ? (
               <span>
-                <span className="object-card__more-info--lightgray">Fonte:</span>
-                {' '}
+                {(object.tags && object.tags.length > 0) && (
+                  <span className="object-card__more-info--lightgray">
+                    {' | '}
+                  </span>
+                )}
+                <span className="object-card__more-info--lightgray">Fonte: </span>
                 <span className="object-card__tag object-card__info-section-item--italic">{cleanSource}</span>
               </span>
             ) : ''}
         </p>
       </CardHeader>
-      <CardBody className="object-card__body">
-        {object && object.image
-          ? <div className="object-card__img-wrapper"><img className="object-card__img" alt={cleanSource} src={object.image} width="150" /></div>
-          : ''}
-        { (extractText && extractText.length >= 150)
-          ? (
-            <p className="question-card__extract">
-              {extractText.substring(0, 150)}
-              {' ...'}
-            </p>
-          ) : extractText }
-      </CardBody>
+      <CardBodyLearninObject learningObject={object} objectType={objectType} />
       <CardFooter className="object-card__footer">
         <Link to={`/view-object/${object.id}`}>
           <Button className="object-card__btn">
