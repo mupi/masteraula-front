@@ -525,7 +525,7 @@ class QuestionEditPage extends Component {
                     <Col sm="8" xs="8">
                       <QuestionAuthor author={authorshipValue} styleTag="question-info author" />
                     </Col>
-                  </Row> 
+                  </Row>
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
                       Tags
