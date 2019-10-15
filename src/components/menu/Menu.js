@@ -18,27 +18,18 @@ const getUserName = (userName) => {
 
 const Menu = (props) => {
   const {
-    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument, user, hideModal, showModal,
+    isOpen, isOpenSidebar, isLoggedIn, openSidebar, toggleMenu, logout, activeDocument, user, showRegisterModal, showLoginModal,
   } = props;
 
-  const closeModal = () => {
-    hideModal();
-  };
 
   const handleOpenRegisterModal = () => {
     // open modal
-    showModal({
-      open: true,
-      closeModal,
-    }, 'register2');
+    showRegisterModal();
   };
 
   const handleOpenLoginModal = () => {
     // open modal
-    showModal({
-      open: true,
-      closeModal,
-    }, 'login2');
+    showLoginModal();
   };
 
   const loggedOptions = (

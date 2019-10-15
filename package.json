@@ -44,7 +44,7 @@
     "reactstrap": "^8.0.1",
     "redux": "^4.0.1",
     "redux-beacon": "^2.1.0",
-    "redux-form": "^8.2.6",
+    "redux-form": "^7.4.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "sanitize-html": "^1.19.1",

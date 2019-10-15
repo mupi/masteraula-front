@@ -714,7 +714,7 @@ class CreateQuestionPage extends Component {
               </Row>
             </div>
           </div>
-          <Row className="c-questions__row-footer-options text-center">
+          <Row className="c-question__row-footer-options text-center">
             <Col>
               <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
                 <FontAwesomeIcon

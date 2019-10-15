@@ -15,13 +15,17 @@ export default (state = initialState, action) => {
       });
     }
     case GENERAL_SHOW_MODAL:
-      return {
+      return Object.assign({}, state, {
         modalProps: action.modalProps,
         modalType: action.modalType,
         type: action.type,
-      };
+      });
     case GENERAL_HIDE_MODAL:
-      return initialState;
+      return Object.assign({}, state, {
+        modalProps: Object.assign({}, state.modalProps, {
+          open: false,
+        }),
+      });
     default:
       return state;
   }

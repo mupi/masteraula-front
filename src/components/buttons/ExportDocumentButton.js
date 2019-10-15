@@ -4,38 +4,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ExportDocumentButton = ({
-  documentId, color, text, documentName, documentTotalQuestions, hideModal, showModal, styleCustomize, isLink = false,
+  documentId, color, text, documentName, documentTotalQuestions, styleCustomize, isLink = false,
+  showAlertModal, showExportDocumentModalProps,
 }) => {
-  const closeModal = () => {
-    hideModal();
-  };
-
-  const handleExport = () => {
-    // open modal
-    showModal({
-      open: true,
-      closeModal,
-      title: 'Exportar prova',
-      message: `Não é possível exportar porque a prova "${documentName}" não tem questões`,
-    }, 'alert');
-  };
-
-  const handleExportAnswer = () => {
-    // open modal
-    showModal({
-      open: true,
-      closeModal,
-      documentId,
-      documentName,
-      title: 'Exportar prova',
-    }, 'exportDocument');
-  };
-
   const handleClick = () => {
     if (documentTotalQuestions > 0) {
-      handleExportAnswer();
+      showExportDocumentModalProps(documentId, documentName);
     } else {
-      handleExport();
+      showAlertModal(documentName);
     }
   };
 

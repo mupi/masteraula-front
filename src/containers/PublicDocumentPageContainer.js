@@ -13,18 +13,25 @@ const mapStateToProps = state => ({
   errorFetchingPublicDocument: state.document.errorFetchingPublicDocument,
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchPublicDocument: props => dispatch(fetchPublicDocument(props)),
-  // isRedirect to edit-document = true
-  copyDocument: doc => dispatch(copyDocument(doc, true)),
-  // new way to handle modals
-  hideModal: () => {
-    dispatch(hideModal());
-  },
-  showModal: (modalProps, modalType) => {
-    dispatch(showModal({ modalProps, modalType }));
-  },
-});
+const mapDispatchToProps = (dispatch) => {
+  const loginModalProps = redirect => ({
+    modalProps: {
+      redirect,
+      open: true,
+      closeModal: () => dispatch(hideModal()),
+      optionalMessage: 'Você precisa estar logado no sistema',
+    },
+    modalType: 'login2',
+  });
+
+  return {
+    fetchPublicDocument: props => dispatch(fetchPublicDocument(props)),
+    // isRedirect to edit-document = true
+    copyDocument: doc => dispatch(copyDocument(doc, true)),
+    // new way to handle modals
+    showLoginModal: redirect => dispatch(showModal(loginModalProps(redirect))),
+  };
+};
 
 const PublicDocumentPageContainer = connect(
   mapStateToProps,
