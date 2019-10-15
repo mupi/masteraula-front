@@ -68,12 +68,11 @@ function listLearningObject(page, filterObject) {
   };
 
   const search = (filterObject && filterObject.searchTextObject) ? queryString.stringify({ text: filterObject.searchTextObject }) : null;
-  const isImage = (filterObject && filterObject.typesObjectSelected.filter(item => item.id === 'I').length > 0) ? queryString.stringify({ is_image: 'true' }) : null;
-  const isText = (filterObject && filterObject.typesObjectSelected.filter(item => item.id === 'T')).length > 0 ? queryString.stringify({ is_text: 'true' }) : null;
-  
+  const filters = (filterObject && filterObject.typesObjectSelected.map(item => `filters=${item.id}`).join('&'));
+
   const url = (search)
-    ? `/learning_object/search/?page=${page}&${search}&${isImage}&${isText}`
-    : `/learning_object/?page=${page}&${isImage}&${isText}`;
+    ? `/learning_object/search/?page=${page}&${search}&${filters}`
+    : `/learning_object/?page=${page}&${filters}`;
 
 
   const handleResponse = response => response.json().then((data) => {

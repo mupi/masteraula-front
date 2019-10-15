@@ -11,6 +11,7 @@ const initialState = {
   typeObjectFilters: [
     { id: 'I', name: 'Imagem' },
     { id: 'T', name: 'Texto' },
+    { id: 'V', name: 'Vídeo' },
   ],
 };
 
@@ -50,7 +51,7 @@ export const filterObject = (state = initialState, action) => {
 
     default:
       return state;
-  } 
+  }
 };
 
 export default filterObject;
