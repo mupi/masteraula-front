@@ -17,6 +17,9 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
   const { author, authorship } = question;
   const authorshipValue = authorship || (author && author.name);
   const authorPK = author ? author.pk : null;
+  const authorName = author ? author.name : null;
+  const showAuthorship = ((authorPK !== idUserAdmin) || (authorshipValue !== authorName));
+
   return (
     <div className="question-information">
       <Row className="c-question__tittle-section">
@@ -107,7 +110,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
         </Row>
       ) : ' '}
 
-      {authorPK !== idUserAdmin ? (
+      {showAuthorship ? (
         <Row className="c-question__row-info">
           <Col className="info-label" sm="4" xs="4">
           Autoria
