@@ -289,7 +289,10 @@ class QuestionEditPage extends Component {
       role, submitting,
     } = this.props;
 
+    const { author, authorship } = activeQuestion;
+
     const authorPK = activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
+    const authorshipValue = authorship || (author && author.name);
 
 
     const {
@@ -517,12 +520,12 @@ class QuestionEditPage extends Component {
                   </Row>
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
-                      Publicado por
+                      Autoria
                     </Col>
                     <Col sm="8" xs="8">
-                      <QuestionAuthor author={activeQuestion.author} styleTag="question-info author" />
+                      <QuestionAuthor author={authorshipValue} styleTag="question-info author" />
                     </Col>
-                  </Row>
+                  </Row> 
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
                       Tags
