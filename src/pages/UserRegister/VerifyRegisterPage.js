@@ -5,34 +5,13 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class VerifyRegisterPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.closeModal = this.closeModal.bind(this);
-    this.handleOpenLoginModal = this.handleOpenLoginModal.bind(this);
-  }
-
   componentDidMount() {
     const { match, verifyEmail } = this.props;
     verifyEmail(match.params.key);
   }
 
-  closeModal = () => {
-    const { hideModal } = this.props;
-    hideModal();
-  };
-
-  handleOpenLoginModal = () => {
-    // open modal
-    const { showModal } = this.props;
-
-    showModal({
-      open: true,
-      closeModal: this.closeModal,
-    }, 'login2');
-  };
-
   render() {
-    const { success, error } = this.props;
+    const { success, error, showLoginModal } = this.props;
 
     return (
       <div className="l-site-masteraula__public-home middle-box">
@@ -59,7 +38,7 @@ class VerifyRegisterPage extends React.Component {
           }
           <Row className="justify-content-center text-center">
             <Col sm="12" xs="12">
-              <Button onClick={this.handleOpenLoginModal}>
+              <Button onClick={showLoginModal}>
                 Entrar
               </Button>
             </Col>

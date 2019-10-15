@@ -4,17 +4,10 @@ import {
 } from 'reactstrap';
 import HomeUserNotLoggedPage from 'pages/Home/HomeUserNotLoggedPage';
 
-const PricingPage = ({ hideModal, showModal }) => {
-  const closeModal = () => {
-    hideModal();
-  };
-
+const PricingPage = ({ showRegisterModal }) => {
   const handleOpenRegisterModal = () => {
     // open modal
-    showModal({
-      open: true,
-      closeModal,
-    }, 'register2');
+    showRegisterModal();
   };
 
   return (

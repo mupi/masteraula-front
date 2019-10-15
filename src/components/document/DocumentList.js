@@ -15,145 +15,88 @@ const OpenDocumentModalHeader = (props) => {
 
   return (
     <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }} className="c-my-documents__cell">
-      { children }
+      {children}
     </td>
   );
 };
 
-class DocumentList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.closeModal = this.closeModal.bind(this);
-    this.openDocumentModal = this.openDocumentModal.bind(this);
-    this.editDocument = this.editDocument.bind(this);
-  }
+const DocumentList = (props) => {
+  const {
+    hideModal, switchActiveDocument, showDeleteModal, showDocumentModal,
+    copyDocument, documents, previewDocument,
+  } = props;
 
-  closeModal() {
-    const { hideModal } = this.props;
-    hideModal();
-  }
-
-  openDocumentModal(id) {
-    // event.preventDefault();
-    const {
-      showModal, fetchPreviewDocument, previewDocument,
-    } = this.props;
-
-    fetchPreviewDocument(parseInt(id, 10));
-    showModal({
-      open: true,
-      document: previewDocument,
-      closeModal: this.closeModal,
-      editDocument: this.editDocument,
-    }, 'document');
-  }
-
-  editDocument(document) {
-    const { switchActiveDocument } = this.props;
+  const editDocument = (document) => {
     switchActiveDocument(document);
-    this.closeModal();
-  }
+    hideModal();
+  };
 
-  handleDelete(id, name) {
-    const { deleteDocument, showModal } = this.props;
-    // open modal
-    showModal({
-      open: true,
-      closeModal: this.closeModal,
-      title: 'Apagar prova',
-      message: 'Você tem certeza que deseja apagar a prova',
-      name,
-      idDocument: id,
-      deleteAction: deleteDocument,
-    }, 'delete');
-  }
+  const openDocumentModal = (id) => {
+    showDocumentModal(previewDocument, id);
+  };
 
-  copyDocument(doc) {
-    const { copyDocument } = this.props;
-    copyDocument(doc);
-  }
+  const handleDelete = (id, name) => {
+    showDeleteModal(id, name);
+  };
 
-  render() {
-    const { documents } = this.props;
-    return (
-      <Row className="l-my-documents-list">
-        <Col xs="12">
-          <div>
-            <Table responsive hover>
-              <thead align="center">
-                <tr>
-                  <th>
-                Nome
-                  </th>
-                  <th>
-                  Data de criação
-                  </th>
-                  <th>
-                  Nº de questões
-                  </th>
-                  <th>
-                  Editar
-                  </th>
-                  <th>
-                  Duplicar
-                  </th>
-                  <th>
-                  Exportar
-                  </th>
-                  <th>
-                  Apagar
-                  </th>
+  return (
+    <Row className="l-my-documents-list">
+      <Col xs="12">
+        <div>
+          <Table responsive hover>
+            <thead align="center">
+              <tr>
+                <th>Nome</th>
+                <th>Data de criação</th>
+                <th>Nº de questões</th>
+                <th>Editar</th>
+                <th>Duplicar</th>
+                <th>Exportar</th>
+                <th>Apagar</th>
+              </tr>
+            </thead>
+            <tbody align="center">
+              {documents.map(document => (
+                <tr key={document.id}>
+                  <OpenDocumentModalHeader openDocumentModal={openDocumentModal} document={document}>
+                    {document.name}
+                  </OpenDocumentModalHeader>
+                  <OpenDocumentModalHeader openDocumentModal={openDocumentModal} document={document}>
+                    {formatDate(document.create_date)}
+                  </OpenDocumentModalHeader>
+                  <OpenDocumentModalHeader openDocumentModal={openDocumentModal} document={document}>
+                    {document.questions.length}
+                  </OpenDocumentModalHeader>
+                  <td>
+                    <Button color="secondary" onClick={() => editDocument(document)} title="Editar prova">
+                      <FontAwesomeIcon icon="pencil-alt" />
+                    </Button>
+                  </td>
+                  <td>
+                    <Button color="secondary" title="Criar cópia da prova" onClick={() => copyDocument(document)}>
+                      <FontAwesomeIcon icon="copy" />
+                    </Button>
+                  </td>
+                  <td>
+                    <ExportDocumentButtonContainer
+                      documentId={document.id}
+                      documentName={document.name}
+                      documentTotalQuestions={document.questions.length}
+                    />
+                  </td>
+                  <td>
+                    <Button color="danger" onClick={() => handleDelete(document.id, document.name)} title="Excluir prova">
+                      <FontAwesomeIcon icon="trash-alt" />
+                    </Button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody align="center">
-                {documents.map(document => (
-                  <tr key={document.id}>
-                    <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
-                      {document.name}
-                    </OpenDocumentModalHeader>
-                    <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
-                      { formatDate(document.create_date) }
-                    </OpenDocumentModalHeader>
-                    <OpenDocumentModalHeader openDocumentModal={this.openDocumentModal} document={document}>
-                      {document.questions.length}
-                    </OpenDocumentModalHeader>
-                    <td>
-                      <Button color="secondary" onClick={() => this.editDocument(document)} title="Editar prova">
-                        <FontAwesomeIcon
-                          icon="pencil-alt"
-                        />
-                      </Button>
-                    </td>
-                    <td>
-                      <Button color="secondary" title="Criar cópia da prova" onClick={() => this.copyDocument(document)}>
-                        <FontAwesomeIcon
-                          icon="copy"
-                        />
-                      </Button>
-                    </td>
-                    <td>
-                      <ExportDocumentButtonContainer
-                        documentId={document.id}
-                        documentName={document.name}
-                        documentTotalQuestions={document.questions.length}
-                      />
-                    </td>
-                    <td>
-                      <Button color="danger" onClick={() => this.handleDelete(document.id, document.name)} title="Excluir prova">
-                        <FontAwesomeIcon
-                          icon="trash-alt"
-                        />
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
-        </Col>
-      </Row>
-    );
-  }
-}
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      </Col>
+    </Row>
+  );
+};
 
 export default DocumentList;

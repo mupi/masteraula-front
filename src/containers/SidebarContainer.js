@@ -15,27 +15,33 @@ const mapStateToProps = state => ({
   isFetchingQuestions: state.question.isFetching,
 });
 
-const mapDispatchToProps = dispatch => ({
-  toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
-  openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
-  logout: () => dispatch(logout()),
-  cleanAllSearch: () => {
-    dispatch({
-      type: '@@redux-form/CHANGE',
-      payload: null,
-      meta: { form: 'questionSearch', field: 'searchText' },
-    });
-    dispatch(clearSearch());
-    dispatch(clearSelectedFilters());
-  },
-  // new way to handle modals
-  hideModal: () => dispatch(hideModal()),
-  showModal: (modalProps, modalType) => {
-    dispatch(showModal({ modalProps, modalType }));
-  },
-  setQuestionIdToNewDocument: () => dispatch(setQuestionIdToNewDocument()),
+const mapDispatchToProps = (dispatch) => {
+  const createDocumentModalProps = {
+    modalProps: {
+      open: true,
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'createDocument',
+  };
 
-});
+  return ({
+    toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
+    openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
+    logout: () => dispatch(logout()),
+    cleanAllSearch: () => {
+      dispatch({
+        type: '@@redux-form/CHANGE',
+        payload: null,
+        meta: { form: 'questionSearch', field: 'searchText' },
+      });
+      dispatch(clearSearch());
+      dispatch(clearSelectedFilters());
+    },
+    // new way to handle modals
+    showCreateDocumentModal: () => dispatch(showModal(createDocumentModalProps)),
+    setQuestionIdToNewDocument: () => dispatch(setQuestionIdToNewDocument()),
+  });
+};
 
 export default connect(
   mapStateToProps,
