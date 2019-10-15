@@ -48,7 +48,7 @@ const renderField = ({
 const Login2Form = (props) => {
   const {
     handleSubmit, error, handleResendEmail, formValues,
-    resendError, resendSuccess, isSending, closeModal, showRegisterModal,
+    resendError, resendSuccess, isSending, showRegisterModal, closeModal,
     responseFacebook, responseGoogle, optionalMessage, redirect,
     submitting,
   } = props;
@@ -58,15 +58,6 @@ const Login2Form = (props) => {
       handleResendEmail(values.email, values.password);
     }
   }
-
-  const handleOpenRegisterModal = () => {
-    closeModal();
-    // open modal
-    showRegisterModal({
-      open: true,
-      closeModal,
-    }, 'register2');
-  };
 
   return (
     <Col sm="12" xs="12">
@@ -97,7 +88,7 @@ const Login2Form = (props) => {
         clientId={googleLoginId}
         buttonText="Entrar com Google"
         onSuccess={resp => responseGoogle(resp, redirect)}
-          // onFailure={responseGoogle}
+        // onFailure={responseGoogle}
         cookiePolicy="single_host_origin"
         className="google-login"
       />
@@ -150,13 +141,13 @@ const Login2Form = (props) => {
             </Button>
           </FormGroup>
           <FormGroup className="c-login__link-options">
-            <NavLink to="/esqueci-senha" onClick={() => closeModal()}>
+            <NavLink to="/esqueci-senha" onClick={closeModal}>
               Esqueci minha senha
             </NavLink>
           </FormGroup>
           <FormGroup className="c-login__link-options">
             <span>Não tem uma conta?</span>
-            <Button color="" className="btn btn-link c-login__link-register" onClick={handleOpenRegisterModal}>
+            <Button color="" className="btn btn-link c-login__link-register" onClick={showRegisterModal}>
               Cadastre-se
             </Button>
           </FormGroup>
@@ -189,20 +180,24 @@ const mapStateToProps = state => ({
   isSending: state.register.isSending,
 });
 
-const mapDispatchToProps = dispatch => ({
-  /*  toggleModal: (modal) => {
-      dispatch(resetState());
-      dispatch(toggleModal(modal));
-    }, */
-  responseGoogle: (response, redirect) => dispatch(loginGoogle(response, redirect)),
-  responseFacebook: (response, redirect) => dispatch(loginFacebook(response, redirect)),
-  handleResendEmail: (email, password) => dispatch(resendEmail(email, password)),
-  // new way to handle modals
-  hideModal: () => dispatch(hideModal()),
-  showRegisterModal: (modalProps, modalType) => {
-    dispatch(showModal({ modalProps, modalType }));
-  },
-});
+const mapDispatchToProps = (dispatch) => {
+  const registerModalProps = {
+    modalProps: {
+      open: true,
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'register2',
+  };
+  return {
+    responseGoogle: (response, redirect) => dispatch(loginGoogle(response, redirect)),
+    responseFacebook: (response, redirect) => dispatch(loginFacebook(response, redirect)),
+    handleResendEmail: (email, password) => dispatch(resendEmail(email, password)),
+
+    closeModal: () => dispatch(hideModal()),
+
+    showRegisterModal: () => dispatch(showModal(registerModalProps)),
+  };
+};
 
 export default connect(
   mapStateToProps,

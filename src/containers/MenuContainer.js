@@ -15,16 +15,31 @@ const mapStateToProps = state => ({
   user: state.session.session ? state.session.session.user : null,
 });
 
-const mapDispatchToProps = dispatch => ({
-  toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
-  openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
-  logout: () => dispatch(logout()),
-  // new way to handle modals
-  hideModal: () => dispatch(hideModal()),
-  showModal: (modalProps, modalType) => {
-    dispatch(showModal({ modalProps, modalType }));
-  },
-});
+const mapDispatchToProps = (dispatch) => {
+  const registerModalProps = {
+    modalProps: {
+      open: true,
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'register2',
+  };
+  const loginModalProps = {
+    modalProps: {
+      open: true,
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'login2',
+  };
+
+  return {
+    toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
+    openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
+    logout: () => dispatch(logout()),
+
+    showRegisterModal: () => dispatch(showModal(registerModalProps)),
+    showLoginModal: () => dispatch(showModal(loginModalProps)),
+  };
+};
 
 const MenuContainer = connect(
   mapStateToProps,

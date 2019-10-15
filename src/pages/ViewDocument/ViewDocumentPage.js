@@ -4,7 +4,7 @@ import {
   Row, Col, Button, Input, InputGroup, InputGroupAddon, Alert,
   UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
-import DocumentList from 'components/document/DocumentList';
+import DocumentListContainer from 'containers/DocumentListContainer';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from '../HomeUser/HomeUserPage';
@@ -125,7 +125,7 @@ class ViewDocumentPage extends React.Component {
                   </div>
 
                   { myDocumentsList
-                    && <DocumentList documents={myDocumentsList.results} {...this.props} />
+                    && <DocumentListContainer documents={myDocumentsList.results} />
                   }
                 </div>
               )}
