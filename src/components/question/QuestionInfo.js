@@ -9,11 +9,14 @@ import TagList from 'components/tags/TagList';
 import { getTeachingLevel } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { idUserAdmin } from 'helpers/config';
 import QuestionAuthor from './QuestionAuthor';
+
 
 const QuestionInfo = ({ question, rating, onRate = f => f }) => {
   const { author, authorship } = question;
   const authorshipValue = authorship || (author && author.name);
+  const authorPK = author ? author.pk : null;
   return (
     <div className="question-information">
       <Row className="c-question__tittle-section">
@@ -104,14 +107,16 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
         </Row>
       ) : ' '}
 
-      <Row className="c-question__row-info">
-        <Col className="info-label" sm="4" xs="4">
-        Autoria
-        </Col>
-        <Col sm="8" xs="8">
-          <QuestionAuthor author={authorshipValue} styleTag="question-info author" />
-        </Col>
-      </Row>
+      {authorPK !== idUserAdmin ? (
+        <Row className="c-question__row-info">
+          <Col className="info-label" sm="4" xs="4">
+          Autoria
+          </Col>
+          <Col sm="8" xs="8">
+            <QuestionAuthor author={authorshipValue} styleTag="question-info author" />
+          </Col>
+        </Row>
+      ) : ' '}
 
       <Row className="c-question__row-info hidden">
         <Col className="info-label" sm="4" xs="4">
