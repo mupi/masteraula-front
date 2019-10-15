@@ -123,7 +123,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
       </Row>
       <Row>
         <Col className="text-center">
-          <small>Todo conteúdo é publicado pela Mupi</small>
+          <small>Todo conteúdo é publicado pelo Masteraula</small>
         </Col>
       </Row>
       <Row>
