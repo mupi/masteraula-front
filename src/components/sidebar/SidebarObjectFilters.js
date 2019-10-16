@@ -7,6 +7,7 @@ const filters = {
   objectTypes: [
     { id: 'I', name: 'Imagem' },
     { id: 'T', name: 'Texto' },
+    { id: 'V', name: 'Vídeo' },
   ],
 };
 
