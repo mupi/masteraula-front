@@ -32,7 +32,9 @@ export const getCleanCompleteStatement = (html) => {
       p: ['style'],
       span: ['style'],
       div: ['style'],
+      iframe: ['src', 'width', 'height', 'allowfullscreen', 'allow'],
     },
+    allowedIframeHostnames: ['www.youtube.com'],
   });
   return statement;
 };
