@@ -46,13 +46,15 @@ const Menu = (props) => {
         </span>
       </NavItem>
       <NavItem>
-        <Button color="info" className="masteraula-nav-header__btn-upgrade">
-          <FontAwesomeIcon
-            icon="crown"
-            className="btn__icon"
-          />
-          {'Premium'}
-        </Button>
+        <Link className="" to="/nossos-planos">
+          <Button color="info" className="masteraula-nav-header__btn-upgrade">
+            <FontAwesomeIcon
+              icon="crown"
+              className="btn__icon"
+            />
+            {'Premium'}
+          </Button>
+        </Link>
       </NavItem>
       <NavItem>
         <Link to="/user-profile" className="masteraula-nav-header__link-myprofile">

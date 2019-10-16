@@ -7,6 +7,7 @@ import {
 import { Helmet } from 'react-helmet';
 
 import TermsUsePage from 'pages/TermsUse/TermsUsePage';
+import PricingPageHome from 'pages/Pricing/PricingPageHome';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 
 import {
@@ -136,6 +137,7 @@ class App extends Component {
                 <Route path="/new-header" component={EditHeaderPageContainer} />
                 <Route path="/object-base/:page(\d+)" component={ObjectBasePageContainer} />
                 <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
+                <Route path="/nossos-planos" component={PricingPageHome} />
                 <Redirect from="/" to="/question-base/1" />
               </Switch>
             )
