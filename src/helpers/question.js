@@ -24,7 +24,7 @@ export const getCleanCompleteStatement = (html) => {
       'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td', 'pre', 'iframe', 'img', 'span', 'sup', 'sub', 'small', 'u'],
     allowedClasses: {
       p: ['text-center', 'text-justify'],
-      div: ['text-center', 'text-justify'],
+      div: ['text-center', 'text-justify', 'video-responsive'],
     },
     allowedAttributes: {
       a: ['href', 'name', 'target'],
