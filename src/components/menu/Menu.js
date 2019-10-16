@@ -33,7 +33,27 @@ const Menu = (props) => {
   };
 
   const loggedOptions = (
-    <Nav className="ml-auto hidden-xs" navbar>
+    <Nav className="ml-auto hidden-xs align-items-center" navbar>
+      <NavItem>
+        <span className="masteraula-nav-header__number-docx">
+          { /* <span className="masteraula-nav-header__number-docx-freeplan">Gratuito:</span> */ }
+          {' '}
+          <span className="masteraula-nav-header__number-docx-available">2</span>
+          {'/'}
+          <span className="masteraula-nav-header__number-docx-total">3</span>
+          {' '}
+          docx
+        </span>
+      </NavItem>
+      <NavItem>
+        <Button color="info" className="masteraula-nav-header__btn-upgrade">
+          <FontAwesomeIcon
+            icon="crown"
+            className="btn__icon"
+          />
+          {'Premium'}
+        </Button>
+      </NavItem>
       <NavItem>
         <Link to="/user-profile" className="masteraula-nav-header__link-myprofile">
           <div className="masteraula-nav-header__user-avatar">
@@ -105,7 +125,7 @@ const Menu = (props) => {
             ? (
               <Navbar id="masteraula-nav-header" className="masteraula-nav-header__user navbar navbar-default navbar-fixed-top" dark expand="md">
                 <Container className="menu-top" fluid>
-                  <Row className="menu-top__options">
+                  <Row className="menu-top__options no-gutters">
                     <div id="buttonSideBar" className="visible-xs col-xs-3">
                       <ul className="pull-left visible-xs-inline-block nav navbar-nav">
                         { isLoggedIn ? menu : null }

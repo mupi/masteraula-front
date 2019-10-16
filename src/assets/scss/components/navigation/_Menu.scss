@@ -238,6 +238,32 @@ html body .masteraula-nav-header__user {
       display:none;
     }
   }
+
+  &__number-docx{
+    font-size: 12px;
+    color: red;
+  }
+
+  &__number-docx-freeplan{
+    @include for-desktop-bottom-1160{
+      display:none;
+    }
+  }
+
+  &__number-docx-available{
+
+  }
+
+  &__number-docx-total{
+
+  }
+
+  &__btn-upgrade{
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+
 }
 
 

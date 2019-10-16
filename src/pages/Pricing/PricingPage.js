@@ -35,7 +35,7 @@ const PricingPage = ({ showRegisterModal }) => {
               <ul className="c-pricing-page__item-details">
                 <li>
                   <span>
-                      Download de até 2 provas mensais
+                      Download de até 3 provas mensais
                   </span>
                 </li>
               </ul>
@@ -49,7 +49,7 @@ const PricingPage = ({ showRegisterModal }) => {
               <h2>
                   Professor
                 <br />
-                  ILIMITADO
+                  PREMIUM
               </h2>
               <p className="c-pricing-page__item-description">Para não se preocupar durante 1 ANO.</p>
               <p className="c-pricing-page__item-price"> R$180,00 </p>
@@ -84,7 +84,7 @@ const PricingPage = ({ showRegisterModal }) => {
               <h2>
                   Escola
                 <br />
-                  ILIMITADO
+                  PREMIUM
               </h2>
               <p className="c-pricing-page__item-description">Valores especiais para grupo de professores com acesso a todas disciplinas.</p>
               <p>

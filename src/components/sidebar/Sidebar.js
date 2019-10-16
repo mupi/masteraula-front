@@ -309,7 +309,6 @@ class Sidebar extends React.PureComponent {
     // const isMobile = width <= 989;
 
     const responsiveMode = window.matchMedia('(max-width: 989px)');
-
     if (responsiveMode.matches) {
       return (
         <SidebarMobile {...this.props} />
