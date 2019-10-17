@@ -42,28 +42,32 @@ class Menu extends Component {
 
     const loggedOptions = (
       <Nav className="ml-auto hidden-xs align-items-center" navbar>
-        <NavItem className="masteraula-nav-header__option-mr">
-          <span className="masteraula-nav-header__number-docx">
-            <span className="masteraula-nav-header__number-docx-freeplan">Gratuito:</span>
-            {' '}
-            <span className="masteraula-nav-header__number-docx-available">{quantityDocxDownloaded}</span>
-            {'/'}
-            <span className="masteraula-nav-header__number-docx-total">{maxDocxFreePlan}</span>
-            {' '}
-            <span className="masteraula-nav-header__number-docx-icon"><FontAwesomeIcon icon="file-word" /></span>
-          </span>
-        </NavItem>
-        <NavItem className="masteraula-nav-header__option-mr">
-          <Link className="" to="/nossos-planos">
-            <Button color="info" className="masteraula-nav-header__btn-upgrade">
-              <FontAwesomeIcon
-                icon="crown"
-                className="btn__icon"
-              />
-              {'Premium'}
-            </Button>
-          </Link>
-        </NavItem>
+        {user && !user.subscription ? (
+          <NavItem className="masteraula-nav-header__option-mr">
+            <span className="masteraula-nav-header__number-docx">
+              <span className="masteraula-nav-header__number-docx-freeplan">Gratuito:</span>
+              {' '}
+              <span className="masteraula-nav-header__number-docx-available">{quantityDocxDownloaded}</span>
+              {'/'}
+              <span className="masteraula-nav-header__number-docx-total">{maxDocxFreePlan}</span>
+              {' '}
+              <span className="masteraula-nav-header__number-docx-icon"><FontAwesomeIcon icon="file-word" /></span>
+            </span>
+          </NavItem>
+        ) : ''}
+        {user && !user.subscription ? (
+          <NavItem className="masteraula-nav-header__option-mr">
+            <Link className="" to="/nossos-planos">
+              <Button color="info" className="masteraula-nav-header__btn-upgrade">
+                <FontAwesomeIcon
+                  icon="crown"
+                  className="btn__icon"
+                />
+                {'Premium'}
+              </Button>
+            </Link>
+          </NavItem>
+        ) : ''}
         <NavItem className="masteraula-nav-header__option-mr">
 
           <UncontrolledDropdown className="c-sidebar__user-dropdown">

@@ -6,10 +6,10 @@ import { maxDocxFreePlan } from 'helpers/config';
 
 const ExportDocumentButton = ({
   documentId, color, text, documentName, documentTotalQuestions, styleCustomize, isLink = false,
-  showAlertModal, showExportDocumentModalProps, quantityDocxDownloaded, showAlertModalFreePlan,
+  showAlertModal, showExportDocumentModalProps, quantityDocxDownloaded, showAlertModalFreePlan, isPremium,
 }) => {
   const handleClick = () => {
-    if (quantityDocxDownloaded === maxDocxFreePlan) {
+    if (quantityDocxDownloaded === maxDocxFreePlan && !isPremium) {
       showAlertModalFreePlan();
       return;
     }

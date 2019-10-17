@@ -6,6 +6,7 @@ import { maxDocxFreePlan } from 'helpers/config';
 const mapStateToProps = state => ({
   isDownloadingDocument: state.document.isDownloadingDocument,
   quantityDocxDownloaded: state.document.numberDocxDownloaded ? state.document.numberDocxDownloaded.count : 0,
+  isPremium: state.session.session && state.session.session.user ? state.session.session.user.subscription : null,
 });
 
 const mapDispatchToProps = (dispatch) => {
