@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col, Container,
+  Navbar, NavItem, Collapse, NavbarToggler, Nav, Button, Row, Col, Container, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
 import { Link, NavLink } from 'react-router-dom';
 import logoMasterAula from 'assets/img/home/masteraula-azulverde-300x60.png';
@@ -34,18 +34,18 @@ const Menu = (props) => {
 
   const loggedOptions = (
     <Nav className="ml-auto hidden-xs align-items-center" navbar>
-      <NavItem>
+      <NavItem className="masteraula-nav-header__option-mr">
         <span className="masteraula-nav-header__number-docx">
-          { /* <span className="masteraula-nav-header__number-docx-freeplan">Gratuito:</span> */ }
+          <span className="masteraula-nav-header__number-docx-freeplan">Gratuito:</span>
           {' '}
           <span className="masteraula-nav-header__number-docx-available">2</span>
           {'/'}
           <span className="masteraula-nav-header__number-docx-total">3</span>
           {' '}
-          docx
+          <span className="masteraula-nav-header__number-docx-icon"><FontAwesomeIcon icon="file-word" /></span>
         </span>
       </NavItem>
-      <NavItem>
+      <NavItem className="masteraula-nav-header__option-mr">
         <Link className="" to="/nossos-planos">
           <Button color="info" className="masteraula-nav-header__btn-upgrade">
             <FontAwesomeIcon
@@ -56,26 +56,48 @@ const Menu = (props) => {
           </Button>
         </Link>
       </NavItem>
-      <NavItem>
-        <Link to="/user-profile" className="masteraula-nav-header__link-myprofile">
-          <div className="masteraula-nav-header__user-avatar">
-            { user && user.profile_pic
-              ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
-              : <img src={userPhoto} alt="foto-usuario" />
+      <NavItem className="masteraula-nav-header__option-mr">
+
+        <UncontrolledDropdown className="c-sidebar__user-dropdown">
+          <DropdownToggle caret size="sm" className="c-sidebar__user-dropdown-toggle masteraula-nav-header__user-toggle">
+            <div className="masteraula-nav-header__user-avatar" title="Meu perfil">
+              { user && user.profile_pic
+                ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
+                : <img src={userPhoto} alt="foto-usuario" />
             }
-          </div>
-          {' '}
-          <span className="masteraula-nav-header__icon-option" title={user ? getUserName(user.name) : ''}>{user ? getUserName(user.name) : ''}</span>
-        </Link>
-      </NavItem>
-      <NavItem>
-        <Link onClick={(e) => { e.preventDefault(); logout(); }} to="/">
-          <FontAwesomeIcon
-            icon="sign-out-alt"
-          />
-          {' '}
-          <span className="masteraula-nav-header__icon-option" title="Sair">Sair</span>
-        </Link>
+            </div>
+            <span className="masteraula-nav-header__icon-option masteraula-nav-header__user-name" title={user ? getUserName(user.name) : ''}>
+              {user ? getUserName(user.name) : ''}
+            </span>
+
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem
+              className="c-sidebar__user-dropdown-item"
+              to="/user-profile"
+              tag={Link}
+            >
+              <span>
+                <FontAwesomeIcon icon="user" />
+                {' '}
+                Meu Perfil
+              </span>
+            </DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem
+              className="c-sidebar__user-dropdown-item"
+              onClick={(e) => { e.preventDefault(); logout(); }}
+              to="/"
+              tag={Link}
+            >
+              <span>
+                <FontAwesomeIcon icon="sign-out-alt" />
+                {' '}
+                        Sair
+              </span>
+            </DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
       </NavItem>
     </Nav>
   );
