@@ -85,6 +85,29 @@ export const ADDQUESTION_SELECTED_DOCUMENT = 'ADDQUESTION_SELECTED_DOCUMENT';
 export const ADDQUESTION_SELECTED_DOCUMENT_SUCCESS = 'ADDQUESTION_SELECTED_DOCUMENT_SUCCESS';
 export const ADDQUESTION_SELECTED_DOCUMENT_FAILURE = 'ADDQUESTION_SELECTED_DOCUMENT_FAILURE';
 
+// Get docx's quantity available
+export const GET_NUMBER_DOCX_DOWNLOADED = 'GET_NUMBER_DOCX_DOWNLOADED';
+export const GET_NUMBER_DOCX_DOWNLOADED_SUCCESS = 'GET_NUMBER_DOCX_DOWNLOADED_SUCCESS';
+export const GET_NUMBER_DOCX_DOWNLOADED_FAILURE = 'GET_NUMBER_DOCX_DOWNLOADED_FAILURE';
+
+
+export const getNumberDocxDownloaded = () => {
+  function requestNumberDocxDownloaded() { return { type: GET_NUMBER_DOCX_DOWNLOADED }; }
+  function fetchNumberDocxDownloadedSuccess(numberDocxDownloaded) { return { type: GET_NUMBER_DOCX_DOWNLOADED_SUCCESS, numberDocxDownloaded }; }
+  function fetchNumberDocxDownloadedFailure(error) { return { type: GET_NUMBER_DOCX_DOWNLOADED_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(requestNumberDocxDownloaded());
+    return documentService.getNumberDocxDownloaded().then(
+      (numberDocxDownloaded) => {
+        dispatch(fetchNumberDocxDownloadedSuccess(numberDocxDownloaded));
+      }, (error) => {
+        dispatch(fetchNumberDocxDownloadedFailure(error));
+      },
+    );
+  };
+};
+
+
 export const fetchDocument = (id) => {
   function requestDocument() { return { type: FETCH_DOCUMENT }; }
   function fetchDocumentSuccess(activeDocument) { return { type: FETCH_DOCUMENT_SUCCESS, activeDocument }; }
@@ -345,6 +368,7 @@ export const downloadDocument = (props) => {
       .then((blob) => {
         FileSaver.saveAs(blob, `${props.documentName}.docx`);
         dispatch(downloadSelectedDocumentSuccess());
+        dispatch(getNumberDocxDownloaded());
       },
       (error) => {
         dispatch(downloadSelectedDocumentFailure(error));

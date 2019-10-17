@@ -12,6 +12,7 @@ import {
   DELETE_DOCUMENT, DELETE_DOCUMENT_SUCCESS, DELETE_DOCUMENT_FAILURE,
   DOWNLOAD_DOCUMENT, DOWNLOAD_DOCUMENT_SUCCESS, DOWNLOAD_DOCUMENT_FAILURE,
   COPY_DOCUMENT, COPY_DOCUMENT_FAILURE, COPY_DOCUMENT_SUCCESS,
+  GET_NUMBER_DOCX_DOWNLOADED, GET_NUMBER_DOCX_DOWNLOADED_SUCCESS, GET_NUMBER_DOCX_DOWNLOADED_FAILURE,
 
 } from 'actions/documentAction';
 import { toast } from 'react-toastify';
@@ -317,6 +318,24 @@ export const document = (state = initialState, action) => {
         error: action.error,
       });
     }
+    case GET_NUMBER_DOCX_DOWNLOADED: {
+      return Object.assign({}, state, {
+        isFetchingNumberDocx: true,
+      });
+    }
+    case GET_NUMBER_DOCX_DOWNLOADED_SUCCESS: {
+      return Object.assign({}, state, {
+        isFetchingNumberDocx: false,
+        numberDocxDownloaded: action.numberDocxDownloaded,
+      });
+    }
+    case GET_NUMBER_DOCX_DOWNLOADED_FAILURE: {
+      return Object.assign({}, state, {
+        isFetchingNumberDocx: false,
+        error: action.error,
+      });
+    }
+
     default:
       return state;
   }

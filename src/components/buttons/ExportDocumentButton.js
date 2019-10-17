@@ -2,12 +2,18 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { maxDocxFreePlan } from 'helpers/config';
 
 const ExportDocumentButton = ({
   documentId, color, text, documentName, documentTotalQuestions, styleCustomize, isLink = false,
-  showAlertModal, showExportDocumentModalProps,
+  showAlertModal, showExportDocumentModalProps, quantityDocxDownloaded, showAlertModalFreePlan, isPremium,
 }) => {
   const handleClick = () => {
+    if (quantityDocxDownloaded === maxDocxFreePlan && !isPremium) {
+      showAlertModalFreePlan();
+      return;
+    }
+
     if (documentTotalQuestions > 0) {
       showExportDocumentModalProps(documentId, documentName);
     } else {

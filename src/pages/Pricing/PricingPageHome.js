@@ -1,53 +1,20 @@
 import React from 'react';
 import {
-  Row, Col, Button,
+  Row, Col,
 } from 'reactstrap';
-import HomeUserNotLoggedPage from 'pages/Home/HomeUserNotLoggedPage';
-import { maxDocxFreePlan } from 'helpers/config';
+import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 
-const PricingPage = ({ showRegisterModal }) => {
-  const handleOpenRegisterModal = () => {
-    // open modal
-    showRegisterModal();
-  };
+const PricingPageHome = () => {
 
   return (
-    <HomeUserNotLoggedPage>
+    <HomeUserPage>
       <Row className="c-pricing-page__section">
         <Col sm="12" className="text-center c-pricing-page__section-info">
           <h2><strong>Conheça nossos planos</strong></h2>
           <p className="c-pricing-page__detail-text">Venha fazer parte de nossa comunidade de educadores de todo Brasil.</p>
         </Col>
       </Row>
-      <Row className="row-eq-height">
-        <Col md="4">
-          <div className="c-pricing-page__item">
-            <div className="c-pricing-page__item-top c-pricing-page__item--1">
-              <h2>
-                  Professor
-                <br />
-                  GRATUITO
-              </h2>
-              <p className="c-pricing-page__item-description">Para facilitar seu cotidiano escolar!</p>
-              <p className="c-pricing-page__item-price"> R$0 </p>
-              <Button className="c-pricing-page__start-button" size="lg" onClick={handleOpenRegisterModal}>Comece já!</Button>
-            </div>
-            <div className="c-pricing-page__item-bottom">
-              <ul className="c-pricing-page__item-details">
-                <li>
-                  <span>
-                    Download de até
-                    {' '}
-                    {maxDocxFreePlan}
-                    {' '}
-                    provas mensais
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </Col>
-
+      <Row className="row-eq-height justify-content-center">
         <Col md="4">
           <div className="c-pricing-page__item">
             <div className="c-pricing-page__item--2  c-pricing-page__item--full-borders">
@@ -56,9 +23,8 @@ const PricingPage = ({ showRegisterModal }) => {
                 <br />
                   PREMIUM
               </h2>
-              <p className="c-pricing-page__item-description">
-                Para não se preocupar durante 1 ANO. Acesso a todas disciplinas e download ilimitado.
-              </p>
+              <p className="c-pricing-page__item-description">Para não se preocupar durante 1 ANO.</p>
+              <p className="c-pricing-page__item-description">Acesso a todas disciplinas e download ilimitado.</p>
               <p className="c-pricing-page__item-price"> R$180,00 </p>
               <a
                 href="https://pag.ae/7UGCBoG1a/button"
@@ -126,9 +92,9 @@ const PricingPage = ({ showRegisterModal }) => {
           </p>
         </Col>
       </Row>
-    </HomeUserNotLoggedPage>
+    </HomeUserPage>
 
   );
 };
 
-export default PricingPage;
+export default PricingPageHome;

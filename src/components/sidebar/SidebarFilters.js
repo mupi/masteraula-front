@@ -13,10 +13,13 @@ const filters = {
 
 class SidebarFilters extends Component {
   componentDidMount() {
-    this.props.listDisciplineFilters();
-    this.props.listTeachingLevelFilters();
-    this.props.listSourceFilters();
-    this.props.listYearFilters();
+    const {
+      listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, listYearFilters,
+    } = this.props;
+    listDisciplineFilters();
+    listTeachingLevelFilters();
+    listSourceFilters();
+    listYearFilters();
   }
 
   render() {

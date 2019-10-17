@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { logout } from 'actions/loginAction';
 import { toggleMenu, openSidebar } from 'actions/menuAction';
 import { showModal, hideModal } from 'actions/modalAction';
+import { getNumberDocxDownloaded } from 'actions/documentAction';
 
 import Menu from 'components/menu/Menu';
 
@@ -13,6 +14,7 @@ const mapStateToProps = state => ({
   isLoggedIn: state.session.session,
   activeDocument: state.document.activeDocument,
   user: state.session.session ? state.session.session.user : null,
+  quantityDocxDownloaded: state.document.numberDocxDownloaded ? state.document.numberDocxDownloaded.count : 0,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -38,6 +40,7 @@ const mapDispatchToProps = (dispatch) => {
 
     showRegisterModal: () => dispatch(showModal(registerModalProps)),
     showLoginModal: () => dispatch(showModal(loginModalProps)),
+    getNumberDocxDownloaded: () => dispatch(getNumberDocxDownloaded()),
   };
 };
 

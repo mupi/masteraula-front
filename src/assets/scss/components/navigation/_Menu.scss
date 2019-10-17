@@ -95,6 +95,14 @@ html body .masteraula-nav-header__user {
       margin-right: 5px;
     }
   }
+
+  &-toggle{
+    color: $color-ma-blue !important;
+  }
+
+  &-name{
+    color: $color-ma-blue;
+  }
   @include for-tablet-landscape-up {
       margin-left: 280px;
       //box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
@@ -225,6 +233,10 @@ html body .masteraula-nav-header__user {
     letter-spacing: 0.75px;
   }
 
+  &__option-mr{
+    margin-right: 0px !important;
+  }
+
   &__link-myprofile{
     border: none;
     padding: 7px !important;
@@ -234,10 +246,39 @@ html body .masteraula-nav-header__user {
   }
 
   &__icon-option{
+  }
+
+  &__number-docx{
+    font-size: 12px;
+    color: $color-ma-red;
+    padding: 10px;
+  }
+
+  &__number-docx-freeplan{
     @include for-desktop-bottom-1160{
       display:none;
     }
   }
+
+  &__number-docx-available{
+
+  }
+
+  &__number-docx-total{
+
+  }
+
+  &__number-docx-icon{
+    color: $color-ma-lightgray;
+    font-size: 18px;
+  }
+
+  &__btn-upgrade{
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+
 }
 
 

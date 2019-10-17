@@ -18,6 +18,7 @@ import { Swipeable } from 'react-touch';
 import { history } from 'helpers';
 
 import CustomScroll from 'react-custom-scroll';
+import { maxDocxFreePlan } from 'helpers/config';
 
 
 const redirectURL = (e, openSidebar, isOpenSidebar, url) => {
@@ -48,6 +49,7 @@ const SidebarMobile = ({
   showFilters,
   showFiltersForObjectBase,
   user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal,
+  quantityDocxDownloaded,
   setQuestionIdToNewDocument,
 }) => {
   const openCreateDocumentModal = () => {
@@ -77,12 +79,38 @@ const SidebarMobile = ({
                     ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
                     : <img src={userPhoto} alt="foto-usuario" />
                   }
+                  {user && !user.subscription ? (
+                    <span className="c-sidebar__number-docx">
+                      <span>Gratuito:</span>
+                      <span className="masteraula-nav-header__number-docx-available">{quantityDocxDownloaded}</span>
+                      {'/'}
+                      <span className="masteraula-nav-header__number-docx-total">{maxDocxFreePlan}</span>
+                      {' '}
+                      <span className="masteraula-nav-header__number-docx-icon"><FontAwesomeIcon icon="file-word" /></span>
+                    </span>
+                  ) : ''}
                 </div>
                 <UncontrolledDropdown className="c-sidebar__user-dropdown">
                   <DropdownToggle caret size="sm" className="c-sidebar__user-dropdown-toggle">
                     {user.name}
                   </DropdownToggle>
                   <DropdownMenu>
+                    {user && !user.subscription ? (
+                      <DropdownItem
+                        className="c-sidebar__user-dropdown-item"
+                        onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/nossos-planos'); }}
+                      >
+                        <span className="masteraula-nav-header__btn-upgrade c-sidebar__user-dropdown-item--upgrade">
+                          <FontAwesomeIcon
+                            icon="crown"
+                            className="btn__icon"
+                          />
+                          {'Premium'}
+                        </span>
+                      </DropdownItem>
+                    ) : ''}
+
+                    {!user.subscription ? <DropdownItem divider /> : ''}
                     <DropdownItem
                       className="c-sidebar__user-dropdown-item"
                       onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/user-profile'); }}
@@ -309,7 +337,6 @@ class Sidebar extends React.PureComponent {
     // const isMobile = width <= 989;
 
     const responsiveMode = window.matchMedia('(max-width: 989px)');
-
     if (responsiveMode.matches) {
       return (
         <SidebarMobile {...this.props} />
