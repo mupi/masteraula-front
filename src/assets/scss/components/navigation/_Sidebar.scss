@@ -299,10 +299,10 @@ img.logo-in-menu.no-login {
         text-align: left;
         padding-left: 15px !important;
         background-image:  url(../img/home/sidebar-background-2.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
- //   background-color: #EEE;
-    background-size: 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+            //background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4) ), url(../img/home/bg_callaction.png) top left 100% repeat fixed;
+        background-size: 100%;
     }
  
     &__user-avatar{
@@ -353,6 +353,13 @@ img.logo-in-menu.no-login {
                 color: $color-ma-black-dropdown;
             }
         }
+
+        &--upgrade{
+            background: $color-ma-info;
+            color: $color-ma-white;
+            padding: 5px;
+            border-radius:5px;
+        }
     }
  
     &__link-my-profile{
@@ -364,7 +371,15 @@ img.logo-in-menu.no-login {
         }
     }
  
-    
+    /*free plan docx*/
+    &__number-docx{
+        font-size:12px;
+        color: $color-ma-red;
+        background: #ffffffcf;
+        padding:5px;
+        border-radius: 5px;
+        margin-left: 5px;
+    }
 }
  
 /*list of options in sidebar*/

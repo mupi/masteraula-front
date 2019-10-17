@@ -77,12 +77,33 @@ const SidebarMobile = ({
                     ? <img src={user.profile_pic} alt="foto-usuario" id="profile_pic" />
                     : <img src={userPhoto} alt="foto-usuario" />
                   }
+                  <span className="c-sidebar__number-docx">
+                    <span>Gratuito:</span>
+                    <span className="masteraula-nav-header__number-docx-available">2</span>
+                    {'/'}
+                    <span className="masteraula-nav-header__number-docx-total">3</span>
+                    {' '}
+                    <span className="masteraula-nav-header__number-docx-icon"><FontAwesomeIcon icon="file-word" /></span>
+                  </span>
                 </div>
                 <UncontrolledDropdown className="c-sidebar__user-dropdown">
                   <DropdownToggle caret size="sm" className="c-sidebar__user-dropdown-toggle">
                     {user.name}
                   </DropdownToggle>
                   <DropdownMenu>
+                    <DropdownItem
+                      className="c-sidebar__user-dropdown-item"
+                      onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/nossos-planos'); }}
+                    >
+                      <span className="masteraula-nav-header__btn-upgrade c-sidebar__user-dropdown-item--upgrade">
+                        <FontAwesomeIcon
+                          icon="crown"
+                          className="btn__icon"
+                        />
+                        {'Premium'}
+                      </span>
+                    </DropdownItem>
+                    <DropdownItem divider />
                     <DropdownItem
                       className="c-sidebar__user-dropdown-item"
                       onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/user-profile'); }}

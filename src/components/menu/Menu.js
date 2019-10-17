@@ -93,7 +93,7 @@ const Menu = (props) => {
               <span>
                 <FontAwesomeIcon icon="sign-out-alt" />
                 {' '}
-                        Sair
+                Sair
               </span>
             </DropdownItem>
           </DropdownMenu>
