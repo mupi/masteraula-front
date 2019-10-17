@@ -140,8 +140,8 @@ export const document = (state = initialState, action) => {
         myLastDocumentsList: null,
         isFetchingMyLastDocuments: true,
         error: null,
-      //  orderField: action.orderField,
-      //  order: action.order,
+        //  orderField: action.orderField,
+        //  order: action.order,
       });
     case LIST_MY_LAST_DOCUMENTS_SUCCESS:
       return Object.assign({}, state, {
@@ -301,11 +301,13 @@ export const document = (state = initialState, action) => {
       toast.success('Cópia realizada com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeDocument: { ...action.activeDocument },
-        isDuplicated: true,
-        myDocumentsList: {
+        myDocumentsList: state.myDocumentsList ? {
           ...state.myDocumentsList,
           results: [...state.myDocumentsList.results, action.activeDocument],
           count: state.myDocumentsList.count + 1,
+        } : {
+          results: [action.activeDocument],
+          count: 1,
         },
       });
     }

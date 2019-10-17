@@ -18,7 +18,6 @@ const mapStateToProps = state => ({
   isFetchingPreviewDocument: state.document.isFetchingPreviewDocument,
   error: state.document.error,
   isDeleted: state.document.isDeleted,
-  isDuplicated: state.document.isDuplicated,
   orderField: state.document.orderField,
   order: state.document.order,
 });

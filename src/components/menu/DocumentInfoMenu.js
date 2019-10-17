@@ -12,10 +12,9 @@ import { first5Elements } from 'helpers/document';
 
 class DocumentInfoMenu extends React.Component {
   componentDidMount() {
-    const { listMyLastDocuments, listMyDocuments } = this.props;
+    const { listMyLastDocuments } = this.props;
 
     listMyLastDocuments(1, 'date', 'desc');
-    listMyDocuments(1, 'date', 'desc');
   }
 
   switchActiveDocument(document) {
