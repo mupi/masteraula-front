@@ -1,7 +1,7 @@
 import React from 'react';
 
 const QuestionAuthor = ({ author, styleTag }) => {
-  const name = author ? author.name : 'Anônimo';
+  const name = author || 'Anônimo';
 
   return (
     <span className={styleTag}>

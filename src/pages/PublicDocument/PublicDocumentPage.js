@@ -12,72 +12,65 @@ import PublicDocumentPageNotLogged from 'components/document/PublicDocumentPageN
 
 class PublicDocumentPage extends Component {
   componentDidMount() {
-    /* test : 1042 */
     const { match, fetchPublicDocument } = this.props;
     fetchPublicDocument(match.params.id);
   }
-
 
   render() {
     const {
       isLoggedIn, isFetchingPublicDocument, errorFetchingPublicDocument,
     } = this.props;
 
+    if (isLoggedIn) {
+      const innerPage = () => {
+        if (isFetchingPublicDocument) {
+          return (
+            <Alert className="alert--warning" color="warning">
+              Carregando ...
+            </Alert>
+          );
+        }
+        if (errorFetchingPublicDocument) {
+          return (
+            <Alert color="danger">
+              A lista de questões não existe ou seu usuário não tem acesso permitido
+            </Alert>
+          );
+        }
+        return <PublicDocumentPageLogged {...this.props} />;
+      };
 
-    if (isFetchingPublicDocument && isLoggedIn) {
       return (
         <HomeUserPage>
-          <Alert className="alert--warning" color="warning">
-              Carregando ...
-          </Alert>
+          {innerPage()}
         </HomeUserPage>
       );
     }
 
-    if (isFetchingPublicDocument && !isLoggedIn) {
-      return (
-        <HomeUserNotLoggedPage>
+    const innerPage = () => {
+      if (isFetchingPublicDocument) {
+        return (
           <div className="c-public-document__section">
             <Alert className="alert--warning" color="warning">
               Carregando ...
             </Alert>
           </div>
-        </HomeUserNotLoggedPage>
-      );
-    }
-
-    if (errorFetchingPublicDocument && isLoggedIn) {
-      return (
-        <HomeUserPage>
-          <Alert color="danger">
-            A lista de questões não existe ou seu usuário não tem acesso permitido
-          </Alert>
-        </HomeUserPage>
-      );
-    }
-
-    if (errorFetchingPublicDocument && !isLoggedIn) {
-      return (
-        <HomeUserNotLoggedPage>
+        );
+      }
+      if (errorFetchingPublicDocument) {
+        return (
           <div className="c-public-document__section">
             <Alert color="danger">
               A lista de questões não existe ou seu usuário não tem acesso permitido
             </Alert>
           </div>
-        </HomeUserNotLoggedPage>
-      );
-    }
-
-    if (isLoggedIn) {
-      return (
-        <HomeUserPage>
-          <PublicDocumentPageLogged {...this.props} />
-        </HomeUserPage>
-      );
-    }
+        );
+      }
+      return <PublicDocumentPageNotLogged {...this.props} />;
+    };
     return (
       <HomeUserNotLoggedPage>
-        <PublicDocumentPageNotLogged {...this.props} />
+        {innerPage()}
       </HomeUserNotLoggedPage>
     );
   }

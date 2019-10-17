@@ -6,13 +6,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { first5Elements } from 'helpers/document';
 
-class CreateDocumentMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.closeModal = this.closeModal.bind(this);
-    this.openCreateDocumentModal = this.openCreateDocumentModal.bind(this);
-  }
-
+class CreateDocumentMenu extends React.PureComponent {
   componentDidMount() {
     const {
       listMyLastDocuments,
@@ -21,27 +15,18 @@ class CreateDocumentMenu extends React.Component {
     listMyLastDocuments(1, 'date', 'desc');
   }
 
+  openCreateDocumentModal = () => {
+    // open modal
+    const {
+      showCreateDocumentModal, setQuestionIdToNewDocument,
+    } = this.props;
+    setQuestionIdToNewDocument();
+    showCreateDocumentModal();
+  }
+
   editDocument(document) {
     const { switchActiveDocument } = this.props;
     switchActiveDocument(document);
-  }
-
-  closeModal() {
-    const { hideModal } = this.props;
-    hideModal();
-  }
-
-  openCreateDocumentModal() {
-    // open modal
-    const {
-      showModal, setQuestionIdToNewDocument,
-    } = this.props;
-    setQuestionIdToNewDocument();
-
-    showModal({
-      open: true,
-      closeModal: this.closeModal,
-    }, 'createDocument');
   }
 
   render() {
@@ -57,7 +42,7 @@ class CreateDocumentMenu extends React.Component {
           </small>
         </div>
         <div className="menu-top__document-l-buttons">
-          <Button className="btn-margin-right menu-top__document-button" onClick={() => { this.openCreateDocumentModal(); }}>
+          <Button className="btn-margin-right menu-top__document-button" onClick={this.openCreateDocumentModal}>
             <FontAwesomeIcon
               className="btn__icon"
               icon="file"

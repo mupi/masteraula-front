@@ -45,17 +45,8 @@ const renderField = ({
 
 const RegisterForm = (props) => {
   const {
-    handleSubmit, error, submitSucceeded, responseFacebook, responseGoogle, closeModal, showLoginModal, submitting,
+    handleSubmit, error, submitSucceeded, responseFacebook, responseGoogle, showLoginModal, submitting,
   } = props;
-
-  const handleOpenLoginModal = () => {
-    closeModal();
-    // open modal
-    showLoginModal({
-      open: true,
-      closeModal,
-    }, 'login2');
-  };
 
   return (
     <div className="row justify-content-center">
@@ -172,7 +163,7 @@ const RegisterForm = (props) => {
               </FormGroup>
               <FormGroup className="c-login__link-options">
                 <span>Já tem uma conta?</span>
-                <Button color="" className="btn btn-link c-login__link-register" onClick={handleOpenLoginModal}>
+                <Button color="" className="btn btn-link c-login__link-register" onClick={showLoginModal}>
                   Fazer Login
                 </Button>
               </FormGroup>
@@ -216,15 +207,22 @@ const mapStateToProps = state => ({
   modal: state.register.modal,
 });
 
-const mapDispatchToProps = dispatch => ({
-  responseGoogle: response => dispatch(registerGoogle(response)),
-  responseFacebook: response => dispatch(registerFacebook(response)),
-  // new way to handle modals
-  hideModal: () => dispatch(hideModal()),
-  showLoginModal: (modalProps, modalType) => {
-    dispatch(showModal({ modalProps, modalType }));
-  },
-});
+const mapDispatchToProps = (dispatch) => {
+  const loginModalProps = {
+    modalProps: {
+      open: true,
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'login2',
+  };
+
+  return {
+    responseGoogle: response => dispatch(registerGoogle(response)),
+    responseFacebook: response => dispatch(registerFacebook(response)),
+    // new way to handle modals
+    showLoginModal: () => dispatch(showModal(loginModalProps)),
+  };
+};
 
 export default connect(
   mapStateToProps,

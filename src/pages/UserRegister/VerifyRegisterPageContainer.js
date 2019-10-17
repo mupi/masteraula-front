@@ -10,16 +10,21 @@ const mapStateToProps = state => ({
   modal: state.login.modal,
 });
 
-const mapDispatchToProps = dispatch => ({
-  verifyEmail: key => dispatch(verifyEmail(key)),
-  resetVerifyEmail: () => dispatch(() => ({ type: REGISTER_SUCCESS })),
-  // toggleModal: modal => dispatch(toggleModal(modal)),
-  // new way to handle modals
-  hideModal: () => dispatch(hideModal()),
-  showModal: (modalProps, modalType) => {
-    dispatch(showModal({ modalProps, modalType }));
-  },
-});
+const mapDispatchToProps = (dispatch) => {
+  const loginModalProps = {
+    modalProps: {
+      open: true,
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'login2',
+  };
+  return {
+    verifyEmail: key => dispatch(verifyEmail(key)),
+    resetVerifyEmail: () => dispatch(() => ({ type: REGISTER_SUCCESS })),
+    // new way to handle modals
+    showLoginModal: () => dispatch(showModal(loginModalProps)),
+  };
+};
 
 export default connect(
   mapStateToProps,

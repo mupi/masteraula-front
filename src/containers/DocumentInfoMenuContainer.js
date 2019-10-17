@@ -14,17 +14,33 @@ const mapStateToProps = state => ({
   myLastDocumentsList: state.document.myLastDocumentsList,
 });
 
-const mapDispatchToProps = dispatch => ({
-  listMyDocuments: (page, orderField, order) => dispatch(listMyDocuments(page, orderField, order)),
-  listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
-  switchActiveDocument: (doc, redirect) => dispatch(switchActiveDocument(doc, redirect)),
-  fetchPreviewDocument: props => dispatch(fetchPreviewDocument(props)),
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const documentModalProps = document => ({
+    modalProps: {
+      open: true,
+      document,
+      editDocument: () => {
+        dispatch(switchActiveDocument(document, true));
+        dispatch(hideModal());
+      },
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'document',
+  });
 
-  hideModal: () => dispatch(hideModal()),
-  showModal: (modalProps, modalType) => {
-    dispatch(showModal({ modalProps, modalType })); 
-  },
-});
+  return ({
+    listMyDocuments: (page, orderField, order) => dispatch(listMyDocuments(page, orderField, order)),
+    listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
+    switchActiveDocument: (doc, redirect) => dispatch(switchActiveDocument(doc, redirect)),
+    fetchPreviewDocument: props => dispatch(fetchPreviewDocument(props)),
+
+    hideModal: () => dispatch(hideModal()),
+    showDocumentModal: (id) => {
+      dispatch(fetchPreviewDocument(parseInt(id, 10)));
+      dispatch(showModal(documentModalProps(ownProps.previewDocument)));
+    },
+  });
+};
 
 const DocumentInfoMenuContainer = connect(
   mapStateToProps,

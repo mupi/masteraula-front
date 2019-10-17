@@ -20,6 +20,7 @@ import { requiredSelectValidator, minLength2TagsForEdit, minLength1Topics } from
 // import MAReactTags from 'components/tags/MAReactTag';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 import BackUsingHistory from 'components/question/BackUsingHistory';
+import { idUserAdmin } from 'helpers/config';
 
 const difficultyList = {
   difficulties: [
@@ -289,7 +290,12 @@ class QuestionEditPage extends Component {
       role, submitting,
     } = this.props;
 
-    const authorPK = activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
+    const { author, authorship } = activeQuestion;
+
+    const authorPK = activeQuestion.author ? activeQuestion.author.pk : null;
+    const authorshipValue = authorship || (author && author.name);
+    const authorName = author ? author.name : null;
+    const showAuthorship = ((authorPK !== idUserAdmin) || (authorshipValue !== authorName));
 
 
     const {
@@ -515,14 +521,17 @@ class QuestionEditPage extends Component {
                       <TagList list={activeQuestion.teaching_levels} styleTag="question-info  teaching-level" />
                     </Col>
                   </Row>
-                  <Row className="c-question__row-info">
-                    <Col className="info-label" sm="4" xs="4">
-                      Publicado por
-                    </Col>
-                    <Col sm="8" xs="8">
-                      <QuestionAuthor author={activeQuestion.author} styleTag="question-info author" />
-                    </Col>
-                  </Row>
+                  {showAuthorship ? (
+                    <Row className="c-question__row-info">
+                      <Col className="info-label" sm="4" xs="4">
+                      Autoria
+                      </Col>
+                      <Col sm="8" xs="8">
+                        <QuestionAuthor author={authorshipValue} styleTag="question-info author" />
+                      </Col>
+                    </Row>
+                  ) : ' '}
+
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
                       Tags
@@ -590,7 +599,12 @@ class QuestionEditPage extends Component {
               </Col>
             </Row>
           </div>
-          <Row className="c-questions__row-footer-options text-center">
+          <Row>
+            <Col className="text-center">
+              <small>Todo conteúdo é publicado pelo Masteraula</small>
+            </Col>
+          </Row>
+          <Row className="c-question__row-footer-options text-center">
             <Col>
               <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
                 <FontAwesomeIcon

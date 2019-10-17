@@ -11,49 +11,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { first5Elements } from 'helpers/document';
 
 class DocumentInfoMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.closeModal = this.closeModal.bind(this);
-    this.openDocumentModal = this.openDocumentModal.bind(this);
-    this.editDocument = this.editDocument.bind(this);
-    this.editDocumentFromPreview = this.editDocumentFromPreview.bind(this);
-  }
-
   componentDidMount() {
     const { listMyLastDocuments } = this.props;
 
     listMyLastDocuments(1, 'date', 'desc');
   }
 
-  editDocument(document) {
+  switchActiveDocument(document) {
     const { switchActiveDocument } = this.props;
     switchActiveDocument(document, false);
   }
 
-  closeModal() {
-    const { hideModal } = this.props;
-    hideModal();
-  }
-
-  openDocumentModal(id) {
-    // event.preventDefault();
-    const {
-      showModal, fetchPreviewDocument, previewDocument,
-    } = this.props;
-
-    fetchPreviewDocument(parseInt(id, 10));
-    showModal({
-      open: true,
-      document: previewDocument,
-      closeModal: this.closeModal,
-      editDocument: this.editDocumentFromPreview,
-    }, 'document');
-  }
-
-  editDocumentFromPreview(document) {
-    const { switchActiveDocument } = this.props;
-    switchActiveDocument(document, true);
-    this.closeModal();
+  showDocumentModal(id) {
+    const { showDocumentModal } = this.props;
+    showDocumentModal(id);
   }
 
   render() {
@@ -90,7 +61,7 @@ class DocumentInfoMenu extends React.Component {
                   Editar
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem className="o-doc-options__dropdown-item" onClick={() => this.openDocumentModal(documentId)}>
+                <DropdownItem className="o-doc-options__dropdown-item" onClick={() => this.showDocumentModal(documentId)}>
                   <FontAwesomeIcon icon="eye" />
                   {' '}
                   Visualizar
@@ -134,7 +105,7 @@ class DocumentInfoMenu extends React.Component {
               Editar
             </Button>
           </Link>
-          <Button className="btn-margin-right menu-top__document-button" onClick={() => this.openDocumentModal(documentId)}>
+          <Button className="btn-margin-right menu-top__document-button" onClick={() => this.showDocumentModal(documentId)}>
             <FontAwesomeIcon icon="eye" className="btn__icon" />
             Visualizar
           </Button>
@@ -156,7 +127,7 @@ class DocumentInfoMenu extends React.Component {
                 <DropdownItem
                   key={document.id}
                   className="menu-top__dropdown-item"
-                  onClick={() => this.editDocument(document)}
+                  onClick={() => this.switchActiveDocument(document)}
                 >
                   {document.name}
                 </DropdownItem>

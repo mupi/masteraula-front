@@ -17,24 +17,11 @@ const options = {
 };
 
 const PublicDocumentPageNotLogged = (props) => {
-  const {
-    activePublicDocument, hideModal, showModal, match,
-  } = props;
+  const { activePublicDocument, showLoginModal, match } = props;
   const name = activePublicDocument ? activePublicDocument.name : '';
 
-  const closeModal = () => {
-    hideModal();
-  };
-
   const handleOpenLoginModal = () => {
-    const { optionalMessage } = options;
-    // open modal
-    showModal({
-      open: true,
-      closeModal,
-      optionalMessage,
-      redirect: match.url,
-    }, 'login2');
+    showLoginModal(match.url);
   };
 
   return (
@@ -56,7 +43,6 @@ const PublicDocumentPageNotLogged = (props) => {
         activeDocument={activePublicDocument}
         {...props}
         options={options}
-        redirect={match.url}
       />
     </div>
   );

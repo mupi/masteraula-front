@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import RegisterForm from 'components/userregister/RegisterForm';
 import { connect } from 'react-redux';
 import { SubmissionError } from 'redux-form';
@@ -23,18 +22,10 @@ const Register2Modal = ({
       >
         Cadastre-se
       </h4>
-      <RegisterForm onSubmit={submit} closeModal={closeModal}/>
+      <RegisterForm onSubmit={submit} />
     </div>
   </div>
 );
-
-Register2Modal.propTypes = {
-  closeModal: PropTypes.func,
-};
-
-Register2Modal.defaultProps = {
-  closeModal: f => f,
-};
 
 const mapDispatchToProps = dispatch => ({
   submit: (values) => {
