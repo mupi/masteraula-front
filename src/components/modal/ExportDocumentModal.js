@@ -135,9 +135,7 @@ ConfirmExportModal.propTypes = {
 
 ConfirmExportModal.defaultProps = {
   closeModal: f => f,
-  downloadDocument: f => f,
   title: '',
-  modal: false,
 };
 
 const mapStateToProps = state => ({

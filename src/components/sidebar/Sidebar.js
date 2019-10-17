@@ -18,6 +18,7 @@ import { Swipeable } from 'react-touch';
 import { history } from 'helpers';
 
 import CustomScroll from 'react-custom-scroll';
+import { maxDocxFreePlan } from 'helpers/config';
 
 
 const redirectURL = (e, openSidebar, isOpenSidebar, url) => {
@@ -48,6 +49,7 @@ const SidebarMobile = ({
   showFilters,
   showFiltersForObjectBase,
   user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal,
+  quantityDocxDownloaded,
   setQuestionIdToNewDocument,
 }) => {
   const openCreateDocumentModal = () => {
@@ -79,9 +81,9 @@ const SidebarMobile = ({
                   }
                   <span className="c-sidebar__number-docx">
                     <span>Gratuito:</span>
-                    <span className="masteraula-nav-header__number-docx-available">2</span>
+                    <span className="masteraula-nav-header__number-docx-available">{quantityDocxDownloaded}</span>
                     {'/'}
-                    <span className="masteraula-nav-header__number-docx-total">3</span>
+                    <span className="masteraula-nav-header__number-docx-total">{maxDocxFreePlan}</span>
                     {' '}
                     <span className="masteraula-nav-header__number-docx-icon"><FontAwesomeIcon icon="file-word" /></span>
                   </span>

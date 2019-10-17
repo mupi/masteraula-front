@@ -313,6 +313,33 @@ function copyDocument(activeNewDocument) {
     });
 }
 
+
+function getNumberDocxDownloaded() {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  return fetch(`${apiUrl}/document_download/`, requestOptions)
+    .then(handleResponse)
+    .then((numberDocxDownloaded) => {
+      return numberDocxDownloaded;
+    });
+
+}
+
 const documentService = {
   fetchDocument,
   fetchPublicDocument,
@@ -326,6 +353,7 @@ const documentService = {
   deleteDocument,
   downloadDocument,
   copyDocument,
+  getNumberDocxDownloaded,
 };
 
 export default documentService;

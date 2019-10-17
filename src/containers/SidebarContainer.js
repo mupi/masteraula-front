@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
   activeDocument: state.document.activeDocument,
   isOpenSidebar: state.menu.isOpenSidebar,
   isFetchingQuestions: state.question.isFetching,
+  quantityDocxDownloaded: state.document.numberDocxDownloaded ? state.document.numberDocxDownloaded.count : 0,
 });
 
 const mapDispatchToProps = (dispatch) => {
