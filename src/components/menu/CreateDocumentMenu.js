@@ -9,11 +9,10 @@ import { first5Elements } from 'helpers/document';
 class CreateDocumentMenu extends React.PureComponent {
   componentDidMount() {
     const {
-      listMyLastDocuments, listMyDocuments,
+      listMyLastDocuments,
     } = this.props;
 
     listMyLastDocuments(1, 'date', 'desc');
-    listMyDocuments(1, 'date', 'desc');
   }
 
   openCreateDocumentModal = () => {
