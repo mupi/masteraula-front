@@ -20,8 +20,10 @@ const getUserName = (userName) => {
 
 class Menu extends Component {
   componentDidMount() {
-    const { getNumberDocxDownloaded } = this.props;
-    getNumberDocxDownloaded();
+    const { getNumberDocxDownloaded, isLoggedIn } = this.props;
+    if (isLoggedIn) {
+      getNumberDocxDownloaded();
+    }
   }
 
   render() {
