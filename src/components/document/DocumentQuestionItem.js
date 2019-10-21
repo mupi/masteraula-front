@@ -7,6 +7,7 @@ import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import { getTeachingLevel, getCleanExtractStatement } from 'helpers/question';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { idUserAdmin } from 'helpers/config';
 
 
 /* Document's item options available for Public Document
@@ -22,11 +23,18 @@ const DocumentQuestionItem = (props) => {
   const {
     question, activeDocument, removeSelectedQuestion, options, match, showLoginModal,
   } = props;
+  const { author, authorship } = question;
+
 
   const handleOpenLoginModal = () => {
     showLoginModal(match.url);
   };
   const extractStatement = getCleanExtractStatement(question.statement);
+
+  const authorshipValue = authorship || (author && author.name);
+  const authorPK = author ? author.pk : null;
+  const authorName = author ? author.name : null;
+  const showAuthorship = ((authorPK !== idUserAdmin) || (authorshipValue !== authorName));
 
   return (
     <div className="c-document__question">
@@ -55,11 +63,14 @@ const DocumentQuestionItem = (props) => {
             <p className="c-document__question-info-statement">
               { (extractStatement.length >= 350) ? ` ${extractStatement.substring(0, 350)}${' ...'}` : extractStatement }
             </p>
-            <p className="c-document__question-info-author">
-              por:
-              {' '}
-              {question.author.name}
-            </p>
+            {showAuthorship
+              ? (
+                <p className="c-document__question-info-author">
+                  por:
+                  {' '}
+                  {authorshipValue}
+                </p>
+              ) : ''}
           </Col>
           <Col sm="4" className="c-document__question-info">
             <Row>
