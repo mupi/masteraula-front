@@ -28,13 +28,12 @@ const PublicDocumentPageNotLogged = (props) => {
     <div className="c-document">
       <Row className="c-public-document__section c-document__main-buttons align-items-center">
         <Col sm="8" className="c-public-document__name-col">
-          <h6>Você está visualizando a lista pública:</h6>
-          <h4 className="c-public-document__name">{name}</h4>
+          <h3 className="c-public-document__name">{`Prova: ${name}`}</h3>
         </Col>
         <Col sm="4" className="c-public-document__name-col text-right">
           <Button className="btn-success btn btn-secondary" onClick={handleOpenLoginModal} size="lg">
             <FontAwesomeIcon icon="copy" className="btn__icon" />
-             Copiar lista
+             Copiar prova
           </Button>
         </Col>
       </Row>
