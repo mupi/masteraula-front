@@ -17,8 +17,9 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
   const { author, authorship } = question;
   const authorshipValue = authorship || (author && author.name);
   const authorPK = author ? author.pk : null;
-  const authorName = author ? author.name : null;
-  const showAuthorship = ((authorPK !== idUserAdmin) || (authorshipValue !== authorName));
+  const publisher = author ? author.name : null;
+  /* Só aparece para os usuários diferentes de MASTERAULA */
+  const showAuthorship = ((authorPK !== idUserAdmin) || (authorshipValue !== publisher));
 
   return (
     <div className="question-information">
@@ -31,9 +32,11 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
           </h4>
         </Col>
       </Row>
+
+      { question.source && (
       <Row className="c-question__row-info">
         <Col className="info-label" sm="4" xs="4">
-      Ano
+        Ano
         </Col>
         <Col sm="8" xs="8">
           <span className="question-info c-question__tag--purple">
@@ -41,6 +44,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
           </span>
         </Col>
       </Row>
+      )}
       { question.source && (
       <Row className="c-question__row-info">
         <Col className="info-label" sm="4" xs="4">
@@ -110,7 +114,15 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
         </Row>
       ) : ' '}
 
-      {showAuthorship ? (
+      <Row className="c-question__row-info">
+        <Col className="info-label" sm="4" xs="4">
+          Publicador
+        </Col>
+        <Col sm="8" xs="8">
+          <QuestionAuthor author={publisher} styleTag="question-info author" />
+        </Col>
+      </Row>
+      { showAuthorship && !question.source && (
         <Row className="c-question__row-info">
           <Col className="info-label" sm="4" xs="4">
           Autoria
@@ -119,7 +131,8 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
             <QuestionAuthor author={authorshipValue} styleTag="question-info author" />
           </Col>
         </Row>
-      ) : ' '}
+      )}
+
 
       <Row className="c-question__row-info hidden">
         <Col className="info-label" sm="4" xs="4">
@@ -127,11 +140,6 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
         </Col>
         <Col sm="8" xs="8">
           <StarRating onRate={rt => onRate(rt)} starsSelected={rating} />
-        </Col>
-      </Row>
-      <Row>
-        <Col className="text-center">
-          <small>Todo conteúdo é publicado pelo Masteraula</small>
         </Col>
       </Row>
       <Row>
