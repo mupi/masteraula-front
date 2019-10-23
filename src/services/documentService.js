@@ -258,7 +258,7 @@ function deleteDocument(idDocument) {
 }
 
 // Dowload a document docx file given its ID
-function downloadDocument(props, idDocument) {
+function downloadDocument(idDocument, answers = false, sources = false) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -274,14 +274,7 @@ function downloadDocument(props, idDocument) {
     return response.blob();
   };
 
-  const headerParameter = (props.headerId && props.headerId !== 'NaN' ? `&header=${props.headerId}` : '');
-
-  if (props.answer === 'with') {
-    return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=True${headerParameter}`, requestOptions)
-      .then(handleResponse);
-  }
-
-  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=False${headerParameter}`, requestOptions)
+  return fetch(`${apiUrl}/documents/${idDocument}/generate_list/?answers=${answers}&sources=${sources}`, requestOptions)
     .then(handleResponse);
 }
 
@@ -334,10 +327,7 @@ function getNumberDocxDownloaded() {
 
   return fetch(`${apiUrl}/document_download/`, requestOptions)
     .then(handleResponse)
-    .then((numberDocxDownloaded) => {
-      return numberDocxDownloaded;
-    });
-
+    .then(numberDocxDownloaded => numberDocxDownloaded);
 }
 
 const documentService = {

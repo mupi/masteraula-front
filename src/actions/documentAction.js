@@ -352,7 +352,9 @@ export const deleteDocument = (idDocument) => {
   };
 };
 
-export const downloadDocument = (props) => {
+export const downloadDocument = ({
+  documentId, answers, sources, documentName,
+}) => {
   const downloadSelectedDocument = () => ({ type: DOWNLOAD_DOCUMENT });
   const downloadSelectedDocumentSuccess = () => ({ type: DOWNLOAD_DOCUMENT_SUCCESS });
   const downloadSelectedDocumentFailure = error => ({ type: DOWNLOAD_DOCUMENT_FAILURE, error });
@@ -361,12 +363,12 @@ export const downloadDocument = (props) => {
     if (getState().document.isDownloadingDocument) {
       return 1;
     }
-    dispatch(downloadSelectedDocument(props));
+    dispatch(downloadSelectedDocument());
     dispatch(hideModal());
 
-    return documentService.downloadDocument(props, props.documentId)
+    return documentService.downloadDocument(documentId, answers, sources)
       .then((blob) => {
-        FileSaver.saveAs(blob, `${props.documentName}.docx`);
+        FileSaver.saveAs(blob, `${documentName}.docx`);
         dispatch(downloadSelectedDocumentSuccess());
         dispatch(getNumberDocxDownloaded());
       },
