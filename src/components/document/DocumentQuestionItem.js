@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Row, Col, Button,
+  Row, Col, Button, Badge,
 } from 'reactstrap';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
-import { getTeachingLevel, getCleanExtractStatement } from 'helpers/question';
+import { getCleanExtractStatement } from 'helpers/question';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { idUserAdmin } from 'helpers/config';
-
 
 /* Document's item options available for Public Document
 const options = {
@@ -18,59 +16,43 @@ const options = {
 };
 */
 
-
 const DocumentQuestionItem = (props) => {
   const {
     question, activeDocument, removeSelectedQuestion, options, match, showLoginModal,
   } = props;
-  const { author, authorship } = question;
-
 
   const handleOpenLoginModal = () => {
     showLoginModal(match.url);
   };
   const extractStatement = getCleanExtractStatement(question.statement);
 
-  const authorshipValue = authorship || (author && author.name);
-  const authorPK = author ? author.pk : null;
-  const authorName = author ? author.name : null;
-  const showAuthorship = ((authorPK !== idUserAdmin) || (authorshipValue !== authorName));
-
   return (
     <div className="c-document__question">
 
-      { question.statement && (
+      {question.statement && (
         <Row>
           <Col sm="8" className="c-document__question-image">
             <p className="c-document__question-info-title">
-              Questão N°
-              {' '}
-              {question.id}
-              {' '}
+              {`Questão N° ${question.id}`}
               {question.learning_objects && question.learning_objects.length > 0 ? (
                 <span className="c-document__question-number-learning-obj">
                   (
                   {' '}
                   <FontAwesomeIcon icon="image" />
-                  {' '}
-                  {question.learning_objects.length}
-                  {' '}
+                  {` ${question.learning_objects.length}`}
                   )
                 </span>
               ) : ''}
               :
             </p>
             <p className="c-document__question-info-statement">
-              { (extractStatement.length >= 350) ? ` ${extractStatement.substring(0, 350)}${' ...'}` : extractStatement }
+              {(extractStatement.length >= 350) ? ` ${extractStatement.substring(0, 350)} ...` : extractStatement}
             </p>
-            {showAuthorship
-              ? (
-                <p className="c-document__question-info-author">
-                  por:
-                  {' '}
-                  {authorshipValue}
-                </p>
-              ) : ''}
+            {(question.tags || question.all_topics) && (question.tags.length > 0 || question.all_topics.length > 0) ? (
+              <p className="c-document__question-info-row-topics">
+                {question.tags.concat(question.all_topics).map(tag => <Badge color="success" pill>{tag.name.trim()}</Badge>)}
+              </p>
+            ) : ''}
           </Col>
           <Col sm="4" className="c-document__question-info">
             <Row>
@@ -80,29 +62,31 @@ const DocumentQuestionItem = (props) => {
                 </p>
               </Col>
               <Col sm="12">
-                { question.source && (
-                <p className="c-document__question-info-row">
-                  Vestibular:
-                  {' '}
-                  <span className="c-document__question-info-detail">{ question.source}</span>
-                </p>
-                )
+                {question.authorship
+                  ? (
+                    <p className="c-document__question-info-row">
+                      {'Autoria: '}
+                      <span className="c-document__question-info-detail">{question.authorship}</span>
+                    </p>
+                  ) : (
+                    <span>
+                      {question.source && (
+                      <p className="c-document__question-info-row">
+                        {'Vestibular: '}
+                        <span className="c-document__question-info-detail">{question.source}</span>
+                      </p>
+                      )}
+                      {question.year && (
+                      <p className="c-document__question-info-row">
+                        {'Ano: '}
+                        <span className="c-document__question-info-detail">{question.year}</span>
+                      </p>
+                      )}
+                    </span>
+                  )
                 }
                 <p className="c-document__question-info-row">
-                  Ano:
-                  {' '}
-                  <span className="c-document__question-info-detail">{ question.year}</span>
-                </p>
-                <p className="c-document__question-info-row">
-                  Dificuldade:
-                  {' '}
-                  <span className="c-document__question-info-detail">
-                    {getTeachingLevel(question.difficulty)}
-                  </span>
-                </p>
-                <p className="c-document__question-info-row">
-                  Níveis de Ensino:
-                  {' '}
+                  {'Níveis de Ensino: '}
                   {question.teaching_levels && question.teaching_levels.map(level => (
                     <span key={level.id} className="c-document__question-info-detail">
                       {level.name}
@@ -110,22 +94,14 @@ const DocumentQuestionItem = (props) => {
                   ))}
                 </p>
                 <p className="c-document__question-info-row">
-                  Disciplinas:
-                  {' '}
+                  {'Disciplinas: '}
                   <i>{question.disciplines && question.disciplines.map(discipline => (discipline.name.trim())).join(', ')}</i>
                 </p>
-                {(options.showTags) && (question.tags || question.all_topics) && (question.tags.length > 0 || question.all_topics.length > 0) ? (
-                  <p className="c-document__question-info-row">
-                  Tags:
-                    {' '}
-                    <i>{question.tags.concat(question.all_topics).map(tag => (tag.name.trim())).join(', ')}</i>
-                  </p>
-                ) : ''}
               </Col>
             </Row>
             <Row>
               <div className="c-document__question-view-more col-md-12">
-                { (options.removeOption) ? (
+                {(options.removeOption) ? (
                   <RemoveQuestionButton
                     questionId={question.id}
                     activeDocumentId={activeDocument.id}
@@ -134,8 +110,8 @@ const DocumentQuestionItem = (props) => {
                     label={<FontAwesomeIcon icon="trash-alt" />}
                     {...props}
                   />
-                ) : ' ' }
-                { (options.showViewButton && !options.showLoginModal) ? (
+                ) : ' '}
+                {(options.showViewButton && !options.showLoginModal) ? (
                   <Link to={`/view-question/${question.id}`}>
                     <Button>
                       <FontAwesomeIcon icon="search" />
@@ -145,8 +121,8 @@ const DocumentQuestionItem = (props) => {
                       </span>
                     </Button>
                   </Link>
-                ) : ' ' }
-                { (options.showViewButton && options.showLoginModal) ? (
+                ) : ' '}
+                {(options.showViewButton && options.showLoginModal) ? (
                   <Button onClick={handleOpenLoginModal}>
                     <FontAwesomeIcon icon="search" />
                     {' '}
@@ -154,7 +130,7 @@ const DocumentQuestionItem = (props) => {
                       Ver questão
                     </span>
                   </Button>
-                ) : ' ' }
+                ) : ' '}
               </div>
             </Row>
           </Col>
