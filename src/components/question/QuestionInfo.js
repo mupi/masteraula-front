@@ -131,11 +131,6 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
       </Row>
       <Row>
         <Col className="text-center">
-          <small>Todo conteúdo é publicado pelo Masteraula</small>
-        </Col>
-      </Row>
-      <Row>
-        <Col className="text-center">
           <p>Essa questão apresenta algum problema?</p>
           <a
             className="btn btn-danger c-question__btn-report-error"

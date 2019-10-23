@@ -599,11 +599,6 @@ class QuestionEditPage extends Component {
               </Col>
             </Row>
           </div>
-          <Row>
-            <Col className="text-center">
-              <small>Todo conteúdo é publicado pelo Masteraula</small>
-            </Col>
-          </Row>
           <Row className="c-question__row-footer-options text-center">
             <Col>
               <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
