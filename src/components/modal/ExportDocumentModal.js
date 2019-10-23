@@ -3,41 +3,18 @@ import PropTypes from 'prop-types';
 import {
   Button, Form, FormGroup, Label,
 } from 'reactstrap';
-import { Field, reduxForm, change } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import {
   listMyHeadersCombo,
 } from 'actions/headerAction';
 import { downloadDocument } from 'actions/documentAction';
 
-// const renderSelectField = ({
-//   input, label, meta: { touched, error }, children, optionDefault,
-// }) => (
-//   <div>
-//     <div>
-//       <select {...input} className="form-control">
-//         <option value={optionDefault}>
-//           {label}
-//         </option>
-//         {children}
-//       </select>
-//       {touched && error && (
-//         <span className="error-message-text">
-//           {error}
-//         </span>
-//       )}
-//     </div>
-//   </div>
-// );
-
-class ConfirmExportModal extends React.Component {
+class ConfirmExportModal extends React.PureComponent {
   render() {
     const {
-      closeModal, documentId, documentName, title, handleSubmit,
-      // myHeadersListCombo,
+      closeModal, documentName, title, handleSubmit,
     } = this.props;
-    this.props.dispatch(change('exportDocumentModal', 'documentId', documentId));
-    this.props.dispatch(change('exportDocumentModal', 'documentName', documentName));
 
     return (
       <div className="modal__content modal-content c-export-document">
@@ -54,36 +31,11 @@ class ConfirmExportModal extends React.Component {
         <div className="modal-body">
           <Form onSubmit={handleSubmit}>
             <p className="text-center">
-
-              Selecione as opções para exportar sua prova
-              {' '}
+              {'Selecione as opções para exportar sua prova '}
               <strong>{documentName}</strong>
             </p>
-            {/* <p className="c-export-document__option-name">
-              Selecione um cabeçalho
-            </p>
-            <FormGroup className="c-export-document__select">
-              <Field
-                name="headerDocument"
-                type="text"
-                component={renderSelectField}
-                className="form-control"
-                label="Sem cabeçalho"
-                optionDefault="NaN"
-              >
-                { myHeadersListCombo && myHeadersListCombo.map(header => (
-                  <option className="c-export-document__select-item" key={header.id} value={header.id}>
-                    {header.name}
-                  </option>
-                )) }
-              </Field>
-              <Link onClick={closeModal} to="/new-header" className="c-export-document__new-header">
-                Criar novo cabeçalho
-              </Link>
-            </FormGroup> */}
             <p className="c-export-document__option-name">
-
-            Com ou sem gabarito?
+              Com ou sem gabarito?
             </p>
             <FormGroup className="c-export-document__answers-section">
               <div>
@@ -92,10 +44,8 @@ class ConfirmExportModal extends React.Component {
                     name="answers"
                     component="input"
                     type="radio"
-                    value="without"
+                    value="false"
                   />
-                  {' '}
-
                   Sem gabarito
                 </Label>
                 <Label className="c-export-document__answers-label">
@@ -103,21 +53,42 @@ class ConfirmExportModal extends React.Component {
                     name="answers"
                     component="input"
                     type="radio"
-                    value="with"
+                    value="true"
                   />
-                  {' '}
-
                   Com gabarito
+                </Label>
+              </div>
+            </FormGroup>
+            <p className="c-export-document__option-name">
+              Com ou sem vestibular/ano?
+            </p>
+            <FormGroup className="c-export-document__answers-section">
+              <div>
+                <Label className="c-export-document__answers-label">
+                  <Field
+                    name="sources"
+                    component="input"
+                    type="radio"
+                    value="false"
+                  />
+                  Sem vestibular/ano
+                </Label>
+                <Label className="c-export-document__answers-label">
+                  <Field
+                    name="sources"
+                    component="input"
+                    type="radio"
+                    value="true"
+                  />
+                  Com vestibular/ano
                 </Label>
               </div>
             </FormGroup>
             <div className="modal-footer modal__footer">
               <Button className="btn--confirm" type="submit">
-
                 Exportar
               </Button>
               <Button color="secondary" onClick={closeModal}>
-
                 Cancelar
               </Button>
             </div>
@@ -139,23 +110,22 @@ ConfirmExportModal.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  myHeadersListCombo: state.header.myHeadersListCombo,
   modal: state.document.modal,
   initialValues: {
-    answers: 'without',
+    answers: 'false',
+    sources: 'true',
   },
   enableReinitialize: true,
 });
 
 const mapDispatchToProps = dispatch => ({
   listMyHeadersCombo: () => dispatch(listMyHeadersCombo()),
-  onSubmit: (values) => {
+  onSubmit: (values, _2, props) => {
     const exportOptions = {
-      headerId: values.headerDocument,
-      answer: values.answers,
-      documentId: values.documentId,
-      documentName: values.documentName,
-
+      answers: values.answers === 'true',
+      sources: values.sources === 'true',
+      documentId: props.documentId,
+      documentName: props.documentName,
     };
     return dispatch(downloadDocument(exportOptions));
   },
