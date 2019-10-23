@@ -294,8 +294,8 @@ class QuestionEditPage extends Component {
 
     const authorPK = activeQuestion.author ? activeQuestion.author.pk : null;
     const authorshipValue = authorship || (author && author.name);
-    const authorName = author ? author.name : null;
-    const showAuthorship = ((authorPK !== idUserAdmin) || (authorshipValue !== authorName));
+    const publisher = author ? author.name : null;
+    const showAuthorship = ((authorPK !== idUserAdmin) || (authorshipValue !== publisher));
 
 
     const {
@@ -483,6 +483,8 @@ class QuestionEditPage extends Component {
                       </h4>
                     </Col>
                   </Row>
+
+                  { activeQuestion.source && (
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
                     Ano
@@ -493,6 +495,7 @@ class QuestionEditPage extends Component {
                       </span>
                     </Col>
                   </Row>
+                  )}
                   { activeQuestion.source && (
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
@@ -521,7 +524,15 @@ class QuestionEditPage extends Component {
                       <TagList list={activeQuestion.teaching_levels} styleTag="question-info  teaching-level" />
                     </Col>
                   </Row>
-                  {showAuthorship ? (
+                  <Row className="c-question__row-info">
+                    <Col className="info-label" sm="4" xs="4">
+                      Publicador
+                    </Col>
+                    <Col sm="8" xs="8">
+                      <QuestionAuthor author={publisher} styleTag="question-info author" />
+                    </Col>
+                  </Row>
+                  {showAuthorship && !activeQuestion.source ? (
                     <Row className="c-question__row-info">
                       <Col className="info-label" sm="4" xs="4">
                       Autoria
