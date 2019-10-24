@@ -41,10 +41,12 @@ class MACreateDropdownList extends React.Component {
 
   render() {
     const { value, options } = this.state;
-    const { placeholder, input, valueField, textField, messages } = this.props;
+    const {
+      placeholder, input, valueField, textField, messages,
+    } = this.props;
 
     return (
-      <DropdownList
+      /* <DropdownList
         filter="contains"
         data={options}
         value={value}
@@ -52,7 +54,19 @@ class MACreateDropdownList extends React.Component {
         onCreate={name => this.handleCreate(name)}
         onChange={(value) => { this.setState({ value });input.onChange(value);}}
         autofocus
-       // onChange={input.onChange}
+        placeholder={placeholder}
+        valueField={valueField}
+        textField={textField}
+        messages={messages}
+      /> */
+      <DropdownList
+        filter="contains"
+        data={options}
+        value={input.value}
+        allowCreate="onFilter"
+        onCreate={name => this.handleCreate(name)}
+        onChange={(value) => { this.setState({ value }); input.onChange(value); }}
+        autofocus
         placeholder={placeholder}
         valueField={valueField}
         textField={textField}

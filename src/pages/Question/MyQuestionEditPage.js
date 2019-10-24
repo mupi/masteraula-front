@@ -170,6 +170,7 @@ const renderMADropDownVestibular = ({
       textField={textField}
       messages={messages}
     />
+
     { touched
       && ((error && (
       <span className="error-message-text">
@@ -193,9 +194,9 @@ const messagesVestibular = {
   emptyFilter: 'Não existem resultados que coincidam',
   filterPlaceholder: 'Selecione ou crie um vestibular',
   createOption: function createOption(_ref) {
-    var searchTerm = _ref.searchTerm;
-    return ['+ Criar novo vestibular', searchTerm && ' ', searchTerm && <strong key='_'>{searchTerm}</strong>];
-  }
+    const searchTerm = _ref.searchTerm;
+    return ['+ Criar novo vestibular', searchTerm && ' ', searchTerm && <strong key="_">{searchTerm}</strong>];
+  },
 };
 
 
@@ -746,22 +747,19 @@ class MyQuestionEditPage extends Component {
                 && (
                 <Row className="c-create-question__row-info">
                   <Col className="info-label" sm="4" xs="4">
-                          Vestibular
+                    Vestibular
                   </Col>
                   <Col sm="8" xs="8">
-
-
-
-                  <Field
-                    name="source"
-                    component={renderMADropDownVestibular}
-                    className="form-control"
-                    placeholder="Selecione um vestibular"
-                    textField="name"
-                    listOptions={sourceFilters}
-                    messages={messagesVestibular}
-
-                  />
+                    <Field
+                      name="source"
+                      component={renderMADropDownVestibular}
+                      className="form-control"
+                      placeholder="Selecione um vestibular"
+                      valueField="id"
+                      textField="name"
+                      listOptions={sourceFilters}
+                      messages={messagesVestibular}
+                    />
                   </Col>
                 </Row>
                 )}

@@ -679,23 +679,6 @@ class CreateQuestionPage extends Component {
                     Vestibular
                 </Col>
                 <Col sm="8" xs="8">
-                  { /* <Field
-                    name="source"
-                    type="text"
-                    component={renderSelectField}
-                    className="form-control c-create-question__source-field c-create-question__form-field"
-                    label="Selecione um vestibular"
-                    optionDefault="0"
-                  >
-                    { sourceFilters && sourceFilters.map(source => (
-                      <option className="c-user-profile__state-city-dropdown-item" key={source.id} value={source.id}>
-                        {getTeachingLevel(source.name)}
-                      </option>
-                    )) }
-                  </Field> */
-                }
-
-
                   <Field
                     name="source"
                     component={renderMADropDownVestibular}
@@ -703,7 +686,7 @@ class CreateQuestionPage extends Component {
                     placeholder="Selecione um vestibular"
                     valueField="id"
                     textField="name"
-                    listOptions={sourceFilters}
+                    listOptions={sourceFilters} 
                     messages={messagesVestibular}
                   />
                 </Col>
@@ -815,7 +798,7 @@ class CreateQuestionPage extends Component {
                 <small>
                   Ao criar a questão você estará de acordo com os
                   {' '}
-                  <Link className="" to="/terms-use">termos de uso</Link>
+                  <Link target="_blank" to="/terms-use">termos de uso</Link>
                 </small>
               </p>
             </Col>

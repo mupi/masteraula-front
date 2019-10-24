@@ -48,9 +48,9 @@ const messagesDropdownList = {
   emptyFilter: 'Não existem resultados que coincidam',
   filterPlaceholder: 'Selecione ou dê o nome para uma nova prova',
   createOption: function createOption(_ref) {
-    var searchTerm = _ref.searchTerm;
-    return ['+ Criar nova prova', searchTerm && ' ', searchTerm && <strong key='_'>{searchTerm}</strong>];
-  }
+    let searchTerm = _ref.searchTerm;
+    return ['+ Criar nova prova', searchTerm && ' ', searchTerm && <strong key="_">{searchTerm}</strong>];
+  },
 };
 
 class CreateDocumentWithQuestionForm extends React.Component {
