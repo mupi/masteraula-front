@@ -2,15 +2,6 @@ import React from 'react';
 import DropdownList from 'react-widgets/lib/DropdownList';
 import 'react-widgets/dist/css/react-widgets.css';
 
-const messages = {
-  emptyList: 'Não existem resultados',
-  emptyFilter: 'Não existem resultados que coincidam',
-  filterPlaceholder: 'Selecione ou dê o nome para uma nova prova',
-  createOption: function createOption(_ref) {
-    var searchTerm = _ref.searchTerm;
-    return ['+ Criar nova prova', searchTerm && ' ', searchTerm && <strong key='_'>{searchTerm}</strong>];
-  }
-};
 
 class MACreateDropdownList extends React.Component {
   constructor(...args) {
@@ -50,7 +41,7 @@ class MACreateDropdownList extends React.Component {
 
   render() {
     const { value, options } = this.state;
-    const { placeholder, input, valueField, textField } = this.props;
+    const { placeholder, input, valueField, textField, messages } = this.props;
 
     return (
       <DropdownList

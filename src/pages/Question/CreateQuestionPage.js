@@ -20,6 +20,7 @@ import { getTeachingLevel } from 'helpers/question';
 import Multiselect from 'react-widgets/lib/Multiselect';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
+import MACreateDropdownList from 'components/dropdownlist/MACreateDropdownList';
 
 const difficultyList = {
   difficulties: [
@@ -149,6 +150,50 @@ const renderMAMultiSelectTag = ({
    }
   </div>
 );
+
+const renderMADropDownVestibular = ({
+  input,
+  placeholder,
+  meta: { touched, error, warning },
+  listOptions, valueField, textField,
+  messages,
+}) => (
+  <div className="o-vestibular__dropdown">
+    <MACreateDropdownList
+      input={input}
+      placeholder={placeholder}
+      listOptions={listOptions}
+      valueField={valueField}
+      textField={textField}
+      messages={messages}
+    />
+    { touched
+      && ((error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
+  </div>
+);
+
+// messages for Vestibular field
+const messagesVestibular = {
+  emptyList: 'Não existem resultados',
+  emptyFilter: 'Não existem resultados que coincidam',
+  filterPlaceholder: 'Selecione ou crie um vestibular',
+  createOption: function createOption(_ref) {
+    var searchTerm = _ref.searchTerm;
+    return ['+ Criar novo vestibular', searchTerm && ' ', searchTerm && <strong key='_'>{searchTerm}</strong>];
+  }
+};
 
 const messages = {
   emptyList: 'Não existem resultados',
@@ -633,7 +678,7 @@ class CreateQuestionPage extends Component {
                     Vestibular
                 </Col>
                 <Col sm="8" xs="8">
-                  <Field
+                 { /* <Field
                     name="source"
                     type="text"
                     component={renderSelectField}
@@ -646,7 +691,20 @@ class CreateQuestionPage extends Component {
                         {getTeachingLevel(source.name)}
                       </option>
                     )) }
-                  </Field>
+                  </Field>*/
+                }
+
+
+                  <Field
+                    name="source"
+                    component={renderMADropDownVestibular}
+                    className="form-control"
+                    placeholder="Selecione um vestibular"
+                    valueField="id"
+                    textField="name"
+                    listOptions={sourceFilters}
+                    messages={messagesVestibular}
+                  />
                 </Col>
               </Row>
               ) }

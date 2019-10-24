@@ -15,6 +15,7 @@ const renderMADropDownListDocuments = ({
   placeholder,
   meta: { touched, error, warning },
   listOptions, valueField, textField,
+  messages,
 }) => (
   <div className="o-list5documents">
     <MACreateDropdownList
@@ -23,6 +24,7 @@ const renderMADropDownListDocuments = ({
       listOptions={listOptions}
       valueField={valueField}
       textField={textField}
+      messages={messages}
     />
     { touched
       && ((error && (
@@ -40,6 +42,16 @@ const renderMADropDownListDocuments = ({
     }
   </div>
 );
+
+const messagesDropdownList = {
+  emptyList: 'Não existem resultados',
+  emptyFilter: 'Não existem resultados que coincidam',
+  filterPlaceholder: 'Selecione ou dê o nome para uma nova prova',
+  createOption: function createOption(_ref) {
+    var searchTerm = _ref.searchTerm;
+    return ['+ Criar nova prova', searchTerm && ' ', searchTerm && <strong key='_'>{searchTerm}</strong>];
+  }
+};
 
 class CreateDocumentWithQuestionForm extends React.Component {
   componentDidMount() {
@@ -68,6 +80,7 @@ class CreateDocumentWithQuestionForm extends React.Component {
               valueField="id"
               textField="name"
               listOptions={myLastDocumentsList && first5Elements(myLastDocumentsList.results)}
+              messages={messagesDropdownList}
             />
           </FormGroup>
           {error && (

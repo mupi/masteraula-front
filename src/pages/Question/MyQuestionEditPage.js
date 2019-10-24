@@ -20,6 +20,7 @@ import { Field, FieldArray, formValueSelector } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
 import Multiselect from 'react-widgets/lib/Multiselect';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
+import MACreateDropdownList from 'components/dropdownlist/MACreateDropdownList';
 
 const difficultyList = {
   difficulties: [
@@ -151,6 +152,52 @@ const renderMAMultiSelectTag = ({
      }
   </div>
 );
+
+
+const renderMADropDownVestibular = ({
+  input,
+  placeholder,
+  meta: { touched, error, warning },
+  listOptions, valueField, textField,
+  messages,
+}) => (
+  <div className="o-vestibular__dropdown">
+    <MACreateDropdownList
+      input={input}
+      placeholder={placeholder}
+      listOptions={listOptions}
+      valueField={valueField}
+      textField={textField}
+      messages={messages}
+    />
+    { touched
+      && ((error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
+  </div>
+);
+
+// messages for Vestibular field
+const messagesVestibular = {
+  emptyList: 'Não existem resultados',
+  emptyFilter: 'Não existem resultados que coincidam',
+  filterPlaceholder: 'Selecione ou crie um vestibular',
+  createOption: function createOption(_ref) {
+    var searchTerm = _ref.searchTerm;
+    return ['+ Criar novo vestibular', searchTerm && ' ', searchTerm && <strong key='_'>{searchTerm}</strong>];
+  }
+};
+
 
 const messages = {
   emptyList: 'Não existem resultados',
@@ -702,20 +749,19 @@ class MyQuestionEditPage extends Component {
                           Vestibular
                   </Col>
                   <Col sm="8" xs="8">
-                    <Field
-                      name="source"
-                      type="text"
-                      component={renderSelectField}
-                      className="form-control c-create-question__source-field c-create-question__form-field"
-                      label="Selecione um vestibular"
-                      optionDefault="0"
-                    >
-                      { sourceFilters && sourceFilters.map(source => (
-                        <option className="c-user-profile__state-city-dropdown-item" key={source.id} value={source.name}>
-                          {getTeachingLevel(source.name)}
-                        </option>
-                      )) }
-                    </Field>
+
+
+
+                  <Field
+                    name="source"
+                    component={renderMADropDownVestibular}
+                    className="form-control"
+                    placeholder="Selecione um vestibular"
+                    textField="name"
+                    listOptions={sourceFilters}
+                    messages={messagesVestibular}
+
+                  />
                   </Col>
                 </Row>
                 )}
