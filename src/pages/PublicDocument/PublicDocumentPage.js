@@ -9,8 +9,57 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import HomeUserNotLoggedPage from 'pages/Home/HomeUserNotLoggedPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+class ShareButton extends React.PureComponent {
+  static FBParse() {
+    // /* global FB */
+    window.fbAsyncInit = () => {
+      window.FB.init({
+        appId: '445706276263617',
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: 'v4.0',
+      });
+      window.FB.XFBML.parse(document.getElementById('fb-share-button'));
+    };
+    ((d, s, id) => {
+      let js; const
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/pt_BR/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
+  }
+
+  render() {
+    const { slug } = this.props;
+    return (
+      <div
+        id="fb-share-button"
+        className="fb-share-button"
+        data-href={`https://masteraula.com.br/view-list/${slug}`}
+        data-layout="button"
+        data-size="small"
+      >
+        Compartilhar
+      </div>
+    );
+  }
+}
+
 
 class InnerPage extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.shareRef = React.createRef();
+  }
+
+  componentDidUpdate() {
+    if (this.shareRef.current) {
+      this.shareRef.current.constructor.FBParse();
+    }
+  }
+
   render() {
     const {
       activePublicDocument, copyDocument, showLoginModal, isLoggedIn,
@@ -62,6 +111,7 @@ class InnerPage extends React.PureComponent {
             <h3 className="c-public-document__name">{`Prova: ${name}`}</h3>
           </Col>
           <Col sm="4" className="c-public-document__name-col text-right">
+            <ShareButton ref={this.shareRef} slug={match.params.id} />
             <Button className="btn-success btn btn-secondary" onClick={handleClick} size="lg">
               <FontAwesomeIcon icon="copy" className="btn__icon" />
               Copiar prova
