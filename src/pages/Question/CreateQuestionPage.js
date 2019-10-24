@@ -1,5 +1,5 @@
 import {
-  Alert, Row, Col, Button, Form, Input,
+  Alert, Row, Col, Button, Form, Input, Label, FormGroup,
 } from 'reactstrap';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
@@ -439,6 +439,7 @@ class CreateQuestionPage extends Component {
       disciplinesList,
       resolution,
       errorsEditQuestion,
+      sourceQuestionValue,
     } = this.props;
 
     if (isCreating) {
@@ -578,6 +579,36 @@ class CreateQuestionPage extends Component {
                   </h5>
                 </Col>
               </Row>
+
+              <Row className="c-create-question__row-info">
+                <Col className="info-label" sm="4" xs="4">
+                  Origem da questão
+                </Col>
+                <Col sm="8" xs="8">
+                  <FormGroup check inline>
+                    <Label check>
+                      <Field
+                        name="sourceQuestion"
+                        component="input"
+                        type="radio"
+                        value="V"
+                        className="c-create-question__radio-button-field"
+                      />
+                      {' '}
+                      Vestibular
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check inline>
+                    <Label check>
+                      <Field name="sourceQuestion" component="input" type="radio" value="A" className="c-create-question__radio-button-field" />
+                      {' '}
+                      Autoral
+                    </Label>
+                  </FormGroup>
+                </Col>
+              </Row>
+              {sourceQuestionValue === 'V'
+              && (
               <Row className="c-create-question__row-info">
                 <Col className="info-label" sm="4" xs="4">
                   Ano
@@ -593,6 +624,10 @@ class CreateQuestionPage extends Component {
                   />
                 </Col>
               </Row>
+              ) }
+
+              {sourceQuestionValue === 'V'
+              && (
               <Row className="c-create-question__row-info">
                 <Col className="info-label" sm="4" xs="4">
                     Vestibular
@@ -614,6 +649,7 @@ class CreateQuestionPage extends Component {
                   </Field>
                 </Col>
               </Row>
+              ) }
               <Row className="c-create-question__row-info">
                 <Col className="info-label" sm="4" xs="4">
                   Disciplinas

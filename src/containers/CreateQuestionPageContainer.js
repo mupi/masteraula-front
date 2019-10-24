@@ -23,6 +23,8 @@ const mapStateToProps = (state) => {
     sourceFilters: state.filter.sourceFilters,
     selectedObjectList: state.question.selectedObjectList,
     errorsEditQuestion: state.form['question-create'] ? state.form['question-create'].submitErrors : null,
+    sourceQuestionValue: selector(state, 'sourceQuestion'),
+
   });
 };
 
@@ -37,6 +39,7 @@ const mapDispatchToProps = dispatch => ({
       topics: [{}],
       alternatives: [{}, {}, {}],
       selectedIndex: 0,
+      sourceQuestion: 'A',
     }));
   },
   // new way to handle modals
