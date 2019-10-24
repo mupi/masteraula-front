@@ -1,5 +1,5 @@
 import {
-  Alert, Row, Col, Button, Form, Input,
+  Alert, Row, Col, Button, Form, Input, Label, FormGroup,
 } from 'reactstrap';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
@@ -456,6 +456,7 @@ class MyQuestionEditPage extends Component {
         disciplinesList,
         resolution,
         errorsEditQuestion,
+        sourceQuestionValue,
       } = this.props;
 
       const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
@@ -645,24 +646,60 @@ class MyQuestionEditPage extends Component {
                     </h5>
                   </Col>
                 </Row>
+
                 <Row className="c-create-question__row-info">
                   <Col className="info-label" sm="4" xs="4">
-                    Ano
+                    Origem da questão
                   </Col>
                   <Col sm="8" xs="8">
-                    <Field
-                      className="c-create-question__year-field c-create-question__form-field"
-                      name="year"
-                      type="number"
-                      component={renderNumericField}
-                      label="Ex. 2019"
-                      validate={[mustBeNumber, maxYearValue]}
-                    />
+                    <FormGroup check inline>
+                      <Label check>
+                        <Field
+                          name="sourceQuestion"
+                          component="input"
+                          type="radio"
+                          value="V"
+                          className="c-create-question__radio-button-field"
+                        />
+                        {' '}
+                        Vestibular
+                      </Label>
+                    </FormGroup>
+                    <FormGroup check inline>
+                      <Label check>
+                        <Field name="sourceQuestion" component="input" type="radio" value="A" className="c-create-question__radio-button-field" />
+                        {' '}
+                        Autoral
+                      </Label>
+                    </FormGroup>
                   </Col>
                 </Row>
+
+                {sourceQuestionValue === 'V'
+                && (
+                  <Row className="c-create-question__row-info">
+                    <Col className="info-label" sm="4" xs="4">
+                      Ano
+                    </Col>
+                    <Col sm="8" xs="8">
+                      <Field
+                        className="c-create-question__year-field c-create-question__form-field"
+                        name="year"
+                        type="number"
+                        component={renderNumericField}
+                        label="Ex. 2019"
+                        validate={[mustBeNumber, maxYearValue]}
+                      />
+                    </Col>
+                  </Row>
+                )
+                }
+
+                {sourceQuestionValue === 'V'
+                && (
                 <Row className="c-create-question__row-info">
                   <Col className="info-label" sm="4" xs="4">
-                      Vestibular
+                          Vestibular
                   </Col>
                   <Col sm="8" xs="8">
                     <Field
@@ -681,6 +718,7 @@ class MyQuestionEditPage extends Component {
                     </Field>
                   </Col>
                 </Row>
+                )}
                 <Row className="c-create-question__row-info">
                   <Col className="info-label" sm="4" xs="4">
                     Disciplinas

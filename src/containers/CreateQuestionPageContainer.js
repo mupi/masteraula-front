@@ -79,10 +79,11 @@ const mapDispatchToProps = dispatch => ({
       }).filter(topic => topic != null),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
       alternatives: alternativesCleaned.length > 0 ? alternativesCleaned : [],
-      source_id: values.source !== '0' ? values.source : null,
+      source_id: values.source !== '0' && values.sourceQuestion === 'V' ? values.source : null,
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
-      year: values.year,
+      year: values.sourceQuestion === 'V' ? values.year : null,
+
       learning_objects_ids: props.selectedObjectList.map(object => object.id),
       resolution: resolutionCleaned,
     };
