@@ -15,7 +15,12 @@
 }
 
 .c-public-home{
-    &__main-cointainer{
+
+    &__pt-option{
+        padding-top: 2em;
+    }
+
+    &__main-container{
         padding-top: 60px;
         padding-bottom: 60px;
     }

@@ -7,6 +7,7 @@ import {
 import { Helmet } from 'react-helmet';
 
 import TermsUsePage from 'pages/TermsUse/TermsUsePage';
+import TermsUsePageHome from 'pages/TermsUse/TermsUsePageHome';
 import PricingPageHome from 'pages/Pricing/PricingPageHome';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 
@@ -138,6 +139,8 @@ class App extends Component {
                 <Route path="/object-base/:page(\d+)" component={ObjectBasePageContainer} />
                 <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
                 <Route path="/nossos-planos" component={PricingPageHome} />
+                <Route path="/terms-use" component={TermsUsePageHome} />
+
                 <Redirect from="/" to="/question-base/1" />
               </Switch>
             )
@@ -150,6 +153,7 @@ class App extends Component {
                 <Route path="/terms-use" component={TermsUsePage} />
                 <Route path="/verify-userregister/:key" component={VerifyRegisterPageContainer} />
                 <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
+                <Route path="/terms-use" component={TermsUsePage} />
                 <Route component={NotFoundPage} />
               </Switch>
             )

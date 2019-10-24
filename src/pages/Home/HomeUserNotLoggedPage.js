@@ -5,7 +5,7 @@ const HomeUserNotLoggedPage = (props) => {
   const { children } = props;
   return (
     <div className="c-public-home l-site-masteraula__public-home">
-      <Container className="c-public-home__main-cointainer">
+      <Container className="c-public-home__main-container">
         {children}
       </Container>
     </div>

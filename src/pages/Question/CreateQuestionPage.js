@@ -1,6 +1,7 @@
 import {
   Alert, Row, Col, Button, Form, Input, Label, FormGroup,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -190,9 +191,9 @@ const messagesVestibular = {
   emptyFilter: 'Não existem resultados que coincidam',
   filterPlaceholder: 'Selecione ou crie um vestibular',
   createOption: function createOption(_ref) {
-    var searchTerm = _ref.searchTerm;
-    return ['+ Criar novo vestibular', searchTerm && ' ', searchTerm && <strong key='_'>{searchTerm}</strong>];
-  }
+    const searchTerm = _ref.searchTerm;
+    return ['+ Criar novo vestibular', searchTerm && ' ', searchTerm && <strong key="_">{searchTerm}</strong>];
+  },
 };
 
 const messages = {
@@ -678,7 +679,7 @@ class CreateQuestionPage extends Component {
                     Vestibular
                 </Col>
                 <Col sm="8" xs="8">
-                 { /* <Field
+                  { /* <Field
                     name="source"
                     type="text"
                     component={renderSelectField}
@@ -691,7 +692,7 @@ class CreateQuestionPage extends Component {
                         {getTeachingLevel(source.name)}
                       </option>
                     )) }
-                  </Field>*/
+                  </Field> */
                 }
 
 
@@ -808,6 +809,18 @@ class CreateQuestionPage extends Component {
               </Row>
             </div>
           </div>
+          <Row className="c-question__row-footer-options text-center">
+            <Col>
+              <p>
+                <small>
+                  Ao criar a questão você estará de acordo com os
+                  {' '}
+                  <Link className="" to="/terms-use">termos de uso</Link>
+                </small>
+              </p>
+            </Col>
+          </Row>
+
           <Row className="c-question__row-footer-options text-center">
             <Col>
               <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
