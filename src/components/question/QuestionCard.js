@@ -9,6 +9,7 @@ import imageCard from 'assets/img/home/question-card.jpg';
 import { Link } from 'react-router-dom';
 import { isQuestionAdded, getCleanExtractStatement } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { idUserAdmin } from 'helpers/config';
 
 const getIdFilter = (list, name) => {
   if (list) {
@@ -50,9 +51,8 @@ const QuestionCard = (props) => {
 
       <CardHeader className="question-card__header">
         <div className="question-card__id">
-          Questão N°
-          {' '}
-          {question.id}
+          { !question.source && (<FontAwesomeIcon icon="graduation-cap" /> )}
+          { ` Questão N° ${question.id}`}
         </div>
         <div className="question-card__info-section">
           {question.disciplines && question.disciplines.map(discipline => (

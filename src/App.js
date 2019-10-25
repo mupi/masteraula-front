@@ -67,6 +67,7 @@ import {
   faLock,
   faCheckDouble,
   faCrown,
+  faGraduationCap,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -81,6 +82,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
   faTimesCircle, faEye, faCopy, faQuestionCircle, faCheckDouble,
   faCrown,
+  faGraduationCap,
   fab);
 
 class App extends Component {
