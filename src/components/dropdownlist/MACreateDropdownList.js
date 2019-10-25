@@ -24,11 +24,12 @@ class MACreateDropdownList extends React.Component {
   // Create a new option
   handleCreate(name) {
     const { input } = this.props;
+    const { options } = this.state;
 
     if (name !== '') {
       const newOption = {
         name,
-        id: -1,
+        id: options.length + 1,
       };
 
       this.setState({
