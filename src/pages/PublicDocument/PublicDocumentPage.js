@@ -1,14 +1,133 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Alert,
+  Alert, Row, Col, Button,
 } from 'reactstrap';
 
+import DocumentQuestions from 'components/document/DocumentQuestions';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import HomeUserNotLoggedPage from 'pages/Home/HomeUserNotLoggedPage';
-import PublicDocumentPageLogged from 'components/document/PublicDocumentPageLogged';
-import PublicDocumentPageNotLogged from 'components/document/PublicDocumentPageNotLogged';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+class ShareButton extends React.PureComponent {
+  static FBParse() {
+    // /* global FB */
+    window.fbAsyncInit = () => {
+      window.FB.init({
+        appId: '445706276263617',
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: 'v4.0',
+      });
+      window.FB.XFBML.parse(document.getElementById('fb-share-button'));
+    };
+    ((d, s, id) => {
+      let js; const
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/pt_BR/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
+  }
+
+  render() {
+    const { slug } = this.props;
+    return (
+      <div
+        id="fb-share-button"
+        className="fb-share-button"
+        data-href={`https://masteraula.com.br/view-list/${slug}`}
+        data-layout="button"
+        data-size="small"
+      >
+        Compartilhar
+      </div>
+    );
+  }
+}
+
+
+class InnerPage extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.shareRef = React.createRef();
+  }
+
+  componentDidUpdate() {
+    if (this.shareRef.current) {
+      this.shareRef.current.constructor.FBParse();
+    }
+  }
+
+  render() {
+    const {
+      activePublicDocument, copyDocument, showLoginModal, isLoggedIn,
+      isFetchingPublicDocument, errorFetchingPublicDocument, match,
+    } = this.props;
+
+    const name = activePublicDocument ? activePublicDocument.name : '';
+
+    if (isFetchingPublicDocument) {
+      return (
+        <Alert className="alert--warning" color="warning">
+          Carregando ...
+        </Alert>
+      );
+    }
+    if (errorFetchingPublicDocument) {
+      return (
+        <Alert color="danger">
+          A lista de questões não existe ou seu usuário não tem acesso permitido
+        </Alert>
+      );
+    }
+
+    const handleClick = () => {
+      if (isLoggedIn) {
+        copyDocument(activePublicDocument);
+      } else {
+        showLoginModal(match.url);
+      }
+    };
+
+    const options = isLoggedIn ? {
+      showViewButton: true,
+      removeOption: false,
+      showTags: false,
+      showLoginModal: false,
+    } : {
+      showViewButton: true,
+      removeOption: false,
+      showTags: false,
+      showLoginModal: true,
+      optionalMessage: 'Você precisa estar logado no sistema',
+    };
+
+    return (
+      <div className="c-document">
+        <Row className="c-document__main-buttons align-items-center">
+          <Col sm="8" className="c-public-document__name-col">
+            <h3 className="c-public-document__name">{`Prova: ${name}`}</h3>
+          </Col>
+          <Col sm="4" className="c-public-document__name-col text-right">
+            <ShareButton ref={this.shareRef} slug={match.params.id} />
+            <Button className="btn-success btn btn-secondary" onClick={handleClick} size="lg">
+              <FontAwesomeIcon icon="copy" className="btn__icon" />
+              Copiar prova
+            </Button>
+          </Col>
+        </Row>
+
+        <DocumentQuestions
+          activeDocument={activePublicDocument}
+          {...this.props}
+          options={options}
+        />
+      </div>
+    );
+  }
+}
 
 class PublicDocumentPage extends Component {
   componentDidMount() {
@@ -17,60 +136,15 @@ class PublicDocumentPage extends Component {
   }
 
   render() {
-    const {
-      isLoggedIn, isFetchingPublicDocument, errorFetchingPublicDocument,
-    } = this.props;
+    const { isLoggedIn } = this.props;
 
-    if (isLoggedIn) {
-      const innerPage = () => {
-        if (isFetchingPublicDocument) {
-          return (
-            <Alert className="alert--warning" color="warning">
-              Carregando ...
-            </Alert>
-          );
-        }
-        if (errorFetchingPublicDocument) {
-          return (
-            <Alert color="danger">
-              A lista de questões não existe ou seu usuário não tem acesso permitido
-            </Alert>
-          );
-        }
-        return <PublicDocumentPageLogged {...this.props} />;
-      };
-
-      return (
-        <HomeUserPage>
-          {innerPage()}
-        </HomeUserPage>
-      );
-    }
-
-    const innerPage = () => {
-      if (isFetchingPublicDocument) {
-        return (
-          <div className="c-public-document__section">
-            <Alert className="alert--warning" color="warning">
-              Carregando ...
-            </Alert>
-          </div>
-        );
-      }
-      if (errorFetchingPublicDocument) {
-        return (
-          <div className="c-public-document__section">
-            <Alert color="danger">
-              A lista de questões não existe ou seu usuário não tem acesso permitido
-            </Alert>
-          </div>
-        );
-      }
-      return <PublicDocumentPageNotLogged {...this.props} />;
-    };
-    return (
+    return isLoggedIn ? (
+      <HomeUserPage>
+        <InnerPage {...this.props} />
+      </HomeUserPage>
+    ) : (
       <HomeUserNotLoggedPage>
-        {innerPage()}
+        <InnerPage {...this.props} />
       </HomeUserNotLoggedPage>
     );
   }
