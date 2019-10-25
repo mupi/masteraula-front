@@ -20,7 +20,6 @@ import { requiredSelectValidator, minLength2TagsForEdit, minLength1Topics } from
 // import MAReactTags from 'components/tags/MAReactTag';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 import BackUsingHistory from 'components/question/BackUsingHistory';
-import { idUserAdmin } from 'helpers/config';
 
 const difficultyList = {
   difficulties: [

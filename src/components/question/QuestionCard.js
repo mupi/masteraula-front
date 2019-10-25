@@ -9,7 +9,6 @@ import imageCard from 'assets/img/home/question-card.jpg';
 import { Link } from 'react-router-dom';
 import { isQuestionAdded, getCleanExtractStatement } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { idUserAdmin } from 'helpers/config';
 
 const getIdFilter = (list, name) => {
   if (list) {
