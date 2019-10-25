@@ -21,6 +21,8 @@ const DocumentQuestionItem = (props) => {
     question, activeDocument, removeSelectedQuestion, options, match, showLoginModal,
   } = props;
 
+  const autorship = question.authorship ? question.authorship : question.author.name;
+
   const handleOpenLoginModal = () => {
     showLoginModal(match.url);
   };
@@ -62,14 +64,14 @@ const DocumentQuestionItem = (props) => {
                 </p>
               </Col>
               <Col sm="12">
-                {question.authorship
+                {!question.source
                   ? (
                     <p className="c-document__question-info-row">
                       {'Autoria: '}
-                      <span className="c-document__question-info-detail">{question.authorship}</span>
+                      <span className="c-document__question-info-detail">{autorship}</span>
                     </p>
                   ) : (
-                    <span>
+                    <>
                       {question.source && (
                       <p className="c-document__question-info-row">
                         {'Vestibular: '}
@@ -82,7 +84,7 @@ const DocumentQuestionItem = (props) => {
                         <span className="c-document__question-info-detail">{question.year}</span>
                       </p>
                       )}
-                    </span>
+                    </>
                   )
                 }
                 <p className="c-document__question-info-row">
