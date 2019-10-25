@@ -50,9 +50,8 @@ const QuestionCard = (props) => {
 
       <CardHeader className="question-card__header">
         <div className="question-card__id">
-          Questão N°
-          {' '}
-          {question.id}
+          { !question.source && (<FontAwesomeIcon className="question-card__authorship" icon="graduation-cap" />)}
+          { ` Questão N° ${question.id}`}
         </div>
         <div className="question-card__info-section">
           {question.disciplines && question.disciplines.map(discipline => (

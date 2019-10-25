@@ -139,6 +139,7 @@ export const fetchQuestion = (id) => {
             alternatives,
             selectedIndex: selectedAlternative,
             resolution: activeQuestion.resolution,
+            sourceQuestion: activeQuestion.source ? 'V' : 'A',
           }));
           dispatch(listTopics(activeQuestion.disciplines));
           dispatch(fetchQuestionSuccess(activeQuestion));
@@ -300,6 +301,7 @@ export const updateQuestion = (props) => {
           alternatives,
           selectedIndex: selectedAlternative,
           resolution: activeQuestion.resolution,
+          sourceQuestion: activeQuestion.source ? 'V' : 'A',
         }));
       },
       (error) => {

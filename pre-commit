@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # INCLUDE THIS FILE ON YOUR .git/hooks 
 # files on .git folder are not staged so you have to do this manually. thank you <3

@@ -31,6 +31,7 @@ const mapStateToProps = (state) => {
     // add object to question
     selectedObjectList: state.question.selectedObjectList,
     errorsEditQuestion: state.form['edit-question'] ? state.form['edit-question'].submitErrors : null,
+    sourceQuestionValue: selector(state, 'sourceQuestion'),
   });
 };
 
@@ -80,10 +81,11 @@ const mapDispatchToProps = dispatch => ({
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
       alternatives: alternativesCleaned.length > 0 ? alternativesCleaned : [],
       // source_id: values.source !== '0' ? values.source : null,
-      source: values.source,
+      source: values.sourceQuestion === 'V' && values.source ? values.source.name : null,
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
-      year: values.year === '' ? null : values.year,
+      year: values.sourceQuestion === 'V' ? values.year : null,
+
       // selected objects to question
       learning_objects_ids: props.selectedObjectList.map(object => object.id),
       resolution: resolutionCleaned,

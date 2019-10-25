@@ -133,7 +133,10 @@ padding-right: 1em;
   margin-bottom: 20px;
   padding: 12px 12px;
 
-
+  &__authorship{
+    font-size: 15px;
+    color: $color-ma-blue;
+  }
   &__full{ 
 
     &:hover {

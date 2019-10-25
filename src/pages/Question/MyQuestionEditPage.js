@@ -1,5 +1,5 @@
 import {
-  Alert, Row, Col, Button, Form, Input,
+  Alert, Row, Col, Button, Form, Input, Label, FormGroup,
 } from 'reactstrap';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
@@ -20,6 +20,7 @@ import { Field, FieldArray, formValueSelector } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
 import Multiselect from 'react-widgets/lib/Multiselect';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
+import MACreateDropdownList from 'components/dropdownlist/MACreateDropdownList';
 
 const difficultyList = {
   difficulties: [
@@ -152,6 +153,53 @@ const renderMAMultiSelectTag = ({
   </div>
 );
 
+
+const renderMADropDownVestibular = ({
+  input,
+  placeholder,
+  meta: { touched, error, warning },
+  listOptions, valueField, textField,
+  messages,
+}) => (
+  <div className="o-vestibular__dropdown">
+    <MACreateDropdownList
+      input={input}
+      placeholder={placeholder}
+      listOptions={listOptions}
+      valueField={valueField}
+      textField={textField}
+      messages={messages}
+    />
+
+    { touched
+      && ((error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+      ))
+      || (warning && (
+      <span>
+        {' '}
+        {warning}
+        {' '}
+      </span>
+      )))
+    }
+  </div>
+);
+
+// messages for Vestibular field - updated
+const messagesVestibular = {
+  emptyList: 'Não existem resultados',
+  emptyFilter: 'Não existem resultados que coincidam',
+  filterPlaceholder: 'Selecione ou crie um vestibular',
+  createOption: function createOption(_ref) {
+    const { searchTerm } = _ref;
+    return ['+ Criar novo vestibular', searchTerm && ' ', searchTerm && <strong key="_">{searchTerm}</strong>];
+  },
+};
+
+
 const messages = {
   emptyList: 'Não existem resultados',
   emptyFilter: 'Não existem resultados que coincidam',
@@ -234,7 +282,7 @@ const renderAlternatives2 = ({ fields, meta: { error }, resolution }) => (
       </Row>
 
       {fields.map((alternative, i) => (
-        <Row key={i} className="c-question__row-info c-create-question__row-alternative">
+        <Row className="c-question__row-info c-create-question__row-alternative">
           <Col sm="1" xs="1">
             <Field
               name="selectedIndex"
@@ -456,6 +504,7 @@ class MyQuestionEditPage extends Component {
         disciplinesList,
         resolution,
         errorsEditQuestion,
+        sourceQuestionValue,
       } = this.props;
 
       const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
@@ -645,42 +694,73 @@ class MyQuestionEditPage extends Component {
                     </h5>
                   </Col>
                 </Row>
+
                 <Row className="c-create-question__row-info">
                   <Col className="info-label" sm="4" xs="4">
-                    Ano
+                    Origem da questão
                   </Col>
                   <Col sm="8" xs="8">
-                    <Field
-                      className="c-create-question__year-field c-create-question__form-field"
-                      name="year"
-                      type="number"
-                      component={renderNumericField}
-                      label="Ex. 2019"
-                      validate={[mustBeNumber, maxYearValue]}
-                    />
+                    <FormGroup check inline>
+                      <Label check>
+                        <Field
+                          name="sourceQuestion"
+                          component="input"
+                          type="radio"
+                          value="V"
+                          className="c-create-question__radio-button-field"
+                        />
+                        {' '}
+                        Vestibular
+                      </Label>
+                    </FormGroup>
+                    <FormGroup check inline>
+                      <Label check>
+                        <Field name="sourceQuestion" component="input" type="radio" value="A" className="c-create-question__radio-button-field" />
+                        {' '}
+                        Autoral
+                      </Label>
+                    </FormGroup>
                   </Col>
                 </Row>
-                <Row className="c-create-question__row-info">
-                  <Col className="info-label" sm="4" xs="4">
-                      Vestibular
-                  </Col>
-                  <Col sm="8" xs="8">
-                    <Field
-                      name="source"
-                      type="text"
-                      component={renderSelectField}
-                      className="form-control c-create-question__source-field c-create-question__form-field"
-                      label="Selecione um vestibular"
-                      optionDefault="0"
-                    >
-                      { sourceFilters && sourceFilters.map(source => (
-                        <option className="c-user-profile__state-city-dropdown-item" key={source.id} value={source.name}>
-                          {getTeachingLevel(source.name)}
-                        </option>
-                      )) }
-                    </Field>
-                  </Col>
-                </Row>
+
+                {sourceQuestionValue === 'V'
+                && (
+                  <>
+                    <Row className="c-create-question__row-info">
+                      <Col className="info-label" sm="4" xs="4">
+                      Ano
+                      </Col>
+                      <Col sm="8" xs="8">
+                        <Field
+                          className="c-create-question__year-field c-create-question__form-field"
+                          name="year"
+                          type="number"
+                          component={renderNumericField}
+                          label="Ex. 2019"
+                          validate={[mustBeNumber, maxYearValue]}
+                        />
+                      </Col>
+                    </Row>
+                    <Row className="c-create-question__row-info">
+                      <Col className="info-label" sm="4" xs="4">
+                    Vestibular
+                      </Col>
+                      <Col sm="8" xs="8">
+                        <Field
+                          name="source"
+                          component={renderMADropDownVestibular}
+                          className="form-control"
+                          placeholder="Selecione um vestibular"
+                          valueField="id"
+                          textField="name"
+                          listOptions={sourceFilters}
+                          messages={messagesVestibular}
+                          validate={requiredValidator}
+                        />
+                      </Col>
+                    </Row>
+                  </>
+                )}
                 <Row className="c-create-question__row-info">
                   <Col className="info-label" sm="4" xs="4">
                     Disciplinas
