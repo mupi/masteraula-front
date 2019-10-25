@@ -295,7 +295,6 @@ class QuestionEditPage extends Component {
     const authorPK = activeQuestion.author ? activeQuestion.author.pk : null;
     const authorshipValue = authorship || (author && author.name);
     const publisher = author ? author.name : null;
-    const showAuthorship = ((authorPK !== idUserAdmin) || (authorshipValue !== publisher));
 
 
     const {
@@ -532,7 +531,7 @@ class QuestionEditPage extends Component {
                       <QuestionAuthor author={publisher} styleTag="question-info author" />
                     </Col>
                   </Row>
-                  {showAuthorship && !activeQuestion.source ? (
+                  {!activeQuestion.source ? (
                     <Row className="c-question__row-info">
                       <Col className="info-label" sm="4" xs="4">
                       Autoria

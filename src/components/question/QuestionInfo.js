@@ -9,17 +9,14 @@ import TagList from 'components/tags/TagList';
 import { getTeachingLevel } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { idUserAdmin } from 'helpers/config';
 import QuestionAuthor from './QuestionAuthor';
 
 
 const QuestionInfo = ({ question, rating, onRate = f => f }) => {
   const { author, authorship } = question;
   const authorshipValue = authorship || (author && author.name);
-  const authorPK = author ? author.pk : null;
   const publisher = author ? author.name : null;
-  /* Só aparece para os usuários diferentes de MASTERAULA */
-  const showAuthorship = ((authorPK !== idUserAdmin) || (authorshipValue !== publisher));
+
 
   return (
     <div className="question-information">
@@ -122,7 +119,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
           <QuestionAuthor author={publisher} styleTag="question-info author" />
         </Col>
       </Row>
-      { showAuthorship && !question.source && (
+      { question.source && (
         <Row className="c-question__row-info">
           <Col className="info-label" sm="4" xs="4">
           Autoria
