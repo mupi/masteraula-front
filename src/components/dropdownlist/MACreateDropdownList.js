@@ -8,7 +8,6 @@ class MACreateDropdownList extends React.Component {
     super(...args);
 
     this.state = {
-      value: null,
       options: [],
     };
   }
@@ -16,7 +15,7 @@ class MACreateDropdownList extends React.Component {
   componentDidMount() {
     // Initialize values
     const { listOptions } = this.props;
-    const options = listOptions.map((option, i) => ({ name: option.name, id: option.id }));
+    const options = listOptions.map(option => ({ name: option.name, id: option.id }));
     this.setState({ options });
   }
 
@@ -24,49 +23,31 @@ class MACreateDropdownList extends React.Component {
   // Create a new option
   handleCreate(name) {
     const { input } = this.props;
-    const { options } = this.state;
 
     if (name !== '') {
       const newOption = {
         name,
-        id: options.length + 1,
+        id: -1,
       };
-
-      this.setState({
-        value: newOption, // select new option
-      });
 
       input.onChange(newOption);
     }
   }
 
   render() {
-    const { value, options } = this.state;
+    const { options } = this.state;
     const {
       placeholder, input, valueField, textField, messages,
     } = this.props;
 
     return (
-      /* <DropdownList
-        filter="contains"
-        data={options}
-        value={value}
-        allowCreate="onFilter"
-        onCreate={name => this.handleCreate(name)}
-        onChange={(value) => { this.setState({ value });input.onChange(value);}}
-        autofocus
-        placeholder={placeholder}
-        valueField={valueField}
-        textField={textField}
-        messages={messages}
-      /> */
       <DropdownList
         filter="contains"
         data={options}
         value={input.value}
         allowCreate="onFilter"
         onCreate={name => this.handleCreate(name)}
-        onChange={(value) => { this.setState({ value }); input.onChange(value); }}
+        onChange={(value) => { input.onChange(value); }}
         autofocus
         placeholder={placeholder}
         valueField={valueField}

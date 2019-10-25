@@ -194,7 +194,7 @@ const messagesVestibular = {
   emptyFilter: 'Não existem resultados que coincidam',
   filterPlaceholder: 'Selecione ou crie um vestibular',
   createOption: function createOption(_ref) {
-    const searchTerm = _ref.searchTerm;
+    const { searchTerm } = _ref;
     return ['+ Criar novo vestibular', searchTerm && ' ', searchTerm && <strong key="_">{searchTerm}</strong>];
   },
 };
@@ -282,7 +282,7 @@ const renderAlternatives2 = ({ fields, meta: { error }, resolution }) => (
       </Row>
 
       {fields.map((alternative, i) => (
-        <Row key={i} className="c-question__row-info c-create-question__row-alternative">
+        <Row className="c-question__row-info c-create-question__row-alternative">
           <Col sm="1" xs="1">
             <Field
               name="selectedIndex"
@@ -759,6 +759,7 @@ class MyQuestionEditPage extends Component {
                       textField="name"
                       listOptions={sourceFilters}
                       messages={messagesVestibular}
+                      validate={requiredValidator}
                     />
                   </Col>
                 </Row>
