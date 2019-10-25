@@ -61,6 +61,13 @@
 
     }
 
+    &__question-info-row-topics {
+      .badge {
+        margin-right: 2px;
+        font-size: 11px;
+      }
+    }
+
     &__question-info-detail {
     //  padding: 3px 5px;
       border-radius: 5px;
