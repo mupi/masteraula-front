@@ -129,7 +129,6 @@ export const fetchQuestion = (id) => {
           dispatch(initialize('edit-question', {
             year: activeQuestion.year,
             source: activeQuestion.source,
-            source2: activeQuestion.source,
             statement: activeQuestion.statement,
             difficulty: activeQuestion.difficulty,
             disciplines: activeQuestion.disciplines,
