@@ -119,7 +119,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
           <QuestionAuthor author={publisher} styleTag="question-info author" />
         </Col>
       </Row>
-      { question.source && (
+      { !question.source && (
         <Row className="c-question__row-info">
           <Col className="info-label" sm="4" xs="4">
           Autoria
