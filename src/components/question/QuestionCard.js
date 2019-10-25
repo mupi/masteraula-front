@@ -50,7 +50,7 @@ const QuestionCard = (props) => {
 
       <CardHeader className="question-card__header">
         <div className="question-card__id">
-          { !question.source && (<FontAwesomeIcon icon="graduation-cap" /> )}
+          { !question.source && (<FontAwesomeIcon icon="graduation-cap" />)}
           { ` Questão N° ${question.id}`}
         </div>
         <div className="question-card__info-section">
