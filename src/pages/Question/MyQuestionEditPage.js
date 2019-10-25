@@ -725,44 +725,41 @@ class MyQuestionEditPage extends Component {
 
                 {sourceQuestionValue === 'V'
                 && (
-                  <Row className="c-create-question__row-info">
-                    <Col className="info-label" sm="4" xs="4">
+                  <>
+                    <Row className="c-create-question__row-info">
+                      <Col className="info-label" sm="4" xs="4">
                       Ano
-                    </Col>
-                    <Col sm="8" xs="8">
-                      <Field
-                        className="c-create-question__year-field c-create-question__form-field"
-                        name="year"
-                        type="number"
-                        component={renderNumericField}
-                        label="Ex. 2019"
-                        validate={[mustBeNumber, maxYearValue]}
-                      />
-                    </Col>
-                  </Row>
-                )
-                }
-
-                {sourceQuestionValue === 'V'
-                && (
-                <Row className="c-create-question__row-info">
-                  <Col className="info-label" sm="4" xs="4">
+                      </Col>
+                      <Col sm="8" xs="8">
+                        <Field
+                          className="c-create-question__year-field c-create-question__form-field"
+                          name="year"
+                          type="number"
+                          component={renderNumericField}
+                          label="Ex. 2019"
+                          validate={[mustBeNumber, maxYearValue]}
+                        />
+                      </Col>
+                    </Row>
+                    <Row className="c-create-question__row-info">
+                      <Col className="info-label" sm="4" xs="4">
                     Vestibular
-                  </Col>
-                  <Col sm="8" xs="8">
-                    <Field
-                      name="source"
-                      component={renderMADropDownVestibular}
-                      className="form-control"
-                      placeholder="Selecione um vestibular"
-                      valueField="id"
-                      textField="name"
-                      listOptions={sourceFilters}
-                      messages={messagesVestibular}
-                      validate={requiredValidator}
-                    />
-                  </Col>
-                </Row>
+                      </Col>
+                      <Col sm="8" xs="8">
+                        <Field
+                          name="source"
+                          component={renderMADropDownVestibular}
+                          className="form-control"
+                          placeholder="Selecione um vestibular"
+                          valueField="id"
+                          textField="name"
+                          listOptions={sourceFilters}
+                          messages={messagesVestibular}
+                          validate={requiredValidator}
+                        />
+                      </Col>
+                    </Row>
+                  </>
                 )}
                 <Row className="c-create-question__row-info">
                   <Col className="info-label" sm="4" xs="4">
