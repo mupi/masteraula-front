@@ -39,7 +39,7 @@ class ShareButton extends React.PureComponent {
     return (
       <div
         id="fb-share-button"
-        className="fb-share-button"
+        className="fb-share-button btn__icon"
         data-href={`https://api.masteraula.com.br/document_publication/${slug}/share`}
         data-layout="button"
         data-size="small"
