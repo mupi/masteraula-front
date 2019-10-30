@@ -12,23 +12,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class ShareButton extends React.PureComponent {
   static FBParse() {
     // /* global FB */
-    window.fbAsyncInit = () => {
-      window.FB.init({
-        appId: '445706276263617',
-        autoLogAppEvents: true,
-        xfbml: true,
-        version: 'v4.0',
-      });
-      window.FB.XFBML.parse(document.getElementById('fb-share-button'));
-    };
-    ((d, s, id) => {
-      let js; const
-        fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) { return; }
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/pt_BR/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
+    if (window.FB) {
+      window.FB.XFBML.parse();
+    } else {
+      window.fbAsyncInit = () => {
+        window.FB.init({
+          appId: '445706276263617',
+          autoLogAppEvents: true,
+          xfbml: true,
+          version: 'v4.0',
+        });
+        window.FB.XFBML.parse();
+      };
+      ((d, s, id) => {
+        const fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        const js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/pt_BR/sdk.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, 'script', 'facebook-jssdk');
+    }
   }
 
   render() {
@@ -37,7 +40,7 @@ class ShareButton extends React.PureComponent {
       <div
         id="fb-share-button"
         className="fb-share-button"
-        data-href={`https://masteraula.com.br/view-list/${slug}`}
+        data-href={`https://api.masteraula.com.br/document_publication/${slug}/share`}
         data-layout="button"
         data-size="small"
       >
