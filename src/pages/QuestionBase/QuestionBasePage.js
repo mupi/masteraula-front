@@ -7,7 +7,7 @@ import QuestionList from 'components/question/QuestionList';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import QuestionSearchFormContainer from 'containers/QuestionSearchFormContainer';
+/* import QuestionSearchFormContainer from 'containers/QuestionSearchFormContainer'; */
 
 class QuestionBasePage extends React.Component {
   componentDidMount() {
@@ -66,7 +66,7 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters showFiltersForObjectBase={false}>
         <div className="c-question-base">
-          <QuestionSearchFormContainer />
+          {/* <QuestionSearchFormContainer /> */}
           {(filter.disciplinesSelected.length > 0)
           || (filter.difficultiesSelected.length > 0)
           || (filter.teachingLevelsSelected.length > 0)
@@ -158,7 +158,7 @@ class QuestionBasePage extends React.Component {
             { isFetching ? (
               <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
                   Carregando ...
-              </Alert> 
+              </Alert>
             ) : (
               <QuestionList sm="4" {...this.props} questions={questionPage.results} count={questionPage.count} />
             )
