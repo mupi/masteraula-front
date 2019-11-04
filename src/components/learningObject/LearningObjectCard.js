@@ -57,10 +57,11 @@ const LearningObjectCard = (props) => {
 
   const joinTagNames = () => object.tags.map(t => t.name).join(', ');
 
-  const objectTypesBadges = objType => (filterTags ? (
+  const objectTypesBadges = (objType, i) => (filterTags ? (
     <Button
       className={`object-card__filter-button object-card__filter-button--${getButtonColor(objType)}`}
       onClick={() => addSelectedObjectTypeFilter(objType)}
+      key={i}
     >
       {getObjectType(objType)}
     </Button>
