@@ -75,6 +75,8 @@ const LearningObjectCard = (props) => {
       <CardHeader className="object-card__header">
         <div className="object-card__id">
           {`Objeto N° ${object.id}`}
+          {' '}
+          <em>{`(Questões: ${object.questions_quantity})`}</em>
         </div>
         <div className="object-card__info-section">
           {object.object_types.map(objectTypesBadges)}
@@ -84,7 +86,7 @@ const LearningObjectCard = (props) => {
             <span>
               <span className="object-card__more-info--lightgray">tags: </span>
               <span className="object-card__tag object-card__info-section-item--italic">
-                {joinTagNames}
+                {joinTagNames()}
               </span>
             </span>
           )}
