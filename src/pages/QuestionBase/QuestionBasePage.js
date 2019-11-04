@@ -7,7 +7,7 @@ import QuestionList from 'components/question/QuestionList';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-/* import QuestionSearchFormContainer from 'containers/QuestionSearchFormContainer'; */
+import QuestionSearchByTopicsContainer from 'containers/QuestionSearchByTopicsContainer';
 
 class QuestionBasePage extends React.Component {
   componentDidMount() {
@@ -66,7 +66,7 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters showFiltersForObjectBase={false}>
         <div className="c-question-base">
-          {/* <QuestionSearchFormContainer /> */}
+          <QuestionSearchByTopicsContainer />
           {(filter.disciplinesSelected.length > 0)
           || (filter.difficultiesSelected.length > 0)
           || (filter.teachingLevelsSelected.length > 0)
