@@ -73,7 +73,7 @@ class SidebarFilters extends Component {
           />
           {' Filtros'}
         </h6>
-        {filter.disciplinesSelected.length > 0 || filter.teachingLevelsSelected.length > 0
+        { /* filter.disciplinesSelected.length > 0 || */ filter.teachingLevelsSelected.length > 0
           || filter.difficultiesSelected.length > 0 || filter.sourcesSelected.length > 0
           || filter.yearsSelected.length > 0 || onlyMyQuestions
           ? (

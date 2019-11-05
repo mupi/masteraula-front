@@ -7,6 +7,8 @@ import {
   LIST_SOURCE_FILTERS_SUCCESS, LIST_SOURCE_FILTERS_FAILURE,
   LIST_YEAR_FILTERS,
   LIST_YEAR_FILTERS_SUCCESS, LIST_YEAR_FILTERS_FAILURE,
+  LIST_TOPIC_FILTERS,
+  LIST_TOPIC_FILTERS_SUCCESS, LIST_TOPIC_FILTERS_FAILURE,
   ADD_SELECTED_DISCIPLINE_FILTER,
   REMOVE_SELECTED_DISCIPLINE_FILTER,
   ADD_SELECTED_TEACHINGLEVEL_FILTER,
@@ -17,6 +19,8 @@ import {
   REMOVE_SELECTED_SOURCE_FILTER,
   ADD_SELECTED_YEAR_FILTER,
   REMOVE_SELECTED_YEAR_FILTER,
+  ADD_SELECTED_TOPIC_FILTER,
+  REMOVE_SELECTED_TOPIC_FILTER,
   SET_SEARCH_TEXT,
   ADD_MYQUESTIONS_FILTER,
   CLEAR_SELECTED_FILTERS, CLEAR_SEARCH,
@@ -28,11 +32,13 @@ const initialState = {
   teachingLevelFilters: [],
   sourceFilters: [],
   yearFilters: [],
+  topicFilters: [],
 
   disciplinesSelected: [],
   teachingLevelsSelected: [],
   sourcesSelected: [],
   yearsSelected: [],
+  topicsSelected: [],
   difficultiesSelected: [],
   difficultyFilters: [
     { id: 'E', name: 'Fácil' },
@@ -107,11 +113,34 @@ export const filter = (state = initialState, action) => {
         isFetchingYearFilters: false,
         error: action.error,
       });
-    case ADD_SELECTED_DISCIPLINE_FILTER: {
+    case LIST_TOPIC_FILTERS:
+      return Object.assign({}, state, {
+        topicFilters: action.topicFilters,
+        isFetchingTopicFilters: true,
+        error: null,
+      });
+    case LIST_TOPIC_FILTERS_SUCCESS:
+      return Object.assign({}, state, {
+        topicFilters: action.topicFilters,
+        isFetchingTopicFilters: false,
+      });
+    case LIST_TOPIC_FILTERS_FAILURE:
+      return Object.assign({}, state, {
+        isFetchingTopicFilters: false,
+        error: action.error,
+      });
+      /* case ADD_SELECTED_DISCIPLINE_FILTER: {
       const filterDiscipline = state.disciplineFilters.filter(item => item.id === parseInt(action.idDiscipline, 10));
       if (state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
         disciplinesSelected: [...state.disciplinesSelected, filterDiscipline[0]],
+      });
+    } */
+    case ADD_SELECTED_DISCIPLINE_FILTER: {
+      const filterDiscipline = state.disciplineFilters.filter(item => item.id === parseInt(action.idDiscipline, 10));
+      if (state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) return state; // do not add duplicates
+      return Object.assign({}, state, {
+        disciplinesSelected: [filterDiscipline[0]],
       });
     }
     case REMOVE_SELECTED_DISCIPLINE_FILTER: {
@@ -186,6 +215,19 @@ export const filter = (state = initialState, action) => {
       const newYears = state.yearsSelected.filter(item => item.id.toString() !== action.idYear);
       return Object.assign({}, state, {
         yearsSelected: newYears,
+      });
+    }
+    case ADD_SELECTED_TOPIC_FILTER: {
+      const topicFilter = state.topicFilters.filter(item => item.id === parseInt(action.idTopic, 10));
+      if (state.topicsSelected.filter(item => item.id === topicFilter[0].id).length > 0) return state; // do not add duplicates
+      return Object.assign({}, state, {
+        topicsSelected: [...state.topicsSelected, topicFilter[0]],
+      });
+    }
+    case REMOVE_SELECTED_TOPIC_FILTER: {
+      const newTopics = state.topicsSelected.filter(item => item.id !== parseInt(action.idTopic, 10));
+      return Object.assign({}, state, {
+        topicsSelected: newTopics,
       });
     }
     case SET_SEARCH_TEXT: {

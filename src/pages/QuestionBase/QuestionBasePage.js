@@ -29,8 +29,9 @@ class QuestionBasePage extends React.Component {
 
   render() {
     const {
-      questionPage, isFetching, error, filter, toggleSelectedDisciplineFilter, toggleSelectedDifficultyFilter,
+      questionPage, isFetching, error, filter, toggleSelectedDifficultyFilter,
       toggleSelectedTeachingLevelFilter, toggleSelectedSourceFilter, toggleSelectedYearFilter,
+      removeSelectedTopicFilter,
     } = this.props;
     if (error) {
       return (
@@ -42,8 +43,8 @@ class QuestionBasePage extends React.Component {
       );
     }
 
-    function clearDisciplines(event) {
-      toggleSelectedDisciplineFilter(event.target.id, false);
+    function clearTopic(event) {
+      removeSelectedTopicFilter(event.target.id);
     }
 
     function clearDifficulties(event) {
@@ -67,83 +68,82 @@ class QuestionBasePage extends React.Component {
       <HomeUserPage showFilters showFiltersForObjectBase={false}>
         <div className="c-question-base">
           <QuestionSearchByTopicsContainer />
-          {(filter.disciplinesSelected.length > 0)
-          || (filter.difficultiesSelected.length > 0)
+          { /* (filter.disciplinesSelected.length > 0) || */
+          (filter.difficultiesSelected.length > 0)
           || (filter.teachingLevelsSelected.length > 0)
           || (filter.sourcesSelected.length > 0)
-          || (filter.yearsSelected.length > 0) ? (
+          || (filter.yearsSelected.length > 0)
+          || (filter.topicsSelected.length > 0) ? (
             <Row>
               <Col sm="12">
                 <p className="c-question-base__keywords-title">
                   <span className="btn__icon">
                     Filtros selecionados:
                   </span>
-                  {filter.disciplinesSelected.map(item => (
+                  {filter.topicsSelected.map(item => (
                     <Button
                       disabled={isFetching}
-                      key={item ? `DI${item.id}` : undefined}
-                      id={item ? item.id : undefined}
-                      onClick={clearDisciplines}
+                      key={`${item.id}`}
+                      id={item.id}
+                      className="c-question-base__filter-selected"
+                      onClick={clearTopic}
+                    >
+                      {item.name}
+                      {' '}
+                        x
+                    </Button>
+                  )).concat(filter.difficultiesSelected.map(item => (
+                    <Button
+                      disabled={isFetching}
+                      key={`DF${item.id}`}
+                      id={item.id}
+                      onClick={clearDifficulties}
                       className="c-question-base__filter-selected"
                     >
                       {item.name}
                       {' '}
-                      x
+                        x
                     </Button>
-                  )).concat(
-                    filter.difficultiesSelected.map(item => (
-                      <Button
-                        disabled={isFetching}
-                        key={`DF${item.id}`}
-                        id={item.id}
-                        onClick={clearDifficulties}
-                        className="c-question-base__filter-selected"
-                      >
-                        {item.name}
-                        {' '}
+                  )),
+                  filter.teachingLevelsSelected.map(item => (
+                    <Button
+                      disabled={isFetching}
+                      key={`TL${item.id}`}
+                      id={item.id}
+                      onClick={clearTeachingLevel}
+                      className="c-question-base__filter-selected"
+                    >
+                      {item.name}
+                      {' '}
                         x
-                      </Button>
-                    )),
-                    filter.teachingLevelsSelected.map(item => (
-                      <Button
-                        disabled={isFetching}
-                        key={`TL${item.id}`}
-                        id={item.id}
-                        onClick={clearTeachingLevel}
-                        className="c-question-base__filter-selected"
-                      >
-                        {item.name}
-                        {' '}
+                    </Button>
+                  )),
+                  filter.sourcesSelected.map(item => (
+                    <Button
+                      disabled={isFetching}
+                      key={`S${item.id}`}
+                      id={item.id}
+                      onClick={clearSources}
+                      className="c-question-base__filter-selected"
+                    >
+                      {item.name}
+                      {' '}
                         x
-                      </Button>
-                    )),
-                    filter.sourcesSelected.map(item => (
-                      <Button
-                        disabled={isFetching}
-                        key={`S${item.id}`}
-                        id={item.id}
-                        onClick={clearSources}
-                        className="c-question-base__filter-selected"
-                      >
-                        {item.name}
-                        {' '}
+                    </Button>
+                  )),
+                  filter.yearsSelected.map(item => (
+                    <Button
+                      disabled={isFetching}
+                      key={`Y${item.id}`}
+                      id={item.id}
+                      onClick={clearYears}
+                      className="c-question-base__filter-selected"
+                    >
+                      {item.name}
+                      {' '}
                         x
-                      </Button>
-                    )),
-                    filter.yearsSelected.map(item => (
-                      <Button
-                        disabled={isFetching}
-                        key={`Y${item.id}`}
-                        id={item.id}
-                        onClick={clearYears}
-                        className="c-question-base__filter-selected"
-                      >
-                        {item.name}
-                        {' '}
-                        x
-                      </Button>
-                    )),
-                  )}
+                    </Button>
+                  )))}
                 </p>
               </Col>
             </Row>

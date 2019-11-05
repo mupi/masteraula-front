@@ -34,7 +34,7 @@ class QuestionSearchByTopics extends Component {
     this.state = {
       authorState: '',
       onlyMyQuestionsState: false,
-      visible: 4,
+      visible: 2,
     };
 
     this.handleFilter = this.handleFilter.bind(this);
@@ -50,7 +50,7 @@ class QuestionSearchByTopics extends Component {
 
   getListTopics = (e, newValue) => {
     const {
-      listTopics,
+      listTopics, addSelectedDisciplineFilter,
     } = this.props;
 
     if (newValue > 0) {
@@ -58,8 +58,10 @@ class QuestionSearchByTopics extends Component {
         id: newValue,
       }];
       listTopics(disciplineSelected);
-      this.setState({ visible: 4 });
+      this.setState({ visible: 3 });
     }
+
+    addSelectedDisciplineFilter(newValue);
   }
 
   handleFilter(event) {
@@ -71,19 +73,20 @@ class QuestionSearchByTopics extends Component {
   }
 
   loadMoreTopics() {
-    this.setState(prev => ({ visible: prev.visible + 8 }));
+    this.setState(prev => ({ visible: prev.visible + 3 }));
   }
 
 
   render() {
     const {
-      handleSubmit, search, author, isFetchingQuestions, onlyMyQuestions, disciplineFilters, topicsList,
+      handleSubmit, search, author, isFetchingQuestions, onlyMyQuestions, disciplineFilters, topicFilters, addSelectedTopicFilter,
     } = this.props;
 
     const { visible } = this.state;
 
     const { authorState, onlyMyQuestionsState } = this.state;
     const isChecked = (onlyMyQuestions === undefined ? onlyMyQuestionsState : onlyMyQuestions);
+    const maxTopicShown = 15;
 
     return (
       <Form onSubmit={handleSubmit}>
@@ -147,18 +150,24 @@ class QuestionSearchByTopics extends Component {
         </Row>
         <Row>
           <Col>
-            {(topicsList && topicsList.length > 0) ? (
+            {(topicFilters && topicFilters.length > 0) ? (
               <>
                 <div className="tiles" aria-live="polite">
-                  {topicsList.slice(0, visible).map(topic => (
-                    <Button key={topic.id} className="question-card__info-section-item question-card__info-section-item--green">
+                  {topicFilters.slice(0, visible).map(topic => (
+                    <Button
+                      key={topic.id}
+                      className="question-card__info-section-item question-card__info-section-item--green"
+                      onClick={() => addSelectedTopicFilter(topic.id.toString())}
+                    >
                       <span>{topic.name.trim()}</span>
                     </Button>
                   ))}
                 </div>
                 <div>
-                  { visible < topicsList.length
+                  { visible < maxTopicShown && visible <= topicFilters.length
                     && <Button color="link" onClick={this.loadMoreTopics} className="load-more">Ver mais tópicos</Button>}
+                  { visible >= maxTopicShown && topicFilters.length > maxTopicShown
+                    && <span>BUSCADOR DE TÓPICOS</span>}
                 </div>
               </>
             ) : ''}
