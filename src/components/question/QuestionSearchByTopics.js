@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Form, Field } from 'redux-form';
 import {
-  Input, Row, Col, UncontrolledTooltip, Label, Badge,
+  Input, Row, Col, UncontrolledTooltip, Label, Button,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -31,8 +31,14 @@ const renderSelectField = ({
 class QuestionSearchByTopics extends Component {
   constructor(props) {
     super(props);
-    this.state = { authorState: '', onlyMyQuestionsState: false };
+    this.state = {
+      authorState: '',
+      onlyMyQuestionsState: false,
+      visible: 4,
+    };
+
     this.handleFilter = this.handleFilter.bind(this);
+    this.loadMoreTopics = this.loadMoreTopics.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +58,7 @@ class QuestionSearchByTopics extends Component {
         id: newValue,
       }];
       listTopics(disciplineSelected);
+      this.setState({ visible: 4 });
     }
   }
 
@@ -63,11 +70,17 @@ class QuestionSearchByTopics extends Component {
     addMyQuestionsFilter(valueFilter, event.target.checked);
   }
 
+  loadMoreTopics() {
+    this.setState(prev => ({ visible: prev.visible + 8 }));
+  }
+
 
   render() {
     const {
       handleSubmit, search, author, isFetchingQuestions, onlyMyQuestions, disciplineFilters, topicsList,
     } = this.props;
+
+    const { visible } = this.state;
 
     const { authorState, onlyMyQuestionsState } = this.state;
     const isChecked = (onlyMyQuestions === undefined ? onlyMyQuestionsState : onlyMyQuestions);
@@ -135,12 +148,21 @@ class QuestionSearchByTopics extends Component {
         <Row>
           <Col>
             {(topicsList && topicsList.length > 0) ? (
-              <p className="c-document__question-info-row-topics">
-                {topicsList.map(topic => <Badge key={topic.name} color="success" pill>{topic.name.trim()}</Badge>)}
-              </p>
+              <>
+                <div className="tiles" aria-live="polite">
+                  {topicsList.slice(0, visible).map(topic => (
+                    <Button key={topic.id} className="question-card__info-section-item question-card__info-section-item--green">
+                      <span>{topic.name.trim()}</span>
+                    </Button>
+                  ))}
+                </div>
+                <div>
+                  { visible < topicsList.length
+                    && <Button color="link" onClick={this.loadMoreTopics} className="load-more">Ver mais tópicos</Button>}
+                </div>
+              </>
             ) : ''}
           </Col>
-          Ver mais filtros
         </Row>
         {search ? (
           <Row>
