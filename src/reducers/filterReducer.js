@@ -21,6 +21,7 @@ import {
   REMOVE_SELECTED_YEAR_FILTER,
   ADD_SELECTED_TOPIC_FILTER,
   REMOVE_SELECTED_TOPIC_FILTER,
+  RESET_LIST_TOPIC_FILTERS,
   SET_SEARCH_TEXT,
   ADD_MYQUESTIONS_FILTER,
   CLEAR_SELECTED_FILTERS, CLEAR_SEARCH,
@@ -230,6 +231,13 @@ export const filter = (state = initialState, action) => {
         topicsSelected: newTopics,
       });
     }
+    case RESET_LIST_TOPIC_FILTERS:
+      return Object.assign({}, state, {
+        topicsSelected: [],
+        topicFilters: [],
+      });
+
+
     case SET_SEARCH_TEXT: {
       return Object.assign({}, state, {
         searchText: action.searchText,

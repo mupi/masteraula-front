@@ -50,7 +50,7 @@ class QuestionSearchByTopics extends Component {
 
   getListTopics = (e, newValue) => {
     const {
-      listTopics, addSelectedDisciplineFilter,
+      listTopics, addSelectedDisciplineFilter, resetTopicList,
     } = this.props;
 
     if (newValue > 0) {
@@ -62,6 +62,7 @@ class QuestionSearchByTopics extends Component {
     }
 
     addSelectedDisciplineFilter(newValue);
+    resetTopicList();
   }
 
   handleFilter(event) {

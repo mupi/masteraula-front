@@ -24,6 +24,7 @@ export const LIST_YEAR_FILTERS_FAILURE = 'LIST_YEAR_FILTERS_FAILURE';
 export const LIST_TOPIC_FILTERS = 'LIST_TOPIC_FILTERS';
 export const LIST_TOPIC_FILTERS_SUCCESS = 'LIST_TOPIC_FILTERS_SUCCESS';
 export const LIST_TOPIC_FILTERS_FAILURE = 'LIST_TOPIC_FILTERS_FAILURE';
+export const RESET_LIST_TOPIC_FILTERS = 'RESET_LIST_TOPIC_FILTERS';
 
 // Add selected discipline filter
 export const ADD_SELECTED_DISCIPLINE_FILTER = 'ADD_SELECTED_DISCIPLINE_FILTER';
@@ -260,6 +261,11 @@ export const addSelectedTopicFilter = idTopic => ({
 // Remove Selected TOPIC filter
 export const removeSelectedTopicFilter = idTopic => ({
   type: REMOVE_SELECTED_TOPIC_FILTER, idTopic,
+});
+
+// Reset topic list
+export const resetTopicList = () => ({
+  type: RESET_LIST_TOPIC_FILTERS,
 });
 
 
