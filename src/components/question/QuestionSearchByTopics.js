@@ -140,6 +140,7 @@ class QuestionSearchByTopics extends Component {
               </p>
             ) : ''}
           </Col>
+          Ver mais filtros
         </Row>
         {search ? (
           <Row>
