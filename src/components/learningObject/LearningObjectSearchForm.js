@@ -78,7 +78,7 @@ const LearningObjectSearchForm = (props) => {
               <div className="p-2" />
               <div className="p-2">
                 <h4>
-                  Banco de Objetos de Aprendizagem
+                  Tirinhas, excertos e mais
                   {' '}
                 </h4>
               </div>
@@ -98,14 +98,14 @@ const LearningObjectSearchForm = (props) => {
         : ''}
       <Row className="c-question-base__search-text">
         <p className="c-question-base__search-info hidden">
-          Pesquisar por palavras-chave no banco de objetos de aprendizagem
+          Pesquisar por palavras-chave no banco de objetos de aprendizagem (Tirinhas, excertos e mais)
         </p>
         <Field
           component={renderSearchField}
           type="text"
           name="searchTextObject"
           id="searchTextObject"
-          placeholder="Pesquisar por palavras-chave no banco de objetos de aprendizagem"
+          placeholder="Pesquisar por palavras-chave no banco de objetos de aprendizagem (Tirinhas, excertos e mais)"
           className="form-control"
           validate={minLength3characters}
           search={search}
