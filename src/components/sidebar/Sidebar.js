@@ -179,7 +179,7 @@ const SidebarMobile = ({
                           className="btn__icon"
                           icon="image"
                         />
-                        Banco de objetos
+                        Tirinhas, excertos e mais
                       </Link>
                     </ListGroupItem>
                     <ListGroupItem color="light">
@@ -275,7 +275,7 @@ const SidebarWeb = ({
                       <ListGroupItem color="light">
                         <Link to="/object-base/1">
                           <FontAwesomeIcon className="btn__icon" icon="image" />
-                          Banco de objetos
+                          Tirinhas, excertos e mais
                         </Link>
                       </ListGroupItem>
                       <ListGroupItem color="light">
