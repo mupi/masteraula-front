@@ -1,15 +1,58 @@
 import React, { Component } from 'react';
-import { reduxForm, Form } from 'redux-form';
+import { reduxForm, Form, Field } from 'redux-form';
 import {
-  Input, Row, Col, UncontrolledTooltip, Label,
+  Input, Row, Col, UncontrolledTooltip, Label, Badge,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+// Select for Discipline
+const renderSelectField = ({
+  input, label, meta: { touched, error }, children, optionDefault, className,
+}) => (
+  <div>
+    <div>
+      <select {...input} className={className}>
+        <option value={optionDefault}>
+          {label}
+        </option>
+        {children}
+      </select>
+      {touched && error && (
+      <span className="error-message-text">
+          {error}
+      </span>
+      )}
+    </div>
+  </div>
+);
+
 
 class QuestionSearchByTopics extends Component {
   constructor(props) {
     super(props);
     this.state = { authorState: '', onlyMyQuestionsState: false };
     this.handleFilter = this.handleFilter.bind(this);
+  }
+
+  componentDidMount() {
+    const {
+      listDisciplineFilters,
+    } = this.props;
+    listDisciplineFilters();
+  }
+
+  getListTopics = (e, newValue) => {
+    const {
+      listTopics,
+    } = this.props;
+
+    if (newValue > 0) {
+      const disciplineSelected = [{
+        id: newValue,
+      }];
+      listTopics(disciplineSelected);
+    }
   }
 
   handleFilter(event) {
@@ -20,9 +63,10 @@ class QuestionSearchByTopics extends Component {
     addMyQuestionsFilter(valueFilter, event.target.checked);
   }
 
+
   render() {
     const {
-      handleSubmit, search, author, isFetchingQuestions, onlyMyQuestions,
+      handleSubmit, search, author, isFetchingQuestions, onlyMyQuestions, disciplineFilters, topicsList,
     } = this.props;
 
     const { authorState, onlyMyQuestionsState } = this.state;
@@ -53,6 +97,25 @@ class QuestionSearchByTopics extends Component {
             </div>
           </Col>
         </Row>
+        <Row className="c-create-question__row-info">
+          <Col sm="12" xs="12">
+            <Field
+              name="discipline"
+              type="text"
+              component={renderSelectField}
+              label="Selecione uma disciplina"
+              optionDefault="0"
+              className="form-control question-search__by-discipline-select"
+              onChange={this.getListTopics}
+            >
+              { disciplineFilters && disciplineFilters.map(discipline => (
+                <option className="c-user-profile__state-city-dropdown-item" key={discipline.id} value={discipline.id}>
+                  {discipline.name}
+                </option>
+              )) }
+            </Field>
+          </Col>
+        </Row>
         <Row className="c-question-base__myquestions-filter">
           <Label check>
             <Input
@@ -68,6 +131,15 @@ class QuestionSearchByTopics extends Component {
               {'"Minhas questões"'}
             </strong>
           </Label>
+        </Row>
+        <Row>
+          <Col>
+            {(topicsList && topicsList.length > 0) ? (
+              <p className="c-document__question-info-row-topics">
+                {topicsList.map(topic => <Badge key={topic.name} color="success" pill>{topic.name.trim()}</Badge>)}
+              </p>
+            ) : ''}
+          </Col>
         </Row>
         {search ? (
           <Row>

@@ -332,3 +332,12 @@ flex-direction: row-reverse;
   color: white;
   font-weight: bold;
 }
+
+
+.question-search{
+
+  &__by-discipline-select{
+      width: auto;
+      font-size: 14px;
+  }
+}
