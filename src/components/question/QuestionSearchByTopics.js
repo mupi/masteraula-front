@@ -50,7 +50,7 @@ class QuestionSearchByTopics extends Component {
 
   getListTopics = (e, newValue) => {
     const {
-      listTopics, addSelectedDisciplineFilter, resetTopicList,
+      listTopics, addSelectedDisciplineFilter, resetTopicListSelected,
     } = this.props;
 
     if (newValue > 0) {
@@ -62,7 +62,7 @@ class QuestionSearchByTopics extends Component {
     }
 
     addSelectedDisciplineFilter(newValue);
-    resetTopicList();
+    resetTopicListSelected();
   }
 
   handleFilter(event) {
@@ -121,7 +121,7 @@ class QuestionSearchByTopics extends Component {
               type="text"
               component={renderSelectField}
               label="Selecione uma disciplina"
-              optionDefault="0"
+              optionDefault="-1"
               className="form-control question-search__by-discipline-select"
               onChange={this.getListTopics}
             >

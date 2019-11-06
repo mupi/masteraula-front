@@ -21,7 +21,7 @@ import {
   REMOVE_SELECTED_YEAR_FILTER,
   ADD_SELECTED_TOPIC_FILTER,
   REMOVE_SELECTED_TOPIC_FILTER,
-  RESET_LIST_TOPIC_FILTERS,
+  RESET_LIST_TOPIC_SELECTED,
   SET_SEARCH_TEXT,
   ADD_MYQUESTIONS_FILTER,
   CLEAR_SELECTED_FILTERS, CLEAR_SEARCH,
@@ -139,9 +139,12 @@ export const filter = (state = initialState, action) => {
     } */
     case ADD_SELECTED_DISCIPLINE_FILTER: {
       const filterDiscipline = state.disciplineFilters.filter(item => item.id === parseInt(action.idDiscipline, 10));
-      if (state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) return state; // do not add duplicates
+      if (filterDiscipline[0] && state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) {
+        return state;
+      } // do not add duplicates
+      const filterDisciplineAdded = filterDiscipline[0] ? filterDiscipline[0] : {};
       return Object.assign({}, state, {
-        disciplinesSelected: [filterDiscipline[0]],
+        disciplinesSelected: [filterDisciplineAdded],
       });
     }
     case REMOVE_SELECTED_DISCIPLINE_FILTER: {
@@ -231,10 +234,10 @@ export const filter = (state = initialState, action) => {
         topicsSelected: newTopics,
       });
     }
-    case RESET_LIST_TOPIC_FILTERS:
+    case RESET_LIST_TOPIC_SELECTED:
       return Object.assign({}, state, {
         topicsSelected: [],
-        topicFilters: [],
+        // topicFilters: [],
       });
 
 

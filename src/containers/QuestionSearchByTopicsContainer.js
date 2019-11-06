@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import QuestionSearchByTopics from 'components/question/QuestionSearchByTopics';
 import {
   addMyQuestionsFilter, listDisciplineFilters, addSelectedDisciplineFilter, listTopicFilters, addSelectedTopicFilter,
-  resetTopicList,
+  resetTopicListSelected,
 } from 'actions/filterAction';
 import { history } from 'helpers';
 
@@ -30,7 +30,7 @@ const mapDispatchToProps = dispatch => ({
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTopicFilter: idTopic => dispatch(addSelectedTopicFilter(idTopic)),
-  resetTopicList: () => dispatch(resetTopicList()),
+  resetTopicListSelected: () => dispatch(resetTopicListSelected()),
 
 });
 
