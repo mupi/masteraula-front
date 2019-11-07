@@ -5,6 +5,7 @@ import {
   resetTopicListSelected,
 } from 'actions/filterAction';
 import { history } from 'helpers';
+import { listTopicSuggestions } from 'actions/suggestionAction';
 
 const mapStateToProps = state => ({
   initialValues: {
@@ -19,6 +20,10 @@ const mapStateToProps = state => ({
   isFetchingQuestions: state.question.isFetching,
   disciplineFilters: state.filter.disciplineFilters,
   topicFilters: state.filter.topicFilters,
+
+  /* autocomplete */
+  isFetchingTopicSuggestions: state.suggestion.isFetchingSuggestions,
+  topicSuggestions: state.suggestion.topicSuggestions,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -31,7 +36,7 @@ const mapDispatchToProps = dispatch => ({
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTopicFilter: idTopic => dispatch(addSelectedTopicFilter(idTopic)),
   resetTopicListSelected: () => dispatch(resetTopicListSelected()),
-
+  listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 });
 
 const QuestionSearchByTopicsContainer = connect(

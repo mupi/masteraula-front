@@ -24,7 +24,6 @@ function listTopics(disciplines) {
   return axios.get(`${apiUrl}${url}`, requestOptions).then(response => response.data);
 }
 
-
 const topicService = {
   listTopics,
 };

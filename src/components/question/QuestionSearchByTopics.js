@@ -4,7 +4,7 @@ import {
   Input, Row, Col, UncontrolledTooltip, Label, Button,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import MAAutocompleteTopics from 'components/autocomplete/MAAutocompleteTopics';
 
 // Select for Discipline
 const renderSelectField = ({
@@ -168,7 +168,7 @@ class QuestionSearchByTopics extends Component {
                   { visible < maxTopicShown && visible <= topicFilters.length
                     && <Button color="link" onClick={this.loadMoreTopics} className="load-more">Ver mais tópicos</Button>}
                   { visible >= maxTopicShown && topicFilters.length > maxTopicShown
-                    && <span>BUSCADOR DE TÓPICOS</span>}
+                    && <MAAutocompleteTopics {...this.props} />}
                 </div>
               </>
             ) : ''}
