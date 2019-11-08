@@ -196,7 +196,12 @@ class QuestionSearchByTopics extends Component {
                   { visible < maxTopicShown && visible <= topicFilters.length
                     && <Button color="link" onClick={this.loadMoreTopics} className="load-more">Ver mais tópicos</Button>}
                   { visible >= maxTopicShown && topicFilters.length > maxTopicShown
-                    && <MAAutocompleteTopics {...this.props} />}
+                    && (
+                    <>
+                      <span className="c-question-base__text-topicsearch">Buscador de tópicos:</span>
+                      <MAAutocompleteTopics {...this.props} />
+                    </>
+                    )}
                 </div>
               </>
             ) : ''}
