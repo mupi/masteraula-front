@@ -90,14 +90,14 @@ class QuestionSearchByTopics extends Component {
 
   render() {
     const {
-      search, author, isFetchingQuestions, onlyMyQuestions, disciplineFilters, topicFilters, disciplineIdSelected,
+      search, author, isFetchingQuestions, onlyMyQuestions, disciplineFilters, topicFilters, disciplineIdSelected, moreTopicFilters,
     } = this.props;
 
     const { visible } = this.state;
 
     const { authorState, onlyMyQuestionsState } = this.state;
     const isChecked = (onlyMyQuestions === undefined ? onlyMyQuestionsState : onlyMyQuestions);
-    const maxTopicShown = 15;
+    const maxTopicShown = 20;
 
     return (
       <>
@@ -195,7 +195,7 @@ class QuestionSearchByTopics extends Component {
                 <div>
                   { visible < maxTopicShown && visible <= topicFilters.length
                     && <Button color="link" onClick={this.loadMoreTopics} className="load-more">Ver mais tópicos</Button>}
-                  { visible >= maxTopicShown && topicFilters.length > maxTopicShown
+                  { visible >= maxTopicShown && moreTopicFilters
                     && (
                     <>
                       <span className="c-question-base__text-topicsearch">Buscador de tópicos:</span>

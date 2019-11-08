@@ -122,7 +122,8 @@ export const filter = (state = initialState, action) => {
       });
     case LIST_TOPIC_FILTERS_SUCCESS:
       return Object.assign({}, state, {
-        topicFilters: action.topicFilters,
+        topicFilters: action.topicFilters.topics,
+        moreTopicFilters: action.topicFilters.more,
         isFetchingTopicFilters: false,
       });
     case LIST_TOPIC_FILTERS_FAILURE:

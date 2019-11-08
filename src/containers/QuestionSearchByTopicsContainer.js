@@ -20,6 +20,7 @@ const mapStateToProps = state => ({
   isFetchingQuestions: state.question.isFetching,
   disciplineFilters: state.filter.disciplineFilters,
   topicFilters: state.filter.topicFilters,
+  moreTopicFilters: state.filter.moreTopicFilters,
   topicsSelected: state.filter.topicsSelected,
 
   /* autocomplete */
