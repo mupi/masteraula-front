@@ -85,7 +85,7 @@ const mapDispatchToProps = dispatch => ({
 
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
 
-  listTopics: param => dispatch(listTopicFilters(param)),
+  listTopicFilters: (disciplineSelected, topicsSelected = []) => dispatch(listTopicFilters(disciplineSelected, topicsSelected)),
 
   // new way to handle modals
   hideModal: () => dispatch(hideModal()),

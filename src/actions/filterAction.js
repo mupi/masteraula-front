@@ -1,4 +1,4 @@
-import { filterService, topicService } from 'services';
+import { filterService } from 'services';
 
 // List Discipline Filters
 export const LIST_DISCIPLINE_FILTERS = 'LIST_DISCIPLINE_FILTERS';
@@ -78,7 +78,7 @@ export const CLEAR_SEARCH = 'CLEAR_SEARCH';
 
 
 // Discipline List
-export const listDisciplineFilters = (param) => {
+export const listDisciplineFilters = () => {
   function requestListDisciplineFilters() { return { type: LIST_DISCIPLINE_FILTERS }; }
   function fetchListDisciplineFiltersSuccess(disciplineFilters) {
     return { type: LIST_DISCIPLINE_FILTERS_SUCCESS, disciplineFilters };
@@ -87,8 +87,8 @@ export const listDisciplineFilters = (param) => {
     return { type: LIST_DISCIPLINE_FILTERS_FAILURE, error };
   }
   return (dispatch) => {
-    dispatch(requestListDisciplineFilters(param));
-    return filterService.listDisciplineFilters(param)
+    dispatch(requestListDisciplineFilters());
+    return filterService.listDisciplineFilters()
       .then(
         (disciplineFilters) => {
           dispatch(fetchListDisciplineFiltersSuccess(disciplineFilters));
@@ -180,7 +180,7 @@ export const listYearFilters = () => {
 };
 
 // List all topics filters
-export const listTopicFilters = (param) => {
+export const listTopicFilters = (disciplinesSelected, topicsSelected = []) => {
   function requestListTopics() { return { type: LIST_TOPIC_FILTERS }; }
   function fetchListTopicsSuccess(topicFilters) {
     return { type: LIST_TOPIC_FILTERS_SUCCESS, topicFilters };
@@ -189,11 +189,11 @@ export const listTopicFilters = (param) => {
     return { type: LIST_TOPIC_FILTERS_FAILURE, error };
   }
   return (dispatch) => {
-    dispatch(requestListTopics(param));
-    return topicService.listTopics(param)
+    dispatch(requestListTopics(disciplinesSelected, topicsSelected));
+    return filterService.listTopicFilters(disciplinesSelected, topicsSelected)
       .then(
-        (topics) => {
-          dispatch(fetchListTopicsSuccess(topics));
+        (topicFilters) => {
+          dispatch(fetchListTopicsSuccess(topicFilters));
         },
         (error) => {
           dispatch(fetchListTopicsFailure(error));
@@ -254,8 +254,8 @@ export const removeSelectedYearFilter = idYear => ({
 });
 
 // Add Selected TOPIC filter
-export const addSelectedTopicFilter = idTopic => ({
-  type: ADD_SELECTED_TOPIC_FILTER, idTopic,
+export const addSelectedTopicFilter = topic => ({
+  type: ADD_SELECTED_TOPIC_FILTER, topic,
 });
 
 // Remove Selected TOPIC filter

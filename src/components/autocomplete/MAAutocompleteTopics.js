@@ -27,6 +27,11 @@ class MAAutocompleteTopics extends React.Component {
     /* this.setState({ suggestions: [] }); */
   };
 
+  onSuggestionSelected = (event, { suggestion }) => {
+    const { addSelectedTopicFilter } = this.props;
+    addSelectedTopicFilter(suggestion);
+  }
+
   render() {
     const { value } = this.state;
     const { topicSuggestions } = this.props;
@@ -45,6 +50,7 @@ class MAAutocompleteTopics extends React.Component {
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
         shouldRenderSuggestions={shouldRenderSuggestions}
+        onSuggestionSelected={this.onSuggestionSelected}
       />
     );
   }

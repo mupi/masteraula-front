@@ -1,6 +1,7 @@
-// import { apiUrl } from 'helpers/config';
+import { apiUrl } from 'helpers/config';
 // import queryString from 'query-string';
 import axios from 'axios';
+import { authHeader } from 'helpers';
 
 let call;
 
@@ -11,11 +12,16 @@ function listTopicSuggestions(term) {
 
   const requestOptions = {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
     cancelToken: call.token,
+
   };
 
-  return axios.get(`https://swapi.co/api/people/?search=${term}`, requestOptions)
+  const url = `/synonym_autocomplete/?q=${term}`;
+  return axios.get(`${apiUrl}${url}`, requestOptions)
     .then(response => response.data).then(topicSuggestions => topicSuggestions);
 }
 

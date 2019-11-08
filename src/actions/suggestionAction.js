@@ -19,7 +19,7 @@ export const listTopicSuggestions = (param) => {
     return suggestionService.listTopicSuggestions(param)
       .then(
         (topicSuggestions) => {
-          dispatch(fetchListTopicSuggestionsSuccess(topicSuggestions.results));
+          dispatch(fetchListTopicSuggestionsSuccess(topicSuggestions));
         },
         (error) => {
           dispatch(fetchListSuggestionsFailure(error));

@@ -222,10 +222,9 @@ export const filter = (state = initialState, action) => {
       });
     }
     case ADD_SELECTED_TOPIC_FILTER: {
-      const topicFilter = state.topicFilters.filter(item => item.id === parseInt(action.idTopic, 10));
-      if (state.topicsSelected.filter(item => item.id === topicFilter[0].id).length > 0) return state; // do not add duplicates
+      if (state.topicsSelected.filter(item => item.id === action.topic.id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
-        topicsSelected: [...state.topicsSelected, topicFilter[0]],
+        topicsSelected: [...state.topicsSelected, action.topic],
       });
     }
     case REMOVE_SELECTED_TOPIC_FILTER: {
@@ -237,7 +236,7 @@ export const filter = (state = initialState, action) => {
     case RESET_LIST_TOPIC_SELECTED:
       return Object.assign({}, state, {
         topicsSelected: [],
-        // topicFilters: [],
+        topicFilters: [],
       });
 
 

@@ -86,6 +86,7 @@ class MAAutocomplete extends Component {
         placeholder: 'Insira um tópico',
         value,
         onChange: this.onChange,
+        type: 'search',
       };
 
       // Finally, render it!

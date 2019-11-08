@@ -125,13 +125,20 @@ function listQuestions(page, filter) {
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
   const sourcesParams = queryString.stringify({ sources: filter.sourcesSelected.map(item => item.name) });
   const yearsParams = queryString.stringify({ years: filter.yearsSelected.map(item => item.name) });
+  const topicsParams = queryString.stringify({ topics: filter.topicsSelected.map(item => item.id) });
 
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
   const author = (filter.onlyMyQuestions) ? queryString.stringify({ author: filter.author }) : '';
 
+  const urlParams = `page=${page}&${disciplinesParams}&
+                    ${teachingLevelParams}&${difficultiesParams}&
+                    ${sourcesParams}&${yearsParams}&${topicsParams}&${author}`;
+  const urlParamsSearch = `page=${page}&${search}&${disciplinesParams}&
+                    ${teachingLevelParams}&${difficultiesParams}&
+                    ${sourcesParams}&${yearsParams}&${author}`;
   const url = (search)
-    ? `/questions/search/?page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}&${author}`
-    : `/questions/?page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}&${author}`;
+    ? `/questions/search/?${urlParamsSearch}`
+    : `/questions/?${urlParams}`;
 
   const handleResponse = response => response.json().then((data) => {
     if (!response.ok) {

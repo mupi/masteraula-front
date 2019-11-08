@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { reduxForm, Form, Field } from 'redux-form';
+import { reduxForm /* Form, Field */ } from 'redux-form';
 import {
   Input, Row, Col, UncontrolledTooltip, Label, Button,
 } from 'reactstrap';
@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MAAutocompleteTopics from 'components/autocomplete/MAAutocompleteTopics';
 
 // Select for Discipline
-const renderSelectField = ({
+/* const renderSelectField = ({
   input, label, meta: { touched, error }, children, optionDefault, className,
 }) => (
   <div>
@@ -26,7 +26,7 @@ const renderSelectField = ({
     </div>
   </div>
 );
-
+*/
 
 class QuestionSearchByTopics extends Component {
   constructor(props) {
@@ -48,21 +48,31 @@ class QuestionSearchByTopics extends Component {
     listDisciplineFilters();
   }
 
-  getListTopics = (e, newValue) => {
+  getListTopics = (event) => {
     const {
-      listTopics, addSelectedDisciplineFilter, resetTopicListSelected,
+      listTopicFilters, addSelectedDisciplineFilter, resetTopicListSelected,
     } = this.props;
 
-    if (newValue > 0) {
+    if (event.target.value > 0) {
       const disciplineSelected = [{
-        id: newValue,
+        id: event.target.value,
       }];
-      listTopics(disciplineSelected);
-      this.setState({ visible: 3 });
+      listTopicFilters(disciplineSelected);
+      this.setState({ visible: 5 });
     }
 
-    addSelectedDisciplineFilter(newValue);
+    addSelectedDisciplineFilter(event.target.value);
     resetTopicListSelected();
+  }
+
+  getExplodeListTopic = (topic) => {
+    const {
+      disciplinesSelected, topicsSelected, addSelectedTopicFilter, listTopicFilters,
+    } = this.props;
+
+    addSelectedTopicFilter(topic);
+    listTopicFilters(disciplinesSelected, [...topicsSelected, topic]);
+    this.setState({ visible: 5 });
   }
 
   handleFilter(event) {
@@ -74,13 +84,13 @@ class QuestionSearchByTopics extends Component {
   }
 
   loadMoreTopics() {
-    this.setState(prev => ({ visible: prev.visible + 3 }));
+    this.setState(prev => ({ visible: prev.visible + 5 }));
   }
 
 
   render() {
     const {
-      handleSubmit, search, author, isFetchingQuestions, onlyMyQuestions, disciplineFilters, topicFilters, addSelectedTopicFilter,
+      search, author, isFetchingQuestions, onlyMyQuestions, disciplineFilters, topicFilters, disciplineIdSelected,
     } = this.props;
 
     const { visible } = this.state;
@@ -90,7 +100,7 @@ class QuestionSearchByTopics extends Component {
     const maxTopicShown = 15;
 
     return (
-      <Form onSubmit={handleSubmit}>
+      <>
         <Row>
           <Col sm="12" className="c-question-base__title d-flex justify-content-between">
             <div className="p-2" />
@@ -116,7 +126,7 @@ class QuestionSearchByTopics extends Component {
         </Row>
         <Row className="c-create-question__row-info">
           <Col sm="12" xs="12">
-            <Field
+            { /* <Field
               name="discipline"
               type="text"
               component={renderSelectField}
@@ -130,7 +140,25 @@ class QuestionSearchByTopics extends Component {
                   {discipline.name}
                 </option>
               )) }
-            </Field>
+            </Field> */ }
+            <div>
+              <select
+                type="text"
+                name="discipline"
+                className="form-control question-search__by-discipline-select"
+                onChange={this.getListTopics}
+                value={disciplineIdSelected || -1}
+              >
+                <option value="-1">
+                    Selecione uma disciplina
+                </option>
+                { disciplineFilters && disciplineFilters.map(discipline => (
+                  <option className="c-user-profile__state-city-dropdown-item" key={discipline.id} value={discipline.id}>
+                    {discipline.name}
+                  </option>
+                )) }
+              </select>
+            </div>
           </Col>
         </Row>
         <Row className="c-question-base__myquestions-filter">
@@ -158,7 +186,7 @@ class QuestionSearchByTopics extends Component {
                     <Button
                       key={topic.id}
                       className="question-card__info-section-item question-card__info-section-item--green"
-                      onClick={() => addSelectedTopicFilter(topic.id.toString())}
+                      onClick={() => this.getExplodeListTopic(topic)}
                     >
                       <span>{topic.name.trim()}</span>
                     </Button>
@@ -188,7 +216,7 @@ class QuestionSearchByTopics extends Component {
           </Row>
         ) : ''
       }
-      </Form>
+      </>
     );
   }
 }

@@ -9,17 +9,18 @@ import { listTopicSuggestions } from 'actions/suggestionAction';
 
 const mapStateToProps = state => ({
   initialValues: {
-    searchText: state.filter.searchText,
-    onlyMyQuestions: state.filter.onlyMyQuestions,
-    discipline: state.filter.disciplinesSelected && state.filter.disciplinesSelected.length > 0 ? state.filter.disciplinesSelected[0].id : 0,
+    // onlyMyQuestions: state.filter.onlyMyQuestions,
+    // discipline: state.filter.disciplinesSelected && state.filter.disciplinesSelected.length > 0 ? state.filter.disciplinesSelected[0].id : -1,
   },
-  search: state.filter.searchText,
+  // search: state.filter.searchText,
   onlyMyQuestions: state.filter.onlyMyQuestions,
-  discipline: state.filter.disciplinesSelected && state.filter.disciplinesSelected.length > 0 ? state.filter.disciplinesSelected[0].id : 0,
+  disciplineIdSelected: state.filter.disciplinesSelected && state.filter.disciplinesSelected.length > 0 ? state.filter.disciplinesSelected[0].id : -1,
+  disciplinesSelected: state.filter.disciplinesSelected,
   author: state.session.session.user.id,
   isFetchingQuestions: state.question.isFetching,
   disciplineFilters: state.filter.disciplineFilters,
   topicFilters: state.filter.topicFilters,
+  topicsSelected: state.filter.topicsSelected,
 
   /* autocomplete */
   isFetchingTopicSuggestions: state.suggestion.isFetchingSuggestions,
@@ -27,14 +28,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  listTopics: param => dispatch(listTopicFilters(param)),
+  listTopicFilters: (disciplineSelected, topicsSelected = []) => dispatch(listTopicFilters(disciplineSelected, topicsSelected)),
   addMyQuestionsFilter: (author, value) => {
     history.replace('/question-base/1');
     dispatch(addMyQuestionsFilter(author, value));
   },
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
-  addSelectedTopicFilter: idTopic => dispatch(addSelectedTopicFilter(idTopic)),
+  addSelectedTopicFilter: topic => dispatch(addSelectedTopicFilter(topic)),
   resetTopicListSelected: () => dispatch(resetTopicListSelected()),
   listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 });

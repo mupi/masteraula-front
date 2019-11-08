@@ -14,11 +14,14 @@ export const topic = (state = initialState, action) => {
         isFetchingTopicSuggestions: true,
         error: null,
       });
-    case LIST_TOPIC_SUGGESTIONS_SUCCESS:
+    case LIST_TOPIC_SUGGESTIONS_SUCCESS: {
+      const topicSuggestionNew = action.topicSuggestions.synonyms.length > 0
+        ? [...action.topicSuggestions.topics, ...action.topicSuggestions.synonyms[0].topics] : [...action.topicSuggestions.topics];
       return Object.assign({}, state, {
-        topicSuggestions: action.topicSuggestions,
+        topicSuggestions: topicSuggestionNew,
         isFetchingTopicSuggestions: false,
       });
+    }
     case LIST_TOPIC_SUGGESTIONS_FAILURE:
       return Object.assign({}, state, {
         isFetchingTopicSuggestions: false,
