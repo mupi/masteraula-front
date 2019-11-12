@@ -33,7 +33,7 @@ class QuestionSearchByTopics extends Component {
     this.state = {
       authorState: '',
       onlyMyQuestionsState: false,
-      visible: 2,
+      visible: 5,
     };
 
     this.handleFilter = this.handleFilter.bind(this);
@@ -46,6 +46,15 @@ class QuestionSearchByTopics extends Component {
     } = this.props;
     listDisciplineFilters();
   }
+  /*
+  componentDidUpdate(prevProps) {
+    const {
+      topicsSelected,
+    } = this.props;
+    if (topicsSelected !== prevProps.topicsSelected) {
+      this.setState({ visible: 5});
+    }
+  } */
 
   getListTopics = (event) => {
     const {
@@ -181,7 +190,7 @@ class QuestionSearchByTopics extends Component {
                 </div>
                 <div>
                   { visible < maxTopicShown && visible <= topicFilters.length
-                    && <Button color="link" onClick={this.loadMoreTopics} className="load-more">Ver mais tópicos</Button>}
+                    && <Button color="link" onClick={this.loadMoreTopics} className="c-question-base__load-more">Ver mais tópicos</Button>}
                   { visible >= maxTopicShown && moreTopicFilters
                     && (
                     <>
