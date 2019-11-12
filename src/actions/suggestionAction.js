@@ -16,7 +16,7 @@ export const listTopicSuggestions = (param, topicsSelected) => {
   }
   return (dispatch) => {
     dispatch(requestListTopicSuggestions(param, topicsSelected));
-    return suggestionService.listTopicSuggestions(param)
+    return suggestionService.listTopicSuggestions(param, topicsSelected)
       .then(
         (topicSuggestions) => {
           dispatch(fetchListTopicSuggestionsSuccess(topicSuggestions));
