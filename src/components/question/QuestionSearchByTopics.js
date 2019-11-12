@@ -4,6 +4,8 @@ import {
   Input, Row, Col, Label, Button,
 } from 'reactstrap';
 import MAAutocompleteTopics from 'components/autocomplete/MAAutocompleteTopics';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { history } from 'helpers';
 
 // Select for Discipline
 /* const renderSelectField = ({
@@ -46,15 +48,16 @@ class QuestionSearchByTopics extends Component {
     } = this.props;
     listDisciplineFilters();
   }
-  /*
+
   componentDidUpdate(prevProps) {
     const {
       topicsSelected,
     } = this.props;
     if (topicsSelected !== prevProps.topicsSelected) {
-      this.setState({ visible: 5});
+      /* eslint-disable react/no-did-update-set-state */
+      this.setState({ visible: 5 });
     }
-  } */
+  }
 
   getListTopics = (event) => {
     const {
@@ -68,7 +71,7 @@ class QuestionSearchByTopics extends Component {
       listTopicFilters(disciplineSelected);
       this.setState({ visible: 5 });
     }
-
+    history.replace('/question-base/1');
     addSelectedDisciplineFilter(event.target.value);
     resetTopicListSelected();
   }
@@ -194,7 +197,11 @@ class QuestionSearchByTopics extends Component {
                   { visible >= maxTopicShown && moreTopicFilters
                     && (
                     <>
-                      <span className="c-question-base__text-topicsearch">Buscador de tópicos:</span>
+                      <span className="c-question-base__text-topicsearch">
+                        <FontAwesomeIcon icon="search" className="btn__icon" />
+                        {' '}
+                        Buscador de tópicos:
+                      </span>
                       <MAAutocompleteTopics {...this.props} />
                     </>
                     )}
