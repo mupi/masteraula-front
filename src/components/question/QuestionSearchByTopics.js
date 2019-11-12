@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { reduxForm /* Form, Field */ } from 'redux-form';
 import {
-  Input, Row, Col, UncontrolledTooltip, Label, Button,
+  Input, Row, Col, Label, Button,
 } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MAAutocompleteTopics from 'components/autocomplete/MAAutocompleteTopics';
 
 // Select for Discipline
@@ -102,25 +101,12 @@ class QuestionSearchByTopics extends Component {
     return (
       <>
         <Row>
-          <Col sm="12" className="c-question-base__title d-flex justify-content-between">
-            <div className="p-2" />
-            <div className="p-2">
+          <Col sm="12" className="c-question-base__title">
+            <div className="text-center">
               <h4>
                 Banco de Questões
                 {' '}
               </h4>
-            </div>
-            <div className="p-2 c-question-base__l-tooltip">
-              <span className="c-question-base__tooltip" href="#" id="TooltipExample">
-                <FontAwesomeIcon icon="info-circle" />
-              </span>
-              <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
-                Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos das questões.
-                {' '}
-                Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos.
-                {' '}
-                Combine os termos da busca com as opções de filtro disponíveis na barra lateral.
-              </UncontrolledTooltip>
             </div>
           </Col>
         </Row>
