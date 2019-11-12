@@ -134,6 +134,7 @@ class QuestionSearchByTopics extends Component {
                 className="form-control question-search__by-discipline-select"
                 onChange={this.getListTopics}
                 value={disciplineIdSelected || -1}
+                disabled={isFetchingQuestions}
               >
                 <option value="-1">
                     Selecione uma disciplina

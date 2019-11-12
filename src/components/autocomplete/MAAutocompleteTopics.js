@@ -16,10 +16,9 @@ class MAAutocompleteTopics extends React.Component {
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
-    const { listTopicSuggestions } = this.props;
-
+    const { listTopicSuggestions, topicsSelected } = this.props;
     if (value.trim().length % 3 === 0 && value.trim().length > 0) {
-      listTopicSuggestions(value);
+      listTopicSuggestions(value, topicsSelected);
     }
   }
 
@@ -28,8 +27,13 @@ class MAAutocompleteTopics extends React.Component {
   };
 
   onSuggestionSelected = (event, { suggestion }) => {
-    const { addSelectedTopicFilter } = this.props;
+    const {
+      disciplinesSelected, topicsSelected, addSelectedTopicFilter, listTopicFilters,
+    } = this.props;
     addSelectedTopicFilter(suggestion);
+    listTopicFilters(disciplinesSelected, [...topicsSelected, suggestion]);
+
+    this.setState({ value: '' });
   }
 
   render() {

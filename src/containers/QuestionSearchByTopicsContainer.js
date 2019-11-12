@@ -38,7 +38,7 @@ const mapDispatchToProps = dispatch => ({
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTopicFilter: topic => dispatch(addSelectedTopicFilter(topic)),
   resetTopicListSelected: () => dispatch(resetTopicListSelected()),
-  listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
+  listTopicSuggestions: (param, topicsSelected) => dispatch(listTopicSuggestions(param, topicsSelected)),
 });
 
 const QuestionSearchByTopicsContainer = connect(

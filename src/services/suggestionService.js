@@ -2,10 +2,11 @@ import { apiUrl } from 'helpers/config';
 // import queryString from 'query-string';
 import axios from 'axios';
 import { authHeader } from 'helpers';
+import queryString from 'query-string';
 
 let call;
 
-function listTopicSuggestions(term) {
+function listTopicSuggestions(term, topicsSelected) {
   if (call) call.cancel();
 
   call = axios.CancelToken.source();
@@ -20,7 +21,9 @@ function listTopicSuggestions(term) {
 
   };
 
-  const url = `/synonym_autocomplete/?q=${term}`;
+  const topicsParams = topicsSelected ? queryString.stringify({ topics: topicsSelected.map(item => item.id) }) : '';
+
+  const url = `/synonym_autocomplete/?q=${term}&${topicsParams}`;
   return axios.get(`${apiUrl}${url}`, requestOptions)
     .then(response => response.data).then(topicSuggestions => topicSuggestions);
 }
