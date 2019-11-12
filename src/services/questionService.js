@@ -130,12 +130,9 @@ function listQuestions(page, filter) {
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
   const author = (filter.onlyMyQuestions) ? queryString.stringify({ author: filter.author }) : '';
 
-  const urlParams = `page=${page}&${disciplinesParams}&
-                    ${teachingLevelParams}&${difficultiesParams}&
-                    ${sourcesParams}&${yearsParams}&${topicsParams}&${author}`;
-  const urlParamsSearch = `page=${page}&${search}&${disciplinesParams}&
-                    ${teachingLevelParams}&${difficultiesParams}&
-                    ${sourcesParams}&${yearsParams}&${author}`;
+  /* eslint-disable max-len */
+  const urlParams = `page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}&${topicsParams}&${author}`;
+  const urlParamsSearch = `page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}&${author}`;
   const url = (search)
     ? `/questions/search/?${urlParamsSearch}`
     : `/questions/?${urlParams}`;

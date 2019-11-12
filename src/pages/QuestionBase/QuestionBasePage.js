@@ -22,7 +22,12 @@ class QuestionBasePage extends React.Component {
       match, filter, listQuestions, user,
     } = this.props;
     if ((match.params.page !== prevProps.match.params.page)
-    || (filter !== prevProps.filter)) {
+    || (filter.disciplinesSelected !== prevProps.filter.disciplinesSelected)
+    || (filter.teachingLevelsSelected !== prevProps.filter.teachingLevelsSelected)
+    || (filter.sourcesSelected !== prevProps.filter.sourcesSelected)
+    || (filter.yearsSelected !== prevProps.filter.yearsSelected)
+    || (filter.topicsSelected !== prevProps.filter.topicsSelected)
+    || (filter.difficultiesSelected !== prevProps.filter.difficultiesSelected)) {
       listQuestions(parseInt(match.params.page, 10), filter, user.id);
     }
   }
