@@ -260,6 +260,8 @@ export const filter = (state = initialState, action) => {
         difficultiesSelected: [],
         sourcesSelected: [],
         yearsSelected: [],
+        topicsSelected: [],
+        topicFilters: [],
         onlyMyQuestions: false,
       });
     }
