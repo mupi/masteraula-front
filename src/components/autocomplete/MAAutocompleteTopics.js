@@ -16,9 +16,9 @@ class MAAutocompleteTopics extends React.Component {
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
-    const { listTopicSuggestions, topicsSelected } = this.props;
+    const { listTopicSuggestions, topicsSelected, disciplinesSelected } = this.props;
     if (value.trim().length % 3 === 0 && value.trim().length > 0) {
-      listTopicSuggestions(value, topicsSelected);
+      listTopicSuggestions(value, topicsSelected, disciplinesSelected);
     }
   }
 

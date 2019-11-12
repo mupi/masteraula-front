@@ -6,7 +6,7 @@ import queryString from 'query-string';
 
 let call;
 
-function listTopicSuggestions(term, topicsSelected) {
+function listTopicSuggestions(term, topicsSelected, disciplinesSelected) {
   if (call) call.cancel();
 
   call = axios.CancelToken.source();
@@ -21,9 +21,10 @@ function listTopicSuggestions(term, topicsSelected) {
 
   };
 
+  const disciplinesParams = disciplinesSelected ? queryString.stringify({ disciplines: disciplinesSelected.map(item => item.id) }) : '';
   const topicsParams = topicsSelected ? queryString.stringify({ topics: topicsSelected.map(item => item.id) }) : '';
 
-  const url = `/synonym_autocomplete/?q=${term}&${topicsParams}`;
+  const url = `/synonym_autocomplete/?q=${term}&${disciplinesParams}&${topicsParams}`;
   return axios.get(`${apiUrl}${url}`, requestOptions)
     .then(response => response.data).then(topicSuggestions => topicSuggestions);
 }

@@ -180,7 +180,7 @@ class QuestionSearchByTopics extends Component {
           <Col>
             {(topicFilters && topicFilters.length > 0) ? (
               <>
-                <div className="tiles" aria-live="polite">
+                <div className="tiles">
                   {topicFilters.slice(0, visible).map(topic => (
                     <Button
                       key={topic.id}
