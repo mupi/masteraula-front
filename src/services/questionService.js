@@ -120,6 +120,7 @@ function listQuestions(page, filter) {
       Authorization: authHeader(),
     },
   };
+  const pageParam = queryString.stringify({ page });
   const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected.map(item => item.id) });
   const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
@@ -130,11 +131,13 @@ function listQuestions(page, filter) {
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
   const author = (filter.onlyMyQuestions) ? queryString.stringify({ author: filter.author }) : '';
 
-  /* eslint-disable max-len */
-  const urlParams = `page=${page}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}&${topicsParams}&${author}`;
-  const urlParamsSearch = `page=${page}&${search}&${disciplinesParams}&${teachingLevelParams}&${difficultiesParams}&${sourcesParams}&${yearsParams}&${author}`;
+  const urlParams = [pageParam, disciplinesParams, teachingLevelParams, difficultiesParams,
+    sourcesParams, yearsParams, topicsParams, author, search]
+    .filter(p => p)
+    .join('&');
+
   const url = (search)
-    ? `/questions/search/?${urlParamsSearch}`
+    ? `/questions/search/?${urlParams}`
     : `/questions/?${urlParams}`;
 
   const handleResponse = response => response.json().then((data) => {
