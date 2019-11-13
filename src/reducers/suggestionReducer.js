@@ -15,8 +15,12 @@ export const topic = (state = initialState, action) => {
         error: null,
       });
     case LIST_TOPIC_SUGGESTIONS_SUCCESS: {
-      const topicSuggestionNew = action.topicSuggestions.synonyms.length > 0
-        ? [...action.topicSuggestions.topics, ...action.topicSuggestions.synonyms[0].topics] : [...action.topicSuggestions.topics];
+      const synonymsTopics = action.topicSuggestions.synonyms.map(synonym => synonym.topics.map(t => ({
+        ...t,
+        name: `${synonym.term} -> ${t.name}`,
+      }))).flat();
+      const topicSuggestionNew = synonymsTopics.length > 0
+        ? [...action.topicSuggestions.topics, ...synonymsTopics] : [...action.topicSuggestions.topics];
       return Object.assign({}, state, {
         topicSuggestions: topicSuggestionNew,
         isFetchingTopicSuggestions: false,
