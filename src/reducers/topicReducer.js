@@ -6,7 +6,6 @@ import {
 
 const initialState = {
   topics: [],
-  topicsTest: [],
 };
 
 export const topic = (state = initialState, action) => {
