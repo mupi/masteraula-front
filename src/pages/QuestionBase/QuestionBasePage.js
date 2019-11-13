@@ -7,7 +7,7 @@ import QuestionList from 'components/question/QuestionList';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import QuestionSearchFormContainer from 'containers/QuestionSearchFormContainer';
+import QuestionSearchByTopicsContainer from 'containers/QuestionSearchByTopicsContainer';
 
 class QuestionBasePage extends React.Component {
   componentDidMount() {
@@ -22,15 +22,21 @@ class QuestionBasePage extends React.Component {
       match, filter, listQuestions, user,
     } = this.props;
     if ((match.params.page !== prevProps.match.params.page)
-    || (filter !== prevProps.filter)) {
+    || (filter.disciplinesSelected !== prevProps.filter.disciplinesSelected)
+    || (filter.teachingLevelsSelected !== prevProps.filter.teachingLevelsSelected)
+    || (filter.sourcesSelected !== prevProps.filter.sourcesSelected)
+    || (filter.yearsSelected !== prevProps.filter.yearsSelected)
+    || (filter.topicsSelected !== prevProps.filter.topicsSelected)
+    || (filter.difficultiesSelected !== prevProps.filter.difficultiesSelected)) {
       listQuestions(parseInt(match.params.page, 10), filter, user.id);
     }
   }
 
   render() {
     const {
-      questionPage, isFetching, error, filter, toggleSelectedDisciplineFilter, toggleSelectedDifficultyFilter,
+      questionPage, isFetching, error, filter, toggleSelectedDifficultyFilter,
       toggleSelectedTeachingLevelFilter, toggleSelectedSourceFilter, toggleSelectedYearFilter,
+      removeSelectedTopicFilter, listTopicFilters,
     } = this.props;
     if (error) {
       return (
@@ -42,8 +48,10 @@ class QuestionBasePage extends React.Component {
       );
     }
 
-    function clearDisciplines(event) {
-      toggleSelectedDisciplineFilter(event.target.id, false);
+    function clearTopic(event) {
+      const newTopics = filter.topicsSelected.filter(item => item.id !== parseInt(event.target.id, 10));
+      removeSelectedTopicFilter(event.target.id);
+      listTopicFilters(filter.disciplinesSelected, [...newTopics]);
     }
 
     function clearDifficulties(event) {
@@ -66,84 +74,83 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters showFiltersForObjectBase={false}>
         <div className="c-question-base">
-          <QuestionSearchFormContainer />
-          {(filter.disciplinesSelected.length > 0)
-          || (filter.difficultiesSelected.length > 0)
+          <QuestionSearchByTopicsContainer />
+          { /* (filter.disciplinesSelected.length > 0) || */
+          (filter.difficultiesSelected.length > 0)
           || (filter.teachingLevelsSelected.length > 0)
           || (filter.sourcesSelected.length > 0)
-          || (filter.yearsSelected.length > 0) ? (
+          || (filter.yearsSelected.length > 0)
+          || (filter.topicsSelected.length > 0) ? (
             <Row>
               <Col sm="12">
                 <p className="c-question-base__keywords-title">
                   <span className="btn__icon">
                     Filtros selecionados:
                   </span>
-                  {filter.disciplinesSelected.map(item => (
+                  {filter.topicsSelected.map(item => (
                     <Button
                       disabled={isFetching}
-                      key={item ? `DI${item.id}` : undefined}
-                      id={item ? item.id : undefined}
-                      onClick={clearDisciplines}
+                      key={`${item.id}`}
+                      id={item.id}
+                      className="c-question-base__filter-selected"
+                      onClick={clearTopic}
+                    >
+                      {item.name}
+                      {' '}
+                        x
+                    </Button>
+                  )).concat(filter.difficultiesSelected.map(item => (
+                    <Button
+                      disabled={isFetching}
+                      key={`DF${item.id}`}
+                      id={item.id}
+                      onClick={clearDifficulties}
                       className="c-question-base__filter-selected"
                     >
                       {item.name}
                       {' '}
-                      x
+                        x
                     </Button>
-                  )).concat(
-                    filter.difficultiesSelected.map(item => (
-                      <Button
-                        disabled={isFetching}
-                        key={`DF${item.id}`}
-                        id={item.id}
-                        onClick={clearDifficulties}
-                        className="c-question-base__filter-selected"
-                      >
-                        {item.name}
-                        {' '}
+                  )),
+                  filter.teachingLevelsSelected.map(item => (
+                    <Button
+                      disabled={isFetching}
+                      key={`TL${item.id}`}
+                      id={item.id}
+                      onClick={clearTeachingLevel}
+                      className="c-question-base__filter-selected"
+                    >
+                      {item.name}
+                      {' '}
                         x
-                      </Button>
-                    )),
-                    filter.teachingLevelsSelected.map(item => (
-                      <Button
-                        disabled={isFetching}
-                        key={`TL${item.id}`}
-                        id={item.id}
-                        onClick={clearTeachingLevel}
-                        className="c-question-base__filter-selected"
-                      >
-                        {item.name}
-                        {' '}
+                    </Button>
+                  )),
+                  filter.sourcesSelected.map(item => (
+                    <Button
+                      disabled={isFetching}
+                      key={`S${item.id}`}
+                      id={item.id}
+                      onClick={clearSources}
+                      className="c-question-base__filter-selected"
+                    >
+                      {item.name}
+                      {' '}
                         x
-                      </Button>
-                    )),
-                    filter.sourcesSelected.map(item => (
-                      <Button
-                        disabled={isFetching}
-                        key={`S${item.id}`}
-                        id={item.id}
-                        onClick={clearSources}
-                        className="c-question-base__filter-selected"
-                      >
-                        {item.name}
-                        {' '}
+                    </Button>
+                  )),
+                  filter.yearsSelected.map(item => (
+                    <Button
+                      disabled={isFetching}
+                      key={`Y${item.id}`}
+                      id={item.id}
+                      onClick={clearYears}
+                      className="c-question-base__filter-selected"
+                    >
+                      {item.name}
+                      {' '}
                         x
-                      </Button>
-                    )),
-                    filter.yearsSelected.map(item => (
-                      <Button
-                        disabled={isFetching}
-                        key={`Y${item.id}`}
-                        id={item.id}
-                        onClick={clearYears}
-                        className="c-question-base__filter-selected"
-                      >
-                        {item.name}
-                        {' '}
-                        x
-                      </Button>
-                    )),
-                  )}
+                    </Button>
+                  )))}
                 </p>
               </Col>
             </Row>
@@ -158,7 +165,7 @@ class QuestionBasePage extends React.Component {
             { isFetching ? (
               <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
                   Carregando ...
-              </Alert> 
+              </Alert>
             ) : (
               <QuestionList sm="4" {...this.props} questions={questionPage.results} count={questionPage.count} />
             )

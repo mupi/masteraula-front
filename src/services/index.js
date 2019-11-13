@@ -8,3 +8,4 @@ export { default as documentService } from './documentService';
 export { default as headerService } from './headerService';
 export { default as topicService } from './topicService';
 export { default as learningObjectService } from './learningObjectService';
+export { default as suggestionService } from './suggestionService';

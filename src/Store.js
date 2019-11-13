@@ -2,7 +2,8 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import {
-  login, menu, register, forgotPassword, profileEdit, question, filter, filterObject, session, document, modal, header, topic, learningObject,
+  login, menu, register, forgotPassword, profileEdit, question, filter, filterObject, session,
+  document, modal, header, topic, learningObject, suggestion,
 } from 'reducers';
 
 import { gtmMetaReducer, gtmMiddleware } from 'helpers/googletagmanager';
@@ -30,6 +31,7 @@ const appReducer = combineReducers({
   learningObject,
   form: formReducer,
   gtmMetaReducer,
+  suggestion,
 });
 
 const middlewares = [];

@@ -24,10 +24,10 @@ class SidebarFilters extends Component {
 
   render() {
     const {
-      disciplineFilters, teachingLevelFilters, sourceFilters, yearFilters,
+      /* disciplineFilters, */ teachingLevelFilters, sourceFilters, yearFilters,
       isFetchingDisciplineFilters, isFetchingTeachingLevelFilters, isFetchingSourceFilters, isFetchingYearFilters,
       error, isFetchingQuestions,
-      toggleSelectedDisciplineFilter, toggleSelectedTeachingLevelFilter, toggleSelectedDifficultyFilter,
+      /* toggleSelectedDisciplineFilter, */ toggleSelectedTeachingLevelFilter, toggleSelectedDifficultyFilter,
       toggleSelectedSourceFilter, toggleSelectedYearFilter,
       filter,
       clearFilters,
@@ -73,7 +73,7 @@ class SidebarFilters extends Component {
           />
           {' Filtros'}
         </h6>
-        {filter.disciplinesSelected.length > 0 || filter.teachingLevelsSelected.length > 0
+        { /* filter.disciplinesSelected.length > 0 || */ filter.teachingLevelsSelected.length > 0
           || filter.difficultiesSelected.length > 0 || filter.sourcesSelected.length > 0
           || filter.yearsSelected.length > 0 || onlyMyQuestions
           ? (
@@ -85,14 +85,14 @@ class SidebarFilters extends Component {
           )
           : ''
         }
-        <SidebarFilter
+        {/* <SidebarFilter
           id="1"
           name="Disciplinas"
           filterList={disciplineFilters}
           toggleFilter={toggleSelectedDisciplineFilter}
           selected={filter.disciplinesSelected}
           isFetchingQuestions={isFetchingQuestions}
-        />
+        /> */}
         <SidebarFilter
           id="2"
           name="Nível de Ensino"

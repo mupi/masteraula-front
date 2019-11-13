@@ -20,6 +20,12 @@ export const LIST_YEAR_FILTERS = 'LIST_YEAR_FILTERS';
 export const LIST_YEAR_FILTERS_SUCCESS = 'LIST_YEAR_FILTERS_SUCCESS';
 export const LIST_YEAR_FILTERS_FAILURE = 'LIST_YEAR_FILTERS_FAILURE';
 
+// List Topic Filters (Redação, Morfologia, Análisis Combinatório)
+export const LIST_TOPIC_FILTERS = 'LIST_TOPIC_FILTERS';
+export const LIST_TOPIC_FILTERS_SUCCESS = 'LIST_TOPIC_FILTERS_SUCCESS';
+export const LIST_TOPIC_FILTERS_FAILURE = 'LIST_TOPIC_FILTERS_FAILURE';
+export const RESET_LIST_TOPIC_SELECTED = 'RESET_LIST_TOPIC_SELECTED';
+
 // Add selected discipline filter
 export const ADD_SELECTED_DISCIPLINE_FILTER = 'ADD_SELECTED_DISCIPLINE_FILTER';
 
@@ -50,6 +56,12 @@ export const ADD_SELECTED_YEAR_FILTER = 'ADD_SELECTED_YEAR_FILTER';
 // Remove selected year filter
 export const REMOVE_SELECTED_YEAR_FILTER = 'REMOVE_SELECTED_YEAR_FILTER';
 
+// Add selected TOPIC filter
+export const ADD_SELECTED_TOPIC_FILTER = 'ADD_SELECTED_TOPIC_FILTER';
+
+// Remove selected TOPIC filter
+export const REMOVE_SELECTED_TOPIC_FILTER = 'REMOVE_SELECTED_TOPIC_FILTER';
+
 // Set search text
 export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
 
@@ -66,7 +78,7 @@ export const CLEAR_SEARCH = 'CLEAR_SEARCH';
 
 
 // Discipline List
-export const listDisciplineFilters = (param) => {
+export const listDisciplineFilters = () => {
   function requestListDisciplineFilters() { return { type: LIST_DISCIPLINE_FILTERS }; }
   function fetchListDisciplineFiltersSuccess(disciplineFilters) {
     return { type: LIST_DISCIPLINE_FILTERS_SUCCESS, disciplineFilters };
@@ -75,8 +87,8 @@ export const listDisciplineFilters = (param) => {
     return { type: LIST_DISCIPLINE_FILTERS_FAILURE, error };
   }
   return (dispatch) => {
-    dispatch(requestListDisciplineFilters(param));
-    return filterService.listDisciplineFilters(param)
+    dispatch(requestListDisciplineFilters());
+    return filterService.listDisciplineFilters()
       .then(
         (disciplineFilters) => {
           dispatch(fetchListDisciplineFiltersSuccess(disciplineFilters));
@@ -167,6 +179,30 @@ export const listYearFilters = () => {
   };
 };
 
+// List all topics filters
+export const listTopicFilters = (disciplinesSelected, topicsSelected = []) => {
+  function requestListTopics() { return { type: LIST_TOPIC_FILTERS }; }
+  function fetchListTopicsSuccess(topicFilters) {
+    return { type: LIST_TOPIC_FILTERS_SUCCESS, topicFilters };
+  }
+  function fetchListTopicsFailure(error) {
+    return { type: LIST_TOPIC_FILTERS_FAILURE, error };
+  }
+  return (dispatch) => {
+    dispatch(requestListTopics(disciplinesSelected, topicsSelected));
+    return filterService.listTopicFilters(disciplinesSelected, topicsSelected)
+      .then(
+        (topicFilters) => {
+          dispatch(fetchListTopicsSuccess(topicFilters));
+        },
+        (error) => {
+          dispatch(fetchListTopicsFailure(error));
+        },
+      );
+  };
+};
+
+
 // Add Selected Discipline filter
 export const addSelectedDisciplineFilter = idDiscipline => ({
   type: ADD_SELECTED_DISCIPLINE_FILTER, idDiscipline,
@@ -217,6 +253,22 @@ export const removeSelectedYearFilter = idYear => ({
   type: REMOVE_SELECTED_YEAR_FILTER, idYear,
 });
 
+// Add Selected TOPIC filter
+export const addSelectedTopicFilter = topic => ({
+  type: ADD_SELECTED_TOPIC_FILTER, topic,
+});
+
+// Remove Selected TOPIC filter
+export const removeSelectedTopicFilter = idTopic => ({
+  type: REMOVE_SELECTED_TOPIC_FILTER, idTopic,
+});
+
+// Reset topic list
+export const resetTopicListSelected = () => ({
+  type: RESET_LIST_TOPIC_SELECTED,
+});
+
+
 export const setSearchText = searchText => ({
   type: SET_SEARCH_TEXT, searchText,
 });
@@ -232,7 +284,7 @@ export const addMyQuestionsFilter = (author, onlyMyQuestions) => ({
 export const clearSelectedFilters = () => ({
   type: CLEAR_SELECTED_FILTERS,
 });
- 
+
 export const clearSearch = () => ({
   type: CLEAR_SEARCH,
-}); 
+});

@@ -332,6 +332,11 @@ export const listQuestions = (page, filter) => {
             searchText: filter.searchText,
             onlyMyQuestions: filter.onlyMyQuestions,
           }));
+          dispatch(initialize('questionSearchByTopics', {
+            // searchText: filter.searchText,
+            // onlyMyQuestions: filter.onlyMyQuestions,
+            // discipline: filter.disciplinesSelected && filter.disciplinesSelected.length > 0 ? filter.disciplinesSelected[0].id : 0,
+          }));
         },
         (error) => {
           dispatch(fetchQuestionPageFailure(error));
