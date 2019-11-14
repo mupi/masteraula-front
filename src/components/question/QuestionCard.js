@@ -122,7 +122,8 @@ const QuestionCard = (props) => {
               </span>
             ) : ''}
           {tagList && tagList.map((tag, i) => (
-            <span className="question-card__tag question-card__info-section-item--italic">
+            /* eslint-disable react/no-array-index-key */
+            <span key={i} className="question-card__tag question-card__info-section-item--italic">
               {tag.name}
               { getQuoteSeparator(i, tagList.length)}
             </span>
