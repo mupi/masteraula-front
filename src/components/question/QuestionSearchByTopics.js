@@ -51,24 +51,26 @@ class QuestionSearchByTopics extends Component {
 
   componentDidUpdate(prevProps) {
     const {
-      topicsSelected,
+      topicsSelected, topicFilters,
     } = this.props;
-    if (topicsSelected !== prevProps.topicsSelected) {
+    if ((topicsSelected !== prevProps.topicsSelected)
+        || (topicFilters !== prevProps.filter.topicFilters)) {
       /* eslint-disable react/no-did-update-set-state */
       this.setState({ visible: 5 });
     }
   }
 
+  // 1st time that discipline is selected
   getListTopics = (event) => {
     const {
-      listTopicFilters, addSelectedDisciplineFilter, resetTopicListSelected,
+      listTopicFilters, addSelectedDisciplineFilter, resetTopicListSelected, filter,
     } = this.props;
 
     if (event.target.value > 0) {
       const disciplineSelected = [{
         id: event.target.value,
       }];
-      listTopicFilters(disciplineSelected);
+      listTopicFilters(disciplineSelected, [], filter);
       this.setState({ visible: 5 });
     }
     history.replace('/question-base/1');
@@ -78,20 +80,20 @@ class QuestionSearchByTopics extends Component {
 
   getExplodeListTopic = (topic) => {
     const {
-      disciplinesSelected, topicsSelected, addSelectedTopicFilter, listTopicFilters,
+      disciplinesSelected, topicsSelected, addSelectedTopicFilter, listTopicFilters, filter,
     } = this.props;
 
     addSelectedTopicFilter(topic);
-    listTopicFilters(disciplinesSelected, [...topicsSelected, topic]);
+    listTopicFilters(disciplinesSelected, [...topicsSelected, topic], filter);
     this.setState({ visible: 5 });
   }
 
   handleFilter(event) {
-    const { addMyQuestionsFilter, author } = this.props;
+    const { addMyQuestionsFilter, author, filter } = this.props;
     const valueFilter = event.target.value;
     this.setState({ authorState: author });
 
-    addMyQuestionsFilter(valueFilter, event.target.checked);
+    addMyQuestionsFilter(valueFilter, event.target.checked, filter);
   }
 
   loadMoreTopics() {

@@ -27,7 +27,8 @@ class QuestionBasePage extends React.Component {
     || (filter.sourcesSelected !== prevProps.filter.sourcesSelected)
     || (filter.yearsSelected !== prevProps.filter.yearsSelected)
     || (filter.topicsSelected !== prevProps.filter.topicsSelected)
-    || (filter.difficultiesSelected !== prevProps.filter.difficultiesSelected)) {
+    || (filter.difficultiesSelected !== prevProps.filter.difficultiesSelected)
+    || (filter.onlyMyQuestions !== prevProps.filter.onlyMyQuestions)) {
       listQuestions(parseInt(match.params.page, 10), filter, user.id);
     }
   }
@@ -51,7 +52,7 @@ class QuestionBasePage extends React.Component {
     function clearTopic(event) {
       const newTopics = filter.topicsSelected.filter(item => item.id !== parseInt(event.target.id, 10));
       removeSelectedTopicFilter(event.target.id);
-      listTopicFilters(filter.disciplinesSelected, [...newTopics]);
+      listTopicFilters(filter.disciplinesSelected, [...newTopics], filter);
     }
 
     function clearDifficulties(event) {

@@ -8,6 +8,7 @@ import {
   removeSelectedTeachingLevelFilter,
   addSelectedSourceFilter, removeSelectedSourceFilter,
   addSelectedYearFilter, removeSelectedYearFilter,
+  resetTopicListSelected, listTopicFilters,
 } from 'actions/filterAction';
 import { history } from 'helpers';
 
@@ -47,6 +48,7 @@ const mapStateToProps = state => ({
   isFetchingAddQuestion: state.document.isFetchingAddQuestion,
   idRemovedQuestion: state.document.idRemovedQuestion,
   idAddedQuestion: state.document.idAddedQuestion,
+  filter: state.filter,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -54,7 +56,20 @@ const mapDispatchToProps = dispatch => ({
   onRate: rating => dispatch(rateQuestion(rating)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 
-  addSelectedDisciplineFilter: idDiscipline => dispatch(toggleSelectedDisciplineFilter(idDiscipline, true)),
+  addSelectedDisciplineFilter: (idDiscipline, filter) => {
+    const disciplineSelected = [{
+      id: idDiscipline,
+    }];
+
+    if ((filter.disciplinesSelected && filter.disciplinesSelected.length > 0
+      && filter.disciplinesSelected[0].id.toString() !== idDiscipline.toString())
+      || (filter.disciplinesSelected && filter.disciplinesSelected.length === 0)) {
+      dispatch(toggleSelectedDisciplineFilter(idDiscipline, true));
+      dispatch(resetTopicListSelected());
+      dispatch(listTopicFilters(disciplineSelected, [], filter));
+    }
+  },
+
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),
   addSelectedSourceFilter: (idSource, nameSource) => dispatch(toggleSelectedSourceFilter(idSource, true, nameSource)),
   addSelectedYearFilter: (idYear, nameYear) => dispatch(toggleSelectedYearFilter(idYear, true, nameYear)),

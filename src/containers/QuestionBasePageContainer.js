@@ -64,19 +64,24 @@ const mapDispatchToProps = dispatch => ({
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 
-  addSelectedDisciplineFilter: (idDiscipline) => {
+  addSelectedDisciplineFilter: (idDiscipline, filter) => {
     const disciplineSelected = [{
       id: idDiscipline,
     }];
-    dispatch(toggleSelectedDisciplineFilter(idDiscipline, true));
-    dispatch(resetTopicListSelected());
-    dispatch(listTopicFilters(disciplineSelected));
+
+    if ((filter.disciplinesSelected && filter.disciplinesSelected.length > 0
+      && filter.disciplinesSelected[0].id.toString() !== idDiscipline.toString())
+      || (filter.disciplinesSelected && filter.disciplinesSelected.length === 0)) {
+      dispatch(toggleSelectedDisciplineFilter(idDiscipline, true));
+      dispatch(resetTopicListSelected());
+      dispatch(listTopicFilters(disciplineSelected, [], filter));
+    }
   },
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),
   addSelectedSourceFilter: (idSource, nameSource) => dispatch(toggleSelectedSourceFilter(idSource, true, nameSource)),
   addSelectedYearFilter: (idYear, nameYear) => dispatch(toggleSelectedYearFilter(idYear, true, nameYear)),
 
-  toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
+  // toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
   toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
   toggleSelectedSourceFilter: (idSource, value) => dispatch(toggleSelectedSourceFilter(idSource, value)),
@@ -85,7 +90,7 @@ const mapDispatchToProps = dispatch => ({
 
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
 
-  listTopicFilters: (disciplinesSelected, topicsSelected = []) => dispatch(listTopicFilters(disciplinesSelected, topicsSelected)),
+  listTopicFilters: (disciplinesSelected, topicsSelected = [], filter) => dispatch(listTopicFilters(disciplinesSelected, topicsSelected, filter)),
 
   // new way to handle modals
   hideModal: () => dispatch(hideModal()),

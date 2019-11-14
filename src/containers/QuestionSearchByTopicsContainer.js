@@ -22,6 +22,7 @@ const mapStateToProps = state => ({
   topicFilters: state.filter.topicFilters,
   moreTopicFilters: state.filter.moreTopicFilters,
   topicsSelected: state.filter.topicsSelected,
+  filter: state.filter,
 
   /* autocomplete */
   isFetchingTopicSuggestions: state.suggestion.isFetchingSuggestions,
@@ -29,16 +30,17 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  listTopicFilters: (disciplinesSelected, topicsSelected = []) => dispatch(listTopicFilters(disciplinesSelected, topicsSelected)),
-  addMyQuestionsFilter: (author, value) => {
+  listTopicFilters: (disciplinesSelected, topicsSelected = [], filter) => dispatch(listTopicFilters(disciplinesSelected, topicsSelected, filter)),
+  addMyQuestionsFilter: (author, value, filter) => {
     history.replace('/question-base/1');
     dispatch(addMyQuestionsFilter(author, value));
+    if (filter.disciplinesSelected.length > 0) { dispatch(listTopicFilters(filter.disciplinesSelected, filter.topicsSelected, filter)); }
   },
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTopicFilter: topic => dispatch(addSelectedTopicFilter(topic)),
   resetTopicListSelected: () => dispatch(resetTopicListSelected()),
-  listTopicSuggestions: (param, topicsSelected, disciplinesSelected) => dispatch(listTopicSuggestions(param, topicsSelected, disciplinesSelected)),
+  listTopicSuggestions: (param, filter) => dispatch(listTopicSuggestions(param, filter)),
 });
 
 const QuestionSearchByTopicsContainer = connect(
