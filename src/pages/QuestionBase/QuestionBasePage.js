@@ -37,7 +37,7 @@ class QuestionBasePage extends React.Component {
     const {
       questionPage, isFetching, error, filter, toggleSelectedDifficultyFilter,
       toggleSelectedTeachingLevelFilter, toggleSelectedSourceFilter, toggleSelectedYearFilter,
-      removeSelectedTopicFilter, listTopicFilters,
+      removeSelectedTopicFilter,
     } = this.props;
     if (error) {
       return (
@@ -50,9 +50,7 @@ class QuestionBasePage extends React.Component {
     }
 
     function clearTopic(event) {
-      const newTopics = filter.topicsSelected.filter(item => item.id !== parseInt(event.target.id, 10));
       removeSelectedTopicFilter(event.target.id);
-      listTopicFilters(filter.disciplinesSelected, [...newTopics], filter);
     }
 
     function clearDifficulties(event) {

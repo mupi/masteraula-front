@@ -31,10 +31,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   listTopicFilters: (disciplinesSelected, topicsSelected = [], filter) => dispatch(listTopicFilters(disciplinesSelected, topicsSelected, filter)),
-  addMyQuestionsFilter: (author, value, filter) => {
+  addMyQuestionsFilter: (author, value) => {
     history.replace('/question-base/1');
     dispatch(addMyQuestionsFilter(author, value));
-    if (filter.disciplinesSelected.length > 0) { dispatch(listTopicFilters(filter.disciplinesSelected, filter.topicsSelected, filter)); }
   },
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),

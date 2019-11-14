@@ -65,16 +65,11 @@ const mapDispatchToProps = dispatch => ({
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 
   addSelectedDisciplineFilter: (idDiscipline, filter) => {
-    const disciplineSelected = [{
-      id: idDiscipline,
-    }];
-
     if ((filter.disciplinesSelected && filter.disciplinesSelected.length > 0
       && filter.disciplinesSelected[0].id.toString() !== idDiscipline.toString())
       || (filter.disciplinesSelected && filter.disciplinesSelected.length === 0)) {
       dispatch(toggleSelectedDisciplineFilter(idDiscipline, true));
       dispatch(resetTopicListSelected());
-      dispatch(listTopicFilters(disciplineSelected, [], filter));
     }
   },
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),

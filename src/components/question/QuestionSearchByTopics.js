@@ -51,11 +51,19 @@ class QuestionSearchByTopics extends Component {
 
   componentDidUpdate(prevProps) {
     const {
-      topicsSelected, topicFilters,
+      listTopicFilters, filter,
     } = this.props;
-    if ((topicsSelected !== prevProps.topicsSelected)
-        || (topicFilters !== prevProps.filter.topicFilters)) {
+
+
+    if ((filter.disciplinesSelected.length > 0) && ((filter.disciplinesSelected !== prevProps.filter.disciplinesSelected)
+    || (filter.teachingLevelsSelected !== prevProps.filter.teachingLevelsSelected)
+    || (filter.sourcesSelected !== prevProps.filter.sourcesSelected)
+    || (filter.yearsSelected !== prevProps.filter.yearsSelected)
+    || (filter.topicsSelected !== prevProps.filter.topicsSelected)
+    || (filter.difficultiesSelected !== prevProps.filter.difficultiesSelected)
+    || (filter.onlyMyQuestions !== prevProps.filter.onlyMyQuestions))) {
       /* eslint-disable react/no-did-update-set-state */
+      listTopicFilters(filter.disciplinesSelected, filter.topicsSelected, filter);
       this.setState({ visible: 5 });
     }
   }
@@ -80,20 +88,21 @@ class QuestionSearchByTopics extends Component {
 
   getExplodeListTopic = (topic) => {
     const {
-      disciplinesSelected, topicsSelected, addSelectedTopicFilter, listTopicFilters, filter,
+      // disciplinesSelected, topicsSelected, listTopicFilters, filter,
+      addSelectedTopicFilter,
     } = this.props;
 
     addSelectedTopicFilter(topic);
-    listTopicFilters(disciplinesSelected, [...topicsSelected, topic], filter);
+    // listTopicFilters(disciplinesSelected, [...topicsSelected, topic], filter);
     this.setState({ visible: 5 });
   }
 
   handleFilter(event) {
-    const { addMyQuestionsFilter, author, filter } = this.props;
+    const { addMyQuestionsFilter, author } = this.props;
     const valueFilter = event.target.value;
     this.setState({ authorState: author });
 
-    addMyQuestionsFilter(valueFilter, event.target.checked, filter);
+    addMyQuestionsFilter(valueFilter, event.target.checked);
   }
 
   loadMoreTopics() {
