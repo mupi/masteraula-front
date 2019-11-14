@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import QuestionSearchByTopics from 'components/question/QuestionSearchByTopics';
 import {
-  addMyQuestionsFilter, listDisciplineFilters, addSelectedDisciplineFilter, listTopicFilters, addSelectedTopicFilter,
+  addMyQuestionsFilter, listDisciplineFilters, addSelectedDisciplineFilter, addSelectedTopicFilter,
   resetTopicListSelected,
 } from 'actions/filterAction';
 import { history } from 'helpers';
@@ -30,7 +30,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  listTopicFilters: (disciplinesSelected, topicsSelected = [], filter) => dispatch(listTopicFilters(disciplinesSelected, topicsSelected, filter)),
   addMyQuestionsFilter: (author, value) => {
     history.replace('/question-base/1');
     dispatch(addMyQuestionsFilter(author, value));

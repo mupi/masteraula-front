@@ -10,7 +10,6 @@ import {
   addSelectedSourceFilter, removeSelectedSourceFilter,
   addSelectedYearFilter, removeSelectedYearFilter,
   removeSelectedTopicFilter,
-  listTopicFilters,
   resetTopicListSelected,
 } from 'actions/filterAction';
 import { history } from 'helpers';
@@ -64,13 +63,9 @@ const mapDispatchToProps = dispatch => ({
   listQuestions: (page, filter) => dispatch(listQuestions(page, filter)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 
-  addSelectedDisciplineFilter: (idDiscipline, filter) => {
-    if ((filter.disciplinesSelected && filter.disciplinesSelected.length > 0
-      && filter.disciplinesSelected[0].id.toString() !== idDiscipline.toString())
-      || (filter.disciplinesSelected && filter.disciplinesSelected.length === 0)) {
-      dispatch(toggleSelectedDisciplineFilter(idDiscipline, true));
-      dispatch(resetTopicListSelected());
-    }
+  addSelectedDisciplineFilter: (idDiscipline) => {
+    dispatch(toggleSelectedDisciplineFilter(idDiscipline, true));
+    dispatch(resetTopicListSelected());
   },
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),
   addSelectedSourceFilter: (idSource, nameSource) => dispatch(toggleSelectedSourceFilter(idSource, true, nameSource)),
@@ -84,8 +79,6 @@ const mapDispatchToProps = dispatch => ({
   removeSelectedTopicFilter: idTopic => dispatch(removeSelectedTopicFilter(idTopic)),
 
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
-
-  listTopicFilters: (disciplinesSelected, topicsSelected = [], filter) => dispatch(listTopicFilters(disciplinesSelected, topicsSelected, filter)),
 
   // new way to handle modals
   hideModal: () => dispatch(hideModal()),

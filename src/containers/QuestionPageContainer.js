@@ -8,7 +8,7 @@ import {
   removeSelectedTeachingLevelFilter,
   addSelectedSourceFilter, removeSelectedSourceFilter,
   addSelectedYearFilter, removeSelectedYearFilter,
-  resetTopicListSelected, listTopicFilters,
+  resetTopicListSelected,
 } from 'actions/filterAction';
 import { history } from 'helpers';
 
@@ -56,13 +56,9 @@ const mapDispatchToProps = dispatch => ({
   onRate: rating => dispatch(rateQuestion(rating)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 
-  addSelectedDisciplineFilter: (idDiscipline, filter) => {
-    const disciplineSelected = [{
-      id: idDiscipline,
-    }];
+  addSelectedDisciplineFilter: (idDiscipline) => {
     dispatch(toggleSelectedDisciplineFilter(idDiscipline, true));
     dispatch(resetTopicListSelected());
-    dispatch(listTopicFilters(disciplineSelected, [], filter));
   },
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),
   addSelectedSourceFilter: (idSource, nameSource) => dispatch(toggleSelectedSourceFilter(idSource, true, nameSource)),

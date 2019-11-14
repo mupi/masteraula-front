@@ -51,7 +51,7 @@ class QuestionSearchByTopics extends Component {
 
   componentDidUpdate(prevProps) {
     const {
-      listTopicFilters, filter,
+      filter,
     } = this.props;
 
 
@@ -63,7 +63,6 @@ class QuestionSearchByTopics extends Component {
     || (filter.difficultiesSelected !== prevProps.filter.difficultiesSelected)
     || (filter.onlyMyQuestions !== prevProps.filter.onlyMyQuestions))) {
       /* eslint-disable react/no-did-update-set-state */
-      listTopicFilters(filter.disciplinesSelected, filter.topicsSelected, filter);
       this.setState({ visible: 5 });
     }
   }
@@ -71,14 +70,10 @@ class QuestionSearchByTopics extends Component {
   // 1st time that discipline is selected
   getListTopics = (event) => {
     const {
-      listTopicFilters, addSelectedDisciplineFilter, resetTopicListSelected, filter,
+      addSelectedDisciplineFilter, resetTopicListSelected,
     } = this.props;
 
     if (event.target.value > 0) {
-      const disciplineSelected = [{
-        id: event.target.value,
-      }];
-      listTopicFilters(disciplineSelected, [], filter);
       this.setState({ visible: 5 });
     }
     history.replace('/question-base/1');
@@ -88,12 +83,10 @@ class QuestionSearchByTopics extends Component {
 
   getExplodeListTopic = (topic) => {
     const {
-      // disciplinesSelected, topicsSelected, listTopicFilters, filter,
       addSelectedTopicFilter,
     } = this.props;
 
     addSelectedTopicFilter(topic);
-    // listTopicFilters(disciplinesSelected, [...topicsSelected, topic], filter);
     this.setState({ visible: 5 });
   }
 

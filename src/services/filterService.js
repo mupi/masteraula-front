@@ -88,7 +88,7 @@ function listYearFilters() {
     .then(yearFilters => yearFilters);
 }
 
-function listTopicFilters(disciplinesSelected, topicsSelected, filter) {
+function listTopicFilters(filter) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -97,8 +97,8 @@ function listTopicFilters(disciplinesSelected, topicsSelected, filter) {
     },
   };
 
-  const disciplinesParams = queryString.stringify({ disciplines: disciplinesSelected.map(item => item.id) });
-  const topicsParams = queryString.stringify({ topics: topicsSelected.map(item => item.id) });
+  const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected.map(item => item.id) });
+  const topicsParams = queryString.stringify({ topics: filter.topicsSelected.map(item => item.id) });
 
   const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });

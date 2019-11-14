@@ -28,12 +28,9 @@ class MAAutocompleteTopics extends React.Component {
 
   onSuggestionSelected = (event, { suggestion }) => {
     const {
-      /* disciplinesSelected, topicsSelected, listTopicFilters, filter, */
       addSelectedTopicFilter,
     } = this.props;
     addSelectedTopicFilter(suggestion);
-    //  listTopicFilters(disciplinesSelected, [...topicsSelected, suggestion], filter);
-
     this.setState({ value: '' });
   }
 

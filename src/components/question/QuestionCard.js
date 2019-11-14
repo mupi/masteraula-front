@@ -37,7 +37,7 @@ const getQuoteSeparator = (i, length) => {
 const QuestionCard = (props) => {
   const {
     question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, addSelectedSourceFilter, addSelectedYearFilter,
-    removeSelectedQuestion, sourceFilters, yearFilters, filter,
+    removeSelectedQuestion, sourceFilters, yearFilters,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
   const idSource = question.source ? getIdFilter(sourceFilters, question.source) : null;
@@ -58,7 +58,7 @@ const QuestionCard = (props) => {
             <Button
               key={discipline.id}
               className="question-card__info-section-item question-card__info-section-item--pink"
-              onClick={() => addSelectedDisciplineFilter(discipline.id.toString(), filter)}
+              onClick={() => addSelectedDisciplineFilter(discipline.id.toString())}
             >
               <span className="question-card__info-section--complete">{discipline.name}</span>
               <span className="question-card__info-section--substring">{discipline.slug.toUpperCase()}</span>

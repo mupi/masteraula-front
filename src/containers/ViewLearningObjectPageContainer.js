@@ -11,7 +11,7 @@ import {
   addSelectedDifficultyFilter, removeSelectedDifficultyFilter, removeSelectedTeachingLevelFilter,
   addSelectedSourceFilter, removeSelectedSourceFilter,
   addSelectedYearFilter, removeSelectedYearFilter,
-  resetTopicListSelected, listTopicFilters,
+  resetTopicListSelected,
 } from 'actions/filterAction';
 
 const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
@@ -60,13 +60,9 @@ const mapDispatchToProps = dispatch => ({
   fetchLearningObject: id => dispatch(fetchLearningObject(id)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 
-  addSelectedDisciplineFilter: (idDiscipline, filter) => {
-    const disciplineSelected = [{
-      id: idDiscipline,
-    }];
+  addSelectedDisciplineFilter: (idDiscipline) => {
     dispatch(toggleSelectedDisciplineFilter(idDiscipline, true));
     dispatch(resetTopicListSelected());
-    dispatch(listTopicFilters(disciplineSelected, [], filter));
   },
 
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),
