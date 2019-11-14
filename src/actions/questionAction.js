@@ -3,6 +3,7 @@ import { history } from 'helpers';
 import { toast } from 'react-toastify';
 import { initialize } from 'redux-form';
 import { listTopics } from 'actions/topicAction';
+import { listTopicFilters } from 'actions/filterAction';
 
 // Load single question
 export const FETCH_QUESTION = 'FETCH_QUESTION';
@@ -323,6 +324,7 @@ export const listQuestions = (page, filter) => {
     if (getState().question.isFetching) {
       return 1;
     }
+    dispatch(listTopicFilters(filter));
     dispatch(requestQuestionPage());
     return questionService.listQuestions(page, filter)
       .then(

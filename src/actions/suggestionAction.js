@@ -6,7 +6,7 @@ export const LIST_TOPIC_SUGGESTIONS_SUCCESS = 'LIST_TOPIC_SUGGESTIONS_SUCCESS';
 export const LIST_TOPIC_SUGGESTIONS_FAILURE = 'LIST_TOPIC_SUGGESTIONS_FAILURE';
 
 // List all topics test
-export const listTopicSuggestions = (param, topicsSelected, disciplinesSelected) => {
+export const listTopicSuggestions = (param, filter) => {
   function requestListTopicSuggestions() { return { type: LIST_TOPIC_SUGGESTIONS }; }
   function fetchListTopicSuggestionsSuccess(topicSuggestions) {
     return { type: LIST_TOPIC_SUGGESTIONS_SUCCESS, topicSuggestions };
@@ -15,8 +15,8 @@ export const listTopicSuggestions = (param, topicsSelected, disciplinesSelected)
     return { type: LIST_TOPIC_SUGGESTIONS_FAILURE, error };
   }
   return (dispatch) => {
-    dispatch(requestListTopicSuggestions(param, topicsSelected, disciplinesSelected));
-    return suggestionService.listTopicSuggestions(param, topicsSelected, disciplinesSelected)
+    dispatch(requestListTopicSuggestions(param, filter));
+    return suggestionService.listTopicSuggestions(param, filter)
       .then(
         (topicSuggestions) => {
           dispatch(fetchListTopicSuggestionsSuccess(topicSuggestions));
