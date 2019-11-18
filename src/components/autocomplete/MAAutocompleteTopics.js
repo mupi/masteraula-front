@@ -36,24 +36,36 @@ class MAAutocompleteTopics extends React.Component {
 
   render() {
     const { value } = this.state;
-    const { topicSuggestions } = this.props;
+    const { topicSuggestions, isFetchingTopicSuggestions } = this.props;
     const inputProps = {
       placeholder: 'Insira um tópico',
       value,
       onChange: this.onChange,
     };
+    const isInputBlank = value.trim() === '';
+    const noSuggestions = !isInputBlank && topicSuggestions && topicSuggestions.length === 0;
 
     return (
-      <Autosuggest
-        suggestions={topicSuggestions || []}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-        shouldRenderSuggestions={shouldRenderSuggestions}
-        onSuggestionSelected={this.onSuggestionSelected}
-      />
+      <>
+        <Autosuggest
+          suggestions={topicSuggestions || []}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+          shouldRenderSuggestions={shouldRenderSuggestions}
+          onSuggestionSelected={this.onSuggestionSelected}
+        />
+        {
+          noSuggestions && !isFetchingTopicSuggestions
+            && (
+            <div className="error-message-text">
+              Não há resultados
+            </div>
+            )
+        }
+      </>
     );
   }
 }
