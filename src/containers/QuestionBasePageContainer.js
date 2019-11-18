@@ -10,7 +10,6 @@ import {
   addSelectedSourceFilter, removeSelectedSourceFilter,
   addSelectedYearFilter, removeSelectedYearFilter,
   removeSelectedTopicFilter,
-  listTopicFilters,
   resetTopicListSelected,
 } from 'actions/filterAction';
 import { history } from 'helpers';
@@ -65,18 +64,14 @@ const mapDispatchToProps = dispatch => ({
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 
   addSelectedDisciplineFilter: (idDiscipline) => {
-    const disciplineSelected = [{
-      id: idDiscipline,
-    }];
     dispatch(toggleSelectedDisciplineFilter(idDiscipline, true));
     dispatch(resetTopicListSelected());
-    dispatch(listTopicFilters(disciplineSelected));
   },
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),
   addSelectedSourceFilter: (idSource, nameSource) => dispatch(toggleSelectedSourceFilter(idSource, true, nameSource)),
   addSelectedYearFilter: (idYear, nameYear) => dispatch(toggleSelectedYearFilter(idYear, true, nameYear)),
 
-  toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
+  // toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
   toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
   toggleSelectedSourceFilter: (idSource, value) => dispatch(toggleSelectedSourceFilter(idSource, value)),
@@ -84,8 +79,6 @@ const mapDispatchToProps = dispatch => ({
   removeSelectedTopicFilter: idTopic => dispatch(removeSelectedTopicFilter(idTopic)),
 
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
-
-  listTopicFilters: (disciplinesSelected, topicsSelected = []) => dispatch(listTopicFilters(disciplinesSelected, topicsSelected)),
 
   // new way to handle modals
   hideModal: () => dispatch(hideModal()),

@@ -11,6 +11,7 @@ import {
   addSelectedDifficultyFilter, removeSelectedDifficultyFilter, removeSelectedTeachingLevelFilter,
   addSelectedSourceFilter, removeSelectedSourceFilter,
   addSelectedYearFilter, removeSelectedYearFilter,
+  resetTopicListSelected,
 } from 'actions/filterAction';
 
 const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
@@ -52,18 +53,23 @@ const mapStateToProps = state => ({
   isFetchingAddQuestion: state.document.isFetchingAddQuestion,
   idRemovedQuestion: state.document.idRemovedQuestion,
   idAddedQuestion: state.document.idAddedQuestion,
+  filter: state.filter,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchLearningObject: id => dispatch(fetchLearningObject(id)),
   addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 
-  addSelectedDisciplineFilter: idDiscipline => dispatch(toggleSelectedDisciplineFilter(idDiscipline, true)),
+  addSelectedDisciplineFilter: (idDiscipline) => {
+    dispatch(toggleSelectedDisciplineFilter(idDiscipline, true));
+    dispatch(resetTopicListSelected());
+  },
+
   addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),
   addSelectedSourceFilter: (idSource, nameSource) => dispatch(toggleSelectedSourceFilter(idSource, true, nameSource)),
   addSelectedYearFilter: (idYear, nameYear) => dispatch(toggleSelectedYearFilter(idYear, true, nameYear)),
 
-  toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
+  // toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
   toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
   toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
   toggleSelectedSourceFilter: (idSource, value) => dispatch(toggleSelectedSourceFilter(idSource, value)),

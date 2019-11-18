@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import QuestionSearchByTopics from 'components/question/QuestionSearchByTopics';
 import {
-  addMyQuestionsFilter, listDisciplineFilters, addSelectedDisciplineFilter, listTopicFilters, addSelectedTopicFilter,
+  addMyQuestionsFilter, listDisciplineFilters, addSelectedDisciplineFilter, addSelectedTopicFilter,
   resetTopicListSelected,
 } from 'actions/filterAction';
 import { history } from 'helpers';
@@ -22,6 +22,7 @@ const mapStateToProps = state => ({
   topicFilters: state.filter.topicFilters,
   moreTopicFilters: state.filter.moreTopicFilters,
   topicsSelected: state.filter.topicsSelected,
+  filter: state.filter,
 
   /* autocomplete */
   isFetchingTopicSuggestions: state.suggestion.isFetchingSuggestions,
@@ -29,7 +30,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  listTopicFilters: (disciplinesSelected, topicsSelected = []) => dispatch(listTopicFilters(disciplinesSelected, topicsSelected)),
   addMyQuestionsFilter: (author, value) => {
     history.replace('/question-base/1');
     dispatch(addMyQuestionsFilter(author, value));
@@ -38,7 +38,7 @@ const mapDispatchToProps = dispatch => ({
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTopicFilter: topic => dispatch(addSelectedTopicFilter(topic)),
   resetTopicListSelected: () => dispatch(resetTopicListSelected()),
-  listTopicSuggestions: (param, topicsSelected, disciplinesSelected) => dispatch(listTopicSuggestions(param, topicsSelected, disciplinesSelected)),
+  listTopicSuggestions: (param, filter) => dispatch(listTopicSuggestions(param, filter)),
 });
 
 const QuestionSearchByTopicsContainer = connect(

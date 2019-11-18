@@ -180,7 +180,7 @@ export const listYearFilters = () => {
 };
 
 // List all topics filters
-export const listTopicFilters = (disciplinesSelected, topicsSelected = []) => {
+export const listTopicFilters = (filter) => {
   function requestListTopics() { return { type: LIST_TOPIC_FILTERS }; }
   function fetchListTopicsSuccess(topicFilters) {
     return { type: LIST_TOPIC_FILTERS_SUCCESS, topicFilters };
@@ -189,8 +189,8 @@ export const listTopicFilters = (disciplinesSelected, topicsSelected = []) => {
     return { type: LIST_TOPIC_FILTERS_FAILURE, error };
   }
   return (dispatch) => {
-    dispatch(requestListTopics(disciplinesSelected, topicsSelected));
-    return filterService.listTopicFilters(disciplinesSelected, topicsSelected)
+    dispatch(requestListTopics(filter));
+    return filterService.listTopicFilters(filter)
       .then(
         (topicFilters) => {
           dispatch(fetchListTopicsSuccess(topicFilters));
