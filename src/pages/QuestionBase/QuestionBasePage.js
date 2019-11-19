@@ -7,7 +7,8 @@ import QuestionList from 'components/question/QuestionList';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import QuestionSearchByTopicsContainer from 'containers/QuestionSearchByTopicsContainer';
+/* import QuestionSearchByTopicsContainer from 'containers/QuestionSearchByTopicsContainer'; */
+import QuestionSearchFormContainer from 'containers/QuestionSearchFormContainer';
 
 class QuestionBasePage extends React.Component {
   componentDidMount() {
@@ -36,7 +37,7 @@ class QuestionBasePage extends React.Component {
   render() {
     const {
       questionPage, isFetching, error, filter, toggleSelectedDifficultyFilter,
-      toggleSelectedTeachingLevelFilter, toggleSelectedSourceFilter, toggleSelectedYearFilter,
+      toggleSelectedTeachingLevelFilter, toggleSelectedSourceFilter, toggleSelectedYearFilter, toggleSelectedDisciplineFilter,
       removeSelectedTopicFilter,
     } = this.props;
     if (error) {
@@ -57,6 +58,11 @@ class QuestionBasePage extends React.Component {
       toggleSelectedDifficultyFilter(event.target.id, false);
     }
 
+    function clearDisciplines(event) {
+      toggleSelectedDisciplineFilter(event.target.id, false);
+    }
+
+
     function clearTeachingLevel(event) {
       toggleSelectedTeachingLevelFilter(event.target.id, false);
     }
@@ -73,9 +79,9 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters showFiltersForObjectBase={false}>
         <div className="c-question-base">
-          <QuestionSearchByTopicsContainer />
-          { /* (filter.disciplinesSelected.length > 0) || */
-          (filter.difficultiesSelected.length > 0)
+          <QuestionSearchFormContainer />
+          { (filter.disciplinesSelected.length > 0)
+          || (filter.difficultiesSelected.length > 0)
           || (filter.teachingLevelsSelected.length > 0)
           || (filter.sourcesSelected.length > 0)
           || (filter.yearsSelected.length > 0)
@@ -117,6 +123,19 @@ class QuestionBasePage extends React.Component {
                       key={`TL${item.id}`}
                       id={item.id}
                       onClick={clearTeachingLevel}
+                      className="c-question-base__filter-selected"
+                    >
+                      {item.name}
+                      {' '}
+                        x
+                    </Button>
+                  )),
+                  filter.disciplinesSelected.map(item => (
+                    <Button
+                      disabled={isFetching}
+                      key={`S${item.id}`}
+                      id={item.id}
+                      onClick={clearDisciplines}
                       className="c-question-base__filter-selected"
                     >
                       {item.name}
