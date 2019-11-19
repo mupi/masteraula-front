@@ -131,14 +131,14 @@ export const filter = (state = initialState, action) => {
         isFetchingTopicFilters: false,
         error: action.error,
       });
-      /* case ADD_SELECTED_DISCIPLINE_FILTER: {
+    case ADD_SELECTED_DISCIPLINE_FILTER: {
       const filterDiscipline = state.disciplineFilters.filter(item => item.id === parseInt(action.idDiscipline, 10));
       if (state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
         disciplinesSelected: [...state.disciplinesSelected, filterDiscipline[0]],
       });
-    } */
-    case ADD_SELECTED_DISCIPLINE_FILTER: {
+    }
+    /* case ADD_SELECTED_DISCIPLINE_FILTER: {
       const filterDiscipline = state.disciplineFilters.filter(item => item.id === parseInt(action.idDiscipline, 10));
       if (filterDiscipline[0] && state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) {
         return state;
@@ -147,7 +147,7 @@ export const filter = (state = initialState, action) => {
       return Object.assign({}, state, {
         disciplinesSelected: [filterDisciplineAdded],
       });
-    }
+    } */
     case REMOVE_SELECTED_DISCIPLINE_FILTER: {
       const newDisciplines = state.disciplinesSelected.filter(item => item.id !== parseInt(action.idDiscipline, 10));
       return Object.assign({}, state, {
