@@ -105,7 +105,7 @@ class QuestionSearchByTopics extends Component {
 
   render() {
     const {
-      search, author, isFetchingQuestions, onlyMyQuestions, disciplineFilters, topicFilters, disciplineIdSelected, moreTopicFilters,
+      search, author, isFetchingQuestions, onlyMyQuestions, disciplineFilters, topicFilters, disciplineIdSelected, /* moreTopicFilters, */
     } = this.props;
 
     const { visible } = this.state;
@@ -180,11 +180,13 @@ class QuestionSearchByTopics extends Component {
             </strong>
           </Label>
         </Row>
+
         <Row>
           <Col>
             {(topicFilters && topicFilters.length > 0) ? (
               <>
                 <div className="tiles">
+                  <p className="c-question-base__topic-tip">Selecione ou busque um tópico</p>
                   {topicFilters.slice(0, visible).map(topic => (
                     <Button
                       key={topic.id}
@@ -198,17 +200,17 @@ class QuestionSearchByTopics extends Component {
                 <div>
                   { visible < maxTopicShown && visible <= topicFilters.length
                     && <Button color="link" onClick={this.loadMoreTopics} className="c-question-base__load-more">Ver mais tópicos</Button>}
-                  { visible >= maxTopicShown && moreTopicFilters
-                    && (
+                  { /* visible >= maxTopicShown && moreTopicFilters
+                    && ( */
                     <>
-                      <span className="c-question-base__text-topicsearch">
+                      <div className="c-question-base__text-topicsearch">
                         <FontAwesomeIcon icon="search" className="btn__icon" />
                         {' '}
                         Buscador de tópicos:
-                      </span>
+                      </div>
                       <MAAutocompleteTopics {...this.props} />
                     </>
-                    )}
+                   /* ) */}
                 </div>
               </>
             ) : ''}
