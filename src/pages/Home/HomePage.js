@@ -96,7 +96,7 @@ const HomePage = ({ hideModal, showModal }) => {
             GRATUITO!
             </h5>
             <p className="c-public-home__feature-description">
-            Cadastro e download de 2 provas por mês.
+            Cadastro e download de 3 provas por mês.
             </p>
           </Col>
 
