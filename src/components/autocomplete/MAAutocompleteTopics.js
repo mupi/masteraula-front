@@ -56,6 +56,7 @@ class MAAutocompleteTopics extends React.Component {
           inputProps={inputProps}
           shouldRenderSuggestions={shouldRenderSuggestions}
           onSuggestionSelected={this.onSuggestionSelected}
+          highlightFirstSuggestion
         />
         {
           noSuggestions && !isFetchingTopicSuggestions
