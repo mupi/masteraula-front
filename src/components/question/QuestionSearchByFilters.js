@@ -52,16 +52,16 @@ class QuestionSearchByFilters extends Component {
 
   // 1st time that discipline is selected
   getListTopics = (event, addSelectedFilter) => {
-    const {
+    /* const {
       resetTopicListSelected,
     } = this.props;
-
+    */
     if (event.target.value > 0) {
       this.setState({ visible: 10 });
     }
     history.replace('/question-base/1');
     addSelectedFilter(event.target.value);
-    resetTopicListSelected();
+    // resetTopicListSelected();
   }
 
   getExplodeListTopic = (topic) => {
@@ -190,7 +190,7 @@ class QuestionSearchByFilters extends Component {
               name="source"
               className="form-control question-search__by-filter-select"
               onChange={e => this.getListTopics(e, addSelectedSourceFilter)}
-              value={sourceIdSelected || -1}
+              value={sourceIdSelected || -2}
               disabled={isFetchingQuestions}
             >
               <option value="-1">
@@ -209,7 +209,7 @@ class QuestionSearchByFilters extends Component {
               name="year"
               className="form-control question-search__by-filter-select"
               onChange={e => this.getListTopics(e, addSelectedYearFilter)}
-              value={yearIdSelected || -1}
+              value={yearIdSelected || -2}
               disabled={isFetchingQuestions}
             >
               <option value="-1">
