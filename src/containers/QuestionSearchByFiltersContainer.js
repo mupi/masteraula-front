@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import QuestionSearchByFilters from 'components/question/QuestionSearchByFilters';
 import {
-  addMyQuestionsFilter, listDisciplineFilters, listSourceFilters, listYearFilters,
+  addMyQuestionsFilter, listDisciplineFilters, listSourceFilters, listYearFilters, listTeachingLevelFilters,
   addSelectedDisciplineFilter, addSelectedTopicFilter,
   resetTopicListSelected,
   addSelectedSourceFilter,
@@ -43,6 +43,7 @@ const mapDispatchToProps = dispatch => ({
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
   listSourceFilters: param => dispatch(listSourceFilters(param)),
   listYearFilters: param => dispatch(listYearFilters(param)),
+  listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
 
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTopicFilter: topic => dispatch(addSelectedTopicFilter(topic)),

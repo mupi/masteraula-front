@@ -25,11 +25,12 @@ class QuestionSearchByFilters extends Component {
 
   componentDidMount() {
     const {
-      listDisciplineFilters, listSourceFilters, listYearFilters,
+      listDisciplineFilters, listSourceFilters, listYearFilters, listTeachingLevelFilters,
     } = this.props;
     listDisciplineFilters();
     listSourceFilters();
     listYearFilters();
+    listTeachingLevelFilters();
   }
 
   componentDidUpdate(prevProps) {
