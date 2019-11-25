@@ -155,7 +155,7 @@ class QuestionSearchByFilters extends Component {
                       className="question-card__info-section-item question-card__info-section-item--green"
                       onClick={() => this.getExplodeListTopic(topic)}
                     >
-                      <span>{topic.name.trim()}</span>
+                      <span>{`${topic.name.trim()} (${topic.num_questions})`}</span>
                     </Button>
                   ))}
                 </div>
