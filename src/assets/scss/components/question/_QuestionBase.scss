@@ -1,6 +1,13 @@
 //Classes for Question Base that holds all question cards results.
 .c-question-base{
 
+  &__search-term{
+    font-style: italic;
+    text-decoration: underline;
+    color: #212529;
+    font-weight: normal;
+  }
+
   &__search-all-section{
     width: 100%;
   }
@@ -43,6 +50,7 @@
     font-size: 13px;
     color: $color-ma-blue-link;
     font-weight: normal;
+    margin-left: 5px;
 
     &:hover{
       color:$color-ma-blue-link;
@@ -354,5 +362,10 @@ flex-direction: row-reverse;
   &__by-discipline-select{
       width: auto;
       font-size: 14px;
+  }
+
+  &__by-filter-select{
+    width: 100%;
+    font-size: 14px;
   }
 }
