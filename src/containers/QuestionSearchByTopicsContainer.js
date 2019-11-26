@@ -7,6 +7,13 @@ import {
 import { history } from 'helpers';
 import { listTopicSuggestions } from 'actions/suggestionAction';
 
+/*  Português : 2
+    Literatura: 3
+
+    Sociologia: 11
+    Filosofia: 12
+*/
+
 const mapStateToProps = state => ({
   initialValues: {
     // onlyMyQuestions: state.filter.onlyMyQuestions,

@@ -10,6 +10,13 @@ import {
 import { history } from 'helpers';
 import { listTopicSuggestions } from 'actions/suggestionAction';
 
+
+/*  Português : 2
+    Literatura: 3
+
+    Sociologia: 11
+    Filosofia: 12
+*/
 const mapStateToProps = state => ({
   initialValues: {
     // onlyMyQuestions: state.filter.onlyMyQuestions,
@@ -21,7 +28,7 @@ const mapStateToProps = state => ({
   disciplinesSelected: state.filter.disciplinesSelected,
   author: state.session.session.user.id,
   isFetchingQuestions: state.question.isFetching,
-  disciplineFilters: state.filter.disciplineFilters,
+  disciplineFilters: state.filter.disciplineFiltersJoined,
   topicFilters: state.filter.topicFilters,
   moreTopicFilters: state.filter.moreTopicFilters,
   topicsSelected: state.filter.topicsSelected,

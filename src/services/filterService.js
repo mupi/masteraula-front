@@ -4,6 +4,15 @@ import { authHeader } from 'helpers';
 import queryString from 'query-string';
 
 // Get all disciplines that will be used in SideBar
+
+
+/*  Português : 2
+    Literatura: 3
+
+    Sociologia: 11
+    Filosofia: 12
+*/
+
 function listDisciplineFilters() {
   const requestOptions = {
     method: 'GET',
@@ -97,16 +106,26 @@ function listTopicFilters(filter) {
     },
   };
 
-  const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected.map(item => item.id) });
+  const disciplinesPL = filter.disciplinesSelected.filter(discipline => discipline.id === 2);
+  const disciplinesSF = filter.disciplinesSelected.filter(discipline => discipline.id === 11);
+  let disciplines = filter.disciplinesSelected;
+
+  if (disciplinesPL.length > 0) disciplines = [...disciplinesPL, { id: 3, name: 'Literatura' }];
+  if (disciplinesSF.length > 0) disciplines = [...disciplinesSF, { id: 12, name: 'Filosofia' }];
+
+
+  const disciplinesParams = queryString.stringify({ disciplines: disciplines.map(item => item.id) });
   const topicsParams = queryString.stringify({ topics: filter.topicsSelected.map(item => item.id) });
 
   const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
   const sourcesParams = queryString.stringify({ sources: filter.sourcesSelected.map(item => item.name) });
   const yearsParams = queryString.stringify({ years: filter.yearsSelected.map(item => item.name) });
+
+  const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
   const author = (filter.onlyMyQuestions) ? queryString.stringify({ author: filter.author }) : '';
   const urlParams = [disciplinesParams, teachingLevelParams, difficultiesParams,
-    sourcesParams, yearsParams, topicsParams, author]
+    sourcesParams, yearsParams, topicsParams, author, search]
     .filter(p => p)
     .join('&');
 
