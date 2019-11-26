@@ -27,7 +27,7 @@ const renderSearchField = ({
         {...input}
         placeholder={placeholder}
         type={type}
-      //  disabled={isFetchingQuestions}
+        disabled={isFetchingQuestions}
         className="c-question-base__search-field"
         autoFocus={autoFocus}
       />

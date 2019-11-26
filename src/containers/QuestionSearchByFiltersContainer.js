@@ -28,7 +28,7 @@ const mapStateToProps = state => ({
   disciplinesSelected: state.filter.disciplinesSelected,
   author: state.session.session.user.id,
   isFetchingQuestions: state.question.isFetching,
-  disciplineFilters: state.filter.disciplineFilters,
+  disciplineFilters: state.filter.disciplineFiltersJoined,
   topicFilters: state.filter.topicFilters,
   moreTopicFilters: state.filter.moreTopicFilters,
   topicsSelected: state.filter.topicsSelected,

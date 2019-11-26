@@ -30,6 +30,7 @@ import {
 
 const initialState = {
   disciplineFilters: [],
+  disciplineFiltersJoined: [],
   teachingLevelFilters: [],
   sourceFilters: [],
   yearFilters: [],
@@ -58,7 +59,8 @@ export const filter = (state = initialState, action) => {
       });
     case LIST_DISCIPLINE_FILTERS_SUCCESS:
       return Object.assign({}, state, {
-        disciplineFilters: action.disciplineFilters ? [...action.disciplineFilters.filter(discipline => ![2, 3, 11, 12].includes(discipline.id)), { id: 2, name: 'Português / Literatura' }, { id: 11, name: 'Sociologia / Filosofia' }] : [],
+        disciplineFilters: action.disciplineFilters,
+        disciplineFiltersJoined: action.disciplineFilters ? [...action.disciplineFilters.filter(discipline => ![2, 3, 11, 12].includes(discipline.id)), { id: 2, name: 'Português / Literatura' }, { id: 11, name: 'Sociologia / Filosofia' }] : [],
         isFetchingDisciplineFilters: false,
       });
     case LIST_DISCIPLINE_FILTERS_FAILURE:
@@ -140,7 +142,7 @@ export const filter = (state = initialState, action) => {
     } */
     case ADD_SELECTED_DISCIPLINE_FILTER: {
       if (action.idDiscipline >= 0) {
-        const filterDiscipline = state.disciplineFilters.filter(item => item.id === parseInt(action.idDiscipline, 10));
+        const filterDiscipline = state.disciplineFiltersJoined.filter(item => item.id === parseInt(action.idDiscipline, 10));
         if (filterDiscipline[0] && state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) {
           return state;
         } // do not add duplicates
