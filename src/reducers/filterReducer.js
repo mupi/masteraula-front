@@ -142,7 +142,8 @@ export const filter = (state = initialState, action) => {
     } */
     case ADD_SELECTED_DISCIPLINE_FILTER: {
       if (action.idDiscipline >= 0) {
-        const filterDiscipline = state.disciplineFiltersJoined.filter(item => item.id === parseInt(action.idDiscipline, 10));
+        const newId = [3, 12].includes(parseInt(action.idDiscipline, 10)) ? parseInt(action.idDiscipline, 10) - 1 : action.idDiscipline;
+        const filterDiscipline = state.disciplineFiltersJoined.filter(item => item.id === parseInt(newId, 10));
         if (filterDiscipline[0] && state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) {
           return state;
         } // do not add duplicates

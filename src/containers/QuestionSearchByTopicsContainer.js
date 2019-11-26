@@ -25,7 +25,7 @@ const mapStateToProps = state => ({
   disciplinesSelected: state.filter.disciplinesSelected,
   author: state.session.session.user.id,
   isFetchingQuestions: state.question.isFetching,
-  disciplineFilters: [...state.filter.disciplineFilters.filter(discipline => discipline.id !== 2 || discipline.id !== 3 || discipline.id !== 4 || discipline.id !== 5), { id: 2, name: 'Português / Literatura' }, { id: 4, name: 'Sociologia / Filosofia' }],
+  disciplineFilters: state.filter.disciplineFilters,
   topicFilters: state.filter.topicFilters,
   moreTopicFilters: state.filter.moreTopicFilters,
   topicsSelected: state.filter.topicsSelected,
