@@ -3,7 +3,6 @@ import { reduxForm /* Form, Field */ } from 'redux-form';
 import {
   Input, Row, Col, Label, Button,
 } from 'reactstrap';
-import MAAutocompleteTopics from 'components/autocomplete/MAAutocompleteTopics';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { history } from 'helpers';
 
@@ -208,7 +207,6 @@ class QuestionSearchByTopics extends Component {
                         {' '}
                         Buscador de tópicos:
                       </div>
-                      <MAAutocompleteTopics {...this.props} />
                     </>
                    /* ) */}
                 </div>

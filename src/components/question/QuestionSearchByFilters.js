@@ -5,9 +5,6 @@ import {
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionSearchTextContainer from 'containers/QuestionSearchTextContainer';
-
-/* import MAAutocompleteTopics from 'components/autocomplete/MAAutocompleteTopics';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; */
 import { history } from 'helpers';
 
 class QuestionSearchByFilters extends Component {

@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import QuestionSearchText from 'components/question/QuestionSearchText';
 import { setSearchText, addMyQuestionsFilter } from 'actions/filterAction';
 import { history } from 'helpers';
+import { listTopicSuggestions } from 'actions/suggestionAction';
 
 
 const mapStateToProps = state => ({
@@ -14,6 +15,11 @@ const mapStateToProps = state => ({
   author: state.session.session.user.id,
   isFetchingQuestions: state.question.isFetching,
   preSearch: state.form.questionSearch ? state.form.questionSearch.values.searchText : '',
+
+  /* autocomplete */
+  isFetchingTopicSuggestions: state.suggestion.isFetchingSuggestions,
+  topicSuggestions: state.suggestion.topicSuggestions,
+  filter: state.filter,
 });
 
 const setDispatchSearchText = (searchText) => {
@@ -43,6 +49,8 @@ const mapDispatchToProps = dispatch => ({
     payload: null,
     meta: { form: 'questionSearch', field: 'searchText' },
   }),
+  listTopicSuggestions: (param, filter) => dispatch(listTopicSuggestions(param, filter)),
+
 
 });
 

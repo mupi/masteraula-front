@@ -28,22 +28,20 @@ class MAAutocompleteTopics extends React.Component {
 
   onSuggestionSelected = (event, { suggestion }) => {
     const {
-      addSelectedTopicFilter,
+      onSubmit,
     } = this.props;
-    addSelectedTopicFilter(suggestion);
-    this.setState({ value: '' });
+    onSubmit(suggestion.name);
+    this.setState({ value: suggestion.name });
   }
 
   render() {
     const { value } = this.state;
-    const { topicSuggestions, isFetchingTopicSuggestions } = this.props;
+    const { topicSuggestions /* input */ } = this.props;
     const inputProps = {
-      placeholder: 'Insira um tópico',
+      placeholder: 'Pesquisar por palavras chaves no banco de questões',
       value,
       onChange: this.onChange,
     };
-    const isInputBlank = value.trim() === '';
-    const noSuggestions = !isInputBlank && topicSuggestions && topicSuggestions.length === 0;
 
     return (
       <>
@@ -56,15 +54,16 @@ class MAAutocompleteTopics extends React.Component {
           inputProps={inputProps}
           shouldRenderSuggestions={shouldRenderSuggestions}
           onSuggestionSelected={this.onSuggestionSelected}
-          highlightFirstSuggestion
+  //        onChange={(value) => { this.setState({ value }); input.onChange(value); }}
+
         />
-        {
+        { /*
           noSuggestions && !isFetchingTopicSuggestions
             && (
             <div className="error-message-text">
               Não há resultados
             </div>
-            )
+            ) */
         }
       </>
     );
