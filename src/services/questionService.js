@@ -121,7 +121,16 @@ function listQuestions(page, filter) {
     },
   };
   const pageParam = queryString.stringify({ page });
-  const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected.map(item => item.id) });
+
+  const disciplinesPL = filter.disciplinesSelected.filter(discipline => discipline.id === 2);
+  const disciplinesSF = filter.disciplinesSelected.filter(discipline => discipline.id === 11);
+  let disciplines = filter.disciplinesSelected;
+
+  if (disciplinesPL.length > 0) disciplines = [...disciplinesPL, { id: 3, name: 'Literatura' }];
+  if (disciplinesSF.length > 0) disciplines = [...disciplinesSF, { id: 12, name: 'Filosofia' }];
+
+
+  const disciplinesParams = queryString.stringify({ disciplines: disciplines.map(item => item.id) });
   const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
   const sourcesParams = queryString.stringify({ sources: filter.sourcesSelected.map(item => item.name) });

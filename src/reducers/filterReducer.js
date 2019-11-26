@@ -58,7 +58,7 @@ export const filter = (state = initialState, action) => {
       });
     case LIST_DISCIPLINE_FILTERS_SUCCESS:
       return Object.assign({}, state, {
-        disciplineFilters: action.disciplineFilters,
+        disciplineFilters: action.disciplineFilters ? [...action.disciplineFilters.filter(discipline => ![2, 3, 11, 12].includes(discipline.id)), { id: 2, name: 'Português / Literatura' }, { id: 11, name: 'Sociologia / Filosofia' }] : [],
         isFetchingDisciplineFilters: false,
       });
     case LIST_DISCIPLINE_FILTERS_FAILURE:

@@ -135,7 +135,7 @@ class QuestionBasePage extends React.Component {
                   filter.disciplinesSelected.map(item => (
                     <Button
                       disabled={isFetching}
-                      key={`S${item.id}`}
+                      key={`D${item.id}`}
                       id={item.id}
                       onClick={clearDisciplines}
                       className="c-question-base__filter-selected"
