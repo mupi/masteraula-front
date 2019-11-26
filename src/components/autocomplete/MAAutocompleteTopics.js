@@ -5,6 +5,7 @@ const getSuggestionValue = suggestion => suggestion.name;
 const renderSuggestion = suggestion => (<span>{suggestion.name}</span>);
 const shouldRenderSuggestions = value => (value.trim().length > 2);
 
+
 class MAAutocompleteTopics extends React.Component {
   constructor() {
     super();
@@ -13,6 +14,9 @@ class MAAutocompleteTopics extends React.Component {
 
   onChange = (event, { newValue }) => {
     this.setState({ value: newValue });
+    const { input } = this.props;
+    input.onChange(newValue);
+    // console.log(newValue);
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
@@ -27,11 +31,11 @@ class MAAutocompleteTopics extends React.Component {
   };
 
   onSuggestionSelected = (event, { suggestion }) => {
-    const {
-      onSubmit,
-    } = this.props;
-    onSubmit(suggestion.name);
     this.setState({ value: suggestion.name });
+    const { input } = this.props;
+
+    input.onChange(suggestion.name);
+    // console.log(suggestion.name);
   }
 
   render() {
@@ -54,8 +58,6 @@ class MAAutocompleteTopics extends React.Component {
           inputProps={inputProps}
           shouldRenderSuggestions={shouldRenderSuggestions}
           onSuggestionSelected={this.onSuggestionSelected}
-  //        onChange={(value) => { this.setState({ value }); input.onChange(value); }}
-
         />
         { /*
           noSuggestions && !isFetchingTopicSuggestions

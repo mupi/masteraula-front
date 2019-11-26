@@ -9,7 +9,6 @@ import {
 } from 'helpers/validators';
 import MAAutocompleteTopics from 'components/autocomplete/MAAutocompleteTopics';
 
-
 const renderSearchField = ({
   input,
   // type,
@@ -34,7 +33,6 @@ const renderSearchField = ({
         filter={filter}
         onSubmit={onSubmit}
         input={input}
-        onChange={value => input.onChange(value)}
 
       />
       {search || !pristine ? (
