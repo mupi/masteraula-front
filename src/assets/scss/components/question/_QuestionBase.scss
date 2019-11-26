@@ -15,7 +15,8 @@
   &__search-field{
 
     &.form-control:disabled, .form-control[readonly]{
-      background-color: $color-ma-lightgray-backg !important;
+      // background-color: $color-ma-lightgray-backg !important;
+      background-color: #fbfbfb !important;
     }
   }
   
@@ -367,5 +368,9 @@ flex-direction: row-reverse;
   &__by-filter-select{
     width: 100%;
     font-size: 14px;
+
+    &:disabled{
+      background-color:  #fbfbfb !important;
+    }
   }
 }
