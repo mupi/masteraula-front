@@ -5,24 +5,30 @@ import QuestionCard from './QuestionCard';
 
 const QuestionList = (props) => {
   const {
-    questions, count, sm, textResult = 'Questões encontradas', showLink = true,
+    questions, count, sm, textResult = 'questões encontradas', showQuantity = true, showLink = true, search,
   } = props;
   return (
     <Row>
-      <Col sm="12" className="c-question-base__total-results">
-        {`${textResult}: ${count}`}
-        {' '}
-        {showLink ? (
-          <a
-            className="c-question-base__link-askquestion"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://forms.gle/A1T4TPAMbrRA33hJA"
-          >
-          Não encontrou o que queria? Clique aqui
-          </a>
-        ) : ''}
-      </Col>
+
+      { showQuantity ? (
+        <Col sm="12" className="c-question-base__total-results">
+          {`${count} ${textResult} `}
+          <span className="c-question-base__search-term">{search}</span>
+          {' '}
+          {showLink ? (
+            <a
+              className="c-question-base__link-askquestion"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://forms.gle/A1T4TPAMbrRA33hJA"
+            >
+          (Não encontrou o que queria? Clique aqui)
+            </a>
+          ) : ''}
+        </Col>
+      ) : ''
+      }
+
       {questions.map(question => (
         <Col sm={sm} lg="3" xs="12" key={`Q${question.id}`} className="question-card">
           <QuestionCard question={question} {...props} />

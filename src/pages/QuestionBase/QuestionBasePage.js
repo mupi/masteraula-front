@@ -7,8 +7,8 @@ import QuestionList from 'components/question/QuestionList';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-/* import QuestionSearchByTopicsContainer from 'containers/QuestionSearchByTopicsContainer'; */
-import QuestionSearchFormContainer from 'containers/QuestionSearchFormContainer';
+import QuestionSearchByFiltersContainer from 'containers/QuestionSearchByFiltersContainer';
+/* import QuestionSearchFormContainer from 'containers/QuestionSearchFormContainer'; */
 
 class QuestionBasePage extends React.Component {
   componentDidMount() {
@@ -40,6 +40,7 @@ class QuestionBasePage extends React.Component {
       questionPage, isFetching, error, filter, toggleSelectedDifficultyFilter,
       toggleSelectedTeachingLevelFilter, toggleSelectedSourceFilter, toggleSelectedYearFilter, toggleSelectedDisciplineFilter,
       removeSelectedTopicFilter,
+      search,
     } = this.props;
     if (error) {
       return (
@@ -80,7 +81,7 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters showFiltersForObjectBase={false}>
         <div className="c-question-base">
-          <QuestionSearchFormContainer />
+          <QuestionSearchByFiltersContainer />
           { (filter.disciplinesSelected.length > 0)
           || (filter.difficultiesSelected.length > 0)
           || (filter.teachingLevelsSelected.length > 0)
@@ -175,8 +176,31 @@ class QuestionBasePage extends React.Component {
             </Row>
             ) : ''
       }
-
-
+          { !isFetching ? (
+            <Row>
+              <Col sm="12" className="c-question-base__total-results">
+                {`${questionPage.count} questões encontradas`}
+                {search
+                  ? (
+                    <>
+                      {' para '}
+                      <span className="c-question-base__search-term">
+                        {search}
+                      </span>
+                    </>
+                  ) : ''
+                }
+                <a
+                  className="c-question-base__link-askquestion"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://forms.gle/A1T4TPAMbrRA33hJA"
+                >
+                  (Não encontrou o que queria? Clique aqui)
+                </a>
+              </Col>
+            </Row>
+          ) : ''}
           <Row className="pagination-questions" style={{ marginLeft: '80%' }}>
             <CustomPagination {...this.props} {...questionPage} disabled={isFetching} itensPerPage={16} />
           </Row>
@@ -186,7 +210,7 @@ class QuestionBasePage extends React.Component {
                   Carregando ...
               </Alert>
             ) : (
-              <QuestionList sm="4" {...this.props} questions={questionPage.results} count={questionPage.count} />
+              <QuestionList sm="4" {...this.props} questions={questionPage.results} count={questionPage.count} showQuantity={false} />
             )
             }
           </div>

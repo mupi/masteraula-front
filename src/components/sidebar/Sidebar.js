@@ -9,8 +9,7 @@ import logoMasterAulaVerde from 'assets/img/home/masteraula-azulverde-300x60.png
 import maLogo from 'assets/img/home/logo_masteraula-rubrica-blanca.png';
 import userPhoto from 'assets/img/home/avataruser3.png';
 
-
-import FilterContainer from 'containers/FilterContainer';
+/* import FilterContainer from 'containers/FilterContainer'; */
 import SidebarObjectFiltersContainer from 'containers/SidebarObjectFiltersContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Swipeable } from 'react-touch';
@@ -46,7 +45,7 @@ const toogleSidebarAfterOpenModal = (e, openSidebar, isOpenSidebar) => {
 };
 
 const SidebarMobile = ({
-  showFilters,
+  /* showFilters, */
   showFiltersForObjectBase,
   user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal,
   quantityDocxDownloaded,
@@ -201,7 +200,7 @@ const SidebarMobile = ({
                       </Link>
                     </ListGroupItem> */}
                   </ListGroup>
-                  {showFilters && <FilterContainer />}
+                  { /* showFilters && <FilterContainer /> */}
                   {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
                 </div>
               </Col>
@@ -215,7 +214,8 @@ const SidebarMobile = ({
 
 
 const SidebarWeb = ({
-  showFilters, showFiltersForObjectBase,
+  /* showFilters, */
+  showFiltersForObjectBase,
   isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal, setQuestionIdToNewDocument,
 }) => {
   const openCreateDocumentModal = () => {
@@ -294,7 +294,7 @@ const SidebarWeb = ({
                       </Link>
                     </ListGroupItem> */}
                     </ListGroup>
-                    {showFilters && <FilterContainer />}
+                    {/* showFilters && <FilterContainer /> */}
                     {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
 
                   </div>

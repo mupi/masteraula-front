@@ -131,23 +131,28 @@ export const filter = (state = initialState, action) => {
         isFetchingTopicFilters: false,
         error: action.error,
       });
-    case ADD_SELECTED_DISCIPLINE_FILTER: {
+      /* case ADD_SELECTED_DISCIPLINE_FILTER: {
       const filterDiscipline = state.disciplineFilters.filter(item => item.id === parseInt(action.idDiscipline, 10));
       if (state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
         disciplinesSelected: [...state.disciplinesSelected, filterDiscipline[0]],
       });
-    }
-    /* case ADD_SELECTED_DISCIPLINE_FILTER: {
-      const filterDiscipline = state.disciplineFilters.filter(item => item.id === parseInt(action.idDiscipline, 10));
-      if (filterDiscipline[0] && state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) {
-        return state;
-      } // do not add duplicates
-      const filterDisciplineAdded = filterDiscipline[0] ? filterDiscipline[0] : {};
-      return Object.assign({}, state, {
-        disciplinesSelected: [filterDisciplineAdded],
-      });
     } */
+    case ADD_SELECTED_DISCIPLINE_FILTER: {
+      if (action.idDiscipline >= 0) {
+        const filterDiscipline = state.disciplineFilters.filter(item => item.id === parseInt(action.idDiscipline, 10));
+        if (filterDiscipline[0] && state.disciplinesSelected.filter(item => item.id === filterDiscipline[0].id).length > 0) {
+          return state;
+        } // do not add duplicates
+        const filterDisciplineAdded = filterDiscipline[0] ? filterDiscipline[0] : {};
+        return Object.assign({}, state, {
+          disciplinesSelected: [filterDisciplineAdded],
+        });
+      }
+      return Object.assign({}, state, {
+        disciplinesSelected: [],
+      });
+    }
     case REMOVE_SELECTED_DISCIPLINE_FILTER: {
       const newDisciplines = state.disciplinesSelected.filter(item => item.id !== parseInt(action.idDiscipline, 10));
       return Object.assign({}, state, {
@@ -180,7 +185,7 @@ export const filter = (state = initialState, action) => {
         difficultiesSelected: newDifficulties,
       });
     }
-    case ADD_SELECTED_SOURCE_FILTER: {
+    /* case ADD_SELECTED_SOURCE_FILTER: {
       if (parseInt(action.idSource, 10) !== -1) {
         const filterSource = state.sourceFilters.filter(item => item.id === parseInt(action.idSource, 10));
         if (state.sourcesSelected.filter(item => item.id === filterSource[0].id).length > 0) return state; // do not add duplicates
@@ -195,13 +200,42 @@ export const filter = (state = initialState, action) => {
         sourcesSelected: [...state.sourcesSelected, newSource],
       });
     }
+*/
+
+    case ADD_SELECTED_SOURCE_FILTER: {
+      /* any source available in sourceFilters */
+      if (parseInt(action.idSource, 10) >= 0) {
+        const filterSource = state.sourceFilters.filter(item => item.id === parseInt(action.idSource, 10));
+        if (filterSource[0] && state.sourcesSelected.filter(item => item.id === filterSource[0].id).length > 0) {
+          return state;
+        }// do not add duplicates
+        const filterSourceAdded = filterSource[0] ? [filterSource[0]] : [];
+
+        return Object.assign({}, state, {
+          sourcesSelected: filterSourceAdded,
+        });
+      }
+      /* customized source */
+      if (action.idSource === -1) {
+        if (state.sourcesSelected.filter(item => item.name === action.nameSource).length > 0) return state; // do not add duplicates
+        const newSource = { id: action.nameSource, name: action.nameSource };
+        return Object.assign({}, state, {
+          sourcesSelected: [newSource],
+        });
+      }
+
+      /* all sources */
+      return Object.assign({}, state, {
+        sourcesSelected: [],
+      });
+    }
     case REMOVE_SELECTED_SOURCE_FILTER: {
       const newSources = state.sourcesSelected.filter(item => item.id.toString() !== action.idSource.toString());
       return Object.assign({}, state, {
         sourcesSelected: newSources,
       });
     }
-    case ADD_SELECTED_YEAR_FILTER: {
+    /* case ADD_SELECTED_YEAR_FILTER: {
       if (parseInt(action.idYear, 10) !== -1) {
         const filterYear = state.yearFilters.filter(item => item.id === parseInt(action.idYear, 10));
         if (state.yearsSelected.filter(item => item.id === filterYear[0].id).length > 0) return state; // do not add duplicates
@@ -214,6 +248,35 @@ export const filter = (state = initialState, action) => {
       const newYear = { id: action.nameYear, name: action.nameYear };
       return Object.assign({}, state, {
         yearsSelected: [...state.yearsSelected, newYear],
+      });
+    } */
+
+    case ADD_SELECTED_YEAR_FILTER: {
+      /* any year available in yearFilteres */
+      if (parseInt(action.idYear, 10) >= 0) {
+        const filterYear = state.yearFilters.filter(item => item.id === parseInt(action.idYear, 10));
+        if (filterYear[0] && state.yearsSelected.filter(item => item.id === filterYear[0].id).length > 0) {
+          return state;
+        }// do not add duplicates
+        const filterYearAdded = filterYear[0] ? filterYear[0] : {};
+
+        return Object.assign({}, state, {
+          yearsSelected: [filterYearAdded],
+        });
+      }
+
+      /* customized year */
+      if (action.idYear === -1) {
+        if (state.yearsSelected.filter(item => item.name === action.nameYear).length > 0) return state; // do not add duplicates
+        const newYear = { id: action.nameYear, name: action.nameYear };
+        return Object.assign({}, state, {
+          yearsSelected: [newYear],
+        });
+      }
+
+      /* all years */
+      return Object.assign({}, state, {
+        yearsSelected: [],
       });
     }
     case REMOVE_SELECTED_YEAR_FILTER: {

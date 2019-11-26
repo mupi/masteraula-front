@@ -57,6 +57,8 @@ const mapStateToProps = state => ({
   isFetchingAddQuestion: state.document.isFetchingAddQuestion,
   idRemovedQuestion: state.document.idRemovedQuestion,
   idAddedQuestion: state.document.idAddedQuestion,
+  search: state.filter.searchText,
+
 });
 
 const mapDispatchToProps = dispatch => ({
