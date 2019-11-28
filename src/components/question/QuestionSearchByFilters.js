@@ -162,8 +162,8 @@ class QuestionSearchByFilters extends Component {
           </Col>
         </Row>
 
-        <Row className="mb-2">
-          <Col col="4">
+        <Row>
+          <Col sm="4" col="12" className="mb-2">
             <select
               type="text"
               name="discipline"
@@ -182,7 +182,7 @@ class QuestionSearchByFilters extends Component {
               )) }
             </select>
           </Col>
-          <Col col="4">
+          <Col sm="4" col="12" className="mb-2">
             <select
               type="text"
               name="source"
@@ -201,7 +201,7 @@ class QuestionSearchByFilters extends Component {
               )) }
             </select>
           </Col>
-          <Col col="4">
+          <Col sm="4" col="12" className="mb-2">
             <select
               type="text"
               name="year"
