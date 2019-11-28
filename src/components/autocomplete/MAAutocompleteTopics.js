@@ -12,11 +12,23 @@ class MAAutocompleteTopics extends React.Component {
     this.state = { value: '' /* , suggestions: [] */ };
   }
 
+  componentDidUpdate(prevProps) {
+    const {
+      filter, input,
+    } = this.props;
+
+    if (filter.searchText !== prevProps.filter.searchText) {
+      /* eslint-disable react/no-did-update-set-state */
+      this.setState({ value: filter.searchText ? filter.searchText : '' });
+      input.onChange(filter.searchText);
+    }
+  }
+
+
   onChange = (event, { newValue }) => {
     this.setState({ value: newValue });
     const { input } = this.props;
     input.onChange(newValue);
-    // console.log(newValue);
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
