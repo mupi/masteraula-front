@@ -22,16 +22,11 @@ export const topic = (state = initialState, action) => {
       const topicSuggestionNew = synonymsTopics.length > 0
         ? [...action.topicSuggestions.topics, ...synonymsTopics] : [...action.topicSuggestions.topics];
 
-      const topicSuggestionUnique = [...new Set(topicSuggestionNew.map(t => ({
-        name: t.name.trim(),
-      })))];
-
-      /* console.log("hola");
-        console.log(topicSuggestionUnique);
-      */
+      const topicSuggestionUniquex = Array.from(new Set(topicSuggestionNew.map(a => a.name.trim())))
+        .map(name => topicSuggestionNew.find(a => a.name.trim() === name.trim()));
 
       return Object.assign({}, state, {
-        topicSuggestions: topicSuggestionUnique,
+        topicSuggestions: topicSuggestionUniquex,
         isFetchingTopicSuggestions: false,
       });
     }
