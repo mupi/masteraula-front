@@ -12,16 +12,28 @@ class MAAutocompleteTopics extends React.Component {
     this.state = { value: '' /* , suggestions: [] */ };
   }
 
-  onChange = (event, { newValue }) => {
+  onChange = (_event, { newValue }) => {
     this.setState({ value: newValue });
     const { input } = this.props;
     input.onChange(newValue);
-    // console.log(newValue);
+  }
+
+  getSuggestions = () => {
+    const { value } = this.state;
+    const { topicSuggestions } = this.props;
+    if (!topicSuggestions) {
+      return [];
+    }
+    const normalizedValue = value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    return topicSuggestions.filter((topic) => {
+      const normalizedName = topic.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+      return normalizedName.indexOf(normalizedValue) >= 0;
+    });
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
     const { listTopicSuggestions, filter } = this.props;
-    if (value.trim().length % 3 === 0 && value.trim().length > 0) {
+    if (value.trim().length === 3) {
       listTopicSuggestions(value, filter);
     }
   }
@@ -40,7 +52,7 @@ class MAAutocompleteTopics extends React.Component {
 
   render() {
     const { value } = this.state;
-    const { topicSuggestions /* input */ } = this.props;
+    // const { topicSuggestions /* input */ } = this.props;
     const inputProps = {
       placeholder: 'Pesquisar por palavras chaves no banco de questões',
       value,
@@ -50,7 +62,7 @@ class MAAutocompleteTopics extends React.Component {
     return (
       <>
         <Autosuggest
-          suggestions={topicSuggestions || []}
+          suggestions={this.getSuggestions()}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           getSuggestionValue={getSuggestionValue}
