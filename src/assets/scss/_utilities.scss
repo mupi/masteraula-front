@@ -234,14 +234,13 @@ input.rw-input-reset{
 }
 
 .react-autosuggest__input {
-  width: auto;
+  width: 100%;
   height: auto;
   padding: 5px;
   font-family: "Lato", serif;
-  /* font-weight: 300; */
   font-size: 14px;
   border: 1px solid #aaa;
-  border-radius: 4px;
+  border-radius: 4px 0px 0px 4px;
   font-style: italic;
 }
 
@@ -286,4 +285,9 @@ input.rw-input-reset{
 
 .react-autosuggest__suggestion--highlighted {
   background-color: #ddd;
+}
+
+
+.react-autosuggest__container {
+  width: 80%;
 }

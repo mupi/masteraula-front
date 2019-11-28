@@ -1,35 +1,39 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, Form } from 'redux-form';
 import {
-  Input, InputGroup, InputGroupAddon, Button, Row, UncontrolledTooltip,
+/* Input, */ InputGroup, InputGroupAddon, Button, Row, UncontrolledTooltip,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   minLength3characters,
 } from 'helpers/validators';
+import MAAutocompleteTopics from 'components/autocomplete/MAAutocompleteTopics';
 
 const renderSearchField = ({
   input,
-  type,
+  // type,
   meta: {
     pristine, touched, error, warning,
   },
   clearSearch,
   clearSearchField,
   search,
-  placeholder,
   isFetchingQuestions,
-  autoFocus,
+  topicSuggestions, isFetchingTopicSuggestions,
+  listTopicSuggestions,
+  filter,
+  onSubmit,
 }) => (
   <div className="c-question-base__search-all-section">
     <InputGroup>
-      <Input
-        {...input}
-        placeholder={placeholder}
-        type={type}
-        disabled={isFetchingQuestions}
-        className="c-question-base__search-field"
-        autoFocus={autoFocus}
+      <MAAutocompleteTopics
+        topicSuggestions={topicSuggestions}
+        isFetchingTopicSuggestions={isFetchingTopicSuggestions}
+        listTopicSuggestions={listTopicSuggestions}
+        filter={filter}
+        onSubmit={onSubmit}
+        input={input}
+
       />
       {search || !pristine ? (
         <InputGroupAddon addonType="prepend">
@@ -101,6 +105,7 @@ class QuestionSearchText extends Component {
             clearSearchField={clearSearchField}
             isFetchingQuestions={isFetchingQuestions}
             autoFocus
+            {...this.props}
           />
         </Row>
       </Form>

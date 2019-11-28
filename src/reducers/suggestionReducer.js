@@ -21,8 +21,12 @@ export const topic = (state = initialState, action) => {
       }))).flat();
       const topicSuggestionNew = synonymsTopics.length > 0
         ? [...action.topicSuggestions.topics, ...synonymsTopics] : [...action.topicSuggestions.topics];
+
+      const topicSuggestionUniquex = Array.from(new Set(topicSuggestionNew.map(a => a.name.trim())))
+        .map(name => topicSuggestionNew.find(a => a.name.trim() === name.trim()));
+
       return Object.assign({}, state, {
-        topicSuggestions: topicSuggestionNew,
+        topicSuggestions: topicSuggestionUniquex,
         isFetchingTopicSuggestions: false,
       });
     }
