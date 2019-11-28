@@ -231,6 +231,8 @@ input.rw-input-reset{
 
 .react-autosuggest__container {
   position: relative;
+  width: 80%;
+
 }
 
 .react-autosuggest__input {
@@ -284,9 +286,4 @@ input.rw-input-reset{
 
 .react-autosuggest__suggestion--highlighted {
   background-color: #ddd;
-}
-
-
-.react-autosuggest__container {
-  width: 80%;
 }

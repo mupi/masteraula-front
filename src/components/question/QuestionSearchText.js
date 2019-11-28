@@ -75,13 +75,14 @@ const renderSearchFieldAutocomplete = ({
     pristine, touched, error, warning,
   },
   clearSearch,
-  clearSearchField,
+  willBeCleared,
   search,
   isFetchingQuestions,
   topicSuggestions, isFetchingTopicSuggestions,
   listTopicSuggestions,
   filter,
   onSubmit,
+  cleanSearchInput,
 }) => (
   <div className="c-question-base__search-all-section">
     <InputGroup>
@@ -92,11 +93,12 @@ const renderSearchFieldAutocomplete = ({
         filter={filter}
         onSubmit={onSubmit}
         input={input}
-
+        willBeCleared={willBeCleared}
+        cleanSearchInput={cleanSearchInput}
       />
       {search || !pristine ? (
         <InputGroupAddon addonType="prepend">
-          <Button className="c-question-base__clear-search" id="dica" onClick={search ? clearSearch : clearSearchField}>
+          <Button className="c-question-base__clear-search" id="dica" onClick={search ? clearSearch : cleanSearchInput}>
             <FontAwesomeIcon icon="times-circle" />
           </Button>
           <UncontrolledTooltip placement="bottom" target="dica" className="tooltip__message">

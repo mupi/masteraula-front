@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import QuestionSearchText from 'components/question/QuestionSearchText';
-import { setSearchText, addMyQuestionsFilter } from 'actions/filterAction';
+import { setSearchText, addMyQuestionsFilter, cleanSearchInput } from 'actions/filterAction';
 import { history } from 'helpers';
 import { listTopicSuggestions } from 'actions/suggestionAction';
 
@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
     onlyMyQuestions: state.filter.onlyMyQuestions,
   },
   search: state.filter.searchText,
+  willBeCleared: state.filter.willBeCleared,
   onlyMyQuestions: state.filter.onlyMyQuestions,
   author: state.session.session.user.id,
   isFetchingQuestions: state.question.isFetching,
@@ -44,11 +45,14 @@ const mapDispatchToProps = dispatch => ({
     });
     dispatch(setDispatchSearchText());
   },
-  clearSearchField: () => dispatch({
-    type: '@@redux-form/CHANGE',
-    payload: null,
-    meta: { form: 'questionSearch', field: 'searchText' },
-  }),
+  cleanSearchInput: (value = true) => {
+    dispatch({
+      type: '@@redux-form/CHANGE',
+      payload: null,
+      meta: { form: 'questionSearch', field: 'searchText' },
+    });
+    dispatch(cleanSearchInput(value));
+  },
   listTopicSuggestions: (param, filter) => dispatch(listTopicSuggestions(param, filter)),
 
 

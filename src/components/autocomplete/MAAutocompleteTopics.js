@@ -14,13 +14,18 @@ class MAAutocompleteTopics extends React.Component {
 
   componentDidUpdate(prevProps) {
     const {
-      filter, input,
+      filter, input, cleanSearchInput, willBeCleared,
     } = this.props;
-
     if (filter.searchText !== prevProps.filter.searchText) {
       /* eslint-disable react/no-did-update-set-state */
       this.setState({ value: filter.searchText ? filter.searchText : '' });
       input.onChange(filter.searchText);
+    }
+
+    if (willBeCleared) {
+      input.onChange('');
+      this.setState({ value: '' });
+      cleanSearchInput(false);
     }
   }
 
