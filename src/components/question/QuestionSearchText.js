@@ -24,8 +24,6 @@ const renderSearchFieldAutocomplete = ({
   clearSearchText,
   search,
 }) => {
-  const autocomplete = React.createRef();
-
   const handleSubmit = (value) => {
     search(value);
   };
@@ -34,7 +32,6 @@ const renderSearchFieldAutocomplete = ({
     <div className="c-question-base__search-all-section">
       <InputGroup>
         <MAAutocompleteTopics
-          ref={autocomplete}
           input={input}
           suggestions={topicSuggestions}
           fetchSuggestions={listTopicSuggestions}
