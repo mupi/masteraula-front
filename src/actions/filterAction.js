@@ -274,8 +274,8 @@ export const setSearchText = searchText => ({
   type: SET_SEARCH_TEXT, searchText,
 });
 
-export const cleanSearchInput = (willBeCleared = false) => ({
-  type: CLEAN_SEARCH_INPUT, willBeCleared,
+export const cleanSearchInput = () => ({
+  type: CLEAN_SEARCH_INPUT,
 });
 
 export const setSearchTextObject = searchText => ({

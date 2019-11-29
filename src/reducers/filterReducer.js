@@ -316,7 +316,7 @@ export const filter = (state = initialState, action) => {
 
     case CLEAN_SEARCH_INPUT: {
       return Object.assign({}, state, {
-        willBeCleared: action.willBeCleared,
+        searchText: '',
       });
     }
 
