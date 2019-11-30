@@ -42,7 +42,7 @@ class MAAutocompleteTopics extends React.Component {
   }
 
   render() {
-    const { suggestions, input } = this.props;
+    const { input } = this.props;
     const inputProps = {
       placeholder: 'Pesquisar por palavras chaves no banco de questões',
       value: input.value,
@@ -51,7 +51,7 @@ class MAAutocompleteTopics extends React.Component {
 
     return (
       <Autosuggest
-        suggestions={suggestions}
+        suggestions={this.getSuggestions()}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionSelected={this.onSuggestionSelected}
         getSuggestionValue={this.getSuggestionValue}

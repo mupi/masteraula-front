@@ -229,10 +229,13 @@ input.rw-input-reset{
 
 /*AUTOCOMPLETE react-autocomplete*/
 
+
 .react-autosuggest__container {
   position: relative;
-  width: 80%;
-
+ //  width: 80%;
+ flex: 1 1 auto;
+ border: 1px solid #aaa;
+ border-radius: 4px 0px 0px 4px;
 }
 
 .react-autosuggest__input {
@@ -241,10 +244,10 @@ input.rw-input-reset{
   padding: 5px;
   font-family: "Lato", serif;
   font-size: 14px;
-  border: 1px solid #aaa;
+  border: 0px solid #aaa;
   border-radius: 4px 0px 0px 4px;
-}
 
+}
 .react-autosuggest__input--focused {
   outline: none;
 }
