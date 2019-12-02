@@ -33,7 +33,7 @@ class MAAutocompleteTopics extends React.Component {
   onSuggestionsClearRequested = () => {
   }
 
-  getSuggestionValue = suggestion => suggestion.name;
+  getSuggestionValue = suggestion => (suggestion ? suggestion.name : '');
 
   renderSuggestion = suggestion => (<span>{suggestion.name}</span>);
 
