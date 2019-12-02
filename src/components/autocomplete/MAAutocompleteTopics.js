@@ -54,7 +54,7 @@ class MAAutocompleteTopics extends React.Component {
 
     return (
       <Autosuggest
-        suggestions={this.getSuggestions()}
+        suggestions={this.getSuggestions().slice(0, 10)}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionSelected={this.onSuggestionSelected}
         getSuggestionValue={this.getSuggestionValue}
@@ -62,6 +62,7 @@ class MAAutocompleteTopics extends React.Component {
         renderSuggestion={this.renderSuggestion}
         shouldRenderSuggestions={this.shouldRenderSuggestions}
         inputProps={inputProps}
+        highlightFirstSuggestion
       />
     );
   }
