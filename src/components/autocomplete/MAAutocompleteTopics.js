@@ -30,6 +30,9 @@ class MAAutocompleteTopics extends React.Component {
     onSubmit(suggestion.name);
   }
 
+  onSuggestionsClearRequested = () => {
+  }
+
   getSuggestionValue = suggestion => suggestion.name;
 
   renderSuggestion = suggestion => (<span>{suggestion.name}</span>);
@@ -55,6 +58,7 @@ class MAAutocompleteTopics extends React.Component {
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionSelected={this.onSuggestionSelected}
         getSuggestionValue={this.getSuggestionValue}
+        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         renderSuggestion={this.renderSuggestion}
         shouldRenderSuggestions={this.shouldRenderSuggestions}
         inputProps={inputProps}
