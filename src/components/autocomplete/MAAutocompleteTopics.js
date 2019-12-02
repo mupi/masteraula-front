@@ -9,11 +9,12 @@ class MAAutocompleteTopics extends React.Component {
     if (!suggestions) {
       return [];
     }
+
     const normalizedValue = input.value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     return suggestions.filter((suggestion) => {
       const normalizedName = suggestion.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
       return normalizedName.indexOf(normalizedValue) >= 0;
-    });
+    }).slice(0, 15);
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
