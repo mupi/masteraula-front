@@ -5,9 +5,6 @@ import {
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionSearchTextContainer from 'containers/QuestionSearchTextContainer';
-
-/* import MAAutocompleteTopics from 'components/autocomplete/MAAutocompleteTopics';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; */
 import { history } from 'helpers';
 
 class QuestionSearchByFilters extends Component {
@@ -165,8 +162,8 @@ class QuestionSearchByFilters extends Component {
           </Col>
         </Row>
 
-        <Row className="mb-2">
-          <Col col="4">
+        <Row>
+          <Col sm="4" col="12" className="mb-2">
             <select
               type="text"
               name="discipline"
@@ -185,7 +182,7 @@ class QuestionSearchByFilters extends Component {
               )) }
             </select>
           </Col>
-          <Col col="4">
+          <Col sm="4" col="12" className="mb-2">
             <select
               type="text"
               name="source"
@@ -204,7 +201,7 @@ class QuestionSearchByFilters extends Component {
               )) }
             </select>
           </Col>
-          <Col col="4">
+          <Col sm="4" col="12" className="mb-2">
             <select
               type="text"
               name="year"

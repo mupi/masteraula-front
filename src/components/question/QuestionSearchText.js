@@ -1,69 +1,76 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, Form } from 'redux-form';
 import {
-  Input, InputGroup, InputGroupAddon, Button, Row, UncontrolledTooltip,
+  Field, reduxForm, Form,
+} from 'redux-form';
+import {
+  /* Input, */ InputGroup, InputGroupAddon, Button, Row, UncontrolledTooltip,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   minLength3characters,
 } from 'helpers/validators';
+import MAAutocompleteTopics from 'components/autocomplete/MAAutocompleteTopics';
 
-const renderSearchField = ({
+const renderSearchFieldAutocomplete = ({
   input,
-  type,
+  // type,
   meta: {
     pristine, touched, error, warning,
   },
-  clearSearch,
-  clearSearchField,
-  search,
-  placeholder,
+  searchText,
   isFetchingQuestions,
-  autoFocus,
-}) => (
-  <div className="c-question-base__search-all-section">
-    <InputGroup>
-      <Input
-        {...input}
-        placeholder={placeholder}
-        type={type}
-        disabled={isFetchingQuestions}
-        className="c-question-base__search-field"
-        autoFocus={autoFocus}
-      />
-      {search || !pristine ? (
+  topicSuggestions,
+  listTopicSuggestions,
+  clearSearchText,
+  search,
+}) => {
+  const handleSubmit = (value) => {
+    search(value);
+  };
+
+  return (
+    <div className="c-question-base__search-all-section">
+      <InputGroup>
+        <MAAutocompleteTopics
+          input={input}
+          suggestions={topicSuggestions}
+          fetchSuggestions={listTopicSuggestions}
+          onSubmit={handleSubmit}
+        />
+        {searchText || !pristine ? (
+          <InputGroupAddon addonType="prepend">
+            <Button className="c-question-base__clear-search" id="dica" onClick={clearSearchText}>
+              <FontAwesomeIcon icon="times-circle" />
+            </Button>
+            <UncontrolledTooltip placement="bottom" target="dica" className="tooltip__message">
+              Limpar busca
+            </UncontrolledTooltip>
+          </InputGroupAddon>
+        ) : ''}
         <InputGroupAddon addonType="prepend">
-          <Button className="c-question-base__clear-search" id="dica" onClick={search ? clearSearch : clearSearchField}>
-            <FontAwesomeIcon icon="times-circle" />
+          <Button type="submit" disabled={isFetchingQuestions}>
+            <FontAwesomeIcon icon="search" className="btn__icon" />
+            Pesquisar
           </Button>
-          <UncontrolledTooltip placement="bottom" target="dica" className="tooltip__message">
-                Limpar busca
-          </UncontrolledTooltip>
         </InputGroupAddon>
-      ) : ''}
-      <InputGroupAddon addonType="prepend">
-        <Button type="submit" disabled={isFetchingQuestions}>
-          <FontAwesomeIcon icon="search" className="btn__icon" />
-                Pesquisar
-        </Button>
-      </InputGroupAddon>
-    </InputGroup>
-    { touched
-      && ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
-      ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
-    }
-  </div>
-);
+      </InputGroup>
+      {touched
+        && ((error && (
+          <span className="error-message-text">
+            {error}
+          </span>
+        ))
+          || (warning && (
+            <span>
+              {' '}
+              {warning}
+              {' '}
+            </span>
+          )))
+      }
+    </div>
+  );
+};
 
 class QuestionSearchText extends Component {
   constructor(props) {
@@ -79,28 +86,27 @@ class QuestionSearchText extends Component {
 
   render() {
     const {
-      handleSubmit, search, clearSearch, clearSearchField, isFetchingQuestions,
+      handleSubmit, searchText, clearSearchText,
     } = this.props;
 
     return (
       <Form onSubmit={handleSubmit}>
         <Row className="c-question-base__search-text">
           <p className="c-question-base__search-info hidden">
-          Pesquisar por palavras-chave no banco de questões
+            Pesquisar por palavras-chave no banco de questões
           </p>
           <Field
-            component={renderSearchField}
+            component={renderSearchFieldAutocomplete}
             type="text"
             name="searchText"
             id="searchText"
             placeholder="Pesquisar por palavras-chave no banco de questões"
             className="form-control"
             validate={minLength3characters}
-            search={search}
-            clearSearch={clearSearch}
-            clearSearchField={clearSearchField}
-            isFetchingQuestions={isFetchingQuestions}
+            searchText={searchText}
+            clearSearchText={clearSearchText}
             autoFocus
+            {...this.props}
           />
         </Row>
       </Form>

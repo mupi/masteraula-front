@@ -1,72 +1,69 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
 
-const getSuggestionValue = suggestion => suggestion.name;
-const renderSuggestion = suggestion => (<span>{suggestion.name}</span>);
-const shouldRenderSuggestions = value => (value.trim().length > 2);
-
 class MAAutocompleteTopics extends React.Component {
-  constructor() {
-    super();
-    this.state = { value: '' /* , suggestions: [] */ };
-  }
+  getSuggestions = () => {
+    // const { value } = this.state;
+    const { suggestions, input } = this.props;
 
-  onChange = (event, { newValue }) => {
-    this.setState({ value: newValue });
+    if (!suggestions) {
+      return [];
+    }
+
+    const normalizedValue = input.value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    return suggestions.filter((suggestion) => {
+      const normalizedName = suggestion.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+      return normalizedName.indexOf(normalizedValue) >= 0;
+    }).slice(0, 15);
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
-    const { listTopicSuggestions, filter } = this.props;
-    if (value.trim().length % 3 === 0 && value.trim().length > 0) {
-      listTopicSuggestions(value, filter);
+    const { fetchSuggestions } = this.props;
+    if (value.trim().length === 3) {
+      fetchSuggestions(value);
     }
   }
 
-  onSuggestionsClearRequested = () => {
-    /* this.setState({ suggestions: [] }); */
-  };
+  onSuggestionSelected = (_event, { suggestion }) => {
+    const { input, onSubmit } = this.props;
 
-  onSuggestionSelected = (event, { suggestion }) => {
-    const {
-      addSelectedTopicFilter,
-    } = this.props;
-    addSelectedTopicFilter(suggestion);
-    this.setState({ value: '' });
+    input.onChange(suggestion.name);
+    onSubmit(suggestion.name);
+  }
+
+  onSuggestionsClearRequested = () => {
+  }
+
+  getSuggestionValue = suggestion => (suggestion ? suggestion.name : '');
+
+  renderSuggestion = suggestion => (<span>{suggestion.name}</span>);
+
+  shouldRenderSuggestions = value => value.trim().length >= 3
+
+  onChange = (_event, { newValue }) => {
+    const { input } = this.props;
+    input.onChange(newValue);
   }
 
   render() {
-    const { value } = this.state;
-    const { topicSuggestions, isFetchingTopicSuggestions } = this.props;
+    const { input } = this.props;
     const inputProps = {
-      placeholder: 'Insira um tópico',
-      value,
+      placeholder: 'Pesquisar por palavras chaves no banco de questões',
+      value: input.value,
       onChange: this.onChange,
     };
-    const isInputBlank = value.trim() === '';
-    const noSuggestions = !isInputBlank && topicSuggestions && topicSuggestions.length === 0;
 
     return (
-      <>
-        <Autosuggest
-          suggestions={topicSuggestions || []}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          getSuggestionValue={getSuggestionValue}
-          renderSuggestion={renderSuggestion}
-          inputProps={inputProps}
-          shouldRenderSuggestions={shouldRenderSuggestions}
-          onSuggestionSelected={this.onSuggestionSelected}
-          highlightFirstSuggestion
-        />
-        {
-          noSuggestions && !isFetchingTopicSuggestions
-            && (
-            <div className="error-message-text">
-              Não há resultados
-            </div>
-            )
-        }
-      </>
+      <Autosuggest
+        suggestions={this.getSuggestions()}
+        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+        onSuggestionSelected={this.onSuggestionSelected}
+        getSuggestionValue={this.getSuggestionValue}
+        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+        renderSuggestion={this.renderSuggestion}
+        shouldRenderSuggestions={this.shouldRenderSuggestions}
+        inputProps={inputProps}
+      />
     );
   }
 }

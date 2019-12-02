@@ -76,6 +76,7 @@ export const CLEAR_SELECTED_FILTERS = 'CLEAR_SELECTED_FILTERS';
 
 export const CLEAR_SEARCH = 'CLEAR_SEARCH';
 
+export const CLEAN_SEARCH_INPUT = 'CLEAN_SEARCH_INPUT';
 
 // Discipline List
 export const listDisciplineFilters = () => {
@@ -271,6 +272,10 @@ export const resetTopicListSelected = () => ({
 
 export const setSearchText = searchText => ({
   type: SET_SEARCH_TEXT, searchText,
+});
+
+export const cleanSearchInput = () => ({
+  type: CLEAN_SEARCH_INPUT,
 });
 
 export const setSearchTextObject = searchText => ({
