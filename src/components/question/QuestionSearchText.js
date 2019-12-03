@@ -33,7 +33,7 @@ const renderSearchFieldAutocomplete = ({
       <InputGroup>
         <MAAutocompleteTopics
           input={input}
-          suggestions={topicSuggestions}
+          allSuggestions={topicSuggestions}
           fetchSuggestions={listTopicSuggestions}
           onSubmit={handleSubmit}
         />
