@@ -160,6 +160,15 @@ const SidebarMobile = ({
                       Criar questão
                     </Link>
                   </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option text-center">
+                    <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="folder"
+                      />
+                        Gerenciar minhas provas
+                    </Link>
+                  </ListGroupItem>
                 </ListGroup>
                 <div className="sidebar-nav-container">
                   <ListGroup className="sidebar-main-options">
@@ -179,15 +188,6 @@ const SidebarMobile = ({
                           icon="image"
                         />
                         Tirinhas, excertos e mais
-                      </Link>
-                    </ListGroupItem>
-                    <ListGroupItem color="light">
-                      <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
-                        <FontAwesomeIcon
-                          className="btn__icon"
-                          icon="folder"
-                        />
-                        Gerenciar minhas provas
                       </Link>
                     </ListGroupItem>
                     {/* <ListGroupItem color="light">
@@ -263,6 +263,12 @@ const SidebarWeb = ({
                         Criar questão
                       </Link>
                     </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option text-center">
+                      <Link to="/documents/1">
+                        <FontAwesomeIcon className="btn__icon" icon="folder" />
+                          Gerenciar minhas provas
+                      </Link>
+                    </ListGroupItem>
                   </ListGroup>
                   <div className="sidebar-nav-container">
                     <ListGroup className="sidebar-main-options">
@@ -276,12 +282,6 @@ const SidebarWeb = ({
                         <Link to="/object-base/1">
                           <FontAwesomeIcon className="btn__icon" icon="image" />
                           Tirinhas, excertos e mais
-                        </Link>
-                      </ListGroupItem>
-                      <ListGroupItem color="light">
-                        <Link to="/documents/1">
-                          <FontAwesomeIcon className="btn__icon" icon="folder" />
-                          Gerenciar minhas provas
                         </Link>
                       </ListGroupItem>
                       {/* <ListGroupItem color="light">
