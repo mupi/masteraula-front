@@ -23,11 +23,11 @@ const PricingPageHome = () => {
                 <br />
                   PREMIUM
               </h2>
-              <p className="c-pricing-page__item-description">Para não se preocupar durante 1 ANO.</p>
+              <p className="c-pricing-page__item-description">Para não se preocupar durante 1 SEMESTRE.</p>
               <p className="c-pricing-page__item-description">Acesso a todas disciplinas e download ilimitado.</p>
-              <p className="c-pricing-page__item-price"> R$180,00 </p>
+              <p className="c-pricing-page__item-price"> R$159,90 </p>
               <a
-                href="https://pag.ae/7UGCBoG1a/button"
+                href="https://pag.ae/7Vwf6UxB7/button"
                 rel="noopener noreferrer"
                 target="_blank"
                 title="Pagar com PagSeguro"
