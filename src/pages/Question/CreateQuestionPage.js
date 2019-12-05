@@ -12,7 +12,7 @@ import {
   requiredValidator,
   requiredMultiSelectValidator,
   requiredSelectValidator,
-  mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, minLength2Tags,
+  mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, /* minLength2Tags, */
 } from 'helpers/validators';
 import { connect } from 'react-redux';
 
@@ -737,7 +737,7 @@ class CreateQuestionPage extends Component {
                     id="tags"
                     placeholder="Dê enter ou vírgula após inserir uma tag"
                     className="form-control"
-                    validate={minLength2Tags}
+                   // validate={minLength2Tags}
                   />
                 </Col>
               </Row>

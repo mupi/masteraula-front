@@ -70,7 +70,7 @@ const mapDispatchToProps = dispatch => ({
 
     const newQuestion = {
       statement: values.statement,
-      tags: values.tags.split(',').map(tag => tag.trim()),
+      tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : null,
       topics_ids: values.topics.map((topic) => {
         if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic;
         if (topic && topic.subsubject && parseInt(topic.subsubject, 10) > 0) return topic.subsubject;
@@ -80,15 +80,15 @@ const mapDispatchToProps = dispatch => ({
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
       alternatives: alternativesCleaned.length > 0 ? alternativesCleaned : [],
       //  source_id: values.source !== '0' && values.sourceQuestion === 'V' ? values.source : null,
-       source: values.sourceQuestion === 'V' && values.source ? values.source.name : null,
-      //source: values.sourceQuestion === 'V' ? (values.source ) : null,
+      source: values.sourceQuestion === 'V' && values.source ? values.source.name : null,
+      // source: values.sourceQuestion === 'V' ? (values.source ) : null,
 
       disciplines_ids: values.disciplines.map(discipline => discipline.id),
       teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
       year: values.sourceQuestion === 'V' ? values.year : null,
 
       learning_objects_ids: props.selectedObjectList.map(object => object.id),
-      resolution: resolutionCleaned, 
+      resolution: resolutionCleaned,
     };
 
     // validations
