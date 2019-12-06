@@ -6,18 +6,24 @@ import { maxDocxFreePlan } from 'helpers/config';
 
 const ExportDocumentButton = ({
   documentId, color, text, documentName, documentTotalQuestions, styleCustomize, isLink = false,
-  showAlertModal, showExportDocumentModalProps, quantityDocxDownloaded, showAlertModalFreePlan, isPremium,
+  showAlertModal, showExportDocumentModalProps, quantityDocxDownloaded, isPremium,
 }) => {
+  const noQuestionString = `Não é possível exportar porque a prova "${documentName}" não tem questões`;
+  const freePlanLimitString = `Você atingiu seu limite máximo de ${maxDocxFreePlan} downloads (*.docx) por mês. Atualize seu plano gratuito para Premium`;
+  const documentTooLongString = 'Não é possível fazer um download de uma prova com mais de 30 questões. Retire algumas questões e tente novamente';
+
   const handleClick = () => {
-    if (quantityDocxDownloaded === maxDocxFreePlan && !isPremium) {
-      showAlertModalFreePlan();
+    if (!isPremium && quantityDocxDownloaded === maxDocxFreePlan) {
+      showAlertModal(freePlanLimitString);
       return;
     }
 
-    if (documentTotalQuestions > 0) {
-      showExportDocumentModalProps(documentId, documentName);
+    if (documentTotalQuestions <= 0) {
+      showAlertModal(noQuestionString);
+    } else if (documentTotalQuestions > 30) {
+      showAlertModal(documentTooLongString);
     } else {
-      showAlertModal(documentName);
+      showExportDocumentModalProps(documentId, documentName);
     }
   };
 
