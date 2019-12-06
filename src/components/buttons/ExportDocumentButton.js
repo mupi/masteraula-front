@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'reactstrap';
+import { Button, DropdownItem } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { maxDocxFreePlan } from 'helpers/config';
@@ -35,10 +35,10 @@ const ExportDocumentButton = ({
           {text}
         </Button>
       ) : (
-        <div color={color} onClick={handleClick} className={styleCustomize}>
+        <DropdownItem color={color} onClick={handleClick} className={styleCustomize}>
           {text ? <FontAwesomeIcon icon="file-word" className="btn__icon" /> : <FontAwesomeIcon icon="file-word" />}
           {text}
-        </div>
+        </DropdownItem>
       )
 
   );
