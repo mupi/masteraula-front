@@ -190,6 +190,15 @@ const SidebarMobile = ({
                         Tirinhas, excertos e mais
                       </Link>
                     </ListGroupItem>
+                    <ListGroupItem color="light">
+                      <Link to="/topic-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/object-base/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="bookmark"
+                        />
+                        Tópicos e assuntos
+                      </Link>
+                    </ListGroupItem>
                     {/* <ListGroupItem color="light">
                       <Link to="/my-headers/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-headers/1'); }}>
                         <FontAwesomeIcon
@@ -282,6 +291,12 @@ const SidebarWeb = ({
                         <Link to="/object-base/1">
                           <FontAwesomeIcon className="btn__icon" icon="image" />
                           Tirinhas, excertos e mais
+                        </Link>
+                      </ListGroupItem>
+                      <ListGroupItem color="light">
+                        <Link to="/topic-base/1">
+                          <FontAwesomeIcon className="btn__icon" icon="bookmark" />
+                          Tópicos e assuntos
                         </Link>
                       </ListGroupItem>
                       {/* <ListGroupItem color="light">

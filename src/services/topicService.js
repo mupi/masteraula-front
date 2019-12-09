@@ -4,7 +4,6 @@ import axios from 'axios';
 
 let call;
 
-// Get all disciplines that will be used in SideBar
 function listTopics(disciplines) {
   if (call) call.cancel();
 

@@ -30,6 +30,7 @@ import {
   ViewLearningObjectPageContainer,
   ObjectBasePageContainer,
   PublicDocumentPageContainer,
+  TopicBasePageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -68,6 +69,7 @@ import {
   faCheckDouble,
   faCrown,
   faGraduationCap,
+  faBookmark,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -82,7 +84,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
   faTimesCircle, faEye, faCopy, faQuestionCircle, faCheckDouble,
   faCrown,
-  faGraduationCap,
+  faGraduationCap, faBookmark,
   fab);
 
 class App extends Component {
@@ -94,6 +96,10 @@ class App extends Component {
     };
   }
 
+  componentWillMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+  }
+
   // make sure to remove the listener
   // when the component is not mounted anymore
   componentWillUnmount() {
@@ -103,10 +109,6 @@ class App extends Component {
   handleWindowSizeChange = () => {
     this.setState({ width: window.innerWidth });
   };
-
-  UNSAFE_componentWillMount() {
-    window.addEventListener('resize', this.handleWindowSizeChange);
-  }
 
   render() {
     const { isOpenSidebar, isLoggedIn } = this.props;
@@ -142,7 +144,7 @@ class App extends Component {
                 <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
                 <Route path="/nossos-planos" component={PricingPageHome} />
                 <Route path="/terms-use" component={TermsUsePageHome} />
-
+                <Route path="/topic-base/:page(\d+)" component={TopicBasePageContainer} />
                 <Redirect from="/" to="/question-base/1" />
               </Switch>
             )
