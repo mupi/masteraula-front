@@ -16,7 +16,7 @@ import DescriptorList from 'components/descriptors/DescriptorList';
 import TagList from 'components/tags/TagList';
 import { Field, FieldArray } from 'redux-form';
 import QuestionAuthor from 'components/question/QuestionAuthor';
-import { requiredSelectValidator, minLength2TagsForEdit, minLength1Topics } from 'helpers/validators';
+import { requiredSelectValidator, /* minLength2TagsForEdit, */ minLength1Topics } from 'helpers/validators';
 // import MAReactTags from 'components/tags/MAReactTag';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 import BackUsingHistory from 'components/question/BackUsingHistory';
@@ -553,7 +553,7 @@ class QuestionEditPage extends Component {
                         id="tags"
                         placeholder="Dê enter ou vírgula após inserir uma tag"
                         className="form-control"
-                        validate={minLength2TagsForEdit}
+                        // validate={minLength2TagsForEdit}
                       />
                     </Col>
                   </Row>

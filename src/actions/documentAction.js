@@ -1,6 +1,7 @@
 import { documentService } from 'services';
 import { history } from 'helpers';
 import FileSaver from 'file-saver';
+import { toast } from 'react-toastify';
 
 import {
   LIST_DOCUMENTS_AFTER_ADDQUESTION_SUCCESS,
@@ -90,6 +91,10 @@ export const GET_NUMBER_DOCX_DOWNLOADED = 'GET_NUMBER_DOCX_DOWNLOADED';
 export const GET_NUMBER_DOCX_DOWNLOADED_SUCCESS = 'GET_NUMBER_DOCX_DOWNLOADED_SUCCESS';
 export const GET_NUMBER_DOCX_DOWNLOADED_FAILURE = 'GET_NUMBER_DOCX_DOWNLOADED_FAILURE';
 
+const optionsError = {
+  className: 'alert__ma-toast--error',
+  type: 'error',
+};
 
 export const getNumberDocxDownloaded = () => {
   function requestNumberDocxDownloaded() { return { type: GET_NUMBER_DOCX_DOWNLOADED }; }
@@ -260,6 +265,7 @@ export const addSelectedQuestion = (idDocument, idQuestion, order) => {
         },
         (error) => {
           dispatch(addQuestionToDocumentFailure(error));
+          toast.error(error, optionsError);
         },
       );
   };

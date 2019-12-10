@@ -324,16 +324,6 @@ html body .masteraula-nav-header__user {
     &__dropdown-toogle{
       color: $color-ma-green !important;
       }
-    
-      &__export-button{
-          background: transparent !important;
-          color: $color-ma-black-dropdown;
-          padding: 0em 1.5rem;
-          font-size: 13px;
-          border: 0px;
-          margin: 0px;
-          font-weight: normal !important;
-      }
 }
 
 button.o-doc-options__dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {

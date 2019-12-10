@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import { DropdownItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const OpenLastDocumentList = ({
@@ -11,11 +12,11 @@ const OpenLastDocumentList = ({
   };
 
   return (
-    <div className={styleCustomize} onClick={handleOpenLastDocumentList}>
+    <DropdownItem className={styleCustomize} onClick={handleOpenLastDocumentList}>
       <FontAwesomeIcon icon="sync-alt" />
       {' '}
       Trocar prova
-    </div>
+    </DropdownItem>
   );
 };
 export default OpenLastDocumentList;
