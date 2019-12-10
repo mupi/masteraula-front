@@ -70,14 +70,14 @@ class DocumentInfoMenu extends React.Component {
                 <ExportDocumentButtonContainer
                   text="Exportar"
                   isLink
-                  styleCustomize="o-doc-options__dropdown-item o-doc-options__export-button"
+                  styleCustomize="o-doc-options__dropdown-item"
                   documentId={documentId}
                   documentName={documentName}
                   documentTotalQuestions={documentTotalQuestions}
                 />
                 <DropdownItem divider />
                 <OpenLastDocumentListContainer
-                  styleCustomize="o-doc-options__dropdown-item o-doc-options__export-button"
+                  styleCustomize="o-doc-options__dropdown-item"
                   myLastDocumentsList={myLastDocumentsList}
                 />
               </DropdownMenu>
