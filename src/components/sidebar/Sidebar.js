@@ -296,7 +296,7 @@ const SidebarWeb = ({
                     </ListGroup>
                     {/* showFilters && <FilterContainer /> */}
                     {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
-
+                    {}
                   </div>
                 </Col>
               </Row>
