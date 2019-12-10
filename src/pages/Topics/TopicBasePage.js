@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Row, Col, Alert, Badge,
+  Row, Col, Alert, Badge, Button,
   UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
+import { history } from 'helpers';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from '../HomeUser/HomeUserPage';
@@ -18,20 +19,24 @@ const getOrderNameField = (text) => {
   }
 };
 
-const TopicsList = ({ topics }) => (
+const TopicsList = ({ topics, addTopicFilter }) => (
   <Row className="align-items-center">
     {topics && topics.map(topic => (
       <Col sm="2" key={topic.id}>
         <div className="topics__item-wrapper">
-          <Badge className="topics__item" color="success" pill>
-            {`${topic.name.trim()} (${topic.num_questions})`}
-          </Badge>
+          <Button
+            className="topics__item-btn"
+            onClick={() => addTopicFilter(topic)}
+          >
+            <Badge className="topics__item" color="secondary">
+              {`${topic.name.trim()} (${topic.num_questions})`}
+            </Badge>
+          </Button>
         </div>
       </Col>
     ))}
   </Row>
 );
-
 
 class TopicBasePage extends React.Component {
   componentDidMount() {
@@ -61,6 +66,15 @@ class TopicBasePage extends React.Component {
     // resetTopicListSelected();
   }
 
+  addTopicFilter = (topic) => {
+    const {
+      addSelectedTopicFilter,
+    } = this.props;
+
+    addSelectedTopicFilter(topic);
+    history.push('/question-base/1');
+  }
+
   render() {
     const {
       topicsList, isFetchingTopics, disciplineIdSelected, orderField, order,
@@ -86,7 +100,7 @@ class TopicBasePage extends React.Component {
                 disabled={isFetchingTopics}
               >
                 <option value="-1">
-                         Todas as disciplinas
+                  Todas as disciplinas
                 </option>
                 { disciplineFilters && disciplineFilters.map(discipline => (
                   <option className="c-user-profile__state-city-dropdown-item" key={discipline.id} value={discipline.id}>
@@ -150,7 +164,7 @@ class TopicBasePage extends React.Component {
               ) : (
                 <div>
                   { topicsList
-                    && <TopicsList topics={topicsList.results} />
+                    && <TopicsList topics={topicsList.results} addTopicFilter={this.addTopicFilter} />
                   }
                 </div>
               )}

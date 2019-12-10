@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import TopicBasePage from 'pages/Topics/TopicBasePage';
 import {
-  listDisciplineFilters,
+  listDisciplineFilters, addSelectedTopicFilter,
 } from 'actions/filterAction';
 import {
   listTopics,
@@ -25,6 +25,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
   listTopics: (disciplineIdSelected, page, orderField, order) => dispatch(listTopics(disciplineIdSelected, page, orderField, order)),
+  addSelectedTopicFilter: topic => dispatch(addSelectedTopicFilter(topic)),
 });
 
 const TopicBasePageContainer = connect(

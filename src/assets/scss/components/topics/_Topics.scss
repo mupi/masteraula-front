@@ -22,6 +22,35 @@
         }
     }
 
+    &__item-btn{
+        padding: 0px;
+        border: 0px;
+        background: transparent;
+        width: 100%;
+
+        &:hover{
+            background: transparent;
+            box-shadow: 0 3px 7px 0 #999a9a;
+        }
+
+        &:focus{
+            background: transparent;
+        }
+
+        &:active{
+            background: transparent;
+        }
+
+        &:not(:disabled):not(.disabled):active{
+            background: transparent;
+        } 
+
+        &:not(:disabled):not(.disabled).active,{
+            background: transparent;
+        }
+    }
+
+
     &__pagination{
         a {
             color:$color-ma-blue;
