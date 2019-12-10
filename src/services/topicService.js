@@ -53,7 +53,6 @@ function listTopics(disciplineIdSelected, page, orderField, order) {
 
   const url = `/topics/?${urlParams}`;
 
-  console.log(url);
   return axios.get(`${apiUrl}${url}`, requestOptions)
     .then(response => response.data).then(topics => topics);
 }

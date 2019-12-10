@@ -13,7 +13,7 @@ const getOrderNameField = (text) => {
     case 'asc': return 'Crescente';
     case 'desc': return 'Decrescente';
     case 'name': return 'Nome';
-    case 'question_number': return 'Nº questões';
+    case 'num_questions': return 'Nº questões';
     default: return text;
   }
 };
@@ -22,7 +22,7 @@ const TopicsList = ({ topics }) => (
   <div>
     {topics && topics.map(topic => (
       <Badge className="topics__item" key={topic.id} color="success" pill>
-        {`${topic.name.trim()} (${topic.id})`}
+        {`${topic.name.trim()} (${topic.num_questions})`}
       </Badge>
     ))}
   </div>
@@ -120,17 +120,17 @@ class TopicBasePage extends React.Component {
                         {getOrderNameField(order)}
                       </DropdownToggle>
                       <DropdownMenu>
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(1, 'name', 'asc')}>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(disciplineIdSelected, 1, 'name', 'asc')}>
                           Nome - Crescente
                         </DropdownItem>
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(1, 'name', 'desc')}>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(disciplineIdSelected, 1, 'name', 'desc')}>
                           Nome - Decrescente
                         </DropdownItem>
                         <DropdownItem divider />
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(1, 'question_number', 'asc')}>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(disciplineIdSelected, 1, 'num_questions', 'asc')}>
                           Nº Questões - Crescente
                         </DropdownItem>
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(1, 'question_number', 'desc')}>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(disciplineIdSelected, 1, 'num_questions', 'desc')}>
                           Nº Questões - Decrescente
                         </DropdownItem>
                       </DropdownMenu>
@@ -163,7 +163,7 @@ TopicBasePage.propTypes = {
 };
 
 TopicBasePage.defaultProps = {
-  orderField: 'question_number',
+  orderField: 'num_questions',
   order: 'desc',
 };
 
