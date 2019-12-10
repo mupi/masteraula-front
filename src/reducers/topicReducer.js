@@ -12,9 +12,13 @@ export const topic = (state = initialState, action) => {
   switch (action.type) {
     case LIST_TOPIC:
       return Object.assign({}, state, {
-        topics: action.topics,
         isFetchingTopics: true,
         error: null,
+        topics: action.topics,
+        disciplineIdSelected: action.disciplineIdSelected,
+        currentPage: action.page,
+        orderField: action.orderField,
+        order: action.order,
       });
     case LIST_TOPIC_SUCCESS:
       return Object.assign({}, state, {

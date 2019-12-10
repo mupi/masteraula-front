@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Row, Col, Alert,
+  Row, Col, Alert, Badge,
   UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 
@@ -13,40 +13,55 @@ const getOrderNameField = (text) => {
     case 'asc': return 'Crescente';
     case 'desc': return 'Decrescente';
     case 'name': return 'Nome';
-    case 'date': return 'Data de criação';
     case 'question_number': return 'Nº questões';
     default: return text;
   }
 };
 
+const TopicsList = ({ topics }) => (
+  <div>
+    {topics && topics.map(topic => (
+      <Badge className="topics__item" key={topic.id} color="success" pill>
+        {`${topic.name.trim()} (${topic.id})`}
+      </Badge>
+    ))}
+  </div>
+);
+
 
 class TopicBasePage extends React.Component {
   componentDidMount() {
     const {
-      match, listMyDocuments, listMyLastDocuments, orderField, order,
+      match, listTopics, orderField, order, listDisciplineFilters,
     } = this.props;
 
-    listMyDocuments(parseInt(match.params.page, 10), orderField, order);
-    listMyLastDocuments(1, 'date', 'desc');
+    listTopics(-1, parseInt(match.params.page, 10), orderField, order);
+    listDisciplineFilters();
   }
 
   componentDidUpdate(prevProps) {
     const {
-      match, listMyDocuments, orderField, order,
+      match, listTopics, orderField, order, disciplineIdSelected,
     } = this.props;
     if ((match.params.page !== prevProps.match.params.page)) {
-      listMyDocuments(parseInt(match.params.page, 10), orderField, order);
+      listTopics(disciplineIdSelected, parseInt(match.params.page, 10), orderField, order);
     }
+  }
+
+  // 1st time that discipline is selected
+  getListTopics = (event) => {
+    const {
+      listTopics, orderField, order,
+    } = this.props;
+    listTopics(event.target.value, 1, orderField, order);
+    // resetTopicListSelected();
   }
 
   render() {
     const {
-      myDocumentsList, isFetchingMyDocuments, isDeleted, match, listMyDocuments, orderField, order,
+      topicsList, isFetchingTopics, disciplineIdSelected, orderField, order,
+      disciplineFilters, listTopics,
     } = this.props;
-
-    if (isDeleted) {
-      listMyDocuments(parseInt(match.params.page, 10), orderField, order);
-    }
 
     return (
       <HomeUserPage>
@@ -58,17 +73,38 @@ class TopicBasePage extends React.Component {
           </Row>
           <Row className="pagination-my-documents">
             <Col sm="12">
-              <CustomPagination {...this.props} {...myDocumentsList} disabled={isFetchingMyDocuments} itensPerPage={10} />
+              <CustomPagination {...this.props} {...topicsList} disabled={isFetchingTopics} itensPerPage={54} />
               <p className="c-my-documents__total-results">
-                {`Tópicos encontrados: ${myDocumentsList ? (myDocumentsList.count) : 0}`}
+                {`Tópicos encontrados: ${topicsList ? (topicsList.count) : 0}`}
                 {' '}
               </p>
-              { isFetchingMyDocuments ? (
+              { isFetchingTopics ? (
                 <Alert className="alert--warning" color="warning" fade={false}>
                 Carregando ...
                 </Alert>
               ) : (
                 <div>
+                  <Row>
+                    <Col sm="4" col="12" className="mb-2">
+                      <select
+                        type="text"
+                        name="discipline"
+                        className="form-control question-search__by-filter-select"
+                        onChange={e => this.getListTopics(e)}
+                        value={disciplineIdSelected || -1}
+                        disabled={isFetchingTopics}
+                      >
+                        <option value="-1">
+                         Todas as disciplinas
+                        </option>
+                        { disciplineFilters && disciplineFilters.map(discipline => (
+                          <option className="c-user-profile__state-city-dropdown-item" key={discipline.id} value={discipline.id}>
+                            {discipline.name}
+                          </option>
+                        )) }
+                      </select>
+                    </Col>
+                  </Row>
                   <div className="c-my-documents__dropdown-section">
                     <span className="c-my-documents__order-label">
                       Ordenar por:
@@ -84,25 +120,25 @@ class TopicBasePage extends React.Component {
                         {getOrderNameField(order)}
                       </DropdownToggle>
                       <DropdownMenu>
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'name', 'asc')}>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(1, 'name', 'asc')}>
                           Nome - Crescente
                         </DropdownItem>
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'name', 'desc')}>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(1, 'name', 'desc')}>
                           Nome - Decrescente
                         </DropdownItem>
                         <DropdownItem divider />
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'asc')}>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(1, 'question_number', 'asc')}>
                           Nº Questões - Crescente
                         </DropdownItem>
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyDocuments(1, 'question_number', 'desc')}>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(1, 'question_number', 'desc')}>
                           Nº Questões - Decrescente
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </div>
 
-                  { /* myDocumentsList
-                    && <DocumentListContainer documents={myDocumentsList.results} /> */
+                  { topicsList
+                    && <TopicsList topics={topicsList.results} />
                   }
                 </div>
               )}
@@ -121,16 +157,14 @@ TopicBasePage.propTypes = {
       page: PropTypes.string.isRequired,
     }),
   }).isRequired,
-  listMyDocuments: PropTypes.func.isRequired,
-  myDocumentsList: PropTypes.shape(),
+  listTopics: PropTypes.func.isRequired,
   orderField: PropTypes.string,
   order: PropTypes.string,
 };
 
 TopicBasePage.defaultProps = {
-  myDocumentsList: null,
-  orderField: 'name',
-  order: 'asc',
+  orderField: 'question_number',
+  order: 'desc',
 };
 
 export default TopicBasePage;

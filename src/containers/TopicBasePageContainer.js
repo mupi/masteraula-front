@@ -1,39 +1,30 @@
 import { connect } from 'react-redux';
 import TopicBasePage from 'pages/Topics/TopicBasePage';
-
 import {
-  listMyDocuments, switchActiveDocument, fetchPreviewDocument, deleteDocument, listMyLastDocuments,
-  copyDocument,
-} from 'actions/documentAction';
-import { showModal, hideModal } from 'actions/modalAction';
+  listDisciplineFilters,
+} from 'actions/filterAction';
+import {
+  listTopics,
+} from 'actions/topicAction';
 
 // state.<reducer's name>.<property>
 
 const mapStateToProps = state => ({
-  isFetchingMyDocuments: state.document.isFetchingMyDocuments,
-  myDocumentsList: state.document.myDocumentsList,
-  currentPage: state.document.currentPage,
-  modal: state.document.modal,
-  activeDocument: state.document.activeDocument,
-  previewDocument: state.document.previewDocument,
-  isFetchingPreviewDocument: state.document.isFetchingPreviewDocument,
-  error: state.document.error,
-  isDeleted: state.document.isDeleted,
-  orderField: state.document.orderField,
-  order: state.document.order,
+  isFetchingTopics: state.topic.isFetchingTopics,
+  currentPage: state.topic.currentPage,
+  error: state.topic.error,
+
+  orderField: state.topic.orderField,
+  order: state.topic.order,
+  disciplineIdSelected: state.topic.disciplineIdSelected > 0 ? state.topic.disciplineIdSelected : -1,
+
+  disciplineFilters: state.filter.disciplineFiltersJoined,
+  topicsList: state.topic.topics,
 });
 
 const mapDispatchToProps = dispatch => ({
-  listMyDocuments: (page, orderField, order) => dispatch(listMyDocuments(page, orderField, order)),
-  switchActiveDocument: doc => dispatch(switchActiveDocument(doc, true)),
-  fetchPreviewDocument: props => dispatch(fetchPreviewDocument(props)),
-  hideModal: () => dispatch(hideModal()),
-  showModal: (modalProps, modalType) => {
-    dispatch(showModal({ modalProps, modalType }));
-  },
-  deleteDocument: idDocument => dispatch(deleteDocument(idDocument)),
-  listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
-  copyDocument: doc => dispatch(copyDocument(doc)),
+  listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
+  listTopics: (disciplineIdSelected, page, orderField, order) => dispatch(listTopics(disciplineIdSelected, page, orderField, order)),
 });
 
 const TopicBasePageContainer = connect(
