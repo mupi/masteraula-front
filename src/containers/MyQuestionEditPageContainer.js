@@ -71,7 +71,7 @@ const mapDispatchToProps = dispatch => ({
     const myUpdatedQuestion = {
       id: props.activeQuestion.id,
       statement: values.statement,
-      tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : null,
+      tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
       topics_ids: values.topics.map((topic) => {
         if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic;
         if (topic && topic.subsubject && parseInt(topic.subsubject, 10) > 0) return topic.subsubject;
