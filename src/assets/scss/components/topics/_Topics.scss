@@ -1,15 +1,30 @@
 .topics{
+    &__item-wrapper{
+        padding: 10px;
+    }
 
     &__item{
-        background: #53BA65;
-        border-color: #53BA65;
+        background: $color-ma-lightgray-backg;
+        border: 1px solid #eeeeee;
         padding: 10px;
         border-radius: 5px;
-        color: #FFFFFF;
+        color:$color-ma-blue;
         font-weight: bold;
         font-size: 13px;
         text-align: center;
         display: inline-block;
-        margin: 0px 5px 5px 0px;
+        white-space: pre-line;
+        width: 100%;
+        box-shadow: 0 3px 9px 0 rgba(135, 145, 149, 0.19);
+
+        @include for-tablet-landscape-up{
+            min-height: 50px;
+        }
     }
+
+    &__pagination{
+        a {
+            color:$color-ma-blue;
+        }
+    } 
 }

@@ -19,13 +19,17 @@ const getOrderNameField = (text) => {
 };
 
 const TopicsList = ({ topics }) => (
-  <div>
+  <Row className="align-items-center">
     {topics && topics.map(topic => (
-      <Badge className="topics__item" key={topic.id} color="success" pill>
-        {`${topic.name.trim()} (${topic.num_questions})`}
-      </Badge>
+      <Col sm="2" key={topic.id}>
+        <div className="topics__item-wrapper">
+          <Badge className="topics__item" color="success" pill>
+            {`${topic.name.trim()} (${topic.num_questions})`}
+          </Badge>
+        </div>
+      </Col>
     ))}
-  </div>
+  </Row>
 );
 
 
@@ -66,77 +70,85 @@ class TopicBasePage extends React.Component {
     return (
       <HomeUserPage>
         <div className="c-my-documents">
-          <Row>
+          <Row className="mb-3">
             <Col sm="12">
               <h4>Tópicos e Assuntos</h4>
             </Col>
           </Row>
-          <Row className="pagination-my-documents">
+          <Row className="row justify-content-between">
+            <Col sm="4" col="12" className="mb-2">
+              <select
+                type="text"
+                name="discipline"
+                className="form-control question-search__by-filter-select"
+                onChange={e => this.getListTopics(e)}
+                value={disciplineIdSelected || -1}
+                disabled={isFetchingTopics}
+              >
+                <option value="-1">
+                         Todas as disciplinas
+                </option>
+                { disciplineFilters && disciplineFilters.map(discipline => (
+                  <option className="c-user-profile__state-city-dropdown-item" key={discipline.id} value={discipline.id}>
+                    {discipline.name}
+                  </option>
+                )) }
+              </select>
+            </Col>
+            <Col sm="4" col="12" className="">
+              <div className="c-my-documents__dropdown-section">
+                <span className="c-my-documents__order-label">
+                      Ordenar por:
+                </span>
+                <UncontrolledDropdown>
+                  <DropdownToggle className="c-my-documents__dropdown-toogle" caret size="sm">
+                    {' '}
+                    {' '}
+                    {getOrderNameField(orderField)}
+                    {' '}
+                    {' - '}
+                    {' '}
+                    {getOrderNameField(order)}
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(disciplineIdSelected, 1, 'name', 'asc')}>
+                          Nome - Crescente
+                    </DropdownItem>
+                    <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(disciplineIdSelected, 1, 'name', 'desc')}>
+                          Nome - Decrescente
+                    </DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(disciplineIdSelected, 1, 'num_questions', 'asc')}>
+                          Nº Questões - Crescente
+                    </DropdownItem>
+                    <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(disciplineIdSelected, 1, 'num_questions', 'desc')}>
+                          Nº Questões - Decrescente
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              </div>
+            </Col>
+          </Row>
+
+          <Row>
             <Col sm="12">
-              <CustomPagination {...this.props} {...topicsList} disabled={isFetchingTopics} itensPerPage={54} />
               <p className="c-my-documents__total-results">
                 {`Tópicos encontrados: ${topicsList ? (topicsList.count) : 0}`}
                 {' '}
               </p>
+              <div className="topics__pagination mb-3">
+                <CustomPagination {...this.props} {...topicsList} disabled={isFetchingTopics} itensPerPage={54} />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm="12">
               { isFetchingTopics ? (
                 <Alert className="alert--warning" color="warning" fade={false}>
                 Carregando ...
                 </Alert>
               ) : (
                 <div>
-                  <Row>
-                    <Col sm="4" col="12" className="mb-2">
-                      <select
-                        type="text"
-                        name="discipline"
-                        className="form-control question-search__by-filter-select"
-                        onChange={e => this.getListTopics(e)}
-                        value={disciplineIdSelected || -1}
-                        disabled={isFetchingTopics}
-                      >
-                        <option value="-1">
-                         Todas as disciplinas
-                        </option>
-                        { disciplineFilters && disciplineFilters.map(discipline => (
-                          <option className="c-user-profile__state-city-dropdown-item" key={discipline.id} value={discipline.id}>
-                            {discipline.name}
-                          </option>
-                        )) }
-                      </select>
-                    </Col>
-                  </Row>
-                  <div className="c-my-documents__dropdown-section">
-                    <span className="c-my-documents__order-label">
-                      Ordenar por:
-                    </span>
-                    <UncontrolledDropdown>
-                      <DropdownToggle className="c-my-documents__dropdown-toogle" caret size="sm">
-                        {' '}
-                        {' '}
-                        {getOrderNameField(orderField)}
-                        {' '}
-                        {' - '}
-                        {' '}
-                        {getOrderNameField(order)}
-                      </DropdownToggle>
-                      <DropdownMenu>
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(disciplineIdSelected, 1, 'name', 'asc')}>
-                          Nome - Crescente
-                        </DropdownItem>
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(disciplineIdSelected, 1, 'name', 'desc')}>
-                          Nome - Decrescente
-                        </DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(disciplineIdSelected, 1, 'num_questions', 'asc')}>
-                          Nº Questões - Crescente
-                        </DropdownItem>
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listTopics(disciplineIdSelected, 1, 'num_questions', 'desc')}>
-                          Nº Questões - Decrescente
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledDropdown>
-                  </div>
-
                   { topicsList
                     && <TopicsList topics={topicsList.results} />
                   }
