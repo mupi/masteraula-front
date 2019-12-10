@@ -199,7 +199,6 @@ const messagesVestibular = {
   },
 };
 
-
 const messages = {
   emptyList: 'Não existem resultados',
   emptyFilter: 'Não existem resultados que coincidam',
@@ -240,7 +239,6 @@ const renderMultiselect = ({
   </div>
 );
 
-// Multiselect
 const renderSelectField = ({
   input, label, meta: { touched, error }, children, optionDefault, className,
 }) => (
@@ -283,7 +281,7 @@ const renderAlternatives2 = ({ fields, meta: { error }, resolution }) => (
       </Row>
 
       {fields.map((alternative, i) => (
-        <Row className="c-question__row-info c-create-question__row-alternative">
+        <Row key={alternative.id || i} className="c-question__row-info c-create-question__row-alternative">
           <Col sm="1" xs="1">
             <Field
               name="selectedIndex"
@@ -329,106 +327,6 @@ const RenderAlternatives2 = connect(
   }),
 )(renderAlternatives2);
 
-// Topic section
-const renderTopics = ({
-  fields, meta: { error }, topicsList, selectedTopics,
-}) => (
-  <Row>
-    <Col md="12">
-      <Row className="c-question__row-info c-question-edit__row-topic c-question-edit__header-topic">
-        <Col sm="3" className="align-self-center hidden-xs">Assunto</Col>
-        <Col sm="3" className="align-self-center hidden-xs">Subassunto</Col>
-        <Col sm="3" className="align-self-center hidden-xs">Tópico</Col>
-        <Col sm="3">
-          <Button onClick={() => fields.push({})}>
-            <FontAwesomeIcon
-              icon="plus"
-              className="btn__icon"
-            />
-              Adicionar tópicos
-          </Button>
-        </Col>
-      </Row>
-
-      {fields.map((topicRow, i) => {
-        const selSubject = (selectedTopics[i].subject != null && topicsList)
-          ? topicsList.find(s => s.id === parseInt(selectedTopics[i].subject, 10)) : null;
-        const subsubjects = selSubject != null ? selSubject.childs : null;
-
-        const selSubsubject = (selSubject != null && selectedTopics[i].subsubject != null && subsubjects)
-          ? subsubjects.find(s => s.id === parseInt(selectedTopics[i].subsubject, 10)) : null;
-        const topics = selSubsubject != null ? selSubsubject.childs : null;
-
-        return (
-          <Row key={topicRow} className="c-question__row-info c-question-edit__row-topic">
-            <Col sm="3">
-              <Field
-                name={`${topicRow}.subject`}
-                type="text"
-                component={renderSelectField}
-                className="form-control c-create-question__form-field"
-                label="Assunto"
-                optionDefault="-1"
-                validate={requiredSelectValidator}
-              >
-                { topicsList && topicsList.map(subject => (
-                  <option key={subject.id} value={subject.id}>
-                    {subject.name}
-                  </option>
-                )) }
-              </Field>
-            </Col>
-            <Col sm="3">
-              <Field
-                name={`${topicRow}.subsubject`}
-                type="text"
-                component={renderSelectField}
-                className="form-control c-create-question__form-field"
-                label="Subassunto"
-                optionDefault="-1"
-              >
-                { subsubjects && subsubjects.map(subject => (
-                  <option key={subject.id} value={subject.id}>
-                    {subject.name}
-                  </option>
-                )) }
-              </Field>
-            </Col>
-            <Col sm="3">
-              <Field
-                name={`${topicRow}.topic`}
-                type="text"
-                component={renderSelectField}
-                className="form-control c-create-question__form-field"
-                label="Tópico"
-                optionDefault="-1"
-              >
-                { topics && topics.map(subject => (
-                  <option key={subject.id} value={subject.id}>
-                    {subject.name}
-                  </option>
-                )) }
-              </Field>
-            </Col>
-            <Col sm="3" className="c-question-edit__col-btn-remove-topic">
-              <Button
-                type="button"
-                title="Remove Member"
-                className="c-question-edit__btn-remove-topic"
-                onClick={() => fields.remove(i)}
-              >
-                <FontAwesomeIcon
-                  icon="trash-alt"
-                />
-              </Button>
-            </Col>
-          </Row>
-        );
-      })}
-      <Row>{error && <span className="error-message-text">{error}</span>}</Row>
-    </Col>
-  </Row>
-);
 
 // Learning object's options available for LearnningObjectContent
 const options = {
@@ -478,248 +376,248 @@ class MyQuestionEditPage extends Component {
     }
   }
 
-    closeModal() {
-      const { hideModal } = this.props;
-      hideModal();
-    }
+  closeModal() {
+    const { hideModal } = this.props;
+    hideModal();
+  }
 
-    openSearchLearningObjectModal() {
-      const { showModal } = this.props;
-      // open modal
-      showModal({
-        open: true,
-        closeModal: this.closeModal,
-        title: 'Adicionar objeto(s) à questão',
-      }, 'searchObjectModal');
-    }
+  openSearchLearningObjectModal() {
+    const { showModal } = this.props;
+    // open modal
+    showModal({
+      open: true,
+      closeModal: this.closeModal,
+      title: 'Adicionar objeto(s) à questão',
+    }, 'searchObjectModal');
+  }
 
-    render() {
-      const {
-        activeQuestion, userId, isFetching, error, pristine, disciplineFilters, sourceFilters,
-        teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
-        submitting,
-        resolution,
-        errorsEditQuestion,
-        sourceQuestionValue,
-        topicSuggestions,
-      } = this.props;
-      const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
+  render() {
+    const {
+      activeQuestion, userId, isFetching, error, pristine, disciplineFilters, sourceFilters,
+      teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
+      submitting,
+      resolution,
+      errorsEditQuestion,
+      sourceQuestionValue,
+      topicSuggestions,
+    } = this.props;
+    const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
 
-      if (isFetching) {
-        return (
-          <HomeUserPage>
-            <Alert className="alert--warning" color="warning">
-                Carregando ...
-            </Alert>
-          </HomeUserPage>
-        );
-      }
-
-      if (error) {
-        return (
-          <HomeUserPage>
-            <Alert color="danger">
-                Erro na questão
-            </Alert>
-          </HomeUserPage>
-        );
-      }
-
-      if (activeQuestion && activeQuestion.disabled) {
-        return (
-          <HomeUserPage>
-            <Alert color="danger">
-              Questão não disponível para edição
-            </Alert>
-          </HomeUserPage>
-        );
-      }
-
-
-      if (authorPK !== userId) {
-        return (
-          <HomeUserPage>
-            <Alert color="danger">
-                Você não tem permissão para editar esta questão.
-            </Alert>
-          </HomeUserPage>
-        );
-      }
-
+    if (isFetching) {
       return (
         <HomeUserPage>
-          <Form onSubmit={handleSubmit}>
-            <div className="c-question c-create-question">
-              <Row className="c-question__row-header-options c-question__row-header-options--fixed">
-                <Col className="c-question__col-header-options">
-                  <BackUsingHistory />
-                  <DeleteQuestionButtonContainer
-                    questionId={activeQuestion.id}
-                    customClass="c-question__btn-remove-question btn__icon"
-                    label={(
-                      <span>
-                        <FontAwesomeIcon icon="trash-alt" className="btn__icon" />
+          <Alert className="alert--warning" color="warning">
+                Carregando ...
+          </Alert>
+        </HomeUserPage>
+      );
+    }
+
+    if (error) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+                Erro na questão
+          </Alert>
+        </HomeUserPage>
+      );
+    }
+
+    if (activeQuestion && activeQuestion.disabled) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+              Questão não disponível para edição
+          </Alert>
+        </HomeUserPage>
+      );
+    }
+
+
+    if (authorPK !== userId) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+                Você não tem permissão para editar esta questão.
+          </Alert>
+        </HomeUserPage>
+      );
+    }
+
+    return (
+      <HomeUserPage>
+        <Form onSubmit={handleSubmit}>
+          <div className="c-question c-create-question">
+            <Row className="c-question__row-header-options c-question__row-header-options--fixed">
+              <Col className="c-question__col-header-options">
+                <BackUsingHistory />
+                <DeleteQuestionButtonContainer
+                  questionId={activeQuestion.id}
+                  customClass="c-question__btn-remove-question btn__icon"
+                  label={(
+                    <span>
+                      <FontAwesomeIcon icon="trash-alt" className="btn__icon" />
                         Apagar
-                      </span>
+                    </span>
                       )}
-                  />
-                  <Button
-                    className="btn btn-secondary c-question__btn-back"
-                    to="/edit-question/"
-                    type="submit"
-                    title="Salvar questão"
-                    disabled={submitting}
-                  >
-                    <FontAwesomeIcon
-                      className="btn__icon"
-                      icon="save"
-                    />
-                    {' '}
-                    Salvar
-                  </Button>
-                </Col>
-              </Row>
-              <Row className="c-question__tittle-section c-question--space-for-titlequestion">
-                <Col>
-                  <h4>
-                    <FontAwesomeIcon icon="book" />
-                    {' '}
-                    Editar Questão
-                  </h4>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="c-question__col-full-section-details">
-                  <Alert color="warning" className="c-question-edit__warning-message">
-                    Você está editando a questão
-                    {' '}
-                    N°
-                    <strong>{activeQuestion.id}</strong>
-                    { (!pristine) ? '. Existem mudanças ainda não salvas na questão.' : ''
-                    }
-                  </Alert>
-                </Col>
-              </Row>
-              <Row className="c-question__tittle-section">
-                <Col sm="12">
-                  <h5>
-                    <FontAwesomeIcon icon="image" />
-                    {' '}
-                  Objetos de aprendizagem
-                  </h5>
-                </Col>
-                <Col sm="3">
-                  <Button onClick={() => this.openSearchLearningObjectModal()}>
-                    <FontAwesomeIcon
-                      icon="plus"
-                      className="btn__icon"
-                    />
-                Adicionar objeto
-                  </Button>
-                </Col>
-              </Row>
-              { selectedObjectList ? (
-                <LearningObjectList
-                  learningObjects={selectedObjectList}
-                  options={options}
-                  removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
                 />
-              ) : '' }
-              <Row className="c-question__tittle-section">
-                <Col>
-                  <h5>
-                    <FontAwesomeIcon icon="pencil-alt" />
-                    {' '}
+                <Button
+                  className="btn btn-secondary c-question__btn-back"
+                  to="/edit-question/"
+                  type="submit"
+                  title="Salvar questão"
+                  disabled={submitting}
+                >
+                  <FontAwesomeIcon
+                    className="btn__icon"
+                    icon="save"
+                  />
+                  {' '}
+                    Salvar
+                </Button>
+              </Col>
+            </Row>
+            <Row className="c-question__tittle-section c-question--space-for-titlequestion">
+              <Col>
+                <h4>
+                  <FontAwesomeIcon icon="book" />
+                  {' '}
+                    Editar Questão
+                </h4>
+              </Col>
+            </Row>
+            <Row>
+              <Col className="c-question__col-full-section-details">
+                <Alert color="warning" className="c-question-edit__warning-message">
+                    Você está editando a questão
+                  {' '}
+                    N°
+                  <strong>{activeQuestion.id}</strong>
+                  { (!pristine) ? '. Existem mudanças ainda não salvas na questão.' : ''
+                    }
+                </Alert>
+              </Col>
+            </Row>
+            <Row className="c-question__tittle-section">
+              <Col sm="12">
+                <h5>
+                  <FontAwesomeIcon icon="image" />
+                  {' '}
+                  Objetos de aprendizagem
+                </h5>
+              </Col>
+              <Col sm="3">
+                <Button onClick={() => this.openSearchLearningObjectModal()}>
+                  <FontAwesomeIcon
+                    icon="plus"
+                    className="btn__icon"
+                  />
+                Adicionar objeto
+                </Button>
+              </Col>
+            </Row>
+            { selectedObjectList ? (
+              <LearningObjectList
+                learningObjects={selectedObjectList}
+                options={options}
+                removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
+              />
+            ) : '' }
+            <Row className="c-question__tittle-section">
+              <Col>
+                <h5>
+                  <FontAwesomeIcon icon="pencil-alt" />
+                  {' '}
                     Enunciado
-                  </h5>
-                </Col>
-              </Row>
-              <Row className="justify-content-center">
-                <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
-                  <Field
-                    component={renderQuestionTextEditor}
-                    name="statement"
-                    key="field"
-                    id="statementEditorText"
-                    disabled={false}
-                    placeholderEditor="Escreva o enunciado da questão aqui ..."
-                    validate={requiredValidator}
-                  />
-                </Col>
-              </Row>
-              <Row className="c-question__tittle-section">
-                <Col>
-                  <h5>
-                    <FontAwesomeIcon icon="check-circle" />
-                    {' '}
+                </h5>
+              </Col>
+            </Row>
+            <Row className="justify-content-center">
+              <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
+                <Field
+                  component={renderQuestionTextEditor}
+                  name="statement"
+                  key="field"
+                  id="statementEditorText"
+                  disabled={false}
+                  placeholderEditor="Escreva o enunciado da questão aqui ..."
+                  validate={requiredValidator}
+                />
+              </Col>
+            </Row>
+            <Row className="c-question__tittle-section">
+              <Col>
+                <h5>
+                  <FontAwesomeIcon icon="check-circle" />
+                  {' '}
                     Alternativas
-                  </h5>
-                </Col>
-              </Row>
-              <Row className="justify-content-center">
-                <Col sm="12" md="12" xs="12">
-                  <FieldArray
-                    name="alternatives"
-                    component={RenderAlternatives2}
-                    validate={resolution && resolution.length > 0 ? null : minLength3Alternatives}
-                    resolution={resolution}
-                  />
-                </Col>
-              </Row>
+                </h5>
+              </Col>
+            </Row>
+            <Row className="justify-content-center">
+              <Col sm="12" md="12" xs="12">
+                <FieldArray
+                  name="alternatives"
+                  component={RenderAlternatives2}
+                  validate={resolution && resolution.length > 0 ? null : minLength3Alternatives}
+                  resolution={resolution}
+                />
+              </Col>
+            </Row>
+            <Row className="c-question__tittle-section">
+              <Col>
+                <h5>
+                  <FontAwesomeIcon icon="check-double" />
+                  {' '}
+                    Resolução
+                </h5>
+              </Col>
+            </Row>
+            <Row className="justify-content-center">
+              <Col sm="12" md="12" xs="12">
+                <Field name="resolution" component={renderField} type="textarea" />
+              </Col>
+            </Row>
+            <div className="question-information">
               <Row className="c-question__tittle-section">
                 <Col>
                   <h5>
-                    <FontAwesomeIcon icon="check-double" />
+                    <FontAwesomeIcon icon="info-circle" />
                     {' '}
-                    Resolução
+                      Informações da Questão
                   </h5>
                 </Col>
               </Row>
-              <Row className="justify-content-center">
-                <Col sm="12" md="12" xs="12">
-                  <Field name="resolution" component={renderField} type="textarea" />
+
+              <Row className="c-create-question__row-info">
+                <Col className="info-label" sm="4" xs="4">
+                    Origem da questão
+                </Col>
+                <Col sm="8" xs="8">
+                  <FormGroup check inline>
+                    <Label check>
+                      <Field
+                        name="sourceQuestion"
+                        component="input"
+                        type="radio"
+                        value="V"
+                        className="c-create-question__radio-button-field"
+                      />
+                      {' '}
+                        Vestibular
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check inline>
+                    <Label check>
+                      <Field name="sourceQuestion" component="input" type="radio" value="A" className="c-create-question__radio-button-field" />
+                      {' '}
+                        Autoral
+                    </Label>
+                  </FormGroup>
                 </Col>
               </Row>
-              <div className="question-information">
-                <Row className="c-question__tittle-section">
-                  <Col>
-                    <h5>
-                      <FontAwesomeIcon icon="info-circle" />
-                      {' '}
-                      Informações da Questão
-                    </h5>
-                  </Col>
-                </Row>
 
-                <Row className="c-create-question__row-info">
-                  <Col className="info-label" sm="4" xs="4">
-                    Origem da questão
-                  </Col>
-                  <Col sm="8" xs="8">
-                    <FormGroup check inline>
-                      <Label check>
-                        <Field
-                          name="sourceQuestion"
-                          component="input"
-                          type="radio"
-                          value="V"
-                          className="c-create-question__radio-button-field"
-                        />
-                        {' '}
-                        Vestibular
-                      </Label>
-                    </FormGroup>
-                    <FormGroup check inline>
-                      <Label check>
-                        <Field name="sourceQuestion" component="input" type="radio" value="A" className="c-create-question__radio-button-field" />
-                        {' '}
-                        Autoral
-                      </Label>
-                    </FormGroup>
-                  </Col>
-                </Row>
-
-                {sourceQuestionValue === 'V'
+              {sourceQuestionValue === 'V'
                 && (
                   <>
                     <Row className="c-create-question__row-info">
@@ -757,123 +655,122 @@ class MyQuestionEditPage extends Component {
                     </Row>
                   </>
                 )}
-                <Row className="c-create-question__row-info">
-                  <Col className="info-label" sm="4" xs="4">
+              <Row className="c-create-question__row-info">
+                <Col className="info-label" sm="4" xs="4">
                     Disciplinas
-                  </Col>
-                  <Col sm="8" xs="8">
-                    <Field
-                      name="disciplines"
-                      className="form-control"
-                      component={renderMultiselect}
-                      placeholder="Insira as discipinas da questão"
-                      data={disciplineFilters}
-                      valueField="id"
-                      textField="name"
-                      validate={requiredMultiSelectValidator}
-                      onSearch={this.listTopicSuggestions}
-                    />
-                  </Col>
-                </Row>
-                <Row className="c-create-question__row-info">
-                  <Col className="info-label" sm="4" xs="4">
+                </Col>
+                <Col sm="8" xs="8">
+                  <Field
+                    name="disciplines"
+                    className="form-control"
+                    component={renderMultiselect}
+                    placeholder="Insira as discipinas da questão"
+                    data={disciplineFilters}
+                    valueField="id"
+                    textField="name"
+                    validate={requiredMultiSelectValidator}
+                  />
+                </Col>
+              </Row>
+              <Row className="c-create-question__row-info">
+                <Col className="info-label" sm="4" xs="4">
                     Nível de Ensino
-                  </Col>
-                  <Col sm="8" xs="8">
-                    <Field
-                      name="teachingLevels"
-                      className="form-control"
-                      component={renderMultiselect}
-                      placeholder="Insira o nível de ensino da questão"
-                      data={teachingLevelFilters}
-                      valueField="id"
-                      textField="name"
-                      validate={requiredMultiSelectValidator}
-                    />
-                  </Col>
-                </Row>
-                <Row className="c-create-question__row-info">
-                  <Col className="info-label" sm="4" xs="4">
+                </Col>
+                <Col sm="8" xs="8">
+                  <Field
+                    name="teachingLevels"
+                    className="form-control"
+                    component={renderMultiselect}
+                    placeholder="Insira o nível de ensino da questão"
+                    data={teachingLevelFilters}
+                    valueField="id"
+                    textField="name"
+                    validate={requiredMultiSelectValidator}
+                  />
+                </Col>
+              </Row>
+              <Row className="c-create-question__row-info">
+                <Col className="info-label" sm="4" xs="4">
                     Tags
-                  </Col>
-                  <Col sm="8" xs="8">
-                    <Field
-                      component={renderMAMultiSelectTag}
-                      name="tags"
-                      id="tags"
-                      placeholder="Dê enter ou vírgula após inserir uma tag"
-                      className="form-control"
-                     // validate={minLength2TagsForEdit}
-                    />
-                  </Col>
-                </Row>
-                <Row className="c-create-question__row-info">
-                  <Col className="info-label" sm="4" xs="4">
+                </Col>
+                <Col sm="8" xs="8">
+                  <Field
+                    component={renderMAMultiSelectTag}
+                    name="tags"
+                    id="tags"
+                    placeholder="Dê enter ou vírgula após inserir uma tag"
+                    className="form-control"
+                  />
+                </Col>
+              </Row>
+              <Row className="c-create-question__row-info">
+                <Col className="info-label" sm="4" xs="4">
                     Grau de dificuldade
-                  </Col>
-                  <Col sm="8" xs="8">
-                    <Field
-                      name="difficulty"
-                      type="text"
-                      component={renderSelectField}
-                      label="Selecione um nível de dificuldade"
-                      optionDefault="0"
-                      className="form-control c-create-question__form-field c-create-question__difficulty-field"
-                      validate={requiredSelectValidator}
-                    >
-                      { difficultyList && difficultyList.difficulties.map(difficulty => (
-                        <option className="c-user-profile__state-city-dropdown-item" key={difficulty.id} value={difficulty.id}>
-                          {getTeachingLevel(difficulty.name)}
-                        </option>
-                      )) }
-                    </Field>
-                  </Col>
-                </Row>
-                <Row className="c-create-question__row-info">
-                  <Col className="info-label" sm="4" xs="4">
+                </Col>
+                <Col sm="8" xs="8">
+                  <Field
+                    name="difficulty"
+                    type="text"
+                    component={renderSelectField}
+                    label="Selecione um nível de dificuldade"
+                    optionDefault="0"
+                    className="form-control c-create-question__form-field c-create-question__difficulty-field"
+                    validate={requiredSelectValidator}
+                  >
+                    { difficultyList && difficultyList.difficulties.map(difficulty => (
+                      <option className="c-user-profile__state-city-dropdown-item" key={difficulty.id} value={difficulty.id}>
+                        {getTeachingLevel(difficulty.name)}
+                      </option>
+                    )) }
+                  </Field>
+                </Col>
+              </Row>
+              <Row className="c-create-question__row-info">
+                <Col className="info-label" sm="4" xs="4">
                     Tópicos
-                  </Col>
-                  <Col sm="8" xs="8">
-                    <Field
-                      name="topics"
-                      className="form-control"
-                      component={renderMultiselect}
-                      placeholder="Selecione os tópicos"
-                      data={topicSuggestions}
-                      valueField="id"
-                      textField="name"
-                      validate={requiredMultiSelectValidator}
-                    />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    {errorsEditQuestion && errorsEditQuestion.general_errors && (
+                </Col>
+                <Col sm="8" xs="8">
+                  <Field
+                    name="topics"
+                    className="form-control"
+                    component={renderMultiselect}
+                    placeholder="Selecione os tópicos"
+                    data={topicSuggestions}
+                    valueField="id"
+                    textField="name"
+                    validate={requiredMultiSelectValidator}
+                    onSearch={this.listTopicSuggestions}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  {errorsEditQuestion && errorsEditQuestion.general_errors && (
                     <Alert color="danger">
                       {errorsEditQuestion.general_errors}
                     </Alert>
-                    )}
-                  </Col>
-                </Row>
-              </div>
+                  )}
+                </Col>
+              </Row>
             </div>
-            <Row className="c-question__row-footer-options text-center">
+          </div>
+          <Row className="c-question__row-footer-options text-center">
 
-              <Col>
-                <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
-                  <FontAwesomeIcon
-                    className="btn__icon"
-                    icon="save"
-                  />
-                  <span>
+            <Col>
+              <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
+                <FontAwesomeIcon
+                  className="btn__icon"
+                  icon="save"
+                />
+                <span>
                     Salvar
-                  </span>
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </HomeUserPage>
-      );
-    }
+                </span>
+              </Button>
+            </Col>
+          </Row>
+        </Form>
+      </HomeUserPage>
+    );
+  }
 }
 export default MyQuestionEditPage;
