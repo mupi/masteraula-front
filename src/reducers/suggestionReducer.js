@@ -5,6 +5,8 @@ import {
 
 const initialState = {
   topicSuggestions: [],
+  error: null,
+  isFetchingTopicSuggestions: false,
 };
 
 export const topic = (state = initialState, action) => {
