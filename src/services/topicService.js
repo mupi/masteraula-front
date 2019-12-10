@@ -36,10 +36,11 @@ function listTopics(disciplineIdSelected, page, orderField, order) {
 
   let disciplines = [{ id: disciplineIdSelected }];
   let disciplinesParams = '';
+  const disciplineIdInt = parseInt(disciplineIdSelected, 10);
 
-  if (disciplineIdSelected > 0) {
-    if (disciplineIdSelected === 2) disciplines = [{ id: disciplineIdSelected }, { id: 3, name: 'Literatura' }];
-    if (disciplineIdSelected === 11) disciplines = [{ id: disciplineIdSelected }, { id: 12, name: 'Filosofia' }];
+  if (disciplineIdInt > 0) {
+    if (disciplineIdInt === 2) disciplines = [{ id: disciplineIdSelected }, { id: 3, name: 'Literatura' }];
+    if (disciplineIdInt === 11) disciplines = [{ id: disciplineIdSelected }, { id: 12, name: 'Filosofia' }];
     disciplinesParams = queryString.stringify({ disciplines: disciplines.map(item => item.id) });
   }
 
