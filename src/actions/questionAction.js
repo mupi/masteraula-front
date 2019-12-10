@@ -73,34 +73,6 @@ export const fetchQuestion = (id) => {
     return questionService.fetchQuestion(id)
       .then(
         (activeQuestion) => {
-          const allTopics = [];
-          activeQuestion.topics.forEach((topic) => {
-            const tl = [];
-            let t = topic;
-            while (t != null) {
-              tl.push(t.id.toString());
-              t = t.parent;
-            }
-            if (tl.length === 3) {
-              allTopics.push({
-                topic: tl[0],
-                subsubject: tl[1],
-                subject: tl[2],
-              });
-            } else if (tl.length === 2) {
-              allTopics.push({
-                subsubject: tl[0],
-                subject: tl[1],
-              });
-            } else {
-              allTopics.push({
-                subject: tl[0],
-              });
-            }
-          });
-          // validation for adding empty topic line
-          if (allTopics.length === 0) allTopics.push({});
-
           let alternatives = [{}, {}, {}];
           let selectedAlternative = 0;
 
@@ -123,7 +95,7 @@ export const fetchQuestion = (id) => {
             difficulty: activeQuestion.difficulty,
             learning_objects: newLearningObjectList,
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
-            topics: allTopics,
+            topics: activeQuestion.topics,
           }));
 
           // initialize My Question Edit Page for owner's question
@@ -136,7 +108,7 @@ export const fetchQuestion = (id) => {
             teachingLevels: activeQuestion.teaching_levels,
             learning_objects: newLearningObjectList,
             tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
-            topics: allTopics,
+            topics: activeQuestion.topics,
             alternatives,
             selectedIndex: selectedAlternative,
             resolution: activeQuestion.resolution,
@@ -245,32 +217,6 @@ export const updateQuestion = (props) => {
       (activeQuestion) => {
         toast.success('Questão atualizada com sucesso', optionsSuccess);
         dispatch(updateQuestionSuccess(activeQuestion));
-        const allTopics = [];
-        activeQuestion.topics.forEach((topic) => {
-          const tl = [];
-          let t = topic;
-          while (t != null) {
-            tl.push(t.id.toString());
-            t = t.parent;
-          }
-          if (tl.length === 3) {
-            allTopics.push({
-              topic: tl[0],
-              subsubject: tl[1],
-              subject: tl[2],
-            });
-          } else if (tl.length === 2) {
-            allTopics.push({
-              subsubject: tl[0],
-              subject: tl[1],
-            });
-          } else {
-            allTopics.push({
-              subject: tl[0],
-            });
-          }
-        });
-        // allTopics.push({});
 
         const newLearningObjectList = activeQuestion.learning_objects.map(lobj => ({
           id: lobj.id,
@@ -298,7 +244,7 @@ export const updateQuestion = (props) => {
           teachingLevels: activeQuestion.teaching_levels,
           learning_objects: newLearningObjectList,
           tags: activeQuestion.tags.map(tag => tag.name.trim()).join(', '),
-          topics: allTopics,
+          topics: activeQuestion.topics,
           alternatives,
           selectedIndex: selectedAlternative,
           resolution: activeQuestion.resolution,

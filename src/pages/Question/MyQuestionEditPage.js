@@ -14,7 +14,7 @@ import {
   requiredValidator,
   requiredMultiSelectValidator,
   requiredSelectValidator,
-  mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, /* minLength2TagsForEdit */
+  mustBeNumber, maxYearValue, minLength3Alternatives, /* minLength2TagsForEdit */
 } from 'helpers/validators';
 import { Field, FieldArray, formValueSelector } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
@@ -207,9 +207,8 @@ const messages = {
 
 // Multiselect for Disciplines and Teaching Level
 const renderMultiselect = ({
-  input, data, placeholder, valueField, textField,
+  input, data, placeholder, valueField, textField, onSearch,
   meta: { touched, error, warning },
-
 }) => (
   <div>
     <Multiselect
@@ -221,6 +220,8 @@ const renderMultiselect = ({
       textField={textField}
       placeholder={placeholder}
       messages={messages}
+      onSearch={onSearch}
+      filter="contains"
     />
     { touched
         && ((error && (
@@ -470,16 +471,12 @@ class MyQuestionEditPage extends Component {
     }
   }
 
-    getListTopics = (e, newValue) => {
-      const {
-        listTopics, resetTopicList,
-      } = this.props;
-      if (newValue.length > 0) {
-        listTopics(newValue);
-      } else {
-        resetTopicList();
-      }
+  listTopicSuggestions = (param) => {
+    if (param && param.length === 3) {
+      const { listTopicSuggestions } = this.props;
+      listTopicSuggestions(param);
     }
+  }
 
     closeModal() {
       const { hideModal } = this.props;
@@ -774,7 +771,7 @@ class MyQuestionEditPage extends Component {
                       valueField="id"
                       textField="name"
                       validate={requiredMultiSelectValidator}
-                      onChange={this.getListTopics}
+                      onSearch={this.listTopicSuggestions}
                     />
                   </Col>
                 </Row>
