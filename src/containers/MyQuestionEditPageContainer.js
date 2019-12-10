@@ -28,6 +28,7 @@ const mapStateToProps = (state) => {
     isFetching: state.question.isFetching,
     activeQuestion: state.question.activeQuestion,
     userId: user.id,
+    topicSuggestions: state.suggestion.topicSuggestions,
     // add object to question
     selectedObjectList: state.question.selectedObjectList,
     errorsEditQuestion: state.form['edit-question'] ? state.form['edit-question'].submitErrors : null,

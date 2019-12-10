@@ -498,15 +498,14 @@ class MyQuestionEditPage extends Component {
 
     render() {
       const {
-        activeQuestion, userId, isFetching, error, topicsList, topics, pristine, disciplineFilters, sourceFilters,
+        activeQuestion, userId, isFetching, error, pristine, disciplineFilters, sourceFilters,
         teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
         submitting,
-        disciplinesList,
         resolution,
         errorsEditQuestion,
         sourceQuestionValue,
+        topicSuggestions,
       } = this.props;
-
       const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
 
       if (isFetching) {
@@ -833,14 +832,23 @@ class MyQuestionEditPage extends Component {
                     </Field>
                   </Col>
                 </Row>
-
-                <FieldArray
-                  name="topics"
-                  component={renderTopics}
-                  topicsList={disciplinesList && disciplinesList.length > 0 ? topicsList : null}
-                  selectedTopics={topics}
-                  validate={minLength1Topics}
-                />
+                <Row className="c-create-question__row-info">
+                  <Col className="info-label" sm="4" xs="4">
+                    Tópicos
+                  </Col>
+                  <Col sm="8" xs="8">
+                    <Field
+                      name="topics"
+                      className="form-control"
+                      component={renderMultiselect}
+                      placeholder="Selecione os tópicos"
+                      data={topicSuggestions}
+                      valueField="id"
+                      textField="name"
+                      validate={requiredMultiSelectValidator}
+                    />
+                  </Col>
+                </Row>
                 <Row>
                   <Col>
                     {errorsEditQuestion && errorsEditQuestion.general_errors && (
