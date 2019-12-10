@@ -191,7 +191,7 @@ const SidebarMobile = ({
                       </Link>
                     </ListGroupItem>
                     <ListGroupItem color="light">
-                      <Link to="/topic-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/object-base/1'); }}>
+                      <Link to="/topic-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/topic-base/1'); }}>
                         <FontAwesomeIcon
                           className="btn__icon"
                           icon="bookmark"
