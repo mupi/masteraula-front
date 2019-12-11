@@ -68,6 +68,8 @@ import {
   faCheckDouble,
   faCrown,
   faGraduationCap,
+  faTag,
+  faPlusCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -83,6 +85,8 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faTimesCircle, faEye, faCopy, faQuestionCircle, faCheckDouble,
   faCrown,
   faGraduationCap,
+  faTag,
+  faPlusCircle,
   fab);
 
 class App extends Component {
@@ -94,6 +98,10 @@ class App extends Component {
     };
   }
 
+  componentWillMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+  }
+
   // make sure to remove the listener
   // when the component is not mounted anymore
   componentWillUnmount() {
@@ -103,10 +111,6 @@ class App extends Component {
   handleWindowSizeChange = () => {
     this.setState({ width: window.innerWidth });
   };
-
-  UNSAFE_componentWillMount() {
-    window.addEventListener('resize', this.handleWindowSizeChange);
-  }
 
   render() {
     const { isOpenSidebar, isLoggedIn } = this.props;

@@ -5,6 +5,8 @@ import { toggleMenu, openSidebar } from 'actions/menuAction';
 import { clearSelectedFilters, clearSearch } from 'actions/filterAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import { setQuestionIdToNewDocument } from 'actions/documentAction';
+import { listMyQuestionLabels } from 'actions/labelAction';
+
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
@@ -14,6 +16,10 @@ const mapStateToProps = state => ({
   isOpenSidebar: state.menu.isOpenSidebar,
   isFetchingQuestions: state.question.isFetching,
   quantityDocxDownloaded: state.document.numberDocxDownloaded ? state.document.numberDocxDownloaded.count : 0,
+
+  /* Labels */
+  myQuestionLabels: state.label.myQuestionLabels,
+  isFetchingMyQuestionLabels: state.label.isFetchingMyQuestionLabels,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -41,6 +47,9 @@ const mapDispatchToProps = (dispatch) => {
     // new way to handle modals
     showCreateDocumentModal: () => dispatch(showModal(createDocumentModalProps)),
     setQuestionIdToNewDocument: () => dispatch(setQuestionIdToNewDocument()),
+
+    // Labels
+    listMyQuestionLabels: () => dispatch(listMyQuestionLabels()),
   });
 };
 

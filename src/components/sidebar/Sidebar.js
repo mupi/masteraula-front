@@ -20,6 +20,8 @@ import CustomScroll from 'react-custom-scroll';
 import { maxDocxFreePlan } from 'helpers/config';
 
 
+import SidebarLabels from 'components/label/SidebarLabels';
+
 const redirectURL = (e, openSidebar, isOpenSidebar, url) => {
   const responsiveMode = window.matchMedia('(max-width: 989px)');
   if (responsiveMode.matches) {
@@ -216,7 +218,8 @@ const SidebarMobile = ({
 const SidebarWeb = ({
   /* showFilters, */
   showFiltersForObjectBase,
-  isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal, setQuestionIdToNewDocument,
+  isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal,
+  setQuestionIdToNewDocument, myQuestionLabels, isFetchingMyQuestionLabels,
 }) => {
   const openCreateDocumentModal = () => {
     // open modal
@@ -296,7 +299,7 @@ const SidebarWeb = ({
                     </ListGroup>
                     {/* showFilters && <FilterContainer /> */}
                     {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
-                    {}
+                    {<SidebarLabels labels={myQuestionLabels} isFetching={isFetchingMyQuestionLabels} />}
                   </div>
                 </Col>
               </Row>
@@ -331,6 +334,12 @@ class Sidebar extends React.PureComponent {
   // handleWindowSizeChange = () => {
   //   this.setState({ width: window.innerWidth });
   // };
+  componentDidMount() {
+    const {
+      listMyQuestionLabels,
+    } = this.props;
+    listMyQuestionLabels();
+  }
 
   render() {
     // const { width } = this.state;
