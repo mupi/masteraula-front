@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: (values, d, props) => {
     const newUpdateQuestion = {
       id: props.activeQuestion.id,
-      tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : null,
+      tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
       topics_ids: values.topics.map(topic => topic.id),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
     };

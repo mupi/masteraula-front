@@ -74,7 +74,7 @@ const mapDispatchToProps = dispatch => ({
 
     const newQuestion = {
       statement: values.statement,
-      tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : null,
+      tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
       topics_ids: values.topics.map(topic => topic.id),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
       alternatives: alternativesCleaned.length > 0 ? alternativesCleaned : [],
