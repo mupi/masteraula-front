@@ -2,7 +2,7 @@ import React from 'react';
 import {
   ListGroup, ListGroupItem, Button, Alert,
 } from 'reactstrap';
-import SidebarLabelItem from 'components/label/SidebarLabelItem';
+import LabelItem from 'components/label/LabelItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // const { myQuestionLabels } = props;
@@ -16,7 +16,9 @@ const SidebarLabels = ({ labels, isFetching }) => (
     ) : (
       <ListGroup flush className="labels__list-group">
         {labels && labels.map(label => (
-          <SidebarLabelItem key={label.id} label={label} />
+          <ListGroupItem className="label-item__list-group-item">
+            <LabelItem key={label.id} label={label} />
+          </ListGroupItem>
         ))}
         <ListGroupItem className="label-item__list-group-item">
           <Button color="link" className="label-item__name-link labels__new-option-item">
