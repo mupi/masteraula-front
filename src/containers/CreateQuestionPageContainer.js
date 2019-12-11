@@ -9,6 +9,8 @@ import {
 } from 'actions/filterAction';
 import { listTopics, resetTopicList } from 'actions/topicAction';
 import { showModal, hideModal } from 'actions/modalAction';
+import { listTopicSuggestions } from 'actions/suggestionAction';
+
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('question-create');
@@ -24,7 +26,7 @@ const mapStateToProps = (state) => {
     selectedObjectList: state.question.selectedObjectList,
     errorsEditQuestion: state.form['question-create'] ? state.form['question-create'].submitErrors : null,
     sourceQuestionValue: selector(state, 'sourceQuestion'),
-
+    topicSuggestions: state.suggestion.topicSuggestions,
   });
 };
 
@@ -36,7 +38,7 @@ const mapDispatchToProps = dispatch => ({
   resetTopicList: () => dispatch(resetTopicList()),
   prepareForm: () => {
     dispatch(initialize('question-create', {
-      topics: [{}],
+      topics: [],
       alternatives: [{}, {}, {}],
       selectedIndex: 0,
       sourceQuestion: 'A',
@@ -47,6 +49,8 @@ const mapDispatchToProps = dispatch => ({
   showModal: (modalProps, modalType) => {
     dispatch(showModal({ modalProps, modalType }));
   },
+
+  listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 
   removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)),
   resetSelectedObjects: () => dispatch(resetSelectedObjects()),
@@ -71,12 +75,7 @@ const mapDispatchToProps = dispatch => ({
     const newQuestion = {
       statement: values.statement,
       tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : null,
-      topics_ids: values.topics.map((topic) => {
-        if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic;
-        if (topic && topic.subsubject && parseInt(topic.subsubject, 10) > 0) return topic.subsubject;
-        if (topic && topic.subject && parseInt(topic.subject, 10) > 0) return topic.subject;
-        return null;
-      }).filter(topic => topic != null),
+      topics_ids: values.topics.map(topic => topic.id),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
       alternatives: alternativesCleaned.length > 0 ? alternativesCleaned : [],
       //  source_id: values.source !== '0' && values.sourceQuestion === 'V' ? values.source : null,
