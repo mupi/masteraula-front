@@ -51,7 +51,8 @@ const SidebarMobile = ({
   showFiltersForObjectBase,
   user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal,
   quantityDocxDownloaded,
-  setQuestionIdToNewDocument,
+  setQuestionIdToNewDocument, myQuestionLabels, isFetchingMyQuestionLabels,
+  showCreateMyQuestionLabelModal, showDeleteMyQuestionLabelModal, showUpdateMyQuestionLabelModal,
 }) => {
   const openCreateDocumentModal = () => {
     // open modal
@@ -213,6 +214,13 @@ const SidebarMobile = ({
                   </ListGroup>
                   { /* showFilters && <FilterContainer /> */}
                   {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
+                  {<SidebarLabels
+                    labels={myQuestionLabels}
+                    isFetching={isFetchingMyQuestionLabels}
+                    showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
+                    showUpdateMyQuestionLabelModal={showUpdateMyQuestionLabelModal}
+                    showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
+                  />}
                 </div>
               </Col>
             </Row>

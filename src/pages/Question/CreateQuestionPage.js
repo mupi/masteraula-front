@@ -558,6 +558,7 @@ class CreateQuestionPage extends Component {
                     textField="name"
                     validate={requiredMultiSelectValidator}
                     onChange={this.getListTopics}
+                    listTopicSuggestions={listTopicSuggestions}
                   />
                 </Col>
               </Row>
@@ -575,6 +576,7 @@ class CreateQuestionPage extends Component {
                     valueField="id"
                     textField="name"
                     validate={requiredMultiSelectValidator}
+                    listTopicSuggestions={listTopicSuggestions}
                   />
                 </Col>
               </Row>

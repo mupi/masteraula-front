@@ -74,7 +74,7 @@ const CreateLabelForm = (props) => {
           <Col md="12">
             <Label for="exampleEmail">Color</Label>
           </Col>
-          <Col md={10}>
+          <Col md={10} xs={10}>
             <FormGroup>
               <Field
                 name="color"
@@ -86,7 +86,7 @@ const CreateLabelForm = (props) => {
               </Field>
             </FormGroup>
           </Col>
-          <Col md={2} className="text-center">
+          <Col md={2} xs={2} className="text-center">
             <FormGroup>
               {selectedColor && (
               <div
