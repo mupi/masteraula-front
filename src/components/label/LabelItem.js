@@ -21,7 +21,7 @@ class LabelItem extends Component {
 
   render() {
     const {
-      label, editCreateMyQuestionLabelModal, showDeleteMyQuestionLabelModal,
+      label, showUpdateMyQuestionLabelModal, showDeleteMyQuestionLabelModal,
     } = this.props;
 
     const {
@@ -34,12 +34,12 @@ class LabelItem extends Component {
           <span>
             <FontAwesomeIcon icon="tag" style={{ color: label.color }} className="btn__icon" />
             {' '}
-            {label.name}
+            {`${label.name} (${label.num_questions})`}
           </span>
         </Button>
         <DropdownToggle color="link" size="sm" caret className="label-item__name-link" />
         <DropdownMenu className="label-item__dropdown-menu">
-          <DropdownItem onClick={() => editCreateMyQuestionLabelModal()}>Editar</DropdownItem>
+          <DropdownItem onClick={() => showUpdateMyQuestionLabelModal(label)}>Editar</DropdownItem>
           <DropdownItem divider className="label-item__divider" />
           <DropdownItem onClick={() => showDeleteMyQuestionLabelModal(label.id, label.name)}>Apagar</DropdownItem>
         </DropdownMenu>

@@ -30,6 +30,7 @@ import {
   ViewLearningObjectPageContainer,
   ObjectBasePageContainer,
   PublicDocumentPageContainer,
+  TopicBasePageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -70,6 +71,7 @@ import {
   faGraduationCap,
   faTag,
   faPlusCircle,
+  faBookmark,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -86,7 +88,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faCrown,
   faGraduationCap,
   faTag,
-  faPlusCircle,
+  faPlusCircle, faBookmark,
   fab);
 
 class App extends Component {
@@ -146,7 +148,7 @@ class App extends Component {
                 <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
                 <Route path="/nossos-planos" component={PricingPageHome} />
                 <Route path="/terms-use" component={TermsUsePageHome} />
-
+                <Route path="/topic-base/:page(\d+)" component={TopicBasePageContainer} />
                 <Redirect from="/" to="/question-base/1" />
               </Switch>
             )

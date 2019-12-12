@@ -57,7 +57,7 @@ class QuestionSearchByFilters extends Component {
     if (event.target.value > 0) {
       this.setState({ visible: 10 });
     }
-    history.replace('/question-base/1');
+    history.push('/question-base/1');
     addSelectedFilter(event.target.value);
     // resetTopicListSelected();
   }

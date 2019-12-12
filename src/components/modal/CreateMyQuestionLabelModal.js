@@ -4,8 +4,10 @@ import CreateLabelForm from 'components/label/CreateLabelForm';
 
 const CreateMyQuestionLabelModal = ({
   title,
+  nameAction,
   closeModal,
   submit,
+  label = null,
 }) => (
   <div className="modal-content modal__content">
     <div className="modal-header modal__header">
@@ -23,7 +25,9 @@ const CreateMyQuestionLabelModal = ({
     <div className="modal-basic-operation__body modal-body">
       <CreateLabelForm
         onSubmit={submit}
+        data={label}
         closeModal={closeModal}
+        nameAction={nameAction}
       />
     </div>
   </div>

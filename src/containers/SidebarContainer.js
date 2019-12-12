@@ -36,10 +36,12 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'createDocument',
   };
 
+  /* Options for Labels */
   const createMyQuestionLabelModalProps = {
     modalProps: {
       open: true,
       title: 'Criar etiqueta',
+      nameAction: 'Criar',
       submit: (values) => {
         dispatch(createMyQuestionLabel(values));
         dispatch(hideModal());
@@ -49,18 +51,20 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'createMyQuestionLabelModal',
   };
 
-  const editMyQuestionLabelModalProps = {
+  const updateMyQuestionLabelModalProps = label => ({
     modalProps: {
       open: true,
       title: 'Editar etiqueta',
-      submit: (values) => {
-        dispatch(updateMyQuestionLabel(values));
+      nameAction: 'Salvar',
+      label,
+      submit: (props) => {
+        dispatch(updateMyQuestionLabel(props));
         dispatch(hideModal());
       },
       closeModal: () => dispatch(hideModal()),
     },
     modalType: 'createMyQuestionLabelModal',
-  };
+  });
 
 
   const deleteMyQuestionLabelModalProps = (idLabel, name) => ({
@@ -95,7 +99,7 @@ const mapDispatchToProps = (dispatch) => {
 
     // Labels
     showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),
-    showUpdateMyQuestionLabelModal: () => dispatch(showModal(editMyQuestionLabelModalProps)),
+    showUpdateMyQuestionLabelModal: label => dispatch(showModal(updateMyQuestionLabelModalProps(label))),
     showDeleteMyQuestionLabelModal: (idDocument, name) => dispatch(showModal(deleteMyQuestionLabelModalProps(idDocument, name))),
     listMyQuestionLabels: () => dispatch(listMyQuestionLabels()),
   });

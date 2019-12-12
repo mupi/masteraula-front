@@ -11,6 +11,8 @@ import {
 } from 'actions/filterAction';
 import { listTopics, resetTopicList } from 'actions/topicAction';
 import { showModal, hideModal } from 'actions/modalAction';
+import { listTopicSuggestions } from 'actions/suggestionAction';
+
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('edit-question');
@@ -28,6 +30,7 @@ const mapStateToProps = (state) => {
     isFetching: state.question.isFetching,
     activeQuestion: state.question.activeQuestion,
     userId: user.id,
+    topicSuggestions: state.suggestion.topicSuggestions,
     // add object to question
     selectedObjectList: state.question.selectedObjectList,
     errorsEditQuestion: state.form['edit-question'] ? state.form['edit-question'].submitErrors : null,
@@ -47,6 +50,8 @@ const mapDispatchToProps = dispatch => ({
   showModal: (modalProps, modalType) => {
     dispatch(showModal({ modalProps, modalType }));
   },
+
+  listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 
   // add objects to question
   removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)),
@@ -72,12 +77,7 @@ const mapDispatchToProps = dispatch => ({
       id: props.activeQuestion.id,
       statement: values.statement,
       tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
-      topics_ids: values.topics.map((topic) => {
-        if (topic && topic.topic && parseInt(topic.topic, 10) > 0) return topic.topic;
-        if (topic && topic.subsubject && parseInt(topic.subsubject, 10) > 0) return topic.subsubject;
-        if (topic && topic.subject && parseInt(topic.subject, 10) > 0) return topic.subject;
-        return null;
-      }).filter(topic => topic != null),
+      topics_ids: values.topics.map(topic => topic.id),
       difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
       alternatives: alternativesCleaned.length > 0 ? alternativesCleaned : [],
       // source_id: values.source !== '0' ? values.source : null,

@@ -59,8 +59,9 @@ export const label = (state = initialState, action) => {
       });
     }
     case UPDATE_MY_QUESTION_LABEL_SUCCESS: {
+      const newMyQuestionLabels = state.myQuestionLabels.filter(item => item.id !== action.activeLabel.id);
       return Object.assign({}, state, {
-        activeLabel: { ...action.activeLabel },
+        myQuestionLabels: [...newMyQuestionLabels, action.activeLabel],
         isUpdated: true,
       });
     }

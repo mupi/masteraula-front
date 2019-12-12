@@ -53,7 +53,7 @@ const renderField = ({
 
 const CreateLabelForm = (props) => {
   const {
-    handleSubmit, error, closeModal, selectedColor,
+    handleSubmit, error, closeModal, selectedColor, nameAction,
   } = props;
 
   return (
@@ -112,7 +112,7 @@ const CreateLabelForm = (props) => {
         </FormGroup>
         <div className="document__new-document-modal-footer modal-footer">
           <Button type="submit" color="" className="btn--confirm">
-            Criar
+            {nameAction}
           </Button>
           {' '}
           <Button color="secondary" onClick={() => closeModal()}>
@@ -125,13 +125,10 @@ const CreateLabelForm = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   const selector = formValueSelector('create_label');
   return ({
-    /* initialValues: {
-      name: activeLabel.name,
-      color: activeLabel.color,
-    }, */
+    initialValues: ownProps.data,
     selectedColor: selector(state, 'color') || '#fff',
   });
 };

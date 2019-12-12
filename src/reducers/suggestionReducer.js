@@ -5,12 +5,15 @@ import {
 
 const initialState = {
   topicSuggestions: [],
+  error: null,
+  isFetchingTopicSuggestions: false,
 };
 
 export const topic = (state = initialState, action) => {
   switch (action.type) {
     case LIST_TOPIC_SUGGESTIONS:
       return Object.assign({}, state, {
+        topicSuggestions: [],
         isFetchingTopicSuggestions: true,
         error: null,
       });

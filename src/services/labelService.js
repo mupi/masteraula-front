@@ -43,7 +43,7 @@ function createMyQuestionLabel(newLabelData) {
     .then(response => response.data).then(newMyQuestionLabel => newMyQuestionLabel);
 }
 
-/* Create a new label */
+/* Update a label */
 function updateMyQuestionLabel(activeLabel) {
   const requestOptions = {
     method: 'PATCH',
@@ -53,9 +53,9 @@ function updateMyQuestionLabel(activeLabel) {
     },
   };
 
-  const url = `/label/${activeLabel.id}`;
+  const url = `/labels/${activeLabel.id}/`;
 
-  return axios.post(`${apiUrl}${url}`, activeLabel, requestOptions)
+  return axios.patch(`${apiUrl}${url}`, activeLabel, requestOptions)
     .then(response => response.data).then(newMyQuestionLabel => newMyQuestionLabel);
 }
 

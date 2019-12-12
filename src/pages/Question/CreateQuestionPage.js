@@ -12,13 +12,13 @@ import {
   requiredValidator,
   requiredMultiSelectValidator,
   requiredSelectValidator,
-  mustBeNumber, maxYearValue, minLength1Topics, minLength3Alternatives, /* minLength2Tags, */
+  mustBeNumber, maxYearValue, minLength3Alternatives, /* minLength2Tags, */
 } from 'helpers/validators';
 import { connect } from 'react-redux';
 
 import { Field, FieldArray, formValueSelector } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
-import Multiselect from 'react-widgets/lib/Multiselect';
+import renderMultiselect from 'components/autocomplete/Multiselect';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
 import MACreateDropdownList from 'components/dropdownlist/MACreateDropdownList';
@@ -196,45 +196,6 @@ const messagesVestibular = {
   },
 };
 
-const messages = {
-  emptyList: 'Não existem resultados',
-  emptyFilter: 'Não existem resultados que coincidam',
-};
-
-// Multiselect for Disciplines and Teaching Level
-const renderMultiselect = ({
-  input, data, placeholder, valueField, textField,
-  meta: { touched, error, warning },
-
-}) => (
-  <div>
-    <Multiselect
-      {...input}
-      onBlur={() => input.onBlur()}
-      value={input.value || []}
-      data={data}
-      valueField={valueField}
-      textField={textField}
-      placeholder={placeholder}
-      messages={messages}
-    />
-    { touched
-      && ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
-      ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
-    }
-  </div>
-);
-
 // Multiselect for Source
 const renderSelectField = ({
   input, label, meta: { touched, error }, children, optionDefault, className,
@@ -324,107 +285,6 @@ const RenderAlternatives2 = connect(
   }),
 )(renderAlternatives2);
 
-// Topic section
-const renderTopics = ({
-  fields, meta: { error }, topicsList, selectedTopics,
-}) => (
-  <Row>
-    <Col md="12">
-      <Row className="c-question__row-info c-question-edit__row-topic c-question-edit__header-topic">
-        <Col sm="3" className="align-self-center hidden-xs">Assunto</Col>
-        <Col sm="3" className="align-self-center hidden-xs">Subassunto</Col>
-        <Col sm="3" className="align-self-center hidden-xs">Tópico</Col>
-        <Col md="3" sm="6">
-          <Button onClick={() => fields.push({})}>
-            <FontAwesomeIcon
-              icon="plus"
-              className="btn__icon"
-            />
-            Adicionar tópicos
-          </Button>
-        </Col>
-      </Row>
-
-      {fields.map((topicRow, i) => {
-        const selSubject = (selectedTopics[i].subject != null && topicsList)
-          ? topicsList.find(s => s.id === parseInt(selectedTopics[i].subject, 10)) : null;
-        const subsubjects = selSubject != null ? selSubject.childs : null;
-
-        const selSubsubject = (selSubject != null && selectedTopics[i].subsubject != null && subsubjects)
-          ? subsubjects.find(s => s.id === parseInt(selectedTopics[i].subsubject, 10)) : null;
-        const topics = selSubsubject != null ? selSubsubject.childs : null;
-
-        return (
-          <Row key={topicRow} className="c-question__row-info c-question-edit__row-topic">
-            <Col sm="3">
-              <Field
-                name={`${topicRow}.subject`}
-                type="text"
-                component={renderSelectField}
-                className="form-control c-create-question__form-field"
-                label="Assunto"
-                optionDefault="-1"
-                validate={requiredSelectValidator}
-              >
-                { topicsList && topicsList.map(subject => (
-                  <option key={subject.id} value={subject.id}>
-                    {subject.name}
-                  </option>
-                )) }
-              </Field>
-            </Col>
-            <Col sm="3">
-              <Field
-                name={`${topicRow}.subsubject`}
-                type="text"
-                component={renderSelectField}
-                className="form-control c-create-question__form-field"
-                label="Subassunto"
-                optionDefault="-1"
-              >
-                { subsubjects && subsubjects.map(subject => (
-                  <option key={subject.id} value={subject.id}>
-                    {subject.name}
-                  </option>
-                )) }
-              </Field>
-            </Col>
-            <Col sm="3">
-              <Field
-                name={`${topicRow}.topic`}
-                type="text"
-                component={renderSelectField}
-                className="form-control c-create-question__form-field"
-                label="Tópico"
-                optionDefault="-1"
-              >
-                { topics && topics.map(subject => (
-                  <option key={subject.id} value={subject.id}>
-                    {subject.name}
-                  </option>
-                )) }
-              </Field>
-            </Col>
-            <Col sm="3" className="c-question-edit__col-btn-remove-topic">
-              <Button
-                type="button"
-                title="Remover tópico"
-                className="c-question-edit__btn-remove-topic"
-                onClick={() => fields.remove(i)}
-              >
-                <FontAwesomeIcon
-                  icon="trash-alt"
-                />
-              </Button>
-            </Col>
-          </Row>
-        );
-      })}
-      <Row>{error && <span className="error-message-text">{error}</span>}</Row>
-    </Col>
-  </Row>
-);
-
 // Learning object's options available for LearnningObjectContent
 const options = {
   showOperations: true,
@@ -451,14 +311,10 @@ class CreateQuestionPage extends Component {
     resetSelectedObjects();
   }
 
-  getListTopics = (e, newValue) => {
-    const {
-      listTopics, resetTopicList,
-    } = this.props;
-    if (newValue.length > 0) {
-      listTopics(newValue);
-    } else {
-      resetTopicList();
+  listTopicSuggestions = (param) => {
+    if (param && param.length === 3) {
+      const { listTopicSuggestions } = this.props;
+      listTopicSuggestions(param);
     }
   }
 
@@ -479,13 +335,9 @@ class CreateQuestionPage extends Component {
 
   render() {
     const {
-      isCreating, error, topicsList, topics, pristine, disciplineFilters, sourceFilters,
+      isCreating, error, topicSuggestions, pristine, disciplineFilters, sourceFilters,
       teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
-      submitting,
-      disciplinesList,
-      resolution,
-      errorsEditQuestion,
-      sourceQuestionValue,
+      submitting, resolution, errorsEditQuestion, sourceQuestionValue, listTopicSuggestions,
     } = this.props;
 
     if (isCreating) {
@@ -763,13 +615,24 @@ class CreateQuestionPage extends Component {
                   </Field>
                 </Col>
               </Row>
-              <FieldArray
-                name="topics"
-                component={renderTopics}
-                topicsList={disciplinesList && disciplinesList.length > 0 ? topicsList : null}
-                selectedTopics={topics}
-                validate={minLength1Topics}
-              />
+              <Row className="c-create-question__row-info">
+                <Col className="info-label" sm="4" xs="4">
+                    Tópicos
+                </Col>
+                <Col sm="8" xs="8">
+                  <Field
+                    name="topics"
+                    className="form-control"
+                    component={renderMultiselect}
+                    placeholder="Selecione os tópicos"
+                    data={topicSuggestions}
+                    valueField="id"
+                    textField="name"
+                    validate={requiredMultiSelectValidator}
+                    listTopicSuggestions={listTopicSuggestions}
+                  />
+                </Col>
+              </Row>
               <Row>
                 <Col>
                   {errorsEditQuestion && errorsEditQuestion.general_errors && (

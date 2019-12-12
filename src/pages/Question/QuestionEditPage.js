@@ -16,8 +16,8 @@ import DescriptorList from 'components/descriptors/DescriptorList';
 import TagList from 'components/tags/TagList';
 import { Field, FieldArray } from 'redux-form';
 import QuestionAuthor from 'components/question/QuestionAuthor';
-import { requiredSelectValidator, /* minLength2TagsForEdit, */ minLength1Topics } from 'helpers/validators';
-// import MAReactTags from 'components/tags/MAReactTag';
+import { requiredSelectValidator, /* minLength2TagsForEdit, */ requiredMultiSelectValidator } from 'helpers/validators';
+import renderMultiselect from 'components/autocomplete/Multiselect';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 
@@ -28,35 +28,6 @@ const difficultyList = {
     { id: 'H', name: 'Difícil' },
   ],
 };
-
-/* const renderField = ({
-  input,
-  placeholder,
-  type,
-  meta: { touched, error, warning },
-}) => (
-  <div>
-    <Input
-      {...input}
-      placeholder={placeholder}
-      type={type}
-    />
-    { touched
-      && ((error && (
-      <span className="error-message-text">
-        {error}
-      </span>
-      ))
-      || (warning && (
-      <span>
-        {' '}
-        {warning}
-        {' '}
-      </span>
-      )))
-    }
-  </div>
-); */
 
 const renderMAMultiSelectTag = ({
   input,
@@ -143,110 +114,6 @@ const renderLearningObjects = ({ fields, learningObjectList }) => (
   </Row>
 );
 
-const renderTopics = ({
-  fields, meta: { error, submitFailed }, topicsList, selectedTopics,
-}) => (
-  <Row>
-    <Col md="12">
-      <Row className="c-question__row-info c-question-edit__row-topic c-question-edit__header-topic">
-        <Col sm="3" className="align-self-center hidden-xs">Assunto</Col>
-        <Col sm="3" className="align-self-center hidden-xs">Subassunto</Col>
-        <Col sm="3" className="align-self-center hidden-xs">Tópico</Col>
-        <Col md="3" sm="6">
-          <Button onClick={() => fields.push({})}>
-            <FontAwesomeIcon
-              icon="plus"
-              className="btn__icon"
-            />
-            Adicionar tópicos
-          </Button>
-        </Col>
-      </Row>
-      <Row>{submitFailed && error && <span>{error}</span>}</Row>
-
-      {fields.map((topicRow, i) => {
-        const selSubject = (selectedTopics[i].subject != null && topicsList)
-          ? topicsList.find(s => s.id === parseInt(selectedTopics[i].subject, 10)) : null;
-        const subsubjects = selSubject != null ? selSubject.childs : null;
-
-        const selSubsubject = (selSubject != null && selectedTopics[i].subsubject != null && subsubjects)
-          ? subsubjects.find(s => s.id === parseInt(selectedTopics[i].subsubject, 10)) : null;
-        const topics = selSubsubject != null ? selSubsubject.childs : null;
-
-        return (
-          <Row key={topicRow} className="c-question__row-info c-question-edit__row-topic">
-            <Col sm="3">
-              <Field
-                name={`${topicRow}.subject`}
-                type="text"
-                component={renderSelectField}
-                className="form-control c-create-question__form-field"
-                label="Assunto"
-                optionDefault="-1"
-                styleCustomize="form-control c-question-edit__topic"
-                validate={requiredSelectValidator}
-              >
-                { topicsList && topicsList.map(subject => (
-                  <option key={subject.id} value={subject.id}>
-                    {subject.name}
-                  </option>
-                )) }
-              </Field>
-            </Col>
-            <Col sm="3">
-              <Field
-                name={`${topicRow}.subsubject`}
-                type="text"
-                component={renderSelectField}
-                className="form-control c-create-question__form-field"
-                label="Subassunto"
-                optionDefault="-1"
-                styleCustomize="form-control c-question-edit__topic"
-              >
-                { subsubjects && subsubjects.map(subject => (
-                  <option key={subject.id} value={subject.id}>
-                    {subject.name}
-                  </option>
-                )) }
-              </Field>
-            </Col>
-            <Col sm="3">
-              <Field
-                name={`${topicRow}.topic`}
-                type="text"
-                component={renderSelectField}
-                className="form-control c-create-question__form-field"
-                label="Tópico"
-                optionDefault="-1"
-                styleCustomize="form-control c-question-edit__topic"
-              >
-                { topics && topics.map(subject => (
-                  <option key={subject.id} value={subject.id}>
-                    {subject.name}
-                  </option>
-                )) }
-              </Field>
-            </Col>
-            <Col sm="3" className="c-question-edit__col-btn-remove-topic">
-              <Button
-                type="button"
-                title="Remover topico"
-                className="c-question-edit__btn-remove-topic"
-                onClick={() => fields.remove(i)}
-              >
-                <FontAwesomeIcon
-                  icon="trash-alt"
-                />
-              </Button>
-            </Col>
-          </Row>
-        );
-      })}
-      <Row>{error && <span className="error-message-text">{error}</span>}</Row>
-    </Col>
-  </Row>
-);
-
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
   const listDocumentFilter = ((activeDocument && activeQuestion.documents)
@@ -285,8 +152,8 @@ class QuestionEditPage extends Component {
 
   render() {
     const {
-      activeQuestion, userId, isFetching, error, activeDocument, handleSubmit, topicsList, topics, pristine,
-      role, submitting,
+      activeQuestion, userId, isFetching, error, activeDocument, handleSubmit, topicSuggestions, pristine,
+      role, submitting, listTopicSuggestions,
     } = this.props;
 
     const { author, authorship } = activeQuestion;
@@ -592,7 +459,24 @@ class QuestionEditPage extends Component {
                       </Field>
                     </Col>
                   </Row>
-                  <FieldArray name="topics" component={renderTopics} topicsList={topicsList} selectedTopics={topics} validate={minLength1Topics} />
+                  <Row className="c-create-question__row-info">
+                    <Col className="info-label" sm="4" xs="4">
+                        Tópicos
+                    </Col>
+                    <Col sm="8" xs="8">
+                      <Field
+                        name="topics"
+                        className="form-control"
+                        component={renderMultiselect}
+                        placeholder="Selecione os tópicos"
+                        data={topicSuggestions}
+                        valueField="id"
+                        textField="name"
+                        validate={requiredMultiSelectValidator}
+                        listTopicSuggestions={listTopicSuggestions}
+                      />
+                    </Col>
+                  </Row>
                   <Row>
                     <Col className="c-question__col-full-section-details">
                       { (!pristine) ? (
