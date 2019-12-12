@@ -27,8 +27,25 @@ function listMyQuestionLabels() {
     .then(response => response.data).then(myQuestionLabels => myQuestionLabels);
 }
 
+/* Create a new label */
+function createMyQuestionLabel(newLabelData) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const url = '/labels/';
+
+  return axios.post(`${apiUrl}${url}`, newLabelData, requestOptions)
+    .then(response => response.data).then(newMyQuestionLabel => newMyQuestionLabel);
+}
+
 const labelService = {
   listMyQuestionLabels,
+  createMyQuestionLabel,
 };
 
 export default labelService;

@@ -220,6 +220,7 @@ const SidebarWeb = ({
   showFiltersForObjectBase,
   isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal,
   setQuestionIdToNewDocument, myQuestionLabels, isFetchingMyQuestionLabels,
+  showCreateMyQuestionLabelModal,
 }) => {
   const openCreateDocumentModal = () => {
     // open modal
@@ -299,7 +300,11 @@ const SidebarWeb = ({
                     </ListGroup>
                     {/* showFilters && <FilterContainer /> */}
                     {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
-                    {<SidebarLabels labels={myQuestionLabels} isFetching={isFetchingMyQuestionLabels} />}
+                    {<SidebarLabels
+                      labels={myQuestionLabels}
+                      isFetching={isFetchingMyQuestionLabels}
+                      showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
+                    />}
                   </div>
                 </Col>
               </Row>

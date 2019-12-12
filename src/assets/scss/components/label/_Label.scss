@@ -1,22 +1,26 @@
 .labels{
 
- &__title{
-    padding: 0px 10px;
-    margin-bottom: 0px;
-    font-weight: bold;
- }
+    &__section{
+        margin-top: 20px;
+        margin-bottom: 80px;
+    }   
+    &__title{
+        padding: 0px 10px;
+        margin-bottom: 0px;
+        font-weight: bold;
+    }
 
- &__list-group{
-     margin-top: 10px !important;
- }
+    &__list-group{
+        margin-top: 10px !important;
+    }
 
- &__new-option-name{
-    font-size: 16px;
- }
+    &__new-option-name{
+        font-size: 16px;
+    }
 
- &__new-option-item{
-    margin-top: 10px;
- }
+    &__new-option-item{
+        margin-top: 10px;
+    }
 }
 
 .label-item{

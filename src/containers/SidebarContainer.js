@@ -31,6 +31,14 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'createDocument',
   };
 
+  const createMyQuestionLabelModalProps = {
+    modalProps: {
+      open: true,
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'CreateMyQuestionLabelModal',
+  };
+
   return ({
     toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
     openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
@@ -50,6 +58,8 @@ const mapDispatchToProps = (dispatch) => {
 
     // Labels
     listMyQuestionLabels: () => dispatch(listMyQuestionLabels()),
+    showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),
+
   });
 };
 
