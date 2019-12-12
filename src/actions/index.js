@@ -7,6 +7,7 @@ import * as filterAction from './filterAction';
 import * as documentAction from './documentAction';
 import * as modalAction from './modalAction';
 import * as learningObjectAction from './learningObjectAction';
+import * as labelAction from './labelAction';
 
 export default {
   loginAction,
@@ -18,4 +19,5 @@ export default {
   documentAction,
   modalAction,
   learningObjectAction,
+  labelAction,
 };

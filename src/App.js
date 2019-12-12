@@ -69,6 +69,8 @@ import {
   faCheckDouble,
   faCrown,
   faGraduationCap,
+  faTag,
+  faPlusCircle,
   faBookmark,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -84,7 +86,9 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faComments, faInfoCircle, faBook, faSignInAlt, faClone, faExclamationCircle,
   faTimesCircle, faEye, faCopy, faQuestionCircle, faCheckDouble,
   faCrown,
-  faGraduationCap, faBookmark,
+  faGraduationCap,
+  faTag,
+  faPlusCircle, faBookmark,
   fab);
 
 class App extends Component {

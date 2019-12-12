@@ -1,0 +1,70 @@
+.labels{
+
+    &__section{
+        margin-top: 20px;
+        margin-bottom: 80px;
+    }   
+    &__title{
+        padding: 0px 10px;
+        margin-bottom: 0px;
+        font-weight: bold;
+    }
+
+    &__list-group{
+        margin-top: 10px !important;
+    }
+
+    &__new-option-name{
+        font-size: 16px;
+    }
+
+    &__new-option-item{
+        margin-top: 10px;
+    }
+}
+
+.label-item{
+    &__list-group-item {
+        background: transparent;
+        border: 0px;
+        color: $color-ma-white;
+        padding: 0px 10px;
+    }
+
+    &__divider{
+        margin: 2px;
+    }
+
+    &__dropdown-menu{
+        padding: 2px 0;
+        font-size: 13px;
+    }
+
+    &__name-btn {
+        background: transparent;
+        border: 0px;
+
+        &:hover, &:focus, &:active, &.active{
+            background: transparent;
+            border: 0px;
+        }
+
+        &:not(:disabled):not(.disabled):active, &:not(:disabled):not(.disabled).active, .show > &.dropdown-toggle{
+            background: transparent;
+            border: 0px;
+        }
+    }
+
+    &__name-link{
+        color: #fff;
+        padding: 5px;
+        margin-right: 5px;
+        text-decoration: none !important;
+
+        &:hover{
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+        }
+    }
+}

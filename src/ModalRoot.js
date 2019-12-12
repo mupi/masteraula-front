@@ -17,6 +17,7 @@ const MODAL_TYPES = {
   login2: modalTypes.login2Modal,
   createDocument: modalTypes.createDocument,
   searchObjectModal: modalTypes.searchObjectModal,
+  createMyQuestionLabelModal: modalTypes.createMyQuestionLabelModal,
 };
 
 const mapStateToProps = state => ({
