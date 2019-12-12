@@ -5,7 +5,12 @@ import { toggleMenu, openSidebar } from 'actions/menuAction';
 import { clearSelectedFilters, clearSearch } from 'actions/filterAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import { setQuestionIdToNewDocument } from 'actions/documentAction';
-import { listMyQuestionLabels } from 'actions/labelAction';
+import {
+  listMyQuestionLabels,
+  createMyQuestionLabel,
+  updateMyQuestionLabel,
+  deleteMyQuestionLabel,
+} from 'actions/labelAction';
 
 
 // state.<reducer's name>.<property>
@@ -34,10 +39,42 @@ const mapDispatchToProps = (dispatch) => {
   const createMyQuestionLabelModalProps = {
     modalProps: {
       open: true,
+      title: 'Criar etiqueta',
+      submit: (values) => {
+        dispatch(createMyQuestionLabel(values));
+        dispatch(hideModal());
+      },
       closeModal: () => dispatch(hideModal()),
     },
-    modalType: 'CreateMyQuestionLabelModal',
+    modalType: 'createMyQuestionLabelModal',
   };
+
+  const editMyQuestionLabelModalProps = {
+    modalProps: {
+      open: true,
+      title: 'Editar etiqueta',
+      submit: (values) => {
+        dispatch(updateMyQuestionLabel(values));
+        dispatch(hideModal());
+      },
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'createMyQuestionLabelModal',
+  };
+
+
+  const deleteMyQuestionLabelModalProps = (idLabel, name) => ({
+    modalProps: {
+      open: true,
+      title: 'Apagar etiqueta',
+      message: 'Você tem certeza que deseja apagar a etiqueta',
+      name,
+      idLabel,
+      deleteAction: () => dispatch(deleteMyQuestionLabel(idLabel)),
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'delete',
+  });
 
   return ({
     toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
@@ -57,9 +94,10 @@ const mapDispatchToProps = (dispatch) => {
     setQuestionIdToNewDocument: () => dispatch(setQuestionIdToNewDocument()),
 
     // Labels
-    listMyQuestionLabels: () => dispatch(listMyQuestionLabels()),
     showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),
-
+    showUpdateMyQuestionLabelModal: () => dispatch(showModal(editMyQuestionLabelModalProps)),
+    showDeleteMyQuestionLabelModal: (idDocument, name) => dispatch(showModal(deleteMyQuestionLabelModalProps(idDocument, name))),
+    listMyQuestionLabels: () => dispatch(listMyQuestionLabels()),
   });
 };
 

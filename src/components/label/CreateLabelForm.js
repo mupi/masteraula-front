@@ -128,10 +128,11 @@ const CreateLabelForm = (props) => {
 const mapStateToProps = (state) => {
   const selector = formValueSelector('create_label');
   return ({
+    /* initialValues: {
+      name: activeLabel.name,
+      color: activeLabel.color,
+    }, */
     selectedColor: selector(state, 'color') || '#fff',
-    modal: state.document.modal,
-
-
   });
 };
 

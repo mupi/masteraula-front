@@ -220,7 +220,7 @@ const SidebarWeb = ({
   showFiltersForObjectBase,
   isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal,
   setQuestionIdToNewDocument, myQuestionLabels, isFetchingMyQuestionLabels,
-  showCreateMyQuestionLabelModal,
+  showCreateMyQuestionLabelModal, showDeleteMyQuestionLabelModal, showUpdateMyQuestionLabelModal,
 }) => {
   const openCreateDocumentModal = () => {
     // open modal
@@ -304,6 +304,8 @@ const SidebarWeb = ({
                       labels={myQuestionLabels}
                       isFetching={isFetchingMyQuestionLabels}
                       showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
+                      showUpdateMyQuestionLabelModal={showUpdateMyQuestionLabelModal}
+                      showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
                     />}
                   </div>
                 </Col>

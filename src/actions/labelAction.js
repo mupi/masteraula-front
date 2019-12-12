@@ -11,7 +11,12 @@ export const CREATE_MY_QUESTION_LABEL_SUCCESS = 'CREATE_MY_QUESTION_LABEL_SUCCES
 export const CREATE_MY_QUESTION_LABEL_FAILURE = 'CREATE_MY_QUESTION_LABEL_FAILURE';
 
 export const UPDATE_MY_QUESTION_LABEL = 'UPDATE_MY_QUESTION_LABEL';
+export const UPDATE_MY_QUESTION_LABEL_SUCCESS = 'UPDATE_MY_QUESTION_LABEL_SUCCESS';
+export const UPDATE_MY_QUESTION_LABEL_FAILURE = 'UPDATE_MY_QUESTION_LABEL_FAILURE';
+
 export const DELETE_MY_QUESTION_LABEL = 'DELETE_MY_QUESTION_LABEL';
+export const DELETE_MY_QUESTION_LABEL_SUCCESS = 'DELETE_MY_QUESTION_LABEL_SUCCESS';
+export const DELETE_MY_QUESTION_LABEL_FAILURE = 'DELETE_MY_QUESTION_LABEL_FAILURE';
 
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
@@ -63,5 +68,46 @@ export const createMyQuestionLabel = (props) => {
         dispatch(createMyQuestionLabelFailure(error));
       },
     );
+  };
+};
+
+
+// Function: Update a label
+export const updateMyQuestionLabel = (props) => {
+  function updateActiveLabel() { return { type: UPDATE_MY_QUESTION_LABEL }; }
+  function updateActiveLabelSuccess(activeLabel) { return { type: UPDATE_MY_QUESTION_LABEL_SUCCESS, activeLabel }; }
+  function updateActiveLabelFailure(error) { return { type: UPDATE_MY_QUESTION_LABEL_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(updateActiveLabel(props));
+    return labelService.updateMyQuestionLabel(props).then(
+      (activeLabel) => {
+        toast.success('Etiqueta atualizada com sucesso', optionsSuccess);
+        dispatch(updateActiveLabelSuccess(activeLabel));
+      },
+      (error) => {
+        toast.error('Ocorreu um erro com sua solicitação', optionsError);
+        dispatch(updateActiveLabelFailure(error));
+      },
+    );
+  };
+};
+
+
+// delete label
+export const deleteMyQuestionLabel = (idLabel) => {
+  function deleteSelectedMyQuestionLabel() { return { type: DELETE_MY_QUESTION_LABEL }; }
+  function deleteSelectedMyQuestionLabelSuccess(idLabelRemoved) { return { type: DELETE_MY_QUESTION_LABEL_SUCCESS, idLabelRemoved }; }
+  function deleteSelectedMyQuestionLabelFailure(error) { return { type: DELETE_MY_QUESTION_LABEL_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(deleteSelectedMyQuestionLabel(idLabel));
+    return labelService.deleteMyQuestionLabel(idLabel)
+      .then(
+        (idLabelRemoved) => {
+          dispatch(deleteSelectedMyQuestionLabelSuccess(idLabelRemoved));
+        },
+        (error) => {
+          dispatch(deleteSelectedMyQuestionLabelFailure(error));
+        },
+      );
   };
 };

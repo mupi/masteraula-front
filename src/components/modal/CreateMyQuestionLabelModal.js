@@ -2,16 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CreateLabelForm from 'components/label/CreateLabelForm';
 
-
-import {
-  createMyQuestionLabel,
-} from 'actions/labelAction';
-import { connect } from 'react-redux';
-
-import { openSidebar } from 'actions/menuAction';
-import { hideModal } from 'actions/modalAction';
-
 const CreateMyQuestionLabelModal = ({
+  title,
   closeModal,
   submit,
 }) => (
@@ -20,7 +12,7 @@ const CreateMyQuestionLabelModal = ({
       <h5
         className="modal-title"
       >
-         Criar nova etiqueta
+        {title}
       </h5>
       <button type="button" className="close" aria-label="Close" onClick={closeModal}>
         <span aria-hidden="true">
@@ -47,20 +39,4 @@ CreateMyQuestionLabelModal.defaultProps = {
   submit: f => f,
 };
 
-const mapDispatchToProps = dispatch => ({
-  submit: (values) => {
-    dispatch(createMyQuestionLabel(values));
-    dispatch(hideModal());
-  },
-  openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
-});
-
-const mapStateToProps = state => ({
-  modal: state.document.modal,
-  isOpenSidebar: state.menu.isOpenSidebar,
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CreateMyQuestionLabelModal);
+export default CreateMyQuestionLabelModal;

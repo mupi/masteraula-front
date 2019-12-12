@@ -6,7 +6,9 @@ import LabelItem from 'components/label/LabelItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // const { myQuestionLabels } = props;
-const SidebarLabels = ({ labels, isFetching, showCreateMyQuestionLabelModal }) => (
+const SidebarLabels = ({
+  labels, isFetching, showCreateMyQuestionLabelModal, showDeleteMyQuestionLabelModal,
+}) => (
   <div className="labels__section">
     <h6 className="labels__title">Minhas etiquetas</h6>
     { isFetching ? (
@@ -17,7 +19,11 @@ const SidebarLabels = ({ labels, isFetching, showCreateMyQuestionLabelModal }) =
       <ListGroup flush className="labels__list-group">
         {labels && labels.map(label => (
           <ListGroupItem key={label.id} className="label-item__list-group-item">
-            <LabelItem label={label} />
+            <LabelItem
+              label={label}
+              editCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
+              showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
+            />
           </ListGroupItem>
         ))}
         <ListGroupItem className="label-item__list-group-item">

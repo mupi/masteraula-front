@@ -43,9 +43,49 @@ function createMyQuestionLabel(newLabelData) {
     .then(response => response.data).then(newMyQuestionLabel => newMyQuestionLabel);
 }
 
+/* Create a new label */
+function updateMyQuestionLabel(activeLabel) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const url = `/label/${activeLabel.id}`;
+
+  return axios.post(`${apiUrl}${url}`, activeLabel, requestOptions)
+    .then(response => response.data).then(newMyQuestionLabel => newMyQuestionLabel);
+}
+
+// Delete a label given its ID
+function deleteMyQuestionLabel(idLabel) {
+  const requestOptions = {
+    method: 'DELETE',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = (response) => {
+    if (!response.ok) {
+      return Promise.reject();
+    }
+
+    return idLabel;
+  };
+
+  return fetch(`${apiUrl}/labels/${idLabel}/`, requestOptions)
+    .then(handleResponse)
+    .then(idLabelRemoved => idLabelRemoved);
+}
+
 const labelService = {
   listMyQuestionLabels,
   createMyQuestionLabel,
+  updateMyQuestionLabel,
+  deleteMyQuestionLabel,
 };
 
 export default labelService;
