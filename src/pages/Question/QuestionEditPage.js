@@ -17,7 +17,7 @@ import TagList from 'components/tags/TagList';
 import { Field, FieldArray } from 'redux-form';
 import QuestionAuthor from 'components/question/QuestionAuthor';
 import { requiredSelectValidator, /* minLength2TagsForEdit, */ requiredMultiSelectValidator } from 'helpers/validators';
-import Multiselect from 'react-widgets/lib/Multiselect';
+import renderMultiselect from 'components/autocomplete/Multiselect';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 
@@ -27,11 +27,6 @@ const difficultyList = {
     { id: 'M', name: 'Médio' },
     { id: 'H', name: 'Difícil' },
   ],
-};
-
-const messages = {
-  emptyList: 'Não existem resultados',
-  emptyFilter: 'Não existem resultados que coincidam',
 };
 
 const renderMAMultiSelectTag = ({
@@ -53,41 +48,6 @@ const renderMAMultiSelectTag = ({
     </span>
     )
      }
-  </div>
-);
-
-// Multiselect for Topics
-const renderMultiselect = ({
-  input, data, placeholder, valueField, textField, onSearch,
-  meta: { touched, error, warning },
-}) => (
-  <div>
-    <Multiselect
-      {...input}
-      onBlur={() => input.onBlur()}
-      value={input.value || []}
-      data={data}
-      valueField={valueField}
-      textField={textField}
-      placeholder={placeholder}
-      messages={messages}
-      onSearch={onSearch}
-      filter="contains"
-    />
-    { touched
-        && ((error && (
-        <span className="error-message-text">
-          {error}
-        </span>
-        ))
-        || (warning && (
-        <span>
-          {' '}
-          {warning}
-          {' '}
-        </span>
-        )))
-      }
   </div>
 );
 
@@ -190,17 +150,10 @@ class QuestionEditPage extends Component {
     }
   }
 
-  listTopicSuggestions = (param) => {
-    if (param && param.length === 3) {
-      const { listTopicSuggestions } = this.props;
-      listTopicSuggestions(param);
-    }
-  }
-
   render() {
     const {
       activeQuestion, userId, isFetching, error, activeDocument, handleSubmit, topicSuggestions, pristine,
-      role, submitting,
+      role, submitting, listTopicSuggestions,
     } = this.props;
 
     const { author, authorship } = activeQuestion;
@@ -520,7 +473,7 @@ class QuestionEditPage extends Component {
                         valueField="id"
                         textField="name"
                         validate={requiredMultiSelectValidator}
-                        onSearch={this.listTopicSuggestions}
+                        listTopicSuggestions={listTopicSuggestions}
                       />
                     </Col>
                   </Row>

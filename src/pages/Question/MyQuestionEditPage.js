@@ -18,7 +18,7 @@ import {
 } from 'helpers/validators';
 import { Field, FieldArray, formValueSelector } from 'redux-form';
 import { getTeachingLevel } from 'helpers/question';
-import Multiselect from 'react-widgets/lib/Multiselect';
+import renderMultiselect from 'components/autocomplete/Multiselect';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
 import MACreateDropdownList from 'components/dropdownlist/MACreateDropdownList';
 
@@ -199,46 +199,6 @@ const messagesVestibular = {
   },
 };
 
-const messages = {
-  emptyList: 'Não existem resultados',
-  emptyFilter: 'Não existem resultados que coincidam',
-};
-
-// Multiselect for Disciplines and Teaching Level
-const renderMultiselect = ({
-  input, data, placeholder, valueField, textField, onSearch,
-  meta: { touched, error, warning },
-}) => (
-  <div>
-    <Multiselect
-      {...input}
-      onBlur={() => input.onBlur()}
-      value={input.value || []}
-      data={data}
-      valueField={valueField}
-      textField={textField}
-      placeholder={placeholder}
-      messages={messages}
-      onSearch={onSearch}
-      filter="contains"
-    />
-    { touched
-        && ((error && (
-        <span className="error-message-text">
-          {error}
-        </span>
-        ))
-        || (warning && (
-        <span>
-          {' '}
-          {warning}
-          {' '}
-        </span>
-        )))
-      }
-  </div>
-);
-
 const renderSelectField = ({
   input, label, meta: { touched, error }, children, optionDefault, className,
 }) => (
@@ -369,13 +329,6 @@ class MyQuestionEditPage extends Component {
     }
   }
 
-  listTopicSuggestions = (param) => {
-    if (param && param.length === 3) {
-      const { listTopicSuggestions } = this.props;
-      listTopicSuggestions(param);
-    }
-  }
-
   closeModal() {
     const { hideModal } = this.props;
     hideModal();
@@ -394,12 +347,8 @@ class MyQuestionEditPage extends Component {
   render() {
     const {
       activeQuestion, userId, isFetching, error, pristine, disciplineFilters, sourceFilters,
-      teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
-      submitting,
-      resolution,
-      errorsEditQuestion,
-      sourceQuestionValue,
-      topicSuggestions,
+      teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion, submitting,
+      resolution, errorsEditQuestion, sourceQuestionValue, topicSuggestions, listTopicSuggestions,
     } = this.props;
     const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
 
@@ -739,7 +688,7 @@ class MyQuestionEditPage extends Component {
                     valueField="id"
                     textField="name"
                     validate={requiredMultiSelectValidator}
-                    onSearch={this.listTopicSuggestions}
+                    listTopicSuggestions={listTopicSuggestions}
                   />
                 </Col>
               </Row>
