@@ -11,6 +11,7 @@ import {
   addSelectedYearFilter, removeSelectedYearFilter,
   removeSelectedTopicFilter,
   resetTopicListSelected,
+  removeSelectedMyQuestionLabelFilter,
 } from 'actions/filterAction';
 import { history } from 'helpers';
 
@@ -79,6 +80,7 @@ const mapDispatchToProps = dispatch => ({
   toggleSelectedSourceFilter: (idSource, value) => dispatch(toggleSelectedSourceFilter(idSource, value)),
   toggleSelectedYearFilter: (idYear, value) => dispatch(toggleSelectedYearFilter(idYear, value)),
   removeSelectedTopicFilter: idTopic => dispatch(removeSelectedTopicFilter(idTopic)),
+  removeSelectedMyQuestionLabelFilter: idMyQuestionLabel => dispatch(removeSelectedMyQuestionLabelFilter(idMyQuestionLabel)),
 
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
 
