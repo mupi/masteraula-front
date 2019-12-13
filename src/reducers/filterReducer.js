@@ -48,6 +48,7 @@ const initialState = {
     { id: 'M', name: 'Médio' },
     { id: 'H', name: 'Difícil' },
   ],
+  labelsSelected: [],
 };
 
 export const filter = (state = initialState, action) => {
