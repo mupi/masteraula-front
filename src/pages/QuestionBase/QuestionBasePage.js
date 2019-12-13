@@ -29,6 +29,7 @@ class QuestionBasePage extends React.Component {
     || (filter.yearsSelected !== prevProps.filter.yearsSelected)
     || (filter.topicsSelected !== prevProps.filter.topicsSelected)
     || (filter.difficultiesSelected !== prevProps.filter.difficultiesSelected)
+    || (filter.myQuestionlabelsSelected !== prevProps.filter.myQuestionlabelsSelected)
     || (filter.onlyMyQuestions !== prevProps.filter.onlyMyQuestions)
     || (filter.searchText !== prevProps.filter.searchText)) {
       listQuestions(parseInt(match.params.page, 10), filter, user.id);

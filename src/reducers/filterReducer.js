@@ -21,6 +21,8 @@ import {
   REMOVE_SELECTED_YEAR_FILTER,
   ADD_SELECTED_TOPIC_FILTER,
   REMOVE_SELECTED_TOPIC_FILTER,
+  ADD_SELECTED_MYQUESTION_LABEL_FILTER,
+  REMOVE_SELECTED_MYQUESTION_LABEL_FILTER,
   RESET_LIST_TOPIC_SELECTED,
   SET_SEARCH_TEXT,
   ADD_MYQUESTIONS_FILTER,
@@ -48,7 +50,7 @@ const initialState = {
     { id: 'M', name: 'Médio' },
     { id: 'H', name: 'Difícil' },
   ],
-  labelsSelected: [],
+  myQuestionlabelsSelected: [],
 };
 
 export const filter = (state = initialState, action) => {
@@ -300,6 +302,18 @@ export const filter = (state = initialState, action) => {
       const newTopics = state.topicsSelected.filter(item => item.id !== parseInt(action.idTopic, 10));
       return Object.assign({}, state, {
         topicsSelected: newTopics,
+      });
+    }
+    case ADD_SELECTED_MYQUESTION_LABEL_FILTER: {
+      if (state.myQuestionlabelsSelected.filter(item => item.id === action.myQuestionLabel.id).length > 0) return state; // do not add duplicates
+      return Object.assign({}, state, {
+        myQuestionlabelsSelected: [...state.myQuestionlabelsSelected, action.myQuestionLabel],
+      });
+    }
+    case REMOVE_SELECTED_MYQUESTION_LABEL_FILTER: {
+      const newMyQuestionLabels = state.myQuestionlabelsSelected.filter(item => item.id !== parseInt(action.idmyQuestionLabel, 10));
+      return Object.assign({}, state, {
+        myQuestionlabelsSelected: newMyQuestionLabels,
       });
     }
     case RESET_LIST_TOPIC_SELECTED:

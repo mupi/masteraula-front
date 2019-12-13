@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Sidebar from 'components/sidebar/Sidebar';
 import { logout } from 'actions/loginAction';
 import { toggleMenu, openSidebar } from 'actions/menuAction';
-import { clearSelectedFilters, clearSearch } from 'actions/filterAction';
+import { clearSelectedFilters, clearSearch, addSelectedMyQuestionLabelFilter } from 'actions/filterAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import { setQuestionIdToNewDocument } from 'actions/documentAction';
 import {
@@ -102,6 +102,7 @@ const mapDispatchToProps = (dispatch) => {
     showUpdateMyQuestionLabelModal: label => dispatch(showModal(updateMyQuestionLabelModalProps(label))),
     showDeleteMyQuestionLabelModal: (idDocument, name) => dispatch(showModal(deleteMyQuestionLabelModalProps(idDocument, name))),
     listMyQuestionLabels: () => dispatch(listMyQuestionLabels()),
+    addSelectedMyQuestionLabelFilter: label => dispatch(addSelectedMyQuestionLabelFilter(label)),
   });
 };
 
