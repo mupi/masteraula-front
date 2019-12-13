@@ -19,6 +19,9 @@ class Multiselect extends Component {
 
   onSearch = (param) => {
     const { listTopicSuggestions } = this.props;
+    if (!listTopicSuggestions) {
+      return;
+    }
     if (param && param.length === 3) {
       listTopicSuggestions(param);
     }
@@ -28,10 +31,10 @@ class Multiselect extends Component {
   };
 
   getData = () => {
-    const { data } = this.props;
+    const { data, listTopicSuggestions } = this.props;
     const { param } = this.state;
 
-    if (param && param.length >= 3) {
+    if (!listTopicSuggestions || (param && param.length >= 3)) {
       return data;
     }
     return [];
@@ -39,7 +42,8 @@ class Multiselect extends Component {
 
   messages = () => {
     const { param } = this.state;
-    if (param.length < 3) {
+    const { listTopicSuggestions } = this.props;
+    if (listTopicSuggestions && param.length < 3) {
       return {
         emptyList: 'Insira ao menos 3 caracteres para mostrar resultados',
         emptyFilter: 'Não existem resultados que coincidam',
