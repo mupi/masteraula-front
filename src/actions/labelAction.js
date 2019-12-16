@@ -103,6 +103,8 @@ export const deleteMyQuestionLabel = (idLabel) => {
     return labelService.deleteMyQuestionLabel(idLabel)
       .then(
         (idLabelRemoved) => {
+          console.log('hola');
+          console.log(idLabelRemoved);
           dispatch(deleteSelectedMyQuestionLabelSuccess(idLabelRemoved));
         },
         (error) => {
