@@ -91,6 +91,12 @@
             text-decoration: none;
             color: #fff;
         }
+
+        &:disabled{
+            text-decoration: none;
+            color: #fff;
+            opacity: 1;
+        }
     }
 
     &__title-toggle{

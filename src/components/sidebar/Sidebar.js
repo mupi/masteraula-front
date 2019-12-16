@@ -221,6 +221,7 @@ const SidebarMobile = ({
                     showUpdateMyQuestionLabelModal={showUpdateMyQuestionLabelModal}
                     showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
                     addSelectedMyQuestionLabelFilter={addSelectedMyQuestionLabelFilter}
+                    isFetchingQuestions={isFetchingQuestions}
                   />}
                 </div>
               </Col>
@@ -331,6 +332,7 @@ const SidebarWeb = ({
                       showUpdateMyQuestionLabelModal={showUpdateMyQuestionLabelModal}
                       showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
                       addSelectedMyQuestionLabelFilter={addSelectedMyQuestionLabelFilter}
+                      isFetchingQuestions={isFetchingQuestions}
                     />}
                   </div>
                 </Col>

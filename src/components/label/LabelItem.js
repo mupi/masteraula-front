@@ -21,7 +21,7 @@ class LabelItem extends Component {
 
   render() {
     const {
-      label, showUpdateMyQuestionLabelModal, showDeleteMyQuestionLabelModal, addSelectedMyQuestionLabelFilter,
+      label, showUpdateMyQuestionLabelModal, showDeleteMyQuestionLabelModal, addSelectedMyQuestionLabelFilter, isFetchingQuestions,
     } = this.props;
 
     const {
@@ -30,7 +30,7 @@ class LabelItem extends Component {
 
     return (
       <ButtonDropdown isOpen={isOpen} toggle={this.toggle}>
-        <Button color="link" className="label-item__name-link" onClick={() => addSelectedMyQuestionLabelFilter(label)}>
+        <Button disabled={isFetchingQuestions} color="link" className="label-item__name-link" onClick={() => addSelectedMyQuestionLabelFilter(label)}>
           <span>
             <FontAwesomeIcon icon="tag" style={{ color: label.color }} className="btn__icon" />
             {' '}
