@@ -32,7 +32,7 @@ class LabelItem extends Component {
       <ButtonDropdown isOpen={isOpen} toggle={this.toggle}>
         <Button disabled={isFetchingQuestions} color="link" className="label-item__name-link" onClick={() => addSelectedMyQuestionLabelFilter(label)}>
           <span>
-            <FontAwesomeIcon icon="tag" style={{ color: label.color }} className="btn__icon" />
+            <FontAwesomeIcon icon="tag" style={{ color: label.color || '#d3cfcf' }} className="btn__icon" />
             {' '}
             {`${label.name} (${label.num_questions})`}
           </span>

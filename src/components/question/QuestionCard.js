@@ -64,7 +64,7 @@ const QuestionCard = (props) => {
                     key={label.id}
                     className="question-card__label-item"
                     icon="circle"
-                    style={{ color: label.color }}
+                    style={{ color: label.color || '#d3cfcf' }}
                     title={label.name}
                   />
                 ))}
