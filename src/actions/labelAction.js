@@ -1,5 +1,7 @@
 import { labelService } from 'services';
 import { toast } from 'react-toastify';
+import { addSelectedLabelToQuestionCard, removeSelectedLabelToQuestionCard } from 'actions/questionAction';
+
 
 // Load
 export const LIST_MY_QUESTION_LABELS = 'LIST_MY_QUESTION_LABELS';
@@ -24,7 +26,7 @@ export const ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS = 'ADD_SELECTED_LABEL_TO_QUE
 export const ADD_SELECTED_LABEL_TO_QUESTION_FAILURE = 'ADD_SELECTED_LABEL_TO_QUESTION_FAILURE';
 
 // Remove selected label from question
-export const REMOVE_SELECTED_LABEL_FROM_QUESTION = 'REMOVE_SELECTED_QUESTION';
+export const REMOVE_SELECTED_LABEL_FROM_QUESTION = 'REMOVE_SELECTED_LABEL_FROM_QUESTION';
 export const REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS = 'REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS';
 export const REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE = 'REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE';
 
@@ -126,7 +128,12 @@ export const deleteMyQuestionLabel = (idLabel) => {
 // Add Selected Label to Question
 export const addSelectedLabelToQuestion = (idQuestion, idLabel) => {
   function addLabelToQuestion() { return { type: ADD_SELECTED_LABEL_TO_QUESTION, idQuestion, idLabel }; }
-  function addLabelToQuestionSuccess(addedQuestion) { return { type: ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS, addedQuestion }; }
+  function addLabelToQuestionSuccess(addedLabelQuestion) {
+    return {
+      type: ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS,
+      addedLabelQuestion,
+    };
+  }
   function addLabelToQuestionFailure(error) { return { type: ADD_SELECTED_LABEL_TO_QUESTION_FAILURE, error }; }
   return (dispatch, getState) => {
     if (getState().document.isFetchingAddQuestion) {
@@ -135,8 +142,10 @@ export const addSelectedLabelToQuestion = (idQuestion, idLabel) => {
     dispatch(addLabelToQuestion());
     return labelService.addSelectedLabelToQuestion(idQuestion, idLabel)
       .then(
-        (addedQuestion) => {
-          dispatch(addLabelToQuestionSuccess(addedQuestion));
+        (addedLabelQuestion) => {
+          dispatch(addSelectedLabelToQuestionCard(addedLabelQuestion.question.id, addedLabelQuestion.label));
+
+          dispatch(addLabelToQuestionSuccess(addedLabelQuestion));
         },
         (error) => {
           dispatch(addLabelToQuestionFailure(error));
@@ -148,19 +157,26 @@ export const addSelectedLabelToQuestion = (idQuestion, idLabel) => {
 
 // Remove Selected Label from Question
 export const removeSelectedLabelFromQuestion = (idQuestion, idLabel) => {
-  function removeQuestionFromDocument() { return { type: REMOVE_SELECTED_LABEL_FROM_QUESTION, idRemovedQuestion: idQuestion, idLabel }; }
-  function removeQuestionFromDocumentSuccess(idRemovedQuestion) { return { type: REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS, idRemovedQuestion }; }
-  function removeQuestionFromDocumentFailure(error) { return { type: REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE, error }; }
+  function removeLabelFromQuestion() { return { type: REMOVE_SELECTED_LABEL_FROM_QUESTION, idQuestion, idLabel }; }
+  function removeLabelFromQuestionSuccess(removedLabelQuestion) {
+    return {
+      type: REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS,
+      idLabel: removedLabelQuestion.idLabel,
+      idQuestion: removedLabelQuestion.idQuestion,
+    };
+  }
+  function removeLabelFromQuestionFailure(error) { return { type: REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE, error }; }
 
   return (dispatch) => {
-    dispatch(removeQuestionFromDocument(idQuestion, idLabel));
+    dispatch(removeLabelFromQuestion(idQuestion, idLabel));
     return labelService.removeSelectedLabelFromQuestion(idQuestion, idLabel)
       .then(
-        (idRemovedQuestion) => {
-          dispatch(removeQuestionFromDocumentSuccess(idRemovedQuestion));
+        (removedLabelQuestion) => {
+          dispatch(removeSelectedLabelToQuestionCard(removedLabelQuestion.idQuestion, removedLabelQuestion.idLabel));
+          dispatch(removeLabelFromQuestionSuccess(removedLabelQuestion));
         },
         (error) => {
-          dispatch(removeQuestionFromDocumentFailure(error));
+          dispatch(removeLabelFromQuestionFailure(error));
         },
       );
   };

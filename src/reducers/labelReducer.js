@@ -106,9 +106,14 @@ export const label = (state = initialState, action) => {
         idQuestion: action.idQuestion,
       });
     case ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS: {
-      toast.success(`Etiqueta adicionada com sucesso à questão ${action.idQuestion}`, optionsSuccess);
+      const newMyQuestionLabels = state.myQuestionLabels.map(item => (item.id === action.addedLabelQuestion.label.id
+        ? { ...item, num_questions: action.addedLabelQuestion.label.num_questions }
+        : item));
+
+      toast.success(`Etiqueta adicionada com sucesso à questão ${action.addedLabelQuestion.question.id}`, optionsSuccess);
       return Object.assign({}, state, {
         isAdding: false,
+        myQuestionLabels: [...newMyQuestionLabels],
       });
     }
     case ADD_SELECTED_LABEL_TO_QUESTION_FAILURE:
@@ -118,22 +123,24 @@ export const label = (state = initialState, action) => {
       });
     case REMOVE_SELECTED_LABEL_FROM_QUESTION:
       return Object.assign({}, state, {
-        isRemoving: true,
-        idRemovedQuestion: action.idRemovedQuestion,
-        error: null,
+        isRemovingLabel: true,
+        idLabel: action.idLabel,
+        idQuestion: action.idQuestion,
       });
     case REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS: {
+      const newMyQuestionLabels = state.myQuestionLabels.map(item => (item.id === parseInt(action.idLabel, 10)
+        ? { ...item, num_questions: item.num_questions - 1 }
+        : item));
       toast.success(`Etiqueta removida com sucesso da questão ${action.idQuestion}`, optionsSuccess);
       return Object.assign({}, state, {
-        isRemoving: false,
-        isRemoved: true,
-        idRemovedQuestion: null,
+        isRemovingLabel: false,
+        myQuestionLabels: [...newMyQuestionLabels],
       });
     }
     case REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE:
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
-        isFetchingRemoveQuestion: false,
+        isRemovingLabel: false,
         error: action.error,
         idRemovedQuestion: null,
       });

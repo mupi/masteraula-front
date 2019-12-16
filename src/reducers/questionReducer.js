@@ -9,6 +9,7 @@ import {
   ADD_SELECTED_OBJECT_QUESTION, REMOVE_SELECTED_OBJECT_QUESTION,
   RESET_SELECTED_OBJECTLIST_QUESTION,
   SET_OBJECT_TO_NEW_QUESTION,
+  ADD_SELECTED_LABEL_QUESTION, REMOVE_SELECTED_LABEL_QUESTION,
 } from 'actions/questionAction';
 import { DELETE_QUESTION, DELETE_QUESTION_SUCCESS, DELETE_QUESTION_FAILURE } from '../actions/questionAction';
 
@@ -175,6 +176,30 @@ export const question = (state = initialState, action) => {
     case SET_OBJECT_TO_NEW_QUESTION: {
       return Object.assign({}, state, {
         objectIdAddedToQuestion: action.objectIdAddedToQuestion,
+      });
+    }
+
+    case ADD_SELECTED_LABEL_QUESTION: {
+      const newQuestionPageResults = state.questionPage.results.map(item => (item.id === action.idQuestion
+        ? { ...item, labels: [...item.labels, action.label] }
+        : item));
+
+      return Object.assign({}, state, {
+        questionPage: {
+          ...state.questionPage,
+          results: newQuestionPageResults,
+        },
+      });
+    }
+    case REMOVE_SELECTED_LABEL_QUESTION: {
+      const newQuestionPageResults = state.questionPage.results.map(item => (item.id === action.idQuestion
+        ? { ...item, labels: [...item.labels.filter(label => label.id !== parseInt(action.idLabel, 10))] }
+        : item));
+      return Object.assign({}, state, {
+        questionPage: {
+          ...state.questionPage,
+          results: newQuestionPageResults,
+        },
       });
     }
 

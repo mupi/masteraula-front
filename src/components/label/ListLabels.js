@@ -38,7 +38,7 @@ const ListLabels = ({
     <DropdownToggle className="labels__btn-apply-label" title="Etiquetar como ...">
       <FontAwesomeIcon icon="tags" />
     </DropdownToggle>
-    <DropdownMenu>
+    <DropdownMenu className="labels__menu">
       <ListToggleLabels
         labels={labels}
         toggleApplyLabelToQuestion={toggleApplyLabelToQuestion}

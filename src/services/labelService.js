@@ -88,7 +88,7 @@ function addSelectedLabelToQuestion(idQuestion, idLabel) {
 
 
   return axios.post(`${apiUrl}/labels/${idLabel}/add_question/`, question, requestOptions)
-    .then(response => response.data).then(addedLabel => addedLabel);
+    .then(response => response.data).then(addedLabelQuestion => addedLabelQuestion);
 }
 
 
@@ -103,10 +103,14 @@ function removeSelectedLabelFromQuestion(idQuestion, idLabel) {
   };
 
 
-  const question = { question: idQuestion };
+  const removedLabelQuestion = {
+    idQuestion,
+    idLabel,
+  };
 
+  const question = { question: idQuestion };
   return axios.post(`${apiUrl}/labels/${idLabel}/remove_question/`, question, requestOptions)
-    .then(response => response.data).then(() => idQuestion);
+    .then(response => response.data).then(() => removedLabelQuestion);
 }
 
 const labelService = {
