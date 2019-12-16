@@ -52,7 +52,7 @@ const SidebarMobile = ({
   user, logout, isOpenSidebar, openSidebar, isOpen, toggleMenu, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal,
   quantityDocxDownloaded,
   setQuestionIdToNewDocument, myQuestionLabels, isFetchingMyQuestionLabels,
-  showCreateMyQuestionLabelModal, showDeleteMyQuestionLabelModal, showUpdateMyQuestionLabelModal,
+  showCreateMyQuestionLabelModal, showDeleteMyQuestionLabelModal, showUpdateMyQuestionLabelModal, addSelectedMyQuestionLabelFilter,
 }) => {
   const openCreateDocumentModal = () => {
     // open modal
@@ -220,6 +220,7 @@ const SidebarMobile = ({
                     showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
                     showUpdateMyQuestionLabelModal={showUpdateMyQuestionLabelModal}
                     showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
+                    addSelectedMyQuestionLabelFilter={addSelectedMyQuestionLabelFilter}
                   />}
                 </div>
               </Col>
@@ -237,7 +238,7 @@ const SidebarWeb = ({
   showFiltersForObjectBase,
   isOpenSidebar, openSidebar, cleanAllSearch, isFetchingQuestions, showCreateDocumentModal,
   setQuestionIdToNewDocument, myQuestionLabels, isFetchingMyQuestionLabels,
-  showCreateMyQuestionLabelModal, showDeleteMyQuestionLabelModal, showUpdateMyQuestionLabelModal,
+  showCreateMyQuestionLabelModal, showDeleteMyQuestionLabelModal, showUpdateMyQuestionLabelModal, addSelectedMyQuestionLabelFilter,
 }) => {
   const openCreateDocumentModal = () => {
     // open modal
@@ -329,6 +330,7 @@ const SidebarWeb = ({
                       showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
                       showUpdateMyQuestionLabelModal={showUpdateMyQuestionLabelModal}
                       showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
+                      addSelectedMyQuestionLabelFilter={addSelectedMyQuestionLabelFilter}
                     />}
                   </div>
                 </Col>

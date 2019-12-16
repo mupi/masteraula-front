@@ -62,6 +62,12 @@ export const ADD_SELECTED_TOPIC_FILTER = 'ADD_SELECTED_TOPIC_FILTER';
 // Remove selected TOPIC filter
 export const REMOVE_SELECTED_TOPIC_FILTER = 'REMOVE_SELECTED_TOPIC_FILTER';
 
+// Add selected MYQUESTION LABEL filter
+export const ADD_SELECTED_MYQUESTION_LABEL_FILTER = 'ADD_SELECTED_MYQUESTION_LABEL_FILTER';
+
+// Remove selected MYQUESTION LABEL filter
+export const REMOVE_SELECTED_MYQUESTION_LABEL_FILTER = 'REMOVE_SELECTED_MYQUESTION_LABEL_FILTER';
+
 // Set search text
 export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
 
@@ -263,6 +269,17 @@ export const addSelectedTopicFilter = topic => ({
 export const removeSelectedTopicFilter = idTopic => ({
   type: REMOVE_SELECTED_TOPIC_FILTER, idTopic,
 });
+
+// Add Selected MYQUESTIONLABEL filter
+export const addSelectedMyQuestionLabelFilter = myQuestionLabel => ({
+  type: ADD_SELECTED_MYQUESTION_LABEL_FILTER, myQuestionLabel,
+});
+
+// Remove Selected MYQUESTIONLABEL filter
+export const removeSelectedMyQuestionLabelFilter = idMyQuestionLabel => ({
+  type: REMOVE_SELECTED_MYQUESTION_LABEL_FILTER, idMyQuestionLabel,
+});
+
 
 // Reset topic list
 export const resetTopicListSelected = () => ({

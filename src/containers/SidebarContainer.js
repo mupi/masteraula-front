@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Sidebar from 'components/sidebar/Sidebar';
 import { logout } from 'actions/loginAction';
 import { toggleMenu, openSidebar } from 'actions/menuAction';
-import { clearSelectedFilters, clearSearch } from 'actions/filterAction';
+import { clearSelectedFilters, clearSearch, addSelectedMyQuestionLabelFilter } from 'actions/filterAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import { setQuestionIdToNewDocument } from 'actions/documentAction';
 import {
@@ -11,6 +11,7 @@ import {
   updateMyQuestionLabel,
   deleteMyQuestionLabel,
 } from 'actions/labelAction';
+import { history } from 'helpers';
 
 
 // state.<reducer's name>.<property>
@@ -80,6 +81,11 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'delete',
   });
 
+  const addMyQuestionLabelFilter = (label) => {
+    history.replace('/question-base/1');
+    return dispatch(addSelectedMyQuestionLabelFilter(label));
+  };
+
   return ({
     toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
     openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
@@ -102,6 +108,7 @@ const mapDispatchToProps = (dispatch) => {
     showUpdateMyQuestionLabelModal: label => dispatch(showModal(updateMyQuestionLabelModalProps(label))),
     showDeleteMyQuestionLabelModal: (idDocument, name) => dispatch(showModal(deleteMyQuestionLabelModalProps(idDocument, name))),
     listMyQuestionLabels: () => dispatch(listMyQuestionLabels()),
+    addSelectedMyQuestionLabelFilter: label => dispatch(addMyQuestionLabelFilter(label)),
   });
 };
 

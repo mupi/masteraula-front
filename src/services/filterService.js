@@ -121,11 +121,12 @@ function listTopicFilters(filter) {
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
   const sourcesParams = queryString.stringify({ sources: filter.sourcesSelected.map(item => item.name) });
   const yearsParams = queryString.stringify({ years: filter.yearsSelected.map(item => item.name) });
+  const myQuestionLabelsParams = queryString.stringify({ labels: filter.myQuestionlabelsSelected.map(item => item.id) });
 
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
   const author = (filter.onlyMyQuestions) ? queryString.stringify({ author: filter.author }) : '';
   const urlParams = [disciplinesParams, teachingLevelParams, difficultiesParams,
-    sourcesParams, yearsParams, topicsParams, author, search]
+    sourcesParams, yearsParams, topicsParams, author, search, myQuestionLabelsParams]
     .filter(p => p)
     .join('&');
 

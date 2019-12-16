@@ -29,6 +29,7 @@ class QuestionBasePage extends React.Component {
     || (filter.yearsSelected !== prevProps.filter.yearsSelected)
     || (filter.topicsSelected !== prevProps.filter.topicsSelected)
     || (filter.difficultiesSelected !== prevProps.filter.difficultiesSelected)
+    || (filter.myQuestionlabelsSelected !== prevProps.filter.myQuestionlabelsSelected)
     || (filter.onlyMyQuestions !== prevProps.filter.onlyMyQuestions)
     || (filter.searchText !== prevProps.filter.searchText)) {
       listQuestions(parseInt(match.params.page, 10), filter, user.id);
@@ -39,7 +40,7 @@ class QuestionBasePage extends React.Component {
     const {
       questionPage, isFetching, error, filter, toggleSelectedDifficultyFilter,
       toggleSelectedTeachingLevelFilter, toggleSelectedSourceFilter, toggleSelectedYearFilter, toggleSelectedDisciplineFilter,
-      removeSelectedTopicFilter,
+      removeSelectedTopicFilter, removeSelectedMyQuestionLabelFilter,
       search,
     } = this.props;
     if (error) {
@@ -54,6 +55,10 @@ class QuestionBasePage extends React.Component {
 
     function clearTopic(event) {
       removeSelectedTopicFilter(event.target.id);
+    }
+
+    function clearMyQuestionLabel(event) {
+      removeSelectedMyQuestionLabelFilter(event.target.id);
     }
 
     function clearDifficulties(event) {
@@ -87,6 +92,7 @@ class QuestionBasePage extends React.Component {
           || (filter.teachingLevelsSelected.length > 0)
           || (filter.sourcesSelected.length > 0)
           || (filter.yearsSelected.length > 0)
+          || (filter.myQuestionlabelsSelected.length > 0)
           || (filter.topicsSelected.length > 0) ? (
             <Row>
               <Col sm="12">
@@ -164,6 +170,19 @@ class QuestionBasePage extends React.Component {
                       key={`Y${item.id}`}
                       id={item.id}
                       onClick={clearYears}
+                      className="c-question-base__filter-selected"
+                    >
+                      {item.name}
+                      {' '}
+                        x
+                    </Button>
+                  )),
+                  filter.myQuestionlabelsSelected.map(item => (
+                    <Button
+                      disabled={isFetching}
+                      key={`L${item.id}`}
+                      id={item.id}
+                      onClick={clearMyQuestionLabel}
                       className="c-question-base__filter-selected"
                     >
                       {item.name}
