@@ -18,6 +18,16 @@ export const DELETE_MY_QUESTION_LABEL = 'DELETE_MY_QUESTION_LABEL';
 export const DELETE_MY_QUESTION_LABEL_SUCCESS = 'DELETE_MY_QUESTION_LABEL_SUCCESS';
 export const DELETE_MY_QUESTION_LABEL_FAILURE = 'DELETE_MY_QUESTION_LABEL_FAILURE';
 
+// Add selected label to question
+export const ADD_SELECTED_LABEL_TO_QUESTION = 'ADD_SELECTED_LABEL_TO_QUESTION';
+export const ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS = 'ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS';
+export const ADD_SELECTED_LABEL_TO_QUESTION_FAILURE = 'ADD_SELECTED_LABEL_TO_QUESTION_FAILURE';
+
+// Remove selected label from question
+export const REMOVE_SELECTED_LABEL_FROM_QUESTION = 'REMOVE_SELECTED_QUESTION';
+export const REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS = 'REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS';
+export const REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE = 'REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE';
+
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
   type: 'success',
@@ -103,12 +113,54 @@ export const deleteMyQuestionLabel = (idLabel) => {
     return labelService.deleteMyQuestionLabel(idLabel)
       .then(
         (idLabelRemoved) => {
-          console.log('hola');
-          console.log(idLabelRemoved);
           dispatch(deleteSelectedMyQuestionLabelSuccess(idLabelRemoved));
         },
         (error) => {
           dispatch(deleteSelectedMyQuestionLabelFailure(error));
+        },
+      );
+  };
+};
+
+
+// Add Selected Label to Question
+export const addSelectedLabelToQuestion = (idQuestion, idLabel) => {
+  function addLabelToQuestion() { return { type: ADD_SELECTED_LABEL_TO_QUESTION, idQuestion, idLabel }; }
+  function addLabelToQuestionSuccess(addedQuestion) { return { type: ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS, addedQuestion }; }
+  function addLabelToQuestionFailure(error) { return { type: ADD_SELECTED_LABEL_TO_QUESTION_FAILURE, error }; }
+  return (dispatch, getState) => {
+    if (getState().document.isFetchingAddQuestion) {
+      return 1;
+    }
+    dispatch(addLabelToQuestion());
+    return labelService.addSelectedLabelToQuestion(idQuestion, idLabel)
+      .then(
+        (addedQuestion) => {
+          dispatch(addLabelToQuestionSuccess(addedQuestion));
+        },
+        (error) => {
+          dispatch(addLabelToQuestionFailure(error));
+          toast.error(error, optionsError);
+        },
+      );
+  };
+};
+
+// Remove Selected Label from Question
+export const removeSelectedLabelFromQuestion = (idQuestion, idLabel) => {
+  function removeQuestionFromDocument() { return { type: REMOVE_SELECTED_LABEL_FROM_QUESTION, idRemovedQuestion: idQuestion, idLabel }; }
+  function removeQuestionFromDocumentSuccess(idRemovedQuestion) { return { type: REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS, idRemovedQuestion }; }
+  function removeQuestionFromDocumentFailure(error) { return { type: REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE, error }; }
+
+  return (dispatch) => {
+    dispatch(removeQuestionFromDocument(idQuestion, idLabel));
+    return labelService.removeSelectedLabelFromQuestion(idQuestion, idLabel)
+      .then(
+        (idRemovedQuestion) => {
+          dispatch(removeQuestionFromDocumentSuccess(idRemovedQuestion));
+        },
+        (error) => {
+          dispatch(removeQuestionFromDocumentFailure(error));
         },
       );
   };

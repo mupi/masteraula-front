@@ -14,6 +14,14 @@ import {
   DELETE_MY_QUESTION_LABEL_SUCCESS,
   DELETE_MY_QUESTION_LABEL_FAILURE,
 
+  ADD_SELECTED_LABEL_TO_QUESTION,
+  ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS,
+  ADD_SELECTED_LABEL_TO_QUESTION_FAILURE,
+
+  REMOVE_SELECTED_LABEL_FROM_QUESTION,
+  REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS,
+  REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE,
+
 } from 'actions/labelAction';
 import { toast } from 'react-toastify';
 
@@ -90,6 +98,45 @@ export const label = (state = initialState, action) => {
         isDeleted: false,
       });
     }
+    case ADD_SELECTED_LABEL_TO_QUESTION:
+      return Object.assign({}, state, {
+        isAdding: true,
+        error: null,
+        idLabel: action.idLabel,
+        idQuestion: action.idQuestion,
+      });
+    case ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS: {
+      toast.success(`Etiqueta adicionada com sucesso à questão ${action.idQuestion}`, optionsSuccess);
+      return Object.assign({}, state, {
+        isAdding: false,
+      });
+    }
+    case ADD_SELECTED_LABEL_TO_QUESTION_FAILURE:
+      return Object.assign({}, state, {
+        isAdding: false,
+        error: action.error,
+      });
+    case REMOVE_SELECTED_LABEL_FROM_QUESTION:
+      return Object.assign({}, state, {
+        isRemoving: true,
+        idRemovedQuestion: action.idRemovedQuestion,
+        error: null,
+      });
+    case REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS: {
+      toast.success(`Etiqueta removida com sucesso da questão ${action.idQuestion}`, optionsSuccess);
+      return Object.assign({}, state, {
+        isRemoving: false,
+        isRemoved: true,
+        idRemovedQuestion: null,
+      });
+    }
+    case REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        isFetchingRemoveQuestion: false,
+        error: action.error,
+        idRemovedQuestion: null,
+      });
     case LIST_MY_QUESTION_LABELS:
       return Object.assign({}, state, {
         myQuestionLabels: action.myQuestionLabels,

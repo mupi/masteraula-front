@@ -13,6 +13,12 @@ import {
   resetTopicListSelected,
   removeSelectedMyQuestionLabelFilter,
 } from 'actions/filterAction';
+
+import {
+  addSelectedLabelToQuestion,
+  removeSelectedLabelFromQuestion,
+} from 'actions/labelAction';
+
 import { history } from 'helpers';
 
 const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
@@ -44,6 +50,9 @@ const toggleSelectedYearFilter = (idYear, value, nameYear = 'default') => {
     ? addSelectedYearFilter(idYear, nameYear) : removeSelectedYearFilter(idYear);
 };
 
+const toggleApplyLabelToQuestion = (idQuestion, idLabel, value) => (value
+  ? addSelectedLabelToQuestion(idQuestion, idLabel) : removeSelectedLabelFromQuestion(idQuestion, idLabel));
+
 const mapStateToProps = state => ({
   isFetching: state.question.isFetching,
   questionPage: state.question.questionPage,
@@ -59,7 +68,7 @@ const mapStateToProps = state => ({
   idRemovedQuestion: state.document.idRemovedQuestion,
   idAddedQuestion: state.document.idAddedQuestion,
   search: state.filter.searchText,
-
+  labels: state.label.myQuestionLabels,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -83,6 +92,8 @@ const mapDispatchToProps = dispatch => ({
   removeSelectedMyQuestionLabelFilter: idMyQuestionLabel => dispatch(removeSelectedMyQuestionLabelFilter(idMyQuestionLabel)),
 
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
+
+  toggleApplyLabelToQuestion: (idQuestion, idLabel, value) => dispatch(toggleApplyLabelToQuestion(idQuestion, idLabel, value)),
 
   // new way to handle modals
   hideModal: () => dispatch(hideModal()),

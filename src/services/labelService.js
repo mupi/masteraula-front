@@ -84,7 +84,7 @@ function addSelectedLabelToQuestion(idQuestion, idLabel) {
     },
   };
 
-  const question = { id: idQuestion };
+  const question = { question: idQuestion };
 
 
   return axios.post(`${apiUrl}/labels/${idLabel}/add_question/`, question, requestOptions)
@@ -93,7 +93,7 @@ function addSelectedLabelToQuestion(idQuestion, idLabel) {
 
 
 // Remove a label from a Question
-function removeSelectedLabelToQuestion(idQuestion, idLabel) {
+function removeSelectedLabelFromQuestion(idQuestion, idLabel) {
   const requestOptions = {
     method: 'POST',
     headers: {
@@ -103,9 +103,9 @@ function removeSelectedLabelToQuestion(idQuestion, idLabel) {
   };
 
 
-  const question = { id: idQuestion };
+  const question = { question: idQuestion };
 
-  return fetch(`${apiUrl}/labels/${idLabel}/remove_question/`, question, requestOptions)
+  return axios.post(`${apiUrl}/labels/${idLabel}/remove_question/`, question, requestOptions)
     .then(response => response.data).then(() => idQuestion);
 }
 
@@ -115,7 +115,7 @@ const labelService = {
   updateMyQuestionLabel,
   deleteMyQuestionLabel,
   addSelectedLabelToQuestion,
-  removeSelectedLabelToQuestion,
+  removeSelectedLabelFromQuestion,
 };
 
 export default labelService;
