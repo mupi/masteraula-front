@@ -43,6 +43,45 @@
 //Question Page where c-question is the main container
 .c-question {
     // class for question's header options for all pages related to question
+    &__label-item-btn{
+      margin-right: 5px;
+    }
+
+    &__label-item-btn-remove{
+      border:0px;
+      padding: 2px 7px;
+      &:hover{
+        font-weight: bold;
+        text-decoration: none;
+        color: #fff;
+        background: gray !important;
+    }
+
+      &:disabled{
+          text-decoration: none;
+          color: #fff;
+          opacity: 1;
+      }
+    }
+
+    &__label-item-name{
+      color: #fff;
+      padding: 2px 5px;
+      text-decoration: none !important;
+
+      &:hover{
+          font-weight: bold;
+          text-decoration: none;
+          color: #fff;
+          background: gray !important;
+      }
+
+      &:disabled{
+          text-decoration: none;
+          color: #fff;
+          opacity: 1;
+      }
+    }
 
     &__row-header-options {
       background: #838d96 !important;

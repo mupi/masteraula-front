@@ -110,7 +110,7 @@ export const label = (state = initialState, action) => {
         ? { ...item, num_questions: action.addedLabelQuestion.label.num_questions }
         : item));
 
-      toast.success(`Etiqueta adicionada com sucesso à questão ${action.addedLabelQuestion.question.id}`, optionsSuccess);
+      toast.success(`Etiqueta ${action.addedLabelQuestion.label.name} adicionada com sucesso à questão ${action.addedLabelQuestion.question.id}`, optionsSuccess);
       return Object.assign({}, state, {
         isAddingRemovingLabel: false,
         myQuestionLabels: [...newMyQuestionLabels],

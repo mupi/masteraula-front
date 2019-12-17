@@ -1,6 +1,9 @@
 import { labelService } from 'services';
 import { toast } from 'react-toastify';
-import { addSelectedLabelToQuestionCard, removeSelectedLabelToQuestionCard } from 'actions/questionAction';
+import {
+  addSelectedLabelToQuestionCard, removeSelectedLabelFromQuestionCard,
+  addSelectedLabelToActiveQuestion, removeSelectedLabelFromActiveQuestion,
+} from 'actions/questionAction';
 
 
 // Load
@@ -126,7 +129,7 @@ export const deleteMyQuestionLabel = (idLabel) => {
 
 
 // Add Selected Label to Question
-export const addSelectedLabelToQuestion = (idQuestion, idLabel) => {
+export const addSelectedLabelToQuestion = (idQuestion, idLabel, addFromActiveQuestion = false) => {
   function addLabelToQuestion() { return { type: ADD_SELECTED_LABEL_TO_QUESTION, idQuestion, idLabel }; }
   function addLabelToQuestionSuccess(addedLabelQuestion) {
     return {
@@ -143,7 +146,11 @@ export const addSelectedLabelToQuestion = (idQuestion, idLabel) => {
     return labelService.addSelectedLabelToQuestion(idQuestion, idLabel)
       .then(
         (addedLabelQuestion) => {
-          dispatch(addSelectedLabelToQuestionCard(addedLabelQuestion.question.id, addedLabelQuestion.label));
+          if (!addFromActiveQuestion) {
+            dispatch(addSelectedLabelToQuestionCard(addedLabelQuestion.question.id, addedLabelQuestion.label));
+          } else {
+            dispatch(addSelectedLabelToActiveQuestion(addedLabelQuestion.question.idQuestion, addedLabelQuestion.label));
+          }
 
           dispatch(addLabelToQuestionSuccess(addedLabelQuestion));
         },
@@ -156,7 +163,7 @@ export const addSelectedLabelToQuestion = (idQuestion, idLabel) => {
 };
 
 // Remove Selected Label from Question
-export const removeSelectedLabelFromQuestion = (idQuestion, idLabel) => {
+export const removeSelectedLabelFromQuestion = (idQuestion, idLabel, addFromActiveQuestion = false) => {
   function removeLabelFromQuestion() { return { type: REMOVE_SELECTED_LABEL_FROM_QUESTION, idQuestion, idLabel }; }
   function removeLabelFromQuestionSuccess(removedLabelQuestion) {
     return {
@@ -172,7 +179,11 @@ export const removeSelectedLabelFromQuestion = (idQuestion, idLabel) => {
     return labelService.removeSelectedLabelFromQuestion(idQuestion, idLabel)
       .then(
         (removedLabelQuestion) => {
-          dispatch(removeSelectedLabelToQuestionCard(removedLabelQuestion.idQuestion, removedLabelQuestion.idLabel));
+          if (!addFromActiveQuestion) {
+            dispatch(removeSelectedLabelFromQuestionCard(removedLabelQuestion.idQuestion, removedLabelQuestion.idLabel));
+          } else {
+            dispatch(removeSelectedLabelFromActiveQuestion(removedLabelQuestion.idQuestion, removedLabelQuestion.idLabel));
+          }
           dispatch(removeLabelFromQuestionSuccess(removedLabelQuestion));
         },
         (error) => {

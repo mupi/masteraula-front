@@ -15,6 +15,8 @@ import BackUsingHistory from 'components/question/BackUsingHistory';
 import RelatedQuestions from 'components/question/RelatedQuestions';
 import { history } from 'helpers';
 import { Helmet } from 'react-helmet';
+import ListLabels from 'components/label/ListLabels';
+import QuestionLabelItem from 'components/question/QuestionLabelItem';
 
 const QuestionListDocuments = (props) => {
   const { activeQuestion, activeDocument } = props;
@@ -107,7 +109,8 @@ class QuestionPage extends Component {
   render() {
     const {
       userId, activeQuestion, isFetching, rating, error, onRate, activeDocument, addSelectedQuestion,
-      role, setQuestionIdToNewDocument, showModal, hideModal,
+      role, setQuestionIdToNewDocument, showModal, hideModal, labels, toggleApplyLabelToQuestion, isAddingRemovingLabel,
+      addSelectedMyQuestionLabelFilter, removeSelectedLabelFromQuestion,
     } = this.props;
 
     const authorPk = (activeQuestion && activeQuestion.author) ? activeQuestion.author.pk : 'Anônimo';
@@ -193,7 +196,33 @@ class QuestionPage extends Component {
                 </span>
               ))}
             </Col>
+          </Row>
 
+
+          <Row className="c-question__options">
+            <Col className="d-flex  justify-content-end ">
+              <div className="ml-auto">
+                <div className="question-card__labels-section align-items-center">
+                  <div className="question-card__labels-applied">
+                    {activeQuestion.labels && activeQuestion.labels.map(label => (
+                      <QuestionLabelItem
+                        key={label.id}
+                        label={label}
+                        addSelectedMyQuestionLabelFilter={addSelectedMyQuestionLabelFilter}
+                        removeSelectedLabelFromQuestion={removeSelectedLabelFromQuestion}
+                        idQuestion={activeQuestion.id}
+                      />
+                    ))}
+                  </div>
+                  <ListLabels
+                    question={activeQuestion}
+                    labels={labels}
+                    toggleApplyLabelToQuestion={toggleApplyLabelToQuestion}
+                    isAddingRemovingLabel={isAddingRemovingLabel}
+                  />
+                </div>
+              </div>
+            </Col>
           </Row>
           <Row className="c-question__tittle-section">
             <Col>

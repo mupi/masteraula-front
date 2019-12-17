@@ -9,7 +9,8 @@ import {
   ADD_SELECTED_OBJECT_QUESTION, REMOVE_SELECTED_OBJECT_QUESTION,
   RESET_SELECTED_OBJECTLIST_QUESTION,
   SET_OBJECT_TO_NEW_QUESTION,
-  ADD_SELECTED_LABEL_QUESTION, REMOVE_SELECTED_LABEL_QUESTION,
+  ADD_SELECTED_LABEL_QUESTION_CARD, REMOVE_SELECTED_LABEL_QUESTION_CARD,
+  ADD_SELECTED_LABEL_ACTIVE_QUESTION, REMOVE_SELECTED_LABEL_ACTIVE_QUESTION,
 } from 'actions/questionAction';
 import { DELETE_QUESTION, DELETE_QUESTION_SUCCESS, DELETE_QUESTION_FAILURE } from '../actions/questionAction';
 
@@ -179,7 +180,7 @@ export const question = (state = initialState, action) => {
       });
     }
 
-    case ADD_SELECTED_LABEL_QUESTION: {
+    case ADD_SELECTED_LABEL_QUESTION_CARD: {
       const newQuestionPageResults = state.questionPage.results.map(item => (item.id === action.idQuestion
         ? { ...item, labels: [...item.labels, action.label] }
         : item));
@@ -191,7 +192,7 @@ export const question = (state = initialState, action) => {
         },
       });
     }
-    case REMOVE_SELECTED_LABEL_QUESTION: {
+    case REMOVE_SELECTED_LABEL_QUESTION_CARD: {
       const newQuestionPageResults = state.questionPage.results.map(item => (item.id === action.idQuestion
         ? { ...item, labels: [...item.labels.filter(label => label.id !== parseInt(action.idLabel, 10))] }
         : item));
@@ -199,6 +200,23 @@ export const question = (state = initialState, action) => {
         questionPage: {
           ...state.questionPage,
           results: newQuestionPageResults,
+        },
+      });
+    }
+
+    case ADD_SELECTED_LABEL_ACTIVE_QUESTION: {
+      return Object.assign({}, state, {
+        activeQuestion: {
+          ...state.activeQuestion,
+          labels: [...state.activeQuestion.labels, action.label],
+        },
+      });
+    }
+    case REMOVE_SELECTED_LABEL_ACTIVE_QUESTION: {
+      return Object.assign({}, state, {
+        activeQuestion: {
+          ...state.activeQuestion,
+          labels: [...state.activeQuestion.labels.filter(label => label.id !== parseInt(action.idLabel, 10))],
         },
       });
     }
