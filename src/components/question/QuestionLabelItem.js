@@ -29,7 +29,7 @@ class QuestionLabelItem extends Component {
     } = this.state;
 
     const styleLabelButton = {
-      background: label.color,
+      background: label.color || '#d3cfcf',
       color: label.color === '#FFFF33' || label.color === '#9AEE2E' ? '#000' : '#FFF',
     };
 
