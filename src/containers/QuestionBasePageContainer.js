@@ -69,6 +69,7 @@ const mapStateToProps = state => ({
   idAddedQuestion: state.document.idAddedQuestion,
   search: state.filter.searchText,
   labels: state.label.myQuestionLabels,
+  isAddingRemovingLabel: state.label.isAddingRemovingLabel,
 });
 
 const mapDispatchToProps = dispatch => ({

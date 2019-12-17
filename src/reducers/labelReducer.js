@@ -100,7 +100,7 @@ export const label = (state = initialState, action) => {
     }
     case ADD_SELECTED_LABEL_TO_QUESTION:
       return Object.assign({}, state, {
-        isAdding: true,
+        isAddingRemovingLabel: true,
         error: null,
         idLabel: action.idLabel,
         idQuestion: action.idQuestion,
@@ -112,18 +112,18 @@ export const label = (state = initialState, action) => {
 
       toast.success(`Etiqueta adicionada com sucesso à questão ${action.addedLabelQuestion.question.id}`, optionsSuccess);
       return Object.assign({}, state, {
-        isAdding: false,
+        isAddingRemovingLabel: false,
         myQuestionLabels: [...newMyQuestionLabels],
       });
     }
     case ADD_SELECTED_LABEL_TO_QUESTION_FAILURE:
       return Object.assign({}, state, {
-        isAdding: false,
+        isAddingRemovingLabel: false,
         error: action.error,
       });
     case REMOVE_SELECTED_LABEL_FROM_QUESTION:
       return Object.assign({}, state, {
-        isRemovingLabel: true,
+        isAddingRemovingLabel: true,
         idLabel: action.idLabel,
         idQuestion: action.idQuestion,
       });
@@ -133,14 +133,14 @@ export const label = (state = initialState, action) => {
         : item));
       toast.success(`Etiqueta removida com sucesso da questão ${action.idQuestion}`, optionsSuccess);
       return Object.assign({}, state, {
-        isRemovingLabel: false,
+        isAddingRemovingLabel: false,
         myQuestionLabels: [...newMyQuestionLabels],
       });
     }
     case REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE:
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
-        isRemovingLabel: false,
+        isAddingRemovingLabel: false,
         error: action.error,
         idRemovedQuestion: null,
       });

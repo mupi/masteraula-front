@@ -6,7 +6,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ListToggleLabels = ({
-  labels, questionLabels, toggleApplyLabelToQuestion, idQuestion,
+  labels, questionLabels, toggleApplyLabelToQuestion, idQuestion, isAddingRemovingLabel,
 }) => {
   const handleFilter = (event) => {
     const idLabel = event.target.value;
@@ -23,7 +23,14 @@ const ListToggleLabels = ({
           color="light"
           className="label-item__toggle"
         >
-          <Input type="checkbox" value={label.id} onClick={e => handleFilter(e)} checked={isChecked(label.id)} readOnly />
+          <Input
+            type="checkbox"
+            value={label.id}
+            onClick={e => handleFilter(e)}
+            checked={isChecked(label.id)}
+            readOnly
+            disabled={isAddingRemovingLabel}
+          />
           {label.name}
         </ListGroupItem>
       ))}
@@ -32,7 +39,7 @@ const ListToggleLabels = ({
 };
 
 const ListLabels = ({
-  labels, toggleApplyLabelToQuestion, question,
+  labels, toggleApplyLabelToQuestion, question, isAddingRemovingLabel,
 }) => (
   <UncontrolledDropdown>
     <DropdownToggle className="labels__btn-apply-label" title="Etiquetar como ...">
@@ -44,6 +51,7 @@ const ListLabels = ({
         toggleApplyLabelToQuestion={toggleApplyLabelToQuestion}
         questionLabels={question.labels}
         idQuestion={question.id}
+        isAddingRemovingLabel={isAddingRemovingLabel}
       />
     </DropdownMenu>
   </UncontrolledDropdown>
