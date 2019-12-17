@@ -28,14 +28,24 @@ class QuestionLabelItem extends Component {
       isOpen,
     } = this.state;
 
+    const styleLabelButton = {
+      background: label.color,
+      color: label.color === '#FFFF33' || label.color === '#9AEE2E' ? '#000' : '#FFF',
+    };
+
     return (
       <ButtonDropdown isOpen={isOpen} toggle={this.toggle} className="c-question__label-item-btn">
-        <Button color="link" className="c-question__label-item-name" style={{ background: label.color || '#d3cfcf' }} onClick={() => addSelectedMyQuestionLabelFilter(label)}>
+        <Button color="link" className="c-question__label-item-name" style={styleLabelButton} onClick={() => addSelectedMyQuestionLabelFilter(label)}>
           <span>
             {label.name}
           </span>
         </Button>
-        <Button style={{ background: label.color || '#d3cfcf' }} className="c-question__label-item-btn-remove" onClick={() => removeSelectedLabelFromQuestion(idQuestion, label.id)}>
+        <Button
+          style={styleLabelButton}
+          className="c-question__label-item-btn-remove"
+          onClick={() => removeSelectedLabelFromQuestion(idQuestion, label.id)}
+          title={`Remover a etiqueta ${label.name} da questão`}
+        >
           <FontAwesomeIcon
             className="c-question__label-item-icon-remove"
             icon="times"
