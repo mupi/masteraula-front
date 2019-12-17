@@ -21,6 +21,8 @@ import { getTeachingLevel } from 'helpers/question';
 import renderMultiselect from 'components/autocomplete/Multiselect';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
 import MACreateDropdownList from 'components/dropdownlist/MACreateDropdownList';
+import ListLabels from 'components/label/ListLabels';
+import QuestionLabelItem from 'components/question/QuestionLabelItem';
 
 const difficultyList = {
   difficulties: [
@@ -349,6 +351,8 @@ class MyQuestionEditPage extends Component {
       activeQuestion, userId, isFetching, error, pristine, disciplineFilters, sourceFilters,
       teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion, submitting,
       resolution, errorsEditQuestion, sourceQuestionValue, topicSuggestions, listTopicSuggestions,
+      labels, toggleApplyLabelToQuestion, isAddingRemovingLabel,
+      addSelectedMyQuestionLabelFilter, removeSelectedLabelFromQuestion,
     } = this.props;
     const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
 
@@ -426,7 +430,32 @@ class MyQuestionEditPage extends Component {
                 </Button>
               </Col>
             </Row>
-            <Row className="c-question__tittle-section c-question--space-for-titlequestion">
+            <Row className="c-question__options c-question--space-for-titlequestion">
+              <Col className="d-flex  justify-content-end ">
+                <div className="ml-auto">
+                  <div className="question-card__labels-section align-items-center">
+                    <div className="question-card__labels-applied">
+                      {activeQuestion.labels && activeQuestion.labels.map(label => (
+                        <QuestionLabelItem
+                          key={label.id}
+                          label={label}
+                          addSelectedMyQuestionLabelFilter={addSelectedMyQuestionLabelFilter}
+                          removeSelectedLabelFromQuestion={removeSelectedLabelFromQuestion}
+                          idQuestion={activeQuestion.id}
+                        />
+                      ))}
+                    </div>
+                    <ListLabels
+                      question={activeQuestion}
+                      labels={labels}
+                      toggleApplyLabelToQuestion={toggleApplyLabelToQuestion}
+                      isAddingRemovingLabel={isAddingRemovingLabel}
+                    />
+                  </div>
+                </div>
+              </Col>
+            </Row>
+            <Row className="c-question__tittle-section">
               <Col>
                 <h4>
                   <FontAwesomeIcon icon="book" />

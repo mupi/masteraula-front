@@ -34,6 +34,8 @@ const mapStateToProps = (state) => {
     userId: user.id,
     topicSuggestions: state.suggestion.topicSuggestions,
     idRemovedQuestion: state.document.idRemovedQuestion,
+    labels: state.label.myQuestionLabels,
+    isAddingRemovingLabel: state.label.isAddingRemovingLabel,
   });
 };
 
