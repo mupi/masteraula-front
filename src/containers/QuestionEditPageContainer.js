@@ -4,8 +4,20 @@ import QuestionEditPage from 'pages/Question/QuestionEditPage';
 import { fetchQuestion, classifyQuestion } from 'actions/questionAction';
 import { updateLearningObject } from 'actions/learningObjectAction';
 import { listTopicSuggestions } from 'actions/suggestionAction';
-
+import {
+  addSelectedMyQuestionLabelFilter,
+} from 'actions/filterAction';
 import { addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
+import {
+  addSelectedLabelToQuestion,
+  removeSelectedLabelFromQuestion,
+} from 'actions/labelAction';
+import { history } from 'helpers';
+
+// true for dispatch addLabelToQuestionActive / removeLabelFromQuestionActive
+const toggleApplyLabelToQuestion = (idQuestion, idLabel, value) => (value
+  ? addSelectedLabelToQuestion(idQuestion, idLabel, true) : removeSelectedLabelFromQuestion(idQuestion, idLabel, true));
+
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('classify-question');
@@ -25,36 +37,47 @@ const mapStateToProps = (state) => {
   });
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchQuestion: id => dispatch(fetchQuestion(id)),
+const mapDispatchToProps = (dispatch) => {
+  const addMyQuestionLabelFilter = (label) => {
+    history.replace('/question-base/1');
+    return dispatch(addSelectedMyQuestionLabelFilter(label));
+  };
 
-  listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
+  return {
+    fetchQuestion: id => dispatch(fetchQuestion(id)),
 
-  addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
-  removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
-  onSubmit: (values, d, props) => {
-    const newUpdateQuestion = {
-      id: props.activeQuestion.id,
-      tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
-      topics_ids: values.topics.map(topic => topic.id),
-      difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
-    };
+    listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 
-
-    const newLearningObjects = values.learning_objects.map(lobj => ({
-      id: lobj.id,
-      tags: lobj.tags.split(',').map(tag => tag.trim()),
-    }));
+    addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
+    removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
+    onSubmit: (values, d, props) => {
+      const newUpdateQuestion = {
+        id: props.activeQuestion.id,
+        tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
+        topics_ids: values.topics.map(topic => topic.id),
+        difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
+      };
 
 
-    let i;
-    for (i = 0; i < newLearningObjects.length; i += 1) {
-      dispatch(updateLearningObject(newLearningObjects[i], false));
-    }
+      const newLearningObjects = values.learning_objects.map(lobj => ({
+        id: lobj.id,
+        tags: lobj.tags.split(',').map(tag => tag.trim()),
+      }));
 
-    return dispatch(classifyQuestion(newUpdateQuestion));
-  },
-});
+
+      let i;
+      for (i = 0; i < newLearningObjects.length; i += 1) {
+        dispatch(updateLearningObject(newLearningObjects[i], false));
+      }
+
+      return dispatch(classifyQuestion(newUpdateQuestion));
+    },
+
+    toggleApplyLabelToQuestion: (idQuestion, idLabel, value) => dispatch(toggleApplyLabelToQuestion(idQuestion, idLabel, value)),
+    removeSelectedLabelFromQuestion: (idQuestion, idLabel) => dispatch(removeSelectedLabelFromQuestion(idQuestion, idLabel, true)),
+    addSelectedMyQuestionLabelFilter: label => dispatch(addMyQuestionLabelFilter(label)),
+  };
+};
 
 const QuestionEditPageContainer = connect(
   mapStateToProps,

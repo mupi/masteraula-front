@@ -82,7 +82,7 @@ const CreateLabelForm = (props) => {
                 className="form-control"
               >
                 <option value="#fff">Selecione uma cor </option>
-                { labelColors.map(color => <option value={color.code}>{color.name}</option>)}
+                { labelColors.map(color => <option key={color.code} value={color.code}>{color.name}</option>)}
               </Field>
             </FormGroup>
           </Col>
