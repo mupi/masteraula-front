@@ -20,6 +20,7 @@ const RelatedQuestions = (props) => {
         questions={rquestions}
         count={rquestions.length}
         showLink={false}
+        related
         {...props}
       />
     </Container>

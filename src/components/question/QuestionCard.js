@@ -39,7 +39,8 @@ const getQuoteSeparator = (i, length) => {
 const QuestionCard = (props) => {
   const {
     question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, addSelectedSourceFilter, addSelectedYearFilter,
-    removeSelectedQuestion, sourceFilters, yearFilters, toggleApplyLabelToQuestion, labels, isAddingRemovingLabel,
+    removeSelectedQuestion, sourceFilters, yearFilters, toggleApplyLabelToQuestion, labels, isAddingRemovingLabel, toggleApplyLabelToRelatedQuestion,
+    related,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
   const idSource = question.source ? getIdFilter(sourceFilters, question.source) : null;
@@ -72,7 +73,7 @@ const QuestionCard = (props) => {
               <ListLabels
                 question={question}
                 labels={labels}
-                toggleApplyLabelToQuestion={toggleApplyLabelToQuestion}
+                toggleApplyLabelToQuestion={related ? toggleApplyLabelToRelatedQuestion : toggleApplyLabelToQuestion}
                 isAddingRemovingLabel={isAddingRemovingLabel}
               />
             </div>
