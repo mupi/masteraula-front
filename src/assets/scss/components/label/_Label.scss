@@ -10,6 +10,10 @@
         font-weight: bold;
     }
 
+    &__menu{
+        min-width: 13rem;
+    }
+
     &__list-group{
         margin-top: 10px !important;
     }
@@ -20,6 +24,31 @@
 
     &__new-option-item{
         margin-top: 10px;
+    }
+
+    &__btn-apply-label{
+        font-size: 14px;
+        padding: 0px;
+        background: transparent;
+        border: transparent;
+        color: $color-ma-lightgray;
+
+        &:hover, &:focus, &:active, &.active{
+            background: transparent;
+            border: 0px;
+            color: $color-ma-lightgray;
+            box-shadow: none;
+
+        }
+
+        &:not(:disabled):not(.disabled):active, &:not(:disabled):not(.disabled).active, .show > &.dropdown-toggle{
+            background: transparent;
+            border: 0px;
+            color: $color-ma-lightgray;
+            box-shadow: none;
+
+        }
+        
     }
 }
 
@@ -66,5 +95,30 @@
             text-decoration: none;
             color: #fff;
         }
+
+        &:disabled{
+            text-decoration: none;
+            color: #fff;
+            opacity: 1;
+        }
     }
+
+    &__title-toggle{
+        padding: 0px;
+        font-size: 13px;
+        border: 0px;
+        color: $color-ma-blue;
+        font-weight: bold;
+    }
+
+
+    &__toggle{
+        background:transparent;
+        color: $color-ma-blue;
+        border: none;
+        padding: 0px 0px 0px 25px;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
 }

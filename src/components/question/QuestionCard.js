@@ -6,6 +6,8 @@ import {
 import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import imageCard from 'assets/img/home/question-card.jpg';
+import ListLabels from 'components/label/ListLabels';
+
 import { Link } from 'react-router-dom';
 import { isQuestionAdded, getCleanExtractStatement } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -37,7 +39,7 @@ const getQuoteSeparator = (i, length) => {
 const QuestionCard = (props) => {
   const {
     question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, addSelectedSourceFilter, addSelectedYearFilter,
-    removeSelectedQuestion, sourceFilters, yearFilters,
+    removeSelectedQuestion, sourceFilters, yearFilters, toggleApplyLabelToQuestion, labels, isAddingRemovingLabel, relatedFrom,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
   const idSource = question.source ? getIdFilter(sourceFilters, question.source) : null;
@@ -49,9 +51,33 @@ const QuestionCard = (props) => {
       { urlImage !== '' ? <CardImg className="question-card__image" top width="100%" src={imageCard} alt="Card image cap" /> : null }
 
       <CardHeader className="question-card__header">
-        <div className="question-card__id">
-          { !question.source && (<FontAwesomeIcon className="question-card__authorship" icon="graduation-cap" />)}
-          { ` Questão N° ${question.id}`}
+        <div className="d-flex question-card__id align-items-center">
+          <div>
+            { !question.source && (<FontAwesomeIcon className="question-card__authorship" icon="graduation-cap" />)}
+            { ` Questão N° ${question.id}`}
+          </div>
+          <div className="ml-auto">
+            <div className="question-card__labels-section align-items-center">
+              <div className="question-card__labels-applied">
+                {question.labels && question.labels.map(label => (
+                  <FontAwesomeIcon
+                    key={label.id}
+                    className="question-card__label-item"
+                    icon="circle"
+                    style={{ color: label.color || '#d3cfcf' }}
+                    title={label.name}
+                  />
+                ))}
+              </div>
+              <ListLabels
+                question={question}
+                labels={labels}
+                relatedFrom={relatedFrom}
+                toggleApplyLabelToQuestion={toggleApplyLabelToQuestion}
+                isAddingRemovingLabel={isAddingRemovingLabel}
+              />
+            </div>
+          </div>
         </div>
         <div className="question-card__info-section">
           {question.disciplines && question.disciplines.map(discipline => (

@@ -72,6 +72,9 @@ import {
   faTag,
   faPlusCircle,
   faBookmark,
+  faTags,
+  faCircle,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -87,8 +90,10 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faTimesCircle, faEye, faCopy, faQuestionCircle, faCheckDouble,
   faCrown,
   faGraduationCap,
-  faTag,
+  faTag, faTags,
   faPlusCircle, faBookmark,
+  faCircle,
+  faTimes,
   fab);
 
 class App extends Component {

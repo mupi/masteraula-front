@@ -1,5 +1,11 @@
 import { labelService } from 'services';
 import { toast } from 'react-toastify';
+import {
+  addSelectedLabelToQuestionCard, removeSelectedLabelFromQuestionCard,
+  addSelectedLabelToActiveQuestion, removeSelectedLabelFromActiveQuestion,
+  addSelectedLabelToRelatedQuestion, removeSelectedLabelFromRelatedQuestion,
+} from './questionAction';
+import { addSelectedLabelToLearningObject, removeSelectedLabelFromLearningObject } from './learningObjectAction';
 
 // Load
 export const LIST_MY_QUESTION_LABELS = 'LIST_MY_QUESTION_LABELS';
@@ -17,6 +23,23 @@ export const UPDATE_MY_QUESTION_LABEL_FAILURE = 'UPDATE_MY_QUESTION_LABEL_FAILUR
 export const DELETE_MY_QUESTION_LABEL = 'DELETE_MY_QUESTION_LABEL';
 export const DELETE_MY_QUESTION_LABEL_SUCCESS = 'DELETE_MY_QUESTION_LABEL_SUCCESS';
 export const DELETE_MY_QUESTION_LABEL_FAILURE = 'DELETE_MY_QUESTION_LABEL_FAILURE';
+
+// Add selected label to question
+export const ADD_SELECTED_LABEL_TO_QUESTION = 'ADD_SELECTED_LABEL_TO_QUESTION';
+export const ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS = 'ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS';
+export const ADD_SELECTED_LABEL_TO_QUESTION_FAILURE = 'ADD_SELECTED_LABEL_TO_QUESTION_FAILURE';
+
+// Remove selected label from question
+export const REMOVE_SELECTED_LABEL_FROM_QUESTION = 'REMOVE_SELECTED_LABEL_FROM_QUESTION';
+export const REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS = 'REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS';
+export const REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE = 'REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE';
+
+export const RELATED_FROM = {
+  QUESTION: 1,
+  QUESTION_CARD: 2,
+  RELATED_QUESTION: 3,
+  LEARNING_OBJECT: 4,
+};
 
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
@@ -107,6 +130,92 @@ export const deleteMyQuestionLabel = (idLabel) => {
         },
         (error) => {
           dispatch(deleteSelectedMyQuestionLabelFailure(error));
+        },
+      );
+  };
+};
+
+
+// Add Selected Label to Question
+export const addSelectedLabelToQuestion = (idQuestion, idLabel, addedFrom) => {
+  function addLabelToQuestion() { return { type: ADD_SELECTED_LABEL_TO_QUESTION, idQuestion, idLabel }; }
+  function addLabelToQuestionSuccess(addedLabelQuestion) {
+    return {
+      type: ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS,
+      addedLabelQuestion,
+    };
+  }
+  function addLabelToQuestionFailure(error) { return { type: ADD_SELECTED_LABEL_TO_QUESTION_FAILURE, error }; }
+  return (dispatch, getState) => {
+    if (getState().document.isFetchingAddQuestion) {
+      return 1;
+    }
+    dispatch(addLabelToQuestion());
+    return labelService.addSelectedLabelToQuestion(idQuestion, idLabel)
+      .then(
+        (addedLabelQuestion) => {
+          const { label } = addedLabelQuestion;
+          switch (addedFrom) {
+            case RELATED_FROM.QUESTION_CARD:
+              dispatch(addSelectedLabelToQuestionCard(idQuestion, label));
+              break;
+            case RELATED_FROM.RELATED_QUESTION:
+              dispatch(addSelectedLabelToRelatedQuestion(idQuestion, label));
+              break;
+            case RELATED_FROM.LEARNING_OBJECT:
+              dispatch(addSelectedLabelToLearningObject(idQuestion, label));
+              break;
+            default:
+              dispatch(addSelectedLabelToActiveQuestion(idQuestion, label));
+              break;
+          }
+
+          dispatch(addLabelToQuestionSuccess(addedLabelQuestion));
+        },
+        (error) => {
+          dispatch(addLabelToQuestionFailure(error));
+          toast.error(error, optionsError);
+        },
+      );
+  };
+};
+
+// Remove Selected Label from Question
+export const removeSelectedLabelFromQuestion = (idQuestion, idLabel, addedFrom) => {
+  function removeLabelFromQuestion() { return { type: REMOVE_SELECTED_LABEL_FROM_QUESTION, idQuestion, idLabel }; }
+  function removeLabelFromQuestionSuccess(removedLabelQuestion) {
+    return {
+      type: REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS,
+      idLabel: removedLabelQuestion.idLabel,
+      idQuestion: removedLabelQuestion.idQuestion,
+    };
+  }
+  function removeLabelFromQuestionFailure(error) { return { type: REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE, error }; }
+
+  return (dispatch) => {
+    dispatch(removeLabelFromQuestion(idQuestion, idLabel));
+    return labelService.removeSelectedLabelFromQuestion(idQuestion, idLabel)
+      .then(
+        (removedLabelQuestion) => {
+          switch (addedFrom) {
+            case RELATED_FROM.QUESTION_CARD:
+              dispatch(removeSelectedLabelFromQuestionCard(idQuestion, idLabel));
+              break;
+            case RELATED_FROM.RELATED_QUESTION:
+              dispatch(removeSelectedLabelFromRelatedQuestion(idQuestion, idLabel));
+              break;
+            case RELATED_FROM.LEARNING_OBJECT:
+              dispatch(removeSelectedLabelFromLearningObject(idQuestion, idLabel));
+              break;
+            default:
+              dispatch(removeSelectedLabelFromActiveQuestion(idQuestion, idLabel));
+              break;
+          }
+
+          dispatch(removeLabelFromQuestionSuccess(removedLabelQuestion));
+        },
+        (error) => {
+          dispatch(removeLabelFromQuestionFailure(error));
         },
       );
   };

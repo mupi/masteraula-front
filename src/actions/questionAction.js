@@ -51,6 +51,15 @@ export const ADD_SELECTED_OBJECT_QUESTION = 'ADD_SELECTED_OBJECT_QUESTION';
 export const REMOVE_SELECTED_OBJECT_QUESTION = 'REMOVE_SELECTED_OBJECT_QUESTION';
 export const RESET_SELECTED_OBJECTLIST_QUESTION = 'RESET_SELECTED_OBJECTLIST_QUESTION';
 
+export const ADD_SELECTED_LABEL_QUESTION_CARD = 'ADD_SELECTED_LABEL_QUESTION_CARD';
+export const REMOVE_SELECTED_LABEL_QUESTION_CARD = 'REMOVE_SELECTED_LABEL_QUESTION_CARD';
+
+export const ADD_SELECTED_LABEL_ACTIVE_QUESTION = 'ADD_SELECTED_LABEL_ACTIVE_QUESTION';
+export const REMOVE_SELECTED_LABEL_ACTIVE_QUESTION = 'REMOVE_SELECTED_LABEL_ACTIVE_QUESTION';
+
+export const ADD_SELECTED_LABEL_RELATED_QUESTION = 'ADD_SELECTED_LABEL_RELATED_QUESTION';
+export const REMOVE_SELECTED_LABEL_RELATED_QUESTION = 'REMOVE_SELECTED_LABEL_RELATED_QUESTION';
+
 // Set object that will added in new Question - Create question based on selected object
 export const SET_OBJECT_TO_NEW_QUESTION = 'SET_OBJECT_TO_NEW_QUESTION';
 
@@ -315,4 +324,35 @@ export const resetSelectedObjects = () => ({
 export const setObjectIdToNewQuestion = objectId => ({
   type: SET_OBJECT_TO_NEW_QUESTION,
   objectIdAddedToQuestion: objectId,
+});
+
+// Add Selected Label to Question
+export const addSelectedLabelToQuestionCard = (idQuestion, label) => ({
+  type: ADD_SELECTED_LABEL_QUESTION_CARD, idQuestion, label,
+});
+
+// Remove Selected Label to Question
+export const removeSelectedLabelFromQuestionCard = (idQuestion, idLabel) => ({
+  type: REMOVE_SELECTED_LABEL_QUESTION_CARD, idQuestion, idLabel,
+});
+
+
+// Add Selected Label to Question
+export const addSelectedLabelToActiveQuestion = (idQuestion, label) => ({
+  type: ADD_SELECTED_LABEL_ACTIVE_QUESTION, idQuestion, label,
+});
+
+// Remove Selected Label to Question
+export const removeSelectedLabelFromActiveQuestion = (idQuestion, idLabel) => ({
+  type: REMOVE_SELECTED_LABEL_ACTIVE_QUESTION, idQuestion, idLabel,
+});
+
+// Add Selected Label to Question
+export const addSelectedLabelToRelatedQuestion = (idQuestion, label) => ({
+  type: ADD_SELECTED_LABEL_RELATED_QUESTION, idQuestion, label,
+});
+
+// Remove Selected Label to Question
+export const removeSelectedLabelFromRelatedQuestion = (idQuestion, idLabel) => ({
+  type: REMOVE_SELECTED_LABEL_RELATED_QUESTION, idQuestion, idLabel,
 });

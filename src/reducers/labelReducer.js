@@ -14,6 +14,14 @@ import {
   DELETE_MY_QUESTION_LABEL_SUCCESS,
   DELETE_MY_QUESTION_LABEL_FAILURE,
 
+  ADD_SELECTED_LABEL_TO_QUESTION,
+  ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS,
+  ADD_SELECTED_LABEL_TO_QUESTION_FAILURE,
+
+  REMOVE_SELECTED_LABEL_FROM_QUESTION,
+  REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS,
+  REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE,
+
 } from 'actions/labelAction';
 import { toast } from 'react-toastify';
 
@@ -90,6 +98,52 @@ export const label = (state = initialState, action) => {
         isDeleted: false,
       });
     }
+    case ADD_SELECTED_LABEL_TO_QUESTION:
+      return Object.assign({}, state, {
+        isAddingRemovingLabel: true,
+        error: null,
+        idLabel: action.idLabel,
+        idQuestion: action.idQuestion,
+      });
+    case ADD_SELECTED_LABEL_TO_QUESTION_SUCCESS: {
+      const newMyQuestionLabels = state.myQuestionLabels.map(item => (item.id === action.addedLabelQuestion.label.id
+        ? { ...item, num_questions: action.addedLabelQuestion.label.num_questions }
+        : item));
+
+      toast.success(`Etiqueta ${action.addedLabelQuestion.label.name} adicionada com sucesso à questão ${action.addedLabelQuestion.question.id}`, optionsSuccess);
+      return Object.assign({}, state, {
+        isAddingRemovingLabel: false,
+        myQuestionLabels: [...newMyQuestionLabels],
+      });
+    }
+    case ADD_SELECTED_LABEL_TO_QUESTION_FAILURE:
+      return Object.assign({}, state, {
+        isAddingRemovingLabel: false,
+        error: action.error,
+      });
+    case REMOVE_SELECTED_LABEL_FROM_QUESTION:
+      return Object.assign({}, state, {
+        isAddingRemovingLabel: true,
+        idLabel: action.idLabel,
+        idQuestion: action.idQuestion,
+      });
+    case REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS: {
+      const newMyQuestionLabels = state.myQuestionLabels.map(item => (item.id === parseInt(action.idLabel, 10)
+        ? { ...item, num_questions: item.num_questions - 1 }
+        : item));
+      toast.success(`Etiqueta removida com sucesso da questão ${action.idQuestion}`, optionsSuccess);
+      return Object.assign({}, state, {
+        isAddingRemovingLabel: false,
+        myQuestionLabels: [...newMyQuestionLabels],
+      });
+    }
+    case REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        isAddingRemovingLabel: false,
+        error: action.error,
+        idRemovedQuestion: null,
+      });
     case LIST_MY_QUESTION_LABELS:
       return Object.assign({}, state, {
         myQuestionLabels: action.myQuestionLabels,

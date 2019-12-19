@@ -9,16 +9,16 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 
 const labelColors = [
-  { name: 'Amarelo', code: '#FFFF33' },
-  { name: 'Roxo', code: '#A849F7' },
-  { name: 'Vermelho', code: '#F9442E' },
-  { name: 'Cinza', code: '#BABEBF' },
-  { name: 'Preto', code: '#050505' },
-  { name: 'Rosa', code: '#FC1979' },
-  { name: 'Laranja', code: '#FC7320' },
-  { name: 'Verde Claro', code: '#9AEE2E' },
-  { name: 'Verde Escuro', code: '#569505' },
-  { name: 'Azul', code: '#82C2FB' },
+  { name: 'Amarelo', code: '#FFFF33', colorFont: '#000' },
+  { name: 'Roxo', code: '#A849F7', colorFont: '#FFF' },
+  { name: 'Vermelho', code: '#F9442E', colorFont: '#FFF' },
+  { name: 'Cinza', code: '#BABEBF', colorFont: '#FFF' },
+  { name: 'Preto', code: '#050505', colorFont: '#FFF' },
+  { name: 'Rosa', code: '#FC1979', colorFont: '#FFF' },
+  { name: 'Laranja', code: '#FC7320', colorFont: '#FFF' },
+  { name: 'Verde Claro', code: '#9AEE2E', colorFont: '#000' },
+  { name: 'Verde Escuro', code: '#569505', colorFont: '#FFF' },
+  { name: 'Azul', code: '#82C2FB', colorFont: '#FFF' },
 ];
 
 const renderField = ({
@@ -82,7 +82,7 @@ const CreateLabelForm = (props) => {
                 className="form-control"
               >
                 <option value="#fff">Selecione uma cor </option>
-                { labelColors.map(color => <option value={color.code}>{color.name}</option>)}
+                { labelColors.map(color => <option key={color.code} value={color.code}>{color.name}</option>)}
               </Field>
             </FormGroup>
           </Col>

@@ -27,6 +27,10 @@ export const LIST_LEARNING_OBJECT_MODAL_SUCCESS = 'LIST_LEARNING_OBJECT_MODAL_SU
 export const LIST_LEARNING_OBJECT_MODAL_FAILURE = 'LIST_LEARNING_OBJECT_MODAL_FAILURE';
 export const SET_CURRENT_PAGE_MODAL = 'SET_CURRENT_PAGE_MODAL';
 
+export const ADD_SELECTED_LABEL_LEARNING_OBJECT = 'ADD_SELECTED_LABEL_LEARNING_OBJECT';
+export const REMOVE_SELECTED_LABEL_LEARNING_OBJECT = 'REMOVE_SELECTED_LABEL_LEARNING_OBJECT';
+
+
 // Fetch a learning object
 export const fetchLearningObject = (id) => {
   function requestLearningObject() { return { type: FETCH_LEARNING_OBJECT }; }
@@ -113,4 +117,14 @@ export const listLearningObjectModal = (currentPageModal, filterObject) => {
 // Set page for search objects in modal
 export const setCurrentPageModal = currentPageModal => ({
   type: SET_CURRENT_PAGE_MODAL, currentPageModal,
+});
+
+// Add Selected Label to Question
+export const addSelectedLabelToLearningObject = (idQuestion, label) => ({
+  type: ADD_SELECTED_LABEL_LEARNING_OBJECT, idQuestion, label,
+});
+
+// Remove Selected Label to Question
+export const removeSelectedLabelFromLearningObject = (idQuestion, idLabel) => ({
+  type: REMOVE_SELECTED_LABEL_LEARNING_OBJECT, idQuestion, idLabel,
 });
