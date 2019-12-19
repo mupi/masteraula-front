@@ -52,7 +52,7 @@ const DocumentQuestionItem = (props) => {
             </p>
             {(question.tags || question.all_topics) && (question.tags.length > 0 || question.all_topics.length > 0) ? (
               <p className="c-document__question-info-row-topics">
-                {question.tags.concat(question.all_topics).map(tag => <Badge key={tag.name} color="success" pill>{tag.name.trim()}</Badge>)}
+                {question.tags.concat(question.all_topics).map(tag => <Badge key={`${question.id}-${tag.name}`} color="success" pill>{tag.name.trim()}</Badge>)}
               </p>
             ) : ''}
           </Col>
