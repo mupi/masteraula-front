@@ -14,6 +14,8 @@ import {
   resetTopicListSelected,
 } from 'actions/filterAction';
 
+import { addSelectedLabelToQuestion, removeSelectedLabelFromQuestion, RELATED_FROM } from 'actions/labelAction';
+
 const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
   history.replace('/question-base/1');
   return value
@@ -43,6 +45,10 @@ const toggleSelectedYearFilter = (idYear, value, nameYear = 'default') => {
     ? addSelectedYearFilter(idYear, nameYear) : removeSelectedYearFilter(idYear);
 };
 
+const toggleApplyLabelToQuestion = (idQuestion, idLabel, value) => (value
+  ? addSelectedLabelToQuestion(idQuestion, idLabel, RELATED_FROM.LEARNING_OBJECT)
+  : removeSelectedLabelFromQuestion(idQuestion, idLabel, RELATED_FROM.LEARNING_OBJECT));
+
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
   isFetchingLearningObject: state.learningObject.isFetchingLearningObject,
@@ -54,6 +60,8 @@ const mapStateToProps = state => ({
   idRemovedQuestion: state.document.idRemovedQuestion,
   idAddedQuestion: state.document.idAddedQuestion,
   filter: state.filter,
+  labels: state.label.myQuestionLabels,
+  isAddingRemovingLabel: state.label.isAddingRemovingLabel,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -80,6 +88,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(showModal({ modalProps, modalType }));
   },
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
+
+  toggleApplyLabelToQuestion: (idQuestion, idLabel, value) => dispatch(toggleApplyLabelToQuestion(idQuestion, idLabel, value)),
 
   setQuestionIdToNewDocument: idQuestion => dispatch(setQuestionIdToNewDocument(idQuestion)),
 
