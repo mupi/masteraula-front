@@ -56,7 +56,7 @@ const QuestionCard = (props) => {
             { !question.source && (<FontAwesomeIcon className="question-card__authorship" icon="graduation-cap" />)}
             { ` Questão N° ${question.id}`}
           </div>
-          <div className="ml-auto">
+          <div className="ml-auto question-card__labels-position">
             <div className="question-card__labels-section align-items-center">
               <div className="question-card__labels-applied">
                 {question.labels && question.labels.map(label => (
