@@ -14,10 +14,7 @@ import {
   removeSelectedMyQuestionLabelFilter,
 } from 'actions/filterAction';
 
-import {
-  addSelectedLabelToQuestion,
-  removeSelectedLabelFromQuestion,
-} from 'actions/labelAction';
+import { addSelectedLabelToQuestion, removeSelectedLabelFromQuestion, RELATED_FROM } from 'actions/labelAction';
 
 import { history } from 'helpers';
 
@@ -51,7 +48,8 @@ const toggleSelectedYearFilter = (idYear, value, nameYear = 'default') => {
 };
 
 const toggleApplyLabelToQuestion = (idQuestion, idLabel, value) => (value
-  ? addSelectedLabelToQuestion(idQuestion, idLabel, 2) : removeSelectedLabelFromQuestion(idQuestion, idLabel, 2));
+  ? addSelectedLabelToQuestion(idQuestion, idLabel, RELATED_FROM.QUESTION_CARD)
+  : removeSelectedLabelFromQuestion(idQuestion, idLabel, RELATED_FROM.QUESTION_CARD));
 
 const mapStateToProps = state => ({
   isFetching: state.question.isFetching,

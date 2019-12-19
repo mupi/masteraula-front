@@ -11,11 +11,9 @@ import {
   resetTopicListSelected,
   addSelectedMyQuestionLabelFilter,
 } from 'actions/filterAction';
-import {
-  addSelectedLabelToQuestion,
-  removeSelectedLabelFromQuestion,
-} from 'actions/labelAction';
+import { addSelectedLabelToQuestion, removeSelectedLabelFromQuestion } from 'actions/labelAction';
 import { history } from 'helpers';
+import { RELATED_FROM } from '../actions/labelAction';
 
 const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
   history.replace('/question-base/1');
@@ -42,11 +40,8 @@ const toggleSelectedYearFilter = (idYear, value, nameYear = 'default') => {
 };
 
 // true for dispatch addLabelToQuestionActive / removeLabelFromQuestionActive
-const toggleApplyLabelToQuestion = (idQuestion, idLabel, value) => (value
-  ? addSelectedLabelToQuestion(idQuestion, idLabel, 1) : removeSelectedLabelFromQuestion(idQuestion, idLabel, 1));
-
-const toggleApplyLabelToRelatedQuestion = (idQuestion, idLabel, value) => (value
-  ? addSelectedLabelToQuestion(idQuestion, idLabel, 3) : removeSelectedLabelFromQuestion(idQuestion, idLabel, 3));
+const toggleApplyLabelToQuestion = (idQuestion, idLabel, value, relatedFrom) => (value
+  ? addSelectedLabelToQuestion(idQuestion, idLabel, relatedFrom) : removeSelectedLabelFromQuestion(idQuestion, idLabel, relatedFrom));
 
 const mapStateToProps = state => ({
   isFetching: state.question.isFetching,
@@ -91,8 +86,9 @@ const mapDispatchToProps = (dispatch) => {
 
     removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
 
-    toggleApplyLabelToQuestion: (idQuestion, idLabel, value) => dispatch(toggleApplyLabelToQuestion(idQuestion, idLabel, value)),
-    toggleApplyLabelToRelatedQuestion: (idQuestion, idLabel, value) => dispatch(toggleApplyLabelToRelatedQuestion(idQuestion, idLabel, value)),
+    toggleApplyLabelToQuestion: (idQuestion, idLabel, value, relatedFrom = RELATED_FROM.QUESTION) => dispatch(
+      toggleApplyLabelToQuestion(idQuestion, idLabel, value, relatedFrom),
+    ),
     removeSelectedLabelFromQuestion: (idQuestion, idLabel) => dispatch(removeSelectedLabelFromQuestion(idQuestion, idLabel, true)),
     addSelectedMyQuestionLabelFilter: label => dispatch(addMyQuestionLabelFilter(label)),
 

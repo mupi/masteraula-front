@@ -12,16 +12,13 @@ import {
 import { listTopics, resetTopicList } from 'actions/topicAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import { listTopicSuggestions } from 'actions/suggestionAction';
-import {
-  addSelectedLabelToQuestion,
-  removeSelectedLabelFromQuestion,
-} from 'actions/labelAction';
+import { addSelectedLabelToQuestion, removeSelectedLabelFromQuestion, RELATED_FROM } from 'actions/labelAction';
 import { history } from 'helpers';
 
 // true for dispatch addLabelToQuestionActive / removeLabelFromQuestionActive
 const toggleApplyLabelToQuestion = (idQuestion, idLabel, value) => (value
-  ? addSelectedLabelToQuestion(idQuestion, idLabel, 1) : removeSelectedLabelFromQuestion(idQuestion, idLabel, 1));
-
+  ? addSelectedLabelToQuestion(idQuestion, idLabel, RELATED_FROM.QUESTION)
+  : removeSelectedLabelFromQuestion(idQuestion, idLabel, RELATED_FROM.QUESTION));
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('edit-question');

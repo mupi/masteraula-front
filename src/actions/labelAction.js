@@ -33,6 +33,13 @@ export const REMOVE_SELECTED_LABEL_FROM_QUESTION = 'REMOVE_SELECTED_LABEL_FROM_Q
 export const REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS = 'REMOVE_SELECTED_LABEL_FROM_QUESTION_SUCCESS';
 export const REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE = 'REMOVE_SELECTED_LABEL_FROM_QUESTION_FAILURE';
 
+export const RELATED_FROM = {
+  QUESTION: 1,
+  QUESTION_CARD: 2,
+  RELATED_QUESTION: 3,
+  LEARNING_OBJECT: 3,
+};
+
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
   type: 'success',
@@ -148,10 +155,10 @@ export const addSelectedLabelToQuestion = (idQuestion, idLabel, addedFrom) => {
         (addedLabelQuestion) => {
           const { label } = addedLabelQuestion;
           switch (addedFrom) {
-            case 2:
+            case RELATED_FROM.QUESTION_CARD:
               dispatch(addSelectedLabelToQuestionCard(idQuestion, label));
               break;
-            case 3:
+            case RELATED_FROM.RELATED_QUESTION:
               dispatch(addSelectedLabelToRelatedQuestion(idQuestion, label));
               break;
             default:
@@ -187,10 +194,10 @@ export const removeSelectedLabelFromQuestion = (idQuestion, idLabel, addedFrom) 
       .then(
         (removedLabelQuestion) => {
           switch (addedFrom) {
-            case 2:
+            case RELATED_FROM.QUESTION_CARD:
               dispatch(removeSelectedLabelFromQuestionCard(idQuestion, idLabel));
               break;
-            case 3:
+            case RELATED_FROM.RELATED_QUESTION:
               dispatch(removeSelectedLabelFromRelatedQuestion(idQuestion, idLabel));
               break;
             default:

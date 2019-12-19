@@ -6,14 +6,14 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ListToggleLabels = ({
-  labels, questionLabels, toggleApplyLabelToQuestion, idQuestion, isAddingRemovingLabel,
+  labels, question, toggleApplyLabelToQuestion, isAddingRemovingLabel, relatedFrom,
 }) => {
   const handleFilter = (event) => {
     const idLabel = event.target.value;
-    toggleApplyLabelToQuestion(idQuestion, idLabel, event.target.checked);
+    toggleApplyLabelToQuestion(question.id, idLabel, event.target.checked, relatedFrom);
   };
+  const isChecked = labelId => (question.labels && question.labels.filter(label => label.id === labelId).length > 0);
 
-  const isChecked = labelId => (questionLabels && questionLabels.filter(label => label.id === labelId).length > 0);
   return (
     <ListGroup className="c-filters__question-group-filters">
       <ListGroupItem className="label-item__title-toggle"> Etiquetas</ListGroupItem>
@@ -38,21 +38,13 @@ const ListToggleLabels = ({
   );
 };
 
-const ListLabels = ({
-  labels, toggleApplyLabelToQuestion, question, isAddingRemovingLabel,
-}) => (
+const ListLabels = props => (
   <UncontrolledDropdown>
     <DropdownToggle className="labels__btn-apply-label" title="Etiquetar como ...">
       <FontAwesomeIcon icon="tags" />
     </DropdownToggle>
     <DropdownMenu className="labels__menu">
-      <ListToggleLabels
-        labels={labels}
-        toggleApplyLabelToQuestion={toggleApplyLabelToQuestion}
-        questionLabels={question.labels}
-        idQuestion={question.id}
-        isAddingRemovingLabel={isAddingRemovingLabel}
-      />
+      <ListToggleLabels {...props} />
     </DropdownMenu>
   </UncontrolledDropdown>
 );
