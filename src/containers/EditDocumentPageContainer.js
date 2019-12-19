@@ -16,12 +16,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  submit: props => dispatch(updateDocument(props)),
+  submit: props => dispatch(updateDocument(props)).then(() => {
+    dispatch(listMyLastDocuments(1, 'date', 'desc'));
+  }),
   resetNewDocument: () => dispatch(resetNewDocument()),
   fetchDocument: props => dispatch(fetchDocument(props)),
   removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
   listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
-
 });
 
 const EditDocumentPageContainer = connect(
