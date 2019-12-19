@@ -9,21 +9,14 @@ import {
 const mapStateToProps = state => ({
   activeDocument: state.document.activeDocument,
   previewDocument: state.document.previewDocument,
-  isFetchingPreviewDocument: state.document.isFetchingPreviewDocument,
   isFetchingMyLastDocuments: state.document.isFetchingMyLastDocuments,
   myLastDocumentsList: state.document.myLastDocumentsList,
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  const documentModalProps = document => ({
+const mapDispatchToProps = (dispatch) => {
+  const documentModalProps = () => ({
     modalProps: {
       open: true,
-      document,
-      editDocument: () => {
-        dispatch(switchActiveDocument(document, true));
-        dispatch(hideModal());
-      },
-      closeModal: () => dispatch(hideModal()),
     },
     modalType: 'document',
   });
@@ -37,7 +30,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     hideModal: () => dispatch(hideModal()),
     showDocumentModal: (id) => {
       dispatch(fetchPreviewDocument(parseInt(id, 10)));
-      dispatch(showModal(documentModalProps(ownProps.previewDocument)));
+      dispatch((_dispatch, getState) => {
+        _dispatch(showModal(documentModalProps(getState().document.previewDocument)));
+      });
     },
   });
 };
