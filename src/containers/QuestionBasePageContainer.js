@@ -51,7 +51,7 @@ const toggleSelectedYearFilter = (idYear, value, nameYear = 'default') => {
 };
 
 const toggleApplyLabelToQuestion = (idQuestion, idLabel, value) => (value
-  ? addSelectedLabelToQuestion(idQuestion, idLabel) : removeSelectedLabelFromQuestion(idQuestion, idLabel));
+  ? addSelectedLabelToQuestion(idQuestion, idLabel, 2) : removeSelectedLabelFromQuestion(idQuestion, idLabel, 2));
 
 const mapStateToProps = state => ({
   isFetching: state.question.isFetching,

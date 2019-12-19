@@ -20,7 +20,7 @@ import { history } from 'helpers';
 
 // true for dispatch addLabelToQuestionActive / removeLabelFromQuestionActive
 const toggleApplyLabelToQuestion = (idQuestion, idLabel, value) => (value
-  ? addSelectedLabelToQuestion(idQuestion, idLabel, true) : removeSelectedLabelFromQuestion(idQuestion, idLabel, true));
+  ? addSelectedLabelToQuestion(idQuestion, idLabel, 1) : removeSelectedLabelFromQuestion(idQuestion, idLabel, 1));
 
 
 const mapStateToProps = (state) => {
