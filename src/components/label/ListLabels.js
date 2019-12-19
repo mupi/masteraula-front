@@ -26,10 +26,10 @@ const ListToggleLabels = ({
           <Input
             type="checkbox"
             value={label.id}
-            onClick={e => handleFilter(e)}
+            onClick={handleFilter}
             checked={isChecked(label.id)}
-            readOnly
             disabled={isAddingRemovingLabel}
+            readOnly
           />
           {label.name}
         </ListGroupItem>
