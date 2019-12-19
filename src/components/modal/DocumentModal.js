@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import DocumentQuestionItem from 'components/document/DocumentQuestionItem';
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { hideModal } from 'actions/modalAction';
+import {
+  switchActiveDocument,
+} from 'actions/documentAction';
 
 import {
   Row, Button, Alert,
@@ -107,6 +111,14 @@ const mapStateToProps = state => ({
   isFetchingPreviewDocument: state.document.isFetchingPreviewDocument,
 });
 
+const mapDispatchToProps = dispatch => ({
+  editDocument: () => dispatch((_dispatch, getState) => {
+    _dispatch(switchActiveDocument(getState().document.previewDocument, true));
+    _dispatch(hideModal());
+  }),
+  closeModal: () => dispatch(hideModal()),
+});
+
 DocumentModal.propTypes = {
   closeModal: PropTypes.func,
 };
@@ -115,4 +127,4 @@ DocumentModal.defaultProps = {
   closeModal: f => f,
 };
 
-export default connect(mapStateToProps, null)(DocumentModal);
+export default connect(mapStateToProps, mapDispatchToProps)(DocumentModal);

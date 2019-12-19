@@ -29,14 +29,6 @@ class EditDocumentPage extends Component {
     }
   }
 
-  componentDidUpdate() {
-    const {
-      listMyLastDocuments,
-    } = this.props;
-
-    listMyLastDocuments(1, 'date', 'desc');
-  }
-
   render() {
     const {
       activeDocument, removeSelectedQuestion, submit,
