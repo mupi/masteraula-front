@@ -4,7 +4,8 @@ import {
   addSelectedLabelToQuestionCard, removeSelectedLabelFromQuestionCard,
   addSelectedLabelToActiveQuestion, removeSelectedLabelFromActiveQuestion,
   addSelectedLabelToRelatedQuestion, removeSelectedLabelFromRelatedQuestion,
-} from 'actions/questionAction';
+} from './questionAction';
+import { addSelectedLabelToLearningObject, removeSelectedLabelFromLearningObject } from './learningObjectAction';
 
 // Load
 export const LIST_MY_QUESTION_LABELS = 'LIST_MY_QUESTION_LABELS';
@@ -37,7 +38,7 @@ export const RELATED_FROM = {
   QUESTION: 1,
   QUESTION_CARD: 2,
   RELATED_QUESTION: 3,
-  LEARNING_OBJECT: 3,
+  LEARNING_OBJECT: 4,
 };
 
 const optionsSuccess = {
@@ -161,6 +162,9 @@ export const addSelectedLabelToQuestion = (idQuestion, idLabel, addedFrom) => {
             case RELATED_FROM.RELATED_QUESTION:
               dispatch(addSelectedLabelToRelatedQuestion(idQuestion, label));
               break;
+            case RELATED_FROM.LEARNING_OBJECT:
+              dispatch(addSelectedLabelToLearningObject(idQuestion, label));
+              break;
             default:
               dispatch(addSelectedLabelToActiveQuestion(idQuestion, label));
               break;
@@ -199,6 +203,9 @@ export const removeSelectedLabelFromQuestion = (idQuestion, idLabel, addedFrom) 
               break;
             case RELATED_FROM.RELATED_QUESTION:
               dispatch(removeSelectedLabelFromRelatedQuestion(idQuestion, idLabel));
+              break;
+            case RELATED_FROM.LEARNING_OBJECT:
+              dispatch(removeSelectedLabelFromLearningObject(idQuestion, idLabel));
               break;
             default:
               dispatch(removeSelectedLabelFromActiveQuestion(idQuestion, idLabel));

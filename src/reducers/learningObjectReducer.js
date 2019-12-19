@@ -4,7 +4,7 @@ import {
   UPDATE_LEARNING_OBJECT, UPDATE_LEARNING_OBJECT_SUCCESS, UPDATE_LEARNING_OBJECT_FAILURE,
   UPDATE_ALL_LEARNING_OBJECTS, UPDATE_ALL_LEARNING_OBJECTS_SUCCESS, UPDATE_ALL_LEARNING_OBJECTS_FAILURE,
   LIST_LEARNING_OBJECT_MODAL, LIST_LEARNING_OBJECT_MODAL_SUCCESS, LIST_LEARNING_OBJECT_MODAL_FAILURE,
-  SET_CURRENT_PAGE_MODAL,
+  SET_CURRENT_PAGE_MODAL, ADD_SELECTED_LABEL_LEARNING_OBJECT, REMOVE_SELECTED_LABEL_LEARNING_OBJECT,
 } from 'actions/learningObjectAction';
 import { toast } from 'react-toastify';
 
@@ -96,6 +96,40 @@ export const learningObject = (state = initialState, action) => {
       return Object.assign({}, state, {
         currentPageModal: action.currentPageModal,
       });
+    case ADD_SELECTED_LABEL_LEARNING_OBJECT: {
+      const questions = state.activeLearningObject.questions.map((q) => {
+        if (q.id === action.idQuestion) {
+          return Object.assign({}, q, {
+            labels: [...q.labels, action.label],
+          });
+        }
+        return q;
+      });
+
+      return Object.assign({}, state, {
+        activeLearningObject: {
+          ...state.activeLearningObject,
+          questions,
+        },
+      });
+    }
+    case REMOVE_SELECTED_LABEL_LEARNING_OBJECT: {
+      const questions = state.activeLearningObject.questions.map((q) => {
+        if (q.id === action.idQuestion) {
+          return Object.assign({}, q, {
+            labels: [...q.labels.filter(label => label.id !== parseInt(action.idLabel, 10))],
+          });
+        }
+        return q;
+      });
+
+      return Object.assign({}, state, {
+        activeLearningObject: {
+          ...state.activeLearningObject,
+          questions,
+        },
+      });
+    }
     default:
       return state;
   }
