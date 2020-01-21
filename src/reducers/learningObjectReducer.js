@@ -4,7 +4,10 @@ import {
   UPDATE_LEARNING_OBJECT, UPDATE_LEARNING_OBJECT_SUCCESS, UPDATE_LEARNING_OBJECT_FAILURE,
   UPDATE_ALL_LEARNING_OBJECTS, UPDATE_ALL_LEARNING_OBJECTS_SUCCESS, UPDATE_ALL_LEARNING_OBJECTS_FAILURE,
   LIST_LEARNING_OBJECT_MODAL, LIST_LEARNING_OBJECT_MODAL_SUCCESS, LIST_LEARNING_OBJECT_MODAL_FAILURE,
-  SET_CURRENT_PAGE_MODAL, ADD_SELECTED_LABEL_LEARNING_OBJECT, REMOVE_SELECTED_LABEL_LEARNING_OBJECT,
+  SET_CURRENT_PAGE_MODAL,
+  ADD_SELECTED_LABEL_LEARNING_OBJECT,
+  REMOVE_SELECTED_LABEL_LEARNING_OBJECT,
+  REMOVE_SELECTED_LABEL_LEARNING_OBJECT_AFTER_DELETING_LABEL,
 } from 'actions/learningObjectAction';
 import { toast } from 'react-toastify';
 
@@ -129,6 +132,21 @@ export const learningObject = (state = initialState, action) => {
           questions,
         },
       });
+    }
+    case REMOVE_SELECTED_LABEL_LEARNING_OBJECT_AFTER_DELETING_LABEL: {
+      if (state.activeLearningObject && state.activeLearningObject.questions) {
+        const questions = state.activeLearningObject.questions.map(q => Object.assign({}, q, {
+          labels: [...q.labels.filter(label => label.id !== parseInt(action.idLabel, 10))],
+        }));
+
+        return Object.assign({}, state, {
+          activeLearningObject: {
+            ...state.activeLearningObject,
+            questions,
+          },
+        });
+      }
+      return state;
     }
     default:
       return state;

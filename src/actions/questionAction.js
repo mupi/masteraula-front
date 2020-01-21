@@ -53,12 +53,14 @@ export const RESET_SELECTED_OBJECTLIST_QUESTION = 'RESET_SELECTED_OBJECTLIST_QUE
 
 export const ADD_SELECTED_LABEL_QUESTION_CARD = 'ADD_SELECTED_LABEL_QUESTION_CARD';
 export const REMOVE_SELECTED_LABEL_QUESTION_CARD = 'REMOVE_SELECTED_LABEL_QUESTION_CARD';
+export const REMOVE_SELECTED_LABEL_QUESTION_CARD_AFTER_DELETING_LABEL = 'REMOVE_SELECTED_LABEL_QUESTION_CARD_AFTER_DELETING_LABEL';
 
 export const ADD_SELECTED_LABEL_ACTIVE_QUESTION = 'ADD_SELECTED_LABEL_ACTIVE_QUESTION';
 export const REMOVE_SELECTED_LABEL_ACTIVE_QUESTION = 'REMOVE_SELECTED_LABEL_ACTIVE_QUESTION';
 
 export const ADD_SELECTED_LABEL_RELATED_QUESTION = 'ADD_SELECTED_LABEL_RELATED_QUESTION';
 export const REMOVE_SELECTED_LABEL_RELATED_QUESTION = 'REMOVE_SELECTED_LABEL_RELATED_QUESTION';
+export const REMOVE_SELECTED_LABEL_RELATED_QUESTION_AFTER_DELETING_LABEL = 'REMOVE_SELECTED_LABEL_RELATED_QUESTION_AFTER_DELETING_LABEL';
 
 // Set object that will added in new Question - Create question based on selected object
 export const SET_OBJECT_TO_NEW_QUESTION = 'SET_OBJECT_TO_NEW_QUESTION';
@@ -336,6 +338,10 @@ export const removeSelectedLabelFromQuestionCard = (idQuestion, idLabel) => ({
   type: REMOVE_SELECTED_LABEL_QUESTION_CARD, idQuestion, idLabel,
 });
 
+// Remove Label to questions that have label deleted
+export const removeSelectedLabelFromQuestionCardAfterDeletingLabel = idLabel => ({
+  type: REMOVE_SELECTED_LABEL_QUESTION_CARD_AFTER_DELETING_LABEL, idLabel,
+});
 
 // Add Selected Label to Question
 export const addSelectedLabelToActiveQuestion = (idQuestion, label) => ({
@@ -355,4 +361,9 @@ export const addSelectedLabelToRelatedQuestion = (idQuestion, label) => ({
 // Remove Selected Label to Question
 export const removeSelectedLabelFromRelatedQuestion = (idQuestion, idLabel) => ({
   type: REMOVE_SELECTED_LABEL_RELATED_QUESTION, idQuestion, idLabel,
+});
+
+// Remove Label to related questions that have label deleted
+export const removeSelectedLabelFromRelatedQuestionAfterDeletingLabel = idLabel => ({
+  type: REMOVE_SELECTED_LABEL_RELATED_QUESTION_AFTER_DELETING_LABEL, idLabel,
 });

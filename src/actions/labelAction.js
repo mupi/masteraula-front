@@ -4,8 +4,18 @@ import {
   addSelectedLabelToQuestionCard, removeSelectedLabelFromQuestionCard,
   addSelectedLabelToActiveQuestion, removeSelectedLabelFromActiveQuestion,
   addSelectedLabelToRelatedQuestion, removeSelectedLabelFromRelatedQuestion,
+  removeSelectedLabelFromQuestionCardAfterDeletingLabel,
+  removeSelectedLabelFromRelatedQuestionAfterDeletingLabel,
 } from './questionAction';
-import { addSelectedLabelToLearningObject, removeSelectedLabelFromLearningObject } from './learningObjectAction';
+import {
+  addSelectedLabelToLearningObject,
+  removeSelectedLabelFromLearningObject,
+  removeSelectedLabelFromLearningObjectAfterDeletingLabel,
+} from './learningObjectAction';
+
+import {
+  removeSelectedMyQuestionLabelFilter,
+} from './filterAction';
 
 // Load
 export const LIST_MY_QUESTION_LABELS = 'LIST_MY_QUESTION_LABELS';
@@ -127,6 +137,11 @@ export const deleteMyQuestionLabel = (idLabel) => {
       .then(
         (idLabelRemoved) => {
           dispatch(deleteSelectedMyQuestionLabelSuccess(idLabelRemoved));
+          dispatch(removeSelectedMyQuestionLabelFilter(idLabelRemoved));
+          dispatch(removeSelectedLabelFromQuestionCardAfterDeletingLabel(idLabelRemoved));
+          dispatch(removeSelectedLabelFromRelatedQuestionAfterDeletingLabel(idLabelRemoved));
+          dispatch(removeSelectedLabelFromActiveQuestion(null, idLabelRemoved));
+          dispatch(removeSelectedLabelFromLearningObjectAfterDeletingLabel(idLabelRemoved));
         },
         (error) => {
           dispatch(deleteSelectedMyQuestionLabelFailure(error));

@@ -311,10 +311,15 @@ export const filter = (state = initialState, action) => {
       });
     }
     case REMOVE_SELECTED_MYQUESTION_LABEL_FILTER: {
-      const newMyQuestionLabels = state.myQuestionlabelsSelected.filter(item => item.id !== parseInt(action.idMyQuestionLabel, 10));
-      return Object.assign({}, state, {
-        myQuestionlabelsSelected: newMyQuestionLabels,
-      });
+      const labelToRemoved = state.myQuestionlabelsSelected.filter(item => item.id === parseInt(action.idMyQuestionLabel, 10)).length;
+      if (labelToRemoved > 0) {
+        const newMyQuestionLabels = state.myQuestionlabelsSelected.filter(item => item.id !== parseInt(action.idMyQuestionLabel, 10));
+
+        return Object.assign({}, state, {
+          myQuestionlabelsSelected: newMyQuestionLabels,
+        });
+      }
+      return state;
     }
     case RESET_LIST_TOPIC_SELECTED:
       return Object.assign({}, state, {

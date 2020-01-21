@@ -12,6 +12,8 @@ import {
   ADD_SELECTED_LABEL_QUESTION_CARD, REMOVE_SELECTED_LABEL_QUESTION_CARD,
   ADD_SELECTED_LABEL_ACTIVE_QUESTION, REMOVE_SELECTED_LABEL_ACTIVE_QUESTION,
   ADD_SELECTED_LABEL_RELATED_QUESTION, REMOVE_SELECTED_LABEL_RELATED_QUESTION,
+  REMOVE_SELECTED_LABEL_QUESTION_CARD_AFTER_DELETING_LABEL,
+  REMOVE_SELECTED_LABEL_RELATED_QUESTION_AFTER_DELETING_LABEL,
 } from 'actions/questionAction';
 import { DELETE_QUESTION, DELETE_QUESTION_SUCCESS, DELETE_QUESTION_FAILURE } from '../actions/questionAction';
 
@@ -204,6 +206,20 @@ export const question = (state = initialState, action) => {
         },
       });
     }
+    case REMOVE_SELECTED_LABEL_QUESTION_CARD_AFTER_DELETING_LABEL: {
+      if (state.questionPage && state.questionPage.results) {
+        const newQuestionPageResults = state.questionPage.results.map(item => (
+          { ...item, labels: [...item.labels.filter(label => label.id !== parseInt(action.idLabel, 10))] }
+        ));
+        return Object.assign({}, state, {
+          questionPage: {
+            ...state.questionPage,
+            results: newQuestionPageResults,
+          },
+        });
+      }
+      return state;
+    }
 
     case ADD_SELECTED_LABEL_ACTIVE_QUESTION: {
       return Object.assign({}, state, {
@@ -214,12 +230,15 @@ export const question = (state = initialState, action) => {
       });
     }
     case REMOVE_SELECTED_LABEL_ACTIVE_QUESTION: {
-      return Object.assign({}, state, {
-        activeQuestion: {
-          ...state.activeQuestion,
-          labels: [...state.activeQuestion.labels.filter(label => label.id !== parseInt(action.idLabel, 10))],
-        },
-      });
+      if (state.activeQuestion && state.activeQuestion.labels) {
+        return Object.assign({}, state, {
+          activeQuestion: {
+            ...state.activeQuestion,
+            labels: [...state.activeQuestion.labels.filter(label => label.id !== parseInt(action.idLabel, 10))],
+          },
+        });
+      }
+      return state;
     }
 
     case ADD_SELECTED_LABEL_RELATED_QUESTION: {
@@ -256,7 +275,21 @@ export const question = (state = initialState, action) => {
         },
       });
     }
+    case REMOVE_SELECTED_LABEL_RELATED_QUESTION_AFTER_DELETING_LABEL: {
+      if (state.activeQuestion && state.activeQuestion.related_questions) {
+        const newRelatedQuestions = state.activeQuestion.related_questions.map(q => Object.assign({}, q, {
+          labels: [...q.labels.filter(label => label.id !== parseInt(action.idLabel, 10))],
+        }));
 
+        return Object.assign({}, state, {
+          activeQuestion: {
+            ...state.activeQuestion,
+            related_questions: newRelatedQuestions,
+          },
+        });
+      }
+      return state;
+    }
     default:
       return state;
   }
