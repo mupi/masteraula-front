@@ -60,6 +60,11 @@
         padding: 0px 10px;
     }
 
+
+    &__list-group-item--newlabel {
+        padding: 2px;
+    }
+
     &__divider{
         margin: 2px;
     }
@@ -99,6 +104,25 @@
         &:disabled{
             text-decoration: none;
             color: #fff;
+            opacity: 1;
+        }
+    }
+
+    &__name-link-list{
+        color: $color-ma-blue;
+        padding: 0px;
+        margin-right: 0px;
+        margin-top: 5px;
+
+        &:hover{
+            font-weight: bold;
+            text-decoration: none;
+            color: $color-ma-blue;
+        }
+
+        &:disabled{
+            text-decoration: none;
+            color: $color-ma-blue;
             opacity: 1;
         }
     }

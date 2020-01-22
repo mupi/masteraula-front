@@ -111,6 +111,7 @@ class QuestionPage extends Component {
       userId, activeQuestion, isFetching, rating, error, onRate, activeDocument, addSelectedQuestion,
       role, setQuestionIdToNewDocument, showModal, hideModal, labels, toggleApplyLabelToQuestion, isAddingRemovingLabel,
       addSelectedMyQuestionLabelFilter, removeSelectedLabelFromQuestion,
+      showCreateMyQuestionLabelModal,
     } = this.props;
 
     const authorPk = (activeQuestion && activeQuestion.author) ? activeQuestion.author.pk : 'Anônimo';
@@ -219,6 +220,7 @@ class QuestionPage extends Component {
                     labels={labels}
                     toggleApplyLabelToQuestion={toggleApplyLabelToQuestion}
                     isAddingRemovingLabel={isAddingRemovingLabel}
+                    showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
                   />
                 </div>
               </div>
