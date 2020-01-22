@@ -29,7 +29,7 @@ export const SET_CURRENT_PAGE_MODAL = 'SET_CURRENT_PAGE_MODAL';
 
 export const ADD_SELECTED_LABEL_LEARNING_OBJECT = 'ADD_SELECTED_LABEL_LEARNING_OBJECT';
 export const REMOVE_SELECTED_LABEL_LEARNING_OBJECT = 'REMOVE_SELECTED_LABEL_LEARNING_OBJECT';
-
+export const REMOVE_SELECTED_LABEL_LEARNING_OBJECT_AFTER_DELETING_LABEL = 'REMOVE_SELECTED_LABEL_LEARNING_OBJECT_AFTER_DELETING_LABEL';
 
 // Fetch a learning object
 export const fetchLearningObject = (id) => {
@@ -127,4 +127,9 @@ export const addSelectedLabelToLearningObject = (idQuestion, label) => ({
 // Remove Selected Label to Question
 export const removeSelectedLabelFromLearningObject = (idQuestion, idLabel) => ({
   type: REMOVE_SELECTED_LABEL_LEARNING_OBJECT, idQuestion, idLabel,
+});
+
+// Remove Selected Label to Question after deleting label
+export const removeSelectedLabelFromLearningObjectAfterDeletingLabel = idLabel => ({
+  type: REMOVE_SELECTED_LABEL_LEARNING_OBJECT_AFTER_DELETING_LABEL, idLabel,
 });
