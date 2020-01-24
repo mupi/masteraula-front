@@ -157,6 +157,7 @@ class QuestionEditPage extends Component {
       activeQuestion, userId, isFetching, error, activeDocument, handleSubmit, topicSuggestions, pristine,
       role, submitting, listTopicSuggestions, labels, toggleApplyLabelToQuestion, isAddingRemovingLabel,
       addSelectedMyQuestionLabelFilter, removeSelectedLabelFromQuestion,
+      showCreateMyQuestionLabelModal,
     } = this.props;
 
     const { author, authorship } = activeQuestion;
@@ -260,6 +261,7 @@ class QuestionEditPage extends Component {
                       labels={labels}
                       toggleApplyLabelToQuestion={toggleApplyLabelToQuestion}
                       isAddingRemovingLabel={isAddingRemovingLabel}
+                      showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
                     />
                   </div>
                 </div>
