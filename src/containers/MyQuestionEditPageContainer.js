@@ -12,7 +12,9 @@ import {
 import { listTopics, resetTopicList } from 'actions/topicAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import { listTopicSuggestions } from 'actions/suggestionAction';
-import { addSelectedLabelToQuestion, removeSelectedLabelFromQuestion, RELATED_FROM } from 'actions/labelAction';
+import {
+  addSelectedLabelToQuestion, removeSelectedLabelFromQuestion, RELATED_FROM, createMyQuestionLabel,
+} from 'actions/labelAction';
 import { history } from 'helpers';
 
 // true for dispatch addLabelToQuestionActive / removeLabelFromQuestionActive
@@ -52,6 +54,22 @@ const mapDispatchToProps = (dispatch) => {
     return dispatch(addSelectedMyQuestionLabelFilter(label));
   };
 
+  /* Options for Labels */
+  const createMyQuestionLabelModalProps = {
+    modalProps: {
+      open: true,
+      title: 'Criar etiqueta',
+      nameAction: 'Criar',
+      submit: (values) => {
+        dispatch(createMyQuestionLabel(values));
+        dispatch(hideModal());
+      },
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'createMyQuestionLabelModal',
+  };
+
+
   return {
     fetchQuestion: id => dispatch(fetchQuestion(id)),
     listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
@@ -71,6 +89,8 @@ const mapDispatchToProps = (dispatch) => {
     removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)),
     resetSelectedObjects: () => dispatch(resetSelectedObjects()),
 
+    // Labels
+    showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),
     onSubmit: (values, d, props) => {
       const errors = [];
       let alternativesCleaned = [];

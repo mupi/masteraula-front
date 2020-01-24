@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  ListGroup, ListGroupItem, Input,
+  ListGroup, ListGroupItem, Input, Button,
   UncontrolledDropdown, DropdownToggle, DropdownMenu,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ListToggleLabels = ({
-  labels, question, toggleApplyLabelToQuestion, isAddingRemovingLabel, relatedFrom,
+  labels, question, toggleApplyLabelToQuestion, isAddingRemovingLabel, relatedFrom, showCreateMyQuestionLabelModal,
 }) => {
   const handleFilter = (event) => {
     const idLabel = event.target.value;
@@ -34,6 +34,15 @@ const ListToggleLabels = ({
           {label.name}
         </ListGroupItem>
       ))}
+      <ListGroupItem className="label-item__list-group-item label-item__list-group-item--newlabel">
+        <Button color="link" className="label-item__name-link-list" onClick={() => showCreateMyQuestionLabelModal()}>
+          <span>
+            <FontAwesomeIcon icon="plus-circle" className="btn__icon" />
+            {' '}
+              Criar etiqueta
+          </span>
+        </Button>
+      </ListGroupItem>
     </ListGroup>
   );
 };

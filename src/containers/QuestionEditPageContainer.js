@@ -8,7 +8,11 @@ import {
   addSelectedMyQuestionLabelFilter,
 } from 'actions/filterAction';
 import { addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
-import { addSelectedLabelToQuestion, removeSelectedLabelFromQuestion, RELATED_FROM } from 'actions/labelAction';
+import {
+  addSelectedLabelToQuestion, removeSelectedLabelFromQuestion, RELATED_FROM, createMyQuestionLabel,
+} from 'actions/labelAction';
+import { showModal, hideModal } from 'actions/modalAction';
+
 import { history } from 'helpers';
 
 const toggleApplyLabelToQuestion = (idQuestion, idLabel, value) => (value
@@ -40,6 +44,22 @@ const mapDispatchToProps = (dispatch) => {
     history.replace('/question-base/1');
     return dispatch(addSelectedMyQuestionLabelFilter(label));
   };
+
+  /* Options for Labels */
+  const createMyQuestionLabelModalProps = {
+    modalProps: {
+      open: true,
+      title: 'Criar etiqueta',
+      nameAction: 'Criar',
+      submit: (values) => {
+        dispatch(createMyQuestionLabel(values));
+        dispatch(hideModal());
+      },
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'createMyQuestionLabelModal',
+  };
+
 
   return {
     fetchQuestion: id => dispatch(fetchQuestion(id)),
@@ -74,6 +94,9 @@ const mapDispatchToProps = (dispatch) => {
     toggleApplyLabelToQuestion: (idQuestion, idLabel, value) => dispatch(toggleApplyLabelToQuestion(idQuestion, idLabel, value)),
     removeSelectedLabelFromQuestion: (idQuestion, idLabel) => dispatch(removeSelectedLabelFromQuestion(idQuestion, idLabel, true)),
     addSelectedMyQuestionLabelFilter: label => dispatch(addMyQuestionLabelFilter(label)),
+
+    // Labels
+    showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),
   };
 };
 

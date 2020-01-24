@@ -14,7 +14,9 @@ import {
   resetTopicListSelected,
 } from 'actions/filterAction';
 
-import { addSelectedLabelToQuestion, removeSelectedLabelFromQuestion, RELATED_FROM } from 'actions/labelAction';
+import {
+  addSelectedLabelToQuestion, removeSelectedLabelFromQuestion, RELATED_FROM, createMyQuestionLabel,
+} from 'actions/labelAction';
 
 const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
   history.replace('/question-base/1');
@@ -64,36 +66,56 @@ const mapStateToProps = state => ({
   isAddingRemovingLabel: state.label.isAddingRemovingLabel,
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchLearningObject: id => dispatch(fetchLearningObject(id)),
-  addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
+const mapDispatchToProps = (dispatch) => {
+  /* Options for Labels */
+  const createMyQuestionLabelModalProps = {
+    modalProps: {
+      open: true,
+      title: 'Criar etiqueta',
+      nameAction: 'Criar',
+      submit: (values) => {
+        dispatch(createMyQuestionLabel(values));
+        dispatch(hideModal());
+      },
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'createMyQuestionLabelModal',
+  };
 
-  addSelectedDisciplineFilter: (idDiscipline) => {
-    dispatch(toggleSelectedDisciplineFilter(idDiscipline, true));
-    dispatch(resetTopicListSelected());
-  },
 
-  addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),
-  addSelectedSourceFilter: (idSource, nameSource) => dispatch(toggleSelectedSourceFilter(idSource, true, nameSource)),
-  addSelectedYearFilter: (idYear, nameYear) => dispatch(toggleSelectedYearFilter(idYear, true, nameYear)),
+  return ({
+    fetchLearningObject: id => dispatch(fetchLearningObject(id)),
+    addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 
-  // toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
-  toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
-  toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
-  toggleSelectedSourceFilter: (idSource, value) => dispatch(toggleSelectedSourceFilter(idSource, value)),
-  toggleSelectedYearFilter: (idYear, value) => dispatch(toggleSelectedYearFilter(idYear, value)),
-  // new way to handle modals
-  hideModal: () => dispatch(hideModal()),
-  showModal: (modalProps, modalType) => {
-    dispatch(showModal({ modalProps, modalType }));
-  },
-  removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
+    addSelectedDisciplineFilter: (idDiscipline) => {
+      dispatch(toggleSelectedDisciplineFilter(idDiscipline, true));
+      dispatch(resetTopicListSelected());
+    },
 
-  toggleApplyLabelToQuestion: (idQuestion, idLabel, value) => dispatch(toggleApplyLabelToQuestion(idQuestion, idLabel, value)),
+    addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),
+    addSelectedSourceFilter: (idSource, nameSource) => dispatch(toggleSelectedSourceFilter(idSource, true, nameSource)),
+    addSelectedYearFilter: (idYear, nameYear) => dispatch(toggleSelectedYearFilter(idYear, true, nameYear)),
 
-  setQuestionIdToNewDocument: idQuestion => dispatch(setQuestionIdToNewDocument(idQuestion)),
+    // toggleSelectedDisciplineFilter: (idDiscipline, value) => dispatch(toggleSelectedDisciplineFilter(idDiscipline, value)),
+    toggleSelectedTeachingLevelFilter: (idTeachingLevel, value) => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, value)),
+    toggleSelectedDifficultyFilter: (difficultyType, value) => dispatch(toggleSelectedDifficultyFilter(difficultyType, value)),
+    toggleSelectedSourceFilter: (idSource, value) => dispatch(toggleSelectedSourceFilter(idSource, value)),
+    toggleSelectedYearFilter: (idYear, value) => dispatch(toggleSelectedYearFilter(idYear, value)),
+    // new way to handle modals
+    hideModal: () => dispatch(hideModal()),
+    showModal: (modalProps, modalType) => {
+      dispatch(showModal({ modalProps, modalType }));
+    },
+    removeSelectedQuestion: (idDocument, idQuestion) => dispatch(removeSelectedQuestion(idDocument, idQuestion)),
 
-});
+    toggleApplyLabelToQuestion: (idQuestion, idLabel, value) => dispatch(toggleApplyLabelToQuestion(idQuestion, idLabel, value)),
+
+    setQuestionIdToNewDocument: idQuestion => dispatch(setQuestionIdToNewDocument(idQuestion)),
+
+    // create new Label
+    showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),
+  });
+};
 
 const ViewLearningObjectPageContainer = connect(
   mapStateToProps,

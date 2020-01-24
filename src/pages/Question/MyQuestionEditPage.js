@@ -352,7 +352,7 @@ class MyQuestionEditPage extends Component {
       teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion, submitting,
       resolution, errorsEditQuestion, sourceQuestionValue, topicSuggestions, listTopicSuggestions,
       labels, toggleApplyLabelToQuestion, isAddingRemovingLabel,
-      addSelectedMyQuestionLabelFilter, removeSelectedLabelFromQuestion,
+      addSelectedMyQuestionLabelFilter, removeSelectedLabelFromQuestion, showCreateMyQuestionLabelModal,
     } = this.props;
     const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
 
@@ -450,6 +450,7 @@ class MyQuestionEditPage extends Component {
                       labels={labels}
                       toggleApplyLabelToQuestion={toggleApplyLabelToQuestion}
                       isAddingRemovingLabel={isAddingRemovingLabel}
+                      showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
                     />
                   </div>
                 </div>

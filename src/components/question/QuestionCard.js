@@ -40,6 +40,7 @@ const QuestionCard = (props) => {
   const {
     question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, addSelectedSourceFilter, addSelectedYearFilter,
     removeSelectedQuestion, sourceFilters, yearFilters, toggleApplyLabelToQuestion, labels, isAddingRemovingLabel, relatedFrom,
+    showCreateMyQuestionLabelModal,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
   const idSource = question.source ? getIdFilter(sourceFilters, question.source) : null;
@@ -75,6 +76,7 @@ const QuestionCard = (props) => {
                 relatedFrom={relatedFrom}
                 toggleApplyLabelToQuestion={toggleApplyLabelToQuestion}
                 isAddingRemovingLabel={isAddingRemovingLabel}
+                showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
               />
             </div>
           </div>

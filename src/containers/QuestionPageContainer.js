@@ -11,7 +11,7 @@ import {
   resetTopicListSelected,
   addSelectedMyQuestionLabelFilter,
 } from 'actions/filterAction';
-import { addSelectedLabelToQuestion, removeSelectedLabelFromQuestion } from 'actions/labelAction';
+import { addSelectedLabelToQuestion, removeSelectedLabelFromQuestion, createMyQuestionLabel } from 'actions/labelAction';
 import { history } from 'helpers';
 import { RELATED_FROM } from '../actions/labelAction';
 
@@ -66,6 +66,22 @@ const mapDispatchToProps = (dispatch) => {
     return dispatch(addSelectedMyQuestionLabelFilter(label));
   };
 
+  /* Options for Labels */
+  const createMyQuestionLabelModalProps = {
+    modalProps: {
+      open: true,
+      title: 'Criar etiqueta',
+      nameAction: 'Criar',
+      submit: (values) => {
+        dispatch(createMyQuestionLabel(values));
+        dispatch(hideModal());
+      },
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'createMyQuestionLabelModal',
+  };
+
+
   return ({
     fetchQuestion: id => dispatch(fetchQuestion(id)),
     onRate: rating => dispatch(rateQuestion(rating)),
@@ -98,6 +114,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(showModal({ modalProps, modalType }));
     },
     setQuestionIdToNewDocument: idQuestion => dispatch(setQuestionIdToNewDocument(idQuestion)),
+
+    // Labels
+    showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),
   });
 };
 
