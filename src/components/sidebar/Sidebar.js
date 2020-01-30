@@ -164,6 +164,15 @@ const SidebarMobile = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option text-center">
+                    <Link to="/create-classplan" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-classplan'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="plus"
+                      />
+                      Criar plano de aula
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option text-center">
                     <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
@@ -284,6 +293,12 @@ const SidebarWeb = ({
                       <Link to="/create-question">
                         <FontAwesomeIcon className="btn__icon" icon="plus" />
                         Criar questão
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option text-center">
+                      <Link to="/create-classplan">
+                        <FontAwesomeIcon className="btn__icon" icon="plus" />
+                        Criar plano de aula
                       </Link>
                     </ListGroupItem>
                     <ListGroupItem className="list-group-item__simple-option text-center">
