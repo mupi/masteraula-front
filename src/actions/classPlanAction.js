@@ -3,6 +3,8 @@ import {
 } from 'services';
 import { toast } from 'react-toastify';
 
+import { history } from 'helpers';
+
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
   type: 'success',

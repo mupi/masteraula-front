@@ -141,9 +141,9 @@ const SidebarMobile = ({
               <Col xs="12">
                 <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
                   <ListGroupItem color="light">
-                    <div className="document__new-document-option text-center">
+                    <div className="document__new-document-option">
                       <Button
-                        className="document__new-document-btn text-center"
+                        className="document__new-document-btn text-left"
                         onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
                       >
                         <FontAwesomeIcon
@@ -154,7 +154,7 @@ const SidebarMobile = ({
                       </Button>
                     </div>
                   </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option text-center">
+                  <ListGroupItem className="list-group-item__simple-option">
                     <Link to="/create-question" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-question'); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
@@ -163,7 +163,7 @@ const SidebarMobile = ({
                       Criar questão
                     </Link>
                   </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option text-center">
+                  <ListGroupItem className="list-group-item__simple-option">
                     <Link to="/create-classplan" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-classplan'); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
@@ -172,13 +172,22 @@ const SidebarMobile = ({
                       Criar plano de aula
                     </Link>
                   </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option text-center">
+                  <ListGroupItem className="list-group-item__simple-option">
                     <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
                         icon="folder"
                       />
                         Gerenciar minhas provas
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="folder"
+                      />
+                        Gerenciar meus planos de aula
                     </Link>
                   </ListGroupItem>
                 </ListGroup>
@@ -278,10 +287,10 @@ const SidebarWeb = ({
 
                   <ListGroup className="sidebar-main-options c-sidebar__create-doc-option ">
                     <ListGroupItem color="light">
-                      <div className="document__new-document-option text-center">
+                      <div className="document__new-document-option">
                         <Button
                           color="link"
-                          className="document__new-document-btn text-center"
+                          className="document__new-document-btn text-left"
                           onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
                         >
                           <FontAwesomeIcon className="btn__icon" icon="file" />
@@ -289,22 +298,28 @@ const SidebarWeb = ({
                         </Button>
                       </div>
                     </ListGroupItem>
-                    <ListGroupItem className="list-group-item__simple-option text-center">
+                    <ListGroupItem className="list-group-item__simple-option">
                       <Link to="/create-question">
                         <FontAwesomeIcon className="btn__icon" icon="plus" />
                         Criar questão
                       </Link>
                     </ListGroupItem>
-                    <ListGroupItem className="list-group-item__simple-option text-center">
+                    <ListGroupItem className="list-group-item__simple-option">
                       <Link to="/create-classplan">
                         <FontAwesomeIcon className="btn__icon" icon="plus" />
                         Criar plano de aula
                       </Link>
                     </ListGroupItem>
-                    <ListGroupItem className="list-group-item__simple-option text-center">
+                    <ListGroupItem className="list-group-item__simple-option">
                       <Link to="/documents/1">
                         <FontAwesomeIcon className="btn__icon" icon="folder" />
                           Gerenciar minhas provas
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/documents/1">
+                        <FontAwesomeIcon className="btn__icon" icon="folder" />
+                          Gerenciar meus planos de aula
                       </Link>
                     </ListGroupItem>
                   </ListGroup>

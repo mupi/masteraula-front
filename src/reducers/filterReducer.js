@@ -9,6 +9,8 @@ import {
   LIST_YEAR_FILTERS_SUCCESS, LIST_YEAR_FILTERS_FAILURE,
   LIST_TOPIC_FILTERS,
   LIST_TOPIC_FILTERS_SUCCESS, LIST_TOPIC_FILTERS_FAILURE,
+  LIST_TEACHING_YEAR_FILTERS,
+  LIST_TEACHING_YEAR_FILTERS_SUCCESS, LIST_TEACHING_YEAR_FILTERS_FAILURE,
   ADD_SELECTED_DISCIPLINE_FILTER,
   REMOVE_SELECTED_DISCIPLINE_FILTER,
   ADD_SELECTED_TEACHINGLEVEL_FILTER,
@@ -37,6 +39,7 @@ const initialState = {
   teachingLevelFilters: [],
   sourceFilters: [],
   yearFilters: [],
+  teachingYearFilters: [],
   topicFilters: [],
 
   disciplinesSelected: [],
@@ -135,6 +138,22 @@ export const filter = (state = initialState, action) => {
     case LIST_TOPIC_FILTERS_FAILURE:
       return Object.assign({}, state, {
         isFetchingTopicFilters: false,
+        error: action.error,
+      });
+    case LIST_TEACHING_YEAR_FILTERS:
+      return Object.assign({}, state, {
+        teachingYearFilters: action.teachingYearFilters,
+        isFetchingTeachingYearFilters: true,
+        error: null,
+      });
+    case LIST_TEACHING_YEAR_FILTERS_SUCCESS:
+      return Object.assign({}, state, {
+        teachingYearFilters: action.teachingYearFilters,
+        isFetchingTeachingYearFilters: false,
+      });
+    case LIST_TEACHING_YEAR_FILTERS_FAILURE:
+      return Object.assign({}, state, {
+        isFetchingTeachingYearFilters: false,
         error: action.error,
       });
       /* case ADD_SELECTED_DISCIPLINE_FILTER: {

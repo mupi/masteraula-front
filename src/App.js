@@ -31,6 +31,7 @@ import {
   ObjectBasePageContainer,
   PublicDocumentPageContainer,
   TopicBasePageContainer,
+  CreateClassPlanPageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -154,6 +155,7 @@ class App extends Component {
                 <Route path="/nossos-planos" component={PricingPageHome} />
                 <Route path="/terms-use" component={TermsUsePageHome} />
                 <Route path="/topic-base/:page(\d+)" component={TopicBasePageContainer} />
+                <Route path="/create-classplan" component={CreateClassPlanPageContainer} />
                 <Redirect from="/" to="/question-base/1" />
               </Switch>
             )

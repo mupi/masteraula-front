@@ -97,6 +97,20 @@ function listYearFilters() {
     .then(yearFilters => yearFilters);
 }
 
+// Get all Years that will be used in SideBar
+function listTeachingYearFilters() {
+  const requestOptions = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+    Authorization: authHeader(),
+  };
+
+  const url = '/teaching_years/';
+  return axios.get(`${apiUrl}${url}`, requestOptions)
+    .then(response => response.data).then(teachingYearFilters => teachingYearFilters);
+}
+
+
 function listTopicFilters(filter) {
   const requestOptions = {
     method: 'GET',
@@ -143,6 +157,7 @@ const filterService = {
   listSourceFilters,
   listYearFilters,
   listTopicFilters,
+  listTeachingYearFilters,
 };
 
 export default filterService;
