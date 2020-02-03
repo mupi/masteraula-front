@@ -36,6 +36,9 @@ export const DELETE_CLASS_PLAN = 'DELETE_CLASS_PLAN';
 export const DELETE_CLASS_PLAN_SUCCESS = 'DELETE_CLASS_PLAN_SUCCESS';
 export const DELETE_CLASS_PLAN_FAILURE = 'DELETE_CLASS_PLAN_FAILURE';
 
+export const ADD_SELECTED_OBJECT_CLASS_PLAN = 'ADD_SELECTED_OBJECT_CLASS_PLAN';
+export const REMOVE_SELECTED_OBJECT_CLASS_PLAN = 'REMOVE_SELECTED_OBJECT_CLASS_PLAN';
+export const RESET_SELECTED_OBJECTLIST_CLASS_PLAN = 'RESET_SELECTED_OBJECTLIST_CLASS_PLAN';
 
 export const fetchClassPlan = (id) => {
   function requestClassPlan() { return { type: FETCH_CLASS_PLAN }; }
@@ -200,3 +203,18 @@ export const deleteClassPlan = (idClassPlan) => {
       );
   };
 };
+
+// Add Selected Object to Class Plan
+export const addSelectedObjectToClassPlan = selectedObject => ({
+  type: ADD_SELECTED_OBJECT_CLASS_PLAN, selectedObject,
+});
+
+// Remove Selected Object to Class Plan
+export const removeSelectedObjectToClassPlan = idObject => ({
+  type: REMOVE_SELECTED_OBJECT_CLASS_PLAN, idObject,
+});
+
+// Reset Selected Object list before starting create/update class plan
+export const resetSelectedObjects = () => ({
+  type: RESET_SELECTED_OBJECTLIST_CLASS_PLAN,
+});

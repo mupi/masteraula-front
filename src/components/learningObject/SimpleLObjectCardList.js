@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Row, Col, Button } from 'reactstrap';
-import RemoveObjectFromQuestionButton from 'components/buttons/RemoveObjectFromQuestionButton';
+import RemoveObjectFromComponentButton from 'components/buttons/RemoveObjectFromComponentButton';
 import LearningObjectCard from './LearningObjectCard';
 
 const SimpleLObjectCardList = (props) => {
   const {
     objects, sm, selectedObjectList,
-    addSelectedObjectToQuestion, removeSelectedObjectToQuestion,
+    addSelectedObject, removeSelectedObject,
   } = props;
 
-  const isObjectAddedToQuestion = (id) => {
+  const isObjectAdded = (id) => {
     if (selectedObjectList) {
       const objectAdded = selectedObjectList.filter(item => item.id === id);
       return (objectAdded.length > 0);
@@ -20,15 +20,15 @@ const SimpleLObjectCardList = (props) => {
   };
 
   const CardButton = object => (
-    !isObjectAddedToQuestion(object.id) ? (
-      <Button className="object-card__btn" onClick={() => addSelectedObjectToQuestion(object)}>
+    !isObjectAdded(object.id) ? (
+      <Button className="object-card__btn" onClick={() => addSelectedObject(object)}>
         <FontAwesomeIcon icon="plus" className="btn__icon" />
         {' '}
         Adicionar
         {' '}
       </Button>
     ) : (
-      <RemoveObjectFromQuestionButton objectId={object.id} removeSelectedObjectToQuestion={removeSelectedObjectToQuestion} />
+      <RemoveObjectFromComponentButton objectId={object.id} removeSelectedObject={removeSelectedObject} />
     )
   );
 

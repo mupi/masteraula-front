@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'reactstrap';
 
-const RemoveObjectFromQuestionButton = ({
-  objectId, removeSelectedObjectToQuestion,
+const RemoveObjectFromComponentButton = ({
+  objectId, removeSelectedObject,
 }) => (
   <Button
     value={objectId}
-    title="Remover questão"
+    title="Remover objeto"
     className="object-card__btn object-card__btn--red"
-    onClick={() => removeSelectedObjectToQuestion(objectId)}
+    onClick={() => removeSelectedObject(objectId)}
   >
     <FontAwesomeIcon icon="trash-alt" className="btn__icon" />
     {' '}
@@ -18,13 +18,13 @@ const RemoveObjectFromQuestionButton = ({
   </Button>
 );
 
-RemoveObjectFromQuestionButton.propTypes = {
+RemoveObjectFromComponentButton.propTypes = {
   objectId: PropTypes.number,
-  removeSelectedObjectToQuestion: PropTypes.func,
+  removeSelectedObject: PropTypes.func,
 };
 
-RemoveObjectFromQuestionButton.defaultProps = {
+RemoveObjectFromComponentButton.defaultProps = {
   objectId: 0,
-  removeSelectedObjectToQuestion: f => f,
+  removeSelectedObject: f => f,
 };
-export default RemoveObjectFromQuestionButton;
+export default RemoveObjectFromComponentButton;

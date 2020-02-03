@@ -1,6 +1,6 @@
 import React from 'react';
 import { getCleanCompleteStatement, getCleanLearningObjectSource } from 'helpers/question';
-import RemoveObjectFromQuestionButton from 'components/buttons/RemoveObjectFromQuestionButton';
+import RemoveObjectFromComponentButton from 'components/buttons/RemoveObjectFromComponentButton';
 import {
   Button,
 } from 'reactstrap';
@@ -24,7 +24,7 @@ const LearningObjectContent = (props) => {
   /* eslint-disable react/no-danger */
   const {
     learningObject,
-    removeSelectedObjectToQuestion,
+    removeSelectedObject,
     options,
     addSelectedObjectToQuestion,
     setObjectIdToNewQuestion,
@@ -62,7 +62,7 @@ const LearningObjectContent = (props) => {
       }
       {options && options.removeOption ? (
         <div className="c-create-question__remove-object-btn">
-          <RemoveObjectFromQuestionButton objectId={learningObject.id} removeSelectedObjectToQuestion={removeSelectedObjectToQuestion} />
+          <RemoveObjectFromComponentButton objectId={learningObject.id} removeSelectedObject={removeSelectedObject} />
         </div>
       ) : ''}
       { options && options.showTitle ? (

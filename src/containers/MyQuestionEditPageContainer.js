@@ -4,7 +4,7 @@ import {
 } from 'redux-form';
 import MyQuestionEditPage from 'pages/Question/MyQuestionEditPage';
 import {
-  fetchQuestion, updateQuestion, removeSelectedObjectToQuestion, resetSelectedObjects,
+  fetchQuestion, updateQuestion, addSelectedObjectToQuestion, removeSelectedObjectToQuestion, resetSelectedObjects,
 } from 'actions/questionAction';
 import {
   listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, addSelectedMyQuestionLabelFilter,
@@ -69,6 +69,19 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'createMyQuestionLabelModal',
   };
 
+  /* Options for Open Learning Object Base modal */
+  const openSearchLearningObjectModalProps = {
+    modalProps: {
+      open: true,
+      titlePart: 'à questão',
+      closeModal: () => dispatch(hideModal()),
+      addSelectedObject: object => dispatch(addSelectedObjectToQuestion(object)),
+      removeSelectedObject: idObject => dispatch(removeSelectedObjectToQuestion(idObject)),
+      callFrom: 'Q',
+    },
+    modalType: 'searchObjectModal',
+  };
+
 
   return {
     fetchQuestion: id => dispatch(fetchQuestion(id)),
@@ -77,17 +90,13 @@ const mapDispatchToProps = (dispatch) => {
     listSourceFilters: param => dispatch(listSourceFilters(param)),
     listTopics: param => dispatch(listTopics(param)),
     resetTopicList: () => dispatch(resetTopicList()),
-    // new way to handle modals
-    hideModal: () => dispatch(hideModal()),
-    showModal: (modalProps, modalType) => {
-      dispatch(showModal({ modalProps, modalType }));
-    },
-
     listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 
     // add objects to question
     removeSelectedObjectToQuestion: idObject => dispatch(removeSelectedObjectToQuestion(idObject)),
     resetSelectedObjects: () => dispatch(resetSelectedObjects()),
+
+    showSearchLearningObjectModal: () => dispatch(showModal(openSearchLearningObjectModalProps)),
 
     // Labels
     showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),

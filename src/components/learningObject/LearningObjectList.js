@@ -16,7 +16,7 @@ const options = {
 
 /* eslint-disable react/no-danger */
 const LearningObjectList = ({
-  learningObjects, removeSelectedObjectToQuestion, options,
+  learningObjects, removeSelectedObject, options,
 }) => (
   <div>
     {(learningObjects && learningObjects.length > 0)
@@ -27,7 +27,7 @@ const LearningObjectList = ({
               <LearningObjectContentContainer
                 key={learningObject.id}
                 learningObject={learningObject}
-                removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
+                removeSelectedObject={removeSelectedObject}
                 options={options}
               />
             ))}

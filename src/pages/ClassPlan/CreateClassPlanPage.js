@@ -125,20 +125,15 @@ const options = {
 };
 
 class CreateClassPlanPage extends Component {
-  constructor(props) {
-    super(props);
-    this.closeModal = this.closeModal.bind(this);
-  }
-
   componentDidMount() {
     const {
-      listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm, /* resetSelectedObjects, */
+      listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm, resetSelectedObjects,
     } = this.props;
     listDisciplineFilters();
     listTeachingLevelFilters();
     listTeachingYearFilters();
     prepareForm();
-    // resetSelectedObjects();
+    resetSelectedObjects();
   }
 
     listTopicSuggestions = (param) => {
@@ -148,26 +143,11 @@ class CreateClassPlanPage extends Component {
       }
     }
 
-    closeModal() {
-      const { hideModal } = this.props;
-      hideModal();
-    }
-
-    openSearchLearningObjectModal() {
-      const { showModal } = this.props;
-      // open modal
-      showModal({
-        open: true,
-        closeModal: this.closeModal,
-        title: 'Adicionar objeto(s) à questão',
-      }, 'searchObjectModal');
-    }
-
     render() {
       const {
         isCreating, error, topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
-        teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
-        submitting, errorsCreateClassPlan, listTopicSuggestions, user,
+        teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToClassPlan,
+        submitting, errorsCreateClassPlan, listTopicSuggestions, user, showSearchLearningObjectModal,
       } = this.props;
 
       if (isCreating) {
@@ -300,14 +280,13 @@ class CreateClassPlanPage extends Component {
                 </Col>
                 <Col sm="8" xs="8">
                   <Field
-                    name="yearTeachingLevels"
+                    name="teachingYears"
                     className="form-control"
                     component={renderMultiselect}
                     placeholder="Selecione os anos do nível de ensino"
                     data={teachingYearFilters}
                     valueField="id"
                     textField="name"
-                    validate={requiredMultiSelectValidator}
                   />
                 </Col>
               </Row>
@@ -357,7 +336,7 @@ class CreateClassPlanPage extends Component {
                 <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
                   <Field
                     component={renderQuestionTextEditor}
-                    name="statement"
+                    name="description"
                     key="field"
                     id="statementEditorText"
                     disabled={false}
@@ -386,7 +365,7 @@ class CreateClassPlanPage extends Component {
                   </h5>
                 </Col>
                 <Col md="3" sm="6">
-                  <Button onClick={() => this.openSearchLearningObjectModal()}>
+                  <Button onClick={() => showSearchLearningObjectModal()}>
                     <FontAwesomeIcon
                       icon="plus"
                       className="btn__icon"
@@ -399,7 +378,7 @@ class CreateClassPlanPage extends Component {
                 <LearningObjectList
                   learningObjects={selectedObjectList}
                   options={options}
-                  removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
+                  removeSelectedObject={removeSelectedObjectToClassPlan}
                 />
               ) : '' }
               <Row>
@@ -411,7 +390,7 @@ class CreateClassPlanPage extends Component {
                   </h5>
                 </Col>
                 <Col md="3" sm="6">
-                  <Button onClick={() => this.openSearchLearningObjectModal()}>
+                  <Button>
                     <FontAwesomeIcon
                       icon="plus"
                       className="btn__icon"
@@ -435,7 +414,7 @@ class CreateClassPlanPage extends Component {
               <Row className="c-create-question__row-info">
                 <Col sm="12" xs="12">
                   <Field
-                    name="comments"
+                    name="comment"
                     className="form-control"
                     component={renderField}
                     label="Insira seus comentários"

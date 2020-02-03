@@ -40,15 +40,20 @@ class SearchLearningObjectModal extends React.Component {
 
   render() {
     const {
-      objectPage, isFetching, closeModal, title, addSelectedObjectToQuestion, selectedObjectList, setCurrentPageModal,
+      objectPage, isFetching, closeModal, titlePart, setCurrentPageModal,
+      addSelectedObject, removeSelectedObject, callFrom,
+      selectedObjectListQuestion,
+      selectedObjectListClassPlan,
     } = this.props;
+
+    const selectedObjectList = callFrom === 'Q' ? selectedObjectListQuestion : selectedObjectListClassPlan;
     return (
       <div className="modal-content modal__content modal-fixed__content">
         <div className="modal-header modal__header">
           <h5
             className="modal-title"
           >
-            {title}
+            {`Adicionar objeto ${titlePart}`}
           </h5>
           <button type="button" className="close" aria-label="Close" onClick={() => this.handleCloseModal(closeModal)}>
             <span aria-hidden="true">
@@ -69,7 +74,7 @@ class SearchLearningObjectModal extends React.Component {
                 {objectPage ? objectPage.count : 0}
               </Col>
               <Col sm="12" className="c-object-base-modal__selected-number">
-                Objetos associados à questão:
+                {`Objetos associados ${titlePart}`}
                 {' '}
                 {selectedObjectList.length}
               </Col>
@@ -81,7 +86,8 @@ class SearchLearningObjectModal extends React.Component {
                 </Alert>
               ) : (
                 <SimpleLObjectCardList
-                  addSelectedObjectToQuestion={addSelectedObjectToQuestion}
+                  addSelectedObject={addSelectedObject}
+                  removeSelectedObject={removeSelectedObject}
                   sm="4"
                   {...this.props}
                   objects={objectPage ? objectPage.results : null}

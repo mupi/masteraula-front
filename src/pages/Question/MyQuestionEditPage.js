@@ -301,11 +301,6 @@ const options = {
 
 
 class MyQuestionEditPage extends Component {
-  constructor(props) {
-    super(props);
-    this.closeModal = this.closeModal.bind(this);
-  }
-
   componentDidMount() {
     const {
       listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
@@ -331,21 +326,6 @@ class MyQuestionEditPage extends Component {
     }
   }
 
-  closeModal() {
-    const { hideModal } = this.props;
-    hideModal();
-  }
-
-  openSearchLearningObjectModal() {
-    const { showModal } = this.props;
-    // open modal
-    showModal({
-      open: true,
-      closeModal: this.closeModal,
-      title: 'Adicionar objeto(s) à questão',
-    }, 'searchObjectModal');
-  }
-
   render() {
     const {
       activeQuestion, userId, isFetching, error, pristine, disciplineFilters, sourceFilters,
@@ -353,6 +333,7 @@ class MyQuestionEditPage extends Component {
       resolution, errorsEditQuestion, sourceQuestionValue, topicSuggestions, listTopicSuggestions,
       labels, toggleApplyLabelToQuestion, isAddingRemovingLabel,
       addSelectedMyQuestionLabelFilter, removeSelectedLabelFromQuestion, showCreateMyQuestionLabelModal,
+      showSearchLearningObjectModal,
     } = this.props;
     const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
 
@@ -486,7 +467,7 @@ class MyQuestionEditPage extends Component {
                 </h5>
               </Col>
               <Col sm="3">
-                <Button onClick={() => this.openSearchLearningObjectModal()}>
+                <Button onClick={() => showSearchLearningObjectModal()}>
                   <FontAwesomeIcon
                     icon="plus"
                     className="btn__icon"
@@ -499,7 +480,7 @@ class MyQuestionEditPage extends Component {
               <LearningObjectList
                 learningObjects={selectedObjectList}
                 options={options}
-                removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
+                removeSelectedObject={removeSelectedObjectToQuestion}
               />
             ) : '' }
             <Row className="c-question__tittle-section">

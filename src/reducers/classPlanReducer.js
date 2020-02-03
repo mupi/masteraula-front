@@ -19,11 +19,16 @@ import {
   DELETE_CLASS_PLAN_SUCCESS,
   DELETE_CLASS_PLAN_FAILURE,
 
+  ADD_SELECTED_OBJECT_CLASS_PLAN,
+  REMOVE_SELECTED_OBJECT_CLASS_PLAN,
+  RESET_SELECTED_OBJECTLIST_CLASS_PLAN,
+
 } from 'actions/classPlanAction';
 import { toast } from 'react-toastify';
 
 const initialState = {
   classPlans: [],
+  selectedObjectList: [],
 };
 
 const optionsSuccess = {
@@ -110,6 +115,23 @@ export const classPlan = (state = initialState, action) => {
       return Object.assign({}, state, {
         error: action.error,
         isDeleted: false,
+      });
+    }
+    case ADD_SELECTED_OBJECT_CLASS_PLAN: {
+      if (state.selectedObjectList.filter(item => item.id === action.selectedObject.id).length > 0) return state; // do not add duplicates
+      return Object.assign({}, state, {
+        selectedObjectList: [...state.selectedObjectList, action.selectedObject],
+      });
+    }
+    case REMOVE_SELECTED_OBJECT_CLASS_PLAN: {
+      const newSelectedObjectList = state.selectedObjectList.filter(item => item.id !== action.idObject);
+      return Object.assign({}, state, {
+        selectedObjectList: newSelectedObjectList,
+      });
+    }
+    case RESET_SELECTED_OBJECTLIST_CLASS_PLAN: {
+      return Object.assign({}, state, {
+        selectedObjectList: [],
       });
     }
     case LIST_CLASS_PLANS:
