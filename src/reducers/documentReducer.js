@@ -14,6 +14,9 @@ import {
   COPY_DOCUMENT, COPY_DOCUMENT_FAILURE, COPY_DOCUMENT_SUCCESS,
   GET_NUMBER_DOCX_DOWNLOADED, GET_NUMBER_DOCX_DOWNLOADED_SUCCESS, GET_NUMBER_DOCX_DOWNLOADED_FAILURE,
 
+  LIST_MY_DOCUMENTS_MODAL, LIST_MY_DOCUMENTS_MODAL_SUCCESS, LIST_MY_DOCUMENTS_MODAL_FAILURE,
+  SET_CURRENT_PAGE_MODAL,
+
 } from 'actions/documentAction';
 import { toast } from 'react-toastify';
 
@@ -335,6 +338,26 @@ export const document = (state = initialState, action) => {
         error: action.error,
       });
     }
+    case LIST_MY_DOCUMENTS_MODAL:
+      return Object.assign({}, state, {
+        currentPageModal: action.currentPageModal,
+        isFetching: true,
+        error: null,
+      });
+    case LIST_MY_DOCUMENTS_MODAL_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        documentPageModal: action.documentPageModal,
+      });
+    case LIST_MY_DOCUMENTS_MODAL_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
+    case SET_CURRENT_PAGE_MODAL:
+      return Object.assign({}, state, {
+        currentPageModal: action.currentPageModal,
+      });
 
     default:
       return state;

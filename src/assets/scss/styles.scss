@@ -52,6 +52,7 @@
 
 //Components related to document
 @import 'components/document/Document';
+@import 'components/document/DocumentCard';
 @import 'components/document/PublicDocument';
 
 
@@ -84,6 +85,9 @@
 
 //Components related to Topics
 @import 'components/topics/Topics';
+
+//Components related to Class Plan
+@import 'components/classplan/ClassPlan';
 
 // Utilities
 // ----------

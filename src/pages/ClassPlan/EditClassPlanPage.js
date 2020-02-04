@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 import { Field } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
-import DocumentCardListClassPlan from 'components/document/DocumentCardListClassPlan';
 import {
   requiredValidator,
   requiredMultiSelectValidator,
@@ -125,7 +124,7 @@ const options = {
   showTitle: true,
 };
 
-class CreateClassPlanPage extends Component {
+class EditClassPlanPage extends Component {
   componentDidMount() {
     const {
       listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm, resetSelectedObjects,
@@ -149,8 +148,7 @@ class CreateClassPlanPage extends Component {
         isCreating, error, topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
         teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToClassPlan,
         submitting, errorsCreateClassPlan, listTopicSuggestions, user, showSearchLearningObjectModal,
-        showSearchDocumentModal, selectedDocumentList,
-        removeSelectedDocumentFromClassPlan,
+        showSearchDocumentModal,
       } = this.props;
 
       if (isCreating) {
@@ -304,7 +302,7 @@ class CreateClassPlanPage extends Component {
                     type="number"
                     component={renderNumericField}
                     label="Ex. 120"
-                    validate={[mustBeNumber, maxYearValue]}
+                    validate={[mustBeNumber, maxYearValue, requiredValidator]}
                   />
                 </Col>
               </Row>
@@ -402,13 +400,6 @@ class CreateClassPlanPage extends Component {
                   </Button>
                 </Col>
               </Row>
-              { selectedDocumentList ? (
-                <DocumentCardListClassPlan
-                  documents={selectedDocumentList}
-                  options={options}
-                  removeSelectedDocument={removeSelectedDocumentFromClassPlan}
-                />
-              ) : '' }
               <Row className="c-question__tittle-section">
                 <Col>
                   <h5>
@@ -521,4 +512,4 @@ class CreateClassPlanPage extends Component {
       );
     }
 }
-export default CreateClassPlanPage;
+export default EditClassPlanPage;

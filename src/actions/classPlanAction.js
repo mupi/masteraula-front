@@ -40,6 +40,10 @@ export const ADD_SELECTED_OBJECT_CLASS_PLAN = 'ADD_SELECTED_OBJECT_CLASS_PLAN';
 export const REMOVE_SELECTED_OBJECT_CLASS_PLAN = 'REMOVE_SELECTED_OBJECT_CLASS_PLAN';
 export const RESET_SELECTED_OBJECTLIST_CLASS_PLAN = 'RESET_SELECTED_OBJECTLIST_CLASS_PLAN';
 
+export const ADD_SELECTED_DOCUMENT_CLASS_PLAN = 'ADD_SELECTED_DOCUMENT_CLASS_PLAN';
+export const REMOVE_SELECTED_DOCUMENT_CLASS_PLAN = 'REMOVE_SELECTED_DOCUMENT_CLASS_PLAN';
+export const RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN = 'RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN';
+
 export const fetchClassPlan = (id) => {
   function requestClassPlan() { return { type: FETCH_CLASS_PLAN }; }
   function fetchClassPlanSuccess(activeClassPlan) { return { type: FETCH_CLASS_PLAN_SUCCESS, activeClassPlan }; }
@@ -61,35 +65,38 @@ export const fetchClassPlan = (id) => {
 
 
 // List all class plans
-export const listClassPlans = (param) => {
-  function requestListClassPlans() {
+export const listMyClassPlans = (page, orderField, order) => {
+  function requestMyListClassPlans() {
     return {
       type: LIST_CLASS_PLANS,
+      page,
+      orderField,
+      order,
     };
   }
 
-  function fetchListClassPlansSuccess(classPlans) {
+  function fetchListMyClassPlansSuccess(classPlans) {
     return {
       type: LIST_CLASS_PLANS_SUCCESS,
       classPlans,
     };
   }
 
-  function fetchListClassPlansFailure(error) {
+  function fetchListMyClassPlansFailure(error) {
     return {
       type: LIST_CLASS_PLANS_FAILURE,
       error,
     };
   }
   return (dispatch) => {
-    dispatch(requestListClassPlans(param));
-    return classPlanService.listClassPlans(param)
+    dispatch(requestMyListClassPlans(page, orderField, order));
+    return classPlanService.listMyClassPlans(page, orderField, order)
       .then(
         (classPlans) => {
-          dispatch(fetchListClassPlansSuccess(classPlans));
+          dispatch(fetchListMyClassPlansSuccess(classPlans));
         },
         (error) => {
-          dispatch(fetchListClassPlansFailure(error));
+          dispatch(fetchListMyClassPlansFailure(error));
         },
       );
   };
@@ -217,4 +224,20 @@ export const removeSelectedObjectToClassPlan = idObject => ({
 // Reset Selected Object list before starting create/update class plan
 export const resetSelectedObjects = () => ({
   type: RESET_SELECTED_OBJECTLIST_CLASS_PLAN,
+});
+
+
+// Add Selected Document to Class Plan
+export const addSelectedDocumentToClassPlan = selectedDocument => ({
+  type: ADD_SELECTED_DOCUMENT_CLASS_PLAN, selectedDocument,
+});
+
+// Remove Selected Document From Class Plan
+export const removeSelectedDocumentFromClassPlan = idDocument => ({
+  type: REMOVE_SELECTED_DOCUMENT_CLASS_PLAN, idDocument,
+});
+
+// Reset Selected Document list before starting create/update class plan
+export const resetSelectedDocuments = () => ({
+  type: RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN,
 });

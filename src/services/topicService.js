@@ -3,28 +3,6 @@ import queryString from 'query-string';
 import axios from 'axios';
 import { authHeader } from 'helpers';
 
-// let call;
-
-/* function listTopics(disciplines) {
-  if (call) call.cancel();
-
-  call = axios.CancelToken.source();
-
-  const requestOptions = {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-    cancelToken: call.token,
-  };
-
-  let disciplinesParams = '';
-  if (disciplines) { disciplinesParams = queryString.stringify({ disciplines: disciplines.map(item => item.id) }); }
-
-  const url = `/topics/?${disciplinesParams}`;
-
-  return axios.get(`${apiUrl}${url}`, requestOptions).then(response => response.data);
-} */
-
-
 function listTopics(disciplineIdSelected, page, orderField, order) {
   const requestOptions = {
     method: 'GET',

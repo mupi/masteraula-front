@@ -5,6 +5,7 @@ import {
 import CreateClassPlanPage from 'pages/ClassPlan/CreateClassPlanPage';
 import {
   createClassPlan, addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
+  addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan,
 } from 'actions/classPlanAction';
 
 import {
@@ -13,6 +14,9 @@ import {
 import { listTopics, resetTopicList } from 'actions/topicAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import { listTopicSuggestions } from 'actions/suggestionAction';
+import {
+  listMyDocumentsModal,
+} from 'actions/documentAction';
 
 /* Learning Object search modal called from
 Q = Question
@@ -31,6 +35,7 @@ const mapStateToProps = (state) => {
     teachingYearFilters: state.filter.teachingYearFilters,
     sourceFilters: state.filter.sourceFilters,
     selectedObjectList: state.classPlan.selectedObjectList,
+    selectedDocumentList: state.classPlan.selectedDocumentList,
     errorsCreateClassPlan: state.form['create-classplan'] ? state.form['create-classplan'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
@@ -51,6 +56,19 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'searchObjectModal',
   };
 
+  const openSearchDocumentModalProps = {
+    modalProps: {
+      open: true,
+      titlePart: 'à plano de aula',
+      closeModal: () => dispatch(hideModal()),
+      addSelectedDocument: document => dispatch(addSelectedDocumentToClassPlan(document)),
+      removeSelectedDocument: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
+      listMyDocumentsModal: (page, orderField, order) => dispatch(listMyDocumentsModal(page, orderField, order)),
+      callFrom: 'C',
+    },
+    modalType: 'searchDocumentModal',
+  };
+
   return ({
     listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
     listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
@@ -64,9 +82,14 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     showSearchLearningObjectModal: () => dispatch(showModal(openSearchLearningObjectModalProps)),
+    showSearchDocumentModal: () => dispatch(showModal(openSearchDocumentModalProps)),
+
     listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
+
     removeSelectedObjectToClassPlan: idObject => dispatch(removeSelectedObjectToClassPlan(idObject)),
     resetSelectedObjects: () => dispatch(resetSelectedObjects()),
+
+    removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
 
     /*
   fields = (

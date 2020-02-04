@@ -182,7 +182,7 @@ const SidebarMobile = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
+                    <Link to="/class-plans/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
                         icon="folder"
@@ -317,7 +317,7 @@ const SidebarWeb = ({
                       </Link>
                     </ListGroupItem>
                     <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/documents/1">
+                      <Link to="/class-plans/1">
                         <FontAwesomeIcon className="btn__icon" icon="folder" />
                           Gerenciar meus planos de aula
                       </Link>

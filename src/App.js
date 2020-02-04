@@ -32,6 +32,7 @@ import {
   PublicDocumentPageContainer,
   TopicBasePageContainer,
   CreateClassPlanPageContainer,
+  ManageClassPlansPageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -76,6 +77,8 @@ import {
   faTags,
   faCircle,
   faTimes,
+  faLink,
+  faFilePdf,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -95,6 +98,8 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faPlusCircle, faBookmark,
   faCircle,
   faTimes,
+  faLink,
+  faFilePdf,
   fab);
 
 class App extends Component {
@@ -156,6 +161,8 @@ class App extends Component {
                 <Route path="/terms-use" component={TermsUsePageHome} />
                 <Route path="/topic-base/:page(\d+)" component={TopicBasePageContainer} />
                 <Route path="/create-classplan" component={CreateClassPlanPageContainer} />
+                <Route path="/class-plans/:page(\d+)" component={ManageClassPlansPageContainer} />
+
                 <Redirect from="/" to="/question-base/1" />
               </Switch>
             )

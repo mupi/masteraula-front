@@ -24,8 +24,6 @@ const mapDispatchToProps = dispatch => ({
     });
     dispatch(setDispatchSearchText());
   },
-  // addSelectedObject: object => dispatch(addSelectedObject(object)),
-  // removeSelectedObject: idObject => dispatch(removeSelectedObject(idObject)),
   setCurrentPageModal: page => dispatch(setCurrentPageModal(page)),
 });
 

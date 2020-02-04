@@ -23,12 +23,17 @@ import {
   REMOVE_SELECTED_OBJECT_CLASS_PLAN,
   RESET_SELECTED_OBJECTLIST_CLASS_PLAN,
 
+  ADD_SELECTED_DOCUMENT_CLASS_PLAN,
+  REMOVE_SELECTED_DOCUMENT_CLASS_PLAN,
+  RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN,
+
 } from 'actions/classPlanAction';
 import { toast } from 'react-toastify';
 
 const initialState = {
   classPlans: [],
   selectedObjectList: [],
+  selectedDocumentList: [],
 };
 
 const optionsSuccess = {
@@ -70,7 +75,6 @@ export const classPlan = (state = initialState, action) => {
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
-        classPlans: [...state.classPlans, action.newClassPlan],
         isCreated: true,
       });
     case CREATE_CLASS_PLAN_FAILURE:
@@ -86,9 +90,8 @@ export const classPlan = (state = initialState, action) => {
       });
     }
     case UPDATE_CLASS_PLAN_SUCCESS: {
-      const newClassPlans = state.classPlans.filter(item => item.id !== action.activeClassPlan.id);
       return Object.assign({}, state, {
-        classPlans: [...newClassPlans, action.activeClassPlan],
+        activeClassPlan: { ...action.activeClassPlan },
         isUpdated: true,
       });
     }
@@ -102,8 +105,8 @@ export const classPlan = (state = initialState, action) => {
       });
     }
     case DELETE_CLASS_PLAN_SUCCESS: {
-      toast.success('Etiqueta removida com sucesso', optionsSuccess);
-      const newClassPlans = state.classPlans.filter(item => item.id !== action.idClassPlanRemoved);
+      toast.success('Plano de aula removido com sucesso', optionsSuccess);
+      const newClassPlans = state.classPlans.results.filter(item => item.id !== action.idClassPlanRemoved);
 
       return Object.assign({}, state, {
         classPlans: newClassPlans,
@@ -134,21 +137,42 @@ export const classPlan = (state = initialState, action) => {
         selectedObjectList: [],
       });
     }
+
+    case ADD_SELECTED_DOCUMENT_CLASS_PLAN: {
+      if (state.selectedDocumentList.filter(item => item.id === action.selectedDocument.id).length > 0) return state; // do not add duplicates
+      return Object.assign({}, state, {
+        selectedDocumentList: [...state.selectedDocumentList, action.selectedDocument],
+      });
+    }
+    case REMOVE_SELECTED_DOCUMENT_CLASS_PLAN: {
+      const newSelectedDocumentList = state.selectedDocumentList.filter(item => item.id !== action.idDocument);
+      return Object.assign({}, state, {
+        selectedDocumentList: newSelectedDocumentList,
+      });
+    }
+    case RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN: {
+      return Object.assign({}, state, {
+        selectedDocumentList: [],
+      });
+    }
     case LIST_CLASS_PLANS:
       return Object.assign({}, state, {
         classPlans: action.classPlans,
         isFetchingClassPlans: true,
         error: null,
+        isDeleted: false,
       });
     case LIST_CLASS_PLANS_SUCCESS:
       return Object.assign({}, state, {
         classPlans: action.classPlans,
         isFetchingClassPlans: false,
+        isDeleted: false,
       });
     case LIST_CLASS_PLANS_FAILURE:
       return Object.assign({}, state, {
         isFetchingClassPlans: false,
         error: action.error,
+        isDeleted: false,
       });
     default:
       return state;

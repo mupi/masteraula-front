@@ -5,43 +5,41 @@ import {
 import PropTypes from 'prop-types';
 
 import CustomPaginationModal from 'components/pagination/CustomPaginationModal';
-import SimpleLObjectSearchFormContainer from 'containers/SimpleLObjectSearchFormContainer';
-import SimpleLObjectCardList from 'components/learningObject/SimpleLObjectCardList';
+import DocumentCardList from 'components/document/DocumentCardList';
 
 
-class SearchLearningObjectModal extends React.Component {
+class SearchDocumentModal extends React.Component {
   componentDidMount() {
     const {
-      filterObject, listObjects,
+      listMyDocumentsModal,
     } = this.props;
-    listObjects(parseInt(1, 10), filterObject);
+    listMyDocumentsModal(1, 'date', 'desc');
   }
 
   componentDidUpdate(prevProps) {
     const {
-      currentPageModal, filterObject, listObjects,
+      currentPageModal, listMyDocumentsModal,
     } = this.props;
-    if (currentPageModal !== prevProps.currentPageModal || filterObject !== prevProps.filterObject) {
-      listObjects(parseInt(currentPageModal, 10), filterObject);
+    if (currentPageModal !== prevProps.currentPageModal) {
+      listMyDocumentsModal(parseInt(currentPageModal, 10), 'date', 'desc');
     }
   }
 
+
   render() {
     const {
-      objectPage, isFetching, closeModal, titlePart, setCurrentPageModal,
-      addSelectedObject, removeSelectedObject, callFrom,
-      selectedObjectListQuestion,
-      selectedObjectListClassPlan,
+      documentPage, isFetching, closeModal, titlePart, setCurrentPageModal,
+      addSelectedDocument, removeSelectedDocument,
+      selectedDocumentList,
     } = this.props;
 
-    const selectedObjectList = callFrom === 'Q' ? selectedObjectListQuestion : selectedObjectListClassPlan;
     return (
       <div className="modal-content modal__content modal-fixed__content">
         <div className="modal-header modal__header">
           <h5
             className="modal-title"
           >
-            {`Adicionar objeto ${titlePart}`}
+            {`Adicionar prova e/o lista de exercícios ${titlePart}`}
           </h5>
           <button type="button" className="close" aria-label="Close" onClick={closeModal}>
             <span aria-hidden="true">
@@ -52,19 +50,18 @@ class SearchLearningObjectModal extends React.Component {
         <div className="modal-basic-operation__body modal-body modal-fixed__body">
 
           <div className="c-object-base modal-fixed__body-all">
-            <SimpleLObjectSearchFormContainer />
             <Row className="pagination-questions modal-fixed__pagination-top" style={{ marginLeft: '80%' }}>
-              <CustomPaginationModal {...this.props} {...objectPage} itensPerPage={16} disabled={isFetching} />
+              <CustomPaginationModal {...this.props} {...documentPage} itensPerPage={16} disabled={isFetching} />
             </Row>
             <Row>
               <Col sm="12" className="c-object-base__total-results">
-                {'Objetos de aprendizagem encontrados:'}
-                {objectPage ? objectPage.count : 0}
+                {'Provas e/o listas de exercícios encontrados:'}
+                {documentPage ? documentPage.count : 0}
               </Col>
               <Col sm="12" className="c-object-base-modal__selected-number">
-                {`Objetos associados ${titlePart}`}
+                {`Provas e/o listas de exercícios associados ${titlePart}:`}
                 {' '}
-                {selectedObjectList.length}
+                {selectedDocumentList.length}
               </Col>
             </Row>
             <div className="c-question-base__results modal-fixed__body-section-scroll">
@@ -73,15 +70,15 @@ class SearchLearningObjectModal extends React.Component {
                    Carregando  ...
                 </Alert>
               ) : (
-                <SimpleLObjectCardList
-                  addSelectedObject={addSelectedObject}
-                  removeSelectedObject={removeSelectedObject}
+                <DocumentCardList
+                  addSelectedDocument={addSelectedDocument}
+                  removeSelectedDocument={removeSelectedDocument}
                   sm="4"
                   {...this.props}
-                  objects={objectPage ? objectPage.results : null}
-                  count={objectPage ? objectPage.count : 0}
-                  selectedObjectList={selectedObjectList}
-                  showSelectedObjects
+                  documents={documentPage ? documentPage.results : null}
+                  count={documentPage ? documentPage.count : 0}
+                  selectedDocumentList={selectedDocumentList}
+                  showSelectedDocuments
                 />
               )
             }
@@ -89,7 +86,7 @@ class SearchLearningObjectModal extends React.Component {
             <Row className="pagination-questions modal-fixed__pagination-bottom" style={{ marginLeft: '80%' }}>
               <CustomPaginationModal
                 {...this.props}
-                {...objectPage}
+                {...documentPage}
                 itensPerPage={16}
                 disabled={isFetching}
                 setCurrentPageModal={setCurrentPageModal}
@@ -109,16 +106,16 @@ class SearchLearningObjectModal extends React.Component {
   }
 }
 
-SearchLearningObjectModal.propTypes = {
+SearchDocumentModal.propTypes = {
   closeModal: PropTypes.func,
   title: PropTypes.string,
   message: PropTypes.string,
 };
 
-SearchLearningObjectModal.defaultProps = {
+SearchDocumentModal.defaultProps = {
   closeModal: f => f,
   title: '',
   message: '',
 };
 
-export default SearchLearningObjectModal;
+export default SearchDocumentModal;

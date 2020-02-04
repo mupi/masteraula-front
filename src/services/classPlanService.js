@@ -7,21 +7,15 @@ import {
   authHeader,
 } from 'helpers';
 
-let call;
 
 // Fetch a class plan given its ID
 function fetchClassPlan(id) {
-  if (call) call.cancel();
-
-  call = axios.CancelToken.source();
-
   const requestOptions = {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    cancelToken: call.token,
 
   };
 
@@ -33,25 +27,20 @@ function fetchClassPlan(id) {
 }
 
 
-function listClassPlans() {
-  if (call) call.cancel();
-
-  call = axios.CancelToken.source();
-
+function listMyClassPlans(page, orderField, order) {
   const requestOptions = {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    cancelToken: call.token,
 
   };
 
-  const url = '/class_plans/';
+  const url = '/class_plans/my_plans/';
 
 
-  return axios.get(`${apiUrl}${url}`, requestOptions)
+  return axios.get(`${apiUrl}${url}?page=${page}&order_field=${orderField}&order=${order}`, requestOptions)
     .then(response => response.data).then(classPlans => classPlans);
 }
 
@@ -89,7 +78,7 @@ function updateClassPlan(activeClassPlan) {
 
 
 // Delete a class plan given its ID
-function deleteClassPlan(idClassPlan) {
+function deleteClassPlan(idClassPlanRemoved) {
   const requestOptions = {
     method: 'DELETE',
     headers: {
@@ -97,14 +86,14 @@ function deleteClassPlan(idClassPlan) {
     },
   };
 
-  return axios.delete(`${apiUrl}/class_plans/${idClassPlan}/`, requestOptions)
-    .then(response => response.data).then(() => idClassPlan);
+  return axios.delete(`${apiUrl}/class_plans/${idClassPlanRemoved}/`, requestOptions)
+    .then(response => response.data).then(() => idClassPlanRemoved);
 }
 
 
 const classPlanService = {
   fetchClassPlan,
-  listClassPlans,
+  listMyClassPlans,
   createClassPlan,
   updateClassPlan,
   deleteClassPlan,

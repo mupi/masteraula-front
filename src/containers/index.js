@@ -25,3 +25,4 @@ export { default as PublicDocumentPageContainer } from './PublicDocumentPageCont
 export { default as DocumentListContainer } from './DocumentListContainer';
 export { default as TopicBasePageContainer } from './TopicBasePageContainer';
 export { default as CreateClassPlanPageContainer } from './CreateClassPlanPageContainer';
+export { default as ManageClassPlansPageContainer } from './ManageClassPlansPageContainer';
