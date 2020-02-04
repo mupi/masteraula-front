@@ -118,7 +118,7 @@ const mapDispatchToProps = (dispatch) => {
         teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
         topics_ids: values.topics.map(topic => topic.id),
         learning_objects_ids: props.selectedObjectList.map(object => object.id),
-        documents_ids: [],
+        documents_ids: props.selectedDocumentList.map(document => document.id),
         // links
         teaching_years_ids: values.teachingYears.map(teachingYear => teachingYear.id),
         duration: values.duration,

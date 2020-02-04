@@ -2,27 +2,11 @@
     margin-bottom: 20px;
     padding: 12px 12px;
 
-    &__info-section-item--italic{
-      font-style: italic !important;
-    }
-
     &__btn{
       &--red{
         border-color: $color-ma-red !important;
         background: $color-ma-red !important;
       }
-    }
-  
-    &__info-section-item{
-      padding: 2px 4px;
-      border-radius: 5px;
-      color: $color-ma-white;
-      font-weight: bold;
-      font-size: 11px;
-      text-align: center;
-      display: inline-block;
-      background: $color-ma-dark-gray;
-      margin: 0px 5px 5px 0px;
     }
 
     &__filter-button{
@@ -49,6 +33,16 @@
       &--blue{
         background: $color-ma-blue;
         border-color: $color-ma-blue;
+      }
+    }
+
+    &__disciplines{
+
+      .badge-pill{
+        background: $color-ma-pink;
+        border-color:$color-ma-pink;
+        border-radius: 5px;
+        margin-right: 2px;
       }
     }
 
@@ -142,6 +136,16 @@
       margin-bottom: 5px;
       @include multiLineEllipsis($lineHeight: 1.5em, $lineCount: 2, $bgColor:rgb(247, 247, 247));  
       
+      &--lightgray{
+        color:$color-ma-lightgray;
+      }
+  
+  
+    }
+
+    &__name{
+      font-size: 12px;
+      margin-bottom: 0px;
       &--lightgray{
         color:$color-ma-lightgray;
       }

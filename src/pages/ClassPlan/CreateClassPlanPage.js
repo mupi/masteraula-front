@@ -451,7 +451,7 @@ class CreateClassPlanPage extends Component {
                       icon="plus"
                       className="btn__icon"
                     />
-                    Adicionar objeto
+                    Adicionar link
                   </Button>
                 </Col>
               </Row>
