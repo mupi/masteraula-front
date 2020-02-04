@@ -128,13 +128,15 @@ const options = {
 class CreateClassPlanPage extends Component {
   componentDidMount() {
     const {
-      listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm, resetSelectedObjects,
+      listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm,
+      resetSelectedObjects, resetSelectedDocuments,
     } = this.props;
     listDisciplineFilters();
     listTeachingLevelFilters();
     listTeachingYearFilters();
     prepareForm();
     resetSelectedObjects();
+    resetSelectedDocuments();
   }
 
     listTopicSuggestions = (param) => {

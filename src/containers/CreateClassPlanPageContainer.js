@@ -4,8 +4,9 @@ import {
 } from 'redux-form';
 import CreateClassPlanPage from 'pages/ClassPlan/CreateClassPlanPage';
 import {
-  createClassPlan, addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
-  addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan,
+  createClassPlan,
+  addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
+  addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan, resetSelectedDocuments,
 } from 'actions/classPlanAction';
 
 import {
@@ -88,6 +89,7 @@ const mapDispatchToProps = (dispatch) => {
 
     removeSelectedObjectToClassPlan: idObject => dispatch(removeSelectedObjectToClassPlan(idObject)),
     resetSelectedObjects: () => dispatch(resetSelectedObjects()),
+    resetSelectedDocuments: () => dispatch(resetSelectedDocuments()),
 
     removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
 
