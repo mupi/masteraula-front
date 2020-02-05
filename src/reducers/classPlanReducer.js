@@ -3,9 +3,9 @@ import {
   FETCH_CLASS_PLAN_SUCCESS,
   FETCH_CLASS_PLAN_FAILURE,
 
-  LIST_CLASS_PLANS,
-  LIST_CLASS_PLANS_SUCCESS,
-  LIST_CLASS_PLANS_FAILURE,
+  LIST_MY_CLASS_PLANS,
+  LIST_MY_CLASS_PLANS_SUCCESS,
+  LIST_MY_CLASS_PLANS_FAILURE,
 
   CREATE_CLASS_PLAN,
   CREATE_CLASS_PLAN_SUCCESS,
@@ -155,20 +155,22 @@ export const classPlan = (state = initialState, action) => {
         selectedDocumentList: [],
       });
     }
-    case LIST_CLASS_PLANS:
+    case LIST_MY_CLASS_PLANS:
       return Object.assign({}, state, {
         classPlans: action.classPlans,
         isFetchingClassPlans: true,
         error: null,
         isDeleted: false,
+        orderField: action.orderField,
+        order: action.order,
       });
-    case LIST_CLASS_PLANS_SUCCESS:
+    case LIST_MY_CLASS_PLANS_SUCCESS:
       return Object.assign({}, state, {
         classPlans: action.classPlans,
         isFetchingClassPlans: false,
         isDeleted: false,
       });
-    case LIST_CLASS_PLANS_FAILURE:
+    case LIST_MY_CLASS_PLANS_FAILURE:
       return Object.assign({}, state, {
         isFetchingClassPlans: false,
         error: action.error,

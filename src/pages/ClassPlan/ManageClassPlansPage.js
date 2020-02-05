@@ -14,8 +14,9 @@ const getOrderNameField = (text) => {
     case 'asc': return 'Crescente';
     case 'desc': return 'Decrescente';
     case 'name': return 'Nome';
-    case 'date': return 'Data de criação';
-    case 'question_number': return 'Nº questões';
+    case 'create_date': return 'Data de criação';
+    case 'disciplines': return 'Disciplina';
+    case 'duration': return 'Duração';
     default: return text;
   }
 };
@@ -92,18 +93,25 @@ class ManageClassPlansPage extends React.Component {
                           Nome - Decrescente
                         </DropdownItem>
                         <DropdownItem divider />
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyClassPlans(1, 'date', 'asc')}>
-                          Data de criação - Crescente
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyClassPlans(1, 'disciplines', 'asc')}>
+                          Disciplina - Crescente
                         </DropdownItem>
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyClassPlans(1, 'date', 'desc')}>
-                          Data de criação - Decrescente
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyClassPlans(1, 'disciplines', 'desc')}>
+                          Disciplina - Decrescente
                         </DropdownItem>
                         <DropdownItem divider />
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyClassPlans(1, 'question_number', 'asc')}>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyClassPlans(1, 'duration', 'asc')}>
                           Duração - Crescente
                         </DropdownItem>
-                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyClassPlans(1, 'question_number', 'desc')}>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyClassPlans(1, 'duration', 'desc')}>
                           Duração - Decrescente
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyClassPlans(1, 'create_date', 'asc')}>
+                          Data de criação - Crescente
+                        </DropdownItem>
+                        <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyClassPlans(1, 'create_date', 'desc')}>
+                          Data de criação - Decrescente
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>

@@ -20,9 +20,9 @@ export const FETCH_CLASS_PLAN = 'FETCH_CLASS_PLAN';
 export const FETCH_CLASS_PLAN_SUCCESS = 'FETCH_CLASS_PLAN_SUCCESS';
 export const FETCH_CLASS_PLAN_FAILURE = 'FETCH_CLASS_PLAN_FAILURE';
 
-export const LIST_CLASS_PLANS = 'LIST_CLASS_PLANS';
-export const LIST_CLASS_PLANS_SUCCESS = 'LIST_CLASS_PLANS_SUCCESS';
-export const LIST_CLASS_PLANS_FAILURE = 'LIST_CLASS_PLANS_FAILURE';
+export const LIST_MY_CLASS_PLANS = 'LIST_MY_CLASS_PLANS';
+export const LIST_MY_CLASS_PLANS_SUCCESS = 'LIST_MY_CLASS_PLANS_SUCCESS';
+export const LIST_MY_CLASS_PLANS_FAILURE = 'LIST_MY_CLASS_PLANS_FAILURE';
 
 export const CREATE_CLASS_PLAN = 'CREATE_CLASS_PLAN';
 export const CREATE_CLASS_PLAN_SUCCESS = 'CREATE_CLASS_PLAN_SUCCESS';
@@ -68,7 +68,7 @@ export const fetchClassPlan = (id) => {
 export const listMyClassPlans = (page, orderField, order) => {
   function requestMyListClassPlans() {
     return {
-      type: LIST_CLASS_PLANS,
+      type: LIST_MY_CLASS_PLANS,
       page,
       orderField,
       order,
@@ -77,14 +77,14 @@ export const listMyClassPlans = (page, orderField, order) => {
 
   function fetchListMyClassPlansSuccess(classPlans) {
     return {
-      type: LIST_CLASS_PLANS_SUCCESS,
+      type: LIST_MY_CLASS_PLANS_SUCCESS,
       classPlans,
     };
   }
 
   function fetchListMyClassPlansFailure(error) {
     return {
-      type: LIST_CLASS_PLANS_FAILURE,
+      type: LIST_MY_CLASS_PLANS_FAILURE,
       error,
     };
   }
