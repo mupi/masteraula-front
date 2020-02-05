@@ -34,6 +34,7 @@ const ClassPlanList = (props) => {
                 <th>Disciplinas</th>
                 <th>Duração</th>
                 <th>Data de criação</th>
+                <th>Ver</th>
                 <th>Editar</th>
                 <th>Apagar</th>
               </tr>
@@ -54,6 +55,11 @@ const ClassPlanList = (props) => {
                   <OpenDocumentModalHeader>
                     {formatDate(classPlan.create_date)}
                   </OpenDocumentModalHeader>
+                  <td>
+                    <Button color="secondary" title="Ver plano de aula">
+                      <FontAwesomeIcon icon="eye" />
+                    </Button>
+                  </td>
                   <td>
                     <Button color="secondary" title="Editar plano de aula">
                       <FontAwesomeIcon icon="pencil-alt" />
