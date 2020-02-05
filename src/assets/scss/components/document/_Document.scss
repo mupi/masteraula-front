@@ -410,3 +410,11 @@ tbody tr.odd {
   color:$color-ma-white;
   font-size: 16px !important;
 }
+
+
+/*Search Document Modal from ClassPlan*/
+.search-document-modal{
+  &__body-section-scroll{
+      top: 100px !important;
+  }
+}

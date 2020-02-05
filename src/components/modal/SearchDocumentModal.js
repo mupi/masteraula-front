@@ -64,7 +64,7 @@ class SearchDocumentModal extends React.Component {
                 {selectedDocumentList.length}
               </Col>
             </Row>
-            <div className="c-question-base__results modal-fixed__body-section-scroll">
+            <div className="c-question-base__results modal-fixed__body-section-scroll search-document-modal__body-section-scroll">
               { isFetching ? (
                 <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
                    Carregando  ...
