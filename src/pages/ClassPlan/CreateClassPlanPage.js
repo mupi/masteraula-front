@@ -17,6 +17,7 @@ import {
   requiredValidator,
   requiredMultiSelectValidator,
   mustBeNumber, maxYearValue,
+  minLength3characters,
 } from 'helpers/validators';
 
 // Basic Input Field
@@ -221,7 +222,7 @@ class CreateClassPlanPage extends Component {
                     name="name"
                     className="form-control"
                     component={renderField}
-                    validate={requiredValidator}
+                    validate={[requiredValidator, minLength3characters]}
                     label="Insira um nome para o plano de aula"
                   />
                 </Col>
