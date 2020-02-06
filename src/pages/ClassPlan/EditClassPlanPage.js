@@ -12,10 +12,12 @@ import { Link } from 'react-router-dom';
 import { Field } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
+import DocumentCardListClassPlan from 'components/document/DocumentCardListClassPlan';
 import {
   requiredValidator,
   requiredMultiSelectValidator,
   mustBeNumber, maxYearValue,
+  minLength3characters,
 } from 'helpers/validators';
 
 // Basic Input Field
@@ -124,16 +126,18 @@ const options = {
   showTitle: true,
 };
 
-class EditClassPlanPage extends Component {
+class CreateClassPlanPage extends Component {
   componentDidMount() {
     const {
-      listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm, resetSelectedObjects,
+      listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm,
+      resetSelectedObjects, resetSelectedDocuments,
     } = this.props;
     listDisciplineFilters();
     listTeachingLevelFilters();
     listTeachingYearFilters();
     prepareForm();
     resetSelectedObjects();
+    resetSelectedDocuments();
   }
 
     listTopicSuggestions = (param) => {
@@ -148,7 +152,8 @@ class EditClassPlanPage extends Component {
         isCreating, error, topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
         teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToClassPlan,
         submitting, errorsCreateClassPlan, listTopicSuggestions, user, showSearchLearningObjectModal,
-        showSearchDocumentModal,
+        showSearchDocumentModal, selectedDocumentList,
+        removeSelectedDocumentFromClassPlan,
       } = this.props;
 
       if (isCreating) {
@@ -193,7 +198,7 @@ class EditClassPlanPage extends Component {
                   <h4>
                     <FontAwesomeIcon icon="book" />
                     {' '}
-                    Criar Plano de Aula
+                    Editar Plano de Aula
                   </h4>
                 </Col>
               </Row>
@@ -217,7 +222,7 @@ class EditClassPlanPage extends Component {
                     name="name"
                     className="form-control"
                     component={renderField}
-                    validate={requiredValidator}
+                    validate={[requiredValidator, minLength3characters]}
                     label="Insira um nome para o plano de aula"
                   />
                 </Col>
@@ -302,7 +307,7 @@ class EditClassPlanPage extends Component {
                     type="number"
                     component={renderNumericField}
                     label="Ex. 120"
-                    validate={[mustBeNumber, maxYearValue, requiredValidator]}
+                    validate={[mustBeNumber, maxYearValue]}
                   />
                 </Col>
               </Row>
@@ -400,6 +405,13 @@ class EditClassPlanPage extends Component {
                   </Button>
                 </Col>
               </Row>
+              { selectedDocumentList ? (
+                <DocumentCardListClassPlan
+                  documents={selectedDocumentList}
+                  options={options}
+                  removeSelectedDocument={removeSelectedDocumentFromClassPlan}
+                />
+              ) : '' }
               <Row className="c-question__tittle-section">
                 <Col>
                   <h5>
@@ -442,7 +454,7 @@ class EditClassPlanPage extends Component {
                       icon="plus"
                       className="btn__icon"
                     />
-                    Adicionar objeto
+                    Adicionar link
                   </Button>
                 </Col>
               </Row>
@@ -512,4 +524,4 @@ class EditClassPlanPage extends Component {
       );
     }
 }
-export default EditClassPlanPage;
+export default CreateClassPlanPage;

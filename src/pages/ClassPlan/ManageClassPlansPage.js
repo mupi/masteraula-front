@@ -58,9 +58,9 @@ class ManageClassPlansPage extends React.Component {
               <h4>Meus planos de aula</h4>
             </Col>
           </Row>
-          <Row className="pagination-my-documents">
+          <Row>
             <Col sm="12">
-              <CustomPagination {...this.props} {...myClassPlansList} disabled={isFetchingClassPlans} itensPerPage={10} />
+              <CustomPagination {...this.props} {...myClassPlansList} disabled={isFetchingClassPlans} itensPerPage={10} className="pagination-my-classplans" />
               <p className="c-my-documents__total-results">
                 {`Planos de aula encontrados: ${myClassPlansList ? (myClassPlansList.count) : 0}`}
                 {' '}

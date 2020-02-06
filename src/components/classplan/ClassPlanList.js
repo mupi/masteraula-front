@@ -4,6 +4,7 @@ import {
 } from 'reactstrap';
 import { formatDate } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const OpenDocumentModalHeader = (props) => {
   const { children } = props;
@@ -56,12 +57,22 @@ const ClassPlanList = (props) => {
                     {formatDate(classPlan.create_date)}
                   </OpenDocumentModalHeader>
                   <td>
-                    <Button color="secondary" title="Ver plano de aula">
+                    <Button
+                      color="secondary"
+                      title="Ver plano de aula"
+                      to="/view-classplan"
+                      tag={Link}
+                    >
                       <FontAwesomeIcon icon="eye" />
                     </Button>
                   </td>
                   <td>
-                    <Button color="secondary" title="Editar plano de aula">
+                    <Button
+                      color="secondary"
+                      title="Ver plano de aula"
+                      to="/edit-classplan"
+                      tag={Link}
+                    >
                       <FontAwesomeIcon icon="pencil-alt" />
                     </Button>
                   </td>

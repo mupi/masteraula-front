@@ -32,6 +32,7 @@ import {
   PublicDocumentPageContainer,
   TopicBasePageContainer,
   CreateClassPlanPageContainer,
+  EditClassPlanPageContainer,
   ManageClassPlansPageContainer,
 } from 'containers';
 
@@ -161,6 +162,9 @@ class App extends Component {
                 <Route path="/terms-use" component={TermsUsePageHome} />
                 <Route path="/topic-base/:page(\d+)" component={TopicBasePageContainer} />
                 <Route path="/create-classplan" component={CreateClassPlanPageContainer} />
+                <Route path="/edit-classplan" component={EditClassPlanPageContainer} />
+                <Route path="/view-classplan" component={EditClassPlanPageContainer} />
+
                 <Route path="/class-plans/:page(\d+)" component={ManageClassPlansPageContainer} />
 
                 <Redirect from="/" to="/question-base/1" />
