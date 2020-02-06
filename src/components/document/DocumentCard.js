@@ -40,9 +40,11 @@ const DocumentCard = (props) => {
         </div>
       </CardHeader>
       <CardBodyDocumentCard document={document} />
+      {button && (
       <CardFooter className="document-card__footer">
         {button}
       </CardFooter>
+      )}
     </Card>
   );
 };

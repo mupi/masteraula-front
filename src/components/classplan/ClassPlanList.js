@@ -60,7 +60,7 @@ const ClassPlanList = (props) => {
                     <Button
                       color="secondary"
                       title="Ver plano de aula"
-                      to="/view-classplan"
+                      to={`/view-classplan/${classPlan.id}`}
                       tag={Link}
                     >
                       <FontAwesomeIcon icon="eye" />
@@ -77,7 +77,7 @@ const ClassPlanList = (props) => {
                     </Button>
                   </td>
                   <td>
-                    <Button color="danger" onClick={() => handleDelete(classPlan.id, classPlan.name)} title="Excluir plano de aula">
+                    <Button color="danger" onClick={() => handleDelete(classPlan.id, classPlan.name)} title="Apagar plano de aula">
                       <FontAwesomeIcon icon="trash-alt" />
                     </Button>
                   </td>

@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch) => {
   });
   return ({
     listMyClassPlans: (page, orderField, order) => dispatch(listMyClassPlans(page, orderField, order)),
-    showDeleteModal: (idDocument, name) => dispatch(showModal(deleteModalProps(idDocument, name))),
+    showDeleteModal: (idClassPlan, name) => dispatch(showModal(deleteModalProps(idClassPlan, name))),
 
   });
 };

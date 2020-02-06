@@ -20,6 +20,22 @@ import {
   minLength3characters,
 } from 'helpers/validators';
 
+// Learning object's options available for LearnningObjectContent
+const optionsObject = {
+  showOperations: true,
+  showViewButton: true,
+  showCreateQuestionButton: false,
+  removeOption: true,
+  showTitle: true,
+};
+
+
+// Document's options available for Create ClassPlan
+const optionsDocument = {
+  showViewButton: false,
+  removeButton: true,
+};
+
 // Basic Input Field
 const renderField = ({
   input,
@@ -117,14 +133,6 @@ const renderQuestionTextEditor = (props) => {
   );
 };
 
-// Learning object's options available for LearnningObjectContent
-const options = {
-  showOperations: true,
-  showViewButton: true,
-  showCreateQuestionButton: false,
-  removeOption: true,
-  showTitle: true,
-};
 
 class CreateClassPlanPage extends Component {
   componentDidMount() {
@@ -170,7 +178,7 @@ class CreateClassPlanPage extends Component {
         return (
           <HomeUserPage>
             <Alert color="danger">
-                Erro na questão
+                Erro no plano de aula
             </Alert>
           </HomeUserPage>
         );
@@ -383,7 +391,7 @@ class CreateClassPlanPage extends Component {
               { selectedObjectList ? (
                 <LearningObjectList
                   learningObjects={selectedObjectList}
-                  options={options}
+                  options={optionsObject}
                   removeSelectedObject={removeSelectedObjectToClassPlan}
                 />
               ) : '' }
@@ -408,7 +416,7 @@ class CreateClassPlanPage extends Component {
               { selectedDocumentList ? (
                 <DocumentCardListClassPlan
                   documents={selectedDocumentList}
-                  options={options}
+                  options={optionsDocument}
                   removeSelectedDocument={removeSelectedDocumentFromClassPlan}
                 />
               ) : '' }
@@ -486,7 +494,7 @@ class CreateClassPlanPage extends Component {
                   <Col>
                     { (!pristine) ? (
                       <Alert color="warning" className="c-question-edit__warning-message">
-                        Existem mudanças ainda não salvas na questão
+                        Existem mudanças ainda não salvas no plano de aula
                       </Alert>
                     ) : ''
                         }
@@ -508,7 +516,7 @@ class CreateClassPlanPage extends Component {
 
             <Row className="c-question__row-footer-options text-center">
               <Col>
-                <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
+                <Button type="submit" title="Salvar plano de aula" className="btn-secondary btn-margin-right" disabled={submitting}>
                   <FontAwesomeIcon
                     className="btn__icon"
                     icon="save"

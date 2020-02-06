@@ -128,6 +128,7 @@ export const createClassPlan = (props) => {
     return classPlanService.createClassPlan(props).then(
       (newClassPlan) => {
         dispatch(createClassPlanSuccess(newClassPlan));
+        history.push(`/view-classplan/${newClassPlan.id}`);
         toast.success('Plano de aula criado com sucesso', optionsSuccess);
       },
       (error) => {
@@ -177,7 +178,7 @@ export const updateClassPlan = (props) => {
 
 
 // delete a class plan
-export const deleteClassPlan = (idClassPlan) => {
+export const deleteClassPlan = (idClassPlan, isRedirect = false) => {
   function deleteSelectedClassPlan() {
     return {
       type: DELETE_CLASS_PLAN,
@@ -203,6 +204,9 @@ export const deleteClassPlan = (idClassPlan) => {
       .then(
         (idClassPlanRemoved) => {
           dispatch(deleteClassPlanSuccess(idClassPlanRemoved));
+          if (isRedirect) {
+            history.push('/class-plans/1');
+          }
         },
         (error) => {
           dispatch(deleteClassPlanFailure(error));

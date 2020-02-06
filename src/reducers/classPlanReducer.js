@@ -106,10 +106,10 @@ export const classPlan = (state = initialState, action) => {
     }
     case DELETE_CLASS_PLAN_SUCCESS: {
       toast.success('Plano de aula removido com sucesso', optionsSuccess);
-      const newClassPlans = state.classPlans.results.filter(item => item.id !== action.idClassPlanRemoved);
+      // const newClassPlans = state.classPlans.results.filter(item => item.id !== action.idClassPlanRemoved);
 
       return Object.assign({}, state, {
-        classPlans: newClassPlans,
+        // classPlans: newClassPlans,
         isDeleted: true,
       });
     }

@@ -49,7 +49,7 @@ const DocumentCardList = (props) => {
       </Col>
       {documents && documents.map(document => (
         <Col sm={sm} lg="3" xs="12" key={document.id} className="object-card">
-          <DocumentCard document={document} button={CardButton(document)} filterTags {...props} />
+          <DocumentCard document={document} button={CardButton(document)} {...props} />
         </Col>
       ))}
     </Row>

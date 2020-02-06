@@ -6,12 +6,15 @@ import DocumentCard from './DocumentCard';
 
 const DocumentCardListClassPlan = (props) => {
   const {
-    documents, sm, removeSelectedDocument,
+    documents, sm, removeSelectedDocument, options,
   } = props;
 
   const CardButton = document => (
-    <RemoveDocumentFromComponentButton documentId={document.id} removeSelectedDocument={removeSelectedDocument} />
+    options && options.removeButton ? (
+      <RemoveDocumentFromComponentButton documentId={document.id} removeSelectedDocument={removeSelectedDocument} />) : null
   );
+
+
   return (
     <Row>
       {documents && documents.map(document => (
