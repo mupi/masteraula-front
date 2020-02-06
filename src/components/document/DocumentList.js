@@ -47,10 +47,11 @@ const DocumentList = (props) => {
             <thead align="center">
               <tr>
                 <th>Nome</th>
-                <th>Disciplinas</th>
-                <th>Duração</th>
                 <th>Data de criação</th>
+                <th>Nº de questões</th>
                 <th>Editar</th>
+                <th>Duplicar</th>
+                <th>Exportar</th>
                 <th>Apagar</th>
               </tr>
             </thead>
