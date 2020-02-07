@@ -172,25 +172,29 @@ const SidebarMobile = ({
                       Criar plano de aula
                     </Link>
                   </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="folder"
-                      />
-                        Gerenciar minhas provas
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/class-plans/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="folder"
-                      />
-                        Gerenciar meus planos de aula
-                    </Link>
-                  </ListGroupItem>
                 </ListGroup>
+                <div className="sidebar-nav-container">
+                  <ListGroup className="sidebar-main-options">
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="folder"
+                        />
+                        Gerenciar minhas provas
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/class-plans/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="folder"
+                        />
+                        Gerenciar meus planos de aula
+                      </Link>
+                    </ListGroupItem>
+                  </ListGroup>
+                </div>
                 <div className="sidebar-nav-container">
                   <ListGroup className="sidebar-main-options">
                     <ListGroupItem color="light">
@@ -310,19 +314,23 @@ const SidebarWeb = ({
                         Criar plano de aula
                       </Link>
                     </ListGroupItem>
-                    <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/documents/1">
-                        <FontAwesomeIcon className="btn__icon" icon="folder" />
-                          Gerenciar minhas provas
-                      </Link>
-                    </ListGroupItem>
-                    <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/class-plans/1">
-                        <FontAwesomeIcon className="btn__icon" icon="folder" />
-                          Gerenciar meus planos de aula
-                      </Link>
-                    </ListGroupItem>
                   </ListGroup>
+                  <div className="sidebar-nav-container">
+                    <ListGroup className="sidebar-main-options">
+                      <ListGroupItem className="list-group-item__simple-option">
+                        <Link to="/documents/1">
+                          <FontAwesomeIcon className="btn__icon" icon="folder" />
+                          Gerenciar minhas provas
+                        </Link>
+                      </ListGroupItem>
+                      <ListGroupItem className="list-group-item__simple-option">
+                        <Link to="/class-plans/1">
+                          <FontAwesomeIcon className="btn__icon" icon="folder" />
+                          Gerenciar meus planos de aula
+                        </Link>
+                      </ListGroupItem>
+                    </ListGroup>
+                  </div>
                   <div className="sidebar-nav-container">
                     <ListGroup className="sidebar-main-options">
                       <ListGroupItem color="light">
