@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Table } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getNamePdf } from 'helpers/classPlan';
 
@@ -45,8 +45,34 @@ const LinksSection = (props) => {
             Links
           </h6>
         </Col>
-        <Col md="3" sm="6">
-          {classPlan.links.length}
+        <Col sm="12">
+          <Table responsive>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Link</th>
+                <th>Descrição</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {classPlan.links.map((link, i) => (
+                <tr key={link.id}>
+                  <th scope="row">{i + 1}</th>
+                  <td>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={link.link}
+                    >
+                      {link.link}
+                    </a>
+                  </td>
+                  <td>{link.description_url}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </Col>
       </Row>
     </>
