@@ -191,7 +191,7 @@ class CreateClassPlanPage extends Component {
               <Row className="c-question__row-header-options c-question__row-header-options--fixed">
                 <Col className="c-question__col-header-options">
                   <BackUsingHistory />
-                  <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit" disabled={submitting}>
+                  <Button type="submit" className="btn btn-secondary c-question__btn-back" disabled={submitting}>
                     <FontAwesomeIcon
                       className="btn__icon"
                       icon="save"

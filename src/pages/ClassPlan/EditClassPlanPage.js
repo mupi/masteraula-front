@@ -20,6 +20,22 @@ import {
   minLength3characters,
 } from 'helpers/validators';
 
+// Learning object's options available for LearnningObjectContent
+const optionsObject = {
+  showOperations: true,
+  showViewButton: true,
+  showCreateQuestionButton: false,
+  removeOption: true,
+  showTitle: true,
+};
+
+
+// Document's options available for Create ClassPlan
+const optionsDocument = {
+  showViewButton: false,
+  removeButton: true,
+};
+
 // Basic Input Field
 const renderField = ({
   input,
@@ -117,15 +133,6 @@ const renderQuestionTextEditor = (props) => {
   );
 };
 
-// Learning object's options available for LearnningObjectContent
-const options = {
-  showOperations: true,
-  showViewButton: true,
-  showCreateQuestionButton: false,
-  removeOption: true,
-  showTitle: true,
-};
-
 class EditClassPlanPage extends Component {
   componentDidMount() {
     const {
@@ -208,7 +215,7 @@ class EditClassPlanPage extends Component {
               <Row className="c-question__row-header-options c-question__row-header-options--fixed">
                 <Col className="c-question__col-header-options">
                   <BackUsingHistory />
-                  <Button className="btn btn-secondary c-question__btn-back" to="/edit-question/" type="submit" disabled={submitting}>
+                  <Button className="btn btn-secondary c-question__btn-back" type="submit" disabled={submitting}>
                     <FontAwesomeIcon
                       className="btn__icon"
                       icon="save"
@@ -408,7 +415,7 @@ class EditClassPlanPage extends Component {
               { selectedObjectList ? (
                 <LearningObjectList
                   learningObjects={selectedObjectList}
-                  options={options}
+                  options={optionsObject}
                   removeSelectedObject={removeSelectedObjectToClassPlan}
                 />
               ) : '' }
@@ -433,7 +440,7 @@ class EditClassPlanPage extends Component {
               { selectedDocumentList ? (
                 <DocumentCardListClassPlan
                   documents={selectedDocumentList}
-                  options={options}
+                  options={optionsDocument}
                   removeSelectedDocument={removeSelectedDocumentFromClassPlan}
                 />
               ) : '' }
