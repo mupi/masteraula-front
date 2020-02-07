@@ -11,7 +11,6 @@ import ClassPlanExtraResources from 'components/classplan/ClassPlanExtraResource
 import ClassPlanComments from 'components/classplan/ClassPlanComments';
 import ClassPlanBasicInfo from 'components/classplan/ClassPlanBasicInfo';
 import { Link } from 'react-router-dom';
-import { history } from 'helpers';
 
 // Learning object's options available for LearnningObjectContent in ClassPlan
 const optionsObject = {
@@ -26,12 +25,6 @@ const optionsObject = {
 const optionsDocument = {
   showViewButton: true,
   removeButton: false,
-};
-
-const redirectURL = (e, id) => {
-  const url = `/edit-question/${id}`;
-  e.preventDefault();
-  history.push(url);
 };
 
 class ViewClassPlanPage extends Component {
@@ -65,16 +58,6 @@ class ViewClassPlanPage extends Component {
       );
     }
 
-    if (error || !activeClassPlan) {
-      return (
-        <HomeUserPage>
-          <Alert color="danger">
-                Erro no plano de aula
-          </Alert>
-        </HomeUserPage>
-      );
-    }
-
     if (!isOwner) {
       return (
         <HomeUserPage>
@@ -85,6 +68,15 @@ class ViewClassPlanPage extends Component {
       );
     }
 
+    if (error || !activeClassPlan) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+            Erro no plano de aula
+          </Alert>
+        </HomeUserPage>
+      );
+    }
 
     return (
       <HomeUserPage>
@@ -109,8 +101,7 @@ class ViewClassPlanPage extends Component {
                 ? (
                   <Link
                     className="btn btn-secondary c-question__btn-back"
-                    to="/"
-                    onClick={(e) => { redirectURL(e, activeClassPlan.id); }}
+                    to={`/edit-classplan/${activeClassPlan.id}`}
                   >
                     <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
                     {' '}

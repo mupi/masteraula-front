@@ -126,18 +126,29 @@ const options = {
   showTitle: true,
 };
 
-class CreateClassPlanPage extends Component {
+class EditClassPlanPage extends Component {
   componentDidMount() {
     const {
-      listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm,
-      resetSelectedObjects, resetSelectedDocuments,
+      listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters,
     } = this.props;
     listDisciplineFilters();
     listTeachingLevelFilters();
     listTeachingYearFilters();
-    prepareForm();
-    resetSelectedObjects();
-    resetSelectedDocuments();
+    const { fetchClassPlan, match } = this.props;
+    fetchClassPlan(match.params.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { fetchClassPlan, match: { params: { id } } } = this.props;
+    if (prevProps.match.params.id !== id) {
+      const {
+        listDisciplineFilters, listTeachingLevelFilters, listSourceFilters,
+      } = this.props;
+      listDisciplineFilters();
+      listTeachingLevelFilters();
+      listSourceFilters();
+      fetchClassPlan(id);
+    }
   }
 
     listTopicSuggestions = (param) => {
@@ -149,14 +160,17 @@ class CreateClassPlanPage extends Component {
 
     render() {
       const {
-        isCreating, error, topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
+        isFetching, error, topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
         teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToClassPlan,
-        submitting, errorsCreateClassPlan, listTopicSuggestions, user, showSearchLearningObjectModal,
+        submitting, errorsUpdateClassPlan, listTopicSuggestions, user, showSearchLearningObjectModal,
         showSearchDocumentModal, selectedDocumentList,
-        removeSelectedDocumentFromClassPlan,
+        removeSelectedDocumentFromClassPlan, activeClassPlan, userId,
       } = this.props;
 
-      if (isCreating) {
+      const authorPK = (activeClassPlan && activeClassPlan.owner) ? activeClassPlan.owner.pk : 'Anônimo';
+      const isOwner = (authorPK === userId);
+
+      if (isFetching) {
         return (
           <HomeUserPage>
             <Alert className="alert--warning" color="warning">
@@ -166,15 +180,26 @@ class CreateClassPlanPage extends Component {
         );
       }
 
-      if (error) {
+      if (!isOwner) {
         return (
           <HomeUserPage>
             <Alert color="danger">
-                Erro na questão
+              Você não tem permissão para editar este plano de aula.
             </Alert>
           </HomeUserPage>
         );
       }
+
+      if (error || !activeClassPlan) {
+        return (
+          <HomeUserPage>
+            <Alert color="danger">
+                Erro no plano de aula
+            </Alert>
+          </HomeUserPage>
+        );
+      }
+
 
       return (
         <HomeUserPage>
@@ -321,9 +346,9 @@ class CreateClassPlanPage extends Component {
               </Row>
               <Row>
                 <Col>
-                  {errorsCreateClassPlan && errorsCreateClassPlan.general_errors && (
+                  {errorsUpdateClassPlan && errorsUpdateClassPlan.general_errors && (
                   <Alert color="danger">
-                    {errorsCreateClassPlan.general_errors}
+                    {errorsUpdateClassPlan.general_errors}
                   </Alert>
                   )}
                 </Col>
@@ -524,4 +549,4 @@ class CreateClassPlanPage extends Component {
       );
     }
 }
-export default CreateClassPlanPage;
+export default EditClassPlanPage;

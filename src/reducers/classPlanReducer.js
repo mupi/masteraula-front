@@ -85,7 +85,6 @@ export const classPlan = (state = initialState, action) => {
     case UPDATE_CLASS_PLAN: {
       return Object.assign({}, state, {
         isRemoved: null,
-        error: null,
         isUpdated: null,
       });
     }

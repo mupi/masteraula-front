@@ -2,6 +2,7 @@ import {
   classPlanService,
 } from 'services';
 import { toast } from 'react-toastify';
+import { initialize } from 'redux-form';
 
 import { history } from 'helpers';
 
@@ -53,11 +54,23 @@ export const fetchClassPlan = (id) => {
     return classPlanService.fetchClassPlan(id)
       .then(
         (activeClassPlan) => {
+          // initialize My Question Edit Page for owner's question
+          dispatch(initialize('edit-classplan', {
+            name: activeClassPlan.name,
+            disciplines: activeClassPlan.disciplines,
+            topics: activeClassPlan.topics,
+            teachingLevels: activeClassPlan.teaching_levels,
+            teachingYears: activeClassPlan.teaching_years,
+            duration: activeClassPlan.duration,
+            description: activeClassPlan.description,
+            comment: activeClassPlan.comment,
+          }));
+
           dispatch(fetchClassPlanSuccess(activeClassPlan));
         },
         (error) => {
           dispatch(fetchClassPlanFailure(error));
-          history.push('/class-plans/1');
+          // history.push('/class-plans/1');
         },
       );
   };

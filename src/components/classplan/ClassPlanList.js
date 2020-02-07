@@ -70,7 +70,7 @@ const ClassPlanList = (props) => {
                     <Button
                       color="secondary"
                       title="Ver plano de aula"
-                      to="/edit-classplan"
+                      to={`/edit-classplan/${classPlan.id}`}
                       tag={Link}
                     >
                       <FontAwesomeIcon icon="pencil-alt" />

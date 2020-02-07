@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import {
-  reduxForm, formValueSelector, SubmissionError, initialize,
+  reduxForm, formValueSelector, SubmissionError,
 } from 'redux-form';
 import EditClassPlanPage from 'pages/ClassPlan/EditClassPlanPage';
 import {
   updateClassPlan,
   addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
   addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan, resetSelectedDocuments,
+  fetchClassPlan,
 } from 'actions/classPlanAction';
 
 import {
@@ -25,7 +26,7 @@ C = ClassPlan
 */
 
 const mapStateToProps = (state) => {
-  const selector = formValueSelector('create-classplan');
+  const selector = formValueSelector('edit-classplan');
   const { user } = state.session.session;
   return ({
     topics: selector(state, 'topics'),
@@ -37,9 +38,13 @@ const mapStateToProps = (state) => {
     sourceFilters: state.filter.sourceFilters,
     selectedObjectList: state.classPlan.selectedObjectList,
     selectedDocumentList: state.classPlan.selectedDocumentList,
-    errorsCreateClassPlan: state.form['create-classplan'] ? state.form['create-classplan'].submitErrors : null,
+    errorsUpdateClassPlan: state.form['edit-classplan'] ? state.form['edit-classplan'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
+    userId: state.session.session.user.id,
+    error: state.classPlan.error,
+    isFetching: state.classPlan.isFetching,
+    activeClassPlan: state.classPlan.activeClassPlan,
   });
 };
 
@@ -76,11 +81,6 @@ const mapDispatchToProps = (dispatch) => {
     listTopics: param => dispatch(listTopics(param)),
     listTeachingYearFilters: param => dispatch(listTeachingYearFilters(param)),
     resetTopicList: () => dispatch(resetTopicList()),
-    prepareForm: () => {
-      dispatch(initialize('create-classplan', {
-        topics: [],
-      }));
-    },
 
     showSearchLearningObjectModal: () => dispatch(showModal(openSearchLearningObjectModalProps)),
     showSearchDocumentModal: () => dispatch(showModal(openSearchDocumentModalProps)),
@@ -92,6 +92,7 @@ const mapDispatchToProps = (dispatch) => {
     resetSelectedDocuments: () => dispatch(resetSelectedDocuments()),
 
     removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
+    fetchClassPlan: id => dispatch(fetchClassPlan(id)),
 
     /*
   fields = (
@@ -115,6 +116,7 @@ const mapDispatchToProps = (dispatch) => {
     onSubmit: (values, d, props) => {
       const errors = [];
       const updatedClassPlan = {
+        id: props.activeClassPlan.id,
         name: values.name,
         disciplines_ids: values.disciplines.map(discipline => discipline.id),
         teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),

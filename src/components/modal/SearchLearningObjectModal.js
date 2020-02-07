@@ -12,9 +12,10 @@ import SimpleLObjectCardList from 'components/learningObject/SimpleLObjectCardLi
 class SearchLearningObjectModal extends React.Component {
   componentDidMount() {
     const {
-      filterObject, listObjects,
+      listObjects, clearSearch,
     } = this.props;
-    listObjects(parseInt(1, 10), filterObject);
+    listObjects(parseInt(1, 10), null);
+    clearSearch();
   }
 
   componentDidUpdate(prevProps) {

@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
 
 const setDispatchSearchText = searchText => setSearchTextObjectModal(searchText);
 const mapDispatchToProps = dispatch => ({
+
   listObjects: (page, filterObject) => dispatch(listLearningObjectModal(page, filterObject)),
   clearSearch: () => {
     dispatch({
