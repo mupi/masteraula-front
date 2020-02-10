@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  Alert, Row, Col, Button, Form, Input,
+  Alert, Row, Col, Button, Form, Input, Label,
 } from 'reactstrap';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
 import renderMultiselect from 'components/autocomplete/Multiselect';
@@ -184,6 +184,20 @@ const renderLinks = ({ fields, meta: { error } }) => (
     <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
   </>
 );
+
+export const fieldFile = ({ input, type }) => {
+  const newInput = input;
+  delete newInput.value;
+
+  return (
+    <div>
+      <Label htmlFor={input.name}>
+        <Input {...newInput} type={type} placeholder="Carregar pdf" />
+      </Label>
+    </div>
+  );
+};
+
 
 class EditClassPlanPage extends Component {
   componentDidMount() {
@@ -515,13 +529,13 @@ class EditClassPlanPage extends Component {
                   </h6>
                 </Col>
                 <Col md="3" sm="6">
-                  <Button onClick={() => showSearchLearningObjectModal()}>
-                    <FontAwesomeIcon
-                      icon="plus"
-                      className="btn__icon"
-                    />
-                    Selecionar arquivo
-                  </Button>
+                  <Field
+                    component={fieldFile}
+                    type="file"
+                    name="pdf"
+                    id="pdf"
+                    className="form-control"
+                  />
                 </Col>
               </Row>
               <Row className="mb-2">

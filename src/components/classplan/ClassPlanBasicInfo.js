@@ -6,7 +6,7 @@ import { getCleanCompleteStatement } from 'helpers/question';
 /* eslint-disable react/no-danger */
 const ClassPlanBasicInfo = ({ classPlan, user }) => {
   const hasTeachingYears = classPlan && classPlan.teaching_years && classPlan.teaching_years.length > 0;
-  const hasDescription = classPlan && classPlan.description;
+  const hasDescription = classPlan && classPlan.description && classPlan.description.trim() !== '<p></p>' && classPlan.description.trim() !== '';
   const hasDuration = classPlan && classPlan.duration;
   return (
     <>
