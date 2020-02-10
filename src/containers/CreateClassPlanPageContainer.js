@@ -125,7 +125,7 @@ const mapDispatchToProps = (dispatch) => {
           ? props.selectedDocumentList.map(document => document.id) : [],
         links: values.links,
         teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],
-        duration: values.duration && values.duration.trim().length > 0 ? values.duration : null,
+        duration: values.duration && values.duration.trim().length > 0 ? values.duration : 0,
         comment: values.comment,
         description: values.description,
         pdf: values.pdf ? values.pdf : null,
