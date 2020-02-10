@@ -123,14 +123,13 @@ const mapDispatchToProps = (dispatch) => {
         topics_ids: values.topics.map(topic => topic.id),
         learning_objects_ids: props.selectedObjectList.map(object => object.id),
         documents_ids: props.selectedDocumentList.map(document => document.id),
-        // links
-        teaching_years_ids: values.teachingYears.map(teachingYear => teachingYear.id),
+        links: values.links,
+        teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],
         duration: values.duration,
         comment: values.comment,
         description: values.description,
         // pdf
       };
-
 
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 

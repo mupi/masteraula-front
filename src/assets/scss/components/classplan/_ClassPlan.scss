@@ -27,4 +27,23 @@
           font-size: 14px;
         }
     }
+
+
+
+    &__col-btn-remove-link{
+        @include for-phone-only {
+            text-align: right;
+        }
+    }
+
+    &__btn-remove-link{
+        background: $color-ma-red !important;
+        color: $color-ma-white;
+        border: 1px solid $color-ma-red  !important;
+    }
+
+    &__col-link-text{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 }

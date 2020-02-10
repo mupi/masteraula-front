@@ -64,6 +64,7 @@ export const fetchClassPlan = (id) => {
             duration: activeClassPlan.duration,
             description: activeClassPlan.description,
             comment: activeClassPlan.comment,
+            links: activeClassPlan.links,
           }));
 
           dispatch(fetchClassPlanSuccess(activeClassPlan));

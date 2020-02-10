@@ -9,7 +9,7 @@ import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEd
 import renderMultiselect from 'components/autocomplete/Multiselect';
 import { Link } from 'react-router-dom';
 
-import { Field } from 'redux-form';
+import { Field, FieldArray } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
 import DocumentCardListClassPlan from 'components/document/DocumentCardListClassPlan';
@@ -18,6 +18,7 @@ import {
   requiredMultiSelectValidator,
   mustBeNumber, maxYearValue,
   minLength3characters,
+  linkValidator,
 } from 'helpers/validators';
 
 // Learning object's options available for LearnningObjectContent
@@ -133,6 +134,55 @@ const renderQuestionTextEditor = (props) => {
   );
 };
 
+const renderLinks = ({ fields, meta: { error } }) => (
+  <>
+    <div className="mb-2">
+      <Button onClick={() => fields.push({})}>
+        <FontAwesomeIcon
+          icon="plus"
+          className="btn__icon"
+        />
+      Adicionar Link
+      </Button>
+    </div>
+
+    {fields.map((link, i) => (
+      <Row key={`${link}.id`} className="mb-1">
+        <Col sm="6" xs="9" className="c-classplan__col-link-text">
+          <Field
+            type="text"
+            component={renderField}
+            name={`${link}.link`}
+            label="Insira uma url"
+            validate={[linkValidator, requiredValidator]}
+          />
+        </Col>
+        <Col sm="5" xs="9">
+          <Field
+            type="text"
+            component={renderField}
+            name={`${link}.description_url`}
+            label="Insira uma descrição"
+          />
+        </Col>
+        <Col sm="1" xs="1" className="c-classplan__col-btn-remove-link">
+          <Button
+            type="button"
+            title="Remover link"
+            className="c-classplan__btn-remove-link"
+            onClick={() => fields.remove(i)}
+          >
+            <FontAwesomeIcon
+              icon="trash-alt"
+            />
+          </Button>
+        </Col>
+
+      </Row>
+    ))}
+    <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
+  </>
+);
 
 class CreateClassPlanPage extends Component {
   componentDidMount() {
@@ -456,14 +506,13 @@ class CreateClassPlanPage extends Component {
                     Adicione seus links
                   </h6>
                 </Col>
-                <Col md="3" sm="6">
-                  <Button onClick={() => showSearchLearningObjectModal()}>
-                    <FontAwesomeIcon
-                      icon="plus"
-                      className="btn__icon"
-                    />
-                    Adicionar link
-                  </Button>
+
+                <Col sm="12">
+
+                  <FieldArray
+                    name="links"
+                    component={renderLinks}
+                  />
                 </Col>
               </Row>
               <Row className="c-question__tittle-section">

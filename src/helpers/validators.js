@@ -10,6 +10,11 @@ export const emailValidator = value => (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.
   ? 'Email inválido'
   : undefined);
 
+export const linkValidator = value => (value && !/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/i.test(value)
+  ? 'Link inválido'
+  : undefined);
+
+
 export const requiredValidator = value => (value ? undefined : 'Campo obrigatório');
 export const requiredEmailValidator = value => (value ? undefined : 'Insira seu email');
 export const requiredPasswordValidator = value => (value ? undefined : 'Insira sua senha');
