@@ -20,6 +20,7 @@ import {
   minLength3characters,
   linkValidator,
 } from 'helpers/validators';
+import { getNamePdf } from 'helpers/classPlan';
 
 // Learning object's options available for LearnningObjectContent
 const optionsObject = {
@@ -537,6 +538,18 @@ class EditClassPlanPage extends Component {
                     className="form-control"
                   />
                 </Col>
+                { activeClassPlan.pdf
+                && (
+                <a
+                  className="c-question-base__link-askquestion"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={activeClassPlan.pdf}
+                >
+                  {getNamePdf(activeClassPlan.pdf)}
+                </a>
+                )
+                  }
               </Row>
               <Row className="mb-2">
                 <Col sm="12">

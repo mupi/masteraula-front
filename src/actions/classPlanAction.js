@@ -63,6 +63,7 @@ export const fetchClassPlan = (id) => {
             teachingYears: activeClassPlan.teaching_years,
             duration: activeClassPlan.duration,
             description: activeClassPlan.description,
+            pdf: activeClassPlan.pdf,
             links: activeClassPlan.links,
           }));
 

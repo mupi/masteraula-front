@@ -72,6 +72,10 @@ function createClassPlan(newClassPlanData) {
       newClassPlanData[name].forEach((documentId, index) => {
         formData.append(`documents_ids[${index}]`, documentId);
       });
+    } else if (name === 'links') {
+      newClassPlanData[name].forEach((link, index) => {
+        formData.append(`links[${index}]`, link);
+      });
     } else if (name === 'pdf') {
       if (newClassPlanData[name]) { formData.append(name, newClassPlanData[name][0]); }
     } else formData.append(name, newClassPlanData[name]);
@@ -118,6 +122,10 @@ function updateClassPlan(activeClassPlan) {
     } else if (name === 'documents_ids') {
       activeClassPlan[name].forEach((documentId, index) => {
         formData.append(`documents_ids[${index}]`, documentId);
+      });
+    } else if (name === 'links') {
+      activeClassPlan[name].forEach((link, index) => {
+        formData.append(`links[${index}]`, link);
       });
     } else if (name === 'pdf') {
       if (activeClassPlan[name]) { formData.append(name, activeClassPlan[name][0]); }

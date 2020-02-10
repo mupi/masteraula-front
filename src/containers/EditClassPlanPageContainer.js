@@ -125,10 +125,10 @@ const mapDispatchToProps = (dispatch) => {
           ? props.selectedObjectList.map(object => object.id) : [],
         documents_ids: props.selectedDocumentList && props.selectedDocumentList.length > 0
           ? props.selectedDocumentList.map(document => document.id) : [],
-        links: values.links,
+        links: values.links && values.links.length > 0 ? values.links : [],
         teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],
-        duration: values.duration && values.duration.trim().length > 0 ? values.duration : 0,
-        comment: values.comment,
+        duration: values.duration ? values.duration : 0,
+        comment: values.comment ? values.comment : '',
         description: values.description,
         pdf: values.pdf ? values.pdf : null,
       };
