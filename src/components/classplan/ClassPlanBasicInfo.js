@@ -21,7 +21,7 @@ const ClassPlanBasicInfo = ({ classPlan, user }) => {
 
         </Col>
       </Row>
-      <Row className="c-create-question__row-info">
+      <Row className="c-classplan__row-info">
         <Col className="info-label" sm="4" xs="4">
                     Nome
         </Col>
@@ -29,7 +29,7 @@ const ClassPlanBasicInfo = ({ classPlan, user }) => {
           {classPlan.name}
         </Col>
       </Row>
-      <Row className="c-create-question__row-info">
+      <Row className="c-classplan__row-info">
         <Col className="info-label" sm="4" xs="4">
                     Disciplinas
         </Col>
@@ -37,7 +37,7 @@ const ClassPlanBasicInfo = ({ classPlan, user }) => {
           {classPlan.disciplines.map(discipline => <Badge key={`${discipline.id}-${discipline.name}`} color="success" pill>{discipline.name.trim()}</Badge>)}
         </Col>
       </Row>
-      <Row className="c-create-question__row-info">
+      <Row className="c-classplan__row-info">
         <Col className="info-label" sm="4" xs="4">
                       Tópicos
         </Col>
@@ -45,7 +45,7 @@ const ClassPlanBasicInfo = ({ classPlan, user }) => {
           {classPlan.topics.map(topic => <Badge key={`${topic.id}-${topic.name}`} color="success" pill>{topic.name.trim()}</Badge>)}
         </Col>
       </Row>
-      <Row className="c-create-question__row-info">
+      <Row className="c-classplan__row-info">
         <Col className="info-label" sm="4" xs="4">
                     Nível de Ensino
         </Col>
@@ -54,7 +54,7 @@ const ClassPlanBasicInfo = ({ classPlan, user }) => {
         </Col>
       </Row>
       {hasTeachingYears && (
-        <Row className="c-create-question__row-info">
+        <Row className="c-classplan__row-info">
           <Col className="info-label" sm="4" xs="4">
                       Ano
           </Col>
@@ -64,7 +64,7 @@ const ClassPlanBasicInfo = ({ classPlan, user }) => {
         </Row>
       )}
       {hasDuration && (
-        <Row className="c-create-question__row-info">
+        <Row className="c-classplan__row-info">
           <Col className="info-label" sm="4" xs="4">
                       Duração da aula
           </Col>
@@ -73,7 +73,7 @@ const ClassPlanBasicInfo = ({ classPlan, user }) => {
           </Col>
         </Row>
       )}
-      <Row className="c-create-question__row-info">
+      <Row className="c-classplan__row-info">
         <Col className="info-label" sm="4" xs="4">
                    Autoria
         </Col>

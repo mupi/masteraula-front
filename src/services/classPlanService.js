@@ -46,6 +46,37 @@ function listMyClassPlans(page, orderField, order) {
 
 /* Create a new class Plan */
 function createClassPlan(newClassPlanData) {
+  const formData = new FormData();
+  Object.keys(newClassPlanData).forEach((name) => {
+    if (name === 'disciplines_ids') {
+      newClassPlanData[name].forEach((disciplineId, index) => {
+        formData.append(`disciplines_ids[${index}]`, disciplineId);
+      });
+    } else if (name === 'teaching_levels_ids') {
+      newClassPlanData[name].forEach((teachingLevelId, index) => {
+        formData.append(`teaching_levels_ids[${index}]`, teachingLevelId);
+      });
+    } else if (name === 'teaching_years_ids') {
+      newClassPlanData[name].forEach((teachingYearId, index) => {
+        formData.append(`teaching_years_ids[${index}]`, teachingYearId);
+      });
+    } else if (name === 'topics_ids') {
+      newClassPlanData[name].forEach((topicId, index) => {
+        formData.append(`topics_ids[${index}]`, topicId);
+      });
+    } else if (name === 'learning_objects_ids') {
+      newClassPlanData[name].forEach((objectId, index) => {
+        formData.append(`learning_objects_ids[${index}]`, objectId);
+      });
+    } else if (name === 'documents_ids') {
+      newClassPlanData[name].forEach((documentId, index) => {
+        formData.append(`documents_ids[${index}]`, documentId);
+      });
+    } else if (name === 'pdf') {
+      if (newClassPlanData[name]) { formData.append(name, newClassPlanData[name][0]); }
+    } else formData.append(name, newClassPlanData[name]);
+  });
+
   const requestOptions = {
     method: 'POST',
     headers: {
@@ -56,12 +87,43 @@ function createClassPlan(newClassPlanData) {
 
   const url = '/class_plans/';
 
-  return axios.post(`${apiUrl}${url}`, newClassPlanData, requestOptions)
+  return axios.post(`${apiUrl}${url}`, formData, requestOptions)
     .then(response => response.data).then(newClassPlan => newClassPlan);
 }
 
 /* Update a new class Plan */
 function updateClassPlan(activeClassPlan) {
+  const formData = new FormData();
+  Object.keys(activeClassPlan).forEach((name) => {
+    if (name === 'disciplines_ids') {
+      activeClassPlan[name].forEach((disciplineId, index) => {
+        formData.append(`disciplines_ids[${index}]`, disciplineId);
+      });
+    } else if (name === 'teaching_levels_ids') {
+      activeClassPlan[name].forEach((teachingLevelId, index) => {
+        formData.append(`teaching_levels_ids[${index}]`, teachingLevelId);
+      });
+    } else if (name === 'teaching_years_ids') {
+      activeClassPlan[name].forEach((teachingYearId, index) => {
+        formData.append(`teaching_years_ids[${index}]`, teachingYearId);
+      });
+    } else if (name === 'topics_ids') {
+      activeClassPlan[name].forEach((topicId, index) => {
+        formData.append(`topics_ids[${index}]`, topicId);
+      });
+    } else if (name === 'learning_objects_ids') {
+      activeClassPlan[name].forEach((objectId, index) => {
+        formData.append(`learning_objects_ids[${index}]`, objectId);
+      });
+    } else if (name === 'documents_ids') {
+      activeClassPlan[name].forEach((documentId, index) => {
+        formData.append(`documents_ids[${index}]`, documentId);
+      });
+    } else if (name === 'pdf') {
+      if (activeClassPlan[name]) { formData.append(name, activeClassPlan[name][0]); }
+    } else formData.append(name, activeClassPlan[name]);
+  });
+
   const requestOptions = {
     method: 'PATCH',
     headers: {
@@ -72,7 +134,7 @@ function updateClassPlan(activeClassPlan) {
 
   const url = `/class_plans/${activeClassPlan.id}/`;
 
-  return axios.patch(`${apiUrl}${url}`, activeClassPlan, requestOptions)
+  return axios.patch(`${apiUrl}${url}`, formData, requestOptions)
     .then(response => response.data).then(newMyClassPlan => newMyClassPlan);
 }
 

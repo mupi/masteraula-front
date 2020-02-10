@@ -4,6 +4,9 @@
         color: $color-ma-blue;
     } 
 
+    &__row-info{
+        margin-bottom: 5px;
+    }
 
     &__disciplines{
         .badge-pill{
@@ -11,6 +14,7 @@
           border-color:$color-ma-pink;
           border-radius: 5px;
           margin-right: 2px;
+          margin-bottom: 3px;
           font-size: 14px;
         }
     }
@@ -24,6 +28,7 @@
           border-color:$color-ma-green;
           border-radius: 5px;
           margin-right: 2px;
+          margin-bottom: 3px;
           font-size: 14px;
         }
     }

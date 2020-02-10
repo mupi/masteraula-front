@@ -121,14 +121,16 @@ const mapDispatchToProps = (dispatch) => {
         disciplines_ids: values.disciplines.map(discipline => discipline.id),
         teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
         topics_ids: values.topics.map(topic => topic.id),
-        learning_objects_ids: props.selectedObjectList.map(object => object.id),
-        documents_ids: props.selectedDocumentList.map(document => document.id),
+        learning_objects_ids: props.selectedObjectList && props.selectedObjectList.length > 0
+          ? props.selectedObjectList.map(object => object.id) : [],
+        documents_ids: props.selectedDocumentList && props.selectedDocumentList.length > 0
+          ? props.selectedDocumentList.map(document => document.id) : [],
         links: values.links,
         teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],
-        duration: values.duration,
+        duration: values.duration && values.duration.trim().length > 0 ? values.duration : null,
         comment: values.comment,
         description: values.description,
-        // pdf
+        pdf: values.pdf ? values.pdf : null,
       };
 
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
