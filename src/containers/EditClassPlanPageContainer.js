@@ -31,6 +31,7 @@ const mapStateToProps = (state) => {
   return ({
     topics: selector(state, 'topics'),
     disciplinesList: selector(state, 'disciplines'),
+    selectedPdf: selector(state, 'pdf'),
     topicsList: state.topic.topics,
     disciplineFilters: state.filter.disciplineFilters,
     teachingLevelFilters: state.filter.teachingLevelFilters,

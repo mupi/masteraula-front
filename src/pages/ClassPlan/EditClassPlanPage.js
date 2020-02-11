@@ -239,6 +239,7 @@ class EditClassPlanPage extends Component {
         submitting, errorsUpdateClassPlan, listTopicSuggestions, user, showSearchLearningObjectModal,
         showSearchDocumentModal, selectedDocumentList,
         removeSelectedDocumentFromClassPlan, activeClassPlan, userId,
+        // selectedPdf,
       } = this.props;
 
       const authorPK = (activeClassPlan && activeClassPlan.owner) ? activeClassPlan.owner.pk : 'Anônimo';
