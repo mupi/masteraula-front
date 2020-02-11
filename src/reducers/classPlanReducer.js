@@ -162,6 +162,7 @@ export const classPlan = (state = initialState, action) => {
         isDeleted: false,
         orderField: action.orderField,
         order: action.order,
+        currentPage: action.page,
       });
     case LIST_MY_CLASS_PLANS_SUCCESS:
       return Object.assign({}, state, {

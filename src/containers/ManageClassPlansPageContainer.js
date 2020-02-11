@@ -10,7 +10,7 @@ import { showModal, hideModal } from 'actions/modalAction';
 const mapStateToProps = state => ({
   isFetchingClassPlans: state.classPlan.isFetchingClassPlans,
   myClassPlansList: state.classPlan.classPlans,
-  currentPage: state.document.currentPage,
+  currentPage: state.classPlan.currentPage,
   previewClassPlan: state.classPlan.previewClassPlan,
   isFetchingPreviewClassPlan: state.classPlan.isFetchingPreviewClassPlan,
   error: state.classPlan.error,
