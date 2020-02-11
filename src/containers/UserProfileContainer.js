@@ -45,6 +45,8 @@ const mapDispatchToProps = dispatch => ({
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
 
   onSubmit: (values) => {
+    // console.log("IMAGEN")
+    // console.log(values.profile_pic);
     const profile = {
       name: values.name,
       about: values.about,

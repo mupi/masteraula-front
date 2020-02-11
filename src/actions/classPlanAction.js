@@ -179,7 +179,7 @@ export const updateClassPlan = (props) => {
     dispatch(updateActiveClassPlan(props));
     return classPlanService.updateClassPlan(props).then(
       (activeClassPlan) => {
-        toast.success('Etiqueta atualizada com sucesso', optionsSuccess);
+        toast.success('Plano de aula atualizado com sucesso', optionsSuccess);
         dispatch(updateClassPlanSuccess(activeClassPlan));
       },
       (error) => {
