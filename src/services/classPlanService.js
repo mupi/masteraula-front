@@ -44,6 +44,26 @@ function listMyClassPlans(page, orderField, order) {
     .then(response => response.data).then(classPlans => classPlans);
 }
 
+/* function buildFormData(formData, data, parentKey) {
+  if (data && typeof data === 'object' && !(data instanceof Date) && !(data instanceof File) && (parentKey !== 'pdf')) {
+    Object.keys(data).forEach((key) => {
+      buildFormData(formData, data[key], parentKey ? `${parentKey}[${key}]` : key);
+    });
+  } else {
+    const value = data == null ? '' : data;
+
+    formData.append(parentKey, value);
+  }
+}
+
+function jsonToFormData(data) {
+  const formData = new FormData();
+
+  buildFormData(formData, data);
+
+  return formData;
+} */
+
 function convertClassPlanToFormData(classPlan) {
   const formData = new FormData();
   Object.keys(classPlan).forEach((name) => {
@@ -57,8 +77,7 @@ function convertClassPlanToFormData(classPlan) {
       });
     } else if (name === 'teaching_years_ids') {
       classPlan[name].forEach((teachingYearId, index) => {
-        formData.append(`
-        [${index}]`, teachingYearId);
+        formData.append(`teaching_years_ids[${index}]`, teachingYearId);
       });
     } else if (name === 'topics_ids') {
       classPlan[name].forEach((topicId, index) => {
@@ -74,7 +93,8 @@ function convertClassPlanToFormData(classPlan) {
       });
     } else if (name === 'links') {
       classPlan[name].forEach((link, index) => {
-        formData.append(`links[${index}]`, JSON.stringify(link));
+        formData.append(`links[${index}]link`, link.link);
+        formData.append(`links[${index}]description_url`, link.description_url);
       });
     } else if (name === 'pdf') {
       if (classPlan[name]) { formData.append(name, classPlan[name][0]); }
@@ -85,6 +105,9 @@ function convertClassPlanToFormData(classPlan) {
 }
 /* Create a new class Plan */
 function createClassPlan(newClassPlanData) {
+  // const classPlanFormData = jsonToFormData(newClassPlanData);
+
+  const classPlanFormData = convertClassPlanToFormData(newClassPlanData);
   const requestOptions = {
     method: 'POST',
     headers: {
@@ -92,8 +115,6 @@ function createClassPlan(newClassPlanData) {
       Authorization: authHeader(),
     },
   };
-
-  const classPlanFormData = convertClassPlanToFormData(newClassPlanData);
 
   const url = '/class_plans/';
 
