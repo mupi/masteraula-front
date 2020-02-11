@@ -125,7 +125,6 @@ function createClassPlan(newClassPlanData) {
 /* Update a new class Plan */
 function updateClassPlan(activeClassPlan) {
   const classPlanFormData = convertClassPlanToFormData(activeClassPlan);
-
   const requestOptions = {
     method: 'PATCH',
     headers: {
