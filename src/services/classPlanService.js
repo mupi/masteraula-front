@@ -103,6 +103,46 @@ function convertClassPlanToFormData(classPlan) {
 
   return formData;
 }
+
+function convertEditClassPlanToFormData(classPlan) {
+  const formData = new FormData();
+  Object.keys(classPlan).forEach((name) => {
+    if (name === 'disciplines_ids') {
+      classPlan[name].forEach((disciplineId) => {
+        formData.append('disciplines_ids', disciplineId);
+      });
+    } else if (name === 'teaching_levels_ids') {
+      classPlan[name].forEach((teachingLevelId) => {
+        formData.append('teaching_levels_ids', teachingLevelId);
+      });
+    } else if (name === 'teaching_years_ids') {
+      classPlan[name].forEach((teachingYearId) => {
+        formData.append('teaching_years_ids', teachingYearId);
+      });
+    } else if (name === 'topics_ids') {
+      classPlan[name].forEach((topicId) => {
+        formData.append('topics_ids', topicId);
+      });
+    } else if (name === 'learning_objects_ids') {
+      classPlan[name].forEach((objectId) => {
+        formData.append('learning_objects_ids', objectId);
+      });
+    } else if (name === 'documents_ids') {
+      classPlan[name].forEach((documentId) => {
+        formData.append('documents_ids', documentId);
+      });
+    } else if (name === 'links') {
+      classPlan[name].forEach((link, index) => {
+        formData.append(`links[${index}]link`, link.link);
+        formData.append(`links[${index}]description_url`, link.description_url);
+      });
+    } else if (name === 'pdf') {
+      if (classPlan[name]) { formData.append(name, classPlan[name][0]); }
+    } else formData.append(name, classPlan[name]);
+  });
+
+  return formData;
+}
 /* Create a new class Plan */
 function createClassPlan(newClassPlanData) {
   // const classPlanFormData = jsonToFormData(newClassPlanData);
@@ -124,7 +164,7 @@ function createClassPlan(newClassPlanData) {
 
 /* Update a new class Plan */
 function updateClassPlan(activeClassPlan) {
-  const classPlanFormData = convertClassPlanToFormData(activeClassPlan);
+  const classPlanFormData = convertEditClassPlanToFormData(activeClassPlan);
   const requestOptions = {
     method: 'PATCH',
     headers: {
