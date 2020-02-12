@@ -531,6 +531,9 @@ class EditClassPlanPage extends Component {
                   </h6>
                 </Col>
                 <Col md="3" sm="6">
+                  <div className="small-text ">
+                    Tamanho máximo 2 MB.
+                  </div>
                   <Field
                     component={fieldFile}
                     type="file"
