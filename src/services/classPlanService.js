@@ -176,7 +176,20 @@ function updateClassPlan(activeClassPlan) {
   const url = `/class_plans/${activeClassPlan.id}/`;
 
   return axios.patch(`${apiUrl}${url}`, classPlanFormData, requestOptions)
-    .then(response => response.data).then(newMyClassPlan => newMyClassPlan);
+    .then(response => response.data).then(newMyClassPlan => newMyClassPlan)
+    .catch((error) => {
+      if (error.response) {
+        if (error.response.data.pdf[0].includes('File is not PDF')) {
+          return Promise.reject('Arquivo inválido. Escolha um arquivo PDF.');
+        }
+        if (error.response.data.pdf[0].includes('Max file size is 2MB')) {
+          return Promise.reject('Tamanho máximo do arquivo é 2Mb.');
+        }
+        return Promise.reject(error.response.data.pdf[0]);
+      }
+
+      return Promise.reject('Ocorreu um erro com sua solicitação');
+    });
 }
 
 

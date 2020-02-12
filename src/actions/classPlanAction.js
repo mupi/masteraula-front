@@ -184,7 +184,6 @@ export const updateClassPlan = (props) => {
         dispatch(updateClassPlanSuccess(activeClassPlan));
       },
       (error) => {
-        toast.error('Ocorreu um erro com sua solicitação', optionsError);
         dispatch(updateClassPlanFailure(error));
       },
     );

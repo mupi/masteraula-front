@@ -95,6 +95,7 @@ export const classPlan = (state = initialState, action) => {
       });
     }
     case UPDATE_CLASS_PLAN_FAILURE: {
+      toast.error(action.error, optionsError);
       return Object.assign({}, state, { error: action.error });
     }
     case DELETE_CLASS_PLAN: {
