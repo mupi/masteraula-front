@@ -49,7 +49,7 @@ const mapDispatchToProps = dispatch => ({
       name: values.name,
       about: values.about,
       city: values.userCity !== '0' ? values.userCity : null,
-      profile_pic: values.profile_pic ? values.profile_pic : null,
+      profile_pic: values.profile_pic && values.profile_pic.length !== 0 ? values.profile_pic : null,
       disciplines: values.disciplines.map(discipline => discipline.id),
     };
     return dispatch(profileEdit(profile));

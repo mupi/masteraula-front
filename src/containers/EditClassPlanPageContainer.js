@@ -131,7 +131,7 @@ const mapDispatchToProps = (dispatch) => {
         duration: values.duration ? values.duration : 0,
         comment: values.comment ? values.comment : '',
         description: values.description,
-        pdf: values.pdf && values.pdf instanceof File ? values.pdf : null,
+        pdf: values.pdf && (values.pdf instanceof File || values.pdf.length !== 0) ? values.pdf : null,
       };
 
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
