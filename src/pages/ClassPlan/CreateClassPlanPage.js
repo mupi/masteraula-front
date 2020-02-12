@@ -16,7 +16,7 @@ import DocumentCardListClassPlan from 'components/document/DocumentCardListClass
 import {
   requiredValidator,
   requiredMultiSelectValidator,
-  mustBeNumber, maxYearValue,
+  minDuration,
   minLength3characters,
   linkValidator,
 } from 'helpers/validators';
@@ -378,7 +378,7 @@ class CreateClassPlanPage extends Component {
                     type="number"
                     component={renderNumericField}
                     label="Ex. 120"
-                    validate={[mustBeNumber, maxYearValue]}
+                    validate={minDuration}
                   />
                 </Col>
               </Row>

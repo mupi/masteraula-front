@@ -201,7 +201,7 @@ function updateClassPlan(activeClassPlan) {
         return Promise.reject(error.response.data.pdf[0]);
       }
 
-      return Promise.reject('Ocorreu um erro com sua solicitação');
+      return Promise.reject(error.response.data);
     });
 }
 
