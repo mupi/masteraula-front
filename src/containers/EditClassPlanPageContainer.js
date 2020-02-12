@@ -116,6 +116,8 @@ const mapDispatchToProps = (dispatch) => {
   */
     onSubmit: (values, d, props) => {
       const errors = [];
+      const isValidFile = values.pdf && values.pdf instanceof FileList && values.pdf.length > 0;
+
       const updatedClassPlan = {
         id: props.activeClassPlan.id,
         name: values.name,
@@ -131,7 +133,7 @@ const mapDispatchToProps = (dispatch) => {
         duration: values.duration ? values.duration : 0,
         comment: values.comment ? values.comment : '',
         description: values.description,
-        pdf: values.pdf && (values.pdf instanceof File || values.pdf.length !== 0) ? values.pdf : null,
+        pdf: (values.pdf && isValidFile) ? values.pdf : null,
       };
 
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
