@@ -159,7 +159,20 @@ function createClassPlan(newClassPlanData) {
   const url = '/class_plans/';
 
   return axios.post(`${apiUrl}${url}`, classPlanFormData, requestOptions)
-    .then(response => response.data).then(newClassPlan => newClassPlan);
+    .then(response => response.data).then(newClassPlan => newClassPlan)
+    .catch((error) => {
+      if (error.response) {
+        if (error.response.data.pdf[0].includes('File is not PDF')) {
+          return Promise.reject('Arquivo inválido. Escolha um arquivo PDF.');
+        }
+        if (error.response.data.pdf[0].includes('Max file size is 2MB')) {
+          return Promise.reject('Tamanho máximo do arquivo é 2Mb.');
+        }
+        return Promise.reject(error.response.data.pdf[0]);
+      }
+
+      return Promise.reject('Ocorreu um erro com sua solicitação');
+    });
 }
 
 /* Update a new class Plan */
