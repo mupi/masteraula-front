@@ -78,6 +78,7 @@ export const classPlan = (state = initialState, action) => {
         isCreated: true,
       });
     case CREATE_CLASS_PLAN_FAILURE:
+      toast.error(action.error, optionsError);
       return Object.assign({}, state, {
         isCreated: false,
         error: action.error,

@@ -11,10 +11,6 @@ const optionsSuccess = {
   type: 'success',
 };
 
-const optionsError = {
-  className: 'alert__ma-toast--error',
-  type: 'error',
-};
 // Load
 
 export const FETCH_CLASS_PLAN = 'FETCH_CLASS_PLAN';
@@ -147,7 +143,7 @@ export const createClassPlan = (props) => {
         toast.success('Plano de aula criado com sucesso', optionsSuccess);
       },
       (error) => {
-        toast.error('Ocorreu um erro com sua solicitação', optionsError);
+        // toast.error('Ocorreu um erro com sua solicitação', optionsError);
         dispatch(createClassPlanFailure(error));
       },
     );
