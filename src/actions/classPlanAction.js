@@ -65,6 +65,7 @@ export const fetchClassPlan = (id) => {
             description: activeClassPlan.description,
             pdf: activeClassPlan.pdf,
             links: activeClassPlan.links,
+            comment: activeClassPlan.comment,
           }));
 
           dispatch(fetchClassPlanSuccess(activeClassPlan));
