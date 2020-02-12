@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  Alert, Row, Col, Button, Form, Input, Label,
+  Alert, Row, Col, Button, Form, Input,
 } from 'reactstrap';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
 import renderMultiselect from 'components/autocomplete/Multiselect';
@@ -192,9 +192,9 @@ export const fieldFile = ({ input, type }) => {
 
   return (
     <div>
-      <Label htmlFor={input.name}>
-        <Input {...newInput} type={type} placeholder="Carregar pdf" />
-      </Label>
+      <label htmlFor={input.name}>
+        <input {...newInput} type={type} placeholder="Carregar pdf" />
+      </label>
     </div>
   );
 };
