@@ -186,7 +186,7 @@ const renderLinks = ({ fields, meta: { error } }) => (
   </>
 );
 
-export const fieldFile = ({ input, type }) => {
+export const fieldFile = ({ input, type, meta: { touched, error, warning } }) => {
   const newInput = input;
   delete newInput.value;
 
@@ -195,10 +195,23 @@ export const fieldFile = ({ input, type }) => {
       <label htmlFor={input.name}>
         <input {...newInput} type={type} placeholder="Carregar pdf" />
       </label>
+      { touched
+          && ((error && (
+          <span className="error-message-text">
+            {error}
+          </span>
+          ))
+          || (warning && (
+          <span>
+            {' '}
+            {warning}
+            {' '}
+          </span>
+          )))
+        }
     </div>
   );
 };
-
 
 class EditClassPlanPage extends Component {
   componentDidMount() {
