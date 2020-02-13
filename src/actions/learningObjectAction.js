@@ -102,12 +102,12 @@ export const listLearningObjectModal = (currentPageModal, filterObject) => {
       (objectPageModal) => {
         dispatch(requestLearningObjectModalSuccess(objectPageModal));
         dispatch(initialize('learningObjectSearchModal', {
-          searchTextObject: filterObject.searchTextObjectModal,
+          searchTextObject: filterObject && filterObject.searchTextObjectModal ? filterObject.searchTextObjectModal : '',
         }));
       }, (error) => {
         dispatch(requestLearningObjectModalFailure(error));
         dispatch(initialize('learningObjectSearchModal', {
-          searchTextObject: filterObject.searchTextObjectModal,
+          searchTextObject: filterObject && filterObject.searchTextObjectModal ? filterObject.searchTextObjectModal : '',
         }));
       },
     );

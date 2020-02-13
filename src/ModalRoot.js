@@ -18,6 +18,7 @@ const MODAL_TYPES = {
   createDocument: modalTypes.createDocument,
   searchObjectModal: modalTypes.searchObjectModal,
   createMyQuestionLabelModal: modalTypes.createMyQuestionLabelModal,
+  searchDocumentModal: modalTypes.searchDocumentModal,
 };
 
 const mapStateToProps = state => ({
@@ -38,6 +39,7 @@ const ModalContainer = (props) => {
 
   if (modalType === 'document') modalClassName = 'modal-dialog modal-lg';
   if (modalType === 'searchObjectModal') modalClassName = 'modal-dialog modal-xl modal-fixed';
+  if (modalType === 'searchDocumentModal') modalClassName = 'modal-dialog modal-xl modal-fixed';
 
   const SpecifiedModal = MODAL_TYPES[modalType];
 

@@ -290,3 +290,17 @@ input.rw-input-reset{
 .react-autosuggest__suggestion--highlighted {
   background-color: #ddd;
 }
+
+
+/*PAGINATION - REACTSTRAP*/
+.pagination a.page-link {
+  color: $color-ma-blue;
+}
+
+.pagination li.page-item .page-link {
+  color: $color-ma-blue;
+}
+
+.pagination li.page-item.active .page-link {
+  color: $color-ma-white;
+}

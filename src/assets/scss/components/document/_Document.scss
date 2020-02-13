@@ -341,13 +341,6 @@
   }
 }
 
-.pagination-my-documents ul.pagination {
-  margin-bottom: 0px;
-}
-.pagination-my-documents.row a {
-  color:$color-ma-blue;
-}
-
 tbody tr {
   background-color:$color-ma-white;
 }
@@ -409,4 +402,12 @@ tbody tr.odd {
   background: $color-ma-blue;
   color:$color-ma-white;
   font-size: 16px !important;
+}
+
+
+/*Search Document Modal from ClassPlan*/
+.search-document-modal{
+  &__body-section-scroll{
+      top: 100px !important;
+  }
 }

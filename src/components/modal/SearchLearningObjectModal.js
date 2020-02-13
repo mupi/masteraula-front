@@ -10,16 +10,12 @@ import SimpleLObjectCardList from 'components/learningObject/SimpleLObjectCardLi
 
 
 class SearchLearningObjectModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
-  }
-
   componentDidMount() {
     const {
-      filterObject, listObjects,
+      listObjects, clearSearch,
     } = this.props;
-    listObjects(parseInt(1, 10), filterObject);
+    listObjects(parseInt(1, 10), null);
+    clearSearch();
   }
 
   componentDidUpdate(prevProps) {
@@ -31,26 +27,24 @@ class SearchLearningObjectModal extends React.Component {
     }
   }
 
-  handleCloseModal(closeModal) {
-    const { clearSearch } = this.props;
-    clearSearch();
-    closeModal();
-  }
-
-
   render() {
     const {
-      objectPage, isFetching, closeModal, title, addSelectedObjectToQuestion, selectedObjectList, setCurrentPageModal,
+      objectPage, isFetching, closeModal, titlePart, setCurrentPageModal,
+      addSelectedObject, removeSelectedObject, callFrom,
+      selectedObjectListQuestion,
+      selectedObjectListClassPlan,
     } = this.props;
+
+    const selectedObjectList = callFrom === 'Q' ? selectedObjectListQuestion : selectedObjectListClassPlan;
     return (
       <div className="modal-content modal__content modal-fixed__content">
         <div className="modal-header modal__header">
           <h5
             className="modal-title"
           >
-            {title}
+            {`Adicionar objeto ${titlePart}`}
           </h5>
-          <button type="button" className="close" aria-label="Close" onClick={() => this.handleCloseModal(closeModal)}>
+          <button type="button" className="close" aria-label="Close" onClick={closeModal}>
             <span aria-hidden="true">
             &times;
             </span>
@@ -69,7 +63,7 @@ class SearchLearningObjectModal extends React.Component {
                 {objectPage ? objectPage.count : 0}
               </Col>
               <Col sm="12" className="c-object-base-modal__selected-number">
-                Objetos associados à questão:
+                {`Objetos associados ${titlePart}`}
                 {' '}
                 {selectedObjectList.length}
               </Col>
@@ -81,7 +75,8 @@ class SearchLearningObjectModal extends React.Component {
                 </Alert>
               ) : (
                 <SimpleLObjectCardList
-                  addSelectedObjectToQuestion={addSelectedObjectToQuestion}
+                  addSelectedObject={addSelectedObject}
+                  removeSelectedObject={removeSelectedObject}
                   sm="4"
                   {...this.props}
                   objects={objectPage ? objectPage.results : null}
@@ -106,7 +101,7 @@ class SearchLearningObjectModal extends React.Component {
 
         </div>
         <div className="modal-footer modal__footer c-object-base-modal__footer modal-fixed__footer">
-          <Button color="secondary" onClick={() => this.handleCloseModal(closeModal)}>
+          <Button color="secondary" onClick={closeModal}>
             Fechar
           </Button>
         </div>

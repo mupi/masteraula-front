@@ -14,3 +14,4 @@ export { default as topic } from './topicReducer';
 export { default as learningObject } from './learningObjectReducer';
 export { default as suggestion } from './suggestionReducer';
 export { default as label } from './labelReducer';
+export { default as classPlan } from './classPlanReducer';

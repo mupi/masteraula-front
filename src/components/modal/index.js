@@ -1,4 +1,6 @@
 import searchObjectModal from 'containers/SearchLearningObjectModalContainer';
+import searchDocumentModal from 'containers/SearchDocumentModalContainer';
+
 import alertModal from './AlertModal';
 import confirmModal from './ConfirmModal';
 import deleteModal from './DeleteModal';
@@ -10,7 +12,6 @@ import register2Modal from './Register2Modal';
 import login2Modal from './Login2Modal';
 import createDocument from './CreateDocumentModal';
 import createMyQuestionLabelModal from './CreateMyQuestionLabelModal';
-
 
 const modalTypes = {
   alertModal,
@@ -25,6 +26,7 @@ const modalTypes = {
   createDocument,
   searchObjectModal,
   createMyQuestionLabelModal,
+  searchDocumentModal,
 };
 
 export default modalTypes;

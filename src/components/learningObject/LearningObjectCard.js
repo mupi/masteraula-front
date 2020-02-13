@@ -25,7 +25,7 @@ const getButtonColor = (objectType) => {
   }
 };
 
-const CardBodyLearninObject = (props) => {
+const CardBodyLearningObject = (props) => {
   const { learningObject } = props;
 
   const extractText = learningObject.text ? getCleanExtractStatement(learningObject.text) : '';
@@ -66,7 +66,7 @@ const LearningObjectCard = (props) => {
       {getObjectType(objType)}
     </Button>
   ) : (
-    <span className={`object-card__filter-button object-card__filter-button--${getButtonColor(objType)}`}>
+    <span key={i} className={`object-card__filter-button object-card__filter-button--${getButtonColor(objType)}`}>
       {getObjectType(objType)}
     </span>
   ));
@@ -105,7 +105,7 @@ const LearningObjectCard = (props) => {
             ) : ''}
         </p>
       </CardHeader>
-      <CardBodyLearninObject learningObject={object} />
+      <CardBodyLearningObject learningObject={object} />
       <CardFooter className="object-card__footer">
         {button}
       </CardFooter>

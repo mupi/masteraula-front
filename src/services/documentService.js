@@ -1,5 +1,6 @@
 import { apiUrl } from 'helpers/config';
 import { authHeader } from 'helpers';
+import axios from 'axios';
 
 // Fetch a Document using ID
 function fetchDocument(id) {
@@ -158,6 +159,24 @@ function listMyDocuments(page, orderField, order) {
     .then(handleResponse)
     .then(activeDocument => activeDocument);
 }
+
+function listMyDocumentsCardsModal(page, orderField, order) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+
+  };
+
+  const url = '/documents/my_documents_cards/';
+
+
+  return axios.get(`${apiUrl}${url}?page=${page}&order_field=${orderField}&order=${order}`, requestOptions)
+    .then(response => response.data).then(classPlans => classPlans);
+}
+
 
 function listMyLastDocuments(page, orderField, order) {
   const requestOptions = {
@@ -344,6 +363,7 @@ const documentService = {
   downloadDocument,
   copyDocument,
   getNumberDocxDownloaded,
+  listMyDocumentsCardsModal,
 };
 
 export default documentService;

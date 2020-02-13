@@ -8,6 +8,7 @@ import * as documentAction from './documentAction';
 import * as modalAction from './modalAction';
 import * as learningObjectAction from './learningObjectAction';
 import * as labelAction from './labelAction';
+import * as classPlanAction from './classPlanAction';
 
 export default {
   loginAction,
@@ -20,4 +21,5 @@ export default {
   modalAction,
   learningObjectAction,
   labelAction,
+  classPlanAction,
 };

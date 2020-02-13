@@ -10,6 +10,11 @@ export const emailValidator = value => (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.
   ? 'Email inválido'
   : undefined);
 
+export const linkValidator = value => (value && !/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/i.test(value)
+  ? 'Link inválido'
+  : undefined);
+
+
 export const requiredValidator = value => (value ? undefined : 'Campo obrigatório');
 export const requiredEmailValidator = value => (value ? undefined : 'Insira seu email');
 export const requiredPasswordValidator = value => (value ? undefined : 'Insira sua senha');
@@ -47,4 +52,8 @@ export const minLength2TagsForEdit = (value) => {
 };
 
 const maxValue = max => value => (value && value > max ? `O valor máximo permitido é ${max}` : undefined);
+const minValue = min => value => (value && value < min ? `O valor mínimo permitido é ${min}` : undefined);
+export const mustBePositiveNumber = value => ((value && isNaN(Number(value)) && value < 0) ? 'Insira um valor numérico maior do que 0' : undefined);
+
 export const maxYearValue = maxValue(2019);
+export const minDuration = minValue(0);

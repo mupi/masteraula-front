@@ -91,6 +91,12 @@ export const GET_NUMBER_DOCX_DOWNLOADED = 'GET_NUMBER_DOCX_DOWNLOADED';
 export const GET_NUMBER_DOCX_DOWNLOADED_SUCCESS = 'GET_NUMBER_DOCX_DOWNLOADED_SUCCESS';
 export const GET_NUMBER_DOCX_DOWNLOADED_FAILURE = 'GET_NUMBER_DOCX_DOWNLOADED_FAILURE';
 
+// List document from modal
+export const LIST_MY_DOCUMENTS_MODAL = 'LIST_MY_DOCUMENTS_MODAL';
+export const LIST_MY_DOCUMENTS_MODAL_SUCCESS = 'LIST_MY_DOCUMENTS_MODAL_SUCCESS';
+export const LIST_MY_DOCUMENTS_MODAL_FAILURE = 'LIST_MY_DOCUMENTS_MODAL_FAILURE';
+export const SET_CURRENT_PAGE_MODAL = 'SET_CURRENT_PAGE_MODAL';
+
 const optionsError = {
   className: 'alert__ma-toast--error',
   type: 'error',
@@ -227,6 +233,36 @@ export const listMyDocuments = (page, orderField, order) => {
       );
   };
 };
+
+
+// List  documents - Modal
+export const listMyDocumentsModal = (currentPageModal) => {
+  function requestDocumentsModal() { return { type: LIST_MY_DOCUMENTS_MODAL, currentPageModal }; }
+  function requestDocumentsModalSuccess(documentPageModal) { return { type: LIST_MY_DOCUMENTS_MODAL_SUCCESS, documentPageModal }; }
+  function requestDocumentsModalFailure(error) { return { type: LIST_MY_DOCUMENTS_MODAL_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(requestDocumentsModal());
+    return documentService.listMyDocumentsCardsModal(currentPageModal).then(
+      (documentPageModal) => {
+        dispatch(requestDocumentsModalSuccess(documentPageModal));
+        /* dispatch(initialize('learningObjectSearchModal', {
+          searchTextObject: filterObject.searchTextObjectModal,
+        })); */
+      }, (error) => {
+        dispatch(requestDocumentsModalFailure(error));
+        /* dispatch(initialize('learningObjectSearchModal', {
+          searchTextObject: filterObject.searchTextObjectModal,
+        })); */
+      },
+    );
+  };
+};
+
+// Set page for search objects in modal
+export const setCurrentPageModal = currentPageModal => ({
+  type: SET_CURRENT_PAGE_MODAL, currentPageModal,
+});
+
 
 // Shown in Top Menu - Only 5 documents
 export const listMyLastDocuments = (page, orderField, order) => (dispatch) => {

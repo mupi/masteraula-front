@@ -24,3 +24,7 @@ export { default as SidebarObjectFiltersContainer } from './SidebarObjectFilters
 export { default as PublicDocumentPageContainer } from './PublicDocumentPageContainer';
 export { default as DocumentListContainer } from './DocumentListContainer';
 export { default as TopicBasePageContainer } from './TopicBasePageContainer';
+export { default as CreateClassPlanPageContainer } from './CreateClassPlanPageContainer';
+export { default as EditClassPlanPageContainer } from './EditClassPlanPageContainer';
+export { default as ViewClassPlanPageContainer } from './ViewClassPlanPageContainer';
+export { default as ManageClassPlansPageContainer } from './ManageClassPlansPageContainer';

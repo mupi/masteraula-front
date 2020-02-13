@@ -26,6 +26,11 @@ export const LIST_TOPIC_FILTERS_SUCCESS = 'LIST_TOPIC_FILTERS_SUCCESS';
 export const LIST_TOPIC_FILTERS_FAILURE = 'LIST_TOPIC_FILTERS_FAILURE';
 export const RESET_LIST_TOPIC_SELECTED = 'RESET_LIST_TOPIC_SELECTED';
 
+// List Teaching Year (1eiro, 2do, 3eiro)
+export const LIST_TEACHING_YEAR_FILTERS = 'LIST_TEACHING_YEAR_FILTERS';
+export const LIST_TEACHING_YEAR_FILTERS_SUCCESS = 'LIST_TEACHING_YEAR_FILTERS_SUCCESS';
+export const LIST_TEACHING_YEAR_FILTERS_FAILURE = 'LIST_TEACHING_YEAR_FILTERS_FAILURE';
+
 // Add selected discipline filter
 export const ADD_SELECTED_DISCIPLINE_FILTER = 'ADD_SELECTED_DISCIPLINE_FILTER';
 
@@ -204,6 +209,32 @@ export const listTopicFilters = (filter) => {
         },
         (error) => {
           dispatch(fetchListTopicsFailure(error));
+        },
+      );
+  };
+};
+
+// Teaching Year List
+export const listTeachingYearFilters = () => {
+  function requestListTeachingYearFilters() {
+    return { type: LIST_TEACHING_YEAR_FILTERS };
+  }
+  function fetchListTeachingYearFiltersSuccess(teachingYearFilters) {
+    return { type: LIST_TEACHING_YEAR_FILTERS_SUCCESS, teachingYearFilters };
+  }
+  function fetchListTeachingYearFiltersFailure(error) {
+    return { type: LIST_TEACHING_YEAR_FILTERS_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    dispatch(requestListTeachingYearFilters());
+    return filterService.listTeachingYearFilters()
+      .then(
+        (teachingYearFilters) => {
+          dispatch(fetchListTeachingYearFiltersSuccess(teachingYearFilters));
+        },
+        (error) => {
+          dispatch(fetchListTeachingYearFiltersFailure(error));
         },
       );
   };

@@ -72,9 +72,15 @@ class ViewDocumentPage extends React.Component {
               <h4>Minhas Provas</h4>
             </Col>
           </Row>
-          <Row className="pagination-my-documents">
+          <Row>
             <Col sm="12">
-              <CustomPagination {...this.props} {...myDocumentsList} disabled={isFetchingMyDocuments} itensPerPage={10} />
+              <CustomPagination
+                className="pagination-my-documents"
+                {...this.props}
+                {...myDocumentsList}
+                disabled={isFetchingMyDocuments}
+                itensPerPage={10}
+              />
               <p className="c-my-documents__total-results">
                 {`Provas encontradas: ${myDocumentsList ? (myDocumentsList.count) : 0}`}
                 {' '}

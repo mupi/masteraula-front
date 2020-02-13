@@ -295,11 +295,6 @@ const options = {
 };
 
 class CreateQuestionPage extends Component {
-  constructor(props) {
-    super(props);
-    this.closeModal = this.closeModal.bind(this);
-  }
-
   componentDidMount() {
     const {
       listDisciplineFilters, listTeachingLevelFilters, listSourceFilters, prepareForm, resetSelectedObjects,
@@ -318,26 +313,12 @@ class CreateQuestionPage extends Component {
     }
   }
 
-  closeModal() {
-    const { hideModal } = this.props;
-    hideModal();
-  }
-
-  openSearchLearningObjectModal() {
-    const { showModal } = this.props;
-    // open modal
-    showModal({
-      open: true,
-      closeModal: this.closeModal,
-      title: 'Adicionar objeto(s) à questão',
-    }, 'searchObjectModal');
-  }
-
   render() {
     const {
       isCreating, error, topicSuggestions, pristine, disciplineFilters, sourceFilters,
       teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
       submitting, resolution, errorsEditQuestion, sourceQuestionValue, listTopicSuggestions,
+      showSearchLearningObjectModal,
     } = this.props;
 
     if (isCreating) {
@@ -395,7 +376,7 @@ class CreateQuestionPage extends Component {
                 </h5>
               </Col>
               <Col md="3" sm="6">
-                <Button onClick={() => this.openSearchLearningObjectModal()}>
+                <Button onClick={() => showSearchLearningObjectModal()}>
                   <FontAwesomeIcon
                     icon="plus"
                     className="btn__icon"
@@ -408,7 +389,7 @@ class CreateQuestionPage extends Component {
               <LearningObjectList
                 learningObjects={selectedObjectList}
                 options={options}
-                removeSelectedObjectToQuestion={removeSelectedObjectToQuestion}
+                removeSelectedObject={removeSelectedObjectToQuestion}
               />
             ) : '' }
             <Row className="c-question__tittle-section">

@@ -21,11 +21,6 @@ function listTopicSuggestions(term, filter) {
 
   };
 
-  /*
-  const disciplinesParams = disciplinesSelected ? queryString.stringify({ disciplines: disciplinesSelected.map(item => item.id) }) : '';
-  const topicsParams = topicsSelected ? queryString.stringify({ topics: topicsSelected.map(item => item.id) }) : '';
-  */
-
   const disciplinesParams = queryString.stringify({ disciplines: filter.disciplinesSelected.map(item => item.id) });
   const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
