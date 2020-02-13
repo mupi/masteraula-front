@@ -131,7 +131,7 @@ const mapDispatchToProps = (dispatch) => {
         description: values.description,
         pdf: values.pdf && values.pdf.length !== 0 ? values.pdf : null,
       };
-      const overMaxSize = values.pdf && values.pdf instanceof FileList && values.pdf.length > 0 && values.pdf[0].size > 26214400;
+      const overMaxSize = values.pdf && values.pdf instanceof FileList && values.pdf.length > 0 && values.pdf[0].size > 2097152;
       if (overMaxSize) {
         errors.pdf = 'Insira um arquivo PDF de máx. 2mb';
       }
