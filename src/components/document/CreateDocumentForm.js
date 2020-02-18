@@ -4,6 +4,9 @@ import {
 } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import {
+  maxLength200,
+} from 'helpers/validators';
 
 const renderField = ({
   input,
@@ -55,6 +58,7 @@ const CreateDocumentForm = (props) => {
             name="name"
             id="name"
             label="Digite o nome da prova"
+            validate={maxLength200}
           />
         </FormGroup>
         <FormGroup check>

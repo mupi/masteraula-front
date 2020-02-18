@@ -34,6 +34,8 @@ export const mustBeNumber = value => (value && isNaN(Number(value)) ? 'Insira um
 const maxLength = (max, text) => value => (value && value.length > max ? `Insira no máximo ${max} ${text}` : undefined);
 export const maxLength5 = (maxLength(5, 'alternativas'));
 export const maxLength50 = (maxLength(50, 'caracteres'));
+export const maxLength200 = (maxLength(200, 'caracteres'));
+
 const minLength = (min, text) => value => (value && value.length < min ? `Insira no minimo ${min} ${text}` : undefined);
 export const minLength3Alternatives = (minLength(3, 'alternativas'));
 export const minLength1Topics = (minLength(1, 'tópico'));

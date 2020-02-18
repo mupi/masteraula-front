@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  Row, Col, Table, Button,
+  Row, Col, Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle,
 } from 'reactstrap';
 import { formatDate } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-const OpenDocumentModalHeader = (props) => {
+const OpenClassPlanModalHeader = (props) => {
   const { children } = props;
   return (
     <td role="gridcell" className="c-my-documents__cell">
@@ -27,7 +27,7 @@ const ClassPlanList = (props) => {
   return (
     <Row className="l-my-documents-list">
       <Col xs="12">
-        <div>
+        <div className="c-my-classplans">
           <Table responsive hover>
             <thead align="center">
               <tr>
@@ -35,56 +35,64 @@ const ClassPlanList = (props) => {
                 <th>Disciplinas</th>
                 <th>Duração</th>
                 <th>Data de criação</th>
-                <th>Ver</th>
-                <th>Editar</th>
-                <th>Apagar</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody align="center">
               {classPlans && classPlans.map(classPlan => (
                 <tr key={classPlan.id}>
-                  <OpenDocumentModalHeader>
+                  <OpenClassPlanModalHeader>
                     {classPlan.name}
-                  </OpenDocumentModalHeader>
+                  </OpenClassPlanModalHeader>
 
-                  <OpenDocumentModalHeader>
+                  <OpenClassPlanModalHeader>
                     {classPlan.disciplines.map(t => t.name).join(', ')}
-                  </OpenDocumentModalHeader>
-                  <OpenDocumentModalHeader>
+                  </OpenClassPlanModalHeader>
+                  <OpenClassPlanModalHeader>
                     {classPlan.duration}
-                  </OpenDocumentModalHeader>
-                  <OpenDocumentModalHeader>
+                  </OpenClassPlanModalHeader>
+                  <OpenClassPlanModalHeader>
                     {formatDate(classPlan.create_date)}
-                  </OpenDocumentModalHeader>
+                  </OpenClassPlanModalHeader>
                   <td>
-                    <Button
-                      color="secondary"
-                      title="Ver plano de aula"
-                      to={`/view-classplan/${classPlan.id}`}
-                      tag={Link}
-                    >
-                      <FontAwesomeIcon icon="eye" />
-                    </Button>
-                  </td>
-                  <td>
-                    <Button
-                      color="secondary"
-                      title="Ver plano de aula"
-                      to={`/edit-classplan/${classPlan.id}`}
-                      tag={Link}
-                    >
-                      <FontAwesomeIcon icon="pencil-alt" />
-                    </Button>
-                  </td>
-                  <td>
-                    <Button color="danger" onClick={() => handleDelete(classPlan.id, classPlan.name)} title="Apagar plano de aula">
-                      <FontAwesomeIcon icon="trash-alt" />
-                    </Button>
+                    <UncontrolledDropdown>
+                      <DropdownToggle title="Mais ações" className="c-my-classplans__toggle">
+                        <FontAwesomeIcon icon="ellipsis-h" />
+                      </DropdownToggle>
+                      <DropdownMenu className="label-item__dropdown-menu" right>
+                        <DropdownItem
+                          title="Ver plano de aula"
+                          to={`/view-classplan/${classPlan.id}`}
+                          tag={Link}
+                        >
+                          <FontAwesomeIcon icon="eye" />
+                          {' '}
+                          Ver
+                        </DropdownItem>
+                        <DropdownItem divider className="label-item__divider" />
+                        <DropdownItem
+                          title="Ver plano de aula"
+                          to={`/edit-classplan/${classPlan.id}`}
+                          tag={Link}
+                        >
+                          <FontAwesomeIcon icon="copy" />
+                          {' '}
+                          Editar
+                        </DropdownItem>
+                        <DropdownItem divider className="label-item__divider" />
+                        <DropdownItem className="c-my-classplans__btn-remove" onClick={() => handleDelete(classPlan.id, classPlan.name)} title="Apagar plano de aula">
+                          <FontAwesomeIcon icon="trash-alt" />
+                          {' '}
+                          Apagar
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
                   </td>
                 </tr>
               ))}
             </tbody>
           </Table>
+          {classPlans && classPlans.length <= 0 && <div className="text-center">Não tem planos de aula</div>}
         </div>
       </Col>
     </Row>

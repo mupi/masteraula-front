@@ -102,6 +102,7 @@ const DocumentList = (props) => {
               ))}
             </tbody>
           </Table>
+          {documents && documents.length <= 0 && <div className="text-center">Não tem provas</div>}
         </div>
       </Col>
     </Row>
