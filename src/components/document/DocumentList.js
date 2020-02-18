@@ -42,7 +42,7 @@ const DocumentList = (props) => {
   return (
     <Row className="l-my-documents-list">
       <Col xs="12">
-        <div>
+        <div className="c-my-documents">
           <Table responsive hover>
             <thead align="center">
               <tr>
@@ -66,10 +66,10 @@ const DocumentList = (props) => {
                   </OpenDocumentModalHeader>
                   <td>
                     <UncontrolledDropdown>
-                      <DropdownToggle title="Mais ações">
+                      <DropdownToggle title="Mais ações" className="c-my-documents__toggle">
                         <FontAwesomeIcon icon="ellipsis-h" />
                       </DropdownToggle>
-                      <DropdownMenu className="label-item__dropdown-menu">
+                      <DropdownMenu className="label-item__dropdown-menu" right>
                         <DropdownItem onClick={() => editDocument(document)} title="Editar prova">
                           <FontAwesomeIcon icon="pencil-alt" />
                           {' '}

@@ -352,6 +352,12 @@
       background-color: $color-ma-red;
     }
   }
+
+  .table-responsive{
+    @include for-tablet-landscape-up{
+      overflow: inherit !important;
+    }
+  }
 }
 
 tbody tr {
