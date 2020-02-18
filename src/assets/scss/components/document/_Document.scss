@@ -179,7 +179,7 @@
 }
 
 
-/*DocumentModal in DocumentListPage - ViewDocumentPage*/
+/*DocumentModal in DocumentListPage - ManageDocumentsPage*/
 .c-document-modal{
   padding-top: 0px;
   background: $color-ma-white;
@@ -338,6 +338,19 @@
 
   &__order-label{
     margin: 5px;
+  }
+
+  &__btn-remove{
+    color: $color-ma-red;
+
+    &:active{
+      color: $color-ma-white;
+      background-color: $color-ma-red;
+    }
+    &:hover{
+      color: $color-ma-white;
+      background-color: $color-ma-red;
+    }
   }
 }
 
