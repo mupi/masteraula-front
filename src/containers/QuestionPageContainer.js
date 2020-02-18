@@ -81,7 +81,6 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'createMyQuestionLabelModal',
   };
 
-
   return ({
     fetchQuestion: id => dispatch(fetchQuestion(id)),
     onRate: rating => dispatch(rateQuestion(rating)),
