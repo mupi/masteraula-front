@@ -52,3 +52,24 @@
         padding-right: 5px;
     }
 }
+
+.c-my-classplans{
+    .table-responsive{
+        @include for-tablet-landscape-up{
+          overflow: inherit !important;
+        }
+      }
+      
+    &__btn-remove{
+        color: $color-ma-red;
+    
+        &:active{
+          color: $color-ma-white;
+          background-color: $color-ma-red;
+        }
+        &:hover{
+          color: $color-ma-white;
+          background-color: $color-ma-red;
+        }
+      }
+}
