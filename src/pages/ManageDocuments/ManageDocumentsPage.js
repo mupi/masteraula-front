@@ -21,7 +21,7 @@ const getOrderNameField = (text) => {
 };
 
 
-class ViewDocumentPage extends React.Component {
+class ManageDocumentsPage extends React.Component {
   componentDidMount() {
     const {
       match, listMyDocuments, listMyLastDocuments, orderField, order,
@@ -144,7 +144,7 @@ class ViewDocumentPage extends React.Component {
   }
 }
 
-ViewDocumentPage.propTypes = {
+ManageDocumentsPage.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       page: PropTypes.string.isRequired,
@@ -156,10 +156,10 @@ ViewDocumentPage.propTypes = {
   order: PropTypes.string,
 };
 
-ViewDocumentPage.defaultProps = {
+ManageDocumentsPage.defaultProps = {
   myDocumentsList: null,
   orderField: 'name',
   order: 'asc',
 };
 
-export default ViewDocumentPage;
+export default ManageDocumentsPage;

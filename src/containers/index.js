@@ -7,7 +7,7 @@ export { default as UserPasswordProfileContainer } from './UserPasswordProfileCo
 export { default as UserProfileContainer } from './UserProfileContainer';
 export { default as UserProfilePageContainer } from './UserProfilePageContainer';
 export { default as ForgotPasswordPageContainer } from './ForgotPasswordPageContainer';
-export { default as ViewDocumentPageContainer } from './ViewDocumentPageContainer';
+export { default as ManageDocumentsPageContainer } from './ManageDocumentsPageContainer';
 export { default as EditDocumentPageContainer } from './EditDocumentPageContainer';
 export { default as MenuContainer } from './MenuContainer';
 export { default as MyHeadersPageContainer } from './MyHeadersPageContainer';

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Row, Col, Table, Button,
+  Row, Col, Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle,
 } from 'reactstrap';
 import { formatDate } from 'helpers/question';
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
@@ -42,17 +42,14 @@ const DocumentList = (props) => {
   return (
     <Row className="l-my-documents-list">
       <Col xs="12">
-        <div>
+        <div className="c-my-documents">
           <Table responsive hover>
             <thead align="center">
               <tr>
                 <th>Nome</th>
                 <th>Data de criação</th>
                 <th>Nº de questões</th>
-                <th>Editar</th>
-                <th>Duplicar</th>
-                <th>Exportar</th>
-                <th>Apagar</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody align="center">
@@ -68,26 +65,38 @@ const DocumentList = (props) => {
                     {document.questions.length}
                   </OpenDocumentModalHeader>
                   <td>
-                    <Button color="secondary" onClick={() => editDocument(document)} title="Editar prova">
-                      <FontAwesomeIcon icon="pencil-alt" />
-                    </Button>
-                  </td>
-                  <td>
-                    <Button color="secondary" title="Criar cópia da prova" onClick={() => copyDocument(document)}>
-                      <FontAwesomeIcon icon="copy" />
-                    </Button>
-                  </td>
-                  <td>
-                    <ExportDocumentButtonContainer
-                      documentId={document.id}
-                      documentName={document.name}
-                      documentTotalQuestions={document.questions.length}
-                    />
-                  </td>
-                  <td>
-                    <Button color="danger" onClick={() => handleDelete(document.id, document.name)} title="Excluir prova">
-                      <FontAwesomeIcon icon="trash-alt" />
-                    </Button>
+                    <UncontrolledDropdown>
+                      <DropdownToggle title="Mais ações" className="c-my-documents__toggle">
+                        <FontAwesomeIcon icon="ellipsis-h" />
+                      </DropdownToggle>
+                      <DropdownMenu className="label-item__dropdown-menu" right>
+                        <DropdownItem onClick={() => editDocument(document)} title="Editar prova">
+                          <FontAwesomeIcon icon="pencil-alt" />
+                          {' '}
+                          Editar
+                        </DropdownItem>
+                        <DropdownItem divider className="label-item__divider" />
+                        <DropdownItem onClick={() => copyDocument(document)} title="Duplicar prova">
+                          <FontAwesomeIcon icon="copy" />
+                          {' '}
+                          Duplicar
+                        </DropdownItem>
+                        <DropdownItem divider className="label-item__divider" />
+                        <ExportDocumentButtonContainer
+                          documentId={document.id}
+                          documentName={document.name}
+                          documentTotalQuestions={document.questions.length}
+                          isLink
+                          text="Exportar"
+                        />
+                        <DropdownItem divider className="label-item__divider" />
+                        <DropdownItem className="c-my-documents__btn-remove" onClick={() => handleDelete(document.id, document.name)} title="Apagar prova">
+                          <FontAwesomeIcon icon="trash-alt" />
+                          {' '}
+                          Apagar
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
                   </td>
                 </tr>
               ))}

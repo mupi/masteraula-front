@@ -12,7 +12,7 @@ import PricingPageHome from 'pages/Pricing/PricingPageHome';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 
 import {
-  ViewDocumentPageContainer,
+  ManageDocumentsPageContainer,
   ForgotPasswordPageContainer,
   UserProfilePageContainer,
   RedefinePasswordPageContainer,
@@ -81,6 +81,7 @@ import {
   faTimes,
   faLink,
   faFilePdf,
+  faEllipsisH,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -101,7 +102,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faCircle,
   faTimes,
   faLink,
-  faFilePdf,
+  faFilePdf, faEllipsisH,
   fab);
 
 class App extends Component {
@@ -151,7 +152,7 @@ class App extends Component {
                 <Route path="/edit-question/:id" component={MyQuestionEditPageContainer} />
                 <Route path="/create-question/" component={CreateQuestionPageContainer} />
                 <Route path="/user-profile" component={UserProfilePageContainer} />
-                <Route path="/documents/:page(\d+)" component={ViewDocumentPageContainer} />
+                <Route path="/documents/:page(\d+)" component={ManageDocumentsPageContainer} />
                 <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
                 <Route path="/edit-document" component={EditDocumentPageContainer} />
                 <Route path="/view-object/:id" component={ViewLearningObjectPageContainer} />

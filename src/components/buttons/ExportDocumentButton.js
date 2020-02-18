@@ -35,7 +35,7 @@ const ExportDocumentButton = ({
           {text}
         </Button>
       ) : (
-        <DropdownItem color={color} onClick={handleClick} className={styleCustomize}>
+        <DropdownItem color={color} onClick={handleClick} className={styleCustomize} title="Exportar prova">
           {text ? <FontAwesomeIcon icon="file-word" className="btn__icon" /> : <FontAwesomeIcon icon="file-word" />}
           {text}
         </DropdownItem>

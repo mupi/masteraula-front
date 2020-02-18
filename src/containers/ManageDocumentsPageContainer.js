@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ViewDocumentPage from 'pages/ViewDocument/ViewDocumentPage';
+import ManageDocumentsPage from 'pages/ManageDocuments/ManageDocumentsPage';
 import {
   listMyDocuments, switchActiveDocument, fetchPreviewDocument, deleteDocument, listMyLastDocuments,
   copyDocument,
@@ -35,9 +35,9 @@ const mapDispatchToProps = dispatch => ({
   copyDocument: doc => dispatch(copyDocument(doc)),
 });
 
-const ViewDocumentPagePageContainer = connect(
+const ManageDocumentsPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ViewDocumentPage);
+)(ManageDocumentsPage);
 
-export default ViewDocumentPagePageContainer;
+export default ManageDocumentsPageContainer;
