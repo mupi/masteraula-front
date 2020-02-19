@@ -126,7 +126,7 @@ html body #sidebar {
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     width:  $sidebar-size;
-    background: $color-ma-blue;
+    background: $color-ma-black-sidebar;
  
     @include for-tablet-landscape-up{
       left: 0;
@@ -143,11 +143,13 @@ html body #sidebar {
         margin-left: -15px;
         margin-right: -15px;
     }
+
+    .container-fluid,
+    .container-fluid .row {
+        background:$color-ma-black-sidebar;
+    }
+
 }
- 
- 
- 
- 
  
 /* Why so many classes for 1 property*/
 .visible-xs-block, .visible-xs-inline, .visible-xs-inline-block, .visible-sm-block, .visible-sm-inline, .visible-sm-inline-block, .visible-md-block, .visible-md-inline, .visible-md-inline-block, .visible-lg-block, .visible-lg-inline, .visible-lg-inline-block {
@@ -202,32 +204,46 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
 }
  
  
-.sidebar-main-options li.list-group-item {
-    background: $color-ma-lightgray-backg;
-    padding:0px;
- 
-    &:first-child {
-        border-top-left-radius: 0px;
-        border-top-right-radius: 0px;
+.sidebar-main-options{
+
+    &.list-group {
+        border-bottom: 1px solid $color-ma-gray;
+        padding: 5px 0px;
     }
- 
-    &:last-child {
-        border-bottom-right-radius: 0px;
-        border-bottom-left-radius: 0px;
+    &.list-group:first-child{
+        margin-top: 20px;
     }
-}
- 
-.sidebar-nav-container .list-group-item a, .list-group-item__simple-option a {
-    text-decoration: none;
-    color: $color-ma-blue;
-    font-weight: bold;
-    display:block;
-    padding: 0.75rem 1.25rem;
-}
- 
-.sidebar-main-options li.list-group-item:hover {
-    background: $color-ma-skyblue-light !important;
-    color: white;
+
+    li.list-group-item {
+        background: transparent;
+        padding:0px;
+        border: 0px;
+    
+        &:first-child {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+    
+        &:last-child {
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        &:hover {
+            background: rgba(255,255,255,.16);
+            color: white;
+        }
+    }
+
+    .list-group-item__simple-option { 
+        a {
+            text-decoration: none;
+            color: $color-ma-white;
+            font-weight: bold;
+            display:block;
+            padding: 0.45rem 1.25rem;
+        }
+    }
 }
  
 #sidebar-container .col-12 {
@@ -381,16 +397,6 @@ img.logo-in-menu.no-login {
         margin-left: 5px; 
     }
 }
- 
-/*list of options in sidebar*/
-#sidebar-container ul.list-group {
-    margin-top: 20px;
- 
-  /*  @include for-tablet-landscape-bottom{
-        margin-top:15px !important;
-    }*/
-}
- 
  
 button.c-sidebar__user-dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
     background: transparent;

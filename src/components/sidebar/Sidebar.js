@@ -139,6 +139,14 @@ const SidebarMobile = ({
               </Col>
 
               <Col xs="12">
+                <ListGroup className="sidebar-main-options">
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/my-dashboard" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-dashboard'); }}>
+                      <FontAwesomeIcon className="btn__icon" icon="home" />
+                        Painel de atividades
+                    </Link>
+                  </ListGroupItem>
+                </ListGroup>
                 <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
                   <ListGroupItem color="light">
                     <div className="document__new-document-option">
@@ -173,58 +181,55 @@ const SidebarMobile = ({
                     </Link>
                   </ListGroupItem>
                 </ListGroup>
-                <div className="sidebar-nav-container">
-                  <ListGroup className="sidebar-main-options">
-                    <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
-                        <FontAwesomeIcon
-                          className="btn__icon"
-                          icon="folder"
-                        />
+                <ListGroup className="sidebar-main-options">
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="folder"
+                      />
                         Gerenciar minhas provas
-                      </Link>
-                    </ListGroupItem>
-                    <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/class-plans/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/class-plans/1'); }}>
-                        <FontAwesomeIcon
-                          className="btn__icon"
-                          icon="folder"
-                        />
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/class-plans/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/class-plans/1'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="folder"
+                      />
                         Gerenciar meus planos de aula
-                      </Link>
-                    </ListGroupItem>
-                  </ListGroup>
-                </div>
-                <div className="sidebar-nav-container">
-                  <ListGroup className="sidebar-main-options">
-                    <ListGroupItem color="light">
-                      <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1'); }}>
-                        <FontAwesomeIcon
-                          className="btn__icon"
-                          icon="search"
-                        />
+                    </Link>
+                  </ListGroupItem>
+                </ListGroup>
+                <ListGroup className="sidebar-main-options">
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="search"
+                      />
                         Banco de questões
-                      </Link>
-                    </ListGroupItem>
-                    <ListGroupItem color="light">
-                      <Link to="/object-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/object-base/1'); }}>
-                        <FontAwesomeIcon
-                          className="btn__icon"
-                          icon="image"
-                        />
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/object-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/object-base/1'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="image"
+                      />
                         Tirinhas, excertos e mais
-                      </Link>
-                    </ListGroupItem>
-                    <ListGroupItem color="light">
-                      <Link to="/topic-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/topic-base/1'); }}>
-                        <FontAwesomeIcon
-                          className="btn__icon"
-                          icon="bookmark"
-                        />
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/topic-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/topic-base/1'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="bookmark"
+                      />
                         Tópicos e assuntos
-                      </Link>
-                    </ListGroupItem>
-                    {/* <ListGroupItem color="light">
+                    </Link>
+                  </ListGroupItem>
+                  {/* <ListGroupItem color="light">
                       <Link to="/my-headers/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/my-headers/1'); }}>
                         <FontAwesomeIcon
                           className="btn__icon"
@@ -233,19 +238,18 @@ const SidebarMobile = ({
                         Gerenciar meus cabeçalhos
                       </Link>
                     </ListGroupItem> */}
-                  </ListGroup>
-                  { /* showFilters && <FilterContainer /> */}
-                  {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
-                  {<SidebarLabels
-                    labels={myQuestionLabels}
-                    isFetching={isFetchingMyQuestionLabels}
-                    showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
-                    showUpdateMyQuestionLabelModal={showUpdateMyQuestionLabelModal}
-                    showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
-                    addSelectedMyQuestionLabelFilter={addSelectedMyQuestionLabelFilter}
-                    isFetchingQuestions={isFetchingQuestions}
-                  />}
-                </div>
+                </ListGroup>
+                { /* showFilters && <FilterContainer /> */}
+                {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
+                {<SidebarLabels
+                  labels={myQuestionLabels}
+                  isFetching={isFetchingMyQuestionLabels}
+                  showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
+                  showUpdateMyQuestionLabelModal={showUpdateMyQuestionLabelModal}
+                  showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
+                  addSelectedMyQuestionLabelFilter={addSelectedMyQuestionLabelFilter}
+                  isFetchingQuestions={isFetchingQuestions}
+                />}
               </Col>
             </Row>
           </div>
@@ -289,6 +293,14 @@ const SidebarWeb = ({
               <Row className="sidebar-row">
                 <Col xs="12">
 
+                  <ListGroup className="sidebar-main-options">
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/my-dashboard">
+                        <FontAwesomeIcon className="btn__icon" icon="home" />
+                        Painel de atividades
+                      </Link>
+                    </ListGroupItem>
+                  </ListGroup>
                   <ListGroup className="sidebar-main-options c-sidebar__create-doc-option ">
                     <ListGroupItem color="light">
                       <div className="document__new-document-option">
@@ -315,43 +327,40 @@ const SidebarWeb = ({
                       </Link>
                     </ListGroupItem>
                   </ListGroup>
-                  <div className="sidebar-nav-container">
-                    <ListGroup className="sidebar-main-options">
-                      <ListGroupItem className="list-group-item__simple-option">
-                        <Link to="/documents/1">
-                          <FontAwesomeIcon className="btn__icon" icon="folder" />
+                  <ListGroup className="sidebar-main-options">
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/documents/1">
+                        <FontAwesomeIcon className="btn__icon" icon="folder" />
                           Gerenciar minhas provas
-                        </Link>
-                      </ListGroupItem>
-                      <ListGroupItem className="list-group-item__simple-option">
-                        <Link to="/class-plans/1">
-                          <FontAwesomeIcon className="btn__icon" icon="folder" />
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/class-plans/1">
+                        <FontAwesomeIcon className="btn__icon" icon="folder" />
                           Gerenciar meus planos de aula
-                        </Link>
-                      </ListGroupItem>
-                    </ListGroup>
-                  </div>
-                  <div className="sidebar-nav-container">
-                    <ListGroup className="sidebar-main-options">
-                      <ListGroupItem color="light">
-                        <Link to="/question-base/1">
-                          <FontAwesomeIcon className="btn__icon" icon="search" />
+                      </Link>
+                    </ListGroupItem>
+                  </ListGroup>
+                  <ListGroup className="sidebar-main-options">
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/question-base/1">
+                        <FontAwesomeIcon className="btn__icon" icon="search" />
                           Banco de questões
-                        </Link>
-                      </ListGroupItem>
-                      <ListGroupItem color="light">
-                        <Link to="/object-base/1">
-                          <FontAwesomeIcon className="btn__icon" icon="image" />
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/object-base/1">
+                        <FontAwesomeIcon className="btn__icon" icon="image" />
                           Tirinhas, excertos e mais
-                        </Link>
-                      </ListGroupItem>
-                      <ListGroupItem color="light">
-                        <Link to="/topic-base/1">
-                          <FontAwesomeIcon className="btn__icon" icon="bookmark" />
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/topic-base/1">
+                        <FontAwesomeIcon className="btn__icon" icon="bookmark" />
                           Tópicos e assuntos
-                        </Link>
-                      </ListGroupItem>
-                      {/* <ListGroupItem color="light">
+                      </Link>
+                    </ListGroupItem>
+                    {/* <ListGroupItem color="light">
                       <Link to="/my-headers/1">
                         <FontAwesomeIcon
                           className="btn__icon"
@@ -360,19 +369,18 @@ const SidebarWeb = ({
                         Gerenciar meus cabeçalhos
                       </Link>
                     </ListGroupItem> */}
-                    </ListGroup>
-                    {/* showFilters && <FilterContainer /> */}
-                    {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
-                    {<SidebarLabels
-                      labels={myQuestionLabels}
-                      isFetching={isFetchingMyQuestionLabels}
-                      showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
-                      showUpdateMyQuestionLabelModal={showUpdateMyQuestionLabelModal}
-                      showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
-                      addSelectedMyQuestionLabelFilter={addSelectedMyQuestionLabelFilter}
-                      isFetchingQuestions={isFetchingQuestions}
-                    />}
-                  </div>
+                  </ListGroup>
+                  {/* showFilters && <FilterContainer /> */}
+                  {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
+                  {<SidebarLabels
+                    labels={myQuestionLabels}
+                    isFetching={isFetchingMyQuestionLabels}
+                    showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
+                    showUpdateMyQuestionLabelModal={showUpdateMyQuestionLabelModal}
+                    showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
+                    addSelectedMyQuestionLabelFilter={addSelectedMyQuestionLabelFilter}
+                    isFetchingQuestions={isFetchingQuestions}
+                  />}
                 </Col>
               </Row>
             </div>

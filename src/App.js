@@ -35,6 +35,7 @@ import {
   EditClassPlanPageContainer,
   ViewClassPlanPageContainer,
   ManageClassPlansPageContainer,
+  MyDashboardPageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -146,6 +147,7 @@ class App extends Component {
           {isLoggedIn
             ? (
               <Switch>
+                <Route path="/my-dashboard" component={MyDashboardPageContainer} />
                 <Route path="/question-base/:page(\d+)" component={QuestionBasePageContainer} />
                 <Route path="/view-question/:id" component={QuestionPageContainer} />
                 <Route path="/classify-question/:id" component={QuestionEditPageContainer} />
