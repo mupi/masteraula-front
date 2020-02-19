@@ -28,3 +28,4 @@ export { default as CreateClassPlanPageContainer } from './CreateClassPlanPageCo
 export { default as EditClassPlanPageContainer } from './EditClassPlanPageContainer';
 export { default as ViewClassPlanPageContainer } from './ViewClassPlanPageContainer';
 export { default as ManageClassPlansPageContainer } from './ManageClassPlansPageContainer';
+export { default as MyDashboardPageContainer } from './MyDashboardPageContainer';
