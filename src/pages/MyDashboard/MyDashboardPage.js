@@ -19,7 +19,7 @@ class MyDashboardPage extends React.Component {
   }
 
   render() {
-    const { myDashboard, isFetchingMyDashboard } = this.props;
+    const { myDashboard, isFetchingMyDashboard, user } = this.props;
     return (
       <HomeUserPage>
         <div className="c-my-dashboard">
@@ -34,8 +34,13 @@ class MyDashboardPage extends React.Component {
             </Alert>
           ) : (
             <>
-              <MyDashboardMyStatistics myStatistics={myDashboard && myDashboard.results ? myDashboard.results[0] : null} />
-              <MyDashboardGeneralStatistics generalStatistics={myDashboard && myDashboard.results ? myDashboard.results[0] : null} />
+              <MyDashboardMyStatistics
+                myStatistics={myDashboard && myDashboard.results ? myDashboard.results[0] : null}
+                user={user}
+              />
+              <MyDashboardGeneralStatistics
+                generalStatistics={myDashboard && myDashboard.results ? myDashboard.results[0] : null}
+              />
               <Row>
                 <Col sm="12">
                   <h5>Minhas provas recentes</h5>
