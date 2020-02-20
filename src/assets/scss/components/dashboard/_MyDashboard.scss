@@ -1,0 +1,35 @@
+.c-my-dashboard{
+    &__header{
+        font-size: 20px;
+    }
+}
+
+.c-stat-card{
+    
+    &__body{
+        padding: 15px;
+        text-align: center;
+        line-height: normal;
+    }
+
+    &__title{
+        font-size: 15px;
+        color: $color-ma-blue;
+        line-height: normal;
+    }
+
+    &__number{
+        font-size: 30px;
+        line-height: normal;
+    }
+
+    &__link{
+        font-size: 13px;
+        line-height: normal;
+    }
+
+    &__footer{
+        padding: 0.45rem;
+        font-size: 13px;
+    }
+}
