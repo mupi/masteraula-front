@@ -245,9 +245,6 @@ html body .masteraula-nav-header__user {
     letter-spacing: 0.85px;
   }
 
-  &__icon-option{
-  }
-
   &__number-docx{
     font-size: 12px;
     color: $color-ma-blue;
@@ -258,14 +255,6 @@ html body .masteraula-nav-header__user {
     @include for-desktop-bottom-1160{
       display:none;
     }
-  }
-
-  &__number-docx-available{
-
-  }
-
-  &__number-docx-total{
-
   }
 
   &__number-docx-icon{

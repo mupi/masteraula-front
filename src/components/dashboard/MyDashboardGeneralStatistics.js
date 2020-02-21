@@ -20,13 +20,13 @@ const MyDashboardGeneralStatistics = (props) => {
                 title="Banco de questões"
                 number={generalStatistics.total_questions}
                 linkName="Acessar ao banco"
-                linkHref="/documents/1"
+                linkHref="/question-base/1"
               />
               <MyStatisticsCard
-                title="Banco de objetos"
+                title="Banco de Tirinhas e mais"
                 number={generalStatistics.total_objects}
                 linkName="Acessar ao banco"
-                linkHref="/documents/1"
+                linkHref="/object-base/1"
               />
               <MyStatisticsCard
                 title="Tópicos e Assuntos"

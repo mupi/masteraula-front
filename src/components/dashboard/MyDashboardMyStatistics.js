@@ -4,7 +4,6 @@ import MyStatisticsCard from './MyStatisticsCard';
 
 const MyDashboardMyStatistics = (props) => {
   const { myStatistics, user } = props;
-  const hasLink = user && !user.subscription;
   return (
     myStatistics ? (
       <>
@@ -33,7 +32,9 @@ const MyDashboardMyStatistics = (props) => {
                 number={myStatistics.downloads}
                 linkName="Seja Premium"
                 linkHref="/nossos-planos/"
-                hasLink={hasLink}
+                userTypeSection
+                hasLink={false}
+                isPremium={user && user.subscription}
               />
               <MyStatisticsCard
                 title="Planos de aula criados"

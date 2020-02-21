@@ -1,12 +1,23 @@
 import React from 'react';
 import {
-  Card, CardHeader, CardText, CardBody, CardTitle,
+  Card, CardHeader, CardText, CardBody, CardTitle, Badge,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const PremiumInfo = ({ name, color }) => (
+  <Badge color={color} style={{ padding: '5px' }}>
+    <FontAwesomeIcon
+      icon="crown"
+      className="btn__icon"
+    />
+    {name}
+  </Badge>
+);
 
 const MyStatisticsCard = (props) => {
   const {
-    title, number, linkHref, linkName, hasLink = true,
+    title, number, linkHref, linkName, hasLink = true, isPremium, userTypeSection = false,
   } = props;
 
   return (
@@ -21,6 +32,12 @@ const MyStatisticsCard = (props) => {
           </Link>
         </CardText>
         )}
+        { userTypeSection
+          && (isPremium ? <PremiumInfo name="Você é premium" color="premium" /> : (
+            <Link className="" to="/nossos-planos">
+              <PremiumInfo name="Seja premium" color="info" />
+            </Link>
+          ))}
       </CardBody>
     </Card>
   );

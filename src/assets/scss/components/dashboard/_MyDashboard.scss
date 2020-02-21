@@ -2,6 +2,10 @@
     &__header{
         font-size: 20px;
     }
+
+    &__recent-documents-table{
+        margin-bottom: 0px;
+    }
 }
 
 .c-stat-card{
@@ -32,4 +36,9 @@
         padding: 0.45rem;
         font-size: 13px;
     }
+}
+
+.badge-premium {
+    color: #fff;
+    background-color: #ffc107;
 }

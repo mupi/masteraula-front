@@ -237,6 +237,7 @@ export const document = (state = initialState, action) => {
     }
     case SWITCH_ACTIVE_DOCUMENT: {
       localStorage.setItem('activeDocument', JSON.stringify(action.activeDocument));
+      toast.success(`Prova em edição: ${action.activeDocument.name}`, optionsSuccess);
 
       return Object.assign({}, state, {
         activeDocument: action.activeDocument,

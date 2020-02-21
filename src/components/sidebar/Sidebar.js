@@ -70,8 +70,8 @@ const SidebarMobile = ({
                 <div className="c-sidebar__ma-logo">
                   <Link
                     className={isFetchingQuestions ? 'c-sidebar__ma-logo-link--disabled' : ''}
-                    to="/question-base/1"
-                    onClick={(e) => { if (!isFetchingQuestions) clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}
+                    to="/my-dashboard/"
+                    onClick={(e) => { if (!isFetchingQuestions) clearAllSearchAndRedirect(e, cleanAllSearch, '/my-dashboard/'); }}
                   >
                     <img src={maLogo} alt="masteraula" />
                   </Link>
@@ -156,7 +156,7 @@ const SidebarMobile = ({
                       >
                         <FontAwesomeIcon
                           className="btn__icon"
-                          icon="file"
+                          icon="plus"
                         />
                         Criar prova
                       </Button>
@@ -278,8 +278,8 @@ const SidebarWeb = ({
     <div id="sidebar">
       <Link
         className={isFetchingQuestions ? 'c-sidebar__ma-logo-link--disabled' : ''}
-        to="/question-base/1"
-        onClick={(e) => { if (!isFetchingQuestions) clearAllSearchAndRedirect(e, cleanAllSearch, '/question-base/1'); }}
+        to="/my-dashboard/"
+        onClick={(e) => { if (!isFetchingQuestions) clearAllSearchAndRedirect(e, cleanAllSearch, '/my-dashboard/'); }}
       >
         <div className="logo-top-sidebar">
           <img className="logo-sidebar" src={logoMasterAulaVerde} alt="logo" />
@@ -309,7 +309,7 @@ const SidebarWeb = ({
                           className="document__new-document-btn text-left"
                           onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
                         >
-                          <FontAwesomeIcon className="btn__icon" icon="file" />
+                          <FontAwesomeIcon className="btn__icon" icon="plus" />
                           Criar prova
                         </Button>
                       </div>

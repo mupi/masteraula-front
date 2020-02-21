@@ -5,6 +5,7 @@ import {
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import MyDashboardMyStatistics from 'components/dashboard/MyDashboardMyStatistics';
 import MyDashboardGeneralStatistics from 'components/dashboard/MyDashboardGeneralStatistics';
+import MyDashboardRecentDocuments from 'components/dashboard/MyDashboardRecentDocuments';
 
 class MyDashboardPage extends React.Component {
   componentDidMount() {
@@ -19,7 +20,9 @@ class MyDashboardPage extends React.Component {
   }
 
   render() {
-    const { myDashboard, isFetchingMyDashboard, user } = this.props;
+    const {
+      myDashboard, isFetchingMyDashboard, user, myLastDocumentsList, switchActiveDocument, showCreateDocumentModal,
+    } = this.props;
     return (
       <HomeUserPage>
         <div className="c-my-dashboard">
@@ -41,11 +44,11 @@ class MyDashboardPage extends React.Component {
               <MyDashboardGeneralStatistics
                 generalStatistics={myDashboard && myDashboard.results ? myDashboard.results[0] : null}
               />
-              <Row>
-                <Col sm="12">
-                  <h5>Minhas provas recentes</h5>
-                </Col>
-              </Row>
+              <MyDashboardRecentDocuments
+                myLastDocumentsList={myLastDocumentsList}
+                switchActiveDocument={switchActiveDocument}
+                showCreateDocumentModal={showCreateDocumentModal}
+              />
             </>
           )}
         </div>

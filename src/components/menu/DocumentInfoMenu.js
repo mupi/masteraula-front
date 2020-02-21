@@ -89,7 +89,7 @@ class DocumentInfoMenu extends React.Component {
           <p className="menu-top__document-questions  btn__icon">
             <small className="menu-top__document-message">
               Q
-              <span className="masteraula-nav-header__icon-option">uestões</span>
+              <span>uestões</span>
               :
               {' '}
               <span className="menu-top__document-number-questions">

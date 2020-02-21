@@ -36,7 +36,7 @@ const successLogin = (dispatch, getState, session) => {
   if (getState().login.next) {
     history.push(`${getState().login.next}`);
   } else {
-    history.push('/question-base/1');
+    history.push('/my-dashboard/');
   }
 };
 
