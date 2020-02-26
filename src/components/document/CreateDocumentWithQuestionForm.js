@@ -3,7 +3,6 @@ import {
   Button, FormGroup, Form,
 } from 'reactstrap';
 import { Field } from 'redux-form';
-import { first5Elements } from 'helpers/document';
 import {
   listMyLastDocuments,
 } from 'actions/documentAction';
@@ -48,7 +47,7 @@ const messagesDropdownList = {
   emptyFilter: 'Não existem resultados que coincidam',
   filterPlaceholder: 'Selecione ou dê o nome para uma nova prova',
   createOption: function createOption(_ref) {
-    let searchTerm = _ref.searchTerm;
+    const { searchTerm } = _ref;
     return ['+ Criar nova prova', searchTerm && ' ', searchTerm && <strong key="_">{searchTerm}</strong>];
   },
 };
@@ -79,7 +78,7 @@ class CreateDocumentWithQuestionForm extends React.Component {
               placeholder="Selecione dentre as 5 últimas provas criadas"
               valueField="id"
               textField="name"
-              listOptions={myLastDocumentsList && first5Elements(myLastDocumentsList.results)}
+              listOptions={myLastDocumentsList}
               messages={messagesDropdownList}
             />
           </FormGroup>

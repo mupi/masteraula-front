@@ -135,6 +135,22 @@ export const fetchDocument = (id) => {
   };
 };
 
+// Shown in Top Menu - Only 5 documents
+export const listMyLastDocuments = (page, orderField, order) => (dispatch) => {
+  const success = myLastDocumentsList => (
+    dispatch({ type: LIST_MY_LAST_DOCUMENTS_SUCCESS, myLastDocumentsList }));
+
+  const error = errorMessage => (
+    dispatch({ type: LIST_MY_LAST_DOCUMENTS_FAILURE, errorMessage }));
+
+  dispatch({
+    type: LIST_MY_LAST_DOCUMENTS, page, orderField, order,
+  });
+  return documentService.listMyLastDocuments(page, orderField, order)
+    .then(success)
+    .catch(error);
+};
+
 export const fetchPublicDocument = (id) => {
   function requestDocument() { return { type: FETCH_PUBLIC_DOCUMENT }; }
   function fetchDocumentSuccess(activePublicDocument) { return { type: FETCH_PUBLIC_DOCUMENT_SUCCESS, activePublicDocument }; }
@@ -180,6 +196,7 @@ export const createDocument = (props, isRedirect = true) => {
     return documentService.createDocument(props).then(
       (newDocument) => {
         dispatch(createDocumentSuccess(newDocument));
+        dispatch(listMyLastDocuments(1, 'date', 'desc'));
         if (isRedirect) { history.push('/question-base/1'); }
       },
       (error) => {
@@ -262,23 +279,6 @@ export const listMyDocumentsModal = (currentPageModal) => {
 export const setCurrentPageModal = currentPageModal => ({
   type: SET_CURRENT_PAGE_MODAL, currentPageModal,
 });
-
-
-// Shown in Top Menu - Only 5 documents
-export const listMyLastDocuments = (page, orderField, order) => (dispatch) => {
-  const success = myLastDocumentsList => (
-    dispatch({ type: LIST_MY_LAST_DOCUMENTS_SUCCESS, myLastDocumentsList }));
-
-  const error = errorMessage => (
-    dispatch({ type: LIST_MY_LAST_DOCUMENTS_FAILURE, errorMessage }));
-
-  dispatch({
-    type: LIST_MY_LAST_DOCUMENTS, page, orderField, order,
-  });
-  return documentService.listMyLastDocuments(page, orderField, order)
-    .then(success)
-    .catch(error);
-};
 
 // Add Selected Question to Document
 export const addSelectedQuestion = (idDocument, idQuestion, order) => {
@@ -386,6 +386,7 @@ export const deleteDocument = (idDocument) => {
       .then(
         (idDocumentRemoved) => {
           dispatch(deleteSelectedDocumentSuccess(idDocumentRemoved));
+          dispatch(listMyLastDocuments(1, 'date', 'desc'));
         },
         (error) => {
           dispatch(deleteSelectedDocumentFailure(error));
