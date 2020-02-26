@@ -14,7 +14,7 @@ const MyDashboardGeneralStatistics = (props) => {
           </Col>
         </Row>
         <Row className="mb-4 align-items-center">
-          <Col sm="8">
+          <Col sm="6">
             <CardDeck>
               <MyStatisticsCard
                 title="Banco de questões"
@@ -36,7 +36,7 @@ const MyDashboardGeneralStatistics = (props) => {
               />
             </CardDeck>
           </Col>
-          <Col sm="4">
+          <Col sm="6">
             <h6 className="text-center">Questões por tópicos</h6>
             <MyDashboardBarChartTopics topics={generalStatistics.topics_questions} />
           </Col>

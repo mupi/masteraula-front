@@ -5,7 +5,7 @@ import {
   fetchMyDashboard,
 } from 'actions/dashboardAction';
 import {
-  switchActiveDocument,
+  switchActiveDocument, listMyLastDocuments,
 } from 'actions/documentAction';
 import {
   addMyQuestionsFilter,
@@ -16,7 +16,8 @@ const mapStateToProps = state => ({
   myDashboard: state.dashboard.myDashboard,
   user: state.session.session.user,
   isFetchingMyLastDocuments: state.document.isFetchingMyLastDocuments,
-  myLastDocumentsList: state.document.myLastDocumentsList,
+  myLastDocumentsList: state.document.myLastDocumentsList && state.document.myLastDocumentsList.results
+    ? state.document.myLastDocumentsList.results.slice(0, 5) : null,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -33,6 +34,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchMyDashboard: () => dispatch(fetchMyDashboard()),
     switchActiveDocument: doc => dispatch(switchActiveDocument(doc, true)),
     showCreateDocumentModal: () => dispatch(showModal(createDocumentModalProps)),
+    listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
   });
 };
 

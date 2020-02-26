@@ -8,13 +8,12 @@ import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContai
 import OpenLastDocumentListContainer from 'containers/OpenLastDocumentListContainer';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { first5Elements } from 'helpers/document';
 
 class DocumentInfoMenu extends React.Component {
   componentDidMount() {
-    const { listMyLastDocuments } = this.props;
+    const { listMyDocuments } = this.props;
 
-    listMyLastDocuments(1, 'date', 'desc');
+    listMyDocuments(1, 'date', 'desc');
   }
 
   switchActiveDocument(document) {
@@ -123,7 +122,7 @@ class DocumentInfoMenu extends React.Component {
             </DropdownToggle>
             <DropdownMenu>
 
-              {myLastDocumentsList && first5Elements(myLastDocumentsList.results).map(document => (
+              {myLastDocumentsList && myLastDocumentsList.map(document => (
                 <DropdownItem
                   key={document.id}
                   className="menu-top__dropdown-item"

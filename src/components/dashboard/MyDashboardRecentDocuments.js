@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Row, Col, Table, Button,
 } from 'reactstrap';
-import { first5Elements } from 'helpers/document';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -23,7 +22,7 @@ const MyDashboardRecentDocuments = (props) => {
             </tr>
           </thead>
           <tbody>
-            {myLastDocumentsList && first5Elements(myLastDocumentsList.results).map(document => (
+            {myLastDocumentsList && myLastDocumentsList.map(document => (
               <tr
                 key={document.id}
               >
@@ -44,7 +43,7 @@ const MyDashboardRecentDocuments = (props) => {
             ))}
           </tbody>
         </Table>
-        {myLastDocumentsList && myLastDocumentsList.results && myLastDocumentsList.results.length <= 0 ? <p className="text-center">Não tem provas</p> : (
+        {myLastDocumentsList && myLastDocumentsList.length <= 0 ? <p className="text-center">Não tem provas</p> : (
           <p>
             <Link to="/documents/1" style={{ paddingLeft: '7px' }}>
             Ver mais provas

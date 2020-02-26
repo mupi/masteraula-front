@@ -10,10 +10,11 @@ import MyDashboardRecentDocuments from 'components/dashboard/MyDashboardRecentDo
 class MyDashboardPage extends React.Component {
   componentDidMount() {
     const {
-      fetchMyDashboard,
+      fetchMyDashboard, listMyLastDocuments,
     } = this.props;
 
     fetchMyDashboard();
+    listMyLastDocuments(1, 'date', 'desc');
   }
 
   componentDidUpdate() {
