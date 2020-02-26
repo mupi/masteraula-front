@@ -7,6 +7,9 @@ import {
 import {
   switchActiveDocument,
 } from 'actions/documentAction';
+import {
+  addMyQuestionsFilter,
+} from 'actions/filterAction';
 
 const mapStateToProps = state => ({
   isFetchingMyDashboard: state.dashboard.isFetchingMyDashboard,
@@ -26,6 +29,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 
   return ({
+    addMyQuestionsFilter: (author, value) => dispatch(addMyQuestionsFilter(author, value)),
     fetchMyDashboard: () => dispatch(fetchMyDashboard()),
     switchActiveDocument: doc => dispatch(switchActiveDocument(doc, true)),
     showCreateDocumentModal: () => dispatch(showModal(createDocumentModalProps)),

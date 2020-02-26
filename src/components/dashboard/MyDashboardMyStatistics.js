@@ -3,7 +3,7 @@ import { Row, Col, CardDeck } from 'reactstrap';
 import MyStatisticsCard from './MyStatisticsCard';
 
 const MyDashboardMyStatistics = (props) => {
-  const { myStatistics, user } = props;
+  const { myStatistics, user, addMyQuestionsFilter } = props;
   return (
     myStatistics ? (
       <>
@@ -19,7 +19,9 @@ const MyDashboardMyStatistics = (props) => {
                 title="Questões criadas"
                 number={myStatistics.questions}
                 linkName="Ver minhas questões"
-                linkHref="/documents/1"
+                linkHref="/question-base/1"
+                addMyQuestionsFilter={addMyQuestionsFilter}
+                author={user.id}
               />
               <MyStatisticsCard
                 title="Provas criadas"
@@ -40,7 +42,7 @@ const MyDashboardMyStatistics = (props) => {
                 title="Planos de aula criados"
                 number={myStatistics.plans}
                 linkName="Ver meus planos"
-                linkHref="/my-classplans/1"
+                linkHref="/class-plans/1"
               />
               <MyStatisticsCard
                 title="Questões usadas nas provas"

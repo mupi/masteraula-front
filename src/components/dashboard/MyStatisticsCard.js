@@ -4,6 +4,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { history } from 'helpers';
 
 const PremiumInfo = ({ name, color }) => (
   <Badge color={color} style={{ padding: '5px' }}>
@@ -18,6 +19,7 @@ const PremiumInfo = ({ name, color }) => (
 const MyStatisticsCard = (props) => {
   const {
     title, number, linkHref, linkName, hasLink = true, isPremium, userTypeSection = false,
+    addMyQuestionsFilter, author,
   } = props;
 
   return (
@@ -27,7 +29,7 @@ const MyStatisticsCard = (props) => {
         <CardTitle className="c-stat-card__number">{number}</CardTitle>
         {linkName && hasLink && (
         <CardText className="c-stat-card__link">
-          <Link to={linkHref}>
+          <Link to={linkHref} onClick={() => { history.push(linkHref); if (addMyQuestionsFilter) addMyQuestionsFilter(author, true); }}>
             {linkName}
           </Link>
         </CardText>
