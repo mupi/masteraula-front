@@ -3,7 +3,9 @@ import { Row, Col, CardDeck } from 'reactstrap';
 import MyStatisticsCard from './MyStatisticsCard';
 
 const MyDashboardMyStatistics = (props) => {
-  const { myStatistics, user, addMyQuestionsFilter } = props;
+  const {
+    myStatistics, user, addMyQuestionsFilter, quantityDocxDownloaded,
+  } = props;
   return (
     myStatistics ? (
       <>
@@ -31,7 +33,7 @@ const MyDashboardMyStatistics = (props) => {
               />
               <MyStatisticsCard
                 title="Download em docx"
-                number={myStatistics.downloads}
+                number={quantityDocxDownloaded}
                 linkName="Seja Premium"
                 linkHref="/nossos-planos/"
                 userTypeSection

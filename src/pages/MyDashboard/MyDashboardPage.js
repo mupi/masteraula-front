@@ -22,7 +22,8 @@ class MyDashboardPage extends React.Component {
 
   render() {
     const {
-      myDashboard, isFetchingMyDashboard, user, myLastDocumentsList, switchActiveDocument, showCreateDocumentModal, addMyQuestionsFilter,
+      myDashboard, isFetchingMyDashboard, user, myLastDocumentsList, switchActiveDocument,
+      showCreateDocumentModal, addMyQuestionsFilter, quantityDocxDownloaded,
     } = this.props;
     return (
       <HomeUserPage>
@@ -42,6 +43,7 @@ class MyDashboardPage extends React.Component {
                 myStatistics={myDashboard && myDashboard.results ? myDashboard.results[0] : null}
                 user={user}
                 addMyQuestionsFilter={addMyQuestionsFilter}
+                quantityDocxDownloaded={quantityDocxDownloaded}
               />
               <MyDashboardGeneralStatistics
                 generalStatistics={myDashboard && myDashboard.results ? myDashboard.results[0] : null}

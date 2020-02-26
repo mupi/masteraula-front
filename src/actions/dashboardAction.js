@@ -1,6 +1,7 @@
 import {
   dashboardService,
 } from 'services';
+import { getNumberDocxDownloaded } from 'actions/documentAction';
 
 // Get all my dashboard info
 export const FETCH_MY_DASHBOARD = 'FETCH_MY_DASHBOARD';
@@ -33,6 +34,7 @@ export const fetchMyDashboard = () => {
       .then(
         (myDashboard) => {
           dispatch(fetchMyDashboardSuccess(myDashboard));
+          dispatch(getNumberDocxDownloaded());
         },
         (error) => {
           dispatch(fetchMyDashboardFailure(error));

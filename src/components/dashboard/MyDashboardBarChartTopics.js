@@ -3,8 +3,8 @@ import { Bar } from 'react-chartjs-2';
 
 const MyDashboardBarChartTopics = (props) => {
   const { topics } = props;
-  const topicNames = topics.slice(0, 5).map(t => t.name);
-  const numberQuestions = topics.slice(0, 5).map(t => t.num_questions);
+  const topicNames = topics.slice(0, 7).map(t => t.name);
+  const numberQuestions = topics.slice(0, 7).map(t => t.num_questions);
   // const perQuestions = () => topics.map(t => t.per_questions);
   const dataBarChart = {
     labels: topicNames,
@@ -32,6 +32,13 @@ const MyDashboardBarChartTopics = (props) => {
           legend: {
             display: false,
             position: 'right',
+          },
+          scales: {
+            xAxes: [{
+              ticks: {
+                display: false,
+              },
+            }],
           },
         }}
       />
