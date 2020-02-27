@@ -3,6 +3,9 @@ import ViewClassPlanPage from 'pages/ClassPlan/ViewClassPlanPage';
 
 import { fetchClassPlan, deleteClassPlan } from 'actions/classPlanAction';
 import { showModal, hideModal } from 'actions/modalAction';
+import {
+  switchActiveDocument, fetchPreviewDocument,
+} from 'actions/documentAction';
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
@@ -28,10 +31,27 @@ const mapDispatchToProps = (dispatch) => {
     },
     modalType: 'delete',
   });
+
+  const documentModalProps = document => ({
+    modalProps: {
+      open: true,
+      document,
+      editDocument: () => {
+        dispatch(switchActiveDocument(document));
+        dispatch(hideModal());
+      },
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'document',
+  });
+
   return ({
     fetchClassPlan: id => dispatch(fetchClassPlan(id)),
     showDeleteModal: (idClassPlan, name) => dispatch(showModal(deleteModalProps(idClassPlan, name))),
-
+    showDocumentModal: (previewDocument, id) => {
+      dispatch(fetchPreviewDocument(parseInt(id, 10)));
+      dispatch(showModal(documentModalProps(previewDocument)));
+    },
   });
 };
 

@@ -10,8 +10,16 @@ const DocumentCardListClassPlan = (props) => {
   } = props;
 
   const CardButton = document => (
-    options && options.removeButton ? (
-      <RemoveDocumentFromComponentButton documentId={document.id} removeSelectedDocument={removeSelectedDocument} />) : null
+    <>
+      { options && options.removeButton && (
+      <RemoveDocumentFromComponentButton documentId={document.id} removeSelectedDocument={removeSelectedDocument} />)
+    }
+
+      { options && options.showViewButton && (
+        <div>VEEEEER</div>) }
+
+    </>
+
   );
 
 
