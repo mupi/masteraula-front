@@ -37,7 +37,7 @@ const MyDashboardGeneralStatistics = (props) => {
             </CardDeck>
           </Col>
           <Col sm="6">
-            <h6 className="text-center">Questões por tópicos</h6>
+            <h6 className="text-center">N° de Questões por tópicos</h6>
             <MyDashboardBarChartTopics topics={generalStatistics.topics_questions} />
           </Col>
         </Row>
