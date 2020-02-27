@@ -9,6 +9,7 @@ import * as modalAction from './modalAction';
 import * as learningObjectAction from './learningObjectAction';
 import * as labelAction from './labelAction';
 import * as classPlanAction from './classPlanAction';
+import * as dashboardAction from './dashboardAction';
 
 export default {
   loginAction,
@@ -22,4 +23,5 @@ export default {
   learningObjectAction,
   labelAction,
   classPlanAction,
+  dashboardAction,
 };

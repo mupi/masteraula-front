@@ -118,6 +118,12 @@ const mapDispatchToProps = (dispatch) => {
     // Labels
     showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),
 
+    // new way to handle modals
+    hideModal: () => dispatch(hideModal()),
+    showModal: (modalProps, modalType) => {
+      dispatch(showModal({ modalProps, modalType }));
+    },
+
   });
 };
 

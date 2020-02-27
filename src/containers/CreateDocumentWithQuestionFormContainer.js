@@ -12,7 +12,8 @@ const mapStateToProps = state => ({
   initialValues: {
     idQuestion: state.document.willAddQuestion,
   },
-  myLastDocumentsList: state.document.myLastDocumentsList,
+  myLastDocumentsList: state.document.myLastDocumentsList && state.document.myLastDocumentsList.results
+    ? state.document.myLastDocumentsList.results.slice(0, 5) : null,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -45,7 +46,7 @@ const validate = (values) => {
     if (trueName && trueName.length < 3) {
       errors.documentSelected = 'O nome da prova precisa ter no mínimo 3 caracteres';
     }
-  } 
+  }
 
   return errors;
 };

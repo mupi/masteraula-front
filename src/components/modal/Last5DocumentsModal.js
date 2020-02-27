@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Table } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { first5Elements } from 'helpers/document';
 
 const Last5DocumentsModal = ({
   closeModal, title, message, myLastDocumentsList, switchActiveDocument,
@@ -31,7 +30,7 @@ const Last5DocumentsModal = ({
           </tr>
         </thead>
         <tbody>
-          {myLastDocumentsList && first5Elements(myLastDocumentsList.results).map(document => (
+          {myLastDocumentsList && myLastDocumentsList.map(document => (
             <tr
               className="menu-top__dropdown-item"
               key={document.id}

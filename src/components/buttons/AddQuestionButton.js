@@ -11,7 +11,7 @@ const AddQuestionButton = ({
     hideModal();
   };
 
-  const handleAddQuestionButton = (e) => { 
+  const handleAddQuestionButton = (e) => {
     e.preventDefault();
     if (activeDocument) {
       addSelectedQuestion(activeDocument.id, questionId, 0);

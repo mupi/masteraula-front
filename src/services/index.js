@@ -11,3 +11,4 @@ export { default as learningObjectService } from './learningObjectService';
 export { default as suggestionService } from './suggestionService';
 export { default as labelService } from './labelService';
 export { default as classPlanService } from './classPlanService';
+export { default as dashboardService } from './dashboardService';

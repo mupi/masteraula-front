@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
   activeDocument: state.document.activeDocument,
   previewDocument: state.document.previewDocument,
   isFetchingMyLastDocuments: state.document.isFetchingMyLastDocuments,
-  myLastDocumentsList: state.document.myLastDocumentsList,
+  myLastDocumentsList: state.document.myLastDocumentsList && state.document.myLastDocumentsList.results
+    ? state.document.myLastDocumentsList.results.slice(0, 5) : null,
 });
 
 const mapDispatchToProps = (dispatch) => {

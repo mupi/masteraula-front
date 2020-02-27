@@ -75,7 +75,7 @@ const ClassPlanList = (props) => {
                           to={`/edit-classplan/${classPlan.id}`}
                           tag={Link}
                         >
-                          <FontAwesomeIcon icon="copy" />
+                          <FontAwesomeIcon icon="pencil-alt" />
                           {' '}
                           Editar
                         </DropdownItem>

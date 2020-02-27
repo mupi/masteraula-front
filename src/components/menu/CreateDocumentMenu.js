@@ -4,14 +4,12 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { first5Elements } from 'helpers/document';
 
 class CreateDocumentMenu extends React.PureComponent {
   componentDidMount() {
     const {
       listMyLastDocuments,
     } = this.props;
-
     listMyLastDocuments(1, 'date', 'desc');
   }
 
@@ -56,7 +54,7 @@ class CreateDocumentMenu extends React.PureComponent {
             </DropdownToggle>
             <DropdownMenu>
 
-              {myLastDocumentsList && first5Elements(myLastDocumentsList.results).map(document => (
+              {myLastDocumentsList && myLastDocumentsList.map(document => (
                 <DropdownItem
                   key={document.id}
                   className="menu-top__dropdown-item"

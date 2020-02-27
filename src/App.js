@@ -171,7 +171,7 @@ class App extends Component {
 
                 <Route path="/class-plans/:page(\d+)" component={ManageClassPlansPageContainer} />
 
-                <Redirect from="/" to="/question-base/1" />
+                <Redirect from="/" to="/my-dashboard/" />
               </Switch>
             )
             : (
