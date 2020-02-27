@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 import RemoveDocumentFromComponentButton from 'components/buttons/RemoveDocumentFromComponentButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DocumentCard from './DocumentCard';
 
 const DocumentCardListClassPlan = (props) => {
   const {
-    documents, sm, removeSelectedDocument, options,
+    documents, sm, removeSelectedDocument, options, showDocumentModal,
   } = props;
 
   const CardButton = document => (
@@ -16,7 +17,11 @@ const DocumentCardListClassPlan = (props) => {
     }
 
       { options && options.showViewButton && (
-        <div>VEEEEER</div>) }
+        <Button className="btn-margin-right menu-top__document-button" onClick={() => showDocumentModal(document.id)}>
+          <FontAwesomeIcon icon="eye" className="btn__icon" />
+          Visualizar
+        </Button>
+      ) }
 
     </>
 

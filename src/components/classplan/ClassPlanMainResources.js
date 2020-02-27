@@ -26,7 +26,7 @@ const LearningObjectsSection = (props) => {
 };
 
 const DocumentsSection = (props) => {
-  const { documents, options } = props;
+  const { documents, options, showDocumentModal } = props;
   return (
     <>
       <Row className="mt-3">
@@ -41,12 +41,15 @@ const DocumentsSection = (props) => {
       <DocumentCardListClassPlan
         documents={documents}
         options={options}
+        showDocumentModal={showDocumentModal}
       />
     </>
   );
 };
 
-const ClassPlanMainResources = ({ classPlan, optionsObject, optionsDocument }) => {
+const ClassPlanMainResources = ({
+  classPlan, optionsObject, optionsDocument, showDocumentModal,
+}) => {
   const hasLearningObjects = classPlan && classPlan.learning_objects && classPlan.learning_objects.length > 0;
   const hasDocuments = classPlan && classPlan.documents && classPlan.documents.length > 0;
   return (
@@ -63,7 +66,7 @@ const ClassPlanMainResources = ({ classPlan, optionsObject, optionsDocument }) =
         </Col>
       </Row>
       {hasLearningObjects && <LearningObjectsSection objects={classPlan.learning_objects} options={optionsObject} />}
-      {hasDocuments && <DocumentsSection documents={classPlan.documents} options={optionsDocument} />}
+      {hasDocuments && <DocumentsSection documents={classPlan.documents} options={optionsDocument} showDocumentModal={showDocumentModal} />}
     </>
     ));
 };

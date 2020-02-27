@@ -48,9 +48,11 @@ const mapDispatchToProps = (dispatch) => {
   return ({
     fetchClassPlan: id => dispatch(fetchClassPlan(id)),
     showDeleteModal: (idClassPlan, name) => dispatch(showModal(deleteModalProps(idClassPlan, name))),
-    showDocumentModal: (previewDocument, id) => {
+    showDocumentModal: (id) => {
       dispatch(fetchPreviewDocument(parseInt(id, 10)));
-      dispatch(showModal(documentModalProps(previewDocument)));
+      dispatch((_dispatch, getState) => {
+        _dispatch(showModal(documentModalProps(getState().document.previewDocument)));
+      });
     },
   });
 };
