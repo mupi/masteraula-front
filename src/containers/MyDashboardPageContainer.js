@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
   isFetchingMyDashboard: state.dashboard.isFetchingMyDashboard,
   myDashboard: state.dashboard.myDashboard,
   user: state.session.session.user,
-  quantityDocxDownloaded: state.document.numberDocxDownloaded ? state.document.numberDocxDownloaded.count : 0,
+  quantityDocxDownloaded: state.document.numberDocxDownloaded ? state.document.numberDocxDownloaded.total_downloads : 0,
   isFetchingMyLastDocuments: state.document.isFetchingMyLastDocuments,
   myLastDocumentsList: state.document.myLastDocumentsList && state.document.myLastDocumentsList.results
     ? state.document.myLastDocumentsList.results.slice(0, 5) : null,
