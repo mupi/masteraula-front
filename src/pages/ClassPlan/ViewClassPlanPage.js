@@ -42,7 +42,7 @@ class ViewClassPlanPage extends Component {
 
   render() {
     const {
-      userId, activeClassPlan, isFetching, user, error, showDeleteModal,
+      userId, activeClassPlan, isFetching, user, error, showDeleteModal, showDocumentModal,
     } = this.props;
 
     const authorPK = (activeClassPlan && activeClassPlan.owner) ? activeClassPlan.owner.pk : 'Anônimo';
@@ -120,7 +120,12 @@ class ViewClassPlanPage extends Component {
             </Col>
           </Row>
           <ClassPlanBasicInfo classPlan={activeClassPlan} user={user} />
-          <ClassPlanMainResources classPlan={activeClassPlan} optionsDocument={optionsDocument} optionsObject={optionsObject} />
+          <ClassPlanMainResources
+            classPlan={activeClassPlan}
+            optionsDocument={optionsDocument}
+            optionsObject={optionsObject}
+            showDocumentModal={showDocumentModal}
+          />
           <ClassPlanExtraResources classPlan={activeClassPlan} />
           <ClassPlanComments classPlan={activeClassPlan} />
         </div>
