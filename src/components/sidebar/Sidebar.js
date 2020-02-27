@@ -416,9 +416,10 @@ class Sidebar extends React.PureComponent {
   // };
   componentDidMount() {
     const {
-      listMyQuestionLabels,
+      listMyQuestionLabels, myQuestionLabels,
     } = this.props;
-    listMyQuestionLabels();
+
+    if (!myQuestionLabels) { listMyQuestionLabels(); }
   }
 
   render() {

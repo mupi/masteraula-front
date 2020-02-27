@@ -4,6 +4,9 @@ import { SubmissionError, stopSubmit } from 'redux-form';
 import { history } from 'helpers';
 import { updateSession, deleteSession } from 'actions/sessionAction';
 import { hideModal } from 'actions/modalAction';
+import {
+  listMyQuestionLabels,
+} from 'actions/labelAction';
 import { deleteDocumentSession } from './documentAction';
 import { clearSelectedFilters, clearSearch } from './filterAction';
 
@@ -37,6 +40,7 @@ const successLogin = (dispatch, getState, session) => {
     history.push(`${getState().login.next}`);
   } else {
     history.push('/my-dashboard/');
+    dispatch(listMyQuestionLabels());
   }
 };
 

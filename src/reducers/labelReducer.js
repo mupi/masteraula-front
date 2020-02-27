@@ -26,7 +26,7 @@ import {
 import { toast } from 'react-toastify';
 
 const initialState = {
-  myQuestionLabels: [],
+  myQuestionLabels: null,
 };
 
 const optionsSuccess = {
