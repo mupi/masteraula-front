@@ -239,7 +239,7 @@ const renderAlternatives2 = ({ fields, meta: { error }, resolution }) => (
       </Row>
 
       {fields.map((alternative, i) => (
-        <Row className="c-question__row-info c-create-question__row-alternative">
+        <Row className="c-question__row-info c-create-question__row-alternative" key={alternative}>
           <Col sm="1" xs="1">
             <Field
               name="selectedIndex"
