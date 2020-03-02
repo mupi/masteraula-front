@@ -44,7 +44,7 @@ class QuestionTextRichEditor extends Component {
 
     const setEditorReference = (ref) => {
       this.editorReferece = ref;
-      if (ref) ref.focus();
+      // if (ref) ref.focus();
     };
 
     return (
