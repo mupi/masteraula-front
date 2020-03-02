@@ -22,6 +22,7 @@ import renderMultiselect from 'components/autocomplete/Multiselect';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
 import MACreateDropdownList from 'components/dropdownlist/MACreateDropdownList';
+import { Prompt } from 'react-router';
 
 const difficultyList = {
   difficulties: [
@@ -367,6 +368,16 @@ class CreateQuestionPage extends Component {
                 </h4>
               </Col>
             </Row>
+            <Row>
+              <Col>
+                { (!pristine && !submitting) ? (
+                  <Alert color="warning" className="c-question-edit__warning-message">
+                      Existem mudanças ainda não salvas na questão
+                  </Alert>
+                ) : ''
+                      }
+              </Col>
+            </Row>
             <Row className="c-question__tittle-section">
               <Col sm="12">
                 <h5>
@@ -411,7 +422,7 @@ class CreateQuestionPage extends Component {
                   disabled={false}
                   placeholderEditor="Escreva o enunciado da questão aqui ..."
                   validate={requiredValidator}
-                  autoFocus
+                  // autoFocus
                 />
               </Col>
             </Row>
@@ -625,7 +636,11 @@ class CreateQuestionPage extends Component {
               </Row>
               <Row>
                 <Col>
-                  { (!pristine) ? (
+                  <Prompt
+                    when={!pristine}
+                    message="Are you sure you want to leave?"
+                  />
+                  { (!pristine && !submitting) ? (
                     <Alert color="warning" className="c-question-edit__warning-message">
                       Existem mudanças ainda não salvas na questão
                     </Alert>

@@ -28,7 +28,7 @@ class QuestionTextRichEditor extends Component {
 
     const newValue = draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
-    if (value !== newValue) {
+    if (value.trim() !== newValue.trim()) {
       onChange(newValue);
     }
 
