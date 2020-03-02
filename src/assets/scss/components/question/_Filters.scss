@@ -1,7 +1,7 @@
 //For each group of filters. Ex. "Discipline's filters"
 .c-filters{
-    background:  $color-ma-lightgray-backg;
-    color: $color-ma-blue;
+    background:  $color-ma-black-sidebar;
+    color: $color-ma-white;
     border: none;
     padding: 0px;
     margin-top: 0px;
@@ -22,13 +22,13 @@
 
     &__question-category-filter-icon {
         top: 3px;
-        right: 0px;
+        right: 5px;
         position: absolute;
-        font-size: 20px;
+        font-size: 15px;
         font-weight: bold;
         line-height: inherit;
         border: 0px;
-        background-color: $color-ma-lightgray-backg !important;
+        background-color: #5d7387 !important;
         color: inherit;
     }
     
@@ -40,8 +40,8 @@
 
     /* Ex.: "Arte" */
     &__question-single-filter{
-        background:$color-ma-lightgray-backg;
-        color: $color-ma-blue;
+        background:$color-ma-black-sidebar;
+        color: $color-ma-white;
         border: none;
         padding: 0px 0px 0px 25px;
         font-size: 14px;
@@ -84,11 +84,14 @@
 .question-all-filters{
     h6{
         padding-left:10px;
+        margin: 10px 0px 0px 5px;
     }
 
     &.list-group{
+
+        border-bottom: 1px solid #fff;
         @include for-tablet-landscape-up{
-            margin-bottom: 20px;
+            margin-bottom: 0px;
         }
     }
 }

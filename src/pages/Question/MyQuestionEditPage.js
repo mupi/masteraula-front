@@ -447,7 +447,7 @@ class MyQuestionEditPage extends Component {
               </Col>
             </Row>
             <Row>
-              <Col className="c-question__col-full-section-details">
+              <Col>
                 <Alert color="warning" className="c-question-edit__warning-message">
                     Você está editando a questão
                   {' '}
@@ -710,6 +710,18 @@ class MyQuestionEditPage extends Component {
                       {errorsEditQuestion.general_errors}
                     </Alert>
                   )}
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Alert color="warning" className="c-question-edit__warning-message">
+                    Você está editando a questão
+                    {' '}
+                    N°
+                    <strong>{activeQuestion.id}</strong>
+                    { (!pristine) ? '. Existem mudanças ainda não salvas na questão.' : ''
+                    }
+                  </Alert>
                 </Col>
               </Row>
             </div>

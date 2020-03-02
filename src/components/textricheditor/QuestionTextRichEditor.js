@@ -28,7 +28,7 @@ class QuestionTextRichEditor extends Component {
 
     const newValue = draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
-    if (value !== newValue) {
+    if (value.trim() !== newValue.trim()) {
       onChange(newValue);
     }
 
@@ -44,7 +44,7 @@ class QuestionTextRichEditor extends Component {
 
     const setEditorReference = (ref) => {
       this.editorReferece = ref;
-      if (ref) ref.focus();
+      // if (ref) ref.focus();
     };
 
     return (
