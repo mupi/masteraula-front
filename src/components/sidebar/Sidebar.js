@@ -16,7 +16,7 @@ import { Swipeable } from 'react-touch';
 
 import { history } from 'helpers';
 
-import CustomScroll from 'react-custom-scroll';
+// import CustomScroll from 'react-custom-scroll';
 import { maxDocxFreePlan } from 'helpers/config';
 
 
@@ -287,80 +287,80 @@ const SidebarWeb = ({
       </Link>
 
       <div id="sidebar-container">
-        <CustomScroll heightRelativeToParent="calc(100% + 70px)">
-          <div className="container-fluid">
-            <div className="sidebar-10vh">
-              <Row className="sidebar-row">
-                <Col xs="12">
+        { /* <CustomScroll heightRelativeToParent="calc(100% + 70px)"> */}
+        <div className="container-fluid">
+          <div className="sidebar-10vh">
+            <Row className="sidebar-row">
+              <Col xs="12">
 
-                  <ListGroup className="sidebar-main-options">
-                    <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/my-dashboard">
-                        <FontAwesomeIcon className="btn__icon" icon="home" />
+                <ListGroup className="sidebar-main-options">
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/my-dashboard">
+                      <FontAwesomeIcon className="btn__icon" icon="home" />
                         Painel de atividades
-                      </Link>
-                    </ListGroupItem>
-                  </ListGroup>
-                  <ListGroup className="sidebar-main-options c-sidebar__create-doc-option ">
-                    <ListGroupItem color="light">
-                      <div className="document__new-document-option">
-                        <Button
-                          color="link"
-                          className="document__new-document-btn text-left"
-                          onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
-                        >
-                          <FontAwesomeIcon className="btn__icon" icon="plus" />
+                    </Link>
+                  </ListGroupItem>
+                </ListGroup>
+                <ListGroup className="sidebar-main-options c-sidebar__create-doc-option ">
+                  <ListGroupItem color="light">
+                    <div className="document__new-document-option">
+                      <Button
+                        color="link"
+                        className="document__new-document-btn text-left"
+                        onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
+                      >
+                        <FontAwesomeIcon className="btn__icon" icon="plus" />
                           Criar prova
-                        </Button>
-                      </div>
-                    </ListGroupItem>
-                    <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/create-question">
-                        <FontAwesomeIcon className="btn__icon" icon="plus" />
+                      </Button>
+                    </div>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/create-question">
+                      <FontAwesomeIcon className="btn__icon" icon="plus" />
                         Criar questão
-                      </Link>
-                    </ListGroupItem>
-                    <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/create-classplan">
-                        <FontAwesomeIcon className="btn__icon" icon="plus" />
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/create-classplan">
+                      <FontAwesomeIcon className="btn__icon" icon="plus" />
                         Criar plano de aula
-                      </Link>
-                    </ListGroupItem>
-                  </ListGroup>
-                  <ListGroup className="sidebar-main-options">
-                    <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/documents/1">
-                        <FontAwesomeIcon className="btn__icon" icon="folder" />
+                    </Link>
+                  </ListGroupItem>
+                </ListGroup>
+                <ListGroup className="sidebar-main-options">
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/documents/1">
+                      <FontAwesomeIcon className="btn__icon" icon="folder" />
                           Gerenciar minhas provas
-                      </Link>
-                    </ListGroupItem>
-                    <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/class-plans/1">
-                        <FontAwesomeIcon className="btn__icon" icon="folder" />
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/class-plans/1">
+                      <FontAwesomeIcon className="btn__icon" icon="folder" />
                           Gerenciar meus planos de aula
-                      </Link>
-                    </ListGroupItem>
-                  </ListGroup>
-                  <ListGroup className="sidebar-main-options">
-                    <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/question-base/1">
-                        <FontAwesomeIcon className="btn__icon" icon="search" />
+                    </Link>
+                  </ListGroupItem>
+                </ListGroup>
+                <ListGroup className="sidebar-main-options">
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/question-base/1">
+                      <FontAwesomeIcon className="btn__icon" icon="search" />
                           Banco de questões
-                      </Link>
-                    </ListGroupItem>
-                    <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/object-base/1">
-                        <FontAwesomeIcon className="btn__icon" icon="image" />
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/object-base/1">
+                      <FontAwesomeIcon className="btn__icon" icon="image" />
                           Tirinhas, excertos e mais
-                      </Link>
-                    </ListGroupItem>
-                    <ListGroupItem className="list-group-item__simple-option">
-                      <Link to="/topic-base/1">
-                        <FontAwesomeIcon className="btn__icon" icon="bookmark" />
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/topic-base/1">
+                      <FontAwesomeIcon className="btn__icon" icon="bookmark" />
                           Tópicos e assuntos
-                      </Link>
-                    </ListGroupItem>
-                    {/* <ListGroupItem color="light">
+                    </Link>
+                  </ListGroupItem>
+                  {/* <ListGroupItem color="light">
                       <Link to="/my-headers/1">
                         <FontAwesomeIcon
                           className="btn__icon"
@@ -369,24 +369,24 @@ const SidebarWeb = ({
                         Gerenciar meus cabeçalhos
                       </Link>
                     </ListGroupItem> */}
-                  </ListGroup>
-                  {/* showFilters && <FilterContainer /> */}
-                  {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
-                  {<SidebarLabels
-                    labels={myQuestionLabels}
-                    isFetching={isFetchingMyQuestionLabels}
-                    showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
-                    showUpdateMyQuestionLabelModal={showUpdateMyQuestionLabelModal}
-                    showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
-                    addSelectedMyQuestionLabelFilter={addSelectedMyQuestionLabelFilter}
-                    isFetchingQuestions={isFetchingQuestions}
-                  />}
-                </Col>
-              </Row>
-            </div>
-
+                </ListGroup>
+                {/* showFilters && <FilterContainer /> */}
+                {showFiltersForObjectBase && <SidebarObjectFiltersContainer />}
+                {<SidebarLabels
+                  labels={myQuestionLabels}
+                  isFetching={isFetchingMyQuestionLabels}
+                  showCreateMyQuestionLabelModal={showCreateMyQuestionLabelModal}
+                  showUpdateMyQuestionLabelModal={showUpdateMyQuestionLabelModal}
+                  showDeleteMyQuestionLabelModal={showDeleteMyQuestionLabelModal}
+                  addSelectedMyQuestionLabelFilter={addSelectedMyQuestionLabelFilter}
+                  isFetchingQuestions={isFetchingQuestions}
+                />}
+              </Col>
+            </Row>
           </div>
-        </CustomScroll>
+
+        </div>
+        { /* </CustomScroll> */}
       </div>
     </div>
   );
