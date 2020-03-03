@@ -50,7 +50,7 @@ export const fetchClassPlan = (id) => {
     return classPlanService.fetchClassPlan(id)
       .then(
         (activeClassPlan) => {
-          // initialize My Question Edit Page for owner's question
+          // initialize class plan Edit Page for owner's class plan
           dispatch(initialize('edit-classplan', {
             name: activeClassPlan.name,
             disciplines: activeClassPlan.disciplines,
@@ -178,6 +178,18 @@ export const updateClassPlan = (props) => {
       (activeClassPlan) => {
         toast.success('Plano de aula atualizado com sucesso', optionsSuccess);
         dispatch(updateClassPlanSuccess(activeClassPlan));
+        dispatch(initialize('edit-classplan', {
+          name: activeClassPlan.name,
+          disciplines: activeClassPlan.disciplines,
+          topics: activeClassPlan.topics,
+          teachingLevels: activeClassPlan.teaching_levels,
+          teachingYears: activeClassPlan.teaching_years,
+          duration: activeClassPlan.duration,
+          description: activeClassPlan.description,
+          pdf: activeClassPlan.pdf,
+          links: activeClassPlan.links,
+          comment: activeClassPlan.comment,
+        }));
       },
       (error) => {
         dispatch(updateClassPlanFailure(error));

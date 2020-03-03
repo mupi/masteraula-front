@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
 import renderMultiselect from 'components/autocomplete/Multiselect';
-import { Link } from 'react-router-dom';
+import { Link, Prompt } from 'react-router-dom';
 
 import { Field, FieldArray } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
@@ -291,6 +291,10 @@ class EditClassPlanPage extends Component {
 
       return (
         <HomeUserPage>
+          <Prompt
+            when={!pristine}
+            message="Tem certeza de sair da tela de Editar Plano de aula?"
+          />
           <Form onSubmit={handleSubmit}>
             <div className="c-question c-create-question">
               <Row className="c-question__row-header-options c-question__row-header-options--fixed">
@@ -313,6 +317,18 @@ class EditClassPlanPage extends Component {
                     {' '}
                     Editar Plano de Aula
                   </h4>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Alert color="warning" className="c-question-edit__warning-message">
+                    Você está editando o plano de aula
+                    {' '}
+                    N°
+                    <strong>{activeClassPlan.id}</strong>
+                    { (!pristine) ? '. Existem mudanças ainda não salvas no plano.' : ''
+                    }
+                  </Alert>
                 </Col>
               </Row>
               <Row className="c-question__tittle-section">
@@ -461,7 +477,6 @@ class EditClassPlanPage extends Component {
                     disabled={false}
                     placeholderEditor="Escreva as etapas do plano de aula..."
                     validate={requiredValidator}
-                    autoFocus
                   />
                 </Col>
               </Row>
@@ -607,19 +622,18 @@ class EditClassPlanPage extends Component {
                   />
                 </Col>
               </Row>
-              <div className="question-information">
-
-                <Row>
-                  <Col>
-                    { (!pristine) ? (
-                      <Alert color="warning" className="c-question-edit__warning-message">
-                        Existem mudanças ainda não salvas na questão
-                      </Alert>
-                    ) : ''
-                        }
-                  </Col>
-                </Row>
-              </div>
+              <Row>
+                <Col>
+                  <Alert color="warning" className="c-question-edit__warning-message">
+                    Você está editando o plano de aula
+                    {' '}
+                    N°
+                    <strong>{activeClassPlan.id}</strong>
+                    { (!pristine) ? '. Existem mudanças ainda não salvas no plano.' : ''
+                    }
+                  </Alert>
+                </Col>
+              </Row>
             </div>
             <Row className="c-question__row-footer-options text-center">
               <Col>
@@ -635,7 +649,7 @@ class EditClassPlanPage extends Component {
 
             <Row className="c-question__row-footer-options text-center">
               <Col>
-                <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
+                <Button type="submit" title="Salvar plano" className="btn-secondary btn-margin-right" disabled={submitting}>
                   <FontAwesomeIcon
                     className="btn__icon"
                     icon="save"

@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
 import renderMultiselect from 'components/autocomplete/Multiselect';
-import { Link } from 'react-router-dom';
+import { Link, Prompt } from 'react-router-dom';
 
 import { Field, FieldArray } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
@@ -263,6 +263,10 @@ class CreateClassPlanPage extends Component {
 
       return (
         <HomeUserPage>
+          <Prompt
+            when={!pristine && !submitting}
+            message="Tem certeza de sair da tela de Criar Plano de aula?"
+          />
           <Form onSubmit={handleSubmit}>
             <div className="c-question c-create-question">
               <Row className="c-question__row-header-options c-question__row-header-options--fixed">
@@ -285,6 +289,16 @@ class CreateClassPlanPage extends Component {
                     {' '}
                     Criar Plano de Aula
                   </h4>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  { (!pristine) ? (
+                    <Alert color="warning" className="c-question-edit__warning-message">
+                        Existem mudanças ainda não salvas no plano de aula
+                    </Alert>
+                  ) : ''
+                        }
                 </Col>
               </Row>
               <Row className="c-question__tittle-section">
