@@ -2,6 +2,7 @@ import {
   Alert, Row, Col, Button, Form, Input, Label, FormGroup,
 } from 'reactstrap';
 import React, { Component } from 'react';
+import { Prompt } from 'react-router-dom';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
@@ -448,6 +449,10 @@ class MyQuestionEditPage extends Component {
             </Row>
             <Row>
               <Col>
+                <Prompt
+                  when={!pristine}
+                  message="Tem certeza de sair da tela de Editar Questão?"
+                />
                 <Alert color="warning" className="c-question-edit__warning-message">
                     Você está editando a questão
                   {' '}

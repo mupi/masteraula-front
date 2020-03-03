@@ -1,7 +1,7 @@
 import {
   Alert, Row, Col, Button, Form, Input, Label, FormGroup,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Prompt } from 'react-router-dom';
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,7 +22,6 @@ import renderMultiselect from 'components/autocomplete/Multiselect';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
 import MACreateDropdownList from 'components/dropdownlist/MACreateDropdownList';
-// import { Prompt } from 'react-router';
 
 const difficultyList = {
   difficulties: [
@@ -636,10 +635,10 @@ class CreateQuestionPage extends Component {
               </Row>
               <Row>
                 <Col>
-                  { /* <Prompt
+                  <Prompt
                     when={!pristine}
-                    message="Are you sure you want to leave?"
-                  /> */}
+                    message="Tem certeza de sair da tela de Criar Questão?"
+                  />
                   { (!pristine && !submitting) ? (
                     <Alert color="warning" className="c-question-edit__warning-message">
                       Existem mudanças ainda não salvas na questão

@@ -11,6 +11,7 @@ import TermsUsePageHome from 'pages/TermsUse/TermsUsePageHome';
 import PricingPageHome from 'pages/Pricing/PricingPageHome';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 
+
 import {
   ManageDocumentsPageContainer,
   ForgotPasswordPageContainer,
@@ -105,6 +106,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faLink,
   faFilePdf, faEllipsisH,
   fab);
+
 
 class App extends Component {
   constructor(props) {
@@ -217,7 +219,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = () => ({
 });
-
 const connectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default connectedApp;
