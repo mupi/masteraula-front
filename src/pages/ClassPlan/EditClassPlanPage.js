@@ -321,12 +321,14 @@ class EditClassPlanPage extends Component {
               </Row>
               <Row>
                 <Col>
-                  { (!pristine) ? (
-                    <Alert color="warning" className="c-question-edit__warning-message">
-                        Existem mudanças ainda não salvas no plano de aula
-                    </Alert>
-                  ) : ''
-                        }
+                  <Alert color="warning" className="c-question-edit__warning-message">
+                    Você está editando o plano de aula
+                    {' '}
+                    N°
+                    <strong>{activeClassPlan.id}</strong>
+                    { (!pristine) ? '. Existem mudanças ainda não salvas no plano.' : ''
+                    }
+                  </Alert>
                 </Col>
               </Row>
               <Row className="c-question__tittle-section">
@@ -622,12 +624,14 @@ class EditClassPlanPage extends Component {
               </Row>
               <Row>
                 <Col>
-                  { (!pristine) ? (
-                    <Alert color="warning" className="c-question-edit__warning-message">
-                        Existem mudanças ainda não salvas no plano de aula
-                    </Alert>
-                  ) : ''
-                        }
+                  <Alert color="warning" className="c-question-edit__warning-message">
+                    Você está editando o plano de aula
+                    {' '}
+                    N°
+                    <strong>{activeClassPlan.id}</strong>
+                    { (!pristine) ? '. Existem mudanças ainda não salvas no plano.' : ''
+                    }
+                  </Alert>
                 </Col>
               </Row>
             </div>
