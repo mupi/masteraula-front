@@ -636,7 +636,7 @@ class CreateQuestionPage extends Component {
               <Row>
                 <Col>
                   <Prompt
-                    when={!pristine}
+                    when={!pristine && !submitting}
                     message="Tem certeza de sair da tela de Criar Questão?"
                   />
                   { (!pristine && !submitting) ? (

@@ -264,7 +264,7 @@ class CreateClassPlanPage extends Component {
       return (
         <HomeUserPage>
           <Prompt
-            when={!pristine}
+            when={!pristine && !submitting}
             message="Tem certeza de sair da tela de Criar Plano de aula?"
           />
           <Form onSubmit={handleSubmit}>
