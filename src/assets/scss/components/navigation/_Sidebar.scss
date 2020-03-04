@@ -104,11 +104,8 @@ html body #sidebar #sidebar-container {
     width: $sidebar-size;
     position: absolute;
     top: 70px;
-    // overflow-y: scroll;
-
-    &:hover{
-        overflow-y: scroll;
-    }
+    overflow-y: scroll;
+    overflow-x:hidden;
  
     @include for-tablet-landscape-bottom{
         padding-top: 0px;
