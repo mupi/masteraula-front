@@ -4,7 +4,7 @@ import MyStatisticsCard from './MyStatisticsCard';
 import MyDashboardBarChartTopics from './MyDashboardBarChartTopics';
 
 const MyDashboardGeneralStatistics = (props) => {
-  const { generalStatistics } = props;
+  const { generalStatistics, cleanAllSearch } = props;
   return (
     generalStatistics ? (
       <>
@@ -21,6 +21,7 @@ const MyDashboardGeneralStatistics = (props) => {
                 number={generalStatistics.total_questions}
                 linkName="Acessar ao banco"
                 linkHref="/question-base/1"
+                cleanAllSearch={cleanAllSearch}
               />
               <MyStatisticsCard
                 title="Banco de Tirinhas e mais"

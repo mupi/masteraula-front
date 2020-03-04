@@ -16,10 +16,25 @@ const PremiumInfo = ({ name, color }) => (
   </Badge>
 );
 
+const LinkInfo = ({
+  linkName, linkHref, addMyQuestionsFilter, cleanAllSearch, author,
+}) => (
+  <Link
+    to={linkHref}
+    onClick={() => {
+      history.push(linkHref);
+      if (addMyQuestionsFilter) { addMyQuestionsFilter(author, true); }
+      if (cleanAllSearch) { cleanAllSearch(); }
+    }}
+  >
+    {linkName}
+  </Link>
+);
+
+
 const MyStatisticsCard = (props) => {
   const {
-    title, number, linkHref, linkName, hasLink = true, isPremium, userTypeSection = false,
-    addMyQuestionsFilter, author,
+    title, number, linkName, hasLink = true, isPremium, userTypeSection = false,
   } = props;
 
   return (
@@ -29,9 +44,7 @@ const MyStatisticsCard = (props) => {
         <CardTitle className="c-stat-card__number">{number}</CardTitle>
         {linkName && hasLink && (
         <CardText className="c-stat-card__link">
-          <Link to={linkHref} onClick={() => { history.push(linkHref); if (addMyQuestionsFilter) addMyQuestionsFilter(author, true); }}>
-            {linkName}
-          </Link>
+          <LinkInfo {...props} />
         </CardText>
         )}
         { userTypeSection
