@@ -104,11 +104,7 @@ html body #sidebar #sidebar-container {
     width: $sidebar-size;
     position: absolute;
     top: 70px;
-
- //   padding-top: 30px;
- //   padding-bottom: 30px;
-    //overflow-x: hidden;
-    //@extendoverflow-y: hidden;
+    // overflow-y: scroll;
 
     &:hover{
         overflow-y: scroll;
@@ -118,7 +114,6 @@ html body #sidebar #sidebar-container {
         padding-top: 0px;
         padding-bottom: 15px;
         top:0px;
-        //overflow-x: hidden;
     }
  
 }
@@ -426,7 +421,7 @@ button.c-sidebar__user-dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm 
  
  
 // REACT-CUSTOM-SCROLL
-.rcs-custom-scroll {
+/*.rcs-custom-scroll {
     min-height: 0;
     min-width: 0; }
     .rcs-custom-scroll .rcs-outer-container {
@@ -486,4 +481,4 @@ button.c-sidebar__user-dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm 
  
     .sidebar-10vh{
         height: 100vh;
-    }
+    }*/
