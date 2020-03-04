@@ -104,16 +104,21 @@ html body #sidebar #sidebar-container {
     width: $sidebar-size;
     position: absolute;
     top: 70px;
+
  //   padding-top: 30px;
  //   padding-bottom: 30px;
-  //  overflow-x: hidden;
-//    overflow-y: hidden;
+    //overflow-x: hidden;
+    //@extendoverflow-y: hidden;
+
+    &:hover{
+        overflow-y: scroll;
+    }
  
     @include for-tablet-landscape-bottom{
         padding-top: 0px;
         padding-bottom: 15px;
         top:0px;
-        overflow-x: hidden;
+        //overflow-x: hidden;
     }
  
 }
@@ -253,10 +258,10 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
  
 /*SCROLl-Y in sidebar 2019*/
 #sidebar-container::-webkit-scrollbar {
-    width: 0px;
+    width: 5px;
 }
 #sidebar-container::-webkit-scrollbar-track {
-    background:$color-ma-blue;
+    background:$color-ma-black-sidebar;
 }
 /* Handle */
 #sidebar-container::-webkit-scrollbar-thumb {
@@ -265,6 +270,7 @@ html body #main-masteraula-container.container-open #masteraula-nav-header {
 /* Handle on hover */
 #sidebar-container::-webkit-scrollbar-thumb:hover {
     background: $color-ma-green;
+    transition: opacity 0.4s ease-out;
 }
  
 .logo-sidebar {
