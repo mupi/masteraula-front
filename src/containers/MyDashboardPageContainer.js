@@ -8,7 +8,7 @@ import {
   switchActiveDocument, listMyLastDocuments,
 } from 'actions/documentAction';
 import {
-  addMyQuestionsFilter,
+  clearSelectedFilters, clearSearch, addMyQuestionsFilter,
 } from 'actions/filterAction';
 
 const mapStateToProps = state => ({
@@ -36,6 +36,15 @@ const mapDispatchToProps = (dispatch) => {
     switchActiveDocument: doc => dispatch(switchActiveDocument(doc, true)),
     showCreateDocumentModal: () => dispatch(showModal(createDocumentModalProps)),
     listMyLastDocuments: (page, orderField, order) => dispatch(listMyLastDocuments(page, orderField, order)),
+    cleanAllSearch: () => {
+      dispatch({
+        type: '@@redux-form/CHANGE',
+        payload: null,
+        meta: { form: 'questionSearch', field: 'searchText' },
+      });
+      dispatch(clearSearch());
+      dispatch(clearSelectedFilters());
+    },
   });
 };
 
