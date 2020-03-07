@@ -5,11 +5,12 @@ import {
 import { formatDate } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { history } from 'helpers';
 
 const OpenClassPlanModalHeader = (props) => {
-  const { children } = props;
+  const { children, id } = props;
   return (
-    <td role="gridcell" className="c-my-documents__cell">
+    <td role="gridcell" onClick={() => history.push(`/view-classplan/${id}`)} style={{ cursor: 'pointer' }} className="c-my-documents__cell">
       {children}
     </td>
   );
@@ -40,18 +41,18 @@ const ClassPlanList = (props) => {
             </thead>
             <tbody align="center">
               {classPlans && classPlans.map(classPlan => (
-                <tr key={classPlan.id}>
-                  <OpenClassPlanModalHeader>
+                <tr key={classPlan.id} style={{ cursor: 'pointer' }}>
+                  <OpenClassPlanModalHeader id={classPlan.id}>
                     {classPlan.name}
                   </OpenClassPlanModalHeader>
 
-                  <OpenClassPlanModalHeader>
+                  <OpenClassPlanModalHeader id={classPlan.id}>
                     {classPlan.disciplines.map(t => t.name).join(', ')}
                   </OpenClassPlanModalHeader>
-                  <OpenClassPlanModalHeader>
+                  <OpenClassPlanModalHeader id={classPlan.id}>
                     {classPlan.duration}
                   </OpenClassPlanModalHeader>
-                  <OpenClassPlanModalHeader>
+                  <OpenClassPlanModalHeader id={classPlan.id}>
                     {formatDate(classPlan.create_date)}
                   </OpenClassPlanModalHeader>
                   <td>
