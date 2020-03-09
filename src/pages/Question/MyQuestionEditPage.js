@@ -80,7 +80,7 @@ class MyQuestionEditPage extends Component {
 
     return (
       <HomeUserPage>
-        <QuestionForm {...this.props} actionName="Criar" />
+        <QuestionForm {...this.props} actionName="Editar" />
       </HomeUserPage>
     );
   }
