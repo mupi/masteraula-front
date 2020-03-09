@@ -226,7 +226,7 @@ class ClassPlanForm extends Component {
           <div className="c-question c-create-question">
             <Row className="c-question__row-header-options c-question__row-header-options--fixed">
               <Col className="c-question__col-header-options">
-                <BackUsingHistory />
+                <BackUsingHistory disabled={submitting} />
                 <Button type="submit" className="btn btn-secondary c-question__btn-back" disabled={submitting}>
                   <FontAwesomeIcon
                     className="btn__icon"
