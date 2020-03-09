@@ -226,7 +226,7 @@ class QuestionPage extends Component {
               </div>
             </Col>
           </Row>
-          <Row className="c-question__tittle-section">
+          <Row className="c-question__tittle-section no-gutters">
             <Col>
               <h4>
                 <FontAwesomeIcon icon="book" />
@@ -240,13 +240,13 @@ class QuestionPage extends Component {
           {activeQuestion.disabled ? (
             <Row>
               <Col className="c-question__col-full-section-details">
-                <Alert color="warning" className="c-question-edit__warning-message">
+                <Alert color="danger" className="c-question-edit__warning-message">
                   A questão
                   {' '}
                   N°
                   <strong>{activeQuestion.id}</strong>
                   {' '}
-                  não está mais disponível
+                  foi removido pelo autor(a) e não está mais disponível
                 </Alert>
               </Col>
             </Row>
