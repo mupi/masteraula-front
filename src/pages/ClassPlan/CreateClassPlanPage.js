@@ -62,7 +62,7 @@ class CreateClassPlanPage extends Component {
             when={!pristine && !submitting}
             message="Tem certeza de sair da tela de Criar Plano de aula?"
           />
-          <ClassPlanForm {...this.props} />
+          <ClassPlanForm {...this.props} actionName="Criar" />
         </HomeUserPage>
       );
     }
