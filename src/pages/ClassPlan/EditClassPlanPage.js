@@ -4,7 +4,6 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import {
   Alert,
 } from 'reactstrap';
-import { Prompt } from 'react-router-dom';
 
 import ClassPlanForm from '../../components/classplan/ClassPlanForm';
 
@@ -42,7 +41,7 @@ class EditClassPlanPage extends Component {
 
     render() {
       const {
-        isFetching, error, pristine, activeClassPlan, userId,
+        isFetching, error, activeClassPlan, userId,
         // selectedPdf,
       } = this.props;
 
@@ -82,11 +81,6 @@ class EditClassPlanPage extends Component {
 
       return (
         <HomeUserPage>
-          <Prompt
-            when={!pristine}
-            message="Tem certeza de sair da tela de Editar Plano de aula?"
-          />
-
           <ClassPlanForm {...this.props} actionName="Editar" />
         </HomeUserPage>
       );

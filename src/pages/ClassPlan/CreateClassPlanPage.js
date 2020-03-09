@@ -4,7 +4,6 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import {
   Alert,
 } from 'reactstrap';
-import { Prompt } from 'react-router-dom';
 
 import ClassPlanForm from '../../components/classplan/ClassPlanForm';
 
@@ -32,8 +31,7 @@ class CreateClassPlanPage extends Component {
 
     render() {
       const {
-        isCreating, error, pristine,
-        submitting,
+        isCreating, error,
       } = this.props;
 
       if (isCreating) {
@@ -58,10 +56,6 @@ class CreateClassPlanPage extends Component {
 
       return (
         <HomeUserPage>
-          <Prompt
-            when={!pristine && !submitting}
-            message="Tem certeza de sair da tela de Criar Plano de aula?"
-          />
           <ClassPlanForm {...this.props} actionName="Criar" />
         </HomeUserPage>
       );
