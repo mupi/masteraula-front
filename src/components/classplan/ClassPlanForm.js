@@ -214,14 +214,14 @@ class ClassPlanForm extends Component {
         teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToClassPlan,
         submitting, errorsCreateClassPlan, listTopicSuggestions, user, showSearchLearningObjectModal,
         showSearchDocumentModal, selectedDocumentList,
-        removeSelectedDocumentFromClassPlan,
+        removeSelectedDocumentFromClassPlan, actionName,
       } = this.props;
 
       return (
         <Form onSubmit={handleSubmit}>
           <Prompt
             when={!pristine && !submitting}
-            message="Tem certeza de sair da tela de Criar Plano de aula?"
+            message={`Tem certeza de sair da tela de ${actionName} Plano de aula?`}
           />
           <div className="c-question c-create-question">
             <Row className="c-question__row-header-options c-question__row-header-options--fixed">
@@ -241,8 +241,7 @@ class ClassPlanForm extends Component {
               <Col>
                 <h4>
                   <FontAwesomeIcon icon="book" />
-                  {' '}
-                    Criar Plano de Aula
+                  {` ${actionName} Plano de Aula`}
                 </h4>
               </Col>
             </Row>
@@ -557,8 +556,7 @@ class ClassPlanForm extends Component {
             <Col>
               <p>
                 <small>
-                    Ao criar o plano de aula você estará de acordo com os
-                  {' '}
+                  {`Ao ${actionName.toLowerCase()} o plano de aula você estará de acordo com os `}
                   <Link target="_blank" to="/terms-use">termos de uso</Link>
                 </small>
               </p>

@@ -87,7 +87,7 @@ class EditClassPlanPage extends Component {
             message="Tem certeza de sair da tela de Editar Plano de aula?"
           />
 
-          <ClassPlanForm {...this.props} />
+          <ClassPlanForm {...this.props} actionName="Editar" />
         </HomeUserPage>
       );
     }
