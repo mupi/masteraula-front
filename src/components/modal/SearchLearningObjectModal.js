@@ -82,7 +82,6 @@ class SearchLearningObjectModal extends React.Component {
                   objects={objectPage ? objectPage.results : null}
                   count={objectPage ? objectPage.count : 0}
                   selectedObjectList={selectedObjectList}
-                  showSelectedObjects
                 />
               )
             }

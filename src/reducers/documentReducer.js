@@ -304,14 +304,18 @@ export const document = (state = initialState, action) => {
     }
     case COPY_DOCUMENT_SUCCESS: {
       toast.success('Cópia realizada com sucesso', optionsSuccess);
+
+      const questionsAvailable = action.activeDocument.questions.filter(i => !i.question.disabled);
+      const copiedDocument = { ...action.activeDocument, questions: [...questionsAvailable] };
+
       return Object.assign({}, state, {
-        activeDocument: { ...action.activeDocument },
+        activeDocument: { ...copiedDocument },
         myDocumentsList: state.myDocumentsList ? {
           ...state.myDocumentsList,
-          results: [...state.myDocumentsList.results, action.activeDocument],
+          results: [...state.myDocumentsList.results, copiedDocument],
           count: state.myDocumentsList.count + 1,
         } : {
-          results: [action.activeDocument],
+          results: [copiedDocument],
           count: 1,
         },
       });
