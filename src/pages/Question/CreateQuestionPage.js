@@ -51,7 +51,7 @@ class CreateQuestionPage extends Component {
 
     return (
       <HomeUserPage>
-        <QuestionForm {...this.props} />
+        <QuestionForm {...this.props} actionName="Criar" />
       </HomeUserPage>
     );
   }

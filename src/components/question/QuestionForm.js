@@ -299,7 +299,7 @@ class QuestionForm extends Component {
       topicSuggestions, pristine, disciplineFilters, sourceFilters,
       teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
       submitting, resolution, errorsEditQuestion, sourceQuestionValue, listTopicSuggestions,
-      showSearchLearningObjectModal,
+      showSearchLearningObjectModal, actionName,
     } = this.props;
 
 
@@ -307,7 +307,7 @@ class QuestionForm extends Component {
       <Form onSubmit={handleSubmit}>
         <Prompt
           when={!pristine && !submitting}
-          message="Tem certeza de sair da tela de Criar Questão?"
+          message={`Tem certeza de sair da tela de ${actionName} Questão?`}
         />
         <div className="c-question c-create-question">
           <Row className="c-question__row-header-options c-question__row-header-options--fixed">
@@ -327,8 +327,7 @@ class QuestionForm extends Component {
             <Col>
               <h4>
                 <FontAwesomeIcon icon="book" />
-                {' '}
-                  Criar Questão
+                {` ${actionName} Questão`}
               </h4>
             </Col>
           </Row>
@@ -612,7 +611,7 @@ class QuestionForm extends Component {
           <Col>
             <p>
               <small>
-                      Ao criar a questão você estará de acordo com os
+                {`Ao ${actionName.toLowerCase()} a questão você estará de acordo com os `}
                 {' '}
                 <Link target="_blank" to="/terms-use">termos de uso</Link>
               </small>
