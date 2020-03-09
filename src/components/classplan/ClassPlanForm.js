@@ -441,6 +441,7 @@ class ClassPlanForm extends Component {
                 {...this.props}
                 objects={selectedObjectList}
                 selectedObjectList={selectedObjectList}
+                showQuestionQuantity={false}
               />
             ) : '' }
             <Row className="mt-3">

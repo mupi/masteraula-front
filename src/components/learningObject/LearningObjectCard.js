@@ -51,7 +51,7 @@ const CardBodyLearningObject = (props) => {
 
 const LearningObjectCard = (props) => {
   const {
-    object, addSelectedObjectTypeFilter, button, filterTags = false,
+    object, addSelectedObjectTypeFilter, button, filterTags = false, showQuestionQuantity = true,
   } = props;
   const cleanSource = object.source ? getCleanExtractStatement(object.source) : null;
 
@@ -75,9 +75,10 @@ const LearningObjectCard = (props) => {
     <Card className="h-100 object-card__full">
       <CardHeader className="object-card__header">
         <div className="object-card__id">
-          {`Objeto N° ${object.id}`}
-          {' '}
-          <em>{`(Questões: ${object.questions_quantity})`}</em>
+          {`Objeto N° ${object.id} `}
+          {showQuestionQuantity ? (
+            <em>{`(Questões: ${object.questions_quantity})`}</em>) : ''
+          }
         </div>
         <div className="object-card__info-section">
           {object.object_types.map(objectTypesBadges)}

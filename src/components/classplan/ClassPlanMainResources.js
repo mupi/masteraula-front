@@ -21,6 +21,7 @@ const LearningObjectsSection = (props) => {
         sm="4"
         objects={objects}
         viewOnly
+        showQuestionQuantity={false}
       />
     </>
   );
