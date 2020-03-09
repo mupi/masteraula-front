@@ -1,11 +1,11 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import LearningObjectList from 'components/learningObject/LearningObjectList';
 import DocumentCardListClassPlan from 'components/document/DocumentCardListClassPlan';
+import SimpleLObjectCardList from 'components/learningObject/SimpleLObjectCardList';
 
 const LearningObjectsSection = (props) => {
-  const { objects, options } = props;
+  const { objects } = props;
   return (
     <>
       <Row className="mb-2">
@@ -17,9 +17,10 @@ const LearningObjectsSection = (props) => {
           </h6>
         </Col>
       </Row>
-      <LearningObjectList
-        learningObjects={objects}
-        options={options}
+      <SimpleLObjectCardList
+        sm="4"
+        objects={objects}
+        viewOnly
       />
     </>
   );

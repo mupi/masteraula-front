@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Row, Col, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import RemoveObjectFromComponentButton from 'components/buttons/RemoveObjectFromComponentButton';
 import LearningObjectCard from './LearningObjectCard';
 
 const SimpleLObjectCardList = (props) => {
   const {
     objects, sm, selectedObjectList,
-    addSelectedObject, removeSelectedObject,
+    addSelectedObject, removeSelectedObject, viewOnly = false,
   } = props;
 
   const isObjectAdded = (id) => {
@@ -32,11 +33,23 @@ const SimpleLObjectCardList = (props) => {
     )
   );
 
+  const ViewCardButton = object => (
+    <Link
+      to={`/view-object/${object.id}`}
+      title="Ver objeto"
+      className="btn btn-secondary btn__icon"
+      tag={Button}
+    >
+      <FontAwesomeIcon icon="eye" />
+      {' Ver'}
+    </Link>
+  );
+
   return (
     <Row>
       {objects && objects.map(object => (
         <Col sm={sm} lg="3" xs="12" key={object.id} className="object-card">
-          <LearningObjectCard object={object} button={CardButton(object)} {...props} />
+          <LearningObjectCard object={object} button={!viewOnly ? CardButton(object) : ViewCardButton(object)} {...props} />
         </Col>
       ))}
     </Row>
