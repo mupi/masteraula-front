@@ -26,7 +26,7 @@ const options = {
 const DocumentModalOptions = ({ document, editDocument }) => (
   <>
     <Row className="c-document-modal__main-options">
-      <div className="auto-margin-left-element btn-margin-right">
+      <div className="auto-margin-left-element">
         <ExportDocumentButtonContainer
           color="success"
           text="Exportar"
@@ -35,17 +35,17 @@ const DocumentModalOptions = ({ document, editDocument }) => (
           documentTotalQuestions={document && document.questions ? document.questions.length : 0}
         />
       </div>
-      <div>
-        { document && !document.disabled && (
-        <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
-          <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
-          <span className="button-text">
+      { document && !document.disabled && (
+        <div className="ml-1">
+          <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
+            <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
+            <span className="button-text">
             Editar
-          </span>
-        </Button>
-        )
+            </span>
+          </Button>
+        </div>
+      )
     }
-      </div>
     </Row>
     {document.disabled ? (
       <Row>
