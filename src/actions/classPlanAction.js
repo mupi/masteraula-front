@@ -41,6 +41,11 @@ export const ADD_SELECTED_DOCUMENT_CLASS_PLAN = 'ADD_SELECTED_DOCUMENT_CLASS_PLA
 export const REMOVE_SELECTED_DOCUMENT_CLASS_PLAN = 'REMOVE_SELECTED_DOCUMENT_CLASS_PLAN';
 export const RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN = 'RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN';
 
+// Copy ClassPlan
+export const COPY_CLASS_PLAN = 'COPY_CLASS_PLAN';
+export const COPY_CLASS_PLAN_SUCCESS = 'COPY_CLASS_PLAN_SUCCESS';
+export const COPY_CLASS_PLAN_FAILURE = 'COPY_CLASS_PLAN_FAILURE';
+
 export const fetchClassPlan = (id) => {
   function requestClassPlan() { return { type: FETCH_CLASS_PLAN }; }
   function fetchClassPlanSuccess(activeClassPlan) { return { type: FETCH_CLASS_PLAN_SUCCESS, activeClassPlan }; }
@@ -267,3 +272,20 @@ export const removeSelectedDocumentFromClassPlan = idDocument => ({
 export const resetSelectedDocuments = () => ({
   type: RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN,
 });
+
+export const copyClassPlan = (props) => {
+  function copySelectedDocument() { return { type: COPY_CLASS_PLAN }; }
+  function copySelectedDocumentSuccess(activeClassPlan) { return { type: COPY_CLASS_PLAN_SUCCESS, activeClassPlan }; }
+  function copySelectedDocumentFailure(error) { return { type: COPY_CLASS_PLAN_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(copySelectedDocument(props));
+    return classPlanService.copyClassPlan(props).then(
+      (activeClassPlan) => {
+        dispatch(copySelectedDocumentSuccess(activeClassPlan));
+      },
+      (error) => {
+        dispatch(copySelectedDocumentFailure(error));
+      },
+    );
+  };
+};

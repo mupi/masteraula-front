@@ -219,6 +219,23 @@ function deleteClassPlan(idClassPlanRemoved) {
     .then(response => response.data).then(() => idClassPlanRemoved);
 }
 
+// Copy a class plan given its ID
+function copyClassPlan(idClassPlan) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+
+  };
+
+  const url = `/class_plans/${idClassPlan}/copy_document/`;
+
+
+  return axios.post(`${apiUrl}${url}`, requestOptions)
+    .then(response => response.data).then(activeClassPlan => activeClassPlan);
+}
 
 const classPlanService = {
   fetchClassPlan,
@@ -226,6 +243,7 @@ const classPlanService = {
   createClassPlan,
   updateClassPlan,
   deleteClassPlan,
+  copyClassPlan,
 };
 
 export default classPlanService;

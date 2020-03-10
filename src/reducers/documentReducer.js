@@ -303,7 +303,7 @@ export const document = (state = initialState, action) => {
       });
     }
     case COPY_DOCUMENT_SUCCESS: {
-      toast.success('Cópia realizada com sucesso', optionsSuccess);
+      toast.success('Cópia da prova realizada com sucesso', optionsSuccess);
 
       const questionsAvailable = action.activeDocument.questions.filter(i => !i.question.disabled);
       const copiedDocument = { ...action.activeDocument, questions: [...questionsAvailable] };

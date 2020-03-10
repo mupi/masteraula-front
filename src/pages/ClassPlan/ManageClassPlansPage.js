@@ -43,7 +43,7 @@ class ManageClassPlansPage extends React.Component {
   render() {
     const {
       myClassPlansList, isFetchingClassPlans, isDeleted, match, listMyClassPlans, orderField, order,
-      showDeleteModal,
+      showDeleteModal, copyClassPlan,
     } = this.props;
 
     if (isDeleted) {
@@ -118,7 +118,7 @@ class ManageClassPlansPage extends React.Component {
                   </div>
 
                   { myClassPlansList
-                    && <ClassPlanList classPlans={myClassPlansList.results} showDeleteModal={showDeleteModal} />
+                    && <ClassPlanList classPlans={myClassPlansList.results} showDeleteModal={showDeleteModal} copyClassPlan={copyClassPlan} />
                   }
                 </div>
               )}

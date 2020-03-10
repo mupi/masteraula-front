@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ManageClassPlansPage from 'pages/ClassPlan/ManageClassPlansPage';
 import {
-  listMyClassPlans, deleteClassPlan,
+  listMyClassPlans, deleteClassPlan, copyClassPlan,
 } from 'actions/classPlanAction';
 import { showModal, hideModal } from 'actions/modalAction';
 
@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch) => {
   return ({
     listMyClassPlans: (page, orderField, order) => dispatch(listMyClassPlans(page, orderField, order)),
     showDeleteModal: (idClassPlan, name) => dispatch(showModal(deleteModalProps(idClassPlan, name))),
-
+    copyClassPlan: classPlan => dispatch(copyClassPlan(classPlan)),
   });
 };
 

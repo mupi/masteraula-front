@@ -29,6 +29,7 @@ import {
 
 } from 'actions/classPlanAction';
 import { toast } from 'react-toastify';
+import { COPY_CLASS_PLAN, COPY_CLASS_PLAN_SUCCESS, COPY_CLASS_PLAN_FAILURE } from '../actions/classPlanAction';
 
 const initialState = {
   classPlans: [],
@@ -178,6 +179,38 @@ export const classPlan = (state = initialState, action) => {
         error: action.error,
         isDeleted: false,
       });
+    case COPY_CLASS_PLAN: {
+      return Object.assign({}, state, {
+        isRemoved: null,
+        error: null,
+        isUpdated: null,
+      });
+    }
+    case COPY_CLASS_PLAN_SUCCESS: {
+      toast.success('Cópia do plano de aula realizada com sucesso', optionsSuccess);
+
+      const questionsAvailable = action.activeDocument.questions.filter(i => !i.question.disabled);
+      const copiedClassPlan = { ...action.activeDocument, questions: [...questionsAvailable] };
+
+      return Object.assign({}, state, {
+        activeClassPlan: { ...copiedClassPlan },
+        classPlans: state.classPlans ? {
+          ...state.classPlans,
+          results: [...state.classPlans.results, copiedClassPlan],
+          count: state.classPlans.count + 1,
+        } : {
+          results: [copiedClassPlan],
+          count: 1,
+        },
+      });
+    }
+    case COPY_CLASS_PLAN_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        error: action.error,
+      });
+    }
+
     default:
       return state;
   }
