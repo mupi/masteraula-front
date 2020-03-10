@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
     sourceFilters: state.filter.sourceFilters,
     selectedObjectList: state.classPlan.selectedObjectList,
     selectedDocumentList: state.classPlan.selectedDocumentList,
-    errorsUpdateClassPlan: state.form['edit-classplan'] ? state.form['edit-classplan'].submitErrors : null,
+    errorsClassPlan: state.form['edit-classplan'] ? state.form['edit-classplan'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
     userId: state.session.session.user.id,

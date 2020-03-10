@@ -37,7 +37,7 @@ const mapStateToProps = (state) => {
     sourceFilters: state.filter.sourceFilters,
     selectedObjectList: state.classPlan.selectedObjectList,
     selectedDocumentList: state.classPlan.selectedDocumentList,
-    errorsCreateClassPlan: state.form['create-classplan'] ? state.form['create-classplan'].submitErrors : null,
+    errorsClassPlan: state.form['create-classplan'] ? state.form['create-classplan'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
   });
