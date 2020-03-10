@@ -31,7 +31,10 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(switchActiveDocument(document));
         dispatch(hideModal());
       },
-      closeModal: () => dispatch(hideModal()),
+      closeModal: () => {
+        console.log('HOLAAAAA');
+        dispatch(hideModal());
+      },
     },
     modalType: 'document',
   });

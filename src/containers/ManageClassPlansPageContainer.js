@@ -31,7 +31,9 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(deleteClassPlan(idClassPlan));
         // dispatch(hideModal());
       },
-      closeModal: () => dispatch(hideModal()),
+      closeModal: () => {
+        dispatch(hideModal());
+      },
     },
     modalType: 'delete',
   });
