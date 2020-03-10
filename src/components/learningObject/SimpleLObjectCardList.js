@@ -38,7 +38,6 @@ const SimpleLObjectCardList = (props) => {
       to={`/view-object/${object.id}`}
       title="Ver objeto"
       className="btn btn-secondary btn__icon"
-      tag={Button}
     >
       <FontAwesomeIcon icon="eye" />
       {' Ver'}

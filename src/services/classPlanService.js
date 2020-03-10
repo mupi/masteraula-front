@@ -219,6 +219,33 @@ function deleteClassPlan(idClassPlanRemoved) {
     .then(response => response.data).then(() => idClassPlanRemoved);
 }
 
+// Copy a class plan given its ID
+
+function copyClassPlan(idClassPlan) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  const url = `/class_plans/${idClassPlan}/copy_plan/`;
+
+  return fetch(`${apiUrl}${url}`, requestOptions)
+    .then(handleResponse)
+    .then(activeClassPlan => activeClassPlan);
+}
+
 
 const classPlanService = {
   fetchClassPlan,
@@ -226,6 +253,7 @@ const classPlanService = {
   createClassPlan,
   updateClassPlan,
   deleteClassPlan,
+  copyClassPlan,
 };
 
 export default classPlanService;

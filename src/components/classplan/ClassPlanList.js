@@ -18,7 +18,7 @@ const OpenClassPlanModalHeader = (props) => {
 
 const ClassPlanList = (props) => {
   const {
-    showDeleteModal, classPlans,
+    showDeleteModal, classPlans, copyClassPlan,
   } = props;
 
   const handleDelete = (id, name) => {
@@ -79,6 +79,12 @@ const ClassPlanList = (props) => {
                           <FontAwesomeIcon icon="pencil-alt" />
                           {' '}
                           Editar
+                        </DropdownItem>
+                        <DropdownItem divider className="label-item__divider" />
+                        <DropdownItem onClick={() => copyClassPlan(classPlan.id)} title="Duplicar plano de aula">
+                          <FontAwesomeIcon icon="copy" />
+                          {' '}
+                          Duplicar
                         </DropdownItem>
                         <DropdownItem divider className="label-item__divider" />
                         <DropdownItem className="c-my-classplans__btn-remove" onClick={() => handleDelete(classPlan.id, classPlan.name)} title="Apagar plano de aula">

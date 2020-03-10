@@ -19,7 +19,7 @@ const DocumentCardListClassPlan = (props) => {
       { options && options.showViewButton && (
         <Button className="btn-margin-right menu-top__document-button" onClick={() => showDocumentModal(document.id)}>
           <FontAwesomeIcon icon="eye" className="btn__icon" />
-          Visualizar
+          Ver
         </Button>
       ) }
 
