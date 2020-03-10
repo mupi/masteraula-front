@@ -10,7 +10,7 @@ import {
 } from 'actions/documentAction';
 
 import {
-  Row, Button, Alert,
+  Row, Button, Alert, Col,
 }
   from 'reactstrap';
 
@@ -22,6 +22,51 @@ const options = {
   showTags: false,
   showLoginModal: false,
 };
+
+const AlertDocumentNotAvailable = ({ document }) => (
+  document.disabled ? (
+    <Row>
+      <Col className="c-question__col-full-section-details">
+        <Alert color="danger" className="c-question-edit__warning-message">
+          A prova
+          {' '}
+          N°
+          <strong>{document.id}</strong>
+          {' '}
+          foi removida pelo autor(a) e não está mais disponível
+        </Alert>
+      </Col>
+    </Row>
+  ) : ''
+);
+
+const DocumentModalOptions = ({ document, editDocument }) => (
+  <>
+    <Row className="c-document-modal__main-options">
+      <div className="auto-margin-left-element">
+        <ExportDocumentButtonContainer
+          color="success"
+          text="Exportar"
+          documentId={document.id}
+          documentName={document.name}
+          documentTotalQuestions={document && document.questions ? document.questions.length : 0}
+        />
+      </div>
+      { document && !document.disabled && (
+        <div className="ml-1">
+          <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
+            <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
+            <span className="button-text">
+            Editar
+            </span>
+          </Button>
+        </div>
+      )
+    }
+    </Row>
+    <AlertDocumentNotAvailable document={document} />
+  </>
+);
 
 const DocumentModal = ({
   document, closeModal, editDocument, isFetchingPreviewDocument,
@@ -35,7 +80,6 @@ const DocumentModal = ({
       </div>
     );
   }
-
   return (
     <div className="modal__content modal-content">
       <div className="modal__header modal-header">
@@ -51,32 +95,15 @@ const DocumentModal = ({
         </button>
       </div>
       <div className="c-document-modal__body modal-body">
-        { document && document.questions.length > 0 ? (
+        { document && document.questions && document.questions.length > 0 ? (
           <div>
-            <Row className="c-document-modal__main-options">
-              <div className="auto-margin-left-element btn-margin-right">
-                <ExportDocumentButtonContainer
-                  color="success"
-                  text="Exportar"
-                  documentId={document.id}
-                  documentName={document.name}
-                  documentTotalQuestions={document.questions.length}
-                />
-              </div>
-              <div>
-                <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
-                  <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
-                  <span className="button-text">
-                    Editar
-                  </span>
-                </Button>
-              </div>
-            </Row>
+            <DocumentModalOptions document={document} editDocument={editDocument} />
           </div>
         )
           : (
             <div>
               <Row className="c-document-modal__main-options">
+                { !document.disabled && (
                 <div className="auto-margin-left-element">
                   <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
                     <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
@@ -85,10 +112,18 @@ const DocumentModal = ({
                     </span>
                   </Button>
                 </div>
+                )}
               </Row>
+              <AlertDocumentNotAvailable document={document} />
               <p className="text-center">
-                A prova não tem questões. Para adicionar questões, entre na opção
-                <strong> Editar</strong>
+                A prova não tem questões.
+                { !document.disabled && (
+                <span>
+                  Para adicionar questões, entre na opção
+                  {' '}
+                  <strong> Editar</strong>
+                </span>
+                )}
               </p>
             </div>
           )
