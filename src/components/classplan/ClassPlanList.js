@@ -81,7 +81,7 @@ const ClassPlanList = (props) => {
                           Editar
                         </DropdownItem>
                         <DropdownItem divider className="label-item__divider" />
-                        <DropdownItem onClick={() => copyClassPlan(classPlan)} title="Duplicar plano de aula">
+                        <DropdownItem onClick={() => copyClassPlan(classPlan.id)} title="Duplicar plano de aula">
                           <FontAwesomeIcon icon="copy" />
                           {' '}
                           Duplicar

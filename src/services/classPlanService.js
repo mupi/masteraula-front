@@ -220,6 +220,7 @@ function deleteClassPlan(idClassPlanRemoved) {
 }
 
 // Copy a class plan given its ID
+
 function copyClassPlan(idClassPlan) {
   const requestOptions = {
     method: 'POST',
@@ -227,15 +228,24 @@ function copyClassPlan(idClassPlan) {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-
   };
 
-  const url = `/class_plans/${idClassPlan}/copy_document/`;
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
 
+    return data;
+  });
 
-  return axios.post(`${apiUrl}${url}`, requestOptions)
-    .then(response => response.data).then(activeClassPlan => activeClassPlan);
+  const url = `/class_plans/${idClassPlan}/copy_plan/`;
+
+  return fetch(`${apiUrl}${url}`, requestOptions)
+    .then(handleResponse)
+    .then(activeClassPlan => activeClassPlan);
 }
+
 
 const classPlanService = {
   fetchClassPlan,

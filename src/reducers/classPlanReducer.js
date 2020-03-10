@@ -188,18 +188,14 @@ export const classPlan = (state = initialState, action) => {
     }
     case COPY_CLASS_PLAN_SUCCESS: {
       toast.success('Cópia do plano de aula realizada com sucesso', optionsSuccess);
-
-      const questionsAvailable = action.activeDocument.questions.filter(i => !i.question.disabled);
-      const copiedClassPlan = { ...action.activeDocument, questions: [...questionsAvailable] };
-
       return Object.assign({}, state, {
-        activeClassPlan: { ...copiedClassPlan },
+        activeClassPlan: { ...action.activeClassPlan },
         classPlans: state.classPlans ? {
           ...state.classPlans,
-          results: [...state.classPlans.results, copiedClassPlan],
+          results: [...state.classPlans.results, { ...action.activeClassPlan }],
           count: state.classPlans.count + 1,
         } : {
-          results: [copiedClassPlan],
+          results: [action.activeClassPlan],
           count: 1,
         },
       });
