@@ -32,7 +32,6 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(hideModal());
       },
       closeModal: () => {
-        console.log('HOLAAAAA');
         dispatch(hideModal());
       },
     },
