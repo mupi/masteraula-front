@@ -20,7 +20,7 @@ import {
   linkValidator,
 } from 'helpers/validators';
 
-// Document's options available for Create ClassPlan
+// Document's options available for ClassPlan
 const optionsDocument = {
   showViewButton: false,
   removeButton: true,
@@ -212,7 +212,7 @@ class ClassPlanForm extends Component {
       const {
         topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
         teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToClassPlan,
-        submitting, errorsCreateClassPlan, listTopicSuggestions, user, showSearchLearningObjectModal,
+        submitting, errorsClassPlan, listTopicSuggestions, user, showSearchLearningObjectModal,
         showSearchDocumentModal, selectedDocumentList,
         removeSelectedDocumentFromClassPlan, actionName,
       } = this.props;
@@ -374,9 +374,9 @@ class ClassPlanForm extends Component {
             </Row>
             <Row>
               <Col>
-                {errorsCreateClassPlan && errorsCreateClassPlan.general_errors && (
+                {errorsClassPlan && errorsClassPlan.general_errors && (
                   <Alert color="danger">
-                    {errorsCreateClassPlan.general_errors}
+                    {errorsClassPlan.general_errors}
                   </Alert>
                 )}
               </Col>
