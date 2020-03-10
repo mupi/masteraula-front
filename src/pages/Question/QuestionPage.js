@@ -246,7 +246,7 @@ class QuestionPage extends Component {
                   N°
                   <strong>{activeQuestion.id}</strong>
                   {' '}
-                  foi removido pelo autor(a) e não está mais disponível
+                  foi removida pelo autor(a) e não está mais disponível
                 </Alert>
               </Col>
             </Row>

@@ -176,7 +176,7 @@ export const fetchPreviewDocument = (id) => {
       return 1;
     }
     dispatch(requestDocument(id));
-    return documentService.fetchDocument(id).then(
+    return documentService.fetchPreviewDocument(id).then(
       (previewDocument) => {
         dispatch(fetchDocumentSuccess(previewDocument));
       }, (error) => {
