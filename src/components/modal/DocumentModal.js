@@ -23,6 +23,23 @@ const options = {
   showLoginModal: false,
 };
 
+const AlertDocumentNotAvailable = ({ document }) => (
+  document.disabled ? (
+    <Row>
+      <Col className="c-question__col-full-section-details">
+        <Alert color="danger" className="c-question-edit__warning-message">
+          A prova
+          {' '}
+          N°
+          <strong>{document.id}</strong>
+          {' '}
+          foi removida pelo autor(a) e não está mais disponível
+        </Alert>
+      </Col>
+    </Row>
+  ) : ''
+);
+
 const DocumentModalOptions = ({ document, editDocument }) => (
   <>
     <Row className="c-document-modal__main-options">
@@ -47,20 +64,7 @@ const DocumentModalOptions = ({ document, editDocument }) => (
       )
     }
     </Row>
-    {document.disabled ? (
-      <Row>
-        <Col className="c-question__col-full-section-details">
-          <Alert color="danger" className="c-question-edit__warning-message">
-            A prova
-            {' '}
-            N°
-            <strong>{document.id}</strong>
-            {' '}
-            foi removida pelo autor(a) e não está mais disponível
-          </Alert>
-        </Col>
-      </Row>
-    ) : ''}
+    <AlertDocumentNotAvailable document={document} />
   </>
 );
 
@@ -110,6 +114,7 @@ const DocumentModal = ({
                 </div>
                 )}
               </Row>
+              <AlertDocumentNotAvailable document={document} />
               <p className="text-center">
                 A prova não tem questões.
                 { !document.disabled && (
