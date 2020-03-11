@@ -34,7 +34,7 @@ const mapDispatchToProps = (dispatch) => {
 
         {
           quantity: activeQuestion.documents_quantity,
-          message: `A questão está sendo usada por outros ${activeQuestion.documents_quantity} prova(s)`,
+          message: `A questão está sendo usada por ${activeQuestion.documents_quantity} prova(s)`,
         },
       ].filter(r => (r.quantity > 0)),
       deleteAction: () => {
