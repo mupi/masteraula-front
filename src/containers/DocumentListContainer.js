@@ -9,14 +9,27 @@ const mapStateToProps = state => ({
   previewDocument: state.document.previewDocument,
 });
 
+/*
+plans_quantity e questions_quantity
+*/
 const mapDispatchToProps = (dispatch) => {
-  const deleteModalProps = (idDocument, name) => ({
+  const deleteModalProps = (idDocument, name, document) => ({
     modalProps: {
       open: true,
       title: 'Apagar prova',
       message: 'Você tem certeza que deseja apagar a prova',
       name,
       id: idDocument,
+      resources: [
+        {
+          quantity: document.questions_quantity,
+          message: `A prova possui ${document.questions_quantity} questões (s)`,
+        },
+        {
+          quantity: document.plans_quantity,
+          message: `A prova está sendo usada por ${document.plans_quantity} plano(s) de aula`,
+        },
+      ].filter(r => (r.quantity > 0)),
       deleteAction: () => dispatch(deleteDocument(idDocument)),
       closeModal: () => dispatch(hideModal()),
     },
@@ -44,7 +57,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteDocument: idDocument => dispatch(deleteDocument(idDocument)),
     copyDocument: doc => dispatch(copyDocument(doc)),
 
-    showDeleteModal: (idDocument, name) => dispatch(showModal(deleteModalProps(idDocument, name))),
+    showDeleteModal: (idDocument, name, document) => dispatch(showModal(deleteModalProps(idDocument, name, document))),
     showDocumentModal: (previewDocument, id) => {
       dispatch(fetchPreviewDocument(parseInt(id, 10)));
       dispatch(showModal(documentModalProps(previewDocument)));

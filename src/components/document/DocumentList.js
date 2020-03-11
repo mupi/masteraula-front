@@ -35,8 +35,8 @@ const DocumentList = (props) => {
     showDocumentModal(previewDocument, id);
   };
 
-  const handleDelete = (id, name) => {
-    showDeleteModal(id, name);
+  const handleDelete = (id, name, document) => {
+    showDeleteModal(id, name, document);
   };
 
   return (
@@ -90,7 +90,11 @@ const DocumentList = (props) => {
                           text="Exportar"
                         />
                         <DropdownItem divider className="label-item__divider" />
-                        <DropdownItem className="c-my-documents__btn-remove" onClick={() => handleDelete(document.id, document.name)} title="Apagar prova">
+                        <DropdownItem
+                          className="c-my-documents__btn-remove"
+                          onClick={() => handleDelete(document.id, document.name, document)}
+                          title="Apagar prova"
+                        >
                           <FontAwesomeIcon icon="trash-alt" />
                           {' '}
                           Apagar
