@@ -37,6 +37,11 @@
       padding: 20px 10px;
     }
 
+    &__question-unavailable{
+      font-size: 11px;
+      padding: 5px;
+    }
+
     &__question-info {
       background: $color-ma-white;
     }
