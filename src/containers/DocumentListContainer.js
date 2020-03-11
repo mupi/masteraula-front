@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
       title: 'Apagar prova',
       message: 'Você tem certeza que deseja apagar a prova',
       name,
-      idDocument,
+      id: idDocument,
       deleteAction: () => dispatch(deleteDocument(idDocument)),
       closeModal: () => dispatch(hideModal()),
     },

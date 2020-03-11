@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
       title: 'Apagar plano de aula',
       message: 'Você tem certeza que deseja apagar o plano de aula',
       name,
-      idClassPlan,
+      id: idClassPlan,
       deleteAction: () => {
         dispatch(deleteClassPlan(idClassPlan));
         // dispatch(hideModal());

@@ -74,7 +74,7 @@ const mapDispatchToProps = (dispatch) => {
       title: 'Apagar etiqueta',
       message: 'Você tem certeza que deseja apagar a etiqueta',
       name,
-      idLabel,
+      id: idLabel,
       deleteAction: () => dispatch(deleteMyQuestionLabel(idLabel)),
       closeModal: () => dispatch(hideModal()),
     },

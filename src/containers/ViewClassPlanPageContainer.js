@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
       title: 'Apagar plano de aula',
       message: 'Você tem certeza que deseja apagar o plano de aula',
       name,
-      idClassPlan,
+      id: idClassPlan,
       deleteAction: () => {
         dispatch(deleteClassPlan(idClassPlan, true));
       },
@@ -48,6 +48,7 @@ const mapDispatchToProps = (dispatch) => {
   return ({
     fetchClassPlan: id => dispatch(fetchClassPlan(id)),
     showDeleteModal: (idClassPlan, name) => dispatch(showModal(deleteModalProps(idClassPlan, name))),
+
     showDocumentModal: (id) => {
       dispatch(fetchPreviewDocument(parseInt(id, 10)));
       dispatch((_dispatch, getState) => {

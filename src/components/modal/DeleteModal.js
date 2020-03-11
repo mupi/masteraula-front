@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button } from 'reactstrap';
+import { Button, Alert } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 const DeleteModal = ({
-  closeModal, deleteAction, title, message, name, idDocument,
+  closeModal, deleteAction, title, message, name, id, resources,
 }) => {
   const handleConfirm = () => {
-    deleteAction(idDocument);
+    deleteAction(id);
     closeModal();
   };
 
@@ -31,6 +31,9 @@ const DeleteModal = ({
           <strong>{name}</strong>
           {' ?'}
         </p>
+        {
+          resources && (resources.map(r => <Alert color="danger" key={r.message}>{r.message}</Alert>))
+        }
 
         <div className="modal-footer modal__footer">
           <Button className="btn--confirm" onClick={() => handleConfirm()}>

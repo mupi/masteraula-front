@@ -7,17 +7,36 @@ import { showModal, hideModal } from 'actions/modalAction';
 
 const mapStateToProps = state => ({
   userId: state.session.session.user.id,
+  activeQuestion: state.question.activeQuestion,
 });
 
 const mapDispatchToProps = (dispatch) => {
   /* Options for Delete question */
-  const deleteModalProps = (idQuestion, name) => ({
+  /*
+    documents_quantity
+    users_quantity
+    - A questão está sendo usada por <#> outros usuários
+- A questão está sendo usada por <#> de provas (todas as provas ativadas incluindo as do próprio usuário)
+
+  */
+  const deleteModalProps = (idQuestion, name, activeQuestion) => ({
     modalProps: {
       open: true,
       title: 'Apagar questão',
       message: 'Você tem certeza que deseja apagar a questão N°',
       name,
-      idQuestion,
+      id: idQuestion,
+      resources: [
+        {
+          quantity: activeQuestion.users_quantity,
+          message: `A questão está sendo usada por outros ${activeQuestion.users_quantity} usuário(s)`,
+        },
+
+        {
+          quantity: activeQuestion.documents_quantity,
+          message: `A questão está sendo usada por outros ${activeQuestion.documents_quantity} prova(s)`,
+        },
+      ].filter(r => (r.quantity > 0)),
       deleteAction: () => {
         dispatch(deleteQuestion(idQuestion));
       },
@@ -29,7 +48,13 @@ const mapDispatchToProps = (dispatch) => {
 
   return ({
     // Question
-    showDeleteModal: (idQuestion, name) => dispatch(showModal(deleteModalProps(idQuestion, name))),
+    // showDeleteModal: (idQuestion, name) => dispatch(showModal(deleteModalProps(idQuestion, name))),
+
+    showDeleteModal: (idQuestion, name) => {
+      dispatch((_dispatch, getState) => {
+        _dispatch(showModal(deleteModalProps(idQuestion, name, getState().question.activeQuestion)));
+      });
+    },
   });
 };
 
