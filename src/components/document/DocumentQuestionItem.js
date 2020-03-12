@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Row, Col, Button, Badge,
+  Row, Col, Button, Badge, Alert,
 } from 'reactstrap';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import { getCleanExtractStatement } from 'helpers/question';
@@ -34,8 +34,13 @@ const DocumentQuestionItem = (props) => {
       {question.statement && (
         <Row>
           <Col sm="8" className="c-document__question-image">
+            {question.disabled && (
+              <Alert color="danger" className="c-document__question-unavailable">
+                A questão não está mais disponível no Banco de Questões.
+              </Alert>
+            )}
             <p className="c-document__question-info-title">
-              {`Questão N° ${question.id}`}
+              {`Questão N° ${question.id} `}
               {question.learning_objects && question.learning_objects.length > 0 ? (
                 <span className="c-document__question-number-learning-obj">
                   (
