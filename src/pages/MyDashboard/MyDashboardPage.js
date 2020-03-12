@@ -44,6 +44,7 @@ class MyDashboardPage extends React.Component {
                 user={user}
                 addMyQuestionsFilter={addMyQuestionsFilter}
                 quantityDocxDownloaded={quantityDocxDownloaded}
+                cleanAllSearch={cleanAllSearch}
               />
               <MyDashboardGeneralStatistics
                 generalStatistics={myDashboard && myDashboard.results ? myDashboard.results[0] : null}
