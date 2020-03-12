@@ -23,8 +23,8 @@ const LinkInfo = ({
     to={linkHref}
     onClick={() => {
       history.push(linkHref);
-      if (addMyQuestionsFilter) { addMyQuestionsFilter(author, true); }
       if (cleanAllSearch) { cleanAllSearch(); }
+      if (addMyQuestionsFilter) { addMyQuestionsFilter(author, true); }
     }}
   >
     {linkName}

@@ -119,7 +119,7 @@ class QuestionSearchByFilters extends Component {
                 {' '}
               Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos.
                 {' '}
-              Combine os termos da busca com as opções de filtro disponíveis na barra lateral.
+              Combine os termos da busca com as opções de filtro disponíveis.
               </UncontrolledTooltip>
             </div>
           </Col>

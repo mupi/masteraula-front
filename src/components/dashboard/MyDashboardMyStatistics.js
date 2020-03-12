@@ -4,7 +4,7 @@ import MyStatisticsCard from './MyStatisticsCard';
 
 const MyDashboardMyStatistics = (props) => {
   const {
-    myStatistics, user, addMyQuestionsFilter, quantityDocxDownloaded,
+    myStatistics, user, addMyQuestionsFilter, quantityDocxDownloaded, cleanAllSearch,
   } = props;
   return (
     myStatistics ? (
@@ -24,6 +24,7 @@ const MyDashboardMyStatistics = (props) => {
                 linkHref="/question-base/1"
                 addMyQuestionsFilter={addMyQuestionsFilter}
                 author={user.id}
+                cleanAllSearch={cleanAllSearch}
               />
               <MyStatisticsCard
                 title="Provas criadas"
