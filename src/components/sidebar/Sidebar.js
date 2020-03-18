@@ -53,6 +53,7 @@ const SidebarMobile = ({
   quantityDocxDownloaded,
   setQuestionIdToNewDocument, myQuestionLabels, isFetchingMyQuestionLabels,
   showCreateMyQuestionLabelModal, showDeleteMyQuestionLabelModal, showUpdateMyQuestionLabelModal, addSelectedMyQuestionLabelFilter,
+  showCreateClassPlanModal, selectedClassPlanType,
 }) => {
   const openCreateDocumentModal = () => {
     // open modal
@@ -172,7 +173,7 @@ const SidebarMobile = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/create-classplan" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-classplan'); }}>
+                    <Link to="/create-classplan" onClick={(e) => { showCreateClassPlanModal(selectedClassPlanType); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
                         icon="plus"
