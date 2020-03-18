@@ -264,7 +264,7 @@
     letter-spacing: 0.5px;
     width: 100%;
 
-    &:hover {
+    &:hover, &:focus {
       text-decoration: none;
     }
   }

@@ -72,7 +72,7 @@ const CreateLabelForm = (props) => {
         </FormGroup>
         <Row form className="align-items-center">
           <Col md="12">
-            <Label for="exampleEmail">Color</Label>
+            <Label for="color">Color</Label>
           </Col>
           <Col md={10} xs={10}>
             <FormGroup>

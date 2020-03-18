@@ -46,6 +46,9 @@ export const COPY_CLASS_PLAN = 'COPY_CLASS_PLAN';
 export const COPY_CLASS_PLAN_SUCCESS = 'COPY_CLASS_PLAN_SUCCESS';
 export const COPY_CLASS_PLAN_FAILURE = 'COPY_CLASS_PLAN_FAILURE';
 
+export const SELECT_CLASS_PLAN_TYPE = 'SELECT_CLASS_PLAN_TYPE';
+export const RESET_CLASS_PLAN_TYPE = 'RESET_CLASS_PLAN_TYPE';
+
 export const fetchClassPlan = (id) => {
   function requestClassPlan() { return { type: FETCH_CLASS_PLAN }; }
   function fetchClassPlanSuccess(activeClassPlan) { return { type: FETCH_CLASS_PLAN_SUCCESS, activeClassPlan }; }
@@ -289,3 +292,14 @@ export const copyClassPlan = (props) => {
     );
   };
 };
+
+// Select class plan's type: "T" (Traditional), "S" (Stations)
+export const selectClassPlanType = selectedClassPlanType => ({
+  type: SELECT_CLASS_PLAN_TYPE,
+  selectedClassPlanType,
+});
+
+// Select class plan's type: "T" (Traditional), "S" (Stations)
+export const resetClassPlanType = () => ({
+  type: RESET_CLASS_PLAN_TYPE,
+});
