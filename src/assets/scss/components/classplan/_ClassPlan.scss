@@ -1,3 +1,4 @@
+
 .c-classplan-modal{
     &__btn-type{
         font-size:35px;
@@ -8,6 +9,13 @@
         padding-top: 0rem;
         background: transparent;
         text-align: center;
+    }
+
+    &__btn-create{
+
+        &.disabled{
+            opacity: 0.4;
+        }
     }
 }
 .c-classplan{

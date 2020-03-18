@@ -40,6 +40,7 @@ const mapStateToProps = (state) => {
     errorsClassPlan: state.form['create-classplan'] ? state.form['create-classplan'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
+    selectedClassPlanType: state.classPlan.selectedClassPlanType,
   });
 };
 

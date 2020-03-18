@@ -3,6 +3,7 @@ import {
   Button, CardDeck, Form, Row, Col, Card, CardHeader, CardBody, CardFooter,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const ClassPlanTypeCard = (props) => {
   const {
@@ -15,7 +16,7 @@ const ClassPlanTypeCard = (props) => {
         {children}
       </CardBody>
       <CardFooter className="c-classplan-modal__footer">
-        <Button type="submit" color={isSelected ? 'info' : 'secondary'} onClick={(e) => { e.preventDefault(); selectClassPlanType(type); }}>
+        <Button color={isSelected ? 'info' : 'secondary'} onClick={(e) => { e.preventDefault(); selectClassPlanType(type); }}>
           {!isSelected ? 'Selecionar' : (
             <>
               {' '}
@@ -71,7 +72,14 @@ const ClassPlanSelectTypeForm = (props) => {
           </Col>
         </Row>
         <div className="c-classplan-modal__footer  modal-footer text-center">
-          <Button type="submit" color="" className="btn--confirm" disabled={selectedClassPlanType === ''}>
+          <Button
+            tag={Link}
+            to={`/create-classplan/${selectedClassPlanType}`}
+            color="success"
+            className="c-classplan-modal__btn-create"
+            disabled={selectedClassPlanType === ''}
+            onClick={() => closeModal()}
+          >
             {nameAction}
           </Button>
           {' '}
