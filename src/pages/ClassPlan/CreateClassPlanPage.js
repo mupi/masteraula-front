@@ -6,7 +6,8 @@ import {
 } from 'reactstrap';
 import { history } from 'helpers';
 
-import ClassPlanForm from '../../components/classplan/ClassPlanForm';
+import ClassPlanForm from 'components/classplan/ClassPlanForm';
+import ClassPlanStationsForm from 'components/classplan/ClassPlanStationsForm';
 
 
 class CreateClassPlanPage extends Component {
@@ -66,9 +67,7 @@ class CreateClassPlanPage extends Component {
       return (
         <HomeUserPage>
           { type === 'T' ? (<ClassPlanForm {...this.props} actionName="Criar" />) : (
-            <Alert className="alert--warning" color="warning">
-                Em desenvolvimento a tela de Plano de Rotação por estações
-            </Alert>
+            <ClassPlanStationsForm {...this.props} actionName="Criar" />
           )}
         </HomeUserPage>
       );

@@ -38,6 +38,8 @@ export const maxLength200 = (maxLength(200, 'caracteres'));
 
 const minLength = (min, text) => value => (value && value.length < min ? `Insira no minimo ${min} ${text}` : undefined);
 export const minLength3Alternatives = (minLength(3, 'alternativas'));
+export const minLength2Stations = (minLength(2, 'estações'));
+
 export const minLength1Topics = (minLength(1, 'tópico'));
 export const minLength3characters = (minLength(3, 'caracteres'));
 

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Alert, Row, Col, Button, Form, Input, Label,
+  UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
 import renderMultiselect from 'components/autocomplete/Multiselect';
@@ -10,21 +11,14 @@ import { Link, Prompt } from 'react-router-dom';
 
 import { Field, FieldArray } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
-import SimpleLObjectCardList from 'components/learningObject/SimpleLObjectCardList';
-import DocumentCardListClassPlan from 'components/document/DocumentCardListClassPlan';
 import {
   requiredValidator,
   requiredMultiSelectValidator,
   minDuration,
   minLength3characters,
   linkValidator,
+  minLength2Stations,
 } from 'helpers/validators';
-
-// Document's options available for ClassPlan
-const optionsDocument = {
-  showViewButton: false,
-  removeButton: true,
-};
 
 // Basic Input Field
 const renderField = ({
@@ -173,6 +167,93 @@ const renderLinks = ({ fields, meta: { error } }) => (
   </>
 );
 
+
+const renderStations = ({ fields, meta: { error } }) => (
+  <>
+    <div className="mb-2">
+      { fields.length < 5
+        ? (
+          <Button onClick={() => fields.push({})}>
+            <FontAwesomeIcon
+              icon="plus"
+              className="btn__icon"
+            />
+              Adicionar estação
+          </Button>
+        ) : ''}
+    </div>
+
+    {fields.map((station, i) => (
+      <>
+        <Row>
+          <Col sm="12" className="c-classplan__col-link-text">
+            <h6>{`Estação ${i + 1}`}</h6>
+          </Col>
+        </Row>
+        <Row key={`${station}.id`} className="mb-3 align-items-center">
+          <Col sm="8" xs="9" className="c-classplan__col-link-text">
+            <Field
+              type="textarea"
+              component={renderField}
+              name={`${station}.description`}
+              label="Insira uma descrição"
+              validate={requiredValidator}
+            />
+          </Col>
+          <Col sm="3" xs="9" className="text-center">
+            <UncontrolledDropdown>
+              <DropdownToggle title="Mais ações" className="c-my-classplans__toggle">
+                <FontAwesomeIcon icon="plus" />
+                {' '}
+                Material
+              </DropdownToggle>
+              <DropdownMenu className="label-item__dropdown-menu" right>
+                <DropdownItem
+                  title="Adicionar questão à estação"
+                >
+                  <FontAwesomeIcon icon="book" />
+                  {' '}
+                  Questão
+                </DropdownItem>
+                <DropdownItem divider className="label-item__divider" />
+                <DropdownItem
+                  title="Adicionar objeto à estação"
+                >
+                  <FontAwesomeIcon icon="image" />
+                  {' '}
+                  Objeto de aprendizagem
+                </DropdownItem>
+                <DropdownItem divider className="label-item__divider" />
+                <DropdownItem
+                  title="Adicionar prova à estação"
+                >
+                  <FontAwesomeIcon icon="file-alt" />
+                  {' '}
+                  Prova
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Col>
+          <Col sm="1" xs="1" className="c-classplan__col-btn-remove-link">
+            <Button
+              type="button"
+              title="Remover estação"
+              className="c-classplan__btn-remove-link"
+              onClick={() => fields.remove(i)}
+            >
+              <FontAwesomeIcon
+                icon="trash-alt"
+              />
+            </Button>
+          </Col>
+
+        </Row>
+      </>
+    ))}
+    <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
+  </>
+);
+
 export const fieldFile = ({ input, type, meta: { touched, error, warning } }) => {
   const newInput = input;
   delete newInput.value;
@@ -200,7 +281,7 @@ export const fieldFile = ({ input, type, meta: { touched, error, warning } }) =>
   );
 };
 
-class ClassPlanForm extends Component {
+class ClassPlanStationsForm extends Component {
     listTopicSuggestions = (param) => {
       if (param && param.length === 3) {
         const { listTopicSuggestions } = this.props;
@@ -211,10 +292,8 @@ class ClassPlanForm extends Component {
     render() {
       const {
         topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
-        teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToClassPlan,
-        submitting, errorsClassPlan, listTopicSuggestions, user, showSearchLearningObjectModal,
-        showSearchDocumentModal, selectedDocumentList,
-        removeSelectedDocumentFromClassPlan, actionName,
+        teachingLevelFilters, handleSubmit,
+        submitting, errorsClassPlan, listTopicSuggestions, user, actionName,
       } = this.props;
 
       return (
@@ -241,7 +320,7 @@ class ClassPlanForm extends Component {
               <Col>
                 <h4>
                   <FontAwesomeIcon icon="book" />
-                  {` ${actionName} Plano de Aula - Tradicional`}
+                  {` ${actionName} Plano de Aula - Rotação por Estações` }
                 </h4>
               </Col>
             </Row>
@@ -408,66 +487,23 @@ class ClassPlanForm extends Component {
             <Row className="c-question__tittle-section">
               <Col>
                 <h5>
-                  <FontAwesomeIcon icon="book" />
+                  <FontAwesomeIcon icon="sync-alt" />
                   {' '}
-                    Materias a serem usados
+                    Estações
                 </h5>
                 <div className="border-top my-3" />
               </Col>
             </Row>
             <Row className="mb-2">
               <Col sm="12">
-                <h6>
-                  <FontAwesomeIcon icon="image" />
-                  {' '}
-                    Objetos de aprendizagem
-                </h6>
-              </Col>
-              <Col md="3" sm="6">
-                <Button onClick={() => showSearchLearningObjectModal()}>
-                  <FontAwesomeIcon
-                    icon="plus"
-                    className="btn__icon"
-                  />
-                    Adicionar objeto
-                </Button>
+                <FieldArray
+                  name="stations"
+                  component={renderStations}
+                  validate={minLength2Stations}
+                />
               </Col>
             </Row>
-            { selectedObjectList ? (
-              <SimpleLObjectCardList
-                removeSelectedObject={removeSelectedObjectToClassPlan}
-                sm="4"
-                {...this.props}
-                objects={selectedObjectList}
-                selectedObjectList={selectedObjectList}
-                showQuestionQuantity={false}
-              />
-            ) : '' }
-            <Row className="mt-3">
-              <Col sm="12">
-                <h6>
-                  <FontAwesomeIcon icon="file" />
-                  {' '}
-                    Provas e/ou Lista de exercícios
-                </h6>
-              </Col>
-              <Col md="3" sm="6">
-                <Button onClick={() => showSearchDocumentModal()}>
-                  <FontAwesomeIcon
-                    icon="plus"
-                    className="btn__icon"
-                  />
-                    Adicionar prova
-                </Button>
-              </Col>
-            </Row>
-            { selectedDocumentList ? (
-              <DocumentCardListClassPlan
-                documents={selectedDocumentList}
-                options={optionsDocument}
-                removeSelectedDocument={removeSelectedDocumentFromClassPlan}
-              />
-            ) : '' }
+
             <Row className="c-question__tittle-section">
               <Col>
                 <h5>
@@ -580,4 +616,4 @@ class ClassPlanForm extends Component {
       );
     }
 }
-export default ClassPlanForm;
+export default ClassPlanStationsForm;
