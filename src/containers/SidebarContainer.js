@@ -13,6 +13,11 @@ import {
 } from 'actions/labelAction';
 import { history } from 'helpers';
 
+import {
+  selectClassPlanType,
+  resetClassPlanType,
+} from 'actions/classPlanAction';
+
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
@@ -26,6 +31,9 @@ const mapStateToProps = state => ({
   /* Labels */
   myQuestionLabels: state.label.myQuestionLabels,
   isFetchingMyQuestionLabels: state.label.isFetchingMyQuestionLabels,
+
+  /* Class plan */
+  selectedClassPlanType: state.classPlan.selectedClassPlanType,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -36,6 +44,18 @@ const mapDispatchToProps = (dispatch) => {
     },
     modalType: 'createDocument',
   };
+
+  const createClassPlanModalProps = selectedClassPlanType => ({
+    modalProps: {
+      open: true,
+      title: 'Criar plano de aula',
+      nameAction: 'Criar',
+      selectClassPlanType: type => dispatch(selectClassPlanType(type)),
+      closeModal: () => { dispatch(hideModal()); dispatch(resetClassPlanType()); },
+      selectedClassPlanType,
+    },
+    modalType: 'createClassPlanModal',
+  });
 
   /* Options for Labels */
   const createMyQuestionLabelModalProps = {
@@ -109,6 +129,16 @@ const mapDispatchToProps = (dispatch) => {
     showDeleteMyQuestionLabelModal: (idDocument, name) => dispatch(showModal(deleteMyQuestionLabelModalProps(idDocument, name))),
     listMyQuestionLabels: () => dispatch(listMyQuestionLabels()),
     addSelectedMyQuestionLabelFilter: label => dispatch(addMyQuestionLabelFilter(label)),
+
+    // Open Modal for selection class plan's type
+    showCreateClassPlanModal: selectedClassPlanType => dispatch(showModal(createClassPlanModalProps(selectedClassPlanType))),
+
+
+    /* showCreateClassPlanModal: () => {
+      dispatch((_dispatch, getState) => {
+        _dispatch(showModal(createClassPlanModalProps(getState().classPlan.selectedClassPlanType)));
+      });
+    }, */
   });
 };
 

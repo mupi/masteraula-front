@@ -27,6 +27,8 @@ import {
   REMOVE_SELECTED_DOCUMENT_CLASS_PLAN,
   RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN,
 
+  SELECT_CLASS_PLAN_TYPE,
+  RESET_CLASS_PLAN_TYPE,
 } from 'actions/classPlanAction';
 import { toast } from 'react-toastify';
 import { COPY_CLASS_PLAN, COPY_CLASS_PLAN_SUCCESS, COPY_CLASS_PLAN_FAILURE } from '../actions/classPlanAction';
@@ -35,6 +37,7 @@ const initialState = {
   classPlans: [],
   selectedObjectList: [],
   selectedDocumentList: [],
+  selectedClassPlanType: '',
 };
 
 const optionsSuccess = {
@@ -206,6 +209,17 @@ export const classPlan = (state = initialState, action) => {
         error: action.error,
       });
     }
+    case SELECT_CLASS_PLAN_TYPE: {
+      return Object.assign({}, state, {
+        selectedClassPlanType: action.selectedClassPlanType,
+      });
+    }
+    case RESET_CLASS_PLAN_TYPE: {
+      return Object.assign({}, state, {
+        selectedClassPlanType: '',
+      });
+    }
+
 
     default:
       return state;

@@ -4,22 +4,29 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import {
   Alert,
 } from 'reactstrap';
+import { history } from 'helpers';
 
-import ClassPlanForm from '../../components/classplan/ClassPlanForm';
+import ClassPlanForm from 'components/classplan/ClassPlanForm';
+import ClassPlanStationsForm from 'components/classplan/ClassPlanStationsForm';
 
 
 class CreateClassPlanPage extends Component {
   componentDidMount() {
     const {
       listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm,
-      resetSelectedObjects, resetSelectedDocuments,
+      resetSelectedObjects, resetSelectedDocuments, match,
     } = this.props;
-    listDisciplineFilters();
-    listTeachingLevelFilters();
-    listTeachingYearFilters();
-    prepareForm();
-    resetSelectedObjects();
-    resetSelectedDocuments();
+
+    if (match.params.type !== 'T' && match.params.type !== 'S') {
+      history.push('/my-dashboard/');
+    } else {
+      listDisciplineFilters();
+      listTeachingLevelFilters();
+      listTeachingYearFilters();
+      prepareForm();
+      resetSelectedObjects();
+      resetSelectedDocuments();
+    }
   }
 
     listTopicSuggestions = (param) => {
@@ -31,7 +38,7 @@ class CreateClassPlanPage extends Component {
 
     render() {
       const {
-        isCreating, error,
+        isCreating, error, match,
       } = this.props;
 
       if (isCreating) {
@@ -54,9 +61,14 @@ class CreateClassPlanPage extends Component {
         );
       }
 
+
+      const { type } = match.params;
+
       return (
         <HomeUserPage>
-          <ClassPlanForm {...this.props} actionName="Criar" />
+          { type === 'T' ? (<ClassPlanForm {...this.props} actionName="Criar" />) : (
+            <ClassPlanStationsForm {...this.props} actionName="Criar" />
+          )}
         </HomeUserPage>
       );
     }

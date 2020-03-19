@@ -40,6 +40,7 @@ const mapStateToProps = (state) => {
     errorsClassPlan: state.form['create-classplan'] ? state.form['create-classplan'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
+    selectedClassPlanType: state.classPlan.selectedClassPlanType,
   });
 };
 
@@ -79,6 +80,7 @@ const mapDispatchToProps = (dispatch) => {
     prepareForm: () => {
       dispatch(initialize('create-classplan', {
         topics: [],
+        stations: [{}, {}],
       }));
     },
 
@@ -117,13 +119,17 @@ const mapDispatchToProps = (dispatch) => {
 
       const newClassPlan = {
         name: values.name,
+        type: values.stations && values.stations.length > 2 ? 'S' : 'T',
         disciplines_ids: values.disciplines.map(discipline => discipline.id),
         teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
         topics_ids: values.topics.map(topic => topic.id),
+
         learning_objects_ids: props.selectedObjectList && props.selectedObjectList.length > 0
           ? props.selectedObjectList.map(object => object.id) : [],
         documents_ids: props.selectedDocumentList && props.selectedDocumentList.length > 0
           ? props.selectedDocumentList.map(document => document.id) : [],
+        stations: values.stations && values.stations.learning_objects_ids > 0 ? values.stations : [],
+
         links: values.links && values.links.length > 0 ? values.links : [],
         teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],
         duration: values.duration ? values.duration : 0,

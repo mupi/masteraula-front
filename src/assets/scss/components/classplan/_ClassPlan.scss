@@ -1,4 +1,30 @@
+
+.c-classplan-modal{
+    &__btn-type{
+        font-size:35px;
+    }
+
+    &__footer{
+        border-top: transparent;
+        padding-top: 0rem;
+        background: transparent;
+        text-align: center;
+    }
+
+    &__btn-create{
+
+        &.disabled{
+            opacity: 0.4;
+        }
+    }
+}
 .c-classplan{
+
+    &__card-type{
+        &:hover{
+            box-shadow: 0 3px 7px 0 $color-ma-dark-gray;
+        }
+    }
 
     &__title{
         color: $color-ma-blue;

@@ -19,6 +19,7 @@ const MODAL_TYPES = {
   searchObjectModal: modalTypes.searchObjectModal,
   createMyQuestionLabelModal: modalTypes.createMyQuestionLabelModal,
   searchDocumentModal: modalTypes.searchDocumentModal,
+  createClassPlanModal: modalTypes.createClassPlanModal,
 };
 
 const mapStateToProps = state => ({
