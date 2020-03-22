@@ -122,7 +122,12 @@ class ViewClassPlanPage extends Component {
             </Col>
           </Row>
           <ClassPlanBasicInfo classPlan={activeClassPlan} user={user} />
-          {activeClassPlan && activeClassPlan.plan_type === 'S' ? <ClassPlanStations stations={activeClassPlan.stations} /> : (
+          {activeClassPlan && activeClassPlan.plan_type === 'S' ? (
+            <ClassPlanStations
+              stations={activeClassPlan.stations}
+              showDocumentModal={showDocumentModal}
+            />
+          ) : (
             <ClassPlanMainResources
               classPlan={activeClassPlan}
               optionsDocument={optionsDocument}

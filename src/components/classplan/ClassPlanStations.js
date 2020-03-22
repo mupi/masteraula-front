@@ -2,11 +2,10 @@ import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LearningObjectCard from 'components/learningObject/LearningObjectCard';
-// import QuestionCard from 'components/question/QuestionCard';
+import QuestionCardSimple from 'components/question/QuestionCardSimple';
 import DocumentCard from 'components/document/DocumentCard';
 
 import { Link } from 'react-router-dom';
-
 
 const ViewObjectCardButton = object => (
   <Link
@@ -19,18 +18,29 @@ const ViewObjectCardButton = object => (
   </Link>
 );
 
-const ViewDocumentCardButton = () => (
-  <Button className="btn-margin-right menu-top__document-button">
+const ViewQuestionCardButton = question => (
+  <Link
+    to={`/view-question/${question.id}`}
+    title="Ver questão"
+    className="btn btn-secondary btn__icon"
+  >
+    <FontAwesomeIcon icon="eye" />
+    {' Ver'}
+  </Link>
+);
+
+const ViewDocumentCardButton = (document, showDocumentModal) => (
+  <Button className="btn-margin-right menu-top__document-button" onClick={() => showDocumentModal(document.id)}>
     <FontAwesomeIcon icon="eye" className="btn__icon" />
     Ver
   </Button>
 );
 
-const SingleStation = ({ station, position }) => (
+const SingleStation = ({ station, position, showDocumentModal }) => (
   <>
     <Row>
       <Col sm="12">
-        <h6>{`Estação ${position + 1}`}</h6>
+        <h6><strong>{`Estação ${position + 1}`}</strong></h6>
       </Col>
     </Row>
     <Row className="mb-3 align-items-center">
@@ -43,12 +53,12 @@ const SingleStation = ({ station, position }) => (
             && <LearningObjectCard object={station.learning_object} button={ViewObjectCardButton(station.learning_object)} />
           }
         {
-              station.document
-              && <DocumentCard document={station.document} button={ViewDocumentCardButton(station.document)} filterTags />
-            }
-        {/*
-                station.question
-                && <QuestionCard question={station.question} button={ViewCardButton(station.learning_object)} filterTag={false} /> */
+            station.document
+            && <DocumentCard document={station.document} button={ViewDocumentCardButton(station.document, showDocumentModal)} />
+        }
+        {
+            station.question
+            && <QuestionCardSimple question={station.question} button={ViewQuestionCardButton(station.question)} />
         }
       </Col>
     </Row>
@@ -56,7 +66,7 @@ const SingleStation = ({ station, position }) => (
 );
 
 
-const ClassPlanStations = ({ stations }) => (
+const ClassPlanStations = ({ stations, showDocumentModal }) => (
   <>
     <Row className="c-question__tittle-section">
       <Col>
@@ -68,7 +78,12 @@ const ClassPlanStations = ({ stations }) => (
         <div className="border-top my-3" />
       </Col>
     </Row>
-    { stations && stations.map((station, i) => (<SingleStation station={station} key={station.id} position={i} />)) }
+    { stations && stations.map((station, i) => (
+      <div key={station.id}>
+        <SingleStation station={station} position={i} showDocumentModal={showDocumentModal} />
+        <div className="border-top my-3" />
+      </div>
+    )) }
   </>
 );
 export default ClassPlanStations;
