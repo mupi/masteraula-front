@@ -7,6 +7,7 @@ import {
   createClassPlan,
   addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
   addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan, resetSelectedDocuments,
+  addStationToClassPlan, removeStationFromClassPlan,
 } from 'actions/classPlanAction';
 
 import {
@@ -41,6 +42,7 @@ const mapStateToProps = (state) => {
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
     selectedClassPlanType: state.classPlan.selectedClassPlanType,
+    stations: state.classPlan.stations,
   });
 };
 
@@ -95,31 +97,22 @@ const mapDispatchToProps = (dispatch) => {
 
     removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
 
+    /* class plan station's functions */
+    addStationToClassPlan: station => dispatch(addStationToClassPlan(station)),
+    removeStationFromClassPlan: removedIndex => dispatch(removeStationFromClassPlan(removedIndex)),
+
     /*
-  fields = (
-            'id',
-            'owner',
-            'create_date',
-            'name',
-            'disciplines',
-            'teaching_levels',
-            'topics',
-            'learning_objects',
-            'documents',
-            'links',
-            'year',
-            'duration',
-            'comment',
-            'description',
-            'pdf',
-        )
-  */
+    stations: [
+      { description_station, document_ids   (id)   },
+      { description_station, learning_object_ids  (id)   },
+      { description_station, question_ids  (id)   },
+      ]
+    */
     onSubmit: (values, d, props) => {
       const errors = [];
-
       const newClassPlan = {
         name: values.name,
-        type: values.stations && values.stations.length > 2 ? 'S' : 'T',
+        plan_type: values.stations && values.stations.length >= 2 ? 'S' : 'T',
         disciplines_ids: values.disciplines.map(discipline => discipline.id),
         teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
         topics_ids: values.topics.map(topic => topic.id),
@@ -128,7 +121,7 @@ const mapDispatchToProps = (dispatch) => {
           ? props.selectedObjectList.map(object => object.id) : [],
         documents_ids: props.selectedDocumentList && props.selectedDocumentList.length > 0
           ? props.selectedDocumentList.map(document => document.id) : [],
-        stations: values.stations && values.stations.learning_objects_ids > 0 ? values.stations : [],
+        stations: props.stations, // values.stations,
 
         links: values.links && values.links.length > 0 ? values.links : [],
         teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],

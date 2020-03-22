@@ -27,17 +27,37 @@ import {
   REMOVE_SELECTED_DOCUMENT_CLASS_PLAN,
   RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN,
 
+  COPY_CLASS_PLAN,
+  COPY_CLASS_PLAN_SUCCESS,
+  COPY_CLASS_PLAN_FAILURE,
+
   SELECT_CLASS_PLAN_TYPE,
   RESET_CLASS_PLAN_TYPE,
+
+  /* Class plan station */
+  ADD_STATION_TO_CLASSPLAN,
+  REMOVE_STATION_FROM_CLASSPLAN,
+  RESET_STATIONS_CLASS_PLAN,
+
 } from 'actions/classPlanAction';
 import { toast } from 'react-toastify';
-import { COPY_CLASS_PLAN, COPY_CLASS_PLAN_SUCCESS, COPY_CLASS_PLAN_FAILURE } from '../actions/classPlanAction';
 
 const initialState = {
   classPlans: [],
   selectedObjectList: [],
   selectedDocumentList: [],
   selectedClassPlanType: '',
+  selectedMaterialStation: {},
+  stations: [
+    {
+      description_station: 'texto 1', learning_object_ids: 5, document_ids: '', question_ids: '',
+    },
+    {
+      description_station: 'texto 2', document_ids: 1304, learning_object_ids: '', question_ids: '',
+    },
+    {
+      description_station: 'texto 2', question_ids: 20, learning_object_ids: '', document_ids: '',
+    }],
 };
 
 const optionsSuccess = {
@@ -160,6 +180,27 @@ export const classPlan = (state = initialState, action) => {
         selectedDocumentList: [],
       });
     }
+
+    /* INI: Class Plan with stations */
+    case ADD_STATION_TO_CLASSPLAN: {
+      return Object.assign({}, state, {
+        stations: [...state.stations, action.station],
+      });
+    }
+    case REMOVE_STATION_FROM_CLASSPLAN: {
+      const newStations = [...state.stations.filter((x, index) => index !== action.removedIndex)];
+      return Object.assign({}, state, {
+        stations: newStations,
+      });
+    }
+    case RESET_STATIONS_CLASS_PLAN: {
+      return Object.assign({}, state, {
+        stations: [],
+        selectedMaterialStation: {},
+      });
+    }
+    /* FIN: UPDATE */
+
     case LIST_MY_CLASS_PLANS:
       return Object.assign({}, state, {
         classPlans: action.classPlans,

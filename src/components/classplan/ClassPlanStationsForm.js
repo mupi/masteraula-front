@@ -167,93 +167,6 @@ const renderLinks = ({ fields, meta: { error } }) => (
   </>
 );
 
-
-const renderStations = ({ fields, meta: { error } }) => (
-  <>
-    <div className="mb-2">
-      { fields.length < 5
-        ? (
-          <Button onClick={() => fields.push({})}>
-            <FontAwesomeIcon
-              icon="plus"
-              className="btn__icon"
-            />
-              Adicionar estação
-          </Button>
-        ) : ''}
-    </div>
-
-    {fields.map((station, i) => (
-      <>
-        <Row>
-          <Col sm="12" className="c-classplan__col-link-text">
-            <h6>{`Estação ${i + 1}`}</h6>
-          </Col>
-        </Row>
-        <Row key={`${station}.id`} className="mb-3 align-items-center">
-          <Col sm="8" xs="9" className="c-classplan__col-link-text">
-            <Field
-              type="textarea"
-              component={renderField}
-              name={`${station}.description`}
-              label="Insira uma descrição"
-              validate={requiredValidator}
-            />
-          </Col>
-          <Col sm="3" xs="9" className="text-center">
-            <UncontrolledDropdown>
-              <DropdownToggle title="Mais ações" className="c-my-classplans__toggle">
-                <FontAwesomeIcon icon="plus" />
-                {' '}
-                Material
-              </DropdownToggle>
-              <DropdownMenu className="label-item__dropdown-menu" right>
-                <DropdownItem
-                  title="Adicionar questão à estação"
-                >
-                  <FontAwesomeIcon icon="book" />
-                  {' '}
-                  Questão
-                </DropdownItem>
-                <DropdownItem divider className="label-item__divider" />
-                <DropdownItem
-                  title="Adicionar objeto à estação"
-                >
-                  <FontAwesomeIcon icon="image" />
-                  {' '}
-                  Objeto de aprendizagem
-                </DropdownItem>
-                <DropdownItem divider className="label-item__divider" />
-                <DropdownItem
-                  title="Adicionar prova à estação"
-                >
-                  <FontAwesomeIcon icon="file-alt" />
-                  {' '}
-                  Prova
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </Col>
-          <Col sm="1" xs="1" className="c-classplan__col-btn-remove-link">
-            <Button
-              type="button"
-              title="Remover estação"
-              className="c-classplan__btn-remove-link"
-              onClick={() => fields.remove(i)}
-            >
-              <FontAwesomeIcon
-                icon="trash-alt"
-              />
-            </Button>
-          </Col>
-
-        </Row>
-      </>
-    ))}
-    <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
-  </>
-);
-
 export const fieldFile = ({ input, type, meta: { touched, error, warning } }) => {
   const newInput = input;
   delete newInput.value;
@@ -282,6 +195,104 @@ export const fieldFile = ({ input, type, meta: { touched, error, warning } }) =>
 };
 
 class ClassPlanStationsForm extends Component {
+  /* constructor(props) {
+    super(props);
+    this.state = {
+      stations: [{ id_material: null }, { id_material: null }],
+    };
+  } */
+
+  renderStations = ({
+    fields, meta: { error }, showSearchLearningObjectModal, stations,
+    addStationToClassPlan, removeStationFromClassPlan,
+  }) => (
+    <>
+      <div className="mb-2">
+        { fields.length < 5
+          ? (
+            <Button onClick={() => { fields.push({}); addStationToClassPlan({ id_material: null }); }}>
+              <FontAwesomeIcon
+                icon="plus"
+                className="btn__icon"
+              />
+                Adicionar estação
+            </Button>
+          ) : ''}
+      </div>
+
+      {fields.map((station, i) => (
+        <div key={`${station}.id`}>
+          <Row>
+            <Col sm="12" className="c-classplan__col-link-text">
+              <h6>{`Estação ${i + 1}`}</h6>
+            </Col>
+          </Row>
+          <Row className="mb-3 align-items-center">
+            <Col sm="8" xs="9" className="c-classplan__col-link-text">
+              <Field
+                type="textarea"
+                component={renderField}
+                name={`${station}.description`}
+                label="Insira uma descrição"
+                validate={requiredValidator}
+              />
+            </Col>
+            <Col sm="3" xs="9" className="text-center">
+              {stations && (!stations[i] || !stations[i].id_material) && (
+              <UncontrolledDropdown>
+                <DropdownToggle title="Adicionar material" className="c-my-classplans__toggle">
+                  <FontAwesomeIcon icon="plus" />
+                  {' '}
+                  Material
+                </DropdownToggle>
+                <DropdownMenu className="label-item__dropdown-menu" right>
+                  <DropdownItem
+                    title="Adicionar questão à estação"
+                  >
+                    <FontAwesomeIcon icon="book" />
+                    {' '}
+                    Questão
+                  </DropdownItem>
+                  <DropdownItem divider className="label-item__divider" />
+                  <DropdownItem
+                    title="Adicionar objeto à estação"
+                    onClick={() => showSearchLearningObjectModal()}
+                  >
+                    <FontAwesomeIcon icon="image" />
+                    {' '}
+                    Objeto de aprendizagem
+                  </DropdownItem>
+                  <DropdownItem divider className="label-item__divider" />
+                  <DropdownItem
+                    title="Adicionar prova à estação"
+                  >
+                    <FontAwesomeIcon icon="file-alt" />
+                    {' '}
+                    Prova
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              )}
+            </Col>
+            <Col sm="1" xs="1" className="c-classplan__col-btn-remove-link">
+              <Button
+                type="button"
+                title="Remover estação"
+                className="c-classplan__btn-remove-link"
+                onClick={() => { fields.remove(i); removeStationFromClassPlan(i); }}
+              >
+                <FontAwesomeIcon
+                  icon="trash-alt"
+                />
+              </Button>
+            </Col>
+          </Row>
+        </div>
+      ))}
+      <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
+    </>
+  );
+
     listTopicSuggestions = (param) => {
       if (param && param.length === 3) {
         const { listTopicSuggestions } = this.props;
@@ -294,7 +305,11 @@ class ClassPlanStationsForm extends Component {
         topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
         teachingLevelFilters, handleSubmit,
         submitting, errorsClassPlan, listTopicSuggestions, user, actionName,
+        showSearchLearningObjectModal,
+        stations, addStationToClassPlan, removeStationFromClassPlan,
       } = this.props;
+
+      // const { stations } = this.state;
 
       return (
         <Form onSubmit={handleSubmit}>
@@ -489,7 +504,7 @@ class ClassPlanStationsForm extends Component {
                 <h5>
                   <FontAwesomeIcon icon="sync-alt" />
                   {' '}
-                    Estações
+                  Estações
                 </h5>
                 <div className="border-top my-3" />
               </Col>
@@ -498,8 +513,12 @@ class ClassPlanStationsForm extends Component {
               <Col sm="12">
                 <FieldArray
                   name="stations"
-                  component={renderStations}
+                  component={this.renderStations}
                   validate={minLength2Stations}
+                  showSearchLearningObjectModal={showSearchLearningObjectModal}
+                  stations={stations}
+                  addStationToClassPlan={addStationToClassPlan}
+                  removeStationFromClassPlan={removeStationFromClassPlan}
                 />
               </Col>
             </Row>

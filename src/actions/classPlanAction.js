@@ -41,14 +41,22 @@ export const ADD_SELECTED_DOCUMENT_CLASS_PLAN = 'ADD_SELECTED_DOCUMENT_CLASS_PLA
 export const REMOVE_SELECTED_DOCUMENT_CLASS_PLAN = 'REMOVE_SELECTED_DOCUMENT_CLASS_PLAN';
 export const RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN = 'RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN';
 
+export const SELECT_CLASS_PLAN_TYPE = 'SELECT_CLASS_PLAN_TYPE';
+export const RESET_CLASS_PLAN_TYPE = 'RESET_CLASS_PLAN_TYPE';
+
+/* Class Plan with stations */
+export const ADD_STATION_TO_CLASSPLAN = 'ADD_STATION_TO_CLASSPLAN';
+export const REMOVE_STATION_FROM_CLASSPLAN = 'REMOVE_STATION_FROM_CLASSPLAN';
+export const RESET_STATIONS_CLASS_PLAN = 'RESET_STATIONS_CLASS_PLAN';
+
+export const SELECT_MATERIAL_STATION = 'SELECT_MATERIAL_STATION';
+export const RESET_MATERIAL_STATION = 'RESET_MATERIAL_STATION';
+
+
 // Copy ClassPlan
 export const COPY_CLASS_PLAN = 'COPY_CLASS_PLAN';
 export const COPY_CLASS_PLAN_SUCCESS = 'COPY_CLASS_PLAN_SUCCESS';
 export const COPY_CLASS_PLAN_FAILURE = 'COPY_CLASS_PLAN_FAILURE';
-
-export const SELECT_CLASS_PLAN_TYPE = 'SELECT_CLASS_PLAN_TYPE';
-export const RESET_CLASS_PLAN_TYPE = 'RESET_CLASS_PLAN_TYPE';
-
 export const fetchClassPlan = (id) => {
   function requestClassPlan() { return { type: FETCH_CLASS_PLAN }; }
   function fetchClassPlanSuccess(activeClassPlan) { return { type: FETCH_CLASS_PLAN_SUCCESS, activeClassPlan }; }
@@ -302,4 +310,19 @@ export const selectClassPlanType = selectedClassPlanType => ({
 // Select class plan's type: "T" (Traditional), "S" (Stations)
 export const resetClassPlanType = () => ({
   type: RESET_CLASS_PLAN_TYPE,
+});
+
+/* Functions for Class Plan Station */
+export const addStationToClassPlan = station => ({
+  type: ADD_STATION_TO_CLASSPLAN,
+  station,
+});
+
+export const removeStationFromClassPlan = removedIndex => ({
+  type: REMOVE_STATION_FROM_CLASSPLAN,
+  removedIndex,
+});
+
+export const resetStationsClassPlan = () => ({
+  type: RESET_STATIONS_CLASS_PLAN,
 });

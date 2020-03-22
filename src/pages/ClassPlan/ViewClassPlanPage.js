@@ -10,6 +10,8 @@ import ClassPlanMainResources from 'components/classplan/ClassPlanMainResources'
 import ClassPlanExtraResources from 'components/classplan/ClassPlanExtraResources';
 import ClassPlanComments from 'components/classplan/ClassPlanComments';
 import ClassPlanBasicInfo from 'components/classplan/ClassPlanBasicInfo';
+import ClassPlanStations from 'components/classplan/ClassPlanStations';
+
 import { Link } from 'react-router-dom';
 
 // Learning object's options available for LearnningObjectContent in ClassPlan
@@ -120,12 +122,14 @@ class ViewClassPlanPage extends Component {
             </Col>
           </Row>
           <ClassPlanBasicInfo classPlan={activeClassPlan} user={user} />
-          <ClassPlanMainResources
-            classPlan={activeClassPlan}
-            optionsDocument={optionsDocument}
-            optionsObject={optionsObject}
-            showDocumentModal={showDocumentModal}
-          />
+          {activeClassPlan && activeClassPlan.plan_type === 'S' ? <ClassPlanStations stations={activeClassPlan.stations} /> : (
+            <ClassPlanMainResources
+              classPlan={activeClassPlan}
+              optionsDocument={optionsDocument}
+              optionsObject={optionsObject}
+              showDocumentModal={showDocumentModal}
+            />
+          )}
           <ClassPlanExtraResources classPlan={activeClassPlan} />
           <ClassPlanComments classPlan={activeClassPlan} />
         </div>
