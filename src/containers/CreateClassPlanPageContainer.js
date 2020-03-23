@@ -8,7 +8,8 @@ import {
   addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
   addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan, resetSelectedDocuments,
   addStationToClassPlan, removeStationFromClassPlan,
-  addSelectedDocumentToClassPlanStation,
+  addMaterialToClassPlanStation,
+  removeMaterialFromClassPlanStation,
 } from 'actions/classPlanAction';
 
 import {
@@ -70,7 +71,7 @@ const mapDispatchToProps = (dispatch) => {
         if (!singleSelection) {
           dispatch(addSelectedDocumentToClassPlan(document));
         } else {
-          dispatch(addSelectedDocumentToClassPlanStation(document, stationIndex));
+          dispatch(addMaterialToClassPlanStation(document, stationIndex, 'D'));
         }
       },
       removeSelectedDocument: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
@@ -111,6 +112,7 @@ const mapDispatchToProps = (dispatch) => {
     /* class plan station's functions */
     addStationToClassPlan: station => dispatch(addStationToClassPlan(station)),
     removeStationFromClassPlan: removedIndex => dispatch(removeStationFromClassPlan(removedIndex)),
+    removeMaterialFromClassPlanStation: (stationIndex, typeMaterial) => dispatch(removeMaterialFromClassPlanStation(stationIndex, typeMaterial)),
     /*
     stations: [
       { description_station, document_ids   (id)   },
@@ -125,8 +127,6 @@ const mapDispatchToProps = (dispatch) => {
           return {
             description_station: station.description_station,
             document_ids: props.stations[i].document_ids,
-            learning_object_ids: '',
-            question_ids: '',
           };
         }
         if (props.stations[i].learning_object_ids) {

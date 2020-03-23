@@ -38,7 +38,8 @@ import {
   ADD_STATION_TO_CLASSPLAN,
   REMOVE_STATION_FROM_CLASSPLAN,
   RESET_STATIONS_CLASS_PLAN,
-  ADD_SELECTED_DOCUMENT_CLASS_PLAN_STATION,
+  ADD_MATERIAL_TO_CLASS_PLAN_STATION,
+  REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION,
 
 } from 'actions/classPlanAction';
 import { toast } from 'react-toastify';
@@ -60,8 +61,12 @@ const initialState = {
       description_station: 'texto 2', question_ids: 20, learning_object_ids: '', document_ids: '',
     }], */
   stations: [
-    { learning_object_ids: null, document_ids: null, question_ids: null },
-    { learning_object_ids: null, document_ids: null, question_ids: null },
+    {
+      learning_object_ids: null, document_ids: null, question_ids: null, material: null,
+    },
+    {
+      learning_object_ids: null, document_ids: null, question_ids: null, material: null,
+    },
   ],
 };
 
@@ -106,12 +111,14 @@ export const classPlan = (state = initialState, action) => {
         isUpdated: null,
         isCreated: true,
       });
-    case CREATE_CLASS_PLAN_FAILURE:
-      toast.error(action.error, optionsError);
+    case CREATE_CLASS_PLAN_FAILURE: {
+      // const constMessageError = action.error ? action.error : ;
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isCreated: false,
         error: action.error,
       });
+    }
     case UPDATE_CLASS_PLAN: {
       return Object.assign({}, state, {
         isRemoved: null,
@@ -204,10 +211,36 @@ export const classPlan = (state = initialState, action) => {
         selectedMaterialStation: {},
       });
     }
-    case ADD_SELECTED_DOCUMENT_CLASS_PLAN_STATION: {
-      const updateStations = state.stations.map((x, index) => (index === action.stationIndex
-        ? { ...x, document_ids: action.selectedDocument.id }
-        : x));
+    case ADD_MATERIAL_TO_CLASS_PLAN_STATION: {
+      const updateStations = state.stations.map((x, index) => {
+        if (index === action.stationIndex && action.typeMaterial === 'D') {
+          return { ...x, document_ids: action.material.id, material: action.material };
+        }
+        if (index === action.stationIndex && action.typeMaterial === 'O') {
+          return { ...x, learning_object_ids: action.material.id, material: action.material };
+        }
+        if (index === action.stationIndex && action.typeMaterial === 'Q') {
+          return { ...x, question_ids: action.material.id, material: action.material };
+        }
+        return x;
+      });
+      return Object.assign({}, state, {
+        stations: updateStations,
+      });
+    }
+    case REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION: {
+      const updateStations = state.stations.map((x, index) => {
+        if (index === action.stationIndex && x.document_ids) {
+          return { ...x, document_ids: null, material: null };
+        }
+        if (index === action.stationIndex && x.learning_object_ids) {
+          return { ...x, learning_object_ids: null, material: null };
+        }
+        if (index === action.stationIndex && x.question_ids) {
+          return { ...x, question_ids: null, material: null };
+        }
+        return x;
+      });
       return Object.assign({}, state, {
         stations: updateStations,
       });

@@ -49,7 +49,8 @@ export const ADD_STATION_TO_CLASSPLAN = 'ADD_STATION_TO_CLASSPLAN';
 export const REMOVE_STATION_FROM_CLASSPLAN = 'REMOVE_STATION_FROM_CLASSPLAN';
 export const RESET_STATIONS_CLASS_PLAN = 'RESET_STATIONS_CLASS_PLAN';
 
-export const ADD_SELECTED_DOCUMENT_CLASS_PLAN_STATION = 'ADD_SELECTED_DOCUMENT_CLASS_PLAN_STATION';
+export const ADD_MATERIAL_TO_CLASS_PLAN_STATION = 'ADD_MATERIAL_TO_CLASS_PLAN_STATION';
+export const REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION = 'REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION';
 
 // Copy ClassPlan
 export const COPY_CLASS_PLAN = 'COPY_CLASS_PLAN';
@@ -325,6 +326,10 @@ export const resetStationsClassPlan = () => ({
   type: RESET_STATIONS_CLASS_PLAN,
 });
 
-export const addSelectedDocumentToClassPlanStation = (selectedDocument, stationIndex) => ({
-  type: ADD_SELECTED_DOCUMENT_CLASS_PLAN_STATION, selectedDocument, stationIndex,
+export const addMaterialToClassPlanStation = (material, stationIndex, typeMaterial) => ({
+  type: ADD_MATERIAL_TO_CLASS_PLAN_STATION, material, stationIndex, typeMaterial,
+});
+
+export const removeMaterialFromClassPlanStation = (stationIndex, typeMaterial) => ({
+  type: REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION, stationIndex, typeMaterial,
 });
