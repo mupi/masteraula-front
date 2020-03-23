@@ -8,6 +8,7 @@ import {
   addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
   addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan, resetSelectedDocuments,
   addStationToClassPlan, removeStationFromClassPlan,
+  addSelectedDocumentToClassPlanStation,
 } from 'actions/classPlanAction';
 
 import {
@@ -60,18 +61,26 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'searchObjectModal',
   };
 
-  const openSearchDocumentModalProps = {
+  const openSearchDocumentModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
       open: true,
       titlePart: 'à plano de aula',
       closeModal: () => dispatch(hideModal()),
-      addSelectedDocument: document => dispatch(addSelectedDocumentToClassPlan(document)),
+      addSelectedDocument: (document) => {
+        if (!singleSelection) {
+          dispatch(addSelectedDocumentToClassPlan(document));
+        } else {
+          dispatch(addSelectedDocumentToClassPlanStation(document, stationIndex));
+        }
+      },
       removeSelectedDocument: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
       listMyDocumentsModal: (page, orderField, order) => dispatch(listMyDocumentsModal(page, orderField, order)),
       callFrom: 'C',
+      singleSelection,
+      stationIndex,
     },
     modalType: 'searchDocumentModal',
-  };
+  });
 
   return ({
     listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
@@ -87,7 +96,9 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     showSearchLearningObjectModal: () => dispatch(showModal(openSearchLearningObjectModalProps)),
-    showSearchDocumentModal: () => dispatch(showModal(openSearchDocumentModalProps)),
+    showSearchDocumentModal: (singleSelection = false, stationIndex = null) => {
+      dispatch(showModal(openSearchDocumentModalProps(singleSelection, stationIndex)));
+    },
 
     listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 
@@ -100,7 +111,6 @@ const mapDispatchToProps = (dispatch) => {
     /* class plan station's functions */
     addStationToClassPlan: station => dispatch(addStationToClassPlan(station)),
     removeStationFromClassPlan: removedIndex => dispatch(removeStationFromClassPlan(removedIndex)),
-
     /*
     stations: [
       { description_station, document_ids   (id)   },
@@ -110,9 +120,33 @@ const mapDispatchToProps = (dispatch) => {
     */
     onSubmit: (values, d, props) => {
       const errors = [];
+      const newStations = values.stations.map((station, i) => {
+        if (props.stations[i].document_ids) {
+          return {
+            description_station: station.description_station,
+            document_ids: props.stations[i].document_ids,
+            learning_object_ids: '',
+            question_ids: '',
+          };
+        }
+        if (props.stations[i].learning_object_ids) {
+          return {
+            description_station: station.description_station,
+            learning_object_ids: props.stations[i].learning_object_ids,
+          };
+        }
+        if (props.stations[i].question_ids) {
+          return {
+            description_station: station.description_station,
+            question_ids: props.stations[i].question_ids,
+          };
+        }
+        return {};
+      }).filter(value => Object.keys(value).length !== 0);
+
       const newClassPlan = {
         name: values.name,
-        plan_type: values.stations && values.stations.length >= 2 ? 'S' : 'T',
+        plan_type: newStations && newStations.length > 0 ? 'S' : 'T',
         disciplines_ids: values.disciplines.map(discipline => discipline.id),
         teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
         topics_ids: values.topics.map(topic => topic.id),
@@ -121,7 +155,7 @@ const mapDispatchToProps = (dispatch) => {
           ? props.selectedObjectList.map(object => object.id) : [],
         documents_ids: props.selectedDocumentList && props.selectedDocumentList.length > 0
           ? props.selectedDocumentList.map(document => document.id) : [],
-        stations: props.stations, // values.stations,
+        stations: newStations,
 
         links: values.links && values.links.length > 0 ? values.links : [],
         teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],
@@ -136,7 +170,6 @@ const mapDispatchToProps = (dispatch) => {
       }
 
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
-
       return dispatch(createClassPlan(newClassPlan));
     },
   });

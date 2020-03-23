@@ -203,14 +203,16 @@ class ClassPlanStationsForm extends Component {
   } */
 
   renderStations = ({
-    fields, meta: { error }, showSearchLearningObjectModal, stations,
+    fields, meta: { error },
+    showSearchLearningObjectModal, showSearchDocumentModal,
+    stations,
     addStationToClassPlan, removeStationFromClassPlan,
   }) => (
     <>
       <div className="mb-2">
         { fields.length < 5
           ? (
-            <Button onClick={() => { fields.push({}); addStationToClassPlan({ id_material: null }); }}>
+            <Button onClick={() => { fields.push({}); addStationToClassPlan({ learning_object_ids: '', document_ids: '', question_ids: '' }); }}>
               <FontAwesomeIcon
                 icon="plus"
                 className="btn__icon"
@@ -232,7 +234,7 @@ class ClassPlanStationsForm extends Component {
               <Field
                 type="textarea"
                 component={renderField}
-                name={`${station}.description`}
+                name={`${station}.description_station`}
                 label="Insira uma descrição"
                 validate={requiredValidator}
               />
@@ -265,6 +267,7 @@ class ClassPlanStationsForm extends Component {
                   <DropdownItem divider className="label-item__divider" />
                   <DropdownItem
                     title="Adicionar prova à estação"
+                    onClick={() => showSearchDocumentModal(true, i)}
                   >
                     <FontAwesomeIcon icon="file-alt" />
                     {' '}
@@ -305,7 +308,7 @@ class ClassPlanStationsForm extends Component {
         topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
         teachingLevelFilters, handleSubmit,
         submitting, errorsClassPlan, listTopicSuggestions, user, actionName,
-        showSearchLearningObjectModal,
+        showSearchLearningObjectModal, showSearchDocumentModal,
         stations, addStationToClassPlan, removeStationFromClassPlan,
       } = this.props;
 
@@ -505,6 +508,7 @@ class ClassPlanStationsForm extends Component {
                   <FontAwesomeIcon icon="sync-alt" />
                   {' '}
                   Estações
+                  {stations.length}
                 </h5>
                 <div className="border-top my-3" />
               </Col>
@@ -516,6 +520,7 @@ class ClassPlanStationsForm extends Component {
                   component={this.renderStations}
                   validate={minLength2Stations}
                   showSearchLearningObjectModal={showSearchLearningObjectModal}
+                  showSearchDocumentModal={showSearchDocumentModal}
                   stations={stations}
                   addStationToClassPlan={addStationToClassPlan}
                   removeStationFromClassPlan={removeStationFromClassPlan}

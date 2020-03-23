@@ -20,6 +20,12 @@
 }
 .c-classplan{
 
+    &__view-station{
+        &:last-child{
+            border-bottom: 0px !important;
+        }
+    }
+
     &__card-type{
         &:hover{
             box-shadow: 0 3px 7px 0 $color-ma-dark-gray;

@@ -38,6 +38,7 @@ import {
   ADD_STATION_TO_CLASSPLAN,
   REMOVE_STATION_FROM_CLASSPLAN,
   RESET_STATIONS_CLASS_PLAN,
+  ADD_SELECTED_DOCUMENT_CLASS_PLAN_STATION,
 
 } from 'actions/classPlanAction';
 import { toast } from 'react-toastify';
@@ -48,16 +49,20 @@ const initialState = {
   selectedDocumentList: [],
   selectedClassPlanType: '',
   selectedMaterialStation: {},
-  stations: [
+  /* stations: [
     {
-      description_station: 'texto 1', learning_object_ids: 5, document_ids: '', question_ids: '',
+      description_station: 'texto 1', learning_object_ids: 5, document_ids: , question_ids: '',
     },
     {
       description_station: 'texto 2', document_ids: 1304, learning_object_ids: '', question_ids: '',
     },
     {
       description_station: 'texto 2', question_ids: 20, learning_object_ids: '', document_ids: '',
-    }],
+    }], */
+  stations: [
+    { learning_object_ids: null, document_ids: null, question_ids: null },
+    { learning_object_ids: null, document_ids: null, question_ids: null },
+  ],
 };
 
 const optionsSuccess = {
@@ -197,6 +202,14 @@ export const classPlan = (state = initialState, action) => {
       return Object.assign({}, state, {
         stations: [],
         selectedMaterialStation: {},
+      });
+    }
+    case ADD_SELECTED_DOCUMENT_CLASS_PLAN_STATION: {
+      const updateStations = state.stations.map((x, index) => (index === action.stationIndex
+        ? { ...x, document_ids: action.selectedDocument.id }
+        : x));
+      return Object.assign({}, state, {
+        stations: updateStations,
       });
     }
     /* FIN: UPDATE */

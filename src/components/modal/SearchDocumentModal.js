@@ -30,7 +30,9 @@ class SearchDocumentModal extends React.Component {
     const {
       documentPage, isFetching, closeModal, titlePart, setCurrentPageModal,
       addSelectedDocument, removeSelectedDocument,
-      selectedDocumentList,
+      selectedDocumentList, singleSelection = false,
+      stations,
+      stationIndex,
     } = this.props;
 
     return (
@@ -58,11 +60,14 @@ class SearchDocumentModal extends React.Component {
                 {'Provas e/o listas de exercícios encontrados:'}
                 {documentPage ? documentPage.count : 0}
               </Col>
+              { !singleSelection && (
               <Col sm="12" className="c-object-base-modal__selected-number">
                 {`Provas e/o listas de exercícios associados ${titlePart}:`}
                 {' '}
                 {selectedDocumentList.length}
               </Col>
+              )
+            }
             </Row>
             <div className="c-question-base__results modal-fixed__body-section-scroll search-document-modal__body-section-scroll">
               { isFetching ? (
@@ -76,9 +81,9 @@ class SearchDocumentModal extends React.Component {
                   sm="4"
                   {...this.props}
                   documents={documentPage ? documentPage.results : null}
-                  count={documentPage ? documentPage.count : 0}
-                  selectedDocumentList={selectedDocumentList}
+                  selectedDocumentList={!singleSelection ? selectedDocumentList : [stations[stationIndex]]}
                   showSelectedDocuments
+                  singleSelection={singleSelection}
                 />
               )
             }

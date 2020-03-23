@@ -29,6 +29,22 @@ class CreateClassPlanPage extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { match: { params: { type } } } = this.props;
+    const {
+      listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm,
+      resetSelectedObjects, resetSelectedDocuments,
+    } = this.props;
+    if (prevProps.match.params.type !== type) {
+      listDisciplineFilters();
+      listTeachingLevelFilters();
+      listTeachingYearFilters();
+      prepareForm();
+      resetSelectedObjects();
+      resetSelectedDocuments();
+    }
+  }
+
     listTopicSuggestions = (param) => {
       if (param && param.length === 3) {
         const { listTopicSuggestions } = this.props;

@@ -79,9 +79,8 @@ const ClassPlanStations = ({ stations, showDocumentModal }) => (
       </Col>
     </Row>
     { stations && stations.map((station, i) => (
-      <div key={station.id}>
+      <div className="c-classplan__view-station border-bottom my-3" key={station.id}>
         <SingleStation station={station} position={i} showDocumentModal={showDocumentModal} />
-        <div className="border-top my-3" />
       </div>
     )) }
   </>
