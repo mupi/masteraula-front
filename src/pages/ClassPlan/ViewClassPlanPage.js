@@ -10,6 +10,8 @@ import ClassPlanMainResources from 'components/classplan/ClassPlanMainResources'
 import ClassPlanExtraResources from 'components/classplan/ClassPlanExtraResources';
 import ClassPlanComments from 'components/classplan/ClassPlanComments';
 import ClassPlanBasicInfo from 'components/classplan/ClassPlanBasicInfo';
+import ClassPlanStations from 'components/classplan/ClassPlanStations';
+
 import { Link } from 'react-router-dom';
 
 // Learning object's options available for LearnningObjectContent in ClassPlan
@@ -58,11 +60,21 @@ class ViewClassPlanPage extends Component {
       );
     }
 
+    if (error || !activeClassPlan) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+            Você não tem permissão para ver este plano de aula ou foi apagado.
+          </Alert>
+        </HomeUserPage>
+      );
+    }
+
     if (!isOwner) {
       return (
         <HomeUserPage>
           <Alert color="danger">
-            Você não tem permissão para ver este plano de aula.
+            Você não tem permissão para ver este plano de aula ou foi apagado.
           </Alert>
         </HomeUserPage>
       );
@@ -77,6 +89,8 @@ class ViewClassPlanPage extends Component {
         </HomeUserPage>
       );
     }
+
+    const typeClassPlanName = (activeClassPlan.plan_type === 'T') ? 'Tradicional' : 'Rotação por Estações';
 
     return (
       <HomeUserPage>
@@ -115,17 +129,24 @@ class ViewClassPlanPage extends Component {
               <h4>
                 <FontAwesomeIcon icon="book" />
                 {' '}
-                Plano de Aula
+                {`Plano de Aula - ${typeClassPlanName}`}
               </h4>
             </Col>
           </Row>
           <ClassPlanBasicInfo classPlan={activeClassPlan} user={user} />
-          <ClassPlanMainResources
-            classPlan={activeClassPlan}
-            optionsDocument={optionsDocument}
-            optionsObject={optionsObject}
-            showDocumentModal={showDocumentModal}
-          />
+          {activeClassPlan && activeClassPlan.plan_type === 'S' ? (
+            <ClassPlanStations
+              stations={activeClassPlan.stations}
+              showDocumentModal={showDocumentModal}
+            />
+          ) : (
+            <ClassPlanMainResources
+              classPlan={activeClassPlan}
+              optionsDocument={optionsDocument}
+              optionsObject={optionsObject}
+              showDocumentModal={showDocumentModal}
+            />
+          )}
           <ClassPlanExtraResources classPlan={activeClassPlan} />
           <ClassPlanComments classPlan={activeClassPlan} />
         </div>

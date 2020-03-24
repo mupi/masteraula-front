@@ -7,13 +7,12 @@ import DocumentCard from './DocumentCard';
 
 const DocumentCardList = (props) => {
   const {
-    documents, count, sm, textResult = 'Provas encontradas', showLink = false, selectedDocumentList,
+    documents, sm, selectedDocumentList,
     addSelectedDocument, removeSelectedDocument,
   } = props;
-
   const isDocumentAdded = (id) => {
     if (selectedDocumentList) {
-      const documentAdded = selectedDocumentList.filter(item => item.id === id);
+      const documentAdded = selectedDocumentList.filter(item => (item.id === id || item.document_ids === id));
       return (documentAdded.length > 0);
     }
     return false;
@@ -33,23 +32,13 @@ const DocumentCardList = (props) => {
   );
   return (
     <Row>
-      <Col sm="12" className="c-object-base__total-results">
-        {`${textResult}: ${count}`}
-        {' '}
-        {showLink ? (
-          <a
-            className="c-object-base__link-askquestion"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://goo.gl/forms/bG2mMbMNNrNiOjqt2"
-          >
-            Não encontrou o que queria? Clique aqui
-          </a>
-        ) : ''}
-      </Col>
       {documents && documents.map(document => (
         <Col sm={sm} lg="3" xs="12" key={document.id} className="object-card">
-          <DocumentCard document={document} button={CardButton(document)} {...props} />
+          <DocumentCard
+            document={document}
+            button={CardButton(document)}
+            {...props}
+          />
         </Col>
       ))}
     </Row>
@@ -58,13 +47,11 @@ const DocumentCardList = (props) => {
 
 DocumentCardList.propTypes = {
   documents: PropTypes.arrayOf(PropTypes.shape({})),
-  count: PropTypes.number,
   sm: PropTypes.string,
 };
 
 DocumentCardList.defaultProps = {
   documents: [],
-  count: 0,
   sm: '4',
 };
 

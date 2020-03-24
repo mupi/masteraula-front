@@ -14,7 +14,7 @@ const SimpleLObjectCardList = (props) => {
 
   const isObjectAdded = (id) => {
     if (selectedObjectList) {
-      const objectAdded = selectedObjectList.filter(item => item.id === id);
+      const objectAdded = selectedObjectList.filter(item => item.id === id || item.learning_object_ids === id);
       return (objectAdded.length > 0);
     }
     return false;

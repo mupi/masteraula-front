@@ -33,6 +33,9 @@ class SearchLearningObjectModal extends React.Component {
       addSelectedObject, removeSelectedObject, callFrom,
       selectedObjectListQuestion,
       selectedObjectListClassPlan,
+      singleSelection = false,
+      stations,
+      stationIndex,
     } = this.props;
 
     const selectedObjectList = callFrom === 'Q' ? selectedObjectListQuestion : selectedObjectListClassPlan;
@@ -62,11 +65,14 @@ class SearchLearningObjectModal extends React.Component {
                 {'Objetos de aprendizagem encontrados:'}
                 {objectPage ? objectPage.count : 0}
               </Col>
+              { !singleSelection && (
               <Col sm="12" className="c-object-base-modal__selected-number">
                 {`Objetos associados ${titlePart}`}
                 {' '}
                 {selectedObjectList.length}
               </Col>
+              )
+            }
             </Row>
             <div className="c-question-base__results modal-fixed__body-section-scroll">
               { isFetching ? (
@@ -81,7 +87,8 @@ class SearchLearningObjectModal extends React.Component {
                   {...this.props}
                   objects={objectPage ? objectPage.results : null}
                   count={objectPage ? objectPage.count : 0}
-                  selectedObjectList={selectedObjectList}
+                  selectedObjectList={!singleSelection ? selectedObjectList : [stations[stationIndex]]}
+                  singleSelection={singleSelection}
                 />
               )
             }

@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   currentPageModal: state.learningObject.currentPageModal,
   selectedObjectListQuestion: state.question.selectedObjectList,
   selectedObjectListClassPlan: state.classPlan.selectedObjectList,
+  stations: state.classPlan.stations,
 });
 
 const setDispatchSearchText = searchText => setSearchTextObjectModal(searchText);

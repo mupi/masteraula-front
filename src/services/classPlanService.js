@@ -91,6 +91,15 @@ function convertClassPlanToFormData(classPlan) {
       classPlan[name].forEach((documentId, index) => {
         formData.append(`documents_ids[${index}]`, documentId);
       });
+    } else if (name === 'stations') {
+      classPlan[name].forEach((station, index) => {
+        formData.append(`stations[${index}]description_station`, station.description_station);
+        if (station.document_ids) { formData.append(`stations[${index}]document_ids`, station.document_ids); }
+
+        if (station.learning_object_ids) { formData.append(`stations[${index}]learning_object_ids`, station.learning_object_ids); }
+
+        if (station.question_ids) { formData.append(`stations[${index}]question_ids`, station.question_ids); }
+      });
     } else if (name === 'links') {
       classPlan[name].forEach((link, index) => {
         formData.append(`links[${index}]link`, link.link);

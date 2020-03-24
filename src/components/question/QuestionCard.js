@@ -41,6 +41,7 @@ const QuestionCard = (props) => {
     question, urlImage, activeDocument, addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, addSelectedSourceFilter, addSelectedYearFilter,
     removeSelectedQuestion, sourceFilters, yearFilters, toggleApplyLabelToQuestion, labels, isAddingRemovingLabel, relatedFrom,
     showCreateMyQuestionLabelModal,
+    // filterTags = true,
   } = props;
   const extractStatement = getCleanExtractStatement(question.statement);
   const idSource = question.source ? getIdFilter(sourceFilters, question.source) : null;
@@ -140,7 +141,6 @@ const QuestionCard = (props) => {
           <span className="question-card__more-info--lightgray hidden">
             {'autor: '}
           </span>
-          {/* <QuestionAuthor author={question.author} styleTag="question-card__info-section-item--italic" /> */}
           {
             (tagList.length > 0) ? (
               <span className="question-card__more-info--lightgray">

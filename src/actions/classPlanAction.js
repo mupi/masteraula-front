@@ -41,13 +41,54 @@ export const ADD_SELECTED_DOCUMENT_CLASS_PLAN = 'ADD_SELECTED_DOCUMENT_CLASS_PLA
 export const REMOVE_SELECTED_DOCUMENT_CLASS_PLAN = 'REMOVE_SELECTED_DOCUMENT_CLASS_PLAN';
 export const RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN = 'RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN';
 
+export const SELECT_CLASS_PLAN_TYPE = 'SELECT_CLASS_PLAN_TYPE';
+export const RESET_CLASS_PLAN_TYPE = 'RESET_CLASS_PLAN_TYPE';
+
+/* Class Plan with stations */
+export const ADD_STATION_TO_CLASSPLAN = 'ADD_STATION_TO_CLASSPLAN';
+export const REMOVE_STATION_FROM_CLASSPLAN = 'REMOVE_STATION_FROM_CLASSPLAN';
+export const RESET_STATIONS_CLASS_PLAN = 'RESET_STATIONS_CLASS_PLAN';
+
+export const ADD_MATERIAL_TO_CLASS_PLAN_STATION = 'ADD_MATERIAL_TO_CLASS_PLAN_STATION';
+export const REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION = 'REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION';
+
 // Copy ClassPlan
 export const COPY_CLASS_PLAN = 'COPY_CLASS_PLAN';
 export const COPY_CLASS_PLAN_SUCCESS = 'COPY_CLASS_PLAN_SUCCESS';
 export const COPY_CLASS_PLAN_FAILURE = 'COPY_CLASS_PLAN_FAILURE';
 
-export const SELECT_CLASS_PLAN_TYPE = 'SELECT_CLASS_PLAN_TYPE';
-export const RESET_CLASS_PLAN_TYPE = 'RESET_CLASS_PLAN_TYPE';
+// Select class plan's type: "T" (Traditional), "S" (Stations)
+export const selectClassPlanType = selectedClassPlanType => ({
+  type: SELECT_CLASS_PLAN_TYPE,
+  selectedClassPlanType,
+});
+
+export const resetClassPlanType = () => ({
+  type: RESET_CLASS_PLAN_TYPE,
+});
+
+/* Functions for Class Plan Station */
+export const addStationToClassPlan = station => ({
+  type: ADD_STATION_TO_CLASSPLAN,
+  station,
+});
+
+export const removeStationFromClassPlan = removedIndex => ({
+  type: REMOVE_STATION_FROM_CLASSPLAN,
+  removedIndex,
+});
+
+export const resetStationsClassPlan = () => ({
+  type: RESET_STATIONS_CLASS_PLAN,
+});
+
+export const addMaterialToClassPlanStation = (material, stationIndex, typeMaterial) => ({
+  type: ADD_MATERIAL_TO_CLASS_PLAN_STATION, material, stationIndex, typeMaterial,
+});
+
+export const removeMaterialFromClassPlanStation = (stationIndex, typeMaterial) => ({
+  type: REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION, stationIndex, typeMaterial,
+});
 
 export const fetchClassPlan = (id) => {
   function requestClassPlan() { return { type: FETCH_CLASS_PLAN }; }
@@ -147,6 +188,7 @@ export const createClassPlan = (props) => {
     return classPlanService.createClassPlan(props).then(
       (newClassPlan) => {
         dispatch(createClassPlanSuccess(newClassPlan));
+        dispatch(resetStationsClassPlan());
         history.push(`/view-classplan/${newClassPlan.id}`);
         toast.success('Plano de aula criado com sucesso', optionsSuccess);
       },
@@ -292,14 +334,3 @@ export const copyClassPlan = (props) => {
     );
   };
 };
-
-// Select class plan's type: "T" (Traditional), "S" (Stations)
-export const selectClassPlanType = selectedClassPlanType => ({
-  type: SELECT_CLASS_PLAN_TYPE,
-  selectedClassPlanType,
-});
-
-// Select class plan's type: "T" (Traditional), "S" (Stations)
-export const resetClassPlanType = () => ({
-  type: RESET_CLASS_PLAN_TYPE,
-});

@@ -7,6 +7,9 @@ import {
   createClassPlan,
   addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
   addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan, resetSelectedDocuments,
+  addStationToClassPlan, removeStationFromClassPlan,
+  addMaterialToClassPlanStation,
+  removeMaterialFromClassPlanStation,
 } from 'actions/classPlanAction';
 
 import {
@@ -41,35 +44,64 @@ const mapStateToProps = (state) => {
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
     selectedClassPlanType: state.classPlan.selectedClassPlanType,
+    stations: state.classPlan.stations,
   });
 };
 
 const mapDispatchToProps = (dispatch) => {
   /* Options for Open Learning Object Base modal */
-  const openSearchLearningObjectModalProps = {
+  const openSearchLearningObjectModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
       open: true,
       titlePart: 'à plano de aula',
       closeModal: () => dispatch(hideModal()),
-      addSelectedObject: object => dispatch(addSelectedObjectToClassPlan(object)),
-      removeSelectedObject: idObject => dispatch(removeSelectedObjectToClassPlan(idObject)),
+      addSelectedObject: (object) => {
+        if (!singleSelection) {
+          dispatch(addSelectedObjectToClassPlan(object));
+        } else {
+          dispatch(addMaterialToClassPlanStation(object, stationIndex, 'O'));
+        }
+      },
+      removeSelectedObject: (idObject) => {
+        if (!singleSelection) {
+          dispatch(removeSelectedObjectToClassPlan(idObject));
+        } else {
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'O'));
+        }
+      },
       callFrom: 'C',
+      singleSelection,
+      stationIndex,
     },
     modalType: 'searchObjectModal',
-  };
+  });
 
-  const openSearchDocumentModalProps = {
+  const openSearchDocumentModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
       open: true,
       titlePart: 'à plano de aula',
       closeModal: () => dispatch(hideModal()),
-      addSelectedDocument: document => dispatch(addSelectedDocumentToClassPlan(document)),
-      removeSelectedDocument: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
+      addSelectedDocument: (document) => {
+        if (!singleSelection) {
+          dispatch(addSelectedDocumentToClassPlan(document));
+        } else {
+          dispatch(addMaterialToClassPlanStation(document, stationIndex, 'D'));
+        }
+      },
+      removeSelectedDocument: (idDocument) => {
+        if (!singleSelection) {
+          dispatch(removeSelectedDocumentFromClassPlan(idDocument));
+        } else {
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'D'));
+        }
+      },
       listMyDocumentsModal: (page, orderField, order) => dispatch(listMyDocumentsModal(page, orderField, order)),
       callFrom: 'C',
+      singleSelection,
+      stationIndex,
     },
     modalType: 'searchDocumentModal',
-  };
+  });
 
   return ({
     listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
@@ -83,9 +115,13 @@ const mapDispatchToProps = (dispatch) => {
         stations: [{}, {}],
       }));
     },
+    showSearchLearningObjectModal: (singleSelection = false, stationIndex = null) => {
+      dispatch(showModal(openSearchLearningObjectModalProps(singleSelection, stationIndex)));
+    },
 
-    showSearchLearningObjectModal: () => dispatch(showModal(openSearchLearningObjectModalProps)),
-    showSearchDocumentModal: () => dispatch(showModal(openSearchDocumentModalProps)),
+    showSearchDocumentModal: (singleSelection = false, stationIndex = null) => {
+      dispatch(showModal(openSearchDocumentModalProps(singleSelection, stationIndex)));
+    },
 
     listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 
@@ -95,31 +131,50 @@ const mapDispatchToProps = (dispatch) => {
 
     removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
 
+    /* class plan station's functions */
+    addStationToClassPlan: station => dispatch(addStationToClassPlan(station)),
+    removeStationFromClassPlan: removedIndex => dispatch(removeStationFromClassPlan(removedIndex)),
+    removeMaterialFromClassPlanStation: (stationIndex, typeMaterial) => dispatch(removeMaterialFromClassPlanStation(stationIndex, typeMaterial)),
     /*
-  fields = (
-            'id',
-            'owner',
-            'create_date',
-            'name',
-            'disciplines',
-            'teaching_levels',
-            'topics',
-            'learning_objects',
-            'documents',
-            'links',
-            'year',
-            'duration',
-            'comment',
-            'description',
-            'pdf',
-        )
-  */
+    stations: [
+      { description_station, document_ids   (id)   },
+      { description_station, learning_object_ids  (id)   },
+      { description_station, question_ids  (id)   },
+      ]
+    */
     onSubmit: (values, d, props) => {
       const errors = [];
+      const newStations = values.stations.map((station, i) => {
+        if (props.stations[i].document_ids) {
+          return {
+            description_station: station.description_station,
+            document_ids: props.stations[i].document_ids,
+          };
+        }
+        if (props.stations[i].learning_object_ids) {
+          return {
+            description_station: station.description_station,
+            learning_object_ids: props.stations[i].learning_object_ids,
+          };
+        }
+        if (props.stations[i].question_ids) {
+          return {
+            description_station: station.description_station,
+            question_ids: props.stations[i].question_ids,
+          };
+        }
+
+        if (station.description_station) {
+          return {
+            description_station: station.description_station,
+          };
+        }
+        return {};
+      }).filter(value => Object.keys(value).length !== 0);
 
       const newClassPlan = {
         name: values.name,
-        type: values.stations && values.stations.length > 2 ? 'S' : 'T',
+        plan_type: newStations && newStations.length > 0 ? 'S' : 'T',
         disciplines_ids: values.disciplines.map(discipline => discipline.id),
         teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
         topics_ids: values.topics.map(topic => topic.id),
@@ -128,7 +183,7 @@ const mapDispatchToProps = (dispatch) => {
           ? props.selectedObjectList.map(object => object.id) : [],
         documents_ids: props.selectedDocumentList && props.selectedDocumentList.length > 0
           ? props.selectedDocumentList.map(document => document.id) : [],
-        stations: values.stations && values.stations.learning_objects_ids > 0 ? values.stations : [],
+        stations: newStations,
 
         links: values.links && values.links.length > 0 ? values.links : [],
         teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],
@@ -143,7 +198,6 @@ const mapDispatchToProps = (dispatch) => {
       }
 
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
-
       return dispatch(createClassPlan(newClassPlan));
     },
   });

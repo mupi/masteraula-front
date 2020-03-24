@@ -27,17 +27,36 @@ import {
   REMOVE_SELECTED_DOCUMENT_CLASS_PLAN,
   RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN,
 
+  COPY_CLASS_PLAN,
+  COPY_CLASS_PLAN_SUCCESS,
+  COPY_CLASS_PLAN_FAILURE,
+
   SELECT_CLASS_PLAN_TYPE,
   RESET_CLASS_PLAN_TYPE,
+
+  /* Class plan station */
+  ADD_STATION_TO_CLASSPLAN,
+  REMOVE_STATION_FROM_CLASSPLAN,
+  RESET_STATIONS_CLASS_PLAN,
+  ADD_MATERIAL_TO_CLASS_PLAN_STATION,
+  REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION,
+
 } from 'actions/classPlanAction';
 import { toast } from 'react-toastify';
-import { COPY_CLASS_PLAN, COPY_CLASS_PLAN_SUCCESS, COPY_CLASS_PLAN_FAILURE } from '../actions/classPlanAction';
 
 const initialState = {
   classPlans: [],
   selectedObjectList: [],
   selectedDocumentList: [],
   selectedClassPlanType: '',
+  stations: [
+    {
+      learning_object_ids: null, document_ids: null, question_ids: null, material: null,
+    },
+    {
+      learning_object_ids: null, document_ids: null, question_ids: null, material: null,
+    },
+  ],
 };
 
 const optionsSuccess = {
@@ -81,12 +100,14 @@ export const classPlan = (state = initialState, action) => {
         isUpdated: null,
         isCreated: true,
       });
-    case CREATE_CLASS_PLAN_FAILURE:
-      toast.error(action.error, optionsError);
+    case CREATE_CLASS_PLAN_FAILURE: {
+      // const constMessageError = action.error ? action.error : ;
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isCreated: false,
         error: action.error,
       });
+    }
     case UPDATE_CLASS_PLAN: {
       return Object.assign({}, state, {
         isRemoved: null,
@@ -160,6 +181,67 @@ export const classPlan = (state = initialState, action) => {
         selectedDocumentList: [],
       });
     }
+
+    /* INI: Class Plan with stations */
+    case ADD_STATION_TO_CLASSPLAN: {
+      return Object.assign({}, state, {
+        stations: [...state.stations, action.station],
+      });
+    }
+    case REMOVE_STATION_FROM_CLASSPLAN: {
+      const newStations = [...state.stations.filter((x, index) => index !== action.removedIndex)];
+      return Object.assign({}, state, {
+        stations: newStations,
+      });
+    }
+    case RESET_STATIONS_CLASS_PLAN: {
+      return Object.assign({}, state, {
+        stations: [
+          {
+            learning_object_ids: null, document_ids: null, question_ids: null, material: null,
+          },
+          {
+            learning_object_ids: null, document_ids: null, question_ids: null, material: null,
+          },
+        ],
+      });
+    }
+    case ADD_MATERIAL_TO_CLASS_PLAN_STATION: {
+      const updateStations = state.stations.map((x, index) => {
+        if (index === action.stationIndex && action.typeMaterial === 'D') {
+          return { ...x, document_ids: action.material.id, material: action.material };
+        }
+        if (index === action.stationIndex && action.typeMaterial === 'O') {
+          return { ...x, learning_object_ids: action.material.id, material: action.material };
+        }
+        if (index === action.stationIndex && action.typeMaterial === 'Q') {
+          return { ...x, question_ids: action.material.id, material: action.material };
+        }
+        return x;
+      });
+      return Object.assign({}, state, {
+        stations: updateStations,
+      });
+    }
+    case REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION: {
+      const updateStations = state.stations.map((x, index) => {
+        if (index === action.stationIndex && x.document_ids) {
+          return { ...x, document_ids: null, material: null };
+        }
+        if (index === action.stationIndex && x.learning_object_ids) {
+          return { ...x, learning_object_ids: null, material: null };
+        }
+        if (index === action.stationIndex && x.question_ids) {
+          return { ...x, question_ids: null, material: null };
+        }
+        return x;
+      });
+      return Object.assign({}, state, {
+        stations: updateStations,
+      });
+    }
+    /* FIN: UPDATE */
+
     case LIST_MY_CLASS_PLANS:
       return Object.assign({}, state, {
         classPlans: action.classPlans,
