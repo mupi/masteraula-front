@@ -4,8 +4,8 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import {
   Alert,
 } from 'reactstrap';
-
-import ClassPlanForm from '../../components/classplan/ClassPlanForm';
+import ClassPlanStationsForm from 'components/classplan/ClassPlanStationsForm';
+import ClassPlanForm from 'components/classplan/ClassPlanForm';
 
 class EditClassPlanPage extends Component {
   componentDidMount() {
@@ -81,7 +81,9 @@ class EditClassPlanPage extends Component {
 
       return (
         <HomeUserPage>
-          <ClassPlanForm {...this.props} actionName="Editar" />
+          { activeClassPlan && activeClassPlan.plan_type !== 'S' ? (<ClassPlanForm {...this.props} actionName="Editar" />) : (
+            <ClassPlanStationsForm {...this.props} actionName="Editar" />
+          )}
         </HomeUserPage>
       );
     }

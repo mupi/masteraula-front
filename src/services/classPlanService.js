@@ -145,6 +145,15 @@ function convertEditClassPlanToFormData(classPlan) {
         formData.append(`links[${index}]link`, link.link);
         formData.append(`links[${index}]description_url`, link.description_url);
       });
+    } else if (name === 'stations') {
+      classPlan[name].forEach((station, index) => {
+        formData.append(`stations[${index}]description_station`, station.description_station);
+        if (station.document_ids) { formData.append(`stations[${index}]document_ids`, station.document_ids); }
+
+        if (station.learning_object_ids) { formData.append(`stations[${index}]learning_object_ids`, station.learning_object_ids); }
+
+        if (station.question_ids) { formData.append(`stations[${index}]question_ids`, station.question_ids); }
+      });
     } else if (name === 'pdf') {
       if (classPlan[name]) { formData.append(name, classPlan[name][0]); }
     } else formData.append(name, classPlan[name]);

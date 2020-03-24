@@ -23,7 +23,7 @@ const QuestionCardSimple = (props) => {
   return (
     <Card className="h-100 question-card__full">
 
-      <CardHeader className="question-card__header">
+      <CardHeader className="question-card__header text-left">
         <div className="d-flex question-card__id align-items-center">
           <div>
             { !question.source && (<FontAwesomeIcon className="question-card__authorship" icon="graduation-cap" />)}
