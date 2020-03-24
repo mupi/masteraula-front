@@ -56,6 +56,40 @@ export const REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION = 'REMOVE_MATERIAL_FROM_CLA
 export const COPY_CLASS_PLAN = 'COPY_CLASS_PLAN';
 export const COPY_CLASS_PLAN_SUCCESS = 'COPY_CLASS_PLAN_SUCCESS';
 export const COPY_CLASS_PLAN_FAILURE = 'COPY_CLASS_PLAN_FAILURE';
+
+// Select class plan's type: "T" (Traditional), "S" (Stations)
+export const selectClassPlanType = selectedClassPlanType => ({
+  type: SELECT_CLASS_PLAN_TYPE,
+  selectedClassPlanType,
+});
+
+export const resetClassPlanType = () => ({
+  type: RESET_CLASS_PLAN_TYPE,
+});
+
+/* Functions for Class Plan Station */
+export const addStationToClassPlan = station => ({
+  type: ADD_STATION_TO_CLASSPLAN,
+  station,
+});
+
+export const removeStationFromClassPlan = removedIndex => ({
+  type: REMOVE_STATION_FROM_CLASSPLAN,
+  removedIndex,
+});
+
+export const resetStationsClassPlan = () => ({
+  type: RESET_STATIONS_CLASS_PLAN,
+});
+
+export const addMaterialToClassPlanStation = (material, stationIndex, typeMaterial) => ({
+  type: ADD_MATERIAL_TO_CLASS_PLAN_STATION, material, stationIndex, typeMaterial,
+});
+
+export const removeMaterialFromClassPlanStation = (stationIndex, typeMaterial) => ({
+  type: REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION, stationIndex, typeMaterial,
+});
+
 export const fetchClassPlan = (id) => {
   function requestClassPlan() { return { type: FETCH_CLASS_PLAN }; }
   function fetchClassPlanSuccess(activeClassPlan) { return { type: FETCH_CLASS_PLAN_SUCCESS, activeClassPlan }; }
@@ -154,6 +188,7 @@ export const createClassPlan = (props) => {
     return classPlanService.createClassPlan(props).then(
       (newClassPlan) => {
         dispatch(createClassPlanSuccess(newClassPlan));
+        dispatch(resetStationsClassPlan());
         history.push(`/view-classplan/${newClassPlan.id}`);
         toast.success('Plano de aula criado com sucesso', optionsSuccess);
       },
@@ -299,37 +334,3 @@ export const copyClassPlan = (props) => {
     );
   };
 };
-
-// Select class plan's type: "T" (Traditional), "S" (Stations)
-export const selectClassPlanType = selectedClassPlanType => ({
-  type: SELECT_CLASS_PLAN_TYPE,
-  selectedClassPlanType,
-});
-
-// Select class plan's type: "T" (Traditional), "S" (Stations)
-export const resetClassPlanType = () => ({
-  type: RESET_CLASS_PLAN_TYPE,
-});
-
-/* Functions for Class Plan Station */
-export const addStationToClassPlan = station => ({
-  type: ADD_STATION_TO_CLASSPLAN,
-  station,
-});
-
-export const removeStationFromClassPlan = removedIndex => ({
-  type: REMOVE_STATION_FROM_CLASSPLAN,
-  removedIndex,
-});
-
-export const resetStationsClassPlan = () => ({
-  type: RESET_STATIONS_CLASS_PLAN,
-});
-
-export const addMaterialToClassPlanStation = (material, stationIndex, typeMaterial) => ({
-  type: ADD_MATERIAL_TO_CLASS_PLAN_STATION, material, stationIndex, typeMaterial,
-});
-
-export const removeMaterialFromClassPlanStation = (stationIndex, typeMaterial) => ({
-  type: REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION, stationIndex, typeMaterial,
-});

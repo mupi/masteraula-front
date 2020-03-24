@@ -73,7 +73,7 @@ const LearningObjectCard = (props) => {
 
   return (
     <Card className="h-100 object-card__full">
-      <CardHeader className="object-card__header">
+      <CardHeader className="object-card__header text-left">
         <div className="object-card__id">
           {`Objeto N° ${object.id} `}
           {showQuestionQuantity ? (

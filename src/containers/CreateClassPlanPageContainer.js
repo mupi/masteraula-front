@@ -50,17 +50,31 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   /* Options for Open Learning Object Base modal */
-  const openSearchLearningObjectModalProps = {
+  const openSearchLearningObjectModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
       open: true,
       titlePart: 'à plano de aula',
       closeModal: () => dispatch(hideModal()),
-      addSelectedObject: object => dispatch(addSelectedObjectToClassPlan(object)),
-      removeSelectedObject: idObject => dispatch(removeSelectedObjectToClassPlan(idObject)),
+      addSelectedObject: (object) => {
+        if (!singleSelection) {
+          dispatch(addSelectedObjectToClassPlan(object));
+        } else {
+          dispatch(addMaterialToClassPlanStation(object, stationIndex, 'O'));
+        }
+      },
+      removeSelectedObject: (idObject) => {
+        if (!singleSelection) {
+          dispatch(removeSelectedObjectToClassPlan(idObject));
+        } else {
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'O'));
+        }
+      },
       callFrom: 'C',
+      singleSelection,
+      stationIndex,
     },
     modalType: 'searchObjectModal',
-  };
+  });
 
   const openSearchDocumentModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
@@ -74,7 +88,13 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(addMaterialToClassPlanStation(document, stationIndex, 'D'));
         }
       },
-      removeSelectedDocument: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
+      removeSelectedDocument: (idDocument) => {
+        if (!singleSelection) {
+          dispatch(removeSelectedDocumentFromClassPlan(idDocument));
+        } else {
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'D'));
+        }
+      },
       listMyDocumentsModal: (page, orderField, order) => dispatch(listMyDocumentsModal(page, orderField, order)),
       callFrom: 'C',
       singleSelection,
@@ -95,8 +115,10 @@ const mapDispatchToProps = (dispatch) => {
         stations: [{}, {}],
       }));
     },
+    showSearchLearningObjectModal: (singleSelection = false, stationIndex = null) => {
+      dispatch(showModal(openSearchLearningObjectModalProps(singleSelection, stationIndex)));
+    },
 
-    showSearchLearningObjectModal: () => dispatch(showModal(openSearchLearningObjectModalProps)),
     showSearchDocumentModal: (singleSelection = false, stationIndex = null) => {
       dispatch(showModal(openSearchDocumentModalProps(singleSelection, stationIndex)));
     },

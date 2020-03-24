@@ -8,7 +8,7 @@ import DocumentCard from './DocumentCard';
 const DocumentCardList = (props) => {
   const {
     documents, sm, selectedDocumentList,
-    addSelectedDocument, removeSelectedDocument, singleSelection = false,
+    addSelectedDocument, removeSelectedDocument,
   } = props;
   const isDocumentAdded = (id) => {
     if (selectedDocumentList) {
@@ -30,31 +30,13 @@ const DocumentCardList = (props) => {
       <RemoveDocumentFromComponentButton documentId={document.id} removeSelectedDocument={removeSelectedDocument} />
     )
   );
-
-  const CardButtonSingleSelection = document => (
-    !isDocumentAdded(document.id) ? (
-      <Button className="object-card__btn" onClick={() => addSelectedDocument(document)}>
-        <FontAwesomeIcon icon="plus" className="btn__icon" />
-        {' '}
-        Adicionar
-        {' '}
-      </Button>
-    ) : (
-      <Button style={{ margin: '5px', fontSize: '13px' }} color="info">
-        <FontAwesomeIcon icon="check-circle" className="btn__icon" />
-        Selecionado
-      </Button>
-    )
-  );
-
-
   return (
     <Row>
       {documents && documents.map(document => (
         <Col sm={sm} lg="3" xs="12" key={document.id} className="object-card">
           <DocumentCard
             document={document}
-            button={!singleSelection ? CardButton(document) : CardButtonSingleSelection(document)}
+            button={CardButton(document)}
             {...props}
           />
         </Col>

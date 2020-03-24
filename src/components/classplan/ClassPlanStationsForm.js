@@ -9,6 +9,7 @@ import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEd
 import renderMultiselect from 'components/autocomplete/Multiselect';
 import { Link, Prompt } from 'react-router-dom';
 import DocumentCard from 'components/document/DocumentCard';
+import LearningObjectCard from 'components/learningObject/LearningObjectCard';
 
 import { Field, FieldArray } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
@@ -206,17 +207,32 @@ const handleRemoveMateriaButton = (e, stationIndex, typeMaterial, removeMaterial
   removeMaterialFromClassPlanStation(stationIndex, typeMaterial);
 };
 
-const StationMaterial = ({ station, stationIndex, removeMaterialFromClassPlanStation }) => (
-  <div>
-    {station.document_ids && station.material && (
+const StationMaterial = ({ station, stationIndex, removeMaterialFromClassPlanStation }) => {
+  const StationMaterialRemoveButton = typeMaterial => (
+    <Button color="danger" onClick={e => handleRemoveMateriaButton(e, stationIndex, typeMaterial, removeMaterialFromClassPlanStation)}>
+      <FontAwesomeIcon icon="trash-alt" className="btn__icon" />
+      {' '}
+      Remover
+    </Button>
+  );
+
+  return (
+    <div>
+      {station.document_ids && station.material && (
       <DocumentCard
         document={station.material}
-        button={
-          <Button color="danger" onClick={e => handleRemoveMateriaButton(e, stationIndex, 'D', removeMaterialFromClassPlanStation)}>Remover</Button>}
+        button={StationMaterialRemoveButton('D')}
       />
-    )}
-  </div>
-);
+      )}
+      {station.learning_object_ids && station.material && (
+      <LearningObjectCard
+        object={station.material}
+        button={StationMaterialRemoveButton('O')}
+      />
+      )}
+    </div>
+  );
+};
 
 export const renderStations = ({
   fields, meta: { error },
@@ -258,7 +274,7 @@ export const renderStations = ({
               />
             </Col>
             <Col sm="3" xs="9" className="text-center">
-              {stations && (!stations[i] || !stations[i].document_ids) ? (
+              {stations && (!stations[i] || (!stations[i].document_ids && !stations[i].learning_object_ids)) ? (
                 <UncontrolledDropdown>
                   <DropdownToggle title="Adicionar material" className="c-my-classplans__toggle">
                     <FontAwesomeIcon icon="plus" />
@@ -276,7 +292,7 @@ export const renderStations = ({
                     <DropdownItem divider className="label-item__divider" />
                     <DropdownItem
                       title="Adicionar objeto à estação"
-                      onClick={() => showSearchLearningObjectModal()}
+                      onClick={() => showSearchLearningObjectModal(true, i)}
                     >
                       <FontAwesomeIcon icon="image" />
                       {' '}
@@ -529,7 +545,6 @@ class ClassPlanStationsForm extends Component {
                   <FontAwesomeIcon icon="sync-alt" />
                   {' '}
                   Estações
-                  {stations.length}
                 </h5>
                 <div className="border-top my-3" />
               </Col>

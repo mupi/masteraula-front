@@ -49,17 +49,6 @@ const initialState = {
   selectedObjectList: [],
   selectedDocumentList: [],
   selectedClassPlanType: '',
-  selectedMaterialStation: {},
-  /* stations: [
-    {
-      description_station: 'texto 1', learning_object_ids: 5, document_ids: , question_ids: '',
-    },
-    {
-      description_station: 'texto 2', document_ids: 1304, learning_object_ids: '', question_ids: '',
-    },
-    {
-      description_station: 'texto 2', question_ids: 20, learning_object_ids: '', document_ids: '',
-    }], */
   stations: [
     {
       learning_object_ids: null, document_ids: null, question_ids: null, material: null,
@@ -207,8 +196,14 @@ export const classPlan = (state = initialState, action) => {
     }
     case RESET_STATIONS_CLASS_PLAN: {
       return Object.assign({}, state, {
-        stations: [],
-        selectedMaterialStation: {},
+        stations: [
+          {
+            learning_object_ids: null, document_ids: null, question_ids: null, material: null,
+          },
+          {
+            learning_object_ids: null, document_ids: null, question_ids: null, material: null,
+          },
+        ],
       });
     }
     case ADD_MATERIAL_TO_CLASS_PLAN_STATION: {
