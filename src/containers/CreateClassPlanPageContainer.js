@@ -163,9 +163,13 @@ const mapDispatchToProps = (dispatch) => {
             question_ids: props.stations[i].question_ids,
           };
         }
-        return {
-          description_station: station.description_station,
-        };
+
+        if (station.description_station) {
+          return {
+            description_station: station.description_station,
+          };
+        }
+        return {};
       }).filter(value => Object.keys(value).length !== 0);
 
       const newClassPlan = {
