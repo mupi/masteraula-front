@@ -80,6 +80,8 @@ class ViewClassPlanPage extends Component {
       );
     }
 
+    const typeClassPlanName = (activeClassPlan.plan_type === 'T') ? 'Tradicional' : 'Rotação por Estações';
+
     return (
       <HomeUserPage>
         <div className="c-question c-create-question">
@@ -117,7 +119,7 @@ class ViewClassPlanPage extends Component {
               <h4>
                 <FontAwesomeIcon icon="book" />
                 {' '}
-                Plano de Aula
+                {`Plano de Aula - ${typeClassPlanName}`}
               </h4>
             </Col>
           </Row>

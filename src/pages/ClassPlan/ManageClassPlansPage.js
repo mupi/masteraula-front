@@ -25,10 +25,12 @@ const getOrderNameField = (text) => {
 class ManageClassPlansPage extends React.Component {
   componentDidMount() {
     const {
-      match, listMyClassPlans, orderField, order,
+      // match, orderField, order,
+      listMyClassPlans,
     } = this.props;
 
-    listMyClassPlans(parseInt(match.params.page, 10), orderField, order);
+    // listMyClassPlans(parseInt(match.params.page, 10), orderField, order);
+    listMyClassPlans(1, 'create_date', 'desc');
   }
 
   componentDidUpdate(prevProps) {
