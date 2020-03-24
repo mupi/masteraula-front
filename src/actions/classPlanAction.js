@@ -109,6 +109,7 @@ export const fetchClassPlan = (id) => {
             duration: activeClassPlan.duration,
             description: activeClassPlan.description,
             pdf: activeClassPlan.pdf,
+            stations: activeClassPlan.stations.map(x => ({ description_station: x.description_station })),
             links: activeClassPlan.links,
             comment: activeClassPlan.comment,
           }));
@@ -239,6 +240,7 @@ export const updateClassPlan = (props) => {
           pdf: activeClassPlan.pdf,
           links: activeClassPlan.links,
           comment: activeClassPlan.comment,
+          stations: activeClassPlan.stations.map(x => ({ description_station: x.description_station })),
         }));
       },
       (error) => {

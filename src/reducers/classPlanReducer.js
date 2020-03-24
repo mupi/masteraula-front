@@ -76,13 +76,43 @@ export const classPlan = (state = initialState, action) => {
         isFetching: true,
         error: null,
       });
-    case FETCH_CLASS_PLAN_SUCCESS:
+    case FETCH_CLASS_PLAN_SUCCESS: {
+      /*
+      description_station: ""
+      document: null
+      id: 8
+      learning_object: {id: 5, owner: 1, source: "Léo Cunha", image: null,…}
+      question: null
+      */
+
+
+      const stationsPlan = action.activeClassPlan.plan_type !== 'S' ? [] : action.activeClassPlan.stations.map((x) => {
+        if (x.document) {
+          return {
+            learning_object_ids: null, document_ids: x.document.id, question_ids: null, material: x.document,
+          };
+        }
+        if (x.learning_object) {
+          return {
+            learning_object_ids: x.learning_object.id, document_ids: null, question_ids: null, material: x.learning_object,
+          };
+        }
+        if (x.question) {
+          return {
+            learning_object_ids: null, document_ids: null, question_ids: x.question.id, material: x.question,
+          };
+        }
+        return {};
+      });
+
       return Object.assign({}, state, {
         activeClassPlan: action.activeClassPlan,
         selectedObjectList: action.activeClassPlan.learning_objects,
         selectedDocumentList: action.activeClassPlan.documents,
+        stations: stationsPlan,
         isFetching: false,
       });
+    }
     case FETCH_CLASS_PLAN_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,

@@ -8,6 +8,9 @@ import {
   addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
   addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan, resetSelectedDocuments,
   fetchClassPlan,
+  addStationToClassPlan, removeStationFromClassPlan,
+  addMaterialToClassPlanStation,
+  removeMaterialFromClassPlanStation,
 } from 'actions/classPlanAction';
 
 import {
@@ -46,35 +49,64 @@ const mapStateToProps = (state) => {
     error: state.classPlan.error,
     isFetching: state.classPlan.isFetching,
     activeClassPlan: state.classPlan.activeClassPlan,
+    stations: state.classPlan.stations,
   });
 };
 
 const mapDispatchToProps = (dispatch) => {
   /* Options for Open Learning Object Base modal */
-  const openSearchLearningObjectModalProps = {
+  const openSearchLearningObjectModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
       open: true,
       titlePart: 'à plano de aula',
       closeModal: () => dispatch(hideModal()),
-      addSelectedObject: object => dispatch(addSelectedObjectToClassPlan(object)),
-      removeSelectedObject: idObject => dispatch(removeSelectedObjectToClassPlan(idObject)),
+      addSelectedObject: (object) => {
+        if (!singleSelection) {
+          dispatch(addSelectedObjectToClassPlan(object));
+        } else {
+          dispatch(addMaterialToClassPlanStation(object, stationIndex, 'O'));
+        }
+      },
+      removeSelectedObject: (idObject) => {
+        if (!singleSelection) {
+          dispatch(removeSelectedObjectToClassPlan(idObject));
+        } else {
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'O'));
+        }
+      },
       callFrom: 'C',
+      singleSelection,
+      stationIndex,
     },
     modalType: 'searchObjectModal',
-  };
+  });
 
-  const openSearchDocumentModalProps = {
+  const openSearchDocumentModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
       open: true,
       titlePart: 'à plano de aula',
       closeModal: () => dispatch(hideModal()),
-      addSelectedDocument: document => dispatch(addSelectedDocumentToClassPlan(document)),
-      removeSelectedDocument: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
+      addSelectedDocument: (document) => {
+        if (!singleSelection) {
+          dispatch(addSelectedDocumentToClassPlan(document));
+        } else {
+          dispatch(addMaterialToClassPlanStation(document, stationIndex, 'D'));
+        }
+      },
+      removeSelectedDocument: (idDocument) => {
+        if (!singleSelection) {
+          dispatch(removeSelectedDocumentFromClassPlan(idDocument));
+        } else {
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'D'));
+        }
+      },
       listMyDocumentsModal: (page, orderField, order) => dispatch(listMyDocumentsModal(page, orderField, order)),
       callFrom: 'C',
+      singleSelection,
+      stationIndex,
     },
     modalType: 'searchDocumentModal',
-  };
+  });
 
   return ({
     listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
@@ -83,8 +115,14 @@ const mapDispatchToProps = (dispatch) => {
     listTeachingYearFilters: param => dispatch(listTeachingYearFilters(param)),
     resetTopicList: () => dispatch(resetTopicList()),
 
-    showSearchLearningObjectModal: () => dispatch(showModal(openSearchLearningObjectModalProps)),
-    showSearchDocumentModal: () => dispatch(showModal(openSearchDocumentModalProps)),
+    showSearchLearningObjectModal: (singleSelection = false, stationIndex = null) => {
+      dispatch(showModal(openSearchLearningObjectModalProps(singleSelection, stationIndex)));
+    },
+
+    showSearchDocumentModal: (singleSelection = false, stationIndex = null) => {
+      dispatch(showModal(openSearchDocumentModalProps(singleSelection, stationIndex)));
+    },
+
 
     listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 
@@ -95,6 +133,11 @@ const mapDispatchToProps = (dispatch) => {
     removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
     fetchClassPlan: id => dispatch(fetchClassPlan(id)),
 
+    /* class plan station's functions */
+    addStationToClassPlan: station => dispatch(addStationToClassPlan(station)),
+    removeStationFromClassPlan: removedIndex => dispatch(removeStationFromClassPlan(removedIndex)),
+    removeMaterialFromClassPlanStation: (stationIndex, typeMaterial) => dispatch(removeMaterialFromClassPlanStation(stationIndex, typeMaterial)),
+    /*
     /*
   fields = (
             'id',
@@ -118,6 +161,34 @@ const mapDispatchToProps = (dispatch) => {
       const errors = [];
       const isValidFile = values.pdf && values.pdf instanceof FileList && values.pdf.length > 0;
 
+      const updateStations = values.stations.map((station, i) => {
+        if (props.stations[i].document_ids) {
+          return {
+            description_station: station.description_station,
+            document_ids: props.stations[i].document_ids,
+          };
+        }
+        if (props.stations[i].learning_object_ids) {
+          return {
+            description_station: station.description_station,
+            learning_object_ids: props.stations[i].learning_object_ids,
+          };
+        }
+        if (props.stations[i].question_ids) {
+          return {
+            description_station: station.description_station,
+            question_ids: props.stations[i].question_ids,
+          };
+        }
+
+        if (station.description_station) {
+          return {
+            description_station: station.description_station,
+          };
+        }
+        return {};
+      }).filter(value => Object.keys(value).length !== 0);
+
       const updatedClassPlan = {
         id: props.activeClassPlan.id,
         name: values.name,
@@ -128,6 +199,9 @@ const mapDispatchToProps = (dispatch) => {
           ? props.selectedObjectList.map(object => object.id) : [],
         documents_ids: props.selectedDocumentList && props.selectedDocumentList.length > 0
           ? props.selectedDocumentList.map(document => document.id) : [],
+
+        stations: updateStations,
+
         links: values.links && values.links.length > 0 ? values.links : [],
         teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],
         duration: values.duration ? values.duration : 0,
@@ -139,8 +213,6 @@ const mapDispatchToProps = (dispatch) => {
       if (overMaxSize) {
         errors.pdf = 'Insira um arquivo PDF de máx. 2mb';
       }
-
-
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
       return dispatch(updateClassPlan(updatedClassPlan));

@@ -10,6 +10,7 @@ import renderMultiselect from 'components/autocomplete/Multiselect';
 import { Link, Prompt } from 'react-router-dom';
 import DocumentCard from 'components/document/DocumentCard';
 import LearningObjectCard from 'components/learningObject/LearningObjectCard';
+import QuestionCardSimple from 'components/question/QuestionCardSimple';
 
 import { Field, FieldArray } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
@@ -230,6 +231,12 @@ const StationMaterial = ({ station, stationIndex, removeMaterialFromClassPlanSta
         button={StationMaterialRemoveButton('O')}
       />
       )}
+      {station.question_ids && station.material && (
+      <QuestionCardSimple
+        question={station.material}
+        button={StationMaterialRemoveButton('Q')}
+      />
+      )}
     </div>
   );
 };
@@ -274,7 +281,7 @@ export const renderStations = ({
               />
             </Col>
             <Col sm="3" xs="9" className="text-center">
-              {stations && (!stations[i] || (!stations[i].document_ids && !stations[i].learning_object_ids)) ? (
+              {stations && stations.length > 0 && (!stations[i] || (!stations[i].material)) ? (
                 <UncontrolledDropdown>
                   <DropdownToggle title="Adicionar material" className="c-my-classplans__toggle">
                     <FontAwesomeIcon icon="plus" />
