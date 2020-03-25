@@ -13,6 +13,7 @@ import login2Modal from './Login2Modal';
 import createDocument from './CreateDocumentModal';
 import createMyQuestionLabelModal from './CreateMyQuestionLabelModal';
 import createClassPlanModal from './CreateClassPlanModal';
+import searchQuestionModal from './SearchQuestionModal';
 
 const modalTypes = {
   alertModal,
@@ -29,6 +30,7 @@ const modalTypes = {
   createMyQuestionLabelModal,
   searchDocumentModal,
   createClassPlanModal,
+  searchQuestionModal,
 };
 
 export default modalTypes;

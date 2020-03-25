@@ -10,6 +10,7 @@ import {
   addStationToClassPlan, removeStationFromClassPlan,
   addMaterialToClassPlanStation,
   removeMaterialFromClassPlanStation,
+  resetStationsClassPlan,
 } from 'actions/classPlanAction';
 
 import {
@@ -103,6 +104,29 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'searchDocumentModal',
   });
 
+  const openSearchQuestionModalProps = (singleSelection, stationIndex) => ({
+    modalProps: {
+      open: true,
+      titlePart: 'à plano de aula',
+      closeModal: () => dispatch(hideModal()),
+      addSelectedQuestion: (question) => {
+        if (singleSelection) {
+          dispatch(addMaterialToClassPlanStation(question, stationIndex, 'Q'));
+        }
+      },
+      removeSelectedQuestion: () => {
+        if (singleSelection) {
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'Q'));
+        }
+      },
+      listMyDocumentsModal: (page, orderField, order) => dispatch(listMyDocumentsModal(page, orderField, order)),
+      callFrom: 'C',
+      singleSelection,
+      stationIndex,
+    },
+    modalType: 'searchQuestionModal',
+  });
+
   return ({
     listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
     listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
@@ -123,6 +147,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(showModal(openSearchDocumentModalProps(singleSelection, stationIndex)));
     },
 
+    showSearchQuestionModal: (singleSelection = false, stationIndex = null) => {
+      dispatch(showModal(openSearchQuestionModalProps(singleSelection, stationIndex)));
+    },
+
     listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 
     removeSelectedObjectToClassPlan: idObject => dispatch(removeSelectedObjectToClassPlan(idObject)),
@@ -132,6 +160,7 @@ const mapDispatchToProps = (dispatch) => {
     removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
 
     /* class plan station's functions */
+    resetStationsClassPlan: () => dispatch(resetStationsClassPlan()),
     addStationToClassPlan: station => dispatch(addStationToClassPlan(station)),
     removeStationFromClassPlan: removedIndex => dispatch(removeStationFromClassPlan(removedIndex)),
     removeMaterialFromClassPlanStation: (stationIndex, typeMaterial) => dispatch(removeMaterialFromClassPlanStation(stationIndex, typeMaterial)),

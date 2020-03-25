@@ -11,7 +11,8 @@ import { Link, Prompt } from 'react-router-dom';
 import { Field, FieldArray } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import SimpleLObjectCardList from 'components/learningObject/SimpleLObjectCardList';
-import DocumentCardListClassPlan from 'components/document/DocumentCardListClassPlan';
+import DocumentCardList from 'components/document/DocumentCardList';
+
 import {
   requiredValidator,
   requiredMultiSelectValidator,
@@ -462,10 +463,11 @@ class ClassPlanForm extends Component {
               </Col>
             </Row>
             { selectedDocumentList ? (
-              <DocumentCardListClassPlan
+              <DocumentCardList
+                selectedDocumentList={selectedDocumentList}
                 documents={selectedDocumentList}
-                options={optionsDocument}
                 removeSelectedDocument={removeSelectedDocumentFromClassPlan}
+                viewOnly={optionsDocument.showViewButton}
               />
             ) : '' }
             <Row className="c-question__tittle-section">

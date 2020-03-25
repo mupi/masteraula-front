@@ -20,6 +20,7 @@ const MODAL_TYPES = {
   createMyQuestionLabelModal: modalTypes.createMyQuestionLabelModal,
   searchDocumentModal: modalTypes.searchDocumentModal,
   createClassPlanModal: modalTypes.createClassPlanModal,
+  searchQuestionModal: modalTypes.searchQuestionModal,
 };
 
 const mapStateToProps = state => ({
@@ -39,8 +40,9 @@ const ModalContainer = (props) => {
   }
 
   if (modalType === 'document') modalClassName = 'modal-dialog modal-lg';
-  if (modalType === 'searchObjectModal') modalClassName = 'modal-dialog modal-xl modal-fixed';
-  if (modalType === 'searchDocumentModal') modalClassName = 'modal-dialog modal-xl modal-fixed';
+  if ((modalType === 'searchObjectModal') || (modalType === 'searchDocumentModal') || (modalType === 'searchQuestionModal')) {
+    modalClassName = 'modal-dialog modal-xl modal-fixed';
+  }
 
   const SpecifiedModal = MODAL_TYPES[modalType];
 

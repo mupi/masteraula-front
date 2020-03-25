@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Button } from 'reactstrap';
-import RemoveDocumentFromComponentButton from 'components/buttons/RemoveDocumentFromComponentButton';
+import RemoveButton from 'components/buttons/RemoveButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DocumentCard from './DocumentCard';
 
@@ -13,7 +13,7 @@ const DocumentCardListClassPlan = (props) => {
   const CardButton = document => (
     <>
       { options && options.removeButton && (
-      <RemoveDocumentFromComponentButton documentId={document.id} removeSelectedDocument={removeSelectedDocument} />)
+      <RemoveButton id={document.id} removeSelectedItem={removeSelectedDocument} itemName="prova ou lista" />)
     }
 
       { options && options.showViewButton && (

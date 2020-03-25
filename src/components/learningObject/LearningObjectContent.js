@@ -1,6 +1,6 @@
 import React from 'react';
 import { getCleanCompleteStatement, getCleanLearningObjectSource } from 'helpers/question';
-import RemoveObjectFromComponentButton from 'components/buttons/RemoveObjectFromComponentButton';
+import RemoveButton from 'components/buttons/RemoveButton';
 import {
   Button,
 } from 'reactstrap';
@@ -62,7 +62,7 @@ const LearningObjectContent = (props) => {
       }
       {options && options.removeOption ? (
         <div className="c-create-question__remove-object-btn">
-          <RemoveObjectFromComponentButton objectId={learningObject.id} removeSelectedObject={removeSelectedObject} />
+          <RemoveButton id={learningObject.id} removeSelectedItem={removeSelectedObject} itemName="objeto" />
         </div>
       ) : ''}
       { options && options.showTitle ? (
