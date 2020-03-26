@@ -3,6 +3,7 @@ import { reduxForm /* Form, Field */ } from 'redux-form';
 import {
   Input, Row, Col, Label, Button,
 } from 'reactstrap';
+// import QuestionSearchText from 'components/question/QuestionSearchText';
 import QuestionSearchTextContainer from 'containers/QuestionSearchTextContainer';
 import { history } from 'helpers';
 
