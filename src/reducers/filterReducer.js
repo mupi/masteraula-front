@@ -27,6 +27,7 @@ import {
   REMOVE_SELECTED_MYQUESTION_LABEL_FILTER,
   RESET_LIST_TOPIC_SELECTED,
   SET_SEARCH_TEXT,
+  SET_SEARCH_TEXT_MODAL,
   ADD_MYQUESTIONS_FILTER,
   CLEAR_SELECTED_FILTERS, CLEAR_SEARCH,
   CLEAN_SEARCH_INPUT,
@@ -350,6 +351,13 @@ export const filter = (state = initialState, action) => {
     case SET_SEARCH_TEXT: {
       return Object.assign({}, state, {
         searchText: action.searchText,
+      });
+    }
+
+
+    case SET_SEARCH_TEXT_MODAL: {
+      return Object.assign({}, state, {
+        searchTextModal: action.searchTextModal,
       });
     }
 

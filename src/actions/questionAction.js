@@ -384,6 +384,9 @@ export const listQuestionModal = (currentPageModal, filterQuestion) => {
     return questionService.listQuestionModal(currentPageModal, filterQuestion).then(
       (questionPageModal) => {
         dispatch(requestQuestionModalSuccess(questionPageModal));
+        dispatch(initialize('questionSearchModal', {
+          searchText: filterQuestion && filterQuestion.searchTextModal ? filterQuestion.searchTextModal : '',
+        }));
       }, (error) => {
         dispatch(requestQuestionModalFailure(error));
       },

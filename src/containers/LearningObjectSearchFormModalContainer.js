@@ -11,7 +11,6 @@ const mapStateToProps = state => ({
   search: state.filterObject.searchTextObjectModal,
   author: state.session.session.user.id,
   isFetchingObjects: state.learningObject.isFetching,
-  // preSearch: state.form.objectSearch ? state.form.objectSearch.values.searchTextObject : '',
 });
 
 const setDispatchSearchText = searchText => setSearchTextObjectModal(searchText);

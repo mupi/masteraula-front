@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Field, reduxForm, Form,
+  Field, Form,
 } from 'redux-form';
 import {
   /* Input, */ InputGroup, InputGroupAddon, Button, Row, UncontrolledTooltip,
@@ -114,6 +114,4 @@ class QuestionSearchText extends Component {
   }
 }
 
-export default reduxForm({
-  form: 'questionSearch',
-})(QuestionSearchText);
+export default QuestionSearchText;

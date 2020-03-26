@@ -341,3 +341,12 @@ export const clearSelectedFilters = () => ({
 export const clearSearch = () => ({
   type: CLEAR_SEARCH,
 });
+
+
+/* Busca no modal */
+// Set search text for Question - Modal
+export const SET_SEARCH_TEXT_MODAL = 'SET_SEARCH_TEXT_MODAL';
+
+export const setSearchTextQuestionModal = searchTextModal => ({
+  type: SET_SEARCH_TEXT_MODAL, searchTextModal,
+});

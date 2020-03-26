@@ -6,8 +6,12 @@ import {
   resetTopicListSelected,
   addSelectedSourceFilter,
   addSelectedYearFilter,
+  setSearchTextQuestionModal,
 } from 'actions/filterAction';
 import { history } from 'helpers';
+import { change, reduxForm } from 'redux-form';
+import { listTopicSuggestions } from 'actions/suggestionAction';
+import { setCurrentPageModal } from 'actions/questionAction';
 
 /*  Português : 2
     Literatura: 3
@@ -40,6 +44,8 @@ const mapStateToProps = state => ({
   topicSuggestions: state.suggestion.topicSuggestions,
 });
 
+const setDispatchSearchText = searchText => setSearchTextQuestionModal(searchText);
+
 const mapDispatchToProps = dispatch => ({
   addMyQuestionsFilter: (author, value) => {
     history.replace('/question-base/1');
@@ -57,12 +63,33 @@ const mapDispatchToProps = dispatch => ({
   addSelectedSourceFilter: idSource => dispatch(addSelectedSourceFilter(idSource)),
   addSelectedYearFilter: idDiscipline => dispatch(addSelectedYearFilter(idDiscipline)),
 
+  /* filters */
+  onSubmit: (values) => {
+    dispatch(setCurrentPageModal(1));
+    dispatch(setDispatchSearchText(values.searchText));
+  },
+  search: (searchTextModal) => {
+    dispatch(setDispatchSearchText(searchTextModal));
+  },
+  clearSearchText: () => {
+    dispatch(change('questionSearchModal', 'searchTextModal', ''));
+    dispatch((_dispatch, getState) => {
+      const { searchTextModal } = getState().filter;
+      if (searchTextModal) {
+        dispatch(setSearchTextQuestionModal(''));
+      }
+    });
+  },
+  listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
+
 });
 
 const QuestionSearchByFiltersModalContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(QuestionSearchByFilters);
+)(reduxForm({
+  form: 'questionSearchModal',
+})(QuestionSearchByFilters));
 
 
 export default QuestionSearchByFiltersModalContainer;
