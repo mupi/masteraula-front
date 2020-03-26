@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { reduxForm /* Form, Field */ } from 'redux-form';
 import {
-  Input, Row, Col, Label, Button, UncontrolledTooltip,
+  Input, Row, Col, Label, Button,
 } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import QuestionSearchText from 'components/question/QuestionSearchText';
 import QuestionSearchTextContainer from 'containers/QuestionSearchTextContainer';
 import { history } from 'helpers';
 
@@ -101,29 +101,6 @@ class QuestionSearchByFilters extends Component {
 
     return (
       <>
-        <Row>
-          <Col sm="12" className="c-question-base__title d-flex justify-content-between">
-            <div className="p-2" />
-            <div className="p-2">
-              <h4>
-                Banco de Questões
-                {' '}
-              </h4>
-            </div>
-            <div className="p-2 c-question-base__l-tooltip">
-              <span className="c-question-base__tooltip" href="#" id="TooltipExample">
-                <FontAwesomeIcon icon="info-circle" />
-              </span>
-              <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
-              Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos das questões.
-                {' '}
-              Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos.
-                {' '}
-              Combine os termos da busca com as opções de filtro disponíveis.
-              </UncontrolledTooltip>
-            </div>
-          </Col>
-        </Row>
         <QuestionSearchTextContainer />
         <Row className="c-question-base__myquestions-filter">
           <Label check>

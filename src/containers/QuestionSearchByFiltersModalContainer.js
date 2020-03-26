@@ -6,11 +6,8 @@ import {
   resetTopicListSelected,
   addSelectedSourceFilter,
   addSelectedYearFilter,
-  setSearchText,
 } from 'actions/filterAction';
 import { history } from 'helpers';
-import { listTopicSuggestions } from 'actions/suggestionAction';
-import { change } from 'redux-form';
 
 /*  Português : 2
     Literatura: 3
@@ -43,11 +40,6 @@ const mapStateToProps = state => ({
   topicSuggestions: state.suggestion.topicSuggestions,
 });
 
-const setDispatchSearchText = searchText => (dispatch) => {
-  dispatch(setSearchText(searchText));
-  history.replace('/question-base/1');
-};
-
 const mapDispatchToProps = dispatch => ({
   addMyQuestionsFilter: (author, value) => {
     history.replace('/question-base/1');
@@ -64,29 +56,13 @@ const mapDispatchToProps = dispatch => ({
 
   addSelectedSourceFilter: idSource => dispatch(addSelectedSourceFilter(idSource)),
   addSelectedYearFilter: idDiscipline => dispatch(addSelectedYearFilter(idDiscipline)),
-  onSubmit: (values) => {
-    dispatch(setDispatchSearchText(values.searchText));
-  },
-  search: (searchText) => {
-    dispatch(setDispatchSearchText(searchText));
-  },
-  clearSearchText: () => {
-    dispatch(change('questionSearch', 'searchText', ''));
-    dispatch((_dispatch, getState) => {
-      const { searchText } = getState().filter;
-      if (searchText) {
-        dispatch(setSearchText(''));
-      }
-    });
-  },
-  listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 
 });
 
-const QuestionSearchByFiltersContainer = connect(
+const QuestionSearchByFiltersModalContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(QuestionSearchByFilters);
 
 
-export default QuestionSearchByFiltersContainer;
+export default QuestionSearchByFiltersModalContainer;

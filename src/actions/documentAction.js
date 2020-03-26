@@ -262,14 +262,8 @@ export const listMyDocumentsModal = (currentPageModal) => {
     return documentService.listMyDocumentsCardsModal(currentPageModal).then(
       (documentPageModal) => {
         dispatch(requestDocumentsModalSuccess(documentPageModal));
-        /* dispatch(initialize('learningObjectSearchModal', {
-          searchTextObject: filterObject.searchTextObjectModal,
-        })); */
       }, (error) => {
         dispatch(requestDocumentsModalFailure(error));
-        /* dispatch(initialize('learningObjectSearchModal', {
-          searchTextObject: filterObject.searchTextObjectModal,
-        })); */
       },
     );
   };

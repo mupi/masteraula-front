@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 
 import CustomPaginationModal from 'components/pagination/CustomPaginationModal';
-import SimpleLObjectSearchFormContainer from 'containers/SimpleLObjectSearchFormContainer';
+import LearningObjectSearchFormModalContainer from 'containers/LearningObjectSearchFormModalContainer';
 import SimpleLObjectCardList from 'components/learningObject/SimpleLObjectCardList';
 
 
@@ -56,13 +56,13 @@ class SearchLearningObjectModal extends React.Component {
         <div className="modal-basic-operation__body modal-body modal-fixed__body">
 
           <div className="c-object-base modal-fixed__body-all">
-            <SimpleLObjectSearchFormContainer />
+            <LearningObjectSearchFormModalContainer />
             <Row className="pagination-questions modal-fixed__pagination-top" style={{ marginLeft: '80%' }}>
               <CustomPaginationModal {...this.props} {...objectPage} itensPerPage={16} disabled={isFetching} />
             </Row>
             <Row>
               <Col sm="12" className="c-object-base__total-results">
-                {'Objetos de aprendizagem encontrados:'}
+                {'Objetos de aprendizagem encontrados: '}
                 {objectPage ? objectPage.count : 0}
               </Col>
               { !singleSelection && (

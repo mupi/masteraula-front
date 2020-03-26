@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Row, Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import RemoveObjectFromComponentButton from 'components/buttons/RemoveObjectFromComponentButton';
+import RemoveButton from 'components/buttons/RemoveButton';
 import LearningObjectCard from './LearningObjectCard';
 
 const SimpleLObjectCardList = (props) => {
@@ -29,7 +29,8 @@ const SimpleLObjectCardList = (props) => {
         {' '}
       </Button>
     ) : (
-      <RemoveObjectFromComponentButton objectId={object.id} removeSelectedObject={removeSelectedObject} />
+      <RemoveButton id={object.id} removeSelectedItem={removeSelectedObject} itemName="objeto" />
+
     )
   );
 

@@ -65,6 +65,12 @@ export const REMOVE_SELECTED_LABEL_RELATED_QUESTION_AFTER_DELETING_LABEL = 'REMO
 // Set object that will added in new Question - Create question based on selected object
 export const SET_OBJECT_TO_NEW_QUESTION = 'SET_OBJECT_TO_NEW_QUESTION';
 
+// List questions from modal
+export const LIST_QUESTION_MODAL = 'LIST_QUESTION_MODAL';
+export const LIST_QUESTION_MODAL_SUCCESS = 'LIST_QUESTION_MODAL_SUCCESS';
+export const LIST_QUESTION_MODAL_FAILURE = 'LIST_QUESTION_MODAL_FAILURE';
+export const SET_CURRENT_PAGE_MODAL = 'SET_CURRENT_PAGE_MODAL';
+
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
   type: 'success',
@@ -366,4 +372,26 @@ export const removeSelectedLabelFromRelatedQuestion = (idQuestion, idLabel) => (
 // Remove Label to related questions that have label deleted
 export const removeSelectedLabelFromRelatedQuestionAfterDeletingLabel = idLabel => ({
   type: REMOVE_SELECTED_LABEL_RELATED_QUESTION_AFTER_DELETING_LABEL, idLabel,
+});
+
+// List questions - Modal
+export const listQuestionModal = (currentPageModal, filterQuestion) => {
+  function requestQuestiontModal() { return { type: LIST_QUESTION_MODAL, currentPageModal }; }
+  function requestQuestionModalSuccess(questionPageModal) { return { type: LIST_QUESTION_MODAL_SUCCESS, questionPageModal }; }
+  function requestQuestionModalFailure(error) { return { type: LIST_QUESTION_MODAL_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(requestQuestiontModal());
+    return questionService.listQuestionModal(currentPageModal, filterQuestion).then(
+      (questionPageModal) => {
+        dispatch(requestQuestionModalSuccess(questionPageModal));
+      }, (error) => {
+        dispatch(requestQuestionModalFailure(error));
+      },
+    );
+  };
+};
+
+// Set page for search objects in modal
+export const setCurrentPageModal = currentPageModal => ({
+  type: SET_CURRENT_PAGE_MODAL, currentPageModal,
 });

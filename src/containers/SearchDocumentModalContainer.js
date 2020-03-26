@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SearchDocumentModal from 'components/modal/SearchDocumentModal';
-import { listLearningObjectModal, setCurrentPageModal } from 'actions/learningObjectAction';
+import { setCurrentPageModal } from 'actions/learningObjectAction';
 
 const mapStateToProps = state => ({
   isFetching: state.document.isFetching,
@@ -12,7 +12,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  listObjects: (page, filterObject) => dispatch(listLearningObjectModal(page, filterObject)),
   setCurrentPageModal: page => dispatch(setCurrentPageModal(page)),
 });
 

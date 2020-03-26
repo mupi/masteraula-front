@@ -193,6 +193,36 @@ function deleteQuestion(idQuestion) {
     .then(idRemovedHeader => idRemovedHeader);
 }
 
+function listQuestionModal(page) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const search = null;
+
+  const url = (search)
+    ? `/questions/search/?page=${page}&${search}`
+    : `/questions/?page=${page}`;
+
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+    return data;
+  });
+
+  return fetch(`${apiUrl}${url}`, requestOptions)
+    .then(handleResponse)
+    .then(questionPage => questionPage);
+}
+
+
 const questionService = {
   rateQuestion,
   fetchQuestion,
@@ -201,6 +231,7 @@ const questionService = {
   classifyQuestion,
   updateQuestion,
   deleteQuestion,
+  listQuestionModal,
 };
 
 export default questionService;

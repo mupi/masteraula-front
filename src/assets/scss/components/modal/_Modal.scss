@@ -145,6 +145,17 @@
   width: 100%;
 }
 
+.modal-fixed__body-section-questions-scroll{
+  position: absolute;
+  top: 105px;
+  left: 0;
+  bottom: 75px;
+  overflow: auto;
+  outline: 0;
+  padding: 5px;
+  width: 100%;
+}
+
 .modal-fixed__footer{
 position: absolute;
 position: absolute;

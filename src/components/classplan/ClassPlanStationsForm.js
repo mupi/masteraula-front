@@ -243,7 +243,7 @@ const StationMaterial = ({ station, stationIndex, removeMaterialFromClassPlanSta
 
 export const renderStations = ({
   fields, meta: { error },
-  showSearchLearningObjectModal, showSearchDocumentModal,
+  showSearchLearningObjectModal, showSearchDocumentModal, showSearchQuestionModal,
   stations,
   addStationToClassPlan, removeStationFromClassPlan,
   removeMaterialFromClassPlanStation,
@@ -291,6 +291,7 @@ export const renderStations = ({
                   <DropdownMenu className="label-item__dropdown-menu" right>
                     <DropdownItem
                       title="Adicionar questão à estação"
+                      onClick={() => showSearchQuestionModal(true, i)}
                     >
                       <FontAwesomeIcon icon="book" />
                       {' '}
@@ -351,7 +352,7 @@ class ClassPlanStationsForm extends Component {
         topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
         teachingLevelFilters, handleSubmit,
         submitting, errorsClassPlan, listTopicSuggestions, user, actionName,
-        showSearchLearningObjectModal, showSearchDocumentModal,
+        showSearchLearningObjectModal, showSearchDocumentModal, showSearchQuestionModal,
         stations, addStationToClassPlan, removeStationFromClassPlan,
         removeMaterialFromClassPlanStation,
       } = this.props;
@@ -564,6 +565,7 @@ class ClassPlanStationsForm extends Component {
                   validate={minLength2Stations}
                   showSearchLearningObjectModal={showSearchLearningObjectModal}
                   showSearchDocumentModal={showSearchDocumentModal}
+                  showSearchQuestionModal={showSearchQuestionModal}
                   stations={stations}
                   addStationToClassPlan={addStationToClassPlan}
                   removeStationFromClassPlan={removeStationFromClassPlan}

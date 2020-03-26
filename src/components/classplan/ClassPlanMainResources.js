@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import DocumentCardListClassPlan from 'components/document/DocumentCardListClassPlan';
+import DocumentCardList from 'components/document/DocumentCardList';
 import SimpleLObjectCardList from 'components/learningObject/SimpleLObjectCardList';
 
 const LearningObjectsSection = (props) => {
@@ -40,9 +40,9 @@ const DocumentsSection = (props) => {
           </h6>
         </Col>
       </Row>
-      <DocumentCardListClassPlan
+      <DocumentCardList
         documents={documents}
-        options={options}
+        viewOnly={options.showViewButton}
         showDocumentModal={showDocumentModal}
       />
     </>

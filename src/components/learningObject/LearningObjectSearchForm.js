@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm, Form } from 'redux-form';
+import { Field, Form } from 'redux-form';
 import {
   Input, InputGroup, InputGroupAddon, Button, Row, Col, UncontrolledTooltip,
 } from 'reactstrap';
@@ -66,40 +66,12 @@ const renderSearchField = ({
 
 const LearningObjectSearchForm = (props) => {
   const {
-    handleSubmit, search, clearSearch, clearSearchField, isFetchingObjects, showHeader = true,
+    handleSubmit, search, clearSearch, clearSearchField, isFetchingObjects,
   } = props;
 
   return (
     <Form onSubmit={handleSubmit}>
-      {showHeader
-        ? (
-          <Row>
-            <Col sm="12" className="c-question-base__title d-flex justify-content-between">
-              <div className="p-2" />
-              <div className="p-2">
-                <h4>
-                  Tirinhas, excertos e mais
-                  {' '}
-                </h4>
-              </div>
-              <div className="p-2 c-question-base__l-tooltip">
-                <span className="c-question-base__tooltip" href="#" id="TooltipExample">
-                  <FontAwesomeIcon icon="info-circle" />
-                </span>
-                <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
-                Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos dos objetos.
-                  {' '}
-                Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos.
-                </UncontrolledTooltip>
-              </div>
-            </Col>
-          </Row>
-        )
-        : ''}
       <Row className="c-question-base__search-text">
-        <p className="c-question-base__search-info hidden">
-          Pesquisar por palavras-chave no banco de objetos de aprendizagem (Tirinhas, excertos e mais)
-        </p>
         <Field
           component={renderSearchField}
           type="text"
@@ -133,6 +105,4 @@ const LearningObjectSearchForm = (props) => {
   );
 };
 
-export default reduxForm({
-  form: 'learningObjectSearch',
-})(LearningObjectSearchForm);
+export default LearningObjectSearchForm;

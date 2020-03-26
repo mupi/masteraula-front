@@ -2,14 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import RemoveDocumentFromComponentButton from 'components/buttons/RemoveDocumentFromComponentButton';
+import RemoveButton from 'components/buttons/RemoveButton';
 import DocumentCard from './DocumentCard';
 
 const DocumentCardList = (props) => {
   const {
     documents, sm, selectedDocumentList,
-    addSelectedDocument, removeSelectedDocument,
+    addSelectedDocument, removeSelectedDocument, viewOnly = false,
+    showDocumentModal,
   } = props;
+
   const isDocumentAdded = (id) => {
     if (selectedDocumentList) {
       const documentAdded = selectedDocumentList.filter(item => (item.id === id || item.document_ids === id));
@@ -27,8 +29,15 @@ const DocumentCardList = (props) => {
         {' '}
       </Button>
     ) : (
-      <RemoveDocumentFromComponentButton documentId={document.id} removeSelectedDocument={removeSelectedDocument} />
+      <RemoveButton id={document.id} removeSelectedItem={removeSelectedDocument} itemName="prova ou lista" />
     )
+  );
+
+  const ViewCardButton = document => (
+    <Button className="btn-margin-right menu-top__document-button" onClick={() => showDocumentModal(document.id)}>
+      <FontAwesomeIcon icon="eye" className="btn__icon" />
+      Ver
+    </Button>
   );
   return (
     <Row>
@@ -36,7 +45,7 @@ const DocumentCardList = (props) => {
         <Col sm={sm} lg="3" xs="12" key={document.id} className="object-card">
           <DocumentCard
             document={document}
-            button={CardButton(document)}
+            button={!viewOnly ? CardButton(document) : ViewCardButton(document)}
             {...props}
           />
         </Col>

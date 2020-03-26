@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Row, Alert,
+  Row, Alert, Col, UncontrolledTooltip,
 } from 'reactstrap';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import LearningObjectSearchFormContainer from 'containers/LearningObjectSearchFormContainer';
@@ -51,6 +51,27 @@ class ObjectBasePage extends React.Component {
           />
         </Helmet>
         <div className="c-object-base">
+          <Row>
+            <Col sm="12" className="c-question-base__title d-flex justify-content-between">
+              <div className="p-2" />
+              <div className="p-2">
+                <h4>
+                  Tirinhas, excertos e mais
+                  {' '}
+                </h4>
+              </div>
+              <div className="p-2 c-question-base__l-tooltip">
+                <span className="c-question-base__tooltip" href="#" id="TooltipExample">
+                  <FontAwesomeIcon icon="info-circle" />
+                </span>
+                <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
+                  Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos dos objetos.
+                  {' '}
+                  Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos.
+                </UncontrolledTooltip>
+              </div>
+            </Col>
+          </Row>
           <LearningObjectSearchFormContainer />
           <Row className="pagination-questions" style={{ marginLeft: '80%' }}>
             <CustomPagination {...this.props} {...objectPage} itensPerPage={16} disabled={isFetching} />

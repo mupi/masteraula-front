@@ -108,6 +108,28 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'searchDocumentModal',
   });
 
+  const openSearchQuestionModalProps = (singleSelection, stationIndex) => ({
+    modalProps: {
+      open: true,
+      titlePart: 'à plano de aula',
+      closeModal: () => dispatch(hideModal()),
+      addSelectedQuestion: (question) => {
+        if (singleSelection) {
+          dispatch(addMaterialToClassPlanStation(question, stationIndex, 'Q'));
+        }
+      },
+      removeSelectedQuestion: () => {
+        if (singleSelection) {
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'Q'));
+        }
+      },
+      callFrom: 'C',
+      singleSelection,
+      stationIndex,
+    },
+    modalType: 'searchQuestionModal',
+  });
+
   return ({
     listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
     listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
@@ -123,6 +145,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(showModal(openSearchDocumentModalProps(singleSelection, stationIndex)));
     },
 
+    showSearchQuestionModal: (singleSelection = false, stationIndex = null) => {
+      dispatch(showModal(openSearchQuestionModalProps(singleSelection, stationIndex)));
+    },
 
     listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 

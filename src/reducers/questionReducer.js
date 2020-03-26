@@ -14,6 +14,9 @@ import {
   ADD_SELECTED_LABEL_RELATED_QUESTION, REMOVE_SELECTED_LABEL_RELATED_QUESTION,
   REMOVE_SELECTED_LABEL_QUESTION_CARD_AFTER_DELETING_LABEL,
   REMOVE_SELECTED_LABEL_RELATED_QUESTION_AFTER_DELETING_LABEL,
+  /* Question Modal */
+  LIST_QUESTION_MODAL, LIST_QUESTION_MODAL_SUCCESS, LIST_QUESTION_MODAL_FAILURE,
+  SET_CURRENT_PAGE_MODAL,
 } from 'actions/questionAction';
 import { DELETE_QUESTION, DELETE_QUESTION_SUCCESS, DELETE_QUESTION_FAILURE } from '../actions/questionAction';
 
@@ -290,6 +293,27 @@ export const question = (state = initialState, action) => {
       }
       return state;
     }
+    case LIST_QUESTION_MODAL:
+      return Object.assign({}, state, {
+        currentPageModal: action.currentPageModal,
+        isFetching: true,
+        error: null,
+      });
+    case LIST_QUESTION_MODAL_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        questionPageModal: action.questionPageModal,
+      });
+    case LIST_QUESTION_MODAL_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
+    case SET_CURRENT_PAGE_MODAL:
+      return Object.assign({}, state, {
+        currentPageModal: action.currentPageModal,
+      });
+
     default:
       return state;
   }
