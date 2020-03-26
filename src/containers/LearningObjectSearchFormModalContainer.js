@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
-import SimpleLObjectSearchForm from 'components/learningObject/SimpleLObjectSearchForm';
+import LearningObjectSearchForm from 'components/learningObject/LearningObjectSearchForm';
 import { setSearchTextObjectModal } from 'actions/filterObjectAction';
-// import { history } from 'helpers';
 import { reduxForm } from 'redux-form';
 import { setCurrentPageModal } from 'actions/learningObjectAction';
 
@@ -40,11 +39,11 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-const SimpleLObjectSearchFormContainer = connect(
+const LearningObjectSearchFormModalContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(reduxForm({
   form: 'learningObjectSearchModal',
-})(SimpleLObjectSearchForm));
+})(LearningObjectSearchForm));
 
-export default SimpleLObjectSearchFormContainer;
+export default LearningObjectSearchFormModalContainer;

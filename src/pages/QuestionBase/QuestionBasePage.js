@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Row, Alert, Col, Button,
+  Row, Alert, Col, Button, UncontrolledTooltip,
 } from 'reactstrap';
 import QuestionList from 'components/question/QuestionList';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import QuestionSearchByFiltersContainer from 'containers/QuestionSearchByFiltersContainer';
-/* import QuestionSearchFormContainer from 'containers/QuestionSearchFormContainer'; */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class QuestionBasePage extends React.Component {
   componentDidMount() {
@@ -86,6 +86,29 @@ class QuestionBasePage extends React.Component {
     return (
       <HomeUserPage showFilters showFiltersForObjectBase={false}>
         <div className="c-question-base">
+          <Row>
+            <Col sm="12" className="c-question-base__title d-flex justify-content-between">
+              <div className="p-2" />
+              <div className="p-2">
+                <h4>
+                  Banco de Questões
+                  {' '}
+                </h4>
+              </div>
+              <div className="p-2 c-question-base__l-tooltip">
+                <span className="c-question-base__tooltip" href="#" id="TooltipExample">
+                  <FontAwesomeIcon icon="info-circle" />
+                </span>
+                <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
+                Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos das questões.
+                  {' '}
+                Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos.
+                  {' '}
+                Combine os termos da busca com as opções de filtro disponíveis.
+                </UncontrolledTooltip>
+              </div>
+            </Col>
+          </Row>
           <QuestionSearchByFiltersContainer />
           { (filter.disciplinesSelected.length > 0)
           || (filter.difficultiesSelected.length > 0)

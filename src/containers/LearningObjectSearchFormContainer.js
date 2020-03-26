@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import LearningObjectSearchForm from 'components/learningObject/LearningObjectSearchForm';
 import { setSearchTextObject } from 'actions/filterObjectAction';
 import { history } from 'helpers';
+import { reduxForm } from 'redux-form';
 
 
 const mapStateToProps = state => ({
@@ -40,10 +41,13 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
+
 const LearningObjectSearchFormContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LearningObjectSearchForm);
+)(reduxForm({
+  form: 'learningObjectSearch',
+})(LearningObjectSearchForm));
 
 
 export default LearningObjectSearchFormContainer;

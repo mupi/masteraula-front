@@ -9,6 +9,7 @@ import CustomPaginationModal from 'components/pagination/CustomPaginationModal';
 import QuestionCardSimple from 'components/question/QuestionCardSimple';
 import RemoveButton from 'components/buttons/RemoveButton';
 import { listQuestionModal, setCurrentPageModal } from 'actions/questionAction';
+import QuestionSearchByFiltersContainer from 'containers/QuestionSearchByFiltersContainer';
 
 
 const QuestionCardSimpleList = (props) => {
@@ -95,7 +96,7 @@ class SearchQuestionModal extends React.Component {
         <div className="modal-basic-operation__body modal-body modal-fixed__body">
 
           <div className="c-object-base modal-fixed__body-all">
-
+            <QuestionSearchByFiltersContainer />
             <Row className="pagination-questions modal-fixed__pagination-top" style={{ marginLeft: '80%' }}>
               <CustomPaginationModal
                 {...this.props}
