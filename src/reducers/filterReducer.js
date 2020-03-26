@@ -29,6 +29,7 @@ import {
   SET_SEARCH_TEXT,
   SET_SEARCH_TEXT_MODAL,
   ADD_MYQUESTIONS_FILTER,
+  ADD_MYQUESTIONS_FILTER_MODAL,
   CLEAR_SELECTED_FILTERS, CLEAR_SEARCH,
   CLEAN_SEARCH_INPUT,
 
@@ -370,6 +371,13 @@ export const filter = (state = initialState, action) => {
     case ADD_MYQUESTIONS_FILTER: {
       return Object.assign({}, state, {
         onlyMyQuestions: action.onlyMyQuestions,
+        author: action.author,
+      });
+    }
+
+    case ADD_MYQUESTIONS_FILTER_MODAL: {
+      return Object.assign({}, state, {
+        onlyMyQuestionsModal: action.onlyMyQuestionsModal,
         author: action.author,
       });
     }

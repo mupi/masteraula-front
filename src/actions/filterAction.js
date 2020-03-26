@@ -81,6 +81,8 @@ export const SET_SEARCH_TEXT_OBJECT = 'SET_SEARCH_TEXT_OBJECT';
 
 // Set my questions filter (My questions check)
 export const ADD_MYQUESTIONS_FILTER = 'ADD_MYQUESTIONS_FILTER';
+// Set my questions filter (My questions check - in MODAL)
+export const ADD_MYQUESTIONS_FILTER_MODAL = 'ADD_MYQUESTIONS_FILTER_MODAL';
 
 // Clear all filters selected
 export const CLEAR_SELECTED_FILTERS = 'CLEAR_SELECTED_FILTERS';
@@ -326,10 +328,6 @@ export const cleanSearchInput = () => ({
   type: CLEAN_SEARCH_INPUT,
 });
 
-export const setSearchTextObject = searchText => ({
-  type: SET_SEARCH_TEXT_OBJECT, searchText,
-});
-
 export const addMyQuestionsFilter = (author, onlyMyQuestions) => ({
   type: ADD_MYQUESTIONS_FILTER, onlyMyQuestions, author,
 });
@@ -349,4 +347,8 @@ export const SET_SEARCH_TEXT_MODAL = 'SET_SEARCH_TEXT_MODAL';
 
 export const setSearchTextQuestionModal = searchTextModal => ({
   type: SET_SEARCH_TEXT_MODAL, searchTextModal,
+});
+
+export const addMyQuestionsFilterModal = (author, onlyMyQuestionsModal) => ({
+  type: ADD_MYQUESTIONS_FILTER_MODAL, onlyMyQuestionsModal, author,
 });

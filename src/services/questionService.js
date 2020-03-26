@@ -175,8 +175,9 @@ function listQuestionModal(page, filter) {
   };
   const pageParam = queryString.stringify({ page });
   const search = (filter && filter.searchTextModal) ? queryString.stringify({ text: filter.searchTextModal }) : null;
+  const author = (filter && filter.onlyMyQuestionsModal) ? queryString.stringify({ author: filter.author }) : '';
 
-  const urlParams = [pageParam, search]
+  const urlParams = [pageParam, search, author]
     .filter(p => p)
     .join('&');
 

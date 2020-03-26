@@ -90,6 +90,7 @@ class QuestionSearchByFilters extends Component {
       addSelectedSourceFilter,
       addSelectedYearFilter,
       filter,
+      onlyTerms = false,
     } = this.props;
 
     const { visible } = this.state;
@@ -116,7 +117,7 @@ class QuestionSearchByFilters extends Component {
             </strong>
           </Label>
         </Row>
-
+        {!onlyTerms && (
         <Row className="mb-2">
           <Col>
             {(topicFilters && topicFilters.length > 0) ? (
@@ -136,7 +137,10 @@ class QuestionSearchByFilters extends Component {
             ) : ''}
           </Col>
         </Row>
+        )
+        }
 
+        {!onlyTerms && (
         <Row>
           <Col sm="4" col="12" className="mb-2">
             <select
@@ -197,6 +201,7 @@ class QuestionSearchByFilters extends Component {
           </Col>
 
         </Row>
+        )}
       </>
     );
   }

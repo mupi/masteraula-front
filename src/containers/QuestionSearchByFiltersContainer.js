@@ -23,7 +23,7 @@ const mapStateToProps = state => ({
     // onlyMyQuestions: state.filter.onlyMyQuestions,
     // discipline: state.filter.disciplinesSelected && state.filter.disciplinesSelected.length > 0 ? state.filter.disciplinesSelected[0].id : -1,
   },
-  search: state.filter.searchText,
+  searchText: state.filter.searchText,
   onlyMyQuestions: state.filter.onlyMyQuestions,
   disciplineIdSelected: state.filter.disciplinesSelected && state.filter.disciplinesSelected.length > 0 ? state.filter.disciplinesSelected[0].id : -1,
   disciplinesSelected: state.filter.disciplinesSelected,

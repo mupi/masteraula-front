@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
 import QuestionSearchByFilters from 'components/question/QuestionSearchByFilters';
 import {
-  addMyQuestionsFilter, listDisciplineFilters, listSourceFilters, listYearFilters, listTeachingLevelFilters,
+  addMyQuestionsFilterModal, listDisciplineFilters, listSourceFilters, listYearFilters, listTeachingLevelFilters,
   addSelectedDisciplineFilter, addSelectedTopicFilter,
   resetTopicListSelected,
   addSelectedSourceFilter,
   addSelectedYearFilter,
   setSearchTextQuestionModal,
 } from 'actions/filterAction';
-import { history } from 'helpers';
 import { change, reduxForm } from 'redux-form';
 import { listTopicSuggestions } from 'actions/suggestionAction';
 import { setCurrentPageModal } from 'actions/questionAction';
@@ -21,11 +20,10 @@ import { setCurrentPageModal } from 'actions/questionAction';
 */
 const mapStateToProps = state => ({
   initialValues: {
-    // onlyMyQuestions: state.filter.onlyMyQuestions,
-    // discipline: state.filter.disciplinesSelected && state.filter.disciplinesSelected.length > 0 ? state.filter.disciplinesSelected[0].id : -1,
+    searchText: state.filter.searchTextModal,
   },
-  // search: state.filter.searchText,
-  onlyMyQuestions: state.filter.onlyMyQuestions,
+  searchText: state.filter.searchTextModal,
+  onlyMyQuestions: state.filter.onlyMyQuestionsModal,
   disciplineIdSelected: state.filter.disciplinesSelected && state.filter.disciplinesSelected.length > 0 ? state.filter.disciplinesSelected[0].id : -1,
   disciplinesSelected: state.filter.disciplinesSelected,
   disciplineFilters: state.filter.disciplineFiltersJoined,
@@ -48,8 +46,7 @@ const setDispatchSearchText = searchText => setSearchTextQuestionModal(searchTex
 
 const mapDispatchToProps = dispatch => ({
   addMyQuestionsFilter: (author, value) => {
-    history.replace('/question-base/1');
-    dispatch(addMyQuestionsFilter(author, value));
+    dispatch(addMyQuestionsFilterModal(author, value));
   },
   listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
   listSourceFilters: param => dispatch(listSourceFilters(param)),
@@ -72,7 +69,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setDispatchSearchText(searchTextModal));
   },
   clearSearchText: () => {
-    dispatch(change('questionSearchModal', 'searchTextModal', ''));
+    dispatch(change('questionSearchModal', 'searchText', ''));
     dispatch((_dispatch, getState) => {
       const { searchTextModal } = getState().filter;
       if (searchTextModal) {
