@@ -62,7 +62,7 @@ class SearchLearningObjectModal extends React.Component {
             </Row>
             <Row>
               <Col sm="12" className="c-object-base__total-results">
-                {'Objetos de aprendizagem encontrados:'}
+                {'Objetos de aprendizagem encontrados: '}
                 {objectPage ? objectPage.count : 0}
               </Col>
               { !singleSelection && (

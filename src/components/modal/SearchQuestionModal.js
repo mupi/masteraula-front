@@ -3,45 +3,46 @@ import {
   Button, Row, Col, Alert,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CustomPaginationModal from 'components/pagination/CustomPaginationModal';
-// import QuestionCardSimple from 'components/question/QuestionCardSimple';
-// import RemoveButton from '../buttons/RemoveButton';
+import QuestionCardSimple from 'components/question/QuestionCardSimple';
+import RemoveButton from 'components/buttons/RemoveButton';
+import { listQuestionModal, setCurrentPageModal } from 'actions/questionAction';
 
 
-/* const QuestionCardSimpleList = (props) => {
+const QuestionCardSimpleList = (props) => {
   const {
-    documents, sm, selectedDocumentList,
-    addSelectedDocument, removeSelectedDocument,
+    questions, sm, selectedQuestionList,
+    addSelectedQuestion, removeSelectedQuestion,
   } = props;
-  const isDocumentAdded = (id) => {
-    if (selectedDocumentList) {
-      const documentAdded = selectedDocumentList.filter(item => (item.id === id || item.document_ids === id));
-      return (documentAdded.length > 0);
+  const isQuestionAdded = (id) => {
+    if (selectedQuestionList) {
+      const questionAdded = selectedQuestionList.filter(item => (item.id === id || item.question_ids === id));
+      return (questionAdded.length > 0);
     }
     return false;
   };
 
-  const CardButton = document => (
-    !isDocumentAdded(document.id) ? (
-      <Button className="object-card__btn" onClick={() => addSelectedDocument(document)}>
+  const CardButton = question => (
+    !isQuestionAdded(question.id) ? (
+      <Button className="object-card__btn" onClick={() => addSelectedQuestion(question)}>
         <FontAwesomeIcon icon="plus" className="btn__icon" />
         {' '}
         Adicionar
         {' '}
       </Button>
     ) : (
-      <RemoveButton id={document.id} removeSelectedDocument={removeSelectedDocument} />
+      <RemoveButton id={question.id} removeSelectedQuestion={removeSelectedQuestion} />
     )
   );
   return (
     <Row>
-      {documents && documents.map(document => (
-        <Col sm={sm} lg="3" xs="12" key={document.id} className="object-card">
+      {questions && questions.map(question => (
+        <Col sm={sm} lg="3" xs="12" key={question.id} className="object-card">
           <QuestionCardSimple
-            document={document}
-            button={CardButton(document)}
+            question={question}
+            button={CardButton(question)}
             {...props}
           />
         </Col>
@@ -50,33 +51,31 @@ import CustomPaginationModal from 'components/pagination/CustomPaginationModal';
   );
 };
 
-*/
+
 class SearchQuestionModal extends React.Component {
   componentDidMount() {
-    /* const {
-      listObjects, clearSearch,
+    const {
+      listQuestions,
     } = this.props;
-    listObjects(parseInt(1, 10), null);
-    clearSearch(); */
+    listQuestions(parseInt(1, 10), null);
   }
 
-  /* componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     const {
-      currentPageModal, filterObject, listObjects,
+      currentPageModal, listQuestions,
     } = this.props;
-    if (currentPageModal !== prevProps.currentPageModal || filterObject !== prevProps.filterObject) {
-      listObjects(parseInt(currentPageModal, 10), filterObject);
+    if (currentPageModal !== prevProps.currentPageModal) {
+      listQuestions(parseInt(currentPageModal, 10));
     }
   }
-*/
+
   render() {
     const {
-      questionPage, isFetching, closeModal, titlePart, setCurrentPageModal,
-      /* addSelectedQuestion, removeSelectedQuestion,
-      selectedQuestionList, */
+      questionPage, isFetching, closeModal, titlePart, setCurrentPageModalProp,
+      addSelectedQuestion, removeSelectedQuestion,
       singleSelection = false,
-      /* stations,
-      stationIndex, */
+      stations,
+      stationIndex,
     } = this.props;
 
     return (
@@ -96,12 +95,19 @@ class SearchQuestionModal extends React.Component {
         <div className="modal-basic-operation__body modal-body modal-fixed__body">
 
           <div className="c-object-base modal-fixed__body-all">
+
             <Row className="pagination-questions modal-fixed__pagination-top" style={{ marginLeft: '80%' }}>
-              <CustomPaginationModal {...this.props} {...questionPage} itensPerPage={16} disabled={isFetching} />
+              <CustomPaginationModal
+                {...this.props}
+                {...questionPage}
+                setCurrentPageModal={setCurrentPageModalProp}
+                itensPerPage={16}
+                disabled={isFetching}
+              />
             </Row>
             <Row>
               <Col sm="12" className="c-object-base__total-results">
-                {'Questões encontradas:'}
+                {'Questões encontradas: '}
                 {questionPage ? questionPage.count : 0}
               </Col>
               { !singleSelection && (
@@ -118,19 +124,15 @@ class SearchQuestionModal extends React.Component {
                    Carregando  ...
                 </Alert>
               ) : (
-                /* <QuestionCardSimpleList
+                <QuestionCardSimpleList
                   addSelectedQuestion={addSelectedQuestion}
                   removeSelectedQuestion={removeSelectedQuestion}
                   sm="4"
                   {...this.props}
                   questions={questionPage ? questionPage.results : null}
-                  selectedQuestionList={!singleSelection ? selectedQuestionList : [stations[stationIndex]]}
-                  showSelectedDocuments
+                  selectedQuestionList={!singleSelection ? [] : [stations[stationIndex]]}
                   singleSelection={singleSelection}
-                /> */
-                <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
-                   Em desenvolvimento
-                </Alert>
+                />
               )
             }
             </div>
@@ -140,7 +142,7 @@ class SearchQuestionModal extends React.Component {
                 {...questionPage}
                 itensPerPage={16}
                 disabled={isFetching}
-                setCurrentPageModal={setCurrentPageModal}
+                setCurrentPageModal={setCurrentPageModalProp}
               />
             </Row>
           </div>
@@ -169,4 +171,20 @@ SearchQuestionModal.defaultProps = {
   message: '',
 };
 
-export default SearchQuestionModal;
+const mapStateToProps = state => ({
+  stations: state.classPlan.stations,
+  questionPage: state.question.questionPageModal,
+  isFetching: state.question.isFetching,
+  currentPageModal: state.question.currentPageModal,
+});
+
+const mapDispatchToProps = dispatch => ({
+
+  listQuestions: page => dispatch(listQuestionModal(page)),
+  setCurrentPageModalProp: page => dispatch(setCurrentPageModal(page)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SearchQuestionModal);

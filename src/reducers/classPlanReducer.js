@@ -77,15 +77,6 @@ export const classPlan = (state = initialState, action) => {
         error: null,
       });
     case FETCH_CLASS_PLAN_SUCCESS: {
-      /*
-      description_station: ""
-      document: null
-      id: 8
-      learning_object: {id: 5, owner: 1, source: "Léo Cunha", image: null,…}
-      question: null
-      */
-
-
       const stationsPlan = action.activeClassPlan.plan_type !== 'S' ? [] : action.activeClassPlan.stations.map((x) => {
         if (x.document) {
           return {

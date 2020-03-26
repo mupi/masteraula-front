@@ -57,7 +57,7 @@ class SearchDocumentModal extends React.Component {
             </Row>
             <Row>
               <Col sm="12" className="c-object-base__total-results">
-                {'Provas e/o listas de exercícios encontrados:'}
+                {'Provas e/o listas de exercícios encontrados: '}
                 {documentPage ? documentPage.count : 0}
               </Col>
               { !singleSelection && (
@@ -82,7 +82,6 @@ class SearchDocumentModal extends React.Component {
                   {...this.props}
                   documents={documentPage ? documentPage.results : null}
                   selectedDocumentList={!singleSelection ? selectedDocumentList : [stations[stationIndex]]}
-                  showSelectedDocuments
                   singleSelection={singleSelection}
                 />
               )

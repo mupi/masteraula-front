@@ -119,7 +119,6 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(removeMaterialFromClassPlanStation(stationIndex, 'Q'));
         }
       },
-      listMyDocumentsModal: (page, orderField, order) => dispatch(listMyDocumentsModal(page, orderField, order)),
       callFrom: 'C',
       singleSelection,
       stationIndex,
