@@ -58,7 +58,7 @@ const mapDispatchToProps = (dispatch) => {
   const openSearchLearningObjectModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
       open: true,
-      titlePart: 'à plano de aula',
+      titlePart: 'ao plano de aula',
       closeModal: () => dispatch(hideModal()),
       addSelectedObject: (object) => {
         if (!singleSelection) {
@@ -84,7 +84,7 @@ const mapDispatchToProps = (dispatch) => {
   const openSearchDocumentModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
       open: true,
-      titlePart: 'à plano de aula',
+      titlePart: 'ao plano de aula',
       closeModal: () => dispatch(hideModal()),
       addSelectedDocument: (document) => {
         if (!singleSelection) {
@@ -111,7 +111,7 @@ const mapDispatchToProps = (dispatch) => {
   const openSearchQuestionModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
       open: true,
-      titlePart: 'à plano de aula',
+      titlePart: 'ao plano de aula',
       closeModal: () => dispatch(hideModal()),
       addSelectedQuestion: (question) => {
         if (singleSelection) {
