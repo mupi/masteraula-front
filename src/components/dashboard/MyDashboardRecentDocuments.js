@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const MyDashboardRecentDocuments = (props) => {
-  const { myLastDocumentsList, switchActiveDocument, showCreateDocumentModal } = props;
+  const {
+    myLastDocumentsList,
+    switchActiveDocument, showCreateDocumentModal, showCreateClassPlanModal,
+    selectedClassPlanType,
+  } = props;
   return (
     <Row>
       <Col sm="12">
@@ -68,10 +72,13 @@ const MyDashboardRecentDocuments = (props) => {
             Criar questão
           </Link>
         </p>
-        <Link to="/create-classplan">
+        <Button
+          color="link"
+          onClick={() => showCreateClassPlanModal(selectedClassPlanType)}
+        >
           <FontAwesomeIcon className="btn__icon" icon="plus" />
-            Criar plano de aula
-        </Link>
+          Criar plano de aula
+        </Button>
       </Col>
     </Row>
   );

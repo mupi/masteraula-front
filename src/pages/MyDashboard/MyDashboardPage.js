@@ -24,6 +24,7 @@ class MyDashboardPage extends React.Component {
     const {
       myDashboard, isFetchingMyDashboard, user, myLastDocumentsList, switchActiveDocument,
       showCreateDocumentModal, addMyQuestionsFilter, quantityDocxDownloaded, cleanAllSearch,
+      selectedClassPlanType, showCreateClassPlanModal,
     } = this.props;
     return (
       <HomeUserPage>
@@ -54,6 +55,8 @@ class MyDashboardPage extends React.Component {
                 myLastDocumentsList={myLastDocumentsList}
                 switchActiveDocument={switchActiveDocument}
                 showCreateDocumentModal={showCreateDocumentModal}
+                showCreateClassPlanModal={showCreateClassPlanModal}
+                selectedClassPlanType={selectedClassPlanType}
               />
             </>
           )}
