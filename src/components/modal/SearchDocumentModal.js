@@ -102,7 +102,7 @@ class SearchDocumentModal extends React.Component {
         </div>
         <div className="modal-footer modal__footer c-object-base-modal__footer modal-fixed__footer">
           <Button color="secondary" onClick={closeModal}>
-            Fechar
+            Salvar
           </Button>
         </div>
       </div>
