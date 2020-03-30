@@ -165,6 +165,40 @@ function listQuestions(page, filter) {
     .then(questionPage => questionPage);
 }
 
+function listQuestionModal(page, filter) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+  const pageParam = queryString.stringify({ page });
+  const search = (filter && filter.searchTextModal) ? queryString.stringify({ text: filter.searchTextModal }) : null;
+  const author = (filter && filter.onlyMyQuestionsModal) ? queryString.stringify({ author: filter.author }) : '';
+
+  const urlParams = [pageParam, search, author]
+    .filter(p => p)
+    .join('&');
+
+
+  const url = (search)
+    ? `/questions/search/?${urlParams}`
+    : `/questions/?${urlParams}`;
+
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+    return data;
+  });
+
+  return fetch(`${apiUrl}${url}`, requestOptions)
+    .then(handleResponse)
+    .then(questionPage => questionPage);
+}
 
 // Question rating
 function rateQuestion() {
@@ -192,36 +226,6 @@ function deleteQuestion(idQuestion) {
     .then(handleResponse)
     .then(idRemovedHeader => idRemovedHeader);
 }
-
-function listQuestionModal(page) {
-  const requestOptions = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: authHeader(),
-    },
-  };
-
-  const search = null;
-
-  const url = (search)
-    ? `/questions/search/?page=${page}&${search}`
-    : `/questions/?page=${page}`;
-
-
-  const handleResponse = response => response.json().then((data) => {
-    if (!response.ok) {
-      const error = (data && data.email);
-      return Promise.reject(error);
-    }
-    return data;
-  });
-
-  return fetch(`${apiUrl}${url}`, requestOptions)
-    .then(handleResponse)
-    .then(questionPage => questionPage);
-}
-
 
 const questionService = {
   rateQuestion,

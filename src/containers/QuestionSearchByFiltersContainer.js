@@ -10,7 +10,7 @@ import {
 } from 'actions/filterAction';
 import { history } from 'helpers';
 import { listTopicSuggestions } from 'actions/suggestionAction';
-import { change } from 'redux-form';
+import { change, reduxForm } from 'redux-form';
 
 /*  Português : 2
     Literatura: 3
@@ -23,7 +23,7 @@ const mapStateToProps = state => ({
     // onlyMyQuestions: state.filter.onlyMyQuestions,
     // discipline: state.filter.disciplinesSelected && state.filter.disciplinesSelected.length > 0 ? state.filter.disciplinesSelected[0].id : -1,
   },
-  // search: state.filter.searchText,
+  searchText: state.filter.searchText,
   onlyMyQuestions: state.filter.onlyMyQuestions,
   disciplineIdSelected: state.filter.disciplinesSelected && state.filter.disciplinesSelected.length > 0 ? state.filter.disciplinesSelected[0].id : -1,
   disciplinesSelected: state.filter.disciplinesSelected,
@@ -86,7 +86,8 @@ const mapDispatchToProps = dispatch => ({
 const QuestionSearchByFiltersContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(QuestionSearchByFilters);
-
+)(reduxForm({
+  form: 'questionSearch',
+})(QuestionSearchByFilters));
 
 export default QuestionSearchByFiltersContainer;

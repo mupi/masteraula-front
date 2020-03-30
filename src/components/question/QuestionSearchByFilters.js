@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { reduxForm /* Form, Field */ } from 'redux-form';
 import {
   Input, Row, Col, Label, Button,
 } from 'reactstrap';
-// import QuestionSearchText from 'components/question/QuestionSearchText';
-import QuestionSearchTextContainer from 'containers/QuestionSearchTextContainer';
+import QuestionSearchText from 'components/question/QuestionSearchText';
 import { history } from 'helpers';
 
 class QuestionSearchByFilters extends Component {
@@ -92,6 +90,7 @@ class QuestionSearchByFilters extends Component {
       addSelectedSourceFilter,
       addSelectedYearFilter,
       filter,
+      onlyTerms = false,
     } = this.props;
 
     const { visible } = this.state;
@@ -101,7 +100,7 @@ class QuestionSearchByFilters extends Component {
 
     return (
       <>
-        <QuestionSearchTextContainer />
+        <QuestionSearchText {...this.props} />
         <Row className="c-question-base__myquestions-filter">
           <Label check>
             <Input
@@ -118,7 +117,7 @@ class QuestionSearchByFilters extends Component {
             </strong>
           </Label>
         </Row>
-
+        {!onlyTerms && (
         <Row className="mb-2">
           <Col>
             {(topicFilters && topicFilters.length > 0) ? (
@@ -138,7 +137,10 @@ class QuestionSearchByFilters extends Component {
             ) : ''}
           </Col>
         </Row>
+        )
+        }
 
+        {!onlyTerms && (
         <Row>
           <Col sm="4" col="12" className="mb-2">
             <select
@@ -199,11 +201,10 @@ class QuestionSearchByFilters extends Component {
           </Col>
 
         </Row>
+        )}
       </>
     );
   }
 }
 
-export default reduxForm({
-  form: 'questionSearchByFilters',
-})(QuestionSearchByFilters);
+export default QuestionSearchByFilters;

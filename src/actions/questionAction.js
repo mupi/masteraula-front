@@ -271,11 +271,6 @@ export const listQuestions = (page, filter) => {
             searchText: filter.searchText,
             onlyMyQuestions: filter.onlyMyQuestions,
           }));
-          dispatch(initialize('questionSearchByTopics', {
-            // searchText: filter.searchText,
-            // onlyMyQuestions: filter.onlyMyQuestions,
-            // discipline: filter.disciplinesSelected && filter.disciplinesSelected.length > 0 ? filter.disciplinesSelected[0].id : 0,
-          }));
         },
         (error) => {
           dispatch(fetchQuestionPageFailure(error));
@@ -384,6 +379,9 @@ export const listQuestionModal = (currentPageModal, filterQuestion) => {
     return questionService.listQuestionModal(currentPageModal, filterQuestion).then(
       (questionPageModal) => {
         dispatch(requestQuestionModalSuccess(questionPageModal));
+        dispatch(initialize('questionSearchModal', {
+          searchText: filterQuestion && filterQuestion.searchTextModal ? filterQuestion.searchTextModal : '',
+        }));
       }, (error) => {
         dispatch(requestQuestionModalFailure(error));
       },

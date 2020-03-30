@@ -9,7 +9,11 @@ import CustomPaginationModal from 'components/pagination/CustomPaginationModal';
 import QuestionCardSimple from 'components/question/QuestionCardSimple';
 import RemoveButton from 'components/buttons/RemoveButton';
 import { listQuestionModal, setCurrentPageModal } from 'actions/questionAction';
-// import QuestionSearchByFiltersModalContainer from 'containers/QuestionSearchByFiltersModalContainer';
+
+import {
+  setSearchTextQuestionModal, addMyQuestionsFilterModal,
+} from 'actions/filterAction';
+import QuestionSearchByFiltersModalContainer from 'containers/QuestionSearchByFiltersModalContainer';
 
 
 const QuestionCardSimpleList = (props) => {
@@ -56,17 +60,20 @@ const QuestionCardSimpleList = (props) => {
 class SearchQuestionModal extends React.Component {
   componentDidMount() {
     const {
-      listQuestions,
+      listQuestions, clearSearch,
     } = this.props;
     listQuestions(parseInt(1, 10), null);
+    clearSearch();
   }
 
   componentDidUpdate(prevProps) {
     const {
-      currentPageModal, listQuestions,
+      currentPageModal, listQuestions, filter,
     } = this.props;
-    if (currentPageModal !== prevProps.currentPageModal) {
-      listQuestions(parseInt(currentPageModal, 10));
+    if (currentPageModal !== prevProps.currentPageModal
+      || (filter && filter.searchTextModal !== prevProps.filter.searchTextModal)
+      || (filter.onlyMyQuestionsModal !== prevProps.filter.onlyMyQuestionsModal)) {
+      listQuestions(parseInt(currentPageModal, 10), filter);
     }
   }
 
@@ -77,6 +84,7 @@ class SearchQuestionModal extends React.Component {
       singleSelection = false,
       stations,
       stationIndex,
+      searchText,
     } = this.props;
 
     return (
@@ -96,7 +104,7 @@ class SearchQuestionModal extends React.Component {
         <div className="modal-basic-operation__body modal-body modal-fixed__body">
 
           <div className="c-object-base modal-fixed__body-all">
-            { /* <QuestionSearchByFiltersModalContainer /> */ }
+            <QuestionSearchByFiltersModalContainer {...this.props} onlyTerms />
             <Row className="pagination-questions modal-fixed__pagination-top" style={{ marginLeft: '80%' }}>
               <CustomPaginationModal
                 {...this.props}
@@ -110,6 +118,16 @@ class SearchQuestionModal extends React.Component {
               <Col sm="12" className="c-object-base__total-results">
                 {'Questões encontradas: '}
                 {questionPage ? questionPage.count : 0}
+                {searchText
+                  ? (
+                    <>
+                      {' para '}
+                      <span className="c-question-base__search-term">
+                        {searchText}
+                      </span>
+                    </>
+                  ) : ''
+                }
               </Col>
               { !singleSelection && (
               <Col sm="12" className="c-object-base-modal__selected-number">
@@ -177,12 +195,25 @@ const mapStateToProps = state => ({
   questionPage: state.question.questionPageModal,
   isFetching: state.question.isFetching,
   currentPageModal: state.question.currentPageModal,
+  filter: state.filter,
+  searchText: state.filter.searchTextModal,
 });
+
+const setDispatchSearchText = searchText => setSearchTextQuestionModal(searchText);
 
 const mapDispatchToProps = dispatch => ({
 
-  listQuestions: page => dispatch(listQuestionModal(page)),
+  listQuestions: (page, filter) => dispatch(listQuestionModal(page, filter)),
   setCurrentPageModalProp: page => dispatch(setCurrentPageModal(page)),
+  clearSearch: () => {
+    dispatch({
+      type: '@@redux-form/CHANGE',
+      payload: null,
+      meta: { form: 'questionSearchModal', field: 'searchText' },
+    });
+    dispatch(setDispatchSearchText());
+    dispatch(addMyQuestionsFilterModal(null, false));
+  },
 });
 
 export default connect(
