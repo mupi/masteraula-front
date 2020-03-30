@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Card, CardFooter, CardBody, CardHeader, Badge,
 } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CardBodyDocumentCard = (props) => {
   const { document } = props;
@@ -27,7 +26,6 @@ const DocumentCard = (props) => {
     <Card className="h-100 document-card__full">
       <CardHeader className="document-card__header text-left">
         <div className="document-card__id">
-          <FontAwesomeIcon className="question-card__authorship" icon="graduation-cap" />
           {`Prova N° ${document.id}`}
           {' '}
           <em>{`(Questões: ${document.questions_quantity})`}</em>

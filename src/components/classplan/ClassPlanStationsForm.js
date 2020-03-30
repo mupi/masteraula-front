@@ -208,6 +208,13 @@ const handleRemoveMateriaButton = (e, stationIndex, typeMaterial, removeMaterial
   removeMaterialFromClassPlanStation(stationIndex, typeMaterial);
 };
 
+const optionsFieldDocumentCard = {
+  showViewButton: true,
+  removeOption: false,
+  showTags: false,
+  showLoginModal: false,
+};
+
 const StationMaterial = ({ station, stationIndex, removeMaterialFromClassPlanStation }) => {
   const StationMaterialRemoveButton = typeMaterial => (
     <Button color="danger" onClick={e => handleRemoveMateriaButton(e, stationIndex, typeMaterial, removeMaterialFromClassPlanStation)}>
@@ -223,6 +230,7 @@ const StationMaterial = ({ station, stationIndex, removeMaterialFromClassPlanSta
       <DocumentCard
         document={station.material}
         button={StationMaterialRemoveButton('D')}
+        options={optionsFieldDocumentCard}
       />
       )}
       {station.learning_object_ids && station.material && (
