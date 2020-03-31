@@ -11,6 +11,12 @@ import {
   clearSelectedFilters, clearSearch, addMyQuestionsFilter,
 } from 'actions/filterAction';
 
+import {
+  selectClassPlanType,
+  resetClassPlanType,
+} from 'actions/classPlanAction';
+
+
 const mapStateToProps = state => ({
   isFetchingMyDashboard: state.dashboard.isFetchingMyDashboard,
   myDashboard: state.dashboard.myDashboard,
@@ -19,6 +25,9 @@ const mapStateToProps = state => ({
   isFetchingMyLastDocuments: state.document.isFetchingMyLastDocuments,
   myLastDocumentsList: state.document.myLastDocumentsList && state.document.myLastDocumentsList.results
     ? state.document.myLastDocumentsList.results.slice(0, 5) : null,
+
+  /* Class plan */
+  selectedClassPlanType: state.classPlan.selectedClassPlanType,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -29,6 +38,18 @@ const mapDispatchToProps = (dispatch) => {
     },
     modalType: 'createDocument',
   };
+
+  const createClassPlanModalProps = selectedClassPlanType => ({
+    modalProps: {
+      open: true,
+      title: 'Criar plano de aula',
+      nameAction: 'Criar',
+      selectClassPlanType: type => dispatch(selectClassPlanType(type)),
+      closeModal: () => { dispatch(hideModal()); dispatch(resetClassPlanType()); },
+      selectedClassPlanType,
+    },
+    modalType: 'createClassPlanModal',
+  });
 
   return ({
     addMyQuestionsFilter: (author, value) => dispatch(addMyQuestionsFilter(author, value)),
@@ -45,6 +66,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(clearSearch());
       dispatch(clearSelectedFilters());
     },
+    // Open Modal for selection class plan's type
+    showCreateClassPlanModal: selectedClassPlanType => dispatch(showModal(createClassPlanModalProps(selectedClassPlanType))),
+
   });
 };
 

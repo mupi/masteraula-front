@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Card, CardFooter, CardBody, CardHeader, Badge,
 } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CardBodyDocumentCard = (props) => {
   const { document } = props;
@@ -11,6 +10,7 @@ const CardBodyDocumentCard = (props) => {
   return (
     <CardBody className="document-card__body">
       <p className="question-card__extract">
+        <strong>Tópicos abordados nas questões:</strong>
         { (documentTopics.length >= 150) ? ` ${documentTopics.substring(0, 150)}${' ...'}` : documentTopics }
         {' '}
       </p>
@@ -27,10 +27,9 @@ const DocumentCard = (props) => {
     <Card className="h-100 document-card__full">
       <CardHeader className="document-card__header text-left">
         <div className="document-card__id">
-          <FontAwesomeIcon className="question-card__authorship" icon="graduation-cap" />
           {`Prova N° ${document.id}`}
           {' '}
-          <em>{`(Questões: ${document.questions_quantity})`}</em>
+          <em>{`("Nº de questões: ${document.questions_quantity})`}</em>
           <p className="document-card__name">
             {document.name}
           </p>
