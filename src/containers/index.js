@@ -30,3 +30,4 @@ export { default as ViewClassPlanPageContainer } from './ViewClassPlanPageContai
 export { default as ManageClassPlansPageContainer } from './ManageClassPlansPageContainer';
 export { default as MyDashboardPageContainer } from './MyDashboardPageContainer';
 export { default as ClassPlanSelectTypeFormContainer } from './ClassPlanSelectTypeFormContainer';
+export { default as FaqPageContainer } from './FaqPageContainer';

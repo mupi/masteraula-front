@@ -10,6 +10,7 @@ import * as learningObjectAction from './learningObjectAction';
 import * as labelAction from './labelAction';
 import * as classPlanAction from './classPlanAction';
 import * as dashboardAction from './dashboardAction';
+import * as faqAction from './faqAction';
 
 export default {
   loginAction,
@@ -24,4 +25,5 @@ export default {
   labelAction,
   classPlanAction,
   dashboardAction,
+  faqAction,
 };

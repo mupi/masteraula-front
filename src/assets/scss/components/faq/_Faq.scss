@@ -1,0 +1,32 @@
+.c-faq-page{
+    &__section{
+        padding: 3em 1em;
+    }
+
+    &__section-info{
+        margin: 0 auto;
+        max-width: 650px;
+
+        @include for-phone-only{
+            max-width: 600px;
+        }
+    }
+
+    &__detail-text{
+        font-size: 16px;
+        margin: 25px 0px 0px 0px;
+    }
+
+    &__question-section{
+        background: $color-ma-lightgray-backg;
+        cursor: pointer;
+    }
+
+    &__question-title{
+        padding: 5px;
+    }
+
+    &__question-answer{
+        padding: 15px 0px;
+    }
+}
