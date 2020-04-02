@@ -21,6 +21,7 @@ export const sendMessage = (message) => {
       .then(
         (newMessage) => {
           dispatch(sendMessageSuccess(newMessage));
+          dispatch(reset('contact-form'));
         },
         (error) => {
           dispatch(sendMessageFailure(error));
@@ -29,7 +30,7 @@ export const sendMessage = (message) => {
   };
 };
 */
-/* Send message with promise */
+/* Send message with async and wait */
 export const sendMessage = message => async (dispatch) => {
   try {
     dispatch({ type: SEND_MESSAGE });
