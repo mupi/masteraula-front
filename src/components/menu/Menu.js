@@ -100,6 +100,18 @@ class Menu extends Component {
               <DropdownItem divider />
               <DropdownItem
                 className="c-sidebar__user-dropdown-item"
+                to="/faq"
+                tag={Link}
+              >
+                <span>
+                  <FontAwesomeIcon icon="question-circle" />
+                  {' '}
+                Ajuda
+                </span>
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem
+                className="c-sidebar__user-dropdown-item"
                 onClick={(e) => { e.preventDefault(); logout(); }}
                 to="/"
                 tag={Link}
@@ -121,6 +133,11 @@ class Menu extends Component {
         <NavItem>
           <NavLink to="/nossos-planos">
             <span className="menu-notuser__option" title="Preços">Preços</span>
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/faq">
+            <span className="menu-notuser__option" title="FAQ">FAQ</span>
           </NavLink>
         </NavItem>
         <NavItem className="text-center">

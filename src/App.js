@@ -37,6 +37,7 @@ import {
   ViewClassPlanPageContainer,
   ManageClassPlansPageContainer,
   MyDashboardPageContainer,
+  FaqPageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -170,7 +171,7 @@ class App extends Component {
                 <Route path="/create-classplan/:type" component={CreateClassPlanPageContainer} />
                 <Route path="/edit-classplan/:id" component={EditClassPlanPageContainer} />
                 <Route path="/view-classplan/:id" component={ViewClassPlanPageContainer} />
-
+                <Route path="/faq" component={FaqPageContainer} />
                 <Route path="/class-plans/:page(\d+)" component={ManageClassPlansPageContainer} />
 
                 <Redirect from="/" to="/my-dashboard/" />
@@ -186,6 +187,7 @@ class App extends Component {
                 <Route path="/verify-userregister/:key" component={VerifyRegisterPageContainer} />
                 <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
                 <Route path="/terms-use" component={TermsUsePage} />
+                <Route path="/faq" component={FaqPageContainer} />
                 <Route component={NotFoundPage} />
               </Switch>
             )
