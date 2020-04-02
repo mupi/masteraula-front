@@ -189,8 +189,8 @@ TopicBasePage.propTypes = {
 };
 
 TopicBasePage.defaultProps = {
-  orderField: 'num_questions',
-  order: 'desc',
+  orderField: 'name',
+  order: 'asc',
 };
 
 export default TopicBasePage;

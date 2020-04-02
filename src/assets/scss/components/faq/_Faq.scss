@@ -1,6 +1,19 @@
 .c-faq-page{
     &__section{
         padding: 3em 1em;
+
+        @include for-phone-only{
+            padding-top: 1em;
+        }
+    }
+
+
+    &__contact-form-section{
+        padding-top: 3em;
+
+        @include for-phone-only{
+            padding-top: 1em;
+        }
     }
 
     &__section-info{
@@ -20,6 +33,7 @@
     &__question-section{
         background: $color-ma-lightgray-backg;
         cursor: pointer;
+        padding: 3px;
     }
 
     &__question-title{

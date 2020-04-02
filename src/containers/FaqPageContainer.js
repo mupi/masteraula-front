@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import FaqPage from 'pages/FAQ/FaqPage';
 import { listFaqs } from 'actions/faqAction';
+import { sendMessage } from 'actions/contactAction';
 
 const mapStateToProps = state => ({
   isLoggedIn: !!state.session.session,
@@ -11,6 +12,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   listFaqs: () => dispatch(listFaqs()),
+  submit: (values) => {
+    dispatch(sendMessage(values));
+  },
 }
 );
 

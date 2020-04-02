@@ -11,6 +11,7 @@ import * as labelAction from './labelAction';
 import * as classPlanAction from './classPlanAction';
 import * as dashboardAction from './dashboardAction';
 import * as faqAction from './faqAction';
+import * as contactAction from './contactAction';
 
 export default {
   loginAction,
@@ -26,4 +27,5 @@ export default {
   classPlanAction,
   dashboardAction,
   faqAction,
+  contactAction,
 };

@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { openSidebar } from 'actions/menuAction';
 import { hideModal } from 'actions/modalAction';
 
-const getAlertMessageDocumentExist = (activeDocument) => { 
+const getAlertMessageDocumentExist = (activeDocument) => {
   if (activeDocument) {
     return (
       <p className="text-center">
