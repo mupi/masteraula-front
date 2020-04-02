@@ -13,3 +13,4 @@ export { default as labelService } from './labelService';
 export { default as classPlanService } from './classPlanService';
 export { default as dashboardService } from './dashboardService';
 export { default as faqService } from './faqService';
+export { default as contactService } from './contactService';

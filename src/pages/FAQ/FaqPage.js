@@ -6,6 +6,7 @@ import {
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import HomeUserNotLoggedPage from 'pages/Home/HomeUserNotLoggedPage';
 import FaqCategorySection from 'components/faq/FaqCategorySection';
+import ContactForm from 'components/contact/ContactForm';
 
 const Faq = ({ faqList, isFetchingFaqs }) => {
   if (isFetchingFaqs) {
@@ -34,6 +35,32 @@ const Faq = ({ faqList, isFetchingFaqs }) => {
     </>
   );
 };
+
+const FaqContactForm = (props) => {
+  const { sendMessage } = props;
+
+  return (
+    <>
+
+      <Row className="c-faq-page__contact-form-section">
+        <Col sm="12" className="text-center">
+          <h4>
+            <strong>Não achou o que você queria?</strong>
+          </h4>
+          <p>
+            Entre en contato conosco
+          </p>
+        </Col>
+      </Row>
+      <Row>
+        <Col sm="12" md={{ size: 8, offset: 2 }} className="mb-2">
+          <ContactForm onSubmit={sendMessage} />
+        </Col>
+      </Row>
+    </>
+  );
+};
+
 class FaqPage extends Component {
   componentDidMount() {
     const {
@@ -48,10 +75,12 @@ class FaqPage extends Component {
     return isLoggedIn ? (
       <HomeUserPage>
         <Faq {...this.props} />
+        <FaqContactForm {...this.props} />
       </HomeUserPage>
     ) : (
       <HomeUserNotLoggedPage>
         <Faq {...this.props} />
+        <FaqContactForm {...this.props} />
       </HomeUserNotLoggedPage>
     );
   }
