@@ -12,7 +12,7 @@ const normalizePhone = (value) => {
   }
   return `${onlyNums.slice(0, 3)}-${onlyNums.slice(3, 6)}-${onlyNums.slice(
     6,
-    10,
+    12,
   )}`;
 };
 
