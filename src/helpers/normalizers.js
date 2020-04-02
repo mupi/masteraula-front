@@ -12,7 +12,7 @@ export const normalizePhone = (value) => {
   }
   return `${onlyNums.slice(0, 3)}-${onlyNums.slice(3, 6)}-${onlyNums.slice(
     6,
-    12,
+    11,
   )}`;
 };
 
@@ -31,6 +31,6 @@ export const normalizePhoneBr = (value) => {
   }
   return `(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 6)}-${onlyNums.slice(
     6,
-    12,
+    11,
   )}`;
 };
