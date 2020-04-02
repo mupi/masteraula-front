@@ -70,7 +70,7 @@ const ContactForm = (props) => {
         </Col>
         <Col md={6}>
           <FormGroup>
-            <Label for="examplePassword">Telefone</Label>
+            <Label for="phone">Telefone</Label>
             <Field
               name="phone"
               component="input"

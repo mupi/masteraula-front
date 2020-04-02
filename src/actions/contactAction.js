@@ -1,4 +1,5 @@
 import { contactService } from 'services';
+import { reset } from 'redux-form';
 
 // Load
 export const SEND_MESSAGE = 'SEND_MESSAGE';
@@ -34,6 +35,7 @@ export const sendMessage = message => async (dispatch) => {
     dispatch({ type: SEND_MESSAGE });
     const response = await contactService.sendMessage(message);
     dispatch({ type: SEND_MESSAGE_SUCCESS, response });
+    dispatch(reset('contact-form'));
   } catch {
     dispatch({ type: SEND_MESSAGE_FAILURE });
   }

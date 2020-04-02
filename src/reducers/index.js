@@ -17,3 +17,4 @@ export { default as label } from './labelReducer';
 export { default as classPlan } from './classPlanReducer';
 export { default as dashboard } from './dashboardReducer';
 export { default as faq } from './faqReducer';
+export { default as contact } from './contactReducer';

@@ -12,7 +12,7 @@ function sendMessage(newMessage) {
     },
   };
 
-  const url = '/labels/';
+  const url = '/contact/';
 
   return axios.post(`${apiUrl}${url}`, newMessage, requestOptions)
     .then(response => response.data).then(messageRes => messageRes);
