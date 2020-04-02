@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import normalizePhone from 'helpers/normalizers';
+import { normalizePhoneBr } from 'helpers/normalizers';
 import {
   Button, Form, FormGroup, Label, Input, Row, Col,
 } from 'reactstrap';
@@ -77,7 +77,7 @@ const ContactForm = (props) => {
               type="text"
               placeholder="Insira seu telefone"
               className="form-control"
-              normalize={normalizePhone}
+              normalize={normalizePhoneBr}
             />
           </FormGroup>
         </Col>
