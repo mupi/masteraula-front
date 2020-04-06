@@ -127,6 +127,18 @@ const SidebarMobile = ({
                     <DropdownItem divider />
                     <DropdownItem
                       className="c-sidebar__user-dropdown-item"
+                      onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/faq'); }}
+                      to="/faq"
+                    >
+                      <span>
+                        <FontAwesomeIcon icon="question-circle" />
+                        {' '}
+                        Ajuda
+                      </span>
+                    </DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem
+                      className="c-sidebar__user-dropdown-item"
                       onClick={(e) => { e.preventDefault(); logout(); openSidebar(isOpenSidebar); toggleMenu(isOpen); }}
                     >
                       <span>
