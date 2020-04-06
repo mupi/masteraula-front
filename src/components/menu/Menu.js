@@ -125,6 +125,17 @@ class Menu extends Component {
             </DropdownMenu>
           </UncontrolledDropdown>
         </NavItem>
+        <NavItem className="masteraula-nav-header__option-mr">
+          <Link
+            className="c-sidebar__user-dropdown-item"
+            to="/faq"
+            title="Ajuda"
+          >
+            <span>
+              <FontAwesomeIcon icon="question-circle" />
+            </span>
+          </Link>
+        </NavItem>
       </Nav>
     );
 
