@@ -19,6 +19,7 @@ const renderField = ({
       placeholder={placeholder}
       type={type}
       autoFocus={autoFocus}
+      className="contact-form__input form-control"
     />
     { touched
         && ((error && (
@@ -73,10 +74,9 @@ const ContactForm = (props) => {
             <Label for="phone">Telefone</Label>
             <Field
               name="phone"
-              component="input"
+              component={renderField}
               type="text"
               placeholder="Insira seu telefone"
-              className="form-control"
               normalize={normalizePhoneBr}
             />
           </FormGroup>

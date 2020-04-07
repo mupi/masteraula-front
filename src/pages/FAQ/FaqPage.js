@@ -31,9 +31,8 @@ const FaqContactForm = (props) => {
   const { submit } = props;
 
   return (
-    <>
-
-      <Row className="c-faq-page__contact-form-section">
+    <div className="c-faq-page__contact-form-section">
+      <Row>
         <Col sm="12" className="text-center">
           <h4>
             <strong>Não achou o que você queria?</strong>
@@ -48,7 +47,7 @@ const FaqContactForm = (props) => {
           <ContactForm onSubmit={submit} />
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 
