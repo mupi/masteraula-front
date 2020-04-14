@@ -71,17 +71,18 @@ export const onlineTest = (state = initialState, action) => {
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
-        activeDocument: action.newDocument,
+        activeOnlineTest: action.newOnlineTest,
         isFetching: false,
       });
     case CREATE_ONLINE_TEST_SUCCESS:
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
-        activeDocument: action.newDocument,
+        activeOnlineTest: action.newOnlineTest,
         isFetching: false,
       });
     case CREATE_ONLINE_TEST_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,

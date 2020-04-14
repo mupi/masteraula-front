@@ -1,6 +1,7 @@
 import { documentService } from 'services';
 import { history } from 'helpers';
 import { initialize } from 'redux-form';
+import onlineTestService from '../services/onlineTestService';
 
 // Load BASE DOCUMENT
 export const FETCH_BASE_DOCUMENT = 'FETCH_BASE_DOCUMENT';
@@ -48,7 +49,7 @@ export const COPY_ONLINE_TEST_FAILURE = 'COPY_ONLINE_TEST_FAILURE';
 export const fetchBaseDocument = id => async (dispatch) => {
   try {
     dispatch({ type: FETCH_BASE_DOCUMENT });
-    const baseDocument = await documentService.fetchDocument(id);
+    const baseDocument = await onlineTestService.fetchBaseDocument(id);
     dispatch({ type: FETCH_BASE_DOCUMENT_SUCCESS, baseDocument });
 
     const newQuestions = baseDocument.questions.map(q => ({
@@ -64,20 +65,19 @@ export const fetchBaseDocument = id => async (dispatch) => {
   }
 };
 
-// Create a new document
-export const createDocument = (props, isRedirect = true) => {
-  function createNewDocument() { return { type: CREATE_ONLINE_TEST }; }
-  function createDocumentSuccess(newDocument) { return { type: CREATE_ONLINE_TEST_SUCCESS, newDocument }; }
-  function createDocumentFailure(error) { return { type: CREATE_ONLINE_TEST_FAILURE, error }; }
+// Create a new online test
+export const createOnlineTest = (props) => {
+  function createNewOnlineTest() { return { type: CREATE_ONLINE_TEST }; }
+  function createOnlineTestSuccess(newOnlineTest) { return { type: CREATE_ONLINE_TEST_SUCCESS, newOnlineTest }; }
+  function createOnlineTestFailure(error) { return { type: CREATE_ONLINE_TEST_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(createNewDocument(props));
-    return documentService.createDocument(props).then(
-      (newDocument) => {
-        dispatch(createDocumentSuccess(newDocument));
-        if (isRedirect) { history.push('/question-base/1'); }
+    dispatch(createNewOnlineTest(props));
+    return onlineTestService.createOnlineTest(props).then(
+      (newOnlineTest) => {
+        dispatch(createOnlineTestSuccess(newOnlineTest));
       },
       (error) => {
-        dispatch(createDocumentFailure(error));
+        dispatch(createOnlineTestFailure(error));
       },
     );
   };

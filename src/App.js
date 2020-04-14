@@ -87,6 +87,7 @@ import {
   faFilePdf,
   faEllipsisH,
   faLaptop,
+  faCheckSquare,
   faCog,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -110,6 +111,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faLink,
   faFilePdf, faEllipsisH,
   faLaptop, faCog,
+  faCheckSquare,
   fab);
 
 

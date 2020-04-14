@@ -3,7 +3,7 @@ import {
   reduxForm, formValueSelector,
 } from 'redux-form';
 import CreateOnlineTestPage from 'pages/OnlineTest/CreateOnlineTestPage';
-import { fetchBaseDocument } from 'actions/onlineTestAction';
+import { fetchBaseDocument, createOnlineTest } from 'actions/onlineTestAction';
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('create-onlinetest');
@@ -17,6 +17,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchBaseDocument: id => dispatch(fetchBaseDocument(id)),
+  onSubmit: (values/* , d, props */) => {
+    const newOnlineTest = values;
+    return dispatch(createOnlineTest(newOnlineTest));
+  },
 }
 );
 

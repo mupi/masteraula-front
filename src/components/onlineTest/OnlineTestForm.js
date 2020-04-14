@@ -24,12 +24,13 @@ import { getCleanExtractStatement } from 'helpers/question';
 moment.locale('pt');
 momentLocalizer();
 
-const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => (
+const renderDateTimePicker = ({ input: { onChange, value }, showTime, placeholder }) => (
   <DateTimePicker
     onChange={onChange}
     format="DD/MM/YYYY"
     time={showTime}
     value={!value ? null : new Date(value)}
+    placeholder={placeholder}
   />
 );
 
@@ -297,6 +298,7 @@ const OnlineTestForm = (props) => {
                   name="startDate"
                   showTime={false}
                   component={renderDateTimePicker}
+                  placeholder="dd/mm/aaaa"
                 />
               </Col>
               <Col className="text-center" sm="4" xs="4">
@@ -307,6 +309,7 @@ const OnlineTestForm = (props) => {
                   name="endDate"
                   showTime={false}
                   component={renderDateTimePicker}
+                  placeholder="dd/mm/aaaa"
                 />
               </Col>
             </Row>
@@ -380,7 +383,43 @@ const OnlineTestForm = (props) => {
               Questões
             </h5>
             <div className="border-top my-3" />
-
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <p className="c-online__total-questions-label">
+              <strong>{`Total de ${baseDocument.questions.length} questões`}</strong>
+            </p>
+            <p className="c-online__questions-info">
+              <span className="c-online__questions-info--label">
+                <FontAwesomeIcon
+                  className="btn__icon"
+                  icon="image"
+                />
+                <strong>Mídia:</strong>
+              </span>
+              <span className="c-online__questions-info--value">2 imagens / 2 vídeos</span>
+            </p>
+            <p className="c-online__questions-info">
+              <span className="c-online__questions-info--label">
+                <FontAwesomeIcon
+                  className="btn__icon"
+                  icon="check-square"
+                />
+                <strong>Tipos de questões: </strong>
+              </span>
+              <span className="c-online__questions-info--value">2 dissertativas / 0 multipla escolha</span>
+            </p>
+            <p className="c-online__questions-info">
+              <span className="c-online__questions-info--label">
+                <FontAwesomeIcon
+                  className="btn__icon"
+                  icon="graduation-cap"
+                />
+                <strong>Aplicação: </strong>
+              </span>
+              <span className="c-onlin__questions-info-value">2 questões de vestibular / 1 questão autoral</span>
+            </p>
           </Col>
         </Row>
         <Row>
