@@ -11,7 +11,6 @@ import TermsUsePageHome from 'pages/TermsUse/TermsUsePageHome';
 import PricingPageHome from 'pages/Pricing/PricingPageHome';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 
-
 import {
   ManageDocumentsPageContainer,
   ForgotPasswordPageContainer,
@@ -38,6 +37,8 @@ import {
   ManageClassPlansPageContainer,
   MyDashboardPageContainer,
   FaqPageContainer,
+  CreateOnlineTestPageContainer,
+  ManageOnlineTestsPageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -85,6 +86,8 @@ import {
   faLink,
   faFilePdf,
   faEllipsisH,
+  faLaptop,
+  faCog,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -106,6 +109,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faTimes,
   faLink,
   faFilePdf, faEllipsisH,
+  faLaptop, faCog,
   fab);
 
 
@@ -173,6 +177,8 @@ class App extends Component {
                 <Route path="/view-classplan/:id" component={ViewClassPlanPageContainer} />
                 <Route path="/faq" component={FaqPageContainer} />
                 <Route path="/class-plans/:page(\d+)" component={ManageClassPlansPageContainer} />
+                <Route path="/create-online/:id" component={CreateOnlineTestPageContainer} />
+                <Route path="/view-onlines/:id" component={ManageOnlineTestsPageContainer} />
 
                 <Redirect from="/" to="/my-dashboard/" />
               </Switch>

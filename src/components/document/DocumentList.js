@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  Row, Col, Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle,
+  Row, Col, Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button,
 } from 'reactstrap';
 import { formatDate } from 'helpers/question';
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const OpenDocumentModalHeader = (props) => {
   const { document, openDocumentModal, children } = props;
@@ -49,6 +50,7 @@ const DocumentList = (props) => {
                 <th>Nome</th>
                 <th>Data de criação</th>
                 <th>Nº de questões</th>
+                <th>Provas online</th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -65,6 +67,14 @@ const DocumentList = (props) => {
                     {document.questions.length}
                   </OpenDocumentModalHeader>
                   <td>
+                    <Button
+                      tag={Link}
+                      to={`/view-onlines/${document.id}`}
+                    >
+                      <FontAwesomeIcon icon="cog" />
+                    </Button>
+                  </td>
+                  <td>
                     <UncontrolledDropdown>
                       <DropdownToggle title="Mais ações" className="c-my-documents__toggle">
                         <FontAwesomeIcon icon="ellipsis-h" />
@@ -80,6 +90,16 @@ const DocumentList = (props) => {
                           <FontAwesomeIcon icon="copy" />
                           {' '}
                           Duplicar
+                        </DropdownItem>
+                        <DropdownItem divider className="label-item__divider" />
+                        <DropdownItem
+                          tag={Link}
+                          to={`/create-online/${document.id}`}
+                          disabled={document.questions.length <= 0}
+                        >
+                          <FontAwesomeIcon icon="laptop" />
+                          {' '}
+                          Gerar prova online
                         </DropdownItem>
                         <DropdownItem divider className="label-item__divider" />
                         <ExportDocumentButtonContainer
