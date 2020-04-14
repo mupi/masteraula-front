@@ -1,14 +1,18 @@
 import { connect } from 'react-redux';
 import {
-  reduxForm,
+  reduxForm, formValueSelector,
 } from 'redux-form';
 import CreateOnlineTestPage from 'pages/OnlineTest/CreateOnlineTestPage';
 import { fetchBaseDocument } from 'actions/onlineTestAction';
 
-const mapStateToProps = state => ({
-  baseDocument: state.onlineTest.baseDocument,
-  isFetchingBaseDocument: state.onlineTest.isFetchingBaseDocument,
-});
+const mapStateToProps = (state) => {
+  const selector = formValueSelector('create-onlinetest');
+  return ({
+    baseDocument: state.onlineTest.baseDocument,
+    isFetchingBaseDocument: state.onlineTest.isFetchingBaseDocument,
+    typeDurationSelected: selector(state, 'typeDuration'),
+  });
+};
 
 
 const mapDispatchToProps = dispatch => ({
@@ -20,7 +24,7 @@ const CreateOnlineTestPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(reduxForm({
-  form: 'create-online',
+  form: 'create-onlinetest',
 })(CreateOnlineTestPage));
 
 export default CreateOnlineTestPageContainer;

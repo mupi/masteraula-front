@@ -1,5 +1,6 @@
 import { documentService } from 'services';
 import { history } from 'helpers';
+import { initialize } from 'redux-form';
 
 // Load BASE DOCUMENT
 export const FETCH_BASE_DOCUMENT = 'FETCH_BASE_DOCUMENT';
@@ -49,6 +50,15 @@ export const fetchBaseDocument = id => async (dispatch) => {
     dispatch({ type: FETCH_BASE_DOCUMENT });
     const baseDocument = await documentService.fetchDocument(id);
     dispatch({ type: FETCH_BASE_DOCUMENT_SUCCESS, baseDocument });
+
+    const newQuestions = baseDocument.questions.map(q => ({
+      id: q.question.id,
+      score: 0,
+    }));
+    dispatch(initialize('create-onlinetest', {
+      typeDuration: 'R',
+      onlinetest_questions: newQuestions,
+    }));
   } catch {
     dispatch({ type: FETCH_BASE_DOCUMENT_FAILURE });
   }

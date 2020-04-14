@@ -12,7 +12,7 @@ const DocumentQuestions = (props) => {
       {/* <div className="l-button-add-question">
           <GoToQuestionBaseButton customClass="o-button-add-question-doc o-button-add-question-doc--xl" />
       </div> */}
-      {activeDocument && activeDocument.questions.map((questionOrder, i) => (
+      {activeDocument && activeDocument.questions.map(questionOrder => (
         <DocumentQuestionItem
           key={questionOrder.question.id}
           question={questionOrder.question}

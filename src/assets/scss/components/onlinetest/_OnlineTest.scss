@@ -11,6 +11,17 @@
     &__end-date-label{
         text-align: right;
     }
+
+    &__duration{
+      margin-left: 15px;
+      width: 100px !important;
+    }
+
+
+    &__radio-button-field{
+      margin-left: 0px;
+      margin-top: 0.75rem;
+  }
 }
 
 //Online Test Page where c-online is the main container
@@ -87,6 +98,11 @@
 
     &__base-name{
       color: #6c757d;
+    }
+
+    &__score-label{
+      color: $color-ma-green;
+      margin-bottom:0px;
     }
 
 }

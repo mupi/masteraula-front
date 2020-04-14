@@ -1,16 +1,17 @@
 import React from 'react';
 
 import {
-  Alert, Row, Col, Button, Form, Input,
+  Alert, Row, Col, Button, Form, Input, Label, FormGroup, Badge,
 } from 'reactstrap';
 import { Link, Prompt } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Field } from 'redux-form';
+import { Field, FieldArray } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import {
   requiredValidator,
   minLength3characters,
+  minDuration,
 } from 'helpers/validators';
 import DateTimePicker from 'react-widgets/lib/DateTimePicker';
 
@@ -18,6 +19,7 @@ import moment from 'moment';
 import 'moment/locale/pt';
 
 import momentLocalizer from 'react-widgets-moment';
+import { getCleanExtractStatement } from 'helpers/question';
 
 moment.locale('pt');
 momentLocalizer();
@@ -62,10 +64,164 @@ const renderField = ({
   </div>
 );
 
+// Numeric Input Field
+const renderNumericField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error, warning },
+  className,
+}) => (
+  <div>
+    <Input
+      {...input}
+      placeholder={label}
+      type={type}
+      className={className}
+    />
+    { touched
+          && ((error && (
+          <span className="error-message-text">
+            {error}
+          </span>
+          ))
+          || (warning && (
+          <span>
+            {' '}
+            {warning}
+            {' '}
+          </span>
+          )))
+        }
+  </div>
+);
+
+const renderQuestions = ({ fields, questions }) => (
+  <>
+    {fields && fields.map((questionField, i) => {
+      const autorship = questions[i].question.authorship ? questions[i].question.authorship : questions[i].question.author.name;
+
+
+      const extractStatement = getCleanExtractStatement(questions[i].question.statement);
+
+      return (
+        <div className="c-document__question" key={questions[i].question.id}>
+          {questions[i].question.statement && (
+          <Row>
+            <Col sm="8" className="c-document__question-image">
+              {questions[i].question.disabled && (
+                <Alert color="danger" className="c-document__question-unavailable">
+                  A questão não está mais disponível no Banco de Questões.
+                </Alert>
+              )}
+              <p className="c-document__question-info-title">
+                {`Questão N° ${questions[i].question.id} `}
+                {questions[i].question.learning_objects && questions[i].question.learning_objects.length > 0 ? (
+                  <span className="c-document__question-number-learning-obj">
+                    (
+                    {' '}
+                    <FontAwesomeIcon icon="image" />
+                    {` ${questions[i].question.learning_objects.length}`}
+                    )
+                  </span>
+                ) : ''}
+                :
+              </p>
+              <p className="c-document__question-info-statement">
+                { (extractStatement.length >= 350) ? ` ${extractStatement.substring(0, 350)} ...` : extractStatement}
+              </p>
+              {(questions[i].question.tags || questions[i].question.all_topics)
+                && (questions[i].question.tags.length > 0 || questions[i].question.all_topics.length > 0) ? (
+                  <p className="c-document__question-info-row-topics">
+                    {questions[i].question.tags.concat(questions[i].question.all_topics).map(tag => <Badge key={`${questions[i].question.id}-${tag.name}`} color="success" pill>{tag.name.trim()}</Badge>)}
+                  </p>
+                ) : ''}
+
+              <Row form>
+                <Col md={6} xs="12">
+                  <FormGroup check inline>
+                    <Label for="score" className="c-online__score-label" style={{ marginRight: '7px' }}><strong>Pontuação: </strong></Label>
+                    <Field
+                      name={`${questionField}.score`}
+                      type="number"
+                      component={renderNumericField}
+                      placeholder="Ex. 5.5"
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+            </Col>
+            <Col sm="4" className="c-document__question-info">
+              <Row>
+                <Col sm="12">
+                  <p className="c-document__question-info-subtitle">
+                    Informações:
+                  </p>
+                </Col>
+                <Col sm="12">
+                  {!questions[i].question.source
+                    ? (
+                      <p className="c-document__question-info-row">
+                        {'Autoria: '}
+                        <span className="c-document__question-info-detail">{autorship}</span>
+                      </p>
+                    ) : (
+                      <>
+                        {questions[i].question.source && (
+                        <p className="c-document__question-info-row">
+                          {'Vestibular: '}
+                          <span className="c-document__question-info-detail">{questions[i].question.source}</span>
+                        </p>
+                        )}
+                        {questions[i].question.year && (
+                        <p className="c-document__question-info-row">
+                          {'Ano: '}
+                          <span className="c-document__question-info-detail">{questions[i].question.year}</span>
+                        </p>
+                        )}
+                      </>
+                    )
+                  }
+                  <p className="c-document__question-info-row">
+                    {'Níveis de Ensino: '}
+                    {questions[i].question.teaching_levels && questions[i].question.teaching_levels.map(level => (
+                      <span key={level.id} className="c-document__question-info-detail">
+                        {level.name}
+                      </span>
+                    ))}
+                  </p>
+                  <p className="c-document__question-info-row">
+                    {'Disciplinas: '}
+                    <i>{questions[i].question.disciplines && questions[i].question.disciplines.map(discipline => (discipline.name.trim())).join(', ')}</i>
+                  </p>
+                </Col>
+              </Row>
+              <Row>
+                <div className="c-document__question-view-more col-md-12">
+                  <Button onClick={() => {}}>
+                    <FontAwesomeIcon icon="search" />
+                    {' '}
+                    <span className="button-text">
+                        Ver questão
+                    </span>
+                  </Button>
+                </div>
+              </Row>
+            </Col>
+          </Row>
+          )}
+        </div>
+      );
+    })}
+
+  </>
+);
+
 const OnlineTestForm = (props) => {
   const {
     pristine, handleSubmit,
     submitting, actionName, baseDocument,
+    typeDurationSelected,
   } = props;
   return (
 
@@ -94,10 +250,10 @@ const OnlineTestForm = (props) => {
               <FontAwesomeIcon icon="laptop" />
               {` ${actionName} prova online`}
             </h4>
-            <h6>
+            <p style={{ marginBottom: '0px' }}>
               {'Derivada da prova: '}
               <strong className="c-online__base-name">{baseDocument.name}</strong>
-            </h6>
+            </p>
           </Col>
         </Row>
         <Row className="c-online__tittle-section">
@@ -110,10 +266,8 @@ const OnlineTestForm = (props) => {
           </Col>
         </Row>
         <Row className="c-create-online__row-info">
-          <Col className="info-label" sm="3" xs="3">
-            Nome
-          </Col>
-          <Col sm="9" xs="9">
+          <Col sm="12" xs="12">
+            <Label for="name">Nome</Label>
             <Field
               name="name"
               className="form-control"
@@ -124,25 +278,115 @@ const OnlineTestForm = (props) => {
           </Col>
         </Row>
         <Row className="c-create-online__row-info align-items-center">
-          <Col className="info-label" sm="3" xs="3">
-            Data início
+          <Col sm="6">
+            <Row form>
+              <Col sm="12">
+                <Label>
+                  {'Periodo ativo da prova '}
+                </Label>
+                <FontAwesomeIcon
+                  className="btn__icon-right"
+                  icon="question-circle"
+                  title="Disponibilidade da prova para os alunos"
+                />
+              </Col>
+            </Row>
+            <Row form className="align-items-center">
+              <Col sm="4" xs="4">
+                <Field
+                  name="startDate"
+                  showTime={false}
+                  component={renderDateTimePicker}
+                />
+              </Col>
+              <Col className="text-center" sm="4" xs="4">
+              até
+              </Col>
+              <Col sm="4" xs="4">
+                <Field
+                  name="endDate"
+                  showTime={false}
+                  component={renderDateTimePicker}
+                />
+              </Col>
+            </Row>
           </Col>
-          <Col sm="3" xs="3">
-            <Field
-              name="startDate"
-              showTime={false}
-              component={renderDateTimePicker}
-            />
+          <Col sm="6">
+            <Row form>
+              <Col sm="12">
+                <Label>
+                  {'Duração da prova livre ou restrita?'}
+                </Label>
+                <FontAwesomeIcon
+                  className="btn__icon-right"
+                  icon="question-circle"
+                  title="Tempo disponível para resolver a prova"
+                />
+              </Col>
+            </Row>
+            <Row form className="align-items-center">
+              <Col sm="3" xs="3">
+                <FormGroup check inline>
+                  <Label check>
+                    <Field
+                      name="typeDuration"
+                      component="input"
+                      type="radio"
+                      value="L"
+                      className="c-create-online__radio-button-field"
+                    />
+                    {' '}
+                    Livre
+                  </Label>
+                </FormGroup>
+              </Col>
+              <Col sm="6" xs="9">
+                <FormGroup check inline>
+                  <Label check>
+                    <Field
+                      name="typeDuration"
+                      component="input"
+                      type="radio"
+                      value="R"
+                      className="c-create-online__radio-button-field"
+                    />
+                    {' '}
+                    Restrita
+                  </Label>
+                  {typeDurationSelected === 'R'
+                  && (
+                    <>
+                      <Field
+                        className="c-create-online__duration c-create-online__form-field"
+                        name="duration"
+                        type="number"
+                        component={renderNumericField}
+                        label="Ex. 120"
+                        validate={minDuration}
+                      />
+                      <span style={{ marginLeft: '5px' }}>min</span>
+                    </>
+                  )
+                  }
+                </FormGroup>
+              </Col>
+            </Row>
           </Col>
-          <Col className="c-create-online__end-date-label" sm="3" xs="3">
-            Data fim
+        </Row>
+
+        <Row className="c-online__tittle-section">
+          <Col>
+            <h5>
+              Questões
+            </h5>
+            <div className="border-top my-3" />
+
           </Col>
-          <Col sm="3" xs="3">
-            <Field
-              name="endDate"
-              showTime={false}
-              component={renderDateTimePicker}
-            />
+        </Row>
+        <Row>
+          <Col>
+            <FieldArray name="onlinetest_questions" component={renderQuestions} questions={baseDocument.questions} />
+
           </Col>
         </Row>
         <Row>
