@@ -1,7 +1,11 @@
 import { documentService } from 'services';
 import { history } from 'helpers';
 import { initialize } from 'redux-form';
-import onlineTestService from '../services/onlineTestService';
+import onlineTestService from 'services/onlineTestService';
+
+import {
+  activeOnlineTest,
+} from 'pages/OnlineTest/activeOnlineTest';
 
 // Load BASE DOCUMENT
 export const FETCH_BASE_DOCUMENT = 'FETCH_BASE_DOCUMENT';
@@ -65,8 +69,18 @@ export const fetchBaseDocument = id => async (dispatch) => {
 export const fetchOnlineTest = id => async (dispatch) => {
   try {
     dispatch({ type: FETCH_ONLINE_TEST });
-    const activeOnlineTest = await onlineTestService.fetchOnlineTest(id);
-    dispatch({ type: FETCH_ONLINE_TEST_SUCCESS, activeOnlineTest });
+    const activeOnlineTestN = await onlineTestService.fetchOnlineTest(id);
+    dispatch({ type: FETCH_ONLINE_TEST_SUCCESS, activeOnlineTest, activeOnlineTestN });
+
+    // initialize online Test Edit Page for owner's
+    dispatch(initialize('edit-onlinetest', {
+      name: activeOnlineTest.name,
+      duration: activeOnlineTest.duration,
+      start_date: activeOnlineTest.start_date,
+      finish_date: activeOnlineTest.finish_date,
+      typeDuration: activeOnlineTest.duration ? 'R' : 'L',
+      onlinetest_questions: activeOnlineTest.questions.map(q => ({ id: q.question.id, score: q.score })),
+    }));
   } catch {
     dispatch({ type: FETCH_ONLINE_TEST_FAILURE });
   }
@@ -90,26 +104,26 @@ export const createOnlineTest = (props) => {
   };
 };
 
-// Update an active Document
-export const updateDocument = (props) => {
-  function updateActiveDocument() { return { type: UPDATE_ONLINE_TEST }; }
-  function updateDocumentSuccess(activeDocument) { return { type: UPDATE_ONLINE_TEST_SUCCESS, activeDocument }; }
-  function updateDocumentFailure(error) { return { type: UPDATE_ONLINE_TEST_FAILURE, error }; }
+// Update an active Online Test
+export const updateOnlineTest = (props) => {
+  function updateActiveOnlineTest() { return { type: UPDATE_ONLINE_TEST }; }
+  function updateOnlineTestSuccess(activeOnlineTestU) { return { type: UPDATE_ONLINE_TEST_SUCCESS, activeOnlineTest: activeOnlineTestU }; }
+  function updateOnlineTestFailure(error) { return { type: UPDATE_ONLINE_TEST_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(updateActiveDocument(props));
-    return documentService.updateDocument(props).then(
-      (activeDocument) => {
-        dispatch(updateDocumentSuccess(activeDocument));
+    dispatch(updateActiveOnlineTest(props));
+    return onlineTestService.updateOnlineTest(props).then(
+      (activeOnlineTestU) => {
+        dispatch(updateOnlineTestSuccess(activeOnlineTestU));
       },
       (error) => {
-        dispatch(updateDocumentFailure(error));
+        dispatch(updateOnlineTestFailure(error));
       },
     );
   };
 };
 
 // listMyDocuments using filters - v2019
-export const listMyDocuments = (page, orderField, order) => {
+export const listMyOnlineTests = (idBaseDocument, page, orderField, order) => {
   function requestDocumentPage() {
     return {
       type: LIST_MY_ONLINE_TESTS, page, orderField, order,
@@ -134,13 +148,6 @@ export const listMyDocuments = (page, orderField, order) => {
       );
   };
 };
-
-export function resetNewDocument() {
-  return {
-    type: RESET_NEW_ONLINE_TEST,
-  };
-}
-
 
 export const deleteOnlineTest = (idOnlineTest, isRedirect = false, idBaseDocument) => {
   function deleteSelectedOnlineTest() { return { type: DELETE_ONLINE_TEST }; }

@@ -34,3 +34,4 @@ export { default as FaqPageContainer } from './FaqPageContainer';
 export { default as CreateOnlineTestPageContainer } from './CreateOnlineTestPageContainer';
 export { default as ManageOnlineTestsPageContainer } from './ManageOnlineTestsPageContainer';
 export { default as ViewOnlineTestPageContainer } from './ViewOnlineTestPageContainer';
+export { default as EditOnlineTestPageContainer } from './EditOnlineTestPageContainer';

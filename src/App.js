@@ -40,6 +40,7 @@ import {
   CreateOnlineTestPageContainer,
   ManageOnlineTestsPageContainer,
   ViewOnlineTestPageContainer,
+  EditOnlineTestPageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -92,6 +93,8 @@ import {
   faCog,
   faClock,
   faHourglassStart,
+  faList,
+  faChartBar,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -117,6 +120,8 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faCheckSquare,
   faClock,
   faHourglassStart,
+  faList,
+  faChartBar,
   fab);
 
 
@@ -186,6 +191,7 @@ class App extends Component {
                 <Route path="/class-plans/:page(\d+)" component={ManageClassPlansPageContainer} />
                 <Route path="/create-online/:id" component={CreateOnlineTestPageContainer} />
                 <Route path="/view-online/:id" component={ViewOnlineTestPageContainer} />
+                <Route path="/edit-online/:id" component={EditOnlineTestPageContainer} />
                 <Route path="/online-tests/:id/:page(\d+)" component={ManageOnlineTestsPageContainer} />
 
                 <Redirect from="/" to="/my-dashboard/" />

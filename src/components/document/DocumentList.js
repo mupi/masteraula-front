@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Row, Col, Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button,
+  Row, Col, Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle,
 } from 'reactstrap';
 import { formatDate } from 'helpers/question';
 import ExportDocumentButtonContainer from 'containers/ExportDocumentButtonContainer';
@@ -67,12 +67,17 @@ const DocumentList = (props) => {
                     {document.questions.length}
                   </OpenDocumentModalHeader>
                   <td>
-                    <Button
-                      tag={Link}
+                    {document.questions.length}
+                    {' '}
+                    {document.questions.length > 0 && (
+                    <Link
                       to={`/online-tests/${document.id}/1`}
+                      className="c-my-documents__btn-manage-onlines"
+                      title="Gerenciar provas online"
                     >
                       <FontAwesomeIcon icon="cog" />
-                    </Button>
+                    </Link>
+                    )}
                   </td>
                   <td>
                     <UncontrolledDropdown>

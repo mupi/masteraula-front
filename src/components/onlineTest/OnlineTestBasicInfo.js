@@ -2,6 +2,8 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import URLCopy from 'components/onlineTest/URLCopy';
+import { formatDate } from 'helpers/question';
+import { masteraulaUrl } from 'helpers/config';
 
 const OnlineTestBasicInfo = (props) => {
   const { onlineTest } = props;
@@ -10,7 +12,7 @@ const OnlineTestBasicInfo = (props) => {
     <Row>
       <Col sm="6">
         <p className="c-online__total-questions-label">
-          <strong>{`Total de ${onlineTest.questions.length} questões`}</strong>
+          <strong>{`Total de ${onlineTest.questions_quantity} questões`}</strong>
         </p>
         <p className="c-online__questions-info">
           <span className="c-online__questions-info--label">
@@ -20,7 +22,7 @@ const OnlineTestBasicInfo = (props) => {
             />
             <strong>Periodo ativo: </strong>
           </span>
-          <span className="c-online__questions-info--value">{`Entre ${onlineTest.start_date} e ${onlineTest.finish_date}` }</span>
+          <span className="c-online__questions-info--value">{`Entre ${formatDate(onlineTest.start_date)} e ${formatDate(onlineTest.finish_date)}` }</span>
         </p>
         <p className="c-online__questions-info">
           <span className="c-online__questions-info--label">
@@ -28,7 +30,7 @@ const OnlineTestBasicInfo = (props) => {
               className="btn__icon"
               icon="hourglass-start"
             />
-            <strong>Duração:</strong>
+            <strong>Duração: </strong>
           </span>
           <span className="c-online__questions-info--value">{onlineTest.duration}</span>
         </p>
@@ -38,9 +40,11 @@ const OnlineTestBasicInfo = (props) => {
               className="btn__icon"
               icon="image"
             />
-            <strong>Mídia:</strong>
+            <strong>Mídia: </strong>
           </span>
-          <span className="c-online__questions-info--value">2 imagens / 2 vídeos</span>
+          <span className="c-online__questions-info--value">
+            { `${onlineTest.media_questions} objetos de aprendizagem`}
+          </span>
         </p>
         <p className="c-online__questions-info">
           <span className="c-online__questions-info--label">
@@ -50,7 +54,10 @@ const OnlineTestBasicInfo = (props) => {
             />
             <strong>Tipos de questões: </strong>
           </span>
-          <span className="c-online__questions-info--value">2 dissertativas / 0 multipla escolha</span>
+          <span className="c-online__questions-info--value">
+            { `${onlineTest.types_questions.dissertation_quantity} dissertativas / `}
+            { `${onlineTest.types_questions.objective_quantity} multipla escolha`}
+          </span>
         </p>
         <p className="c-online__questions-info">
           <span className="c-online__questions-info--label">
@@ -60,12 +67,15 @@ const OnlineTestBasicInfo = (props) => {
             />
             <strong>Aplicação: </strong>
           </span>
-          <span className="c-onlin__questions-info-value">2 questões de vestibular / 1 questão autoral</span>
+          <span className="c-online__questions-info--value">
+            { `${onlineTest.application.exam_quantity} questões de vestibular / `}
+            { `${onlineTest.application.authoral_quantity} questão autoral`}
+          </span>
         </p>
       </Col>
 
       <Col sm="6">
-        <URLCopy url={onlineTest.link} />
+        <URLCopy url={`${masteraulaUrl}/apply-online/${onlineTest.link}`} />
       </Col>
     </Row>
   );

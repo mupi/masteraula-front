@@ -241,7 +241,7 @@ const renderQuestions = ({ fields, questions }) => (
 const OnlineTestForm = (props) => {
   const {
     pristine, handleSubmit,
-    submitting, actionName, baseDocument,
+    submitting, actionName, baseDoc, onlineTest,
     typeDurationSelected,
   } = props;
   return (
@@ -273,7 +273,7 @@ const OnlineTestForm = (props) => {
             </h4>
             <p style={{ marginBottom: '0px' }}>
               {'Derivada da prova: '}
-              <strong className="c-online__base-name">{baseDocument.name}</strong>
+              <strong className="c-online__base-name">{baseDoc.name}</strong>
             </p>
           </Col>
         </Row>
@@ -410,7 +410,7 @@ const OnlineTestForm = (props) => {
         <Row>
           <Col>
             <p className="c-online__total-questions-label">
-              <strong>{`Total de ${baseDocument.questions.length} questões`}</strong>
+              <strong>{`Total de ${onlineTest.questions.length} questões`}</strong>
             </p>
             <p className="c-online__questions-info">
               <span className="c-online__questions-info--label">
@@ -446,7 +446,7 @@ const OnlineTestForm = (props) => {
         </Row>
         <Row>
           <Col>
-            <FieldArray name="onlinetest_questions" component={renderQuestions} questions={baseDocument.questions} />
+            <FieldArray name="onlinetest_questions" component={renderQuestions} questions={onlineTest.questions} />
 
           </Col>
         </Row>

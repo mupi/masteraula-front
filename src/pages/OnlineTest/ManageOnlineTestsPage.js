@@ -7,6 +7,10 @@ import {
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import BackUsingHistory from 'components/question/BackUsingHistory';
+import {
+  onlineTests,
+} from 'pages/OnlineTest/activeOnlineTest';
+import OnlineTestList from 'components/onlineTest/OnlineTestList';
 
 const getOrderNameField = (text) => {
   switch (text) {
@@ -22,6 +26,7 @@ const getOrderNameField = (text) => {
 
 const ManageOnlineTestsPage = (props) => {
   const show = false;
+  const { showDeleteModal } = props;
   return (
 
     <HomeUserPage>
@@ -33,18 +38,18 @@ const ManageOnlineTestsPage = (props) => {
         </Row>
         <Row className="c-question__tittle-section c-question--space-for-titlequestion">
           <Col sm="12">
-            <h4>Prova: </h4>
-          </Col>
-          <Col sm="12">
-            <h4>Histórico de provas online</h4>
+            <h4>
+              {'Versões online de: '}
+              <span className="c-online__name">Prova de Português</span>
+            </h4>
           </Col>
         </Row>
         <Row>
           <Col sm="12">
             <CustomPagination {...props} itensPerPage={10} className="pagination-my-classplans" />
             <p className="c-my-documents__total-results">
-              {'Provas online encontradas:'}
-              {' '}
+              {'Provas online encontradas: '}
+              {onlineTests.length}
             </p>
             { show ? (
               <Alert className="alert--warning" color="warning" fade={false}>
@@ -73,6 +78,10 @@ const ManageOnlineTestsPage = (props) => {
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </div>
+
+                { onlineTests
+                  && <OnlineTestList onlineTests={onlineTests} showDeleteModal={showDeleteModal} />
+                }
               </div>
             )}
           </Col>

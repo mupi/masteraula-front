@@ -37,7 +37,7 @@ const CreateOnlineTestPage = (props) => {
 
   return (
     <HomeUserPage>
-      {baseDocument && <OnlineTestForm {...props} actionName="Criar" />}
+      {baseDocument && <OnlineTestForm {...props} actionName="Criar" baseDoc={baseDocument} onlineTest={baseDocument} />}
     </HomeUserPage>
   );
 };

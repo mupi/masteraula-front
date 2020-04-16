@@ -130,4 +130,36 @@
       }
     }
 
+    &__status{
+      font-size:10px;
+      &--active{
+        color: $color-ma-green;
+      }
+
+      &--inactive{
+        color: $color-ma-blue-gray;
+
+      }
+    }
+}
+
+.c-my-onlines{
+  .table-responsive{
+      @include for-tablet-landscape-up{
+        overflow: inherit !important;
+      }
+    }
+    
+  &__btn-remove{
+      color: $color-ma-red;
+  
+      &:active{
+        color: $color-ma-white;
+        background-color: $color-ma-red;
+      }
+      &:hover{
+        color: $color-ma-white;
+        background-color: $color-ma-red;
+      }
+    }
 }
