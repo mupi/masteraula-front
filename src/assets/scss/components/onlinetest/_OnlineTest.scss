@@ -65,6 +65,10 @@
       padding-top: 45px;
     }
 
+    &__name{
+      color: $color-ma-lightgray;
+    }
+
     &__row-footer-options{
       margin: 15px 0px 0px;
     }
@@ -112,7 +116,7 @@
     }
 
     &__questions-info{
-      margin-bottom:0px;
+      margin-bottom:10px;
       font-size:13px;
 
       &--label{

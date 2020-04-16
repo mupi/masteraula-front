@@ -4,7 +4,6 @@ import {
   CREATE_ONLINE_TEST, CREATE_ONLINE_TEST_SUCCESS, CREATE_ONLINE_TEST_FAILURE,
   UPDATE_ONLINE_TEST, UPDATE_ONLINE_TEST_SUCCESS, UPDATE_ONLINE_TEST_FAILURE,
   LIST_MY_ONLINE_TESTS, LIST_MY_ONLINE_TESTS_SUCCESS, LIST_MY_ONLINE_TESTS_FAILURE,
-  DELETE_ONLINE_TEST_SESSION,
   DELETE_ONLINE_TEST, DELETE_ONLINE_TEST_SUCCESS, DELETE_ONLINE_TEST_FAILURE,
   COPY_ONLINE_TEST, COPY_ONLINE_TEST_SUCCESS, COPY_ONLINE_TEST_FAILURE,
 
@@ -53,18 +52,18 @@ export const onlineTest = (state = initialState, action) => {
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
-        isFetching: true,
+        isFetchingOnlineTest: true,
         error: null,
         isDeleted: false,
       });
     case FETCH_ONLINE_TEST_SUCCESS:
       return Object.assign({}, state, {
-        baseDocument: action.baseDocument,
-        isFetching: false,
+        activeOnlineTest: action.activeOnlineTest,
+        isFetchingOnlineTest: false,
       });
     case FETCH_ONLINE_TEST_FAILURE:
       return Object.assign({}, state, {
-        isFetching: false,
+        isFetchingOnlineTest: false,
         error: action.error,
       });
     case CREATE_ONLINE_TEST:
@@ -130,29 +129,17 @@ export const onlineTest = (state = initialState, action) => {
         error: action.error,
       });
     }
-    case DELETE_ONLINE_TEST_SESSION: {
-      return Object.assign({}, state, {
-        activeDocument: null,
-      });
-    }
     case DELETE_ONLINE_TEST: {
       return Object.assign({}, state, {
-        isDeletingDocument: true,
+        isDeleting: true,
         isDeleted: false,
       });
     }
     case DELETE_ONLINE_TEST_SUCCESS: {
-      const newList = state.myDocumentsList.results.filter(item => item.id !== action.idDocumentRemoved);
-      let newActive = state.activeDocument;
-      if (state.activeDocument && state.activeDocument.id === action.idDocumentRemoved) {
-        newActive = null;
-        localStorage.setItem('activeDocument', null);
-      }
-      toast.success('Prova removida com sucesso', optionsSuccess);
+      toast.success('Prova Online removida com sucesso', optionsSuccess);
       return Object.assign({}, state, {
-        activeDocument: newActive,
+        // classPlans: newClassPlans,
         isDeleted: true,
-        myDocumentsList: { ...state.myDocumentsList, count: state.myDocumentsList.count - 1, results: newList },
       });
     }
     case DELETE_ONLINE_TEST_FAILURE: {

@@ -69,7 +69,7 @@ const DocumentList = (props) => {
                   <td>
                     <Button
                       tag={Link}
-                      to={`/view-onlines/${document.id}`}
+                      to={`/online-tests/${document.id}/1`}
                     >
                       <FontAwesomeIcon icon="cog" />
                     </Button>

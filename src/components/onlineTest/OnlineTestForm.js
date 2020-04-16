@@ -24,14 +24,33 @@ import { getCleanExtractStatement } from 'helpers/question';
 moment.locale('pt');
 momentLocalizer();
 
-const renderDateTimePicker = ({ input: { onChange, value }, showTime, placeholder }) => (
-  <DateTimePicker
-    onChange={onChange}
-    format="DD/MM/YYYY"
-    time={showTime}
-    value={!value ? null : new Date(value)}
-    placeholder={placeholder}
-  />
+const renderDateTimePicker = ({
+  input: { onChange, value }, showTime, placeholder, meta: { touched, error, warning },
+}) => (
+
+  <div className="text-left">
+    <DateTimePicker
+      onChange={onChange}
+      format="DD/MM/YYYY"
+      time={showTime}
+      value={!value ? null : new Date(value)}
+      placeholder={placeholder}
+    />
+    { touched
+        && ((error && (
+        <span className="error-message-text">
+          {error}
+        </span>
+        ))
+        || (warning && (
+        <span>
+          {' '}
+          {warning}
+          {' '}
+        </span>
+        )))
+      }
+  </div>
 );
 
 // Basic Input Field
@@ -97,6 +116,7 @@ const renderNumericField = ({
   </div>
 );
 
+/* eslint-disable react/no-array-index-key */
 const renderQuestions = ({ fields, questions }) => (
   <>
     {fields && fields.map((questionField, i) => {
@@ -134,7 +154,7 @@ const renderQuestions = ({ fields, questions }) => (
               {(questions[i].question.tags || questions[i].question.all_topics)
                 && (questions[i].question.tags.length > 0 || questions[i].question.all_topics.length > 0) ? (
                   <p className="c-document__question-info-row-topics">
-                    {questions[i].question.tags.concat(questions[i].question.all_topics).map(tag => <Badge key={`${questions[i].question.id}-${tag.name}`} color="success" pill>{tag.name.trim()}</Badge>)}
+                    {questions[i].question.tags.concat(questions[i].question.all_topics).map((tag, x) => <Badge key={`${questions[i].question.id}-${x}`} color="success" pill>{tag.name.trim()}</Badge>)}
                   </p>
                 ) : ''}
 
@@ -274,7 +294,7 @@ const OnlineTestForm = (props) => {
               className="form-control"
               component={renderField}
               validate={[requiredValidator, minLength3characters]}
-              label="Insira um nome para o plano de aula"
+              label="Insira um nome para a prova online"
             />
           </Col>
         </Row>
@@ -295,9 +315,10 @@ const OnlineTestForm = (props) => {
             <Row form className="align-items-center">
               <Col sm="4" xs="4">
                 <Field
-                  name="startDate"
+                  name="start_date"
                   showTime={false}
                   component={renderDateTimePicker}
+                  validate={requiredValidator}
                   placeholder="dd/mm/aaaa"
                 />
               </Col>
@@ -306,9 +327,10 @@ const OnlineTestForm = (props) => {
               </Col>
               <Col sm="4" xs="4">
                 <Field
-                  name="endDate"
+                  name="finish_date"
                   showTime={false}
                   component={renderDateTimePicker}
+                  validate={requiredValidator}
                   placeholder="dd/mm/aaaa"
                 />
               </Col>
@@ -365,7 +387,7 @@ const OnlineTestForm = (props) => {
                         type="number"
                         component={renderNumericField}
                         label="Ex. 120"
-                        validate={minDuration}
+                        validate={[minDuration, requiredValidator]}
                       />
                       <span style={{ marginLeft: '5px' }}>min</span>
                     </>

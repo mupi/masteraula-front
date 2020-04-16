@@ -31,7 +31,7 @@ function fetchBaseDocument(id) {
     .then(activeDocument => activeDocument);
 }
 
-// Fetch a class plan given its ID
+// Fetch a onlineTest given its ID
 function fetchOnlineTest(id) {
   const requestOptions = {
     method: 'GET',

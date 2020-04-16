@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import {
   Alert, Row, Col, Button,
 } from 'reactstrap';
@@ -11,8 +12,6 @@ import ClassPlanExtraResources from 'components/classplan/ClassPlanExtraResource
 import ClassPlanComments from 'components/classplan/ClassPlanComments';
 import ClassPlanBasicInfo from 'components/classplan/ClassPlanBasicInfo';
 import ClassPlanStations from 'components/classplan/ClassPlanStations';
-
-import { Link } from 'react-router-dom';
 
 // Learning object's options available for LearnningObjectContent in ClassPlan
 const optionsObject = {

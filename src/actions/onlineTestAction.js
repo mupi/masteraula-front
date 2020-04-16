@@ -37,9 +37,6 @@ export const LIST_MY_ONLINE_TESTS = 'LIST_MY_ONLINE_TESTS';
 export const LIST_MY_ONLINE_TESTS_SUCCESS = 'LIST_MY_ONLINE_TESTS_SUCCESS';
 export const LIST_MY_ONLINE_TESTS_FAILURE = 'LIST_MY_ONLINE_TESTS_FAILURE';
 
-// Delete active document in session
-export const DELETE_ONLINE_TEST_SESSION = 'DELETE_ONLINE_TEST_SESSION';
-
 // Copy ONLINE TEST
 export const COPY_ONLINE_TEST = 'COPY_ONLINE_TEST';
 export const COPY_ONLINE_TEST_SUCCESS = 'COPY_ONLINE_TEST_SUCCESS';
@@ -62,6 +59,16 @@ export const fetchBaseDocument = id => async (dispatch) => {
     }));
   } catch {
     dispatch({ type: FETCH_BASE_DOCUMENT_FAILURE });
+  }
+};
+
+export const fetchOnlineTest = id => async (dispatch) => {
+  try {
+    dispatch({ type: FETCH_ONLINE_TEST });
+    const activeOnlineTest = await onlineTestService.fetchOnlineTest(id);
+    dispatch({ type: FETCH_ONLINE_TEST_SUCCESS, activeOnlineTest });
+  } catch {
+    dispatch({ type: FETCH_ONLINE_TEST_FAILURE });
   }
 };
 
@@ -135,25 +142,22 @@ export function resetNewDocument() {
 }
 
 
-// delete document from session
-export const deleteDocumentSession = () => {
-  localStorage.removeItem('activeDocument');
-  return { type: DELETE_ONLINE_TEST_SESSION };
-};
-
-export const deleteDocument = (idDocument) => {
-  function deleteSelectedDocument() { return { type: DELETE_ONLINE_TEST }; }
-  function deleteSelectedDocumentSuccess(idDocumentRemoved) { return { type: DELETE_ONLINE_TEST_SUCCESS, idDocumentRemoved }; }
-  function deleteSelectedDocumentFailure(error) { return { type: DELETE_ONLINE_TEST_FAILURE, error }; }
+export const deleteOnlineTest = (idOnlineTest, isRedirect = false, idBaseDocument) => {
+  function deleteSelectedOnlineTest() { return { type: DELETE_ONLINE_TEST }; }
+  function deleteOnlineTestSuccess(idOnlineTestRemoved) { return { type: DELETE_ONLINE_TEST_SUCCESS, idOnlineTestRemoved }; }
+  function deleteOnlineTestFailure(error) { return { type: DELETE_ONLINE_TEST_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(deleteSelectedDocument(idDocument));
-    return documentService.deleteDocument(idDocument)
+    dispatch(deleteSelectedOnlineTest(idOnlineTest));
+    return documentService.deleteDocument(idOnlineTest)
       .then(
-        (idDocumentRemoved) => {
-          dispatch(deleteSelectedDocumentSuccess(idDocumentRemoved));
+        (idOnlineTestRemoved) => {
+          dispatch(deleteOnlineTestSuccess(idOnlineTestRemoved));
+          if (isRedirect) {
+            history.push(`/online-tests/${idBaseDocument}`);
+          }
         },
         (error) => {
-          dispatch(deleteSelectedDocumentFailure(error));
+          dispatch(deleteOnlineTestFailure(error));
         },
       );
   };
