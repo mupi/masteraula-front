@@ -22,6 +22,7 @@ const MODAL_TYPES = {
   searchDocumentModal: modalTypes.searchDocumentModal,
   createClassPlanModal: modalTypes.createClassPlanModal,
   searchQuestionModal: modalTypes.searchQuestionModal,
+  studentResults: modalTypes.OnlineTestStudentResultsModal,
 };
 
 const mapStateToProps = state => ({
@@ -40,7 +41,7 @@ const ModalContainer = (props) => {
     return null;
   }
 
-  if (modalType === 'document' || modalType === 'question') modalClassName = 'modal-dialog modal-lg';
+  if (modalType === 'document' || modalType === 'question' || modalType === 'studentResults') modalClassName = 'modal-dialog modal-lg';
   if ((modalType === 'searchObjectModal') || (modalType === 'searchDocumentModal') || (modalType === 'searchQuestionModal')) {
     modalClassName = 'modal-dialog modal-xl modal-fixed';
   }

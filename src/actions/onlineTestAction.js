@@ -2,7 +2,12 @@ import { documentService } from 'services';
 import { history } from 'helpers';
 import { initialize } from 'redux-form';
 import onlineTestService from 'services/onlineTestService';
+import { toast } from 'react-toastify';
 
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
 // Load BASE DOCUMENT
 export const FETCH_BASE_DOCUMENT = 'FETCH_BASE_DOCUMENT';
 export const FETCH_BASE_DOCUMENT_SUCCESS = 'FETCH_BASE_DOCUMENT_SUCCESS';
@@ -83,15 +88,17 @@ export const fetchOnlineTest = id => async (dispatch) => {
 };
 
 // Create a new online test
-export const createOnlineTest = (props) => {
+export const createOnlineTest = (newOnlineTestData, idDocBase) => {
   function createNewOnlineTest() { return { type: CREATE_ONLINE_TEST }; }
   function createOnlineTestSuccess(newOnlineTest) { return { type: CREATE_ONLINE_TEST_SUCCESS, newOnlineTest }; }
   function createOnlineTestFailure(error) { return { type: CREATE_ONLINE_TEST_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(createNewOnlineTest(props));
-    return onlineTestService.createOnlineTest(props).then(
+    dispatch(createNewOnlineTest(newOnlineTestData));
+    return onlineTestService.createOnlineTest(newOnlineTestData, idDocBase).then(
       (newOnlineTest) => {
         dispatch(createOnlineTestSuccess(newOnlineTest));
+        history.push(`/view-online/${newOnlineTest.link}`);
+        toast.success('Prova online criada com sucesso', optionsSuccess);
       },
       (error) => {
         dispatch(createOnlineTestFailure(error));
@@ -119,27 +126,24 @@ export const updateOnlineTest = (props) => {
 };
 
 // listMyDocuments using filters - v2019
-export const listMyOnlineTests = (idBaseDocument, page, orderField, order) => {
-  function requestDocumentPage() {
+export const listMyOnlineTests = (idDocBase, page, orderField = null, order = null) => {
+  function requestOnlineTestPage() {
     return {
       type: LIST_MY_ONLINE_TESTS, page, orderField, order,
     };
   }
-  function fetchDocumentPageSuccess(myDocumentsList) { return { type: LIST_MY_ONLINE_TESTS_SUCCESS, myDocumentsList }; }
-  function fetchDocumentPageFailure(errorMessage) { return { type: LIST_MY_ONLINE_TESTS_FAILURE, errorMessage }; }
-  return (dispatch, getState) => {
-    if (getState().document.isFetchingMyDocuments) {
-      return 1;
-    }
-    dispatch(requestDocumentPage());
-    return documentService.listMyDocuments(page, orderField, order)
+  function fetchMyOnlineTestPageSuccess(onlineTestsList) { return { type: LIST_MY_ONLINE_TESTS_SUCCESS, onlineTestsList }; }
+  function fetchMyOnlineTestPageFailure(errorMessage) { return { type: LIST_MY_ONLINE_TESTS_FAILURE, errorMessage }; }
+  return (dispatch) => {
+    dispatch(requestOnlineTestPage());
+    return onlineTestService.listMyOnlineTest(idDocBase, page)
       .then(
-        (activeDocument) => {
-          dispatch(fetchDocumentPageSuccess(activeDocument));
+        (onlineTestsList) => {
+          dispatch(fetchMyOnlineTestPageSuccess(onlineTestsList));
         },
         (error) => {
-          dispatch(fetchDocumentPageFailure(error));
-          history.push('/documents/1');
+          dispatch(fetchMyOnlineTestPageFailure(error));
+          history.push(`/online-tests/${idDocBase}/1`);
         },
       );
   };
@@ -156,7 +160,7 @@ export const deleteOnlineTest = (idOnlineTest, isRedirect = false, idBaseDocumen
         (idOnlineTestRemoved) => {
           dispatch(deleteOnlineTestSuccess(idOnlineTestRemoved));
           if (isRedirect) {
-            history.push(`/online-tests/${idBaseDocument}`);
+            history.push(`/online-tests/${idBaseDocument}/1`);
           }
         },
         (error) => {

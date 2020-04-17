@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import StarRating from 'components/stars/StarRating';
+/* import StarRating from 'components/stars/StarRating'; */
 import DisciplineList from 'components/disciplines/DisciplineList';
 import DescriptorList from 'components/descriptors/DescriptorList';
 import TagList from 'components/tags/TagList';
@@ -13,7 +13,8 @@ import QuestionAuthor from './QuestionAuthor';
 
 
 const QuestionInfo = ({
-  question, rating, onRate = f => f, showReportError = true,
+  question, /* rating, onRate = f => f, */
+  showReportError = true,
 }) => {
   const { author, authorship } = question;
   const authorshipValue = authorship || (author && author.name);
@@ -133,14 +134,14 @@ const QuestionInfo = ({
       )}
 
 
-      <Row className="c-question__row-info hidden">
+      { /* <Row className="c-question__row-info hidden">
         <Col className="info-label" sm="4" xs="4">
         Avaliação
         </Col>
         <Col sm="8" xs="8">
           <StarRating onRate={rt => onRate(rt)} starsSelected={rating} />
         </Col>
-      </Row>
+      </Row> */}
       { showReportError && (
       <Row>
         <Col className="text-center">
@@ -162,13 +163,9 @@ const QuestionInfo = ({
 };
 QuestionInfo.propTypes = {
   question: PropTypes.shape({}).isRequired,
-  rating: PropTypes.number,
-  onRate: PropTypes.func,
 };
 
 QuestionInfo.defaultProps = {
-  rating: 0,
-  onRate: f => f,
 };
 
 

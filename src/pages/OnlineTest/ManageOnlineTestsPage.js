@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import {
   Row, Col, Alert,
@@ -7,9 +7,6 @@ import {
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import BackUsingHistory from 'components/question/BackUsingHistory';
-import {
-  onlineTests,
-} from 'pages/OnlineTest/activeOnlineTest';
 import OnlineTestList from 'components/onlineTest/OnlineTestList';
 
 const getOrderNameField = (text) => {
@@ -25,8 +22,14 @@ const getOrderNameField = (text) => {
 };
 
 const ManageOnlineTestsPage = (props) => {
-  const show = false;
-  const { showDeleteModal } = props;
+  const {
+    showDeleteModal, isFetchingOnlineTests, listMyOnlineTests, match, onlineTestsList,
+  } = props;
+
+  useEffect(() => {
+    listMyOnlineTests(match.params.id, match.params.page);
+  }, []);
+
   return (
 
     <HomeUserPage>
@@ -46,12 +49,12 @@ const ManageOnlineTestsPage = (props) => {
         </Row>
         <Row>
           <Col sm="12">
-            <CustomPagination {...props} itensPerPage={10} className="pagination-my-classplans" />
+            <CustomPagination {...props} {...onlineTestsList} disabled={isFetchingOnlineTests} itensPerPage={10} className="pagination-my-classplans" />
             <p className="c-my-documents__total-results">
               {'Provas online encontradas: '}
-              {onlineTests.length}
+              {onlineTestsList && onlineTestsList.results ? onlineTestsList.results.length : 0}
             </p>
-            { show ? (
+            { isFetchingOnlineTests ? (
               <Alert className="alert--warning" color="warning" fade={false}>
             Carregando ...
               </Alert>
@@ -79,8 +82,8 @@ const ManageOnlineTestsPage = (props) => {
                   </UncontrolledDropdown>
                 </div>
 
-                { onlineTests
-                  && <OnlineTestList onlineTests={onlineTests} showDeleteModal={showDeleteModal} />
+                { onlineTestsList
+                  && <OnlineTestList onlineTests={onlineTestsList.results} showDeleteModal={showDeleteModal} />
                 }
               </div>
             )}

@@ -96,6 +96,8 @@ import {
   faHourglassStart,
   faList,
   faChartBar,
+  faStar,
+  faDownload,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -123,6 +125,8 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faHourglassStart,
   faList,
   faChartBar,
+  faStar,
+  faDownload,
   fab);
 
 

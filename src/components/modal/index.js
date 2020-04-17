@@ -15,6 +15,7 @@ import createDocument from './CreateDocumentModal';
 import createMyQuestionLabelModal from './CreateMyQuestionLabelModal';
 import createClassPlanModal from './CreateClassPlanModal';
 import searchQuestionModal from './SearchQuestionModal';
+import OnlineTestStudentResultsModal from './OnlineTestStudentResultsModal';
 
 const modalTypes = {
   alertModal,
@@ -33,6 +34,7 @@ const modalTypes = {
   searchDocumentModal,
   createClassPlanModal,
   searchQuestionModal,
+  OnlineTestStudentResultsModal,
 };
 
 export default modalTypes;

@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 const initialState = {
   baseDocument: null,
   activeOnlineTest: null,
+  onlineTestsList: [],
   isFetchingBaseDocument: false,
   isFetchingOnlineTest: false,
 };
@@ -74,6 +75,7 @@ export const onlineTest = (state = initialState, action) => {
         isFetching: false,
       });
     case CREATE_ONLINE_TEST_SUCCESS:
+      // toast.success('Prova online atualizada com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
@@ -91,7 +93,7 @@ export const onlineTest = (state = initialState, action) => {
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
-        isFetchingMyDocuments: true,
+        isFetchingOnlineTests: true,
         currentPage: action.page,
         error: null,
         isDeleted: false,
@@ -100,13 +102,13 @@ export const onlineTest = (state = initialState, action) => {
       });
     case LIST_MY_ONLINE_TESTS_SUCCESS:
       return Object.assign({}, state, {
-        myDocumentsList: action.myDocumentsList,
-        isFetchingMyDocuments: false,
+        onlineTestsList: action.onlineTestsList,
+        isFetchingOnlineTests: false,
       });
     case LIST_MY_ONLINE_TESTS_FAILURE:
       return Object.assign({}, state, {
-        myDocumentsList: null,
-        isFetchingMyDocuments: false,
+        onlineTestsList: null,
+        isFetchingOnlineTests: false,
         error: action.errorMessage,
       });
     case UPDATE_ONLINE_TEST: {
@@ -117,7 +119,7 @@ export const onlineTest = (state = initialState, action) => {
       });
     }
     case UPDATE_ONLINE_TEST_SUCCESS: {
-      toast.success('Nome da prova atualizado com sucesso', optionsSuccess);
+      toast.success('Prova online atualizada com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         activeDocument: { ...action.activeDocument, questions: state.activeDocument.questions },
         isUpdated: true,

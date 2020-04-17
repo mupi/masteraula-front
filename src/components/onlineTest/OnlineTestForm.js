@@ -243,6 +243,7 @@ const OnlineTestForm = (props) => {
     pristine, handleSubmit,
     submitting, actionName, baseDoc, onlineTest,
     typeDurationSelected,
+    totalScore,
     showQuestionModal,
   } = props;
 
@@ -406,7 +407,8 @@ const OnlineTestForm = (props) => {
         <Row className="c-online__tittle-section">
           <Col>
             <h5>
-              Questões
+              Questões:
+              {totalScore}
             </h5>
             <div className="border-top my-3" />
           </Col>
@@ -476,7 +478,7 @@ const OnlineTestForm = (props) => {
           <Col>
             { (!pristine && !submitting) ? (
               <Alert color="warning" className="c-online-edit__warning-message">
-                  Existem mudanças ainda não salvas na questão
+                  Existem mudanças ainda não salvas na prova online
               </Alert>
             ) : ''
                       }

@@ -9,13 +9,11 @@ import { Link } from 'react-router-dom';
 import OnlineTestBasicInfo from 'components/onlineTest/OnlineTestBasicInfo';
 import OnlineTestQuestionsTable from 'components/onlineTest/OnlineTestQuestionsTable';
 import OnlineTestStudentList from 'components/onlineTest/OnlineTestStudentList';
-import {
-  activeOnlineTest,
-} from './activeOnlineTest';
 
 const ResultsOnlineTestPage = (props) => {
   const {
-    isFetchingOnlineTest, fetchOnlineTest, match /* activeOnlineTest */,
+    isFetchingOnlineTest, fetchOnlineTest, match, activeOnlineTest,
+    showStudentModal,
   } = props;
 
 
@@ -49,6 +47,8 @@ const ResultsOnlineTestPage = (props) => {
     showTag: true,
     showScore: true,
   };
+
+  const show = false;
   return (
     <HomeUserPage>
       <div className="c-online">
@@ -66,12 +66,14 @@ const ResultsOnlineTestPage = (props) => {
           </Col>
         </Row>
         <Row className="c-question--space-for-titlequestion mb-4">
+          { show && (
           <Col sm="12">
             <Alert color="danger" className="mb-4">
               <strong>Atenção: </strong>
-              Esta prova possui questões disserttivas pendentes de correção. Atribua as notas manualmente antes de baixar os resultados finais.
+              Esta prova possui questões dissertativas pendentes de correção. Atribua as notas manualmente antes de baixar os resultados finais.
             </Alert>
           </Col>
+          )}
           <Col sm="12">
             <h4>
               {'Resultados da prova online: '}
@@ -85,7 +87,8 @@ const ResultsOnlineTestPage = (props) => {
         </Row>
         <OnlineTestBasicInfo onlineTest={activeOnlineTest} />
         <OnlineTestQuestionsTable questions={activeOnlineTest.questions_document} options={optionsQuestion} />
-        <OnlineTestStudentList />
+        { activeOnlineTest.results && activeOnlineTest.results.length > 0 && (
+        <OnlineTestStudentList showStudentModal={showStudentModal} students={activeOnlineTest.results} />)}
       </div>
     </HomeUserPage>
   );

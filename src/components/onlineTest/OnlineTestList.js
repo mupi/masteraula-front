@@ -19,7 +19,7 @@ const OpenOnlineTestModalHeader = (props) => {
 
 const OnlineTestList = (props) => {
   const {
-    showDeleteModal, onlineTests, copyClassPlan,
+    showDeleteModal, onlineTests,
   } = props;
 
   const handleDelete = (id, name) => {
@@ -46,30 +46,30 @@ const OnlineTestList = (props) => {
             <tbody align="center">
               {onlineTests && onlineTests.map(onlineTest => (
                 <tr key={onlineTest.link} style={{ cursor: 'pointer' }}>
-                  <OpenOnlineTestModalHeader id={onlineTest.id}>
+                  <OpenOnlineTestModalHeader id={onlineTest.link}>
                     <FontAwesomeIcon
                       icon="circle"
                       className={`c-online__status ${onlineTest.status ? 'c-online__status--active' : 'c-online__status--inactive'}`}
                     />
                   </OpenOnlineTestModalHeader>
-                  <OpenOnlineTestModalHeader id={onlineTest.id}>
+                  <OpenOnlineTestModalHeader id={onlineTest.link}>
                     {onlineTest.name}
                   </OpenOnlineTestModalHeader>
 
-                  <OpenOnlineTestModalHeader id={onlineTest.id}>
+                  <OpenOnlineTestModalHeader id={onlineTest.link}>
                     {`De ${formatDate(onlineTest.start_date)} até ${formatDate(onlineTest.finish_date)}` }
                   </OpenOnlineTestModalHeader>
-                  <OpenOnlineTestModalHeader id={onlineTest.id}>
-                    {onlineTest.questions.length}
+                  <OpenOnlineTestModalHeader id={onlineTest.link}>
+                    {onlineTest.questions_document.length}
                   </OpenOnlineTestModalHeader>
-                  <OpenOnlineTestModalHeader id={onlineTest.id}>
+                  <OpenOnlineTestModalHeader id={onlineTest.link}>
                     {onlineTest.duration}
                   </OpenOnlineTestModalHeader>
-                  <OpenOnlineTestModalHeader id={onlineTest.id}>
+                  <OpenOnlineTestModalHeader id={onlineTest.link}>
                     {`${masteraulaUrl}/apply-online/${onlineTest.link}`}
                   </OpenOnlineTestModalHeader>
-                  <OpenOnlineTestModalHeader id={onlineTest.id}>
-                    {'10'}
+                  <OpenOnlineTestModalHeader id={onlineTest.link}>
+                    {onlineTest.results.length}
                   </OpenOnlineTestModalHeader>
                   <td>
                     <UncontrolledDropdown>
@@ -109,7 +109,7 @@ const OnlineTestList = (props) => {
                         <DropdownItem divider className="label-item__divider" />
                         <DropdownItem
                           title="Ver resultados"
-                          to={`/results-online/${onlineTest.id}`}
+                          to={`/results-online/${onlineTest.link}`}
                           tag={Link}
                         >
                           <FontAwesomeIcon icon="chart-bar" />
@@ -117,7 +117,7 @@ const OnlineTestList = (props) => {
                           Resultados
                         </DropdownItem>
                         <DropdownItem divider className="label-item__divider" />
-                        <DropdownItem onClick={() => copyClassPlan(onlineTest.id)} title="Duplicar prova online">
+                        <DropdownItem onClick={() => {}} title="Duplicar prova online">
                           <FontAwesomeIcon icon="copy" />
                           {' '}
                           Duplicar

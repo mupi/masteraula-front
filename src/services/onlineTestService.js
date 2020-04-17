@@ -48,8 +48,8 @@ function fetchOnlineTest(id) {
     .then(response => response.data).then(activeOnlineTest => activeOnlineTest);
 }
 
-/* Create a new label */
-function createOnlineTest(newOnlineTest) {
+/* Create a new online test */
+function createOnlineTest(newOnlineTest, idDocBase) {
   const requestOptions = {
     method: 'POST',
     headers: {
@@ -58,21 +58,37 @@ function createOnlineTest(newOnlineTest) {
     },
   };
 
-  const url = '/document_online/';
+  const url = `/document_online/?id=${idDocBase}`;
 
   return axios.post(`${apiUrl}${url}`, newOnlineTest, requestOptions)
     .then(response => response.data).then(newOnlineTestData => newOnlineTestData);
 }
 
+function listMyOnlineTest(idDocBase, page) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+
+  };
+
+  const url = `${apiUrl}/document_online/?id=${idDocBase}&page=${page}`;
+
+
+  return axios.get(url, requestOptions)
+    .then(response => response.data).then(onlineTestsList => onlineTestsList);
+}
 
 const onlineTestService = {
   fetchBaseDocument,
   fetchOnlineTest,
   createOnlineTest,
-  /* listMyOnlineTest,
-  updateOnlineTest,
+  listMyOnlineTest,
+  /* updateOnlineTest,
   deleteOnlineTest,
-  copyOnlineTest, */
+  /* copyOnlineTest, */
 };
 
 export default onlineTestService;

@@ -13,6 +13,7 @@ const mapStateToProps = (state) => {
     baseDocument: state.onlineTest.baseDocument,
     isFetchingBaseDocument: state.onlineTest.isFetchingBaseDocument,
     typeDurationSelected: selector(state, 'typeDuration'),
+    totalScore: 0, // selector(state, 'questions_document').map(q => q.score).reduce((a, b) => a + b, 0),
   });
 };
 
@@ -35,17 +36,16 @@ const mapDispatchToProps = (dispatch) => {
   return ({
     fetchBaseDocument: id => dispatch(fetchBaseDocument(id)),
     showQuestionModal: idQuestion => dispatch(showModal(questionModalProps(idQuestion))),
-    onSubmit: (values/* , d, props */) => {
+    onSubmit: (values, d, props) => {
       const newOnlineTest = {
 
         start_date: values.start_date,
         finish_date: values.finish_date,
-        results: values.questions_document,
-
+        questions_document: values.questions_document.map(q => ({ question: q.id, score: q.score })),
         duration: values.duration,
         name: values.name,
       };
-      return dispatch(createOnlineTest(newOnlineTest));
+      return dispatch(createOnlineTest(newOnlineTest, props.baseDocument.id));
     },
   }
   );
