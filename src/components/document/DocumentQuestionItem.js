@@ -19,7 +19,7 @@ const options = {
 /* eslint-disable react/no-array-index-key */
 const DocumentQuestionItem = (props) => {
   const {
-    question, questionOrder, activeDocument, removeSelectedQuestion, options, match, showLoginModal,
+    question, questionOrder, activeDocument, removeSelectedQuestion, options, match, showLoginModal, showQuestionModal,
   } = props;
 
   const autorship = question.authorship ? question.authorship : question.author.name;
@@ -138,6 +138,15 @@ const DocumentQuestionItem = (props) => {
                 ) : ' '}
                 {(options.showViewButton && options.showLoginModal) ? (
                   <Button onClick={handleOpenLoginModal}>
+                    <FontAwesomeIcon icon="search" />
+                    {' '}
+                    <span className="button-text">
+                      Ver questão
+                    </span>
+                  </Button>
+                ) : ' '}
+                {(options.showViewModal) ? (
+                  <Button onClick={() => showQuestionModal(question.id)}>
                     <FontAwesomeIcon icon="search" />
                     {' '}
                     <span className="button-text">

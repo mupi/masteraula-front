@@ -21,7 +21,6 @@ const DocumentQuestions = (props) => {
           {...props}
         />
       ))}
-      {/* <ViewQuestionModal /> */}
     </div>
   );
 };

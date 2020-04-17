@@ -3,7 +3,7 @@ import DocumentQuestionItem from 'components/document/DocumentQuestionItem';
 
 
 const OnlineTestQuestions = (props) => {
-  const { questions, options } = props;
+  const { questions, options, showQuestionModal } = props;
   return (
     <div>
       {questions && questions.map(questionOrder => (
@@ -12,9 +12,9 @@ const OnlineTestQuestions = (props) => {
           question={questionOrder.question}
           options={options}
           questionOrder={questionOrder}
+          showQuestionModal={showQuestionModal}
         />
       ))}
-      {/* <ViewQuestionModal /> */}
     </div>
   );
 };

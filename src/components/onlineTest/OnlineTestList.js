@@ -45,7 +45,7 @@ const OnlineTestList = (props) => {
             </thead>
             <tbody align="center">
               {onlineTests && onlineTests.map(onlineTest => (
-                <tr key={onlineTest.id} style={{ cursor: 'pointer' }}>
+                <tr key={onlineTest.link} style={{ cursor: 'pointer' }}>
                   <OpenOnlineTestModalHeader id={onlineTest.id}>
                     <FontAwesomeIcon
                       icon="circle"
@@ -79,7 +79,7 @@ const OnlineTestList = (props) => {
                       <DropdownMenu className="label-item__dropdown-menu" right>
                         <DropdownItem
                           title="Ver prova online"
-                          to={`/view-online/${onlineTest.id}`}
+                          to={`/view-online/${onlineTest.link}`}
                           tag={Link}
                         >
                           <FontAwesomeIcon icon="list" />
@@ -89,7 +89,7 @@ const OnlineTestList = (props) => {
                         <DropdownItem divider className="label-item__divider" />
                         <DropdownItem
                           title="Ver prova online"
-                          to={`/view-online/${onlineTest.id}`}
+                          to={`/apply-online/${onlineTest.link}`}
                           tag={Link}
                         >
                           <FontAwesomeIcon icon="eye" />
@@ -99,7 +99,7 @@ const OnlineTestList = (props) => {
                         <DropdownItem divider className="label-item__divider" />
                         <DropdownItem
                           title="Editar prova online"
-                          to={`/edit-online/${onlineTest.id}`}
+                          to={`/edit-online/${onlineTest.link}`}
                           tag={Link}
                         >
                           <FontAwesomeIcon icon="pencil-alt" />

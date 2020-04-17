@@ -35,3 +35,4 @@ export { default as CreateOnlineTestPageContainer } from './CreateOnlineTestPage
 export { default as ManageOnlineTestsPageContainer } from './ManageOnlineTestsPageContainer';
 export { default as ViewOnlineTestPageContainer } from './ViewOnlineTestPageContainer';
 export { default as EditOnlineTestPageContainer } from './EditOnlineTestPageContainer';
+export { default as ResultsOnlineTestPageContainer } from './ResultsOnlineTestPageContainer';

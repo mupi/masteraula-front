@@ -2,17 +2,20 @@ import React, { useEffect } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import {
-  Alert, Row, Col, Button,
+  Alert, Row, Col,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import OnlineTestBasicInfo from 'components/onlineTest/OnlineTestBasicInfo';
-import OnlineTestQuestions from 'components/onlineTest/OnlineTestQuestions';
+import OnlineTestQuestionsTable from 'components/onlineTest/OnlineTestQuestionsTable';
+import OnlineTestStudentList from 'components/onlineTest/OnlineTestStudentList';
+import {
+  activeOnlineTest,
+} from './activeOnlineTest';
 
-const ViewOnlineTestPage = (props) => {
+const ResultsOnlineTestPage = (props) => {
   const {
-    isFetchingOnlineTest, fetchOnlineTest, match, activeOnlineTest, showDeleteModal, userId,
-    showQuestionModal,
+    isFetchingOnlineTest, fetchOnlineTest, match /* activeOnlineTest */,
   } = props;
 
 
@@ -40,10 +43,8 @@ const ViewOnlineTestPage = (props) => {
     );
   }
 
-  const authorPK = (activeOnlineTest && activeOnlineTest.owner) ? activeOnlineTest.owner.pk : 'Anônimo';
-  const isOwner = (authorPK === userId);
   const optionsQuestion = {
-    showViewModal: true,
+    showViewButton: true,
     removeOption: false,
     showTag: true,
     showScore: true,
@@ -54,31 +55,6 @@ const ViewOnlineTestPage = (props) => {
         <Row className="c-online__row-header-options c-online__row-header-options--fixed">
           <Col className="c-online__col-header-options">
             <BackUsingHistory />
-            { (isOwner)
-              ? (
-                <Button
-                  className="c-question__btn-remove-question"
-                  color="danger"
-                  onClick={() => showDeleteModal(activeOnlineTest.id, activeOnlineTest.name, activeOnlineTest.document.id)}
-                  title="Apagar prova online"
-                >
-                  <FontAwesomeIcon icon="trash-alt" />
-                  {' '}
-                    Apagar
-                </Button>
-              ) : ''}
-            {(isOwner)
-              ? (
-                <Link
-                  className="btn btn-secondary c-question__btn-back"
-                  to={`/edit-online/${activeOnlineTest.link}`}
-                >
-                  <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
-                  {' '}
-                  Editar
-                </Link>
-              ) : ''}
-
             <Link
               className="btn btn-secondary c-question__btn-back"
               to={`/apply-online/${activeOnlineTest.id}`}
@@ -89,12 +65,16 @@ const ViewOnlineTestPage = (props) => {
             </Link>
           </Col>
         </Row>
-        <Row className="c-question__tittle-section c-question--space-for-titlequestion mb-4">
-          <Col>
+        <Row className="c-question--space-for-titlequestion mb-4">
+          <Col sm="12">
+            <Alert color="danger" className="mb-4">
+              <strong>Atenção: </strong>
+              Esta prova possui questões disserttivas pendentes de correção. Atribua as notas manualmente antes de baixar os resultados finais.
+            </Alert>
+          </Col>
+          <Col sm="12">
             <h4>
-              <FontAwesomeIcon icon="laptop" />
-              {' '}
-              {'Prova Online : '}
+              {'Resultados da prova online: '}
               <span className="c-online__name">{activeOnlineTest.name}</span>
             </h4>
             <p style={{ marginBottom: '0px' }}>
@@ -104,14 +84,11 @@ const ViewOnlineTestPage = (props) => {
           </Col>
         </Row>
         <OnlineTestBasicInfo onlineTest={activeOnlineTest} />
-        <OnlineTestQuestions
-          questions={activeOnlineTest.questions_document}
-          options={optionsQuestion}
-          showQuestionModal={showQuestionModal}
-        />
+        <OnlineTestQuestionsTable questions={activeOnlineTest.questions_document} options={optionsQuestion} />
+        <OnlineTestStudentList />
       </div>
     </HomeUserPage>
   );
 };
 
-export default ViewOnlineTestPage;
+export default ResultsOnlineTestPage;

@@ -12,7 +12,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionAuthor from './QuestionAuthor';
 
 
-const QuestionInfo = ({ question, rating, onRate = f => f }) => {
+const QuestionInfo = ({
+  question, rating, onRate = f => f, showReportError = true,
+}) => {
   const { author, authorship } = question;
   const authorshipValue = authorship || (author && author.name);
   const publisher = author ? author.name : null;
@@ -139,6 +141,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
           <StarRating onRate={rt => onRate(rt)} starsSelected={rating} />
         </Col>
       </Row>
+      { showReportError && (
       <Row>
         <Col className="text-center">
           <p>Essa questão apresenta algum problema?</p>
@@ -153,6 +156,7 @@ const QuestionInfo = ({ question, rating, onRate = f => f }) => {
           </a>
         </Col>
       </Row>
+      )}
     </div>
   );
 };

@@ -117,7 +117,7 @@ const renderNumericField = ({
 );
 
 /* eslint-disable react/no-array-index-key */
-const renderQuestions = ({ fields, questions }) => (
+const renderQuestions = ({ fields, questions, showQuestionModal }) => (
   <>
     {fields && fields.map((questionField, i) => {
       const autorship = questions[i].question.authorship ? questions[i].question.authorship : questions[i].question.author.name;
@@ -219,7 +219,7 @@ const renderQuestions = ({ fields, questions }) => (
               </Row>
               <Row>
                 <div className="c-document__question-view-more col-md-12">
-                  <Button onClick={() => {}}>
+                  <Button onClick={() => showQuestionModal(questions[i].question.id)}>
                     <FontAwesomeIcon icon="search" />
                     {' '}
                     <span className="button-text">
@@ -243,7 +243,11 @@ const OnlineTestForm = (props) => {
     pristine, handleSubmit,
     submitting, actionName, baseDoc, onlineTest,
     typeDurationSelected,
+    showQuestionModal,
   } = props;
+
+  const questions = actionName === 'Criar' ? baseDoc.questions : onlineTest.questions_document;
+
   return (
 
     <Form onSubmit={handleSubmit}>
@@ -410,7 +414,7 @@ const OnlineTestForm = (props) => {
         <Row>
           <Col>
             <p className="c-online__total-questions-label">
-              <strong>{`Total de ${onlineTest.questions.length} questões`}</strong>
+              <strong>{`Total de ${questions.length} questões`}</strong>
             </p>
             <p className="c-online__questions-info">
               <span className="c-online__questions-info--label">
@@ -418,9 +422,13 @@ const OnlineTestForm = (props) => {
                   className="btn__icon"
                   icon="image"
                 />
-                <strong>Mídia:</strong>
+                <strong>Mídia: </strong>
               </span>
-              <span className="c-online__questions-info--value">2 imagens / 2 vídeos</span>
+              { onlineTest.media_questions && (
+              <span className="c-online__questions-info--value">
+                { `${onlineTest.media_questions} objetos de aprendizagem`}
+              </span>
+              )}
             </p>
             <p className="c-online__questions-info">
               <span className="c-online__questions-info--label">
@@ -430,7 +438,12 @@ const OnlineTestForm = (props) => {
                 />
                 <strong>Tipos de questões: </strong>
               </span>
-              <span className="c-online__questions-info--value">2 dissertativas / 0 multipla escolha</span>
+              { onlineTest.types_questions && (
+              <span className="c-online__questions-info--value">
+                { `${onlineTest.types_questions.dissertation_quantity} dissertativas / `}
+                { `${onlineTest.types_questions.objective_quantity} multipla escolha`}
+              </span>
+              )}
             </p>
             <p className="c-online__questions-info">
               <span className="c-online__questions-info--label">
@@ -440,14 +453,23 @@ const OnlineTestForm = (props) => {
                 />
                 <strong>Aplicação: </strong>
               </span>
-              <span className="c-onlin__questions-info-value">2 questões de vestibular / 1 questão autoral</span>
+              { onlineTest.application && (
+              <span className="c-online__questions-info--value">
+                { `${onlineTest.application.exam_quantity} questões de vestibular / `}
+                { `${onlineTest.application.authoral_quantity} questão autoral`}
+              </span>
+              )}
             </p>
           </Col>
         </Row>
         <Row>
           <Col>
-            <FieldArray name="onlinetest_questions" component={renderQuestions} questions={onlineTest.questions} />
-
+            <FieldArray
+              name="questions_document"
+              component={renderQuestions}
+              questions={questions}
+              showQuestionModal={showQuestionModal}
+            />
           </Col>
         </Row>
         <Row>

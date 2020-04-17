@@ -4,13 +4,10 @@ import OnlineTestForm from 'components/onlineTest/OnlineTestForm';
 import {
   Alert,
 } from 'reactstrap';
-import {
-  activeOnlineTest,
-} from './activeOnlineTest';
 
 const EditOnlineTestPage = (props) => {
   const {
-    isFetchingOnlineTest, fetchOnlineTest, match /* activeOnlineTest */,
+    isFetchingOnlineTest, fetchOnlineTest, match, activeOnlineTest,
   } = props;
 
   useEffect(() => {
@@ -31,7 +28,7 @@ const EditOnlineTestPage = (props) => {
     return (
       <HomeUserPage>
         <Alert color="danger">
-            EDITAR A prova online não existe ou não está mais disponível
+          A prova online não existe ou não está mais disponível
         </Alert>
       </HomeUserPage>
     );

@@ -11,6 +11,7 @@ const MODAL_TYPES = {
   delete: modalTypes.deleteModal,
   prompt: modalTypes.promptModal,
   document: modalTypes.documentModal,
+  question: modalTypes.questionModal,
   exportDocument: modalTypes.exportDocumentModal,
   last5Documents: modalTypes.last5DocumentsModal,
   register2: modalTypes.register2Modal,
@@ -39,7 +40,7 @@ const ModalContainer = (props) => {
     return null;
   }
 
-  if (modalType === 'document') modalClassName = 'modal-dialog modal-lg';
+  if (modalType === 'document' || modalType === 'question') modalClassName = 'modal-dialog modal-lg';
   if ((modalType === 'searchObjectModal') || (modalType === 'searchDocumentModal') || (modalType === 'searchQuestionModal')) {
     modalClassName = 'modal-dialog modal-xl modal-fixed';
   }

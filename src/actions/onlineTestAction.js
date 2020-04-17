@@ -3,10 +3,6 @@ import { history } from 'helpers';
 import { initialize } from 'redux-form';
 import onlineTestService from 'services/onlineTestService';
 
-import {
-  activeOnlineTest,
-} from 'pages/OnlineTest/activeOnlineTest';
-
 // Load BASE DOCUMENT
 export const FETCH_BASE_DOCUMENT = 'FETCH_BASE_DOCUMENT';
 export const FETCH_BASE_DOCUMENT_SUCCESS = 'FETCH_BASE_DOCUMENT_SUCCESS';
@@ -59,7 +55,7 @@ export const fetchBaseDocument = id => async (dispatch) => {
     }));
     dispatch(initialize('create-onlinetest', {
       typeDuration: 'R',
-      onlinetest_questions: newQuestions,
+      questions_document: newQuestions,
     }));
   } catch {
     dispatch({ type: FETCH_BASE_DOCUMENT_FAILURE });
@@ -69,8 +65,8 @@ export const fetchBaseDocument = id => async (dispatch) => {
 export const fetchOnlineTest = id => async (dispatch) => {
   try {
     dispatch({ type: FETCH_ONLINE_TEST });
-    const activeOnlineTestN = await onlineTestService.fetchOnlineTest(id);
-    dispatch({ type: FETCH_ONLINE_TEST_SUCCESS, activeOnlineTest, activeOnlineTestN });
+    const activeOnlineTest = await onlineTestService.fetchOnlineTest(id);
+    dispatch({ type: FETCH_ONLINE_TEST_SUCCESS, activeOnlineTest });
 
     // initialize online Test Edit Page for owner's
     dispatch(initialize('edit-onlinetest', {
@@ -79,7 +75,7 @@ export const fetchOnlineTest = id => async (dispatch) => {
       start_date: activeOnlineTest.start_date,
       finish_date: activeOnlineTest.finish_date,
       typeDuration: activeOnlineTest.duration ? 'R' : 'L',
-      onlinetest_questions: activeOnlineTest.questions.map(q => ({ id: q.question.id, score: q.score })),
+      questions_document: activeOnlineTest.questions_document.map(q => ({ id: q.question.id, score: q.score })),
     }));
   } catch {
     dispatch({ type: FETCH_ONLINE_TEST_FAILURE });
@@ -107,13 +103,13 @@ export const createOnlineTest = (props) => {
 // Update an active Online Test
 export const updateOnlineTest = (props) => {
   function updateActiveOnlineTest() { return { type: UPDATE_ONLINE_TEST }; }
-  function updateOnlineTestSuccess(activeOnlineTestU) { return { type: UPDATE_ONLINE_TEST_SUCCESS, activeOnlineTest: activeOnlineTestU }; }
+  function updateOnlineTestSuccess(activeOnlineTest) { return { type: UPDATE_ONLINE_TEST_SUCCESS, activeOnlineTest }; }
   function updateOnlineTestFailure(error) { return { type: UPDATE_ONLINE_TEST_FAILURE, error }; }
   return (dispatch) => {
     dispatch(updateActiveOnlineTest(props));
     return onlineTestService.updateOnlineTest(props).then(
-      (activeOnlineTestU) => {
-        dispatch(updateOnlineTestSuccess(activeOnlineTestU));
+      (activeOnlineTest) => {
+        dispatch(updateOnlineTestSuccess(activeOnlineTest));
       },
       (error) => {
         dispatch(updateOnlineTestFailure(error));

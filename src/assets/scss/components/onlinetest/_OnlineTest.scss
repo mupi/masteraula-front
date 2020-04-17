@@ -24,6 +24,12 @@
   }
 }
 
+.c-online-results {
+  &__total-score{
+    padding: 15px;
+  }
+}
+
 //Online Test Page where c-online is the main container
 .c-online {
     &__row-header-options {
@@ -140,6 +146,20 @@
         color: $color-ma-blue-gray;
 
       }
+    }
+
+    &__subtitle{
+      color: $color-ma-blue;
+    }
+
+    &__question{
+      position: relative;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      background: $color-ma-white;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+      margin: 20px 0px;      
+      padding: 20px 20px;
     }
 }
 

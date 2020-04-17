@@ -67,9 +67,9 @@ const DocumentList = (props) => {
                     {document.questions.length}
                   </OpenDocumentModalHeader>
                   <td>
-                    {document.questions.length}
+                    {document.documents_online}
                     {' '}
-                    {document.questions.length > 0 && (
+                    {document.documents_online > 0 && (
                     <Link
                       to={`/online-tests/${document.id}/1`}
                       className="c-my-documents__btn-manage-onlines"

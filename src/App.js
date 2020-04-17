@@ -41,6 +41,7 @@ import {
   ManageOnlineTestsPageContainer,
   ViewOnlineTestPageContainer,
   EditOnlineTestPageContainer,
+  ResultsOnlineTestPageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -192,6 +193,7 @@ class App extends Component {
                 <Route path="/create-online/:id" component={CreateOnlineTestPageContainer} />
                 <Route path="/view-online/:id" component={ViewOnlineTestPageContainer} />
                 <Route path="/edit-online/:id" component={EditOnlineTestPageContainer} />
+                <Route path="/results-online/:id" component={ResultsOnlineTestPageContainer} />
                 <Route path="/online-tests/:id/:page(\d+)" component={ManageOnlineTestsPageContainer} />
 
                 <Redirect from="/" to="/my-dashboard/" />

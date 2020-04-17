@@ -42,10 +42,10 @@ function fetchOnlineTest(id) {
 
   };
 
-  const url = `/class_plans/${id}/`;
+  const url = `/document_online/${id}/`;
 
   return axios.get(`${apiUrl}${url}`, requestOptions)
-    .then(response => response.data).then(activeClassPlan => activeClassPlan);
+    .then(response => response.data).then(activeOnlineTest => activeOnlineTest);
 }
 
 /* Create a new label */
@@ -58,10 +58,10 @@ function createOnlineTest(newOnlineTest) {
     },
   };
 
-  const url = '/online_test/';
+  const url = '/document_online/';
 
   return axios.post(`${apiUrl}${url}`, newOnlineTest, requestOptions)
-    .then(response => response.data).then(newMyQuestionLabel => newMyQuestionLabel);
+    .then(response => response.data).then(newOnlineTestData => newOnlineTestData);
 }
 
 
