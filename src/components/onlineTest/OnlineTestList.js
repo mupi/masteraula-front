@@ -117,7 +117,7 @@ const OnlineTestList = (props) => {
                           Resultados
                         </DropdownItem>
                         <DropdownItem divider className="label-item__divider" />
-                        <DropdownItem onClick={() => {}} title="Duplicar prova online">
+                        <DropdownItem onClick={() => {}} title="Duplicar prova online" className="hidden">
                           <FontAwesomeIcon icon="copy" />
                           {' '}
                           Duplicar

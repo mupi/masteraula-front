@@ -22,7 +22,7 @@ const OnlineTestStudentResultsModal = (props) => {
         <h6
           className="modal-title"
         >
-          Resultados da prova
+          Resultados da prova online
         </h6>
         <button type="button" className="close" aria-label="Close" onClick={closeModal}>
           <span aria-hidden="true">

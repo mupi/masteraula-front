@@ -117,6 +117,14 @@ export const updateOnlineTest = (idOnlineTest, updatedOnlineTest) => {
     return onlineTestService.updateOnlineTest(idOnlineTest, updatedOnlineTest).then(
       (activeOnlineTest) => {
         dispatch(updateOnlineTestSuccess(activeOnlineTest));
+        dispatch(initialize('edit-onlinetest', {
+          name: activeOnlineTest.name,
+          duration: activeOnlineTest.duration,
+          start_date: activeOnlineTest.start_date,
+          finish_date: activeOnlineTest.finish_date,
+          typeDuration: activeOnlineTest.duration ? 'R' : 'L',
+          questions_document: activeOnlineTest.questions_document.map(q => ({ id: q.id, score: q.score })),
+        }));
       },
       (error) => {
         dispatch(updateOnlineTestFailure(error));

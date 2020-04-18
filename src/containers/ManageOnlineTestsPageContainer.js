@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 import ManageOnlineTestsPage from 'pages/OnlineTest/ManageOnlineTestsPage';
-import { deleteOnlineTest, listMyOnlineTests } from 'actions/onlineTestAction';
+import { fetchBaseDocument, deleteOnlineTest, listMyOnlineTests } from 'actions/onlineTestAction';
 import { showModal, hideModal } from 'actions/modalAction';
 
 const mapStateToProps = state => ({
   onlineTestsList: state.onlineTest.onlineTestsList,
   isFetchingOnlineTests: state.onlineTest.isFetchingOnlineTests,
   isDeleted: state.onlineTest.isDeleted,
+  baseDocument: state.onlineTest.baseDocument,
+  isFetchingBaseDocument: state.onlineTest.isFetchingBaseDocument,
 });
 
 
@@ -26,6 +28,7 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'delete',
   });
   return ({
+    fetchBaseDocument: id => dispatch(fetchBaseDocument(id)),
     showDeleteModal: (idOnlineTest, name, idBaseDocument) => dispatch(showModal(deleteModalProps(idOnlineTest, name, idBaseDocument))),
     listMyOnlineTests: (idDocBase, page) => {
       dispatch(listMyOnlineTests(idDocBase, page));

@@ -4,10 +4,12 @@ import {
   Row, Col, Alert,
   UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import OnlineTestList from 'components/onlineTest/OnlineTestList';
+import { Link } from 'react-router-dom';
 
 const getOrderNameField = (text) => {
   switch (text) {
@@ -24,6 +26,7 @@ const getOrderNameField = (text) => {
 const ManageOnlineTestsPage = (props) => {
   const {
     showDeleteModal, isFetchingOnlineTests, listMyOnlineTests, match, onlineTestsList, isDeleted,
+    fetchBaseDocument, isFetchingBaseDocument, baseDocument,
   } = props;
 
   if (isDeleted) {
@@ -32,6 +35,7 @@ const ManageOnlineTestsPage = (props) => {
 
 
   useEffect(() => {
+    fetchBaseDocument(match.params.id);
     listMyOnlineTests(match.params.id, match.params.page);
   }, []);
 
@@ -48,9 +52,20 @@ const ManageOnlineTestsPage = (props) => {
           <Col sm="12">
             <h4>
               {'Versões online de: '}
-              <span className="c-online__name">Prova de Português</span>
+              { !isFetchingBaseDocument && baseDocument && <span className="c-online__name">{baseDocument.name}</span>}
             </h4>
           </Col>
+          { !isFetchingBaseDocument && baseDocument && baseDocument.questions.length > 0 && (
+          <Col sm="12">
+            <Link
+              className="btn btn-secondary"
+              to={`/create-online/${match.params.id}`}
+            >
+              <FontAwesomeIcon icon="laptop" />
+              {' Criar nova'}
+            </Link>
+          </Col>
+          )}
         </Row>
         <Row>
           <Col sm="12">
