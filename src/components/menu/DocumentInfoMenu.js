@@ -137,6 +137,13 @@ class DocumentInfoMenu extends React.Component {
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
+          <Link
+            className="btn btn-secondary menu-top__document-button"
+            to={`/create-online/${documentId}`}
+          >
+            <FontAwesomeIcon icon="laptop" />
+            {' Gerar prova'}
+          </Link>
         </div>
       </div>
     );

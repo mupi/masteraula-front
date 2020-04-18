@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import BackUsingHistory from 'components/question/BackUsingHistory';
 import {
   Alert, Row, Col, Button,
 } from 'reactstrap';
@@ -53,7 +52,14 @@ const ViewOnlineTestPage = (props) => {
       <div className="c-online">
         <Row className="c-online__row-header-options c-online__row-header-options--fixed">
           <Col className="c-online__col-header-options">
-            <BackUsingHistory />
+            <Link
+              className="btn btn-secondary c-question__btn-back"
+              to={`/online-tests/${activeOnlineTest.document.id}/1`}
+            >
+              <FontAwesomeIcon icon="arrow-circle-left" />
+              {' '}
+              Ver todas
+            </Link>
             { (isOwner)
               ? (
                 <Button
@@ -73,7 +79,7 @@ const ViewOnlineTestPage = (props) => {
                   className="btn btn-secondary c-question__btn-back"
                   to={`/edit-online/${activeOnlineTest.link}`}
                 >
-                  <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
+                  <FontAwesomeIcon icon="pencil-alt" />
                   {' '}
                   Editar
                 </Link>
@@ -83,7 +89,7 @@ const ViewOnlineTestPage = (props) => {
               className="btn btn-secondary c-question__btn-back"
               to={`/apply-online/${activeOnlineTest.id}`}
             >
-              <FontAwesomeIcon icon="eye" className="btn__icon" />
+              <FontAwesomeIcon icon="eye" />
               {' '}
               Pré-visualizar
             </Link>
