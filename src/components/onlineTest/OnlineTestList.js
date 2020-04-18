@@ -123,7 +123,7 @@ const OnlineTestList = (props) => {
                           Duplicar
                         </DropdownItem>
                         <DropdownItem divider className="label-item__divider" />
-                        <DropdownItem className="c-my-classplans__btn-remove" onClick={() => handleDelete(onlineTest.id, onlineTest.name)} title="Apagar prova online">
+                        <DropdownItem className="c-my-classplans__btn-remove" onClick={() => handleDelete(onlineTest.link, onlineTest.name)} title="Apagar prova online">
                           <FontAwesomeIcon icon="trash-alt" />
                           {' '}
                           Apagar

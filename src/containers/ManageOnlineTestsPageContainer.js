@@ -6,6 +6,7 @@ import { showModal, hideModal } from 'actions/modalAction';
 const mapStateToProps = state => ({
   onlineTestsList: state.onlineTest.onlineTestsList,
   isFetchingOnlineTests: state.onlineTest.isFetchingOnlineTests,
+  isDeleted: state.onlineTest.isDeleted,
 });
 
 

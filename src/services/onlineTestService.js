@@ -64,6 +64,23 @@ function createOnlineTest(newOnlineTest, idDocBase) {
     .then(response => response.data).then(newOnlineTestData => newOnlineTestData);
 }
 
+/* Update a online test */
+function updateOnlineTest(idOnlineTest, onlineTestData) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const url = `/document_online/${idOnlineTest}/`;
+
+  return axios.patch(`${apiUrl}${url}`, onlineTestData, requestOptions)
+    .then(response => response.data).then(updatedOnlineTest => updatedOnlineTest);
+}
+
+
 function listMyOnlineTest(idDocBase, page) {
   const requestOptions = {
     method: 'GET',
@@ -81,12 +98,25 @@ function listMyOnlineTest(idDocBase, page) {
     .then(response => response.data).then(onlineTestsList => onlineTestsList);
 }
 
+// Delete an online test given its ID
+function deleteOnlineTest(idOnlineTest) {
+  const requestOptions = {
+    method: 'DELETE',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  return axios.delete(`${apiUrl}/document_online/${idOnlineTest}/`, requestOptions)
+    .then(response => response.data).then(() => idOnlineTest);
+}
+
 const onlineTestService = {
   fetchBaseDocument,
   fetchOnlineTest,
   createOnlineTest,
   listMyOnlineTest,
-  /* updateOnlineTest,
+  updateOnlineTest,
   deleteOnlineTest,
   /* copyOnlineTest, */
 };

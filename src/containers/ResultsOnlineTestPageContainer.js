@@ -12,9 +12,10 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = (dispatch) => {
-  const studentModalProps = () => ({
+  const studentModalProps = student => ({
     modalProps: {
       open: true,
+      student,
       closeModal: () => {
         dispatch(hideModal());
       },
@@ -24,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 
   return ({
     fetchOnlineTest: id => dispatch(fetchOnlineTest(id)),
-    showStudentModal: () => dispatch(showModal(studentModalProps())),
+    showStudentModal: student => dispatch(showModal(studentModalProps(student))),
   });
 };
 

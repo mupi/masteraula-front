@@ -59,7 +59,7 @@ const ViewOnlineTestPage = (props) => {
                 <Button
                   className="c-question__btn-remove-question"
                   color="danger"
-                  onClick={() => showDeleteModal(activeOnlineTest.id, activeOnlineTest.name, activeOnlineTest.document.id)}
+                  onClick={() => showDeleteModal(activeOnlineTest.link, activeOnlineTest.name, activeOnlineTest.document.id)}
                   title="Apagar prova online"
                 >
                   <FontAwesomeIcon icon="trash-alt" />

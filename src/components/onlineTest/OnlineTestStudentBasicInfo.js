@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { formatDate, formatTime, diffDateInMinutes } from 'helpers/question';
 
 const OnlineTestStudentBasicInfo = (props) => {
   const { student } = props;
@@ -15,7 +16,7 @@ const OnlineTestStudentBasicInfo = (props) => {
           <strong>Prova finalizada em: </strong>
         </span>
         <span className="c-online__questions-info--value">
-          {student.start}
+          {`${formatDate(student.finish)} às ${formatTime(student.finish)}` }
         </span>
       </p>
       <p className="c-online__questions-info">
@@ -27,7 +28,7 @@ const OnlineTestStudentBasicInfo = (props) => {
           <strong>Tempo de duração: </strong>
         </span>
         <span className="c-online__questions-info--value">
-          {student.finish}
+          {`${diffDateInMinutes(student.start, student.finish)} min`}
         </span>
       </p>
       <p className="c-online__questions-info">

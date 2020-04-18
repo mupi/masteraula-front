@@ -121,7 +121,7 @@ export const onlineTest = (state = initialState, action) => {
     case UPDATE_ONLINE_TEST_SUCCESS: {
       toast.success('Prova online atualizada com sucesso', optionsSuccess);
       return Object.assign({}, state, {
-        activeDocument: { ...action.activeDocument, questions: state.activeDocument.questions },
+        activeOnlineTest: { ...action.activeOnlineTest },
         isUpdated: true,
       });
     }

@@ -3,6 +3,7 @@ import {
   Table, Button,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { formatDate, formatTime, diffDateInMinutes } from 'helpers/question';
 
 const OnlineTestStudentList = ({ students, showStudentModal }) => (
   <div className="c-online__question">
@@ -14,14 +15,14 @@ const OnlineTestStudentList = ({ students, showStudentModal }) => (
           <th>Série</th>
           <th>Data</th>
           <th>Horário</th>
-          <th>Duração</th>
+          <th>Duração (min)</th>
           <th>Pontuação</th>
           <th>Respostas</th>
         </tr>
       </thead>
       <tbody align="center">
         {students && students.map(student => (
-          <tr key={student.id}>
+          <tr key={student.student_name}>
             <td>
               {student.student_name}
             </td>
@@ -29,19 +30,19 @@ const OnlineTestStudentList = ({ students, showStudentModal }) => (
               {student.student_levels}
             </td>
             <td>
-              {student.start}
+              {formatDate(student.finish)}
             </td>
             <td>
-              {student.finish}
+              {formatTime(student.finish)}
             </td>
             <td>
-              {student.finish}
+              {`${diffDateInMinutes(student.start, student.finish)} min`}
             </td>
             <td>
               {student.total_score}
             </td>
             <td>
-              <Button onClick={() => showStudentModal()}>
+              <Button onClick={() => showStudentModal(student)}>
                 <FontAwesomeIcon icon="eye" />
               </Button>
             </td>

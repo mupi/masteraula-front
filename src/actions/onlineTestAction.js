@@ -80,7 +80,7 @@ export const fetchOnlineTest = id => async (dispatch) => {
       start_date: activeOnlineTest.start_date,
       finish_date: activeOnlineTest.finish_date,
       typeDuration: activeOnlineTest.duration ? 'R' : 'L',
-      questions_document: activeOnlineTest.questions_document.map(q => ({ id: q.question.id, score: q.score })),
+      questions_document: activeOnlineTest.questions_document.map(q => ({ id: q.id, score: q.score })),
     }));
   } catch {
     dispatch({ type: FETCH_ONLINE_TEST_FAILURE });
@@ -108,13 +108,13 @@ export const createOnlineTest = (newOnlineTestData, idDocBase) => {
 };
 
 // Update an active Online Test
-export const updateOnlineTest = (props) => {
+export const updateOnlineTest = (idOnlineTest, updatedOnlineTest) => {
   function updateActiveOnlineTest() { return { type: UPDATE_ONLINE_TEST }; }
   function updateOnlineTestSuccess(activeOnlineTest) { return { type: UPDATE_ONLINE_TEST_SUCCESS, activeOnlineTest }; }
   function updateOnlineTestFailure(error) { return { type: UPDATE_ONLINE_TEST_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(updateActiveOnlineTest(props));
-    return onlineTestService.updateOnlineTest(props).then(
+    dispatch(updateActiveOnlineTest());
+    return onlineTestService.updateOnlineTest(idOnlineTest, updatedOnlineTest).then(
       (activeOnlineTest) => {
         dispatch(updateOnlineTestSuccess(activeOnlineTest));
       },
@@ -155,7 +155,7 @@ export const deleteOnlineTest = (idOnlineTest, isRedirect = false, idBaseDocumen
   function deleteOnlineTestFailure(error) { return { type: DELETE_ONLINE_TEST_FAILURE, error }; }
   return (dispatch) => {
     dispatch(deleteSelectedOnlineTest(idOnlineTest));
-    return documentService.deleteDocument(idOnlineTest)
+    return onlineTestService.deleteOnlineTest(idOnlineTest)
       .then(
         (idOnlineTestRemoved) => {
           dispatch(deleteOnlineTestSuccess(idOnlineTestRemoved));

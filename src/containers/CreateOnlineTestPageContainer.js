@@ -9,11 +9,12 @@ import { fetchQuestion } from 'actions/questionAction';
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('create-onlinetest');
+  const questions = selector(state, 'questions_document');
   return ({
     baseDocument: state.onlineTest.baseDocument,
     isFetchingBaseDocument: state.onlineTest.isFetchingBaseDocument,
     typeDurationSelected: selector(state, 'typeDuration'),
-    totalScore: 0, // selector(state, 'questions_document').map(q => q.score).reduce((a, b) => a + b, 0),
+    totalScore: questions ? questions.map(q => q.score).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0,
   });
 };
 

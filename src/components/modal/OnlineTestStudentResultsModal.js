@@ -45,14 +45,14 @@ const OnlineTestStudentResultsModal = (props) => {
           <Col sm="12">
             <p>
               <span>Resultados de: </span>
-              <span className="c-online__subtitle"><strong>{student.name}</strong></span>
+              <span className="c-online__subtitle"><strong>{student.student_name}</strong></span>
             </p>
           </Col>
           <Col sm="12">
-            <OnlineTestStudentBasicInfo studentAnswers={student.student_answer} />
+            <OnlineTestStudentBasicInfo student={student} />
           </Col>
           <Col sm="12">
-            <OnlineTestStudentAnswersTable student={student} />
+            <OnlineTestStudentAnswersTable studentAnswers={student.student_answer} />
           </Col>
           <Col sm="12">
             <div className="modal__footer modal-footer">

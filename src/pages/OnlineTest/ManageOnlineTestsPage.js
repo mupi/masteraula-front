@@ -23,8 +23,13 @@ const getOrderNameField = (text) => {
 
 const ManageOnlineTestsPage = (props) => {
   const {
-    showDeleteModal, isFetchingOnlineTests, listMyOnlineTests, match, onlineTestsList,
+    showDeleteModal, isFetchingOnlineTests, listMyOnlineTests, match, onlineTestsList, isDeleted,
   } = props;
+
+  if (isDeleted) {
+    listMyOnlineTests(parseInt(match.params.page, 10));
+  }
+
 
   useEffect(() => {
     listMyOnlineTests(match.params.id, match.params.page);

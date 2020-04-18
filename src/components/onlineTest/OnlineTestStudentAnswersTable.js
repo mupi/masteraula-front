@@ -18,7 +18,7 @@ const OnlineTestStudentAnswersTable = (props) => {
         </thead>
         <tbody align="center">
           {studentAnswers && studentAnswers.map(answer => (
-            <tr key={answer.id}>
+            <tr key={answer.student_question.id}>
               <td>
                   467
               </td>
@@ -29,7 +29,7 @@ const OnlineTestStudentAnswersTable = (props) => {
                   b
               </td>
               <td>
-                  5 pontos
+                {answer.score_answer}
               </td>
             </tr>
           ))}

@@ -408,7 +408,6 @@ const OnlineTestForm = (props) => {
           <Col>
             <h5>
               Questões:
-              {totalScore}
             </h5>
             <div className="border-top my-3" />
           </Col>
@@ -466,12 +465,28 @@ const OnlineTestForm = (props) => {
         </Row>
         <Row>
           <Col>
+            <p style={{ marginBottom: '0px' }}>
+              <span className="c-create-online__total-score-label"><strong>Pontuação total: </strong></span>
+              {totalScore}
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             <FieldArray
               name="questions_document"
               component={renderQuestions}
               questions={questions}
               showQuestionModal={showQuestionModal}
             />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <p style={{ marginBottom: '0px' }}>
+              <span className="c-create-online__total-score-label"><strong>Pontuação total: </strong></span>
+              {totalScore}
+            </p>
           </Col>
         </Row>
         <Row>
