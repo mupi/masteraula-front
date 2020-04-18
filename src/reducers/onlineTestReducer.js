@@ -45,6 +45,7 @@ export const onlineTest = (state = initialState, action) => {
     case FETCH_BASE_DOCUMENT_FAILURE:
       return Object.assign({}, state, {
         isFetchingBaseDocument: false,
+        baseDocument: null,
         error: action.error,
       });
     case FETCH_ONLINE_TEST:

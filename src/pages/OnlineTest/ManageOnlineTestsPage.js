@@ -39,7 +39,7 @@ const ManageOnlineTestsPage = (props) => {
     listMyOnlineTests(match.params.id, match.params.page);
   }, []);
 
-  if (isFetchingBaseDocument || isFetchingOnlineTests) {
+  if (isFetchingBaseDocument) {
     return (
       <HomeUserPage>
         <Alert className="alert--warning" color="warning">
