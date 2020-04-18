@@ -19,11 +19,11 @@ const OpenOnlineTestModalHeader = (props) => {
 
 const OnlineTestList = (props) => {
   const {
-    showDeleteModal, onlineTests,
+    showDeleteModal, onlineTests, baseDocument,
   } = props;
 
-  const handleDelete = (id, name) => {
-    showDeleteModal(id, name);
+  const handleDelete = (id, name, idDocBase) => {
+    showDeleteModal(id, name, idDocBase);
   };
 
   return (
@@ -116,14 +116,14 @@ const OnlineTestList = (props) => {
                           {' '}
                           Resultados
                         </DropdownItem>
-                        <DropdownItem divider className="label-item__divider" />
+                        <DropdownItem divider className="label-item__divider hidden" />
                         <DropdownItem onClick={() => {}} title="Duplicar prova online" className="hidden">
                           <FontAwesomeIcon icon="copy" />
                           {' '}
                           Duplicar
                         </DropdownItem>
                         <DropdownItem divider className="label-item__divider" />
-                        <DropdownItem className="c-my-classplans__btn-remove" onClick={() => handleDelete(onlineTest.link, onlineTest.name)} title="Apagar prova online">
+                        <DropdownItem className="c-my-classplans__btn-remove" onClick={() => handleDelete(onlineTest.link, onlineTest.name, baseDocument.id)} title="Apagar prova online">
                           <FontAwesomeIcon icon="trash-alt" />
                           {' '}
                           Apagar

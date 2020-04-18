@@ -30,7 +30,7 @@ const ManageOnlineTestsPage = (props) => {
   } = props;
 
   if (isDeleted) {
-    listMyOnlineTests(parseInt(match.params.page, 10));
+    listMyOnlineTests(parseInt(match.params.id, 10), parseInt(match.params.page, 10));
   }
 
 
@@ -38,6 +38,26 @@ const ManageOnlineTestsPage = (props) => {
     fetchBaseDocument(match.params.id);
     listMyOnlineTests(match.params.id, match.params.page);
   }, []);
+
+  if (isFetchingBaseDocument || isFetchingOnlineTests) {
+    return (
+      <HomeUserPage>
+        <Alert className="alert--warning" color="warning">
+            Carregando ...
+        </Alert>
+      </HomeUserPage>
+    );
+  }
+
+  if (!baseDocument) {
+    return (
+      <HomeUserPage>
+        <Alert color="danger">
+          A prova não existe
+        </Alert>
+      </HomeUserPage>
+    );
+  }
 
   return (
 
@@ -52,10 +72,10 @@ const ManageOnlineTestsPage = (props) => {
           <Col sm="12">
             <h4>
               {'Versões online de: '}
-              { !isFetchingBaseDocument && baseDocument && <span className="c-online__name">{baseDocument.name}</span>}
+              <span className="c-online__name">{baseDocument.name}</span>
             </h4>
           </Col>
-          { !isFetchingBaseDocument && baseDocument && baseDocument.questions.length > 0 && (
+          { baseDocument.questions.length > 0 && (
           <Col sm="12">
             <Link
               className="btn btn-secondary"
@@ -103,7 +123,7 @@ const ManageOnlineTestsPage = (props) => {
                 </div>
 
                 { onlineTestsList
-                  && <OnlineTestList onlineTests={onlineTestsList.results} showDeleteModal={showDeleteModal} />
+                  && <OnlineTestList onlineTests={onlineTestsList.results} showDeleteModal={showDeleteModal} baseDocument={baseDocument} />
                 }
               </div>
             )}

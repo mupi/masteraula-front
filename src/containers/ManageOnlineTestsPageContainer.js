@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
       name,
       id: idOnlineTest,
       deleteAction: () => {
-        dispatch(deleteOnlineTest(idOnlineTest, false, idBaseDocument));
+        dispatch(deleteOnlineTest(idOnlineTest, true, idBaseDocument));
       },
       closeModal: () => dispatch(hideModal()),
     },

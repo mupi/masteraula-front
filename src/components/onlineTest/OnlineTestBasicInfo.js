@@ -32,7 +32,7 @@ const OnlineTestBasicInfo = (props) => {
             />
             <strong>Duração: </strong>
           </span>
-          <span className="c-online__questions-info--value">{onlineTest.duration}</span>
+          <span className="c-online__questions-info--value">{`${onlineTest.duration} min`}</span>
         </p>
         <p className="c-online__questions-info">
           <span className="c-online__questions-info--label">

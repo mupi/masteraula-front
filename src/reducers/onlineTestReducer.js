@@ -64,6 +64,7 @@ export const onlineTest = (state = initialState, action) => {
       return Object.assign({}, state, {
         isFetchingOnlineTest: false,
         error: action.error,
+        activeOnlineTest: null,
       });
     case CREATE_ONLINE_TEST:
       return Object.assign({}, state, {
