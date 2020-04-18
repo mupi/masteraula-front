@@ -5,8 +5,6 @@ import {
   UPDATE_ONLINE_TEST, UPDATE_ONLINE_TEST_SUCCESS, UPDATE_ONLINE_TEST_FAILURE,
   LIST_MY_ONLINE_TESTS, LIST_MY_ONLINE_TESTS_SUCCESS, LIST_MY_ONLINE_TESTS_FAILURE,
   DELETE_ONLINE_TEST, DELETE_ONLINE_TEST_SUCCESS, DELETE_ONLINE_TEST_FAILURE,
-  COPY_ONLINE_TEST, COPY_ONLINE_TEST_SUCCESS, COPY_ONLINE_TEST_FAILURE,
-
 
 } from 'actions/onlineTestAction';
 import { toast } from 'react-toastify';
@@ -151,38 +149,6 @@ export const onlineTest = (state = initialState, action) => {
         isDeleted: false,
       });
     }
-    case COPY_ONLINE_TEST: {
-      return Object.assign({}, state, {
-        isRemoved: null,
-        error: null,
-        isUpdated: null,
-      });
-    }
-    case COPY_ONLINE_TEST_SUCCESS: {
-      toast.success('Cópia da prova realizada com sucesso', optionsSuccess);
-
-      const questionsAvailable = action.activeDocument.questions.filter(i => !i.question.disabled);
-      const copiedDocument = { ...action.activeDocument, questions: [...questionsAvailable] };
-
-      return Object.assign({}, state, {
-        activeDocument: { ...copiedDocument },
-        myDocumentsList: state.myDocumentsList ? {
-          ...state.myDocumentsList,
-          results: [...state.myDocumentsList.results, copiedDocument],
-          count: state.myDocumentsList.count + 1,
-        } : {
-          results: [copiedDocument],
-          count: 1,
-        },
-      });
-    }
-    case COPY_ONLINE_TEST_FAILURE: {
-      toast.error('Ocorreu um erro com sua solicitação', optionsError);
-      return Object.assign({}, state, {
-        error: action.error,
-      });
-    }
-
     default:
       return state;
   }
