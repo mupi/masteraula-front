@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Table,
 } from 'reactstrap';
+import { getOrderAlternative } from 'helpers/question';
 
 const OnlineTestStudentAnswersTable = (props) => {
   const { studentAnswers } = props;
@@ -19,14 +20,19 @@ const OnlineTestStudentAnswersTable = (props) => {
         <tbody align="center">
           {studentAnswers && studentAnswers.map(answer => (
             <tr key={answer.student_question.id}>
-              <td>
-                  467
+              <td className="text-center">
+                {answer.student_question.question.id}
               </td>
-              <td className="text-left">
+              <td className="text-center">
                   a
               </td>
-              <td>
-                  b
+              <td className="text-center">
+
+                {answer.student_question.question.alternatives.map((alternative, i) => (
+                  alternative.is_correct ? (
+                    <span>{getOrderAlternative(i)}</span>
+                  ) : ''
+                ))}
               </td>
               <td>
                 {answer.score_answer}

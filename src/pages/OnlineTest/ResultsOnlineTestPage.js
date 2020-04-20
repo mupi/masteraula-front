@@ -13,7 +13,7 @@ import OnlineTestStudentList from 'components/onlineTest/OnlineTestStudentList';
 const ResultsOnlineTestPage = (props) => {
   const {
     isFetchingOnlineTest, fetchOnlineTest, match, activeOnlineTest,
-    showStudentModal,
+    showStudentModal, showQuestionModal,
   } = props;
 
 
@@ -86,7 +86,7 @@ const ResultsOnlineTestPage = (props) => {
           </Col>
         </Row>
         <OnlineTestBasicInfo onlineTest={activeOnlineTest} />
-        <OnlineTestQuestionsTable questions={activeOnlineTest.questions_document} options={optionsQuestion} />
+        <OnlineTestQuestionsTable questions={activeOnlineTest.questions_document} options={optionsQuestion} showQuestionModal={showQuestionModal} />
         { activeOnlineTest.results && activeOnlineTest.results.length > 0 && (
         <OnlineTestStudentList showStudentModal={showStudentModal} students={activeOnlineTest.results} />)}
       </div>

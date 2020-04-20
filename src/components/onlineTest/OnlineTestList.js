@@ -111,6 +111,7 @@ const OnlineTestList = (props) => {
                           title="Ver resultados"
                           to={`/results-online/${onlineTest.link}`}
                           tag={Link}
+                          disabled={onlineTest.results.length <= 0}
                         >
                           <FontAwesomeIcon icon="chart-bar" />
                           {' '}

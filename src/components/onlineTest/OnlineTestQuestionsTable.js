@@ -7,15 +7,11 @@ import { getCleanExtractStatement } from 'helpers/question';
 
 const OnlineTestQuestionHeader = (props) => {
   const {
-    question, openQuestionModal, children, classCustom,
+    id, showQuestionModal, children, classCustom,
   } = props;
 
-  const onClickHandler = () => {
-    openQuestionModal(question.id);
-  };
-
   return (
-    <td role="gridcell" onClick={onClickHandler} style={{ cursor: 'pointer' }} className={`c-my-documents__cell ${classCustom}`}>
+    <td role="gridcell" onClick={() => showQuestionModal(id)} style={{ cursor: 'pointer' }} className={`c-my-documents__cell ${classCustom}`}>
       {children}
     </td>
   );
@@ -23,7 +19,7 @@ const OnlineTestQuestionHeader = (props) => {
 
 
 const OnlineTestQuestionsTable = (props) => {
-  const { questions } = props;
+  const { questions, showQuestionModal } = props;
   const totalScore = 15;
   return (
     <div className="c-online__question">
@@ -44,10 +40,10 @@ const OnlineTestQuestionsTable = (props) => {
 
             return (
               <tr key={questionOrder.question.id}>
-                <OnlineTestQuestionHeader id={questionOrder.question.id}>
+                <OnlineTestQuestionHeader id={questionOrder.question.id} showQuestionModal={showQuestionModal}>
                   {questionOrder.question.id}
                 </OnlineTestQuestionHeader>
-                <OnlineTestQuestionHeader id={questionOrder.question.id} classCustom="text-left">
+                <OnlineTestQuestionHeader id={questionOrder.question.id} showQuestionModal={showQuestionModal} classCustom="text-left">
                   {(extractStatement.length >= 120) ? ` ${extractStatement.substring(0, 120)} ...` : extractStatement}
                 </OnlineTestQuestionHeader>
                 <td>

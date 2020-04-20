@@ -87,7 +87,7 @@ const QuestionModal = (props) => {
         </Row>
         <div className="modal__footer modal-footer">
           <Button color="secondary" onClick={closeModal}>
-            Cancelar
+            Fechar
           </Button>
         </div>
       </div>

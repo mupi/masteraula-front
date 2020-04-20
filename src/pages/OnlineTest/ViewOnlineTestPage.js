@@ -85,6 +85,18 @@ const ViewOnlineTestPage = (props) => {
                 </Link>
               ) : ''}
 
+            { activeOnlineTest.results && activeOnlineTest.results.length > 0 && (
+            <Link
+              className="btn btn-secondary c-question__btn-back"
+              to={`/results-online/${activeOnlineTest.link}`}
+            >
+              <FontAwesomeIcon icon="chart-bar" />
+              {' '}
+              Resultados
+            </Link>
+            )
+            }
+
             <Link
               className="btn btn-secondary c-question__btn-back"
               to={`/apply-online/${activeOnlineTest.id}`}
