@@ -167,6 +167,7 @@ export const deleteOnlineTest = (idOnlineTest, isRedirect = false, idBaseDocumen
       .then(
         (idOnlineTestRemoved) => {
           dispatch(deleteOnlineTestSuccess(idOnlineTestRemoved));
+          dispatch(listMyOnlineTests(idBaseDocument, 1));
           if (isRedirect) {
             history.push(`/online-tests/${idBaseDocument}/1`);
           }
