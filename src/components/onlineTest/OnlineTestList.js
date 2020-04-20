@@ -45,7 +45,7 @@ const OnlineTestList = (props) => {
             </thead>
             <tbody align="center">
               {onlineTests && onlineTests.map(onlineTest => (
-                <tr key={onlineTest.link} style={{ cursor: 'pointer' }}>
+                <tr key={onlineTest.link}>
                   <OpenOnlineTestModalHeader id={onlineTest.link}>
                     <FontAwesomeIcon
                       icon="circle"

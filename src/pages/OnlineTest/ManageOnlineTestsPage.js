@@ -7,7 +7,6 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import CustomPagination from 'components/pagination/CustomPagination';
-import BackUsingHistory from 'components/question/BackUsingHistory';
 import OnlineTestList from 'components/onlineTest/OnlineTestList';
 import { Link } from 'react-router-dom';
 
@@ -60,7 +59,14 @@ const ManageOnlineTestsPage = (props) => {
       <div className="c-my-documents">
         <Row className="c-question__row-header-options c-question__row-header-options--fixed">
           <Col className="c-question__col-header-options">
-            <BackUsingHistory />
+            <Link
+              className="btn btn-secondary c-question__btn-back"
+              to="/documents/1"
+            >
+              <FontAwesomeIcon icon="arrow-circle-left" />
+              {' '}
+              Minhas provas
+            </Link>
           </Col>
         </Row>
         <Row className="c-question__tittle-section c-question--space-for-titlequestion">
