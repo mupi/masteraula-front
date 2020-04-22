@@ -55,8 +55,8 @@ export const minLength2TagsForEdit = (value) => {
   return (((value && (value.split(',').length < 2)) || value === undefined || value === null || invalid) ? 'Insira no minimo 2 tags' : undefined);
 };
 
-const maxValue = max => value => (value && value > max ? `O valor máximo permitido é ${max}` : undefined);
-const minValue = min => value => (value && value < min ? `O valor mínimo permitido é ${min}` : undefined);
+const maxValue = max => value => (value && value > max ? `O valor máximo é ${max}` : undefined);
+const minValue = min => value => (value && value < min ? `O valor mínimo é ${min}` : undefined);
 export const mustBePositiveNumber = value => ((value && isNaN(Number(value)) && value < 0) ? 'Insira um valor numérico maior do que 0' : undefined);
 
 export const maxYearValue = maxValue(2020);

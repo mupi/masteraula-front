@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
     isFetchingBaseDocument: state.onlineTest.isFetchingBaseDocument,
     typeDurationSelected: selector(state, 'typeDuration'),
     totalScore: questions ? questions.map(q => q.score).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0,
+    errors: state.form['create-onlinetest'] ? state.form['create-onlinetest'].submitErrors : null,
   });
 };
 
@@ -52,7 +53,7 @@ const mapDispatchToProps = (dispatch) => {
 
       const isStartGreaterThanFinish = startDate > endDate;
       if (isStartGreaterThanFinish) {
-        errors.start_date = 'A data fim é maior do que a data início';
+        errors.start_date = 'A data fim deve ser maior do que a ínicio';
       }
 
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);

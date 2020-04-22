@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import {
-  reduxForm, formValueSelector,
+  reduxForm, formValueSelector, SubmissionError,
 } from 'redux-form';
 import EditOnlineTestPage from 'pages/OnlineTest/EditOnlineTestPage';
 import { fetchOnlineTest, updateOnlineTest } from 'actions/onlineTestAction';
@@ -41,6 +41,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchOnlineTest: id => dispatch(fetchOnlineTest(id)),
     showQuestionModal: idQuestion => dispatch(showModal(questionModalProps(idQuestion))),
     onSubmit: (values, d, props) => {
+      const errors = {};
       const updatedOnlineTest = {
         start_date: values.start_date,
         finish_date: values.finish_date,
@@ -48,6 +49,16 @@ const mapDispatchToProps = (dispatch) => {
         duration: values.duration,
         name: values.name,
       };
+
+      const startDate = new Date(values.start_date);
+      const endDate = new Date(values.finish_date);
+
+      const isStartGreaterThanFinish = startDate > endDate;
+      if (isStartGreaterThanFinish) {
+        errors.start_date = 'A data fim deve ser maior do que a ínicio';
+      }
+
+      if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
       return dispatch(updateOnlineTest(props.activeOnlineTest.link, updatedOnlineTest));
     },
   }

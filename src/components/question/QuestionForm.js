@@ -588,7 +588,7 @@ class QuestionForm extends Component {
             </Row>
             <Row>
               <Col>
-                {errors && errors.general_errors && (
+                {errors && errors.general_errors && !submitting && (
                 <Alert color="danger">
                   {errors.general_errors}
                 </Alert>
