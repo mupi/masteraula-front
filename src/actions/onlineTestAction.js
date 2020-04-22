@@ -102,6 +102,9 @@ export const fetchStudentOnlineTest = id => async (dispatch) => {
     dispatch({ type: FETCH_STUDENT_ONLINE_TEST });
     const fullStudentOnlineTest = await onlineTestService.fetchStudentOnlineTest(id);
     dispatch({ type: FETCH_STUDENT_ONLINE_TEST_SUCCESS, fullStudentOnlineTest });
+    dispatch(initialize('student-test', {
+      student_questions: fullStudentOnlineTest.questions_document,
+    }));
   } catch {
     dispatch({ type: FETCH_STUDENT_ONLINE_TEST_FAILURE });
   }

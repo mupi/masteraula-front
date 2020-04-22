@@ -13,9 +13,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const StudentTestBasicInfo = ({ onlineTest }) => (
   <>
-    {/* <p className="c-online__total-questions-label">
+    {onlineTest.questions_document && (
+    <p className="c-online__total-questions-label">
       <strong>{`Total de ${onlineTest.questions_document.length} questões`}</strong>
-      </p> */}
+    </p>
+    )}
     <p className="c-online__questions-info">
       <span className="c-online__questions-info--label">
         <FontAwesomeIcon
@@ -100,7 +102,7 @@ const StudentOnlineTestSecondPage = (props) => {
       </Row>
       <Row className="mt-3 mb-3 align-items-center no-gutters">
         <Col>
-          <StudentOnlineTestQuestionsForm {...props} />
+          <StudentOnlineTestQuestionsForm {...props} questions={fullOnlineTest.questions_document} />
         </Col>
       </Row>
     </div>
