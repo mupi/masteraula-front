@@ -203,4 +203,25 @@
   &__messages{
     color: $color-ma-lightgray;
   }
+
+  &__object-text{
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__object-source{
+    font-size: 12px;
+    color: $color-ma-lightgray;
+  }
+
+  &__question-statement{
+    p {
+      margin-bottom: 0px;
+    }
+  }
+
+  &__section-title{
+    color: $color-ma-blue;
+  }
 }

@@ -218,7 +218,7 @@ class App extends Component {
                 <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
                 <Route path="/terms-use" component={TermsUsePage} />
                 <Route path="/faq" component={FaqPageContainer} />
-                <Route path="/apply-online/:page(\d+)" component={StudentOnlineTestPageContainer} />
+                <Route path="/apply-online/:id" component={StudentOnlineTestPageContainer} />
                 <Route component={NotFoundPage} />
               </Switch>
             )

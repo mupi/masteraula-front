@@ -1,31 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Row, Col,
+  Row, Col, Alert,
 } from 'reactstrap';
 
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import HomeUserNotLoggedPage from 'pages/Home/HomeUserNotLoggedPage';
 import StudentOnlineTestForm from 'components/onlineTest/StudentOnlineTestForm';
-import StudentOnlineTestQuestions from 'components/onlineTest/StudentOnlineTestQuestions';
+import StudentOnlineTestQuestionsForm from 'components/onlineTest/StudentOnlineTestQuestionsForm';
 import { formatDate } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-const onlineTest = {
-  start_date: '2020-04-15T14:22:26.101Z',
-  finish_date: '2020-04-29T14:22:29.084Z',
-  duration: '35',
-  questions_quantity: '5',
-  name: 'Prova de Pré 2',
-};
-
-
-const StudentTestBasicInfo = () => (
+const StudentTestBasicInfo = ({ onlineTest }) => (
   <>
-    <p className="c-online__total-questions-label">
-      <strong>{`Total de ${onlineTest.questions_quantity} questões`}</strong>
-    </p>
+    {/* <p className="c-online__total-questions-label">
+      <strong>{`Total de ${onlineTest.questions_document.length} questões`}</strong>
+      </p> */}
     <p className="c-online__questions-info">
       <span className="c-online__questions-info--label">
         <FontAwesomeIcon
@@ -50,66 +40,131 @@ const StudentTestBasicInfo = () => (
 );
 
 
-const StudentOnlineTestFirstPage = props => (
-  <div>
-    <Row className="mt-3 mb-3 align-items-center no-gutters">
-      <Col sm="12" md={{ size: 8, offset: 2 }}>
-        <h4>
-          {'Prova : '}
-          <span className="c-online__name">{onlineTest.name}</span>
-        </h4>
-        <StudentTestBasicInfo />
-      </Col>
-    </Row>
-    <Row>
-      <Col sm="12" md={{ size: 8, offset: 2 }} className="student-online__section">
-        <StudentOnlineTestForm {...props} />
-      </Col>
-    </Row>
-  </div>
-);
+const StudentOnlineTestFirstPage = (props) => {
+  const { basicOnlineTest } = props;
+  return (
+    <div>
+      <Row className="mt-3 mb-3 align-items-center no-gutters">
+        <Col sm="12" md={{ size: 8, offset: 2 }}>
+          <h4>
+            {'Prova : '}
+            <span className="c-online__name">{basicOnlineTest.name}</span>
+          </h4>
+          <StudentTestBasicInfo onlineTest={basicOnlineTest} />
+        </Col>
+      </Row>
+      <Row>
+        <Col sm="12" md={{ size: 8, offset: 2 }} className="student-online__section">
+          <StudentOnlineTestForm {...props} />
+        </Col>
+      </Row>
+    </div>
+  );
+};
 
-const StudentOnlineTestSecondPage = () => (
-  <div>
-    <Row className="mt-3 mb-3 align-items-center no-gutters">
-      <Col>
-        <h4>
-          {'Prova : '}
-          <span className="c-online__name">{onlineTest.name}</span>
-        </h4>
-        <StudentTestBasicInfo />
-      </Col>
-    </Row>
-    <Row className="mt-3 mb-3 align-items-center no-gutters">
-      <Col>
-        <StudentOnlineTestQuestions />
-      </Col>
-    </Row>
-  </div>
-);
+const StudentOnlineTestSecondPage = (props) => {
+  const {
+    match, fetchStudentOnlineTest, isFetchingFullStudentOnlineTest, fullOnlineTest,
+  } = props;
 
+  useEffect(() => {
+    fetchStudentOnlineTest(match.params.id);
+  }, []);
 
-const StudentOnlineTestPage = (props) => {
-  const { isLoggedIn, handleSubmit } = props;
+  if (isFetchingFullStudentOnlineTest) {
+    return (
+      <Alert className="alert--warning" color="warning">
+        Carregando ...
+      </Alert>
+    );
+  }
+
+  if (!fullOnlineTest || fullOnlineTest.disabled) {
+    return (
+      <Alert color="danger">
+        A prova não existe ou não está mais disponível
+      </Alert>
+    );
+  }
+
+  return (
+    <div>
+      <Row className="mt-3 mb-3 align-items-center no-gutters">
+        <Col>
+          <h4>
+            {'Prova : '}
+            <span className="c-online__name">{fullOnlineTest.name}</span>
+          </h4>
+          <StudentTestBasicInfo onlineTest={fullOnlineTest} />
+        </Col>
+      </Row>
+      <Row className="mt-3 mb-3 align-items-center no-gutters">
+        <Col>
+          <StudentOnlineTestQuestionsForm {...props} />
+        </Col>
+      </Row>
+    </div>
+  );
+};
+
+const InnerPage = (props) => {
+  const {
+    isLoggedIn, handleSubmit, isFetchingBasicStudentOnlineTest, basicOnlineTest,
+  } = props;
   const [page, setPage] = useState(1);
-
 
   const nextPage = () => {
     setPage(page + 1);
   };
+
+  if (isFetchingBasicStudentOnlineTest && !isLoggedIn) {
+    return (
+      <Alert className="alert--warning" color="warning">
+            Carregando ...
+      </Alert>
+    );
+  }
+
+  if ((!basicOnlineTest || basicOnlineTest.disabled) && !isLoggedIn) {
+    return (
+      <Alert color="danger">
+            A prova não existe ou não está mais disponível
+      </Alert>
+    );
+  }
+
+
   return isLoggedIn ? (
-    <HomeUserPage>
-      <StudentOnlineTestSecondPage />
-    </HomeUserPage>
+    <StudentOnlineTestSecondPage {...props} onSubmit={handleSubmit} />
   ) : (
-    <HomeUserNotLoggedPage>
+    <>
       {page === 1 && <StudentOnlineTestFirstPage {...props} onSubmit={() => nextPage()} />}
 
       {page === 2 && (
       <StudentOnlineTestSecondPage
         onSubmit={handleSubmit}
+        {...props}
       />
       )}
+    </>
+  );
+};
+
+const StudentOnlineTestPage = (props) => {
+  const {
+    isLoggedIn, verifyOnlineTest, match,
+  } = props;
+
+  useEffect(() => {
+    verifyOnlineTest(match.params.id);
+  }, []);
+  return isLoggedIn ? (
+    <HomeUserPage>
+      <InnerPage {...props} />
+    </HomeUserPage>
+  ) : (
+    <HomeUserNotLoggedPage>
+      <InnerPage {...props} />
     </HomeUserNotLoggedPage>
   );
 };

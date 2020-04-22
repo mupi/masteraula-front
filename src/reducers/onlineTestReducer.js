@@ -5,7 +5,8 @@ import {
   UPDATE_ONLINE_TEST, UPDATE_ONLINE_TEST_SUCCESS, UPDATE_ONLINE_TEST_FAILURE,
   LIST_MY_ONLINE_TESTS, LIST_MY_ONLINE_TESTS_SUCCESS, LIST_MY_ONLINE_TESTS_FAILURE,
   DELETE_ONLINE_TEST, DELETE_ONLINE_TEST_SUCCESS, DELETE_ONLINE_TEST_FAILURE,
-
+  VERIFY_ONLINE_TEST, VERIFY_ONLINE_TEST_SUCCESS, VERIFY_ONLINE_TEST_FAILURE,
+  FETCH_STUDENT_ONLINE_TEST, FETCH_STUDENT_ONLINE_TEST_SUCCESS, FETCH_STUDENT_ONLINE_TEST_FAILURE,
 } from 'actions/onlineTestAction';
 import { toast } from 'react-toastify';
 
@@ -15,6 +16,8 @@ const initialState = {
   onlineTestsList: [],
   isFetchingBaseDocument: false,
   isFetchingOnlineTest: false,
+  basicStudentOnlineTest: null,
+  fullStudentOnlineTest: null,
 };
 
 const optionsSuccess = {
@@ -67,6 +70,45 @@ export const onlineTest = (state = initialState, action) => {
         error: action.error,
         activeOnlineTest: null,
       });
+    case FETCH_STUDENT_ONLINE_TEST:
+      return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        isFetchingFullStudentOnlineTest: true,
+        error: null,
+        isDeleted: false,
+      });
+    case FETCH_STUDENT_ONLINE_TEST_SUCCESS:
+      return Object.assign({}, state, {
+        fullStudentOnlineTest: action.fullStudentOnlineTest,
+        isFetchingFullStudentOnlineTest: false,
+      });
+    case FETCH_STUDENT_ONLINE_TEST_FAILURE:
+      return Object.assign({}, state, {
+        isFetchingFullStudentOnlineTest: false,
+        error: action.error,
+        fullStudentOnlineTest: null,
+      });
+    case VERIFY_ONLINE_TEST:
+      return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        isFetchingBasicStudentOnlineTest: true,
+        error: null,
+        isDeleted: false,
+      });
+    case VERIFY_ONLINE_TEST_SUCCESS:
+      return Object.assign({}, state, {
+        basicStudentOnlineTest: action.basicStudentOnlineTest,
+        isFetchingBasicStudentOnlineTest: false,
+      });
+    case VERIFY_ONLINE_TEST_FAILURE:
+      return Object.assign({}, state, {
+        isFetchingBasicStudentOnlineTest: false,
+        error: action.error,
+        basicStudentOnlineTest: null,
+      });
+
     case CREATE_ONLINE_TEST:
       return Object.assign({}, state, {
         isRemoved: null,

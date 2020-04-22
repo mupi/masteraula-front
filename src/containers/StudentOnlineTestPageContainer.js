@@ -1,16 +1,19 @@
 import { connect } from 'react-redux';
 import StudentOnlineTestPage from 'pages/OnlineTest/StudentOnlineTestPage';
-import { fetchOnlineTest } from 'actions/onlineTestAction';
+import { verifyOnlineTest, fetchStudentOnlineTest } from 'actions/onlineTestAction';
 
 const mapStateToProps = state => ({
-  activeOnlineTest: state.onlineTest.activeOnlineTest,
-  isFetchingOnlineTest: state.onlineTest.isFetchingOnlineTest,
+  basicOnlineTest: state.onlineTest.basicStudentOnlineTest,
+  isFetchingBasicStudentOnlineTest: state.onlineTest.isFetchingBasicStudentOnlineTest,
+  fullOnlineTest: state.onlineTest.fullStudentOnlineTest,
+  isFetchingFullStudentOnlineTest: state.onlineTest.isFetchingFullStudentOnlineTest,
   isLoggedIn: !!state.session.session,
 });
 
 
 const mapDispatchToProps = dispatch => ({
-  fetchOnlineTest: id => dispatch(fetchOnlineTest(id)),
+  verifyOnlineTest: id => dispatch(verifyOnlineTest(id)),
+  fetchStudentOnlineTest: id => dispatch(fetchStudentOnlineTest(id)),
 });
 
 const StudentOnlineTestPageContainer = connect(

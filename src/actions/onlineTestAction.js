@@ -19,6 +19,15 @@ export const FETCH_ONLINE_TEST = 'FETCH_ONLINE_TEST';
 export const FETCH_ONLINE_TEST_SUCCESS = 'FETCH_ONLINE_TEST_SUCCESS';
 export const FETCH_ONLINE_TEST_FAILURE = 'FETCH_ONLINE_TEST_FAILURE';
 
+export const FETCH_STUDENT_ONLINE_TEST = 'FETCH_STUDENT_ONLINE_TEST';
+export const FETCH_STUDENT_ONLINE_TEST_SUCCESS = 'FETCH_STUDENT_ONLINE_TEST_SUCCESS';
+export const FETCH_STUDENT_ONLINE_TEST_FAILURE = 'FETCH_STUDENT_ONLINE_TEST_FAILURE';
+
+// Validate single ONLINE TEST
+export const VERIFY_ONLINE_TEST = 'VERIFY_ONLINE_TEST';
+export const VERIFY_ONLINE_TEST_SUCCESS = 'VERIFY_ONLINE_TEST_SUCCESS';
+export const VERIFY_ONLINE_TEST_FAILURE = 'VERIFY_ONLINE_TEST_FAILURE';
+
 // Create new ONLINE TEST
 export const CREATE_ONLINE_TEST = 'CREATE_ONLINE_TEST';
 export const CREATE_ONLINE_TEST_SUCCESS = 'CREATE_ONLINE_TEST_SUCCESS';
@@ -84,6 +93,28 @@ export const fetchOnlineTest = id => async (dispatch) => {
     }));
   } catch {
     dispatch({ type: FETCH_ONLINE_TEST_FAILURE });
+  }
+};
+
+
+export const fetchStudentOnlineTest = id => async (dispatch) => {
+  try {
+    dispatch({ type: FETCH_STUDENT_ONLINE_TEST });
+    const fullStudentOnlineTest = await onlineTestService.fetchStudentOnlineTest(id);
+    dispatch({ type: FETCH_STUDENT_ONLINE_TEST_SUCCESS, fullStudentOnlineTest });
+  } catch {
+    dispatch({ type: FETCH_STUDENT_ONLINE_TEST_FAILURE });
+  }
+};
+
+
+export const verifyOnlineTest = id => async (dispatch) => {
+  try {
+    dispatch({ type: VERIFY_ONLINE_TEST });
+    const basicStudentOnlineTest = await onlineTestService.verifyOnlineTest(id);
+    dispatch({ type: VERIFY_ONLINE_TEST_SUCCESS, basicStudentOnlineTest });
+  } catch {
+    dispatch({ type: VERIFY_ONLINE_TEST_FAILURE });
   }
 };
 

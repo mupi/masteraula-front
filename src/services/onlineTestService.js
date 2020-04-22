@@ -48,6 +48,40 @@ function fetchOnlineTest(id) {
     .then(response => response.data).then(activeOnlineTest => activeOnlineTest);
 }
 
+// Verify a onlineTest given its ID
+function verifyOnlineTest(id) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+
+  };
+
+  const url = `/document_online/${id}/check_document/`;
+
+  return axios.get(`${apiUrl}${url}`, requestOptions)
+    .then(response => response.data).then(validStudentOnlineTest => validStudentOnlineTest);
+}
+
+// Verify a onlineTest given its ID
+function fetchStudentOnlineTest(id) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+
+  };
+
+  const url = `/document_online/${id}/document_student/`;
+
+  return axios.get(`${apiUrl}${url}`, requestOptions)
+    .then(response => response.data).then(validStudentOnlineTest => validStudentOnlineTest);
+}
+
 /* Create a new online test */
 function createOnlineTest(newOnlineTest, idDocBase) {
   const requestOptions = {
@@ -118,7 +152,8 @@ const onlineTestService = {
   listMyOnlineTest,
   updateOnlineTest,
   deleteOnlineTest,
-  /* copyOnlineTest, */
+  verifyOnlineTest,
+  fetchStudentOnlineTest,
 };
 
 export default onlineTestService;
