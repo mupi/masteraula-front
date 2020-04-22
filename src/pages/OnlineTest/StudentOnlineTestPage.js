@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Row, Col,
@@ -7,6 +7,7 @@ import {
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import HomeUserNotLoggedPage from 'pages/Home/HomeUserNotLoggedPage';
 import StudentOnlineTestForm from 'components/onlineTest/StudentOnlineTestForm';
+import StudentOnlineTestQuestions from 'components/onlineTest/StudentOnlineTestQuestions';
 import { formatDate } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -49,12 +50,12 @@ const StudentTestBasicInfo = () => (
 );
 
 
-const InnerPage = () => (
-  <div className="c-document">
+const StudentOnlineTestFirstPage = props => (
+  <div>
     <Row className="mt-3 mb-3 align-items-center no-gutters">
       <Col sm="12" md={{ size: 8, offset: 2 }}>
         <h4>
-          {'Prova online : '}
+          {'Prova : '}
           <span className="c-online__name">{onlineTest.name}</span>
         </h4>
         <StudentTestBasicInfo />
@@ -62,22 +63,53 @@ const InnerPage = () => (
     </Row>
     <Row>
       <Col sm="12" md={{ size: 8, offset: 2 }} className="student-online__section">
-        <StudentOnlineTestForm />
+        <StudentOnlineTestForm {...props} />
       </Col>
     </Row>
   </div>
 );
 
-const StudentOnlineTestPage = (props) => {
-  const { isLoggedIn } = props;
+const StudentOnlineTestSecondPage = () => (
+  <div>
+    <Row className="mt-3 mb-3 align-items-center no-gutters">
+      <Col>
+        <h4>
+          {'Prova : '}
+          <span className="c-online__name">{onlineTest.name}</span>
+        </h4>
+        <StudentTestBasicInfo />
+      </Col>
+    </Row>
+    <Row className="mt-3 mb-3 align-items-center no-gutters">
+      <Col>
+        <StudentOnlineTestQuestions />
+      </Col>
+    </Row>
+  </div>
+);
 
+
+const StudentOnlineTestPage = (props) => {
+  const { isLoggedIn, handleSubmit } = props;
+  const [page, setPage] = useState(1);
+
+
+  const nextPage = () => {
+    setPage(page + 1);
+  };
   return isLoggedIn ? (
     <HomeUserPage>
-      <InnerPage {...props} />
+      <StudentOnlineTestSecondPage />
     </HomeUserPage>
   ) : (
     <HomeUserNotLoggedPage>
-      <InnerPage {...props} />
+      {page === 1 && <StudentOnlineTestFirstPage {...props} onSubmit={() => nextPage()} />}
+
+      {page === 2 && (
+      <StudentOnlineTestSecondPage
+        onSubmit={handleSubmit}
+      />
+      )}
     </HomeUserNotLoggedPage>
   );
 };

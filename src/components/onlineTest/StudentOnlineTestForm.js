@@ -3,6 +3,41 @@ import {
   Form, Row, Col, FormGroup, Label, Input, Button,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  Field, reduxForm,
+} from 'redux-form';
+import { userNameValidator, requiredValidator } from 'helpers/validators';
+
+// Basic Input Field
+const renderField = ({
+  input,
+  placeholder,
+  type,
+  meta: { touched, error, warning },
+}) => (
+  <div className="text-left">
+    <Input
+      {...input}
+      placeholder={placeholder}
+      type={type}
+      className="form-control"
+    />
+    { touched
+        && ((error && (
+        <span className="error-message-text">
+          {error}
+        </span>
+        ))
+        || (warning && (
+        <span>
+          {' '}
+          {warning}
+          {' '}
+        </span>
+        )))
+      }
+  </div>
+);
 
 const StudentOnlineTestForm = (props) => {
   const { handleSubmit } = props;
@@ -13,19 +48,40 @@ const StudentOnlineTestForm = (props) => {
         <Col md={6}>
           <FormGroup>
             <Label for="name">Nome completo</Label>
-            <Input type="text" name="name" id="name" placeholder="Insira seu nome completo" />
+            <Field
+              component={renderField}
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Insira seu nome completo"
+              className="form-control"
+              validate={[requiredValidator, userNameValidator]}
+            />
           </FormGroup>
         </Col>
         <Col md={6}>
           <FormGroup>
             <Label for="grade">Série</Label>
-            <Input type="text" name="grade" id="grade" placeholder="Insira sua série/turma" />
+            <Field
+              component={renderField}
+              type="text"
+              name="grade"
+              id="grade"
+              placeholder="Insira sua série/turma"
+              className="form-control"
+              validate={[requiredValidator]}
+            />
           </FormGroup>
         </Col>
       </Row>
       <Row>
+        <Col sm="12" className="text-center mb-3 student-online__messages">
+          Boa prova!
+        </Col>
+      </Row>
+      <Row>
         <Col sm="12" className="text-center">
-          <Button color="success">
+          <Button color="success" type="submit">
             {'Começar '}
             <FontAwesomeIcon icon="arrow-circle-right" />
           </Button>
@@ -35,4 +91,10 @@ const StudentOnlineTestForm = (props) => {
   );
 };
 
-export default StudentOnlineTestForm;
+export default reduxForm({
+  form: 'student-test', // <------ same form name
+  destroyOnUnmount: false, // <------ preserve form data
+  forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
+})(StudentOnlineTestForm);
+
+// export default StudentOnlineTestForm;

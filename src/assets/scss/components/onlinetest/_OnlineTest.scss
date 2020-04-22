@@ -199,4 +199,8 @@
     border: 1px solid rgba(0, 0, 0, 0.125);
     padding: 20px 20px;
   }
+
+  &__messages{
+    color: $color-ma-lightgray;
+  }
 }
