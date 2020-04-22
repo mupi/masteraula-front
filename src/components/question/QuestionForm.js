@@ -298,7 +298,7 @@ class QuestionForm extends Component {
     const {
       topicSuggestions, pristine, disciplineFilters, sourceFilters,
       teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
-      submitting, resolution, errorsEditQuestion, sourceQuestionValue, listTopicSuggestions,
+      submitting, resolution, errors, sourceQuestionValue, listTopicSuggestions,
       showSearchLearningObjectModal, actionName,
     } = this.props;
 
@@ -588,9 +588,9 @@ class QuestionForm extends Component {
             </Row>
             <Row>
               <Col>
-                {errorsEditQuestion && errorsEditQuestion.general_errors && (
+                {errors && errors.general_errors && (
                 <Alert color="danger">
-                  {errorsEditQuestion.general_errors}
+                  {errors.general_errors}
                 </Alert>
                 )}
               </Col>

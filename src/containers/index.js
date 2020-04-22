@@ -36,3 +36,4 @@ export { default as ManageOnlineTestsPageContainer } from './ManageOnlineTestsPa
 export { default as ViewOnlineTestPageContainer } from './ViewOnlineTestPageContainer';
 export { default as EditOnlineTestPageContainer } from './EditOnlineTestPageContainer';
 export { default as ResultsOnlineTestPageContainer } from './ResultsOnlineTestPageContainer';
+export { default as StudentOnlineTestPageContainer } from './StudentOnlineTestPageContainer';
