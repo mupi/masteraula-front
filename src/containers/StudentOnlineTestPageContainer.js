@@ -14,6 +14,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   verifyOnlineTest: id => dispatch(verifyOnlineTest(id)),
   fetchStudentOnlineTest: id => dispatch(fetchStudentOnlineTest(id)),
+  /* onSubmit: (values, d, props) => {
+
+  }, */
 });
 
 const StudentOnlineTestPageContainer = connect(

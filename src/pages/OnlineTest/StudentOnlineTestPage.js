@@ -111,7 +111,7 @@ const StudentOnlineTestSecondPage = (props) => {
 
 const InnerPage = (props) => {
   const {
-    isLoggedIn, handleSubmit, isFetchingBasicStudentOnlineTest, basicOnlineTest,
+    isLoggedIn, isFetchingBasicStudentOnlineTest, basicOnlineTest,
   } = props;
   const [page, setPage] = useState(1);
 
@@ -137,14 +137,13 @@ const InnerPage = (props) => {
 
 
   return isLoggedIn ? (
-    <StudentOnlineTestSecondPage {...props} onSubmit={handleSubmit} />
+    <StudentOnlineTestSecondPage {...props} />
   ) : (
     <>
       {page === 1 && <StudentOnlineTestFirstPage {...props} onSubmit={() => nextPage()} />}
 
       {page === 2 && (
       <StudentOnlineTestSecondPage
-        onSubmit={handleSubmit}
         {...props}
       />
       )}

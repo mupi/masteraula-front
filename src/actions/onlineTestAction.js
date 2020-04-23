@@ -1,6 +1,6 @@
 import { documentService } from 'services';
 import { history } from 'helpers';
-import { initialize } from 'redux-form';
+import { initialize, formValueSelector } from 'redux-form';
 import onlineTestService from 'services/onlineTestService';
 import { toast } from 'react-toastify';
 
@@ -97,12 +97,16 @@ export const fetchOnlineTest = id => async (dispatch) => {
 };
 
 
-export const fetchStudentOnlineTest = id => async (dispatch) => {
+export const fetchStudentOnlineTest = id => async (dispatch, getState) => {
   try {
     dispatch({ type: FETCH_STUDENT_ONLINE_TEST });
     const fullStudentOnlineTest = await onlineTestService.fetchStudentOnlineTest(id);
     dispatch({ type: FETCH_STUDENT_ONLINE_TEST_SUCCESS, fullStudentOnlineTest });
+
+    const selector = formValueSelector('student-test');
     dispatch(initialize('student-test', {
+      student_name: selector(getState(), 'student_name'),
+      student_levels: selector(getState(), 'student_levels'),
       student_questions: fullStudentOnlineTest.questions_document,
     }));
   } catch {

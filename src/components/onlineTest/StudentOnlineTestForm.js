@@ -38,7 +38,6 @@ const renderField = ({
       }
   </div>
 );
-
 const StudentOnlineTestForm = (props) => {
   const { handleSubmit } = props;
 
@@ -51,8 +50,8 @@ const StudentOnlineTestForm = (props) => {
             <Field
               component={renderField}
               type="text"
-              name="name"
-              id="name"
+              name="student_name"
+              id="student_name"
               placeholder="Insira seu nome completo"
               className="form-control"
               validate={[requiredValidator, userNameValidator]}
@@ -65,8 +64,8 @@ const StudentOnlineTestForm = (props) => {
             <Field
               component={renderField}
               type="text"
-              name="grade"
-              id="grade"
+              name="student_levels"
+              id="student_levels"
               placeholder="Insira sua série/turma"
               className="form-control"
               validate={[requiredValidator]}

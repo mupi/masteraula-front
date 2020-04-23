@@ -1,6 +1,5 @@
 import React from 'react';
 import { getCleanCompleteStatement, getCleanLearningObjectSource, getCleanAlternativeText } from 'helpers/question';
-import { connect } from 'react-redux';
 import { Prompt } from 'react-router-dom';
 import {
   Row, Col, Form, Button, FormGroup,
@@ -12,21 +11,21 @@ import {
 
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-danger */
-const renderAlternatives = ({ fields, alternatives }) => (
+const renderAlternatives = ({ fields, question }) => (
   <>
     {fields && fields.map((alternative, i) => (
-      <div key={alternatives[i].id}>
+      <div key={question.alternatives[i].id}>
         <FormGroup>
           <Field
-            name="selectedIndex"
+            name={`${question.id}selectedIndex`}
             component="input"
             type="radio"
             normalize={value => parseInt(value, 10)}
-            value={i}
+            value={question.alternatives[i].id}
             className="c-create-online__radio-button-field"
           />
           {' '}
-          <span dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(alternatives[i].text) }} />
+          <span dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(question.alternatives[i].text) }} />
         </FormGroup>
       </div>
     ))}
@@ -76,13 +75,20 @@ const renderQuestionMaterials = ({ fields, questionGroups }) => (
         <div className="student-online__question-statement">
           <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(questionGroups[i].question.statement) }} />
         </div>
-        <FieldArray name={`${group}.question.alternatives`} component={renderAlternatives} alternatives={questionGroups[i].question.alternatives} />
+        <FieldArray name={`${group}.question.alternatives`} component={renderAlternatives} question={questionGroups[i].question} />
       </div>
     ))}
 
   </>
 );
+/*
 
+{
+  "student_name": "Glaucia",
+  "student_levels": "Superior",
+  "student_answer": [{"answer_text": "a", "student_question": 3}, {"answer_alternative": 3, "student_question": 3}]
+}
+ */
 const StudentOnlineTestQuestionsForm = (props) => {
   const {
     handleSubmit, pristine, submitting, questions,
@@ -116,18 +122,8 @@ const StudentOnlineTestQuestionsForm = (props) => {
   );
 };
 
-const mapStateToProps = () => ({
-
-});
-
-const mapDispatchToProps = () => ({
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(reduxForm({
+export default reduxForm({
   form: 'student-test', // <------ same form name
   destroyOnUnmount: false, // <------ preserve form data
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
-})(StudentOnlineTestQuestionsForm));
+})(StudentOnlineTestQuestionsForm);
