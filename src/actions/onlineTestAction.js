@@ -56,6 +56,11 @@ export const COPY_ONLINE_TEST = 'COPY_ONLINE_TEST';
 export const COPY_ONLINE_TEST_SUCCESS = 'COPY_ONLINE_TEST_SUCCESS';
 export const COPY_ONLINE_TEST_FAILURE = 'COPY_ONLINE_TEST_FAILURE';
 
+// SEND ONLINE TEST'ANSWERS
+export const SEND_ANSWERS_ONLINE_TEST = 'SEND_ANSWERS_ONLINE_TEST';
+export const SEND_ANSWERS_ONLINE_TEST_SUCCESS = 'SEND_ANSWERS_ONLINE_TEST_SUCCESS';
+export const SEND_ANSWERS_ONLINE_TEST_FAILURE = 'SEND_ANSWERS_ONLINE_TEST_FAILURE';
+
 
 export const fetchBaseDocument = id => async (dispatch) => {
   try {
@@ -104,10 +109,21 @@ export const fetchStudentOnlineTest = id => async (dispatch, getState) => {
     dispatch({ type: FETCH_STUDENT_ONLINE_TEST_SUCCESS, fullStudentOnlineTest });
 
     const selector = formValueSelector('student-test');
+
+    let studentQuestions = [];
+    studentQuestions = fullStudentOnlineTest.questions_document.map(qDoc => ({
+      alternatives: qDoc.question.alternatives.map(alt => ({
+        idQuestionDoc: qDoc.id,
+        id: alt.id,
+        text: alt.text,
+      })),
+      student_question: qDoc.id,
+    }));
+
     dispatch(initialize('student-test', {
       student_name: selector(getState(), 'student_name'),
       student_levels: selector(getState(), 'student_levels'),
-      student_questions: fullStudentOnlineTest.questions_document,
+      student_questions: studentQuestions,
     }));
   } catch {
     dispatch({ type: FETCH_STUDENT_ONLINE_TEST_FAILURE });
@@ -122,6 +138,17 @@ export const verifyOnlineTest = id => async (dispatch) => {
     dispatch({ type: VERIFY_ONLINE_TEST_SUCCESS, basicStudentOnlineTest });
   } catch {
     dispatch({ type: VERIFY_ONLINE_TEST_FAILURE });
+  }
+};
+
+
+export const sendAnswersOnlineTest = (onlineTest, studentAnswers) => async (dispatch) => {
+  try {
+    dispatch({ type: SEND_ANSWERS_ONLINE_TEST });
+    const res = await onlineTestService.sendAnswersOnlineTest(onlineTest, studentAnswers);
+    dispatch({ type: SEND_ANSWERS_ONLINE_TEST_SUCCESS, res });
+  } catch {
+    dispatch({ type: SEND_ANSWERS_ONLINE_TEST_FAILURE });
   }
 };
 

@@ -102,7 +102,7 @@ const StudentOnlineTestSecondPage = (props) => {
       </Row>
       <Row className="mt-3 mb-3 align-items-center no-gutters">
         <Col>
-          <StudentOnlineTestQuestionsForm {...props} questions={fullOnlineTest.questions_document} />
+          <StudentOnlineTestQuestionsForm {...props} questionsDocument={fullOnlineTest.questions_document} />
         </Col>
       </Row>
     </div>

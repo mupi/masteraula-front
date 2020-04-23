@@ -82,6 +82,24 @@ function fetchStudentOnlineTest(id) {
     .then(response => response.data).then(validStudentOnlineTest => validStudentOnlineTest);
 }
 
+
+// Verify a onlineTest given its ID
+function sendAnswersOnlineTest(onlineTest, studentAnswers) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+
+  };
+  const url = `/document_online/${onlineTest.link}/check_document/`;
+
+  return axios.get(`${apiUrl}${url}`, requestOptions, studentAnswers)
+    .then(response => response.data).then(res => res);
+}
+
+
 /* Create a new online test */
 function createOnlineTest(newOnlineTest, idDocBase) {
   const requestOptions = {
@@ -154,6 +172,7 @@ const onlineTestService = {
   deleteOnlineTest,
   verifyOnlineTest,
   fetchStudentOnlineTest,
+  sendAnswersOnlineTest,
 };
 
 export default onlineTestService;

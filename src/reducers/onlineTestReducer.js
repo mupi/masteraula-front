@@ -7,6 +7,7 @@ import {
   DELETE_ONLINE_TEST, DELETE_ONLINE_TEST_SUCCESS, DELETE_ONLINE_TEST_FAILURE,
   VERIFY_ONLINE_TEST, VERIFY_ONLINE_TEST_SUCCESS, VERIFY_ONLINE_TEST_FAILURE,
   FETCH_STUDENT_ONLINE_TEST, FETCH_STUDENT_ONLINE_TEST_SUCCESS, FETCH_STUDENT_ONLINE_TEST_FAILURE,
+  SEND_ANSWERS_ONLINE_TEST, SEND_ANSWERS_ONLINE_TEST_SUCCESS, SEND_ANSWERS_ONLINE_TEST_FAILURE,
 } from 'actions/onlineTestAction';
 import { toast } from 'react-toastify';
 
@@ -108,7 +109,22 @@ export const onlineTest = (state = initialState, action) => {
         error: action.error,
         basicStudentOnlineTest: null,
       });
-
+    case SEND_ANSWERS_ONLINE_TEST:
+      return Object.assign({}, state, {
+        isSendingAnswers: true,
+        error: null,
+      });
+    case SEND_ANSWERS_ONLINE_TEST_SUCCESS:
+      toast.success('Suas respostas foram enviadas om sucesso', optionsSuccess);
+      return Object.assign({}, state, {
+        isSendingAnswers: false,
+      });
+    case SEND_ANSWERS_ONLINE_TEST_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        isSendingAnswers: false,
+        error: action.error,
+      });
     case CREATE_ONLINE_TEST:
       return Object.assign({}, state, {
         isRemoved: null,

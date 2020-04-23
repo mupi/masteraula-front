@@ -216,10 +216,14 @@
     color: $color-ma-lightgray;
   }
 
-  &__question-statement{
+  &__question-statement
     p {
       margin-bottom: 0px;
     }
+  }
+
+  &__question-alternative {
+      margin-bottom: 0px !important;
   }
 
   &__section-title{

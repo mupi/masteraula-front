@@ -2,31 +2,60 @@ import React from 'react';
 import { getCleanCompleteStatement, getCleanLearningObjectSource, getCleanAlternativeText } from 'helpers/question';
 import { Prompt } from 'react-router-dom';
 import {
-  Row, Col, Form, Button, FormGroup,
+  Row, Col, Form, Button, Input,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Field, reduxForm, FieldArray,
 } from 'redux-form';
 
-/* eslint-disable react/no-array-index-key */
+const renderField = ({
+  input,
+  placeholder,
+  type,
+  meta: { touched, error, warning },
+  autoFocus = false,
+}) => (
+  <div className="mt-2">
+    <Input
+      {...input}
+      placeholder={placeholder}
+      type={type}
+      autoFocus={autoFocus}
+      className="contact-form__input form-control"
+    />
+    { touched
+        && ((error && (
+        <span className="error-message-text">
+          {error}
+        </span>
+        ))
+        || (warning && (
+        <span>
+          {' '}
+          {warning}
+          {' '}
+        </span>
+        )))
+      }
+  </div>
+);
+
 /* eslint-disable react/no-danger */
-const renderAlternatives = ({ fields, question }) => (
+const renderAlternatives = ({ fields, questionDoc }) => (
   <>
     {fields && fields.map((alternative, i) => (
-      <div key={question.alternatives[i].id}>
-        <FormGroup>
-          <Field
-            name={`${question.id}selectedIndex`}
-            component="input"
-            type="radio"
-            normalize={value => parseInt(value, 10)}
-            value={question.alternatives[i].id}
-            className="c-create-online__radio-button-field"
-          />
-          {' '}
-          <span dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(question.alternatives[i].text) }} />
-        </FormGroup>
+      <div key={questionDoc.question.alternatives[i].id}>
+        <Field
+          name={`${questionDoc.id}selectedIndex`}
+          component="input"
+          type="radio"
+          normalize={value => parseInt(value, 10)}
+          value={questionDoc.question.alternatives[i].id}
+          className="c-create-online__radio-button-field"
+        />
+        {' '}
+        <span dangerouslySetInnerHTML={{ __html: getCleanAlternativeText(questionDoc.question.alternatives[i].text) }} />
       </div>
     ))}
 
@@ -75,7 +104,19 @@ const renderQuestionMaterials = ({ fields, questionGroups }) => (
         <div className="student-online__question-statement">
           <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(questionGroups[i].question.statement) }} />
         </div>
-        <FieldArray name={`${group}.question.alternatives`} component={renderAlternatives} question={questionGroups[i].question} />
+
+        {questionGroups[i].question.alternatives.length > 0
+          ? (<FieldArray name={`${group}.alternatives`} component={renderAlternatives} questionDoc={questionGroups[i]} />)
+          : (
+            <Field
+              component={renderField}
+              type="textarea"
+              name={`${group}.answer_text`}
+              placeholder="Insira sua resposta"
+              className="form-control"
+            />
+          )
+        }
       </div>
     ))}
 
@@ -91,7 +132,7 @@ const renderQuestionMaterials = ({ fields, questionGroups }) => (
  */
 const StudentOnlineTestQuestionsForm = (props) => {
   const {
-    handleSubmit, pristine, submitting, questions,
+    handleSubmit, pristine, submitting, questionsDocument,
   } = props;
   return (
 
@@ -106,7 +147,7 @@ const StudentOnlineTestQuestionsForm = (props) => {
           <FieldArray
             name="student_questions"
             component={renderQuestionMaterials}
-            questionGroups={questions}
+            questionGroups={questionsDocument}
           />
         </Col>
       </Row>
