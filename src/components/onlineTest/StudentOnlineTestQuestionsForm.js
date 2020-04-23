@@ -132,7 +132,7 @@ const renderQuestionMaterials = ({ fields, questionGroups }) => (
  */
 const StudentOnlineTestQuestionsForm = (props) => {
   const {
-    handleSubmit, pristine, submitting, questionsDocument,
+    handleSubmit, pristine, submitting, questionsDocument, isLoggedIn,
   } = props;
   return (
 
@@ -151,6 +151,7 @@ const StudentOnlineTestQuestionsForm = (props) => {
           />
         </Col>
       </Row>
+      {!isLoggedIn && (
       <Row className="mt-3">
         <Col sm="12" className="text-center">
           <Button color="success" type="submit">
@@ -159,6 +160,7 @@ const StudentOnlineTestQuestionsForm = (props) => {
           </Button>
         </Col>
       </Row>
+      )}
     </Form>
   );
 };
