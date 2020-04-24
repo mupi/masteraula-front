@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
     isFetchingFullStudentOnlineTest: state.onlineTest.isFetchingFullStudentOnlineTest,
     answersSent: state.onlineTest.answersSent,
     startDateOnlineTest: state.onlineTest.startDateOnlineTest,
+    isSendingAnswers: state.onlineTest.isSendingAnswers,
     isLoggedIn: !!state.session.session,
     userId: state.session.session ? state.session.session.user.id : null,
     studentInfo: {

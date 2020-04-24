@@ -132,14 +132,14 @@ const renderQuestionMaterials = ({ fields, questionGroups }) => (
  */
 const StudentOnlineTestQuestionsForm = (props) => {
   const {
-    handleSubmit, pristine, submitting, questionsDocument, isLoggedIn,
+    handleSubmit, pristine, /* submitting, */ questionsDocument, isLoggedIn, isSendingAnswers,
   } = props;
   return (
 
     <Form onSubmit={handleSubmit}>
       {!isLoggedIn && (
       <Prompt
-        when={!pristine && !submitting}
+        when={!pristine && !isSendingAnswers}
         message="Tem certeza de sair da prova online?"
       />
       )}
@@ -156,7 +156,7 @@ const StudentOnlineTestQuestionsForm = (props) => {
       {!isLoggedIn && (
       <Row className="mt-3">
         <Col sm="12" className="text-center">
-          <Button color="success" type="submit" disabled={submitting}>
+          <Button color="success" type="submit" disabled={isSendingAnswers}>
             <FontAwesomeIcon icon="check" />
             {' Finalizar prova'}
           </Button>
