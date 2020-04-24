@@ -8,7 +8,9 @@ const mapStateToProps = state => ({
   isFetchingBasicStudentOnlineTest: state.onlineTest.isFetchingBasicStudentOnlineTest,
   fullOnlineTest: state.onlineTest.fullStudentOnlineTest,
   isFetchingFullStudentOnlineTest: state.onlineTest.isFetchingFullStudentOnlineTest,
+  answersSent: state.onlineTest.answersSent,
   isLoggedIn: !!state.session.session,
+  userId: state.session.session.user.id,
 });
 
 

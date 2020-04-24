@@ -203,7 +203,6 @@ class App extends Component {
                 <Route path="/results-online/:id" component={ResultsOnlineTestPageContainer} />
                 <Route path="/online-tests/:id/:page(\d+)" component={ManageOnlineTestsPageContainer} />
                 <Route path="/apply-online/:id" component={StudentOnlineTestPageContainer} />
-
                 <Redirect from="/" to="/my-dashboard/" />
               </Switch>
             )

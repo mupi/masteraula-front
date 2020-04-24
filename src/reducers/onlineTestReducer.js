@@ -19,6 +19,7 @@ const initialState = {
   isFetchingOnlineTest: false,
   basicStudentOnlineTest: null,
   fullStudentOnlineTest: null,
+  answersSent: false,
 };
 
 const optionsSuccess = {
@@ -113,17 +114,19 @@ export const onlineTest = (state = initialState, action) => {
       return Object.assign({}, state, {
         isSendingAnswers: true,
         error: null,
+        answersSent: false,
       });
     case SEND_ANSWERS_ONLINE_TEST_SUCCESS:
-      toast.success('Suas respostas foram enviadas om sucesso', optionsSuccess);
       return Object.assign({}, state, {
         isSendingAnswers: false,
+        answersSent: true,
       });
     case SEND_ANSWERS_ONLINE_TEST_FAILURE:
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isSendingAnswers: false,
         error: action.error,
+        answersSent: false,
       });
     case CREATE_ONLINE_TEST:
       return Object.assign({}, state, {

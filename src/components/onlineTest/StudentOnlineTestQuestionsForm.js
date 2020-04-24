@@ -137,10 +137,12 @@ const StudentOnlineTestQuestionsForm = (props) => {
   return (
 
     <Form onSubmit={handleSubmit}>
+      {!isLoggedIn && (
       <Prompt
         when={!pristine && !submitting}
         message="Tem certeza de sair da prova online?"
       />
+      )}
 
       <Row noGutters>
         <Col>
@@ -154,7 +156,7 @@ const StudentOnlineTestQuestionsForm = (props) => {
       {!isLoggedIn && (
       <Row className="mt-3">
         <Col sm="12" className="text-center">
-          <Button color="success" type="submit">
+          <Button color="success" type="submit" disabled={submitting}>
             <FontAwesomeIcon icon="check" />
             {' Finalizar prova'}
           </Button>

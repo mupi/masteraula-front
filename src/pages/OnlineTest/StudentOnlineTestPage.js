@@ -109,9 +109,21 @@ const StudentOnlineTestSecondPage = (props) => {
   );
 };
 
+const StudentOnlineTestThirdPage = () => (
+  <div>
+    <Row className="mt-3 mb-3 align-items-center no-gutters">
+      <Col>
+        <Alert color="success">
+          Suas respostas foram enviadas com sucesso!
+        </Alert>
+      </Col>
+    </Row>
+  </div>
+);
+
 const InnerPage = (props) => {
   const {
-    isLoggedIn, isFetchingBasicStudentOnlineTest, basicOnlineTest,
+    isLoggedIn, isFetchingBasicStudentOnlineTest, basicOnlineTest, answersSent, userId,
   } = props;
   const [page, setPage] = useState(1);
 
@@ -130,9 +142,21 @@ const InnerPage = (props) => {
   if ((!basicOnlineTest || basicOnlineTest.disabled) && !isLoggedIn) {
     return (
       <Alert color="danger">
-            A prova não existe ou não está mais disponível
+        A prova não existe ou não está mais disponível
       </Alert>
     );
+  }
+
+  if (isLoggedIn && basicOnlineTest && basicOnlineTest.owner.pk !== userId) {
+    return (
+      <Alert color="danger">
+        A prova não é de sua autoria
+      </Alert>
+    );
+  }
+
+  if (answersSent) {
+    return <StudentOnlineTestThirdPage />;
   }
 
 
