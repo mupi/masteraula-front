@@ -13,7 +13,7 @@ import OnlineTestStudentList from 'components/onlineTest/OnlineTestStudentList';
 const ResultsOnlineTestPage = (props) => {
   const {
     isFetchingOnlineTest, fetchOnlineTest, match, activeOnlineTest,
-    showStudentModal, showQuestionModal,
+    showStudentModal, showQuestionModal, userId,
   } = props;
 
 
@@ -36,6 +36,16 @@ const ResultsOnlineTestPage = (props) => {
       <HomeUserPage>
         <Alert color="danger">
             A prova online não existe ou não está mais disponível
+        </Alert>
+      </HomeUserPage>
+    );
+  }
+
+  if (activeOnlineTest && activeOnlineTest.owner.pk !== userId) {
+    return (
+      <HomeUserPage>
+        <Alert color="danger">
+          A prova online não é de sua autoria
         </Alert>
       </HomeUserPage>
     );

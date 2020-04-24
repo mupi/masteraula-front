@@ -61,6 +61,7 @@ export const SEND_ANSWERS_ONLINE_TEST = 'SEND_ANSWERS_ONLINE_TEST';
 export const SEND_ANSWERS_ONLINE_TEST_SUCCESS = 'SEND_ANSWERS_ONLINE_TEST_SUCCESS';
 export const SEND_ANSWERS_ONLINE_TEST_FAILURE = 'SEND_ANSWERS_ONLINE_TEST_FAILURE';
 
+export const SET_START_DATE_ONLINE_TEST = 'SET_START_DATE_ONLINE_TEST';
 
 export const fetchBaseDocument = id => async (dispatch) => {
   try {
@@ -101,6 +102,10 @@ export const fetchOnlineTest = id => async (dispatch) => {
   }
 };
 
+// Functions for create question based on Object
+export const setStartDateOnlineTest = () => ({
+  type: SET_START_DATE_ONLINE_TEST,
+});
 
 export const fetchStudentOnlineTest = id => async (dispatch, getState) => {
   try {
@@ -125,6 +130,8 @@ export const fetchStudentOnlineTest = id => async (dispatch, getState) => {
       student_levels: selector(getState(), 'student_levels'),
       student_questions: studentQuestions,
     }));
+
+    dispatch(setStartDateOnlineTest());
   } catch {
     dispatch({ type: FETCH_STUDENT_ONLINE_TEST_FAILURE });
   }

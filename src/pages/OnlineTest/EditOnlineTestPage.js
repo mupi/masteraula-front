@@ -7,7 +7,7 @@ import {
 
 const EditOnlineTestPage = (props) => {
   const {
-    isFetchingOnlineTest, fetchOnlineTest, match, activeOnlineTest,
+    isFetchingOnlineTest, fetchOnlineTest, match, activeOnlineTest, userId,
   } = props;
 
   useEffect(() => {
@@ -33,6 +33,17 @@ const EditOnlineTestPage = (props) => {
       </HomeUserPage>
     );
   }
+
+  if (activeOnlineTest && activeOnlineTest.owner.pk !== userId) {
+    return (
+      <HomeUserPage>
+        <Alert color="danger">
+          A prova online não é de sua autoria
+        </Alert>
+      </HomeUserPage>
+    );
+  }
+
   return (
     <HomeUserPage>
       {activeOnlineTest && <OnlineTestForm {...props} actionName="Editar" baseDoc={activeOnlineTest.document} onlineTest={activeOnlineTest} />}

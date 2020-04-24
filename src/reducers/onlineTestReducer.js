@@ -8,6 +8,7 @@ import {
   VERIFY_ONLINE_TEST, VERIFY_ONLINE_TEST_SUCCESS, VERIFY_ONLINE_TEST_FAILURE,
   FETCH_STUDENT_ONLINE_TEST, FETCH_STUDENT_ONLINE_TEST_SUCCESS, FETCH_STUDENT_ONLINE_TEST_FAILURE,
   SEND_ANSWERS_ONLINE_TEST, SEND_ANSWERS_ONLINE_TEST_SUCCESS, SEND_ANSWERS_ONLINE_TEST_FAILURE,
+  SET_START_DATE_ONLINE_TEST,
 } from 'actions/onlineTestAction';
 import { toast } from 'react-toastify';
 
@@ -127,6 +128,10 @@ export const onlineTest = (state = initialState, action) => {
         isSendingAnswers: false,
         error: action.error,
         answersSent: false,
+      });
+    case SET_START_DATE_ONLINE_TEST:
+      return Object.assign({}, state, {
+        startDateOnlineTest: new Date(),
       });
     case CREATE_ONLINE_TEST:
       return Object.assign({}, state, {

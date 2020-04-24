@@ -11,6 +11,7 @@ import StudentOnlineTestQuestionsForm from 'components/onlineTest/StudentOnlineT
 import { formatDate } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import BackUsingHistory from 'components/question/BackUsingHistory';
 
 const StudentTestBasicInfo = ({ onlineTest }) => (
   <>
@@ -65,24 +66,28 @@ const StudentOnlineTestFirstPage = (props) => {
   );
 };
 
-const MenuAdminOptions = ({ fullOnlineTest }) => (
+const MenuAdminOptions = ({ fullOnlineTest, isLoggedIn, userId }) => (
   <Row className="c-online__row-header-options c-online__row-header-options--fixed">
     <Col className="c-online__col-header-options">
-      <Link
-        className="btn btn-secondary c-question__btn-back"
-        to={`/view-online/${fullOnlineTest.link}`}
-      >
-        <FontAwesomeIcon icon="arrow-circle-left" />
-        {' '}
+      { isLoggedIn && fullOnlineTest.owner.pk === userId ? (
+        <Link
+          className="btn btn-secondary c-question__btn-back"
+          to={`/view-online/${fullOnlineTest.link}`}
+        >
+          <FontAwesomeIcon icon="arrow-circle-left" />
+          {' '}
         Ver detalhes
-      </Link>
+        </Link>
+      )
+        : <BackUsingHistory />}
+
     </Col>
   </Row>
 );
 
 const StudentOnlineTestSecondPage = (props) => {
   const {
-    match, fetchStudentOnlineTest, isFetchingFullStudentOnlineTest, fullOnlineTest, isLoggedIn,
+    match, fetchStudentOnlineTest, isFetchingFullStudentOnlineTest, fullOnlineTest, isLoggedIn, userId,
   } = props;
 
   useEffect(() => {
@@ -108,8 +113,22 @@ const StudentOnlineTestSecondPage = (props) => {
   return (
     <>
       {isLoggedIn && <MenuAdminOptions {...props} />}
-      <Row className={isLoggedIn ? 'c-question__options c-question--space-for-titlequestion' : 'mt-3 mb-3 align-items-center no-gutters'}>
-        <Col>
+      <Row className={isLoggedIn ? 'c-question__options c-question--space-for-titlequestion no-gutters' : 'mt-3 mb-3 align-items-center no-gutters'}>
+        { isLoggedIn && fullOnlineTest.owner.pk !== userId && (
+        <Col sm="12">
+          <Alert color="danger" className="mt-1 mb-1">
+            A prova não é de sua autoria
+          </Alert>
+        </Col>
+        )}
+        { isLoggedIn && (
+        <Col sm="12">
+          <Alert color="warning" className="mt-1 mb-1">
+            Visualização da prova online para os alunos
+          </Alert>
+        </Col>
+        )}
+        <Col sm="12">
           <h4>
             {'Prova : '}
             <span className="c-online__name">{fullOnlineTest.name}</span>
@@ -140,7 +159,7 @@ const StudentOnlineTestThirdPage = () => (
 
 const InnerPage = (props) => {
   const {
-    isLoggedIn, isFetchingBasicStudentOnlineTest, basicOnlineTest, answersSent, userId,
+    isLoggedIn, isFetchingBasicStudentOnlineTest, basicOnlineTest, answersSent,
   } = props;
   const [page, setPage] = useState(1);
 
@@ -164,13 +183,13 @@ const InnerPage = (props) => {
     );
   }
 
-  if (isLoggedIn && basicOnlineTest && basicOnlineTest.owner.pk !== userId) {
+  /* if (isLoggedIn && basicOnlineTest && basicOnlineTest.owner.pk !== userId) {
     return (
       <Alert color="danger">
         A prova não é de sua autoria
       </Alert>
     );
-  }
+  } */
 
   if (answersSent) {
     return <StudentOnlineTestThirdPage />;

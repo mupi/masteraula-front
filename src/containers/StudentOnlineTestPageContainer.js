@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
   fullOnlineTest: state.onlineTest.fullStudentOnlineTest,
   isFetchingFullStudentOnlineTest: state.onlineTest.isFetchingFullStudentOnlineTest,
   answersSent: state.onlineTest.answersSent,
+  startDateOnlineTest: state.onlineTest.startDateOnlineTest,
   isLoggedIn: !!state.session.session,
   userId: state.session.session ? state.session.session.user.id : null,
 });
@@ -57,7 +58,7 @@ const mapDispatchToProps = (dispatch) => {
       const studentAnwers = {
         student_name: values.student_name,
         student_levels: values.student_levels,
-        start: null,
+        start: props.startDateOnlineTest,
         student_answer: [...answersText, ...answers],
       };
 

@@ -84,6 +84,17 @@ function fetchStudentOnlineTest(id) {
 
 
 // Verify a onlineTest given its ID
+
+/*
+
+Para inserir resultados: POST http://localhost:8000/results/?link={link}
+Body:
+{
+  "student_name": "Glaucia",
+  "student_levels": "Superior",
+  "start": "2020-03-24T13:03:54.604Z",
+  "student_answer": [{"answer_text": "oi", "student_question": 6}]
+} */
 function sendAnswersOnlineTest(onlineTest, studentAnswers) {
   const requestOptions = {
     method: 'POST',
@@ -93,12 +104,35 @@ function sendAnswersOnlineTest(onlineTest, studentAnswers) {
     },
 
   };
-  const url = `/document_online/${onlineTest.link}/check_document/`;
+  const url = `/results/?link=${onlineTest.link}`;
 
-  return axios.get(`${apiUrl}${url}`, requestOptions, studentAnswers)
+  return axios.post(`${apiUrl}${url}`, studentAnswers, requestOptions)
     .then(response => response.data).then(res => res);
 }
 
+/*
+Para editar resultados: PATCH http://localhost:8000/results/{id}
+Body:
+{
+  "student_answer": [{"score_answer":3, "id": 21}]
+}
+Obs: esse id é do grupo de student_answer que vc quer mudar o score
+ */
+
+function editAnswersOnlineTest(onlineTest, studentAnswers) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+
+  };
+  const url = `/results/${onlineTest.link}`;
+
+  return axios.patch(`${apiUrl}${url}`, requestOptions, studentAnswers)
+    .then(response => response.data).then(res => res);
+}
 
 /* Create a new online test */
 function createOnlineTest(newOnlineTest, idDocBase) {
@@ -173,6 +207,7 @@ const onlineTestService = {
   verifyOnlineTest,
   fetchStudentOnlineTest,
   sendAnswersOnlineTest,
+  editAnswersOnlineTest,
 };
 
 export default onlineTestService;

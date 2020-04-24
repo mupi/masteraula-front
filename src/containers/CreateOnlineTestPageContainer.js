@@ -16,6 +16,7 @@ const mapStateToProps = (state) => {
     typeDurationSelected: selector(state, 'typeDuration'),
     totalScore: questions ? questions.map(q => q.score).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0,
     errors: state.form['create-onlinetest'] ? state.form['create-onlinetest'].submitErrors : null,
+    userId: state.session.session.user.id,
   });
 };
 
