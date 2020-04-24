@@ -67,7 +67,7 @@ const ResultsOnlineTestPage = (props) => {
             <BackUsingHistory />
             <Link
               className="btn btn-secondary c-question__btn-back"
-              to={`/apply-online/${activeOnlineTest.id}`}
+              to={`/apply-online/${activeOnlineTest.link}`}
             >
               <FontAwesomeIcon icon="eye" className="btn__icon" />
               {' '}

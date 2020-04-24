@@ -24,15 +24,25 @@ const OnlineTestStudentAnswersTable = (props) => {
                 {answer.student_question.question.id}
               </td>
               <td className="text-center">
-                  a
+                {answer.student_question.question.alternatives.map((alternative, i) => (
+                  alternative.id === answer.answer_alternative ? (
+                    <span key={alternative.id}>{getOrderAlternative(i)}</span>
+                  ) : ''
+                ))}
+                {
+                  answer.answer_text && <span>{answer.answer_text}</span>
+                }
               </td>
               <td className="text-center">
 
                 {answer.student_question.question.alternatives.map((alternative, i) => (
                   alternative.is_correct ? (
-                    <span>{getOrderAlternative(i)}</span>
+                    <span key={alternative.id}>{getOrderAlternative(i)}</span>
                   ) : ''
                 ))}
+                {
+                  answer.answer_text && <span>{answer.student_question.question.resolution}</span>
+                }
               </td>
               <td>
                 {answer.score_answer}
