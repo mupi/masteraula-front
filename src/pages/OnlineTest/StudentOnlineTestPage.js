@@ -35,35 +35,39 @@ const StudentInfo = ({ studentInfo }) => (
 );
 
 
-const StudentTestBasicInfo = ({ onlineTest }) => (
-  <>
-    {onlineTest.questions_document && (
-    <p className="c-online__total-questions-label">
-      <strong>{`Total de ${onlineTest.questions_document.length} questões`}</strong>
-    </p>
-    )}
-    <p className="c-online__questions-info">
-      <span className="c-online__questions-info--label">
-        <FontAwesomeIcon
-          className="btn__icon"
-          icon="clock"
-        />
-        <strong>Periodo ativo: </strong>
-      </span>
-      <span className="c-online__questions-info--value">{`Entre ${formatDate(onlineTest.start_date)} e ${formatDate(onlineTest.finish_date)}` }</span>
-    </p>
-    <p className="c-online__questions-info">
-      <span className="c-online__questions-info--label">
-        <FontAwesomeIcon
-          className="btn__icon"
-          icon="hourglass-start"
-        />
-        <strong>Duração: </strong>
-      </span>
-      <span className="c-online__questions-info--value">{`${onlineTest.duration} min`}</span>
-    </p>
-  </>
-);
+const StudentTestBasicInfo = ({ onlineTest }) => {
+  const duration = onlineTest.duration ? `${onlineTest.duration} min` : 'Livre';
+
+  return (
+    <>
+      {onlineTest.questions_document && (
+      <p className="c-online__total-questions-label">
+        <strong>{`Total de ${onlineTest.questions_document.length} questões`}</strong>
+      </p>
+      )}
+      <p className="c-online__questions-info">
+        <span className="c-online__questions-info--label">
+          <FontAwesomeIcon
+            className="btn__icon"
+            icon="clock"
+          />
+          <strong>Periodo ativo: </strong>
+        </span>
+        <span className="c-online__questions-info--value">{`Entre ${formatDate(onlineTest.start_date)} e ${formatDate(onlineTest.finish_date)}` }</span>
+      </p>
+      <p className="c-online__questions-info">
+        <span className="c-online__questions-info--label">
+          <FontAwesomeIcon
+            className="btn__icon"
+            icon="hourglass-start"
+          />
+          <strong>Duração: </strong>
+        </span>
+        <span className="c-online__questions-info--value">{duration}</span>
+      </p>
+    </>
+  );
+};
 
 
 const StudentOnlineTestFirstPage = (props) => {

@@ -7,7 +7,7 @@ import { masteraulaUrl } from 'helpers/config';
 
 const OnlineTestBasicInfo = (props) => {
   const { onlineTest } = props;
-
+  const duration = onlineTest.duration ? `${onlineTest.duration} min` : 'Livre';
   return (
     <Row>
       <Col sm="6">
@@ -32,7 +32,7 @@ const OnlineTestBasicInfo = (props) => {
             />
             <strong>Duração: </strong>
           </span>
-          <span className="c-online__questions-info--value">{`${onlineTest.duration} min`}</span>
+          <span className="c-online__questions-info--value">{duration}</span>
         </p>
         <p className="c-online__questions-info">
           <span className="c-online__questions-info--label">

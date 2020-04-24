@@ -120,7 +120,7 @@ Body:
 Obs: esse id é do grupo de student_answer que vc quer mudar o score
  */
 
-function editAnswersOnlineTest(onlineTest, studentAnswers) {
+function editAnswersOnlineTest(idStudent, studentAnswers) {
   const requestOptions = {
     method: 'PATCH',
     headers: {
@@ -129,9 +129,9 @@ function editAnswersOnlineTest(onlineTest, studentAnswers) {
     },
 
   };
-  const url = `/results/${onlineTest.link}`;
+  const url = `/results/${idStudent}/`;
 
-  return axios.patch(`${apiUrl}${url}`, requestOptions, studentAnswers)
+  return axios.patch(`${apiUrl}${url}`, studentAnswers, requestOptions)
     .then(response => response.data).then(res => res);
 }
 

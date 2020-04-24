@@ -167,6 +167,7 @@ const renderQuestions = ({ fields, questions, showQuestionModal }) => (
                       type="number"
                       component={renderNumericField}
                       placeholder="Ex. 5.5"
+                      validate={minDuration}
                     />
                   </FormGroup>
                 </Col>

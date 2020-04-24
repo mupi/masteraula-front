@@ -63,6 +63,11 @@ export const SEND_ANSWERS_ONLINE_TEST_FAILURE = 'SEND_ANSWERS_ONLINE_TEST_FAILUR
 
 export const SET_START_DATE_ONLINE_TEST = 'SET_START_DATE_ONLINE_TEST';
 
+// UPDATE ONLINE TEST
+export const UPDATE_ANSWERS_ONLINE_TEST = 'UPDATE_ANSWERS_ONLINE_TEST';
+export const UPDATE_ANSWERS_ONLINE_TEST_SUCCESS = 'UPDATE_ANSWERS_ONLINE_TEST_SUCCESS';
+export const UPDATE_ANSWERS_ONLINE_TEST_FAILURE = 'UPDATE_ANSWERS_ONLINE_TEST_FAILURE';
+
 export const fetchBaseDocument = id => async (dispatch) => {
   try {
     dispatch({ type: FETCH_BASE_DOCUMENT });
@@ -156,6 +161,16 @@ export const sendAnswersOnlineTest = (onlineTest, studentAnswers) => async (disp
     dispatch({ type: SEND_ANSWERS_ONLINE_TEST_SUCCESS, res });
   } catch {
     dispatch({ type: SEND_ANSWERS_ONLINE_TEST_FAILURE });
+  }
+};
+
+export const editAnswersOnlineTest = (idStudent, studentAnswers) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_ANSWERS_ONLINE_TEST });
+    const res = await onlineTestService.editAnswersOnlineTest(idStudent, studentAnswers);
+    dispatch({ type: UPDATE_ANSWERS_ONLINE_TEST_SUCCESS, res });
+  } catch {
+    dispatch({ type: UPDATE_ANSWERS_ONLINE_TEST_FAILURE });
   }
 };
 
