@@ -5,6 +5,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatDate, formatTime, diffDateInMinutes } from 'helpers/question';
 
+/*
+review_score
+true = ok
+false = need review
+*/
 const OnlineTestStudentList = ({ students, showStudentModal }) => (
   <div className="c-online__question">
     <p className="c-online__subtitle"><strong>Relação de alunos</strong></p>
@@ -40,6 +45,9 @@ const OnlineTestStudentList = ({ students, showStudentModal }) => (
             </td>
             <td>
               {student.total_score}
+              {' '}
+              {!student.student_answer.reduce((sum, next) => sum && next.review_score, true)
+              && <FontAwesomeIcon className="student-online__pending-review" icon="exclamation-triangle" />}
             </td>
             <td>
               <Button onClick={() => showStudentModal(student)}>

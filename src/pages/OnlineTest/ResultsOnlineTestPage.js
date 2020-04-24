@@ -58,7 +58,6 @@ const ResultsOnlineTestPage = (props) => {
     showScore: true,
   };
 
-  const show = false;
   return (
     <HomeUserPage>
       <div className="c-online">
@@ -76,7 +75,7 @@ const ResultsOnlineTestPage = (props) => {
           </Col>
         </Row>
         <Row className="c-question--space-for-titlequestion mb-4">
-          { show && (
+          { !activeOnlineTest.review_score_doc && (
           <Col sm="12">
             <Alert color="danger" className="mb-4">
               <strong>Atenção: </strong>
