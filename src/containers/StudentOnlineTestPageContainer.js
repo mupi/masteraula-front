@@ -1,18 +1,27 @@
 import { connect } from 'react-redux';
+import {
+  formValueSelector,
+} from 'redux-form';
 import StudentOnlineTestPage from 'pages/OnlineTest/StudentOnlineTestPage';
 import { verifyOnlineTest, fetchStudentOnlineTest, sendAnswersOnlineTest } from 'actions/onlineTestAction';
 import { showModal, hideModal } from 'actions/modalAction';
 
-const mapStateToProps = state => ({
-  basicOnlineTest: state.onlineTest.basicStudentOnlineTest,
-  isFetchingBasicStudentOnlineTest: state.onlineTest.isFetchingBasicStudentOnlineTest,
-  fullOnlineTest: state.onlineTest.fullStudentOnlineTest,
-  isFetchingFullStudentOnlineTest: state.onlineTest.isFetchingFullStudentOnlineTest,
-  answersSent: state.onlineTest.answersSent,
-  startDateOnlineTest: state.onlineTest.startDateOnlineTest,
-  isLoggedIn: !!state.session.session,
-  userId: state.session.session ? state.session.session.user.id : null,
-});
+const mapStateToProps = (state) => {
+  const selector = formValueSelector('student-test'); return ({
+    basicOnlineTest: state.onlineTest.basicStudentOnlineTest,
+    isFetchingBasicStudentOnlineTest: state.onlineTest.isFetchingBasicStudentOnlineTest,
+    fullOnlineTest: state.onlineTest.fullStudentOnlineTest,
+    isFetchingFullStudentOnlineTest: state.onlineTest.isFetchingFullStudentOnlineTest,
+    answersSent: state.onlineTest.answersSent,
+    startDateOnlineTest: state.onlineTest.startDateOnlineTest,
+    isLoggedIn: !!state.session.session,
+    userId: state.session.session ? state.session.session.user.id : null,
+    studentInfo: {
+      name: selector(state, 'student_name'),
+      level: selector(state, 'student_levels'),
+    },
+  });
+};
 
 
 const mapDispatchToProps = (dispatch) => {

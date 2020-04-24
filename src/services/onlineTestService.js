@@ -95,6 +95,8 @@ Body:
   "start": "2020-03-24T13:03:54.604Z",
   "student_answer": [{"answer_text": "oi", "student_question": 6}]
 } */
+
+
 function sendAnswersOnlineTest(onlineTest, studentAnswers) {
   const requestOptions = {
     method: 'POST',
@@ -109,7 +111,6 @@ function sendAnswersOnlineTest(onlineTest, studentAnswers) {
   return axios.post(`${apiUrl}${url}`, studentAnswers, requestOptions)
     .then(response => response.data).then(res => res);
 }
-
 /*
 Para editar resultados: PATCH http://localhost:8000/results/{id}
 Body:

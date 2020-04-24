@@ -13,6 +13,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 
+const StudentInfo = ({ studentInfo }) => (
+  <Row noGutters>
+    <Col>
+      <p className="c-online__questions-info">
+        <span className="c-online__questions-info--label">
+          <strong>Nome: </strong>
+        </span>
+        <span className="c-online__questions-info--value">{studentInfo.name}</span>
+      </p>
+    </Col>
+    <Col>
+      <p className="c-online__questions-info">
+        <span className="c-online__questions-info--label">
+          <strong>Série/Turma: </strong>
+        </span>
+        <span className="c-online__questions-info--value">{studentInfo.level}</span>
+      </p>
+    </Col>
+  </Row>
+);
+
+
 const StudentTestBasicInfo = ({ onlineTest }) => (
   <>
     {onlineTest.questions_document && (
@@ -136,6 +158,7 @@ const StudentOnlineTestSecondPage = (props) => {
           <StudentTestBasicInfo onlineTest={fullOnlineTest} />
         </Col>
       </Row>
+      { !isLoggedIn && <StudentInfo {...props} />}
       <Row className="mt-3 mb-3 align-items-center no-gutters">
         <Col>
           <StudentOnlineTestQuestionsForm {...props} questionsDocument={fullOnlineTest.questions_document} />
