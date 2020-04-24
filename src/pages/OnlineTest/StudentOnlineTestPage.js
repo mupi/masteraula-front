@@ -10,6 +10,7 @@ import StudentOnlineTestForm from 'components/onlineTest/StudentOnlineTestForm';
 import StudentOnlineTestQuestionsForm from 'components/onlineTest/StudentOnlineTestQuestionsForm';
 import { formatDate } from 'helpers/question';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const StudentTestBasicInfo = ({ onlineTest }) => (
   <>
@@ -64,9 +65,24 @@ const StudentOnlineTestFirstPage = (props) => {
   );
 };
 
+const MenuAdminOptions = ({ fullOnlineTest }) => (
+  <Row className="c-online__row-header-options c-online__row-header-options--fixed">
+    <Col className="c-online__col-header-options">
+      <Link
+        className="btn btn-secondary c-question__btn-back"
+        to={`/view-online/${fullOnlineTest.link}`}
+      >
+        <FontAwesomeIcon icon="arrow-circle-left" />
+        {' '}
+        Ver detalhes
+      </Link>
+    </Col>
+  </Row>
+);
+
 const StudentOnlineTestSecondPage = (props) => {
   const {
-    match, fetchStudentOnlineTest, isFetchingFullStudentOnlineTest, fullOnlineTest,
+    match, fetchStudentOnlineTest, isFetchingFullStudentOnlineTest, fullOnlineTest, isLoggedIn,
   } = props;
 
   useEffect(() => {
@@ -90,8 +106,9 @@ const StudentOnlineTestSecondPage = (props) => {
   }
 
   return (
-    <div>
-      <Row className="mt-3 mb-3 align-items-center no-gutters">
+    <>
+      {isLoggedIn && <MenuAdminOptions {...props} />}
+      <Row className={isLoggedIn ? 'c-question__options c-question--space-for-titlequestion' : 'mt-3 mb-3 align-items-center no-gutters'}>
         <Col>
           <h4>
             {'Prova : '}
@@ -105,7 +122,7 @@ const StudentOnlineTestSecondPage = (props) => {
           <StudentOnlineTestQuestionsForm {...props} questionsDocument={fullOnlineTest.questions_document} />
         </Col>
       </Row>
-    </div>
+    </>
   );
 };
 
