@@ -5,13 +5,19 @@ import { showModal, hideModal } from 'actions/modalAction';
 import { fetchQuestion } from 'actions/questionAction';
 
 
-const mapStateToProps = state => ({
-  activeOnlineTest: state.onlineTest.activeOnlineTest,
-  isFetchingOnlineTest: state.onlineTest.isFetchingOnlineTest,
-  userId: state.session.session.user.id,
-  user: state.session.session.user,
-});
+const mapStateToProps = (state) => {
+  const questions = state.onlineTest.activeOnlineTest ? state.onlineTest.activeOnlineTest.questions_document : null;
 
+  // Máximo valor da prova online
+  const totalScore = questions ? questions.map(q => q.score).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
+  return ({
+    activeOnlineTest: state.onlineTest.activeOnlineTest,
+    isFetchingOnlineTest: state.onlineTest.isFetchingOnlineTest,
+    userId: state.session.session.user.id,
+    user: state.session.session.user,
+    totalScore,
+  });
+};
 
 const mapDispatchToProps = (dispatch) => {
   const studentModalProps = student => ({

@@ -14,6 +14,7 @@ const ResultsOnlineTestPage = (props) => {
   const {
     isFetchingOnlineTest, fetchOnlineTest, match, activeOnlineTest,
     showStudentModal, showQuestionModal, userId,
+    totalScore,
   } = props;
 
 
@@ -50,13 +51,6 @@ const ResultsOnlineTestPage = (props) => {
       </HomeUserPage>
     );
   }
-
-  const optionsQuestion = {
-    showViewButton: true,
-    removeOption: false,
-    showTag: true,
-    showScore: true,
-  };
 
   return (
     <HomeUserPage>
@@ -95,7 +89,11 @@ const ResultsOnlineTestPage = (props) => {
           </Col>
         </Row>
         <OnlineTestBasicInfo onlineTest={activeOnlineTest} />
-        <OnlineTestQuestionsTable questions={activeOnlineTest.questions_document} options={optionsQuestion} showQuestionModal={showQuestionModal} />
+        <OnlineTestQuestionsTable
+          questions={activeOnlineTest.questions_document}
+          showQuestionModal={showQuestionModal}
+          totalScore={totalScore}
+        />
         { activeOnlineTest.results && activeOnlineTest.results.length > 0 && (
         <OnlineTestStudentList showStudentModal={showStudentModal} students={activeOnlineTest.results} />)}
       </div>

@@ -19,8 +19,7 @@ const OnlineTestQuestionHeader = (props) => {
 
 
 const OnlineTestQuestionsTable = (props) => {
-  const { questions, showQuestionModal } = props;
-  const totalScore = 15;
+  const { questions, showQuestionModal, totalScore } = props;
   return (
     <div className="c-online__question">
       <p className="c-online__subtitle"><strong>Relação de questões</strong></p>

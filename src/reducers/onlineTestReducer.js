@@ -135,6 +135,7 @@ export const onlineTest = (state = initialState, action) => {
         error: null,
       });
     case UPDATE_ANSWERS_ONLINE_TEST_SUCCESS:
+      toast.success('Pontuações atualizadas com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         isSendingAnswers: false,
         answersSent: true,

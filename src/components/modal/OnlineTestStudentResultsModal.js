@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-
 import PropTypes from 'prop-types';
 import { hideModal } from 'actions/modalAction';
 import { editAnswersOnlineTest } from 'actions/onlineTestAction';
-import OnlineTestStudentBasicInfo from 'components/onlineTest/OnlineTestStudentBasicInfo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Row, Col, Button, Table, Form, Input,
 } from 'reactstrap';
-import { getOrderAlternative } from 'helpers/question';
 import {
-  Field, reduxForm, FieldArray, initialize,
+  getOrderAlternative, formatDate,
+  formatTime, diffDateInMinutes,
+} from 'helpers/question';
+import {
+  Field, reduxForm, FieldArray, initialize, formValueSelector,
 } from 'redux-form';
 import {
   minDuration,
@@ -83,7 +84,7 @@ const renderQuestions = ({ fields, studentAnswers }) => (
             {!answerShown.answer_text && answerShown.score_answer}
             {answerShown.answer_text && (
               <Field
-                name={`${answerField}.score_answer_updated`}
+                name={`${answerField}.score_answer`}
                 type="number"
                 component={renderNumericField}
                 placeholder="Ex. 5.5"
@@ -98,12 +99,61 @@ const renderQuestions = ({ fields, studentAnswers }) => (
   </>
 );
 
+const OnlineTestStudentBasicInfo = (props) => {
+  const { student, totalScoreStudent, totalScore } = props;
+
+  return (
+    <>
+      <p className="c-online__questions-info">
+        <span className="c-online__questions-info--label">
+          <FontAwesomeIcon
+            className="btn__icon"
+            icon="clock"
+          />
+          <strong>Prova finalizada em: </strong>
+        </span>
+        <span className="c-online__questions-info--value">
+          {`${formatDate(student.finish)} às ${formatTime(student.finish)}` }
+        </span>
+      </p>
+      <p className="c-online__questions-info">
+        <span className="c-online__questions-info--label">
+          <FontAwesomeIcon
+            className="btn__icon"
+            icon="hourglass-start"
+          />
+          <strong>Tempo de duração: </strong>
+        </span>
+        <span className="c-online__questions-info--value">
+          {`${diffDateInMinutes(student.start, student.finish)} min`}
+        </span>
+      </p>
+      <p className="c-online__questions-info">
+        <span className="c-online__questions-info--label">
+          <FontAwesomeIcon
+            className="btn__icon"
+            icon="star"
+          />
+          <strong>Pontuação final: </strong>
+        </span>
+        <span className="c-online__questions-info--value">
+          {`${totalScoreStudent} / ${totalScore} pontos`}
+        </span>
+      </p>
+    </>
+  );
+};
+
+
 const OnlineTestStudentResultsModal = (props) => {
   const {
     closeModal,
     student,
     handleSubmit,
     prepareForm,
+    submitting,
+    totalScoreStudent,
+    totalScore,
   } = props;
   const studentAnswers = student.student_answer;
 
@@ -145,7 +195,7 @@ const OnlineTestStudentResultsModal = (props) => {
               </p>
             </Col>
             <Col sm="12">
-              <OnlineTestStudentBasicInfo student={student} />
+              <OnlineTestStudentBasicInfo student={student} totalScoreStudent={totalScoreStudent} totalScore={totalScore} />
             </Col>
             <Col sm="12">
               <div className="c-online__question">
@@ -170,7 +220,7 @@ const OnlineTestStudentResultsModal = (props) => {
             </Col>
             <Col sm="12">
               <div className="modal__footer modal-footer">
-                <Button type="submit" color="" className="btn--confirm">
+                <Button type="submit" color="" className="btn--confirm" disabled={submitting}>
                 Salvar
                 </Button>
                 {' '}
@@ -194,10 +244,19 @@ OnlineTestStudentResultsModal.defaultProps = {
   closeModal: f => f,
 };
 
-const mapStateToProps = state => ({
-  activeOnlineTest: state.onlineTest.activeOnlineTest,
-});
-
+const mapStateToProps = (state) => {
+  const selector = formValueSelector('student-answers');
+  const studentAnswers = selector(state, 'student_answers');
+  // Máximo valor da prova online
+  const questions = state.onlineTest.activeOnlineTest ? state.onlineTest.activeOnlineTest.questions_document : null;
+  const totalScore = questions ? questions.map(q => q.score).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
+  return ({
+    activeOnlineTest: state.onlineTest.activeOnlineTest,
+    totalScoreStudent: studentAnswers
+      ? studentAnswers.map(q => q.score_answer).reduce((a, b) => parseInt(!isNaN(a) ? a : 0, 10) + parseInt(!isNaN(b) ? b : 0, 10), 0) : 0,
+    totalScore,
+  });
+};
 const mapDispatchToProps = dispatch => ({
   closeModal: () => dispatch(hideModal()),
   prepareForm: (student) => {
@@ -212,17 +271,17 @@ const mapDispatchToProps = dispatch => ({
   "student_answer": [{"score_answer":3, "id": 21}]
 } */
     const idStudent = values.id_student;
-    const updatedAnswers = values.student_answers.map((value) => {
-      if ((typeof (value.score_answer_updated) !== 'undefined') && value.score_answer_updated.trim().length > 0) {
-        return {
-          id: value.id,
-          score_answer: value.score_answer_updated,
-        };
-      }
-      return {};
-    }).filter(value => Object.keys(value).length !== 0);
+    const updatedAnswers = values.student_answers.map(value => ({
+      id: value.id,
+      score_answer: value.score_answer,
+    }));
 
-    dispatch(editAnswersOnlineTest(idStudent, updatedAnswers));
+    const finalAnswers = {
+      student_answer: updatedAnswers,
+    };
+
+    dispatch(editAnswersOnlineTest(idStudent, finalAnswers));
+    dispatch(hideModal());
   },
 });
 
