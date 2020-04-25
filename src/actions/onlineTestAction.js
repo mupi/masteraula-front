@@ -164,11 +164,11 @@ export const sendAnswersOnlineTest = (onlineTest, studentAnswers) => async (disp
   }
 };
 
-export const editAnswersOnlineTest = (idStudent, studentAnswers) => async (dispatch) => {
+export const editAnswersOnlineTest = (idStudent, studentAnswers, student) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_ANSWERS_ONLINE_TEST });
     const res = await onlineTestService.editAnswersOnlineTest(idStudent, studentAnswers);
-    dispatch({ type: UPDATE_ANSWERS_ONLINE_TEST_SUCCESS, res });
+    dispatch({ type: UPDATE_ANSWERS_ONLINE_TEST_SUCCESS, res, student });
   } catch {
     dispatch({ type: UPDATE_ANSWERS_ONLINE_TEST_FAILURE });
   }

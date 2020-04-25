@@ -134,12 +134,19 @@ export const onlineTest = (state = initialState, action) => {
       return Object.assign({}, state, {
         error: null,
       });
-    case UPDATE_ANSWERS_ONLINE_TEST_SUCCESS:
+    case UPDATE_ANSWERS_ONLINE_TEST_SUCCESS: {
       toast.success('Pontuações atualizadas com sucesso', optionsSuccess);
+      const oldStudents = state.activeOnlineTest.results.filter(item => item.id !== parseInt(action.student.id, 10));
       return Object.assign({}, state, {
-        isSendingAnswers: false,
-        answersSent: true,
+        activeOnlineTest: {
+          ...state.activeOnlineTest,
+          results: [
+            ...oldStudents,
+            action.student,
+          ],
+        },
       });
+    }
     case UPDATE_ANSWERS_ONLINE_TEST_FAILURE:
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
