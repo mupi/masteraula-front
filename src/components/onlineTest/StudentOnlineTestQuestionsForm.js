@@ -97,7 +97,9 @@ const renderQuestionMaterials = ({ fields, questionGroups }) => (
           </div>
         ))
       }
-        <div className="border-top my-3" />
+        {questionGroups[i].question.learning_objects && questionGroups[i].question.learning_objects.length > 0 && (
+          <div className="border-top my-3" />
+        )}
         <p className="student-online__section-title mb-1">
           <strong>{`Questão N° ${i + 1} `}</strong>
         </p>

@@ -43,6 +43,7 @@ export const onlineTest = (state = initialState, action) => {
         isFetchingBaseDocument: true,
         error: null,
         isDeleted: false,
+        answersSent: false,
       });
     case FETCH_BASE_DOCUMENT_SUCCESS:
       return Object.assign({}, state, {
@@ -62,6 +63,7 @@ export const onlineTest = (state = initialState, action) => {
         isFetchingOnlineTest: true,
         error: null,
         isDeleted: false,
+        answersSent: false,
       });
     case FETCH_ONLINE_TEST_SUCCESS:
       return Object.assign({}, state, {
@@ -81,6 +83,7 @@ export const onlineTest = (state = initialState, action) => {
         isFetchingFullStudentOnlineTest: true,
         error: null,
         isDeleted: false,
+        answersSent: false,
       });
     case FETCH_STUDENT_ONLINE_TEST_SUCCESS:
       return Object.assign({}, state, {
@@ -136,14 +139,22 @@ export const onlineTest = (state = initialState, action) => {
       });
     case UPDATE_ANSWERS_ONLINE_TEST_SUCCESS: {
       toast.success('Pontuações atualizadas com sucesso', optionsSuccess);
-      const oldStudents = state.activeOnlineTest.results.filter(item => item.id !== parseInt(action.student.id, 10));
+      const oldStudents = state.activeOnlineTest.results.filter(item => item.id !== parseInt(action.updatedStudent.id, 10));
+
+      const allStudents = [
+        ...oldStudents,
+        action.updatedStudent,
+      ];
+
+      const reviewScoreDoc = allStudents.map(student => ({
+        review_score: student.student_answer.reduce((sum, next) => sum && next.review_score, true),
+      })).reduce((sum, next) => sum && next.review_score, true);
+
       return Object.assign({}, state, {
         activeOnlineTest: {
           ...state.activeOnlineTest,
-          results: [
-            ...oldStudents,
-            action.student,
-          ],
+          review_score_doc: reviewScoreDoc,
+          results: allStudents,
         },
       });
     }

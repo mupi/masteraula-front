@@ -266,26 +266,16 @@ const mapDispatchToProps = dispatch => ({
       student,
     }));
   },
-  onSubmit: (values, d, props) => {
-    /* Body:
-{
-  "student_answer": [{"score_answer":3, "id": 21}]
-} */
+  onSubmit: (values) => {
     const idStudent = values.id_student;
     const updatedAnswers = values.student_answers.map(value => ({
       id: value.id,
       score_answer: value.score_answer,
     }));
-
-    const newStudent = {
-      ...values.student,
-      student_answer: values.student_answers,
-      total_score: props.totalScoreStudent,
-    };
     const finalAnswers = {
       student_answer: updatedAnswers,
     };
-    dispatch(editAnswersOnlineTest(idStudent, finalAnswers, newStudent));
+    dispatch(editAnswersOnlineTest(idStudent, finalAnswers));
     dispatch(hideModal());
   },
 });
