@@ -55,6 +55,7 @@ const ViewOnlineTestPage = (props) => {
             <Link
               className="btn btn-secondary c-question__btn-back"
               to={`/online-tests/${activeOnlineTest.document.id}/1`}
+              title={`Ver todas as provas online de ${activeOnlineTest.document.name}`}
             >
               <FontAwesomeIcon icon="arrow-circle-left" />
               {' '}

@@ -10,11 +10,16 @@ import { fetchQuestion } from 'actions/questionAction';
 const mapStateToProps = (state) => {
   const selector = formValueSelector('create-onlinetest');
   const questions = selector(state, 'questions_document');
+  const totalScore = questions
+    // ? questions.map(q => q.score).reduce((a, b) => parseInt(!isNaN(a) ? a : 0, 10) + parseInt(!isNaN(b) ? b : 0, 10), 0) : 0;
+    ? questions.map(q => q.score).filter(item => item).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
+    // ? questions.map(q => q.score).reduce((a, b) => parseInt(a && a.length > 0 ? a : 0, 10) + parseInt(b && b.length > 0 ? b : 0, 10), 0) : 0;
+  const totalScoreFinal = !isNaN(totalScore) ? totalScore : 0;
   return ({
     baseDocument: state.onlineTest.baseDocument,
     isFetchingBaseDocument: state.onlineTest.isFetchingBaseDocument,
     typeDurationSelected: selector(state, 'typeDuration'),
-    totalScore: questions ? questions.map(q => q.score).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0,
+    totalScore: totalScoreFinal,
     errors: state.form['create-onlinetest'] ? state.form['create-onlinetest'].submitErrors : null,
     userId: state.session.session.user.id,
   });
@@ -44,6 +49,7 @@ const mapDispatchToProps = (dispatch) => {
       const newOnlineTest = {
         start_date: values.start_date,
         finish_date: values.finish_date,
+        // questions_document: values.questions_document.map(q => ({ question: q.id, score: parseFloat(q.score).toFixed(2) })),
         questions_document: values.questions_document.map(q => ({ question: q.id, score: q.score })),
         duration: values.typeDuration === 'R' ? values.duration : null,
         name: values.name,

@@ -250,10 +250,14 @@ const mapStateToProps = (state) => {
   // Máximo valor da prova online
   const questions = state.onlineTest.activeOnlineTest ? state.onlineTest.activeOnlineTest.questions_document : null;
   const totalScore = questions ? questions.map(q => q.score).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
+
+  const totalScoreStudent = studentAnswers
+    ? studentAnswers.map(q => q.score_answer).filter(item => item).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
+  const totalScoreStudentFinal = !isNaN(totalScoreStudent) ? totalScoreStudent : 0;
+
   return ({
     activeOnlineTest: state.onlineTest.activeOnlineTest,
-    totalScoreStudent: studentAnswers
-      ? studentAnswers.map(q => q.score_answer).reduce((a, b) => parseInt(!isNaN(a) ? a : 0, 10) + parseInt(!isNaN(b) ? b : 0, 10), 0) : 0,
+    totalScoreStudent: totalScoreStudentFinal,
     totalScore,
   });
 };
