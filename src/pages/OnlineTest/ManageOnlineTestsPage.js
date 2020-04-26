@@ -5,6 +5,7 @@ import {
   UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import OnlineTestList from 'components/onlineTest/OnlineTestList';
@@ -15,22 +16,22 @@ const getOrderNameField = (text) => {
     case 'asc': return 'Crescente';
     case 'desc': return 'Decrescente';
     case 'name': return 'Nome';
-    case 'create_date': return 'Data de criação';
-    case 'disciplines': return 'Disciplina';
-    case 'duration': return 'Duração';
+    case 'question_number': return 'Nº questões';
+    case 'result': return 'Nº alunos';
     default: return text;
   }
 };
-
 const ManageOnlineTestsPage = (props) => {
   const {
     showDeleteModal, isFetchingOnlineTests, listMyOnlineTests, match, onlineTestsList,
-    fetchBaseDocument, isFetchingBaseDocument, baseDocument,
+    fetchBaseDocument, isFetchingBaseDocument, baseDocument, orderField, order,
   } = props;
 
+  const idBaseDoc = match.params.id;
+
   useEffect(() => {
-    fetchBaseDocument(match.params.id);
-    listMyOnlineTests(match.params.id, match.params.page);
+    fetchBaseDocument(idBaseDoc);
+    listMyOnlineTests(idBaseDoc, parseInt(match.params.page, 10), orderField, order);
   }, []);
 
   if (isFetchingBaseDocument) {
@@ -109,15 +110,32 @@ const ManageOnlineTestsPage = (props) => {
                     <DropdownToggle className="c-my-documents__dropdown-toogle" caret size="sm">
                       {' '}
                       {' '}
-                      {getOrderNameField('name')}
+                      {getOrderNameField(orderField)}
                       {' '}
                       {' - '}
                       {' '}
-                      {getOrderNameField('asc')}
+                      {getOrderNameField(order)}
                     </DropdownToggle>
                     <DropdownMenu>
-                      <DropdownItem className="c-my-documents__dropdown-item" onClick={() => {}}>
+                      <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyOnlineTests(idBaseDoc, 1, 'name', 'asc')}>
                         Nome - Crescente
+                      </DropdownItem>
+                      <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyOnlineTests(idBaseDoc, 1, 'name', 'desc')}>
+                          Nome - Decrescente
+                      </DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyOnlineTests(idBaseDoc, 1, 'question_number', 'asc')}>
+                        Nº Questões - Crescente
+                      </DropdownItem>
+                      <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyOnlineTests(idBaseDoc, 1, 'question_number', 'desc')}>
+                        Nº Questões - Decrescente
+                      </DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyOnlineTests(idBaseDoc, 1, 'result', 'asc')}>
+                        Nº alunos - Crescente
+                      </DropdownItem>
+                      <DropdownItem className="c-my-documents__dropdown-item" onClick={() => listMyOnlineTests(idBaseDoc, 1, 'result', 'desc')}>
+                        Nº alunos - Decrescente
                       </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
@@ -135,5 +153,15 @@ const ManageOnlineTestsPage = (props) => {
     </HomeUserPage>
   );
 };
+ManageOnlineTestsPage.propTypes = {
+  orderField: PropTypes.string,
+  order: PropTypes.string,
+};
+
+ManageOnlineTestsPage.defaultProps = {
+  orderField: 'name',
+  order: 'asc',
+};
+
 
 export default ManageOnlineTestsPage;

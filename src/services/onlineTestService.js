@@ -168,7 +168,7 @@ function updateOnlineTest(idOnlineTest, onlineTestData) {
 }
 
 
-function listMyOnlineTest(idDocBase, page) {
+function listMyOnlineTest(idDocBase, page, orderField, order) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -178,10 +178,10 @@ function listMyOnlineTest(idDocBase, page) {
 
   };
 
-  const url = `${apiUrl}/document_online/?id=${idDocBase}&page=${page}`;
+  const url = `${apiUrl}/document_online/my_documents_online/?id=${idDocBase}`;
 
 
-  return axios.get(url, requestOptions)
+  return axios.get(`${url}&page=${page}&order_field=${orderField}&order=${order}`, requestOptions)
     .then(response => response.data).then(onlineTestsList => onlineTestsList);
 }
 

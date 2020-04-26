@@ -231,7 +231,7 @@ export const listMyOnlineTests = (idDocBase, page, orderField = null, order = nu
   function fetchMyOnlineTestPageFailure(errorMessage) { return { type: LIST_MY_ONLINE_TESTS_FAILURE, errorMessage }; }
   return (dispatch) => {
     dispatch(requestOnlineTestPage());
-    return onlineTestService.listMyOnlineTest(idDocBase, page)
+    return onlineTestService.listMyOnlineTest(idDocBase, page, orderField, order)
       .then(
         (onlineTestsList) => {
           dispatch(fetchMyOnlineTestPageSuccess(onlineTestsList));

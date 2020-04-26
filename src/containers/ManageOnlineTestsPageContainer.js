@@ -9,6 +9,8 @@ const mapStateToProps = state => ({
   isDeleted: state.onlineTest.isDeleted,
   baseDocument: state.onlineTest.baseDocument,
   isFetchingBaseDocument: state.onlineTest.isFetchingBaseDocument,
+  orderField: state.onlineTest.orderField,
+  order: state.onlineTest.order,
 });
 
 
@@ -30,8 +32,8 @@ const mapDispatchToProps = (dispatch) => {
   return ({
     fetchBaseDocument: id => dispatch(fetchBaseDocument(id)),
     showDeleteModal: (idOnlineTest, name, idBaseDocument) => dispatch(showModal(deleteModalProps(idOnlineTest, name, idBaseDocument))),
-    listMyOnlineTests: (idDocBase, page) => {
-      dispatch(listMyOnlineTests(idDocBase, page));
+    listMyOnlineTests: (idDocBase, page, orderField, order) => {
+      dispatch(listMyOnlineTests(idDocBase, page, orderField, order));
     },
   });
 };
