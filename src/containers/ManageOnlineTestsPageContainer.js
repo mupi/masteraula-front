@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   isFetchingBaseDocument: state.onlineTest.isFetchingBaseDocument,
   orderField: state.onlineTest.orderField,
   order: state.onlineTest.order,
+  currentPage: state.onlineTest.currentPage,
 });
 
 

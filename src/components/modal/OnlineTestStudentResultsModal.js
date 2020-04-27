@@ -87,7 +87,7 @@ const renderQuestions = ({ fields, studentAnswers }) => (
                 name={`${answerField}.score_answer`}
                 type="number"
                 component={renderNumericField}
-                placeholder="Ex. 5.5"
+                placeholder="Ex.1.5"
                 validate={minDuration}
                 className="c-online-results__single-score"
               />
