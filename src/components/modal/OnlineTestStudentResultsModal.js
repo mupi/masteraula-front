@@ -177,7 +177,7 @@ const OnlineTestStudentResultsModal = (props) => {
         </button>
       </div>
       <div className="c-document-modal__body modal-body">
-        <Row className="c-document-modal__main-options">
+        <Row className="c-document-modal__main-options hidden">
           <div className="auto-margin-left-element">
             <Button title="Baixar resultados" color="secondary" onClick={() => {}}>
               <FontAwesomeIcon icon="download" className="btn__icon" />
