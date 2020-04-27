@@ -92,6 +92,7 @@ const renderQuestions = ({ fields, studentAnswers }) => (
                 className="c-online-results__single-score"
               />
             )}
+            {answerShown.student_question.score && (`/ ${answerShown.student_question.score}`)}
           </td>
         </tr>
       );
