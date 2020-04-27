@@ -122,8 +122,8 @@ const renderQuestions = ({
 }) => (
   <>
     {fields && fields.map((questionField, i) => {
-      const autorship = questions[i].question.authorship ? questions[i].question.authorship : questions[i].question.author.name;
-
+      const autorship = questions[i].question && questions[i].question.authorship
+        ? questions[i].question.authorship : questions[i].question.author.name;
 
       const extractStatement = getCleanExtractStatement(questions[i].question.statement);
 
@@ -533,7 +533,7 @@ const OnlineTestForm = (props) => {
 
       <Row className="c-online__row-footer-options text-center">
         <Col>
-          <Button type="submit" title="Salvar questão" className="btn-secondary btn-margin-right" disabled={submitting}>
+          <Button type="submit" title="Salvar prova online" className="btn-secondary btn-margin-right" disabled={submitting}>
             <FontAwesomeIcon
               className="btn__icon"
               icon="save"
