@@ -274,7 +274,7 @@ const mapDispatchToProps = dispatch => ({
     const idStudent = values.id_student;
     const updatedAnswers = values.student_answers.map(value => ({
       id: value.id,
-      score_answer: value.score_answer, // ? value.score_answer : null,
+      score_answer: value.score_answer ? value.score_answer : null,
     }));
     const finalAnswers = {
       student_answer: updatedAnswers,
