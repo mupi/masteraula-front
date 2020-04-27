@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import {
   Row, Col, Alert,
@@ -28,11 +28,15 @@ const ManageOnlineTestsPage = (props) => {
   } = props;
 
   const idBaseDoc = match.params.id;
+  const { page } = match.params;
+
+  const [, setPagenew] = useState();
 
   useEffect(() => {
     fetchBaseDocument(idBaseDoc);
-    listMyOnlineTests(idBaseDoc, parseInt(match.params.page, 10), orderField, order);
-  }, []);
+    listMyOnlineTests(idBaseDoc, parseInt(page, 10), orderField, order);
+    setPagenew(page);
+  }, [page]);
 
   if (isFetchingBaseDocument) {
     return (
