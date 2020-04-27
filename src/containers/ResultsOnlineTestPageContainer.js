@@ -9,13 +9,15 @@ const mapStateToProps = (state) => {
   const questions = state.onlineTest.activeOnlineTest ? state.onlineTest.activeOnlineTest.questions_document : null;
 
   // Máximo valor da prova online
-  const totalScore = questions ? questions.map(q => q.score).filter(item => item).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
+  const totalScore = questions ? questions.map(q => q.score).filter(item => item).reduce((a, b) => parseFloat(a) + parseFloat(b), 0) : 0;
+  const totalScoreFinal = parseFloat(totalScore).toFixed(2);
+
   return ({
     activeOnlineTest: state.onlineTest.activeOnlineTest,
     isFetchingOnlineTest: state.onlineTest.isFetchingOnlineTest,
     userId: state.session.session.user.id,
     user: state.session.session.user,
-    totalScore,
+    totalScore: totalScoreFinal,
   });
 };
 

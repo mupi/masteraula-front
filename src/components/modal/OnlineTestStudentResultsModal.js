@@ -250,16 +250,19 @@ const mapStateToProps = (state) => {
   const studentAnswers = selector(state, 'student_answers');
   // Máximo valor da prova online
   const questions = state.onlineTest.activeOnlineTest ? state.onlineTest.activeOnlineTest.questions_document : null;
-  const totalScore = questions ? questions.map(q => q.score).filter(item => item).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
+  // online test's score
+  const totalScore = questions ? questions.map(q => q.score).filter(item => item).reduce((a, b) => parseFloat(a) + parseFloat(b), 0) : 0;
+  const totalScoreFinal = parseFloat(totalScore).toFixed(2);
 
+  // student's score
   const totalScoreStudent = studentAnswers
-    ? studentAnswers.map(q => q.score_answer).filter(item => item).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
-  const totalScoreStudentFinal = !isNaN(totalScoreStudent) ? totalScoreStudent : 0;
+    ? studentAnswers.map(q => q.score_answer).filter(item => item).reduce((a, b) => parseFloat(a) + parseFloat(b), 0) : 0;
+  const totalScoreStudentFinal = parseFloat(totalScoreStudent).toFixed(2);
 
   return ({
     activeOnlineTest: state.onlineTest.activeOnlineTest,
     totalScoreStudent: totalScoreStudentFinal,
-    totalScore,
+    totalScore: totalScoreFinal,
   });
 };
 const mapDispatchToProps = dispatch => ({
@@ -275,7 +278,7 @@ const mapDispatchToProps = dispatch => ({
     const idStudent = values.id_student;
     const updatedAnswers = values.student_answers.map(value => ({
       id: value.id,
-      score_answer: value.score_answer, // ? value.score_answer : null,
+      score_answer: !isNaN(parseFloat(value.score_answer).toFixed(2)) ? parseFloat(value.score_answer).toFixed(2) : 0,
     }));
     const finalAnswers = {
       student_answer: updatedAnswers,
