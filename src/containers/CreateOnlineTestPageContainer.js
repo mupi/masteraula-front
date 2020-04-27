@@ -16,11 +16,13 @@ const mapStateToProps = (state) => {
 
   // ? questions.map(q => q.score).filter(item => item).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
   // const totalScoreFinal = !isNaN(totalScore) ? totalScore : 0;
+  const totalScoreFinal = parseFloat(totalScore).toFixed(2);
+
   return ({
     baseDocument: state.onlineTest.baseDocument,
     isFetchingBaseDocument: state.onlineTest.isFetchingBaseDocument,
     typeDurationSelected: selector(state, 'typeDuration'),
-    totalScore, // : totalScoreFinal,
+    totalScore: totalScoreFinal,
     errors: state.form['create-onlinetest'] ? state.form['create-onlinetest'].submitErrors : null,
     userId: state.session.session.user.id,
   });

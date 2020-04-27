@@ -9,7 +9,7 @@ const OnlineTestBasicInfo = (props) => {
   const { onlineTest } = props;
   const duration = onlineTest.duration ? `${onlineTest.duration} min` : 'Livre';
   const totalScore = onlineTest.questions_document
-    ? onlineTest.questions_document.map(q => q.score).filter(item => item).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
+    ? onlineTest.questions_document.map(q => q.score).filter(item => item).reduce((a, b) => parseFloat(a) + parseFloat(b), 0) : 0;
   return (
     <Row>
       <Col sm="6">
@@ -83,7 +83,7 @@ const OnlineTestBasicInfo = (props) => {
             <strong>Pontuação total: </strong>
           </span>
           <span className="c-online__questions-info--value">
-            {`${totalScore} pontos`}
+            {`${parseFloat(totalScore).toFixed(2)} pontos`}
           </span>
         </p>
       </Col>

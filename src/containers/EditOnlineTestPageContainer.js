@@ -11,13 +11,15 @@ import { fetchQuestion } from 'actions/questionAction';
 const mapStateToProps = (state) => {
   const selector = formValueSelector('edit-onlinetest');
   const questions = selector(state, 'questions_document');
+  const totalScore = questions
+    ? questions.map(q => q.score).filter(item => item).reduce((a, b) => parseFloat(a) + parseFloat(b), 0) : 0;
   return ({
     activeOnlineTest: state.onlineTest.activeOnlineTest,
     isFetchingOnlineTest: state.onlineTest.isFetchingOnlineTest,
     userId: state.session.session.user.id,
     user: state.session.session.user,
     typeDurationSelected: selector(state, 'typeDuration'),
-    totalScore: questions ? questions.map(q => q.score).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0,
+    totalScore: parseFloat(totalScore).toFixed(2),
   });
 };
 

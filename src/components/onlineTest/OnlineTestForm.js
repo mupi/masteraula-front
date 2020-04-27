@@ -117,7 +117,9 @@ const renderNumericField = ({
 );
 
 /* eslint-disable react/no-array-index-key */
-const renderQuestions = ({ fields, questions, showQuestionModal }) => (
+const renderQuestions = ({
+  fields, questions, showQuestionModal, isEditable = false,
+}) => (
   <>
     {fields && fields.map((questionField, i) => {
       const autorship = questions[i].question.authorship ? questions[i].question.authorship : questions[i].question.author.name;
@@ -160,16 +162,31 @@ const renderQuestions = ({ fields, questions, showQuestionModal }) => (
 
               <Row form>
                 <Col md={6} xs="12">
-                  <FormGroup check inline>
-                    <Label for="score" className="c-online__score-label" style={{ marginRight: '7px' }}><strong>Pontuação: </strong></Label>
-                    <Field
-                      name={`${questionField}.score`}
-                      type="number"
-                      component={renderNumericField}
-                      placeholder="Ex. 5.5"
-                      validate={minDuration}
-                    />
-                  </FormGroup>
+                  { isEditable && (
+                    <FormGroup check inline>
+                      <Label for="score" className="c-online__score-label" style={{ marginRight: '7px' }}><strong>Pontuação: </strong></Label>
+                      <Field
+                        name={`${questionField}.score`}
+                        type="number"
+                        component={renderNumericField}
+                        placeholder="Ex. 5.5"
+                        validate={minDuration}
+                      />
+                    </FormGroup>
+                  )}
+                  { !isEditable && questions[i].score && (
+                    <>
+                      <span className="c-online__score-label" style={{ marginRight: '7px' }}>
+                        <strong>
+                          Pontuação:
+                          {' '}
+                        </strong>
+                      </span>
+                      <span>
+                        {questions[i].score}
+                      </span>
+                    </>
+                  ) }
                 </Col>
               </Row>
             </Col>
@@ -249,6 +266,7 @@ const OnlineTestForm = (props) => {
   } = props;
 
   const questions = actionName === 'Criar' ? baseDoc.questions : onlineTest.questions_document;
+  const isEditable = actionName === 'Criar';
   return (
 
     <Form onSubmit={handleSubmit}>
@@ -478,6 +496,7 @@ const OnlineTestForm = (props) => {
               component={renderQuestions}
               questions={questions}
               showQuestionModal={showQuestionModal}
+              isEditable={isEditable}
             />
           </Col>
         </Row>
