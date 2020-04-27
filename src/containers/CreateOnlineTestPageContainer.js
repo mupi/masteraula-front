@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch) => {
         start_date: values.start_date,
         finish_date: values.finish_date,
         // questions_document: values.questions_document.map(q => ({ question: q.id, score: parseFloat(q.score).toFixed(2) })),
-        questions_document: values.questions_document.map(q => ({ question: q.id, score: q.score })),
+        questions_document: values.questions_document.map(q => ({ question: q.id, score: q.score.length > 0 ? q.score.length : null })),
         duration: values.typeDuration === 'R' ? values.duration : null,
         name: values.name,
       };

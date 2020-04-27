@@ -61,7 +61,7 @@ const DocumentQuestionItem = (props) => {
                 {question.tags.concat(question.all_topics).map((tag, x) => <Badge key={`${question.id}-${x}`} color="success" pill>{tag.name.trim()}</Badge>)}
               </p>
             ) : ''}
-            {options.showScore && (
+            {options.showScore && questionOrder.score && (
             <p>
               <span className="c-online__score-label" style={{ marginRight: '7px' }}><strong>Pontuação: </strong></span>
               {questionOrder.score}

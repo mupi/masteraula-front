@@ -249,7 +249,7 @@ const mapStateToProps = (state) => {
   const studentAnswers = selector(state, 'student_answers');
   // Máximo valor da prova online
   const questions = state.onlineTest.activeOnlineTest ? state.onlineTest.activeOnlineTest.questions_document : null;
-  const totalScore = questions ? questions.map(q => q.score).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
+  const totalScore = questions ? questions.map(q => q.score).filter(item => item).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
 
   const totalScoreStudent = studentAnswers
     ? studentAnswers.map(q => q.score_answer).filter(item => item).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
@@ -274,7 +274,7 @@ const mapDispatchToProps = dispatch => ({
     const idStudent = values.id_student;
     const updatedAnswers = values.student_answers.map(value => ({
       id: value.id,
-      score_answer: value.score_answer,
+      score_answer: value.score_answer, // ? value.score_answer : null,
     }));
     const finalAnswers = {
       student_answer: updatedAnswers,
