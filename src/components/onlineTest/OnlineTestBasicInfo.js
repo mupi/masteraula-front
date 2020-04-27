@@ -8,6 +8,8 @@ import { masteraulaUrl } from 'helpers/config';
 const OnlineTestBasicInfo = (props) => {
   const { onlineTest } = props;
   const duration = onlineTest.duration ? `${onlineTest.duration} min` : 'Livre';
+  const totalScore = onlineTest.questions_document
+    ? onlineTest.questions_document.map(q => q.score).filter(item => item).reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0) : 0;
   return (
     <Row>
       <Col sm="6">
@@ -70,6 +72,18 @@ const OnlineTestBasicInfo = (props) => {
           <span className="c-online__questions-info--value">
             { `${onlineTest.application.exam_quantity} questões de vestibular / `}
             { `${onlineTest.application.authoral_quantity} questão autoral`}
+          </span>
+        </p>
+        <p className="c-online__questions-info">
+          <span className="c-online__questions-info--label">
+            <FontAwesomeIcon
+              className="btn__icon"
+              icon="star"
+            />
+            <strong>Pontuação total: </strong>
+          </span>
+          <span className="c-online__questions-info--value">
+            {`${totalScore} pontos`}
           </span>
         </p>
       </Col>

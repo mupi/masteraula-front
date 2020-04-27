@@ -249,7 +249,6 @@ const OnlineTestForm = (props) => {
   } = props;
 
   const questions = actionName === 'Criar' ? baseDoc.questions : onlineTest.questions_document;
-
   return (
 
     <Form onSubmit={handleSubmit}>
