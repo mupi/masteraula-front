@@ -94,7 +94,7 @@ const ManageOnlineTestsPage = (props) => {
             <CustomPagination {...props} {...onlineTestsList} disabled={isFetchingOnlineTests} itensPerPage={10} className="pagination-my-classplans" />
             <p className="c-my-documents__total-results">
               {'Provas online encontradas: '}
-              {onlineTestsList && onlineTestsList.results ? onlineTestsList.results.length : 0}
+              {onlineTestsList && onlineTestsList.results ? onlineTestsList.count : 0}
             </p>
             { isFetchingOnlineTests ? (
               <Alert className="alert--warning" color="warning" fade={false}>
