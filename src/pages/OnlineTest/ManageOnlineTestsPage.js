@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import {
   Row, Col, Alert,
@@ -32,8 +32,14 @@ const ManageOnlineTestsPage = (props) => {
 
   const [, setPagenew] = useState();
 
+  const isInitialMount = useRef(true);
+
   useEffect(() => {
-    fetchBaseDocument(idBaseDoc);
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      fetchBaseDocument(idBaseDoc);
+    }
+
     listMyOnlineTests(idBaseDoc, parseInt(page, 10), orderField, order);
     setPagenew(page);
   }, [page]);
