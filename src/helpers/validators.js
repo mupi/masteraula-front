@@ -61,3 +61,4 @@ export const mustBePositiveNumber = value => ((value && isNaN(Number(value)) && 
 
 export const maxYearValue = maxValue(2020);
 export const minDuration = minValue(0);
+export const maxNumDigits = value => (value && value > 99999999.99 ? 'Valor não permitido' : undefined);

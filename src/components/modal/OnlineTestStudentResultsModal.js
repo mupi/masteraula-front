@@ -15,7 +15,7 @@ import {
   Field, reduxForm, FieldArray, initialize, formValueSelector,
 } from 'redux-form';
 import {
-  minDuration,
+  minDuration, maxNumDigits,
 } from 'helpers/validators';
 
 // Numeric Input Field
@@ -82,13 +82,13 @@ const renderQuestions = ({ fields, studentAnswers }) => (
           </td>
           <td>
             {!answerShown.answer_text && answerShown.score_answer}
-            {answerShown.answer_text && (
+            {answerShown.answer_text /* && answerShown.student_question.score */ && (
               <Field
                 name={`${answerField}.score_answer`}
                 type="number"
                 component={renderNumericField}
                 placeholder="Ex.1.5"
-                validate={minDuration}
+                validate={[minDuration, maxNumDigits]}
                 className="c-online-results__single-score"
               />
             )}

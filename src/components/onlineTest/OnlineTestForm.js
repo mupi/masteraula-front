@@ -12,6 +12,7 @@ import {
   requiredValidator,
   minLength3characters,
   minDuration,
+  maxNumDigits,
 } from 'helpers/validators';
 import DateTimePicker from 'react-widgets/lib/DateTimePicker';
 
@@ -170,7 +171,7 @@ const renderQuestions = ({
                         type="number"
                         component={renderNumericField}
                         placeholder="Ex. 5.5"
-                        validate={minDuration}
+                        validate={[minDuration, maxNumDigits]}
                       />
                     </FormGroup>
                   )}
