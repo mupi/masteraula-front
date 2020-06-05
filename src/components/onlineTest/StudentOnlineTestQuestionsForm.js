@@ -71,7 +71,7 @@ const renderQuestionMaterials = ({ fields, questionGroups }) => (
 
         {questionGroups[i].question.learning_objects && questionGroups[i].question.learning_objects.length > 0 && (
           <p className="student-online__section-title mb-1">
-            <strong>{`Material para a questão N° ${questionGroups[i].id} `}</strong>
+            <strong>{`Material para a questão N° ${i + 1} `}</strong>
           </p>
         )}
         {questionGroups[i].question.learning_objects && questionGroups[i].question.learning_objects.map(learningObject => (

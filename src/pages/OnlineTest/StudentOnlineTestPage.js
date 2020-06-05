@@ -148,7 +148,7 @@ const StudentOnlineTestSecondPage = (props) => {
         </Col>
         )}
         { isLoggedIn && (
-        <Col sm="12">
+        <Col sm="12" style={{ marginBottom: '10px' }}>
           <Alert color="warning" className="mt-1 mb-1">
             Visualização da prova online para os alunos
           </Alert>
