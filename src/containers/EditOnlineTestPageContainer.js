@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch) => {
         start_date: values.start_date,
         finish_date: values.finish_date,
         questions_document: values.questions_document.map(q => ({ id: q.id, score: q.score })),
-        duration: values.duration,
+        duration: values.typeDuration === 'R' ? values.duration : null,
         name: values.name,
       };
 
