@@ -35,7 +35,7 @@ const URLCopy = ({ url }) => {
               </Button>
             </InputGroupAddon>
           </InputGroup>
-          <p className="text-right" style={{ fontSize: '13px' }}>{copySuccess}</p>
+          {copySuccess && <p className="text-right" style={{ fontSize: '13px', marginBottom: '0px' }}>{copySuccess}</p>}
         </>
         )
       }

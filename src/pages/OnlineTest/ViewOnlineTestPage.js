@@ -111,6 +111,13 @@ const ViewOnlineTestPage = (props) => {
         <Row className="c-question__tittle-section c-question--space-for-titlequestion mb-4">
           <Col>
             <h4>
+
+              <FontAwesomeIcon
+                icon="circle"
+                className={`c-online__status ${activeOnlineTest.status ? 'c-online__status--active' : 'c-online__status--inactive'}`}
+                title={activeOnlineTest.status ? 'Prova Ativa' : 'Prova Inativa'}
+              />
+              {' '}
               <FontAwesomeIcon icon="laptop" />
               {' '}
               {'Prova Online : '}

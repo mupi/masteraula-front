@@ -22,6 +22,9 @@ import 'moment/locale/pt';
 import momentLocalizer from 'react-widgets-moment';
 import { getCleanExtractStatement } from 'helpers/question';
 
+import URLCopy from 'components/onlineTest/URLCopy';
+import { masteraulaUrl } from 'helpers/config';
+
 moment.locale('pt');
 momentLocalizer();
 
@@ -207,6 +210,10 @@ const renderQuestions = ({
                       </p>
                     ) : (
                       <>
+                        <p className="c-document__question-info-row">
+                          {'Tipo: '}
+                          <span className="c-document__question-info-detail">{questions[i].question.type_question}</span>
+                        </p>
                         {questions[i].question.source && (
                         <p className="c-document__question-info-row">
                           {'Vestibular: '}
@@ -310,6 +317,14 @@ const OnlineTestForm = (props) => {
 
           </Col>
         </Row>
+
+        { !isEditable && (
+        <Row className="justify-content-end">
+          <Col sm="6">
+            <URLCopy url={`${masteraulaUrl}/apply-online/${onlineTest.link}`} />
+          </Col>
+        </Row>
+        )}
         <Row className="c-create-online__row-info">
           <Col sm="12" xs="12">
             <Label for="name">Nome</Label>
