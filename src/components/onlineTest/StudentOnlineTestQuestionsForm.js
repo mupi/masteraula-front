@@ -134,7 +134,7 @@ const renderQuestionMaterials = ({ fields, questionGroups }) => (
  */
 const StudentOnlineTestQuestionsForm = (props) => {
   const {
-    handleSubmit, pristine, /* submitting, */ questionsDocument, isLoggedIn, isSendingAnswers,
+    handleSubmit, pristine, questionsDocument, isLoggedIn, isSendingAnswers,
   } = props;
   return (
 

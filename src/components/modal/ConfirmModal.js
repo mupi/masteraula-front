@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 const ConfirmModal = ({
-  closeModal, confirmAction, title, message, onlineTest, studentAnswers,
+  closeModal, confirmAction, title, message, onlineTest, studentAnswers, isSendingAnswers = false,
 }) => {
   const handleConfirm = () => {
     confirmAction(onlineTest, studentAnswers);
@@ -32,7 +32,7 @@ const ConfirmModal = ({
           <Button className="btn--confirm" onClick={() => handleConfirm()}>
             Enviar
           </Button>
-          <Button color="secondary" onClick={closeModal}>
+          <Button color="secondary" onClick={closeModal} disabled={isSendingAnswers}>
             Cancelar
           </Button>
         </div>

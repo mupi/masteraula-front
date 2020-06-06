@@ -74,7 +74,7 @@ const StudentOnlineTestFirstPage = (props) => {
   const { basicOnlineTest } = props;
   return (
     <div>
-      <Row className="mt-3 mb-3 align-items-center no-gutters">
+      <Row className="mt-5 mb-3 align-items-center no-gutters">
         <Col sm="12" md={{ size: 8, offset: 2 }}>
           <h4>
             {'Prova : '}
@@ -139,7 +139,7 @@ const StudentOnlineTestSecondPage = (props) => {
   return (
     <>
       {isLoggedIn && <MenuAdminOptions {...props} />}
-      <Row className={isLoggedIn ? 'c-question__options c-question--space-for-titlequestion no-gutters' : 'mt-3 mb-3 align-items-center no-gutters'}>
+      <Row className={isLoggedIn ? 'c-question__options c-question--space-for-titlequestion no-gutters' : 'mt-5 mb-3 align-items-center no-gutters'}>
         { isLoggedIn && fullOnlineTest.owner.pk !== userId && (
         <Col sm="12">
           <Alert color="danger" className="mt-1 mb-1">
@@ -148,7 +148,7 @@ const StudentOnlineTestSecondPage = (props) => {
         </Col>
         )}
         { isLoggedIn && (
-        <Col sm="12" style={{ marginBottom: '10px' }}>
+        <Col sm="12" style={{ marginBottom: '20px' }}>
           <Alert color="warning" className="mt-1 mb-1">
             Visualização da prova online para os alunos
           </Alert>
@@ -202,7 +202,7 @@ const InnerPage = (props) => {
     );
   }
 
-  if ((!basicOnlineTest || basicOnlineTest.disabled) && !isLoggedIn) {
+  if ((!basicOnlineTest || basicOnlineTest.disabled /* || !basicOnlineTest.status */) && !isLoggedIn) {
     return (
       <Alert color="danger">
         A prova não existe ou não está mais disponível

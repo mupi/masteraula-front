@@ -26,7 +26,7 @@ const mapStateToProps = (state) => {
 
 
 const mapDispatchToProps = (dispatch) => {
-  const confirmModalProps = (onlineTest, studentAnwers) => {
+  const confirmModalProps = (onlineTest, studentAnwers, isSendingAnswers) => {
     const quantity = `${studentAnwers.student_answer.length}/${onlineTest.questions_document.length}`;
     const message = `Você respondeu ${quantity}. Tem certeza que deseja enviar suas respostas?`;
     return ({
@@ -36,6 +36,7 @@ const mapDispatchToProps = (dispatch) => {
         message,
         onlineTest,
         studentAnwers,
+        isSendingAnswers,
         confirmAction: () => {
           dispatch(sendAnswersOnlineTest(onlineTest, studentAnwers));
         },
@@ -72,7 +73,7 @@ const mapDispatchToProps = (dispatch) => {
         student_answer: [...answersText, ...answers],
       };
 
-      dispatch(showModal(confirmModalProps(props.fullOnlineTest, studentAnwers)));
+      dispatch(showModal(confirmModalProps(props.fullOnlineTest, studentAnwers, props.submitting)));
     },
   });
 };
