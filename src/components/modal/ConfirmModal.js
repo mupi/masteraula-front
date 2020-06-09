@@ -1,9 +1,13 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
+/*
+  ConfirmModal for sending student's answers
+*/
 const ConfirmModal = ({
-  closeModal, confirmAction, title, message, onlineTest, studentAnswers, isSendingAnswers = false,
+  closeModal, confirmAction, title, message, onlineTest, studentAnswers, isSendingAnswers,
 }) => {
   const handleConfirm = () => {
     confirmAction(onlineTest, studentAnswers);
@@ -29,10 +33,10 @@ const ConfirmModal = ({
           {message}
         </p>
         <div className="modal-footer modal__footer">
-          <Button className="btn--confirm" onClick={() => handleConfirm()}>
+          <Button className="btn--confirm" onClick={() => handleConfirm()} disabled={isSendingAnswers}>
             Enviar
           </Button>
-          <Button color="secondary" onClick={closeModal} disabled={isSendingAnswers}>
+          <Button color="secondary" onClick={closeModal} >
             Cancelar
           </Button>
         </div>
@@ -55,4 +59,11 @@ ConfirmModal.defaultProps = {
   message: '',
 };
 
-export default ConfirmModal;
+const mapStateToProps = state => ({
+  isSendingAnswers: state.onlineTest.isSendingAnswers,
+});
+
+const mapDispatchToProps = dispatch => ({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConfirmModal);
