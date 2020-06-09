@@ -125,7 +125,7 @@ const renderQuestions = ({
   fields, questions, showQuestionModal, isEditable = false,
 }) => (
   <>
-    {fields && fields.map((questionField, i) => {
+    {questions && fields && fields.map((questionField, i) => {
       const autorship = questions[i].question && questions[i].question.authorship
         ? questions[i].question.authorship : questions[i].question.author.name;
 
