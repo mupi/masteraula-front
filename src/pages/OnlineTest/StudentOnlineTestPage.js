@@ -202,7 +202,7 @@ const InnerPage = (props) => {
     );
   }
 
-  if ((!basicOnlineTest || basicOnlineTest.disabled /* || !basicOnlineTest.status */) && !isLoggedIn) {
+  if ((!basicOnlineTest || basicOnlineTest.disabled || !basicOnlineTest.status ) && !isLoggedIn) {
     return (
       <Alert color="danger">
         A prova não existe ou não está mais disponível

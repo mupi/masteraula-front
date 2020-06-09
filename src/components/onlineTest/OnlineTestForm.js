@@ -202,6 +202,10 @@ const renderQuestions = ({
                   </p>
                 </Col>
                 <Col sm="12">
+                  <p className="c-document__question-info-row">
+                    {'Tipo: '}
+                    <span className="c-document__question-info-detail">{questions[i].question.type_question}</span>
+                  </p>
                   {!questions[i].question.source
                     ? (
                       <p className="c-document__question-info-row">
@@ -210,10 +214,6 @@ const renderQuestions = ({
                       </p>
                     ) : (
                       <>
-                        <p className="c-document__question-info-row">
-                          {'Tipo: '}
-                          <span className="c-document__question-info-detail">{questions[i].question.type_question}</span>
-                        </p>
                         {questions[i].question.source && (
                         <p className="c-document__question-info-row">
                           {'Vestibular: '}
