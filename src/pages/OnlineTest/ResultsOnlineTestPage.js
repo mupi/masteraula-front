@@ -95,7 +95,7 @@ const ResultsOnlineTestPage = (props) => {
           totalScore={totalScore}
         />
         { activeOnlineTest.results && activeOnlineTest.results.length > 0 && (
-        <OnlineTestStudentList showStudentModal={showStudentModal} students={activeOnlineTest.results} />)}
+        <OnlineTestStudentList showStudentModal={showStudentModal} students={activeOnlineTest.results} documentOnline={activeOnlineTest}/>)}
       </div>
     </HomeUserPage>
   );

@@ -10,6 +10,9 @@ import {
   SEND_ANSWERS_ONLINE_TEST, SEND_ANSWERS_ONLINE_TEST_SUCCESS, SEND_ANSWERS_ONLINE_TEST_FAILURE,
   SET_START_DATE_ONLINE_TEST,
   UPDATE_ANSWERS_ONLINE_TEST, UPDATE_ANSWERS_ONLINE_TEST_SUCCESS, UPDATE_ANSWERS_ONLINE_TEST_FAILURE,
+  DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS,
+  DOWNLOAD_RESULT_ONLINE_TEST_FAILURE,
+
 } from 'actions/onlineTestAction';
 import { toast } from 'react-toastify';
 
@@ -249,6 +252,21 @@ export const onlineTest = (state = initialState, action) => {
       return Object.assign({}, state, {
         error: action.error,
         isDeleted: false,
+      });
+    }
+    case DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS: {
+      toast.success('Seu download iniciará a qualquer momento', optionsSuccess);
+      return Object.assign({}, state, {
+        isDownloadingDocument: false,
+        isDowloaded: true,
+      });
+    }
+    case DOWNLOAD_RESULT_ONLINE_TEST_FAILURE: {
+      console.log(action.error)
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        isDownloadingDocument: false,
+        error: action.error,
       });
     }
     default:

@@ -3,6 +3,7 @@ import { history } from 'helpers';
 import { initialize, formValueSelector } from 'redux-form';
 import onlineTestService from 'services/onlineTestService';
 import { toast } from 'react-toastify';
+import FileSaver from 'file-saver';
 
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
@@ -67,6 +68,10 @@ export const SET_START_DATE_ONLINE_TEST = 'SET_START_DATE_ONLINE_TEST';
 export const UPDATE_ANSWERS_ONLINE_TEST = 'UPDATE_ANSWERS_ONLINE_TEST';
 export const UPDATE_ANSWERS_ONLINE_TEST_SUCCESS = 'UPDATE_ANSWERS_ONLINE_TEST_SUCCESS';
 export const UPDATE_ANSWERS_ONLINE_TEST_FAILURE = 'UPDATE_ANSWERS_ONLINE_TEST_FAILURE';
+
+// Download RESULT
+export const DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS = 'DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS';
+export const DOWNLOAD_RESULT_ONLINE_TEST_FAILURE = 'DOWNLOAD_RESULT_ONLINE_TEST_FAILURE';
 
 export const fetchBaseDocument = id => async (dispatch) => {
   try {
@@ -282,4 +287,22 @@ export const copyOnlineTest = (props, isRedirect = false) => {
       },
     );
   };
+};
+
+export const downloadResults = (testId, testName) => {
+  const downloadSelectedTestOnlineSuccess = () => ({ type: DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS });
+  const downloadSelectedTestOnlineFailure = error => ({ type: DOWNLOAD_RESULT_ONLINE_TEST_FAILURE, error });
+  
+
+  return (dispatch) => {
+    return onlineTestService.downloadResults(testId)
+      .then((blob) => {
+        dispatch(downloadSelectedTestOnlineSuccess());
+        FileSaver.saveAs(blob, `${testName}.csv`);
+      },
+      (error) => {
+        dispatch(downloadSelectedTestOnlineFailure(error));
+      });
+    };
+  
 };

@@ -198,6 +198,25 @@ function deleteOnlineTest(idOnlineTest) {
     .then(response => response.data).then(() => idOnlineTest);
 }
 
+function downloadResults(idDocumentOnline) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = (response) => {
+    if (!response.ok) {
+      return Promise.reject();
+    }
+    return response.blob();
+  };
+
+  return fetch(`${apiUrl}/document_online/${idDocumentOnline}/generate_list/`, requestOptions)
+    .then(handleResponse);
+}
+
 const onlineTestService = {
   fetchBaseDocument,
   fetchOnlineTest,
@@ -209,6 +228,7 @@ const onlineTestService = {
   fetchStudentOnlineTest,
   sendAnswersOnlineTest,
   editAnswersOnlineTest,
+  downloadResults,
 };
 
 export default onlineTestService;

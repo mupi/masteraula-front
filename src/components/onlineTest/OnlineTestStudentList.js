@@ -1,9 +1,11 @@
 import React from 'react';
 import {
-  Table, Button,
+  Row, Table, Button,
 } from 'reactstrap';
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatDate, formatTime, diffDateInMinutes } from 'helpers/question';
+import { downloadResults } from 'actions/onlineTestAction';
 
 /*
 review_score
@@ -20,9 +22,19 @@ function getStudentScore(student) {
 }
 
 
-const OnlineTestStudentList = ({ students, showStudentModal }) => (
+const OnlineTestStudentList = ({ students, showStudentModal, documentOnline, onClickDownload }) => (
   <div className="c-online__question">
     <p className="c-online__subtitle"><strong>Relação de alunos</strong></p>
+    <Row className="c-document-modal__main-options">
+        <div className="auto-margin-left-element mb-3">
+          <Button title="Baixar resultados" color="secondary" onClick={(() => onClickDownload(documentOnline.link, documentOnline.name))}>
+            <FontAwesomeIcon icon="download" className="btn__icon" />
+            <span className="button-text">
+              Baixar resultados
+            </span>
+          </Button>
+        </div>
+    </Row>
     <Table responsive hover>
       <thead align="center">
         <tr>
@@ -72,4 +84,14 @@ const OnlineTestStudentList = ({ students, showStudentModal }) => (
   </div>
 );
 
-export default OnlineTestStudentList;
+const mapDispatchToProps = dispatch => ({
+  onClickDownload: (val1,val2) => {
+    return dispatch(downloadResults(val1,val2));
+  },
+});
+
+
+export default connect(
+  null, 
+  mapDispatchToProps
+)(OnlineTestStudentList)
