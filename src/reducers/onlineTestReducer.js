@@ -262,7 +262,6 @@ export const onlineTest = (state = initialState, action) => {
       });
     }
     case DOWNLOAD_RESULT_ONLINE_TEST_FAILURE: {
-      console.log(action.error)
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isDownloadingDocument: false,
