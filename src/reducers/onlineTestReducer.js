@@ -256,15 +256,11 @@ export const onlineTest = (state = initialState, action) => {
     }
     case DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS: {
       toast.success('Seu download iniciará a qualquer momento', optionsSuccess);
-      return Object.assign({}, state, {
-        isDownloadingDocument: false,
-        isDowloaded: true,
-      });
+      return Object.assign({}, state);
     }
     case DOWNLOAD_RESULT_ONLINE_TEST_FAILURE: {
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
-        isDownloadingDocument: false,
         error: action.error,
       });
     }
