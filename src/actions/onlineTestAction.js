@@ -70,6 +70,7 @@ export const UPDATE_ANSWERS_ONLINE_TEST_SUCCESS = 'UPDATE_ANSWERS_ONLINE_TEST_SU
 export const UPDATE_ANSWERS_ONLINE_TEST_FAILURE = 'UPDATE_ANSWERS_ONLINE_TEST_FAILURE';
 
 // Download RESULT
+export const DOWNLOAD_RESULT_ONLINE_TEST = 'DOWNLOAD_RESULT_ONLINE_TEST';
 export const DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS = 'DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS';
 export const DOWNLOAD_RESULT_ONLINE_TEST_FAILURE = 'DOWNLOAD_RESULT_ONLINE_TEST_FAILURE';
 
@@ -290,11 +291,14 @@ export const copyOnlineTest = (props, isRedirect = false) => {
 };
 
 export const downloadResults = (testId, testName) => {
+  const downloadSelectedTestOnline = () => ({ type: DOWNLOAD_RESULT_ONLINE_TEST });
   const downloadSelectedTestOnlineSuccess = () => ({ type: DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS });
   const downloadSelectedTestOnlineFailure = error => ({ type: DOWNLOAD_RESULT_ONLINE_TEST_FAILURE, error });
   
 
   return (dispatch) => {
+    dispatch(downloadSelectedTestOnline());
+
     return onlineTestService.downloadResults(testId)
       .then((blob) => {
         dispatch(downloadSelectedTestOnlineSuccess());

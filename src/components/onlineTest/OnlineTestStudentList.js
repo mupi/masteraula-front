@@ -21,13 +21,12 @@ function getStudentScore(student) {
   return totalScoreFinal;
 }
 
-
-const OnlineTestStudentList = ({ students, showStudentModal, documentOnline, onClickDownload }) => (
+const OnlineTestStudentList = ({ students, showStudentModal, documentOnline, onClickDownload, isSending}) => (
   <div className="c-online__question">
     <p className="c-online__subtitle"><strong>Relação de alunos</strong></p>
     <Row className="c-document-modal__main-options">
         <div className="auto-margin-left-element mb-3">
-          <Button title="Baixar resultados" color="secondary" onClick={(() => onClickDownload(documentOnline.link, documentOnline.name))}>
+          <Button title="Baixar resultados" color="secondary" onClick={(() => onClickDownload(documentOnline.link, documentOnline.name))} disabled={isSending}>
             <FontAwesomeIcon icon="download" className="btn__icon" />
             <span className="button-text">
               Baixar resultados
@@ -49,7 +48,7 @@ const OnlineTestStudentList = ({ students, showStudentModal, documentOnline, onC
       </thead>
       <tbody align="center">
         {students && students.map(student => (
-          <tr key={student.student_name}>
+          <tr key={student.id}>
             <td>
               {student.student_name}
             </td>
@@ -84,14 +83,17 @@ const OnlineTestStudentList = ({ students, showStudentModal, documentOnline, onC
   </div>
 );
 
+const mapStateToProps = state => ({
+  isSending: state.onlineTest.isSending,
+});
+
 const mapDispatchToProps = dispatch => ({
   onClickDownload: (val1,val2) => {
     return dispatch(downloadResults(val1,val2));
   },
 });
 
-
 export default connect(
-  null, 
+  mapStateToProps,
   mapDispatchToProps
 )(OnlineTestStudentList)
