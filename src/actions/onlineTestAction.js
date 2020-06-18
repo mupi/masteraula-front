@@ -274,13 +274,13 @@ export const deleteOnlineTest = (idOnlineTest, isRedirect = false, idBaseDocumen
 
 export const copyOnlineTest = (props, isRedirect = false) => {
   function copySelectedOnlineTest() { return { type: COPY_ONLINE_TEST }; }
-  function copySelectedOnlineTestSuccess(activeDocument) { return { type: COPY_ONLINE_TEST_SUCCESS, activeDocument }; }
+  function copySelectedOnlineTestSuccess(activeOnlineTest) { return { type: COPY_ONLINE_TEST_SUCCESS, activeOnlineTest }; }
   function copySelectedOnlineTestFailure(error) { return { type: COPY_ONLINE_TEST_FAILURE, error }; }
   return (dispatch) => {
     dispatch(copySelectedOnlineTest(props));
-    return documentService.copyDocument(props).then(
-      (activeDocument) => {
-        dispatch(copySelectedOnlineTestSuccess(activeDocument));
+    return onlineTestService.copyOnlineTest(props).then(
+      (activeOnlineTest) => {
+        dispatch(copySelectedOnlineTestSuccess(activeOnlineTest));
         if (isRedirect) history.push('/edit-document');
       },
       (error) => {

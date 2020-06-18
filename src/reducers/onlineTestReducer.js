@@ -11,6 +11,7 @@ import {
   SET_START_DATE_ONLINE_TEST,
   UPDATE_ANSWERS_ONLINE_TEST, UPDATE_ANSWERS_ONLINE_TEST_SUCCESS, UPDATE_ANSWERS_ONLINE_TEST_FAILURE,
   DOWNLOAD_RESULT_ONLINE_TEST, DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS, DOWNLOAD_RESULT_ONLINE_TEST_FAILURE,
+  COPY_ONLINE_TEST, COPY_ONLINE_TEST_SUCCESS, COPY_ONLINE_TEST_FAILURE, 
 
 } from 'actions/onlineTestAction';
 import { toast } from 'react-toastify';
@@ -268,6 +269,34 @@ export const onlineTest = (state = initialState, action) => {
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         isSending: false
+      });
+    }
+    case COPY_ONLINE_TEST: {
+      return Object.assign({}, state, {
+        isRemoved: null,
+        error: null,
+        isUpdated: null,
+      });
+    }
+    case COPY_ONLINE_TEST_SUCCESS: {
+      toast.success('Cópia da prova online realizada com sucesso', optionsSuccess);
+
+      return Object.assign({}, state, 
+        {
+          onlineTestsList: state.onlineTestsList ? {
+          ...state.onlineTestsList,
+          results: [...state.onlineTestsList.results, { ...action.activeOnlineTest }],
+          count: state.onlineTestsList.count + 1,
+        } : {
+          results: [action.activeOnlineTest],
+          count: 1,
+        },
+      });
+    }
+    case COPY_ONLINE_TEST_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        error: action.error,
       });
     }
     default:

@@ -24,7 +24,7 @@ const getOrderNameField = (text) => {
 const ManageOnlineTestsPage = (props) => {
   const {
     showDeleteModal, isFetchingOnlineTests, listMyOnlineTests, match, onlineTestsList,
-    fetchBaseDocument, isFetchingBaseDocument, baseDocument, orderField, order,
+    fetchBaseDocument, isFetchingBaseDocument, baseDocument, orderField, order, copyOnlineTest,
   } = props;
 
   const idBaseDoc = match.params.id;
@@ -150,9 +150,9 @@ const ManageOnlineTestsPage = (props) => {
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </div>
-
+                
                 { onlineTestsList
-                  && <OnlineTestList onlineTests={onlineTestsList.results} showDeleteModal={showDeleteModal} baseDocument={baseDocument} />
+                  && <OnlineTestList onlineTests={onlineTestsList.results} showDeleteModal={showDeleteModal} baseDocument={baseDocument} copyOnlineTest={copyOnlineTest} />
                 }
               </div>
             )}

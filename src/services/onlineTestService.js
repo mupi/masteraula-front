@@ -217,6 +217,32 @@ function downloadResults(idDocumentOnline) {
     .then(handleResponse);
 }
 
+function copyOnlineTest(idDocumentOnline) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  return fetch(`${apiUrl}/document_online/${idDocumentOnline}/copy_document/`, requestOptions)
+    .then(handleResponse)
+    // .then((activeDocument) => {
+    //   localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+    //   return activeDocument;
+    // });
+}
+
 const onlineTestService = {
   fetchBaseDocument,
   fetchOnlineTest,
@@ -229,6 +255,7 @@ const onlineTestService = {
   sendAnswersOnlineTest,
   editAnswersOnlineTest,
   downloadResults,
+  copyOnlineTest
 };
 
 export default onlineTestService;

@@ -19,7 +19,7 @@ const OpenOnlineTestModalHeader = (props) => {
 
 const OnlineTestList = (props) => {
   const {
-    showDeleteModal, onlineTests, baseDocument,
+    showDeleteModal, onlineTests, baseDocument, copyOnlineTest,
   } = props;
 
   const handleDelete = (id, name, idDocBase) => {
@@ -27,6 +27,7 @@ const OnlineTestList = (props) => {
   };
 
   return (
+    
     <Row className="l-my-documents-list">
       <Col xs="12">
         <div className="c-my-onlines">
@@ -117,8 +118,8 @@ const OnlineTestList = (props) => {
                           {' '}
                           Resultados
                         </DropdownItem>
-                        <DropdownItem divider className="label-item__divider hidden" />
-                        <DropdownItem onClick={() => {}} title="Duplicar prova online" className="hidden">
+                        <DropdownItem divider className="label-item__divider" />
+                        <DropdownItem onClick={() => copyOnlineTest(onlineTest.link)} title="Duplicar prova online">
                           <FontAwesomeIcon icon="copy" />
                           {' '}
                           Duplicar
