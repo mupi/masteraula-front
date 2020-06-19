@@ -1,0 +1,23 @@
+version: '3.5'
+
+networks:
+  mupi:
+    name: mupi
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    volumes:
+      - .:/app
+    environment:
+      - NODE_PATH=src
+      - REACT_APP_ENV=dev
+      - REACT_APP_API_URL=http://localhost:8000
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+    networks:
+      - mupi
