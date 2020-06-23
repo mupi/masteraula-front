@@ -18,7 +18,7 @@ build to homolog:
   stage: build
   script:
     - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
-    - docker build -f compose/production/Dockerfile -t $HOMOLOG_IMAGE .
+    - docker build --build-arg REACT_APP_API_URL="https://dev-api.masteraula.com.br" -f compose/production/Dockerfile -t $HOMOLOG_IMAGE .
     - docker push $HOMOLOG_IMAGE
   only:
     - /feature-docker-support/
