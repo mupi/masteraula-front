@@ -1,6 +1,9 @@
 FROM node:10 as node
 LABEL mantainer "hacklab/ <contato@hacklab.com.br>"
 
+ARG REACT_APP_API_URL=https://api.masteraula.com.br
+ENV REACT_APP_ENV=prod
+
 WORKDIR /app
 
 COPY package* ./
