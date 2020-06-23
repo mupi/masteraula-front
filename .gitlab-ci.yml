@@ -26,19 +26,19 @@ build to homolog:
   tags:
     - docker
 
-# deploy to homolog:
-#   stage: deploy
-#   image: hacklab/kubectl:latest
-#   script:
-#     - echo ${kube_config} | base64 -d > ${KUBECONFIG}
-#     - kubectl -n <projet-name>-dev --record deployment.apps/react set image deployment.v1.apps/react react=$HOMOLOG_IMAGE
-#   only:
-#     - /feature\/docker-support/
-#   environment: homolog
-#   variables:
-#     GIT_STRATEGY: none
-#   tags:
-#     - docker
+deploy to homolog:
+  stage: deploy
+  image: hacklab/kubectl:latest
+  script:
+    - echo ${kube_config} | base64 -d > ${KUBECONFIG}
+    - kubectl -n masteraula-dev --record deployment.apps/masteraula-front set image deployment.v1.apps/masteraula-front masteraula-front=$HOMOLOG_IMAGE
+  only:
+    - /feature-docker-support/
+  environment: homolog
+  variables:
+    GIT_STRATEGY: none
+  tags:
+    - docker
 
 #############
 ## Production
