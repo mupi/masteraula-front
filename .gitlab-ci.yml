@@ -21,7 +21,7 @@ build to homolog:
     - docker build -f compose/production/Dockerfile -t $HOMOLOG_IMAGE .
     - docker push $HOMOLOG_IMAGE
   only:
-    - /master/
+    - /feature\/docker-support/
   environment: homolog
   tags:
     - docker
@@ -33,7 +33,7 @@ build to homolog:
 #     - echo ${kube_config} | base64 -d > ${KUBECONFIG}
 #     - kubectl -n <projet-name>-dev --record deployment.apps/react set image deployment.v1.apps/react react=$HOMOLOG_IMAGE
 #   only:
-#     - /master/
+#     - /feature\/docker-support/
 #   environment: homolog
 #   variables:
 #     GIT_STRATEGY: none
