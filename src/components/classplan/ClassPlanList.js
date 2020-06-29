@@ -76,7 +76,7 @@ const ClassPlanList = (props) => {
                         </DropdownItem>
                         <DropdownItem divider className="label-item__divider" />
                         <DropdownItem
-                          title="Ver plano de aula"
+                          title="Editar plano de aula"
                           to={`/edit-classplan/${classPlan.id}`}
                           tag={Link}
                         >

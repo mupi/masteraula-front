@@ -11,7 +11,6 @@ import TermsUsePageHome from 'pages/TermsUse/TermsUsePageHome';
 import PricingPageHome from 'pages/Pricing/PricingPageHome';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 
-
 import {
   ManageDocumentsPageContainer,
   ForgotPasswordPageContainer,
@@ -38,6 +37,12 @@ import {
   ManageClassPlansPageContainer,
   MyDashboardPageContainer,
   FaqPageContainer,
+  CreateOnlineTestPageContainer,
+  ManageOnlineTestsPageContainer,
+  ViewOnlineTestPageContainer,
+  EditOnlineTestPageContainer,
+  ResultsOnlineTestPageContainer,
+  StudentOnlineTestPageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -66,6 +71,7 @@ import {
   faImage, faCheck, faCheckCircle,
   faThumbsUp,
   faArrowCircleLeft,
+  faArrowCircleRight,
   faComments, faInfoCircle, faBook,
   faSignInAlt, faClone, faExclamationCircle,
   faTimesCircle,
@@ -85,6 +91,16 @@ import {
   faLink,
   faFilePdf,
   faEllipsisH,
+  faLaptop,
+  faCheckSquare,
+  faCog,
+  faClock,
+  faHourglassStart,
+  faList,
+  faChartBar,
+  faStar,
+  faDownload,
+  faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -106,6 +122,16 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faTimes,
   faLink,
   faFilePdf, faEllipsisH,
+  faLaptop, faCog,
+  faCheckSquare,
+  faClock,
+  faHourglassStart,
+  faList,
+  faChartBar,
+  faStar,
+  faDownload,
+  faArrowCircleRight,
+  faExclamationTriangle,
   fab);
 
 
@@ -173,7 +199,12 @@ class App extends Component {
                 <Route path="/view-classplan/:id" component={ViewClassPlanPageContainer} />
                 <Route path="/faq" component={FaqPageContainer} />
                 <Route path="/class-plans/:page(\d+)" component={ManageClassPlansPageContainer} />
-
+                <Route path="/create-online/:id" component={CreateOnlineTestPageContainer} />
+                <Route path="/view-online/:id" component={ViewOnlineTestPageContainer} />
+                <Route path="/edit-online/:id" component={EditOnlineTestPageContainer} />
+                <Route path="/results-online/:id" component={ResultsOnlineTestPageContainer} />
+                <Route path="/online-tests/:id/:page(\d+)" component={ManageOnlineTestsPageContainer} />
+                <Route path="/apply-online/:id" component={StudentOnlineTestPageContainer} />
                 <Redirect from="/" to="/my-dashboard/" />
               </Switch>
             )
@@ -188,6 +219,7 @@ class App extends Component {
                 <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
                 <Route path="/terms-use" component={TermsUsePage} />
                 <Route path="/faq" component={FaqPageContainer} />
+                <Route path="/apply-online/:id" component={StudentOnlineTestPageContainer} />
                 <Route component={NotFoundPage} />
               </Switch>
             )

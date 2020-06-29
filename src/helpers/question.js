@@ -88,3 +88,19 @@ export const formatDate = (date) => {
 
   return [day.length < 2 ? `0${day}` : day, month.length < 2 ? `0${month}` : month, year].join('/');
 };
+
+export const formatTime = (date) => {
+  const d = new Date(date);
+  const hours = d.getHours();
+  const minutes = d.getMinutes();
+  const time = `${hours}:${minutes}`;
+  return time;
+};
+
+export const diffDateInMinutes = (dt1, dt2) => {
+  const dtIni = new Date(dt1);
+  const dtEnd = new Date(dt2);
+  let diff = (dtEnd.getTime() - dtIni.getTime()) / 1000;
+  diff /= 60;
+  return Math.abs(Math.round(diff));
+};

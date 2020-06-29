@@ -26,7 +26,7 @@ const mapStateToProps = (state) => {
     teachingLevelFilters: state.filter.teachingLevelFilters,
     sourceFilters: state.filter.sourceFilters,
     selectedObjectList: state.question.selectedObjectList,
-    errorsEditQuestion: state.form['question-create'] ? state.form['question-create'].submitErrors : null,
+    errors: state.form['question-create'] ? state.form['question-create'].submitErrors : null,
     sourceQuestionValue: selector(state, 'sourceQuestion'),
     topicSuggestions: state.suggestion.topicSuggestions,
   });
@@ -109,7 +109,7 @@ const mapDispatchToProps = (dispatch) => {
         errors.statement = 'Campo obrigatório. Insira o enunciado';
       }
 
-      if (newQuestion && !newQuestion.alternatives && !newQuestion.resolution) {
+      if (newQuestion && newQuestion.alternatives.length === 0 && !newQuestion.resolution) {
         errors.general_errors = 'Insira no minimo 3 alternativas ou uma resolução';
       }
 
