@@ -79,6 +79,12 @@ class DocumentInfoMenu extends React.Component {
                   styleCustomize="o-doc-options__dropdown-item"
                   myLastDocumentsList={myLastDocumentsList}
                 />
+                <DropdownItem divider />
+                <DropdownItem tag={Link} to={`/create-online/${documentId}`} className="o-doc-options__dropdown-item">
+                  <FontAwesomeIcon icon="laptop" />
+                  {' '}
+                  Gerar prova online
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </div>
@@ -137,6 +143,13 @@ class DocumentInfoMenu extends React.Component {
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
+          <Link
+            className="btn btn-secondary menu-top__document-button"
+            to={`/create-online/${documentId}`}
+          >
+            <FontAwesomeIcon icon="laptop" />
+            {' Gerar prova online'}
+          </Link>
         </div>
       </div>
     );

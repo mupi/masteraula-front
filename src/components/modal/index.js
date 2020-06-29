@@ -6,6 +6,7 @@ import confirmModal from './ConfirmModal';
 import deleteModal from './DeleteModal';
 import promptModal from './PromptModal';
 import documentModal from './DocumentModal';
+import questionModal from './QuestionModal';
 import exportDocumentModal from './ExportDocumentModal';
 import last5DocumentsModal from './Last5DocumentsModal';
 import register2Modal from './Register2Modal';
@@ -14,6 +15,7 @@ import createDocument from './CreateDocumentModal';
 import createMyQuestionLabelModal from './CreateMyQuestionLabelModal';
 import createClassPlanModal from './CreateClassPlanModal';
 import searchQuestionModal from './SearchQuestionModal';
+import OnlineTestStudentResultsModal from './OnlineTestStudentResultsModal';
 
 const modalTypes = {
   alertModal,
@@ -21,6 +23,7 @@ const modalTypes = {
   deleteModal,
   promptModal,
   documentModal,
+  questionModal,
   exportDocumentModal,
   last5DocumentsModal,
   register2Modal,
@@ -31,6 +34,7 @@ const modalTypes = {
   searchDocumentModal,
   createClassPlanModal,
   searchQuestionModal,
+  OnlineTestStudentResultsModal,
 };
 
 export default modalTypes;

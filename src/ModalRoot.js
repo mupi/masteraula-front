@@ -1,3 +1,4 @@
+// ModalRoot.js
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
@@ -11,6 +12,7 @@ const MODAL_TYPES = {
   delete: modalTypes.deleteModal,
   prompt: modalTypes.promptModal,
   document: modalTypes.documentModal,
+  question: modalTypes.questionModal,
   exportDocument: modalTypes.exportDocumentModal,
   last5Documents: modalTypes.last5DocumentsModal,
   register2: modalTypes.register2Modal,
@@ -21,6 +23,7 @@ const MODAL_TYPES = {
   searchDocumentModal: modalTypes.searchDocumentModal,
   createClassPlanModal: modalTypes.createClassPlanModal,
   searchQuestionModal: modalTypes.searchQuestionModal,
+  studentResults: modalTypes.OnlineTestStudentResultsModal,
 };
 
 const mapStateToProps = state => ({
@@ -39,7 +42,7 @@ const ModalContainer = (props) => {
     return null;
   }
 
-  if (modalType === 'document') modalClassName = 'modal-dialog modal-lg';
+  if (modalType === 'document' || modalType === 'question' || modalType === 'studentResults') modalClassName = 'modal-dialog modal-lg';
   if ((modalType === 'searchObjectModal') || (modalType === 'searchDocumentModal') || (modalType === 'searchQuestionModal')) {
     modalClassName = 'modal-dialog modal-xl modal-fixed';
   }

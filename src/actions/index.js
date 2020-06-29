@@ -12,6 +12,7 @@ import * as classPlanAction from './classPlanAction';
 import * as dashboardAction from './dashboardAction';
 import * as faqAction from './faqAction';
 import * as contactAction from './contactAction';
+import * as onlineTestAction from './onlineTestAction';
 
 export default {
   loginAction,
@@ -28,4 +29,5 @@ export default {
   dashboardAction,
   faqAction,
   contactAction,
+  onlineTestAction,
 };
