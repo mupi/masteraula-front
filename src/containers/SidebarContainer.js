@@ -22,7 +22,7 @@ import {
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
   isOpen: state.menu.isOpen,
-  user: state.session.session.user,
+  user: state.session.session ? state.session.session.user : null,
   activeDocument: state.document.activeDocument,
   isOpenSidebar: state.menu.isOpenSidebar,
   isFetchingQuestions: state.question.isFetching,

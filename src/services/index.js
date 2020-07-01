@@ -14,3 +14,4 @@ export { default as classPlanService } from './classPlanService';
 export { default as dashboardService } from './dashboardService';
 export { default as faqService } from './faqService';
 export { default as contactService } from './contactService';
+export { default as onlineTestService } from './onlineTestService';

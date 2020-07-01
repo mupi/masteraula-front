@@ -1,0 +1,240 @@
+//Online Test Creation Page where c-create-online is the main container
+.c-create-online {
+    &__row-info {
+      margin-bottom: 10px;
+    }
+
+    &__form-field{
+        font-size:14px;
+    }
+
+    &__end-date-label{
+        text-align: right;
+    }
+
+    &__duration{
+      margin-left: 15px;
+      width: 100px !important;
+    }
+
+
+    &__radio-button-field{
+      margin-left: 0px;
+      margin-top: 0.75rem;
+  }
+
+
+  &__total-score-label{
+    color: $color-ma-green
+  }
+}
+
+.c-online-results {
+  &__total-score{
+    padding: 15px;
+    margin-bottom:0px;
+  }
+
+  &__single-score{
+    max-width: 80px;
+  }
+}
+
+//Online Test Page where c-online is the main container
+.c-online {
+    &__row-header-options {
+      background: #838d96 !important;
+      padding: 0.6rem 1rem;
+      box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+  
+      .btn {
+        color: $color-ma-lightgray;
+        background: white;
+        font-weight: bold;
+        border: 1px solid white;
+        margin-right: 5px !important;
+      }
+    }
+    
+
+    &__row-header-options--fixed{
+      // fixed
+      position: fixed;
+      right: 0;
+      z-index: 1030;
+      top: 70px;
+      width: 100%;
+
+      @include for-tablet-landscape-up{
+        left: 280px;
+      }
+
+      @include for-tablet-landscape-bottom{
+        margin: 0px;
+        top: 56px;
+        padding: 5px 0px;
+      }
+    }
+
+    &--space-for-title{
+      padding-top: 45px;
+    }
+
+    &__name{
+      color: $color-ma-lightgray;
+    }
+
+    &__row-footer-options{
+      margin: 15px 0px 0px;
+    }
+
+
+    &__options{
+      margin-top: 5px;
+    }
+
+    &__row-info {
+        margin-bottom: 10px;
+    }
+
+    &__tittle-section{
+      margin-top: 22px;
+      margin-bottom: 10px;
+
+      @include for-tablet-landscape-bottom {
+        margin-top:15px;
+        margin-bottom: 5px;
+      }
+    }
+
+    
+    &__btn-back{
+      font-size:13px;
+      @include for-phone-only {
+        padding: 5px 8px;
+      }
+    }
+
+    &__base-name{
+      color: #6c757d;
+    }
+
+    &__score-label{
+      color: $color-ma-green;
+      margin-bottom:0px;
+    }
+
+    &__total-questions-label{
+      color: $color-ma-blue;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    &__questions-info{
+      margin-bottom:10px;
+      font-size:13px;
+
+      &--label{
+        color: $color-ma-lightgray;
+
+      }
+
+      &--value{
+        color: $color-ma-black;
+
+      }
+    }
+
+    &__status{
+      font-size:10px;
+      &--active{
+        color: $color-ma-green;
+      }
+
+      &--inactive{
+        color: $color-ma-blue-gray;
+
+      }
+    }
+
+    &__subtitle{
+      color: $color-ma-blue;
+    }
+
+    &__question{
+      position: relative;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      background: $color-ma-white;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+      margin: 20px 0px;      
+      padding: 20px 20px;
+    }
+}
+
+.c-my-onlines{
+  .table-responsive{
+      @include for-tablet-landscape-up{
+        overflow: inherit !important;
+      }
+    }
+    
+  &__btn-remove{
+      color: $color-ma-red;
+  
+      &:active{
+        color: $color-ma-white;
+        background-color: $color-ma-red;
+      }
+      &:hover{
+        color: $color-ma-white;
+        background-color: $color-ma-red;
+      }
+    }
+}
+
+.student-online{
+
+  &__section{
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background: $color-ma-white;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 20px 20px;
+  }
+
+  &__messages{
+    color: $color-ma-lightgray;
+  }
+
+  &__object-text{
+    margin-bottom: 5px;
+    p {
+      margin-bottom: 0px;
+    }
+  }
+
+  &__object-source{
+    font-size: 12px;
+    color: $color-ma-lightgray;
+  }
+
+  &__question-statement{
+    p {
+      margin-bottom: 0px;
+    }
+  }
+
+  &__question-alternative {
+      margin-bottom: 0px !important;
+  }
+
+  &__section-title{
+    color: $color-ma-blue;
+  }
+
+  &__pending-review{
+    color: $color-ma-red;
+  }
+}

@@ -16,9 +16,10 @@ const options = {
 };
 */
 
+/* eslint-disable react/no-array-index-key */
 const DocumentQuestionItem = (props) => {
   const {
-    question, activeDocument, removeSelectedQuestion, options, match, showLoginModal,
+    question, questionOrder, activeDocument, removeSelectedQuestion, options, match, showLoginModal, showQuestionModal,
   } = props;
 
   const autorship = question.authorship ? question.authorship : question.author.name;
@@ -57,9 +58,15 @@ const DocumentQuestionItem = (props) => {
             </p>
             {(question.tags || question.all_topics) && (question.tags.length > 0 || question.all_topics.length > 0) ? (
               <p className="c-document__question-info-row-topics">
-                {question.tags.concat(question.all_topics).map(tag => <Badge key={`${question.id}-${tag.name}`} color="success" pill>{tag.name.trim()}</Badge>)}
+                {question.tags.concat(question.all_topics).map((tag, x) => <Badge key={`${question.id}-${x}`} color="success" pill>{tag.name.trim()}</Badge>)}
               </p>
             ) : ''}
+            {options.showScore && questionOrder.score && (
+            <p>
+              <span className="c-online__score-label" style={{ marginRight: '7px' }}><strong>Pontuação: </strong></span>
+              {questionOrder.score}
+            </p>
+            )}
           </Col>
           <Col sm="4" className="c-document__question-info">
             <Row>
@@ -131,6 +138,15 @@ const DocumentQuestionItem = (props) => {
                 ) : ' '}
                 {(options.showViewButton && options.showLoginModal) ? (
                   <Button onClick={handleOpenLoginModal}>
+                    <FontAwesomeIcon icon="search" />
+                    {' '}
+                    <span className="button-text">
+                      Ver questão
+                    </span>
+                  </Button>
+                ) : ' '}
+                {(options.showViewModal) ? (
+                  <Button onClick={() => showQuestionModal(question.id)}>
                     <FontAwesomeIcon icon="search" />
                     {' '}
                     <span className="button-text">
