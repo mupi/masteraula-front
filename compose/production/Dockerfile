@@ -17,4 +17,6 @@ RUN npm run build
 
 FROM nginx:1.19
 
+COPY compose/production/nginx/default.conf /etc/nginx/conf.d/default.conf
+
 COPY --from=node /app/build/ /usr/share/nginx/html/
