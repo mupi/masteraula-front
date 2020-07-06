@@ -13,6 +13,7 @@ import * as dashboardAction from './dashboardAction';
 import * as faqAction from './faqAction';
 import * as contactAction from './contactAction';
 import * as onlineTestAction from './onlineTestAction';
+import * as activityAction from './activityAction';
 
 export default {
   loginAction,
@@ -30,4 +31,5 @@ export default {
   faqAction,
   contactAction,
   onlineTestAction,
+  activityAction,
 };

@@ -43,6 +43,10 @@ import {
   EditOnlineTestPageContainer,
   ResultsOnlineTestPageContainer,
   StudentOnlineTestPageContainer,
+  ActivityBasePageContainer,
+  CreateActivityPageContainer,
+  EditActivityPageContainer,
+  ViewActivityPageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -205,6 +209,10 @@ class App extends Component {
                 <Route path="/results-online/:id" component={ResultsOnlineTestPageContainer} />
                 <Route path="/online-tests/:id/:page(\d+)" component={ManageOnlineTestsPageContainer} />
                 <Route path="/apply-online/:id" component={StudentOnlineTestPageContainer} />
+                <Route path="/activity-base/:page(\d+)" component={ActivityBasePageContainer} />
+                <Route path="/create-activity/" component={CreateActivityPageContainer} />
+                <Route path="/edit-activity/:id" component={EditActivityPageContainer} />
+                <Route path="/view-activity/:id" component={ViewActivityPageContainer} />
                 <Redirect from="/" to="/my-dashboard/" />
               </Switch>
             )

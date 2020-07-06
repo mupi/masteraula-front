@@ -185,6 +185,15 @@ const SidebarMobile = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/create-activity" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-activity'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="plus"
+                      />
+                      Criar atividade
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
                     <Link to="/create-classplan" onClick={(e) => { showCreateClassPlanModal(selectedClassPlanType); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
@@ -332,6 +341,15 @@ const SidebarWeb = ({
                     <Link to="/create-question">
                       <FontAwesomeIcon className="btn__icon" icon="plus" />
                         Criar questão
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/create-activity">
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="plus"
+                      />
+                      Criar atividade
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">

@@ -37,3 +37,7 @@ export { default as ViewOnlineTestPageContainer } from './ViewOnlineTestPageCont
 export { default as EditOnlineTestPageContainer } from './EditOnlineTestPageContainer';
 export { default as ResultsOnlineTestPageContainer } from './ResultsOnlineTestPageContainer';
 export { default as StudentOnlineTestPageContainer } from './StudentOnlineTestPageContainer';
+export { default as ViewActivityPageContainer } from './ViewActivityPageContainer';
+export { default as EditActivityPageContainer } from './EditActivityPageContainer';
+export { default as CreateActivityPageContainer } from './CreateActivityPageContainer';
+export { default as ActivityBasePageContainer } from './ActivityBasePageContainer';
