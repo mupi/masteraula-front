@@ -33,7 +33,7 @@ const mapStateToProps = (state) => {
     disciplineFilters: state.filter.disciplineFilters,
     teachingLevelFilters: state.filter.teachingLevelFilters,
     selectedObjectList: state.activity.selectedObjectList,
-    errorsActivity: state.form['create-activity'] ? state.form['create-activity'].submitErrors : null,
+    errors: state.form['create-activity'] ? state.form['create-activity'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
     tasks: state.activity.tasks,
@@ -81,18 +81,33 @@ const mapDispatchToProps = (dispatch) => {
     removeSelectedObjectFromActivity: idObject => dispatch(removeSelectedObjectFromActivity(idObject)),
     resetSelectedObjects: () => dispatch(resetSelectedObjects()),
 
-    /* class plan station's functions */
+    /* task's functions */
     resetTasksFromActivity: () => dispatch(resetTasksFromActivity()),
     addTaskToActivity: task => dispatch(addTaskToActivity(task)),
     removeTaskFromActivity: removedIndex => dispatch(removeTaskFromActivity(removedIndex)),
     onSubmit: (values, d, props) => {
+      /*
+{
+  "learning_objects_ids": [id],
+  "topics_ids":[id],
+  "difficulty":"M",
+  "disciplines_ids": [id],
+  "teaching_levels_ids": [id],
+  "tasks": [{"description_task": "string", "student_expectation": "string", "teacher_expectation":"string"}],
+  "tags":["string"]
+}
+
+*/
       const errors = [];
 
-      const newTasks = values.tasks.map((value, i) => {
-        if ((typeof (value.alternativeText) !== 'undefined') && value.alternativeText.trim().length > 0) {
+      const newTasks = values.tasks.map((value) => {
+        if (((typeof (value.description_task) !== 'undefined') && value.description_task.trim().length > 0)
+        && ((typeof (value.student_expectation) !== 'undefined') && value.student_expectation.trim().length > 0)
+        ) {
           return {
-            is_correct: (i === values.selectedIndex),
-            text: value.alternativeText,
+            description_task: value.student_expectation,
+            student_expectation: value.student_expectation,
+            teacher_expectation: value.teacher_expectation,
           };
         }
         return {};
@@ -100,20 +115,20 @@ const mapDispatchToProps = (dispatch) => {
 
 
       const newActivity = {
-        name: values.name,
-        disciplines_ids: values.disciplines.map(discipline => discipline.id),
-        teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
-        topics_ids: values.topics.map(topic => topic.id),
-
         learning_objects_ids: props.selectedObjectList && props.selectedObjectList.length > 0
           ? props.selectedObjectList.map(object => object.id) : [],
-        documents_ids: props.selectedDocumentList && props.selectedDocumentList.length > 0
-          ? props.selectedDocumentList.map(document => document.id) : [],
-        tasks: newTasks,
-
-        description: values.description,
+        topics_ids: values.topics.map(topic => topic.id),
+        difficulty: values.difficulty !== 'NaN' ? values.difficulty : null,
+        disciplines_ids: values.disciplines.map(discipline => discipline.id),
+        teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
+        tasks: newTasks.length > 0 ? newTasks : [],
+        tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
       };
 
+      // validations
+      if (newActivity && newActivity.tasks.length < 1) {
+        errors.general_errors = 'Insira no minimo 1 tarefa';
+      }
 
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
       return dispatch(createActivity(newActivity));

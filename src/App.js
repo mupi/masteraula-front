@@ -105,6 +105,8 @@ import {
   faStar,
   faDownload,
   faExclamationTriangle,
+  faBookReader,
+  faUserEdit,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -136,6 +138,8 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faDownload,
   faArrowCircleRight,
   faExclamationTriangle,
+  faBookReader,
+  faUserEdit,
   fab);
 
 

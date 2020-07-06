@@ -11,6 +11,8 @@ const mapStateToProps = state => ({
   currentPageModal: state.learningObject.currentPageModal,
   selectedObjectListQuestion: state.question.selectedObjectList,
   selectedObjectListClassPlan: state.classPlan.selectedObjectList,
+  selectedObjectListActivity: state.activity.selectedObjectList,
+
   stations: state.classPlan.stations,
 });
 

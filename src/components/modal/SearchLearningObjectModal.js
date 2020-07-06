@@ -33,12 +33,20 @@ class SearchLearningObjectModal extends React.Component {
       addSelectedObject, removeSelectedObject, callFrom,
       selectedObjectListQuestion,
       selectedObjectListClassPlan,
+      selectedObjectListActivity,
       singleSelection = false,
       stations,
       stationIndex,
     } = this.props;
 
-    const selectedObjectList = callFrom === 'Q' ? selectedObjectListQuestion : selectedObjectListClassPlan;
+    let selectedObjectList = [];
+    switch (callFrom) {
+      case 'Q': selectedObjectList = selectedObjectListQuestion; break;
+      case 'C': selectedObjectList = selectedObjectListClassPlan; break;
+      case 'A': selectedObjectList = selectedObjectListActivity; break;
+      default: selectedObjectList = [];
+    }
+
     return (
       <div className="modal-content modal__content modal-fixed__content">
         <div className="modal-header modal__header">
