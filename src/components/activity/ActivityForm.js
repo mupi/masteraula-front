@@ -118,7 +118,6 @@ const renderSelectField = ({
 
 export const renderTasks = ({
   fields, meta: { error },
-  tasks,
   addTaskToActivity, removeTaskFromActivity,
 }) => (
   <>

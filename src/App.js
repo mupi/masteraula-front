@@ -107,6 +107,7 @@ import {
   faExclamationTriangle,
   faBookReader,
   faUserEdit,
+  faChalkboardTeacher,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -140,6 +141,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faExclamationTriangle,
   faBookReader,
   faUserEdit,
+  faChalkboardTeacher,
   fab);
 
 

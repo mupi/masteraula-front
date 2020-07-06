@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const SingleTask = ({ task, position }) => (
+const SingleTaskStudent = ({ task, position }) => (
   <>
     <Row>
       <Col sm="12">
@@ -15,6 +15,18 @@ const SingleTask = ({ task, position }) => (
         <h6>Descrição da tarefa (para o aluno)</h6>
         <p>{task.description_task}</p>
       </Col>
+    </Row>
+  </>
+);
+
+const SingleTaskTeacher = ({ task, position }) => (
+  <>
+    <Row>
+      <Col sm="12">
+        <h6><strong>{`Tarefa ${position + 1}`}</strong></h6>
+      </Col>
+    </Row>
+    <Row className="mb-3 align-items-center">
       <Col sm="12">
         <h6>Expectativas para o papel do aluno</h6>
         <p>{task.student_expectation}</p>
@@ -29,13 +41,12 @@ const SingleTask = ({ task, position }) => (
   </>
 );
 
-
 const ActivityTasks = ({ tasks }) => (
   <>
     <Row className="c-question__tittle-section">
       <Col>
         <h5>
-          <FontAwesomeIcon icon="sync-alt" />
+          <FontAwesomeIcon icon="user-edit" />
           {' '}
           Tarefas
         </h5>
@@ -45,7 +56,24 @@ const ActivityTasks = ({ tasks }) => (
     <div className="c-classplan__stations">
       { tasks && tasks.map((task, i) => (
         <div className="c-classplan__view-station border-bottom my-3" key={task.id}>
-          <SingleTask task={task} position={i} />
+          <SingleTaskStudent task={task} position={i} />
+        </div>
+      )) }
+    </div>
+    <Row className="c-question__tittle-section">
+      <Col>
+        <h5>
+          <FontAwesomeIcon icon="chalkboard-teacher" />
+          {' '}
+          Orientações ao professor
+        </h5>
+        <div className="border-top my-3" />
+      </Col>
+    </Row>
+    <div className="c-classplan__stations">
+      { tasks && tasks.map((task, i) => (
+        <div className="c-classplan__view-station border-bottom my-3" key={task.id}>
+          <SingleTaskTeacher task={task} position={i} />
         </div>
       )) }
     </div>
