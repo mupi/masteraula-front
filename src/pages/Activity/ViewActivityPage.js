@@ -25,7 +25,6 @@ const ViewActivityPage = (props) => {
     isFetching, fetchActivity, match, activeActivity, showDeleteModal, userId,
   } = props;
 
-
   useEffect(() => {
     fetchActivity(match.params.id);
   }, []);

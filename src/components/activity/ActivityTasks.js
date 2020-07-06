@@ -3,42 +3,13 @@ import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const SingleTaskStudent = ({ task, position }) => (
-  <>
-    <Row>
-      <Col sm="12">
-        <h6><strong>{`Tarefa ${position + 1}`}</strong></h6>
-      </Col>
-    </Row>
-    <Row className="mb-3 align-items-center">
-      <Col sm="12">
-        <h6>Descrição da tarefa (para o aluno)</h6>
-        <p>{task.description_task}</p>
-      </Col>
-    </Row>
-  </>
-);
-
-const SingleTaskTeacher = ({ task, position }) => (
-  <>
-    <Row>
-      <Col sm="12">
-        <h6><strong>{`Tarefa ${position + 1}`}</strong></h6>
-      </Col>
-    </Row>
-    <Row className="mb-3 align-items-center">
-      <Col sm="12">
-        <h6>Expectativas para o papel do aluno</h6>
-        <p>{task.student_expectation}</p>
-      </Col>
-      {task.teacher_expectation && (
-      <Col sm="12">
-        <h6>Comentários para uso do professor</h6>
-        <p>{task.teacher_expectation}</p>
-      </Col>
-      )}
-    </Row>
-  </>
+const TaskInfo = ({ taskInfo, position }) => (
+  <Row>
+    <Col sm="12">
+      <h6>{`Tarefa ${position + 1}`}</h6>
+      { taskInfo && (<p>{taskInfo}</p>) }
+    </Col>
+  </Row>
 );
 
 const ActivityTasks = ({ tasks }) => (
@@ -53,10 +24,13 @@ const ActivityTasks = ({ tasks }) => (
         <div className="border-top my-3" />
       </Col>
     </Row>
-    <div className="c-classplan__stations">
+    <div className="c-activity__tasks">
+      <Row>
+        <Col><h6><strong>Descrição da tarefa (para o aluno)</strong></h6></Col>
+      </Row>
       { tasks && tasks.map((task, i) => (
-        <div className="c-classplan__view-station border-bottom my-3" key={task.id}>
-          <SingleTaskStudent task={task} position={i} />
+        <div className="my-2" key={task.id}>
+          <TaskInfo taskInfo={task.description_task} position={i} />
         </div>
       )) }
     </div>
@@ -70,10 +44,23 @@ const ActivityTasks = ({ tasks }) => (
         <div className="border-top my-3" />
       </Col>
     </Row>
-    <div className="c-classplan__stations">
+    <div className="c-activity__tasks">
+      <Row>
+        <Col><h6><strong>Expectativas para o papel do aluno</strong></h6></Col>
+      </Row>
       { tasks && tasks.map((task, i) => (
-        <div className="c-classplan__view-station border-bottom my-3" key={task.id}>
-          <SingleTaskTeacher task={task} position={i} />
+        <div className="my-2" key={task.id}>
+          <TaskInfo taskInfo={task.student_expectation} position={i} />
+        </div>
+      )) }
+    </div>
+    <div className="c-activity__tasks">
+      <Row>
+        <Col><h6><strong>Comentários para uso do professor</strong></h6></Col>
+      </Row>
+      { tasks && tasks.map((task, i) => (
+        <div className="my-2" key={task.id}>
+          <TaskInfo taskInfo={task.teacher_expectation} position={i} />
         </div>
       )) }
     </div>
