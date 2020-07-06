@@ -7,7 +7,7 @@ import {
 
 const EditActivityPage = (props) => {
   const {
-    listDisciplineFilters, listTeachingLevelFilters, userId, activeActivity, fetchActivity, isFetching, match
+    listDisciplineFilters, listTeachingLevelFilters, userId, activeActivity, fetchActivity, isFetching, match,
   } = props;
 
   useEffect(() => {
