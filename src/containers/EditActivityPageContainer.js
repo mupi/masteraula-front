@@ -4,7 +4,7 @@ import {
 } from 'redux-form';
 import EditActivityPage from 'pages/Activity/EditActivityPage';
 import {
-  updateActivity,
+  fetchActivity,
   addSelectedObjectToActivity, removeSelectedObjectFromActivity, resetSelectedObjects,
   addTaskToActivity, removeTaskFromActivity,
 } from 'actions/activityAction';
@@ -36,6 +36,7 @@ const mapStateToProps = (state) => {
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
     tasks: state.activity.tasks,
+    isFetching: state.activity.isFetching,
   });
 };
 
@@ -64,10 +65,11 @@ const mapDispatchToProps = (dispatch) => {
     listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
     listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
     listTopics: param => dispatch(listTopics(param)),
-    resetTopicList: () => dispatch(resetTopicList()),
     showSearchLearningObjectModal: (singleSelection = false, stationIndex = null) => {
       dispatch(showModal(openSearchLearningObjectModalProps(singleSelection, stationIndex)));
     },
+
+    fetchActivity: id => dispatch(fetchActivity(id)),
 
     listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 
