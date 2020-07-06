@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const ActivityInfo = ({
-  question,
+  activity,
   showReportError = true,
 }) => (
   <div className="question-information">
@@ -27,7 +27,7 @@ const ActivityInfo = ({
           Disciplinas
       </Col>
       <Col sm="8" xs="8">
-        <DisciplineList list={question.disciplines} />
+        <DisciplineList list={activity.disciplines} />
       </Col>
     </Row>
     <Row className="c-question__row-info">
@@ -35,7 +35,7 @@ const ActivityInfo = ({
         Nível de Ensino
       </Col>
       <Col sm="8" xs="8">
-        <TagList list={question.teaching_levels} styleTag="question-info  teaching-level" />
+        <TagList list={activity.teaching_levels} styleTag="question-info  teaching-level" />
       </Col>
     </Row>
     <Row className="c-question__row-info">
@@ -44,27 +44,27 @@ const ActivityInfo = ({
       </Col>
       <Col sm="8" xs="8">
         <span className="question-info  difficulty-level">
-          {getTeachingLevel(question.difficulty)}
+          {getTeachingLevel(activity.difficulty)}
         </span>
       </Col>
     </Row>
-    {question.tags && question.tags.length > 0 ? (
+    {activity.tags && activity.tags.length > 0 ? (
       <Row className="c-question__row-info c-question__row-tags">
         <Col className="info-label" sm="4" xs="4">
           Tags
         </Col>
         <Col sm="8" xs="8">
-          <TagList list={question.tags} styleTag="question-info  c-question__tag-name" />
+          <TagList list={activity.tags} styleTag="question-info  c-question__tag-name" />
         </Col>
       </Row>
     ) : ' '}
-    {question.all_topics && question.all_topics.length > 0 ? (
+    {activity.all_topics && activity.all_topics.length > 0 ? (
       <Row className="c-question__row-info c-question__row-tags">
         <Col className="info-label" sm="4" xs="4">
           Tópicos
         </Col>
         <Col sm="8" xs="8">
-          <TagList list={question.all_topics} styleTag="question-info c-question__tag-name" />
+          <TagList list={activity.all_topics} styleTag="question-info c-question__tag-name" />
         </Col>
       </Row>
     ) : ' '}

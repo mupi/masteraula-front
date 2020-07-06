@@ -12,17 +12,19 @@ const SingleTask = ({ task, position }) => (
     </Row>
     <Row className="mb-3 align-items-center">
       <Col sm="12">
-        Descrição da tarefa (para o aluno)
-        {task.description_task}
+        <h6>Descrição da tarefa (para o aluno)</h6>
+        <p>{task.description_task}</p>
       </Col>
       <Col sm="12">
-        Expectativas para o papel do aluno
-        {task.student_expectation}
+        <h6>Expectativas para o papel do aluno</h6>
+        <p>{task.student_expectation}</p>
       </Col>
+      {task.teacher_expectation && (
       <Col sm="12">
-        Comentários para uso do professor
-        {task.teacher_expectation}
+        <h6>Comentários para uso do professor</h6>
+        <p>{task.teacher_expectation}</p>
       </Col>
+      )}
     </Row>
   </>
 );

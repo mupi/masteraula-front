@@ -51,17 +51,9 @@ const ViewActivityPage = (props) => {
   }
 
   const authorPK = (activeActivity && activeActivity.owner) ? activeActivity.owner.pk : 'Anônimo';
-  const isOwner = (authorPK === userId);
 
-  // Learning object's options available for LearnningObjectContent
-  /* const options = {
-    showOperations: true,
-    showViewButton: true,
-    showCreateQuestionButton: true,
-    removeOption: false,
-    showTitle: false,
-  };
-*/
+  const isOwner = authorPK === userId;
+
   return (
     <HomeUserPage>
       <div className="c-online">
@@ -85,7 +77,7 @@ const ViewActivityPage = (props) => {
               ? (
                 <Link
                   className="btn btn-secondary c-question__btn-back"
-                  to={`/edit-online/${activeActivity.link}`}
+                  to={`/edit-online/${activeActivity.id}`}
                 >
                   <FontAwesomeIcon icon="pencil-alt" />
                   {' '}
