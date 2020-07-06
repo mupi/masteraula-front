@@ -5,23 +5,18 @@ import {
   Alert,
 } from 'reactstrap';
 
-const CreateActivityPage = (props) => {
+const EditActivityPage = (props) => {
   const {
-    listDisciplineFilters, listTeachingLevelFilters, prepareForm,
-    resetSelectedObjects, resetTasksFromActivity, isCreating, error,
+    listDisciplineFilters, listTeachingLevelFilters, userId, activeActivity, fetchActivity, isFetching, match
   } = props;
-
 
   useEffect(() => {
     listDisciplineFilters();
     listTeachingLevelFilters();
-    prepareForm();
-    resetSelectedObjects();
-    resetTasksFromActivity();
+    fetchActivity(match.params.id);
   }, []);
 
-
-  if (isCreating) {
+  if (isFetching) {
     return (
       <HomeUserPage>
         <Alert className="alert--warning" color="warning">
@@ -31,11 +26,21 @@ const CreateActivityPage = (props) => {
     );
   }
 
-  if (error) {
+  if (!activeActivity || activeActivity.disabled) {
     return (
       <HomeUserPage>
         <Alert color="danger">
-            Erro na atividade
+          A atividade não existe ou não está mais disponível
+        </Alert>
+      </HomeUserPage>
+    );
+  }
+
+  if (activeActivity && activeActivity.owner.pk !== userId) {
+    return (
+      <HomeUserPage>
+        <Alert color="danger">
+          A atividade não é de sua autoria
         </Alert>
       </HomeUserPage>
     );
@@ -43,9 +48,9 @@ const CreateActivityPage = (props) => {
 
   return (
     <HomeUserPage>
-      <ActivityForm {...props} actionName="Criar" />
+      <ActivityForm {...props} actionName="Editar" />
     </HomeUserPage>
   );
 };
 
-export default CreateActivityPage;
+export default EditActivityPage;
