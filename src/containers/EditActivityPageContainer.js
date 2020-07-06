@@ -5,6 +5,7 @@ import {
 import EditActivityPage from 'pages/Activity/EditActivityPage';
 import {
   fetchActivity,
+  updateActivity,
   addSelectedObjectToActivity, removeSelectedObjectFromActivity, resetSelectedObjects,
   addTaskToActivity, removeTaskFromActivity,
 } from 'actions/activityAction';
@@ -12,7 +13,7 @@ import {
 import {
   listDisciplineFilters, listTeachingLevelFilters,
 } from 'actions/filterAction';
-import { listTopics, resetTopicList } from 'actions/topicAction';
+import { listTopics } from 'actions/topicAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import { listTopicSuggestions } from 'actions/suggestionAction';
 
