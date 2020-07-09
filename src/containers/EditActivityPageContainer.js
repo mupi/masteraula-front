@@ -111,6 +111,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
       const updatedActivity = {
+        id: props.activeActivity.id,
         learning_objects_ids: props.selectedObjectList && props.selectedObjectList.length > 0
           ? props.selectedObjectList.map(object => object.id) : [],
         topics_ids: values.topics.map(topic => topic.id),

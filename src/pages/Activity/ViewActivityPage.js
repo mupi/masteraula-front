@@ -76,7 +76,7 @@ const ViewActivityPage = (props) => {
               ? (
                 <Link
                   className="btn btn-secondary c-question__btn-back"
-                  to={`/edit-online/${activeActivity.id}`}
+                  to={`/edit-activity/${activeActivity.id}`}
                 >
                   <FontAwesomeIcon icon="pencil-alt" />
                   {' '}

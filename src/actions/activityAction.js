@@ -65,6 +65,13 @@ export const fetchActivity = id => async (dispatch) => {
 
     // initialize activity Page for owner's
     dispatch(initialize('edit-activity', {
+      learning_objects_ids: activeActivity.learning_objects_ids,
+      topics: activeActivity.all_topics,
+      difficulty: activeActivity.difficulty,
+      disciplines: activeActivity.disciplines,
+      teachingLevels: activeActivity.teaching_levels,
+      tasks: activeActivity.tasks,
+      tags: activeActivity.tags.map(tag => tag.name.trim()).join(', '),
     }));
   } catch {
     dispatch({ type: FETCH_ACTIVITY_FAILURE });
@@ -98,6 +105,13 @@ export const updateActivity = updatedDataActivity => async (dispatch) => {
     const updatedActivity = await activityService.updateActivity(updatedDataActivity);
     toast.success('Atividade atualizado com sucesso', optionsSuccess);
     dispatch(initialize('edit-activity', {
+      learning_objects_ids: updatedActivity.learning_objects_ids,
+      topics: updatedActivity.all_topics,
+      difficulty: updatedActivity.difficulty,
+      disciplines: updatedActivity.disciplines,
+      teachingLevels: updatedActivity.teaching_levels,
+      tasks: updatedActivity.tasks,
+      tags: updatedActivity.tags.map(tag => tag.name.trim()).join(', '),
     }));
     dispatch({ type: UPDATE_ACTIVITY_SUCCESS, activeActivity: updatedActivity });
   } catch {
