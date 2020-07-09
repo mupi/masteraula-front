@@ -1,0 +1,233 @@
+import React from 'react';
+
+import {
+  Alert, Row, Col, Button, Form,
+} from 'reactstrap';
+import { Link, Prompt } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
+import {
+  requiredValidator,
+} from 'helpers/validators';
+
+import BackUsingHistory from 'components/question/BackUsingHistory';
+import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
+
+import { Field } from 'redux-form';
+
+const renderTextEditor = (props) => {
+  const {
+    placeholderEditor,
+    input: { onChange, value }, disabled, id,
+    meta: { touched, error, warning },
+  } = props;
+
+  return (
+    <div>
+      <QuestionTextRichEditor
+        id={id}
+        disabled={disabled}
+        placeholder={placeholderEditor}
+        onChange={onChange}
+        value={value}
+      />
+      { touched
+            && ((error && (
+            <span className="error-message-text">
+              {error}
+            </span>
+            ))
+            || (warning && (
+            <span>
+              {' '}
+              {warning}
+              {' '}
+            </span>
+            )))
+          }
+    </div>
+  );
+};
+
+// Multiselect for Tags field
+// touche is not working with multiselectTag
+const renderMAMultiSelectTag = ({
+  input,
+  placeholder,
+  meta: {
+    error,
+  },
+}) => (
+  <div className="c-create-question__tags">
+    <MAMultiSelectTag
+      input={input}
+      onChange={value => input.onChange(value)}
+      placeholder={placeholder}
+    />
+    { error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+    )
+       }
+  </div>
+);
+
+const LearningObjectForm = (props) => {
+  const {
+    pristine,
+    handleSubmit,
+    submitting, errors,
+    actionName,
+  } = props;
+  return (
+
+    <Form onSubmit={handleSubmit}>
+      <Prompt
+        when={!pristine && !submitting}
+        message={`Tem certeza de sair da tela de ${actionName} atividade?`}
+      />
+      <div className="c-online c-create-online">
+        <Row className="c-online__row-header-options c-online__row-header-options--fixed">
+          <Col className="c-online__col-header-options">
+            <BackUsingHistory disabled={submitting} />
+            <Button className="btn btn-secondary c-online__btn-back" type="submit" disabled={submitting}>
+              <FontAwesomeIcon
+                className="btn__icon"
+                icon="save"
+              />
+              {' '}
+                  Salvar
+            </Button>
+          </Col>
+        </Row>
+        <Row className="c-online__tittle-section c-online--space-for-title">
+          <Col>
+            <h4>
+              <FontAwesomeIcon icon="image" />
+              {` ${actionName} Objeto de aprendizagem`}
+            </h4>
+          </Col>
+        </Row>
+        <Row className="mt-3">
+          <Col>
+            <h5>
+              <FontAwesomeIcon icon="photo-video" />
+              {' '}
+              Textos, imagens e links
+            </h5>
+            <div className="border-top my-3" />
+
+          </Col>
+        </Row>
+        <Row className="no-gutters">
+          <Col sm="4">
+            <p className="c-learning-object__form-labels">Imagem</p>
+          </Col>
+          <Col sm="8">
+            <p className="c-learning-object__form-labels">Insira trechos de textos, letras de música ou link para o vídeo</p>
+            <Field
+              component={renderTextEditor}
+              name="textObject"
+              key="field"
+              id="textObjectEditorText"
+              disabled={false}
+              placeholderEditor="Escreva trechos de textos, letras de música ou link para o vídeo aqui ..."
+              validate={requiredValidator}
+            />
+          </Col>
+        </Row>
+        <Row className="c-question__tittle-section">
+          <Col>
+            <h5>
+              <FontAwesomeIcon icon="info-circle" />
+              {' '}
+              Informações básicas
+            </h5>
+            <div className="border-top my-3" />
+
+          </Col>
+        </Row>
+        <Row className="mt-2 mb-3">
+          <Col>
+            Fontes e referencias
+          </Col>
+        </Row>
+        <Row className="justify-content-center">
+          <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
+            <Field
+              component={renderTextEditor}
+              name="references"
+              key="field"
+              id="referencesEditorText"
+              disabled={false}
+              placeholderEditor="Escreva as referencias do objeto aqui ..."
+              validate={requiredValidator}
+            />
+          </Col>
+        </Row>
+        <Row className="c-create-question__row-info mt-4 align-items-center">
+          <Col className="info-label" sm="4" xs="4">
+            Tags
+          </Col>
+          <Col sm="8" xs="8">
+            <Field
+              component={renderMAMultiSelectTag}
+              name="tags"
+              id="tags"
+              placeholder="Dê enter ou vírgula após inserir uma tag"
+              className="form-control"
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {errors && errors.general_errors && !submitting && (
+            <Alert color="danger">
+              {errors.general_errors}
+            </Alert>
+            )}
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            { (!pristine && !submitting) ? (
+              <Alert color="warning" className="c-online-edit__warning-message">
+                      Existem mudanças ainda não salvas no objeto de aprendizagem
+              </Alert>
+            ) : ''
+                          }
+          </Col>
+        </Row>
+      </div>
+      <Row className="c-online__row-footer-options text-center">
+        <Col>
+          <p>
+            <small>
+              {`Ao ${actionName.toLowerCase()} o objeto de aprendizagem você estará de acordo com os `}
+              {' '}
+              <Link target="_blank" to="/terms-use">termos de uso</Link>
+            </small>
+          </p>
+        </Col>
+      </Row>
+
+      <Row className="c-online__row-footer-options text-center">
+        <Col>
+          <Button type="submit" title="Salvar objeto" className="btn-secondary btn-margin-right" disabled={submitting}>
+            <FontAwesomeIcon
+              className="btn__icon"
+              icon="save"
+            />
+            <span>
+                Salvar
+            </span>
+          </Button>
+        </Col>
+      </Row>
+    </Form>
+  );
+};
+
+export default LearningObjectForm;

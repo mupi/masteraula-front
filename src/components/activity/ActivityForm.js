@@ -412,7 +412,7 @@ const ActivityForm = (props) => {
 
       <Row className="c-online__row-footer-options text-center">
         <Col>
-          <Button type="submit" title="Salvar prova online" className="btn-secondary btn-margin-right" disabled={submitting}>
+          <Button type="submit" title="Salvar atividade" className="btn-secondary btn-margin-right" disabled={submitting}>
             <FontAwesomeIcon
               className="btn__icon"
               icon="save"

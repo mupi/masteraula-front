@@ -8,6 +8,7 @@ import {
   ADD_SELECTED_LABEL_LEARNING_OBJECT,
   REMOVE_SELECTED_LABEL_LEARNING_OBJECT,
   REMOVE_SELECTED_LABEL_LEARNING_OBJECT_AFTER_DELETING_LABEL,
+  CREATE_LEARNING_OBJECT, CREATE_LEARNING_OBJECT_SUCCESS, CREATE_LEARNING_OBJECT_FAILURE,
 } from 'actions/learningObjectAction';
 import { toast } from 'react-toastify';
 
@@ -52,6 +53,27 @@ export const learningObject = (state = initialState, action) => {
         isUpdated: null,
       });
     }
+    case CREATE_LEARNING_OBJECT:
+      return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        activeOnlineTest: action.newOnlineTest,
+        isFetching: false,
+      });
+    case CREATE_LEARNING_OBJECT_SUCCESS:
+      return Object.assign({}, state, {
+        isRemoved: null,
+        isUpdated: null,
+        activeLearningObject: action.newObject,
+        isFetching: false,
+      });
+    case CREATE_LEARNING_OBJECT_FAILURE:
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
+
     case UPDATE_LEARNING_OBJECT_SUCCESS: {
       if (action.showMessage) toast.success('Objeto de aprendizagem atualizado com sucesso', optionsSuccess);
       return Object.assign({}, state, {

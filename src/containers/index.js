@@ -19,6 +19,7 @@ export { default as CreateDocumentWithQuestionFormContainer } from './CreateDocu
 export { default as MyQuestionEditPageContainer } from './MyQuestionEditPageContainer';
 export { default as DeleteQuestionButtonContainer } from './DeleteQuestionButtonContainer';
 export { default as ViewLearningObjectPageContainer } from './ViewLearningObjectPageContainer';
+export { default as CreateLearningObjectPageContainer } from './CreateLearningObjectPageContainer';
 export { default as ObjectBasePageContainer } from './ObjectBasePageContainer';
 export { default as SidebarObjectFiltersContainer } from './SidebarObjectFiltersContainer';
 export { default as PublicDocumentPageContainer } from './PublicDocumentPageContainer';

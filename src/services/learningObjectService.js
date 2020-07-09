@@ -1,6 +1,7 @@
 import { apiUrl } from 'helpers/config';
 import { authHeader } from 'helpers';
 import queryString from 'query-string';
+import axios from 'axios';
 
 // Fetch a LearningObject using ID
 function fetchLearningObject(id) {
@@ -26,6 +27,22 @@ function fetchLearningObject(id) {
       localStorage.setItem('activeLearningObject', JSON.stringify(activeLearningObject));
       return activeLearningObject;
     });
+}
+
+/* Create a new object */
+function createLearningObject(newObjectData) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const url = '/learning_object/';
+
+  return axios.post(`${apiUrl}${url}`, newObjectData, requestOptions)
+    .then(response => response.data).then(newObject => newObject);
 }
 
 // Update an Active LearningObject
@@ -120,6 +137,7 @@ function listLearningObjectModal(page, filterObject) {
 
 const learningObjectService = {
   fetchLearningObject,
+  createLearningObject,
   updateLearningObject,
   listLearningObject,
   listLearningObjectModal,

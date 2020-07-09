@@ -1,9 +1,14 @@
 import { learningObjectService } from 'services';
 import { history } from 'helpers';
 import { initialize } from 'redux-form';
+import { toast } from 'react-toastify';
 
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
 
-/* learning object's structure 
+/* learning object's structure
 
 owner: 26
 source: teste fonte
@@ -64,6 +69,19 @@ export const fetchLearningObject = (id) => {
       },
     );
   };
+};
+
+// Create a new learning object
+export const createLearningObject = newDataObject => async (dispatch) => {
+  try {
+    dispatch({ type: CREATE_LEARNING_OBJECT });
+    const newObject = await learningObjectService.createLearningObject(newDataObject);
+    dispatch({ type: CREATE_LEARNING_OBJECT_SUCCESS, newObject });
+    history.push(`/view-object/${newObject.id}`);
+    toast.success('Objeto criado com sucesso', optionsSuccess);
+  } catch {
+    dispatch({ type: CREATE_LEARNING_OBJECT_FAILURE });
+  }
 };
 
 // Update LearningObject

@@ -28,6 +28,7 @@ import {
   HomePageContainer,
   PricingPageContainer,
   ViewLearningObjectPageContainer,
+  CreateLearningObjectPageContainer,
   ObjectBasePageContainer,
   PublicDocumentPageContainer,
   TopicBasePageContainer,
@@ -108,6 +109,7 @@ import {
   faBookReader,
   faUserEdit,
   faChalkboardTeacher,
+  faPhotoVideo,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -142,6 +144,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faBookReader,
   faUserEdit,
   faChalkboardTeacher,
+  faPhotoVideo,
   fab);
 
 
@@ -196,6 +199,7 @@ class App extends Component {
                 <Route path="/documents/:page(\d+)" component={ManageDocumentsPageContainer} />
                 <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
                 <Route path="/edit-document" component={EditDocumentPageContainer} />
+                <Route path="/create-object/" component={CreateLearningObjectPageContainer} />
                 <Route path="/view-object/:id" component={ViewLearningObjectPageContainer} />
                 <Route path="/edit-header/:id" component={EditHeaderPageContainer} />
                 <Route path="/new-header" component={EditHeaderPageContainer} />
