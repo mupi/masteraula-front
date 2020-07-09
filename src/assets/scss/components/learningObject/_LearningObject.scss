@@ -33,6 +33,16 @@
       margin-bottom: 0px;
     }
 
+    &__form-image-section{
+      padding: 10px;
+    }
+
+    &__form-references{
+      .demo-editor{
+        height: 150px !important;
+      }
+    }
+
     &__operations{
       text-align: right;
       margin-top: -15px;

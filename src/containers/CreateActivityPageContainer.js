@@ -105,7 +105,7 @@ const mapDispatchToProps = (dispatch) => {
         && ((typeof (value.student_expectation) !== 'undefined') && value.student_expectation.trim().length > 0)
         ) {
           return {
-            description_task: value.student_expectation,
+            description_task: value.description_task,
             student_expectation: value.student_expectation,
             teacher_expectation: value.teacher_expectation,
           };

@@ -1,13 +1,16 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getCleanCompleteStatement } from 'helpers/question';
 
-
+/* eslint-disable react/no-danger */
 const TaskInfo = ({ taskInfo, position }) => (
   <Row>
     <Col sm="12">
       <h6>{`Tarefa ${position + 1}`}</h6>
-      { taskInfo && (<p>{taskInfo}</p>) }
+      { taskInfo
+      && <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(taskInfo) }} />
+      }
     </Col>
   </Row>
 );

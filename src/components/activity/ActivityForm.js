@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import renderMultiselect from 'components/autocomplete/Multiselect';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
 import { getTeachingLevel } from 'helpers/question';
+import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
 
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 
@@ -116,6 +117,41 @@ const renderSelectField = ({
 );
 
 
+const renderTextEditor = (props) => {
+  const {
+    placeholderEditor,
+    input: { onChange, value }, disabled, id,
+    meta: { touched, error, warning },
+  } = props;
+
+  return (
+    <div>
+      <QuestionTextRichEditor
+        id={id}
+        disabled={disabled}
+        placeholder={placeholderEditor}
+        onChange={onChange}
+        value={value}
+      />
+      { touched
+          && ((error && (
+          <span className="error-message-text">
+            {error}
+          </span>
+          ))
+          || (warning && (
+          <span>
+            {' '}
+            {warning}
+            {' '}
+          </span>
+          )))
+        }
+    </div>
+  );
+};
+
+
 export const renderTasks = ({
   fields, meta: { error },
   addTaskToActivity, removeTaskFromActivity,
@@ -134,11 +170,11 @@ export const renderTasks = ({
         ) : ''}
     </div>
 
-    <div className="c-classplan__stations">
+    <div className="c-activity-form__tasks">
       {fields.map((task, i) => (
         <div key={`${task}.id`} className="c-classplan__view-station border-bottom my-3">
           <Row className="mb-1 align-items-center">
-            <Col sm="6" xs="6" className="c-classplan__col-link-text">
+            <Col sm="6" xs="6" className="c-activity-form__label-task">
               <h6><strong>{`Tarefa ${i + 1}`}</strong></h6>
             </Col>
             <Col sm="6" xs="6" className="text-right">
@@ -154,34 +190,41 @@ export const renderTasks = ({
               </Button>
             </Col>
           </Row>
-          <Row className="mb-3 align-items-center">
-            <Col sm="12" className="c-classplan__col-link-text mb-2">
-              Descrição da tarefa (para o aluno)
+          <Row className="mb-3 align-items-center no-gutters">
+            <Col sm="12" className="c-classplan__col-link-text mb-2 c-activity-form__task-editor">
+              <p className="c-activity-form__labels">Descrição da tarefa (para o aluno)</p>
               <Field
-                type="textarea"
-                component={renderField}
+                component={renderTextEditor}
                 name={`${task}.description_task`}
-                label="Ex. Assista ao vídeo e faça uma síntese em seu caderno."
+                key="field"
+                id="studentDescriptionTask"
+                disabled={false}
+                placeholderEditor="Ex. Assista ao vídeo e faça uma síntese em seu caderno."
                 validate={requiredValidator}
               />
             </Col>
-            <Col sm="12" className="c-classplan__col-link-text mb-2">
-              Expectativas para o papel do aluno
+            <Col sm="12" className="c-classplan__col-link-text mb-2 c-activity-form__task-editor">
+              <p className="c-activity-form__labels">Expectativas para o papel do aluno</p>
               <Field
-                type="textarea"
-                component={renderField}
+                component={renderTextEditor}
                 name={`${task}.student_expectation`}
-                label="Ex. Assistir ao vídeo e registrar ..."
+                key="field"
+                id="studentExpectation"
+                disabled={false}
+                placeholderEditor="Ex. Assistir ao vídeo e registrar ..."
                 validate={requiredValidator}
               />
             </Col>
-            <Col sm="12" className="c-classplan__col-link-text mb-2">
-              Comentários para uso do professor
+            <Col sm="12" className="c-classplan__col-link-text mb-2 c-activity-form__task-editor">
+              <p className="c-activity-form__labels">Comentários para uso do professor</p>
               <Field
-                type="textarea"
-                component={renderField}
+                component={renderTextEditor}
                 name={`${task}.teacher_expectation`}
-                label="Ex. Validar a síntese no caderno do aluno"
+                key="field"
+                id="teacherExpectation"
+                disabled={false}
+                placeholderEditor="Ex. Validar a síntese no caderno do aluno"
+                validate={requiredValidator}
               />
             </Col>
           </Row>
@@ -191,6 +234,8 @@ export const renderTasks = ({
     <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
   </>
 );
+
+
 const ActivityForm = (props) => {
   const {
     topicSuggestions, pristine, disciplineFilters,

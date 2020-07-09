@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Alert, Row, Col, Button, Form,
+  Alert, Row, Col, Button, Form, Label,
 } from 'reactstrap';
 import { Link, Prompt } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -74,12 +74,39 @@ const renderMAMultiSelectTag = ({
   </div>
 );
 
+
+export const fieldFile = ({ input, type }) => {
+  const newInput = input;
+  delete newInput.value;
+
+  return (
+    <div>
+      <label htmlFor={input.name}>
+        <input {...newInput} type={type} placeholder="Carregar imagem" />
+      </label>
+    </div>
+  );
+};
+
+/* learning object's structure
+
+owner: 26
+source: teste fonte
+image: (binary)
+folder_name:
+text: teste text
+object_types: T,I
+tags: testetag
+
+*/
+
 const LearningObjectForm = (props) => {
   const {
     pristine,
     handleSubmit,
     submitting, errors,
     actionName,
+    activeLearningObject,
   } = props;
   return (
 
@@ -124,6 +151,30 @@ const LearningObjectForm = (props) => {
         <Row className="no-gutters">
           <Col sm="4">
             <p className="c-learning-object__form-labels">Imagem</p>
+            <div className="c-learning-object__form-image-section">
+              <Label for="upload-avatar" className="upload-avatar">
+                <div className="thumbnail">
+                  { activeLearningObject && activeLearningObject.image
+                    && <img src={activeLearningObject.image} alt="objeto" id="objeto" />
+                    }
+                </div>
+                <FontAwesomeIcon
+                  className="btn__icon"
+                  icon="image"
+                />
+                    Enviar objeto
+              </Label>
+              <div className="small-text ">
+                  Tamanho máximo 1 MB. (JPG, GIF ou PNG)
+              </div>
+              <Field
+                component={fieldFile}
+                type="file"
+                name="image"
+                id="image"
+                className="form-control"
+              />
+            </div>
           </Col>
           <Col sm="8">
             <p className="c-learning-object__form-labels">Insira trechos de textos, letras de música ou link para o vídeo</p>
@@ -155,7 +206,7 @@ const LearningObjectForm = (props) => {
           </Col>
         </Row>
         <Row className="justify-content-center">
-          <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
+          <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details c-learning-object__form-references">
             <Field
               component={renderTextEditor}
               name="references"
