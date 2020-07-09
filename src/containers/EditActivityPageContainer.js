@@ -35,9 +35,10 @@ const mapStateToProps = (state) => {
     selectedObjectList: state.activity.selectedObjectList,
     errors: state.form['edit-activity'] ? state.form['edit-activity'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
-    user,
+    userId: user.id,
     tasks: state.activity.tasks,
     isFetching: state.activity.isFetching,
+    activeActivity: state.activity.activeActivity,
   });
 };
 

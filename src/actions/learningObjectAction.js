@@ -2,6 +2,18 @@ import { learningObjectService } from 'services';
 import { history } from 'helpers';
 import { initialize } from 'redux-form';
 
+
+/* learning object's structure 
+
+owner: 26
+source: teste fonte
+image: (binary)
+folder_name:
+text: teste text
+object_types: T,I
+tags: testetag
+
+*/
 // Load single learning object
 export const FETCH_LEARNING_OBJECT = 'FETCH_LEARNING_OBJECT';
 export const FETCH_LEARNING_OBJECT_SUCCESS = 'FETCH_LEARNING_OBJECT_SUCCESS';
@@ -11,6 +23,11 @@ export const FETCH_LEARNING_OBJECT_FAILURE = 'FETCH_LEARNING_OBJECT_FAILURE';
 export const LIST_LEARNING_OBJECT = 'LIST_LEARNING_OBJECT';
 export const LIST_LEARNING_OBJECT_SUCCESS = 'LIST_LEARNING_OBJECT_SUCCESS';
 export const LIST_LEARNING_OBJECT_FAILURE = 'LIST_LEARNING_OBJECT_FAILURE';
+
+// Constants for creating learning object
+export const CREATE_LEARNING_OBJECT = 'CREATE_LEARNING_OBJECT';
+export const CREATE_LEARNING_OBJECT_SUCCESS = 'CREATE_LEARNING_OBJECT_SUCCESS';
+export const CREATE_LEARNING_OBJECT_FAILURE = 'CREATE_LEARNING_OBJECT_FAILURE';
 
 // Constants for Update learningObject
 export const UPDATE_LEARNING_OBJECT = 'UPDATE_LEARNING_OBJECT';

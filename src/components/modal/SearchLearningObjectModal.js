@@ -82,7 +82,7 @@ class SearchLearningObjectModal extends React.Component {
               )
             }
             </Row>
-            <div className="c-question-base__results modal-fixed__body-section-scroll">
+            <div className="c-object-base__results modal-fixed__body-section-scroll mt-3">
               { isFetching ? (
                 <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
                    Carregando  ...
