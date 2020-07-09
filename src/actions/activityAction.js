@@ -57,11 +57,43 @@ export const RESET_TASKS_ACTIVITY = 'RESET_TASKS_ACTIVITY';
 }
 
 */
+
+/*
+export const fetchActivity = (id) => {
+  function requestActivity() { return { type: FETCH_ACTIVITY }; }
+  function fetchActivitySuccess(activeActivity) { return { type: FETCH_ACTIVITY_SUCCESS, activeActivity }; }
+  function fetchActivityFailure(error) { return { type: FETCH_ACTIVITY_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(requestActivity(id));
+    return activityService.fetchActivity(id)
+      .then(
+        (activeActivity) => {
+
+          // initialize Question Edit Page for users with Editor role
+          dispatch(initialize('edit-activity', {
+            learning_objects_ids: activeActivity.learning_objects_ids,
+            topics: activeActivity.all_topics,
+            difficulty: activeActivity.difficulty,
+            disciplines: activeActivity.disciplines,
+            teachingLevels: activeActivity.teaching_levels,
+            tasks: activeActivity.tasks,
+            tags: activeActivity.tags.map(tag => tag.name.trim()).join(', '),
+          }));
+          dispatch(fetchActivitySuccess(activeActivity));
+        },
+        (error) => {
+          dispatch(fetchActivityFailure(error));
+          history.push('/question-base/1');
+        },
+      );
+  };
+}; */
+
+
 export const fetchActivity = id => async (dispatch) => {
   try {
     dispatch({ type: FETCH_ACTIVITY });
     const activeActivity = await activityService.fetchActivity(id);
-    dispatch({ type: FETCH_ACTIVITY_SUCCESS, activeActivity });
 
     // initialize activity Page for owner's
     dispatch(initialize('edit-activity', {
@@ -73,6 +105,7 @@ export const fetchActivity = id => async (dispatch) => {
       tasks: activeActivity.tasks,
       tags: activeActivity.tags.map(tag => tag.name.trim()).join(', '),
     }));
+    dispatch({ type: FETCH_ACTIVITY_SUCCESS, activeActivity });
   } catch {
     dispatch({ type: FETCH_ACTIVITY_FAILURE });
   }
