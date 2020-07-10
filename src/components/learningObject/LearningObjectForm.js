@@ -75,7 +75,12 @@ const renderMAMultiSelectTag = ({
 );
 
 
-export const fieldFile = ({ input, type }) => {
+export const fieldFile = ({ input, type,
+
+  meta: {
+    error,
+  },
+}) => {
   const newInput = input;
   delete newInput.value;
 
@@ -84,6 +89,12 @@ export const fieldFile = ({ input, type }) => {
       <label htmlFor={input.name}>
         <input {...newInput} type={type} placeholder="Carregar imagem" />
       </label>
+      { error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+      )
+       }
     </div>
   );
 };
@@ -137,6 +148,16 @@ const LearningObjectForm = (props) => {
             </h4>
           </Col>
         </Row>
+        <Row>
+          <Col>
+            { (!pristine && !submitting) ? (
+              <Alert color="warning" className="c-online-edit__warning-message">
+                      Existem mudanças ainda não salvas no objeto de aprendizagem
+              </Alert>
+            ) : ''
+                          }
+          </Col>
+        </Row>
         <Row className="mt-3">
           <Col>
             <h5>
@@ -180,7 +201,7 @@ const LearningObjectForm = (props) => {
             <p className="c-learning-object__form-labels">Insira trechos de textos, letras de música ou link para o vídeo</p>
             <Field
               component={renderTextEditor}
-              name="textObject"
+              name="text"
               key="field"
               id="textObjectEditorText"
               disabled={false}
@@ -209,7 +230,7 @@ const LearningObjectForm = (props) => {
           <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details c-learning-object__form-references">
             <Field
               component={renderTextEditor}
-              name="references"
+              name="source"
               key="field"
               id="referencesEditorText"
               disabled={false}

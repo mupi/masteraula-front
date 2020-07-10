@@ -29,8 +29,27 @@ function fetchLearningObject(id) {
     });
 }
 
+function convertObjectToFormData(objectData) {
+  const formData = new FormData();
+  Object.keys(objectData).forEach((name) => {
+    if (name === 'tags') {
+      objectData[name].forEach((tag, index) => {
+        formData.append(`tags[${index}]`, tag);
+      });
+    } else if (name === 'object_types') {
+      objectData[name].forEach((objectType, index) => {
+        formData.append(`objectType[${index}]`, objectType);
+      });
+    } else if (name === 'image') {
+      if (objectData[name]) { formData.append(name, objectData[name][0]); }
+    } else formData.append(name, objectData[name]);
+  });
+
+  return formData;
+}
 /* Create a new object */
 function createLearningObject(newObjectData) {
+  const objectFormData = convertObjectToFormData(newObjectData);
   const requestOptions = {
     method: 'POST',
     headers: {
@@ -41,8 +60,21 @@ function createLearningObject(newObjectData) {
 
   const url = '/learning_object/';
 
-  return axios.post(`${apiUrl}${url}`, newObjectData, requestOptions)
-    .then(response => response.data).then(newObject => newObject);
+  return axios.post(`${apiUrl}${url}`, objectFormData, requestOptions)
+    .then(response => response.data).then(newObject => newObject)
+    .catch((error) => {
+      if (error.response) {
+        if (error.response.data.image[0].includes('File is not Image')) {
+          return Promise.reject('Arquivo inválido. Escolha um arquivo PNG, JPG ou JPEG.');
+        }
+        if (error.response.data.image[0].includes('Max file size is 2MB')) {
+          return Promise.reject('Tamanho máximo do arquivo é 2Mb.');
+        }
+        return Promise.reject(error.response.data.pdf[0]);
+      }
+
+      return Promise.reject('Ocorreu um erro com sua solicitação');
+    });
 }
 
 // Update an Active LearningObject
