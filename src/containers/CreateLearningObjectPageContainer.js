@@ -26,9 +26,10 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: (values, d, props) => {
     const errors = [];
     const newObject = {
+      text: values.text.trim() !== '<p></p>' ? values.text : "",
       source: values.source,
       image: values.image,
-      object_types: ['T', 'I'],
+      object_types: [],
       tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
     };
 

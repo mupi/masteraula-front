@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 import {
-  requiredValidator,
+  requiredValidator, minLengthTags,
 } from 'helpers/validators';
 
 import BackUsingHistory from 'components/question/BackUsingHistory';
@@ -206,7 +206,7 @@ const LearningObjectForm = (props) => {
               id="textObjectEditorText"
               disabled={false}
               placeholderEditor="Escreva trechos de textos, letras de música ou link para o vídeo aqui ..."
-              validate={requiredValidator}
+              // validate={requiredValidator}
             />
           </Col>
         </Row>
@@ -250,6 +250,7 @@ const LearningObjectForm = (props) => {
               id="tags"
               placeholder="Dê enter ou vírgula após inserir uma tag"
               className="form-control"
+              validate={minLengthTags}
             />
           </Col>
         </Row>
