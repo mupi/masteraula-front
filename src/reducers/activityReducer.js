@@ -3,9 +3,9 @@ import {
   FETCH_ACTIVITY_SUCCESS,
   FETCH_ACTIVITY_FAILURE,
 
-  LIST_ACTIVITIES_PAGE,
-  LIST_ACTIVITIES_PAGE_SUCCESS,
-  LIST_ACTIVITIES_PAGE_FAILURE,
+  LIST_ACTIVITY_PAGE,
+  LIST_ACTIVITY_PAGE_SUCCESS,
+  LIST_ACTIVITY_PAGE_FAILURE,
 
   CREATE_ACTIVITY,
   CREATE_ACTIVITY_SUCCESS,
@@ -34,7 +34,7 @@ import { toast } from 'react-toastify';
 
 const initialState = {
   selectedObjectList: [],
-  activitiesPage: {},
+  activityPage: {},
   tasks: [
     {},
   ],
@@ -68,18 +68,18 @@ export const activity = (state = initialState, action) => {
         isFetching: false,
         error: action.error,
       });
-    case LIST_ACTIVITIES_PAGE:
+    case LIST_ACTIVITY_PAGE:
       return Object.assign({}, state, {
         currentPage: action.page,
         isFetching: true,
         error: null,
       });
-    case LIST_ACTIVITIES_PAGE_SUCCESS:
+    case LIST_ACTIVITY_PAGE_SUCCESS:
       return Object.assign({}, state, {
-        activitiesPage: action.activitiesPage,
+        activityPage: action.activityPage,
         isFetching: false,
       });
-    case LIST_ACTIVITIES_PAGE_FAILURE:
+    case LIST_ACTIVITY_PAGE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,

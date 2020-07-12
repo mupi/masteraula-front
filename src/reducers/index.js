@@ -20,3 +20,4 @@ export { default as faq } from './faqReducer';
 export { default as contact } from './contactReducer';
 export { default as onlineTest } from './onlineTestReducer';
 export { default as activity } from './activityReducer';
+export { default as filterActivity } from './filterActivityReducer';

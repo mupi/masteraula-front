@@ -10,7 +10,7 @@ class ActivitySearchByFilters extends Component {
     super(props);
     this.state = {
       authorState: '',
-      onlyMyQuestionsState: false,
+      onlyMyActivitiesState: false,
       visible: 10,
     };
 
@@ -20,10 +20,9 @@ class ActivitySearchByFilters extends Component {
 
   componentDidMount() {
     const {
-      listDisciplineFilters, listSourceFilters, listYearFilters, listTeachingLevelFilters,
+      listDisciplineFilters, listYearFilters, listTeachingLevelFilters,
     } = this.props;
     listDisciplineFilters();
-    listSourceFilters();
     listYearFilters();
     listTeachingLevelFilters();
   }
@@ -33,14 +32,12 @@ class ActivitySearchByFilters extends Component {
       filter,
     } = this.props;
 
-
     if ((filter.disciplinesSelected.length > 0) && ((filter.disciplinesSelected !== prevProps.filter.disciplinesSelected)
     || (filter.teachingLevelsSelected !== prevProps.filter.teachingLevelsSelected)
-    || (filter.sourcesSelected !== prevProps.filter.sourcesSelected)
     || (filter.yearsSelected !== prevProps.filter.yearsSelected)
     || (filter.topicsSelected !== prevProps.filter.topicsSelected)
     || (filter.difficultiesSelected !== prevProps.filter.difficultiesSelected)
-    || (filter.onlyMyQuestions !== prevProps.filter.onlyMyQuestions))) {
+    || (filter.onlyMyActivities !== prevProps.filter.onlyMyActivities))) {
       /* eslint-disable react/no-did-update-set-state */
       this.setState({ visible: 10 });
     }
@@ -55,7 +52,7 @@ class ActivitySearchByFilters extends Component {
     if (event.target.value > 0) {
       this.setState({ visible: 10 });
     }
-    history.push('/question-base/1');
+    history.push('/activity-base/1');
     addSelectedFilter(event.target.value);
     // resetTopicListSelected();
   }
@@ -84,10 +81,9 @@ class ActivitySearchByFilters extends Component {
 
   render() {
     const {
-      author, isFetchingQuestions, onlyMyQuestions, disciplineFilters, topicFilters,
-      disciplineIdSelected, sourceIdSelected, yearIdSelected,
+      author, isFetchingQuestions, onlyMyActivities, disciplineFilters, topicFilters,
+      disciplineIdSelected, yearIdSelected,
       addSelectedDisciplineFilter,
-      addSelectedSourceFilter,
       addSelectedYearFilter,
       filter,
       onlyTerms = false,
@@ -95,12 +91,12 @@ class ActivitySearchByFilters extends Component {
 
     const { visible } = this.state;
 
-    const { authorState, onlyMyQuestionsState } = this.state;
-    const isChecked = (onlyMyQuestions === undefined ? onlyMyQuestionsState : onlyMyQuestions);
+    const { authorState, onlyMyActivitiesState } = this.state;
+    const isChecked = (onlyMyActivities === undefined ? onlyMyActivitiesState : onlyMyActivities);
 
     return (
       <>
-        <QuestionSearchText {...this.props} />
+        <QuestionSearchText {...this.props} baseName="atividades" />
         <Row className="c-question-base__myquestions-filter">
           <Label check>
             <Input
@@ -113,7 +109,7 @@ class ActivitySearchByFilters extends Component {
 
             {'Pesquisar só nas ' }
             <strong>
-              {'"Minhas questões"'}
+              {'"Minhas atividades"'}
             </strong>
           </Label>
         </Row>
@@ -157,25 +153,6 @@ class ActivitySearchByFilters extends Component {
               { disciplineFilters && disciplineFilters.map(discipline => (
                 <option className="c-user-profile__state-city-dropdown-item" key={discipline.id} value={discipline.id}>
                   {discipline.name}
-                </option>
-              )) }
-            </select>
-          </Col>
-          <Col sm="4" col="12" className="mb-2">
-            <select
-              type="text"
-              name="source"
-              className="form-control question-search__by-filter-select"
-              onChange={e => this.getListTopics(e, addSelectedSourceFilter)}
-              value={sourceIdSelected || -2}
-              disabled={isFetchingQuestions}
-            >
-              <option value="-1">
-                     Todos os vestibulares
-              </option>
-              { filter.sourceFilters && filter.sourceFilters.map(source => (
-                <option className="c-user-profile__state-city-dropdown-item" key={source.id} value={source.id}>
-                  {source.name}
                 </option>
               )) }
             </select>

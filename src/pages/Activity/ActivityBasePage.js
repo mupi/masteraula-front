@@ -3,24 +3,24 @@ import PropTypes from 'prop-types';
 import {
   Row, Alert, Col, Button, UncontrolledTooltip,
 } from 'reactstrap';
-import QuestionList from 'components/question/QuestionList';
+import ActivityList from 'components/activity/ActivityList';
 
 import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
-import ActivitySearchByFiltersContainer from 'containers/ActivitySearchByFiltersContainer';
+import ActivitySearchByFilters from 'components/activity/ActivitySearchByFilters';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class ActivityBasePage extends React.Component {
   componentDidMount() {
     const {
-      match, filter, listActivities, user,
+      match, filter, listResults, user,
     } = this.props;
-    listActivities(parseInt(match.params.page, 10), filter, user.id);
+    listResults(parseInt(match.params.page, 10), filter, user.id);
   }
 
   componentDidUpdate(prevProps) {
     const {
-      match, filter, listActivities, user,
+      match, filter, listResults, user,
     } = this.props;
     if ((match.params.page !== prevProps.match.params.page)
     || (filter.disciplinesSelected !== prevProps.filter.disciplinesSelected)
@@ -31,7 +31,7 @@ class ActivityBasePage extends React.Component {
     || (filter.difficultiesSelected !== prevProps.filter.difficultiesSelected)
     || (filter.onlyMyActivities !== prevProps.filter.onlyMyActivities)
     || (filter.searchText !== prevProps.filter.searchText)) {
-      listActivities(parseInt(match.params.page, 10), filter, user.id);
+      listResults(parseInt(match.params.page, 10), filter, user.id);
     }
   }
 
@@ -104,13 +104,12 @@ class ActivityBasePage extends React.Component {
               </div>
             </Col>
           </Row>
-          <ActivitySearchByFiltersContainer />
-          { (filter.disciplinesSelected.length > 0)
-          || (filter.difficultiesSelected.length > 0)
-          || (filter.teachingLevelsSelected.length > 0)
-          || (filter.sourcesSelected.length > 0)
-          || (filter.yearsSelected.length > 0)
-          || (filter.topicsSelected.length > 0) ? (
+          <ActivitySearchByFilters {...this.props} />
+          { (filter.disciplinesSelected && filter.disciplinesSelected.length > 0)
+          || (filter.difficultiesSelected && filter.difficultiesSelected.length > 0)
+          || (filter.teachingLevelsSelected && filter.teachingLevelsSelected.length > 0)
+          || (filter.yearsSelected.length && filter.yearsSelected.length > 0)
+          || (filter.topicsSelected.length && filter.topicsSelected.length > 0) ? (
             <Row>
               <Col sm="12">
                 <p className="c-question-base__keywords-title">
@@ -233,7 +232,7 @@ class ActivityBasePage extends React.Component {
                   Carregando ...
               </Alert>
             ) : (
-              <QuestionList sm="4" {...this.props} questions={activityPage.results} count={activityPage.count} showQuantity={false} />
+              <ActivityList sm="4" {...this.props} activities={activityPage.results} count={activityPage.count} showQuantity={false} />
             )
             }
           </div>
@@ -253,7 +252,7 @@ ActivityBasePage.propTypes = {
     }),
   }).isRequired,
   filter: PropTypes.shape({}).isRequired,
-  listQuestions: PropTypes.func.isRequired,
+  listResults: PropTypes.func.isRequired,
   activityPage: PropTypes.shape({}),
   isFetching: PropTypes.bool,
   error: PropTypes.string,

@@ -100,7 +100,7 @@ class QuestionSearchByFilters extends Component {
 
     return (
       <>
-        <QuestionSearchText {...this.props} />
+        <QuestionSearchText {...this.props} baseName="questões" />
         <Row className="c-question-base__myquestions-filter">
           <Label check>
             <Input

@@ -26,15 +26,13 @@ function listActivities(page, filter) {
   const disciplinesParams = queryString.stringify({ disciplines: disciplines.map(item => item.id) });
   const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
   const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
-  const sourcesParams = queryString.stringify({ sources: filter.sourcesSelected.map(item => item.name) });
   const yearsParams = queryString.stringify({ years: filter.yearsSelected.map(item => item.name) });
   const topicsParams = queryString.stringify({ topics: filter.topicsSelected.map(item => item.id) });
 
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
   const author = (filter.onlyMyActivities) ? queryString.stringify({ author: filter.author }) : '';
 
-  const urlParams = [pageParam, disciplinesParams, teachingLevelParams, difficultiesParams,
-    sourcesParams, yearsParams, topicsParams, author, search]
+  const urlParams = [pageParam, disciplinesParams, teachingLevelParams, difficultiesParams, yearsParams, topicsParams, author, search]
     .filter(p => p)
     .join('&');
 

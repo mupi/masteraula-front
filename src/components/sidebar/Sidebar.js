@@ -385,6 +385,12 @@ const SidebarWeb = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/activity-base/1">
+                      <FontAwesomeIcon className="btn__icon" icon="search" />
+                          Banco de atividades
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
                     <Link to="/object-base/1">
                       <FontAwesomeIcon className="btn__icon" icon="image" />
                           Tirinhas, excertos e mais

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Alert, Row, Col, Button, Form, Input,
+  Alert, Row, Col, Button, Form,
 } from 'reactstrap';
 import { Link, Prompt } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -38,38 +38,6 @@ const options = {
   removeOption: true,
   showTitle: true,
 };
-
-// Basic Input Field
-const renderField = ({
-  input,
-  label,
-  type,
-  meta: { touched, error, warning },
-}) => (
-  <div className="text-left">
-    <Input
-      {...input}
-      placeholder={label}
-      type={type}
-      className="form-control c-create-question__form-field"
-    />
-    { touched
-        && ((error && (
-        <span className="error-message-text">
-          {error}
-        </span>
-        ))
-        || (warning && (
-        <span>
-          {' '}
-          {warning}
-          {' '}
-        </span>
-        )))
-      }
-  </div>
-);
-
 
 // Multiselect for Tags field
 // touche is not working with multiselectTag
