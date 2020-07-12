@@ -23,10 +23,10 @@ tags: testetag
 const mapDispatchToProps = dispatch => ({
 
   // create new object
-  onSubmit: (values, d, props) => {
+  onSubmit: (values) => {
     const errors = [];
     const newObject = {
-      text: values.text.trim() !== '<p></p>' ? values.text : "",
+      text: values.text.trim() !== '<p></p>' ? values.text : '',
       source: values.source,
       image: values.image,
       object_types: [],

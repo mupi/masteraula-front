@@ -2,6 +2,7 @@ import { activityService } from 'services';
 import { history } from 'helpers';
 import { initialize } from 'redux-form';
 import { toast } from 'react-toastify';
+import { listTopicFilters } from 'actions/filterAction';
 
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
@@ -9,9 +10,9 @@ const optionsSuccess = {
 };
 
 // List activities
-export const LIST_ACTIVITIES_PAGE = 'LIST_ACTIVITIES_PAGE';
-export const LIST_ACTIVITIES_PAGE_SUCCESS = 'LIST_ACTIVITIES_PAGE_SUCCESS';
-export const LIST_ACTIVITIES_PAGE_FAILURE = 'LIST_ACTIVITIES_PAGE_FAILURE';
+export const LIST_ACTIVITY_PAGE = 'LIST_ACTIVITY_PAGE';
+export const LIST_ACTIVITY_PAGE_SUCCESS = 'LIST_ACTIVITY_PAGE_SUCCESS';
+export const LIST_ACTIVITY_PAGE_FAILURE = 'LIST_ACTIVITY_PAGE_FAILURE';
 
 // Load single ACTIVITY
 export const FETCH_ACTIVITY = 'FETCH_ACTIVITY';
@@ -59,35 +60,52 @@ export const RESET_TASKS_ACTIVITY = 'RESET_TASKS_ACTIVITY';
 */
 
 /*
-export const fetchActivity = (id) => {
-  function requestActivity() { return { type: FETCH_ACTIVITY }; }
-  function fetchActivitySuccess(activeActivity) { return { type: FETCH_ACTIVITY_SUCCESS, activeActivity }; }
-  function fetchActivityFailure(error) { return { type: FETCH_ACTIVITY_FAILURE, error }; }
-  return (dispatch) => {
-    dispatch(requestActivity(id));
-    return activityService.fetchActivity(id)
-      .then(
-        (activeActivity) => {
+export const listActivities = (page, filter) => async (dispatch) => {
+  try {
+    dispatch({ type: LIST_ACTIVITY_PAGE, page });
+    const activityPage = await activityService.listActivities(page, filter);
 
-          // initialize Question Edit Page for users with Editor role
-          dispatch(initialize('edit-activity', {
-            learning_objects_ids: activeActivity.learning_objects_ids,
-            topics: activeActivity.all_topics,
-            difficulty: activeActivity.difficulty,
-            disciplines: activeActivity.disciplines,
-            teachingLevels: activeActivity.teaching_levels,
-            tasks: activeActivity.tasks,
-            tags: activeActivity.tags.map(tag => tag.name.trim()).join(', '),
+    dispatch({ type: FETCH_ACTIVITY_SUCCESS, activeActivity });
+    dispatch(initialize('activitySearch', {
+      searchText: filter.searchText,
+      onlyMyActivities: filter.onlyMyActivities,
+    }));
+  } catch {
+    dispatch({ type: LIST_ACTIVITY_PAGE_FAILURE });
+  }
+}; */
+
+
+// listActivity using filters
+export const listActivities = (page, filter) => {
+  function requestActivityPage() { return { type: LIST_ACTIVITY_PAGE, page }; }
+  function fetchActivityPageSuccess(activityPage) { return { type: LIST_ACTIVITY_PAGE_SUCCESS, activityPage }; }
+  function fetchActivityPageFailure(error) { return { type: LIST_ACTIVITY_PAGE_FAILURE, error }; }
+  return (dispatch, getState) => {
+    if (getState().activity.isFetching) {
+      return 1;
+    }
+    dispatch(listTopicFilters(filter));
+    dispatch(requestActivityPage());
+    return activityService.listActivities(page, filter)
+      .then(
+        (activityPage) => {
+          dispatch(fetchActivityPageSuccess(activityPage));
+          dispatch(initialize('activitySearch', {
+            searchText: filter.searchText,
+            onlyMyActivities: filter.onlyMyActivities,
           }));
-          dispatch(fetchActivitySuccess(activeActivity));
         },
         (error) => {
-          dispatch(fetchActivityFailure(error));
-          history.push('/question-base/1');
+          dispatch(fetchActivityPageFailure(error));
+          dispatch(initialize('activitySearch', {
+            searchText: filter.searchText,
+          }));
+          history.push('/activity-base/1');
         },
       );
   };
-}; */
+};
 
 
 export const fetchActivity = id => async (dispatch) => {

@@ -75,7 +75,8 @@ const renderMAMultiSelectTag = ({
 );
 
 
-export const fieldFile = ({ input, type,
+export const fieldFile = ({
+  input, type,
 
   meta: {
     error,

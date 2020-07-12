@@ -44,7 +44,7 @@ import {
   EditOnlineTestPageContainer,
   ResultsOnlineTestPageContainer,
   StudentOnlineTestPageContainer,
-  /* ActivityBasePageContainer, */
+  ActivityBasePageContainer,
   CreateActivityPageContainer,
   EditActivityPageContainer,
   ViewActivityPageContainer,
@@ -219,6 +219,7 @@ class App extends Component {
                 <Route path="/results-online/:id" component={ResultsOnlineTestPageContainer} />
                 <Route path="/online-tests/:id/:page(\d+)" component={ManageOnlineTestsPageContainer} />
                 <Route path="/apply-online/:id" component={StudentOnlineTestPageContainer} />
+                <Route path="/activity-base/:page(\d+)" component={ActivityBasePageContainer} />
                 <Route path="/create-activity/" component={CreateActivityPageContainer} />
                 <Route path="/edit-activity/:id" component={EditActivityPageContainer} />
                 <Route path="/view-activity/:id" component={ViewActivityPageContainer} />
