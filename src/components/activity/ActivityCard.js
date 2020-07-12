@@ -70,9 +70,12 @@ const ActivityCard = (props) => {
       <CardBody className="question-card__body">
         <div className="l-question-card-text">
           <p className="question-card__extract">
-            <strong>Tópicos abordados na atividade:</strong>
-            { (fullTagsTopics.length >= 150) ? ` ${fullTagsTopics.substring(0, 150)}${' ...'}` : fullTagsTopics }
-            {' '}
+            Tópicos abordados na atividade:
+          </p>
+          <p className="question-card__extract">
+            <em>
+              { (fullTagsTopics.length >= 150) ? ` ${fullTagsTopics.substring(0, 150)}${' ...'}` : fullTagsTopics }
+            </em>
           </p>
         </div>
       </CardBody>
