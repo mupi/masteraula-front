@@ -67,8 +67,8 @@ function createLearningObject(newObjectData) {
         if (error.response.data.image[0].includes('File is not Image')) {
           return Promise.reject('Arquivo inválido. Escolha um arquivo PNG, JPG ou JPEG.');
         }
-        if (error.response.data.image[0].includes('Max file size is 2MB')) {
-          return Promise.reject('Tamanho máximo do arquivo é 2Mb.');
+        if (error.response.data.image[0].includes('Max file size is 1MB')) {
+          return Promise.reject('Tamanho máximo do arquivo é 1Mb.');
         }
         return Promise.reject(error.response.data.pdf[0]);
       }
@@ -97,8 +97,8 @@ function updateLearningObject(updatedObjectData) {
         if (error.response.data.image[0].includes('File is not Image')) {
           return Promise.reject('Arquivo inválido. Escolha um arquivo PNG, JPG ou JPEG.');
         }
-        if (error.response.data.image[0].includes('Max file size is 2MB')) {
-          return Promise.reject('Tamanho máximo do arquivo é 2Mb.');
+        if (error.response.data.image[0].includes('Max file size is 1MB')) {
+          return Promise.reject('Tamanho máximo do arquivo é 1Mb.');
         }
         return Promise.reject(error.response.data.pdf[0]);
       }

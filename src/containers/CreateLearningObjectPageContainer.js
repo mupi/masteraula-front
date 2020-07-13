@@ -38,7 +38,7 @@ const mapDispatchToProps = dispatch => ({
 
     const overMaxSize = values.image && values.image instanceof FileList && values.image.length > 0 && values.image[0].size > 2097152;
     if (overMaxSize) {
-      errors.image = 'Insira um arquivo PNG, JPG, JPEG de máx. 2mb';
+      errors.image = 'Insira um arquivo PNG, JPG, JPEG de máx. 1mb';
     }
 
     const typeFile = values.image && values.image instanceof FileList && values.image.length > 0 && !values.image[0].type.includes('image');
