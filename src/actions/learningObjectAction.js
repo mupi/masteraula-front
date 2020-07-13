@@ -67,7 +67,6 @@ export const fetchLearningObject = (id) => {
     dispatch(requestLearningObject(id));
     return learningObjectService.fetchLearningObject(id).then(
       (activeLearningObject) => {
-        dispatch(requestLearningObjectSuccess(activeLearningObject));
         // initialize object Page for owner's
         dispatch(initialize('edit-object', {
           owner: activeLearningObject.owner,
@@ -76,6 +75,7 @@ export const fetchLearningObject = (id) => {
           text: activeLearningObject.text,
           tags: activeLearningObject.tags.map(tag => tag.name.trim()).join(', '),
         }));
+        dispatch(requestLearningObjectSuccess(activeLearningObject));
       }, (error) => {
         dispatch(requestLearningObjectFailure(error));
         history.push('/object-base/1');
