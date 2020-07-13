@@ -201,7 +201,7 @@ class ActivityBasePage extends React.Component {
           { !isFetching ? (
             <Row>
               <Col sm="12" className="c-question-base__total-results">
-                {`${activityPage.count} questões encontradas`}
+                {`${activityPage.count} atividades encontradas`}
                 {search
                   ? (
                     <>

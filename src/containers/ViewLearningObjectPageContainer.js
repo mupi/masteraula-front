@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ViewLearningObjectPage from 'pages/LearningObject/ViewLearningObjectPage';
 
-import { fetchLearningObject } from 'actions/learningObjectAction';
+import { fetchLearningObject, deleteLearningObject } from 'actions/learningObjectAction';
 import { setQuestionIdToNewDocument, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
 import { history } from 'helpers';
 import { showModal, hideModal } from 'actions/modalAction';
@@ -62,11 +62,26 @@ const mapStateToProps = state => ({
   idRemovedQuestion: state.document.idRemovedQuestion,
   idAddedQuestion: state.document.idAddedQuestion,
   filter: state.filter,
+  userId: state.session.session.user.id,
   labels: state.label.myQuestionLabels,
   isAddingRemovingLabel: state.label.isAddingRemovingLabel,
 });
 
 const mapDispatchToProps = (dispatch) => {
+  const deleteModalProps = idObject => ({
+    modalProps: {
+      open: true,
+      title: 'Apagar objeto de aprendizagem',
+      message: 'Você tem certeza que deseja apagar o objeto de aprendizagem',
+      id: idObject,
+      deleteAction: () => {
+        dispatch(deleteLearningObject(idObject, true));
+      },
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'delete',
+  });
+
   /* Options for Labels */
   const createMyQuestionLabelModalProps = {
     modalProps: {
@@ -85,6 +100,8 @@ const mapDispatchToProps = (dispatch) => {
 
   return ({
     fetchLearningObject: id => dispatch(fetchLearningObject(id)),
+    showDeleteModal: id => dispatch(showModal(deleteModalProps(id))),
+
     addSelectedQuestion: (idDocument, idQuestion, order) => dispatch(addSelectedQuestion(idDocument, idQuestion, order)),
 
     addSelectedDisciplineFilter: (idDiscipline) => {

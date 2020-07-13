@@ -4,11 +4,13 @@ import {
   Alert,
   Row,
   Col,
+  Button,
 } from 'reactstrap';
 import LearningObjectContentContainer from 'containers/LearningObjectContentContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionList from 'components/question/QuestionList';
 import BackUsingHistory from 'components/question/BackUsingHistory';
+import { Link } from 'react-router-dom';
 
 // Learning object's options available for LearnningObjectContent
 const options = {
@@ -34,7 +36,8 @@ class ViewLearningObjectPage extends Component {
 
   render() {
     const {
-      activeLearningObject, isFetchingLearningObject, error,
+      activeLearningObject, isFetchingLearningObject, error, userId,
+      showDeleteModal,
     } = this.props;
 
     if (isFetchingLearningObject) {
@@ -57,11 +60,37 @@ class ViewLearningObjectPage extends Component {
       );
     }
 
+    const isOwner = activeLearningObject.owner === userId;
+
     return (
       <HomeUserPage>
         <Row className="c-question__row-header-options c-question__row-header-options--fixed">
           <Col className="c-question__col-header-options">
             <BackUsingHistory />
+            { (isOwner)
+              ? (
+                <Button
+                  className="c-question__btn-remove-question"
+                  color="danger"
+                  onClick={() => showDeleteModal(activeLearningObject.id)}
+                  title="Apagar objeto"
+                >
+                  <FontAwesomeIcon icon="trash-alt" />
+                  {' '}
+                  Apagar
+                </Button>
+              ) : ''}
+            {(isOwner)
+              ? (
+                <Link
+                  className="btn btn-secondary c-question__btn-back"
+                  to={`/edit-object/${activeLearningObject.id}`}
+                >
+                  <FontAwesomeIcon icon="pencil-alt" />
+                  {' '}
+                  Editar
+                </Link>
+              ) : ''}
           </Col>
         </Row>
         <Row className="l-learning-object__tittle-section">
@@ -83,7 +112,7 @@ class ViewLearningObjectPage extends Component {
           </Col>
         </Row>
         <Row className="pagination-questions" style={{ marginLeft: '80%' }} />
-        {activeLearningObject.questions ? (
+        {activeLearningObject.questions && activeLearningObject.questions.length > 0 ? (
           <div className="c-question-base__results">
             <QuestionList
               sm="4"
