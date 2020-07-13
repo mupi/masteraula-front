@@ -85,7 +85,7 @@ export const listActivities = (page, filter) => {
     if (getState().activity.isFetching) {
       return 1;
     }
-    dispatch(listTopicFilters(filter));
+    dispatch(listTopicFilters(filter, {activities: true}));
     dispatch(requestActivityPage());
     return activityService.listActivities(page, filter)
       .then(
