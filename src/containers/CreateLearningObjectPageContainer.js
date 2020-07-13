@@ -8,6 +8,7 @@ import { createLearningObject } from 'actions/learningObjectAction';
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
   user: state.session.session,
+  errors: state.form['create-object'] ? state.form['create-object'].submitErrors : null,
 });
 
 /*
@@ -25,8 +26,9 @@ const mapDispatchToProps = dispatch => ({
   // create new object
   onSubmit: (values) => {
     const errors = [];
+    const textObject = (values.text && values.text.trim() !== '<p></p>') ? values.text : '';
     const newObject = {
-      text: values.text.trim() !== '<p></p>' ? values.text : '',
+      text: textObject,
       source: values.source,
       image: values.image,
       object_types: [],
@@ -42,6 +44,11 @@ const mapDispatchToProps = dispatch => ({
     const typeFile = values.image && values.image instanceof FileList && values.image.length > 0 && !values.image[0].type.includes('image');
     if (typeFile) {
       errors.image = 'Insira um arquivo PNG, JPG, JPEG';
+    }
+
+    const hasObject = values.image || textObject.length > 0;
+    if (!hasObject) {
+      errors.general_errors = 'Insira ou um texto/URL vídeo ou uma imagem';
     }
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
