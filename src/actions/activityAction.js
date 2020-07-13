@@ -207,6 +207,6 @@ export const deleteActivity = idActivity => async (dispatch) => {
     dispatch({ type: DELETE_ACTIVITY_SUCCESS, idActivityRemoved });
     history.push('/activity-base/1');
   } catch {
-    dispatch({ type: DELETE_ACTIVITY_SUCCESS });
+    dispatch({ type: DELETE_ACTIVITY_FAILURE });
   }
 };

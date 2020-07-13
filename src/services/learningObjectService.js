@@ -166,6 +166,18 @@ function listLearningObjectModal(page, filterObject) {
     .then(handleResponse)
     .then(objectPage => objectPage);
 }
+// Delete an object given its ID
+function deleteLearningObject(id) {
+  const requestOptions = {
+    method: 'DELETE',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+
+  return axios.delete(`${apiUrl}/learning_object/${id}/`, requestOptions)
+    .then(response => response.data).then(() => id);
+}
 
 const learningObjectService = {
   fetchLearningObject,
@@ -173,6 +185,7 @@ const learningObjectService = {
   updateLearningObject,
   listLearningObject,
   listLearningObjectModal,
+  deleteLearningObject,
 };
 
 export default learningObjectService;

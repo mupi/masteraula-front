@@ -239,7 +239,7 @@ const SidebarMobile = ({
                         className="btn__icon"
                         icon="image"
                       />
-                        Tirinhas, excertos e mais
+                        Banco de objetos
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
@@ -344,6 +344,12 @@ const SidebarWeb = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/create-object">
+                      <FontAwesomeIcon className="btn__icon" icon="plus" />
+                        Criar objeto
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
                     <Link to="/create-activity">
                       <FontAwesomeIcon
                         className="btn__icon"
@@ -392,8 +398,8 @@ const SidebarWeb = ({
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
                     <Link to="/object-base/1">
-                      <FontAwesomeIcon className="btn__icon" icon="image" />
-                          Tirinhas, excertos e mais
+                      <FontAwesomeIcon className="btn__icon" icon="search" />
+                          Banco de objetos
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">

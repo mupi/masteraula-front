@@ -29,6 +29,7 @@ import {
   PricingPageContainer,
   ViewLearningObjectPageContainer,
   CreateLearningObjectPageContainer,
+  EditLearningObjectPageContainer,
   ObjectBasePageContainer,
   PublicDocumentPageContainer,
   TopicBasePageContainer,
@@ -201,6 +202,7 @@ class App extends Component {
                 <Route path="/edit-document" component={EditDocumentPageContainer} />
                 <Route path="/create-object/" component={CreateLearningObjectPageContainer} />
                 <Route path="/view-object/:id" component={ViewLearningObjectPageContainer} />
+                <Route path="/edit-object/:id" component={EditLearningObjectPageContainer} />
                 <Route path="/edit-header/:id" component={EditHeaderPageContainer} />
                 <Route path="/new-header" component={EditHeaderPageContainer} />
                 <Route path="/object-base/:page(\d+)" component={ObjectBasePageContainer} />

@@ -53,6 +53,11 @@ export const ADD_SELECTED_LABEL_LEARNING_OBJECT = 'ADD_SELECTED_LABEL_LEARNING_O
 export const REMOVE_SELECTED_LABEL_LEARNING_OBJECT = 'REMOVE_SELECTED_LABEL_LEARNING_OBJECT';
 export const REMOVE_SELECTED_LABEL_LEARNING_OBJECT_AFTER_DELETING_LABEL = 'REMOVE_SELECTED_LABEL_LEARNING_OBJECT_AFTER_DELETING_LABEL';
 
+// Delete object
+export const DELETE_LEARNING_OBJECT = 'DELETE_LEARNING_OBJECT';
+export const DELETE_LEARNING_OBJECT_SUCCESS = 'DELETE_LEARNING_OBJECT_SUCCESS';
+export const DELETE_LEARNING_OBJECT_FAILURE = 'DELETE_LEARNING_OBJECT_FAILURE';
+
 // Fetch a learning object
 export const fetchLearningObject = (id) => {
   function requestLearningObject() { return { type: FETCH_LEARNING_OBJECT }; }
@@ -63,6 +68,14 @@ export const fetchLearningObject = (id) => {
     return learningObjectService.fetchLearningObject(id).then(
       (activeLearningObject) => {
         dispatch(requestLearningObjectSuccess(activeLearningObject));
+        // initialize object Page for owner's
+        dispatch(initialize('edit-object', {
+          owner: activeLearningObject.owner,
+          source: activeLearningObject.source,
+          image: activeLearningObject.image,
+          text: activeLearningObject.text,
+          tags: activeLearningObject.tags.map(tag => tag.name.trim()).join(', '),
+        }));
       }, (error) => {
         dispatch(requestLearningObjectFailure(error));
         history.push('/object-base/1');
@@ -168,3 +181,14 @@ export const removeSelectedLabelFromLearningObject = (idQuestion, idLabel) => ({
 export const removeSelectedLabelFromLearningObjectAfterDeletingLabel = idLabel => ({
   type: REMOVE_SELECTED_LABEL_LEARNING_OBJECT_AFTER_DELETING_LABEL, idLabel,
 });
+
+export const deleteLearningObject = id => async (dispatch) => {
+  try {
+    dispatch({ type: DELETE_LEARNING_OBJECT });
+    const idObjectRemoved = await learningObjectService.deleteLearningObject(id);
+    dispatch({ type: DELETE_LEARNING_OBJECT_SUCCESS, idObjectRemoved });
+    history.push('/object-base/1');
+  } catch {
+    dispatch({ type: DELETE_LEARNING_OBJECT_FAILURE });
+  }
+};

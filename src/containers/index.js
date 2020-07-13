@@ -20,6 +20,7 @@ export { default as MyQuestionEditPageContainer } from './MyQuestionEditPageCont
 export { default as DeleteQuestionButtonContainer } from './DeleteQuestionButtonContainer';
 export { default as ViewLearningObjectPageContainer } from './ViewLearningObjectPageContainer';
 export { default as CreateLearningObjectPageContainer } from './CreateLearningObjectPageContainer';
+export { default as EditLearningObjectPageContainer } from './EditLearningObjectPageContainer';
 export { default as ObjectBasePageContainer } from './ObjectBasePageContainer';
 export { default as SidebarObjectFiltersContainer } from './SidebarObjectFiltersContainer';
 export { default as PublicDocumentPageContainer } from './PublicDocumentPageContainer';
