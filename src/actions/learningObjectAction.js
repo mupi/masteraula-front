@@ -106,6 +106,13 @@ export const updateLearningObject = (props, showMessage = true) => {
     dispatch(updateActiveLearningObject(props));
     return learningObjectService.updateLearningObject(props).then(
       (activeLearningObject) => {
+        dispatch(initialize('edit-object', {
+          owner: activeLearningObject.owner,
+          source: activeLearningObject.source,
+          image: activeLearningObject.image,
+          text: activeLearningObject.text,
+          tags: activeLearningObject.tags.map(tag => tag.name.trim()).join(', '),
+        }));
         dispatch(updateLearningObjectSuccess(activeLearningObject));
       },
       (error) => {

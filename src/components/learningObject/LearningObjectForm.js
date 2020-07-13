@@ -175,7 +175,7 @@ const LearningObjectForm = (props) => {
             <p className="c-learning-object__form-labels">Imagem</p>
             <div className="c-learning-object__form-image-section">
               <Label for="upload-avatar" className="upload-avatar">
-                <div className="thumbnail">
+                <div className="thumbnail c-user-profile__avatar">
                   { activeLearningObject && activeLearningObject.image
                     && <img src={activeLearningObject.image} alt="objeto" id="objeto" />
                     }

@@ -41,11 +41,14 @@ const mapDispatchToProps = dispatch => ({
         tags: testetag
     */
     const errors = [];
+    const isValidFile = values.image && values.image instanceof FileList && values.image.length > 0;
+
     const updatedObject = {
       id: props.activeLearningObject.id,
       text: values.text.trim() !== '<p></p>' ? values.text : '',
       source: values.source,
-      image: values.image,
+      image: (values.image && isValidFile) ? values.image : null,
+
       object_types: [],
       tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
     };
