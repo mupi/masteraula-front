@@ -42,8 +42,24 @@ const mapDispatchToProps = dispatch => ({
     */
     const errors = [];
     const updatedObject = {
-      id: props.activeActivity.id,
+      id: props.activeLearningObject.id,
+      text: values.text.trim() !== '<p></p>' ? values.text : '',
+      source: values.source,
+      image: values.image,
+      object_types: [],
+      tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
     };
+
+
+    const overMaxSize = values.image && values.image instanceof FileList && values.image.length > 0 && values.image[0].size > 2097152;
+    if (overMaxSize) {
+      errors.image = 'Insira um arquivo PNG, JPG, JPEG de máx. 2mb';
+    }
+
+    const typeFile = values.image && values.image instanceof FileList && values.image.length > 0 && !values.image[0].type.includes('image');
+    if (typeFile) {
+      errors.image = 'Insira um arquivo PNG, JPG, JPEG';
+    }
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
     return dispatch(updateLearningObject(updatedObject));

@@ -78,32 +78,32 @@ function createLearningObject(newObjectData) {
 }
 
 // Update an Active LearningObject
-function updateLearningObject(activeUpdateLearningObject) {
+function updateLearningObject(updatedObjectData) {
+  const objectFormData = convertObjectToFormData(updatedObjectData);
   const requestOptions = {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    body: JSON.stringify({ ...activeUpdateLearningObject, secret: true }),
   };
 
-  const handleResponse = response => response.json().then((data) => {
-    if (!response.ok) {
-      const error = (data || 'Something went wrong');
-      return Promise.reject(error);
-    }
+  const url = `/learning_object/${updatedObjectData.id}/`;
 
-    return data;
-  });
+  return axios.patch(`${apiUrl}${url}`, objectFormData, requestOptions)
+    .then(response => response.data).then(newObject => newObject)
+    .catch((error) => {
+      if (error.response) {
+        if (error.response.data.image[0].includes('File is not Image')) {
+          return Promise.reject('Arquivo inválido. Escolha um arquivo PNG, JPG ou JPEG.');
+        }
+        if (error.response.data.image[0].includes('Max file size is 2MB')) {
+          return Promise.reject('Tamanho máximo do arquivo é 2Mb.');
+        }
+        return Promise.reject(error.response.data.pdf[0]);
+      }
 
-  const idLearningObject = activeUpdateLearningObject.id;
-
-  return fetch(`${apiUrl}/learning_object/${idLearningObject}/`, requestOptions)
-    .then(handleResponse)
-    .then((activeLearningObject) => {
-      localStorage.setItem('activeLearningObject', JSON.stringify(activeLearningObject));
-      return activeLearningObject;
+      return Promise.reject('Ocorreu um erro com sua solicitação');
     });
 }
 
