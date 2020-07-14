@@ -5,7 +5,11 @@ import { fetchLearningObject, deleteLearningObject } from 'actions/learningObjec
 import { setQuestionIdToNewDocument, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
 import { history } from 'helpers';
 import { showModal, hideModal } from 'actions/modalAction';
-
+import { addSelectedObjectToQuestion, setObjectIdToNewQuestion } from 'actions/questionAction';
+import {
+  addSelectedObjectToActivity,
+  setObjectIdToNewActivity,
+} from 'actions/activityAction';
 import {
   addSelectedDisciplineFilter, addSelectedTeachingLevelFilter, removeSelectedDisciplineFilter,
   addSelectedDifficultyFilter, removeSelectedDifficultyFilter, removeSelectedTeachingLevelFilter,
@@ -127,6 +131,12 @@ const mapDispatchToProps = (dispatch) => {
 
     // create new Label
     showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),
+
+    /* Options for object in plus icon */
+    setObjectIdToNewQuestion: id => dispatch(setObjectIdToNewQuestion(id)),
+    addSelectedObjectToQuestion: object => dispatch(addSelectedObjectToQuestion(object)),
+    setObjectIdToNewActivity: id => dispatch(setObjectIdToNewActivity(id)),
+    addSelectedObjectToActivity: object => dispatch(addSelectedObjectToActivity(object)),
   });
 };
 

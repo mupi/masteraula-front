@@ -28,6 +28,10 @@
       margin-bottom: 15px;
     }
 
+    &__op-add{
+      font-size: 14px;
+    }
+
     &__form-labels{
       padding:10px;
       margin-bottom: 0px;
@@ -47,6 +51,12 @@
       text-align: right;
       margin-top: -15px;
       margin-bottom: 5px;
+
+      .dropdown-toggle{
+        &:after{
+          content: none;
+        }
+      }
     }
 
     &__img{

@@ -46,6 +46,10 @@ export const ADD_TASK_TO_ACTIVITY = 'ADD_TASK_TO_ACTIVITY';
 export const REMOVE_TASK_FROM_ACTIVITY = 'REMOVE_TASK_FROM_ACTIVITY';
 export const RESET_TASKS_ACTIVITY = 'RESET_TASKS_ACTIVITY';
 
+// Set object that will added in new Activity - Create activity based on selected object
+export const SET_OBJECT_TO_NEW_ACTIVITY = 'SET_OBJECT_TO_NEW_ACTIVITY';
+
+
 /*
 {
   "learning_objects_ids": [id],
@@ -85,7 +89,7 @@ export const listActivities = (page, filter) => {
     if (getState().activity.isFetching) {
       return 1;
     }
-    dispatch(listTopicFilters(filter, {activities: true}));
+    dispatch(listTopicFilters(filter, { activities: true }));
     dispatch(requestActivityPage());
     return activityService.listActivities(page, filter)
       .then(
@@ -210,3 +214,10 @@ export const deleteActivity = idActivity => async (dispatch) => {
     dispatch({ type: DELETE_ACTIVITY_FAILURE });
   }
 };
+
+
+// Functions for create activity based on Object
+export const setObjectIdToNewActivity = objectId => ({
+  type: SET_OBJECT_TO_NEW_ACTIVITY,
+  objectIdAddedToActivity: objectId,
+});

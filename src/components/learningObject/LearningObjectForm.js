@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Alert, Row, Col, Button, Form, Label,
+  Alert, Row, Col, Button, Form, Label, UncontrolledAlert,
 } from 'reactstrap';
 import { Link, Prompt } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -258,9 +258,9 @@ const LearningObjectForm = (props) => {
         <Row>
           <Col>
             {errors && errors.general_errors && !submitting && (
-            <Alert color="danger">
+            <UncontrolledAlert color="danger">
               {errors.general_errors}
-            </Alert>
+            </UncontrolledAlert>
             )}
           </Col>
         </Row>

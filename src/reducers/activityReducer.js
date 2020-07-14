@@ -28,6 +28,8 @@ import {
   REMOVE_TASK_FROM_ACTIVITY,
   RESET_TASKS_ACTIVITY,
 
+  SET_OBJECT_TO_NEW_ACTIVITY,
+
 
 } from 'actions/activityAction';
 import { toast } from 'react-toastify';
@@ -170,8 +172,15 @@ export const activity = (state = initialState, action) => {
       });
     }
     case RESET_SELECTED_OBJECTLIST_ACTIVITY: {
+      const newSelectedObjectList = state.selectedObjectList.filter(item => item.id === state.objectIdAddedToActivity);
       return Object.assign({}, state, {
-        selectedObjectList: [],
+        selectedObjectList: newSelectedObjectList,
+        objectIdAddedToQuestion: undefined,
+      });
+    }
+    case SET_OBJECT_TO_NEW_ACTIVITY: {
+      return Object.assign({}, state, {
+        objectIdAddedToActivity: action.objectIdAddedToActivity,
       });
     }
     default:

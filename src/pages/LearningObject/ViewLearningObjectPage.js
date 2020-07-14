@@ -6,7 +6,7 @@ import {
   Col,
   Button,
 } from 'reactstrap';
-import LearningObjectContentContainer from 'containers/LearningObjectContentContainer';
+import LearningObjectContent from 'components/learningObject/LearningObjectContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionList from 'components/question/QuestionList';
 import BackUsingHistory from 'components/question/BackUsingHistory';
@@ -107,7 +107,7 @@ class ViewLearningObjectPage extends Component {
         <Row>
           <Col sm="12">
             <div className="l-learning-object">
-              { activeLearningObject ? <LearningObjectContentContainer learningObject={activeLearningObject} options={options} /> : ''}
+              { activeLearningObject ? <LearningObjectContent learningObject={activeLearningObject} options={options} {...this.props} /> : ''}
             </div>
           </Col>
         </Row>
