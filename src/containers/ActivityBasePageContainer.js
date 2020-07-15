@@ -52,6 +52,7 @@ const toggleSelectedYearFilter = (idYear, value, nameYear = 'default') => {
 const mapStateToProps = state => ({
   /* PRECISO REFATORAR AQUI.. */
   isFetchingQuestions: state.activity.isFetching,
+  isFetching: state.activity.isFetching,
   activityPage: state.activity.activityPage,
   filter: state.filterActivity,
   currentPage: state.activity.currentPage,
