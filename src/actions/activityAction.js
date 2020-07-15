@@ -2,7 +2,7 @@ import { activityService } from 'services';
 import { history } from 'helpers';
 import { initialize } from 'redux-form';
 import { toast } from 'react-toastify';
-import { listTopicFilters } from 'actions/filterAction';
+import { listTopicFilters } from 'actions/filterActivityAction';
 
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
