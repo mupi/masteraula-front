@@ -53,13 +53,14 @@ const mapStateToProps = state => ({
   /* PRECISO REFATORAR AQUI.. */
   isFetchingQuestions: state.activity.isFetching,
   isFetching: state.activity.isFetching,
+  
   activityPage: state.activity.activityPage,
   filter: state.filterActivity,
   currentPage: state.activity.currentPage,
 
   /* search filters */
   searchText: state.filterActivity.searchText,
-  onlyMyMaterial: state.filterActivity.onlyMyActivities,
+  onlyMyActivities: state.filterActivity.onlyMyActivities,
   disciplineIdSelected: state.filterActivity.disciplinesSelected
     && state.filterActivity.disciplinesSelected.length > 0 ? state.filterActivity.disciplinesSelected[0].id : -1,
   disciplinesSelected: state.filterActivity.disciplinesSelected,
