@@ -11,10 +11,10 @@ export const LIST_TEACHINGLEVEL_FILTERS_SUCCESS = 'LIST_TEACHINGLEVEL_FILTERS_SU
 export const LIST_TEACHINGLEVEL_FILTERS_FAILURE = 'LIST_TEACHINGLEVEL_FILTERS_FAILURE';
 
 // List Topic Filters (Redação, Morfologia, Análisis Combinatório)
-export const LIST_TOPIC_FILTERS = 'LIST_TOPIC_FILTERS';
-export const LIST_TOPIC_FILTERS_SUCCESS = 'LIST_TOPIC_FILTERS_SUCCESS';
-export const LIST_TOPIC_FILTERS_FAILURE = 'LIST_TOPIC_FILTERS_FAILURE';
-export const RESET_LIST_TOPIC_SELECTED = 'RESET_LIST_TOPIC_SELECTED';
+export const LIST_TOPIC_FILTERS_A = 'LIST_TOPIC_FILTERS';
+export const LIST_TOPIC_FILTERS_A_SUCCESS = 'LIST_TOPIC_FILTERS_SUCCESS';
+export const LIST_TOPIC_FILTERS_A_FAILURE = 'LIST_TOPIC_FILTERS_FAILURE';
+export const RESET_LIST_TOPIC_SELECTED_A = 'RESET_LIST_TOPIC_SELECTED';
 
 // List Years Filters (2010, 2011)
 export const LIST_YEAR_FILTERS = 'LIST_YEAR_FILTERS';
@@ -23,37 +23,37 @@ export const LIST_YEAR_FILTERS_FAILURE = 'LIST_YEAR_FILTERS_FAILURE';
 
 
 // Add selected discipline filter
-export const ADD_SELECTED_DISCIPLINE_FILTER = 'ADD_SELECTED_DISCIPLINE_FILTER';
+export const ADD_SELECTED_DISCIPLINE_FILTER_A = 'ADD_SELECTED_DISCIPLINE_FILTER_A';
 
 // Remove selected discipline filter
-export const REMOVE_SELECTED_DISCIPLINE_FILTER = 'REMOVE_SELECTED_DISCIPLINE_FILTER';
+export const REMOVE_SELECTED_DISCIPLINE_FILTER_A = 'REMOVE_SELECTED_DISCIPLINE_FILTER_A';
 
 // Add selected teachingLevel filter
-export const ADD_SELECTED_TEACHINGLEVEL_FILTER = 'ADD_SELECTED_TEACHINGLEVEL_FILTER';
+export const ADD_SELECTED_TEACHINGLEVEL_FILTER_A = 'ADD_SELECTED_TEACHINGLEVEL_FILTER_A';
 
 // Remove selected teachingLevel filter
-export const REMOVE_SELECTED_TEACHINGLEVEL_FILTER = 'REMOVE_SELECTED_TEACHINGLEVEL_FILTER';
+export const REMOVE_SELECTED_TEACHINGLEVEL_FILTER_A = 'REMOVE_SELECTED_TEACHINGLEVEL_FILTER_A';
 
 
 // Add selected year filter
-export const ADD_SELECTED_YEAR_FILTER = 'ADD_SELECTED_YEAR_FILTER';
+export const ADD_SELECTED_YEAR_FILTER_A = 'ADD_SELECTED_YEAR_FILTER_A';
 
 // Remove selected year filter
-export const REMOVE_SELECTED_YEAR_FILTER = 'REMOVE_SELECTED_YEAR_FILTER';
+export const REMOVE_SELECTED_YEAR_FILTER_A = 'REMOVE_SELECTED_YEAR_FILTER_A';
 // Add selected difficulty filter
-export const ADD_SELECTED_DIFFICULTY_FILTER = 'ADD_SELECTED_DIFFICULTY_FILTER';
+export const ADD_SELECTED_DIFFICULTY_FILTER_A = 'ADD_SELECTED_DIFFICULTY_FILTER_A';
 
 // Remove selected difficulty filter
-export const REMOVE_SELECTED_DIFFICULTY_FILTER = 'REMOVE_SELECTED_DIFFICULTY_FILTER';
+export const REMOVE_SELECTED_DIFFICULTY_FILTER_A = 'REMOVE_SELECTED_DIFFICULTY_FILTER_A';
 
 // Add selected TOPIC filter
-export const ADD_SELECTED_TOPIC_FILTER = 'ADD_SELECTED_TOPIC_FILTER';
+export const ADD_SELECTED_TOPIC_FILTER_A = 'ADD_SELECTED_TOPIC_FILTER_A';
 
 // Remove selected TOPIC filter
-export const REMOVE_SELECTED_TOPIC_FILTER = 'REMOVE_SELECTED_TOPIC_FILTER';
+export const REMOVE_SELECTED_TOPIC_FILTER_A = 'REMOVE_SELECTED_TOPIC_FILTER_A';
 
 // Set search text
-export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
+export const SET_SEARCH_TEXT_A = 'SET_SEARCH_TEXT_A';
 
 // Set search text for Learning object
 export const SET_SEARCH_TEXT_OBJECT = 'SET_SEARCH_TEXT_OBJECT';
@@ -64,11 +64,11 @@ export const ADD_MYACTIVITIES_FILTER = 'ADD_MYACTIVITIES_FILTER';
 export const ADD_MYACTIVITIES_FILTER_MODAL = 'ADD_MYACTIVITIES_FILTER_MODAL';
 
 // Clear all filters selected
-export const CLEAR_SELECTED_FILTERS = 'CLEAR_SELECTED_FILTERS';
+export const CLEAR_SELECTED_FILTERS_A = 'CLEAR_SELECTED_FILTERS_A';
 
-export const CLEAR_SEARCH = 'CLEAR_SEARCH';
+export const CLEAR_SEARCH_A = 'CLEAR_SEARCH_A';
 
-export const CLEAN_SEARCH_INPUT = 'CLEAN_SEARCH_INPUT';
+export const CLEAN_SEARCH_INPUT_A = 'CLEAN_SEARCH_INPUT_A';
 
 // Discipline List
 export const listDisciplineFilters = () => {
@@ -147,12 +147,12 @@ export const listYearFilters = () => {
 };
 // List all topics filters
 export const listTopicFilters = (filter) => {
-  function requestListTopics() { return { type: LIST_TOPIC_FILTERS }; }
+  function requestListTopics() { return { type: LIST_TOPIC_FILTERS_A }; }
   function fetchListTopicsSuccess(topicFilters) {
-    return { type: LIST_TOPIC_FILTERS_SUCCESS, topicFilters };
+    return { type: LIST_TOPIC_FILTERS_A_SUCCESS, topicFilters };
   }
   function fetchListTopicsFailure(error) {
-    return { type: LIST_TOPIC_FILTERS_FAILURE, error };
+    return { type: LIST_TOPIC_FILTERS_A_FAILURE, error };
   }
   return (dispatch) => {
     dispatch(requestListTopics(filter));
@@ -170,66 +170,66 @@ export const listTopicFilters = (filter) => {
 
 // Add Selected Discipline filter
 export const addSelectedDisciplineFilter = idDiscipline => ({
-  type: ADD_SELECTED_DISCIPLINE_FILTER, idDiscipline,
+  type: ADD_SELECTED_DISCIPLINE_FILTER_A, idDiscipline,
 });
 
 // Remove Selected Discipline filter
 export const removeSelectedDisciplineFilter = idDiscipline => ({
-  type: REMOVE_SELECTED_DISCIPLINE_FILTER, idDiscipline,
+  type: REMOVE_SELECTED_DISCIPLINE_FILTER_A, idDiscipline,
 });
 
 // Add Selected TeachingLevel filter
 export const addSelectedTeachingLevelFilter = idTeachingLevel => ({
-  type: ADD_SELECTED_TEACHINGLEVEL_FILTER, idTeachingLevel,
+  type: ADD_SELECTED_TEACHINGLEVEL_FILTER_A, idTeachingLevel,
 });
 
 // Remove Selected TeachingLevel filter
 export const removeSelectedTeachingLevelFilter = idTeachingLevel => ({
-  type: REMOVE_SELECTED_TEACHINGLEVEL_FILTER, idTeachingLevel,
+  type: REMOVE_SELECTED_TEACHINGLEVEL_FILTER_A, idTeachingLevel,
 });
 
 // Add Selected Year filter
 export const addSelectedYearFilter = (idYear, nameYear = 'default') => ({
-  type: ADD_SELECTED_YEAR_FILTER, idYear, nameYear,
+  type: ADD_SELECTED_YEAR_FILTER_A, idYear, nameYear,
 });
 
 // Remove Selected Year filter
 export const removeSelectedYearFilter = idYear => ({
-  type: REMOVE_SELECTED_YEAR_FILTER, idYear,
+  type: REMOVE_SELECTED_YEAR_FILTER_A, idYear,
 });
 
 // Add Selected Difficulty filter
 export const addSelectedDifficultyFilter = difficultyType => ({
-  type: ADD_SELECTED_DIFFICULTY_FILTER, difficultyType,
+  type: ADD_SELECTED_DIFFICULTY_FILTER_A, difficultyType,
 });
 
 // Remove Selected Difficulty filter
 export const removeSelectedDifficultyFilter = difficultyType => ({
-  type: REMOVE_SELECTED_DIFFICULTY_FILTER, difficultyType,
+  type: REMOVE_SELECTED_DIFFICULTY_FILTER_A, difficultyType,
 });
 
 // Add Selected TOPIC filter
 export const addSelectedTopicFilter = topic => ({
-  type: ADD_SELECTED_TOPIC_FILTER, topic,
+  type: ADD_SELECTED_TOPIC_FILTER_A, topic,
 });
 
 // Remove Selected TOPIC filter
 export const removeSelectedTopicFilter = idTopic => ({
-  type: REMOVE_SELECTED_TOPIC_FILTER, idTopic,
+  type: REMOVE_SELECTED_TOPIC_FILTER_A, idTopic,
 });
 
 // Reset topic list
 export const resetTopicListSelected = () => ({
-  type: RESET_LIST_TOPIC_SELECTED,
+  type: RESET_LIST_TOPIC_SELECTED_A,
 });
 
 
 export const setSearchText = searchText => ({
-  type: SET_SEARCH_TEXT, searchText,
+  type: SET_SEARCH_TEXT_A, searchText,
 });
 
 export const cleanSearchInput = () => ({
-  type: CLEAN_SEARCH_INPUT,
+  type: CLEAN_SEARCH_INPUT_A,
 });
 
 export const addMyActivitiesFilter = (author, onlyMyActivities) => ({
@@ -237,11 +237,11 @@ export const addMyActivitiesFilter = (author, onlyMyActivities) => ({
 });
 
 export const clearSelectedFilters = () => ({
-  type: CLEAR_SELECTED_FILTERS,
+  type: CLEAR_SELECTED_FILTERS_A,
 });
 
 export const clearSearch = () => ({
-  type: CLEAR_SEARCH,
+  type: CLEAR_SEARCH_A,
 });
 
 

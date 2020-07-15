@@ -3,27 +3,36 @@ import {
   LIST_DISCIPLINE_FILTERS_SUCCESS, LIST_DISCIPLINE_FILTERS_FAILURE,
   LIST_TEACHINGLEVEL_FILTERS,
   LIST_TEACHINGLEVEL_FILTERS_SUCCESS, LIST_TEACHINGLEVEL_FILTERS_FAILURE,
-  LIST_TOPIC_FILTERS,
-  LIST_TOPIC_FILTERS_SUCCESS, LIST_TOPIC_FILTERS_FAILURE,
   LIST_YEAR_FILTERS,
   LIST_YEAR_FILTERS_SUCCESS, LIST_YEAR_FILTERS_FAILURE,
-  ADD_SELECTED_DISCIPLINE_FILTER,
-  REMOVE_SELECTED_DISCIPLINE_FILTER,
-  ADD_SELECTED_TEACHINGLEVEL_FILTER,
-  REMOVE_SELECTED_TEACHINGLEVEL_FILTER,
-  ADD_SELECTED_DIFFICULTY_FILTER,
-  REMOVE_SELECTED_DIFFICULTY_FILTER,
-  ADD_SELECTED_YEAR_FILTER,
-  REMOVE_SELECTED_YEAR_FILTER,
-  ADD_SELECTED_TOPIC_FILTER,
-  REMOVE_SELECTED_TOPIC_FILTER,
-  RESET_LIST_TOPIC_SELECTED,
-  SET_SEARCH_TEXT,
+
+  LIST_TOPIC_FILTERS_A,
+  LIST_TOPIC_FILTERS_A_SUCCESS, LIST_TOPIC_FILTERS_A_FAILURE,
+
+  ADD_SELECTED_DISCIPLINE_FILTER_A,
+  REMOVE_SELECTED_DISCIPLINE_FILTER_A,
+
+  ADD_SELECTED_TEACHINGLEVEL_FILTER_A,
+  REMOVE_SELECTED_TEACHINGLEVEL_FILTER_A,
+
+  ADD_SELECTED_DIFFICULTY_FILTER_A,
+  REMOVE_SELECTED_DIFFICULTY_FILTER_A,
+
+  ADD_SELECTED_YEAR_FILTER_A,
+  REMOVE_SELECTED_YEAR_FILTER_A,
+
+  ADD_SELECTED_TOPIC_FILTER_A,
+  REMOVE_SELECTED_TOPIC_FILTER_A,
+
+  RESET_LIST_TOPIC_SELECTED_A,
+  SET_SEARCH_TEXT_A,
   SET_SEARCH_TEXT_MODAL,
+
   ADD_MYACTIVITIES_FILTER,
   ADD_MYACTIVITIES_FILTER_MODAL,
-  CLEAR_SELECTED_FILTERS, CLEAR_SEARCH,
-  CLEAN_SEARCH_INPUT,
+
+  CLEAR_SELECTED_FILTERS_A, CLEAR_SEARCH_A,
+  CLEAN_SEARCH_INPUT_A,
 
 } from 'actions/filterActivityAction';
 
@@ -102,24 +111,24 @@ export const filterActivity = (state = initialState, action) => {
         isFetchingYearFilters: false,
         error: action.error,
       });
-    case LIST_TOPIC_FILTERS:
+    case LIST_TOPIC_FILTERS_A:
       return Object.assign({}, state, {
         topicFilters: action.topicFilters,
         isFetchingTopicFilters: true,
         error: null,
       });
-    case LIST_TOPIC_FILTERS_SUCCESS:
+    case LIST_TOPIC_FILTERS_A_SUCCESS:
       return Object.assign({}, state, {
         topicFilters: action.topicFilters.topics,
         moreTopicFilters: action.topicFilters.more,
         isFetchingTopicFilters: false,
       });
-    case LIST_TOPIC_FILTERS_FAILURE:
+    case LIST_TOPIC_FILTERS_A_FAILURE:
       return Object.assign({}, state, {
         isFetchingTopicFilters: false,
         error: action.error,
       });
-    case ADD_SELECTED_DISCIPLINE_FILTER: {
+    case ADD_SELECTED_DISCIPLINE_FILTER_A: {
       if (action.idDiscipline >= 0) {
         const newId = [3, 12].includes(parseInt(action.idDiscipline, 10)) ? parseInt(action.idDiscipline, 10) - 1 : action.idDiscipline;
         const filterDiscipline = state.disciplineFiltersJoined.filter(item => item.id === parseInt(newId, 10));
@@ -135,39 +144,39 @@ export const filterActivity = (state = initialState, action) => {
         disciplinesSelected: [],
       });
     }
-    case REMOVE_SELECTED_DISCIPLINE_FILTER: {
+    case REMOVE_SELECTED_DISCIPLINE_FILTER_A: {
       const newDisciplines = state.disciplinesSelected.filter(item => item.id !== parseInt(action.idDiscipline, 10));
       return Object.assign({}, state, {
         disciplinesSelected: newDisciplines,
       });
     }
-    case ADD_SELECTED_TEACHINGLEVEL_FILTER: {
+    case ADD_SELECTED_TEACHINGLEVEL_FILTER_A: {
       const filterTeachingL = state.teachingLevelFilters.filter(item => item.id === parseInt(action.idTeachingLevel, 10));
       if (state.teachingLevelsSelected.filter(item => item.id === filterTeachingL[0].id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
         teachingLevelsSelected: [...state.teachingLevelsSelected, filterTeachingL[0]],
       });
     }
-    case REMOVE_SELECTED_TEACHINGLEVEL_FILTER: {
+    case REMOVE_SELECTED_TEACHINGLEVEL_FILTER_A: {
       const newTeachingLevels = state.teachingLevelsSelected.filter(item => item.id !== parseInt(action.idTeachingLevel, 10));
       return Object.assign({}, state, {
         teachingLevelsSelected: newTeachingLevels,
       });
     }
-    case ADD_SELECTED_DIFFICULTY_FILTER: {
+    case ADD_SELECTED_DIFFICULTY_FILTER_A: {
       const filterDifficulty = state.difficultyFilters.filter(item => item.id === action.difficultyType);
       if (state.difficultiesSelected.filter(item => item.id === filterDifficulty[0].id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
         difficultiesSelected: [...state.difficultiesSelected, filterDifficulty[0]],
       });
     }
-    case REMOVE_SELECTED_DIFFICULTY_FILTER: {
+    case REMOVE_SELECTED_DIFFICULTY_FILTER_A: {
       const newDifficulties = state.difficultiesSelected.filter(item => item.id !== action.difficultyType);
       return Object.assign({}, state, {
         difficultiesSelected: newDifficulties,
       });
     }
-    case ADD_SELECTED_YEAR_FILTER: {
+    case ADD_SELECTED_YEAR_FILTER_A: {
       /* any year available in yearFilteres */
       if (parseInt(action.idYear, 10) >= 0) {
         const filterYear = state.yearFilters.filter(item => item.id === parseInt(action.idYear, 10));
@@ -195,30 +204,30 @@ export const filterActivity = (state = initialState, action) => {
         yearsSelected: [],
       });
     }
-    case REMOVE_SELECTED_YEAR_FILTER: {
+    case REMOVE_SELECTED_YEAR_FILTER_A: {
       const newYears = state.yearsSelected.filter(item => item.id.toString() !== action.idYear);
       return Object.assign({}, state, {
         yearsSelected: newYears,
       });
     }
-    case ADD_SELECTED_TOPIC_FILTER: {
+    case ADD_SELECTED_TOPIC_FILTER_A: {
       if (state.topicsSelected.filter(item => item.id === action.topic.id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
         topicsSelected: [...state.topicsSelected, action.topic],
       });
     }
-    case REMOVE_SELECTED_TOPIC_FILTER: {
+    case REMOVE_SELECTED_TOPIC_FILTER_A: {
       const newTopics = state.topicsSelected.filter(item => item.id !== parseInt(action.idTopic, 10));
       return Object.assign({}, state, {
         topicsSelected: newTopics,
       });
     }
-    case RESET_LIST_TOPIC_SELECTED:
+    case RESET_LIST_TOPIC_SELECTED_A:
       return Object.assign({}, state, {
         topicsSelected: [],
         topicFilters: [],
       });
-    case SET_SEARCH_TEXT: {
+    case SET_SEARCH_TEXT_A: {
       return Object.assign({}, state, {
         searchText: action.searchText,
       });
@@ -231,7 +240,7 @@ export const filterActivity = (state = initialState, action) => {
       });
     }
 
-    case CLEAN_SEARCH_INPUT: {
+    case CLEAN_SEARCH_INPUT_A: {
       return Object.assign({}, state, {
         searchText: '',
       });
@@ -251,7 +260,7 @@ export const filterActivity = (state = initialState, action) => {
       });
     }
 
-    case CLEAR_SELECTED_FILTERS: {
+    case CLEAR_SELECTED_FILTERS_A: {
       return Object.assign({}, state, {
         disciplinesSelected: [],
         teachingLevelsSelected: [],
@@ -263,7 +272,7 @@ export const filterActivity = (state = initialState, action) => {
         onlyMyActivities: false,
       });
     }
-    case CLEAR_SEARCH: {
+    case CLEAR_SEARCH_A: {
       return Object.assign({}, state, {
         searchText: '',
       });
