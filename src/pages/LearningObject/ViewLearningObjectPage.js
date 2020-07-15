@@ -9,6 +9,7 @@ import {
 import LearningObjectContent from 'components/learningObject/LearningObjectContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionList from 'components/question/QuestionList';
+import ActivityList from 'components/activity/ActivityList';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import { Link } from 'react-router-dom';
 
@@ -117,9 +118,15 @@ class ViewLearningObjectPage extends Component {
             <QuestionList
               sm="4"
               questions={activeLearningObject.questions}
-              count={activeLearningObject.questions.length}
-              textResult="Questões associadas ao objeto de aprendizagem"
+              count={activeLearningObject.questions.length + activeLearningObject.activities.length}
+              textResult="Materiais associados a este objeto"
               showLink={false}
+              {...this.props}
+            />
+            <ActivityList 
+              sm="4"
+              activities={activeLearningObject.activities} 
+              showQuantity={false}
               {...this.props}
             />
           </div>
