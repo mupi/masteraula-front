@@ -47,6 +47,7 @@ const mapDispatchToProps = (dispatch) => {
     modalProps: {
       open: true,
       title: 'Adição de novo objeto de aprendizagem',
+      addedFrom: 1,
       closeModal: () => dispatch(hideModal()),
     },
     modalType: 'createObjectModal',

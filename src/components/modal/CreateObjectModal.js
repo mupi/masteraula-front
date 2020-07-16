@@ -68,7 +68,7 @@ const mapDispatchToProps = dispatch => ({
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
-    dispatch(createLearningObject(newObject, 1));
+    dispatch(createLearningObject(newObject, props.addedFrom));
     props.closeModal();
   },
 

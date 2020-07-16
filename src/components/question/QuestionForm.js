@@ -300,6 +300,7 @@ class QuestionForm extends Component {
       teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
       submitting, resolution, errors, sourceQuestionValue, listTopicSuggestions,
       showSearchLearningObjectModal, actionName,
+      showConfirmAddObject,
     } = this.props;
 
 
@@ -349,13 +350,22 @@ class QuestionForm extends Component {
                   Objetos de aprendizagem
               </h5>
             </Col>
-            <Col md="3" sm="6">
+            <Col md="2" sm="6">
               <Button onClick={() => showSearchLearningObjectModal()}>
                 <FontAwesomeIcon
                   icon="plus"
                   className="btn__icon"
                 />
                   Adicionar objeto
+              </Button>
+            </Col>
+            <Col md="3" sm="6">
+              <Button onClick={() => showConfirmAddObject()}>
+                <FontAwesomeIcon
+                  icon="laptop"
+                  className="btn__icon"
+                />
+                      Adicionar objeto do computador
               </Button>
             </Col>
           </Row>
