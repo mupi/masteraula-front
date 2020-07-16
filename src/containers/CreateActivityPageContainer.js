@@ -9,7 +9,6 @@ import {
   addTaskToActivity, removeTaskFromActivity,
   resetTasksFromActivity,
 } from 'actions/activityAction';
-import { createLearningObject } from 'actions/learningObjectAction';
 
 import {
   listDisciplineFilters, listTeachingLevelFilters,

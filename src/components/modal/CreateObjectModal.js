@@ -39,7 +39,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: (values) => {
+  onSubmit: (values, d, props) => {
     const errors = [];
     const textObject = (values.text && values.text.trim() !== '<p></p>') ? values.text : '';
     const newObject = {
@@ -68,7 +68,8 @@ const mapDispatchToProps = dispatch => ({
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
-    return dispatch(createLearningObject(newObject));
+    dispatch(createLearningObject(newObject, 1));
+    props.closeModal();
   },
 
 });
