@@ -8,8 +8,7 @@ import {
 } from 'reactstrap';
 import LearningObjectContent from 'components/learningObject/LearningObjectContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import QuestionList from 'components/question/QuestionList';
-import ActivityList from 'components/activity/ActivityList';
+import MaterialList from 'components/material/MaterialList';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import { Link } from 'react-router-dom';
 
@@ -115,18 +114,13 @@ class ViewLearningObjectPage extends Component {
         <Row className="pagination-questions" style={{ marginLeft: '80%' }} />
         {activeLearningObject.questions.length > 0 || activeLearningObject.activities.length > 0 ? (
           <div className="c-question-base__results">
-            <QuestionList
+            <MaterialList
               sm="4"
               questions={activeLearningObject.questions}
               count={activeLearningObject.questions.length + activeLearningObject.activities.length}
               textResult="Materiais associados a este objeto"
-              showLink={false}
-              {...this.props}
-            />
-            <ActivityList 
-              sm="4"
-              activities={activeLearningObject.activities} 
-              showQuantity={false}
+              activities={activeLearningObject.activities}
+              showQuantity
               {...this.props}
             />
           </div>

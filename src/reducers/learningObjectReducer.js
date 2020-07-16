@@ -67,7 +67,7 @@ export const learningObject = (state = initialState, action) => {
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,
-        activeLearningObject: action.newObject,
+        activeLearningObject: null,
         isFetching: false,
       });
     case CREATE_LEARNING_OBJECT_FAILURE:

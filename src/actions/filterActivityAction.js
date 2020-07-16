@@ -146,7 +146,7 @@ export const listYearFilters = () => {
   };
 };
 // List all topics filters
-export const listTopicFilters = (filter) => {
+export const listTopicFilters = (filter, activities) => {
   function requestListTopics() { return { type: LIST_TOPIC_FILTERS_A }; }
   function fetchListTopicsSuccess(topicFilters) {
     return { type: LIST_TOPIC_FILTERS_A_SUCCESS, topicFilters };
@@ -156,7 +156,7 @@ export const listTopicFilters = (filter) => {
   }
   return (dispatch) => {
     dispatch(requestListTopics(filter));
-    return filterService.listTopicFilters(filter)
+    return filterService.listTopicFilters(filter, activities)
       .then(
         (topicFilters) => {
           dispatch(fetchListTopicsSuccess(topicFilters));
