@@ -212,6 +212,7 @@ const ActivityForm = (props) => {
     addTaskToActivity, removeTaskFromActivity,
     tasks,
     actionName,
+    showConfirmAddObject,
   } = props;
   return (
 
@@ -252,13 +253,22 @@ const ActivityForm = (props) => {
             <div className="border-top my-3" />
 
           </Col>
-          <Col md="3" sm="6">
+          <Col md="2" sm="6">
             <Button onClick={() => showSearchLearningObjectModal()}>
               <FontAwesomeIcon
                 icon="plus"
                 className="btn__icon"
               />
                     Adicionar objeto
+            </Button>
+          </Col>
+          <Col md="3" sm="6">
+            <Button onClick={() => showConfirmAddObject()}>
+              <FontAwesomeIcon
+                icon="laptop"
+                className="btn__icon"
+              />
+                    Adicionar objeto do computador
             </Button>
           </Col>
         </Row>

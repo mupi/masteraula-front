@@ -9,6 +9,7 @@ import { hideModal } from 'actions/modalAction';
 const MODAL_TYPES = {
   alert: modalTypes.alertModal,
   confirm: modalTypes.confirmModal,
+  basicConfirm: modalTypes.basicConfirmModal,
   delete: modalTypes.deleteModal,
   prompt: modalTypes.promptModal,
   document: modalTypes.documentModal,
@@ -24,6 +25,8 @@ const MODAL_TYPES = {
   createClassPlanModal: modalTypes.createClassPlanModal,
   searchQuestionModal: modalTypes.searchQuestionModal,
   studentResults: modalTypes.OnlineTestStudentResultsModal,
+  createObjectModal: modalTypes.createObjectModal,
+
 };
 
 const mapStateToProps = state => ({
@@ -42,7 +45,8 @@ const ModalContainer = (props) => {
     return null;
   }
 
-  if (modalType === 'document' || modalType === 'question' || modalType === 'studentResults') modalClassName = 'modal-dialog modal-lg';
+  if (modalType === 'document' || modalType === 'question' || modalType === 'studentResults' || modalType === 'createObjectModal') modalClassName = 'modal-dialog modal-lg';
+
   if ((modalType === 'searchObjectModal') || (modalType === 'searchDocumentModal') || (modalType === 'searchQuestionModal')) {
     modalClassName = 'modal-dialog modal-xl modal-fixed';
   }
