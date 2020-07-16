@@ -58,7 +58,7 @@ const mapStateToProps = state => ({
 
   /* search filters */
   searchText: state.filterActivity.searchText,
-  onlyMyMaterial: state.filterActivity.onlyMyActivities,
+  onlyMyActivities: state.filterActivity.onlyMyActivities,
   disciplineIdSelected: state.filterActivity.disciplinesSelected
     && state.filterActivity.disciplinesSelected.length > 0 ? state.filterActivity.disciplinesSelected[0].id : -1,
   disciplinesSelected: state.filterActivity.disciplinesSelected,
