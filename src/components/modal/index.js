@@ -3,6 +3,7 @@ import searchDocumentModal from 'containers/SearchDocumentModalContainer';
 
 import alertModal from './AlertModal';
 import confirmModal from './ConfirmModal';
+import basicConfirmModal from './BasicConfirmModal';
 import deleteModal from './DeleteModal';
 import promptModal from './PromptModal';
 import documentModal from './DocumentModal';
@@ -16,9 +17,12 @@ import createMyQuestionLabelModal from './CreateMyQuestionLabelModal';
 import createClassPlanModal from './CreateClassPlanModal';
 import searchQuestionModal from './SearchQuestionModal';
 import OnlineTestStudentResultsModal from './OnlineTestStudentResultsModal';
+import createObjectModal from './CreateObjectModal';
+
 
 const modalTypes = {
   alertModal,
+  basicConfirmModal,
   confirmModal,
   deleteModal,
   promptModal,
@@ -35,6 +39,7 @@ const modalTypes = {
   createClassPlanModal,
   searchQuestionModal,
   OnlineTestStudentResultsModal,
+  createObjectModal,
 };
 
 export default modalTypes;

@@ -8,8 +8,6 @@ import {
 } from 'reactstrap';
 import LearningObjectContent from 'components/learningObject/LearningObjectContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import QuestionList from 'components/question/QuestionList';
-import ActivityList from 'components/activity/ActivityList';
 import MaterialList from 'components/material/MaterialList';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import { Link } from 'react-router-dom';
@@ -121,8 +119,8 @@ class ViewLearningObjectPage extends Component {
               questions={activeLearningObject.questions}
               count={activeLearningObject.questions.length + activeLearningObject.activities.length}
               textResult="Materiais associados a este objeto"
-              activities={activeLearningObject.activities} 
-              showQuantity={true}
+              activities={activeLearningObject.activities}
+              showQuantity
               {...this.props}
             />
           </div>

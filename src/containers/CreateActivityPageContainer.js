@@ -41,6 +41,29 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+  const openObjectFormModal = () => ({
+    modalProps: {
+      open: true,
+      title: 'Adição de novo objeto de aprendizagem',
+      addedFrom: 1,
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'createObjectModal',
+  });
+
+  const confirmModalProps = () => ({
+    modalProps: {
+      open: true,
+      title: 'Confirmação de adição de novo objeto de aprendizagem',
+      typeMessage: 'confirm-add-object',
+      confirmAction: () => {
+        dispatch(showModal(openObjectFormModal()));
+      },
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'basicConfirm',
+  });
+
   /* Options for Open Learning Object Base modal */
   const openSearchLearningObjectModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
@@ -80,6 +103,7 @@ const mapDispatchToProps = (dispatch) => {
 
     removeSelectedObjectFromActivity: idObject => dispatch(removeSelectedObjectFromActivity(idObject)),
     resetSelectedObjects: () => dispatch(resetSelectedObjects()),
+    showConfirmAddObject: () => dispatch(showModal(confirmModalProps())),
 
     /* task's functions */
     resetTasksFromActivity: () => dispatch(resetTasksFromActivity()),

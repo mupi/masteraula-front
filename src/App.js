@@ -246,8 +246,8 @@ class App extends Component {
             }
           <ModalRoot />
           {isLoggedIn
-            ? (<Footer year="2019" version="1.0" />)
-            : <FooterSocial year="2019" version="1.0" />
+            ? (<Footer year="2020" version="1.0" />)
+            : <FooterSocial year="2020" version="1.0" />
           }
         </div>
         <ToastContainer hideProgressBar position="bottom-right" />

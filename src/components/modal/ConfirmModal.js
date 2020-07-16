@@ -36,7 +36,7 @@ const ConfirmModal = ({
           <Button className="btn--confirm" onClick={() => handleConfirm()} disabled={isSendingAnswers}>
             Enviar
           </Button>
-          <Button color="secondary" onClick={closeModal} >
+          <Button color="secondary" onClick={closeModal}>
             Cancelar
           </Button>
         </div>

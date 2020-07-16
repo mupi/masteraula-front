@@ -119,6 +119,7 @@ const LearningObjectForm = (props) => {
     submitting, errors,
     actionName,
     activeLearningObject,
+    hideMenuOptions = false,
   } = props;
   return (
 
@@ -128,6 +129,7 @@ const LearningObjectForm = (props) => {
         message={`Tem certeza de sair da tela de ${actionName} atividade?`}
       />
       <div className="c-online c-create-online">
+        {!hideMenuOptions && (
         <Row className="c-online__row-header-options c-online__row-header-options--fixed">
           <Col className="c-online__col-header-options">
             <BackUsingHistory disabled={submitting} />
@@ -141,7 +143,8 @@ const LearningObjectForm = (props) => {
             </Button>
           </Col>
         </Row>
-        <Row className="c-online__tittle-section c-online--space-for-title">
+        )}
+        <Row className={!hideMenuOptions ? 'c-online__tittle-section c-online--space-for-title' : ''}>
           <Col>
             <h4>
               <FontAwesomeIcon icon="image" />

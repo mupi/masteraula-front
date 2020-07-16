@@ -25,7 +25,6 @@ class ActivityBasePage extends React.Component {
     if ((match.params.page !== prevProps.match.params.page)
     || (filter.disciplinesSelected !== prevProps.filter.disciplinesSelected)
     || (filter.teachingLevelsSelected !== prevProps.filter.teachingLevelsSelected)
-    || (filter.sourcesSelected !== prevProps.filter.sourcesSelected)
     || (filter.yearsSelected !== prevProps.filter.yearsSelected)
     || (filter.topicsSelected !== prevProps.filter.topicsSelected)
     || (filter.difficultiesSelected !== prevProps.filter.difficultiesSelected)
@@ -38,9 +37,9 @@ class ActivityBasePage extends React.Component {
   render() {
     const {
       activityPage, isFetching, error, filter, toggleSelectedDifficultyFilter,
-      toggleSelectedTeachingLevelFilter, toggleSelectedSourceFilter, toggleSelectedYearFilter, toggleSelectedDisciplineFilter,
+      toggleSelectedTeachingLevelFilter, toggleSelectedYearFilter, toggleSelectedDisciplineFilter,
       removeSelectedTopicFilter,
-      search,
+      searchText,
     } = this.props;
     if (error) {
       return (
@@ -68,11 +67,6 @@ class ActivityBasePage extends React.Component {
     function clearTeachingLevel(event) {
       toggleSelectedTeachingLevelFilter(event.target.id, false);
     }
-
-    function clearSources(event) {
-      toggleSelectedSourceFilter(event.target.id, false);
-    }
-
 
     function clearYears(event) {
       toggleSelectedYearFilter(event.target.id, false);
@@ -167,19 +161,6 @@ class ActivityBasePage extends React.Component {
                         x
                     </Button>
                   )),
-                  filter.sourcesSelected.map(item => (
-                    <Button
-                      disabled={isFetching}
-                      key={`S${item.id}`}
-                      id={item.id}
-                      onClick={clearSources}
-                      className="c-question-base__filter-selected"
-                    >
-                      {item.name}
-                      {' '}
-                        x
-                    </Button>
-                  )),
                   filter.yearsSelected.map(item => (
                     <Button
                       disabled={isFetching}
@@ -198,19 +179,18 @@ class ActivityBasePage extends React.Component {
             </Row>
             ) : ''
       }
-          { !isFetching ? (
+          { (!isFetching && activityPage && activityPage.count !== undefined) ? (
             <Row>
               <Col sm="12" className="c-question-base__total-results">
                 {`${activityPage.count} atividades encontradas`}
-                {search
-                  ? (
-                    <>
-                      {' para '}
-                      <span className="c-question-base__search-term">
-                        {search}
-                      </span>
-                    </>
-                  ) : ''
+                {(searchText && searchText !== undefined && searchText.length > 0) ? (
+                  <>
+                    {' para '}
+                    <span className="c-question-base__search-term">
+                      {searchText}
+                    </span>
+                  </>
+                ) : ''
                 }
                 <a
                   className="c-question-base__link-askquestion"

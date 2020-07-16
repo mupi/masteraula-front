@@ -2,12 +2,22 @@ import { learningObjectService } from 'services';
 import { history } from 'helpers';
 import { initialize } from 'redux-form';
 import { toast } from 'react-toastify';
-
+import {
+  addSelectedObjectToActivity,
+} from 'actions/activityAction';
+import {
+  addSelectedObjectToQuestion,
+} from 'actions/questionAction';
 const optionsSuccess = {
   className: 'alert__ma-toast--success',
   type: 'success',
 };
 
+export const FROM_MODAL = {
+  NO_MODAL: 0,
+  ACTIVITY: 1,
+  QUESTION: 2,
+};
 /* learning object's structure
 
 owner: 26
@@ -85,12 +95,26 @@ export const fetchLearningObject = (id) => {
 };
 
 // Create a new learning object
-export const createLearningObject = newDataObject => async (dispatch) => {
+export const createLearningObject = (newDataObject, addedFrom = 0) => async (dispatch) => {
   try {
     dispatch({ type: CREATE_LEARNING_OBJECT });
     const newObject = await learningObjectService.createLearningObject(newDataObject);
     dispatch({ type: CREATE_LEARNING_OBJECT_SUCCESS, newObject });
-    history.push(`/view-object/${newObject.id}`);
+
+    switch (addedFrom) {
+      case FROM_MODAL.NO_MODAL:
+        history.push(`/view-object/${newObject.id}`);
+        break;
+      case FROM_MODAL.ACTIVITY:
+        dispatch(addSelectedObjectToActivity(newObject));
+        break;
+      case FROM_MODAL.QUESTION:
+        dispatch(addSelectedObjectToQuestion(newObject));
+        break;
+      default:
+        break;
+    }
+
     toast.success('Objeto criado com sucesso', optionsSuccess);
   } catch {
     dispatch({ type: CREATE_LEARNING_OBJECT_FAILURE });

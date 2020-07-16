@@ -7,9 +7,9 @@ import ActivityCard from '../activity/ActivityCard';
 
 const MaterialList = (props) => {
   const {
-    sm, questions, activities, count, textResult, showQuantity
+    sm, questions, activities, count, textResult, showQuantity,
   } = props;
-  
+
   return (
     <Row>
 
@@ -21,7 +21,7 @@ const MaterialList = (props) => {
       ) : ''
       }
 
-        {questions.map(question => (
+      {questions.map(question => (
         <Col sm={sm} lg="3" xs="12" key={`Q${question.id}`} className="question-card">
           <QuestionCard question={question} {...props} />
         </Col>
@@ -36,17 +36,17 @@ const MaterialList = (props) => {
 };
 
 MaterialList.propTypes = {
-    questions: PropTypes.arrayOf(PropTypes.shape({})),
-    activities: PropTypes.arrayOf(PropTypes.shape({})),
-    count: PropTypes.number,
-    sm: PropTypes.string,
-  };
-  
-  MaterialList.defaultProps = {
-    questions: [],
-    activities: [],
-    count: 0,
-    sm: '4',
-  };
+  questions: PropTypes.arrayOf(PropTypes.shape({})),
+  activities: PropTypes.arrayOf(PropTypes.shape({})),
+  count: PropTypes.number,
+  sm: PropTypes.string,
+};
+
+MaterialList.defaultProps = {
+  questions: [],
+  activities: [],
+  count: 0,
+  sm: '4',
+};
 
 export default MaterialList;
