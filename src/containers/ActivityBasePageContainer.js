@@ -99,6 +99,7 @@ const mapDispatchToProps = dispatch => ({
   addSelectedDisciplineFilter: idDiscipline => dispatch(addSelectedDisciplineFilter(idDiscipline)),
   addSelectedTopicFilter: topic => dispatch(addSelectedTopicFilter(topic)),
   addSelectedYearFilter: (idYear, nameYear) => dispatch(toggleSelectedYearFilter(idYear, true, nameYear)),
+  addSelectedTeachingLevelFilter: idTeachingLevel => dispatch(toggleSelectedTeachingLevelFilter(idTeachingLevel, true)),
 
   resetTopicListSelected: () => dispatch(resetTopicListSelected()),
 
