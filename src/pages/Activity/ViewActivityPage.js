@@ -9,6 +9,7 @@ import BackUsingHistory from 'components/question/BackUsingHistory';
 import LearningObjectList from 'components/learningObject/LearningObjectList';
 import ActivityInfo from 'components/activity/ActivityInfo';
 import ActivityTasks from 'components/activity/ActivityTasks';
+import RelatedQuestions from 'components/question/RelatedQuestions';
 
 // Learning object's options available for LearnningObjectContent
 const options = {
@@ -27,7 +28,7 @@ const ViewActivityPage = (props) => {
 
   useEffect(() => {
     fetchActivity(match.params.id);
-  }, []);
+  }, [match.params.id]);
 
   if (isFetching) {
     return (
@@ -147,6 +148,8 @@ const ViewActivityPage = (props) => {
               </Row>
             </div>
             <ActivityInfo activity={activeActivity} />
+            {activeActivity.related_questions && activeActivity.related_questions.length > 0 ? (
+            <RelatedQuestions ractivities={activeActivity.related_activities} rquestions={activeActivity.related_questions} {...props} />) : ''}
           </Col>
         </Row>
       </div>

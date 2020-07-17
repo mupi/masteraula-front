@@ -287,7 +287,7 @@ class QuestionPage extends Component {
               </div>
               <QuestionInfo question={activeQuestion} onRate={onRate} rating={rating} />
               {activeQuestion.related_questions && activeQuestion.related_questions.length > 0 ? (
-                <RelatedQuestions rquestions={activeQuestion.related_questions} {...this.props} />) : ''}
+                <RelatedQuestions ractivities={activeQuestion.related_activities} rquestions={activeQuestion.related_questions} {...this.props} />) : ''}
             </Col>
           </Row>
         </div>
