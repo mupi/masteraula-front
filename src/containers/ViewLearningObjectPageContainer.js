@@ -69,7 +69,6 @@ const mapStateToProps = state => ({
   userId: state.session.session.user.id,
   labels: state.label.myQuestionLabels,
   isAddingRemovingLabel: state.label.isAddingRemovingLabel,
-  modal: state.document.modal,
 });
 
 const mapDispatchToProps = (dispatch) => {
