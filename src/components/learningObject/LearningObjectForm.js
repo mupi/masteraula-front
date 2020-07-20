@@ -1,14 +1,14 @@
 import React from 'react';
 
 import {
-  Alert, Row, Col, Button, Form, Label, UncontrolledAlert,
+  Alert, Row, Col, Button, Form, Label, UncontrolledAlert, UncontrolledTooltip,
 } from 'reactstrap';
 import { Link, Prompt } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 import {
-  requiredValidator, minLengthTags,
+  requiredValidator, minLength3Tags,
 } from 'helpers/validators';
 
 import BackUsingHistory from 'components/question/BackUsingHistory';
@@ -202,7 +202,15 @@ const LearningObjectForm = (props) => {
             </div>
           </Col>
           <Col sm="8">
-            <p className="c-learning-object__form-labels">Insira trechos de textos, letras de música ou link para o vídeo</p>
+            <p className="c-learning-object__form-labels">Insira trechos de textos, letras de música ou link para o vídeo
+              <span className="c-question-base__tooltip" href="#" id="TooltipExample">
+                {' '}
+                <FontAwesomeIcon icon="info-circle" />
+              </span>
+              <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
+                Texto ou vídeo: é um editor de texto para inserir texto ou vídeos de youtube embebed.
+              </UncontrolledTooltip>
+            </p>
             <Field
               component={renderTextEditor}
               name="text"
@@ -227,7 +235,7 @@ const LearningObjectForm = (props) => {
         </Row>
         <Row className="mt-2 mb-3">
           <Col>
-            Fontes e referencias
+            Fontes e referências
           </Col>
         </Row>
         <Row className="justify-content-center">
@@ -238,7 +246,7 @@ const LearningObjectForm = (props) => {
               key="field"
               id="referencesEditorText"
               disabled={false}
-              placeholderEditor="Escreva as referencias do objeto aqui ..."
+              placeholderEditor="Escreva as referências do objeto aqui ..."
               validate={requiredValidator}
             />
           </Col>
@@ -254,7 +262,7 @@ const LearningObjectForm = (props) => {
               id="tags"
               placeholder="Dê enter ou vírgula após inserir uma tag"
               className="form-control"
-              validate={minLengthTags}
+              validate={minLength3Tags}
             />
           </Col>
         </Row>

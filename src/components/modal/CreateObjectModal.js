@@ -63,7 +63,7 @@ const mapDispatchToProps = dispatch => ({
 
     const hasObject = values.image || textObject.length > 0;
     if (!hasObject) {
-      errors.general_errors = 'Insira ou um texto/URL vídeo ou uma imagem';
+      errors.general_errors = 'Insira um texto/URL vídeo ou uma imagem';
     }
 
     if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);

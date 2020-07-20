@@ -46,6 +46,8 @@ export const minLength3characters = (minLength(3, 'caracteres'));
 
 export const minLength2Tags = value => (((value && (value.split(',').length < 2)) || value === undefined) ? 'Insira no minimo 2 tags' : undefined);
 
+export const minLength3Tags = value => (((value && (value.split(',').length < 3)) || value === undefined) ? 'Insira no minimo 3 tags' : undefined);
+
 export const minLength2TagsForEdit = (value) => {
   let invalid;
   if (value) {
