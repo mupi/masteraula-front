@@ -112,23 +112,24 @@ class ViewLearningObjectPage extends Component {
           </Col>
         </Row>
         <Row className="pagination-questions" style={{ marginLeft: '80%' }} />
-        {activeLearningObject.questions.length > 0 || activeLearningObject.activities.length > 0 ? (
-          <div className="c-question-base__results">
-            <MaterialList
-              sm="4"
-              questions={activeLearningObject.questions}
-              count={activeLearningObject.questions.length + activeLearningObject.activities.length}
-              textResult="Materiais associados a este objeto"
-              activities={activeLearningObject.activities}
-              showQuantity
-              {...this.props}
-            />
-          </div>
-        ) : (
-          <Row>
-            <Col sm="12" className="c-question-base__total-results">Sem materiais associados</Col>
-          </Row>
-        )}
+        {(activeLearningObject.questions && activeLearningObject.questions.length > 0)
+         || (activeLearningObject.activities && activeLearningObject.activities.length > 0) ? (
+           <div className="c-question-base__results">
+             <MaterialList
+               sm="4"
+               questions={activeLearningObject.questions}
+               count={activeLearningObject.questions.length + activeLearningObject.activities.length}
+               textResult="Materiais associados a este objeto"
+               activities={activeLearningObject.activities}
+               showQuantity
+               {...this.props}
+             />
+           </div>
+          ) : (
+            <Row>
+              <Col sm="12" className="c-question-base__total-results">Sem materiais associados</Col>
+            </Row>
+          )}
 
 
       </HomeUserPage>
