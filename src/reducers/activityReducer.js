@@ -62,12 +62,13 @@ export const activity = (state = initialState, action) => {
     case FETCH_ACTIVITY_SUCCESS:
       return Object.assign({}, state, {
         activeActivity: action.activeActivity,
-        selectedObjectList: action.activeActivity.learning_objects,
+        selectedObjectList: [],
         isFetching: false,
       });
     case FETCH_ACTIVITY_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
+        selectedObjectList: [],
         error: action.error,
       });
     case LIST_ACTIVITY_PAGE:

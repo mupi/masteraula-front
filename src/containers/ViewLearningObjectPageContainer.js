@@ -69,6 +69,7 @@ const mapStateToProps = state => ({
   userId: state.session.session.user.id,
   labels: state.label.myQuestionLabels,
   isAddingRemovingLabel: state.label.isAddingRemovingLabel,
+  modal: state.document.modal,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -131,6 +132,12 @@ const mapDispatchToProps = (dispatch) => {
 
     // create new Label
     showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),
+
+    // new way to handle modals
+    hideModal: () => dispatch(hideModal()),
+    showModal: (modalProps, modalType) => {
+      dispatch(showModal({ modalProps, modalType }));
+    },
 
     /* Options for object in plus icon */
     setObjectIdToNewQuestion: id => dispatch(setObjectIdToNewQuestion(id)),
