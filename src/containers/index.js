@@ -19,6 +19,8 @@ export { default as CreateDocumentWithQuestionFormContainer } from './CreateDocu
 export { default as MyQuestionEditPageContainer } from './MyQuestionEditPageContainer';
 export { default as DeleteQuestionButtonContainer } from './DeleteQuestionButtonContainer';
 export { default as ViewLearningObjectPageContainer } from './ViewLearningObjectPageContainer';
+export { default as CreateLearningObjectPageContainer } from './CreateLearningObjectPageContainer';
+export { default as EditLearningObjectPageContainer } from './EditLearningObjectPageContainer';
 export { default as ObjectBasePageContainer } from './ObjectBasePageContainer';
 export { default as SidebarObjectFiltersContainer } from './SidebarObjectFiltersContainer';
 export { default as PublicDocumentPageContainer } from './PublicDocumentPageContainer';
@@ -37,3 +39,7 @@ export { default as ViewOnlineTestPageContainer } from './ViewOnlineTestPageCont
 export { default as EditOnlineTestPageContainer } from './EditOnlineTestPageContainer';
 export { default as ResultsOnlineTestPageContainer } from './ResultsOnlineTestPageContainer';
 export { default as StudentOnlineTestPageContainer } from './StudentOnlineTestPageContainer';
+export { default as ViewActivityPageContainer } from './ViewActivityPageContainer';
+export { default as EditActivityPageContainer } from './EditActivityPageContainer';
+export { default as CreateActivityPageContainer } from './CreateActivityPageContainer';
+export { default as ActivityBasePageContainer } from './ActivityBasePageContainer';

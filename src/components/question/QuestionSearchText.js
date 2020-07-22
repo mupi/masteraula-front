@@ -23,6 +23,7 @@ const renderSearchFieldAutocomplete = ({
   listTopicSuggestions,
   clearSearchText,
   search,
+  placeholder,
 }) => {
   const handleSubmit = (value) => {
     search(value);
@@ -36,6 +37,7 @@ const renderSearchFieldAutocomplete = ({
           allSuggestions={topicSuggestions}
           fetchSuggestions={listTopicSuggestions}
           onSubmit={handleSubmit}
+          placeholder={placeholder}
         />
         {searchText || !pristine ? (
           <InputGroupAddon addonType="prepend">
@@ -86,21 +88,19 @@ class QuestionSearchText extends Component {
 
   render() {
     const {
-      handleSubmit, searchText, clearSearchText,
+      handleSubmit, searchText, clearSearchText, baseName,
     } = this.props;
 
+    const searchInfo = `Pesquisar por palavras-chave no banco de ${baseName}`;
     return (
       <Form onSubmit={handleSubmit}>
         <Row className="c-question-base__search-text">
-          <p className="c-question-base__search-info hidden">
-            Pesquisar por palavras-chave no banco de questões
-          </p>
           <Field
             component={renderSearchFieldAutocomplete}
             type="text"
             name="searchText"
             id="searchText"
-            placeholder="Pesquisar por palavras-chave no banco de questões"
+            placeholder={searchInfo}
             className="form-control"
             validate={minLength3characters}
             searchText={searchText}

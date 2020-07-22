@@ -185,6 +185,15 @@ const SidebarMobile = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/create-activity" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-activity'); }}>
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="plus"
+                      />
+                      Criar atividade
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
                     <Link to="/create-classplan" onClick={(e) => { showCreateClassPlanModal(selectedClassPlanType); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
@@ -230,7 +239,7 @@ const SidebarMobile = ({
                         className="btn__icon"
                         icon="image"
                       />
-                        Tirinhas, excertos e mais
+                        Banco de objetos
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
@@ -335,6 +344,21 @@ const SidebarWeb = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/create-object">
+                      <FontAwesomeIcon className="btn__icon" icon="plus" />
+                        Criar objeto
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/create-activity">
+                      <FontAwesomeIcon
+                        className="btn__icon"
+                        icon="plus"
+                      />
+                      Criar atividade
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
                     <Button
                       color="link"
                       onClick={() => showCreateClassPlanModal(selectedClassPlanType)}
@@ -367,9 +391,15 @@ const SidebarWeb = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
+                    <Link to="/activity-base/1">
+                      <FontAwesomeIcon className="btn__icon" icon="search" />
+                          Banco de atividades
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="list-group-item__simple-option">
                     <Link to="/object-base/1">
-                      <FontAwesomeIcon className="btn__icon" icon="image" />
-                          Tirinhas, excertos e mais
+                      <FontAwesomeIcon className="btn__icon" icon="search" />
+                          Banco de objetos
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">

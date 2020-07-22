@@ -39,11 +39,14 @@ export const maxLength200 = (maxLength(200, 'caracteres'));
 const minLength = (min, text) => value => (value && value.length < min ? `Insira no minimo ${min} ${text}` : undefined);
 export const minLength3Alternatives = (minLength(3, 'alternativas'));
 export const minLength2Stations = (minLength(2, 'estações'));
+export const minLength1Tasks = (minLength(1, 'tarefa'));
 
 export const minLength1Topics = (minLength(1, 'tópico'));
 export const minLength3characters = (minLength(3, 'caracteres'));
 
 export const minLength2Tags = value => (((value && (value.split(',').length < 2)) || value === undefined) ? 'Insira no minimo 2 tags' : undefined);
+
+export const minLength3Tags = value => (((value && (value.split(',').length < 3)) || value === undefined || value.length === 0) ? 'Insira no mínimo 3 tags' : undefined);
 
 export const minLength2TagsForEdit = (value) => {
   let invalid;

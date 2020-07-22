@@ -1,4 +1,3 @@
-import { documentService } from 'services';
 import { history } from 'helpers';
 import { initialize, formValueSelector } from 'redux-form';
 import onlineTestService from 'services/onlineTestService';
@@ -294,7 +293,7 @@ export const downloadResults = (testId, testName) => {
   const downloadSelectedTestOnline = () => ({ type: DOWNLOAD_RESULT_ONLINE_TEST });
   const downloadSelectedTestOnlineSuccess = () => ({ type: DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS });
   const downloadSelectedTestOnlineFailure = error => ({ type: DOWNLOAD_RESULT_ONLINE_TEST_FAILURE, error });
-  
+
 
   return (dispatch) => {
     dispatch(downloadSelectedTestOnline());
@@ -307,6 +306,5 @@ export const downloadResults = (testId, testName) => {
       (error) => {
         dispatch(downloadSelectedTestOnlineFailure(error));
       });
-    };
-  
+  };
 };

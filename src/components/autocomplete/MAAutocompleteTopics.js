@@ -54,10 +54,10 @@ class MAAutocompleteTopics extends React.Component {
   }
 
   render() {
-    const { input, allSuggestions } = this.props;
+    const { input, allSuggestions, placeholder } = this.props;
     const { suggestions } = this.state;
     const inputProps = {
-      placeholder: 'Pesquisar por palavras chaves no banco de questões',
+      placeholder,
       value: input.value,
       onChange: this.onChange,
     };

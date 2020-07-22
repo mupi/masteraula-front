@@ -2,7 +2,7 @@ import React from 'react';
 import { getCleanCompleteStatement, getCleanLearningObjectSource } from 'helpers/question';
 import RemoveButton from 'components/buttons/RemoveButton';
 import {
-  Button,
+  UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -26,8 +26,8 @@ const LearningObjectContent = (props) => {
     learningObject,
     removeSelectedObject,
     options,
-    addSelectedObjectToQuestion,
-    setObjectIdToNewQuestion,
+    addSelectedObjectToQuestion, setObjectIdToNewQuestion,
+    addSelectedObjectToActivity, setObjectIdToNewActivity,
   } = props;
 
   return (
@@ -44,16 +44,36 @@ const LearningObjectContent = (props) => {
             </Link>
           ) : ''}
           {options.showCreateQuestionButton ? (
-            <Button
-              title="Adicionar objeto à nova questão"
-              onClick={() => {
-                addSelectedObjectToQuestion(learningObject);
-                setObjectIdToNewQuestion(learningObject.id);
-                history.push('/create-question');
-              }}
-            >
-              <FontAwesomeIcon icon="plus" />
-            </Button>
+            <UncontrolledButtonDropdown>
+              <DropdownToggle caret>
+                <FontAwesomeIcon icon="plus" />
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem
+                  title="Adicionar objeto à nova questão"
+                  className="c-learning-object__op-add"
+                  onClick={() => {
+                    addSelectedObjectToQuestion(learningObject);
+                    setObjectIdToNewQuestion(learningObject.id);
+                    history.push('/create-question');
+                  }}
+                >
+                  Adicionar à questão
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem
+                  title="Adicionar objeto à nova atividade"
+                  className="c-learning-object__op-add"
+                  onClick={() => {
+                    addSelectedObjectToActivity(learningObject);
+                    setObjectIdToNewActivity(learningObject.id);
+                    history.push('/create-activity');
+                  }}
+                >
+                    Adicionar à atividade
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledButtonDropdown>
           ) : ''}
 
         </div>

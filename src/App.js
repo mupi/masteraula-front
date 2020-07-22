@@ -28,6 +28,8 @@ import {
   HomePageContainer,
   PricingPageContainer,
   ViewLearningObjectPageContainer,
+  CreateLearningObjectPageContainer,
+  EditLearningObjectPageContainer,
   ObjectBasePageContainer,
   PublicDocumentPageContainer,
   TopicBasePageContainer,
@@ -43,6 +45,10 @@ import {
   EditOnlineTestPageContainer,
   ResultsOnlineTestPageContainer,
   StudentOnlineTestPageContainer,
+  ActivityBasePageContainer,
+  CreateActivityPageContainer,
+  EditActivityPageContainer,
+  ViewActivityPageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -101,6 +107,10 @@ import {
   faStar,
   faDownload,
   faExclamationTriangle,
+  faBookReader,
+  faUserEdit,
+  faChalkboardTeacher,
+  faPhotoVideo,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -132,6 +142,10 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faDownload,
   faArrowCircleRight,
   faExclamationTriangle,
+  faBookReader,
+  faUserEdit,
+  faChalkboardTeacher,
+  faPhotoVideo,
   fab);
 
 
@@ -186,7 +200,9 @@ class App extends Component {
                 <Route path="/documents/:page(\d+)" component={ManageDocumentsPageContainer} />
                 <Route path="/my-headers/:page(\d+)" component={MyHeadersPageContainer} />
                 <Route path="/edit-document" component={EditDocumentPageContainer} />
+                <Route path="/create-object/" component={CreateLearningObjectPageContainer} />
                 <Route path="/view-object/:id" component={ViewLearningObjectPageContainer} />
+                <Route path="/edit-object/:id" component={EditLearningObjectPageContainer} />
                 <Route path="/edit-header/:id" component={EditHeaderPageContainer} />
                 <Route path="/new-header" component={EditHeaderPageContainer} />
                 <Route path="/object-base/:page(\d+)" component={ObjectBasePageContainer} />
@@ -205,6 +221,10 @@ class App extends Component {
                 <Route path="/results-online/:id" component={ResultsOnlineTestPageContainer} />
                 <Route path="/online-tests/:id/:page(\d+)" component={ManageOnlineTestsPageContainer} />
                 <Route path="/apply-online/:id" component={StudentOnlineTestPageContainer} />
+                <Route path="/activity-base/:page(\d+)" component={ActivityBasePageContainer} />
+                <Route path="/create-activity/" component={CreateActivityPageContainer} />
+                <Route path="/edit-activity/:id" component={EditActivityPageContainer} />
+                <Route path="/view-activity/:id" component={ViewActivityPageContainer} />
                 <Redirect from="/" to="/my-dashboard/" />
               </Switch>
             )
@@ -226,8 +246,8 @@ class App extends Component {
             }
           <ModalRoot />
           {isLoggedIn
-            ? (<Footer year="2019" version="1.0" />)
-            : <FooterSocial year="2019" version="1.0" />
+            ? (<Footer year="2020" version="1.0" />)
+            : <FooterSocial year="2020" version="1.0" />
           }
         </div>
         <ToastContainer hideProgressBar position="bottom-right" />

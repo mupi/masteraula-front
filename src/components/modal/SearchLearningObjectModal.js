@@ -33,12 +33,20 @@ class SearchLearningObjectModal extends React.Component {
       addSelectedObject, removeSelectedObject, callFrom,
       selectedObjectListQuestion,
       selectedObjectListClassPlan,
+      selectedObjectListActivity,
       singleSelection = false,
       stations,
       stationIndex,
     } = this.props;
 
-    const selectedObjectList = callFrom === 'Q' ? selectedObjectListQuestion : selectedObjectListClassPlan;
+    let selectedObjectList = [];
+    switch (callFrom) {
+      case 'Q': selectedObjectList = selectedObjectListQuestion; break;
+      case 'C': selectedObjectList = selectedObjectListClassPlan; break;
+      case 'A': selectedObjectList = selectedObjectListActivity; break;
+      default: selectedObjectList = [];
+    }
+
     return (
       <div className="modal-content modal__content modal-fixed__content">
         <div className="modal-header modal__header">
@@ -74,7 +82,7 @@ class SearchLearningObjectModal extends React.Component {
               )
             }
             </Row>
-            <div className="c-question-base__results modal-fixed__body-section-scroll">
+            <div className="c-object-base__results modal-fixed__body-section-scroll mt-3">
               { isFetching ? (
                 <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
                    Carregando  ...

@@ -49,6 +49,28 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+  const openObjectFormModal = () => ({
+    modalProps: {
+      open: true,
+      title: 'Adição de novo objeto de aprendizagem',
+      addedFrom: 2,
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'createObjectModal',
+  });
+
+  const confirmModalProps = () => ({
+    modalProps: {
+      open: true,
+      title: 'Confirmação de adição de novo objeto de aprendizagem',
+      typeMessage: 'confirm-add-object',
+      confirmAction: () => {
+        dispatch(showModal(openObjectFormModal()));
+      },
+      closeModal: () => dispatch(hideModal()),
+    },
+    modalType: 'basicConfirm',
+  });
   const addMyQuestionLabelFilter = (label) => {
     history.replace('/question-base/1');
     return dispatch(addSelectedMyQuestionLabelFilter(label));
@@ -100,6 +122,8 @@ const mapDispatchToProps = (dispatch) => {
 
     // Labels
     showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),
+    showConfirmAddObject: () => dispatch(showModal(confirmModalProps())),
+
     onSubmit: (values, d, props) => {
       const errors = [];
       let alternativesCleaned = [];

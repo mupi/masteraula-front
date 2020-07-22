@@ -33,7 +33,15 @@ const FooterSocial = ({ year, version }) => (
           >
             +55 (19) 999084183
           </a>
+          {' | '}
         </span>
+        <a
+          href="/terms-use"
+          className="c-footer__contact-info-link"
+          target="_blank"
+        >
+            Termos de uso e privacidade
+        </a>
       </Col>
       <Col md="3">
         <a

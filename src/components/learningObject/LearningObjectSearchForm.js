@@ -19,7 +19,6 @@ const renderSearchField = ({
   search,
   placeholder,
   isFetchingObjects,
-  autoFocus,
 }) => (
   <div className="c-question-base__search-all-section">
     <InputGroup>
@@ -28,7 +27,7 @@ const renderSearchField = ({
         placeholder={placeholder}
         type={type}
         className="c-question-base__search-field"
-        autoFocus={autoFocus}
+        disabled={isFetchingObjects}
       />
       {search || !pristine ? (
         <InputGroupAddon addonType="prepend">
@@ -84,7 +83,6 @@ const LearningObjectSearchForm = (props) => {
           clearSearch={clearSearch}
           clearSearchField={clearSearchField}
           isFetchingObjects={isFetchingObjects}
-          autoFocus
         />
       </Row>
       {search ? (

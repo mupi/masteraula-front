@@ -1,0 +1,21 @@
+.c-activity-form{
+    &__labels{
+        padding:10px;
+        margin-bottom: 0px;
+      }
+  
+      &__task-editor{
+        .demo-editor{
+          height: 150px !important;
+        }
+      }
+
+      &__tasks{
+        margin-left: -5px;
+        margin-right: -5px;
+      }
+
+      &__label-task{
+        padding-left: 10px;
+      }
+}

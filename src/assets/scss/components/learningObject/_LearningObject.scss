@@ -28,10 +28,35 @@
       margin-bottom: 15px;
     }
 
+    &__op-add{
+      font-size: 14px;
+    }
+
+    &__form-labels{
+      padding:10px;
+      margin-bottom: 0px;
+    }
+
+    &__form-image-section{
+      padding: 10px;
+    }
+
+    &__form-references{
+      .demo-editor{
+        height: 150px !important;
+      }
+    }
+
     &__operations{
       text-align: right;
       margin-top: -15px;
       margin-bottom: 5px;
+
+      .dropdown-toggle{
+        &:after{
+          content: none;
+        }
+      }
     }
 
     &__img{
@@ -83,3 +108,11 @@
         height: 100%;
     }
   }
+
+.c-object-form{
+  &__image {
+    margin: auto;
+  }
+}
+
+  

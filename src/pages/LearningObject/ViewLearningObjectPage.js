@@ -4,11 +4,13 @@ import {
   Alert,
   Row,
   Col,
+  Button,
 } from 'reactstrap';
-import LearningObjectContentContainer from 'containers/LearningObjectContentContainer';
+import LearningObjectContent from 'components/learningObject/LearningObjectContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import QuestionList from 'components/question/QuestionList';
+import MaterialList from 'components/material/MaterialList';
 import BackUsingHistory from 'components/question/BackUsingHistory';
+import { Link } from 'react-router-dom';
 
 // Learning object's options available for LearnningObjectContent
 const options = {
@@ -34,7 +36,8 @@ class ViewLearningObjectPage extends Component {
 
   render() {
     const {
-      activeLearningObject, isFetchingLearningObject, error,
+      activeLearningObject, isFetchingLearningObject, error, userId,
+      showDeleteModal,
     } = this.props;
 
     if (isFetchingLearningObject) {
@@ -57,11 +60,37 @@ class ViewLearningObjectPage extends Component {
       );
     }
 
+    const isOwner = activeLearningObject.owner === userId;
+
     return (
       <HomeUserPage>
         <Row className="c-question__row-header-options c-question__row-header-options--fixed">
           <Col className="c-question__col-header-options">
             <BackUsingHistory />
+            { (isOwner)
+              ? (
+                <Button
+                  className="c-question__btn-remove-question"
+                  color="danger"
+                  onClick={() => showDeleteModal(activeLearningObject.id)}
+                  title="Apagar objeto"
+                >
+                  <FontAwesomeIcon icon="trash-alt" />
+                  {' '}
+                  Apagar
+                </Button>
+              ) : ''}
+            {(isOwner)
+              ? (
+                <Link
+                  className="btn btn-secondary c-question__btn-back"
+                  to={`/edit-object/${activeLearningObject.id}`}
+                >
+                  <FontAwesomeIcon icon="pencil-alt" />
+                  {' '}
+                  Editar
+                </Link>
+              ) : ''}
           </Col>
         </Row>
         <Row className="l-learning-object__tittle-section">
@@ -78,27 +107,29 @@ class ViewLearningObjectPage extends Component {
         <Row>
           <Col sm="12">
             <div className="l-learning-object">
-              { activeLearningObject ? <LearningObjectContentContainer learningObject={activeLearningObject} options={options} /> : ''}
+              { activeLearningObject ? <LearningObjectContent learningObject={activeLearningObject} options={options} {...this.props} /> : ''}
             </div>
           </Col>
         </Row>
         <Row className="pagination-questions" style={{ marginLeft: '80%' }} />
-        {activeLearningObject.questions ? (
-          <div className="c-question-base__results">
-            <QuestionList
-              sm="4"
-              questions={activeLearningObject.questions}
-              count={activeLearningObject.questions.length}
-              textResult="Questões associadas ao objeto de aprendizagem"
-              showLink={false}
-              {...this.props}
-            />
-          </div>
-        ) : (
-          <Row>
-            <Col sm="12" className="c-question-base__total-results">Sem questões associadas</Col>
-          </Row>
-        )}
+        {(activeLearningObject.questions && activeLearningObject.questions.length > 0)
+         || (activeLearningObject.activities && activeLearningObject.activities.length > 0) ? (
+           <div className="c-question-base__results">
+             <MaterialList
+               sm="4"
+               questions={activeLearningObject.questions}
+               count={activeLearningObject.questions.length + activeLearningObject.activities.length}
+               textResult="Materiais associados a este objeto"
+               activities={activeLearningObject.activities}
+               showQuantity
+               {...this.props}
+             />
+           </div>
+          ) : (
+            <Row>
+              <Col sm="12" className="c-question-base__total-results">Sem materiais associados</Col>
+            </Row>
+          )}
 
 
       </HomeUserPage>

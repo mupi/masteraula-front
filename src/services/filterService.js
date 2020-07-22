@@ -111,7 +111,7 @@ function listTeachingYearFilters() {
 }
 
 
-function listTopicFilters(filter) {
+function listTopicFilters(filter, activities) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -139,8 +139,9 @@ function listTopicFilters(filter) {
 
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
   const author = (filter.onlyMyQuestions) ? queryString.stringify({ author: filter.author }) : '';
+  const activitiesParams = (activities !== undefined) ? queryString.stringify(activities) : '';
   const urlParams = [disciplinesParams, teachingLevelParams, difficultiesParams,
-    sourcesParams, yearsParams, topicsParams, author, search, myQuestionLabelsParams]
+    sourcesParams, yearsParams, topicsParams, author, search, myQuestionLabelsParams, activitiesParams]
     .filter(p => p)
     .join('&');
 
