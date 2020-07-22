@@ -113,7 +113,7 @@ const mapDispatchToProps = dispatch => ({
   clearSearchText: () => {
     dispatch(change('activitySearch', 'searchText', ''));
     dispatch((_dispatch, getState) => {
-      const { searchText } = getState().filter;
+      const { searchText } = getState().filterActivity;
       if (searchText) {
         dispatch(setSearchText(''));
       }

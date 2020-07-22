@@ -36,6 +36,7 @@ const CreateObjectModal = (props) => {
 
 const mapStateToProps = state => ({
   isSendingAnswers: state.onlineTest.isSendingAnswers,
+  errors: state.form['create-object-modal'] ? state.form['create-object-modal'].submitErrors : null,
 });
 
 const mapDispatchToProps = dispatch => ({
