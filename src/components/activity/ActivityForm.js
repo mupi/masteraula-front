@@ -192,7 +192,6 @@ export const renderTasks = ({
                 id="teacherExpectation"
                 disabled={false}
                 placeholderEditor="Ex. Validar a síntese no caderno do aluno"
-                validate={requiredValidator}
               />
             </Col>
           </Row>
