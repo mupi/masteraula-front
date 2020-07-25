@@ -89,7 +89,7 @@ class ViewClassPlanPage extends Component {
       );
     }
 
-    const typeClassPlanName = (activeClassPlan.plan_type === 'T') ? 'Tradicional' : 'Rotação por Estações';
+    const typeClassPlanName = (activeClassPlan.plan_type === 'T') ? 'Aberto' : 'Rotação por Estações';
 
     return (
       <HomeUserPage>

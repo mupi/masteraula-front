@@ -51,7 +51,7 @@ const ClassPlanList = (props) => {
                     {classPlan.disciplines.map(t => t.name).join(', ')}
                   </OpenClassPlanModalHeader>
                   <OpenClassPlanModalHeader id={classPlan.id}>
-                    {classPlan.plan_type === 'S' ? 'Rotação por Estações' : 'Tradicional'}
+                    {classPlan.plan_type === 'S' ? 'Rotação por Estações' : 'Aberto'}
                   </OpenClassPlanModalHeader>
                   <OpenClassPlanModalHeader id={classPlan.id}>
                     {classPlan.duration}

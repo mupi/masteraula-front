@@ -242,7 +242,7 @@ class ClassPlanForm extends Component {
               <Col>
                 <h4>
                   <FontAwesomeIcon icon="book" />
-                  {` ${actionName} Plano de Aula - Tradicional`}
+                  {` ${actionName} Plano de Aula - Aberto`}
                 </h4>
               </Col>
             </Row>
