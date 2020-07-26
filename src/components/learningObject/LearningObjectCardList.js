@@ -6,7 +6,7 @@ import LearningObjectCard from './LearningObjectCard';
 
 const LearningObjectCardList = (props) => {
   const {
-    objects, count, sm, textResult = 'Objetos de aprendizagem encontrados', showLink = false,
+    objects, count, sm, textResult = 'Objetos de aprendizagem encontrados', showLink = false, search,
   } = props;
 
   const CardButton = object => (
@@ -21,6 +21,15 @@ const LearningObjectCardList = (props) => {
     <Row>
       <Col sm="12" className="c-object-base__total-results">
         {`${textResult}: ${count}`}
+        {(search && search !== undefined && search.length > 0) ? (
+          <>
+            {' para '}
+            <span className="c-question-base__search-term">
+              {search}
+            </span>
+          </>
+        ) : ''
+                }
         {' '}
         {showLink ? (
           <a

@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
   selectedObjectListQuestion: state.question.selectedObjectList,
   selectedObjectListClassPlan: state.classPlan.selectedObjectList,
   selectedObjectListActivity: state.activity.selectedObjectList,
-
+  searchText: state.filterObject.searchTextObjectModal,
   stations: state.classPlan.stations,
 });
 
