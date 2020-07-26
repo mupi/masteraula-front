@@ -1,5 +1,7 @@
 import searchObjectModal from 'containers/SearchLearningObjectModalContainer';
 import searchDocumentModal from 'containers/SearchDocumentModalContainer';
+import searchActivityModal from './SearchActivityModal';
+import searchQuestionModal from './SearchQuestionModal';
 
 import alertModal from './AlertModal';
 import confirmModal from './ConfirmModal';
@@ -15,7 +17,6 @@ import login2Modal from './Login2Modal';
 import createDocument from './CreateDocumentModal';
 import createMyQuestionLabelModal from './CreateMyQuestionLabelModal';
 import createClassPlanModal from './CreateClassPlanModal';
-import searchQuestionModal from './SearchQuestionModal';
 import OnlineTestStudentResultsModal from './OnlineTestStudentResultsModal';
 import createObjectModal from './CreateObjectModal';
 
@@ -34,6 +35,7 @@ const modalTypes = {
   login2Modal,
   createDocument,
   searchObjectModal,
+  searchActivityModal,
   createMyQuestionLabelModal,
   searchDocumentModal,
   createClassPlanModal,

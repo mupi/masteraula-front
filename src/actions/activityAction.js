@@ -49,7 +49,11 @@ export const RESET_TASKS_ACTIVITY = 'RESET_TASKS_ACTIVITY';
 // Set object that will added in new Activity - Create activity based on selected object
 export const SET_OBJECT_TO_NEW_ACTIVITY = 'SET_OBJECT_TO_NEW_ACTIVITY';
 
-
+// List activities from modal
+export const LIST_ACTIVITY_MODAL = 'LIST_ACTIVITY_MODAL';
+export const LIST_ACTIVITY_MODAL_SUCCESS = 'LIST_ACTIVITY_MODAL_SUCCESS';
+export const LIST_ACTIVITY_MODAL_FAILURE = 'LIST_ACTIVITY_MODAL_FAILURE';
+export const SET_CURRENT_ACTIVITY_PAGE_MODAL = 'SET_CURRENT_ACTIVITY_PAGE_MODAL';
 /*
 {
   "learning_objects_ids": [id],
@@ -220,4 +224,30 @@ export const deleteActivity = idActivity => async (dispatch) => {
 export const setObjectIdToNewActivity = objectId => ({
   type: SET_OBJECT_TO_NEW_ACTIVITY,
   objectIdAddedToActivity: objectId,
+});
+
+
+// List activity - Modal
+export const listActivitiesModal = (currentPageModal, filterActivity) => {
+  function requestActivityModal() { return { type: LIST_ACTIVITY_MODAL, currentPageModal }; }
+  function requestActivityModalSuccess(activityPageModal) { return { type: LIST_ACTIVITY_MODAL_SUCCESS, activityPageModal }; }
+  function requestActivityModalFailure(error) { return { type: LIST_ACTIVITY_MODAL_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(requestActivityModal());
+    return activityService.listActivityModal(currentPageModal, filterActivity).then(
+      (activityPageModal) => {
+        dispatch(requestActivityModalSuccess(activityPageModal));
+        dispatch(initialize('activitySearchModal', {
+          searchText: filterActivity && filterActivity.searchTextModal ? filterActivity.searchTextModal : '',
+        }));
+      }, (error) => {
+        dispatch(requestActivityModalFailure(error));
+      },
+    );
+  };
+};
+
+// Set page for search activities in modal
+export const setCurrentPageModal = currentPageModal => ({
+  type: SET_CURRENT_ACTIVITY_PAGE_MODAL, currentPageModal,
 });

@@ -149,7 +149,7 @@ const ViewActivityPage = (props) => {
             </div>
             <ActivityInfo activity={activeActivity} />
             {activeActivity.related_questions && activeActivity.related_questions.length > 0 ? (
-            <RelatedQuestions ractivities={activeActivity.related_activities} rquestions={activeActivity.related_questions} {...props} />) : ''}
+              <RelatedQuestions ractivities={activeActivity.related_activities} rquestions={activeActivity.related_questions} {...props} />) : ''}
           </Col>
         </Row>
       </div>

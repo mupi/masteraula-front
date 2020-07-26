@@ -18,7 +18,12 @@
         }
     }
 }
+
 .c-classplan{
+
+    .demo-editor{
+        height: 200px !important;
+    }
 
     &__view-station{
         &:last-child{
@@ -50,9 +55,6 @@
           font-size: 14px;
         }
     }
-
-
-
 
     &__topics{
         .badge-pill{

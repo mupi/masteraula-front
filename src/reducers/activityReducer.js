@@ -30,7 +30,10 @@ import {
 
   SET_OBJECT_TO_NEW_ACTIVITY,
 
-
+  LIST_ACTIVITY_MODAL,
+  LIST_ACTIVITY_MODAL_FAILURE,
+  LIST_ACTIVITY_MODAL_SUCCESS,
+  SET_CURRENT_ACTIVITY_PAGE_MODAL,
 } from 'actions/activityAction';
 import { toast } from 'react-toastify';
 
@@ -175,7 +178,7 @@ export const activity = (state = initialState, action) => {
       const newSelectedObjectList = state.selectedObjectList.filter(item => item.id === state.objectIdAddedToActivity);
       return Object.assign({}, state, {
         selectedObjectList: newSelectedObjectList,
-        objectIdAddedToQuestion: undefined,
+        objectIdAddedToActivity: undefined,
       });
     }
     case SET_OBJECT_TO_NEW_ACTIVITY: {
@@ -183,6 +186,26 @@ export const activity = (state = initialState, action) => {
         objectIdAddedToActivity: action.objectIdAddedToActivity,
       });
     }
+    case LIST_ACTIVITY_MODAL:
+      return Object.assign({}, state, {
+        currentPageModal: action.currentPageModal,
+        isFetching: true,
+        error: null,
+      });
+    case LIST_ACTIVITY_MODAL_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        activityPageModal: action.activityPageModal,
+      });
+    case LIST_ACTIVITY_MODAL_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
+    case SET_CURRENT_ACTIVITY_PAGE_MODAL:
+      return Object.assign({}, state, {
+        currentPageModal: action.currentPageModal,
+      });
     default:
       return state;
   }

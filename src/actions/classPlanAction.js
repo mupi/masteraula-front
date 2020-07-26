@@ -37,6 +37,11 @@ export const ADD_SELECTED_OBJECT_CLASS_PLAN = 'ADD_SELECTED_OBJECT_CLASS_PLAN';
 export const REMOVE_SELECTED_OBJECT_CLASS_PLAN = 'REMOVE_SELECTED_OBJECT_CLASS_PLAN';
 export const RESET_SELECTED_OBJECTLIST_CLASS_PLAN = 'RESET_SELECTED_OBJECTLIST_CLASS_PLAN';
 
+export const ADD_SELECTED_ACTIVITY_CLASS_PLAN = 'ADD_SELECTED_ACTIVITY_CLASS_PLAN';
+export const REMOVE_SELECTED_ACTIVITY_CLASS_PLAN = 'REMOVE_SELECTED_ACTIVITY_CLASS_PLAN';
+export const RESET_SELECTED_ACTIVITYLIST_CLASS_PLAN = 'RESET_SELECTED_ACTIVITYLIST_CLASS_PLAN';
+
+
 export const ADD_SELECTED_DOCUMENT_CLASS_PLAN = 'ADD_SELECTED_DOCUMENT_CLASS_PLAN';
 export const REMOVE_SELECTED_DOCUMENT_CLASS_PLAN = 'REMOVE_SELECTED_DOCUMENT_CLASS_PLAN';
 export const RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN = 'RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN';
@@ -289,6 +294,7 @@ export const deleteClassPlan = (idClassPlan, isRedirect = false) => {
   };
 };
 
+/* OBJECTS */
 // Add Selected Object to Class Plan
 export const addSelectedObjectToClassPlan = selectedObject => ({
   type: ADD_SELECTED_OBJECT_CLASS_PLAN, selectedObject,
@@ -304,7 +310,23 @@ export const resetSelectedObjects = () => ({
   type: RESET_SELECTED_OBJECTLIST_CLASS_PLAN,
 });
 
+/* ACTIVITY */
+// Add Selected Activity to Class Plan
+export const addSelectedActivityToClassPlan = selectedActivity => ({
+  type: ADD_SELECTED_ACTIVITY_CLASS_PLAN, selectedActivity,
+});
 
+// Remove Selected Activity to Class Plan
+export const removeSelectedActivityToClassPlan = idActivity => ({
+  type: REMOVE_SELECTED_ACTIVITY_CLASS_PLAN, idActivity,
+});
+
+// Reset Selected Activity list before starting create/update class plan
+export const resetSelectedActivities = () => ({
+  type: RESET_SELECTED_ACTIVITYLIST_CLASS_PLAN,
+});
+
+/* DOCUMENT */
 // Add Selected Document to Class Plan
 export const addSelectedDocumentToClassPlan = selectedDocument => ({
   type: ADD_SELECTED_DOCUMENT_CLASS_PLAN, selectedDocument,

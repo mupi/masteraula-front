@@ -20,6 +20,7 @@ const MODAL_TYPES = {
   login2: modalTypes.login2Modal,
   createDocument: modalTypes.createDocument,
   searchObjectModal: modalTypes.searchObjectModal,
+  searchActivityModal: modalTypes.searchActivityModal,
   createMyQuestionLabelModal: modalTypes.createMyQuestionLabelModal,
   searchDocumentModal: modalTypes.searchDocumentModal,
   createClassPlanModal: modalTypes.createClassPlanModal,
@@ -47,7 +48,7 @@ const ModalContainer = (props) => {
 
   if (modalType === 'document' || modalType === 'question' || modalType === 'studentResults' || modalType === 'createObjectModal') modalClassName = 'modal-dialog modal-lg';
 
-  if ((modalType === 'searchObjectModal') || (modalType === 'searchDocumentModal') || (modalType === 'searchQuestionModal')) {
+  if ((modalType === 'searchActivityModal') || (modalType === 'searchObjectModal') || (modalType === 'searchDocumentModal') || (modalType === 'searchQuestionModal')) {
     modalClassName = 'modal-dialog modal-xl modal-fixed';
   }
 

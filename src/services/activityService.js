@@ -120,12 +120,48 @@ function deleteActivity(idActivity) {
 }
 
 
+function listActivityModal(page, filter) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+  const pageParam = queryString.stringify({ page });
+  const search = (filter && filter.searchTextModal) ? queryString.stringify({ text: filter.searchTextModal }) : null;
+  const author = (filter && filter.onlyMyActivitiesModal) ? queryString.stringify({ author: filter.author }) : '';
+
+  const urlParams = [pageParam, search, author]
+    .filter(p => p)
+    .join('&');
+
+
+  const url = (search)
+    ? `/activities/search/?${urlParams}`
+    : `/activities/?${urlParams}`;
+
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+    return data;
+  });
+
+  return fetch(`${apiUrl}${url}`, requestOptions)
+    .then(handleResponse)
+    .then(activityPage => activityPage);
+}
+
 const activityService = {
   listActivities,
   fetchActivity,
   createActivity,
   updateActivity,
   deleteActivity,
+  listActivityModal,
 };
 
 export default activityService;

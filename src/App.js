@@ -111,6 +111,7 @@ import {
   faUserEdit,
   faChalkboardTeacher,
   faPhotoVideo,
+  faUserGraduate,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -146,6 +147,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faUserEdit,
   faChalkboardTeacher,
   faPhotoVideo,
+  faUserGraduate,
   fab);
 
 

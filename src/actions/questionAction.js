@@ -389,7 +389,7 @@ export const listQuestionModal = (currentPageModal, filterQuestion) => {
   };
 };
 
-// Set page for search objects in modal
+// Set page for search question in modal
 export const setCurrentPageModal = currentPageModal => ({
   type: SET_CURRENT_PAGE_MODAL, currentPageModal,
 });

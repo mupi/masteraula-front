@@ -20,7 +20,7 @@ const ActivityTasks = ({ tasks }) => (
     <Row className="c-question__tittle-section">
       <Col>
         <h5>
-          <FontAwesomeIcon icon="user-edit" />
+          <FontAwesomeIcon icon="user-graduate" />
           {' '}
           Tarefas
         </h5>

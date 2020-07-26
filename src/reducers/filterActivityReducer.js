@@ -26,7 +26,7 @@ import {
 
   RESET_LIST_TOPIC_SELECTED_A,
   SET_SEARCH_TEXT_A,
-  SET_SEARCH_TEXT_MODAL,
+  SET_SEARCH_TEXT_MODAL_A,
 
   ADD_MYACTIVITIES_FILTER,
   ADD_MYACTIVITIES_FILTER_MODAL,
@@ -56,7 +56,6 @@ const initialState = {
     { id: 'M', name: 'Médio' },
     { id: 'H', name: 'Difícil' },
   ],
-  /* PENDENTE REFATORAR */
   myQuestionlabelsSelected: [],
 };
 
@@ -232,9 +231,7 @@ export const filterActivity = (state = initialState, action) => {
         searchText: action.searchText,
       });
     }
-
-
-    case SET_SEARCH_TEXT_MODAL: {
+    case SET_SEARCH_TEXT_MODAL_A: {
       return Object.assign({}, state, {
         searchTextModal: action.searchTextModal,
       });

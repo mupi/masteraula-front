@@ -23,6 +23,10 @@ import {
   REMOVE_SELECTED_OBJECT_CLASS_PLAN,
   RESET_SELECTED_OBJECTLIST_CLASS_PLAN,
 
+  ADD_SELECTED_ACTIVITY_CLASS_PLAN,
+  REMOVE_SELECTED_ACTIVITY_CLASS_PLAN,
+  RESET_SELECTED_ACTIVITYLIST_CLASS_PLAN,
+
   ADD_SELECTED_DOCUMENT_CLASS_PLAN,
   REMOVE_SELECTED_DOCUMENT_CLASS_PLAN,
   RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN,
@@ -48,6 +52,7 @@ const initialState = {
   classPlans: [],
   selectedObjectList: [],
   selectedDocumentList: [],
+  selectedActivityList: [],
   selectedClassPlanType: '',
   stations: [
     {
@@ -99,6 +104,7 @@ export const classPlan = (state = initialState, action) => {
       return Object.assign({}, state, {
         activeClassPlan: action.activeClassPlan,
         selectedObjectList: action.activeClassPlan.learning_objects,
+        selectedActivityList: action.activeClassPlan.activities,
         selectedDocumentList: action.activeClassPlan.documents,
         stations: stationsPlan,
         isFetching: false,
@@ -184,7 +190,23 @@ export const classPlan = (state = initialState, action) => {
         selectedObjectList: [],
       });
     }
-
+    case ADD_SELECTED_ACTIVITY_CLASS_PLAN: {
+      if (state.selectedActivityList.filter(item => item.id === action.selectedActivity.id).length > 0) return state; // do not add duplicates
+      return Object.assign({}, state, {
+        selectedActivityList: [...state.selectedActivityList, action.selectedActivity],
+      });
+    }
+    case REMOVE_SELECTED_ACTIVITY_CLASS_PLAN: {
+      const newSelectedActivityList = state.selectedActivityList.filter(item => item.id !== action.idActivity);
+      return Object.assign({}, state, {
+        selectedActivityList: newSelectedActivityList,
+      });
+    }
+    case RESET_SELECTED_ACTIVITYLIST_CLASS_PLAN: {
+      return Object.assign({}, state, {
+        selectedActivityList: [],
+      });
+    }
     case ADD_SELECTED_DOCUMENT_CLASS_PLAN: {
       if (state.selectedDocumentList.filter(item => item.id === action.selectedDocument.id).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {

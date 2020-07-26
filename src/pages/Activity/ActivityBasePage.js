@@ -9,6 +9,12 @@ import CustomPagination from 'components/pagination/CustomPagination';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import ActivitySearchByFilters from 'components/activity/ActivitySearchByFilters';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+/* BUTTON TYPE */
+export const BUTTON_TYPE = {
+  ACTIVITYCARD_BASE: 1,
+  ACTIVITYCARD_MODAL_VIEW: 2,
+  ACTIVITYCARD_MODAL_SELECT: 3,
+};
 
 class ActivityBasePage extends React.Component {
   componentDidMount() {
@@ -89,7 +95,7 @@ class ActivityBasePage extends React.Component {
                   <FontAwesomeIcon icon="info-circle" />
                 </span>
                 <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
-                Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos das questões.
+                Insira termos específicos sobre o que deseja encontrar - o sistema buscará nas tags e em todos os textos das atividades.
                   {' '}
                 Ex: ângulos internos. Se desejar buscas mais abrangentes, separe os termos com vírgulas. Exemplo: polígonos, ângulos internos.
                   {' '}
@@ -212,7 +218,14 @@ class ActivityBasePage extends React.Component {
                   Carregando ...
               </Alert>
             ) : (
-              <ActivityList sm="4" {...this.props} activities={activityPage.results} count={activityPage.count} showQuantity={false} />
+              <ActivityList
+                sm="4"
+                buttonType={BUTTON_TYPE.ACTIVITYCARD_BASE}
+                {...this.props}
+                activities={activityPage.results}
+                count={activityPage.count}
+                showQuantity={false}
+              />
             )
             }
           </div>

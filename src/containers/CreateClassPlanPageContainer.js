@@ -6,6 +6,7 @@ import CreateClassPlanPage from 'pages/ClassPlan/CreateClassPlanPage';
 import {
   createClassPlan,
   addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
+  addSelectedActivityToClassPlan, removeSelectedActivityToClassPlan, resetSelectedActivities,
   addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan, resetSelectedDocuments,
   addStationToClassPlan, removeStationFromClassPlan,
   addMaterialToClassPlanStation,
@@ -40,6 +41,7 @@ const mapStateToProps = (state) => {
     teachingYearFilters: state.filter.teachingYearFilters,
     sourceFilters: state.filter.sourceFilters,
     selectedObjectList: state.classPlan.selectedObjectList,
+    selectedActivityList: state.classPlan.selectedActivityList,
     selectedDocumentList: state.classPlan.selectedDocumentList,
     errorsClassPlan: state.form['create-classplan'] ? state.form['create-classplan'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
@@ -75,6 +77,32 @@ const mapDispatchToProps = (dispatch) => {
       stationIndex,
     },
     modalType: 'searchObjectModal',
+  });
+  /* Options for Open Activity Base modal */
+  const openSearchActivityModalProps = (singleSelection, stationIndex) => ({
+    modalProps: {
+      open: true,
+      titlePart: 'ao plano de aula',
+      closeModal: () => dispatch(hideModal()),
+      addSelectedActivity: (activity) => {
+        if (!singleSelection) {
+          dispatch(addSelectedActivityToClassPlan(activity));
+        } else {
+          dispatch(addMaterialToClassPlanStation(activity, stationIndex, 'A'));
+        }
+      },
+      removeSelectedActivity: (idActivity) => {
+        if (!singleSelection) {
+          dispatch(removeSelectedActivityToClassPlan(idActivity));
+        } else {
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'A'));
+        }
+      },
+      callFrom: 'C',
+      singleSelection,
+      stationIndex,
+    },
+    modalType: 'searchActivityModal',
   });
 
   const openSearchDocumentModalProps = (singleSelection, stationIndex) => ({
@@ -138,6 +166,8 @@ const mapDispatchToProps = (dispatch) => {
         stations: [{}, {}],
       }));
     },
+
+    /* INI: Search Modal for each type of material */
     showSearchLearningObjectModal: (singleSelection = false, stationIndex = null) => {
       dispatch(showModal(openSearchLearningObjectModalProps(singleSelection, stationIndex)));
     },
@@ -146,17 +176,25 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(showModal(openSearchDocumentModalProps(singleSelection, stationIndex)));
     },
 
+    showSearchActivityModal: (singleSelection = false, stationIndex = null) => {
+      dispatch(showModal(openSearchActivityModalProps(singleSelection, stationIndex)));
+    },
+
     showSearchQuestionModal: (singleSelection = false, stationIndex = null) => {
       dispatch(showModal(openSearchQuestionModalProps(singleSelection, stationIndex)));
     },
+    /* END */
 
     listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
 
     removeSelectedObjectToClassPlan: idObject => dispatch(removeSelectedObjectToClassPlan(idObject)),
+    removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
+    removeSelectedActivityToClassPlan: idActivity => dispatch(removeSelectedActivityToClassPlan(idActivity)),
+
     resetSelectedObjects: () => dispatch(resetSelectedObjects()),
     resetSelectedDocuments: () => dispatch(resetSelectedDocuments()),
+    resetSelectedActivities: () => dispatch(resetSelectedActivities()),
 
-    removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
 
     /* class plan station's functions */
     resetStationsClassPlan: () => dispatch(resetStationsClassPlan()),
