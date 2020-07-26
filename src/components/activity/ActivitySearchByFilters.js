@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   Input, Row, Col, Label, Button,
 } from 'reactstrap';
-import QuestionSearchText from 'components/question/QuestionSearchText';
+import SearchTermsAutocomplete from 'components/question/SearchTermsAutocomplete';
 import { history } from 'helpers';
 
 class ActivitySearchByFilters extends Component {
@@ -20,11 +20,14 @@ class ActivitySearchByFilters extends Component {
 
   componentDidMount() {
     const {
-      listDisciplineFilters, listYearFilters, listTeachingLevelFilters,
+      listDisciplineFilters, listYearFilters, listTeachingLevelFilters, onlyTerms = false,
     } = this.props;
-    listDisciplineFilters();
-    listYearFilters();
-    listTeachingLevelFilters();
+
+    if (!onlyTerms) {
+      listDisciplineFilters();
+      listYearFilters();
+      listTeachingLevelFilters();
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -67,11 +70,10 @@ class ActivitySearchByFilters extends Component {
   }
 
   handleFilter(event) {
-    const { addMyQuestionsFilter, author } = this.props;
+    const { addMyMaterialFilter, author } = this.props;
     const valueFilter = event.target.value;
     this.setState({ authorState: author });
-
-    addMyQuestionsFilter(valueFilter, event.target.checked);
+    addMyMaterialFilter(valueFilter, event.target.checked);
   }
 
   loadMoreTopics() {
@@ -81,7 +83,7 @@ class ActivitySearchByFilters extends Component {
 
   render() {
     const {
-      author, isFetchingQuestions, onlyMyActivities, disciplineFilters, topicFilters,
+      author, isFetching, onlyMyActivities, disciplineFilters, topicFilters,
       disciplineIdSelected, yearIdSelected,
       addSelectedDisciplineFilter,
       addSelectedYearFilter,
@@ -96,7 +98,7 @@ class ActivitySearchByFilters extends Component {
 
     return (
       <>
-        <QuestionSearchText {...this.props} baseName="atividades" />
+        <SearchTermsAutocomplete {...this.props} baseName="atividades" />
         <Row className="c-question-base__myquestions-filter">
           <Label check>
             <Input
@@ -104,7 +106,7 @@ class ActivitySearchByFilters extends Component {
               value={authorState || author}
               onChange={this.handleFilter}
               checked={isChecked}
-              disabled={isFetchingQuestions}
+              disabled={isFetching}
             />
 
             {'Pesquisar só nas ' }
@@ -145,7 +147,7 @@ class ActivitySearchByFilters extends Component {
               className="form-control question-search__by-filter-select"
               onChange={e => this.getListTopics(e, addSelectedDisciplineFilter)}
               value={disciplineIdSelected || -1}
-              disabled={isFetchingQuestions}
+              disabled={isFetching}
             >
               <option value="-1">
                      Todas as disciplinas
@@ -164,7 +166,7 @@ class ActivitySearchByFilters extends Component {
               className="form-control question-search__by-filter-select"
               onChange={e => this.getListTopics(e, addSelectedYearFilter)}
               value={yearIdSelected || -2}
-              disabled={isFetchingQuestions}
+              disabled={isFetching}
             >
               <option value="-1">
                     Todos os anos

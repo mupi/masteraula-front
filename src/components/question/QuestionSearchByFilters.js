@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   Input, Row, Col, Label, Button,
 } from 'reactstrap';
-import QuestionSearchText from 'components/question/QuestionSearchText';
+import SearchTermsAutocomplete from 'components/question/SearchTermsAutocomplete';
 import { history } from 'helpers';
 
 class QuestionSearchByFilters extends Component {
@@ -84,7 +84,7 @@ class QuestionSearchByFilters extends Component {
 
   render() {
     const {
-      author, isFetchingQuestions, onlyMyQuestions, disciplineFilters, topicFilters,
+      author, isFetching, onlyMyQuestions, disciplineFilters, topicFilters,
       disciplineIdSelected, sourceIdSelected, yearIdSelected,
       addSelectedDisciplineFilter,
       addSelectedSourceFilter,
@@ -100,7 +100,7 @@ class QuestionSearchByFilters extends Component {
 
     return (
       <>
-        <QuestionSearchText {...this.props} baseName="questões" />
+        <SearchTermsAutocomplete {...this.props} baseName="questões" />
         <Row className="c-question-base__myquestions-filter">
           <Label check>
             <Input
@@ -108,7 +108,7 @@ class QuestionSearchByFilters extends Component {
               value={authorState || author}
               onChange={this.handleFilter}
               checked={isChecked}
-              disabled={isFetchingQuestions}
+              disabled={isFetching}
             />
 
             {'Pesquisar só nas ' }
@@ -149,7 +149,7 @@ class QuestionSearchByFilters extends Component {
               className="form-control question-search__by-filter-select"
               onChange={e => this.getListTopics(e, addSelectedDisciplineFilter)}
               value={disciplineIdSelected || -1}
-              disabled={isFetchingQuestions}
+              disabled={isFetching}
             >
               <option value="-1">
                      Todas as disciplinas
@@ -168,7 +168,7 @@ class QuestionSearchByFilters extends Component {
               className="form-control question-search__by-filter-select"
               onChange={e => this.getListTopics(e, addSelectedSourceFilter)}
               value={sourceIdSelected || -2}
-              disabled={isFetchingQuestions}
+              disabled={isFetching}
             >
               <option value="-1">
                      Todos os vestibulares
@@ -187,7 +187,7 @@ class QuestionSearchByFilters extends Component {
               className="form-control question-search__by-filter-select"
               onChange={e => this.getListTopics(e, addSelectedYearFilter)}
               value={yearIdSelected || -2}
-              disabled={isFetchingQuestions}
+              disabled={isFetching}
             >
               <option value="-1">
                     Todos os anos

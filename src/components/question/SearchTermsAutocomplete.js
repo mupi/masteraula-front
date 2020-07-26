@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Field, Form,
 } from 'redux-form';
 import {
-  /* Input, */ InputGroup, InputGroupAddon, Button, Row, UncontrolledTooltip,
+  InputGroup, InputGroupAddon, Button, Row, UncontrolledTooltip,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -18,7 +18,7 @@ const renderSearchFieldAutocomplete = ({
     pristine, touched, error, warning,
   },
   searchText,
-  isFetchingQuestions,
+  isFetching,
   topicSuggestions,
   listTopicSuggestions,
   clearSearchText,
@@ -50,7 +50,7 @@ const renderSearchFieldAutocomplete = ({
           </InputGroupAddon>
         ) : ''}
         <InputGroupAddon addonType="prepend">
-          <Button type="submit" disabled={isFetchingQuestions}>
+          <Button type="submit" disabled={isFetching}>
             <FontAwesomeIcon icon="search" className="btn__icon" />
             Pesquisar
           </Button>
@@ -74,44 +74,31 @@ const renderSearchFieldAutocomplete = ({
   );
 };
 
-class QuestionSearchText extends Component {
-  constructor(props) {
-    super(props);
-    this.handleFilter = this.handleFilter.bind(this);
-  }
+const SearchTermsAutocomplete = (props) => {
+  const {
+    handleSubmit, searchText, clearSearchText, baseName,
+  } = props;
 
-  handleFilter(event) {
-    const { addMyQuestionsFilter } = this.props;
-    const valueFilter = event.target.value;
-    addMyQuestionsFilter(valueFilter, event.target.checked);
-  }
+  const searchInfo = `Pesquisar por palavras-chave no banco de ${baseName}`;
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Row className="c-question-base__search-text">
+        <Field
+          component={renderSearchFieldAutocomplete}
+          type="text"
+          name="searchText"
+          id="searchText"
+          placeholder={searchInfo}
+          className="form-control"
+          validate={minLength3characters}
+          searchText={searchText}
+          clearSearchText={clearSearchText}
+          autoFocus
+          {...props}
+        />
+      </Row>
+    </Form>
+  );
+};
 
-  render() {
-    const {
-      handleSubmit, searchText, clearSearchText, baseName,
-    } = this.props;
-
-    const searchInfo = `Pesquisar por palavras-chave no banco de ${baseName}`;
-    return (
-      <Form onSubmit={handleSubmit}>
-        <Row className="c-question-base__search-text">
-          <Field
-            component={renderSearchFieldAutocomplete}
-            type="text"
-            name="searchText"
-            id="searchText"
-            placeholder={searchInfo}
-            className="form-control"
-            validate={minLength3characters}
-            searchText={searchText}
-            clearSearchText={clearSearchText}
-            autoFocus
-            {...this.props}
-          />
-        </Row>
-      </Form>
-    );
-  }
-}
-
-export default QuestionSearchText;
+export default SearchTermsAutocomplete;

@@ -7,6 +7,10 @@ import { connect } from 'react-redux';
 import CustomPaginationModal from 'components/pagination/CustomPaginationModal';
 import { listActivitiesModal, setCurrentPageModal } from 'actions/activityAction';
 import ActivityList from 'components/activity/ActivityList';
+import { listTopicSuggestions } from 'actions/suggestionAction';
+import {
+  reduxForm, change,
+} from 'redux-form';
 
 import {
   setSearchTextActivityModal, addMyActivitiesFilterModal,
@@ -65,6 +69,7 @@ class SearchActivityModal extends React.Component {
           </button>
         </div>
         <div className="modal-basic-operation__body modal-body modal-fixed__body">
+          <ActivitySearchByFilters {...this.props} onlyTerms />
 
           <div className="c-object-base modal-fixed__body-all">
             <Row className="pagination-questions modal-fixed__pagination-top" style={{ marginLeft: '80%' }}>
@@ -165,38 +170,46 @@ const mapStateToProps = state => ({
   filter: state.filterActivity,
   searchText: state.filterActivity.searchTextModal,
   selectedActivityList: state.classPlan.selectedActivityList,
-
-  /* PRECISO REFATORAR AQUI.. */
-  isFetchingQuestions: state.activity.isFetching,
+  topicsList: state.topic.topics,
+  topicSuggestions: state.suggestion.topicSuggestions,
 
   author: state.session.session.user.id,
   user: state.session.session.user,
-  onlyMyActivitiesModal: state.filterActivity.onlyMyActivitiesModal,
+  onlyMyActivities: state.filterActivity.onlyMyActivitiesModal,
 });
 
 const setDispatchSearchText = searchText => setSearchTextActivityModal(searchText);
 
 const mapDispatchToProps = dispatch => ({
-
   listActivities: (page, filter) => dispatch(listActivitiesModal(page, filter)),
+  listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
   setCurrentPageModalProp: page => dispatch(setCurrentPageModal(page)),
+  search: (searchText) => {
+    dispatch(setDispatchSearchText(searchText));
+  },
   clearSearch: () => {
     dispatch({
       type: '@@redux-form/CHANGE',
       payload: null,
-      meta: { form: 'activitySearchModal', field: 'searchTextActivity' },
+      meta: { form: 'activitySearchModal', field: 'searchText' },
     });
-    dispatch(setDispatchSearchText());
-    dispatch(addMyActivitiesFilterModal(null, false));
+    dispatch(setDispatchSearchText(''));
   },
-
+  clearSearchText: () => {
+    dispatch(change('activitySearchModal', 'searchText', ''));
+    dispatch((_dispatch, getState) => {
+      const { searchTextModal } = getState().filterActivity;
+      if (searchTextModal) {
+        dispatch(setDispatchSearchText());
+      }
+    });
+  },
   /* filters */
   onSubmit: (values) => {
     dispatch(setCurrentPageModal(1));
     dispatch(setDispatchSearchText(values.searchText));
   },
-  /* PRECISO REFATORAR AQUI.. */
-  addMyQuestionsFilter: (author, value) => {
+  addMyMaterialFilter: (author, value) => {
     dispatch(addMyActivitiesFilterModal(author, value));
   },
 });
@@ -204,4 +217,6 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SearchActivityModal);
+)(reduxForm({
+  form: 'activitySearchModal',
+})(SearchActivityModal));
