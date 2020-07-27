@@ -11,6 +11,7 @@ import { Link, Prompt } from 'react-router-dom';
 import DocumentCard from 'components/document/DocumentCard';
 import LearningObjectCard from 'components/learningObject/LearningObjectCard';
 import QuestionCardSimple from 'components/question/QuestionCardSimple';
+import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 
 import { Field, FieldArray } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
@@ -19,7 +20,6 @@ import {
   requiredMultiSelectValidator,
   minDuration,
   minLength3characters,
-  linkValidator,
   minLength2Stations,
 } from 'helpers/validators';
 
@@ -120,54 +120,29 @@ const renderQuestionTextEditor = (props) => {
   );
 };
 
-const renderLinks = ({ fields, meta: { error } }) => (
-  <>
-    <div className="mb-2">
-      <Button onClick={() => fields.push({})}>
-        <FontAwesomeIcon
-          icon="plus"
-          className="btn__icon"
-        />
-      Adicionar Link
-      </Button>
-    </div>
 
-    {fields.map((link, i) => (
-      <Row key={`${link}.id`} className="mb-1">
-        <Col sm="6" xs="9" className="c-classplan__col-link-text">
-          <Field
-            type="text"
-            component={renderField}
-            name={`${link}.link`}
-            label="Insira uma url"
-            validate={[linkValidator, requiredValidator]}
-          />
-        </Col>
-        <Col sm="5" xs="9">
-          <Field
-            type="text"
-            component={renderField}
-            name={`${link}.description_url`}
-            label="Insira uma descrição"
-          />
-        </Col>
-        <Col sm="1" xs="1" className="c-classplan__col-btn-remove-link">
-          <Button
-            type="button"
-            title="Remover link"
-            className="c-classplan__btn-remove-link"
-            onClick={() => fields.remove(i)}
-          >
-            <FontAwesomeIcon
-              icon="trash-alt"
-            />
-          </Button>
-        </Col>
-
-      </Row>
-    ))}
-    <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
-  </>
+// Multiselect for Tags field
+// touche is not working with multiselectTag
+const renderMAMultiSelectTag = ({
+  input,
+  placeholder,
+  meta: {
+    error,
+  },
+}) => (
+  <div className="c-create-question__tags">
+    <MAMultiSelectTag
+      input={input}
+      onChange={value => input.onChange(value)}
+      placeholder={placeholder}
+    />
+    { error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+    )
+       }
+  </div>
 );
 
 export const fieldFile = ({ input, type, meta: { touched, error, warning } }) => {
@@ -468,6 +443,38 @@ class ClassPlanStationsForm extends Component {
             </Row>
             <Row className="c-create-question__row-info">
               <Col className="info-label" sm="4" xs="4">
+                      Tags
+              </Col>
+              <Col sm="8" xs="8">
+                <Field
+                  component={renderMAMultiSelectTag}
+                  name="tags"
+                  id="tags"
+                  placeholder="Dê enter ou vírgula após inserir uma tag"
+                  className="form-control"
+                />
+              </Col>
+            </Row>
+            <Row className="c-create-question__row-info">
+              <Col className="info-label" sm="4" xs="4">
+                  BNCC
+              </Col>
+              <Col sm="8" xs="8">
+                <Field
+                  name="bncc"
+                  className="form-control"
+                  component={renderMultiselect}
+                  placeholder="Selecione as habilidades BNCC"
+                  data={topicSuggestions}
+                  valueField="id"
+                  textField="name"
+                  validate={requiredMultiSelectValidator}
+                  listTopicSuggestions={listTopicSuggestions}
+                />
+              </Col>
+            </Row>
+            <Row className="c-create-question__row-info">
+              <Col className="info-label" sm="4" xs="4">
                     Nível de Ensino
               </Col>
               <Col sm="8" xs="8">
@@ -581,79 +588,7 @@ class ClassPlanStationsForm extends Component {
                 />
               </Col>
             </Row>
-
-            <Row className="c-question__tittle-section">
-              <Col>
-                <h5>
-                  <FontAwesomeIcon icon="link" />
-                  {' '}
-                    Recursos Extras
-                </h5>
-                <div className="border-top my-3" />
-              </Col>
-            </Row>
-            <Row className="mb-2">
-              <Col sm="12">
-                <h6>
-                  <FontAwesomeIcon icon="file-pdf" />
-                  {' '}
-                    Arquivo PDF
-                </h6>
-              </Col>
-              <Col md="3" sm="6">
-                <div className="small-text ">
-                    Tamanho máximo 2 MB.
-                </div>
-                <Field
-                  component={fieldFile}
-                  type="file"
-                  name="pdf"
-                  id="pdf"
-                  className="form-control"
-                />
-              </Col>
-            </Row>
-            <Row className="mb-2">
-              <Col sm="12">
-                <h6>
-                  <FontAwesomeIcon icon="link" />
-                  {' '}
-                    Adicione seus links
-                </h6>
-              </Col>
-
-              <Col sm="12">
-
-                <FieldArray
-                  name="links"
-                  component={renderLinks}
-                />
-              </Col>
-            </Row>
-            <Row className="c-question__tittle-section">
-              <Col>
-                <h5>
-                  <FontAwesomeIcon icon="comments" />
-                  {' '}
-                    Comentários do autor
-                </h5>
-                <div className="border-top my-3" />
-              </Col>
-            </Row>
-
-            <Row className="c-create-question__row-info">
-              <Col sm="12" xs="12">
-                <Field
-                  name="comment"
-                  className="form-control"
-                  component={renderField}
-                  label="Insira seus comentários"
-                  type="textarea"
-                />
-              </Col>
-            </Row>
             <div className="question-information">
-
               <Row>
                 <Col>
                   { (!pristine) ? (
