@@ -69,9 +69,8 @@ class SearchActivityModal extends React.Component {
           </button>
         </div>
         <div className="modal-basic-operation__body modal-body modal-fixed__body">
-          <ActivitySearchByFilters {...this.props} onlyTerms />
-
           <div className="c-object-base modal-fixed__body-all">
+            <ActivitySearchByFilters {...this.props} onlyTerms />
             <Row className="pagination-questions modal-fixed__pagination-top" style={{ marginLeft: '80%' }}>
               <CustomPaginationModal
                 {...this.props}
@@ -106,7 +105,7 @@ class SearchActivityModal extends React.Component {
               )
             }
             </Row>
-            <div className="c-question-base__results modal-fixed__body-section-questions-scroll">
+            <div className="c-question-base__results modal-fixed__body-section-activities-scroll">
               { isFetching ? (
                 <Alert className="c-question-base__alert--warning" color="warning" fade={false}>
                    Carregando  ...
@@ -142,7 +141,7 @@ class SearchActivityModal extends React.Component {
         </div>
         <div className="modal-footer modal__footer c-object-base-modal__footer modal-fixed__footer">
           <Button color="secondary" onClick={closeModal}>
-            Fechar
+            Salvar
           </Button>
         </div>
       </div>
