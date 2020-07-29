@@ -19,7 +19,7 @@ import {
 } from 'actions/filterAction';
 import { listTopics, resetTopicList } from 'actions/topicAction';
 import { showModal, hideModal } from 'actions/modalAction';
-import { listTopicSuggestions } from 'actions/suggestionAction';
+import { listTopicSuggestions, listBnccSuggestions  } from 'actions/suggestionAction';
 import {
   listMyDocumentsModal,
 } from 'actions/documentAction';
@@ -45,6 +45,7 @@ const mapStateToProps = (state) => {
     selectedDocumentList: state.classPlan.selectedDocumentList,
     errorsClassPlan: state.form['create-classplan'] ? state.form['create-classplan'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
+    bnccSuggestions: state.suggestion.bnccSuggestions,
     user,
     selectedClassPlanType: state.classPlan.selectedClassPlanType,
     stations: state.classPlan.stations,
@@ -186,6 +187,7 @@ const mapDispatchToProps = (dispatch) => {
     /* END */
 
     listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
+    listBnccSuggestions: param => dispatch(listBnccSuggestions(param)),
 
     removeSelectedObjectToClassPlan: idObject => dispatch(removeSelectedObjectToClassPlan(idObject)),
     removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),

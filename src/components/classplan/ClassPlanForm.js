@@ -190,11 +190,18 @@ class ClassPlanForm extends Component {
       }
     }
 
+    listBnccSuggestions = (param) => {
+      if (param && param.length === 3) {
+        const { listBnccSuggestions } = this.props;
+        listBnccSuggestions(param);
+      }
+    }
+
     render() {
       const {
-        topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
+        bnccSuggestions, topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
         teachingLevelFilters, handleSubmit, selectedActivityList, removeSelectedActivityToClassPlan,
-        submitting, errorsClassPlan, listTopicSuggestions, user, showSearchActivityModal,
+        submitting, errorsClassPlan, listTopicSuggestions, listBnccSuggestions, user, showSearchActivityModal,
         showSearchDocumentModal, selectedDocumentList,
         removeSelectedDocumentFromClassPlan, actionName,
       } = this.props;
@@ -322,11 +329,11 @@ class ClassPlanForm extends Component {
                   className="form-control"
                   component={renderMultiselect}
                   placeholder="Selecione as habilidades BNCC"
-                  data={topicSuggestions}
+                  data={bnccSuggestions}
                   valueField="id"
                   textField="name"
                   validate={requiredMultiSelectValidator}
-                  listTopicSuggestions={listTopicSuggestions}
+                  listBnccSuggestions={listBnccSuggestions}
                 />
               </Col>
             </Row>
@@ -434,7 +441,6 @@ class ClassPlanForm extends Component {
                   id="contentEditorText"
                   disabled={false}
                   placeholderEditor="Insira aqui os conteúdos que você colocará na lousa para os alunos..."
-                  validate={requiredValidator}
                   autoFocus
                 />
               </Col>
@@ -461,7 +467,6 @@ class ClassPlanForm extends Component {
                   id="studentEditorText"
                   disabled={false}
                   placeholderEditor="Insira aqui os conteúdos que você colocará na lousa para os alunos..."
-                  validate={requiredValidator}
                   autoFocus
                 />
               </Col>

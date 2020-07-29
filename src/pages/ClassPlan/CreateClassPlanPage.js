@@ -54,6 +54,13 @@ class CreateClassPlanPage extends Component {
       }
     }
 
+    listBnccSuggestions = (param) => {
+      if (param && param.length === 3) {
+        const { listBnccSuggestions } = this.props;
+        listBnccSuggestions(param);
+      }
+    }
+
     render() {
       const {
         isCreating, error, match,
