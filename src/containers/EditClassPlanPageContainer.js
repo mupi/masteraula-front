@@ -188,6 +188,9 @@ const mapDispatchToProps = (dispatch) => {
     resetSelectedObjects: () => dispatch(resetSelectedObjects()),
     resetSelectedDocuments: () => dispatch(resetSelectedDocuments()),
 
+    removeSelectedActivityToClassPlan: idActivity => dispatch(removeSelectedActivityToClassPlan(idActivity)),
+
+
     removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
     fetchClassPlan: id => dispatch(fetchClassPlan(id)),
 
