@@ -246,24 +246,21 @@ const mapDispatchToProps = (dispatch) => {
         disciplines_ids: values.disciplines.map(discipline => discipline.id),
         teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
         topics_ids: values.topics.map(topic => topic.id),
+        bncc_ids: values.bncc.map(bncc => bncc.id),
+        tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
 
-        learning_objects_ids: props.selectedObjectList && props.selectedObjectList.length > 0
-          ? props.selectedObjectList.map(object => object.id) : [],
         documents_ids: props.selectedDocumentList && props.selectedDocumentList.length > 0
           ? props.selectedDocumentList.map(document => document.id) : [],
+        activities_ids: props.selectedActivityList && props.selectedActivityList.length > 0
+          ? props.selectedActivityList.map(activity => activity.id) : [],
         stations: newStations,
 
-        links: values.links && values.links.length > 0 ? values.links : [],
         teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],
         duration: values.duration ? values.duration : 0,
-        comment: values.comment ? values.comment : '',
-        description: values.description,
-        pdf: values.pdf && values.pdf.length !== 0 ? values.pdf : null,
+        phases: values.phases,
+        content: values.content ? values.content : '',
+        guidelines: values.guidelines ? values.guidelines : ''
       };
-      const overMaxSize = values.pdf && values.pdf instanceof FileList && values.pdf.length > 0 && values.pdf[0].size > 2097152;
-      if (overMaxSize) {
-        errors.pdf = 'Insira um arquivo PDF de máx. 2mb';
-      }
 
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
       return dispatch(createClassPlan(newClassPlan));

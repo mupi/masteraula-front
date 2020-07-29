@@ -332,7 +332,6 @@ class ClassPlanForm extends Component {
                   data={bnccSuggestions}
                   valueField="id"
                   textField="name"
-                  validate={requiredMultiSelectValidator}
                   listBnccSuggestions={listBnccSuggestions}
                 />
               </Col>
@@ -419,7 +418,7 @@ class ClassPlanForm extends Component {
               <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
                 <Field
                   component={renderQuestionTextEditor}
-                  name="description"
+                  name="phases"
                   key="field"
                   id="descriptionEditorText"
                   disabled={false}
@@ -462,7 +461,7 @@ class ClassPlanForm extends Component {
               <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
                 <Field
                   component={renderQuestionTextEditor}
-                  name="student_orientations"
+                  name="guidelines"
                   key="field"
                   id="studentEditorText"
                   disabled={false}
