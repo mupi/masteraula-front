@@ -40,7 +40,6 @@ const mapStateToProps = (state) => {
     teachingLevelFilters: state.filter.teachingLevelFilters,
     teachingYearFilters: state.filter.teachingYearFilters,
     sourceFilters: state.filter.sourceFilters,
-    selectedObjectList: state.classPlan.selectedObjectList,
     selectedActivityList: state.classPlan.selectedActivityList,
     selectedDocumentList: state.classPlan.selectedDocumentList,
     errorsClassPlan: state.form['create-classplan'] ? state.form['create-classplan'].submitErrors : null,

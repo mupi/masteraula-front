@@ -18,7 +18,7 @@ import {
 } from 'actions/filterAction';
 import { listTopics, resetTopicList } from 'actions/topicAction';
 import { showModal, hideModal } from 'actions/modalAction';
-import { listTopicSuggestions } from 'actions/suggestionAction';
+import { listTopicSuggestions, listBnccSuggestions } from 'actions/suggestionAction';
 import {
   listMyDocumentsModal,
 } from 'actions/documentAction';
@@ -34,16 +34,17 @@ const mapStateToProps = (state) => {
   return ({
     topics: selector(state, 'topics'),
     disciplinesList: selector(state, 'disciplines'),
-    selectedPdf: selector(state, 'pdf'),
     topicsList: state.topic.topics,
     disciplineFilters: state.filter.disciplineFilters,
     teachingLevelFilters: state.filter.teachingLevelFilters,
     teachingYearFilters: state.filter.teachingYearFilters,
     sourceFilters: state.filter.sourceFilters,
-    selectedObjectList: state.classPlan.selectedObjectList,
+    selectedActivityList: state.classPlan.selectedActivityList,
     selectedDocumentList: state.classPlan.selectedDocumentList,
     errorsClassPlan: state.form['edit-classplan'] ? state.form['edit-classplan'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
+    user,
+    bnccSuggestions: state.suggestion.bnccSuggestions,
     user,
     userId: state.session.session.user.id,
     error: state.classPlan.error,
@@ -150,6 +151,7 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),
+    listBnccSuggestions: param => dispatch(listBnccSuggestions(param)),
 
     removeSelectedObjectToClassPlan: idObject => dispatch(removeSelectedObjectToClassPlan(idObject)),
     resetSelectedObjects: () => dispatch(resetSelectedObjects()),
@@ -220,24 +222,23 @@ const mapDispatchToProps = (dispatch) => {
         disciplines_ids: values.disciplines.map(discipline => discipline.id),
         teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
         topics_ids: values.topics.map(topic => topic.id),
-        learning_objects_ids: props.selectedObjectList && props.selectedObjectList.length > 0
-          ? props.selectedObjectList.map(object => object.id) : [],
+        bncc_ids: values.bncc.map(bncc => bncc.id),
+        tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
+
         documents_ids: props.selectedDocumentList && props.selectedDocumentList.length > 0
           ? props.selectedDocumentList.map(document => document.id) : [],
+        activities_ids: props.selectedActivityList && props.selectedActivityList.length > 0
+          ? props.selectedActivityList.map(activity => activity.id) : [],
 
         stations: updateStations,
 
-        links: values.links && values.links.length > 0 ? values.links : [],
         teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],
         duration: values.duration ? values.duration : 0,
-        comment: values.comment ? values.comment : '',
-        description: values.description,
-        pdf: (values.pdf && isValidFile) ? values.pdf : null,
+        phases: values.phases,
+        content: values.content ? values.content : '',
+        guidelines: values.guidelines ? values.guidelines : ''
       };
-      const overMaxSize = values.pdf && values.pdf instanceof FileList && values.pdf.length > 0 && values.pdf[0].size > 2097152;
-      if (overMaxSize) {
-        errors.pdf = 'Insira um arquivo PDF de máx. 2mb';
-      }
+      
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
       return dispatch(updateClassPlan(updatedClassPlan));

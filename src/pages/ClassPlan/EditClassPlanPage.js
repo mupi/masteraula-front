@@ -39,6 +39,13 @@ class EditClassPlanPage extends Component {
       }
     }
 
+    listBnccSuggestions = (param) => {
+      if (param && param.length === 3) {
+        const { listBnccSuggestions } = this.props;
+        listBnccSuggestions(param);
+      }
+    }
+
     render() {
       const {
         isFetching, error, activeClassPlan, userId,
