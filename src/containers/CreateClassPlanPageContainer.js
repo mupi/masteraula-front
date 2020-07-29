@@ -245,7 +245,7 @@ const mapDispatchToProps = (dispatch) => {
         disciplines_ids: values.disciplines.map(discipline => discipline.id),
         teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
         topics_ids: values.topics.map(topic => topic.id),
-        bncc_ids: values.bncc.map(bncc => bncc.id),
+        bncc_ids: values.bncc ? values.bncc.map(bncc => bncc.id) : [],
         tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
 
         documents_ids: props.selectedDocumentList && props.selectedDocumentList.length > 0

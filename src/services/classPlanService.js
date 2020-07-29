@@ -138,8 +138,8 @@ function convertEditClassPlanToFormData(classPlan) {
         formData.append('bncc_ids', bnccId);
       });
     } else if (name === 'tags') {
-      classPlan[name].forEach((tag) => {
-        formData.append('tags', tag);
+      classPlan[name].forEach((tag, index) => {
+        formData.append(`tags[${index}]`, tag);
       });
     } else if (name === 'documents_ids') {
       classPlan[name].forEach((documentId) => {

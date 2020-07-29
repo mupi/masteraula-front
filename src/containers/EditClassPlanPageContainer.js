@@ -6,6 +6,7 @@ import EditClassPlanPage from 'pages/ClassPlan/EditClassPlanPage';
 import {
   updateClassPlan,
   addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
+  addSelectedActivityToClassPlan, removeSelectedActivityToClassPlan, resetSelectedActivities,
   addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan, resetSelectedDocuments,
   fetchClassPlan,
   addStationToClassPlan, removeStationFromClassPlan,
@@ -108,6 +109,32 @@ const mapDispatchToProps = (dispatch) => {
     },
     modalType: 'searchDocumentModal',
   });
+  
+  const openSearchActivityModalProps = (singleSelection, stationIndex) => ({
+    modalProps: {
+      open: true,
+      titlePart: 'ao plano de aula',
+      closeModal: () => dispatch(hideModal()),
+      addSelectedActivity: (activity) => {
+        if (!singleSelection) {
+          dispatch(addSelectedActivityToClassPlan(activity));
+        } else {
+          dispatch(addMaterialToClassPlanStation(activity, stationIndex, 'A'));
+        }
+      },
+      removeSelectedActivity: (idActivity) => {
+        if (!singleSelection) {
+          dispatch(removeSelectedActivityToClassPlan(idActivity));
+        } else {
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'A'));
+        }
+      },
+      callFrom: 'C',
+      singleSelection,
+      stationIndex,
+    },
+    modalType: 'searchActivityModal',
+  });
 
   const openSearchQuestionModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
@@ -144,6 +171,10 @@ const mapDispatchToProps = (dispatch) => {
 
     showSearchDocumentModal: (singleSelection = false, stationIndex = null) => {
       dispatch(showModal(openSearchDocumentModalProps(singleSelection, stationIndex)));
+    },
+
+    showSearchActivityModal: (singleSelection = false, stationIndex = null) => {
+      dispatch(showModal(openSearchActivityModalProps(singleSelection, stationIndex)));
     },
 
     showSearchQuestionModal: (singleSelection = false, stationIndex = null) => {
@@ -222,7 +253,7 @@ const mapDispatchToProps = (dispatch) => {
         disciplines_ids: values.disciplines.map(discipline => discipline.id),
         teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
         topics_ids: values.topics.map(topic => topic.id),
-        bncc_ids: values.bncc.map(bncc => bncc.id),
+        bncc_ids: values.bncc ? values.bncc.map(bncc => bncc.id) : [],
         tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
 
         documents_ids: props.selectedDocumentList && props.selectedDocumentList.length > 0
