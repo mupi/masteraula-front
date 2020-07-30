@@ -1,9 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import QuestionCard from '../question/QuestionCard';
 import ActivityCard from '../activity/ActivityCard';
 
+export const BUTTON_TYPE = {
+  ACTIVITYCARD_BASE: 1,
+  ACTIVITYCARD_MODAL_VIEW: 2,
+  ACTIVITYCARD_MODAL_SELECT: 3,
+};
+
+const ViewCardButton = ({ activity }) => (
+  <Link to={`/view-activity/${activity.id}`}>
+    <Button className="question-card__btn">
+      Ver atividade
+    </Button>
+  </Link>
+);
 
 const MaterialList = (props) => {
   const {
@@ -28,7 +42,7 @@ const MaterialList = (props) => {
       ))}
       {activities.map(activity => (
         <Col sm={sm} lg="3" xs="12" key={`A${activity.id}`} className="question-card">
-          <ActivityCard activity={activity} {...props} />
+          <ActivityCard activity={activity} button={<ViewCardButton activity={activity} />} {...props} />
         </Col>
       ))}
     </Row>

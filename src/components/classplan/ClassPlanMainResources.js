@@ -2,30 +2,7 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DocumentCardList from 'components/document/DocumentCardList';
-import SimpleLObjectCardList from 'components/learningObject/SimpleLObjectCardList';
-
-const LearningObjectsSection = (props) => {
-  const { objects } = props;
-  return (
-    <>
-      <Row className="mb-2">
-        <Col sm="12">
-          <h6>
-            <FontAwesomeIcon icon="image" />
-            {' '}
-              Objetos de aprendizagem
-          </h6>
-        </Col>
-      </Row>
-      <SimpleLObjectCardList
-        sm="4"
-        objects={objects}
-        viewOnly
-        showQuestionQuantity={false}
-      />
-    </>
-  );
-};
+import ActivityList from 'components/activity/ActivityList';
 
 const DocumentsSection = (props) => {
   const { documents, options, showDocumentModal } = props;
@@ -49,13 +26,39 @@ const DocumentsSection = (props) => {
   );
 };
 
-const ClassPlanMainResources = ({
-  classPlan, optionsObject, optionsDocument, showDocumentModal,
-}) => {
-  const hasLearningObjects = classPlan && classPlan.learning_objects && classPlan.learning_objects.length > 0;
-  const hasDocuments = classPlan && classPlan.documents && classPlan.documents.length > 0;
+const ActivitiesSection = (props) => {
+  const { activities, options } = props;
   return (
-    (hasLearningObjects || hasDocuments) && (
+    <>
+    <Row className="mb-2">
+      <Col sm="12">
+        <h6>
+          <FontAwesomeIcon icon="book-reader" />
+          {' '}
+          Atividades
+        </h6>
+      </Col>
+    </Row>   
+    <ActivityList
+      sm="4"
+      activities={activities}
+      buttonType= {options.buttonType}
+      showQuantity={false}
+      withFilters={false}
+      viewOnly
+    />
+    </>
+  );
+};
+
+const ClassPlanMainResources = ({
+  classPlan, optionsActivity, optionsDocument, showDocumentModal,
+}) => {
+  const hasActivities = classPlan && classPlan.activities && classPlan.activities.length > 0;
+  const hasDocuments = classPlan && classPlan.documents && classPlan.documents.length > 0;
+  
+  return (
+    (hasActivities || hasDocuments) && (
     <>
       <Row className="c-question__tittle-section">
         <Col>
@@ -67,7 +70,7 @@ const ClassPlanMainResources = ({
           <div className="border-top my-3" />
         </Col>
       </Row>
-      {hasLearningObjects && <LearningObjectsSection objects={classPlan.learning_objects} options={optionsObject} />}
+      {hasActivities && <ActivitiesSection activities={classPlan.activities} options={optionsActivity} />}
       {hasDocuments && <DocumentsSection documents={classPlan.documents} options={optionsDocument} showDocumentModal={showDocumentModal} />}
     </>
     ));

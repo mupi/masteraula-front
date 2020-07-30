@@ -6,7 +6,7 @@ import EditClassPlanPage from 'pages/ClassPlan/EditClassPlanPage';
 import {
   updateClassPlan,
   addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
-  addSelectedActivityToClassPlan, removeSelectedActivityToClassPlan, resetSelectedActivities,
+  addSelectedActivityToClassPlan, removeSelectedActivityToClassPlan,
   addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan, resetSelectedDocuments,
   fetchClassPlan,
   addStationToClassPlan, removeStationFromClassPlan,
@@ -46,7 +46,6 @@ const mapStateToProps = (state) => {
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
     bnccSuggestions: state.suggestion.bnccSuggestions,
-    user,
     userId: state.session.session.user.id,
     error: state.classPlan.error,
     isFetching: state.classPlan.isFetching,
@@ -220,7 +219,6 @@ const mapDispatchToProps = (dispatch) => {
   */
     onSubmit: (values, d, props) => {
       const errors = [];
-      const isValidFile = values.pdf && values.pdf instanceof FileList && values.pdf.length > 0;
 
       const updateStations = values.stations.map((station, i) => {
         if (props.stations[i].document_ids) {

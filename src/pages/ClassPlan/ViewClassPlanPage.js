@@ -8,24 +8,27 @@ import {
 } from 'reactstrap';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import ClassPlanMainResources from 'components/classplan/ClassPlanMainResources';
-import ClassPlanExtraResources from 'components/classplan/ClassPlanExtraResources';
-import ClassPlanComments from 'components/classplan/ClassPlanComments';
+import ClassPlanStudentArea from 'components/classplan/ClassPlanStudentArea';
+import ClassPlanTeacherArea from 'components/classplan/ClassPlanTeacherArea';
 import ClassPlanBasicInfo from 'components/classplan/ClassPlanBasicInfo';
 import ClassPlanStations from 'components/classplan/ClassPlanStations';
 
-// Learning object's options available for LearnningObjectContent in ClassPlan
-const optionsObject = {
-  showOperations: true,
-  showViewButton: true,
-  showCreateQuestionButton: false,
-  removeOption: false,
-  showTitle: false,
+export const BUTTON_TYPE = {
+  ACTIVITYCARD_BASE: 1,
+  ACTIVITYCARD_MODAL_VIEW: 2,
+  ACTIVITYCARD_MODAL_SELECT: 3,
 };
 
 // Document's options available for View ClassPlan
 const optionsDocument = {
   showViewButton: true,
   removeButton: false,
+};
+
+// Document's options available for View ClassPlan
+const optionsActivity = {
+  showViewButton: true,
+  buttonType: BUTTON_TYPE.ACTIVITYCARD_BASE,
 };
 
 class ViewClassPlanPage extends Component {
@@ -133,6 +136,7 @@ class ViewClassPlanPage extends Component {
             </Col>
           </Row>
           <ClassPlanBasicInfo classPlan={activeClassPlan} user={user} />
+          <ClassPlanTeacherArea classPlan={activeClassPlan} />
           {activeClassPlan && activeClassPlan.plan_type === 'S' ? (
             <ClassPlanStations
               stations={activeClassPlan.stations}
@@ -141,13 +145,12 @@ class ViewClassPlanPage extends Component {
           ) : (
             <ClassPlanMainResources
               classPlan={activeClassPlan}
+              optionsActivity={optionsActivity}
               optionsDocument={optionsDocument}
-              optionsObject={optionsObject}
               showDocumentModal={showDocumentModal}
             />
           )}
-          <ClassPlanExtraResources classPlan={activeClassPlan} />
-          <ClassPlanComments classPlan={activeClassPlan} />
+          <ClassPlanStudentArea classPlan={activeClassPlan} />
         </div>
       </HomeUserPage>
     );
