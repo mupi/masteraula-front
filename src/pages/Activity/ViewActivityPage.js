@@ -21,6 +21,29 @@ const options = {
   showTitle: false,
 };
 
+const ActivityListClassPlans = (props) => {
+  const { activeActivity } = props;
+  const listClassPlansFilter = ((activeActivity.class_plans)
+    ? activeActivity.class_plans.filter(item => item.id !== activeActivity.id) : activeActivity.class_plans);
+
+  return (
+    activeActivity.class_plans && listClassPlansFilter.length > 0
+      ? (
+        <Row className="c-question__list-documents">
+          <Col className="c-question__add-question-rectangle">
+            <p>
+              Essa atividade também está em planos de aula:
+              {' '}
+              <strong>
+                {listClassPlansFilter.map(item => item.name).join(', ')}
+              </strong>
+            </p>
+          </Col>
+        </Row>
+      ) : ''
+  );
+};
+
 const ViewActivityPage = (props) => {
   const {
     isFetching, fetchActivity, match, activeActivity, showDeleteModal, userId,
@@ -146,6 +169,7 @@ const ViewActivityPage = (props) => {
                   </Col>
                 )}
               </Row>
+              <ActivityListClassPlans activeActivity={activeActivity} />
             </div>
             <ActivityInfo activity={activeActivity} />
             {activeActivity.related_questions && activeActivity.related_questions.length > 0 ? (
