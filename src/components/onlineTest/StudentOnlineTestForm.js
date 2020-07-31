@@ -74,11 +74,6 @@ const StudentOnlineTestForm = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col sm="12" className="text-center mb-3 student-online__messages">
-          Boa prova!
-        </Col>
-      </Row>
-      <Row>
         <Col sm="12" className="text-center">
           <Button color="success" type="submit">
             {'Começar '}

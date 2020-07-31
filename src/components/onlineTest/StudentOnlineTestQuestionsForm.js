@@ -160,7 +160,7 @@ const StudentOnlineTestQuestionsForm = (props) => {
         <Col sm="12" className="text-center">
           <Button color="success" type="submit" disabled={isSendingAnswers}>
             <FontAwesomeIcon icon="check" />
-            {' Finalizar prova'}
+            {' Finalizar e enviar respostas'}
           </Button>
         </Col>
       </Row>

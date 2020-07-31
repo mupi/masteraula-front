@@ -32,7 +32,7 @@ const OnlineTestBasicInfo = (props) => {
               className="btn__icon"
               icon="hourglass-start"
             />
-            <strong>Duração: </strong>
+            <strong>Duração prevista para realização: </strong>
           </span>
           <span className="c-online__questions-info--value">{duration}</span>
         </p>
