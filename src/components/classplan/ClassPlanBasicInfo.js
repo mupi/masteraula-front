@@ -8,7 +8,6 @@ const ClassPlanBasicInfo = ({ classPlan, user }) => {
   const hasTeachingYears = classPlan && classPlan.teaching_years && classPlan.teaching_years.length > 0;
   const hasTags = classPlan && classPlan.tags && classPlan.tags.length > 0;
   const hasBncc = classPlan && classPlan.bncc && classPlan.bncc.length > 0;
-  const hasDescription = classPlan && classPlan.description && classPlan.description.trim() !== '<p></p>' && classPlan.description.trim() !== '';
   const hasDuration = classPlan && classPlan.duration;
   return (
     <>
@@ -101,23 +100,6 @@ const ClassPlanBasicInfo = ({ classPlan, user }) => {
         </Col>
         <Col sm="8" xs="8">
           {user.name}
-        </Col>
-      </Row>
-      {hasDescription && (
-        <Row className="c-question__tittle-section">
-          <Col>
-            <h5>
-              <FontAwesomeIcon icon="pencil-alt" />
-              {' '}
-                    Etapas
-            </h5>
-            <div className="border-top my-3" />
-          </Col>
-        </Row>
-      )}
-      <Row>
-        <Col>
-          <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(classPlan.phases) }} />
         </Col>
       </Row>
     </>

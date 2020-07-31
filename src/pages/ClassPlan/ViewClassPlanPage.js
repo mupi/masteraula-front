@@ -51,6 +51,7 @@ class ViewClassPlanPage extends Component {
 
     const authorPK = (activeClassPlan && activeClassPlan.owner) ? activeClassPlan.owner.pk : 'Anônimo';
     const isOwner = (authorPK === userId);
+    const hasGuidelines = activeClassPlan && activeClassPlan.guidelines && activeClassPlan.guidelines.trim() !== '<p></p>' && activeClassPlan.guidelines.trim() !== '';
 
     if (isFetching) {
       return (
@@ -137,6 +138,9 @@ class ViewClassPlanPage extends Component {
           </Row>
           <ClassPlanBasicInfo classPlan={activeClassPlan} user={user} />
           <ClassPlanTeacherArea classPlan={activeClassPlan} />
+          {hasGuidelines && (
+            <ClassPlanStudentArea classPlan={activeClassPlan} />
+          )}
           {activeClassPlan && activeClassPlan.plan_type === 'S' ? (
             <ClassPlanStations
               stations={activeClassPlan.stations}
@@ -150,7 +154,6 @@ class ViewClassPlanPage extends Component {
               showDocumentModal={showDocumentModal}
             />
           )}
-          <ClassPlanStudentArea classPlan={activeClassPlan} />
         </div>
       </HomeUserPage>
     );
