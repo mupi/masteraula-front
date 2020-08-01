@@ -61,7 +61,7 @@ const StudentTestBasicInfo = ({ onlineTest }) => {
             className="btn__icon"
             icon="hourglass-start"
           />
-          <strong>Duração: </strong>
+          <strong>Duração prevista para realização: </strong>
         </span>
         <span className="c-online__questions-info--value">{duration}</span>
       </p>
@@ -77,7 +77,6 @@ const StudentOnlineTestFirstPage = (props) => {
       <Row className="mt-5 mb-3 align-items-center no-gutters">
         <Col sm="12" md={{ size: 8, offset: 2 }}>
           <h4>
-            {'Prova : '}
             <span className="c-online__name">{basicOnlineTest.name}</span>
           </h4>
           <StudentTestBasicInfo onlineTest={basicOnlineTest} />
@@ -156,7 +155,6 @@ const StudentOnlineTestSecondPage = (props) => {
         )}
         <Col sm="12">
           <h4>
-            {'Prova : '}
             <span className="c-online__name">{fullOnlineTest.name}</span>
           </h4>
           <StudentTestBasicInfo onlineTest={fullOnlineTest} />

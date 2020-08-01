@@ -83,13 +83,21 @@ function convertClassPlanToFormData(classPlan) {
       classPlan[name].forEach((topicId, index) => {
         formData.append(`topics_ids[${index}]`, topicId);
       });
-    } else if (name === 'learning_objects_ids') {
-      classPlan[name].forEach((objectId, index) => {
-        formData.append(`learning_objects_ids[${index}]`, objectId);
+    } else if (name === 'bncc_ids') {
+      classPlan[name].forEach((BnccId, index) => {
+        formData.append(`bncc_ids[${index}]`, BnccId);
+      });
+    } else if (name === 'tags') {
+      classPlan[name].forEach((tag, index) => {
+        formData.append(`tags[${index}]`, tag);
       });
     } else if (name === 'documents_ids') {
       classPlan[name].forEach((documentId, index) => {
         formData.append(`documents_ids[${index}]`, documentId);
+      });
+    } else if (name === 'activities_ids') {
+      classPlan[name].forEach((activityId, index) => {
+        formData.append(`activities_ids[${index}]`, activityId);
       });
     } else if (name === 'stations') {
       classPlan[name].forEach((station, index) => {
@@ -100,13 +108,6 @@ function convertClassPlanToFormData(classPlan) {
 
         if (station.question_ids) { formData.append(`stations[${index}]question_ids`, station.question_ids); }
       });
-    } else if (name === 'links') {
-      classPlan[name].forEach((link, index) => {
-        formData.append(`links[${index}]link`, link.link);
-        formData.append(`links[${index}]description_url`, link.description_url);
-      });
-    } else if (name === 'pdf') {
-      if (classPlan[name]) { formData.append(name, classPlan[name][0]); }
     } else formData.append(name, classPlan[name]);
   });
 
@@ -132,18 +133,21 @@ function convertEditClassPlanToFormData(classPlan) {
       classPlan[name].forEach((topicId) => {
         formData.append('topics_ids', topicId);
       });
-    } else if (name === 'learning_objects_ids') {
-      classPlan[name].forEach((objectId) => {
-        formData.append('learning_objects_ids', objectId);
+    } else if (name === 'bncc_ids') {
+      classPlan[name].forEach((bnccId) => {
+        formData.append('bncc_ids', bnccId);
+      });
+    } else if (name === 'tags') {
+      classPlan[name].forEach((tag, index) => {
+        formData.append(`tags[${index}]`, tag);
       });
     } else if (name === 'documents_ids') {
       classPlan[name].forEach((documentId) => {
         formData.append('documents_ids', documentId);
       });
-    } else if (name === 'links') {
-      classPlan[name].forEach((link, index) => {
-        formData.append(`links[${index}]link`, link.link);
-        formData.append(`links[${index}]description_url`, link.description_url);
+    } else if (name === 'activities_ids') {
+      classPlan[name].forEach((activityId) => {
+        formData.append('activities_ids', activityId);
       });
     } else if (name === 'stations') {
       classPlan[name].forEach((station, index) => {
@@ -154,8 +158,6 @@ function convertEditClassPlanToFormData(classPlan) {
 
         if (station.question_ids) { formData.append(`stations[${index}]question_ids`, station.question_ids); }
       });
-    } else if (name === 'pdf') {
-      if (classPlan[name]) { formData.append(name, classPlan[name][0]); }
     } else formData.append(name, classPlan[name]);
   });
 

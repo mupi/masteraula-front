@@ -18,12 +18,17 @@ class Multiselect extends Component {
   }
 
   onSearch = (param) => {
-    const { listTopicSuggestions } = this.props;
-    if (!listTopicSuggestions) {
+    const { listTopicSuggestions, listBnccSuggestions } = this.props;
+    if (!listTopicSuggestions && !listBnccSuggestions) {
       return;
     }
     if (param && param.length === 3) {
-      listTopicSuggestions(param);
+      if (listBnccSuggestions){
+        listBnccSuggestions(param);
+      }
+      else{
+        listTopicSuggestions(param);
+      }
     }
     this.setState({
       param,
@@ -31,10 +36,10 @@ class Multiselect extends Component {
   };
 
   getData = () => {
-    const { data, listTopicSuggestions } = this.props;
+    const { data, listTopicSuggestions, listBnccSuggestions} = this.props;
     const { param } = this.state;
 
-    if (!listTopicSuggestions || (param && param.length >= 3)) {
+    if ((!listTopicSuggestions || (param && param.length >= 3)) && (!listBnccSuggestions || (param && param.length >= 3))) {
       return data;
     }
     return [];
@@ -42,8 +47,8 @@ class Multiselect extends Component {
 
   messages = () => {
     const { param } = this.state;
-    const { listTopicSuggestions } = this.props;
-    if (listTopicSuggestions && param.length < 3) {
+    const { listTopicSuggestions, listBnccSuggestions } = this.props;
+    if ((listTopicSuggestions && param.length < 3) || (listBnccSuggestions && param.length < 3)) {
       return {
         emptyList: 'Insira ao menos 3 caracteres para mostrar resultados',
         emptyFilter: 'Não existem resultados que coincidam',

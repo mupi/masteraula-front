@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, Form } from 'redux-form';
 import {
-  Input, InputGroup, InputGroupAddon, Button, Row, Col, UncontrolledTooltip,
+  Input, InputGroup, InputGroupAddon, Button, Row, UncontrolledTooltip,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {

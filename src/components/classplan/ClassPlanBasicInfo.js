@@ -6,7 +6,8 @@ import { getCleanCompleteStatement } from 'helpers/question';
 /* eslint-disable react/no-danger */
 const ClassPlanBasicInfo = ({ classPlan, user }) => {
   const hasTeachingYears = classPlan && classPlan.teaching_years && classPlan.teaching_years.length > 0;
-  const hasDescription = classPlan && classPlan.description && classPlan.description.trim() !== '<p></p>' && classPlan.description.trim() !== '';
+  const hasTags = classPlan && classPlan.tags && classPlan.tags.length > 0;
+  const hasBncc = classPlan && classPlan.bncc && classPlan.bncc.length > 0;
   const hasDuration = classPlan && classPlan.duration;
   return (
     <>
@@ -45,6 +46,26 @@ const ClassPlanBasicInfo = ({ classPlan, user }) => {
           {classPlan.topics.map(topic => <Badge key={`${topic.id}-${topic.name}`} color="success" pill>{topic.name.trim()}</Badge>)}
         </Col>
       </Row>
+      {hasTags && (
+        <Row className="c-classplan__row-info">
+          <Col className="info-label" sm="4" xs="4">
+                      Tags
+          </Col>
+          <Col sm="8" xs="8" className="c-classplan__topics">
+            {classPlan.tags.map(tag => <Badge key={`${tag.id}-${tag.name}`} color="success" pill>{tag.name.trim()}</Badge>)}
+          </Col>
+        </Row>
+      )}
+      {hasBncc && (
+        <Row className="c-classplan__row-info">
+          <Col className="info-label" sm="4" xs="4">
+                        BNCC
+          </Col>
+          <Col sm="8" xs="8" className="c-classplan__topics">
+            {classPlan.bncc.map(bncc => <Badge key={`${bncc.id}-${bncc.name}`} color="success" pill>{bncc.name.trim()}</Badge>)}
+          </Col>
+        </Row>
+      )}
       <Row className="c-classplan__row-info">
         <Col className="info-label" sm="4" xs="4">
                     Nível de Ensino
@@ -79,23 +100,6 @@ const ClassPlanBasicInfo = ({ classPlan, user }) => {
         </Col>
         <Col sm="8" xs="8">
           {user.name}
-        </Col>
-      </Row>
-      {hasDescription && (
-        <Row className="c-question__tittle-section">
-          <Col>
-            <h5>
-              <FontAwesomeIcon icon="pencil-alt" />
-              {' '}
-                    Etapas
-            </h5>
-            <div className="border-top my-3" />
-          </Col>
-        </Row>
-      )}
-      <Row>
-        <Col>
-          <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(classPlan.description) }} />
         </Col>
       </Row>
     </>
