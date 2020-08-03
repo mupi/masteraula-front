@@ -19,7 +19,7 @@ import {
 } from 'actions/filterAction';
 import { listTopics, resetTopicList } from 'actions/topicAction';
 import { showModal, hideModal } from 'actions/modalAction';
-import { listTopicSuggestions, listBnccSuggestions  } from 'actions/suggestionAction';
+import { listTopicSuggestions, listBnccSuggestions } from 'actions/suggestionAction';
 import {
   listMyDocumentsModal,
 } from 'actions/documentAction';
@@ -258,7 +258,7 @@ const mapDispatchToProps = (dispatch) => {
         duration: values.duration ? values.duration : 0,
         phases: values.phases,
         content: values.content ? values.content : '',
-        guidelines: values.guidelines ? values.guidelines : ''
+        guidelines: values.guidelines ? values.guidelines : '',
       };
 
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
