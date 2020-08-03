@@ -1,9 +1,13 @@
 import React from 'react';
-import { Row, Col, Badge } from 'reactstrap';
+import {
+  Row, Col, Badge, Button,
+} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import URLCopy from 'components/onlineTest/URLCopy';
+import { masteraulaUrl } from 'helpers/config';
 
 /* eslint-disable react/no-danger */
-const ClassPlanBasicInfo = ({ classPlan, user }) => {
+const ClassPlanBasicInfo = ({ classPlan, user, generatePublicLink }) => {
   const hasTeachingYears = classPlan && classPlan.teaching_years && classPlan.teaching_years.length > 0;
   const hasTags = classPlan && classPlan.tags && classPlan.tags.length > 0;
   const hasBncc = classPlan && classPlan.bncc && classPlan.bncc.length > 0;
@@ -19,6 +23,21 @@ const ClassPlanBasicInfo = ({ classPlan, user }) => {
           </h5>
           <div className="border-top my-3" />
 
+        </Col>
+      </Row>
+      <Row>
+        <Col sm="12" className="d-flex justify-content-end">
+          <div className="p-2">
+            { classPlan.link_class_plan && classPlan.link_class_plan.length > 0 ? (
+              <Button color="success" onClick={() => generatePublicLink(classPlan.id)}>
+                <FontAwesomeIcon icon="link" />
+                {' '}
+                Gerar link
+              </Button>
+            )
+              : <URLCopy url={`${masteraulaUrl}/apply-online/${classPlan.link_class_plan}`} />
+          }
+          </div>
         </Col>
       </Row>
       <Row className="c-classplan__row-info">

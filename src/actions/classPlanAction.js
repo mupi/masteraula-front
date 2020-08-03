@@ -49,6 +49,11 @@ export const RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN = 'RESET_SELECTED_DOCUMENTLI
 export const SELECT_CLASS_PLAN_TYPE = 'SELECT_CLASS_PLAN_TYPE';
 export const RESET_CLASS_PLAN_TYPE = 'RESET_CLASS_PLAN_TYPE';
 
+/* For generating public URL for class plan */
+export const GENERATE_LINK_CLASS_PLAN = 'GENERATE_LINK_CLASS_PLAN';
+export const GENERATE_LINK_CLASS_PLAN_SUCCESS = 'GENERATE_LINK_CLASS_PLAN_SUCCESS';
+export const GENERATE_LINK_CLASS_PLAN_FAILURE = 'GENERATE_LINK_CLASS_PLAN_FAILURE';
+
 /* Class Plan with stations */
 export const ADD_STATION_TO_CLASSPLAN = 'ADD_STATION_TO_CLASSPLAN';
 export const REMOVE_STATION_FROM_CLASSPLAN = 'REMOVE_STATION_FROM_CLASSPLAN';
@@ -294,6 +299,17 @@ export const deleteClassPlan = (idClassPlan, isRedirect = false) => {
         },
       );
   };
+};
+
+/* Generate public link for class plan */
+export const generatePublicLink = id => async (dispatch) => {
+  try {
+    dispatch({ type: GENERATE_LINK_CLASS_PLAN });
+    const idClassPlanLink = await classPlanService.generatePublicLink(id);
+    dispatch({ type: GENERATE_LINK_CLASS_PLAN_SUCCESS, idClassPlanLink });
+  } catch {
+    dispatch({ type: GENERATE_LINK_CLASS_PLAN_FAILURE });
+  }
 };
 
 /* OBJECTS */

@@ -38,6 +38,10 @@ import {
   SELECT_CLASS_PLAN_TYPE,
   RESET_CLASS_PLAN_TYPE,
 
+  GENERATE_LINK_CLASS_PLAN,
+  GENERATE_LINK_CLASS_PLAN_SUCCESS,
+  GENERATE_LINK_CLASS_PLAN_FAILURE,
+
   /* Class plan station */
   ADD_STATION_TO_CLASSPLAN,
   REMOVE_STATION_FROM_CLASSPLAN,
@@ -344,7 +348,22 @@ export const classPlan = (state = initialState, action) => {
         selectedClassPlanType: '',
       });
     }
-
+    case GENERATE_LINK_CLASS_PLAN: {
+      return Object.assign({}, state, {
+      });
+    }
+    case GENERATE_LINK_CLASS_PLAN_SUCCESS: {
+      toast.success('Link público do plano de aula gerado com sucesso', optionsSuccess);
+      return Object.assign({}, state, {
+        idClassPlanLink: action.idClassPlanLink,
+      });
+    }
+    case GENERATE_LINK_CLASS_PLAN_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        error: action.error,
+      });
+    }
 
     default:
       return state;

@@ -21,6 +21,7 @@
     "globalize": "^1.5.0",
     "history": "^4.7.2",
     "html-to-draftjs": "^1.4.0",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "node-sass-chokidar": "^1.4.0",
     "normalize.css": "^8.0.0",

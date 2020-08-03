@@ -266,6 +266,17 @@ function copyClassPlan(idClassPlan) {
     .then(activeClassPlan => activeClassPlan);
 }
 
+// Generate a publick link
+function generatePublicLink(id) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+  return axios.get(`${apiUrl}/class_plans/${id}/generate_link/`, requestOptions)
+    .then(response => response.data).then(() => id);
+}
 
 const classPlanService = {
   fetchClassPlan,
@@ -274,6 +285,7 @@ const classPlanService = {
   updateClassPlan,
   deleteClassPlan,
   copyClassPlan,
+  generatePublicLink,
 };
 
 export default classPlanService;
