@@ -36,7 +36,7 @@ const DocumentCardList = (props) => {
   const ViewCardButton = document => (
     <Button className="btn-margin-right menu-top__document-button" onClick={() => showDocumentModal(document.id)}>
       <FontAwesomeIcon icon="eye" className="btn__icon" />
-      Ver
+      Ver prova
     </Button>
   );
   return (

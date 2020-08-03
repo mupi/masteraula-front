@@ -10,6 +10,7 @@ import deleteModal from './DeleteModal';
 import promptModal from './PromptModal';
 import documentModal from './DocumentModal';
 import questionModal from './QuestionModal';
+import activityModal from './ActivityModal';
 import exportDocumentModal from './ExportDocumentModal';
 import last5DocumentsModal from './Last5DocumentsModal';
 import register2Modal from './Register2Modal';
@@ -29,6 +30,7 @@ const modalTypes = {
   promptModal,
   documentModal,
   questionModal,
+  activityModal,
   exportDocumentModal,
   last5DocumentsModal,
   register2Modal,

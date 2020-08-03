@@ -28,7 +28,7 @@ const optionsDocument = {
 // Document's options available for View ClassPlan
 const optionsActivity = {
   showViewButton: true,
-  buttonType: BUTTON_TYPE.ACTIVITYCARD_BASE,
+  buttonType: BUTTON_TYPE.ACTIVITYCARD_MODAL_VIEW,
 };
 
 class ViewClassPlanPage extends Component {
@@ -46,7 +46,7 @@ class ViewClassPlanPage extends Component {
 
   render() {
     const {
-      userId, activeClassPlan, isFetching, user, error, showDeleteModal, showDocumentModal,
+      userId, activeClassPlan, isFetching, user, error, showDeleteModal, showDocumentModal, showActivityModal,
     } = this.props;
 
     const authorPK = (activeClassPlan && activeClassPlan.owner) ? activeClassPlan.owner.pk : 'Anônimo';
@@ -152,6 +152,7 @@ class ViewClassPlanPage extends Component {
               optionsActivity={optionsActivity}
               optionsDocument={optionsDocument}
               showDocumentModal={showDocumentModal}
+              showActivityModal={showActivityModal}
             />
           )}
         </div>

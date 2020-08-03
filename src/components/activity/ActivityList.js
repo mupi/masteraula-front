@@ -32,7 +32,7 @@ const ActivityList = (props) => {
   const ViewCardModalButton = ({ activity }) => (
     <Button className="btn-margin-right menu-top__document-button" onClick={() => showActivityModal(activity.id)}>
       <FontAwesomeIcon icon="eye" className="btn__icon" />
-      Ver atividade
+        Ver atividade
     </Button>
   );
 

@@ -6,6 +6,7 @@ import { showModal, hideModal } from 'actions/modalAction';
 import {
   switchActiveDocument, fetchPreviewDocument,
 } from 'actions/documentAction';
+import { fetchActivity } from 'actions/activityAction';
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
@@ -32,6 +33,20 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'delete',
   });
 
+  const activityModalProps = idActivity => ({
+    modalProps: {
+      open: true,
+      idActivity,
+      fetchActivity: () => {
+        dispatch(fetchActivity(idActivity));
+      },
+      closeModal: () => {
+        dispatch(hideModal());
+      },
+    },
+    modalType: 'activity',
+  });
+
   const documentModalProps = document => ({
     modalProps: {
       open: true,
@@ -55,6 +70,8 @@ const mapDispatchToProps = (dispatch) => {
         _dispatch(showModal(documentModalProps(getState().document.previewDocument)));
       });
     },
+    showActivityModal: idActivity => dispatch(showModal(activityModalProps(idActivity))),
+
   });
 };
 

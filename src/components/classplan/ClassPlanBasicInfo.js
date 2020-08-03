@@ -1,7 +1,6 @@
 import React from 'react';
 import { Row, Col, Badge } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getCleanCompleteStatement } from 'helpers/question';
 
 /* eslint-disable react/no-danger */
 const ClassPlanBasicInfo = ({ classPlan, user }) => {

@@ -14,6 +14,7 @@ const MODAL_TYPES = {
   prompt: modalTypes.promptModal,
   document: modalTypes.documentModal,
   question: modalTypes.questionModal,
+  activity: modalTypes.activityModal,
   exportDocument: modalTypes.exportDocumentModal,
   last5Documents: modalTypes.last5DocumentsModal,
   register2: modalTypes.register2Modal,
@@ -27,7 +28,6 @@ const MODAL_TYPES = {
   searchQuestionModal: modalTypes.searchQuestionModal,
   studentResults: modalTypes.OnlineTestStudentResultsModal,
   createObjectModal: modalTypes.createObjectModal,
-
 };
 
 const mapStateToProps = state => ({
@@ -46,7 +46,7 @@ const ModalContainer = (props) => {
     return null;
   }
 
-  if (modalType === 'document' || modalType === 'question' || modalType === 'studentResults' || modalType === 'createObjectModal') modalClassName = 'modal-dialog modal-lg';
+  if (modalType === 'document' || modalType === 'question' || modalType === 'activity' || modalType === 'studentResults' || modalType === 'createObjectModal') modalClassName = 'modal-dialog modal-lg';
 
   if ((modalType === 'searchActivityModal') || (modalType === 'searchObjectModal') || (modalType === 'searchDocumentModal') || (modalType === 'searchQuestionModal')) {
     modalClassName = 'modal-dialog modal-xl modal-fixed';

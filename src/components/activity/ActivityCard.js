@@ -90,7 +90,6 @@ const HeaderWithoutFilters = (props) => {
         {
       (activity.tasks.length > 0) ? (
         <span className="question-card__more-info--lightgray">
-          {' | '}
           {`Tarefas: ${activity.tasks.length}`}
           {' '}
         </span>

@@ -27,36 +27,36 @@ const DocumentsSection = (props) => {
 };
 
 const ActivitiesSection = (props) => {
-  const { activities, options } = props;
+  const { activities, options, showActivityModal } = props;
   return (
     <>
-    <Row className="mb-2">
-      <Col sm="12">
-        <h6>
-          <FontAwesomeIcon icon="book-reader" />
-          {' '}
+      <Row className="mb-2">
+        <Col sm="12">
+          <h6>
+            <FontAwesomeIcon icon="book-reader" />
+            {' '}
           Atividades
-        </h6>
-      </Col>
-    </Row>   
-    <ActivityList
-      sm="4"
-      activities={activities}
-      buttonType= {options.buttonType}
-      showQuantity={false}
-      withFilters={false}
-      viewOnly
-    />
+          </h6>
+        </Col>
+      </Row>
+      <ActivityList
+        sm="4"
+        activities={activities}
+        buttonType={options.buttonType}
+        showQuantity={false}
+        withFilters={false}
+        showActivityModal={showActivityModal}
+      />
     </>
   );
 };
 
 const ClassPlanMainResources = ({
-  classPlan, optionsActivity, optionsDocument, showDocumentModal,
+  classPlan, optionsActivity, optionsDocument, showDocumentModal, showActivityModal,
 }) => {
   const hasActivities = classPlan && classPlan.activities && classPlan.activities.length > 0;
   const hasDocuments = classPlan && classPlan.documents && classPlan.documents.length > 0;
-  
+
   return (
     (hasActivities || hasDocuments) && (
     <>
@@ -70,7 +70,7 @@ const ClassPlanMainResources = ({
           <div className="border-top my-3" />
         </Col>
       </Row>
-      {hasActivities && <ActivitiesSection activities={classPlan.activities} options={optionsActivity} />}
+      {hasActivities && <ActivitiesSection activities={classPlan.activities} options={optionsActivity} showActivityModal={showActivityModal} />}
       {hasDocuments && <DocumentsSection documents={classPlan.documents} options={optionsDocument} showDocumentModal={showDocumentModal} />}
     </>
     ));
