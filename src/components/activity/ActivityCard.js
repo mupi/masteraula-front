@@ -47,14 +47,12 @@ const HeaderWithFilters = (props) => {
             <FontAwesomeIcon icon="image" />
             {' '}
             {activity.learning_objects.length}
-            {' '}
             {' | '}
           </span>
         ) : ''}
         {
       (activity.tasks.length > 0) ? (
         <span className="question-card__more-info--lightgray">
-          {' | '}
           {`Tarefas: ${activity.tasks.length}`}
           {' '}
         </span>
@@ -83,7 +81,6 @@ const HeaderWithoutFilters = (props) => {
             <FontAwesomeIcon icon="image" />
             {' '}
             {activity.learning_objects.length}
-            {' '}
             {' | '}
           </span>
         ) : ''}

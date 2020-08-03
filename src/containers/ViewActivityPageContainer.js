@@ -2,7 +2,11 @@ import { connect } from 'react-redux';
 import ViewActivityPage from 'pages/Activity/ViewActivityPage';
 
 import { fetchActivity, deleteActivity } from 'actions/activityAction';
+import {
+  addSelectedActivityToClassPlan, setActivityIdToNewClassPlan, selectClassPlanType, resetClassPlanType,
+} from 'actions/classPlanAction';
 import { showModal, hideModal } from 'actions/modalAction';
+
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
@@ -11,6 +15,8 @@ const mapStateToProps = state => ({
   isFetching: state.activity.isFetching,
   userId: state.session.session.user.id,
   user: state.session.session.user,
+  /* Class plan */
+  selectedClassPlanType: state.classPlan.selectedClassPlanType,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -28,6 +34,19 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'delete',
   });
 
+  const createClassPlanModalProps = selectedClassPlanType => ({
+    modalProps: {
+      open: true,
+      title: 'Criar plano de aula',
+      nameAction: 'Criar',
+      selectClassPlanType: type => dispatch(selectClassPlanType(type)),
+      closeModal: () => { dispatch(hideModal()); dispatch(resetClassPlanType()); },
+      selectedClassPlanType,
+    },
+    modalType: 'createClassPlanModal',
+  });
+
+
   const warningObjectModalProps = () => ({
     modalProps: {
       open: true,
@@ -43,6 +62,15 @@ const mapDispatchToProps = (dispatch) => {
     showWarningObjectModal: () => {
       dispatch(showModal(warningObjectModalProps()));
     },
+    setActivityIdToNewClassPlan: id => dispatch(setActivityIdToNewClassPlan(id)),
+    addSelectedActivityToClassPlan: activity => dispatch(addSelectedActivityToClassPlan(activity)),
+    // Open Modal for selection class plan's type
+    showCreateClassPlanModal: (selectedClassPlanType, activity) => {
+      dispatch(showModal(createClassPlanModalProps(selectedClassPlanType, activity)));
+      dispatch(setActivityIdToNewClassPlan(activity.id));
+      dispatch(addSelectedActivityToClassPlan(activity));
+    },
+
   });
 };
 

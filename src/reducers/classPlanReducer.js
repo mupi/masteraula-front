@@ -42,6 +42,8 @@ import {
   GENERATE_LINK_CLASS_PLAN_SUCCESS,
   GENERATE_LINK_CLASS_PLAN_FAILURE,
 
+  SET_ACTIVITY_TO_NEW_CLASSPLAN,
+
   /* Class plan station */
   ADD_STATION_TO_CLASSPLAN,
   REMOVE_STATION_FROM_CLASSPLAN,
@@ -208,8 +210,10 @@ export const classPlan = (state = initialState, action) => {
       });
     }
     case RESET_SELECTED_ACTIVITYLIST_CLASS_PLAN: {
+      const newselectedActivityList = state.selectedActivityList.filter(item => item.id === state.activityIdAddedToClassPlan);
       return Object.assign({}, state, {
-        selectedActivityList: [],
+        selectedActivityList: newselectedActivityList,
+        activityIdAddedToClassPlan: undefined,
       });
     }
     case ADD_SELECTED_DOCUMENT_CLASS_PLAN: {
@@ -363,6 +367,11 @@ export const classPlan = (state = initialState, action) => {
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         error: action.error,
+      });
+    }
+    case SET_ACTIVITY_TO_NEW_CLASSPLAN: {
+      return Object.assign({}, state, {
+        activityIdAddedToClassPlan: action.activityIdAddedToClassPlan,
       });
     }
 

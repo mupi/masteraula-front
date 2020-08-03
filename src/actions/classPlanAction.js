@@ -67,6 +67,10 @@ export const COPY_CLASS_PLAN = 'COPY_CLASS_PLAN';
 export const COPY_CLASS_PLAN_SUCCESS = 'COPY_CLASS_PLAN_SUCCESS';
 export const COPY_CLASS_PLAN_FAILURE = 'COPY_CLASS_PLAN_FAILURE';
 
+// Set activity that will added in new ClassPlan - Create class plan based on activity
+export const SET_ACTIVITY_TO_NEW_CLASSPLAN = 'SET_ACTIVITY_TO_NEW_CLASSPLAN';
+
+
 // Select class plan's type: "T" (Traditional), "S" (Stations)
 export const selectClassPlanType = selectedClassPlanType => ({
   type: SELECT_CLASS_PLAN_TYPE,
@@ -329,6 +333,12 @@ export const resetSelectedObjects = () => ({
 });
 
 /* ACTIVITY */
+// Functions for create class plan based on Activity
+export const setActivityIdToNewClassPlan = activitytId => ({
+  type: SET_ACTIVITY_TO_NEW_CLASSPLAN,
+  activityIdAddedToClassPlan: activitytId,
+});
+
 // Add Selected Activity to Class Plan
 export const addSelectedActivityToClassPlan = selectedActivity => ({
   type: ADD_SELECTED_ACTIVITY_CLASS_PLAN, selectedActivity,

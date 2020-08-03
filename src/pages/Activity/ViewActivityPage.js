@@ -47,6 +47,7 @@ const ActivityListClassPlans = (props) => {
 const ViewActivityPage = (props) => {
   const {
     isFetching, fetchActivity, match, activeActivity, showDeleteModal, userId,
+    showCreateClassPlanModal, selectedClassPlanType,
   } = props;
 
   useEffect(() => {
@@ -159,6 +160,7 @@ const ViewActivityPage = (props) => {
                       value={activeActivity.id}
                       title="Adicionar atividade à plano de aula"
                       className="question-card__btn"
+                      onClick={() => showCreateClassPlanModal(selectedClassPlanType, activeActivity)}
                     >
                       <FontAwesomeIcon
                         icon="plus"
