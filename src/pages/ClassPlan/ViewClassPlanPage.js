@@ -46,7 +46,8 @@ class ViewClassPlanPage extends Component {
 
   render() {
     const {
-      userId, activeClassPlan, isFetching, user, error, showDeleteModal, showDocumentModal, showActivityModal, generatePublicLink,
+      userId, activeClassPlan, isFetching, user, error, showDeleteModal, showDocumentModal, showActivityModal,
+      generatePublicLink, publicLink,
     } = this.props;
 
     const authorPK = (activeClassPlan && activeClassPlan.owner) ? activeClassPlan.owner.pk : 'Anônimo';
@@ -136,7 +137,7 @@ class ViewClassPlanPage extends Component {
               </h4>
             </Col>
           </Row>
-          <ClassPlanBasicInfo classPlan={activeClassPlan} user={user} generatePublicLink={generatePublicLink} />
+          <ClassPlanBasicInfo classPlan={activeClassPlan} user={user} generatePublicLink={generatePublicLink} publicLink={publicLink}/>
           <ClassPlanTeacherArea classPlan={activeClassPlan} />
           {hasGuidelines && (
             <ClassPlanStudentArea classPlan={activeClassPlan} />

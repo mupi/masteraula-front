@@ -7,7 +7,9 @@ import URLCopy from 'components/onlineTest/URLCopy';
 import { masteraulaUrl } from 'helpers/config';
 
 /* eslint-disable react/no-danger */
-const ClassPlanBasicInfo = ({ classPlan, user, generatePublicLink }) => {
+const ClassPlanBasicInfo = ({
+  classPlan, user, generatePublicLink, publicLink,
+}) => {
   const hasTeachingYears = classPlan && classPlan.teaching_years && classPlan.teaching_years.length > 0;
   const hasTags = classPlan && classPlan.tags && classPlan.tags.length > 0;
   const hasBncc = classPlan && classPlan.bncc && classPlan.bncc.length > 0;
@@ -26,18 +28,16 @@ const ClassPlanBasicInfo = ({ classPlan, user, generatePublicLink }) => {
         </Col>
       </Row>
       <Row>
-        <Col sm="12" className="d-flex justify-content-end">
-          <div className="p-2">
-            { classPlan.link_class_plan && classPlan.link_class_plan.length > 0 ? (
-              <Button color="success" onClick={() => generatePublicLink(classPlan.id)}>
-                <FontAwesomeIcon icon="link" />
-                {' '}
+        <Col sm="6" className="offset-md-6 text-right">
+          { (classPlan.link_class_plan.length === 0 && publicLink.length === 0) ? (
+            <Button color="success" onClick={() => generatePublicLink(classPlan.id)}>
+              <FontAwesomeIcon icon="link" />
+              {' '}
                 Gerar link
-              </Button>
-            )
-              : <URLCopy url={`${masteraulaUrl}/apply-online/${classPlan.link_class_plan}`} />
+            </Button>
+          )
+            : <URLCopy url={`${masteraulaUrl}/public-classplan/${publicLink}`} />
           }
-          </div>
         </Col>
       </Row>
       <Row className="c-classplan__row-info">

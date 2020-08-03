@@ -275,7 +275,7 @@ function generatePublicLink(id) {
     },
   };
   return axios.get(`${apiUrl}/class_plans/${id}/generate_link/`, requestOptions)
-    .then(response => response.data).then(() => id);
+    .then(response => response.data).then(link => link);
 }
 
 const classPlanService = {

@@ -305,8 +305,8 @@ export const deleteClassPlan = (idClassPlan, isRedirect = false) => {
 export const generatePublicLink = id => async (dispatch) => {
   try {
     dispatch({ type: GENERATE_LINK_CLASS_PLAN });
-    const idClassPlanLink = await classPlanService.generatePublicLink(id);
-    dispatch({ type: GENERATE_LINK_CLASS_PLAN_SUCCESS, idClassPlanLink });
+    const link = await classPlanService.generatePublicLink(id);
+    dispatch({ type: GENERATE_LINK_CLASS_PLAN_SUCCESS, link });
   } catch {
     dispatch({ type: GENERATE_LINK_CLASS_PLAN_FAILURE });
   }

@@ -53,6 +53,7 @@ import {
 import { toast } from 'react-toastify';
 
 const initialState = {
+  publicLink: '',
   classPlans: [],
   selectedObjectList: [],
   selectedDocumentList: [],
@@ -355,7 +356,7 @@ export const classPlan = (state = initialState, action) => {
     case GENERATE_LINK_CLASS_PLAN_SUCCESS: {
       toast.success('Link público do plano de aula gerado com sucesso', optionsSuccess);
       return Object.assign({}, state, {
-        idClassPlanLink: action.idClassPlanLink,
+        publicLink: action.link.link,
       });
     }
     case GENERATE_LINK_CLASS_PLAN_FAILURE: {
