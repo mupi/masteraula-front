@@ -77,14 +77,14 @@ const mapDispatchToProps = (dispatch) => {
         if (!singleSelection) {
           dispatch(addSelectedObjectToClassPlan(object));
         } else {
-          dispatch(addMaterialToClassPlanStation(object, stationIndex, 'O'));
+          dispatch(addMaterialToClassPlanStation(object, stationIndex, MATERIAL_TYPE.OBJECT));
         }
       },
       removeSelectedObject: (idObject) => {
         if (!singleSelection) {
           dispatch(removeSelectedObjectToClassPlan(idObject));
         } else {
-          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'O'));
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, MATERIAL_TYPE.OBJECT));
         }
       },
       callFrom: MODAL_FROM.CLASS_PLAN,
@@ -103,14 +103,14 @@ const mapDispatchToProps = (dispatch) => {
         if (!singleSelection) {
           dispatch(addSelectedActivityToClassPlan(activity));
         } else {
-          dispatch(addMaterialToClassPlanStation(activity, stationIndex, 'A'));
+          dispatch(addMaterialToClassPlanStation(activity, stationIndex, MATERIAL_TYPE.ACTIVITY));
         }
       },
       removeSelectedActivity: (idActivity) => {
         if (!singleSelection) {
           dispatch(removeSelectedActivityToClassPlan(idActivity));
         } else {
-          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'A'));
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, MATERIAL_TYPE.ACTIVITY));
         }
       },
       callFrom: MODAL_FROM.CLASS_PLAN,
@@ -129,14 +129,14 @@ const mapDispatchToProps = (dispatch) => {
         if (!singleSelection) {
           dispatch(addSelectedDocumentToClassPlan(document));
         } else {
-          dispatch(addMaterialToClassPlanStation(document, stationIndex, 'D'));
+          dispatch(addMaterialToClassPlanStation(document, stationIndex, MATERIAL_TYPE.DOCUMENT));
         }
       },
       removeSelectedDocument: (idDocument) => {
         if (!singleSelection) {
           dispatch(removeSelectedDocumentFromClassPlan(idDocument));
         } else {
-          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'D'));
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, MATERIAL_TYPE.DOCUMENT));
         }
       },
       listMyDocumentsModal: (page, orderField, order) => dispatch(listMyDocumentsModal(page, orderField, order)),
@@ -181,12 +181,12 @@ const mapDispatchToProps = (dispatch) => {
       closeModal: () => dispatch(hideModal()),
       addSelectedQuestion: (question) => {
         if (singleSelection) {
-          dispatch(addMaterialToClassPlanStation(question, stationIndex, 'Q'));
+          dispatch(addMaterialToClassPlanStation(question, stationIndex, MATERIAL_TYPE.QUESTION));
         }
       },
       removeSelectedQuestion: () => {
         if (singleSelection) {
-          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'Q'));
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, MATERIAL_TYPE.QUESTION));
         }
       },
       callFrom: MODAL_FROM.CLASS_PLAN,
@@ -277,7 +277,7 @@ const mapDispatchToProps = (dispatch) => {
         // if (props.stations[i].question_ids) {
         //   return {
         //     description_station: station.description_station,
-          //   name_station: station.name_station,
+        //   name_station: station.name_station,
         //     question_ids: props.stations[i].question_ids,
         //   };
         // }
