@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
   isFetching: state.classPlan.isFetching,
   userId: state.session.session.user.id,
   user: state.session.session.user,
-  publicLink: state.classPlan.activeClassPlan && state.classPlan.activeClassPlan.link_class_plan.length > 0
+  publicLink: state.classPlan.activeClassPlan && state.classPlan.activeClassPlan.link_class_plan
     ? state.classPlan.activeClassPlan.link_class_plan : state.classPlan.publicLink,
 });
 

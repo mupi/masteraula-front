@@ -146,6 +146,7 @@ class ViewClassPlanPage extends Component {
             <ClassPlanStations
               stations={activeClassPlan.stations}
               showDocumentModal={showDocumentModal}
+              showActivityModal={showActivityModal}
             />
           ) : (
             <ClassPlanMainResources

@@ -77,10 +77,10 @@ const initialState = {
   selectedClassPlanType: '',
   stations: [
     {
-      learning_object_ids: null, document_ids: null, question_ids: null, material: null,
+      activity_ids: null, document_ids: null, document_online_ids: null, material: null,
     },
     {
-      learning_object_ids: null, document_ids: null, question_ids: null, material: null,
+      activity_ids: null, document_ids: null, document_online_ids: null, material: null,
     },
   ],
 };
@@ -106,17 +106,17 @@ export const classPlan = (state = initialState, action) => {
       const stationsPlan = action.activeClassPlan.plan_type !== 'S' ? [] : action.activeClassPlan.stations.map((x) => {
         if (x.document) {
           return {
-            learning_object_ids: null, document_ids: x.document.id, question_ids: null, material: x.document,
+            activity_ids: null, document_ids: x.document.id, document_online_ids: null, material: x.document,
           };
         }
-        if (x.learning_object) {
+        if (x.document_online) {
           return {
-            learning_object_ids: x.learning_object.id, document_ids: null, question_ids: null, material: x.learning_object,
+            activity_ids: null, document_ids: null, document_online_ids: x.document_online.id, material: x.document_online,
           };
         }
-        if (x.question) {
+        if (x.activity) {
           return {
-            learning_object_ids: null, document_ids: null, question_ids: x.question.id, material: x.question,
+            activity_ids: x.activity.id, document_ids: null, document_online_ids: null, material: x.activity,
           };
         }
         return {};
@@ -281,10 +281,10 @@ export const classPlan = (state = initialState, action) => {
       return Object.assign({}, state, {
         stations: [
           {
-            learning_object_ids: null, document_ids: null, question_ids: null, material: null,
+            activity_ids: null, document_ids: null, document_online_ids: null, material: null,
           },
           {
-            learning_object_ids: null, document_ids: null, question_ids: null, material: null,
+            activity_ids: null, document_ids: null, document_online_ids: null, material: null,
           },
         ],
       });
@@ -296,10 +296,10 @@ export const classPlan = (state = initialState, action) => {
           return { ...x, document_ids: action.material.id, material: action.material };
         }
         if (index === action.stationIndex && action.typeMaterial === 'O') {
-          return { ...x, learning_object_ids: action.material.id, material: action.material };
+          return { ...x, document_online_ids: action.material.id, material: action.material };
         }
-        if (index === action.stationIndex && action.typeMaterial === 'Q') {
-          return { ...x, question_ids: action.material.id, material: action.material };
+        if (index === action.stationIndex && action.typeMaterial === 'A') {
+          return { ...x, activity_ids: action.material.id, material: action.material };
         }
         if (index === action.stationIndex && action.typeMaterial === MATERIAL_TYPE.ONLINE_TEST) {
           return { ...x, question_ids: action.material.id, material: action.material };
@@ -315,11 +315,11 @@ export const classPlan = (state = initialState, action) => {
         if (index === action.stationIndex && x.document_ids) {
           return { ...x, document_ids: null, material: null };
         }
-        if (index === action.stationIndex && x.learning_object_ids) {
-          return { ...x, learning_object_ids: null, material: null };
+        if (index === action.stationIndex && x.document_online_ids) {
+          return { ...x, document_online_ids: null, material: null };
         }
-        if (index === action.stationIndex && x.question_ids) {
-          return { ...x, question_ids: null, material: null };
+        if (index === action.stationIndex && x.activity_ids) {
+          return { ...x, activity_ids: null, material: null };
         }
         return x;
       });
