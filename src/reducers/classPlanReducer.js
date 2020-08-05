@@ -31,6 +31,10 @@ import {
   REMOVE_SELECTED_DOCUMENT_CLASS_PLAN,
   RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN,
 
+  ADD_SELECTED_ONLINETEST_CLASS_PLAN,
+  REMOVE_SELECTED_ONLINETEST_CLASS_PLAN,
+  RESET_SELECTED_ONLINETESTLIST_CLASS_PLAN,
+
   COPY_CLASS_PLAN,
   COPY_CLASS_PLAN_SUCCESS,
   COPY_CLASS_PLAN_FAILURE,
@@ -54,12 +58,22 @@ import {
 } from 'actions/classPlanAction';
 import { toast } from 'react-toastify';
 
+
+/* MATERIAL TYPE FOR STATIONS */
+const MATERIAL_TYPE = {
+  DOCUMENT: 'D',
+  ONLINE_TEST: 'T',
+  OBJECT: 'O',
+  QUESTION: 'Q',
+  ACTIVITY: 'A',
+};
 const initialState = {
   publicLink: '',
   classPlans: [],
   selectedObjectList: [],
   selectedDocumentList: [],
   selectedActivityList: [],
+  selectedOnlineTestList: [],
   selectedClassPlanType: '',
   stations: [
     {
@@ -233,6 +247,23 @@ export const classPlan = (state = initialState, action) => {
         selectedDocumentList: [],
       });
     }
+    case ADD_SELECTED_ONLINETEST_CLASS_PLAN: {
+      if (state.selectedOnlineTestList.filter(item => item.id === action.selectedOnlineTest.id).length > 0) return state; // do not add duplicates
+      return Object.assign({}, state, {
+        selectedOnlineTestList: [...state.selectedOnlineTestList, action.selectedOnlineTest],
+      });
+    }
+    case REMOVE_SELECTED_ONLINETEST_CLASS_PLAN: {
+      const newSelectedOnlineTestList = state.selectedOnlineTestList.filter(item => item.id !== action.idOnlineTest);
+      return Object.assign({}, state, {
+        selectedOnlineTestList: newSelectedOnlineTestList,
+      });
+    }
+    case RESET_SELECTED_ONLINETESTLIST_CLASS_PLAN: {
+      return Object.assign({}, state, {
+        selectedOnlineTestList: [],
+      });
+    }
 
     /* INI: Class Plan with stations */
     case ADD_STATION_TO_CLASSPLAN: {
@@ -258,6 +289,7 @@ export const classPlan = (state = initialState, action) => {
         ],
       });
     }
+
     case ADD_MATERIAL_TO_CLASS_PLAN_STATION: {
       const updateStations = state.stations.map((x, index) => {
         if (index === action.stationIndex && action.typeMaterial === 'D') {
@@ -267,6 +299,9 @@ export const classPlan = (state = initialState, action) => {
           return { ...x, learning_object_ids: action.material.id, material: action.material };
         }
         if (index === action.stationIndex && action.typeMaterial === 'Q') {
+          return { ...x, question_ids: action.material.id, material: action.material };
+        }
+        if (index === action.stationIndex && action.typeMaterial === MATERIAL_TYPE.ONLINE_TEST) {
           return { ...x, question_ids: action.material.id, material: action.material };
         }
         return x;

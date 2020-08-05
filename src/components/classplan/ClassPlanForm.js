@@ -203,7 +203,9 @@ class ClassPlanForm extends Component {
         teachingLevelFilters, handleSubmit, selectedActivityList, removeSelectedActivityToClassPlan,
         submitting, errorsClassPlan, listTopicSuggestions, listBnccSuggestions, user, showSearchActivityModal,
         showSearchDocumentModal, selectedDocumentList,
-        removeSelectedDocumentFromClassPlan, actionName,
+        showSearchOnlineTestModal, selectedOnlineTestList,
+        removeSelectedDocumentFromClassPlan, removeSelectedOnlineTestFromClassPlan,
+        actionName,
       } = this.props;
 
       return (
@@ -526,6 +528,32 @@ class ClassPlanForm extends Component {
                 selectedDocumentList={selectedDocumentList}
                 documents={selectedDocumentList}
                 removeSelectedDocument={removeSelectedDocumentFromClassPlan}
+                viewOnly={optionsDocument.showViewButton}
+              />
+            ) : '' }
+            <Row className="mt-3">
+              <Col sm="12">
+                <h6>
+                  <FontAwesomeIcon icon="laptop" />
+                  {' '}
+                    Provas online
+                </h6>
+              </Col>
+              <Col md="3" sm="6">
+                <Button onClick={() => showSearchOnlineTestModal()}>
+                  <FontAwesomeIcon
+                    icon="plus"
+                    className="btn__icon"
+                  />
+                    Adicionar prova online
+                </Button>
+              </Col>
+            </Row>
+            { selectedOnlineTestList ? (
+              <DocumentCardList
+                selectedDocumentList={selectedOnlineTestList}
+                documents={selectedOnlineTestList}
+                removeSelectedDocument={removeSelectedOnlineTestFromClassPlan}
                 viewOnly={optionsDocument.showViewButton}
               />
             ) : '' }

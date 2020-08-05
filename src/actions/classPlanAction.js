@@ -37,14 +37,20 @@ export const ADD_SELECTED_OBJECT_CLASS_PLAN = 'ADD_SELECTED_OBJECT_CLASS_PLAN';
 export const REMOVE_SELECTED_OBJECT_CLASS_PLAN = 'REMOVE_SELECTED_OBJECT_CLASS_PLAN';
 export const RESET_SELECTED_OBJECTLIST_CLASS_PLAN = 'RESET_SELECTED_OBJECTLIST_CLASS_PLAN';
 
+/* OPEN CLASS PLAN: Add/Remove activity */
 export const ADD_SELECTED_ACTIVITY_CLASS_PLAN = 'ADD_SELECTED_ACTIVITY_CLASS_PLAN';
 export const REMOVE_SELECTED_ACTIVITY_CLASS_PLAN = 'REMOVE_SELECTED_ACTIVITY_CLASS_PLAN';
 export const RESET_SELECTED_ACTIVITYLIST_CLASS_PLAN = 'RESET_SELECTED_ACTIVITYLIST_CLASS_PLAN';
 
-
+/* OPEN CLASS PLAN: Add/Remove document */
 export const ADD_SELECTED_DOCUMENT_CLASS_PLAN = 'ADD_SELECTED_DOCUMENT_CLASS_PLAN';
 export const REMOVE_SELECTED_DOCUMENT_CLASS_PLAN = 'REMOVE_SELECTED_DOCUMENT_CLASS_PLAN';
 export const RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN = 'RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN';
+
+/* OPEN CLASS PLAN:  Add/Remove online test */
+export const ADD_SELECTED_ONLINETEST_CLASS_PLAN = 'ADD_SELECTED_ONLINETEST_CLASS_PLAN';
+export const REMOVE_SELECTED_ONLINETEST_CLASS_PLAN = 'REMOVE_SELECTED_ONLINETEST_CLASS_PLAN';
+export const RESET_SELECTED_ONLINETESTLIST_CLASS_PLAN = 'RESET_SELECTED_ONLINETESTLIST_CLASS_PLAN';
 
 export const SELECT_CLASS_PLAN_TYPE = 'SELECT_CLASS_PLAN_TYPE';
 export const RESET_CLASS_PLAN_TYPE = 'RESET_CLASS_PLAN_TYPE';
@@ -368,6 +374,23 @@ export const removeSelectedDocumentFromClassPlan = idDocument => ({
 // Reset Selected Document list before starting create/update class plan
 export const resetSelectedDocuments = () => ({
   type: RESET_SELECTED_DOCUMENTLIST_CLASS_PLAN,
+});
+
+
+/* ONLINE - TEST */
+// Add Selected Document to Class Plan
+export const addSelectedOnlineTestToClassPlan = selectedOnlineTest => ({
+  type: ADD_SELECTED_ONLINETEST_CLASS_PLAN, selectedOnlineTest,
+});
+
+// Remove Selected Document From Class Plan
+export const removeSelectedOnlineTestFromClassPlan = idOnlineTest => ({
+  type: REMOVE_SELECTED_ONLINETEST_CLASS_PLAN, idOnlineTest,
+});
+
+// Reset Selected Document list before starting create/update class plan
+export const resetSelectedOnlineTests = () => ({
+  type: RESET_SELECTED_ONLINETESTLIST_CLASS_PLAN,
 });
 
 export const copyClassPlan = (props) => {

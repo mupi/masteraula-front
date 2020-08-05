@@ -8,6 +8,7 @@ import {
   addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
   addSelectedActivityToClassPlan, removeSelectedActivityToClassPlan, resetSelectedActivities,
   addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan, resetSelectedDocuments,
+  addSelectedOnlineTestToClassPlan, removeSelectedOnlineTestFromClassPlan, resetSelectedOnlineTests,
   addStationToClassPlan, removeStationFromClassPlan,
   addMaterialToClassPlanStation,
   removeMaterialFromClassPlanStation,
@@ -23,11 +24,24 @@ import { listTopicSuggestions, listBnccSuggestions } from 'actions/suggestionAct
 import {
   listMyDocumentsModal,
 } from 'actions/documentAction';
+import {
+  listAllMyOnlineTests,
+} from 'actions/onlineTestAction';
 
-/* Learning Object search modal called from
-Q = Question
-C = ClassPlan
-*/
+/* Learning Object search modal called from */
+const MODAL_FROM = {
+  QUESTION: 'Q',
+  CLASS_PLAN: 'C',
+};
+
+/* MATERIAL TYPE FOR STATIONS */
+const MATERIAL_TYPE = {
+  DOCUMENT: 'D',
+  ONLINE_TEST: 'T',
+  OBJECT: 'O',
+  QUESTION: 'Q',
+  ACTIVITY: 'A',
+};
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('create-classplan');
@@ -42,6 +56,7 @@ const mapStateToProps = (state) => {
     sourceFilters: state.filter.sourceFilters,
     selectedActivityList: state.classPlan.selectedActivityList,
     selectedDocumentList: state.classPlan.selectedDocumentList,
+    selectedOnlineTestList: state.classPlan.selectedOnlineTestList,
     errorsClassPlan: state.form['create-classplan'] ? state.form['create-classplan'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
     bnccSuggestions: state.suggestion.bnccSuggestions,
@@ -72,7 +87,7 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(removeMaterialFromClassPlanStation(stationIndex, 'O'));
         }
       },
-      callFrom: 'C',
+      callFrom: MODAL_FROM.CLASS_PLAN,
       singleSelection,
       stationIndex,
     },
@@ -98,7 +113,7 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(removeMaterialFromClassPlanStation(stationIndex, 'A'));
         }
       },
-      callFrom: 'C',
+      callFrom: MODAL_FROM.CLASS_PLAN,
       singleSelection,
       stationIndex,
     },
@@ -125,7 +140,34 @@ const mapDispatchToProps = (dispatch) => {
         }
       },
       listMyDocumentsModal: (page, orderField, order) => dispatch(listMyDocumentsModal(page, orderField, order)),
-      callFrom: 'C',
+      callFrom: MODAL_FROM.CLASS_PLAN,
+      singleSelection,
+      stationIndex,
+    },
+    modalType: 'searchDocumentModal',
+  });
+
+  const openSearchOnlineTestModalProps = (singleSelection, stationIndex) => ({
+    modalProps: {
+      open: true,
+      titlePart: 'ao plano de aula',
+      closeModal: () => dispatch(hideModal()),
+      addSelectedDocument: (document) => {
+        if (!singleSelection) {
+          dispatch(addSelectedOnlineTestToClassPlan(document));
+        } else {
+          dispatch(addMaterialToClassPlanStation(document, stationIndex, MATERIAL_TYPE.ONLINE_TEST));
+        }
+      },
+      removeSelectedDocument: (idDocument) => {
+        if (!singleSelection) {
+          dispatch(removeSelectedOnlineTestFromClassPlan(idDocument));
+        } else {
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, MATERIAL_TYPE.ONLINE_TEST));
+        }
+      },
+      listMyDocumentsModal: (page, orderField, order) => dispatch(listMyDocumentsModal(page, orderField, order)),
+      callFrom: MODAL_FROM.CLASS_PLAN,
       singleSelection,
       stationIndex,
     },
@@ -147,7 +189,7 @@ const mapDispatchToProps = (dispatch) => {
           dispatch(removeMaterialFromClassPlanStation(stationIndex, 'Q'));
         }
       },
-      callFrom: 'C',
+      callFrom: MODAL_FROM.CLASS_PLAN,
       singleSelection,
       stationIndex,
     },
@@ -176,6 +218,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(showModal(openSearchDocumentModalProps(singleSelection, stationIndex)));
     },
 
+    showSearchOnlineTestModal: (singleSelection = false, stationIndex = null) => {
+      dispatch(showModal(openSearchOnlineTestModalProps(singleSelection, stationIndex)));
+    },
+
     showSearchActivityModal: (singleSelection = false, stationIndex = null) => {
       dispatch(showModal(openSearchActivityModalProps(singleSelection, stationIndex)));
     },
@@ -191,10 +237,12 @@ const mapDispatchToProps = (dispatch) => {
     removeSelectedObjectToClassPlan: idObject => dispatch(removeSelectedObjectToClassPlan(idObject)),
     removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
     removeSelectedActivityToClassPlan: idActivity => dispatch(removeSelectedActivityToClassPlan(idActivity)),
+    removeSelectedOnlineTestFromClassPlan: idOnlineTest => dispatch(removeSelectedOnlineTestFromClassPlan(idOnlineTest)),
 
     resetSelectedObjects: () => dispatch(resetSelectedObjects()),
     resetSelectedDocuments: () => dispatch(resetSelectedDocuments()),
     resetSelectedActivities: () => dispatch(resetSelectedActivities()),
+    resetSelectedOnlineTests: () => dispatch(resetSelectedOnlineTests()),
 
 
     /* class plan station's functions */

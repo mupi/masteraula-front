@@ -185,6 +185,24 @@ function listMyOnlineTest(idDocBase, page, orderField, order) {
     .then(response => response.data).then(onlineTestsList => onlineTestsList);
 }
 
+/* all online test without using idocBase */
+function listAllMyOnlineTest(page, orderField, order) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+
+  };
+
+  const url = `${apiUrl}/document_online/my_documents_online/`;
+
+
+  return axios.get(`${url}&page=${page}&order_field=${orderField}&order=${order}`, requestOptions)
+    .then(response => response.data).then(onlineTestsList => onlineTestsList);
+}
+
 // Delete an online test given its ID
 function deleteOnlineTest(idOnlineTest) {
   const requestOptions = {
@@ -255,7 +273,8 @@ const onlineTestService = {
   sendAnswersOnlineTest,
   editAnswersOnlineTest,
   downloadResults,
-  copyOnlineTest
+  copyOnlineTest,
+  listAllMyOnlineTest,
 };
 
 export default onlineTestService;

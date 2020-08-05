@@ -46,10 +46,16 @@ export const DELETE_ONLINE_TEST_SUCCESS = 'DELETE_ONLINE_TEST_SUCCESS';
 export const DELETE_ONLINE_TEST_FAILURE = 'DELETE_ONLINE_TEST_FAILURE';
 export const RESET_DELETE_ONLINE_TEST = 'RESET_DELETE_ONLINE_TEST';
 
-// List my ONLINE TESTS
+// List my ONLINE TESTS WITH DOCBASE
 export const LIST_MY_ONLINE_TESTS = 'LIST_MY_ONLINE_TESTS';
 export const LIST_MY_ONLINE_TESTS_SUCCESS = 'LIST_MY_ONLINE_TESTS_SUCCESS';
 export const LIST_MY_ONLINE_TESTS_FAILURE = 'LIST_MY_ONLINE_TESTS_FAILURE';
+
+// List ALL MY ONLINE TESTS WITHOUT DOCBASE
+export const LIST_ALL_MY_ONLINE_TESTS = 'LIST_ALL_MY_ONLINE_TESTS';
+export const LIST_ALL_MY_ONLINE_TESTS_SUCCESS = 'LIST_ALL_MY_ONLINE_TESTS_SUCCESS';
+export const LIST_ALL_MY_ONLINE_TESTS_FAILURE = 'LIST_ALL_MY_ONLINE_TESTS_FAILURE';
+
 
 // Copy ONLINE TEST
 export const COPY_ONLINE_TEST = 'COPY_ONLINE_TEST';
@@ -244,6 +250,30 @@ export const listMyOnlineTests = (idDocBase, page, orderField = null, order = nu
         (error) => {
           dispatch(fetchMyOnlineTestPageFailure(error));
           history.push(`/online-tests/${idDocBase}/1`);
+        },
+      );
+  };
+};
+
+
+// listAllMyOnlineTests without having an iddocbase
+export const listAllMyOnlineTests = (page, orderField = null, order = null) => {
+  function requestOnlineTestPage() {
+    return {
+      type: LIST_ALL_MY_ONLINE_TESTS, page, orderField, order,
+    };
+  }
+  function fetchMyOnlineTestPageSuccess(onlineTestsList) { return { type: LIST_ALL_MY_ONLINE_TESTS_SUCCESS, onlineTestsList }; }
+  function fetchMyOnlineTestPageFailure(errorMessage) { return { type: LIST_ALL_MY_ONLINE_TESTS_FAILURE, errorMessage }; }
+  return (dispatch) => {
+    dispatch(requestOnlineTestPage());
+    return onlineTestService.listAllMyOnlineTest(page, orderField, order)
+      .then(
+        (onlineTestsList) => {
+          dispatch(fetchMyOnlineTestPageSuccess(onlineTestsList));
+        },
+        (error) => {
+          dispatch(fetchMyOnlineTestPageFailure(error));
         },
       );
   };
