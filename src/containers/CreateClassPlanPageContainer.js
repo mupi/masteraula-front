@@ -215,25 +215,29 @@ const mapDispatchToProps = (dispatch) => {
         if (props.stations[i].document_ids) {
           return {
             description_station: station.description_station,
+            name_station: station.name_station,
             document_ids: props.stations[i].document_ids,
           };
         }
-        if (props.stations[i].learning_object_ids) {
+        if (props.stations[i].activity_ids) {
           return {
             description_station: station.description_station,
-            learning_object_ids: props.stations[i].learning_object_ids,
+            name_station: station.name_station,
+            activity_ids: props.stations[i].activity_ids,
           };
         }
-        if (props.stations[i].question_ids) {
-          return {
-            description_station: station.description_station,
-            question_ids: props.stations[i].question_ids,
-          };
-        }
+        // if (props.stations[i].question_ids) {
+        //   return {
+        //     description_station: station.description_station,
+          //   name_station: station.name_station,
+        //     question_ids: props.stations[i].question_ids,
+        //   };
+        // }
 
         if (station.description_station) {
           return {
             description_station: station.description_station,
+            name_station: station.name_station,
           };
         }
         return {};

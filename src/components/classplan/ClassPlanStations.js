@@ -1,32 +1,22 @@
 import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import LearningObjectCard from 'components/learningObject/LearningObjectCard';
-import QuestionCardSimple from 'components/question/QuestionCardSimple';
 import DocumentCard from 'components/document/DocumentCard';
+import ActivityCard from 'components/activity//ActivityCard';
+import { getCleanCompleteStatement } from 'helpers/question';
 
-import { Link } from 'react-router-dom';
-
-const ViewObjectCardButton = object => (
-  <Link
-    to={`/view-object/${object.id}`}
-    title="Ver objeto"
-    className="btn btn-secondary btn__icon"
-  >
-    <FontAwesomeIcon icon="eye" />
-    {' Ver'}
-  </Link>
+const ViewDocumentOnlineCardButton = (documentOnline, showDocumentModal) => (
+  <Button className="btn-margin-right menu-top__document-button" onClick={() => showDocumentModal(document.id)}>
+    <FontAwesomeIcon icon="eye" className="btn__icon" />
+    Ver
+  </Button>
 );
 
-const ViewQuestionCardButton = question => (
-  <Link
-    to={`/view-question/${question.id}`}
-    title="Ver questão"
-    className="btn btn-secondary btn__icon"
-  >
-    <FontAwesomeIcon icon="eye" />
-    {' Ver'}
-  </Link>
+const ViewActivityCardButton = (activity, showActivityModal) => (
+  <Button className="btn-margin-right menu-top__document-button" onClick={() => showActivityModal(activity.id)}>
+    <FontAwesomeIcon icon="eye" className="btn__icon" />
+    Ver
+  </Button>
 );
 
 const ViewDocumentCardButton = (document, showDocumentModal) => (
@@ -36,37 +26,42 @@ const ViewDocumentCardButton = (document, showDocumentModal) => (
   </Button>
 );
 
-const SingleStation = ({ station, position, showDocumentModal }) => (
+const SingleStation = ({ station, position, showDocumentModal, showActivityModal }) => (
   <>
     <Row>
       <Col sm="12">
         <h6><strong>{`Estação ${position + 1}`}</strong></h6>
       </Col>
     </Row>
+    <Row>
+      <Col sm="12">
+        <div dangerouslySetInnerHTML={{ __html: "Nome: " + getCleanCompleteStatement(station.name_station) }} />
+      </Col>
+    </Row>
     <Row className="mb-3 align-items-center">
-      <Col sm="8" xs="9">
-        {station.description_station}
+      <Col sm="8" xs="9">       
+        <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(station.description_station) }} />
       </Col>
       <Col sm="3" xs="9">
-        {
-            station.learning_object
-            && <LearningObjectCard object={station.learning_object} button={ViewObjectCardButton(station.learning_object)} />
-          }
+        {/* {
+            station.document
+            && <DocumentOnlineCard document_online={station.document_online} button={ViewDocumentOnlineCardButton(station.document_online)} />
+          } */}
         {
             station.document
             && <DocumentCard document={station.document} button={ViewDocumentCardButton(station.document, showDocumentModal)} />
         }
         {
-            station.question
-            && <QuestionCardSimple question={station.question} button={ViewQuestionCardButton(station.question)} />
-        }
+            station.activity
+            && <ActivityCard activity={station.activity} button={ViewActivityCardButton(station.activity, showActivityModal)} />
+        } 
       </Col>
     </Row>
   </>
 );
 
 
-const ClassPlanStations = ({ stations, showDocumentModal }) => (
+const ClassPlanStations = ({ stations, showDocumentModal, showActivityModal }) => (
   <>
     <Row className="c-question__tittle-section">
       <Col>
@@ -81,7 +76,7 @@ const ClassPlanStations = ({ stations, showDocumentModal }) => (
     <div className="c-classplan__stations">
       { stations && stations.map((station, i) => (
         <div className="c-classplan__view-station border-bottom my-3" key={station.id}>
-          <SingleStation station={station} position={i} showDocumentModal={showDocumentModal} />
+          <SingleStation station={station} position={i} showDocumentModal={showDocumentModal} showActivityModal={showActivityModal} />
         </div>
       )) }
     </div>

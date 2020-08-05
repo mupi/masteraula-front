@@ -29,7 +29,7 @@ const ClassPlanBasicInfo = ({
       </Row>
       <Row>
         <Col sm="6" className="offset-md-6 text-right">
-          { (classPlan.link_class_plan.length === 0 && publicLink.length === 0) ? (
+          { (publicLink.length === 0) ? (
             <Button color="success" onClick={() => generatePublicLink(classPlan.id)}>
               <FontAwesomeIcon icon="link" />
               {' '}
