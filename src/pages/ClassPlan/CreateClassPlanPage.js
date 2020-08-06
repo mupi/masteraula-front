@@ -34,7 +34,7 @@ class CreateClassPlanPage extends Component {
     const { match: { params: { type } } } = this.props;
     const {
       listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm,
-      resetSelectedObjects, resetSelectedDocuments, resetStationsClassPlan,
+      resetSelectedObjects, resetSelectedDocuments, resetStationsClassPlan, resetSelectedOnlineTests,
     } = this.props;
     if (prevProps.match.params.type !== type) {
       listDisciplineFilters();
@@ -44,6 +44,7 @@ class CreateClassPlanPage extends Component {
       resetSelectedObjects();
       resetSelectedDocuments();
       resetStationsClassPlan();
+      resetSelectedOnlineTests();
     }
   }
 
