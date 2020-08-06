@@ -137,7 +137,7 @@ class ViewClassPlanPage extends Component {
               </h4>
             </Col>
           </Row>
-          <ClassPlanBasicInfo classPlan={activeClassPlan} user={user} generatePublicLink={generatePublicLink} publicLink={publicLink}/>
+          <ClassPlanBasicInfo classPlan={activeClassPlan} user={user} generatePublicLink={generatePublicLink} publicLink={publicLink} />
           <ClassPlanTeacherArea classPlan={activeClassPlan} />
           {hasGuidelines && (
             <ClassPlanStudentArea classPlan={activeClassPlan} />
