@@ -25,6 +25,11 @@ const ClassPlanList = (props) => {
     showDeleteModal(id, name);
   };
 
+  /* CLASS PLAN TYPE */
+  const CLASSPLAN_TYPE = {
+    STATIONS: 'S',
+    OPEN: 'O',
+  };
   return (
     <Row className="l-my-documents-list">
       <Col xs="12">
@@ -51,7 +56,7 @@ const ClassPlanList = (props) => {
                     {classPlan.disciplines.map(t => t.name).join(', ')}
                   </OpenClassPlanModalHeader>
                   <OpenClassPlanModalHeader id={classPlan.id}>
-                    {classPlan.plan_type === 'S' ? 'Rotação por Estações' : 'Aberto'}
+                    {classPlan.plan_type === CLASSPLAN_TYPE.STATIONS ? 'Rotação por Estações' : 'Aberto'}
                   </OpenClassPlanModalHeader>
                   <OpenClassPlanModalHeader id={classPlan.id}>
                     {classPlan.duration}

@@ -8,6 +8,7 @@ import {
   addSelectedObjectToClassPlan, removeSelectedObjectToClassPlan, resetSelectedObjects,
   addSelectedActivityToClassPlan, removeSelectedActivityToClassPlan,
   addSelectedDocumentToClassPlan, removeSelectedDocumentFromClassPlan, resetSelectedDocuments,
+  addSelectedOnlineTestToClassPlan, removeSelectedOnlineTestFromClassPlan, resetSelectedOnlineTests,
   fetchClassPlan,
   addStationToClassPlan, removeStationFromClassPlan,
   addMaterialToClassPlanStation,
@@ -23,11 +24,23 @@ import { listTopicSuggestions, listBnccSuggestions } from 'actions/suggestionAct
 import {
   listMyDocumentsModal,
 } from 'actions/documentAction';
+import {
+  listAllMyOnlineTestsModal,
+} from 'actions/onlineTestAction';
 
-/* Learning Object search modal called from
-Q = Question
-C = ClassPlan
-*/
+const MODAL_FROM = {
+  QUESTION: 'Q',
+  CLASS_PLAN: 'C',
+};
+
+/* MATERIAL TYPE FOR STATIONS */
+const MATERIAL_TYPE = {
+  DOCUMENT: 'D',
+  ONLINE_TEST: 'T',
+  OBJECT: 'O',
+  QUESTION: 'Q',
+  ACTIVITY: 'A',
+};
 
 const mapStateToProps = (state) => {
   const selector = formValueSelector('edit-classplan');
@@ -42,10 +55,12 @@ const mapStateToProps = (state) => {
     sourceFilters: state.filter.sourceFilters,
     selectedActivityList: state.classPlan.selectedActivityList,
     selectedDocumentList: state.classPlan.selectedDocumentList,
+    selectedOnlineTestList: state.classPlan.selectedOnlineTestList,
     errorsClassPlan: state.form['edit-classplan'] ? state.form['edit-classplan'].submitErrors : null,
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
     bnccSuggestions: state.suggestion.bnccSuggestions,
+    tags: state.classPlan.tags,
     userId: state.session.session.user.id,
     error: state.classPlan.error,
     isFetching: state.classPlan.isFetching,
@@ -65,21 +80,48 @@ const mapDispatchToProps = (dispatch) => {
         if (!singleSelection) {
           dispatch(addSelectedObjectToClassPlan(object));
         } else {
-          dispatch(addMaterialToClassPlanStation(object, stationIndex, 'O'));
+          dispatch(addMaterialToClassPlanStation(object, stationIndex, MATERIAL_TYPE.OBJECT));
         }
       },
       removeSelectedObject: (idObject) => {
         if (!singleSelection) {
           dispatch(removeSelectedObjectToClassPlan(idObject));
         } else {
-          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'O'));
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, MATERIAL_TYPE.OBJECT));
         }
       },
-      callFrom: 'C',
+      callFrom: MODAL_FROM.CLASS_PLAN,
       singleSelection,
       stationIndex,
     },
     modalType: 'searchObjectModal',
+  });
+
+  const openSearchOnlineTestModalProps = (singleSelection, stationIndex) => ({
+    modalProps: {
+      open: true,
+      titlePart: 'ao plano de aula',
+      closeModal: () => dispatch(hideModal()),
+      addSelectedOnlineTest: (onlineTest) => {
+        if (!singleSelection) {
+          dispatch(addSelectedOnlineTestToClassPlan(onlineTest));
+        } else {
+          dispatch(addMaterialToClassPlanStation(onlineTest, stationIndex, MATERIAL_TYPE.ONLINE_TEST));
+        }
+      },
+      removeSelectedOnlineTest: (idOnlineTest) => {
+        if (!singleSelection) {
+          dispatch(removeSelectedOnlineTestFromClassPlan(idOnlineTest));
+        } else {
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, MATERIAL_TYPE.ONLINE_TEST));
+        }
+      },
+      listAllMyOnlineTestsModal: (page, orderField, order) => dispatch(listAllMyOnlineTestsModal(page, orderField, order)),
+      callFrom: MODAL_FROM.CLASS_PLAN,
+      singleSelection,
+      stationIndex,
+    },
+    modalType: 'searchOnlineTestModal',
   });
 
   const openSearchDocumentModalProps = (singleSelection, stationIndex) => ({
@@ -91,18 +133,18 @@ const mapDispatchToProps = (dispatch) => {
         if (!singleSelection) {
           dispatch(addSelectedDocumentToClassPlan(document));
         } else {
-          dispatch(addMaterialToClassPlanStation(document, stationIndex, 'D'));
+          dispatch(addMaterialToClassPlanStation(document, stationIndex, MATERIAL_TYPE.DOCUMENT));
         }
       },
       removeSelectedDocument: (idDocument) => {
         if (!singleSelection) {
           dispatch(removeSelectedDocumentFromClassPlan(idDocument));
         } else {
-          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'D'));
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, MATERIAL_TYPE.DOCUMENT));
         }
       },
       listMyDocumentsModal: (page, orderField, order) => dispatch(listMyDocumentsModal(page, orderField, order)),
-      callFrom: 'C',
+      callFrom: MODAL_FROM.CLASS_PLAN,
       singleSelection,
       stationIndex,
     },
@@ -118,17 +160,17 @@ const mapDispatchToProps = (dispatch) => {
         if (!singleSelection) {
           dispatch(addSelectedActivityToClassPlan(activity));
         } else {
-          dispatch(addMaterialToClassPlanStation(activity, stationIndex, 'A'));
+          dispatch(addMaterialToClassPlanStation(activity, stationIndex, MATERIAL_TYPE.ACTIVITY));
         }
       },
       removeSelectedActivity: (idActivity) => {
         if (!singleSelection) {
           dispatch(removeSelectedActivityToClassPlan(idActivity));
         } else {
-          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'A'));
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, MATERIAL_TYPE.ACTIVITY));
         }
       },
-      callFrom: 'C',
+      callFrom: MODAL_FROM.CLASS_PLAN,
       singleSelection,
       stationIndex,
     },
@@ -142,15 +184,15 @@ const mapDispatchToProps = (dispatch) => {
       closeModal: () => dispatch(hideModal()),
       addSelectedQuestion: (question) => {
         if (singleSelection) {
-          dispatch(addMaterialToClassPlanStation(question, stationIndex, 'Q'));
+          dispatch(addMaterialToClassPlanStation(question, stationIndex, MATERIAL_TYPE.QUESTION));
         }
       },
       removeSelectedQuestion: () => {
         if (singleSelection) {
-          dispatch(removeMaterialFromClassPlanStation(stationIndex, 'Q'));
+          dispatch(removeMaterialFromClassPlanStation(stationIndex, MATERIAL_TYPE.QUESTION));
         }
       },
-      callFrom: 'C',
+      callFrom: MODAL_FROM.CLASS_PLAN,
       singleSelection,
       stationIndex,
     },
@@ -172,6 +214,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(showModal(openSearchDocumentModalProps(singleSelection, stationIndex)));
     },
 
+    showSearchOnlineTestModal: (singleSelection = false, stationIndex = null) => {
+      dispatch(showModal(openSearchOnlineTestModalProps(singleSelection, stationIndex)));
+    },
+
     showSearchActivityModal: (singleSelection = false, stationIndex = null) => {
       dispatch(showModal(openSearchActivityModalProps(singleSelection, stationIndex)));
     },
@@ -188,7 +234,7 @@ const mapDispatchToProps = (dispatch) => {
     resetSelectedDocuments: () => dispatch(resetSelectedDocuments()),
 
     removeSelectedActivityToClassPlan: idActivity => dispatch(removeSelectedActivityToClassPlan(idActivity)),
-
+    removeSelectedOnlineTestFromClassPlan: idOnlineTest => dispatch(removeSelectedOnlineTestFromClassPlan(idOnlineTest)),
 
     removeSelectedDocumentFromClassPlan: idDocument => dispatch(removeSelectedDocumentFromClassPlan(idDocument)),
     fetchClassPlan: id => dispatch(fetchClassPlan(id)),
@@ -197,6 +243,8 @@ const mapDispatchToProps = (dispatch) => {
     addStationToClassPlan: station => dispatch(addStationToClassPlan(station)),
     removeStationFromClassPlan: removedIndex => dispatch(removeStationFromClassPlan(removedIndex)),
     removeMaterialFromClassPlanStation: (stationIndex, typeMaterial) => dispatch(removeMaterialFromClassPlanStation(stationIndex, typeMaterial)),
+
+    resetSelectedOnlineTests: () => dispatch(resetSelectedOnlineTests()),
     /*
     /*
   fields = (
@@ -265,6 +313,8 @@ const mapDispatchToProps = (dispatch) => {
           ? props.selectedDocumentList.map(document => document.id) : [],
         activities_ids: props.selectedActivityList && props.selectedActivityList.length > 0
           ? props.selectedActivityList.map(activity => activity.id) : [],
+        documents_online_ids: props.selectedOnlineTestList && props.selectedOnlineTestList.length > 0
+          ? props.selectedOnlineTestList.map(document_online => document_online.link) : [],
 
         stations: updateStations,
 

@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import RemoveButton from 'components/buttons/RemoveButton';
 import OnlineTestCard from './OnlineTestCard';
 
+import { Link } from 'react-router-dom';
+
 const OnlineTestCardList = (props) => {
   const {
     onlineTests, sm, selectedOnlineTestList,
@@ -33,10 +35,18 @@ const OnlineTestCardList = (props) => {
   );
 
   const ViewCardButton = onlineTest => (
-    <Button className="btn-margin-right menu-top__document-button" onClick={() => showOnlineTestModal(onlineTest.link)}>
-      <FontAwesomeIcon icon="eye" className="btn__icon" />
-      Ver prova online
-    </Button>
+    // <Button className="btn-margin-right menu-top__document-button" onClick={() => showOnlineTestModal(onlineTest.link)}>
+    //   <FontAwesomeIcon icon="eye" className="btn__icon" />
+    //   Ver prova online
+    // </Button>
+      <Link
+      to={`/view-online/${onlineTest.link}`}
+      title="Ver prova online"
+      className="btn btn-secondary btn__icon"
+    >
+      <FontAwesomeIcon icon="eye" />
+      {'Ver prova online'}
+    </Link>
   );
   return (
     <Row>

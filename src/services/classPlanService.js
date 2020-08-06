@@ -99,6 +99,10 @@ function convertClassPlanToFormData(classPlan) {
       classPlan[name].forEach((activityId, index) => {
         formData.append(`activities_ids[${index}]`, activityId);
       });
+    } else if (name === 'documents_online_ids') {
+      classPlan[name].forEach((documentOnlineId, index) => {
+        formData.append(`documents_online_ids[${index}]`, documentOnlineId);
+      });
     } else if (name === 'stations') {
       classPlan[name].forEach((station, index) => {
         formData.append(`stations[${index}]description_station`, station.description_station);
@@ -140,7 +144,7 @@ function convertEditClassPlanToFormData(classPlan) {
       });
     } else if (name === 'tags') {
       classPlan[name].forEach((tag, index) => {
-        formData.append(`tags[${index}]`, tag);
+        formData.append(`tags`, `[${tag}]`);
       });
     } else if (name === 'documents_ids') {
       classPlan[name].forEach((documentId) => {
@@ -150,6 +154,10 @@ function convertEditClassPlanToFormData(classPlan) {
       classPlan[name].forEach((activityId) => {
         formData.append('activities_ids', activityId);
       });
+    } else if (name === 'documents_online_ids') {
+      classPlan[name].forEach((documentOnlineId, index) => {
+        formData.append(`documents_online_ids[${index}]`, documentOnlineId);
+      });
     } else if (name === 'stations') {
       classPlan[name].forEach((station, index) => {
         formData.append(`stations[${index}]description_station`, station.description_station);
@@ -158,7 +166,7 @@ function convertEditClassPlanToFormData(classPlan) {
 
         if (station.activity_ids) { formData.append(`stations[${index}]activity_ids`, station.activity_ids); }
 
-        if (station.document_online_ids) { formData.append(`stations[${index}]document_online_ids`, station.document_online_ids); }
+        if (station.document_online_ids) { formData.append(`stations[${index}]document_online_ids`, station.document_online_ids);}
       });
     } else formData.append(name, classPlan[name]);
   });

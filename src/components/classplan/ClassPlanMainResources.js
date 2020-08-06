@@ -3,6 +3,30 @@ import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DocumentCardList from 'components/document/DocumentCardList';
 import ActivityList from 'components/activity/ActivityList';
+import OnlineTestCardList from 'components/onlineTest/OnlineTestCardList';
+
+const OnlineTestsSection = (props) => {
+  const { documents_online, options, showOnlineTestModal } = props;
+  return (
+    <>
+      <Row className="mt-3">
+        <Col sm="12">
+          <h6>
+            <FontAwesomeIcon icon="laptop" />
+            {' '}
+            {/* Provas e/ou Lista de exercícios Online */}
+            Provas Online
+          </h6>
+        </Col>
+      </Row>
+      <OnlineTestCardList
+        onlineTests={documents_online}
+        viewOnly={options.showViewButton}
+        showOnlineTestModal={showOnlineTestModal}
+      />
+    </>
+  );
+};
 
 const DocumentsSection = (props) => {
   const { documents, options, showDocumentModal } = props;
@@ -52,13 +76,14 @@ const ActivitiesSection = (props) => {
 };
 
 const ClassPlanMainResources = ({
-  classPlan, optionsActivity, optionsDocument, showDocumentModal, showActivityModal,
+  classPlan, optionsActivity, optionsDocument, optionsOnlineTest, showDocumentModal, showActivityModal, showOnlineTestModal
 }) => {
   const hasActivities = classPlan && classPlan.activities && classPlan.activities.length > 0;
   const hasDocuments = classPlan && classPlan.documents && classPlan.documents.length > 0;
+  const hasOnlineTests = classPlan && classPlan.documents_online && classPlan.documents_online.length > 0;
 
   return (
-    (hasActivities || hasDocuments) && (
+    (hasActivities || hasDocuments || hasOnlineTests) && (
     <>
       <Row className="c-question__tittle-section">
         <Col>
@@ -72,6 +97,7 @@ const ClassPlanMainResources = ({
       </Row>
       {hasActivities && <ActivitiesSection activities={classPlan.activities} options={optionsActivity} showActivityModal={showActivityModal} />}
       {hasDocuments && <DocumentsSection documents={classPlan.documents} options={optionsDocument} showDocumentModal={showDocumentModal} />}
+      {hasOnlineTests && <OnlineTestsSection documents_online={classPlan.documents_online} options={optionsOnlineTest} showOnlineTestModal={showOnlineTestModal} />}
     </>
     ));
 };

@@ -2,14 +2,25 @@ import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DocumentCard from 'components/document/DocumentCard';
-import ActivityCard from 'components/activity//ActivityCard';
+import ActivityCard from 'components/activity/ActivityCard';
+import OnlineTestCard from 'components/onlineTest/OnlineTestCard';
 import { getCleanCompleteStatement } from 'helpers/question';
 
+import { Link } from 'react-router-dom';
+
 const ViewOnlineTestCardButton = (onlineTest, showOnlineTestModal) => (
-  <Button className="btn-margin-right menu-top__document-button" onClick={() => showOnlineTestModal(document.id)}>
-    <FontAwesomeIcon icon="eye" className="btn__icon" />
-    Ver
-  </Button>
+  // <Button className="btn-margin-right menu-top__document-button" onClick={() => showOnlineTestModal(document.id)}>
+  //   <FontAwesomeIcon icon="eye" className="btn__icon" />
+  //   Ver
+  // </Button>
+  <Link
+  to={`/view-online/${onlineTest.link}`}
+  title="Ver prova online"
+  className="btn btn-secondary btn__icon"
+>
+  <FontAwesomeIcon icon="eye" />
+  {' Ver'}
+</Link>
 );
 
 const ViewActivityCardButton = (activity, showActivityModal) => (
@@ -46,10 +57,10 @@ const SingleStation = ({
         <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(station.description_station) }} />
       </Col>
       <Col sm="3" xs="9">
-        {/* {
-            station.document
+        {
+            station.document_online
             && <OnlineTestCard onlineTest={station.document_online} button={ViewOnlineTestCardButton(station.document_online)} />
-          } */}
+          }
         {
             station.document
             && <DocumentCard document={station.document} button={ViewDocumentCardButton(station.document, showDocumentModal)} />
@@ -64,7 +75,7 @@ const SingleStation = ({
 );
 
 
-const ClassPlanStations = ({ stations, showDocumentModal, showActivityModal }) => (
+const ClassPlanStations = ({ stations, showDocumentModal, showActivityModal, showOnlineTestModal }) => (
   <>
     <Row className="c-question__tittle-section">
       <Col>
@@ -79,7 +90,7 @@ const ClassPlanStations = ({ stations, showDocumentModal, showActivityModal }) =
     <div className="c-classplan__stations">
       { stations && stations.map((station, i) => (
         <div className="c-classplan__view-station border-bottom my-3" key={station.id}>
-          <SingleStation station={station} position={i} showDocumentModal={showDocumentModal} showActivityModal={showActivityModal} />
+          <SingleStation station={station} position={i} showDocumentModal={showDocumentModal} showActivityModal={showActivityModal} showOnlineTestModal={showOnlineTestModal} />
         </div>
       )) }
     </div>

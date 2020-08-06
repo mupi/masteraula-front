@@ -119,7 +119,7 @@ export const classPlan = (state = initialState, action) => {
         }
         if (x.document_online) {
           return {
-            activity_ids: null, document_ids: null, document_online_ids: x.document_online.id, material: x.document_online,
+            activity_ids: null, document_ids: null, document_online_ids: x.document_online.link, material: x.document_online,
           };
         }
         if (x.activity) {
@@ -135,6 +135,7 @@ export const classPlan = (state = initialState, action) => {
         selectedObjectList: action.activeClassPlan.learning_objects,
         selectedActivityList: action.activeClassPlan.activities,
         selectedDocumentList: action.activeClassPlan.documents,
+        selectedOnlineTestList: action.activeClassPlan.documents_online,
         stations: stationsPlan,
         isFetching: false,
       });

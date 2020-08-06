@@ -26,9 +26,21 @@ const optionsDocument = {
 };
 
 // Document's options available for View ClassPlan
+const optionsOnlineTest = {
+  showViewButton: true,
+  removeButton: false,
+};
+
+// Document's options available for View ClassPlan
 const optionsActivity = {
   showViewButton: true,
   buttonType: BUTTON_TYPE.ACTIVITYCARD_MODAL_VIEW,
+};
+
+/* CLASS PLAN TYPE */
+const CLASSPLAN_TYPE = {
+  STATIONS: 'S',
+  OPEN: 'O',
 };
 
 class ViewClassPlanPage extends Component {
@@ -46,7 +58,8 @@ class ViewClassPlanPage extends Component {
 
   render() {
     const {
-      userId, activeClassPlan, isFetching, user, error, showDeleteModal, showDocumentModal, showActivityModal,
+      userId, activeClassPlan, isFetching, user, error, 
+      showDeleteModal, showDocumentModal, showActivityModal, showOnlineTestModal,
       generatePublicLink, publicLink,
     } = this.props;
 
@@ -94,7 +107,7 @@ class ViewClassPlanPage extends Component {
       );
     }
 
-    const typeClassPlanName = (activeClassPlan.plan_type === 'T') ? 'Aberto' : 'Rotação por Estações';
+    const typeClassPlanName = (activeClassPlan.plan_type === CLASSPLAN_TYPE.OPEN) ? 'Aberto' : 'Rotação por Estações';
 
     return (
       <HomeUserPage>
@@ -142,19 +155,22 @@ class ViewClassPlanPage extends Component {
           {hasGuidelines && (
             <ClassPlanStudentArea classPlan={activeClassPlan} />
           )}
-          {activeClassPlan && activeClassPlan.plan_type === 'S' ? (
+          {activeClassPlan && activeClassPlan.plan_type === CLASSPLAN_TYPE.STATIONS ? (
             <ClassPlanStations
               stations={activeClassPlan.stations}
               showDocumentModal={showDocumentModal}
               showActivityModal={showActivityModal}
+              showOnlineTestModal={showOnlineTestModal}
             />
           ) : (
             <ClassPlanMainResources
               classPlan={activeClassPlan}
               optionsActivity={optionsActivity}
               optionsDocument={optionsDocument}
+              optionsOnlineTest={optionsOnlineTest}
               showDocumentModal={showDocumentModal}
               showActivityModal={showActivityModal}
+              showOnlineTestModal={showOnlineTestModal}
             />
           )}
         </div>

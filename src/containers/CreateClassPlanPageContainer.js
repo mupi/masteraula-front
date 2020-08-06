@@ -274,13 +274,13 @@ const mapDispatchToProps = (dispatch) => {
             activity_ids: props.stations[i].activity_ids,
           };
         }
-        // if (props.stations[i].question_ids) {
-        //   return {
-        //     description_station: station.description_station,
-        //   name_station: station.name_station,
-        //     question_ids: props.stations[i].question_ids,
-        //   };
-        // }
+        if (props.stations[i].document_online_ids) {
+          return {
+            description_station: station.description_station,
+            name_station: station.name_station,
+            document_online_ids: props.stations[i].document_online_ids,
+          };
+        }
 
         if (station.description_station) {
           return {
@@ -305,6 +305,8 @@ const mapDispatchToProps = (dispatch) => {
         activities_ids: props.selectedActivityList && props.selectedActivityList.length > 0
           ? props.selectedActivityList.map(activity => activity.id) : [],
         stations: newStations,
+        documents_online_ids: props.selectedOnlineTestList && props.selectedOnlineTestList.length > 0
+          ? props.selectedOnlineTestList.map(document_online => document_online.link) : [],
 
         teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],
         duration: values.duration ? values.duration : 0,
