@@ -11,7 +11,9 @@ import {
   SET_START_DATE_ONLINE_TEST,
   UPDATE_ANSWERS_ONLINE_TEST, UPDATE_ANSWERS_ONLINE_TEST_SUCCESS, UPDATE_ANSWERS_ONLINE_TEST_FAILURE,
   DOWNLOAD_RESULT_ONLINE_TEST, DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS, DOWNLOAD_RESULT_ONLINE_TEST_FAILURE,
-  COPY_ONLINE_TEST, COPY_ONLINE_TEST_SUCCESS, COPY_ONLINE_TEST_FAILURE, 
+  COPY_ONLINE_TEST, COPY_ONLINE_TEST_SUCCESS, COPY_ONLINE_TEST_FAILURE,
+  LIST_ALL_MY_ONLINE_TESTS_MODAL, LIST_ALL_MY_ONLINE_TESTS_MODAL_SUCCESS, LIST_ALL_MY_ONLINE_TESTS_MODAL_FAILURE,
+  SET_CURRENT_PAGE_MODAL,
 
 } from 'actions/onlineTestAction';
 import { toast } from 'react-toastify';
@@ -143,7 +145,7 @@ export const onlineTest = (state = initialState, action) => {
     case UPDATE_ANSWERS_ONLINE_TEST_SUCCESS: {
       toast.success('Pontuações atualizadas com sucesso', optionsSuccess);
       const oldStudents = state.activeOnlineTest.results.filter(item => item.id !== parseInt(action.updatedStudent.id, 10));
-    
+
       const allStudents = [
         ...oldStudents,
         action.updatedStudent,
@@ -257,18 +259,18 @@ export const onlineTest = (state = initialState, action) => {
     case DOWNLOAD_RESULT_ONLINE_TEST: {
       toast.success('Seu download iniciará a qualquer momento', optionsSuccess);
       return Object.assign({}, state, {
-        isSending: true
+        isSending: true,
       });
     }
     case DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS: {
       return Object.assign({}, state, {
-        isSending: false
+        isSending: false,
       });
     }
     case DOWNLOAD_RESULT_ONLINE_TEST_FAILURE: {
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
-        isSending: false
+        isSending: false,
       });
     }
     case COPY_ONLINE_TEST: {
@@ -281,17 +283,17 @@ export const onlineTest = (state = initialState, action) => {
     case COPY_ONLINE_TEST_SUCCESS: {
       toast.success('Cópia da prova online realizada com sucesso', optionsSuccess);
 
-      return Object.assign({}, state, 
+      return Object.assign({}, state,
         {
           onlineTestsList: state.onlineTestsList ? {
-          ...state.onlineTestsList,
-          results: [...state.onlineTestsList.results, { ...action.activeOnlineTest }],
-          count: state.onlineTestsList.count + 1,
-        } : {
-          results: [action.activeOnlineTest],
-          count: 1,
-        },
-      });
+            ...state.onlineTestsList,
+            results: [...state.onlineTestsList.results, { ...action.activeOnlineTest }],
+            count: state.onlineTestsList.count + 1,
+          } : {
+            results: [action.activeOnlineTest],
+            count: 1,
+          },
+        });
     }
     case COPY_ONLINE_TEST_FAILURE: {
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
@@ -299,6 +301,26 @@ export const onlineTest = (state = initialState, action) => {
         error: action.error,
       });
     }
+    case LIST_ALL_MY_ONLINE_TESTS_MODAL:
+      return Object.assign({}, state, {
+        currentPageModal: action.currentPageModal,
+        isFetching: true,
+        error: null,
+      });
+    case LIST_ALL_MY_ONLINE_TESTS_MODAL_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        onlineTestPageModal: action.onlineTestPageModal,
+      });
+    case LIST_ALL_MY_ONLINE_TESTS_MODAL_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
+    case SET_CURRENT_PAGE_MODAL:
+      return Object.assign({}, state, {
+        currentPageModal: action.currentPageModal,
+      });
     default:
       return state;
   }

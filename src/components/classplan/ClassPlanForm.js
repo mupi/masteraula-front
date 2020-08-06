@@ -12,6 +12,8 @@ import { Field } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import ActivityList from 'components/activity/ActivityList';
 import DocumentCardList from 'components/document/DocumentCardList';
+import OnlineTestCardList from 'components/onlineTest/OnlineTestCardList';
+
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 
 import {
@@ -550,13 +552,13 @@ class ClassPlanForm extends Component {
               </Col>
             </Row>
             { selectedOnlineTestList ? (
-              <DocumentCardList
-                selectedDocumentList={selectedOnlineTestList}
-                documents={selectedOnlineTestList}
-                removeSelectedDocument={removeSelectedOnlineTestFromClassPlan}
+              <OnlineTestCardList
+                selectedOnlineTestList={selectedOnlineTestList}
+                onlineTests={selectedOnlineTestList}
+                removeSelectedOnlineTest={removeSelectedOnlineTestFromClassPlan}
                 viewOnly={optionsDocument.showViewButton}
               />
-            ) : '' }
+            ) : <div>{selectedOnlineTestList.length}</div> }
             <div className="mt-3">
 
               <Row>

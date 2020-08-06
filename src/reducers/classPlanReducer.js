@@ -67,6 +67,14 @@ const MATERIAL_TYPE = {
   QUESTION: 'Q',
   ACTIVITY: 'A',
 };
+
+
+/* CLASS PLAN TYPE */
+const CLASSPLAN_TYPE = {
+  STATIONS: 'S',
+  OPEN: 'O',
+};
+
 const initialState = {
   publicLink: '',
   classPlans: [],
@@ -103,7 +111,7 @@ export const classPlan = (state = initialState, action) => {
         error: null,
       });
     case FETCH_CLASS_PLAN_SUCCESS: {
-      const stationsPlan = action.activeClassPlan.plan_type !== 'S' ? [] : action.activeClassPlan.stations.map((x) => {
+      const stationsPlan = action.activeClassPlan.plan_type !== CLASSPLAN_TYPE.STATIONS ? [] : action.activeClassPlan.stations.map((x) => {
         if (x.document) {
           return {
             activity_ids: null, document_ids: x.document.id, document_online_ids: null, material: x.document,
@@ -248,13 +256,13 @@ export const classPlan = (state = initialState, action) => {
       });
     }
     case ADD_SELECTED_ONLINETEST_CLASS_PLAN: {
-      if (state.selectedOnlineTestList.filter(item => item.id === action.selectedOnlineTest.id).length > 0) return state; // do not add duplicates
+      if (state.selectedOnlineTestList.filter(item => item.link === action.selectedOnlineTest.link).length > 0) return state; // do not add duplicates
       return Object.assign({}, state, {
         selectedOnlineTestList: [...state.selectedOnlineTestList, action.selectedOnlineTest],
       });
     }
     case REMOVE_SELECTED_ONLINETEST_CLASS_PLAN: {
-      const newSelectedOnlineTestList = state.selectedOnlineTestList.filter(item => item.id !== action.idOnlineTest);
+      const newSelectedOnlineTestList = state.selectedOnlineTestList.filter(item => item.link !== action.idOnlineTest);
       return Object.assign({}, state, {
         selectedOnlineTestList: newSelectedOnlineTestList,
       });
@@ -292,13 +300,13 @@ export const classPlan = (state = initialState, action) => {
 
     case ADD_MATERIAL_TO_CLASS_PLAN_STATION: {
       const updateStations = state.stations.map((x, index) => {
-        if (index === action.stationIndex && action.typeMaterial === 'D') {
+        if (index === action.stationIndex && action.typeMaterial === MATERIAL_TYPE.DOCUMENT) {
           return { ...x, document_ids: action.material.id, material: action.material };
         }
-        if (index === action.stationIndex && action.typeMaterial === 'O') {
+        if (index === action.stationIndex && action.typeMaterial === MATERIAL_TYPE.OBJECT) {
           return { ...x, document_online_ids: action.material.id, material: action.material };
         }
-        if (index === action.stationIndex && action.typeMaterial === 'A') {
+        if (index === action.stationIndex && action.typeMaterial === MATERIAL_TYPE.ACTIVITY) {
           return { ...x, activity_ids: action.material.id, material: action.material };
         }
         if (index === action.stationIndex && action.typeMaterial === MATERIAL_TYPE.ONLINE_TEST) {

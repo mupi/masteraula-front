@@ -132,8 +132,8 @@ export const fetchClassPlan = (id) => {
             phases: activeClassPlan.phases,
             content: activeClassPlan.content,
             guidelines: activeClassPlan.guidelines,
-            stations: activeClassPlan.stations.map(x => ({ description_station: x.description_station, name_station: x.name_station})),
-         
+            stations: activeClassPlan.stations.map(x => ({ description_station: x.description_station, name_station: x.name_station })),
+
           }));
 
           dispatch(fetchClassPlanSuccess(activeClassPlan));

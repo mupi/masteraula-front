@@ -51,10 +51,10 @@ export const LIST_MY_ONLINE_TESTS = 'LIST_MY_ONLINE_TESTS';
 export const LIST_MY_ONLINE_TESTS_SUCCESS = 'LIST_MY_ONLINE_TESTS_SUCCESS';
 export const LIST_MY_ONLINE_TESTS_FAILURE = 'LIST_MY_ONLINE_TESTS_FAILURE';
 
-// List ALL MY ONLINE TESTS WITHOUT DOCBASE
-export const LIST_ALL_MY_ONLINE_TESTS = 'LIST_ALL_MY_ONLINE_TESTS';
-export const LIST_ALL_MY_ONLINE_TESTS_SUCCESS = 'LIST_ALL_MY_ONLINE_TESTS_SUCCESS';
-export const LIST_ALL_MY_ONLINE_TESTS_FAILURE = 'LIST_ALL_MY_ONLINE_TESTS_FAILURE';
+// List ALL MY ONLINE TESTS WITHOUT DOCBASE (in modal)
+export const LIST_ALL_MY_ONLINE_TESTS_MODAL = 'LIST_ALL_MY_ONLINE_TESTS_MODAL';
+export const LIST_ALL_MY_ONLINE_TESTS_MODAL_SUCCESS = 'LIST_ALL_MY_ONLINE_TESTS_MODAL_SUCCESS';
+export const LIST_ALL_MY_ONLINE_TESTS_MODAL_FAILURE = 'LIST_ALL_MY_ONLINE_TESTS_MODAL_FAILURE';
 
 
 // Copy ONLINE TEST
@@ -78,6 +78,12 @@ export const UPDATE_ANSWERS_ONLINE_TEST_FAILURE = 'UPDATE_ANSWERS_ONLINE_TEST_FA
 export const DOWNLOAD_RESULT_ONLINE_TEST = 'DOWNLOAD_RESULT_ONLINE_TEST';
 export const DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS = 'DOWNLOAD_RESULT_ONLINE_TEST_SUCCESS';
 export const DOWNLOAD_RESULT_ONLINE_TEST_FAILURE = 'DOWNLOAD_RESULT_ONLINE_TEST_FAILURE';
+
+// Set page for search documents in modal
+export const SET_CURRENT_PAGE_MODAL = 'SET_CURRENT_PAGE_MODAL';
+export const setCurrentPageModal = currentPageModal => ({
+  type: SET_CURRENT_PAGE_MODAL, currentPageModal,
+});
 
 export const fetchBaseDocument = id => async (dispatch) => {
   try {
@@ -256,26 +262,21 @@ export const listMyOnlineTests = (idDocBase, page, orderField = null, order = nu
 };
 
 
-// listAllMyOnlineTests without having an iddocbase
-export const listAllMyOnlineTests = (page, orderField = null, order = null) => {
-  function requestOnlineTestPage() {
-    return {
-      type: LIST_ALL_MY_ONLINE_TESTS, page, orderField, order,
-    };
-  }
-  function fetchMyOnlineTestPageSuccess(onlineTestsList) { return { type: LIST_ALL_MY_ONLINE_TESTS_SUCCESS, onlineTestsList }; }
-  function fetchMyOnlineTestPageFailure(errorMessage) { return { type: LIST_ALL_MY_ONLINE_TESTS_FAILURE, errorMessage }; }
+// listAllMyOnlineTests without having an iddocbase (modal)
+// List  documents - Modal
+export const listAllMyOnlineTestsModal = (currentPageModal) => {
+  function requestOnlineTestModal() { return { type: LIST_ALL_MY_ONLINE_TESTS_MODAL, currentPageModal }; }
+  function fetchMyOnlineTestPageSuccess(onlineTestPageModal) { return { type: LIST_ALL_MY_ONLINE_TESTS_MODAL_SUCCESS, onlineTestPageModal }; }
+  function fetchMyOnlineTestPageFailure(error) { return { type: LIST_ALL_MY_ONLINE_TESTS_MODAL_FAILURE, error }; }
   return (dispatch) => {
-    dispatch(requestOnlineTestPage());
-    return onlineTestService.listAllMyOnlineTest(page, orderField, order)
-      .then(
-        (onlineTestsList) => {
-          dispatch(fetchMyOnlineTestPageSuccess(onlineTestsList));
-        },
-        (error) => {
-          dispatch(fetchMyOnlineTestPageFailure(error));
-        },
-      );
+    dispatch(requestOnlineTestModal());
+    return onlineTestService.listMyOnlineTestCardsModal(currentPageModal).then(
+      (onlineTestPageModal) => {
+        dispatch(fetchMyOnlineTestPageSuccess(onlineTestPageModal));
+      }, (error) => {
+        dispatch(fetchMyOnlineTestPageFailure(error));
+      },
+    );
   };
 };
 
@@ -301,7 +302,7 @@ export const deleteOnlineTest = (idOnlineTest, isRedirect = false, idBaseDocumen
   };
 };
 
-export const copyOnlineTest = (props, isRedirect = false) => {
+export const copyOnlineTest = (props) => {
   function copySelectedOnlineTest() { return { type: COPY_ONLINE_TEST }; }
   function copySelectedOnlineTestSuccess(activeOnlineTest) { return { type: COPY_ONLINE_TEST_SUCCESS, activeOnlineTest }; }
   function copySelectedOnlineTestFailure(error) { return { type: COPY_ONLINE_TEST_FAILURE, error }; }
@@ -310,7 +311,6 @@ export const copyOnlineTest = (props, isRedirect = false) => {
     return onlineTestService.copyOnlineTest(props).then(
       (activeOnlineTest) => {
         dispatch(copySelectedOnlineTestSuccess(activeOnlineTest));
-        if (isRedirect) history.push('/edit-document');
       },
       (error) => {
         dispatch(copySelectedOnlineTestFailure(error));

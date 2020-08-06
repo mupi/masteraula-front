@@ -15,19 +15,21 @@ const MODAL_TYPES = {
   document: modalTypes.documentModal,
   question: modalTypes.questionModal,
   activity: modalTypes.activityModal,
+  onlineTest: modalTypes.onlineTestModal,
   exportDocument: modalTypes.exportDocumentModal,
   last5Documents: modalTypes.last5DocumentsModal,
   register2: modalTypes.register2Modal,
   login2: modalTypes.login2Modal,
   createDocument: modalTypes.createDocument,
+  createMyQuestionLabelModal: modalTypes.createMyQuestionLabelModal,
+  createClassPlanModal: modalTypes.createClassPlanModal,
+  createObjectModal: modalTypes.createObjectModal,
+  searchDocumentModal: modalTypes.searchDocumentModal,
   searchObjectModal: modalTypes.searchObjectModal,
   searchActivityModal: modalTypes.searchActivityModal,
-  createMyQuestionLabelModal: modalTypes.createMyQuestionLabelModal,
-  searchDocumentModal: modalTypes.searchDocumentModal,
-  createClassPlanModal: modalTypes.createClassPlanModal,
   searchQuestionModal: modalTypes.searchQuestionModal,
+  searchOnlineTestModal: modalTypes.searchOnlineTestModal,
   studentResults: modalTypes.OnlineTestStudentResultsModal,
-  createObjectModal: modalTypes.createObjectModal,
 };
 
 const mapStateToProps = state => ({
@@ -46,9 +48,11 @@ const ModalContainer = (props) => {
     return null;
   }
 
-  if (modalType === 'document' || modalType === 'question' || modalType === 'activity' || modalType === 'studentResults' || modalType === 'createObjectModal') modalClassName = 'modal-dialog modal-lg';
+  if (modalType === 'onlineTest' || modalType === 'document' || modalType === 'question' || modalType === 'activity' || modalType === 'studentResults'
+  || modalType === 'createObjectModal') modalClassName = 'modal-dialog modal-lg';
 
-  if ((modalType === 'searchActivityModal') || (modalType === 'searchObjectModal') || (modalType === 'searchDocumentModal') || (modalType === 'searchQuestionModal')) {
+  if ((modalType === 'searchActivityModal') || (modalType === 'searchObjectModal') || (modalType === 'searchDocumentModal')
+    || (modalType === 'searchQuestionModal') || (modalType === 'searchOnlineTestModal')) {
     modalClassName = 'modal-dialog modal-xl modal-fixed';
   }
 

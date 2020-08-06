@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'reactstrap';
 
@@ -18,13 +17,4 @@ const RemoveButton = ({
   </Button>
 );
 
-RemoveButton.propTypes = {
-  id: PropTypes.number,
-  removeSelectedItem: PropTypes.func,
-};
-
-RemoveButton.defaultProps = {
-  id: 0,
-  removeSelectedItem: f => f,
-};
 export default RemoveButton;

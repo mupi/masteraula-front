@@ -5,8 +5,8 @@ import DocumentCard from 'components/document/DocumentCard';
 import ActivityCard from 'components/activity//ActivityCard';
 import { getCleanCompleteStatement } from 'helpers/question';
 
-const ViewDocumentOnlineCardButton = (documentOnline, showDocumentModal) => (
-  <Button className="btn-margin-right menu-top__document-button" onClick={() => showDocumentModal(document.id)}>
+const ViewOnlineTestCardButton = (onlineTest, showOnlineTestModal) => (
+  <Button className="btn-margin-right menu-top__document-button" onClick={() => showOnlineTestModal(document.id)}>
     <FontAwesomeIcon icon="eye" className="btn__icon" />
     Ver
   </Button>
@@ -26,7 +26,10 @@ const ViewDocumentCardButton = (document, showDocumentModal) => (
   </Button>
 );
 
-const SingleStation = ({ station, position, showDocumentModal, showActivityModal }) => (
+/* eslint-disable react/no-danger */
+const SingleStation = ({
+  station, position, showDocumentModal, showActivityModal,
+}) => (
   <>
     <Row>
       <Col sm="12">
@@ -35,17 +38,17 @@ const SingleStation = ({ station, position, showDocumentModal, showActivityModal
     </Row>
     <Row>
       <Col sm="12">
-        <div dangerouslySetInnerHTML={{ __html: "Nome: " + getCleanCompleteStatement(station.name_station) }} />
+        <div dangerouslySetInnerHTML={{ __html: `Nome: ${getCleanCompleteStatement(station.name_station)}` }} />
       </Col>
     </Row>
     <Row className="mb-3 align-items-center">
-      <Col sm="8" xs="9">       
+      <Col sm="8" xs="9">
         <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(station.description_station) }} />
       </Col>
       <Col sm="3" xs="9">
         {/* {
             station.document
-            && <DocumentOnlineCard document_online={station.document_online} button={ViewDocumentOnlineCardButton(station.document_online)} />
+            && <OnlineTestCard onlineTest={station.document_online} button={ViewOnlineTestCardButton(station.document_online)} />
           } */}
         {
             station.document
@@ -54,7 +57,7 @@ const SingleStation = ({ station, position, showDocumentModal, showActivityModal
         {
             station.activity
             && <ActivityCard activity={station.activity} button={ViewActivityCardButton(station.activity, showActivityModal)} />
-        } 
+        }
       </Col>
     </Row>
   </>

@@ -25,7 +25,7 @@ import {
   listMyDocumentsModal,
 } from 'actions/documentAction';
 import {
-  listAllMyOnlineTests,
+  listAllMyOnlineTestsModal,
 } from 'actions/onlineTestAction';
 
 /* Learning Object search modal called from */
@@ -152,26 +152,26 @@ const mapDispatchToProps = (dispatch) => {
       open: true,
       titlePart: 'ao plano de aula',
       closeModal: () => dispatch(hideModal()),
-      addSelectedDocument: (document) => {
+      addSelectedOnlineTest: (onlineTest) => {
         if (!singleSelection) {
-          dispatch(addSelectedOnlineTestToClassPlan(document));
+          dispatch(addSelectedOnlineTestToClassPlan(onlineTest));
         } else {
           dispatch(addMaterialToClassPlanStation(document, stationIndex, MATERIAL_TYPE.ONLINE_TEST));
         }
       },
-      removeSelectedDocument: (idDocument) => {
+      removeSelectedOnlineTest: (idOnlineTest) => {
         if (!singleSelection) {
-          dispatch(removeSelectedOnlineTestFromClassPlan(idDocument));
+          dispatch(removeSelectedOnlineTestFromClassPlan(idOnlineTest));
         } else {
           dispatch(removeMaterialFromClassPlanStation(stationIndex, MATERIAL_TYPE.ONLINE_TEST));
         }
       },
-      listMyDocumentsModal: (page, orderField, order) => dispatch(listMyDocumentsModal(page, orderField, order)),
+      listAllMyOnlineTestsModal: (page, orderField, order) => dispatch(listAllMyOnlineTestsModal(page, orderField, order)),
       callFrom: MODAL_FROM.CLASS_PLAN,
       singleSelection,
       stationIndex,
     },
-    modalType: 'searchDocumentModal',
+    modalType: 'searchOnlineTestModal',
   });
 
   const openSearchQuestionModalProps = (singleSelection, stationIndex) => ({
