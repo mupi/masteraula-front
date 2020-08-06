@@ -201,7 +201,7 @@ function listMyOnlineTestCardsModal(page, orderField, order) {
   const url = `${apiUrl}/document_online/my_documents_online_cards/`;
 
 
-  return axios.get(url, requestOptions)
+  return axios.get(`${url}?page=${page}`, requestOptions)
     .then(response => response.data).then(onlineTestsList => onlineTestsList);
 }
 
