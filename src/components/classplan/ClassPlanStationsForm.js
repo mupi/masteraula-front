@@ -9,8 +9,8 @@ import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEd
 import renderMultiselect from 'components/autocomplete/Multiselect';
 import { Link, Prompt } from 'react-router-dom';
 import DocumentCard from 'components/document/DocumentCard';
+import OnlineTestCard from 'components/onlineTest/OnlineTestCard';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
-import ActivityCard from '../activity/ActivityCard';
 
 import { Field, FieldArray } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
@@ -21,6 +21,7 @@ import {
   minLength3characters,
   minLength2Stations,
 } from 'helpers/validators';
+import ActivityCard from '../activity/ActivityCard';
 
 // Basic Input Field
 const renderField = ({
@@ -171,12 +172,16 @@ export const fieldFile = ({ input, type, meta: { touched, error, warning } }) =>
   );
 };
 
-/*
-typeMaterial
-D = Document
-O = Objeto
-Q = Question
-*/
+
+/* MATERIAL TYPE FOR STATIONS */
+const MATERIAL_TYPE = {
+  DOCUMENT: 'D',
+  ONLINE_TEST: 'T',
+  OBJECT: 'O',
+  QUESTION: 'Q',
+  ACTIVITY: 'A',
+};
+
 const handleRemoveMateriaButton = (e, stationIndex, typeMaterial, removeMaterialFromClassPlanStation) => {
   e.preventDefault();
   removeMaterialFromClassPlanStation(stationIndex, typeMaterial);
@@ -203,29 +208,29 @@ const StationMaterial = ({ station, stationIndex, removeMaterialFromClassPlanSta
       {station.document_ids && station.material && (
       <DocumentCard
         document={station.material}
-        button={StationMaterialRemoveButton('D')}
+        button={StationMaterialRemoveButton(MATERIAL_TYPE.DOCUMENT)}
         options={optionsFieldDocumentCard}
       />
       )}
-      {station.activity_ids  && station.material && (
-        <ActivityCard 
-        activity={station.material}
-        button={StationMaterialRemoveButton('A')} 
+      {station.activity_ids && station.material && (
+        <ActivityCard
+          activity={station.material}
+          button={StationMaterialRemoveButton(MATERIAL_TYPE.ACTIVITY)}
         />
       )}
-      {/* {station.document_online_ids  && station.material && (
-      <DocumentOnlineCard
-        document_online={station.material}
-        button={StationMaterialRemoveButton('O')}
+      {station.document_online_ids && station.material && (
+      <OnlineTestCard
+        onlineTest={station.material}
+        button={StationMaterialRemoveButton(MATERIAL_TYPE.ONLINE_TEST)}
       />
-      )} */}
+      )}
     </div>
   );
 };
 
 export const renderStations = ({
   fields, meta: { error },
-  showSearchDocumentModal, showSearchActivityModal,
+  showSearchDocumentModal, showSearchActivityModal, showSearchOnlineTestModal,
   stations,
   addStationToClassPlan, removeStationFromClassPlan,
   removeMaterialFromClassPlanStation,
@@ -248,8 +253,8 @@ export const renderStations = ({
       {fields.map((station, i) => (
         <div key={`${station}.id`} className="c-classplan__view-station border-bottom my-3">
           <Row>
-            <Col sm="12" className="c-classplan__col-link-text">
-              <h6>{`Estação ${i + 1}`}</h6>
+            <Col sm="12">
+              <h6><strong>{`Estação ${i + 1}`}</strong></h6>
             </Col>
           </Row>
 
@@ -278,11 +283,11 @@ export const renderStations = ({
                 />
               </Button>
             </Col>
-            </Row>
-          <Row className="mb-3 align-items-center">
-            <Col><h6><strong>Etapas</strong></h6></Col>
           </Row>
-          <Row className="justify-content-center mb-3">
+          <Row className="mb-3 align-items-center">
+            <Col><h6>Etapas</h6></Col>
+          </Row>
+          <Row className="mb-3 align-items-center">
             <Col sm="9" md="9" xs="9" className="c-question__col-full-section-details">
               <Field
                 component={renderQuestionTextEditor}
@@ -324,11 +329,11 @@ export const renderStations = ({
                     <DropdownItem divider className="label-item__divider" />
                     <DropdownItem
                       title="Adicionar prova online à estação"
-                      onClick={() => showSearchDocumentModal(true, i)}
+                      onClick={() => showSearchOnlineTestModal(true, i)}
                     >
                       <FontAwesomeIcon icon="laptop" />
                       {' '}
-                    Prova Online
+                      Prova Online
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
@@ -361,9 +366,10 @@ class ClassPlanStationsForm extends Component {
       const {
         bnccSuggestions, topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
         teachingLevelFilters, handleSubmit,
-        submitting, errorsClassPlan, listTopicSuggestions, listBnccSuggestions, 
+        submitting, errorsClassPlan, listTopicSuggestions, listBnccSuggestions,
         user, showSearchActivityModal, actionName,
         showSearchDocumentModal, stations, addStationToClassPlan, removeStationFromClassPlan,
+        showSearchOnlineTestModal,
         removeMaterialFromClassPlanStation,
       } = this.props;
 
@@ -495,7 +501,8 @@ class ClassPlanStationsForm extends Component {
                   data={bnccSuggestions}
                   valueField="id"
                   textField="name"
-                  listBnccSuggestions={listBnccSuggestions}                />
+                  listBnccSuggestions={listBnccSuggestions}
+                />
               </Col>
             </Row>
             <Row className="c-create-question__row-info">
@@ -634,6 +641,7 @@ class ClassPlanStationsForm extends Component {
                   validate={minLength2Stations}
                   showSearchActivityModal={showSearchActivityModal}
                   showSearchDocumentModal={showSearchDocumentModal}
+                  showSearchOnlineTestModal={showSearchOnlineTestModal}
                   stations={stations}
                   addStationToClassPlan={addStationToClassPlan}
                   removeStationFromClassPlan={removeStationFromClassPlan}

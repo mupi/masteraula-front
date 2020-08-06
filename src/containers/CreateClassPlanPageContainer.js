@@ -156,7 +156,7 @@ const mapDispatchToProps = (dispatch) => {
         if (!singleSelection) {
           dispatch(addSelectedOnlineTestToClassPlan(onlineTest));
         } else {
-          dispatch(addMaterialToClassPlanStation(document, stationIndex, MATERIAL_TYPE.ONLINE_TEST));
+          dispatch(addMaterialToClassPlanStation(onlineTest, stationIndex, MATERIAL_TYPE.ONLINE_TEST));
         }
       },
       removeSelectedOnlineTest: (idOnlineTest) => {

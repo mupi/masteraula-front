@@ -303,14 +303,11 @@ export const classPlan = (state = initialState, action) => {
         if (index === action.stationIndex && action.typeMaterial === MATERIAL_TYPE.DOCUMENT) {
           return { ...x, document_ids: action.material.id, material: action.material };
         }
-        if (index === action.stationIndex && action.typeMaterial === MATERIAL_TYPE.OBJECT) {
-          return { ...x, document_online_ids: action.material.id, material: action.material };
-        }
         if (index === action.stationIndex && action.typeMaterial === MATERIAL_TYPE.ACTIVITY) {
           return { ...x, activity_ids: action.material.id, material: action.material };
         }
         if (index === action.stationIndex && action.typeMaterial === MATERIAL_TYPE.ONLINE_TEST) {
-          return { ...x, question_ids: action.material.id, material: action.material };
+          return { ...x, document_online_ids: action.material.link, material: action.material };
         }
         return x;
       });
