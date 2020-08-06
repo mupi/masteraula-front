@@ -83,7 +83,7 @@ class SearchOnlineTestModal extends React.Component {
                   sm="4"
                   {...this.props}
                   onlineTests={onlineTestPage ? onlineTestPage.results : null}
-                  selectedDocumentList={!singleSelection ? selectedOnlineTestList : [stations[stationIndex]]}
+                  selectedOnlineTestList={!singleSelection ? selectedOnlineTestList : [stations[stationIndex]]}
                   singleSelection={singleSelection}
                 />
               )
