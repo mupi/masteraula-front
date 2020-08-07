@@ -88,9 +88,11 @@ function convertClassPlanToFormData(classPlan) {
         formData.append(`bncc_ids[${index}]`, BnccId);
       });
     } else if (name === 'tags') {
-      classPlan[name].forEach((tag, index) => {
-        formData.append(`tags[${index}]`, tag);
+      var arr = [];
+      classPlan[name].forEach((tag) => {
+        arr.push(`"${tag}"`);
       });
+      formData.append(`tags`, `[${arr}]`);
     } else if (name === 'documents_ids') {
       classPlan[name].forEach((documentId, index) => {
         formData.append(`documents_ids[${index}]`, documentId);
@@ -143,9 +145,11 @@ function convertEditClassPlanToFormData(classPlan) {
         formData.append('bncc_ids', bnccId);
       });
     } else if (name === 'tags') {
-      classPlan[name].forEach((tag, index) => {
-        formData.append(`tags`, `[${tag}]`);
+      var arr = [];
+      classPlan[name].forEach((tag) => {
+        arr.push(`"${tag}"`);
       });
+      formData.append(`tags`, `[${arr}]`);
     } else if (name === 'documents_ids') {
       classPlan[name].forEach((documentId) => {
         formData.append('documents_ids', documentId);
@@ -155,8 +159,8 @@ function convertEditClassPlanToFormData(classPlan) {
         formData.append('activities_ids', activityId);
       });
     } else if (name === 'documents_online_ids') {
-      classPlan[name].forEach((documentOnlineId, index) => {
-        formData.append(`documents_online_ids[${index}]`, documentOnlineId);
+      classPlan[name].forEach((documentOnlineId) => {
+        formData.append(`documents_online_ids`, documentOnlineId);
       });
     } else if (name === 'stations') {
       classPlan[name].forEach((station, index) => {
