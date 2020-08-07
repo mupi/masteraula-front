@@ -27,7 +27,7 @@ const OnlineTestCard = (props) => {
     <Card className="h-100 document-card__full">
       <CardHeader className="document-card__header text-left">
         <div className="document-card__id">
-          {`("Nº de questões: ${onlineTest.questions_quantity})`}
+          {`Nº de questões: ${onlineTest.questions_quantity}`}
           <p className="document-card__name">
             {onlineTest.name}
           </p>
