@@ -82,7 +82,13 @@ const ClassPlanStations = ({
     <div className="c-classplan__stations">
       { stations && stations.map((station, i) => (
         <div className="c-classplan__view-station border-bottom my-3" key={station.id}>
-          <SingleStation station={station} position={i} showDocumentModal={showDocumentModal} showActivityModal={showActivityModal} showOnlineTestModal={showOnlineTestModal} />
+          <SingleStation
+            station={station}
+            position={i}
+            showDocumentModal={showDocumentModal}
+            showActivityModal={showActivityModal}
+            showOnlineTestModal={showOnlineTestModal}
+          />
         </div>
       )) }
     </div>
