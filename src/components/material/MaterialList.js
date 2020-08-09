@@ -8,7 +8,7 @@ import ActivityCard from '../activity/ActivityCard';
 export const BUTTON_TYPE = {
   ACTIVITYCARD_BASE: 1,
   ACTIVITYCARD_MODAL_VIEW: 2,
-  ACTIVITYCARD_MODAL_SELECT: 3,
+  ACTIVITYCARD_SELECT: 3,
 };
 
 const ViewCardButton = ({ activity }) => (

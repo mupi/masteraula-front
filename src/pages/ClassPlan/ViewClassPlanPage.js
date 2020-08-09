@@ -16,7 +16,7 @@ import ClassPlanStations from 'components/classplan/ClassPlanStations';
 export const BUTTON_TYPE = {
   ACTIVITYCARD_BASE: 1,
   ACTIVITYCARD_MODAL_VIEW: 2,
-  ACTIVITYCARD_MODAL_SELECT: 3,
+  ACTIVITYCARD_SELECT: 3,
 };
 
 // Document's options available for View ClassPlan
@@ -31,7 +31,7 @@ const optionsOnlineTest = {
   removeButton: false,
 };
 
-// Document's options available for View ClassPlan
+// Activity's options available for View ClassPlan
 const optionsActivity = {
   showViewButton: true,
   buttonType: BUTTON_TYPE.ACTIVITYCARD_MODAL_VIEW,
@@ -58,7 +58,7 @@ class ViewClassPlanPage extends Component {
 
   render() {
     const {
-      userId, activeClassPlan, isFetching, user, error, 
+      userId, activeClassPlan, isFetching, user, error,
       showDeleteModal, showDocumentModal, showActivityModal, showOnlineTestModal,
       generatePublicLink, publicLink,
     } = this.props;

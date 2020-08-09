@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export const BUTTON_TYPE = {
   ACTIVITYCARD_BASE: 1,
   ACTIVITYCARD_MODAL_VIEW: 2,
-  ACTIVITYCARD_MODAL_SELECT: 3,
+  ACTIVITYCARD_SELECT: 3,
 };
 
 class ActivityBasePage extends React.Component {

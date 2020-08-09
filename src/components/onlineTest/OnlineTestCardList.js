@@ -2,9 +2,16 @@ import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import RemoveButton from 'components/buttons/RemoveButton';
+// import { Link } from 'react-router-dom';
 import OnlineTestCard from './OnlineTestCard';
 
-import { Link } from 'react-router-dom';
+
+/* BUTTON TYPE */
+export const ONLINETEST_BUTTON = {
+  CARD_BASE: 1, /* open in a new link */
+  CARD_MODAL_VIEW: 2,
+  CARD_SELECT: 3,
+};
 
 const OnlineTestCardList = (props) => {
   const {
@@ -34,27 +41,34 @@ const OnlineTestCardList = (props) => {
     )
   );
 
+  const ViewCardModalButton = onlineTest => (
+    <Button className="btn-margin-right menu-top__document-button" onClick={() => showOnlineTestModal(onlineTest.link)}>
+      <FontAwesomeIcon icon="eye" className="btn__icon" />
+        Ver prova online
+    </Button>
+  );
+
+  /*
   const ViewCardButton = onlineTest => (
-    // <Button className="btn-margin-right menu-top__document-button" onClick={() => showOnlineTestModal(onlineTest.link)}>
-    //   <FontAwesomeIcon icon="eye" className="btn__icon" />
-    //   Ver prova online
-    // </Button>
-      <Link
+    <Link
       to={`/view-online/${onlineTest.link}`}
       title="Ver prova online"
       className="btn btn-secondary btn__icon"
     >
       <FontAwesomeIcon icon="eye" />
+      {' '}
       {'Ver prova online'}
     </Link>
   );
+  */
+
   return (
     <Row>
       {onlineTests && onlineTests.map(onlineTest => (
         <Col sm={sm} lg="3" xs="12" key={onlineTest.link} className="object-card">
           <OnlineTestCard
             onlineTest={onlineTest}
-            button={!viewOnly ? CardButton(onlineTest) : ViewCardButton(onlineTest)}
+            button={!viewOnly ? CardButton(onlineTest) : ViewCardModalButton(onlineTest)}
             {...props}
           />
         </Col>

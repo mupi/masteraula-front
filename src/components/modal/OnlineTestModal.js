@@ -62,7 +62,7 @@ const OnlineTestModal = (props) => {
         <h6
           className="modal-title"
         >
-          {`Prova Online Nº ${id}`}
+          {'Prova Online'}
         </h6>
         <button type="button" className="close" aria-label="Close" onClick={closeModal}>
           <span aria-hidden="true">
@@ -111,7 +111,7 @@ const OnlineTestModal = (props) => {
 
 
 const mapStateToProps = state => ({
-  isFetching: state.onlineTest.isFetching,
+  isFetching: state.onlineTest.isFetchingOnlineTest,
   activeOnlineTest: state.onlineTest.activeOnlineTest,
 });
 

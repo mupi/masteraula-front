@@ -7,6 +7,7 @@ import {
   switchActiveDocument, fetchPreviewDocument,
 } from 'actions/documentAction';
 import { fetchActivity } from 'actions/activityAction';
+import { fetchOnlineTest } from 'actions/onlineTestAction';
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
@@ -49,6 +50,20 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'activity',
   });
 
+  const showOnlineTestModal = idOnlineTest => ({
+    modalProps: {
+      open: true,
+      idOnlineTest,
+      fetchOnlineTest: () => {
+        dispatch(fetchOnlineTest(idOnlineTest));
+      },
+      closeModal: () => {
+        dispatch(hideModal());
+      },
+    },
+    modalType: 'onlineTest',
+  });
+
   const documentModalProps = document => ({
     modalProps: {
       open: true,
@@ -73,6 +88,7 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
     showActivityModal: idActivity => dispatch(showModal(activityModalProps(idActivity))),
+    showOnlineTestModal: idOnlineTest => dispatch(showModal(showOnlineTestModal(idOnlineTest))),
     generatePublicLink: id => dispatch(generatePublicLink(id)),
   });
 };

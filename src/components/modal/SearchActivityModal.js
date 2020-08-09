@@ -20,7 +20,7 @@ import ActivitySearchByFilters from 'components/activity/ActivitySearchByFilters
 export const BUTTON_TYPE = {
   ACTIVITYCARD_BASE: 1,
   ACTIVITYCARD_MODAL_VIEW: 2,
-  ACTIVITYCARD_MODAL_SELECT: 3,
+  ACTIVITYCARD_SELECT: 3,
 };
 
 class SearchActivityModal extends React.Component {
@@ -120,7 +120,7 @@ class SearchActivityModal extends React.Component {
                   selectedActivityList={!singleSelection ? selectedActivityList : [stations[stationIndex]]}
                   singleSelection={singleSelection}
                   withFilters={false}
-                  buttonType={BUTTON_TYPE.ACTIVITYCARD_MODAL_SELECT}
+                  buttonType={BUTTON_TYPE.ACTIVITYCARD_SELECT}
                   showQuantity={false}
                 />
               )

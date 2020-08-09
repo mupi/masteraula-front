@@ -10,7 +10,7 @@ import ActivityCard from './ActivityCard';
 export const BUTTON_TYPE = {
   ACTIVITYCARD_BASE: 1,
   ACTIVITYCARD_MODAL_VIEW: 2,
-  ACTIVITYCARD_MODAL_SELECT: 3,
+  ACTIVITYCARD_SELECT: 3,
 };
 
 const ActivityList = (props) => {
@@ -62,7 +62,7 @@ const ActivityList = (props) => {
     switch (buttonType) {
       case BUTTON_TYPE.ACTIVITYCARD_BASE: return <ViewCardButton activity={activity} />;
       case BUTTON_TYPE.ACTIVITYCARD_MODAL_VIEW: return <ViewCardModalButton activity={activity} />;
-      case BUTTON_TYPE.ACTIVITYCARD_MODAL_SELECT: return <CardButton activity={activity} />;
+      case BUTTON_TYPE.ACTIVITYCARD_SELECT: return <CardButton activity={activity} />;
       default: return null;
     }
   }

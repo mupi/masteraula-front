@@ -181,7 +181,7 @@ const renderMAMultiSelectTag = ({
 export const BUTTON_TYPE = {
   ACTIVITYCARD_BASE: 1,
   ACTIVITYCARD_MODAL_VIEW: 2,
-  ACTIVITYCARD_MODAL_SELECT: 3,
+  ACTIVITYCARD_SELECT: 3,
 };
 
 class ClassPlanForm extends Component {
@@ -501,7 +501,7 @@ class ClassPlanForm extends Component {
                 selectedActivityList={selectedActivityList}
                 activities={selectedActivityList}
                 removeSelectedActivity={removeSelectedActivityToClassPlan}
-                buttonType={BUTTON_TYPE.ACTIVITYCARD_MODAL_SELECT}
+                buttonType={BUTTON_TYPE.ACTIVITYCARD_SELECT}
                 {...this.props}
                 showQuantity={false}
                 withFilters={false}
