@@ -6,21 +6,11 @@ import ActivityCard from 'components/activity/ActivityCard';
 import OnlineTestCard from 'components/onlineTest/OnlineTestCard';
 import { getCleanCompleteStatement } from 'helpers/question';
 
-import { Link } from 'react-router-dom';
-
 const ViewOnlineTestCardButton = (onlineTest, showOnlineTestModal) => (
-  // <Button className="btn-margin-right menu-top__document-button" onClick={() => showOnlineTestModal(document.id)}>
-  //   <FontAwesomeIcon icon="eye" className="btn__icon" />
-  //   Ver
-  // </Button>
-  <Link
-  to={`/view-online/${onlineTest.link}`}
-  title="Ver prova online"
-  className="btn btn-secondary btn__icon"
->
-  <FontAwesomeIcon icon="eye" />
-  {' Ver'}
-</Link>
+  <Button className="btn-margin-right menu-top__document-button" onClick={() => showOnlineTestModal(onlineTest.link)}>
+    <FontAwesomeIcon icon="eye" className="btn__icon" />
+      Ver
+  </Button>
 );
 
 const ViewActivityCardButton = (activity, showActivityModal) => (
@@ -39,7 +29,7 @@ const ViewDocumentCardButton = (document, showDocumentModal) => (
 
 /* eslint-disable react/no-danger */
 const SingleStation = ({
-  station, position, showDocumentModal, showActivityModal,
+  station, position, showDocumentModal, showActivityModal, showOnlineTestModal,
 }) => (
   <>
     <Row>
@@ -59,7 +49,7 @@ const SingleStation = ({
       <Col sm="3" xs="9">
         {
             station.document_online
-            && <OnlineTestCard onlineTest={station.document_online} button={ViewOnlineTestCardButton(station.document_online)} />
+            && <OnlineTestCard onlineTest={station.document_online} button={ViewOnlineTestCardButton(station.document_online, showOnlineTestModal)} />
           }
         {
             station.document
@@ -75,7 +65,9 @@ const SingleStation = ({
 );
 
 
-const ClassPlanStations = ({ stations, showDocumentModal, showActivityModal, showOnlineTestModal }) => (
+const ClassPlanStations = ({
+  stations, showDocumentModal, showActivityModal, showOnlineTestModal,
+}) => (
   <>
     <Row className="c-question__tittle-section">
       <Col>
