@@ -244,6 +244,7 @@ class App extends Component {
                 <Route path="/terms-use" component={TermsUsePage} />
                 <Route path="/faq" component={FaqPageContainer} />
                 <Route path="/apply-online/:id" component={StudentOnlineTestPageContainer} />
+                <Route path="/view-public-classplan/:link" component={ViewPublicClassPlanPageContainer} />
                 <Route component={NotFoundPage} />
               </Switch>
             )
