@@ -26,6 +26,24 @@ function fetchClassPlan(id) {
     .then(response => response.data).then(activeClassPlan => activeClassPlan);
 }
 
+// Fetch a public class plan given its ID
+function fetchPublicClassPlan(link) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+
+  };
+
+  const url = `/class_plan_publication/${link}/`;
+
+
+  return axios.get(`${apiUrl}${url}`, requestOptions)
+    .then(response => response.data).then(activeClassPlan => activeClassPlan);
+}
+
 
 function listMyClassPlans(page, orderField, order) {
   const requestOptions = {
@@ -88,11 +106,11 @@ function convertClassPlanToFormData(classPlan) {
         formData.append(`bncc_ids[${index}]`, BnccId);
       });
     } else if (name === 'tags') {
-      var arr = [];
+      const arr = [];
       classPlan[name].forEach((tag) => {
         arr.push(`"${tag}"`);
       });
-      formData.append(`tags`, `[${arr}]`);
+      formData.append('tags', `[${arr}]`);
     } else if (name === 'documents_ids') {
       classPlan[name].forEach((documentId, index) => {
         formData.append(`documents_ids[${index}]`, documentId);
@@ -123,6 +141,7 @@ function convertClassPlanToFormData(classPlan) {
 
 function convertEditClassPlanToFormData(classPlan) {
   const formData = new FormData();
+  const arr = [];
   Object.keys(classPlan).forEach((name) => {
     if (name === 'disciplines_ids') {
       classPlan[name].forEach((disciplineId) => {
@@ -145,11 +164,10 @@ function convertEditClassPlanToFormData(classPlan) {
         formData.append('bncc_ids', bnccId);
       });
     } else if (name === 'tags') {
-      var arr = [];
       classPlan[name].forEach((tag) => {
         arr.push(`"${tag}"`);
       });
-      formData.append(`tags`, `[${arr}]`);
+      formData.append('tags', `[${arr}]`);
     } else if (name === 'documents_ids') {
       classPlan[name].forEach((documentId) => {
         formData.append('documents_ids', documentId);
@@ -160,7 +178,7 @@ function convertEditClassPlanToFormData(classPlan) {
       });
     } else if (name === 'documents_online_ids') {
       classPlan[name].forEach((documentOnlineId) => {
-        formData.append(`documents_online_ids`, documentOnlineId);
+        formData.append('documents_online_ids', documentOnlineId);
       });
     } else if (name === 'stations') {
       classPlan[name].forEach((station, index) => {
@@ -170,7 +188,7 @@ function convertEditClassPlanToFormData(classPlan) {
 
         if (station.activity_ids) { formData.append(`stations[${index}]activity_ids`, station.activity_ids); }
 
-        if (station.document_online_ids) { formData.append(`stations[${index}]document_online_ids`, station.document_online_ids);}
+        if (station.document_online_ids) { formData.append(`stations[${index}]document_online_ids`, station.document_online_ids); }
       });
     } else formData.append(name, classPlan[name]);
   });
@@ -294,6 +312,7 @@ function generatePublicLink(id) {
 
 const classPlanService = {
   fetchClassPlan,
+  fetchPublicClassPlan,
   listMyClassPlans,
   createClassPlan,
   updateClassPlan,

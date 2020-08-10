@@ -17,6 +17,10 @@ export const FETCH_CLASS_PLAN = 'FETCH_CLASS_PLAN';
 export const FETCH_CLASS_PLAN_SUCCESS = 'FETCH_CLASS_PLAN_SUCCESS';
 export const FETCH_CLASS_PLAN_FAILURE = 'FETCH_CLASS_PLAN_FAILURE';
 
+export const FETCH_PUBLIC_CLASS_PLAN = 'FETCH_PUBLIC_CLASS_PLAN';
+export const FETCH_PUBLIC_CLASS_PLAN_SUCCESS = 'FETCH_PUBLIC_CLASS_PLAN_SUCCESS';
+export const FETCH_PUBLIC_CLASS_PLAN_FAILURE = 'FETCH_PUBLIC_CLASS_PLAN_FAILURE';
+
 export const LIST_MY_CLASS_PLANS = 'LIST_MY_CLASS_PLANS';
 export const LIST_MY_CLASS_PLANS_SUCCESS = 'LIST_MY_CLASS_PLANS_SUCCESS';
 export const LIST_MY_CLASS_PLANS_FAILURE = 'LIST_MY_CLASS_PLANS_FAILURE';
@@ -146,6 +150,16 @@ export const fetchClassPlan = (id) => {
   };
 };
 
+
+export const fetchPublicClassPlan = link => async (dispatch) => {
+  try {
+    dispatch({ type: FETCH_PUBLIC_CLASS_PLAN });
+    const activePublicClassPlan = await classPlanService.fetchPublicClassPlan(link);
+    dispatch({ type: FETCH_PUBLIC_CLASS_PLAN_SUCCESS, activePublicClassPlan });
+  } catch {
+    dispatch({ type: FETCH_PUBLIC_CLASS_PLAN_FAILURE });
+  }
+};
 
 // List all class plans
 export const listMyClassPlans = (page, orderField, order) => {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import {
   Row, Col, Alert,
 } from 'reactstrap';
@@ -253,11 +252,6 @@ const StudentOnlineTestPage = (props) => {
       <InnerPage {...props} />
     </HomeUserNotLoggedPage>
   );
-};
-
-StudentOnlineTestPage.propTypes = {
-  activeDocument: PropTypes.shape({}),
-  removeSelectedQuestion: PropTypes.func,
 };
 
 export default StudentOnlineTestPage;

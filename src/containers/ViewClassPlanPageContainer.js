@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch) => {
     modalType: 'activity',
   });
 
-  const showOnlineTestModal = idOnlineTest => ({
+  const onlineTestModalProps = idOnlineTest => ({
     modalProps: {
       open: true,
       idOnlineTest,
@@ -88,7 +88,7 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
     showActivityModal: idActivity => dispatch(showModal(activityModalProps(idActivity))),
-    showOnlineTestModal: idOnlineTest => dispatch(showModal(showOnlineTestModal(idOnlineTest))),
+    showOnlineTestModal: idOnlineTest => dispatch(showModal(onlineTestModalProps(idOnlineTest))),
     generatePublicLink: id => dispatch(generatePublicLink(id)),
   });
 };

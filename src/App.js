@@ -49,6 +49,7 @@ import {
   CreateActivityPageContainer,
   EditActivityPageContainer,
   ViewActivityPageContainer,
+  ViewPublicClassPlanPageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -215,6 +216,7 @@ class App extends Component {
                 <Route path="/create-classplan/:type" component={CreateClassPlanPageContainer} />
                 <Route path="/edit-classplan/:id" component={EditClassPlanPageContainer} />
                 <Route path="/view-classplan/:id" component={ViewClassPlanPageContainer} />
+                <Route path="/view-public-classplan/:link" component={ViewPublicClassPlanPageContainer} />
                 <Route path="/faq" component={FaqPageContainer} />
                 <Route path="/class-plans/:page(\d+)" component={ManageClassPlansPageContainer} />
                 <Route path="/create-online/:id" component={CreateOnlineTestPageContainer} />

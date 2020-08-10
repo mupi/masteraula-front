@@ -36,7 +36,7 @@ const ClassPlanBasicInfo = ({
                 Gerar link
             </Button>
           )
-            : <URLCopy url={`${masteraulaUrl}/public-classplan/${publicLink}`} />
+            : <URLCopy url={`${masteraulaUrl}/view-public-classplan/${publicLink}`} />
           }
         </Col>
       </Row>

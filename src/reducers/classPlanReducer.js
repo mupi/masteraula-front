@@ -3,6 +3,10 @@ import {
   FETCH_CLASS_PLAN_SUCCESS,
   FETCH_CLASS_PLAN_FAILURE,
 
+  FETCH_PUBLIC_CLASS_PLAN,
+  FETCH_PUBLIC_CLASS_PLAN_SUCCESS,
+  FETCH_PUBLIC_CLASS_PLAN_FAILURE,
+
   LIST_MY_CLASS_PLANS,
   LIST_MY_CLASS_PLANS_SUCCESS,
   LIST_MY_CLASS_PLANS_FAILURE,
@@ -141,6 +145,22 @@ export const classPlan = (state = initialState, action) => {
       });
     }
     case FETCH_CLASS_PLAN_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
+    case FETCH_PUBLIC_CLASS_PLAN:
+      return Object.assign({}, state, {
+        isFetching: true,
+        error: null,
+      });
+    case FETCH_PUBLIC_CLASS_PLAN_SUCCESS:
+      return Object.assign({}, state, {
+        activePublicClassPlan: action.activePublicClassPlan,
+        isFetching: false,
+        error: null,
+      });
+    case FETCH_PUBLIC_CLASS_PLAN_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,

@@ -43,3 +43,4 @@ export { default as ViewActivityPageContainer } from './ViewActivityPageContaine
 export { default as EditActivityPageContainer } from './EditActivityPageContainer';
 export { default as CreateActivityPageContainer } from './CreateActivityPageContainer';
 export { default as ActivityBasePageContainer } from './ActivityBasePageContainer';
+export { default as ViewPublicClassPlanPageContainer } from './ViewPublicClassPlanPageContainer';
