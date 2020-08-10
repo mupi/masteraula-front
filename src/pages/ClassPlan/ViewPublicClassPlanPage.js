@@ -103,26 +103,22 @@ const PublicSingleStation = ({
         <h6><strong>{`Estação ${position + 1}`}</strong></h6>
       </Col>
     </Row>
-    <Row>
+    <Row className="mb-3 align-items-center">
       <Col sm="12">
         <div dangerouslySetInnerHTML={{ __html: `Nome: ${getCleanCompleteStatement(station.name_station)}` }} />
       </Col>
-    </Row>
-    <Row className="mb-3 align-items-center">
       <Col sm="12" xs="12">
         <div dangerouslySetInnerHTML={{ __html: getCleanCompleteStatement(station.description_station) }} />
       </Col>
-      <Col sm="12" xs="12">
-        {
+    </Row>
+    {
             station.activity
             && (<PublicActivitiesSection activities={[{ ...station.activity }]} />)
           }
-        {
+    {
             station.document_online
             && (<PublicOnlineTestSection onlineTests={[{ ...station.document_online }]} />)
         }
-      </Col>
-    </Row>
   </>
 );
 
