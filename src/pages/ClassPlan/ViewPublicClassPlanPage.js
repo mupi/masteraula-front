@@ -10,6 +10,8 @@ import {
 import ClassPlanStudentArea from 'components/classplan/ClassPlanStudentArea';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import PublicActivityContentList from 'components/activity/PublicActivityContentList';
+import URLCopy from 'components/onlineTest/URLCopy';
+import { masteraulaUrl } from 'helpers/config';
 
 const MenuAdminOptions = () => (
   <Row className="c-online__row-header-options c-online__row-header-options--fixed">
@@ -45,9 +47,33 @@ const PublicActivitiesSection = ({ activities }) => (
   </>
 );
 
+const PublicOnlineTestSection = ({ onlineTests }) => (
+  <>
+    <Row className="mb-2">
+      <Col sm="12">
+        <h5>
+          <FontAwesomeIcon icon="book-reader" />
+          {' '}
+          Provas online
+        </h5>
+      </Col>
+    </Row>
+    { onlineTests && onlineTests.map(ot => (
+      <Row className="mb-2" key={ot.link}>
+        <Col sm="12">
+          <div className="my-2">
+            <URLCopy url={`${masteraulaUrl}/view-public-classplan/${ot.link}`} />
+          </div>
+        </Col>
+      </Row>
+    )) }
+  </>
+);
+
 const PublicOpenClassPlan = ({ classPlan }) => (
   <>
     {classPlan.activities && <PublicActivitiesSection activities={classPlan.activities} />}
+    {classPlan.documents_online && <PublicOnlineTestSection onlineTests={classPlan.documents_online} />}
   </>
 );
 

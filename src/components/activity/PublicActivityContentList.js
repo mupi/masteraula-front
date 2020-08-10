@@ -20,9 +20,9 @@ const PublicActivityContentList = ({ activities }) => (
   activities.map((activity, index) => (
 
     <Row className="justify-content-center" key={activity.id}>
-      <Col className="c-question__col-full-section-details" sm="12" md="12" xs="12">
+      <Col sm="12" md="12" xs="12">
         <div className="c-public-activity mb-3">
-          <h6>{`Atividade ${index + 1}`}</h6>
+          <h6 className="text-center"><strong>{`Atividade ${index + 1}`}</strong></h6>
           {(activity.learning_objects && activity.learning_objects.length > 0)
             ? (
               <LearningObjectList
