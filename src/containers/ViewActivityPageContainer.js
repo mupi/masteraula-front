@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
   user: state.session.session.user,
   /* Class plan */
   selectedClassPlanType: state.classPlan.selectedClassPlanType,
+  isLoggedIn: !!state.session.session,
 });
 
 const mapDispatchToProps = (dispatch) => {
