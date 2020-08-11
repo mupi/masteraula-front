@@ -72,11 +72,10 @@ const MATERIAL_TYPE = {
   ACTIVITY: 'A',
 };
 
-
 /* CLASS PLAN TYPE */
 const CLASSPLAN_TYPE = {
   STATIONS: 'S',
-  OPEN: 'O',
+  OPEN: 'T', /* before traditional, now Open */
 };
 
 const initialState = {

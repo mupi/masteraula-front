@@ -8,8 +8,6 @@ const mapStateToProps = state => ({
   error: state.classPlan.error,
   activePublicClassPlan: state.classPlan.activePublicClassPlan,
   isFetching: state.classPlan.isFetching,
-  userId: state.session.session.user.id,
-  user: state.session.session.user,
   isLoggedIn: !!state.session.session,
 });
 

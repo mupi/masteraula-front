@@ -15,7 +15,7 @@ const TaskInfo = ({ taskInfo, position }) => (
   </Row>
 );
 
-const ActivityTasks = ({ tasks }) => (
+const ActivityTasks = ({ tasks, studentOnly = false }) => (
   <>
     <Row className="c-question__tittle-section">
       <Col>
@@ -37,36 +37,40 @@ const ActivityTasks = ({ tasks }) => (
         </div>
       )) }
     </div>
-    <Row className="c-question__tittle-section">
-      <Col>
-        <h5>
-          <FontAwesomeIcon icon="chalkboard-teacher" />
-          {' '}
-          Orientações ao professor
-        </h5>
-        <div className="border-top my-3" />
-      </Col>
-    </Row>
-    <div className="c-activity__tasks">
-      <Row>
-        <Col><h6><strong>Expectativas para o papel do aluno</strong></h6></Col>
-      </Row>
-      { tasks && tasks.map((task, i) => (
-        <div className="my-2" key={task.id}>
-          <TaskInfo taskInfo={task.student_expectation} position={i} />
+    {!studentOnly && (
+      <>
+        <Row className="c-question__tittle-section">
+          <Col>
+            <h5>
+              <FontAwesomeIcon icon="chalkboard-teacher" />
+              {' '}
+              Orientações ao professor
+            </h5>
+            <div className="border-top my-3" />
+          </Col>
+        </Row>
+        <div className="c-activity__tasks">
+          <Row>
+            <Col><h6><strong>Expectativas para o papel do aluno</strong></h6></Col>
+          </Row>
+          { tasks && tasks.map((task, i) => (
+            <div className="my-2" key={task.id}>
+              <TaskInfo taskInfo={task.student_expectation} position={i} />
+            </div>
+          )) }
         </div>
-      )) }
-    </div>
-    <div className="c-activity__tasks">
-      <Row>
-        <Col><h6><strong>Comentários para uso do professor</strong></h6></Col>
-      </Row>
-      { tasks && tasks.map((task, i) => (
-        <div className="my-2" key={task.id}>
-          <TaskInfo taskInfo={task.teacher_expectation} position={i} />
+        <div className="c-activity__tasks">
+          <Row>
+            <Col><h6><strong>Comentários para uso do professor</strong></h6></Col>
+          </Row>
+          { tasks && tasks.map((task, i) => (
+            <div className="my-2" key={task.id}>
+              <TaskInfo taskInfo={task.teacher_expectation} position={i} />
+            </div>
+          )) }
         </div>
-      )) }
-    </div>
+      </>
+    )}
   </>
 );
 export default ActivityTasks;
