@@ -307,10 +307,17 @@ export const classPlan = (state = initialState, action) => {
       });
     }
     case RESET_STATIONS_CLASS_PLAN: {
+      let activity_id = null;
+      let activity_material = null;
+      if (state.selectedActivityList.length > 0 && state.selectedActivityList !== undefined) {    
+        activity_id = state.selectedActivityList[0].id;
+        activity_material = state.selectedActivityList[0]
+      }
+
       return Object.assign({}, state, {
         stations: [
           {
-            activity_ids: null, document_ids: null, document_online_ids: null, material: null,
+            activity_ids: activity_id, document_ids: null, document_online_ids: null, material: activity_material,
           },
           {
             activity_ids: null, document_ids: null, document_online_ids: null, material: null,

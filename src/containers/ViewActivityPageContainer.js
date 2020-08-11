@@ -3,7 +3,7 @@ import ViewActivityPage from 'pages/Activity/ViewActivityPage';
 
 import { fetchActivity, deleteActivity } from 'actions/activityAction';
 import {
-  addSelectedActivityToClassPlan, setActivityIdToNewClassPlan, selectClassPlanType, resetClassPlanType,
+  addSelectedActivityToClassPlan, addMaterialToClassPlanStation, setActivityIdToNewClassPlan, selectClassPlanType, resetClassPlanType,
 } from 'actions/classPlanAction';
 import { showModal, hideModal } from 'actions/modalAction';
 
@@ -69,8 +69,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(showModal(createClassPlanModalProps(selectedClassPlanType, activity)));
       dispatch(setActivityIdToNewClassPlan(activity.id));
       dispatch(addSelectedActivityToClassPlan(activity));
+      dispatch(addMaterialToClassPlanStation(activity, 0, 'A'));
     },
-
   });
 };
 
