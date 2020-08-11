@@ -141,6 +141,8 @@ export const classPlan = (state = initialState, action) => {
         selectedOnlineTestList: action.activeClassPlan.documents_online,
         stations: stationsPlan,
         isFetching: false,
+        publicLink: '',
+
       });
     }
     case FETCH_CLASS_PLAN_FAILURE:
