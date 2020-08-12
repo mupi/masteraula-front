@@ -87,15 +87,15 @@ class ViewClassPlanPage extends Component {
       );
     }
 
-    if (!isOwner) {
-      return (
-        <HomeUserPage>
-          <Alert color="danger">
-            Você não tem permissão para ver este plano de aula ou foi apagado.
-          </Alert>
-        </HomeUserPage>
-      );
-    }
+    // if (!isOwner) {
+    //   return (
+    //     <HomeUserPage>
+    //       <Alert color="danger">
+    //         Você não tem permissão para ver este plano de aula ou foi apagado.
+    //       </Alert>
+    //     </HomeUserPage>
+    //   );
+    // }
 
     if (error || !activeClassPlan) {
       return (
