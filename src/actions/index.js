@@ -15,6 +15,7 @@ import * as contactAction from './contactAction';
 import * as onlineTestAction from './onlineTestAction';
 import * as activityAction from './activityAction';
 import * as filterActivityAction from './filterActivityAction';
+import * as filterClassPlanAction from './filterClassPlanAction';
 
 export default {
   loginAction,
@@ -34,4 +35,5 @@ export default {
   onlineTestAction,
   activityAction,
   filterActivityAction,
+  filterClassPlanAction,
 };

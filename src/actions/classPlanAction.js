@@ -3,6 +3,7 @@ import {
 } from 'services';
 import { toast } from 'react-toastify';
 import { initialize } from 'redux-form';
+import { listTopicFilters } from 'actions/filterClassPlanAction';
 
 import { history } from 'helpers';
 
@@ -20,6 +21,10 @@ export const FETCH_CLASS_PLAN_FAILURE = 'FETCH_CLASS_PLAN_FAILURE';
 export const FETCH_PUBLIC_CLASS_PLAN = 'FETCH_PUBLIC_CLASS_PLAN';
 export const FETCH_PUBLIC_CLASS_PLAN_SUCCESS = 'FETCH_PUBLIC_CLASS_PLAN_SUCCESS';
 export const FETCH_PUBLIC_CLASS_PLAN_FAILURE = 'FETCH_PUBLIC_CLASS_PLAN_FAILURE';
+
+export const LIST_CLASSPLAN_PAGE = 'LIST_CLASSPLAN_PAGE';
+export const LIST_CLASSPLAN_PAGE_SUCCESS = 'LIST_CLASSPLAN_PAGE_SUCCESS';
+export const LIST_CLASSPLAN_PAGE_FAILURE = 'LIST_CLASSPLAN_PAGE_FAILURE';
 
 export const LIST_MY_CLASS_PLANS = 'LIST_MY_CLASS_PLANS';
 export const LIST_MY_CLASS_PLANS_SUCCESS = 'LIST_MY_CLASS_PLANS_SUCCESS';
@@ -159,6 +164,37 @@ export const fetchPublicClassPlan = link => async (dispatch) => {
   } catch {
     dispatch({ type: FETCH_PUBLIC_CLASS_PLAN_FAILURE });
   }
+};
+
+// listClassPlan using filters
+export const listClassPlans = (page, filter) => {
+  function requestClassPlanPage() { return { type: LIST_CLASSPLAN_PAGE, page }; }
+  function fetchClassPlanPageSuccess(classPlanPage) { return { type: LIST_CLASSPLAN_PAGE_SUCCESS, classPlanPage }; }
+  function fetchClassPlanPageFailure(error) { return { type: LIST_CLASSPLAN_PAGE_FAILURE, error }; }
+  return (dispatch, getState) => {
+    if (getState().classPlan.isFetching) {
+      return 1;
+    }
+    // dispatch(listTopicFilters(filter, { classPlans: true }));
+    dispatch(requestClassPlanPage());
+    return classPlanService.listClassPlans(page, filter)
+      .then(
+        (classPlanPage) => {
+          dispatch(fetchClassPlanPageSuccess(classPlanPage));
+          dispatch(initialize('classPlanSearch', {
+            searchText: filter.searchText,
+            onlyMyClassPlans: filter.onlyMyClassPlans,
+          }));
+        },
+        (error) => {
+          dispatch(fetchClassPlanPageFailure(error));
+          dispatch(initialize('classPlanSearch', {
+            searchText: filter.searchText,
+          }));
+          history.push('/class-plan-base/1');
+        },
+      );
+  };
 };
 
 // List all class plans
