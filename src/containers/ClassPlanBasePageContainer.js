@@ -19,19 +19,19 @@ import { listTopicSuggestions } from 'actions/suggestionAction';
 import { change, reduxForm } from 'redux-form';
 
 const toggleSelectedDisciplineFilter = (idDiscipline, value) => {
-  history.replace('/class-plan-base/1');
+  history.replace('/class-plans-base/1');
   return value
     ? addSelectedDisciplineFilter(idDiscipline) : removeSelectedDisciplineFilter(idDiscipline);
 };
 
 const toggleSelectedTeachingLevelFilter = (idTeachingLevel, value) => {
-  history.replace('/class-plan-base/1');
+  history.replace('/class-plans-base/1');
   return value
     ? addSelectedTeachingLevelFilter(idTeachingLevel) : removeSelectedTeachingLevelFilter(idTeachingLevel);
 };
 
 const toggleSelectedDifficultyFilter = (difficultyType, value) => {
-  history.replace('/class-plan-base/1');
+  history.replace('/class-plans-base/1');
   return value
     ? addSelectedDifficultyFilter(difficultyType) : removeSelectedDifficultyFilter(difficultyType);
 };
@@ -67,13 +67,13 @@ const mapStateToProps = state => ({
 
 const setDispatchSearchText = searchText => (dispatch) => {
   dispatch(setSearchText(searchText));
-  history.replace('/class-plan-base/1');
+  history.replace('/class-plans-base/1');
 };
 
 const mapDispatchToProps = dispatch => ({
   listResults: (page, filter) => dispatch(listClassPlans(page, filter)),
   addMyMaterialFilter: (author, value) => {
-    history.replace('/class-plan-base/1');
+    history.replace('/class-plans-base/1');
     dispatch(addMyClassPlansFilter(author, value));
   },
   listDisciplineFilters: param => 

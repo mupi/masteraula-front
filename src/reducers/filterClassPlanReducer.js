@@ -6,33 +6,33 @@ import {
     LIST_YEAR_FILTERS,
     LIST_YEAR_FILTERS_SUCCESS, LIST_YEAR_FILTERS_FAILURE,
   
-    LIST_TOPIC_FILTERS_A,
-    LIST_TOPIC_FILTERS_A_SUCCESS, LIST_TOPIC_FILTERS_A_FAILURE,
+    LIST_TOPIC_FILTERS_C,
+    LIST_TOPIC_FILTERS_C_SUCCESS, LIST_TOPIC_FILTERS_C_FAILURE,
   
-    ADD_SELECTED_DISCIPLINE_FILTER_A,
-    REMOVE_SELECTED_DISCIPLINE_FILTER_A,
+    ADD_SELECTED_DISCIPLINE_FILTER_C,
+    REMOVE_SELECTED_DISCIPLINE_FILTER_C,
   
-    ADD_SELECTED_TEACHINGLEVEL_FILTER_A,
-    REMOVE_SELECTED_TEACHINGLEVEL_FILTER_A,
+    ADD_SELECTED_TEACHINGLEVEL_FILTER_C,
+    REMOVE_SELECTED_TEACHINGLEVEL_FILTER_C,
   
-    ADD_SELECTED_DIFFICULTY_FILTER_A,
-    REMOVE_SELECTED_DIFFICULTY_FILTER_A,
+    ADD_SELECTED_DIFFICULTY_FILTER_C,
+    REMOVE_SELECTED_DIFFICULTY_FILTER_C,
   
-    ADD_SELECTED_YEAR_FILTER_A,
-    REMOVE_SELECTED_YEAR_FILTER_A,
+    ADD_SELECTED_YEAR_FILTER_C,
+    REMOVE_SELECTED_YEAR_FILTER_C,
   
-    ADD_SELECTED_TOPIC_FILTER_A,
-    REMOVE_SELECTED_TOPIC_FILTER_A,
+    ADD_SELECTED_TOPIC_FILTER_C,
+    REMOVE_SELECTED_TOPIC_FILTER_C,
   
-    RESET_LIST_TOPIC_SELECTED_A,
-    SET_SEARCH_TEXT_A,
-    SET_SEARCH_TEXT_MODAL_A,
+    RESET_LIST_TOPIC_SELECTED_C,
+    SET_SEARCH_TEXT_C,
+    SET_SEARCH_TEXT_MODAL_C,
   
     ADD_MYCLASSPLANS_FILTER,
     ADD_MYCLASSPLANS_FILTER_MODAL,
   
-    CLEAR_SELECTED_FILTERS_A, CLEAR_SEARCH_A,
-    CLEAN_SEARCH_INPUT_A,
+    CLEAR_SELECTED_FILTERS_C, CLEAR_SEARCH_C,
+    CLEAN_SEARCH_INPUT_C,
   
   } from 'actions/filterClassPlanAction';
   
@@ -110,24 +110,24 @@ import {
           isFetchingYearFilters: false,
           error: action.error,
         });
-      case LIST_TOPIC_FILTERS_A:
+      case LIST_TOPIC_FILTERS_C:
         return Object.assign({}, state, {
           topicFilters: action.topicFilters,
           isFetchingTopicFilters: true,
           error: null,
         });
-      case LIST_TOPIC_FILTERS_A_SUCCESS:
+      case LIST_TOPIC_FILTERS_C_SUCCESS:
         return Object.assign({}, state, {
           topicFilters: action.topicFilters.topics,
           moreTopicFilters: action.topicFilters.more,
           isFetchingTopicFilters: false,
         });
-      case LIST_TOPIC_FILTERS_A_FAILURE:
+      case LIST_TOPIC_FILTERS_C_FAILURE:
         return Object.assign({}, state, {
           isFetchingTopicFilters: false,
           error: action.error,
         });
-      case ADD_SELECTED_DISCIPLINE_FILTER_A: {
+      case ADD_SELECTED_DISCIPLINE_FILTER_C: {
         if (action.idDiscipline >= 0) {
           const newId = [3, 12].includes(parseInt(action.idDiscipline, 10)) ? parseInt(action.idDiscipline, 10) - 1 : action.idDiscipline;
           const filterDiscipline = state.disciplineFiltersJoined.filter(item => item.id === parseInt(newId, 10));
@@ -143,39 +143,39 @@ import {
           disciplinesSelected: [],
         });
       }
-      case REMOVE_SELECTED_DISCIPLINE_FILTER_A: {
+      case REMOVE_SELECTED_DISCIPLINE_FILTER_C: {
         const newDisciplines = state.disciplinesSelected.filter(item => item.id !== parseInt(action.idDiscipline, 10));
         return Object.assign({}, state, {
           disciplinesSelected: newDisciplines,
         });
       }
-      case ADD_SELECTED_TEACHINGLEVEL_FILTER_A: {
+      case ADD_SELECTED_TEACHINGLEVEL_FILTER_C: {
         const filterTeachingL = state.teachingLevelFilters.filter(item => item.id === parseInt(action.idTeachingLevel, 10));
         if (state.teachingLevelsSelected.filter(item => item.id === filterTeachingL[0].id).length > 0) return state; // do not add duplicates
         return Object.assign({}, state, {
           teachingLevelsSelected: [...state.teachingLevelsSelected, filterTeachingL[0]],
         });
       }
-      case REMOVE_SELECTED_TEACHINGLEVEL_FILTER_A: {
+      case REMOVE_SELECTED_TEACHINGLEVEL_FILTER_C: {
         const newTeachingLevels = state.teachingLevelsSelected.filter(item => item.id !== parseInt(action.idTeachingLevel, 10));
         return Object.assign({}, state, {
           teachingLevelsSelected: newTeachingLevels,
         });
       }
-      case ADD_SELECTED_DIFFICULTY_FILTER_A: {
+      case ADD_SELECTED_DIFFICULTY_FILTER_C: {
         const filterDifficulty = state.difficultyFilters.filter(item => item.id === action.difficultyType);
         if (state.difficultiesSelected.filter(item => item.id === filterDifficulty[0].id).length > 0) return state; // do not add duplicates
         return Object.assign({}, state, {
           difficultiesSelected: [...state.difficultiesSelected, filterDifficulty[0]],
         });
       }
-      case REMOVE_SELECTED_DIFFICULTY_FILTER_A: {
+      case REMOVE_SELECTED_DIFFICULTY_FILTER_C: {
         const newDifficulties = state.difficultiesSelected.filter(item => item.id !== action.difficultyType);
         return Object.assign({}, state, {
           difficultiesSelected: newDifficulties,
         });
       }
-      case ADD_SELECTED_YEAR_FILTER_A: {
+      case ADD_SELECTED_YEAR_FILTER_C: {
         /* any year available in yearFilteres */
         if (parseInt(action.idYear, 10) >= 0) {
           const filterYear = state.yearFilters.filter(item => item.id === parseInt(action.idYear, 10));
@@ -203,41 +203,41 @@ import {
           yearsSelected: [],
         });
       }
-      case REMOVE_SELECTED_YEAR_FILTER_A: {
+      case REMOVE_SELECTED_YEAR_FILTER_C: {
         const newYears = state.yearsSelected.filter(item => item.id.toString() !== action.idYear);
         return Object.assign({}, state, {
           yearsSelected: newYears,
         });
       }
-      case ADD_SELECTED_TOPIC_FILTER_A: {
+      case ADD_SELECTED_TOPIC_FILTER_C: {
         if (state.topicsSelected.filter(item => item.id === action.topic.id).length > 0) return state; // do not add duplicates
         return Object.assign({}, state, {
           topicsSelected: [...state.topicsSelected, action.topic],
         });
       }
-      case REMOVE_SELECTED_TOPIC_FILTER_A: {
+      case REMOVE_SELECTED_TOPIC_FILTER_C: {
         const newTopics = state.topicsSelected.filter(item => item.id !== parseInt(action.idTopic, 10));
         return Object.assign({}, state, {
           topicsSelected: newTopics,
         });
       }
-      case RESET_LIST_TOPIC_SELECTED_A:
+      case RESET_LIST_TOPIC_SELECTED_C:
         return Object.assign({}, state, {
           topicsSelected: [],
           topicFilters: [],
         });
-      case SET_SEARCH_TEXT_A: {
+      case SET_SEARCH_TEXT_C: {
         return Object.assign({}, state, {
           searchText: action.searchText,
         });
       }
-      case SET_SEARCH_TEXT_MODAL_A: {
+      case SET_SEARCH_TEXT_MODAL_C: {
         return Object.assign({}, state, {
           searchTextModal: action.searchTextModal,
         });
       }
   
-      case CLEAN_SEARCH_INPUT_A: {
+      case CLEAN_SEARCH_INPUT_C: {
         return Object.assign({}, state, {
           searchText: '',
         });
@@ -257,7 +257,7 @@ import {
         });
       }
   
-      case CLEAR_SELECTED_FILTERS_A: {
+      case CLEAR_SELECTED_FILTERS_C: {
         return Object.assign({}, state, {
           disciplinesSelected: [],
           teachingLevelsSelected: [],
@@ -269,7 +269,7 @@ import {
           onlyMyClassPlans: false,
         });
       }
-      case CLEAR_SEARCH_A: {
+      case CLEAR_SEARCH_C: {
         return Object.assign({}, state, {
           searchText: '',
         });

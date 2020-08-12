@@ -51,8 +51,11 @@ const HeaderWithFilters = (props) => {
           </span>
         ) : ''}
         <span className="question-card__more-info--lightgray">
-          {`Tipo: Estação`}
-          {' '}
+          Tipo:
+          {classPlan.plan_type && classPlan.plan_type === 'T' ? (
+            ' Aberto'
+            ): ' Estação'}
+            {' '}
         </span>
       </p>
     </CardHeader>
@@ -83,9 +86,9 @@ const HeaderWithoutFilters = (props) => {
         ) : ''}
         <span className="question-card__more-info--lightgray">
           Tipo:
-          {classPlan.plan_type && classPlan.plan_type === 'S' ? (
-            'Estação'
-            ): 'Aberto'}
+          {classPlan.plan_type && classPlan.plan_type === 'T' ? (
+            ' Aberto'
+            ): ' Estação'}
             {' '}
         </  span>
       </p>
@@ -107,8 +110,7 @@ const ClassPlanCard = (props) => {
         <div className="l-question-card-text">
           <p className="question-card__extract">
             Etapas:
-          </p>
-          <p className="question-card__extract">
+            {' '}
             <em>
               { classPlan.phases }
             </em>

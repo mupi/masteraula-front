@@ -55,7 +55,7 @@ class ClassPlanSearchByFilters extends Component {
     if (event.target.value > 0) {
       this.setState({ visible: 10 });
     }
-    history.push('/class-plan-base/1');
+    history.push('/class-plans-base/1');
     addSelectedFilter(event.target.value);
     // resetTopicListSelected();
   }
@@ -99,22 +99,6 @@ class ClassPlanSearchByFilters extends Component {
     return (
       <>
         <SearchTermsAutocomplete {...this.props} baseName="atividades" />
-        <Row className="c-question-base__myquestions-filter">
-          <Label check>
-            <Input
-              type="checkbox"
-              value={authorState || author}
-              onChange={this.handleFilter}
-              checked={isChecked}
-              disabled={isFetching}
-            />
-
-            {'Pesquisar só nas ' }
-            <strong>
-              {'"Minhas atividades"'}
-            </strong>
-          </Label>
-        </Row>
         {!onlyTerms && (
         <Row className="mb-2">
           <Col>

@@ -175,7 +175,7 @@ export const listClassPlans = (page, filter) => {
     if (getState().classPlan.isFetching) {
       return 1;
     }
-    // dispatch(listTopicFilters(filter, { classPlans: true }));
+    dispatch(listTopicFilters(filter, { classPlans: true }));
     dispatch(requestClassPlanPage());
     return classPlanService.listClassPlans(page, filter)
       .then(
@@ -191,7 +191,7 @@ export const listClassPlans = (page, filter) => {
           dispatch(initialize('classPlanSearch', {
             searchText: filter.searchText,
           }));
-          history.push('/class-plan-base/1');
+          history.push('/class-plans-base/1');
         },
       );
   };
