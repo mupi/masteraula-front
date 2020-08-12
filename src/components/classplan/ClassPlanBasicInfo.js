@@ -4,16 +4,26 @@ import {
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import URLCopy from 'components/onlineTest/URLCopy';
-import { masteraulaUrl } from 'helpers/config';
+import { masteraulaUrl, maxPublicLinksFreePlan } from 'helpers/config';
+
 
 /* eslint-disable react/no-danger */
 const ClassPlanBasicInfo = ({
-  classPlan, user, generatePublicLink, publicLink,
+  classPlan, user, generatePublicLink, publicLink, showAlertModal, quantityUsedPublicLinks, isPremium,
 }) => {
   const hasTeachingYears = classPlan && classPlan.teaching_years && classPlan.teaching_years.length > 0;
   const hasTags = classPlan && classPlan.tags && classPlan.tags.length > 0;
   const hasBncc = classPlan && classPlan.bncc && classPlan.bncc.length > 0;
   const hasDuration = classPlan && classPlan.duration;
+  const freePlanLimitString = `Você atingiu seu limite máximo de ${maxPublicLinksFreePlan} links para planos de aula públicos. Atualize seu plano gratuito para Premium`;
+
+  const handleClick = () => {
+    if (!isPremium && quantityUsedPublicLinks === maxPublicLinksFreePlan) {
+      showAlertModal(freePlanLimitString);
+    } else {
+      generatePublicLink(classPlan.id);
+    }
+  };
   return (
     <>
       <Row className="c-question__tittle-section">
@@ -30,7 +40,7 @@ const ClassPlanBasicInfo = ({
       <Row>
         <Col sm="6" className="offset-md-6 text-right">
           { (publicLink.length === 0) ? (
-            <Button color="success" onClick={() => generatePublicLink(classPlan.id)}>
+            <Button color="success" onClick={() => handleClick()}>
               <FontAwesomeIcon icon="link" />
               {' '}
                 Gerar link

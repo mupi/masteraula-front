@@ -85,6 +85,10 @@ export const COPY_CLASS_PLAN_FAILURE = 'COPY_CLASS_PLAN_FAILURE';
 // Set activity that will added in new ClassPlan - Create class plan based on activity
 export const SET_ACTIVITY_TO_NEW_CLASSPLAN = 'SET_ACTIVITY_TO_NEW_CLASSPLAN';
 
+// Get public links
+export const GET_NUMBER_CLASSPLAN_PUBLIC_LINK = 'GET_NUMBER_CLASSPLAN_PUBLIC_LINK';
+export const GET_NUMBER_CLASSPLAN_PUBLIC_LINK_SUCCESS = 'GET_NUMBER_CLASSPLAN_PUBLIC_LINK_SUCCESS';
+export const GET_NUMBER_CLASSPLAN_PUBLIC_LINK_FAILURE = 'GET_NUMBER_CLASSPLAN_PUBLIC_LINK_FAILURE';
 
 // Select class plan's type: "T" (Traditional), "S" (Stations)
 export const selectClassPlanType = selectedClassPlanType => ({
@@ -196,6 +200,17 @@ export const listClassPlans = (page, filter) => {
       );
   };
 };
+
+export const getNumberClassPlanPublicLinks = () => async (dispatch) => {
+  try {
+    dispatch({ type: GET_NUMBER_CLASSPLAN_PUBLIC_LINK });
+    const numberClassPlanPublicLinks = await classPlanService.getNumberClassPlanPublicLinks();
+    dispatch({ type: GET_NUMBER_CLASSPLAN_PUBLIC_LINK_SUCCESS, numberClassPlanPublicLinks });
+  } catch {
+    dispatch({ type: GET_NUMBER_CLASSPLAN_PUBLIC_LINK_FAILURE });
+  }
+};
+
 
 // List all class plans
 export const listMyClassPlans = (page, orderField, order) => {

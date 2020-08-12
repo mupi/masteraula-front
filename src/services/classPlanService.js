@@ -360,6 +360,17 @@ function listClassPlans(page, filter) {
     .then(classPlanPage => classPlanPage);
 }
 
+function getNumberClassPlanPublicLinks() {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+  return axios.get(`${apiUrl}/generate_link/`, requestOptions)
+    .then(response => response.data).then(numberClassPlanPublicLinks => numberClassPlanPublicLinks);
+}
+
 const classPlanService = {
   fetchClassPlan,
   fetchPublicClassPlan,
@@ -369,7 +380,8 @@ const classPlanService = {
   deleteClassPlan,
   copyClassPlan,
   generatePublicLink,
-  listClassPlans
+  listClassPlans,
+  getNumberClassPlanPublicLinks,
 };
 
 export default classPlanService;

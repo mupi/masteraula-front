@@ -2,6 +2,7 @@ import {
   dashboardService,
 } from 'services';
 import { getNumberDocxDownloaded } from 'actions/documentAction';
+import { getNumberClassPlanPublicLinks } from 'actions/classPlanAction';
 
 // Get all my dashboard info
 export const FETCH_MY_DASHBOARD = 'FETCH_MY_DASHBOARD';
@@ -35,6 +36,7 @@ export const fetchMyDashboard = () => {
         (myDashboard) => {
           dispatch(fetchMyDashboardSuccess(myDashboard));
           dispatch(getNumberDocxDownloaded());
+          dispatch(getNumberClassPlanPublicLinks());
         },
         (error) => {
           dispatch(fetchMyDashboardFailure(error));

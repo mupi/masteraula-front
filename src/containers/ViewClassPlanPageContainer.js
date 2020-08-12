@@ -18,9 +18,20 @@ const mapStateToProps = state => ({
   user: state.session.session.user,
   publicLink: state.classPlan.activeClassPlan && state.classPlan.activeClassPlan.link_class_plan
     ? state.classPlan.activeClassPlan.link_class_plan : state.classPlan.publicLink,
+  quantityUsedPublicLinks: state.classPlan.numberClassPlanPublicLinks ? state.classPlan.numberClassPlanPublicLinks.count : 0,
+  isPremium: state.session.session && state.session.session.user ? state.session.session.user.subscription : null,
 });
 
 const mapDispatchToProps = (dispatch) => {
+  const alertModalProps = message => ({
+    modalProps: {
+      open: true,
+      closeModal: () => dispatch(hideModal()),
+      title: 'Gerar link público',
+      message,
+    },
+    modalType: 'alert',
+  });
   const deleteModalProps = (idClassPlan, name) => ({
     modalProps: {
       open: true,
@@ -90,6 +101,8 @@ const mapDispatchToProps = (dispatch) => {
     showActivityModal: idActivity => dispatch(showModal(activityModalProps(idActivity))),
     showOnlineTestModal: idOnlineTest => dispatch(showModal(onlineTestModalProps(idOnlineTest))),
     generatePublicLink: id => dispatch(generatePublicLink(id)),
+    showAlertModal: message => dispatch(showModal(alertModalProps(message))),
+
   });
 };
 

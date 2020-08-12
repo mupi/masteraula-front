@@ -63,6 +63,10 @@ import {
   ADD_MATERIAL_TO_CLASS_PLAN_STATION,
   REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION,
 
+  GET_NUMBER_CLASSPLAN_PUBLIC_LINK,
+  GET_NUMBER_CLASSPLAN_PUBLIC_LINK_SUCCESS,
+  GET_NUMBER_CLASSPLAN_PUBLIC_LINK_FAILURE,
+
 } from 'actions/classPlanAction';
 import { toast } from 'react-toastify';
 
@@ -313,17 +317,17 @@ export const classPlan = (state = initialState, action) => {
       });
     }
     case RESET_STATIONS_CLASS_PLAN: {
-      let activity_id = null;
-      let activity_material = null;
-      if (state.selectedActivityList.length > 0 && state.selectedActivityList !== undefined) {    
-        activity_id = state.selectedActivityList[0].id;
-        activity_material = state.selectedActivityList[0]
+      let activityid = null;
+      let activityMaterial = null;
+      if (state.selectedActivityList.length > 0 && state.selectedActivityList !== undefined) {
+        activityid = state.selectedActivityList[0].id;
+        activityMaterial = { ...state.selectedActivityList[0] };
       }
 
       return Object.assign({}, state, {
         stations: [
           {
-            activity_ids: activity_id, document_ids: null, document_online_ids: null, material: activity_material,
+            activity_ids: activityid, document_ids: null, document_online_ids: null, material: activityMaterial,
           },
           {
             activity_ids: null, document_ids: null, document_online_ids: null, material: null,
@@ -462,6 +466,23 @@ export const classPlan = (state = initialState, action) => {
     case SET_ACTIVITY_TO_NEW_CLASSPLAN: {
       return Object.assign({}, state, {
         activityIdAddedToClassPlan: action.activityIdAddedToClassPlan,
+      });
+    }
+    case GET_NUMBER_CLASSPLAN_PUBLIC_LINK: {
+      return Object.assign({}, state, {
+        isFetchingClassPlanPublicLinks: true,
+      });
+    }
+    case GET_NUMBER_CLASSPLAN_PUBLIC_LINK_SUCCESS: {
+      return Object.assign({}, state, {
+        isFetchingClassPlanPublicLinks: false,
+        numberClassPlanPublicLinks: action.numberClassPlanPublicLinks,
+      });
+    }
+    case GET_NUMBER_CLASSPLAN_PUBLIC_LINK_FAILURE: {
+      return Object.assign({}, state, {
+        isFetchingClassPlanPublicLinks: false,
+        error: action.error,
       });
     }
 

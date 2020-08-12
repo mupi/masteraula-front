@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Input, Row, Col, Label, Button,
+  Row, Col, Button,
 } from 'reactstrap';
 import SearchTermsAutocomplete from 'components/question/SearchTermsAutocomplete';
 import { history } from 'helpers';
@@ -83,7 +83,7 @@ class ClassPlanSearchByFilters extends Component {
 
   render() {
     const {
-      author, isFetching, onlyMyClassPlans, disciplineFilters, topicFilters,
+      isFetching, disciplineFilters, topicFilters,
       disciplineIdSelected, yearIdSelected,
       addSelectedDisciplineFilter,
       addSelectedYearFilter,
@@ -92,9 +92,6 @@ class ClassPlanSearchByFilters extends Component {
     } = this.props;
 
     const { visible } = this.state;
-
-    const { authorState, onlyMyClassPlansState } = this.state;
-    const isChecked = (onlyMyClassPlans === undefined ? onlyMyClassPlansState : onlyMyClassPlans);
 
     return (
       <>
