@@ -347,6 +347,7 @@ export const generatePublicLink = id => async (dispatch) => {
     dispatch({ type: GENERATE_LINK_CLASS_PLAN });
     const link = await classPlanService.generatePublicLink(id);
     dispatch({ type: GENERATE_LINK_CLASS_PLAN_SUCCESS, link });
+    dispatch(getNumberClassPlanPublicLinks());
   } catch {
     dispatch({ type: GENERATE_LINK_CLASS_PLAN_FAILURE });
   }
