@@ -7,6 +7,10 @@ import {
   FETCH_PUBLIC_CLASS_PLAN_SUCCESS,
   FETCH_PUBLIC_CLASS_PLAN_FAILURE,
 
+  LIST_CLASSPLAN_PAGE,
+  LIST_CLASSPLAN_PAGE_SUCCESS,
+  LIST_CLASSPLAN_PAGE_FAILURE,
+
   LIST_MY_CLASS_PLANS,
   LIST_MY_CLASS_PLANS_SUCCESS,
   LIST_MY_CLASS_PLANS_FAILURE,
@@ -83,6 +87,7 @@ const CLASSPLAN_TYPE = {
 };
 
 const initialState = {
+  classPlanPage: {},
   publicLink: '',
   classPlans: [],
   selectedObjectList: [],
@@ -367,6 +372,22 @@ export const classPlan = (state = initialState, action) => {
     }
     /* FIN: UPDATE */
 
+  case LIST_CLASSPLAN_PAGE:
+    return Object.assign({}, state, {
+      currentPage: action.page,
+      isFetching: true,
+      error: null,
+    });
+  case LIST_CLASSPLAN_PAGE_SUCCESS:
+    return Object.assign({}, state, {
+      classPlanPage: action.classPlanPage,
+      isFetching: false,
+    });
+  case LIST_CLASSPLAN_PAGE_FAILURE:
+    return Object.assign({}, state, {
+      isFetching: false,
+      error: action.error,
+    });
     case LIST_MY_CLASS_PLANS:
       return Object.assign({}, state, {
         classPlans: action.classPlans,
