@@ -64,7 +64,7 @@ const ViewActivityPage = (props) => {
     );
   }
 
-  if (!activeActivity || activeActivity.disabled) {
+  if (!activeActivity) {
     return (
       <HomeUserPage>
         <Alert color="danger">
@@ -84,7 +84,7 @@ const ViewActivityPage = (props) => {
         <Row className="c-online__row-header-options c-online__row-header-options--fixed">
           <Col className="c-online__col-header-options">
             <BackUsingHistory />
-            { (isOwner)
+            { (isOwner && !activeActivity.disabled)
               ? (
                 <Button
                   className="c-question__btn-remove-question"
@@ -97,7 +97,7 @@ const ViewActivityPage = (props) => {
                   Apagar
                 </Button>
               ) : ''}
-            {(isOwner)
+            {(isOwner && !activeActivity.disabled)
               ? (
                 <Link
                   className="btn btn-secondary c-question__btn-back"

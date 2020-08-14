@@ -38,8 +38,9 @@ const ClassPlanBasicInfo = ({
         </Col>
       </Row>
       <Row>
+      {!classPlan.disabled ? (
         <Col sm="6" className="offset-md-6 text-right">
-          { (publicLink.length === 0) ? (
+          {(publicLink.length === 0) ? (
             <Button color="success" onClick={() => handleClick()}>
               <FontAwesomeIcon icon="link" />
               {' '}
@@ -49,6 +50,7 @@ const ClassPlanBasicInfo = ({
             : <URLCopy url={`${masteraulaUrl}/view-public-classplan/${publicLink}`} />
           }
         </Col>
+      ) : ''}
       </Row>
       <Row className="c-classplan__row-info">
         <Col className="info-label" sm="4" xs="4">

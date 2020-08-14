@@ -29,7 +29,7 @@ const ViewOnlineTestPage = (props) => {
     );
   }
 
-  if (!activeOnlineTest || activeOnlineTest.disabled) {
+  if (!activeOnlineTest) {
     return (
       <HomeUserPage>
         <Alert color="danger">
@@ -61,7 +61,7 @@ const ViewOnlineTestPage = (props) => {
               {' '}
               Ver todas
             </Link>
-            { (isOwner)
+            { (isOwner && !activeOnlineTest.disabled)
               ? (
                 <Button
                   className="c-question__btn-remove-question"
@@ -74,7 +74,7 @@ const ViewOnlineTestPage = (props) => {
                     Apagar
                 </Button>
               ) : ''}
-            {(isOwner)
+            {(isOwner && !activeOnlineTest.disabled)
               ? (
                 <Link
                   className="btn btn-secondary c-question__btn-back"
@@ -85,7 +85,7 @@ const ViewOnlineTestPage = (props) => {
                   Editar
                 </Link>
               ) : ''}
-
+    
             { activeOnlineTest.results && activeOnlineTest.results.length > 0 && (
             <Link
               className="btn btn-secondary c-question__btn-back"
@@ -122,6 +122,11 @@ const ViewOnlineTestPage = (props) => {
             </p>
           </Col>
         </Row>
+        {activeOnlineTest.disabled ? (
+              <Alert color="danger" className="c-question-edit__warning-message">
+              A prova foi removida pelo autor(a) e não está mais disponível
+              </Alert>
+        ) : ''}
         <OnlineTestBasicInfo onlineTest={activeOnlineTest} />
         <OnlineTestQuestions
           questions={activeOnlineTest.questions_document}
