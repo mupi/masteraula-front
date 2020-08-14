@@ -399,7 +399,7 @@ class QuestionForm extends Component {
                   icon="laptop"
                   className="btn__icon"
                 />
-                      Adicionar objeto do computador
+                Adicionar objeto do computador
               </Button>
             </Col>
           </Row>

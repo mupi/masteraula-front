@@ -81,6 +81,7 @@ const mapDispatchToProps = (dispatch) => {
         alternatives: [{}, {}, {}],
         selectedIndex: 0,
         sourceQuestion: 'A',
+        secret: 'P',
       }));
     },
 

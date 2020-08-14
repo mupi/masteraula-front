@@ -93,6 +93,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(initialize('create-activity', {
         topics: [],
         tasks: [{}],
+        secret: 'P',
       }));
     },
     showSearchLearningObjectModal: (singleSelection = false, stationIndex = null) => {
@@ -147,6 +148,7 @@ const mapDispatchToProps = (dispatch) => {
         teaching_levels_ids: values.teachingLevels.map(teachingLevel => teachingLevel.id),
         tasks: newTasks.length > 0 ? newTasks : [],
         tags: values.tags ? values.tags.split(',').map(tag => tag.trim()) : [],
+        secret: values.secret === 'S',
       };
 
       // validations

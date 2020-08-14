@@ -130,6 +130,7 @@ export const fetchQuestion = (id) => {
             selectedIndex: selectedAlternative,
             resolution: activeQuestion.resolution,
             sourceQuestion: activeQuestion.source ? 'V' : 'A',
+            secret: activeQuestion.secret ? 'S' : 'P',
           }));
           dispatch(listTopics(activeQuestion.disciplines));
           dispatch(fetchQuestionSuccess(activeQuestion));

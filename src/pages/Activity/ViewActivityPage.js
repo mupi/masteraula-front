@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import {
-  Alert, Row, Col, Button,
+  Alert, Row, Col, Button, Badge,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -110,7 +110,13 @@ const ViewActivityPage = (props) => {
               ) : ''}
           </Col>
         </Row>
-        <Row className="c-question__tittle-section c-question--space-for-titlequestion mb-4">
+        <Row className="c-question--space-for-titlequestion">
+          <Col className="d-flex  justify-content-end">
+            {activeActivity.secret
+              ? <Badge className="c-question__badge-privacity" color="info">PRIVADA</Badge> : <Badge className="c-question__badge-privacity" color="success">PÚBLICA</Badge>}
+          </Col>
+        </Row>
+        <Row className="c-question__tittle-section mb-4">
           <Col>
             <h4>
               <FontAwesomeIcon icon="book-reader" />

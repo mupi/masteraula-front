@@ -130,6 +130,7 @@ export const fetchActivity = id => async (dispatch) => {
       teachingLevels: activeActivity.teaching_levels,
       tasks: activeActivity.tasks,
       tags: activeActivity.tags.map(tag => tag.name.trim()).join(', '),
+      secret: activeActivity.secret ? 'S' : 'P',
     }));
     dispatch({ type: FETCH_ACTIVITY_SUCCESS, activeActivity });
   } catch {

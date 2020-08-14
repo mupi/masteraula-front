@@ -156,6 +156,7 @@ const mapDispatchToProps = (dispatch) => {
         // selected objects to question
         learning_objects_ids: props.selectedObjectList.map(object => object.id),
         resolution: resolutionCleaned,
+        secret: values.secret === 'S',
       };
 
       // validations

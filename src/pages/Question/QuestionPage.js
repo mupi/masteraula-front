@@ -196,7 +196,8 @@ class QuestionPage extends Component {
                   {discipline.name}
                 </span>
               ))}
-              {activeQuestion.secret ? <Badge color="info">PRIVADA</Badge> : <Badge color="success">PÚBLICA</Badge>}
+              {activeQuestion.secret
+                ? <Badge className="c-question__badge-privacity" color="info">PRIVADA</Badge> : <Badge className="c-question__badge-privacity" color="success">PÚBLICA</Badge>}
             </Col>
           </Row>
 
