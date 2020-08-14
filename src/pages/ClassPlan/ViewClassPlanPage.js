@@ -116,7 +116,9 @@ class ViewClassPlanPage extends Component {
           <Row className="c-question__row-header-options c-question__row-header-options--fixed">
             <Col className="c-question__col-header-options">
               <BackUsingHistory />
-              { (isOwner)
+              {console.log(authorPK)}
+              {console.log(userId)}
+              { (isOwner && !activeClassPlan.disabled)
                 ? (
                   <Button
                     className="c-question__btn-remove-question"
@@ -129,7 +131,7 @@ class ViewClassPlanPage extends Component {
                     Apagar
                   </Button>
                 ) : ''}
-              {(isOwner)
+              {(isOwner && !activeClassPlan.disabled)
                 ? (
                   <Link
                     className="btn btn-secondary c-question__btn-back"
@@ -151,6 +153,21 @@ class ViewClassPlanPage extends Component {
               </h4>
             </Col>
           </Row>
+
+          {activeClassPlan.disabled ? (
+          <Row>
+            <Col className="c-question__col-full-section-details">
+              <Alert color="danger" className="c-question-edit__warning-message">
+                  O plano de aula
+                {' '}
+                  N°
+                <strong>{activeClassPlan.id}</strong>
+                {' '}
+                  foi removido pelo autor(a) e não está mais disponível
+              </Alert>
+            </Col>
+          </Row>
+          ) : ''}
           <ClassPlanBasicInfo
             classPlan={activeClassPlan}
             user={user}

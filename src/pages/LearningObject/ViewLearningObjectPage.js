@@ -67,7 +67,7 @@ class ViewLearningObjectPage extends Component {
         <Row className="c-question__row-header-options c-question__row-header-options--fixed">
           <Col className="c-question__col-header-options">
             <BackUsingHistory />
-            { (isOwner)
+            { (isOwner && !activeLearningObject)
               ? (
                 <Button
                   className="c-question__btn-remove-question"
@@ -80,7 +80,7 @@ class ViewLearningObjectPage extends Component {
                   Apagar
                 </Button>
               ) : ''}
-            {(isOwner)
+            {(isOwner && !activeLearningObject)
               ? (
                 <Link
                   className="btn btn-secondary c-question__btn-back"

@@ -34,7 +34,7 @@ const MyDashboardRecentDocuments = (props) => {
                   {document.name}
                 </td>
                 <td className="text-center">
-                  {document.questions.length}
+                  {document.questions_quantity}
                 </td>
                 <td className="text-right">
                   <Button

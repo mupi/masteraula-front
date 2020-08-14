@@ -100,9 +100,11 @@ const OnlineTestBasicInfo = (props) => {
           </span>
         </p>
       </Col>
-
+      
       <Col sm="6">
-        <URLCopy url={`${masteraulaUrl}/apply-online/${onlineTest.link}`} />
+        {!onlineTest.disabled ? (
+          <URLCopy url={`${masteraulaUrl}/apply-online/${onlineTest.link}`} />
+        ) : ''}
       </Col>
     </Row>
   );
