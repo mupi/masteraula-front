@@ -129,7 +129,7 @@ const ClassPlanBasicInfo = ({
                    Autoria
         </Col>
         <Col sm="8" xs="8">
-          {user.name}
+          {classPlan.owner.name}
         </Col>
       </Row>
     </>
