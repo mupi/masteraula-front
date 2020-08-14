@@ -27,12 +27,12 @@ const LearningObjectContent = (props) => {
     removeSelectedObject,
     options,
     addSelectedObjectToQuestion, setObjectIdToNewQuestion,
-    addSelectedObjectToActivity, setObjectIdToNewActivity,
+    addSelectedObjectToActivity, setObjectIdToNewActivity, 
   } = props;
 
   return (
     <div key={learningObject.id} className="c-learning-object">
-       {learningObject.disabled ? (
+       {learningObject.disabled && !options.fromView ? (
           <Alert color="danger" className="c-document__question-unavailable mb-4">
               O Objeto de aprendizagem
             {' '}

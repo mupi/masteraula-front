@@ -19,6 +19,7 @@ const options = {
   showCreateQuestionButton: true,
   removeOption: false,
   showTitle: false,
+  fromView:true
 };
 
 class ViewLearningObjectPage extends Component {
@@ -104,6 +105,20 @@ class ViewLearningObjectPage extends Component {
             </h4>
           </Col>
         </Row>
+        {activeLearningObject.disabled ? (
+            <Row>
+              <Col className="c-question__col-full-section-details">
+                <Alert color="danger" className="c-question-edit__warning-message">
+                    O Objeto de aprendizagem
+                  {' '}
+                    N°
+                  <strong>{activeLearningObject.id}</strong>
+                  {' '}
+                    foi removido pelo autor(a) e não está mais disponível
+                </Alert>
+              </Col>
+            </Row>
+          ) : ''}
         <Row>
           <Col sm="12">
             <div className="l-learning-object">
