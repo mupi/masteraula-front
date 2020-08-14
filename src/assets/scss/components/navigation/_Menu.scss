@@ -1,8 +1,8 @@
-#navbar{
-    background: $color-ma-blue;
+#navbar {
+  background: $color-ma-blue;
 }
 
-.nav-item .position-login{
+.nav-item .position-login {
   border: none;
   padding: 10px;
   display: block;
@@ -13,21 +13,21 @@
 /* 
   Top Menu - NOT USER
 */
-.masteraula-nav-header__notuser{
-  background: $color-ma-lightgray-backg; 
+.masteraula-nav-header__notuser {
+  background: $color-ma-lightgray-backg;
   box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.15);
-  
+
 }
 
-.menu-notuser{
-  &__option{
+.menu-notuser {
+  &__option {
     color: $color-ma-blue;
     font-size: 16px;
 
-    &:hover{
+    &:hover {
       font-weight: bold;
     }
-    
+
     // // https://stackoverflow.com/questions/556153/inline-elements-shifting-when-made-bold-on-hover/20249560
     &:before {
       display: block;
@@ -43,30 +43,33 @@
 /*
   Options for NOT USER: Pricing, Login & Sign Up
 */
-.c-menu-button-a, {
+.c-menu-button-a {
   border: none;
-  padding: 10px; 
+  padding: 10px;
   background: transparent;
   text-decoration: none !important;
 
-  &:hover{
-      font-weight: bold; 
-      outline: 0;
+  &:hover {
+    font-weight: bold;
+    outline: 0;
   }
 
-  &:focus{
-      box-shadow: none;
-      outline: 0 !important;
+  &:focus {
+    box-shadow: none;
+    outline: 0 !important;
 
   }
 
-  &:active{
-      box-shadow: none;
-      outline: 0 !important;
+  &:active {
+    box-shadow: none;
+    outline: 0 !important;
   }
 }
 
-.c-menu-button-a:not(:disabled), .c-menu-button-a.btn-secondary:not(:disabled):not(.disabled):active, .c-menu-button-a.btn-secondary:not(:disabled):not(.disabled).active, .show > .c-menu-button-a.btn-secondary.dropdown-toggle{
+.c-menu-button-a:not(:disabled),
+.c-menu-button-a.btn-secondary:not(:disabled):not(.disabled):active,
+.c-menu-button-a.btn-secondary:not(:disabled):not(.disabled).active,
+.show>.c-menu-button-a.btn-secondary.dropdown-toggle {
   background-color: transparent;
   border-color: transparent;
 }
@@ -83,9 +86,10 @@ html body .masteraula-nav-header__user {
   box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.15);
 
 
-  &-avatar{
+  &-avatar {
     display: inline-block;
-    img{
+
+    img {
       height: 30px;
       width: 30px;
       border-radius: 50%;
@@ -96,136 +100,141 @@ html body .masteraula-nav-header__user {
     }
   }
 
-  &-toggle{
+  &-toggle {
     color: $color-ma-blue !important;
   }
 
-  &-name{
+  &-name {
     color: $color-ma-blue;
-  }
-  @include for-tablet-landscape-up {
-      margin-left: 280px;
-      //box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
-      height:70px;
   }
 
-  .nav-item a, .nav-item:hover {
+  @include for-tablet-landscape-up {
+    margin-left: 280px;
+    //box-shadow: 0 2px 3px 0 rgba(0,0,0,0.15);
+    height: 70px;
+  }
+
+  .nav-item a,
+  .nav-item:hover {
     color: $color-ma-blue;
   }
-  
+
   //Top menu
-  .menu-top.container-fluid{
-    
-    @include for-tablet-landscape-bottom{
+  .menu-top.container-fluid {
+
+    @include for-tablet-landscape-bottom {
       padding-left: 0px !important;
     }
   }
 
   // Top Menu - USER - Document options
-  .menu-top{
+  .menu-top {
     background: $color-ma-lightgray-backg !important;
     width: 100%;
 
-    &__document-info{
-      @include for-phone-only{
+    &__document-info {
+      @include for-phone-only {
         padding-left: 5px;
       }
     }
 
-    &__options{
+    &__options {
       background: $color-ma-lightgray-backg !important;
       width: 100%;
     }
 
-    &__document-section{  
+    &__document-section {
       padding: 0px;
     }
 
-    &__document-message{
+    &__document-message {
       color: $color-ma-blue;
-      font-size:13px;
-      @include for-phone-only{
-        font-size:12px !important;
+      font-size: 13px;
+
+      @include for-phone-only {
+        font-size: 12px !important;
       }
     }
-    
+
     &__document-questions {
       margin-bottom: 0px;
     }
 
     &__document-number-questions {
-      font-size:16px;
+      font-size: 16px;
     }
 
-    &__xs-document-number-questions{
+    &__xs-document-number-questions {
       margin-left: 3px;
       font-weight: bold;
       color: $color-ma-blue;
     }
 
     &__document-l-buttons {
-        margin-top: 5px;
-        display: inline-flex;
+      margin-top: 5px;
+      display: inline-flex;
     }
-    
-    &__document-btn-item{
+
+    &__document-btn-item {
       color: $color-ma-green;
     }
-    
-    &__document-btn-item:hover{
+
+    &__document-btn-item:hover {
       color: $color-ma-white;
       text-decoration: none;
     }
-    
-    &__document-button{
+
+    &__document-button {
       font-size: 13px;
       margin-right: 3px;
       padding: 2px 8px;
-      @include for-desktop-bottom-1160{
+
+      @include for-desktop-bottom-1160 {
         height: 25px;
       }
 
-      @include for-phone-only{
+      @include for-phone-only {
         font-size: 12px;
         padding: 2px 6px;
       }
     }
 
-    &__dropdown-item{
+    &__dropdown-item {
       font-size: 13px;
-      &:hover{
+
+      &:hover {
         cursor: pointer;
       }
     }
 
-    &__link-more-documents{
-        color: $color-ma-black-dropdown;
-        
-        &:hover{
-          text-decoration:none !important;
-        }
+    &__link-more-documents {
+      color: $color-ma-black-dropdown;
 
-        &:active{
-          text-decoration:none !important;
-          color: $color-ma-white;
-        }
+      &:hover {
+        text-decoration: none !important;
+      }
+
+      &:active {
+        text-decoration: none !important;
+        color: $color-ma-white;
+      }
     }
 
     &__document-link {
       font-weight: normal;
       color: $color-ma-green;
-      padding:5px;
+      padding: 5px;
     }
 
   }
 
-  
+
 
 }
 
 /*New SCSS with BEM style*/
-.masteraula-nav-header{
-  &__greeting{
+.masteraula-nav-header {
+  &__greeting {
     border: none;
     padding: 8px;
     display: block;
@@ -233,11 +242,11 @@ html body .masteraula-nav-header__user {
     letter-spacing: 0.75px;
   }
 
-  &__option-mr{
+  &__option-mr {
     margin-right: 0px !important;
   }
 
-  &__link-myprofile{
+  &__link-myprofile {
     border: none;
     padding: 7px !important;
     display: block;
@@ -245,24 +254,24 @@ html body .masteraula-nav-header__user {
     letter-spacing: 0.85px;
   }
 
-  &__number-docx{
+  &__number-docx {
     font-size: 12px;
     color: $color-ma-blue;
     padding: 10px;
   }
 
-  &__number-docx-freeplan{
-    @include for-desktop-bottom-1160{
-      display:none;
+  &__number-docx-freeplan {
+    @include for-desktop-bottom-1160 {
+      display: none;
     }
   }
 
-  &__number-docx-icon{
+  &__number-docx-icon {
     color: $color-ma-lightgray;
     font-size: 18px;
   }
 
-  &__btn-upgrade{
+  &__btn-upgrade {
     font-size: 12px;
     font-weight: bold;
   }
@@ -271,48 +280,48 @@ html body .masteraula-nav-header__user {
 }
 
 
-.o-doc-options{ 
-    &__dropdown{
-      font-size: 13px;
-      color: $color-ma-green;
+.o-doc-options {
+  &__dropdown {
+    font-size: 13px;
+    color: $color-ma-green;
 
-      button{
-          background: transparent;
-          border: transparent;
-      }
-
-      .show button{
-          background: transparent;
-          border: transparent;
-      }
-
-      button:hover{
-          background: transparent;
-          border: transparent;
-      }
-
+    button {
+      background: transparent;
+      border: transparent;
     }
 
-    &__dropdown-item{
-      font-size: 13px;
-      padding-top: 0px;
-      padding-bottom: 0px;
-      cursor: pointer;
-
-      a{
-          color: $color-ma-black-dropdown;
-      
-          &:hover{
-            color: $color-ma-black-dropdown;
-          }
-      }
-
-      
+    .show button {
+      background: transparent;
+      border: transparent;
     }
 
-    &__dropdown-toogle{
-      color: $color-ma-green !important;
+    button:hover {
+      background: transparent;
+      border: transparent;
+    }
+
+  }
+
+  &__dropdown-item {
+    font-size: 13px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    cursor: pointer;
+
+    a {
+      color: $color-ma-black-dropdown;
+
+      &:hover {
+        color: $color-ma-black-dropdown;
       }
+    }
+
+
+  }
+
+  &__dropdown-toogle {
+    color: $color-ma-green !important;
+  }
 }
 
 button.o-doc-options__dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
@@ -323,12 +332,12 @@ button.o-doc-options__dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
   padding-left: 0px;
   padding-right: 0px;
 
-  &:active:focus{
+  &:active:focus {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
   }
 
-  &:focus{
+  &:focus {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
   }
@@ -341,16 +350,36 @@ button.o-doc-options__dropdown-toggle.dropdown-toggle.btn.btn-secondary.btn-sm {
 a.menu-top__document-link {
   font-weight: normal;
   color: $color-ma-green;
-  padding:5px;
+  padding: 5px;
   font-size: 18px;
 
-  @include for-tablet-landscape-bottom{
-    display:inline-flex;
-    font-size:15px;
+  @include for-tablet-landscape-bottom {
+    display: inline-flex;
+    font-size: 15px;
   }
 }
 
-a.menu-top__document-link:hover{
+a.menu-top__document-link:hover {
   font-weight: bold;
-  text-decoration:none;
+  text-decoration: none;
+}
+
+.menu {
+  &__option-sidebar {
+    color: $color-ma-white;
+    font-weight: bold;
+    padding: 0rem 0rem 0rem 1.25rem;
+    cursor: pointer;
+    outline: none;
+  }
+
+  &__option-sidebar-btn-collapse {
+    background: transparent;
+    border: 0px;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
 }
