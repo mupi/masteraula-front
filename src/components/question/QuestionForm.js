@@ -300,7 +300,7 @@ class QuestionForm extends Component {
       teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
       submitting, resolution, errors, sourceQuestionValue, listTopicSuggestions,
       showSearchLearningObjectModal, actionName,
-      showConfirmAddObject,
+      showConfirmAddObject, isPremium,
     } = this.props;
 
 
@@ -343,6 +343,7 @@ class QuestionForm extends Component {
             </Col>
           </Row>
 
+          {isPremium && (
           <Row className="align-items-center">
             <Col sm="3" xs="3">
               Sua questão será:
@@ -376,6 +377,7 @@ class QuestionForm extends Component {
               </FormGroup>
             </Col>
           </Row>
+          )}
           <Row className="c-question__tittle-section">
             <Col sm="12">
               <h5>

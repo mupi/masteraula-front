@@ -63,6 +63,7 @@ const mapStateToProps = (state) => {
     user,
     selectedClassPlanType: state.classPlan.selectedClassPlanType,
     stations: state.classPlan.stations,
+    isPremium: state.session.session && state.session.session.user ? state.session.session.user.subscription : null,
   });
 };
 
@@ -206,6 +207,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(initialize('create-classplan', {
         topics: [],
         stations: [{}, {}],
+        secret: 'P',
       }));
     },
 
@@ -306,13 +308,14 @@ const mapDispatchToProps = (dispatch) => {
           ? props.selectedActivityList.map(activity => activity.id) : [],
         stations: newStations,
         documents_online_ids: props.selectedOnlineTestList && props.selectedOnlineTestList.length > 0
-          ? props.selectedOnlineTestList.map(document_online => document_online.link) : [],
+          ? props.selectedOnlineTestList.map(onlineTest => onlineTest.link) : [],
 
         teaching_years_ids: values.teachingYears ? values.teachingYears.map(teachingYear => teachingYear.id) : [],
         duration: values.duration ? values.duration : 0,
         phases: values.phases,
         content: values.content ? values.content : '',
         guidelines: values.guidelines ? values.guidelines : '',
+        secret: values.secret === 'S',
       };
 
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);

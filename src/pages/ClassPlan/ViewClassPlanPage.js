@@ -4,7 +4,7 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import {
-  Alert, Row, Col, Button,
+  Alert, Row, Col, Button, Badge,
 } from 'reactstrap';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import ClassPlanMainResources from 'components/classplan/ClassPlanMainResources';
@@ -116,8 +116,6 @@ class ViewClassPlanPage extends Component {
           <Row className="c-question__row-header-options c-question__row-header-options--fixed">
             <Col className="c-question__col-header-options">
               <BackUsingHistory />
-              {console.log(authorPK)}
-              {console.log(userId)}
               { (isOwner && !activeClassPlan.disabled)
                 ? (
                   <Button
@@ -144,7 +142,13 @@ class ViewClassPlanPage extends Component {
                 ) : ''}
             </Col>
           </Row>
-          <Row className="c-question__tittle-section c-question--space-for-titlequestion">
+          <Row className="c-question--space-for-titlequestion">
+            <Col className="d-flex  justify-content-end">
+              {activeClassPlan.secret
+                ? <Badge className="c-question__badge-privacity" color="info">PRIVADO</Badge> : <Badge className="c-question__badge-privacity" color="success">PÚBLICO</Badge>}
+            </Col>
+          </Row>
+          <Row className="c-question__tittle-section">
             <Col>
               <h4>
                 <FontAwesomeIcon icon="book" />
@@ -155,18 +159,18 @@ class ViewClassPlanPage extends Component {
           </Row>
 
           {activeClassPlan.disabled ? (
-          <Row>
-            <Col className="c-question__col-full-section-details">
-              <Alert color="danger" className="c-question-edit__warning-message">
+            <Row>
+              <Col className="c-question__col-full-section-details">
+                <Alert color="danger" className="c-question-edit__warning-message">
                   O plano de aula
-                {' '}
+                  {' '}
                   N°
-                <strong>{activeClassPlan.id}</strong>
-                {' '}
+                  <strong>{activeClassPlan.id}</strong>
+                  {' '}
                   foi removido pelo autor(a) e não está mais disponível
-              </Alert>
-            </Col>
-          </Row>
+                </Alert>
+              </Col>
+            </Row>
           ) : ''}
           <ClassPlanBasicInfo
             classPlan={activeClassPlan}

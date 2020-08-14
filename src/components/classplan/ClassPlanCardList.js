@@ -37,7 +37,7 @@ const ClassPlanList = (props) => {
   );
 
   const ViewCardButton = ({ classPlan }) => (
-    <Link to={`/view-classPlan/${classPlan.id}`}>
+    <Link to={`/view-classplan/${classPlan.id}`}>
       <Button className="question-card__btn">
         Ver plano de aula
       </Button>

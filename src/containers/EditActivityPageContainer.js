@@ -39,6 +39,7 @@ const mapStateToProps = (state) => {
     tasks: state.activity.tasks,
     isFetching: state.activity.isFetching,
     activeActivity: state.activity.activeActivity,
+    isPremium: state.session.session && state.session.session.user ? state.session.session.user.subscription : null,
   });
 };
 

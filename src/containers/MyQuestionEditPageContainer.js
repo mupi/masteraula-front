@@ -45,6 +45,7 @@ const mapStateToProps = (state) => {
     sourceQuestionValue: selector(state, 'sourceQuestion'),
     labels: state.label.myQuestionLabels,
     isAddingRemovingLabel: state.label.isAddingRemovingLabel,
+    isPremium: state.session.session && state.session.session.user ? state.session.session.user.subscription : null,
   });
 };
 

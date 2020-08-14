@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  Alert, Row, Col, Button, Form, Input, Label,
+  Alert, Row, Col, Button, Form, Input, Label, FormGroup,
   UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 } from 'reactstrap';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
@@ -371,6 +371,7 @@ class ClassPlanStationsForm extends Component {
         showSearchDocumentModal, stations, addStationToClassPlan, removeStationFromClassPlan,
         showSearchOnlineTestModal,
         removeMaterialFromClassPlanStation,
+        isPremium,
       } = this.props;
 
       // const { stations } = this.state;
@@ -413,6 +414,42 @@ class ClassPlanStationsForm extends Component {
                         }
               </Col>
             </Row>
+
+            {isPremium && (
+            <Row className="align-items-center">
+              <Col sm="3" xs="3">
+              Seu plano de aula será:
+              </Col>
+              <Col sm="6" xs="6">
+                <FormGroup check inline>
+                  <Label check>
+                    <Field
+                      name="secret"
+                      component="input"
+                      type="radio"
+                      value="P"
+                      className="c-create-online__radio-button-field"
+                    />
+                    {' '}
+                    Público
+                  </Label>
+                </FormGroup>
+                <FormGroup check inline>
+                  <Label check>
+                    <Field
+                      name="secret"
+                      component="input"
+                      type="radio"
+                      value="S"
+                      className="c-create-online__radio-button-field"
+                    />
+                    {' '}
+                    Privado
+                  </Label>
+                </FormGroup>
+              </Col>
+            </Row>
+            )}
             <Row className="c-question__tittle-section">
               <Col>
                 <h5>

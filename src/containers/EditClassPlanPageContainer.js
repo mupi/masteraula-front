@@ -66,6 +66,7 @@ const mapStateToProps = (state) => {
     isFetching: state.classPlan.isFetching,
     activeClassPlan: state.classPlan.activeClassPlan,
     stations: state.classPlan.stations,
+    isPremium: state.session.session && state.session.session.user ? state.session.session.user.subscription : null,
   });
 };
 
@@ -150,7 +151,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     modalType: 'searchDocumentModal',
   });
-  
+
   const openSearchActivityModalProps = (singleSelection, stationIndex) => ({
     modalProps: {
       open: true,
@@ -314,7 +315,7 @@ const mapDispatchToProps = (dispatch) => {
         activities_ids: props.selectedActivityList && props.selectedActivityList.length > 0
           ? props.selectedActivityList.map(activity => activity.id) : [],
         documents_online_ids: props.selectedOnlineTestList && props.selectedOnlineTestList.length > 0
-          ? props.selectedOnlineTestList.map(document_online => document_online.link) : [],
+          ? props.selectedOnlineTestList.map(onlineTest => onlineTest.link) : [],
 
         stations: updateStations,
 
@@ -322,9 +323,10 @@ const mapDispatchToProps = (dispatch) => {
         duration: values.duration ? values.duration : 0,
         phases: values.phases,
         content: values.content ? values.content : '',
-        guidelines: values.guidelines ? values.guidelines : ''
+        guidelines: values.guidelines ? values.guidelines : '',
+        secret: values.secret === 'S',
       };
-      
+
       if (Object.keys(errors).length !== 0) throw new SubmissionError(errors);
 
       return dispatch(updateClassPlan(updatedClassPlan));

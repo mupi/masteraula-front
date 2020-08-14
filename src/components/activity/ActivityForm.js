@@ -212,6 +212,7 @@ const ActivityForm = (props) => {
     tasks,
     actionName,
     showConfirmAddObject,
+    isPremium,
   } = props;
   return (
 
@@ -253,6 +254,7 @@ const ActivityForm = (props) => {
           </Col>
         </Row>
 
+        {isPremium && (
         <Row className="align-items-center">
           <Col sm="3" xs="3">
           Sua atividade será:
@@ -286,6 +288,7 @@ const ActivityForm = (props) => {
             </FormGroup>
           </Col>
         </Row>
+        )}
         <Row className="mb-2">
           <Col sm="12">
             <h5>

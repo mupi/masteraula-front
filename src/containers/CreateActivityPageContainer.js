@@ -37,6 +37,7 @@ const mapStateToProps = (state) => {
     topicSuggestions: state.suggestion.topicSuggestions,
     user,
     tasks: state.activity.tasks,
+    isPremium: state.session.session && state.session.session.user ? state.session.session.user.subscription : null,
   });
 };
 

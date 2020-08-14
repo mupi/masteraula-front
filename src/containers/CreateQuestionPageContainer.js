@@ -29,6 +29,7 @@ const mapStateToProps = (state) => {
     errors: state.form['question-create'] ? state.form['question-create'].submitErrors : null,
     sourceQuestionValue: selector(state, 'sourceQuestion'),
     topicSuggestions: state.suggestion.topicSuggestions,
+    isPremium: state.session.session && state.session.session.user ? state.session.session.user.subscription : null,
   });
 };
 
