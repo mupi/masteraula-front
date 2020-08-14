@@ -22,3 +22,4 @@ export { default as onlineTest } from './onlineTestReducer';
 export { default as activity } from './activityReducer';
 export { default as filterActivity } from './filterActivityReducer';
 export { default as filterClassPlan } from './filterClassPlanReducer';
+export { default as termsUse } from './termsUseReducer';

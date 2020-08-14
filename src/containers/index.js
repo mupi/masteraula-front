@@ -45,3 +45,4 @@ export { default as CreateActivityPageContainer } from './CreateActivityPageCont
 export { default as ActivityBasePageContainer } from './ActivityBasePageContainer';
 export { default as ViewPublicClassPlanPageContainer } from './ViewPublicClassPlanPageContainer';
 export { default as ClassPlanBasePageContainer } from './ClassPlanBasePageContainer';
+export { default as TermsUsePageContainer } from './TermsUsePageContainer';

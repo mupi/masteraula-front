@@ -6,8 +6,6 @@ import {
 } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-import TermsUsePage from 'pages/TermsUse/TermsUsePage';
-import TermsUsePageHome from 'pages/TermsUse/TermsUsePageHome';
 import PricingPageHome from 'pages/Pricing/PricingPageHome';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 
@@ -51,6 +49,7 @@ import {
   ViewActivityPageContainer,
   ViewPublicClassPlanPageContainer,
   ClassPlanBasePageContainer,
+  TermsUsePageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -212,7 +211,7 @@ class App extends Component {
                 <Route path="/object-base/:page(\d+)" component={ObjectBasePageContainer} />
                 <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
                 <Route path="/nossos-planos" component={PricingPageHome} />
-                <Route path="/terms-use" component={TermsUsePageHome} />
+                <Route path="/terms-use" component={TermsUsePageContainer} />
                 <Route path="/topic-base/:page(\d+)" component={TopicBasePageContainer} />
                 <Route path="/create-classplan/:type" component={CreateClassPlanPageContainer} />
                 <Route path="/edit-classplan/:id" component={EditClassPlanPageContainer} />
@@ -240,10 +239,9 @@ class App extends Component {
                 <Route path="/nossos-planos" component={PricingPageContainer} />
                 <Route path="/esqueci-senha" component={ForgotPasswordPageContainer} />
                 <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
-                <Route path="/terms-use" component={TermsUsePage} />
+                <Route path="/terms-use" component={TermsUsePageContainer} />
                 <Route path="/verify-userregister/:key" component={VerifyRegisterPageContainer} />
                 <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
-                <Route path="/terms-use" component={TermsUsePage} />
                 <Route path="/faq" component={FaqPageContainer} />
                 <Route path="/apply-online/:id" component={StudentOnlineTestPageContainer} />
                 <Route path="/view-public-classplan/:link" component={ViewPublicClassPlanPageContainer} />
