@@ -317,7 +317,7 @@ const menuMainOptions = [
     name: 'Buscar questões',
     iconMenu: 'search',
   },
-]
+];
 
 const SidebarWeb = ({
   /* showFilters, */
