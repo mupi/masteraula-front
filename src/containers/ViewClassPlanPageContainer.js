@@ -13,6 +13,7 @@ import { fetchOnlineTest } from 'actions/onlineTestAction';
 const mapStateToProps = state => ({
   error: state.classPlan.error,
   activeClassPlan: state.classPlan.activeClassPlan,
+  isCopying: state.classPlan.isCopying,
   isFetching: state.classPlan.isFetching,
   userId: state.session.session.user.id,
   user: state.session.session.user,

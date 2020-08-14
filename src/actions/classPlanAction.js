@@ -469,7 +469,7 @@ export const copyClassPlan = (props) => {
     dispatch(copySelectedDocument(props));
     return classPlanService.copyClassPlan(props).then(
       (activeClassPlan) => {
-          dispatch(copySelectedDocumentSuccess(activeClassPlan));
+        dispatch(copySelectedDocumentSuccess(activeClassPlan));
       },
       (error) => {
         dispatch(copySelectedDocumentFailure(error));
@@ -488,7 +488,6 @@ export const copyClassPlanView = (props) => {
       (activeClassPlan) => {
         dispatch(copySelectedDocumentViewSuccess(activeClassPlan));
         history.push(`/view-classplan/${activeClassPlan.id}`);
-
       },
       (error) => {
         dispatch(copySelectedDocumentFailure(error));
