@@ -72,6 +72,18 @@ const MyDashboardRecentDocuments = (props) => {
             Criar questão
           </Link>
         </p>
+        <p>
+          <Link to="/create-object">
+            <FontAwesomeIcon className="btn__icon" icon="plus" />
+            Criar objeto
+          </Link>
+        </p>
+        <p>
+          <Link to="/create-activity">
+            <FontAwesomeIcon className="btn__icon" icon="plus" />
+            Criar atividade
+          </Link>
+        </p>
         <Button
           color="link"
           onClick={() => showCreateClassPlanModal(selectedClassPlanType)}
