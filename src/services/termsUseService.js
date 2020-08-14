@@ -20,8 +20,7 @@ function listTermsUse() {
 
   };
 
-  /* FALTA ATUALIZAR */
-  const url = '/faq_categories/';
+  const url = '/pages/terms_use/1/';
 
 
   return axios.get(`${apiUrl}${url}`, requestOptions)

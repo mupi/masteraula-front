@@ -5,7 +5,7 @@ import { listTermsUse } from 'actions/termsUseAction';
 const mapStateToProps = state => ({
   isLoggedIn: !!state.session.session,
   faqList: state.faq.faqList,
-  isFetchingFaqs: state.faq.isFetchingFaqs,
+  isFetching: state.termsUse.isFetching,
   termsUseList: state.termsUse.termsUseList,
 });
 
