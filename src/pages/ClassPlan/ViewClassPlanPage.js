@@ -61,7 +61,7 @@ class ViewClassPlanPage extends Component {
       userId, activeClassPlan, isFetching, user, error,
       showDeleteModal, showDocumentModal, showActivityModal, showOnlineTestModal,
       generatePublicLink, publicLink, showAlertModal, copyClassPlanView,
-      quantityUsedPublicLinks, isPremium,
+      quantityUsedPublicLinks, isPremium, isCopying,
     } = this.props;
 
     const authorPK = (activeClassPlan && activeClassPlan.owner) ? activeClassPlan.owner.pk : 'Anônimo';
@@ -140,15 +140,16 @@ class ViewClassPlanPage extends Component {
                     Editar
                   </Link>
                 ) : ''}
-                <Button
-                  className="btn btn-secondary c-question__btn-back"
-                  onClick={() => copyClassPlanView(activeClassPlan.id)}
-                  title="Duplicar plano de aula"
-                >
-                  <FontAwesomeIcon icon="copy" className="btn__icon" />
-                  {' '}
-                  Duplicar
-                </Button>
+              <Button
+                className="btn btn-secondary c-question__btn-back"
+                onClick={() => copyClassPlanView(activeClassPlan.id)}
+                title="Duplicar plano de aula"
+                disabled={isCopying}
+              >
+                <FontAwesomeIcon icon="copy" className="btn__icon" />
+                {' '}
+                Duplicar
+              </Button>
             </Col>
           </Row>
           <Row className="c-question--space-for-titlequestion">

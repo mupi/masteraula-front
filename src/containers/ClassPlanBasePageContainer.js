@@ -50,7 +50,7 @@ const mapStateToProps = state => ({
 
   /* search filters */
   searchText: state.filterClassPlan.searchText,
-  onlyMyClassPlan: state.filterClassPlan.onlyMyClassPlan,
+  onlyMyClassPlans: state.filterClassPlan.onlyMyClassPlans,
   disciplineIdSelected: state.filterClassPlan.disciplinesSelected
     && state.filterClassPlan.disciplinesSelected.length > 0 ? state.filterClassPlan.disciplinesSelected[0].id : -1,
   disciplinesSelected: state.filterClassPlan.disciplinesSelected,
@@ -76,8 +76,7 @@ const mapDispatchToProps = dispatch => ({
     history.replace('/class-plans-base/1');
     dispatch(addMyClassPlansFilter(author, value));
   },
-  listDisciplineFilters: param => 
-  dispatch(listDisciplineFilters(param)),
+  listDisciplineFilters: param => dispatch(listDisciplineFilters(param)),
 
   listTeachingLevelFilters: param => dispatch(listTeachingLevelFilters(param)),
   listTopicSuggestions: param => dispatch(listTopicSuggestions(param)),

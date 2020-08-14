@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import ViewClassPlanPage from 'pages/ClassPlan/ViewClassPlanPage';
 
-import { fetchClassPlan, deleteClassPlan, generatePublicLink, copyClassPlanView } from 'actions/classPlanAction';
+import {
+  fetchClassPlan, deleteClassPlan, generatePublicLink, copyClassPlanView,
+} from 'actions/classPlanAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import {
   switchActiveDocument, fetchPreviewDocument,
@@ -13,6 +15,7 @@ import { fetchOnlineTest } from 'actions/onlineTestAction';
 const mapStateToProps = state => ({
   error: state.classPlan.error,
   activeClassPlan: state.classPlan.activeClassPlan,
+  isCopying: state.classPlan.isCopying,
   isFetching: state.classPlan.isFetching,
   userId: state.session.session.user.id,
   user: state.session.session.user,
