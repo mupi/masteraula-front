@@ -4,7 +4,7 @@ import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import DeleteQuestionButtonContainer from 'containers/DeleteQuestionButtonContainer';
 import {
-  Alert, Row, Col,
+  Alert, Row, Col, Badge,
 } from 'reactstrap';
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
@@ -196,6 +196,7 @@ class QuestionPage extends Component {
                   {discipline.name}
                 </span>
               ))}
+              {activeQuestion.secret ? <Badge color="info">PRIVADA</Badge> : <Badge color="success">PÚBLICA</Badge>}
             </Col>
           </Row>
 

@@ -342,6 +342,40 @@ class QuestionForm extends Component {
                           }
             </Col>
           </Row>
+
+          <Row className="align-items-center">
+            <Col sm="3" xs="3">
+              Sua questão será:
+            </Col>
+            <Col sm="6" xs="6">
+              <FormGroup check inline>
+                <Label check>
+                  <Field
+                    name="secret"
+                    component="input"
+                    type="radio"
+                    value="P"
+                    className="c-create-online__radio-button-field"
+                  />
+                  {' '}
+                  Pública
+                </Label>
+              </FormGroup>
+              <FormGroup check inline>
+                <Label check>
+                  <Field
+                    name="secret"
+                    component="input"
+                    type="radio"
+                    value="S"
+                    className="c-create-online__radio-button-field"
+                  />
+                  {' '}
+                  Privada
+                </Label>
+              </FormGroup>
+            </Col>
+          </Row>
           <Row className="c-question__tittle-section">
             <Col sm="12">
               <h5>

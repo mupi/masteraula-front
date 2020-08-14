@@ -4,6 +4,7 @@ import {
 } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getCleanExtractStatement } from 'helpers/question';
 
 const HeaderWithFilters = (props) => {
   const {
@@ -54,8 +55,8 @@ const HeaderWithFilters = (props) => {
           Tipo:
           {classPlan.plan_type && classPlan.plan_type === 'T' ? (
             ' Aberto'
-            ): ' Estação'}
-            {' '}
+          ) : ' Estação'}
+          {' '}
         </span>
       </p>
     </CardHeader>
@@ -88,9 +89,9 @@ const HeaderWithoutFilters = (props) => {
           Tipo:
           {classPlan.plan_type && classPlan.plan_type === 'T' ? (
             ' Aberto'
-            ): ' Estação'}
-            {' '}
-        </  span>
+          ) : ' Estação'}
+          {' '}
+        </span>
       </p>
     </CardHeader>
   );
@@ -102,6 +103,7 @@ const ClassPlanCard = (props) => {
     button,
     withFilters = true,
   } = props;
+  const extractPhases = getCleanExtractStatement(classPlan.phases);
 
   return (
     <Card className="h-100 question-card__full">
@@ -112,7 +114,7 @@ const ClassPlanCard = (props) => {
             Etapas:
             {' '}
             <em>
-              { classPlan.phases }
+              { (extractPhases && extractPhases.length >= 150) ? ` ${extractPhases.substring(0, 150)}${' ...'}` : extractPhases }
             </em>
           </p>
         </div>
