@@ -241,6 +241,7 @@ export const updateQuestion = (props) => {
           selectedIndex: selectedAlternative,
           resolution: activeQuestion.resolution,
           sourceQuestion: activeQuestion.source ? 'V' : 'A',
+          secret: activeQuestion.secret ? 'S' : 'P',
         }));
       },
       (error) => {
