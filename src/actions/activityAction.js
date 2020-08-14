@@ -172,6 +172,7 @@ export const updateActivity = updatedDataActivity => async (dispatch) => {
       teachingLevels: updatedActivity.teaching_levels,
       tasks: updatedActivity.tasks,
       tags: updatedActivity.tags.map(tag => tag.name.trim()).join(', '),
+      secret: updatedActivity.secret ? 'S' : 'P',
     }));
     dispatch({ type: UPDATE_ACTIVITY_SUCCESS, activeActivity: updatedActivity });
   } catch {

@@ -330,6 +330,7 @@ export const updateClassPlan = (props) => {
           content: activeClassPlan.content,
           guidelines: activeClassPlan.guidelines,
           stations: activeClassPlan.stations.map(x => ({ description_station: x.description_station, name_station: x.name_station })),
+          secret: activeClassPlan.secret ? 'S' : 'P',
         }));
       },
       (error) => {

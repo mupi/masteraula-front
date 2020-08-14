@@ -34,7 +34,7 @@ function createQuestion(newQuestionData) {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    body: JSON.stringify({ ...newQuestionData, secret: true }),
+    body: JSON.stringify({ ...newQuestionData }),
   };
 
   const handleResponse = response => response.json().then((data) => {
@@ -58,7 +58,7 @@ function classifyQuestion(activeUpdateQuestion) {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    body: JSON.stringify({ ...activeUpdateQuestion, secret: true }),
+    body: JSON.stringify({ ...activeUpdateQuestion }),
   };
 
   const handleResponse = response => response.json().then((data) => {
@@ -88,7 +88,7 @@ function updateQuestion(activeUpdateQuestion) {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    body: JSON.stringify({ ...activeUpdateQuestion, secret: true }),
+    body: JSON.stringify({ ...activeUpdateQuestion }),
   };
 
   const handleResponse = response => response.json().then((data) => {
