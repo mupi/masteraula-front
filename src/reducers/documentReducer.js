@@ -105,6 +105,7 @@ export const document = (state = initialState, action) => {
         isFetching: false,
       });
     case CREATE_DOCUMENT_SUCCESS:
+      toast.success(`Prova em edição: ${action.newDocument.name}`, optionsSuccess);
       return Object.assign({}, state, {
         isRemoved: null,
         isUpdated: null,

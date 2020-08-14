@@ -375,7 +375,11 @@ const SidebarWeb = ({
                         <Button
                           color="link"
                           className="document__new-document-btn text-left"
-                          onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
+                          onClick={(e) => {
+                            openCreateDocumentModal();
+                            toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar);
+                            sidebarOptionSelected(menuMainOptions[0].id);
+                          }}
                         >
                           <span className="ml-2">
                             <FontAwesomeIcon className="btn__icon" icon="plus" />
@@ -414,7 +418,7 @@ const SidebarWeb = ({
                     <ListGroupItem className="list-group-item__simple-option">
                       <Button
                         color="link"
-                        onClick={() => showCreateClassPlanModal(selectedClassPlanType)}
+                        onClick={() => { showCreateClassPlanModal(selectedClassPlanType); sidebarOptionSelected(menuMainOptions[0].id); }}
                         className="document__new-document-btn text-left"
                       >
                         <span className="ml-2">

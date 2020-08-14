@@ -85,7 +85,6 @@ const ViewOnlineTestPage = (props) => {
                   Editar
                 </Link>
               ) : ''}
-    
             { activeOnlineTest.results && activeOnlineTest.results.length > 0 && (
             <Link
               className="btn btn-secondary c-question__btn-back"
@@ -123,9 +122,9 @@ const ViewOnlineTestPage = (props) => {
           </Col>
         </Row>
         {activeOnlineTest.disabled ? (
-              <Alert color="danger" className="c-question-edit__warning-message">
+          <Alert color="danger" className="c-question-edit__warning-message">
               A prova foi removida pelo autor(a) e não está mais disponível
-              </Alert>
+          </Alert>
         ) : ''}
         <OnlineTestBasicInfo onlineTest={activeOnlineTest} />
         <OnlineTestQuestions
