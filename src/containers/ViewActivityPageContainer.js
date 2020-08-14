@@ -7,6 +7,7 @@ import {
 } from 'actions/classPlanAction';
 import { showModal, hideModal } from 'actions/modalAction';
 
+import { setQuestionIdToNewDocument, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
@@ -18,6 +19,10 @@ const mapStateToProps = state => ({
   /* Class plan */
   selectedClassPlanType: state.classPlan.selectedClassPlanType,
   isLoggedIn: !!state.session.session,
+  activeDocument: state.document.activeDocument,
+  idAddedQuestion: state.document.idAddedQuestion,
+  idRemovedQuestion: state.document.idRemovedQuestion,
+
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -59,6 +64,12 @@ const mapDispatchToProps = (dispatch) => {
   return ({
     fetchActivity: id => dispatch(fetchActivity(id)),
     showDeleteModal: idActivity => dispatch(showModal(deleteModalProps(idActivity))),
+    setQuestionIdToNewDocument: idQuestion => dispatch(setQuestionIdToNewDocument(idQuestion)),
+
+    hideModal: () => dispatch(hideModal()),
+    showModal: (modalProps, modalType) => {
+      dispatch(showModal({ modalProps, modalType }));
+    },
 
     showWarningObjectModal: () => {
       dispatch(showModal(warningObjectModalProps()));
