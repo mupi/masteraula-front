@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import {
-  ListGroupItem, Button, Collapse,
+  Button, Collapse,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class SidebarMenu extends Component {
   constructor(props) {
     super(props);
+    const {
+      idMenuOption, idSidebar,
+    } = this.props;
+
+    const isSelectedMenu = idMenuOption === idSidebar;
     this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false };
+    this.state = { collapse: isSelectedMenu };
   }
 
   toggle() {

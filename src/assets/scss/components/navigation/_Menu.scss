@@ -371,6 +371,11 @@ a.menu-top__document-link:hover {
     padding: 0rem 0rem 0rem 1.25rem;
     cursor: pointer;
     outline: none;
+
+    &--active{
+      background: rgba(255, 255, 255, 0.16);
+      color: white;
+    }
   }
 
   &__option-sidebar-btn-collapse {
@@ -381,5 +386,6 @@ a.menu-top__document-link:hover {
       background: transparent;
     }
   }
+
 
 }
