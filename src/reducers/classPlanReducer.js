@@ -46,6 +46,7 @@ import {
   COPY_CLASS_PLAN,
   COPY_CLASS_PLAN_SUCCESS,
   COPY_CLASS_PLAN_FAILURE,
+  COPY_CLASS_PLAN_VIEW_SUCCESS,
 
   SELECT_CLASS_PLAN_TYPE,
   RESET_CLASS_PLAN_TYPE,
@@ -435,6 +436,12 @@ export const classPlan = (state = initialState, action) => {
       toast.error('Ocorreu um erro com sua solicitação', optionsError);
       return Object.assign({}, state, {
         error: action.error,
+      });
+    }
+    case COPY_CLASS_PLAN_VIEW_SUCCESS: {
+      toast.success('Cópia do plano de aula realizada com sucesso', optionsSuccess);
+      return Object.assign({}, state, {
+        activeClassPlan: { ...action.activeClassPlan },
       });
     }
     case SELECT_CLASS_PLAN_TYPE: {

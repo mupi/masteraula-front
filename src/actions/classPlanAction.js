@@ -81,6 +81,7 @@ export const REMOVE_MATERIAL_FROM_CLASS_PLAN_STATION = 'REMOVE_MATERIAL_FROM_CLA
 export const COPY_CLASS_PLAN = 'COPY_CLASS_PLAN';
 export const COPY_CLASS_PLAN_SUCCESS = 'COPY_CLASS_PLAN_SUCCESS';
 export const COPY_CLASS_PLAN_FAILURE = 'COPY_CLASS_PLAN_FAILURE';
+export const COPY_CLASS_PLAN_VIEW_SUCCESS = 'COPY_CLASS_PLAN_VIEW_SUCCESS';
 
 // Set activity that will added in new ClassPlan - Create class plan based on activity
 export const SET_ACTIVITY_TO_NEW_CLASSPLAN = 'SET_ACTIVITY_TO_NEW_CLASSPLAN';
@@ -468,7 +469,26 @@ export const copyClassPlan = (props) => {
     dispatch(copySelectedDocument(props));
     return classPlanService.copyClassPlan(props).then(
       (activeClassPlan) => {
-        dispatch(copySelectedDocumentSuccess(activeClassPlan));
+          dispatch(copySelectedDocumentSuccess(activeClassPlan));
+      },
+      (error) => {
+        dispatch(copySelectedDocumentFailure(error));
+      },
+    );
+  };
+};
+
+export const copyClassPlanView = (props) => {
+  function copySelectedDocument() { return { type: COPY_CLASS_PLAN }; }
+  function copySelectedDocumentViewSuccess(activeClassPlan) { return { type: COPY_CLASS_PLAN_VIEW_SUCCESS, activeClassPlan }; }
+  function copySelectedDocumentFailure(error) { return { type: COPY_CLASS_PLAN_FAILURE, error }; }
+  return (dispatch) => {
+    dispatch(copySelectedDocument(props));
+    return classPlanService.copyClassPlan(props).then(
+      (activeClassPlan) => {
+        dispatch(copySelectedDocumentViewSuccess(activeClassPlan));
+        history.push(`/view-classplan/${activeClassPlan.id}`);
+
       },
       (error) => {
         dispatch(copySelectedDocumentFailure(error));

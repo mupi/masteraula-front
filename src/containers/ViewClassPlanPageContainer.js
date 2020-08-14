@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ViewClassPlanPage from 'pages/ClassPlan/ViewClassPlanPage';
 
-import { fetchClassPlan, deleteClassPlan, generatePublicLink } from 'actions/classPlanAction';
+import { fetchClassPlan, deleteClassPlan, generatePublicLink, copyClassPlanView } from 'actions/classPlanAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import {
   switchActiveDocument, fetchPreviewDocument,
@@ -102,6 +102,7 @@ const mapDispatchToProps = (dispatch) => {
     showOnlineTestModal: idOnlineTest => dispatch(showModal(onlineTestModalProps(idOnlineTest))),
     generatePublicLink: id => dispatch(generatePublicLink(id)),
     showAlertModal: message => dispatch(showModal(alertModalProps(message))),
+    copyClassPlanView: classPlan => dispatch(copyClassPlanView(classPlan)),
 
   });
 };

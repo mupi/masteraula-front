@@ -60,7 +60,7 @@ class ViewClassPlanPage extends Component {
     const {
       userId, activeClassPlan, isFetching, user, error,
       showDeleteModal, showDocumentModal, showActivityModal, showOnlineTestModal,
-      generatePublicLink, publicLink, showAlertModal,
+      generatePublicLink, publicLink, showAlertModal, copyClassPlanView,
       quantityUsedPublicLinks, isPremium,
     } = this.props;
 
@@ -140,6 +140,15 @@ class ViewClassPlanPage extends Component {
                     Editar
                   </Link>
                 ) : ''}
+                <Button
+                  className="btn btn-secondary c-question__btn-back"
+                  onClick={() => copyClassPlanView(activeClassPlan.id)}
+                  title="Duplicar plano de aula"
+                >
+                  <FontAwesomeIcon icon="copy" className="btn__icon" />
+                  {' '}
+                  Duplicar
+                </Button>
             </Col>
           </Row>
           <Row className="c-question--space-for-titlequestion">
@@ -180,6 +189,7 @@ class ViewClassPlanPage extends Component {
             showAlertModal={showAlertModal}
             quantityUsedPublicLinks={quantityUsedPublicLinks}
             isPremium={isPremium}
+            isOwner={isOwner}
           />
           <ClassPlanTeacherArea classPlan={activeClassPlan} />
           {hasGuidelines && (

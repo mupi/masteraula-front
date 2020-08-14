@@ -9,7 +9,7 @@ import { masteraulaUrl, maxPublicLinksFreePlan } from 'helpers/config';
 
 /* eslint-disable react/no-danger */
 const ClassPlanBasicInfo = ({
-  classPlan, user, generatePublicLink, publicLink, showAlertModal, quantityUsedPublicLinks, isPremium,
+  classPlan, user, generatePublicLink, publicLink, showAlertModal, quantityUsedPublicLinks, isPremium, isOwner,
 }) => {
   const hasTeachingYears = classPlan && classPlan.teaching_years && classPlan.teaching_years.length > 0;
   const hasTags = classPlan && classPlan.tags && classPlan.tags.length > 0;
@@ -38,7 +38,7 @@ const ClassPlanBasicInfo = ({
         </Col>
       </Row>
       <Row>
-      {!classPlan.disabled ? (
+      {!classPlan.disabled &&  isOwner ? (
         <Col sm="6" className="offset-md-6 text-right">
           {(publicLink.length === 0) ? (
             <Button color="success" onClick={() => handleClick()}>
