@@ -373,22 +373,22 @@ export const classPlan = (state = initialState, action) => {
     }
     /* FIN: UPDATE */
 
-  case LIST_CLASSPLAN_PAGE:
-    return Object.assign({}, state, {
-      currentPage: action.page,
-      isFetching: true,
-      error: null,
-    });
-  case LIST_CLASSPLAN_PAGE_SUCCESS:
-    return Object.assign({}, state, {
-      classPlanPage: action.classPlanPage,
-      isFetching: false,
-    });
-  case LIST_CLASSPLAN_PAGE_FAILURE:
-    return Object.assign({}, state, {
-      isFetching: false,
-      error: action.error,
-    });
+    case LIST_CLASSPLAN_PAGE:
+      return Object.assign({}, state, {
+        currentPage: action.page,
+        isFetching: true,
+        error: null,
+      });
+    case LIST_CLASSPLAN_PAGE_SUCCESS:
+      return Object.assign({}, state, {
+        classPlanPage: action.classPlanPage,
+        isFetching: false,
+      });
+    case LIST_CLASSPLAN_PAGE_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
     case LIST_MY_CLASS_PLANS:
       return Object.assign({}, state, {
         classPlans: action.classPlans,

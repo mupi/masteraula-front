@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import ViewClassPlanPage from 'pages/ClassPlan/ViewClassPlanPage';
 
-import { fetchClassPlan, deleteClassPlan, generatePublicLink, copyClassPlanView } from 'actions/classPlanAction';
+import {
+  fetchClassPlan, deleteClassPlan, generatePublicLink, copyClassPlanView,
+} from 'actions/classPlanAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import {
   switchActiveDocument, fetchPreviewDocument,
