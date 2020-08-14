@@ -78,6 +78,9 @@ const DocumentList = (props) => {
                       <FontAwesomeIcon icon="cog" />
                     </Link>
                     )}
+                    {document.documents_online.length > 0 && (
+                      document.documents_online.map(o => (<p key={o.link} className="c-my-documents__online-test">{o.name}</p>))
+                    )}
                   </td>
                   <td>
                     <UncontrolledDropdown>
