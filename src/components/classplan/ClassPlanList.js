@@ -28,7 +28,7 @@ const ClassPlanList = (props) => {
   /* CLASS PLAN TYPE */
   const CLASSPLAN_TYPE = {
     STATIONS: 'S',
-    OPEN: 'O',
+    OPEN: 'T',
   };
   return (
     <Row className="l-my-documents-list">

@@ -40,7 +40,7 @@ const optionsActivity = {
 /* CLASS PLAN TYPE */
 const CLASSPLAN_TYPE = {
   STATIONS: 'S',
-  OPEN: 'O',
+  OPEN: 'T',
 };
 
 class ViewClassPlanPage extends Component {
