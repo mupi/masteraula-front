@@ -71,7 +71,7 @@ const HeaderWithoutFilters = (props) => {
           { `Atividade N° ${activity.id}`}
         </div>
       </div>
-      <div className="question-card__info-section">
+      <div className="question-card__info-section text-left">
         {activity.disciplines && activity.disciplines.map(discipline => <Badge className="question-card__info-section-item--pink" key={`${discipline.id}-${discipline.name}`} color="success" pill>{discipline.name.trim()}</Badge>)}
         {activity.teaching_levels && activity.teaching_levels.map(teachingLevel => <Badge key={`${teachingLevel.id}-${teachingLevel.name}`} color="success" pill>{teachingLevel.name.trim()}</Badge>)}
       </div>

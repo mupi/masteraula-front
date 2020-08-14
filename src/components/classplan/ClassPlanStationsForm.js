@@ -216,6 +216,7 @@ const StationMaterial = ({ station, stationIndex, removeMaterialFromClassPlanSta
         <ActivityCard
           activity={station.material}
           button={StationMaterialRemoveButton(MATERIAL_TYPE.ACTIVITY)}
+          withFilters={false}
         />
       )}
       {station.document_online_ids && station.material && (
