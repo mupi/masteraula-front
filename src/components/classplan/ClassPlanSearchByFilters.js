@@ -97,7 +97,7 @@ class ClassPlanSearchByFilters extends Component {
     return (
       <>
         <SearchTermsAutocomplete {...this.props} baseName="atividades" />
-        <Row className="c-question-base__myquestions-filter">
+        { /* <Row className="c-question-base__myquestions-filter">
           <Label check>
             <Input
               type="checkbox"
@@ -112,7 +112,7 @@ class ClassPlanSearchByFilters extends Component {
               {'Meus planos de aula'}
             </strong>
           </Label>
-        </Row>
+    </Row> */}
         {!onlyTerms && (
         <Row className="mb-2">
           <Col>
