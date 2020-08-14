@@ -84,7 +84,6 @@ export const listDisciplineFilters = () => {
     return filterService.listDisciplineFilters()
       .then(
         (disciplineFilters) => {
-          console.log(disciplineFilters)
           dispatch(fetchListDisciplineFiltersSuccess(disciplineFilters));
         },
         (error) => {

@@ -337,8 +337,9 @@ function listClassPlans(page, filter) {
   const topicsParams = queryString.stringify({ topics: filter.topicsSelected.map(item => item.id) });
 
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
+  const author = (filter.onlyMyClassPlans) ? queryString.stringify({ author: filter.author }) : '';
 
-  const urlParams = [pageParam, disciplinesParams, teachingLevelParams, difficultiesParams, yearsParams, topicsParams, search]
+  const urlParams = [pageParam, disciplinesParams, teachingLevelParams, difficultiesParams, yearsParams, topicsParams, author, search]
     .filter(p => p)
     .join('&');
 
