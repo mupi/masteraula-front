@@ -412,6 +412,7 @@ export const classPlan = (state = initialState, action) => {
         isDeleted: false,
       });
     case COPY_CLASS_PLAN: {
+      toast.success('A cópia do plano de aula está em processo', optionsSuccess);
       return Object.assign({}, state, {
         isRemoved: null,
         error: null,
