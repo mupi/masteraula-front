@@ -138,7 +138,7 @@ function listTopicFilters(filter, activities) {
   const myQuestionLabelsParams = queryString.stringify({ labels: filter.myQuestionlabelsSelected.map(item => item.id) });
 
   const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
-  const author = (filter.onlyMyQuestions) ? queryString.stringify({ author: filter.author }) : '';
+  const author = (filter.onlyMyQuestions || filter.onlyMyActivities) ? queryString.stringify({ author: filter.author }) : '';
   const activitiesParams = (activities !== undefined) ? queryString.stringify(activities) : '';
   const urlParams = [disciplinesParams, teachingLevelParams, difficultiesParams,
     sourcesParams, yearsParams, topicsParams, author, search, myQuestionLabelsParams, activitiesParams]
