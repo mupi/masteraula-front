@@ -40,19 +40,21 @@ const AlertDocumentNotAvailable = ({ document }) => (
   ) : ''
 );
 
-const DocumentModalOptions = ({ document, editDocument }) => (
+const DocumentModalOptions = ({ document, editDocument, user }) => (
   <>
     <Row className="c-document-modal__main-options">
-      <div className="auto-margin-left-element">
-        <ExportDocumentButtonContainer
-          color="success"
-          text="Exportar"
-          documentId={document.id}
-          documentName={document.name}
-          documentTotalQuestions={document && document.questions ? document.questions.length : 0}
-        />
-      </div>
-      { document && !document.disabled && (
+      { document.owner === user && (
+        <div className="auto-margin-left-element">
+          <ExportDocumentButtonContainer
+            color="success"
+            text="Exportar"
+            documentId={document.id}
+            documentName={document.name}
+            documentTotalQuestions={document && document.questions ? document.questions.length : 0}
+          />
+        </div>
+      )}
+      { document && !document.disabled && document.owner === user && (
         <div className="ml-1">
           <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
             <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
@@ -69,7 +71,7 @@ const DocumentModalOptions = ({ document, editDocument }) => (
 );
 
 const DocumentModal = ({
-  document, closeModal, editDocument, isFetchingPreviewDocument,
+  document, closeModal, editDocument, isFetchingPreviewDocument, user
 }) => {
   if (isFetchingPreviewDocument) {
     return (
@@ -81,6 +83,7 @@ const DocumentModal = ({
     );
   }
   return (
+    
     <div className="modal__content modal-content">
       <div className="modal__header modal-header">
         <h6
@@ -97,13 +100,13 @@ const DocumentModal = ({
       <div className="c-document-modal__body modal-body">
         { document && document.questions && document.questions.length > 0 ? (
           <div>
-            <DocumentModalOptions document={document} editDocument={editDocument} />
+            <DocumentModalOptions document={document} editDocument={editDocument} user={user} />
           </div>
         )
           : (
             <div>
               <Row className="c-document-modal__main-options">
-                { !document.disabled && (
+                { !document.disabled && document.owner === user && (
                 <div className="auto-margin-left-element">
                   <Button title="Editar prova" className="btn-success" onClick={() => editDocument(document)}>
                     <FontAwesomeIcon icon="pencil-alt" className="btn__icon" />
@@ -144,6 +147,7 @@ const DocumentModal = ({
 const mapStateToProps = state => ({
   document: state.document.previewDocument,
   isFetchingPreviewDocument: state.document.isFetchingPreviewDocument,
+  user: state.session.session.user.id,
 });
 
 const mapDispatchToProps = dispatch => ({
