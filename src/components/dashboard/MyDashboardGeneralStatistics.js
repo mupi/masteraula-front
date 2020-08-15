@@ -15,7 +15,7 @@ const MyDashboardGeneralStatistics = (props) => {
         </Row>
         <Row className="mb-4 align-items-center">
           <Col sm="6">
-            <CardDeck>
+            <CardDeck className="mb-4">
               <MyStatisticsCard
                 title="Banco de questões"
                 number={generalStatistics.total_questions}
@@ -24,10 +24,24 @@ const MyDashboardGeneralStatistics = (props) => {
                 cleanAllSearch={cleanAllSearch}
               />
               <MyStatisticsCard
-                title="Banco de Tirinhas e mais"
+                title="Banco de objetos"
                 number={generalStatistics.total_objects}
                 linkName="Acessar ao banco"
                 linkHref="/object-base/1"
+              />
+              <MyStatisticsCard
+                title="Banco de atividades"
+                number={generalStatistics.total_activities}
+                linkName="Acessar ao banco"
+                linkHref="/activity-base/1"
+              />
+            </CardDeck>
+            <CardDeck>
+              <MyStatisticsCard
+                title="Banco de planos de aula"
+                number={generalStatistics.total_plans}
+                linkName="Acessar ao banco"
+                linkHref="/class-plans-base/1"
               />
               <MyStatisticsCard
                 title="Tópicos e Assuntos"
