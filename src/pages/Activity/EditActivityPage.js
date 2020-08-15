@@ -40,7 +40,7 @@ const EditActivityPage = (props) => {
     return (
       <HomeUserPage>
         <Alert color="danger">
-          A atividade não é de sua autoria
+          Você não tem permissão para editar esta atividade
         </Alert>
       </HomeUserPage>
     );

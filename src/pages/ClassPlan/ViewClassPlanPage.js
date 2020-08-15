@@ -78,25 +78,25 @@ class ViewClassPlanPage extends Component {
       );
     }
 
-    if (error || !activeClassPlan) {
+    if (!activeClassPlan) {
       return (
         <HomeUserPage>
           <Alert color="danger">
-            Você não tem permissão para ver este plano de aula ou foi apagado.
+              O plano de aula não existe ou não está disponível
           </Alert>
         </HomeUserPage>
       );
     }
 
-    // if (!isOwner) {
-    //   return (
-    //     <HomeUserPage>
-    //       <Alert color="danger">
-    //         Você não tem permissão para ver este plano de aula ou foi apagado.
-    //       </Alert>
-    //     </HomeUserPage>
-    //   );
-    // }
+    if (activeClassPlan && activeClassPlan.secret && !isOwner) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+            Você não tem autorização para ver o plano de aula
+          </Alert>
+        </HomeUserPage>
+      );
+    }
 
     if (error || !activeClassPlan) {
       return (
