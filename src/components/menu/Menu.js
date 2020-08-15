@@ -22,8 +22,6 @@ const Menu = (props) => {
   const [locationPath, setLocationPath] = useState('');
 
   useEffect(() => {
-    console.log('hola');
-    console.log(location.pathname);
     setLocationPath(location.pathname);
     const { getNumberDocxDownloaded, isLoggedIn, getNumberClassPlanPublicLinks } = props;
     if (isLoggedIn) {
