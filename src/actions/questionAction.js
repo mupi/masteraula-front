@@ -137,7 +137,7 @@ export const fetchQuestion = (id) => {
         },
         (error) => {
           dispatch(fetchQuestionFailure(error));
-          history.push('/question-base/1');
+          // history.push('/question-base/1');
         },
       );
   };

@@ -50,6 +50,9 @@ const ViewActivityPage = (props) => {
     showCreateClassPlanModal, selectedClassPlanType,
   } = props;
 
+  const authorPk = (activeActivity && activeActivity.owner) ? activeActivity.owner.pk : 'Anônimo';
+  const isOwner = (authorPk === userId);
+
   useEffect(() => {
     fetchActivity(match.params.id);
   }, [match.params.id]);
@@ -68,15 +71,21 @@ const ViewActivityPage = (props) => {
     return (
       <HomeUserPage>
         <Alert color="danger">
-            A atividade não existe ou não está mais disponível
+            A atividade não existe ou não está disponível
         </Alert>
       </HomeUserPage>
     );
   }
 
-  const authorPK = (activeActivity && activeActivity.owner) ? activeActivity.owner.pk : 'Anônimo';
-
-  const isOwner = authorPK === userId;
+  if (activeActivity && activeActivity.secret && !isOwner) {
+    return (
+      <HomeUserPage>
+        <Alert color="danger">
+          Você não tem autorização para ver a atividade
+        </Alert>
+      </HomeUserPage>
+    );
+  }
 
   return (
     <HomeUserPage>

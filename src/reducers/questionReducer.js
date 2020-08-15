@@ -44,6 +44,7 @@ export const question = (state = initialState, action) => {
       });
     case FETCH_QUESTION_FAILURE:
       return Object.assign({}, state, {
+        activeQuestion: null,
         isFetching: false,
         error: action.error,
       });

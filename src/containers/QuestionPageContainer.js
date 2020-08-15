@@ -58,6 +58,7 @@ const mapStateToProps = state => ({
   filter: state.filter,
   labels: state.label.myQuestionLabels,
   isAddingRemovingLabel: state.label.isAddingRemovingLabel,
+  error: state.question.error,
 });
 
 const mapDispatchToProps = (dispatch) => {

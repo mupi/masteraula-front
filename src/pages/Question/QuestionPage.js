@@ -133,7 +133,17 @@ class QuestionPage extends Component {
       return (
         <HomeUserPage>
           <Alert color="danger">
-              Erro na questão
+            A questão não existe ou não está disponível
+          </Alert>
+        </HomeUserPage>
+      );
+    }
+
+    if (activeQuestion && activeQuestion.secret && !isOwner) {
+      return (
+        <HomeUserPage>
+          <Alert color="danger">
+            Você não tem autorização para ver a questão
           </Alert>
         </HomeUserPage>
       );
