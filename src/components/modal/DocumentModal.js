@@ -71,7 +71,7 @@ const DocumentModalOptions = ({ document, editDocument, user }) => (
 );
 
 const DocumentModal = ({
-  document, closeModal, editDocument, isFetchingPreviewDocument, user
+  document, closeModal, editDocument, isFetchingPreviewDocument, user,
 }) => {
   if (isFetchingPreviewDocument) {
     return (
@@ -83,7 +83,7 @@ const DocumentModal = ({
     );
   }
   return (
-    
+
     <div className="modal__content modal-content">
       <div className="modal__header modal-header">
         <h6
