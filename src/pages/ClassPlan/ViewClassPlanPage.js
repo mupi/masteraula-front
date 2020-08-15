@@ -170,7 +170,7 @@ class ViewClassPlanPage extends Component {
 
           {activeClassPlan.disabled ? (
             <Row>
-              <Col className="c-question__col-full-section-details">
+              <Col>
                 <Alert color="danger" className="c-question-edit__warning-message">
                   O plano de aula
                   {' '}

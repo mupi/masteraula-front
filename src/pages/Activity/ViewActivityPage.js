@@ -138,7 +138,7 @@ const ViewActivityPage = (props) => {
         </Row>
         {activeActivity.disabled ? (
           <Row>
-            <Col className="c-question__col-full-section-details">
+            <Col>
               <Alert color="danger" className="c-question-edit__warning-message">
                   A atividade
                 {' '}
@@ -151,7 +151,7 @@ const ViewActivityPage = (props) => {
           </Row>
         ) : ''}
         <Row className="justify-content-center">
-          <Col className="c-question__col-full-section-details" sm="12" md="12" xs="12">
+          <Col sm="12" md="12" xs="12">
             {(activeActivity.learning_objects && activeActivity.learning_objects.length > 0)
               ? (
                 <LearningObjectList
