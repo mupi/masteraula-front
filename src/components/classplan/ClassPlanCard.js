@@ -15,10 +15,13 @@ const HeaderWithFilters = (props) => {
 
   return (
     <CardHeader className="question-card__header">
-      <div className="d-flex question-card__id align-items-center">
-        <div>
+      <div>
+        <div className="document-card__id">
           { `Plano de aula N° ${classPlan.id}`}
         </div>
+        <p className="classplan-card__name">
+          {classPlan.name}
+        </p>
       </div>
       <div className="question-card__info-section">
         {classPlan.disciplines && classPlan.disciplines.map(discipline => (
@@ -67,10 +70,13 @@ const HeaderWithoutFilters = (props) => {
   const { classPlan } = props;
   return (
     <CardHeader className="question-card__header text-left">
-      <div className="d-flex question-card__id align-items-center">
-        <div>
+      <div>
+        <div className="document-card__id">
           { `Plano de aula N° ${classPlan.id}`}
         </div>
+        <p className="classplan-card__name">
+          {classPlan.name}
+        </p>
       </div>
       <div className="question-card__info-section">
         {classPlan.disciplines && classPlan.disciplines.map(discipline => <Badge className="question-card__info-section-item--pink" key={`${discipline.id}-${discipline.name}`} color="success" pill>{discipline.name.trim()}</Badge>)}
