@@ -180,18 +180,7 @@ class QuestionEditPage extends Component {
           </Alert>
         </HomeUserPage>
       );
-    }
-
-    if (authorPK !== userId) {
-      return (
-        <HomeUserPage>
-          <Alert color="danger">
-                Você não tem permissão para editar esta questão.
-          </Alert>
-        </HomeUserPage>
-      );
-    }
-
+    }   
     if (!role.includes('Editores') && (authorPK !== userId)) {
       return (
         <HomeUserPage>
