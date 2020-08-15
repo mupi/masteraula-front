@@ -15,7 +15,6 @@ import DisciplineList from 'components/disciplines/DisciplineList';
 import DescriptorList from 'components/descriptors/DescriptorList';
 import TagList from 'components/tags/TagList';
 import { Field, FieldArray } from 'redux-form';
-import QuestionAuthor from 'components/question/QuestionAuthor';
 import { requiredSelectValidator, /* minLength2TagsForEdit, */ requiredMultiSelectValidator } from 'helpers/validators';
 import renderMultiselect from 'components/autocomplete/Multiselect';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
@@ -180,7 +179,7 @@ class QuestionEditPage extends Component {
           </Alert>
         </HomeUserPage>
       );
-    }   
+    }
     if (!role.includes('Editores') && (authorPK !== userId)) {
       return (
         <HomeUserPage>
