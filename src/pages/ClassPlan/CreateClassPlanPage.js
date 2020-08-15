@@ -14,7 +14,7 @@ class CreateClassPlanPage extends Component {
   componentDidMount() {
     const {
       listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm,
-      resetSelectedActivities, resetSelectedDocuments, match, resetStationsClassPlan,
+      resetSelectedActivities, resetSelectedDocuments, match, resetStationsClassPlan, resetSelectedOnlineTests,
     } = this.props;
 
     if (match.params.type !== 'T' && match.params.type !== 'S') {
@@ -27,6 +27,7 @@ class CreateClassPlanPage extends Component {
       resetSelectedActivities();
       resetSelectedDocuments();
       resetStationsClassPlan();
+      resetSelectedOnlineTests();
     }
   }
 
