@@ -7,7 +7,7 @@ import {
 } from 'actions/classPlanAction';
 import { showModal, hideModal } from 'actions/modalAction';
 
-import { setQuestionIdToNewDocument, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
+import { setQuestionIdToNewDocument } from 'actions/documentAction';
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
