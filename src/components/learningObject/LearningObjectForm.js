@@ -202,7 +202,8 @@ const LearningObjectForm = (props) => {
             </div>
           </Col>
           <Col sm="8">
-            <p className="c-learning-object__form-labels">Insira trechos de textos, letras de música ou link para o vídeo
+            <p className="c-learning-object__form-labels">
+              Insira trechos de textos, letras de música ou link para o vídeo
               <span className="c-question-base__tooltip" href="#" id="TooltipExample">
                 {' '}
                 <FontAwesomeIcon icon="info-circle" />
