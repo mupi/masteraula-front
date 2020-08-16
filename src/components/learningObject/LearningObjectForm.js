@@ -126,7 +126,7 @@ const LearningObjectForm = (props) => {
     <Form onSubmit={handleSubmit}>
       <Prompt
         when={!pristine && !submitting}
-        message={`Tem certeza de sair da tela de ${actionName} atividade?`}
+        message={`Tem certeza de sair da tela de ${actionName} objeto de aprendizagem?`}
       />
       <div className="c-online c-create-online">
         {!hideMenuOptions && (
