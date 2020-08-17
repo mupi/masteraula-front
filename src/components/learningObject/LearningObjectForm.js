@@ -261,6 +261,13 @@ const LearningObjectForm = (props) => {
         <Row className="c-create-question__row-info mt-4 align-items-center">
           <Col className="info-label" sm="4" xs="4">
             Tags
+            <span href="#" id="TooltipTag">
+              {' '}
+              <FontAwesomeIcon icon="info-circle" size={12} />
+            </span>
+            <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipTag">
+              {'Insira palavras-chaves que descrevam o tipo de material, como por exemplo, "poesia, letra de música, rap nacional'}
+            </UncontrolledTooltip>
           </Col>
           <Col sm="8" xs="8">
             <Field
