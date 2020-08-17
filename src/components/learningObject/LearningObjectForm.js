@@ -226,9 +226,15 @@ const LearningObjectForm = (props) => {
         <Row className="c-question__tittle-section">
           <Col>
             <h5>
-              <FontAwesomeIcon icon="info-circle" />
+              <span className="c-question-base__tooltip" href="#" id="TooltipBasicInfo">
+                {' '}
+                <FontAwesomeIcon icon="info-circle" />
+              </span>
               {' '}
               Informações básicas
+              <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipBasicInfo">
+              Descreva detalhadamente as informações de autoria, inclusive o link, se houver, da fonte deste objeto.
+              </UncontrolledTooltip>
             </h5>
             <div className="border-top my-3" />
 
