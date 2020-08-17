@@ -21,6 +21,7 @@ const renderTextEditor = (props) => {
     placeholderEditor,
     input: { onChange, value }, disabled, id,
     meta: { touched, error, warning },
+    options = null,
   } = props;
 
   return (
@@ -31,6 +32,7 @@ const renderTextEditor = (props) => {
         placeholder={placeholderEditor}
         onChange={onChange}
         value={value}
+        options={options}
       />
       { touched
             && ((error && (
@@ -209,7 +211,7 @@ const LearningObjectForm = (props) => {
                 <FontAwesomeIcon icon="info-circle" size={12} />
               </span>
               <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
-                Texto ou vídeo: é um editor de texto para inserir texto ou vídeos de youtube embebed.
+                Texto ou vídeo: é um editor de texto para inserir texto ou vídeos de youtube embebed. Ex. https://www.youtube.com/embed/-4ZNtRvMMU4
               </UncontrolledTooltip>
             </p>
             <Field
@@ -219,6 +221,7 @@ const LearningObjectForm = (props) => {
               id="textObjectEditorText"
               disabled={false}
               placeholderEditor="Escreva trechos de textos, letras de música ou link para o vídeo aqui ..."
+              options={['inline', 'blockType', 'embedded']}
               // validate={requiredValidator}
             />
           </Col>

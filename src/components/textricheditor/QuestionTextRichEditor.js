@@ -40,7 +40,7 @@ class QuestionTextRichEditor extends Component {
 
   render() {
     const { editorState } = this.state;
-    const { placeholder } = this.props;
+    const { placeholder, options } = this.props;
 
     const setEditorReference = (ref) => {
       this.editorReferece = ref;
@@ -58,7 +58,10 @@ class QuestionTextRichEditor extends Component {
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange}
             toolbar={{
-              options: ['inline', 'blockType'],
+              options: options || ['inline', 'blockType'],
+              embedded: {
+                className: 'video-responsive',
+              },
             }}
             localization={{
               locale: 'pt',
