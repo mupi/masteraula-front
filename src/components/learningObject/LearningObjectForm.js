@@ -204,9 +204,9 @@ const LearningObjectForm = (props) => {
           <Col sm="8">
             <p className="c-learning-object__form-labels">
               Insira trechos de textos, letras de música ou link para o vídeo
-              <span className="c-question-base__tooltip" href="#" id="TooltipExample">
+              <span href="#" id="TooltipExample">
                 {' '}
-                <FontAwesomeIcon icon="info-circle" />
+                <FontAwesomeIcon icon="info-circle" size={12} />
               </span>
               <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
                 Texto ou vídeo: é um editor de texto para inserir texto ou vídeos de youtube embebed.
@@ -226,9 +226,9 @@ const LearningObjectForm = (props) => {
         <Row className="c-question__tittle-section">
           <Col>
             <h5>
-              <span className="c-question-base__tooltip" href="#" id="TooltipBasicInfo">
+              <span href="#" id="TooltipBasicInfo">
                 {' '}
-                <FontAwesomeIcon icon="info-circle" />
+                <FontAwesomeIcon icon="info-circle" size={12} />
               </span>
               {' '}
               Informações básicas
