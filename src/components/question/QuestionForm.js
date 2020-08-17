@@ -221,7 +221,13 @@ const renderAlternatives2 = ({ fields, meta: { error }, resolution }) => (
     <Col md="12">
       <Row className="c-question__row-info c-create-question__row-alternative c-create-question__header-alternative">
         <Col sm="1" xs="1" className="align-self-center hidden-xs">É correta</Col>
-        <Col sm="6" xs="8" className="align-self-center hidden-xs">Alternativa</Col>
+        <Col sm="6" xs="8" className="align-self-center hidden-xs">
+          Alternativa 
+          {' '}
+          <small>
+            (Para questão do tipo dissertativa, não preencha os campos de alternativa.)
+          </small>
+        </Col>
         <Col sm="2" xs="1" className="align-self-center hidden-xs">Remover</Col>
         { fields.length < 5
           ? (
@@ -439,7 +445,7 @@ class QuestionForm extends Component {
               <h5>
                 <FontAwesomeIcon icon="check-circle" />
                 {' '}
-                  Alternativas
+                  Alternativas 
               </h5>
             </Col>
           </Row>
@@ -460,6 +466,9 @@ class QuestionForm extends Component {
                 {' '}
                   Resolução
               </h5>
+              <small>
+                (Campo de preenchimento obrigatório para questão do tipo dissertativa.)
+              </small>
             </Col>
           </Row>
           <Row className="justify-content-center">
