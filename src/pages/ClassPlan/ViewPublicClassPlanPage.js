@@ -29,7 +29,7 @@ const CLASSPLAN_TYPE = {
   OPEN: 'T', /* before traditional, now Open */
 };
 const PublicActivitiesSection = ({ activities }) => (
-    <PublicActivityContentList activities={activities} />
+  <PublicActivityContentList activities={activities} />
 );
 
 const PublicOnlineTestSection = ({ onlineTests }) => (

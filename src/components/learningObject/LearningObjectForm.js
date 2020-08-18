@@ -221,7 +221,7 @@ const LearningObjectForm = (props) => {
               id="textObjectEditorText"
               disabled={false}
               placeholderEditor="Escreva trechos de textos, letras de música ou link para o vídeo aqui ..."
-              options={['inline', 'blockType', 'embedded']}
+              options={['inline', 'blockType', 'embedded', 'textAlign']}
               // validate={requiredValidator}
             />
           </Col>
