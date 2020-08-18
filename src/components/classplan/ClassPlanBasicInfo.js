@@ -5,21 +5,39 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import URLCopy from 'components/onlineTest/URLCopy';
 import { masteraulaUrl, maxPublicLinksFreePlan } from 'helpers/config';
+import { Link } from 'react-router-dom';
 
 
 /* eslint-disable react/no-danger */
 const ClassPlanBasicInfo = ({
-  classPlan, user, generatePublicLink, publicLink, showAlertModal, quantityUsedPublicLinks, isPremium, isOwner,
+  classPlan, generatePublicLink, publicLink, showAlertModal, quantityUsedPublicLinks, isPremium, isOwner,
 }) => {
   const hasTeachingYears = classPlan && classPlan.teaching_years && classPlan.teaching_years.length > 0;
   const hasTags = classPlan && classPlan.tags && classPlan.tags.length > 0;
   const hasBncc = classPlan && classPlan.bncc && classPlan.bncc.length > 0;
   const hasDuration = classPlan && classPlan.duration;
   const freePlanLimitString = `Você atingiu seu limite máximo de ${maxPublicLinksFreePlan} links para planos de aula públicos. Atualize seu plano gratuito para Premium`;
+  const componentMessage = closeModal => (
+    <p>
+      {freePlanLimitString}
+      { }
+      <Link
+        className="c-sidebar__user-dropdown-item"
+        to="/nossos-planos"
+        title="Nossos planos"
+        onClick={() => closeModal()}
+      >
+        <span>
+          {' '}
+          aqui
+        </span>
+      </Link>
+    </p>
+  );
 
   const handleClick = () => {
     if (!isPremium && quantityUsedPublicLinks === maxPublicLinksFreePlan) {
-      showAlertModal(freePlanLimitString);
+      showAlertModal(componentMessage);
     } else {
       generatePublicLink(classPlan.id);
     }
@@ -31,26 +49,26 @@ const ClassPlanBasicInfo = ({
           <h5>
             <FontAwesomeIcon icon="info-circle" />
             {' '}
-                      Informações básicas
+            Informações básicas
           </h5>
           <div className="border-top my-3" />
 
         </Col>
       </Row>
       <Row>
-      {!classPlan.disabled &&  isOwner ? (
-        <Col sm="6" className="offset-md-6 text-right">
-          {(publicLink.length === 0) ? (
-            <Button color="success" onClick={() => handleClick()}>
-              <FontAwesomeIcon icon="link" />
-              {' '}
+        {!classPlan.disabled && isOwner ? (
+          <Col sm="6" className="offset-md-6 text-right">
+            {(publicLink.length === 0) ? (
+              <Button color="success" onClick={() => handleClick()}>
+                <FontAwesomeIcon icon="link" />
+                {' '}
                 Gerar link
-            </Button>
-          )
-            : <URLCopy url={`${masteraulaUrl}/view-public-classplan/${publicLink}`} />
+              </Button>
+            )
+              : <URLCopy url={`${masteraulaUrl}/view-public-classplan/${publicLink}`} />
           }
-        </Col>
-      ) : ''}
+          </Col>
+        ) : ''}
       </Row>
       <Row className="c-classplan__row-info">
         <Col className="info-label" sm="4" xs="4">

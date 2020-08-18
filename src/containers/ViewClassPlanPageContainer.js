@@ -26,12 +26,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => {
-  const alertModalProps = message => ({
+  const alertModalProps = componentMessage => ({
     modalProps: {
       open: true,
       closeModal: () => dispatch(hideModal()),
       title: 'Gerar link público',
-      message,
+      message: null,
+      componentMessage,
     },
     modalType: 'alert',
   });
@@ -104,7 +105,7 @@ const mapDispatchToProps = (dispatch) => {
     showActivityModal: idActivity => dispatch(showModal(activityModalProps(idActivity))),
     showOnlineTestModal: idOnlineTest => dispatch(showModal(onlineTestModalProps(idOnlineTest))),
     generatePublicLink: id => dispatch(generatePublicLink(id)),
-    showAlertModal: message => dispatch(showModal(alertModalProps(message))),
+    showAlertModal: componentMessage => dispatch(showModal(alertModalProps(componentMessage))),
     copyClassPlanView: classPlan => dispatch(copyClassPlanView(classPlan)),
 
   });
