@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Alert, Row, Col,
 } from 'reactstrap';
-import ClassPlanStudentArea from 'components/classplan/ClassPlanStudentArea';
+import ClassPlanPublicStudentArea from 'components/classplan/ClassPlanPublicStudentArea';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import PublicActivityContentList from 'components/activity/PublicActivityContentList';
 import URLCopy from 'components/onlineTest/URLCopy';
@@ -29,34 +29,15 @@ const CLASSPLAN_TYPE = {
   OPEN: 'T', /* before traditional, now Open */
 };
 const PublicActivitiesSection = ({ activities }) => (
-  <>
-    <Row className="mb-2">
-      <Col sm="12">
-        <h5>
-          <FontAwesomeIcon icon="book-reader" />
-          {' '}
-          Atividades
-        </h5>
-      </Col>
-    </Row>
     <PublicActivityContentList activities={activities} />
-  </>
 );
 
 const PublicOnlineTestSection = ({ onlineTests }) => (
   <>
-    <Row className="mb-2">
-      <Col sm="12">
-        <h5>
-          <FontAwesomeIcon icon="laptop" />
-          {' '}
-          Provas online
-        </h5>
-      </Col>
-    </Row>
     { onlineTests && onlineTests.map(ot => (
       <Row className="mb-2" key={ot.link}>
         <Col sm="12">
+          <strong>{ot.name}</strong>
           <div className="my-2">
             <URLCopy url={`${masteraulaUrl}/apply-online/${ot.link}`} />
           </div>
@@ -124,7 +105,7 @@ const PublicSingleStation = ({
 
 const PublicOpenClassPlan = ({ classPlan }) => (
   <>
-    <ClassPlanStudentArea classPlan={classPlan} />
+    <ClassPlanPublicStudentArea classPlan={classPlan} />
     {classPlan.activities && <PublicActivitiesSection activities={classPlan.activities} />}
     {classPlan.documents_online && <PublicOnlineTestSection onlineTests={classPlan.documents_online} />}
   </>
@@ -174,12 +155,9 @@ const InnerPage = (props) => {
           </h4>
         </Col>
       </Row>
-      <Row className="c-classplan__row-info">
-        <Col className="info-label" sm="4" xs="4">
-          Nome
-        </Col>
+      <Row className="c-question__tittle-section">
         <Col sm="8" xs="8">
-          {activePublicClassPlan.name}
+          <h6><strong>{activePublicClassPlan.name}</strong></h6>
         </Col>
       </Row>
       {activePublicClassPlan.plan_type === CLASSPLAN_TYPE.OPEN

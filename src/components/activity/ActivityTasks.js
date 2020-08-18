@@ -28,9 +28,12 @@ const ActivityTasks = ({ tasks, studentOnly = false }) => (
       </Col>
     </Row>
     <div className="c-activity__tasks">
-      <Row>
-        <Col><h6><strong>Descrição da tarefa (para o aluno)</strong></h6></Col>
-      </Row>
+      {!studentOnly && (
+        
+        <Row>
+          <Col><h6><strong>Descrição da tarefa (para o aluno)</strong></h6></Col>
+        </Row>
+      )}
       { tasks && tasks.map((task, i) => (
         <div className="my-2" key={task.id}>
           <TaskInfo taskInfo={task.description_task} position={i} />
