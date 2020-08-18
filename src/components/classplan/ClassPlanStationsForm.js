@@ -535,7 +535,7 @@ class ClassPlanStationsForm extends Component {
                   name="bncc"
                   className="form-control"
                   component={renderMultiselect}
-                  placeholder="Selecione as habilidades BNCC"
+                  placeholder="Insira um ou mais habilidades da BNCC. Ex: EF04LP02"
                   data={bnccSuggestions}
                   valueField="id"
                   textField="name"
