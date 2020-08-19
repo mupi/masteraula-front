@@ -317,6 +317,7 @@ export const copyQuestion = id => async (dispatch) => {
     dispatch({ type: COPY_QUESTION });
     const activeQuestion = await questionService.copyQuestion(id);
     dispatch({ type: COPY_QUESTION_SUCCESS, activeQuestion });
+    history.push(`/view-question/${activeQuestion.id}`);
   } catch {
     dispatch({ type: COPY_QUESTION_FAILURE });
   }

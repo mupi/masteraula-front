@@ -328,7 +328,7 @@ export const question = (state = initialState, action) => {
         currentPageModal: action.currentPageModal,
       });
     case COPY_QUESTION: {
-      toast.success('A cópia do plano de aula está em processo', optionsSuccess);
+      toast.success('A cópia da questão está em processo', optionsSuccess);
       return Object.assign({}, state, {
         isRemoved: null,
         error: null,
@@ -337,7 +337,7 @@ export const question = (state = initialState, action) => {
       });
     }
     case COPY_QUESTION_SUCCESS: {
-      toast.success('Cópia do plano de aula realizada com sucesso', optionsSuccess);
+      toast.success('Cópia da questão realizada com sucesso', optionsSuccess);
       return Object.assign({}, state, {
         isCopying: false,
         activeClassPlan: { ...action.activeClassPlan },

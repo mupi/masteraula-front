@@ -4,7 +4,7 @@ import AddQuestionButton from 'components/buttons/AddQuestionButton';
 import RemoveQuestionButton from 'components/buttons/RemoveQuestionButton';
 import DeleteQuestionButtonContainer from 'containers/DeleteQuestionButtonContainer';
 import {
-  Alert, Row, Col, Badge,
+  Alert, Row, Col, Badge, Button,
 } from 'reactstrap';
 import { isQuestionAdded } from 'helpers/question';
 import React, { Component } from 'react';
@@ -112,6 +112,7 @@ class QuestionPage extends Component {
       role, setQuestionIdToNewDocument, showModal, hideModal, labels, toggleApplyLabelToQuestion, isAddingRemovingLabel,
       addSelectedMyQuestionLabelFilter, removeSelectedLabelFromQuestion,
       showCreateMyQuestionLabelModal,
+      isCopying, copyQuestion,
     } = this.props;
 
     const authorPk = (activeQuestion && activeQuestion.author) ? activeQuestion.author.pk : 'Anônimo';
@@ -189,6 +190,17 @@ class QuestionPage extends Component {
                     Editar
                   </Link>
                 ) : ''}
+
+              <Button
+                className="btn btn-secondary c-question__btn-back"
+                onClick={() => copyQuestion(activeQuestion.id)}
+                title="Duplicar questão"
+                disabled={isCopying}
+              >
+                <FontAwesomeIcon icon="copy" className="btn__icon" />
+                {' '}
+                Duplicar
+              </Button>
             </Col>
           </Row>
           <Row className="c-question__options c-question--space-for-questionyear">
