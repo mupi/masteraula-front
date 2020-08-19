@@ -18,8 +18,6 @@ const QuestionInfo = ({
 }) => {
   const { author, authorship } = question;
   const authorshipValue = authorship || (author && author.name);
-  const publisher = author ? author.name : null;
-
 
   return (
     <div className="question-information">
