@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Row, Col, Button, Label, Input,
+  Row, Col, Button,
 } from 'reactstrap';
 import SearchTermsAutocomplete from 'components/question/SearchTermsAutocomplete';
 import { history } from 'helpers';
@@ -9,8 +9,8 @@ class ClassPlanSearchByFilters extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authorState: '',
-      onlyMyClassPlansState: false,
+      // authorState: '',
+      // onlyMyClassPlansState: false,
       visible: 10,
     };
 
@@ -70,9 +70,9 @@ class ClassPlanSearchByFilters extends Component {
   }
 
   handleFilter(event) {
-    const { addMyMaterialFilter, author } = this.props;
+    const { addMyMaterialFilter } = this.props;
     const valueFilter = event.target.value;
-    this.setState({ authorState: author });
+    // this.setState({ authorState: author });
     addMyMaterialFilter(valueFilter, event.target.checked);
   }
 
@@ -83,7 +83,8 @@ class ClassPlanSearchByFilters extends Component {
 
   render() {
     const {
-      author, isFetching, disciplineFilters, onlyMyClassPlans, topicFilters,
+      // author, onlyMyClassPlans,
+      isFetching, disciplineFilters, topicFilters,
       disciplineIdSelected, yearIdSelected,
       addSelectedDisciplineFilter,
       addSelectedYearFilter,
@@ -92,8 +93,8 @@ class ClassPlanSearchByFilters extends Component {
     } = this.props;
 
     const { visible } = this.state;
-    const { authorState, onlyMyClassPlansState } = this.state;
-    const isChecked = (onlyMyClassPlans === undefined ? onlyMyClassPlansState : onlyMyClassPlans);
+    // const { authorState, onlyMyClassPlansState } = this.state;
+    // const isChecked = (onlyMyClassPlans === undefined ? onlyMyClassPlansState : onlyMyClassPlans);
     return (
       <>
         <SearchTermsAutocomplete {...this.props} baseName="atividades" />

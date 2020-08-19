@@ -188,7 +188,7 @@ function listMyOnlineTest(idDocBase, page, orderField, order) {
 /* all online test without using idocBase
   /document_online/my_documents_online_cards/
 */
-function listMyOnlineTestCardsModal(page, orderField, order) {
+function listMyOnlineTestCardsModal(page) {
   const requestOptions = {
     method: 'GET',
     headers: {

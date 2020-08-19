@@ -34,6 +34,12 @@ export const DELETE_QUESTION_SUCCESS = 'DELETE_QUESTION_SUCCESS';
 export const DELETE_QUESTION_FAILURE = 'DELETE_QUESTION_FAILURE';
 export const RESET_DELETE_QUESTION = 'RESET_DELETE_QUESTION';
 
+// Copy question
+export const COPY_QUESTION = 'COPY_QUESTION';
+export const COPY_QUESTION_SUCCESS = 'COPY_QUESTION_SUCCESS';
+export const COPY_QUESTION_FAILURE = 'COPY_QUESTION_FAILURE';
+
+
 // Star rating question
 export const RATE_QUESTION = 'RATE_QUESTION';
 
@@ -305,6 +311,16 @@ export const deleteQuestion = (idQuestion) => {
   };
 };
 
+// Copy question
+export const copyQuestion = id => async (dispatch) => {
+  try {
+    dispatch({ type: COPY_QUESTION });
+    const activeQuestion = await questionService.copyQuestion(id);
+    dispatch({ type: COPY_QUESTION_SUCCESS, activeQuestion });
+  } catch {
+    dispatch({ type: COPY_QUESTION_FAILURE });
+  }
+};
 
 export const rateQuestion = rating => ({
   type: RATE_QUESTION,
