@@ -7,6 +7,8 @@ import {
   authHeader,
 } from 'helpers';
 
+import queryString from 'query-string';
+
 
 // Fetch a class plan given its ID
 function fetchClassPlan(id) {
@@ -20,6 +22,24 @@ function fetchClassPlan(id) {
   };
 
   const url = `/class_plans/${id}/`;
+
+
+  return axios.get(`${apiUrl}${url}`, requestOptions)
+    .then(response => response.data).then(activeClassPlan => activeClassPlan);
+}
+
+// Fetch a public class plan given its ID
+function fetchPublicClassPlan(link) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+
+  };
+
+  const url = `/class_plan_publication/${link}/`;
 
 
   return axios.get(`${apiUrl}${url}`, requestOptions)
@@ -83,30 +103,38 @@ function convertClassPlanToFormData(classPlan) {
       classPlan[name].forEach((topicId, index) => {
         formData.append(`topics_ids[${index}]`, topicId);
       });
-    } else if (name === 'learning_objects_ids') {
-      classPlan[name].forEach((objectId, index) => {
-        formData.append(`learning_objects_ids[${index}]`, objectId);
+    } else if (name === 'bncc_ids') {
+      classPlan[name].forEach((BnccId, index) => {
+        formData.append(`bncc_ids[${index}]`, BnccId);
       });
+    } else if (name === 'tags') {
+      const arr = [];
+      classPlan[name].forEach((tag) => {
+        arr.push(`"${tag}"`);
+      });
+      formData.append('tags', `[${arr}]`);
     } else if (name === 'documents_ids') {
       classPlan[name].forEach((documentId, index) => {
         formData.append(`documents_ids[${index}]`, documentId);
       });
+    } else if (name === 'activities_ids') {
+      classPlan[name].forEach((activityId, index) => {
+        formData.append(`activities_ids[${index}]`, activityId);
+      });
+    } else if (name === 'documents_online_ids') {
+      classPlan[name].forEach((documentOnlineId, index) => {
+        formData.append(`documents_online_ids[${index}]`, documentOnlineId);
+      });
     } else if (name === 'stations') {
       classPlan[name].forEach((station, index) => {
         formData.append(`stations[${index}]description_station`, station.description_station);
+        formData.append(`stations[${index}]name_station`, station.name_station);
         if (station.document_ids) { formData.append(`stations[${index}]document_ids`, station.document_ids); }
 
-        if (station.learning_object_ids) { formData.append(`stations[${index}]learning_object_ids`, station.learning_object_ids); }
+        if (station.activity_ids) { formData.append(`stations[${index}]activity_ids`, station.activity_ids); }
 
-        if (station.question_ids) { formData.append(`stations[${index}]question_ids`, station.question_ids); }
+        if (station.document_online_ids) { formData.append(`stations[${index}]document_online_ids`, station.document_online_ids); }
       });
-    } else if (name === 'links') {
-      classPlan[name].forEach((link, index) => {
-        formData.append(`links[${index}]link`, link.link);
-        formData.append(`links[${index}]description_url`, link.description_url);
-      });
-    } else if (name === 'pdf') {
-      if (classPlan[name]) { formData.append(name, classPlan[name][0]); }
     } else formData.append(name, classPlan[name]);
   });
 
@@ -115,6 +143,7 @@ function convertClassPlanToFormData(classPlan) {
 
 function convertEditClassPlanToFormData(classPlan) {
   const formData = new FormData();
+  const arr = [];
   Object.keys(classPlan).forEach((name) => {
     if (name === 'disciplines_ids') {
       classPlan[name].forEach((disciplineId) => {
@@ -132,30 +161,37 @@ function convertEditClassPlanToFormData(classPlan) {
       classPlan[name].forEach((topicId) => {
         formData.append('topics_ids', topicId);
       });
-    } else if (name === 'learning_objects_ids') {
-      classPlan[name].forEach((objectId) => {
-        formData.append('learning_objects_ids', objectId);
+    } else if (name === 'bncc_ids') {
+      classPlan[name].forEach((bnccId) => {
+        formData.append('bncc_ids', bnccId);
       });
+    } else if (name === 'tags') {
+      classPlan[name].forEach((tag) => {
+        arr.push(`"${tag}"`);
+      });
+      formData.append('tags', `[${arr}]`);
     } else if (name === 'documents_ids') {
       classPlan[name].forEach((documentId) => {
         formData.append('documents_ids', documentId);
       });
-    } else if (name === 'links') {
-      classPlan[name].forEach((link, index) => {
-        formData.append(`links[${index}]link`, link.link);
-        formData.append(`links[${index}]description_url`, link.description_url);
+    } else if (name === 'activities_ids') {
+      classPlan[name].forEach((activityId) => {
+        formData.append('activities_ids', activityId);
+      });
+    } else if (name === 'documents_online_ids') {
+      classPlan[name].forEach((documentOnlineId) => {
+        formData.append('documents_online_ids', documentOnlineId);
       });
     } else if (name === 'stations') {
       classPlan[name].forEach((station, index) => {
         formData.append(`stations[${index}]description_station`, station.description_station);
+        formData.append(`stations[${index}]name_station`, station.name_station);
         if (station.document_ids) { formData.append(`stations[${index}]document_ids`, station.document_ids); }
 
-        if (station.learning_object_ids) { formData.append(`stations[${index}]learning_object_ids`, station.learning_object_ids); }
+        if (station.activity_ids) { formData.append(`stations[${index}]activity_ids`, station.activity_ids); }
 
-        if (station.question_ids) { formData.append(`stations[${index}]question_ids`, station.question_ids); }
+        if (station.document_online_ids) { formData.append(`stations[${index}]document_online_ids`, station.document_online_ids); }
       });
-    } else if (name === 'pdf') {
-      if (classPlan[name]) { formData.append(name, classPlan[name][0]); }
     } else formData.append(name, classPlan[name]);
   });
 
@@ -264,14 +300,89 @@ function copyClassPlan(idClassPlan) {
     .then(activeClassPlan => activeClassPlan);
 }
 
+// Generate a publick link
+function generatePublicLink(id) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+  return axios.get(`${apiUrl}/class_plans/${id}/generate_link/`, requestOptions)
+    .then(response => response.data).then(link => link);
+}
+
+function listClassPlans(page, filter) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+  const pageParam = queryString.stringify({ page });
+
+  const disciplinesPL = filter.disciplinesSelected.filter(discipline => discipline.id === 2);
+  const disciplinesSF = filter.disciplinesSelected.filter(discipline => discipline.id === 11);
+  let disciplines = filter.disciplinesSelected;
+
+  if (disciplinesPL.length > 0) disciplines = [...disciplinesPL, { id: 3, name: 'Literatura' }];
+  if (disciplinesSF.length > 0) disciplines = [...disciplinesSF, { id: 12, name: 'Filosofia' }];
+
+
+  const disciplinesParams = queryString.stringify({ disciplines: disciplines.map(item => item.id) });
+  const teachingLevelParams = queryString.stringify({ teaching_levels: filter.teachingLevelsSelected.map(item => item.id) });
+  const difficultiesParams = queryString.stringify({ difficulties: filter.difficultiesSelected.map(item => item.id) });
+  const yearsParams = queryString.stringify({ years: filter.yearsSelected.map(item => item.name) });
+  const topicsParams = queryString.stringify({ topics: filter.topicsSelected.map(item => item.id) });
+
+  const search = (filter.searchText) ? queryString.stringify({ text: filter.searchText }) : null;
+  // const author = (filter.onlyMyClassPlans) ? queryString.stringify({ author: filter.author }) : '';
+
+  const urlParams = [pageParam, disciplinesParams, teachingLevelParams, difficultiesParams, yearsParams, topicsParams, search]
+    .filter(p => p)
+    .join('&');
+
+  const url = (search)
+    ? `/class_plans/search/?${urlParams}`
+    : `/class_plans/?${urlParams}`;
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data && data.email);
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  return fetch(`${apiUrl}${url}`, requestOptions)
+    .then(handleResponse)
+    .then(classPlanPage => classPlanPage);
+}
+
+function getNumberClassPlanPublicLinks() {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      Authorization: authHeader(),
+    },
+  };
+  return axios.get(`${apiUrl}/generate_link/`, requestOptions)
+    .then(response => response.data).then(numberClassPlanPublicLinks => numberClassPlanPublicLinks);
+}
 
 const classPlanService = {
   fetchClassPlan,
+  fetchPublicClassPlan,
   listMyClassPlans,
   createClassPlan,
   updateClassPlan,
   deleteClassPlan,
   copyClassPlan,
+  generatePublicLink,
+  listClassPlans,
+  getNumberClassPlanPublicLinks,
 };
 
 export default classPlanService;

@@ -2,23 +2,25 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  Alert, Row, Col, Button, Form, Input, Label,
+  Alert, Row, Col, Button, Form, Input, Label, FormGroup,
 } from 'reactstrap';
 import QuestionTextRichEditor from 'components/textricheditor/QuestionTextRichEditor';
 import renderMultiselect from 'components/autocomplete/Multiselect';
 import { Link, Prompt } from 'react-router-dom';
 
-import { Field, FieldArray } from 'redux-form';
+import { Field } from 'redux-form';
 import BackUsingHistory from 'components/question/BackUsingHistory';
-import SimpleLObjectCardList from 'components/learningObject/SimpleLObjectCardList';
+import ActivityList from 'components/activity/ActivityList';
 import DocumentCardList from 'components/document/DocumentCardList';
+import OnlineTestCardList from 'components/onlineTest/OnlineTestCardList';
+
+import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
 
 import {
   requiredValidator,
   requiredMultiSelectValidator,
   minDuration,
   minLength3characters,
-  linkValidator,
 } from 'helpers/validators';
 
 // Document's options available for ClassPlan
@@ -124,56 +126,6 @@ const renderQuestionTextEditor = (props) => {
   );
 };
 
-const renderLinks = ({ fields, meta: { error } }) => (
-  <>
-    <div className="mb-2">
-      <Button onClick={() => fields.push({})}>
-        <FontAwesomeIcon
-          icon="plus"
-          className="btn__icon"
-        />
-      Adicionar Link
-      </Button>
-    </div>
-
-    {fields.map((link, i) => (
-      <Row key={`${link}.id`} className="mb-1">
-        <Col sm="6" xs="9" className="c-classplan__col-link-text">
-          <Field
-            type="text"
-            component={renderField}
-            name={`${link}.link`}
-            label="Insira uma url"
-            validate={[linkValidator, requiredValidator]}
-          />
-        </Col>
-        <Col sm="5" xs="9">
-          <Field
-            type="text"
-            component={renderField}
-            name={`${link}.description_url`}
-            label="Insira uma descrição"
-          />
-        </Col>
-        <Col sm="1" xs="1" className="c-classplan__col-btn-remove-link">
-          <Button
-            type="button"
-            title="Remover link"
-            className="c-classplan__btn-remove-link"
-            onClick={() => fields.remove(i)}
-          >
-            <FontAwesomeIcon
-              icon="trash-alt"
-            />
-          </Button>
-        </Col>
-
-      </Row>
-    ))}
-    <Row>{ error && <span className="error-message-text">{error}</span>}</Row>
-  </>
-);
-
 export const fieldFile = ({ input, type, meta: { touched, error, warning } }) => {
   const newInput = input;
   delete newInput.value;
@@ -201,6 +153,37 @@ export const fieldFile = ({ input, type, meta: { touched, error, warning } }) =>
   );
 };
 
+// Multiselect for Tags field
+// touche is not working with multiselectTag
+const renderMAMultiSelectTag = ({
+  input,
+  placeholder,
+  meta: {
+    error,
+  },
+}) => (
+  <div className="c-create-question__tags">
+    <MAMultiSelectTag
+      input={input}
+      onChange={value => input.onChange(value)}
+      placeholder={placeholder}
+    />
+    { error && (
+      <span className="error-message-text">
+        {error}
+      </span>
+    )
+       }
+  </div>
+);
+
+
+export const BUTTON_TYPE = {
+  ACTIVITYCARD_BASE: 1,
+  ACTIVITYCARD_MODAL_VIEW: 2,
+  ACTIVITYCARD_SELECT: 3,
+};
+
 class ClassPlanForm extends Component {
     listTopicSuggestions = (param) => {
       if (param && param.length === 3) {
@@ -209,13 +192,23 @@ class ClassPlanForm extends Component {
       }
     }
 
+    listBnccSuggestions = (param) => {
+      if (param && param.length === 3) {
+        const { listBnccSuggestions } = this.props;
+        listBnccSuggestions(param);
+      }
+    }
+
     render() {
       const {
-        topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
-        teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToClassPlan,
-        submitting, errorsClassPlan, listTopicSuggestions, user, showSearchLearningObjectModal,
+        bnccSuggestions, topicSuggestions, pristine, disciplineFilters, teachingYearFilters,
+        teachingLevelFilters, handleSubmit, selectedActivityList, removeSelectedActivityToClassPlan,
+        submitting, errorsClassPlan, listTopicSuggestions, listBnccSuggestions, user, showSearchActivityModal,
         showSearchDocumentModal, selectedDocumentList,
-        removeSelectedDocumentFromClassPlan, actionName,
+        showSearchOnlineTestModal, selectedOnlineTestList,
+        removeSelectedDocumentFromClassPlan, removeSelectedOnlineTestFromClassPlan,
+        actionName,
+        isPremium,
       } = this.props;
 
       return (
@@ -224,7 +217,7 @@ class ClassPlanForm extends Component {
             when={!pristine && !submitting}
             message={`Tem certeza de sair da tela de ${actionName} Plano de aula?`}
           />
-          <div className="c-question c-create-question">
+          <div className="c-classplan c-question c-create-question">
             <Row className="c-question__row-header-options c-question__row-header-options--fixed">
               <Col className="c-question__col-header-options">
                 <BackUsingHistory disabled={submitting} />
@@ -242,7 +235,7 @@ class ClassPlanForm extends Component {
               <Col>
                 <h4>
                   <FontAwesomeIcon icon="book" />
-                  {` ${actionName} Plano de Aula - Tradicional`}
+                  {` ${actionName} Plano de Aula - Aberto`}
                 </h4>
               </Col>
             </Row>
@@ -256,6 +249,42 @@ class ClassPlanForm extends Component {
                         }
               </Col>
             </Row>
+            {isPremium && (
+            <Row className="align-items-center">
+              <Col sm="3" xs="3">
+              Seu plano de aula será:
+              </Col>
+              <Col sm="6" xs="6">
+                <FormGroup check inline>
+                  <Label check>
+                    <Field
+                      name="secret"
+                      component="input"
+                      type="radio"
+                      value="P"
+                      className="c-create-online__radio-button-field"
+                    />
+                    {' '}
+                    Público
+                  </Label>
+                </FormGroup>
+                <FormGroup check inline>
+                  <Label check>
+                    <Field
+                      name="secret"
+                      component="input"
+                      type="radio"
+                      value="S"
+                      className="c-create-online__radio-button-field"
+                    />
+                    {' '}
+                    Privado
+                  </Label>
+                </FormGroup>
+              </Col>
+            </Row>
+            )}
+
             <Row className="c-question__tittle-section">
               <Col>
                 <h5>
@@ -314,6 +343,37 @@ class ClassPlanForm extends Component {
                   textField="name"
                   validate={requiredMultiSelectValidator}
                   listTopicSuggestions={listTopicSuggestions}
+                />
+              </Col>
+            </Row>
+            <Row className="c-create-question__row-info">
+              <Col className="info-label" sm="4" xs="4">
+                      Tags
+              </Col>
+              <Col sm="8" xs="8">
+                <Field
+                  component={renderMAMultiSelectTag}
+                  name="tags"
+                  id="tags"
+                  placeholder="Dê enter ou vírgula após inserir uma tag"
+                  className="form-control"
+                />
+              </Col>
+            </Row>
+            <Row className="c-create-question__row-info">
+              <Col className="info-label" sm="4" xs="4">
+                  BNCC
+              </Col>
+              <Col sm="8" xs="8">
+                <Field
+                  name="bncc"
+                  className="form-control"
+                  component={renderMultiselect}
+                  placeholder="Insira um ou mais habilidades da BNCC. Ex: EF04LP02"
+                  data={bnccSuggestions}
+                  valueField="id"
+                  textField="name"
+                  listBnccSuggestions={listBnccSuggestions}
                 />
               </Col>
             </Row>
@@ -385,20 +445,23 @@ class ClassPlanForm extends Component {
             <Row className="c-question__tittle-section">
               <Col>
                 <h5>
-                  <FontAwesomeIcon icon="pencil-alt" />
+                  <FontAwesomeIcon icon="chalkboard-teacher" />
                   {' '}
-                    Etapas
+                  Área do professor
                 </h5>
                 <div className="border-top my-3" />
               </Col>
             </Row>
-            <Row className="justify-content-center">
+            <Row>
+              <Col><h6><strong>Etapas</strong></h6></Col>
+            </Row>
+            <Row className="justify-content-center mb-3">
               <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
                 <Field
                   component={renderQuestionTextEditor}
-                  name="description"
+                  name="phases"
                   key="field"
-                  id="statementEditorText"
+                  id="descriptionEditorText"
                   disabled={false}
                   placeholderEditor="Escreva as etapas do plano de aula..."
                   validate={requiredValidator}
@@ -406,42 +469,79 @@ class ClassPlanForm extends Component {
                 />
               </Col>
             </Row>
+            <Row>
+              <Col><h6><strong>Conteúdo para lousa</strong></h6></Col>
+            </Row>
+            <Row className="justify-content-center">
+              <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
+                <Field
+                  component={renderQuestionTextEditor}
+                  name="content"
+                  key="field"
+                  id="contentEditorText"
+                  disabled={false}
+                  placeholderEditor="Insira aqui os conteúdos que você colocará na lousa para os alunos..."
+                  autoFocus
+                />
+              </Col>
+            </Row>
             <Row className="c-question__tittle-section">
               <Col>
                 <h5>
-                  <FontAwesomeIcon icon="book" />
+                  <FontAwesomeIcon icon="user-graduate" />
                   {' '}
-                    Materias a serem usados
+                  Área do aluno
                 </h5>
                 <div className="border-top my-3" />
               </Col>
             </Row>
+            <Row>
+              <Col><h6><strong>Orientações para o aluno</strong></h6></Col>
+            </Row>
+            <Row className="justify-content-center mb-3">
+              <Col sm="12" md="12" xs="12" className="c-question__col-full-section-details">
+                <Field
+                  component={renderQuestionTextEditor}
+                  name="guidelines"
+                  key="field"
+                  id="studentEditorText"
+                  disabled={false}
+                  placeholderEditor="Insira aqui os conteúdos que você colocará na lousa para os alunos..."
+                  autoFocus
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col><h6><strong>Materiais para aula</strong></h6></Col>
+            </Row>
             <Row className="mb-2">
               <Col sm="12">
                 <h6>
-                  <FontAwesomeIcon icon="image" />
+                  <FontAwesomeIcon icon="book-reader" />
                   {' '}
-                    Objetos de aprendizagem
+                  Atividades
                 </h6>
               </Col>
               <Col md="3" sm="6">
-                <Button onClick={() => showSearchLearningObjectModal()}>
+                <Button onClick={() => showSearchActivityModal()}>
                   <FontAwesomeIcon
                     icon="plus"
                     className="btn__icon"
                   />
-                    Adicionar objeto
+                  Adicionar atividade
                 </Button>
               </Col>
             </Row>
-            { selectedObjectList ? (
-              <SimpleLObjectCardList
-                removeSelectedObject={removeSelectedObjectToClassPlan}
+            { selectedActivityList ? (
+              <ActivityList
                 sm="4"
+                selectedActivityList={selectedActivityList}
+                activities={selectedActivityList}
+                removeSelectedActivity={removeSelectedActivityToClassPlan}
+                buttonType={BUTTON_TYPE.ACTIVITYCARD_SELECT}
                 {...this.props}
-                objects={selectedObjectList}
-                selectedObjectList={selectedObjectList}
-                showQuestionQuantity={false}
+                showQuantity={false}
+                withFilters={false}
               />
             ) : '' }
             <Row className="mt-3">
@@ -470,77 +570,33 @@ class ClassPlanForm extends Component {
                 viewOnly={optionsDocument.showViewButton}
               />
             ) : '' }
-            <Row className="c-question__tittle-section">
-              <Col>
-                <h5>
-                  <FontAwesomeIcon icon="link" />
-                  {' '}
-                    Recursos Extras
-                </h5>
-                <div className="border-top my-3" />
-              </Col>
-            </Row>
-            <Row className="mb-2">
+            <Row className="mt-3">
               <Col sm="12">
                 <h6>
-                  <FontAwesomeIcon icon="file-pdf" />
+                  <FontAwesomeIcon icon="laptop" />
                   {' '}
-                    Arquivo PDF
+                    Provas online
                 </h6>
               </Col>
               <Col md="3" sm="6">
-                <div className="small-text ">
-                    Tamanho máximo 2 MB.
-                </div>
-                <Field
-                  component={fieldFile}
-                  type="file"
-                  name="pdf"
-                  id="pdf"
-                  className="form-control"
-                />
+                <Button onClick={() => showSearchOnlineTestModal()}>
+                  <FontAwesomeIcon
+                    icon="plus"
+                    className="btn__icon"
+                  />
+                    Adicionar prova online
+                </Button>
               </Col>
             </Row>
-            <Row className="mb-2">
-              <Col sm="12">
-                <h6>
-                  <FontAwesomeIcon icon="link" />
-                  {' '}
-                    Adicione seus links
-                </h6>
-              </Col>
-
-              <Col sm="12">
-
-                <FieldArray
-                  name="links"
-                  component={renderLinks}
-                />
-              </Col>
-            </Row>
-            <Row className="c-question__tittle-section">
-              <Col>
-                <h5>
-                  <FontAwesomeIcon icon="comments" />
-                  {' '}
-                    Comentários do autor
-                </h5>
-                <div className="border-top my-3" />
-              </Col>
-            </Row>
-
-            <Row className="c-create-question__row-info">
-              <Col sm="12" xs="12">
-                <Field
-                  name="comment"
-                  className="form-control"
-                  component={renderField}
-                  label="Insira seus comentários"
-                  type="textarea"
-                />
-              </Col>
-            </Row>
-            <div className="question-information">
+            { selectedOnlineTestList ? (
+              <OnlineTestCardList
+                selectedOnlineTestList={selectedOnlineTestList}
+                onlineTests={selectedOnlineTestList}
+                removeSelectedOnlineTest={removeSelectedOnlineTestFromClassPlan}
+                viewOnly={optionsDocument.showViewButton}
+              />
+            ) : <div>{selectedOnlineTestList.length}</div> }
+            <div className="mt-3">
 
               <Row>
                 <Col>

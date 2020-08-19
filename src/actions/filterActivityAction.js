@@ -244,13 +244,12 @@ export const clearSearch = () => ({
   type: CLEAR_SEARCH_A,
 });
 
-
 /* Busca no modal */
 // Set search text for Activity - Modal
-export const SET_SEARCH_TEXT_MODAL = 'SET_SEARCH_TEXT_MODAL';
+export const SET_SEARCH_TEXT_MODAL_A = 'SET_SEARCH_TEXT_MODAL_A';
 
 export const setSearchTextActivityModal = searchTextModal => ({
-  type: SET_SEARCH_TEXT_MODAL, searchTextModal,
+  type: SET_SEARCH_TEXT_MODAL_A, searchTextModal,
 });
 
 export const addMyActivitiesFilterModal = (author, onlyMyActivitiesModal) => ({

@@ -88,6 +88,7 @@ class ObjectBasePage extends React.Component {
                 objects={objectPage ? objectPage.results : null}
                 count={objectPage ? objectPage.count : 0}
                 addSelectedObjectTypeFilter={addSelectedObjectTypeFilter}
+                showLink
               />
             )
             }

@@ -15,7 +15,6 @@ import DisciplineList from 'components/disciplines/DisciplineList';
 import DescriptorList from 'components/descriptors/DescriptorList';
 import TagList from 'components/tags/TagList';
 import { Field, FieldArray } from 'redux-form';
-import QuestionAuthor from 'components/question/QuestionAuthor';
 import { requiredSelectValidator, /* minLength2TagsForEdit, */ requiredMultiSelectValidator } from 'helpers/validators';
 import renderMultiselect from 'components/autocomplete/Multiselect';
 import MAMultiSelectTag from 'components/tags/MAMultiSelectTag';
@@ -154,24 +153,13 @@ class QuestionEditPage extends Component {
 
   render() {
     const {
-      activeQuestion, userId, isFetching, error, activeDocument, handleSubmit, topicSuggestions, pristine,
+      activeQuestion, userId, isFetching, activeDocument, handleSubmit, topicSuggestions, pristine,
       role, submitting, listTopicSuggestions, labels, toggleApplyLabelToQuestion, isAddingRemovingLabel,
       addSelectedMyQuestionLabelFilter, removeSelectedLabelFromQuestion,
       showCreateMyQuestionLabelModal,
     } = this.props;
 
-    const { author, authorship } = activeQuestion;
-
-    const authorPK = activeQuestion.author ? activeQuestion.author.pk : null;
-    const authorshipValue = authorship || (author && author.name);
-    const publisher = author ? author.name : null;
-
-
-    const {
-      alternatives, statement, resolution,
-    } = activeQuestion;
-
-    const learningObjects = activeQuestion.learning_objects;
+    const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : null;
 
     if (isFetching) {
       return (
@@ -183,26 +171,15 @@ class QuestionEditPage extends Component {
       );
     }
 
-    if (error) {
+    if (!activeQuestion || (activeQuestion && activeQuestion.disabled)) {
       return (
         <HomeUserPage>
           <Alert color="danger">
-              Erro na questão
+            A questão não existe ou não está disponível
           </Alert>
         </HomeUserPage>
       );
     }
-
-    if (activeQuestion && activeQuestion.disabled) {
-      return (
-        <HomeUserPage>
-          <Alert color="danger">
-            Questão não disponível para classificação
-          </Alert>
-        </HomeUserPage>
-      );
-    }
-
     if (!role.includes('Editores') && (authorPK !== userId)) {
       return (
         <HomeUserPage>
@@ -212,6 +189,13 @@ class QuestionEditPage extends Component {
         </HomeUserPage>
       );
     }
+
+
+    const {
+      alternatives, statement, resolution,
+    } = activeQuestion;
+
+    const learningObjects = activeQuestion.learning_objects;
 
     return (
       <HomeUserPage>
@@ -419,25 +403,6 @@ class QuestionEditPage extends Component {
                       <TagList list={activeQuestion.teaching_levels} styleTag="question-info  teaching-level" />
                     </Col>
                   </Row>
-                  <Row className="c-question__row-info">
-                    <Col className="info-label" sm="4" xs="4">
-                      Publicador
-                    </Col>
-                    <Col sm="8" xs="8">
-                      <QuestionAuthor author={publisher} styleTag="question-info author" />
-                    </Col>
-                  </Row>
-                  {!activeQuestion.source ? (
-                    <Row className="c-question__row-info">
-                      <Col className="info-label" sm="4" xs="4">
-                      Autoria
-                      </Col>
-                      <Col sm="8" xs="8">
-                        <QuestionAuthor author={authorshipValue} styleTag="question-info author" />
-                      </Col>
-                    </Row>
-                  ) : ' '}
-
                   <Row className="c-question__row-info">
                     <Col className="info-label" sm="4" xs="4">
                       Tags

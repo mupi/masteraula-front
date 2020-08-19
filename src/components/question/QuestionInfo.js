@@ -18,8 +18,6 @@ const QuestionInfo = ({
 }) => {
   const { author, authorship } = question;
   const authorshipValue = authorship || (author && author.name);
-  const publisher = author ? author.name : null;
-
 
   return (
     <div className="question-information">
@@ -113,15 +111,6 @@ const QuestionInfo = ({
           </Col>
         </Row>
       ) : ' '}
-
-      <Row className="c-question__row-info">
-        <Col className="info-label" sm="4" xs="4">
-          Publicador
-        </Col>
-        <Col sm="8" xs="8">
-          <QuestionAuthor author={publisher} styleTag="question-info author" />
-        </Col>
-      </Row>
       { !question.source && (
         <Row className="c-question__row-info">
           <Col className="info-label" sm="4" xs="4">

@@ -37,6 +37,7 @@ class SearchLearningObjectModal extends React.Component {
       singleSelection = false,
       stations,
       stationIndex,
+      searchText,
     } = this.props;
 
     let selectedObjectList = [];
@@ -72,6 +73,16 @@ class SearchLearningObjectModal extends React.Component {
               <Col sm="12" className="c-object-base__total-results">
                 {'Objetos de aprendizagem encontrados: '}
                 {objectPage ? objectPage.count : 0}
+                {searchText
+                  ? (
+                    <>
+                      {' para '}
+                      <span className="c-question-base__search-term">
+                        {searchText}
+                      </span>
+                    </>
+                  ) : ''
+                }
               </Col>
               { !singleSelection && (
               <Col sm="12" className="c-object-base-modal__selected-number">

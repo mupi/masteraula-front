@@ -6,8 +6,6 @@ import {
 } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-import TermsUsePage from 'pages/TermsUse/TermsUsePage';
-import TermsUsePageHome from 'pages/TermsUse/TermsUsePageHome';
 import PricingPageHome from 'pages/Pricing/PricingPageHome';
 import VerifyRegisterPageContainer from 'pages/UserRegister/VerifyRegisterPageContainer';
 
@@ -49,6 +47,9 @@ import {
   CreateActivityPageContainer,
   EditActivityPageContainer,
   ViewActivityPageContainer,
+  ViewPublicClassPlanPageContainer,
+  ClassPlanBasePageContainer,
+  TermsUsePageContainer,
 } from 'containers';
 
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -111,6 +112,7 @@ import {
   faUserEdit,
   faChalkboardTeacher,
   faPhotoVideo,
+  faUserGraduate,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
@@ -146,6 +148,7 @@ library.add(faEnvelope, faKey, faFileWord, faThumbtack, faPlus, faMinus, faFile,
   faUserEdit,
   faChalkboardTeacher,
   faPhotoVideo,
+  faUserGraduate,
   fab);
 
 
@@ -208,13 +211,15 @@ class App extends Component {
                 <Route path="/object-base/:page(\d+)" component={ObjectBasePageContainer} />
                 <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
                 <Route path="/nossos-planos" component={PricingPageHome} />
-                <Route path="/terms-use" component={TermsUsePageHome} />
+                <Route path="/terms-use" component={TermsUsePageContainer} />
                 <Route path="/topic-base/:page(\d+)" component={TopicBasePageContainer} />
                 <Route path="/create-classplan/:type" component={CreateClassPlanPageContainer} />
                 <Route path="/edit-classplan/:id" component={EditClassPlanPageContainer} />
                 <Route path="/view-classplan/:id" component={ViewClassPlanPageContainer} />
+                <Route path="/view-public-classplan/:link" component={ViewPublicClassPlanPageContainer} />
                 <Route path="/faq" component={FaqPageContainer} />
                 <Route path="/class-plans/:page(\d+)" component={ManageClassPlansPageContainer} />
+                <Route path="/class-plans-base/:page(\d+)" component={ClassPlanBasePageContainer} />
                 <Route path="/create-online/:id" component={CreateOnlineTestPageContainer} />
                 <Route path="/view-online/:id" component={ViewOnlineTestPageContainer} />
                 <Route path="/edit-online/:id" component={EditOnlineTestPageContainer} />
@@ -234,12 +239,12 @@ class App extends Component {
                 <Route path="/nossos-planos" component={PricingPageContainer} />
                 <Route path="/esqueci-senha" component={ForgotPasswordPageContainer} />
                 <Route path="/redefine-senha/:uid/:token" component={RedefinePasswordPageContainer} />
-                <Route path="/terms-use" component={TermsUsePage} />
+                <Route path="/terms-use" component={TermsUsePageContainer} />
                 <Route path="/verify-userregister/:key" component={VerifyRegisterPageContainer} />
                 <Route path="/view-list/:id" component={PublicDocumentPageContainer} />
-                <Route path="/terms-use" component={TermsUsePage} />
                 <Route path="/faq" component={FaqPageContainer} />
                 <Route path="/apply-online/:id" component={StudentOnlineTestPageContainer} />
+                <Route path="/view-public-classplan/:link" component={ViewPublicClassPlanPageContainer} />
                 <Route component={NotFoundPage} />
               </Switch>
             )

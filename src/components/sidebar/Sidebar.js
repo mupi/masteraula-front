@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Row, Col, ListGroup, ListGroupItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import logoMasterAulaVerde from 'assets/img/home/masteraula-azulverde-300x60.png';
 
@@ -13,6 +13,7 @@ import userPhoto from 'assets/img/home/avataruser3.png';
 import SidebarObjectFiltersContainer from 'containers/SidebarObjectFiltersContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Swipeable } from 'react-touch';
+import SidebarMenu from 'components/sidebar/SidebarMenu';
 
 import { history } from 'helpers';
 
@@ -161,78 +162,95 @@ const SidebarMobile = ({
                   </ListGroupItem>
                 </ListGroup>
                 <ListGroup className="sidebar-main-options c-sidebar__create-doc-option">
-                  <ListGroupItem color="light">
-                    <div className="document__new-document-option">
-                      <Button
-                        className="document__new-document-btn text-left"
-                        onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
-                      >
+                  <SidebarMenu name="Criar Materiais" iconMenu="plus">
+                    <ListGroupItem color="light">
+                      <div className="document__new-document-option">
+                        <Button
+                          className="document__new-document-btn text-left"
+                          onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
+                        >
+                          <FontAwesomeIcon
+                            className="btn__icon"
+                            icon="plus"
+                          />
+                          Criar prova
+                        </Button>
+                      </div>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/create-question" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-question'); }}>
                         <FontAwesomeIcon
                           className="btn__icon"
                           icon="plus"
                         />
-                        Criar prova
-                      </Button>
-                    </div>
-                  </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/create-question" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-question'); }}>
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="plus"
-                      />
-                      Criar questão
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/create-activity" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-activity'); }}>
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="plus"
-                      />
-                      Criar atividade
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/create-classplan" onClick={(e) => { showCreateClassPlanModal(selectedClassPlanType); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}>
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="plus"
-                      />
-                      Criar plano de aula
-                    </Link>
-                  </ListGroupItem>
+                        Criar questão
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/create-activity" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/create-activity'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="plus"
+                        />
+                        Criar atividade
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/create-classplan" onClick={(e) => { showCreateClassPlanModal(selectedClassPlanType); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="plus"
+                        />
+                        Criar plano de aula
+                      </Link>
+                    </ListGroupItem>
+                  </SidebarMenu>
+                </ListGroup>
+
+                <ListGroup className="sidebar-main-options">
+                  <SidebarMenu name="Gerenciar meus materiais" iconMenu="folder">
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="folder"
+                        />
+                          Gerenciar minhas provas
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/class-plans/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/class-plans/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="folder"
+                        />
+                          Gerenciar meus planos de aula
+                      </Link>
+                    </ListGroupItem>
+                  </SidebarMenu>
                 </ListGroup>
                 <ListGroup className="sidebar-main-options">
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/documents/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/documents/1'); }}>
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="folder"
-                      />
-                        Gerenciar minhas provas
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/class-plans/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/class-plans/1'); }}>
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="folder"
-                      />
-                        Gerenciar meus planos de aula
-                    </Link>
-                  </ListGroupItem>
-                </ListGroup>
-                <ListGroup className="sidebar-main-options">
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1'); }}>
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="search"
-                      />
+
+                  <SidebarMenu name="Buscar questões" iconMenu="search">
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/question-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/question-base/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="search"
+                        />
                         Banco de questões
-                    </Link>
-                  </ListGroupItem>
+                      </Link>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <Link to="/topic-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/topic-base/1'); }}>
+                        <FontAwesomeIcon
+                          className="btn__icon"
+                          icon="bookmark"
+                        />
+                        Tópicos e assuntos
+                      </Link>
+                    </ListGroupItem>
+                  </SidebarMenu>
                   <ListGroupItem className="list-group-item__simple-option">
                     <Link to="/object-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/object-base/1'); }}>
                       <FontAwesomeIcon
@@ -243,12 +261,12 @@ const SidebarMobile = ({
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/topic-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/topic-base/1'); }}>
+                    <Link to="/class-plans-base/1" onClick={(e) => { redirectURL(e, openSidebar, isOpenSidebar, '/class-plans-base/1'); }}>
                       <FontAwesomeIcon
                         className="btn__icon"
-                        icon="bookmark"
+                        icon="image"
                       />
-                        Tópicos e assuntos
+                        Banco de planos de aula
                     </Link>
                   </ListGroupItem>
                   {/* <ListGroupItem color="light">
@@ -281,6 +299,25 @@ const SidebarMobile = ({
   );
 };
 
+const menuMainOptions = [
+  {
+    id: 1,
+    name: 'Criar Materiais',
+    iconMenu: 'plus',
+  },
+
+  {
+    id: 2,
+    name: 'Gerenciar meus materiais',
+    iconMenu: 'folder',
+  },
+
+  {
+    id: 3,
+    name: 'Buscar questões',
+    iconMenu: 'search',
+  },
+];
 
 const SidebarWeb = ({
   /* showFilters, */
@@ -289,6 +326,7 @@ const SidebarWeb = ({
   setQuestionIdToNewDocument, myQuestionLabels, isFetchingMyQuestionLabels,
   showCreateMyQuestionLabelModal, showDeleteMyQuestionLabelModal, showUpdateMyQuestionLabelModal, addSelectedMyQuestionLabelFilter,
   showCreateClassPlanModal, selectedClassPlanType,
+  sidebarOptionSelected, idSidebar,
 }) => {
   const openCreateDocumentModal = () => {
     // open modal
@@ -318,95 +356,147 @@ const SidebarWeb = ({
 
                 <ListGroup className="sidebar-main-options">
                   <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/my-dashboard">
+                    <NavLink to="/my-dashboard" activeClassName="menu__option-sidebar--active" onClick={() => sidebarOptionSelected(null)}>
                       <FontAwesomeIcon className="btn__icon" icon="home" />
                         Painel de atividades
-                    </Link>
+                    </NavLink>
                   </ListGroupItem>
                 </ListGroup>
+
                 <ListGroup className="sidebar-main-options c-sidebar__create-doc-option ">
-                  <ListGroupItem color="light">
-                    <div className="document__new-document-option">
+                  <SidebarMenu
+                    name={menuMainOptions[0].name}
+                    iconMenu={menuMainOptions[0].iconMenu}
+                    idMenuOption={menuMainOptions[0].id}
+                    idSidebar={idSidebar}
+                  >
+                    <ListGroupItem color="light">
+                      <div className="document__new-document-option">
+                        <Button
+                          color="link"
+                          className="document__new-document-btn text-left"
+                          onClick={(e) => {
+                            openCreateDocumentModal();
+                            toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar);
+                            sidebarOptionSelected(menuMainOptions[0].id);
+                          }}
+                        >
+                          <span className="ml-2">
+                            <FontAwesomeIcon className="btn__icon" icon="plus" />
+                            Criar prova
+                          </span>
+                        </Button>
+                      </div>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <NavLink to="/create-question" activeClassName="menu__option-sidebar--active" onClick={() => sidebarOptionSelected(menuMainOptions[0].id)}>
+                        <span className="ml-2">
+                          <FontAwesomeIcon className="btn__icon" icon="plus" />
+                          Criar questão
+                        </span>
+                      </NavLink>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <NavLink to="/create-object" activeClassName="menu__option-sidebar--active" onClick={() => sidebarOptionSelected(menuMainOptions[0].id)}>
+                        <span className="ml-2">
+                          <FontAwesomeIcon className="btn__icon" icon="plus" />
+                          Criar objeto
+                        </span>
+                      </NavLink>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <NavLink to="/create-activity" activeClassName="menu__option-sidebar--active" onClick={() => sidebarOptionSelected(menuMainOptions[0].id)}>
+                        <span className="ml-2">
+                          <FontAwesomeIcon
+                            className="btn__icon"
+                            icon="plus"
+                          />
+                          Criar atividade
+                        </span>
+                      </NavLink>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
                       <Button
                         color="link"
+                        onClick={() => { showCreateClassPlanModal(selectedClassPlanType); sidebarOptionSelected(menuMainOptions[0].id); }}
                         className="document__new-document-btn text-left"
-                        onClick={(e) => { openCreateDocumentModal(); toogleSidebarAfterOpenModal(e, openSidebar, isOpenSidebar); }}
                       >
-                        <FontAwesomeIcon className="btn__icon" icon="plus" />
-                          Criar prova
+                        <span className="ml-2">
+                          <FontAwesomeIcon className="btn__icon" icon="plus" />
+                            Criar plano de aula
+                        </span>
                       </Button>
-                    </div>
-                  </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/create-question">
-                      <FontAwesomeIcon className="btn__icon" icon="plus" />
-                        Criar questão
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/create-object">
-                      <FontAwesomeIcon className="btn__icon" icon="plus" />
-                        Criar objeto
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/create-activity">
-                      <FontAwesomeIcon
-                        className="btn__icon"
-                        icon="plus"
-                      />
-                      Criar atividade
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Button
-                      color="link"
-                      onClick={() => showCreateClassPlanModal(selectedClassPlanType)}
-                      className="document__new-document-btn text-left"
-                    >
-                      <FontAwesomeIcon className="btn__icon" icon="plus" />
-                        Criar plano de aula
-                    </Button>
-                  </ListGroupItem>
+                    </ListGroupItem>
+                  </SidebarMenu>
                 </ListGroup>
+
                 <ListGroup className="sidebar-main-options">
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/documents/1">
-                      <FontAwesomeIcon className="btn__icon" icon="folder" />
+                  <SidebarMenu
+                    name={menuMainOptions[1].name}
+                    iconMenu={menuMainOptions[1].iconMenu}
+                    idMenuOption={menuMainOptions[1].id}
+                    idSidebar={idSidebar}
+                  >
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <NavLink to="/documents/1" activeClassName="menu__option-sidebar--active" onClick={() => sidebarOptionSelected(menuMainOptions[1].id)}>
+                        <span className="ml-2">
+                          <FontAwesomeIcon className="btn__icon" icon="folder" />
                           Gerenciar minhas provas
-                    </Link>
-                  </ListGroupItem>
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/class-plans/1">
-                      <FontAwesomeIcon className="btn__icon" icon="folder" />
+                        </span>
+                      </NavLink>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <NavLink to="/class-plans/1" activeClassName="menu__option-sidebar--active" onClick={() => sidebarOptionSelected(menuMainOptions[1].id)}>
+                        <span className="ml-2">
+                          <FontAwesomeIcon className="btn__icon" icon="folder" />
                           Gerenciar meus planos de aula
-                    </Link>
-                  </ListGroupItem>
+                        </span>
+                      </NavLink>
+                    </ListGroupItem>
+                  </SidebarMenu>
                 </ListGroup>
+
                 <ListGroup className="sidebar-main-options">
-                  <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/question-base/1">
-                      <FontAwesomeIcon className="btn__icon" icon="search" />
+                  <SidebarMenu
+                    name={menuMainOptions[2].name}
+                    iconMenu={menuMainOptions[2].iconMenu}
+                    idMenuOption={menuMainOptions[2].id}
+                    idSidebar={idSidebar}
+                  >
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <NavLink to="/question-base/1" activeClassName="menu__option-sidebar--active" onClick={() => sidebarOptionSelected(menuMainOptions[2].id)}>
+                        <span className="ml-2">
+                          <FontAwesomeIcon className="btn__icon" icon="search" />
                           Banco de questões
-                    </Link>
-                  </ListGroupItem>
+                        </span>
+                      </NavLink>
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item__simple-option">
+                      <NavLink to="/topic-base/1" activeClassName="menu__option-sidebar--active" onClick={() => sidebarOptionSelected(menuMainOptions[2].id)}>
+                        <span className="ml-2">
+                          <FontAwesomeIcon className="btn__icon" icon="bookmark" />
+                          Tópicos e assuntos
+                        </span>
+                      </NavLink>
+                    </ListGroupItem>
+                  </SidebarMenu>
                   <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/activity-base/1">
+                    <NavLink to="/activity-base/1" activeClassName="menu__option-sidebar--active" onClick={() => sidebarOptionSelected(null)}>
                       <FontAwesomeIcon className="btn__icon" icon="search" />
                           Banco de atividades
-                    </Link>
+                    </NavLink>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/object-base/1">
+                    <NavLink to="/object-base/1" activeClassName="menu__option-sidebar--active" onClick={() => sidebarOptionSelected(null)}>
                       <FontAwesomeIcon className="btn__icon" icon="search" />
                           Banco de objetos
-                    </Link>
+                    </NavLink>
                   </ListGroupItem>
                   <ListGroupItem className="list-group-item__simple-option">
-                    <Link to="/topic-base/1">
-                      <FontAwesomeIcon className="btn__icon" icon="bookmark" />
-                          Tópicos e assuntos
-                    </Link>
+                    <NavLink to="/class-plans-base/1" activeClassName="menu__option-sidebar--active" onClick={() => sidebarOptionSelected(null)}>
+                      <FontAwesomeIcon className="btn__icon" icon="search" />
+                          Banco de Planos de aula
+                    </NavLink>
                   </ListGroupItem>
                   {/* <ListGroupItem color="light">
                       <Link to="/my-headers/1">

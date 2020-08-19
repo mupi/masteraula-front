@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import {
   Row, Col, Alert,
 } from 'reactstrap';
@@ -61,7 +60,7 @@ const StudentTestBasicInfo = ({ onlineTest }) => {
             className="btn__icon"
             icon="hourglass-start"
           />
-          <strong>Duração: </strong>
+          <strong>Duração prevista para realização: </strong>
         </span>
         <span className="c-online__questions-info--value">{duration}</span>
       </p>
@@ -77,7 +76,6 @@ const StudentOnlineTestFirstPage = (props) => {
       <Row className="mt-5 mb-3 align-items-center no-gutters">
         <Col sm="12" md={{ size: 8, offset: 2 }}>
           <h4>
-            {'Prova : '}
             <span className="c-online__name">{basicOnlineTest.name}</span>
           </h4>
           <StudentTestBasicInfo onlineTest={basicOnlineTest} />
@@ -156,7 +154,6 @@ const StudentOnlineTestSecondPage = (props) => {
         )}
         <Col sm="12">
           <h4>
-            {'Prova : '}
             <span className="c-online__name">{fullOnlineTest.name}</span>
           </h4>
           <StudentTestBasicInfo onlineTest={fullOnlineTest} />
@@ -202,7 +199,7 @@ const InnerPage = (props) => {
     );
   }
 
-  if ((!basicOnlineTest || basicOnlineTest.disabled || !basicOnlineTest.status ) && !isLoggedIn) {
+  if ((!basicOnlineTest || basicOnlineTest.disabled || !basicOnlineTest.status) && !isLoggedIn) {
     return (
       <Alert color="danger">
         A prova não existe ou não está mais disponível
@@ -255,11 +252,6 @@ const StudentOnlineTestPage = (props) => {
       <InnerPage {...props} />
     </HomeUserNotLoggedPage>
   );
-};
-
-StudentOnlineTestPage.propTypes = {
-  activeDocument: PropTypes.shape({}),
-  removeSelectedQuestion: PropTypes.func,
 };
 
 export default StudentOnlineTestPage;

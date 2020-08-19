@@ -221,7 +221,13 @@ const renderAlternatives2 = ({ fields, meta: { error }, resolution }) => (
     <Col md="12">
       <Row className="c-question__row-info c-create-question__row-alternative c-create-question__header-alternative">
         <Col sm="1" xs="1" className="align-self-center hidden-xs">É correta</Col>
-        <Col sm="6" xs="8" className="align-self-center hidden-xs">Alternativa</Col>
+        <Col sm="6" xs="8" className="align-self-center hidden-xs">
+          Alternativa 
+          {' '}
+          <small>
+            (Para questão do tipo dissertativa, não preencha os campos de alternativa.)
+          </small>
+        </Col>
         <Col sm="2" xs="1" className="align-self-center hidden-xs">Remover</Col>
         { fields.length < 5
           ? (
@@ -300,7 +306,7 @@ class QuestionForm extends Component {
       teachingLevelFilters, handleSubmit, selectedObjectList, removeSelectedObjectToQuestion,
       submitting, resolution, errors, sourceQuestionValue, listTopicSuggestions,
       showSearchLearningObjectModal, actionName,
-      showConfirmAddObject,
+      showConfirmAddObject, isPremium,
     } = this.props;
 
 
@@ -342,6 +348,42 @@ class QuestionForm extends Component {
                           }
             </Col>
           </Row>
+
+          {isPremium && (
+          <Row className="align-items-center">
+            <Col sm="3" xs="3">
+              Sua questão será:
+            </Col>
+            <Col sm="6" xs="6">
+              <FormGroup check inline>
+                <Label check>
+                  <Field
+                    name="secret"
+                    component="input"
+                    type="radio"
+                    value="P"
+                    className="c-create-online__radio-button-field"
+                  />
+                  {' '}
+                  Pública
+                </Label>
+              </FormGroup>
+              <FormGroup check inline>
+                <Label check>
+                  <Field
+                    name="secret"
+                    component="input"
+                    type="radio"
+                    value="S"
+                    className="c-create-online__radio-button-field"
+                  />
+                  {' '}
+                  Privada
+                </Label>
+              </FormGroup>
+            </Col>
+          </Row>
+          )}
           <Row className="c-question__tittle-section">
             <Col sm="12">
               <h5>
@@ -365,7 +407,7 @@ class QuestionForm extends Component {
                   icon="laptop"
                   className="btn__icon"
                 />
-                      Adicionar objeto do computador
+                Adicionar objeto do computador
               </Button>
             </Col>
           </Row>
@@ -403,7 +445,7 @@ class QuestionForm extends Component {
               <h5>
                 <FontAwesomeIcon icon="check-circle" />
                 {' '}
-                  Alternativas
+                  Alternativas 
               </h5>
             </Col>
           </Row>
@@ -424,6 +466,9 @@ class QuestionForm extends Component {
                 {' '}
                   Resolução
               </h5>
+              <small>
+                (Campo de preenchimento obrigatório para questão do tipo dissertativa.)
+              </small>
             </Col>
           </Row>
           <Row className="justify-content-center">

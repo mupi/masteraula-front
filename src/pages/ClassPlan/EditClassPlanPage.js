@@ -39,9 +39,16 @@ class EditClassPlanPage extends Component {
       }
     }
 
+    listBnccSuggestions = (param) => {
+      if (param && param.length === 3) {
+        const { listBnccSuggestions } = this.props;
+        listBnccSuggestions(param);
+      }
+    }
+
     render() {
       const {
-        isFetching, error, activeClassPlan, userId,
+        isFetching, activeClassPlan, userId,
         // selectedPdf,
       } = this.props;
 
@@ -67,17 +74,24 @@ class EditClassPlanPage extends Component {
           </HomeUserPage>
         );
       }
-
-      if (error || !activeClassPlan) {
+      if (!activeClassPlan || activeClassPlan.disabled) {
         return (
           <HomeUserPage>
             <Alert color="danger">
-                Erro no plano de aula
+              A atividade não existe ou não está mais disponível
             </Alert>
           </HomeUserPage>
         );
       }
-
+      if (activeClassPlan && activeClassPlan.owner.pk !== userId) {
+        return (
+          <HomeUserPage>
+            <Alert color="danger">
+              Você não tem permissão para editar este plano de aula.
+            </Alert>
+          </HomeUserPage>
+        );
+      }
 
       return (
         <HomeUserPage>

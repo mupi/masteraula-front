@@ -34,7 +34,7 @@ const MyDashboardRecentDocuments = (props) => {
                   {document.name}
                 </td>
                 <td className="text-center">
-                  {document.questions.length}
+                  {document.questions_quantity}
                 </td>
                 <td className="text-right">
                   <Button
@@ -70,6 +70,18 @@ const MyDashboardRecentDocuments = (props) => {
           <Link to="/create-question">
             <FontAwesomeIcon className="btn__icon" icon="plus" />
             Criar questão
+          </Link>
+        </p>
+        <p>
+          <Link to="/create-object">
+            <FontAwesomeIcon className="btn__icon" icon="plus" />
+            Criar objeto
+          </Link>
+        </p>
+        <p>
+          <Link to="/create-activity">
+            <FontAwesomeIcon className="btn__icon" icon="plus" />
+            Criar atividade
           </Link>
         </p>
         <Button

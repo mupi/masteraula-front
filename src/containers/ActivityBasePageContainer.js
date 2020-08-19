@@ -50,8 +50,6 @@ const toggleSelectedYearFilter = (idYear, value, nameYear = 'default') => {
 };
 
 const mapStateToProps = state => ({
-  /* PRECISO REFATORAR AQUI.. */
-  isFetchingQuestions: state.activity.isFetching,
   isFetching: state.activity.isFetching,
   activityPage: state.activity.activityPage,
   filter: state.filterActivity,
@@ -81,13 +79,7 @@ const setDispatchSearchText = searchText => (dispatch) => {
 
 const mapDispatchToProps = dispatch => ({
   listResults: (page, filter) => dispatch(listActivities(page, filter)),
-
-  addMyActivitiesFilter: (author, value) => {
-    history.replace('/activity-base/1');
-    dispatch(addMyActivitiesFilter(author, value));
-  },
-  /* PRECISO REFATORAR AQUI.. */
-  addMyQuestionsFilter: (author, value) => {
+  addMyMaterialFilter: (author, value) => {
     history.replace('/activity-base/1');
     dispatch(addMyActivitiesFilter(author, value));
   },

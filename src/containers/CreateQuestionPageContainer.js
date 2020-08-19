@@ -29,6 +29,7 @@ const mapStateToProps = (state) => {
     errors: state.form['question-create'] ? state.form['question-create'].submitErrors : null,
     sourceQuestionValue: selector(state, 'sourceQuestion'),
     topicSuggestions: state.suggestion.topicSuggestions,
+    isPremium: state.session.session && state.session.session.user ? state.session.session.user.subscription : null,
   });
 };
 
@@ -81,6 +82,7 @@ const mapDispatchToProps = (dispatch) => {
         alternatives: [{}, {}, {}],
         selectedIndex: 0,
         sourceQuestion: 'A',
+        secret: 'P',
       }));
     },
 
@@ -125,6 +127,7 @@ const mapDispatchToProps = (dispatch) => {
 
         learning_objects_ids: props.selectedObjectList.map(object => object.id),
         resolution: resolutionCleaned,
+        secret: values.secret === 'S',
       };
 
       // validations

@@ -384,7 +384,7 @@ const OnlineTestForm = (props) => {
                 <FontAwesomeIcon
                   className="btn__icon-right"
                   icon="question-circle"
-                  title="Tempo disponível para resolver a prova"
+                  title="Tempo disponível para resolver a prova. Atenção! Este tempo não é controlado pelo sistema, mas sim um indicativo ao aluno."
                 />
               </Col>
             </Row>

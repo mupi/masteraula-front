@@ -14,7 +14,7 @@ class CreateClassPlanPage extends Component {
   componentDidMount() {
     const {
       listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm,
-      resetSelectedObjects, resetSelectedDocuments, match, resetStationsClassPlan,
+      resetSelectedActivities, resetSelectedDocuments, match, resetStationsClassPlan, resetSelectedOnlineTests,
     } = this.props;
 
     if (match.params.type !== 'T' && match.params.type !== 'S') {
@@ -24,9 +24,10 @@ class CreateClassPlanPage extends Component {
       listTeachingLevelFilters();
       listTeachingYearFilters();
       prepareForm();
-      resetSelectedObjects();
+      resetSelectedActivities();
       resetSelectedDocuments();
       resetStationsClassPlan();
+      resetSelectedOnlineTests();
     }
   }
 
@@ -34,7 +35,7 @@ class CreateClassPlanPage extends Component {
     const { match: { params: { type } } } = this.props;
     const {
       listDisciplineFilters, listTeachingLevelFilters, listTeachingYearFilters, prepareForm,
-      resetSelectedObjects, resetSelectedDocuments, resetStationsClassPlan,
+      resetSelectedObjects, resetSelectedDocuments, resetStationsClassPlan, resetSelectedOnlineTests,
     } = this.props;
     if (prevProps.match.params.type !== type) {
       listDisciplineFilters();
@@ -44,6 +45,7 @@ class CreateClassPlanPage extends Component {
       resetSelectedObjects();
       resetSelectedDocuments();
       resetStationsClassPlan();
+      resetSelectedOnlineTests();
     }
   }
 
@@ -51,6 +53,13 @@ class CreateClassPlanPage extends Component {
       if (param && param.length === 3) {
         const { listTopicSuggestions } = this.props;
         listTopicSuggestions(param);
+      }
+    }
+
+    listBnccSuggestions = (param) => {
+      if (param && param.length === 3) {
+        const { listBnccSuggestions } = this.props;
+        listBnccSuggestions(param);
       }
     }
 

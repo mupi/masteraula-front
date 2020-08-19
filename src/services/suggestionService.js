@@ -42,8 +42,29 @@ function listTopicSuggestions(term, filter) {
     .then(response => response.data).then(topicSuggestions => topicSuggestions);
 }
 
+function listBnccSuggestions(term, filter) {
+  if (call) call.cancel();
+
+  call = axios.CancelToken.source();
+
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+    cancelToken: call.token,
+  };
+
+  const url = `/bncc_autocomplete/?q=${term}`;
+
+  return axios.get(`${apiUrl}${url}`, requestOptions)
+    .then(response => response.data).then(topicSuggestions => topicSuggestions);
+}
+
 const suggestionService = {
   listTopicSuggestions,
+  listBnccSuggestions,
 };
 
 export default suggestionService;

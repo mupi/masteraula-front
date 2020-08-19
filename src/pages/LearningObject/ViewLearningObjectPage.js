@@ -19,6 +19,7 @@ const options = {
   showCreateQuestionButton: true,
   removeOption: false,
   showTitle: false,
+  fromView: true,
 };
 
 class ViewLearningObjectPage extends Component {
@@ -67,7 +68,7 @@ class ViewLearningObjectPage extends Component {
         <Row className="c-question__row-header-options c-question__row-header-options--fixed">
           <Col className="c-question__col-header-options">
             <BackUsingHistory />
-            { (isOwner)
+            { (isOwner && !activeLearningObject.disabled)
               ? (
                 <Button
                   className="c-question__btn-remove-question"
@@ -80,7 +81,7 @@ class ViewLearningObjectPage extends Component {
                   Apagar
                 </Button>
               ) : ''}
-            {(isOwner)
+            {(isOwner && !activeLearningObject.disabled)
               ? (
                 <Link
                   className="btn btn-secondary c-question__btn-back"
@@ -104,6 +105,20 @@ class ViewLearningObjectPage extends Component {
             </h4>
           </Col>
         </Row>
+        {activeLearningObject.disabled ? (
+          <Row>
+            <Col className="c-question__col-full-section-details">
+              <Alert color="danger" className="c-question-edit__warning-message">
+                    O Objeto de aprendizagem
+                {' '}
+                    N°
+                <strong>{activeLearningObject.id}</strong>
+                {' '}
+                    foi removido pelo autor(a) e não está mais disponível
+              </Alert>
+            </Col>
+          </Row>
+        ) : ''}
         <Row>
           <Col sm="12">
             <div className="l-learning-object">

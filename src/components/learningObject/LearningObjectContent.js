@@ -2,7 +2,7 @@ import React from 'react';
 import { getCleanCompleteStatement, getCleanLearningObjectSource } from 'helpers/question';
 import RemoveButton from 'components/buttons/RemoveButton';
 import {
-  UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
+  Alert, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -27,12 +27,22 @@ const LearningObjectContent = (props) => {
     removeSelectedObject,
     options,
     addSelectedObjectToQuestion, setObjectIdToNewQuestion,
-    addSelectedObjectToActivity, setObjectIdToNewActivity,
+    addSelectedObjectToActivity, setObjectIdToNewActivity, 
   } = props;
 
   return (
     <div key={learningObject.id} className="c-learning-object">
-      { options && options.showOperations ? (
+       {learningObject.disabled && !options.fromView ? (
+          <Alert color="danger" className="c-document__question-unavailable mb-4">
+              O Objeto de aprendizagem
+            {' '}
+              N°
+            <strong>{learningObject.id}</strong>
+            {' '}
+              foi removido pelo autor(a) e não está mais disponível
+          </Alert>
+        ) : ''}
+      { options && options.showOperations && !learningObject.disabled ? (
         <div className="c-learning-object__operations">
           {options.showViewButton ? (
             <Link
@@ -77,8 +87,7 @@ const LearningObjectContent = (props) => {
           ) : ''}
 
         </div>
-      ) : ''
-
+      ) : ''             
       }
       {options && options.removeOption ? (
         <div className="c-create-question__remove-object-btn">

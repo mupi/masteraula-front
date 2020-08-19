@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Sidebar from 'components/sidebar/Sidebar';
 import { logout } from 'actions/loginAction';
-import { toggleMenu, openSidebar } from 'actions/menuAction';
+import { toggleMenu, openSidebar, sidebarOptionSelected } from 'actions/menuAction';
 import { clearSelectedFilters, clearSearch, addSelectedMyQuestionLabelFilter } from 'actions/filterAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import { setQuestionIdToNewDocument } from 'actions/documentAction';
@@ -25,6 +25,7 @@ const mapStateToProps = state => ({
   user: state.session.session ? state.session.session.user : null,
   activeDocument: state.document.activeDocument,
   isOpenSidebar: state.menu.isOpenSidebar,
+  idSidebar: state.menu.idSidebar,
   isFetchingQuestions: state.question.isFetching,
   quantityDocxDownloaded: state.document.numberDocxDownloaded ? state.document.numberDocxDownloaded.count : 0,
 
@@ -109,6 +110,7 @@ const mapDispatchToProps = (dispatch) => {
   return ({
     toggleMenu: isOpen => dispatch(toggleMenu(isOpen)),
     openSidebar: isOpenSidebar => dispatch(openSidebar(isOpenSidebar)),
+    sidebarOptionSelected: idSidebar => dispatch(sidebarOptionSelected(idSidebar)),
     logout: () => dispatch(logout()),
     cleanAllSearch: () => {
       dispatch({

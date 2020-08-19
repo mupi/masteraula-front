@@ -68,6 +68,16 @@ const ActivityInfo = ({
         </Col>
       </Row>
     ) : ' '}
+    <Row className="c-question__row-info">
+      <Col className="info-label" sm="4" xs="4">
+        Autoria
+      </Col>
+      <Col sm="8" xs="8">
+        <span>
+          {activity.owner.name}
+        </span>
+      </Col>
+    </Row>
     { showReportError && (
       <Row>
         <Col className="text-center">

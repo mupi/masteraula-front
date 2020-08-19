@@ -16,3 +16,4 @@ export { default as faqService } from './faqService';
 export { default as contactService } from './contactService';
 export { default as onlineTestService } from './onlineTestService';
 export { default as activityService } from './activityService';
+export { default as termsUseService } from './termsUseService';

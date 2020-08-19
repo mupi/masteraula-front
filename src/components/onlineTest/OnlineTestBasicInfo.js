@@ -19,6 +19,19 @@ const OnlineTestBasicInfo = (props) => {
         <p className="c-online__questions-info">
           <span className="c-online__questions-info--label">
             <FontAwesomeIcon
+              icon="circle"
+              className={`btn__icon c-online__status ${onlineTest.status ? 'c-online__status--active' : 'c-online__status--inactive'}`}
+              title={onlineTest.status ? 'Prova Ativa' : 'Prova Inativa'}
+            />
+            <strong>Estado: </strong>
+          </span>
+          <span>
+            <strong>{onlineTest.status ? 'Prova Ativa' : 'Prova Inativa'}</strong>
+          </span>
+        </p>
+        <p className="c-online__questions-info">
+          <span className="c-online__questions-info--label">
+            <FontAwesomeIcon
               className="btn__icon"
               icon="clock"
             />
@@ -32,7 +45,7 @@ const OnlineTestBasicInfo = (props) => {
               className="btn__icon"
               icon="hourglass-start"
             />
-            <strong>Duração: </strong>
+            <strong>Duração prevista para realização: </strong>
           </span>
           <span className="c-online__questions-info--value">{duration}</span>
         </p>
@@ -87,9 +100,11 @@ const OnlineTestBasicInfo = (props) => {
           </span>
         </p>
       </Col>
-
+      
       <Col sm="6">
-        <URLCopy url={`${masteraulaUrl}/apply-online/${onlineTest.link}`} />
+        {!onlineTest.disabled ? (
+          <URLCopy url={`${masteraulaUrl}/apply-online/${onlineTest.link}`} />
+        ) : ''}
       </Col>
     </Row>
   );

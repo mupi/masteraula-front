@@ -16,12 +16,11 @@ const RelatedQuestions = (props) => {
         </h4>
       </Row>
       <MaterialList
-              sm="4"
-              questions={rquestions}
-              activities={ractivities}
-              // count={rquestions.length + ractivities.length}
-              {...props}
-            />
+        sm="4"
+        questions={rquestions}
+        activities={ractivities}
+        {...props}
+      />
     </Container>
   );
 };

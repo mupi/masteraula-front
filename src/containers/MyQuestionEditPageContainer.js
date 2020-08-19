@@ -45,6 +45,7 @@ const mapStateToProps = (state) => {
     sourceQuestionValue: selector(state, 'sourceQuestion'),
     labels: state.label.myQuestionLabels,
     isAddingRemovingLabel: state.label.isAddingRemovingLabel,
+    isPremium: state.session.session && state.session.session.user ? state.session.session.user.subscription : null,
   });
 };
 
@@ -156,6 +157,7 @@ const mapDispatchToProps = (dispatch) => {
         // selected objects to question
         learning_objects_ids: props.selectedObjectList.map(object => object.id),
         resolution: resolutionCleaned,
+        secret: values.secret === 'S',
       };
 
       // validations

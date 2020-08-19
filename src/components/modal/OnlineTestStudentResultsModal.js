@@ -58,7 +58,7 @@ const renderQuestions = ({ fields, studentAnswers }) => (
       return (
         <tr key={answerShown.student_question.id}>
           <td className="text-center">
-            {answerShown.student_question.question.id}
+            {i + 1}
           </td>
           <td className="text-center">
             {answerShown.student_question.question.alternatives.map((alternative, a) => (

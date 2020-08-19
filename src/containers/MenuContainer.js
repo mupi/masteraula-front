@@ -3,6 +3,7 @@ import { logout } from 'actions/loginAction';
 import { toggleMenu, openSidebar } from 'actions/menuAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import { getNumberDocxDownloaded } from 'actions/documentAction';
+import { getNumberClassPlanPublicLinks } from 'actions/classPlanAction';
 
 import Menu from 'components/menu/Menu';
 
@@ -41,6 +42,7 @@ const mapDispatchToProps = (dispatch) => {
     showRegisterModal: () => dispatch(showModal(registerModalProps)),
     showLoginModal: () => dispatch(showModal(loginModalProps)),
     getNumberDocxDownloaded: () => dispatch(getNumberDocxDownloaded()),
+    getNumberClassPlanPublicLinks: () => dispatch(getNumberClassPlanPublicLinks()),
   };
 };
 

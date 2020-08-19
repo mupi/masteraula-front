@@ -14,11 +14,14 @@ import {
   ADD_SELECTED_LABEL_RELATED_QUESTION, REMOVE_SELECTED_LABEL_RELATED_QUESTION,
   REMOVE_SELECTED_LABEL_QUESTION_CARD_AFTER_DELETING_LABEL,
   REMOVE_SELECTED_LABEL_RELATED_QUESTION_AFTER_DELETING_LABEL,
+  DELETE_QUESTION, DELETE_QUESTION_SUCCESS, DELETE_QUESTION_FAILURE,
+  COPY_QUESTION, COPY_QUESTION_SUCCESS, COPY_QUESTION_FAILURE,
   /* Question Modal */
   LIST_QUESTION_MODAL, LIST_QUESTION_MODAL_SUCCESS, LIST_QUESTION_MODAL_FAILURE,
   SET_CURRENT_PAGE_MODAL,
 } from 'actions/questionAction';
-import { DELETE_QUESTION, DELETE_QUESTION_SUCCESS, DELETE_QUESTION_FAILURE } from '../actions/questionAction';
+
+import { toast } from 'react-toastify';
 
 const sessionData = JSON.parse(localStorage.getItem('activeDocument'));
 
@@ -27,6 +30,16 @@ const initialState = {
   questionPage: {},
   activeDocument: sessionData,
   selectedObjectList: [],
+};
+
+const optionsSuccess = {
+  className: 'alert__ma-toast--success',
+  type: 'success',
+};
+
+const optionsError = {
+  className: 'alert__ma-toast--error',
+  type: 'error',
 };
 
 export const question = (state = initialState, action) => {
@@ -44,6 +57,7 @@ export const question = (state = initialState, action) => {
       });
     case FETCH_QUESTION_FAILURE:
       return Object.assign({}, state, {
+        activeQuestion: null,
         isFetching: false,
         error: action.error,
       });
@@ -313,6 +327,29 @@ export const question = (state = initialState, action) => {
       return Object.assign({}, state, {
         currentPageModal: action.currentPageModal,
       });
+    case COPY_QUESTION: {
+      toast.success('A cópia da questão está em processo', optionsSuccess);
+      return Object.assign({}, state, {
+        isRemoved: null,
+        error: null,
+        isUpdated: null,
+        isCopying: true,
+      });
+    }
+    case COPY_QUESTION_SUCCESS: {
+      toast.success('Cópia da questão realizada com sucesso', optionsSuccess);
+      return Object.assign({}, state, {
+        isCopying: false,
+        activeClassPlan: { ...action.activeClassPlan },
+      });
+    }
+    case COPY_QUESTION_FAILURE: {
+      toast.error('Ocorreu um erro com sua solicitação', optionsError);
+      return Object.assign({}, state, {
+        isCopying: false,
+        error: action.error,
+      });
+    }
 
     default:
       return state;

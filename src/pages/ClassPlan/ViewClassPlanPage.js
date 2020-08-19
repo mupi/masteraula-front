@@ -4,28 +4,43 @@ import HomeUserPage from 'pages/HomeUser/HomeUserPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import {
-  Alert, Row, Col, Button,
+  Alert, Row, Col, Button, Badge,
 } from 'reactstrap';
 import BackUsingHistory from 'components/question/BackUsingHistory';
 import ClassPlanMainResources from 'components/classplan/ClassPlanMainResources';
-import ClassPlanExtraResources from 'components/classplan/ClassPlanExtraResources';
-import ClassPlanComments from 'components/classplan/ClassPlanComments';
+import ClassPlanStudentArea from 'components/classplan/ClassPlanStudentArea';
+import ClassPlanTeacherArea from 'components/classplan/ClassPlanTeacherArea';
 import ClassPlanBasicInfo from 'components/classplan/ClassPlanBasicInfo';
 import ClassPlanStations from 'components/classplan/ClassPlanStations';
 
-// Learning object's options available for LearnningObjectContent in ClassPlan
-const optionsObject = {
-  showOperations: true,
-  showViewButton: true,
-  showCreateQuestionButton: false,
-  removeOption: false,
-  showTitle: false,
+export const BUTTON_TYPE = {
+  ACTIVITYCARD_BASE: 1,
+  ACTIVITYCARD_MODAL_VIEW: 2,
+  ACTIVITYCARD_SELECT: 3,
 };
 
 // Document's options available for View ClassPlan
 const optionsDocument = {
   showViewButton: true,
   removeButton: false,
+};
+
+// Document's options available for View ClassPlan
+const optionsOnlineTest = {
+  showViewButton: true,
+  removeButton: false,
+};
+
+// Activity's options available for View ClassPlan
+const optionsActivity = {
+  showViewButton: true,
+  buttonType: BUTTON_TYPE.ACTIVITYCARD_MODAL_VIEW,
+};
+
+/* CLASS PLAN TYPE */
+const CLASSPLAN_TYPE = {
+  STATIONS: 'S',
+  OPEN: 'T',
 };
 
 class ViewClassPlanPage extends Component {
@@ -43,11 +58,15 @@ class ViewClassPlanPage extends Component {
 
   render() {
     const {
-      userId, activeClassPlan, isFetching, user, error, showDeleteModal, showDocumentModal,
+      userId, activeClassPlan, isFetching, user, error,
+      showDeleteModal, showDocumentModal, showActivityModal, showOnlineTestModal,
+      generatePublicLink, publicLink, showAlertModal, copyClassPlanView,
+      quantityUsedPublicLinks, isPremium, isCopying,
     } = this.props;
 
     const authorPK = (activeClassPlan && activeClassPlan.owner) ? activeClassPlan.owner.pk : 'Anônimo';
     const isOwner = (authorPK === userId);
+    const hasGuidelines = activeClassPlan && activeClassPlan.guidelines && activeClassPlan.guidelines.trim() !== '<p></p>' && activeClassPlan.guidelines.trim() !== '';
 
     if (isFetching) {
       return (
@@ -59,21 +78,21 @@ class ViewClassPlanPage extends Component {
       );
     }
 
-    if (error || !activeClassPlan) {
+    if (!activeClassPlan) {
       return (
         <HomeUserPage>
           <Alert color="danger">
-            Você não tem permissão para ver este plano de aula ou foi apagado.
+              O plano de aula não existe ou não está disponível
           </Alert>
         </HomeUserPage>
       );
     }
 
-    if (!isOwner) {
+    if (activeClassPlan && activeClassPlan.secret && !isOwner) {
       return (
         <HomeUserPage>
           <Alert color="danger">
-            Você não tem permissão para ver este plano de aula ou foi apagado.
+            Você não tem autorização para ver o plano de aula
           </Alert>
         </HomeUserPage>
       );
@@ -89,7 +108,7 @@ class ViewClassPlanPage extends Component {
       );
     }
 
-    const typeClassPlanName = (activeClassPlan.plan_type === 'T') ? 'Tradicional' : 'Rotação por Estações';
+    const typeClassPlanName = (activeClassPlan.plan_type === CLASSPLAN_TYPE.OPEN) ? 'Aberto' : 'Rotação por Estações';
 
     return (
       <HomeUserPage>
@@ -97,7 +116,7 @@ class ViewClassPlanPage extends Component {
           <Row className="c-question__row-header-options c-question__row-header-options--fixed">
             <Col className="c-question__col-header-options">
               <BackUsingHistory />
-              { (isOwner)
+              { (isOwner && !activeClassPlan.disabled)
                 ? (
                   <Button
                     className="c-question__btn-remove-question"
@@ -110,7 +129,7 @@ class ViewClassPlanPage extends Component {
                     Apagar
                   </Button>
                 ) : ''}
-              {(isOwner)
+              {(isOwner && !activeClassPlan.disabled)
                 ? (
                   <Link
                     className="btn btn-secondary c-question__btn-back"
@@ -121,9 +140,25 @@ class ViewClassPlanPage extends Component {
                     Editar
                   </Link>
                 ) : ''}
+              <Button
+                className="btn btn-secondary c-question__btn-back"
+                onClick={() => copyClassPlanView(activeClassPlan.id)}
+                title="Duplicar plano de aula"
+                disabled={isCopying}
+              >
+                <FontAwesomeIcon icon="copy" className="btn__icon" />
+                {' '}
+                Duplicar
+              </Button>
             </Col>
           </Row>
-          <Row className="c-question__tittle-section c-question--space-for-titlequestion">
+          <Row className="c-question--space-for-titlequestion">
+            <Col className="d-flex  justify-content-end">
+              {activeClassPlan.secret
+                ? <Badge className="c-question__badge-privacity" color="info">PRIVADO</Badge> : <Badge className="c-question__badge-privacity" color="success">PÚBLICO</Badge>}
+            </Col>
+          </Row>
+          <Row className="c-question__tittle-section">
             <Col>
               <h4>
                 <FontAwesomeIcon icon="book" />
@@ -132,22 +167,53 @@ class ViewClassPlanPage extends Component {
               </h4>
             </Col>
           </Row>
-          <ClassPlanBasicInfo classPlan={activeClassPlan} user={user} />
-          {activeClassPlan && activeClassPlan.plan_type === 'S' ? (
+
+          {activeClassPlan.disabled ? (
+            <Row>
+              <Col>
+                <Alert color="danger" className="c-question-edit__warning-message">
+                  O plano de aula
+                  {' '}
+                  N°
+                  <strong>{activeClassPlan.id}</strong>
+                  {' '}
+                  foi removido pelo autor(a) e não está mais disponível
+                </Alert>
+              </Col>
+            </Row>
+          ) : ''}
+          <ClassPlanBasicInfo
+            classPlan={activeClassPlan}
+            user={user}
+            generatePublicLink={generatePublicLink}
+            publicLink={publicLink}
+            showAlertModal={showAlertModal}
+            quantityUsedPublicLinks={quantityUsedPublicLinks}
+            isPremium={isPremium}
+            isOwner={isOwner}
+          />
+          <ClassPlanTeacherArea classPlan={activeClassPlan} />
+          {hasGuidelines && (
+            <ClassPlanStudentArea classPlan={activeClassPlan} />
+          )}
+          {activeClassPlan && activeClassPlan.plan_type === CLASSPLAN_TYPE.STATIONS ? (
             <ClassPlanStations
               stations={activeClassPlan.stations}
               showDocumentModal={showDocumentModal}
+              showActivityModal={showActivityModal}
+              showOnlineTestModal={showOnlineTestModal}
             />
           ) : (
             <ClassPlanMainResources
               classPlan={activeClassPlan}
+              optionsActivity={optionsActivity}
               optionsDocument={optionsDocument}
-              optionsObject={optionsObject}
+              optionsOnlineTest={optionsOnlineTest}
               showDocumentModal={showDocumentModal}
+              showActivityModal={showActivityModal}
+              showOnlineTestModal={showOnlineTestModal}
             />
           )}
-          <ClassPlanExtraResources classPlan={activeClassPlan} />
-          <ClassPlanComments classPlan={activeClassPlan} />
         </div>
       </HomeUserPage>
     );

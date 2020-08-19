@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SearchDocumentModal from 'components/modal/SearchDocumentModal';
-import { setCurrentPageModal } from 'actions/learningObjectAction';
+import { setCurrentPageModal } from 'actions/documentAction';
 
 const mapStateToProps = state => ({
   isFetching: state.document.isFetching,

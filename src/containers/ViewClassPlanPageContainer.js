@@ -1,22 +1,41 @@
 import { connect } from 'react-redux';
 import ViewClassPlanPage from 'pages/ClassPlan/ViewClassPlanPage';
 
-import { fetchClassPlan, deleteClassPlan } from 'actions/classPlanAction';
+import {
+  fetchClassPlan, deleteClassPlan, generatePublicLink, copyClassPlanView,
+} from 'actions/classPlanAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import {
   switchActiveDocument, fetchPreviewDocument,
 } from 'actions/documentAction';
+import { fetchActivity } from 'actions/activityAction';
+import { fetchOnlineTest } from 'actions/onlineTestAction';
 
 // state.<reducer's name>.<property>
 const mapStateToProps = state => ({
   error: state.classPlan.error,
   activeClassPlan: state.classPlan.activeClassPlan,
+  isCopying: state.classPlan.isCopying,
   isFetching: state.classPlan.isFetching,
   userId: state.session.session.user.id,
   user: state.session.session.user,
+  publicLink: state.classPlan.activeClassPlan && state.classPlan.activeClassPlan.link_class_plan
+    ? state.classPlan.activeClassPlan.link_class_plan : state.classPlan.publicLink,
+  quantityUsedPublicLinks: state.classPlan.numberClassPlanPublicLinks ? state.classPlan.numberClassPlanPublicLinks.count : 0,
+  isPremium: state.session.session && state.session.session.user ? state.session.session.user.subscription : null,
 });
 
 const mapDispatchToProps = (dispatch) => {
+  const alertModalProps = componentMessage => ({
+    modalProps: {
+      open: true,
+      closeModal: () => dispatch(hideModal()),
+      title: 'Gerar link público',
+      message: null,
+      componentMessage,
+    },
+    modalType: 'alert',
+  });
   const deleteModalProps = (idClassPlan, name) => ({
     modalProps: {
       open: true,
@@ -30,6 +49,34 @@ const mapDispatchToProps = (dispatch) => {
       closeModal: () => dispatch(hideModal()),
     },
     modalType: 'delete',
+  });
+
+  const activityModalProps = idActivity => ({
+    modalProps: {
+      open: true,
+      idActivity,
+      fetchActivity: () => {
+        dispatch(fetchActivity(idActivity));
+      },
+      closeModal: () => {
+        dispatch(hideModal());
+      },
+    },
+    modalType: 'activity',
+  });
+
+  const onlineTestModalProps = idOnlineTest => ({
+    modalProps: {
+      open: true,
+      idOnlineTest,
+      fetchOnlineTest: () => {
+        dispatch(fetchOnlineTest(idOnlineTest));
+      },
+      closeModal: () => {
+        dispatch(hideModal());
+      },
+    },
+    modalType: 'onlineTest',
   });
 
   const documentModalProps = document => ({
@@ -55,6 +102,12 @@ const mapDispatchToProps = (dispatch) => {
         _dispatch(showModal(documentModalProps(getState().document.previewDocument)));
       });
     },
+    showActivityModal: idActivity => dispatch(showModal(activityModalProps(idActivity))),
+    showOnlineTestModal: idOnlineTest => dispatch(showModal(onlineTestModalProps(idOnlineTest))),
+    generatePublicLink: id => dispatch(generatePublicLink(id)),
+    showAlertModal: componentMessage => dispatch(showModal(alertModalProps(componentMessage))),
+    copyClassPlanView: classPlan => dispatch(copyClassPlanView(classPlan)),
+
   });
 };
 

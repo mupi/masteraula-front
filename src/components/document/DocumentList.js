@@ -64,12 +64,12 @@ const DocumentList = (props) => {
                     {formatDate(document.create_date)}
                   </OpenDocumentModalHeader>
                   <OpenDocumentModalHeader openDocumentModal={openDocumentModal} document={document}>
-                    {document.questions.length}
+                    {document.questions_quantity}
                   </OpenDocumentModalHeader>
                   <td>
-                    {document.documents_online}
+                    {document.documents_online.length}
                     {' '}
-                    {document.documents_online > 0 && (
+                    {document.documents_online.length > 0 && (
                     <Link
                       to={`/online-tests/${document.id}/1`}
                       className="c-my-documents__btn-manage-onlines"
@@ -77,6 +77,9 @@ const DocumentList = (props) => {
                     >
                       <FontAwesomeIcon icon="cog" />
                     </Link>
+                    )}
+                    {document.documents_online.length > 0 && (
+                      document.documents_online.map(o => (<p key={o.link} className="c-my-documents__online-test">{o.name}</p>))
                     )}
                   </td>
                   <td>
@@ -100,7 +103,7 @@ const DocumentList = (props) => {
                         <DropdownItem
                           tag={Link}
                           to={`/create-online/${document.id}`}
-                          disabled={document.questions.length <= 0}
+                          disabled={document.questions_quantity <= 0}
                         >
                           <FontAwesomeIcon icon="laptop" />
                           {' '}
@@ -110,7 +113,7 @@ const DocumentList = (props) => {
                         <ExportDocumentButtonContainer
                           documentId={document.id}
                           documentName={document.name}
-                          documentTotalQuestions={document.questions.length}
+                          documentTotalQuestions={document.questions_quantity}
                           isLink
                           text="Exportar"
                         />

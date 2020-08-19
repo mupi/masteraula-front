@@ -269,7 +269,7 @@ export const listMyDocumentsModal = (currentPageModal) => {
   };
 };
 
-// Set page for search objects in modal
+// Set page for search documents in modal
 export const setCurrentPageModal = currentPageModal => ({
   type: SET_CURRENT_PAGE_MODAL, currentPageModal,
 });

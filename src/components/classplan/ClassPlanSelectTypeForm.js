@@ -49,7 +49,7 @@ const ClassPlanSelectTypeForm = (props) => {
 
             <CardDeck>
               <ClassPlanTypeCard
-                title="Tradicional"
+                title="Aberto"
                 type="T"
                 isSelected={selectedClassPlanType === 'T'}
                 selectClassPlanType={selectClassPlanType}

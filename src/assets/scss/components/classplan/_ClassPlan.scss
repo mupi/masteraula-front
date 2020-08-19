@@ -18,7 +18,19 @@
         }
     }
 }
+
+.classplan-card__name {
+    font-size: 13px;
+    margin-bottom: 0px;
+    color:$color-ma-lightgray;
+    font-weight: bold;
+}
+
 .c-classplan{
+
+    .demo-editor{
+        height: 200px !important;
+    }
 
     &__view-station{
         &:last-child{
@@ -50,9 +62,6 @@
           font-size: 14px;
         }
     }
-
-
-
 
     &__topics{
         .badge-pill{
@@ -104,4 +113,10 @@
           background-color: $color-ma-red;
         }
       }
+}
+
+.c-public-activity{
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #dbdfe2;
 }

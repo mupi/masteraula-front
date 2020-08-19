@@ -10,7 +10,7 @@ const CardBodyDocumentCard = (props) => {
   return (
     <CardBody className="document-card__body">
       <p className="question-card__extract">
-        <strong>Tópicos abordados nas questões:</strong>
+        <span>Tópicos abordados nas questões:</span>
         { (documentTopics.length >= 150) ? ` ${documentTopics.substring(0, 150)}${' ...'}` : documentTopics }
         {' '}
       </p>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 
 const AlertModal = ({
-  closeModal, title, message,
+  closeModal, title, message, componentMessage,
 }) => (
   <div className="modal-content modal__content">
     <div className="modal-header modal__header">
@@ -20,10 +20,11 @@ const AlertModal = ({
       </button>
     </div>
     <div className="modal-basic-operation__body modal-body">
-      <p className="text-center">
-        {message}
-      </p>
-
+      {message ? (
+        <p className="text-center">
+          {message}
+        </p>
+      ) : componentMessage(closeModal)}
       <div className="modal-footer modal__footer">
         <Button color="secondary" onClick={closeModal}>
           Cancelar

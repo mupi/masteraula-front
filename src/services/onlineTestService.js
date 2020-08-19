@@ -185,6 +185,26 @@ function listMyOnlineTest(idDocBase, page, orderField, order) {
     .then(response => response.data).then(onlineTestsList => onlineTestsList);
 }
 
+/* all online test without using idocBase
+  /document_online/my_documents_online_cards/
+*/
+function listMyOnlineTestCardsModal(page) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+
+  };
+
+  const url = `${apiUrl}/document_online/my_documents_online_cards/`;
+
+
+  return axios.get(`${url}?page=${page}`, requestOptions)
+    .then(response => response.data).then(onlineTestsList => onlineTestsList);
+}
+
 // Delete an online test given its ID
 function deleteOnlineTest(idOnlineTest) {
   const requestOptions = {
@@ -236,11 +256,11 @@ function copyOnlineTest(idDocumentOnline) {
   });
 
   return fetch(`${apiUrl}/document_online/${idDocumentOnline}/copy_document/`, requestOptions)
-    .then(handleResponse)
-    // .then((activeDocument) => {
-    //   localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
-    //   return activeDocument;
-    // });
+    .then(handleResponse);
+  // .then((activeDocument) => {
+  //   localStorage.setItem('activeDocument', JSON.stringify(activeDocument));
+  //   return activeDocument;
+  // });
 }
 
 const onlineTestService = {
@@ -255,7 +275,8 @@ const onlineTestService = {
   sendAnswersOnlineTest,
   editAnswersOnlineTest,
   downloadResults,
-  copyOnlineTest
+  copyOnlineTest,
+  listMyOnlineTestCardsModal,
 };
 
 export default onlineTestService;

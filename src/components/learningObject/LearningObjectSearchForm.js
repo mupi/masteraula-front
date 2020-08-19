@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, Form } from 'redux-form';
 import {
-  Input, InputGroup, InputGroupAddon, Button, Row, Col, UncontrolledTooltip,
+  Input, InputGroup, InputGroupAddon, Button, Row, UncontrolledTooltip,
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -85,20 +85,6 @@ const LearningObjectSearchForm = (props) => {
           isFetchingObjects={isFetchingObjects}
         />
       </Row>
-      {search ? (
-        <Row>
-          <Col sm="12">
-            <p className="c-question-base__keywords-title">
-              <span>Resultado da busca para:</span>
-              <span className="c-question-base__keywords">
-                {' '}
-                {search}
-              </span>
-            </p>
-          </Col>
-        </Row>
-      ) : ''
-      }
     </Form>
   );
 };

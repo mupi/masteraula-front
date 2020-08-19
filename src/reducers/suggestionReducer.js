@@ -1,12 +1,16 @@
 import {
   LIST_TOPIC_SUGGESTIONS,
   LIST_TOPIC_SUGGESTIONS_SUCCESS, LIST_TOPIC_SUGGESTIONS_FAILURE,
+  LIST_BNCC_SUGGESTIONS,
+  LIST_BNCC_SUGGESTIONS_SUCCESS, LIST_BNCC_SUGGESTIONS_FAILURE,
 } from 'actions/suggestionAction';
 
 const initialState = {
   topicSuggestions: [],
+  bnccSuggestions: [],
   error: null,
   isFetchingTopicSuggestions: false,
+  isFetchingBnccSuggestions: false,
 };
 
 export const topic = (state = initialState, action) => {
@@ -38,6 +42,24 @@ export const topic = (state = initialState, action) => {
         isFetchingTopicSuggestions: false,
         error: action.error,
       });
+    case LIST_BNCC_SUGGESTIONS:
+      return Object.assign({}, state, {
+        bnccSuggestions: [],
+        isFetchingBnccSuggestions: true,
+        error: null,
+      });
+    case LIST_BNCC_SUGGESTIONS_SUCCESS: {
+      return Object.assign({}, state, {
+        bnccSuggestions: [...action.bnccSuggestions],
+        isFetchingBnccSuggestions: false,
+      });
+    }
+    case LIST_BNCC_SUGGESTIONS_FAILURE:
+      return Object.assign({}, state, {
+        isFetchingBnccSuggestions: false,
+        error: action.error,
+      });
+
     default:
       return state;
   }

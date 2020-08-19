@@ -21,6 +21,7 @@ const renderTextEditor = (props) => {
     placeholderEditor,
     input: { onChange, value }, disabled, id,
     meta: { touched, error, warning },
+    options = null,
   } = props;
 
   return (
@@ -31,6 +32,7 @@ const renderTextEditor = (props) => {
         placeholder={placeholderEditor}
         onChange={onChange}
         value={value}
+        options={options}
       />
       { touched
             && ((error && (
@@ -126,7 +128,7 @@ const LearningObjectForm = (props) => {
     <Form onSubmit={handleSubmit}>
       <Prompt
         when={!pristine && !submitting}
-        message={`Tem certeza de sair da tela de ${actionName} atividade?`}
+        message={`Tem certeza de sair da tela de ${actionName} objeto de aprendizagem?`}
       />
       <div className="c-online c-create-online">
         {!hideMenuOptions && (
@@ -202,13 +204,14 @@ const LearningObjectForm = (props) => {
             </div>
           </Col>
           <Col sm="8">
-            <p className="c-learning-object__form-labels">Insira trechos de textos, letras de música ou link para o vídeo
-              <span className="c-question-base__tooltip" href="#" id="TooltipExample">
+            <p className="c-learning-object__form-labels">
+              Insira trechos de textos, letras de música ou link para o vídeo
+              <span href="#" id="TooltipExample">
                 {' '}
-                <FontAwesomeIcon icon="info-circle" />
+                <FontAwesomeIcon icon="info-circle" size={12} />
               </span>
               <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
-                Texto ou vídeo: é um editor de texto para inserir texto ou vídeos de youtube embebed.
+                Texto ou vídeo: é um editor de texto para inserir texto ou vídeos de youtube embebed. Ex. https://www.youtube.com/embed/-4ZNtRvMMU4
               </UncontrolledTooltip>
             </p>
             <Field
@@ -218,6 +221,7 @@ const LearningObjectForm = (props) => {
               id="textObjectEditorText"
               disabled={false}
               placeholderEditor="Escreva trechos de textos, letras de música ou link para o vídeo aqui ..."
+              options={['inline', 'blockType', 'embedded', 'textAlign']}
               // validate={requiredValidator}
             />
           </Col>
@@ -225,9 +229,15 @@ const LearningObjectForm = (props) => {
         <Row className="c-question__tittle-section">
           <Col>
             <h5>
-              <FontAwesomeIcon icon="info-circle" />
+              <span href="#" id="TooltipBasicInfo">
+                {' '}
+                <FontAwesomeIcon icon="info-circle" size={12} />
+              </span>
               {' '}
               Informações básicas
+              <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipBasicInfo">
+              Descreva detalhadamente as informações de autoria, inclusive o link, se houver, da fonte deste objeto.
+              </UncontrolledTooltip>
             </h5>
             <div className="border-top my-3" />
 
@@ -254,6 +264,13 @@ const LearningObjectForm = (props) => {
         <Row className="c-create-question__row-info mt-4 align-items-center">
           <Col className="info-label" sm="4" xs="4">
             Tags
+            <span href="#" id="TooltipTag">
+              {' '}
+              <FontAwesomeIcon icon="info-circle" size={12} />
+            </span>
+            <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipTag">
+              {'Insira palavras-chaves que descrevam o tipo de material, como por exemplo, "poesia, letra de música, rap nacional'}
+            </UncontrolledTooltip>
           </Col>
           <Col sm="8" xs="8">
             <Field

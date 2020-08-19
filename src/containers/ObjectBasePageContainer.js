@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
   filterObject: state.filterObject,
   modal: state.document.modal,
   currentPage: state.learningObject.currentPage,
+  search: state.filterObject.searchTextObject,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -34,7 +34,7 @@ function createQuestion(newQuestionData) {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    body: JSON.stringify({ ...newQuestionData, secret: true }),
+    body: JSON.stringify({ ...newQuestionData }),
   };
 
   const handleResponse = response => response.json().then((data) => {
@@ -58,7 +58,7 @@ function classifyQuestion(activeUpdateQuestion) {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    body: JSON.stringify({ ...activeUpdateQuestion, secret: true }),
+    body: JSON.stringify({ ...activeUpdateQuestion }),
   };
 
   const handleResponse = response => response.json().then((data) => {
@@ -88,7 +88,7 @@ function updateQuestion(activeUpdateQuestion) {
       'Content-Type': 'application/json',
       Authorization: authHeader(),
     },
-    body: JSON.stringify({ ...activeUpdateQuestion, secret: true }),
+    body: JSON.stringify({ ...activeUpdateQuestion }),
   };
 
   const handleResponse = response => response.json().then((data) => {
@@ -205,7 +205,7 @@ function rateQuestion() {
 
 }
 
-// Delete a header given its ID
+// Delete a question given its ID
 function deleteQuestion(idQuestion) {
   const requestOptions = {
     method: 'DELETE',
@@ -227,6 +227,32 @@ function deleteQuestion(idQuestion) {
     .then(idRemovedHeader => idRemovedHeader);
 }
 
+// Copy a question given its ID
+function copyQuestion(id) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader(),
+    },
+  };
+
+  const handleResponse = response => response.json().then((data) => {
+    if (!response.ok) {
+      const error = (data || 'Something went wrong');
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
+
+  const url = `/questions/${id}/copy_question/`;
+
+  return fetch(`${apiUrl}${url}`, requestOptions)
+    .then(handleResponse)
+    .then(activeClassPlan => activeClassPlan);
+}
+
 const questionService = {
   rateQuestion,
   fetchQuestion,
@@ -236,6 +262,7 @@ const questionService = {
   updateQuestion,
   deleteQuestion,
   listQuestionModal,
+  copyQuestion,
 };
 
 export default questionService;

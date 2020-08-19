@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import QuestionPage from 'pages/Question/QuestionPage';
-import { fetchQuestion, rateQuestion } from 'actions/questionAction';
+import { fetchQuestion, rateQuestion, copyQuestion } from 'actions/questionAction';
 import { setQuestionIdToNewDocument, addSelectedQuestion, removeSelectedQuestion } from 'actions/documentAction';
 import { showModal, hideModal } from 'actions/modalAction';
 import {
@@ -58,6 +58,8 @@ const mapStateToProps = state => ({
   filter: state.filter,
   labels: state.label.myQuestionLabels,
   isAddingRemovingLabel: state.label.isAddingRemovingLabel,
+  error: state.question.error,
+  isCopying: state.question.isCopying,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -116,6 +118,10 @@ const mapDispatchToProps = (dispatch) => {
 
     // Labels
     showCreateMyQuestionLabelModal: () => dispatch(showModal(createMyQuestionLabelModalProps)),
+
+    // Duplicar questão
+    copyQuestion: idQuestion => dispatch(copyQuestion(idQuestion)),
+
   });
 };
 

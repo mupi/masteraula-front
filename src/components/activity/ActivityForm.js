@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Alert, Row, Col, Button, Form,
+  Alert, Row, Col, Button, Form, FormGroup, Label,
 } from 'reactstrap';
 import { Link, Prompt } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -212,6 +212,7 @@ const ActivityForm = (props) => {
     tasks,
     actionName,
     showConfirmAddObject,
+    isPremium,
   } = props;
   return (
 
@@ -242,6 +243,52 @@ const ActivityForm = (props) => {
             </h4>
           </Col>
         </Row>
+        <Row>
+          <Col>
+            { (!pristine && !submitting) ? (
+              <Alert color="warning" className="c-question-edit__warning-message">
+                      Existem mudanças ainda não salvas na questão
+              </Alert>
+            ) : ''
+                          }
+          </Col>
+        </Row>
+
+        {isPremium && (
+        <Row className="align-items-center">
+          <Col sm="3" xs="3">
+          Sua atividade será:
+          </Col>
+          <Col sm="6" xs="6">
+            <FormGroup check inline>
+              <Label check>
+                <Field
+                  name="secret"
+                  component="input"
+                  type="radio"
+                  value="P"
+                  className="c-create-online__radio-button-field"
+                />
+                {' '}
+                  Pública
+              </Label>
+            </FormGroup>
+            <FormGroup check inline>
+              <Label check>
+                <Field
+                  name="secret"
+                  component="input"
+                  type="radio"
+                  value="S"
+                  className="c-create-online__radio-button-field"
+                />
+                {' '}
+                  Privada
+              </Label>
+            </FormGroup>
+          </Col>
+        </Row>
+        )}
         <Row className="mb-2">
           <Col sm="12">
             <h5>
@@ -384,7 +431,7 @@ const ActivityForm = (props) => {
         </Row>
         <Row className="c-create-question__row-info">
           <Col className="info-label" sm="4" xs="4">
-                      Tópicos
+            Tópicos
           </Col>
           <Col sm="8" xs="8">
             <Field

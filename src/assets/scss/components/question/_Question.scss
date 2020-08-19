@@ -1,6 +1,7 @@
 /*CSS for Question*/
 
 /*main class for any question's label-info that is shown in QuestionCard and QuestionPage*/
+
 .question-info{
   padding: 5px 10px;
   border-radius: 5px;
@@ -45,6 +46,11 @@
     // class for question's header options for all pages related to question
     &__label-item-btn{
       margin: 2px;
+    }
+
+    &__badge-privacity {
+      line-height: normal;
+      padding: 6px;
     }
 
     &__label-item-btn-remove{

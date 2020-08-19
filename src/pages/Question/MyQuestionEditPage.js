@@ -33,7 +33,7 @@ class MyQuestionEditPage extends Component {
 
   render() {
     const {
-      activeQuestion, userId, isFetching, error,
+      activeQuestion, userId, isFetching,
     } = this.props;
     const authorPK = activeQuestion && activeQuestion.author ? activeQuestion.author.pk : 'Anônimo';
 
@@ -47,26 +47,15 @@ class MyQuestionEditPage extends Component {
       );
     }
 
-    if (error) {
+    if (!activeQuestion || activeQuestion.disabled) {
       return (
         <HomeUserPage>
           <Alert color="danger">
-                Erro na questão
+            A questão não existe ou não está disponível
           </Alert>
         </HomeUserPage>
       );
     }
-
-    if (activeQuestion && activeQuestion.disabled) {
-      return (
-        <HomeUserPage>
-          <Alert color="danger">
-              Questão não disponível para edição
-          </Alert>
-        </HomeUserPage>
-      );
-    }
-
 
     if (authorPK !== userId) {
       return (
