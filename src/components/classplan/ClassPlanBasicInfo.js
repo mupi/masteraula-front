@@ -147,7 +147,9 @@ const ClassPlanBasicInfo = ({
                    Autoria
         </Col>
         <Col sm="8" xs="8">
-          {classPlan.owner.name}
+          {classPlan.owner.anonymous === true && classPlan.owner.nickname !== null ? ( 
+            classPlan.owner.nickname
+          ) : classPlan.owner.name}
         </Col>
       </Row>
     </>

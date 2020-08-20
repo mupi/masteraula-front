@@ -74,7 +74,9 @@ const ActivityInfo = ({
       </Col>
       <Col sm="8" xs="8">
         <span>
-          {activity.owner.name}
+          {activity.owner.anonymous === true && activity.owner.nickname !== null ? ( 
+            activity.owner.nickname
+          ) : activity.owner.name}
         </span>
       </Col>
     </Row>
