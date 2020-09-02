@@ -68,7 +68,7 @@ const PricingPage = ({ showRegisterModal }) => {
 
         <Col md="4">
           <div className="c-pricing-page__item">
-            <div className="c-pricing-page__item--2  c-pricing-page__item--full-borders">
+            <div className="c-pricing-page__item-top c-pricing-page__item--2">
               <h2>
                   Professor
                 <br />
