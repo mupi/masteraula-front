@@ -79,7 +79,7 @@ const PricingPage = ({ showRegisterModal }) => {
               </p>
               <p className="c-pricing-page__item-price"> R$9,90 </p>
               <a
-                href="https://pag.ae/7Vwf6UxB7/button"
+                href="https://pag.ae/7W6ijoXxH"
                 rel="noopener noreferrer"
                 target="_blank"
                 title="Pagar com PagSeguro"
