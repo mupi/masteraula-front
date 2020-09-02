@@ -34,6 +34,7 @@ const PricingPage = ({ showRegisterModal }) => {
             </div>
             <div className="c-pricing-page__item-bottom">
               <ul className="c-pricing-page__item-details">
+                <li>Acesso a todas disciplinas</li>
                 <li>
                   Uso de questões ilimitado
                 </li>
@@ -93,6 +94,7 @@ const PricingPage = ({ showRegisterModal }) => {
             </div>
             <div className="c-pricing-page__item-bottom">
               <ul className="c-pricing-page__item-details">
+                <li>Acesso a todas disciplinas</li>
                 <li>
                   Uso de questões ilimitado
                 </li>
