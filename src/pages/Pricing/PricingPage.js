@@ -34,6 +34,7 @@ const PricingPage = ({ showRegisterModal }) => {
             </div>
             <div className="c-pricing-page__item-bottom">
               <ul className="c-pricing-page__item-details">
+                <li>Acesso a todas disciplinas</li>
                 <li>
                   Uso de questões ilimitado
                 </li>
@@ -68,7 +69,7 @@ const PricingPage = ({ showRegisterModal }) => {
 
         <Col md="4">
           <div className="c-pricing-page__item">
-            <div className="c-pricing-page__item--2  c-pricing-page__item--full-borders">
+            <div className="c-pricing-page__item-top c-pricing-page__item--2">
               <h2>
                   Professor
                 <br />
@@ -79,7 +80,7 @@ const PricingPage = ({ showRegisterModal }) => {
               </p>
               <p className="c-pricing-page__item-price"> R$9,90 </p>
               <a
-                href="https://pag.ae/7Vwf6UxB7/button"
+                href="https://pag.ae/7W6ijoXxH"
                 rel="noopener noreferrer"
                 target="_blank"
                 title="Pagar com PagSeguro"
@@ -93,6 +94,7 @@ const PricingPage = ({ showRegisterModal }) => {
             </div>
             <div className="c-pricing-page__item-bottom">
               <ul className="c-pricing-page__item-details">
+                <li>Acesso a todas disciplinas</li>
                 <li>
                   Uso de questões ilimitado
                 </li>
