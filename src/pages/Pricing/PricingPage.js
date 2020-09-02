@@ -3,7 +3,7 @@ import {
   Row, Col, Button,
 } from 'reactstrap';
 import HomeUserNotLoggedPage from 'pages/Home/HomeUserNotLoggedPage';
-import { maxDocxFreePlan } from 'helpers/config';
+import { maxDocxFreePlan, maxPublicLinksFreePlan } from 'helpers/config';
 
 const PricingPage = ({ showRegisterModal }) => {
   const handleOpenRegisterModal = () => {
@@ -35,6 +35,12 @@ const PricingPage = ({ showRegisterModal }) => {
             <div className="c-pricing-page__item-bottom">
               <ul className="c-pricing-page__item-details">
                 <li>
+                  Uso de questões ilimitado
+                </li>
+                <li>
+                  Criação de provas/quiz online ilimitado
+                </li>
+                <li>
                   <span>
                     Download de até
                     {' '}
@@ -42,6 +48,18 @@ const PricingPage = ({ showRegisterModal }) => {
                     {' '}
                     provas mensais
                   </span>
+                </li>
+                <li>
+                  <span>
+                    Link de roteiro/atividades online até
+                    {' '}
+                    {maxPublicLinksFreePlan}
+                    {' '}
+                    envios
+                  </span>
+                </li>
+                <li>
+                  Acesso aos bancos de materiais ilimitado
                 </li>
               </ul>
             </div>
@@ -73,12 +91,22 @@ const PricingPage = ({ showRegisterModal }) => {
                 />
               </a>
             </div>
-            <div className="c-pricing-page__item-bottom hidden">
+            <div className="c-pricing-page__item-bottom">
               <ul className="c-pricing-page__item-details">
                 <li>
-                  <span>
-                      Acesso as questões de todas as disciplinas do ENEM
-                  </span>
+                  Uso de questões ilimitado
+                </li>
+                <li>
+                  Criação de provas/quiz online ilimitado
+                </li>
+                <li>
+                  Download de provas ilimitado
+                </li>
+                <li>
+                  Link de roteiro/atividades online ilimitado
+                </li>
+                <li>
+                  Acesso aos bancos de materiais ilimitado
                 </li>
               </ul>
             </div>
@@ -95,7 +123,11 @@ const PricingPage = ({ showRegisterModal }) => {
               </h2>
               <p className="c-pricing-page__item-description">Valores especiais para grupo de professores.</p>
               <p>
-                Entre em contato conosco +55 (19) 999084183
+                Entre em contato conosco
+                {' '}
+                <span className="c-pricing-page__contact-email">
+                  +55 (19) 999084183
+                </span>
               </p>
             </div>
             <div className="c-pricing-page__item-bottom hidden">
