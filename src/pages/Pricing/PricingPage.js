@@ -28,7 +28,7 @@ const PricingPage = ({ showRegisterModal }) => {
                 <br />
                   GRATUITO
               </h2>
-              <p className="c-pricing-page__item-description">Para facilitar seu cotidiano escolar!</p>
+              <p className="c-pricing-page__item-description">Use e abuse!</p>
               <p className="c-pricing-page__item-price"> R$0 </p>
               <Button className="c-pricing-page__start-button" size="lg" onClick={handleOpenRegisterModal}>Comece já!</Button>
             </div>
@@ -57,9 +57,9 @@ const PricingPage = ({ showRegisterModal }) => {
                   PREMIUM
               </h2>
               <p className="c-pricing-page__item-description">
-                Para não se preocupar durante 1 SEMESTRE. Acesso a todas disciplinas e download ilimitado.
+                  Válido por 1 mês!
               </p>
-              <p className="c-pricing-page__item-price"> R$159,90 </p>
+              <p className="c-pricing-page__item-price"> R$9,90 </p>
               <a
                 href="https://pag.ae/7Vwf6UxB7/button"
                 rel="noopener noreferrer"
@@ -93,13 +93,9 @@ const PricingPage = ({ showRegisterModal }) => {
                 <br />
                   ILIMITADO
               </h2>
-              <p className="c-pricing-page__item-description">Valores especiais para grupo de professores com acesso a todas disciplinas.</p>
+              <p className="c-pricing-page__item-description">Valores especiais para grupo de professores.</p>
               <p>
-                  Entre em contato pelo e-mail
-                {' '}
-                <a href="mailto:contato@masteraula.com.br" className="c-pricing-page__contact-email">
-                    contato@masteraula.com.br
-                </a>
+                Entre em contato conosco +55 (19) 999084183
               </p>
             </div>
             <div className="c-pricing-page__item-bottom hidden">
