@@ -95,6 +95,14 @@ export const fieldFile = ({ input, type }) => {
 };
 
 class UserProfile extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     checkState: false,
+  //   };
+  //   this.handleCheck = this.handleCheck.bind(this);
+  // }
+
   componentDidMount() {
     const { getCitiesList, user, listDisciplineFilters } = this.props;
     listDisciplineFilters();
@@ -110,6 +118,10 @@ class UserProfile extends React.Component {
 
     getCitiesList(newValue, false);
   }
+
+  // handleCheck(event) {
+  //   this.setState({ checkState: event.target.checked });
+  // }
 
   render() {
     const {
@@ -170,7 +182,37 @@ class UserProfile extends React.Component {
                   </FormGroup>
                 </Col>
               </Row>
-
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <Label>
+                      Apelido
+                    </Label>
+                    <Field
+                      component={renderField}
+                      type="text"
+                      name="userNickname"
+                      id="nickname"
+                      placeholder="Insira um apelido"
+                      className="form-control"
+                      autoFocus
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              {/* <Row>
+              <Col className="col-md-auto">
+                <FormGroup>
+                  <Input
+                    type="checkbox"
+                    name="userAnonymous"
+                    checked={this.state.checkState}
+                    onClick={this.handleCheck}
+                  />
+                  {'Usar meu usuário como anônimo'}
+                </FormGroup>
+              </Col>
+              </Row> */}
               <Row>
                 <Col>
                   <FormGroup>
