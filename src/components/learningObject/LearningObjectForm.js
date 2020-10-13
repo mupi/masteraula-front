@@ -211,7 +211,7 @@ const LearningObjectForm = (props) => {
                 <FontAwesomeIcon icon="info-circle" size={12} />
               </span>
               <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
-                Texto ou vídeo: é um editor de texto para inserir texto ou vídeos de youtube embebed. Ex. https://www.youtube.com/embed/-4ZNtRvMMU4
+                Texto ou vídeo: É um editor texto para você inserir diretamente os textos e/ou link para o vídeo.
               </UncontrolledTooltip>
             </p>
             <Field
