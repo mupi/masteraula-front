@@ -12,14 +12,21 @@ class QuestionTextRichEditor extends Component {
   /* eslint-disable react/no-danger */
   constructor(props) {
     super(props);
+    const { options } = props;
+
     const html = (props.value ? props.value : '');
-    const contentBlock = htmlToDraft(html);
+
+    const htmlMedia = (options ? `<p></p>${html}` : html);
+
+    const contentBlock = htmlToDraft(htmlMedia);
     if (contentBlock) {
       const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
       const editorState = EditorState.createWithContent(contentState);
+
       this.state = {
         editorState,
       };
+
     }
   }
 
