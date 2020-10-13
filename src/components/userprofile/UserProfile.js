@@ -125,7 +125,7 @@ class UserProfile extends React.Component {
 
   render() {
     const {
-      handleSubmit, stateList, cityList, user, disciplineFilters,
+      handleSubmit, stateList, cityList, user, disciplineFilters, submitting,
     } = this.props;
 
     return (
@@ -304,7 +304,7 @@ class UserProfile extends React.Component {
           </Row>
           <Row className="c-user-profile__button-section">
             <Col className="text-center">
-              <Button type="submit">
+              <Button type="submit" disabled={submitting}>
                 Salvar
               </Button>
             </Col>
