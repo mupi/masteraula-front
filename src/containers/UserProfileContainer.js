@@ -31,6 +31,7 @@ const mapStateToProps = (state) => {
       userState: user.city ? user.city.uf : null,
       userCity: user.city ? user.city.id : null,
       disciplines: user.disciplines,
+      anonymous: user.anonymous,
       userAnonymous: user.anonymous,
       userNickname: user.nickname,
     },
@@ -53,7 +54,7 @@ const mapDispatchToProps = dispatch => ({
       city: values.userCity !== '0' ? values.userCity : null,
       profile_pic: values.profile_pic && values.profile_pic.length !== 0 ? values.profile_pic : null,
       disciplines: values.disciplines.map(discipline => discipline.id),
-      // anonymous: values.anonymousCheck,
+      anonymous: values.anonymous,
       nickname: values.userNickname,
     };
     return dispatch(profileEdit(profile));

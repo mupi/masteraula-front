@@ -206,11 +206,11 @@ class UserProfile extends React.Component {
                     <Label check>
                       <Field
                         type="checkbox"
-                        name="userAnonymous"
-                        id="userAnonymous"
-                        component={userAnonymous => (
+                        name="anonymous"
+                        id="anonymous"
+                        component={anonymousCheck => (
                           <div>
-                            <input type={userAnonymous.type} {...userAnonymous.input} className="use-nickname" />
+                            <input type={anonymousCheck.type} {...anonymousCheck.input} className="use-nickname" />
                             Usar meu usuário como anônimo
                           </div>
                         )}

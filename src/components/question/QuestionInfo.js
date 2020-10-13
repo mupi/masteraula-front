@@ -120,10 +120,10 @@ const QuestionInfo = ({
           Autoria
           </Col>
           <Col sm="8" xs="8">
-            {userAnonymous === true && userNickname !== null ? ( 
-              <QuestionAuthor author={userNickname} styleTag="question-info author" />
-            ) : 
-            <QuestionAuthor author={authorshipValue} styleTag="question-info author" />
+            {userAnonymous === true && userNickname !== null ? (
+              <QuestionAuthor author={userNickname} />
+            )
+              : <QuestionAuthor author={authorshipValue} />
             }
           </Col>
         </Row>
