@@ -200,19 +200,26 @@ class UserProfile extends React.Component {
                   </FormGroup>
                 </Col>
               </Row>
-              {/* <Row>
-              <Col className="col-md-auto">
-                <FormGroup>
-                  <Input
-                    type="checkbox"
-                    name="userAnonymous"
-                    checked={this.state.checkState}
-                    onClick={this.handleCheck}
-                  />
-                  {'Usar meu usuário como anônimo'}
-                </FormGroup>
-              </Col>
-              </Row> */}
+              <Row>
+                <Col>
+                  <FormGroup check className="form-group c-user-profile__nickname">
+                    <Label check>
+                      <Field
+                        type="checkbox"
+                        name="userAnonymous"
+                        id="userAnonymous"
+                        component={userAnonymous => (
+                          <div>
+                            <input type={userAnonymous.type} {...userAnonymous.input} className="use-nickname" />
+                            Usar meu usuário como anônimo
+                          </div>
+                        )}
+                      />
+                      {' '}
+                    </Label>
+                  </FormGroup>
+                </Col>
+              </Row>
               <Row>
                 <Col>
                   <FormGroup>
