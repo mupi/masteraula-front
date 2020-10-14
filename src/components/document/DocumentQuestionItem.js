@@ -24,6 +24,9 @@ const DocumentQuestionItem = (props) => {
 
   const autorship = question.authorship ? question.authorship : question.author.name;
 
+  const userNickname = question.author.nickname;
+  const userAnonymous = question.author.anonymous;
+
   const handleOpenLoginModal = () => {
     showLoginModal(match.url);
   };
@@ -80,7 +83,11 @@ const DocumentQuestionItem = (props) => {
                   ? (
                     <p className="c-document__question-info-row">
                       {'Autoria: '}
-                      <span className="c-document__question-info-detail">{autorship}</span>
+                      <span className="c-document__question-info-detail">
+                        {userAnonymous === true && userNickname !== null ? ( userNickname
+                        ) : autorship
+                        }
+                      </span>
                     </p>
                   ) : (
                     <>

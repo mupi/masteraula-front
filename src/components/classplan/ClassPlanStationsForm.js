@@ -596,7 +596,9 @@ class ClassPlanStationsForm extends Component {
                    Autoria
               </Col>
               <Col sm="8" xs="8">
-                {user.name}
+                {user.anonymous === true && user.nickname !== null ? ( 
+                  user.nickname
+                ) : user.name}
               </Col>
             </Row>
             <Row>

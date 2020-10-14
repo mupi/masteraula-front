@@ -208,10 +208,10 @@ const LearningObjectForm = (props) => {
               Insira trechos de textos, letras de música ou link para o vídeo
               <span href="#" id="TooltipExample">
                 {' '}
-                <FontAwesomeIcon icon="info-circle" size={12} />
+                <FontAwesomeIcon icon="info-circle" size="sm" />
               </span>
               <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipExample">
-                Texto ou vídeo: é um editor de texto para inserir texto ou vídeos de youtube embebed. Ex. https://www.youtube.com/embed/-4ZNtRvMMU4
+                Texto ou vídeo: É um editor texto para você inserir diretamente os textos e/ou link para o vídeo.
               </UncontrolledTooltip>
             </p>
             <Field
@@ -231,7 +231,7 @@ const LearningObjectForm = (props) => {
             <h5>
               <span href="#" id="TooltipBasicInfo">
                 {' '}
-                <FontAwesomeIcon icon="info-circle" size={12} />
+                <FontAwesomeIcon icon="info-circle" size="sm" />
               </span>
               {' '}
               Informações básicas
@@ -266,7 +266,7 @@ const LearningObjectForm = (props) => {
             Tags
             <span href="#" id="TooltipTag">
               {' '}
-              <FontAwesomeIcon icon="info-circle" size={12} />
+              <FontAwesomeIcon icon="info-circle" size="sm" />
             </span>
             <UncontrolledTooltip className="tooltip__message" placement="right" target="TooltipTag">
               {'Insira palavras-chaves que descrevam o tipo de material, como por exemplo, "poesia, letra de música, rap nacional'}

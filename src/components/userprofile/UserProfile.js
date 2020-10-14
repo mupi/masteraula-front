@@ -95,6 +95,14 @@ export const fieldFile = ({ input, type }) => {
 };
 
 class UserProfile extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     checkState: false,
+  //   };
+  //   this.handleCheck = this.handleCheck.bind(this);
+  // }
+
   componentDidMount() {
     const { getCitiesList, user, listDisciplineFilters } = this.props;
     listDisciplineFilters();
@@ -111,9 +119,13 @@ class UserProfile extends React.Component {
     getCitiesList(newValue, false);
   }
 
+  // handleCheck(event) {
+  //   this.setState({ checkState: event.target.checked });
+  // }
+
   render() {
     const {
-      handleSubmit, stateList, cityList, user, disciplineFilters,
+      handleSubmit, stateList, cityList, user, disciplineFilters, submitting,
     } = this.props;
 
     return (
@@ -170,7 +182,44 @@ class UserProfile extends React.Component {
                   </FormGroup>
                 </Col>
               </Row>
-
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <Label>
+                      Apelido
+                    </Label>
+                    <Field
+                      component={renderField}
+                      type="text"
+                      name="userNickname"
+                      id="nickname"
+                      placeholder="Insira um apelido"
+                      className="form-control"
+                      autoFocus
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormGroup check className="form-group c-user-profile__nickname">
+                    <Label check>
+                      <Field
+                        type="checkbox"
+                        name="anonymous"
+                        id="anonymous"
+                        component={anonymousCheck => (
+                          <div>
+                            <input type={anonymousCheck.type} {...anonymousCheck.input} className="use-nickname" />
+                            Usar meu usuário como anônimo
+                          </div>
+                        )}
+                      />
+                      {' '}
+                    </Label>
+                  </FormGroup>
+                </Col>
+              </Row>
               <Row>
                 <Col>
                   <FormGroup>
@@ -255,7 +304,7 @@ class UserProfile extends React.Component {
           </Row>
           <Row className="c-user-profile__button-section">
             <Col className="text-center">
-              <Button type="submit">
+              <Button type="submit" disabled={submitting}>
                 Salvar
               </Button>
             </Col>

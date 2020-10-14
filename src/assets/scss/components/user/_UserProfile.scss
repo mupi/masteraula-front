@@ -40,9 +40,19 @@ CSS for UserProfile
 
     &__basic-info{
         .col-12{
-        padding:0px;
+          padding:0px;
         }
-    }   
+    } 
+
+    &__nickname {
+      &.form-check {
+        padding-left: 0px;
+
+        input.use-nickname {
+          margin-right: 5px;
+        } 
+      }
+    }
 }
 
 .small-text {

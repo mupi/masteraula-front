@@ -19,6 +19,9 @@ const QuestionInfo = ({
   const { author, authorship } = question;
   const authorshipValue = authorship || (author && author.name);
 
+  const userNickname = (author && author.nickname);
+  const userAnonymous = (author && author.anonymous);
+
   return (
     <div className="question-information">
       <Row className="c-question__tittle-section">
@@ -117,7 +120,11 @@ const QuestionInfo = ({
           Autoria
           </Col>
           <Col sm="8" xs="8">
-            <QuestionAuthor author={authorshipValue} styleTag="question-info author" />
+            {userAnonymous === true && userNickname !== null ? (
+              <QuestionAuthor author={userNickname} />
+            )
+              : <QuestionAuthor author={authorshipValue} />
+            }
           </Col>
         </Row>
       )}

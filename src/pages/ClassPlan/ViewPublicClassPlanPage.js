@@ -28,8 +28,8 @@ const CLASSPLAN_TYPE = {
   STATIONS: 'S',
   OPEN: 'T', /* before traditional, now Open */
 };
-const PublicActivitiesSection = ({ activities }) => (
-  <PublicActivityContentList activities={activities} />
+const PublicActivitiesSection = ({ activities, showActivityTitle }) => (
+  <PublicActivityContentList activities={activities} showActivityTitle={showActivityTitle} />
 );
 
 const PublicOnlineTestSection = ({ onlineTests }) => (
@@ -94,7 +94,7 @@ const PublicSingleStation = ({
     </Row>
     {
             station.activity
-            && (<PublicActivitiesSection activities={[{ ...station.activity }]} />)
+            && (<PublicActivitiesSection activities={[{ ...station.activity }]} showActivityTitle={false} />)
           }
     {
             station.document_online

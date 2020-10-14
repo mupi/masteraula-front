@@ -129,6 +129,9 @@ const renderQuestions = ({
       const autorship = questions[i].question && questions[i].question.authorship
         ? questions[i].question.authorship : questions[i].question.author.name;
 
+      const userNickname = questions[i].question.author.nickname;
+      const userAnonymous = questions[i].question.author.anonymous;
+
       const extractStatement = getCleanExtractStatement(questions[i].question.statement);
 
       return (
@@ -210,7 +213,12 @@ const renderQuestions = ({
                     ? (
                       <p className="c-document__question-info-row">
                         {'Autoria: '}
-                        <span className="c-document__question-info-detail">{autorship}</span>
+                        <span className="c-document__question-info-detail">
+                        
+                          {userAnonymous === true && userNickname !== null ? ( userNickname
+                          ) : autorship
+                          }
+                      </span>
                       </p>
                     ) : (
                       <>
