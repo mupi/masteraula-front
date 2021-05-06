@@ -54,7 +54,7 @@
     "redux-form": "^7.4.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "sanitize-html": "^1.19.1",
+    "sanitize-html": "^2.3.2",
     "sass": "^1.14.3",
     "uuid": "^3.3.2",
     "yarn": "^1.13.0"
